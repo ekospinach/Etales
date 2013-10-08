@@ -1,7 +1,7 @@
 {
-	"name": "angular-requirejs-seed",
-	"version": "0.2.0",
-	"description": "AngularJS seed project modified for requireJS support.",
+	"name": "Etales",
+	"version": "0.0.1",
+	"description": "Online Business Simulation Game",
 	"directories": {
 		"test": "test"
 	},
@@ -12,11 +12,15 @@
 		"type": "git",
 		"url": "git://github.com/tnajdek/angular-requirejs-seed.git"
 	},
-	"author": "Tom Najdek <tom@doppnet.com>",
+	"author": "ludwiksh <ludwik.applechina@gmail.com>",
 	"license": "MIT",
 	"readmeFilename": "README.md",
 	"gitHead": "22263bfe493ebc74437c80fc4b4d37c24d1aa6f4",
 	"devDependencies": {
+	    "grunt": "~0.4.1",
+	    "grunt-develop": "~0.2.2",
+	    "grunt-contrib-watch": "~0.5.3",
+	    "grunt-contrib-jshint": "~0.6.4",
 		"karma-script-launcher": "~0.1.0",
 		"karma-chrome-launcher": "~0.1.0",
 		"karma-firefox-launcher": "~0.1.0",
