@@ -7,6 +7,16 @@ define(['angular', 'services'], function (angular) {
 			$scope.scopedAppVersion = version;
 		}])
 		// More involved example where controller is required from an external file
+		.controller('HomeCtrl', ['$scope', '$injector', function($scope, $injector) {
+			require(['controllers/homectrl'], function(homectrl) {
+				$injector.invoke(homectrl, this, {'$scope': $scope});
+			});
+		}])
+		.controller('DecisionCtrl', ['$scope', '$injector', function($scope, $injector) {
+			require(['controllers/decisionctrl'], function(decisionctrl) {
+				$injector.invoke(decisionctrl, this, {'$scope': $scope});
+			});
+		}])
 		.controller('MyCtrl2', ['$scope', '$injector', function($scope, $injector) {
 			require(['controllers/myctrl2'], function(myctrl2) {
 				// injector method takes an array of modules as the first argument

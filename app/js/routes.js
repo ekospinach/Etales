@@ -1,6 +1,5 @@
 define(['angular', 'app'], function(angular, app) {
 	'use strict';
-
 	return app.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.when('/view1', {
 			templateUrl: 'app/partials/partial1.html',
@@ -10,7 +9,14 @@ define(['angular', 'app'], function(angular, app) {
 			templateUrl: 'app/partials/partial2.html',
 			controller: 'MyCtrl2'
 		});
-		$routeProvider.otherwise({redirectTo: '/view1'});
+		$routeProvider.when('/home',{
+			templateUrl:'app/partials/home.html',
+			controller:'HomeCtrl'
+		});
+		$routeProvider.when('/decision',{
+			templateUrl:'app/partials/decision.html',
+			controller:'DecisionCtrl'
+		});
+		$routeProvider.otherwise({redirectTo: '/home'});
 	}]);
-
 });

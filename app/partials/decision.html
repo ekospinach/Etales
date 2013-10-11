@@ -1,0 +1,76 @@
+<div class="row">
+	<div class="col-md-12">
+		<p>This is the partial for view</p>
+		<p>{{welcomeMessage}}</p>
+    <p>{{languages.Products_Portfolio_Management}}</p>
+    <!--<a class="navbar-brand pull-right" href=""><span class="label label-danger" Popover-animation="true" popover="hello" popover-title="nice" popover-trigger="mouseenter" popover-placement="bottom"
+     >nice</span></a>-->
+    <div class="btn-group pull-right" data-toggle="buttons">
+      <label class="btn btn-primary" ng-click="showView(user,period,category,'English')">
+        <input type="radio" name="options"> English
+      </label>
+      <label class="btn btn-primary" ng-click="showView(user,period,category,'Chinese')">
+        <input type="radio" name="options"> Chinese
+      </label>
+    </div>
+    <div style="clear:both;padding:5px 0"></div>
+    <div class="bs-docs-section">
+      <div class="thumbnail">
+        <table class="table table-striped">
+          <tr>
+            <th></th>
+            <th>{{shortLanguages.Category}}</th>
+            <th>{{shortLanguages.Brand}}</th>
+            <th>{{shortLanguages.Variant}}</th>
+            <th></th>
+            <th>
+              <p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{shortLanguages.PF}} ({{fullLanguages.PF}})" popover-trigger="mouseenter" popover-placement="bottom"
+     >{{shortLanguages.PF}}<span style="color:red">*</span></p>
+            </th>
+            <th>
+              <p class="text-primary" Popover-animation="true" popover="Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui." popover-title="{{shortLanguages.TL}} ({{fullLanguages.TL}})" popover-trigger="mouseenter" popover-placement="bottom"
+     >{{shortLanguages.TL}}<span style="color:red">*</span></p>
+            </th>
+            <th>
+              <p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{shortLanguages.AA}} ({{fullLanguages.AA}})" popover-trigger="mouseenter" popover-placement="bottom"
+     >{{shortLanguages.AA}}<span style="color:red">*</span></p>
+            </th>
+            <th>
+              <p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{shortLanguages.SL}} ({{fullLanguages.SL}})" popover-trigger="mouseenter" popover-placement="bottom"
+     >{{shortLanguages.SL}}<span style="color:red">*</span></p>
+            </th>
+            <th>
+              <p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{shortLanguages.EPV}} ({{fullLanguages.EPV}})" popover-trigger="mouseenter" popover-placement="bottom"
+     >{{shortLanguages.EPV}}<span style="color:red">*</span></p>
+            </th>
+            <th>
+              <p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{shortLanguages.DTP}} ({{fullLanguages.DTP}})" popover-trigger="mouseenter" popover-placement="bottom"
+     >{{shortLanguages.DTP}}<span style="color:red">*</span></p>
+            </th>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Elecssories</td>
+            <td>ELAND1</td>
+            <td>_A</td>
+            <td></td>
+            <td>
+              <a href="#" editable-select="pack.packs" e-ng-options="p.value as p.text for p in packs">{{ showPacks() }}</a>
+            </td>
+            <td><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></td>
+            <td><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></td>
+            <td><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></td>
+            <td><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+	</div>
+</div>
+      <br><br>
+      <a href="#" editable-select="pack.packs" e-ng-options="p.value as p.text for p in packs">
+        {{ showPacks() }}
+      </a>
+      <br><br>
+      debug: {{ user | json }}
