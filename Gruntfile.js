@@ -1,4 +1,4 @@
-module.exports = function(grunt) {
+ module.exports = function(grunt) {
   grunt.initConfig({
     watch: {
       //restart server when anything changed in code
@@ -23,8 +23,8 @@ module.exports = function(grunt) {
     },
     develop: {
       server: {
-        file: './scripts/web-server.js'
-//        env: { NODE_ENV: 'development' }
+        file: './server.js',
+        env: { NODE_ENV: 'development' }
       }
     },
   });
@@ -35,3 +35,4 @@ module.exports = function(grunt) {
     'develop',
     'watch']);
 };
+  

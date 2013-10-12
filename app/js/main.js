@@ -1,18 +1,21 @@
 require.config({
 	paths: {
-		angular: '../../bower_components/angular/angular',
-		angularRoute: '../../bower_components/angular-route/angular-route',
-		angularMocks: '../../bower_components/angular-mocks/angular-mocks',
-		text: '../../bower_components/requirejs-text/text'
+		angular: '../bower_components/angular/angular',
+		angularRoute: '../bower_components/angular-route/angular-route',
+		angularMocks: '../bower_components/angular-mocks/angular-mocks',
+		text: '../bower_components/requirejs-text/text',
+		angularXeditable: '../bower_components/angular-xeditable/dist/js/xeditable',
+		socketIO: '../bower_components/socket.io-client/dist/socket.io'
 	},
-	baseUrl: 'app/js',
+	baseUrl: 'js',
 	shim: {
 		'angular' : {'exports' : 'angular'},
 		'angularRoute': ['angular'],
 		'angularMocks': {
 			deps:['angular'],
 			'exports':'angular.mock'
-		}
+		},
+		'angularXeditable': ['angular']
 	},
 	priority: [
 		"angular"
@@ -22,7 +25,7 @@ require.config({
 // hey Angular, we're bootstrapping manually!
 window.name = "NG_DEFER_BOOTSTRAP!";
 
-require( [
+require([
 	'angular',
 	'app',
 	'routes'

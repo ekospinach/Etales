@@ -5,6 +5,9 @@ define(['angular', 'services'], function (angular) {
 		// Sample controller where service is being used
 		.controller('MyCtrl1', ['$scope', 'version', function ($scope, version) {
 			$scope.scopedAppVersion = version;
+			$scope.user = {
+				name: 'awesome user'
+			}
 		}])
 		// More involved example where controller is required from an external file
 		.controller('MyCtrl2', ['$scope', '$injector', function($scope, $injector) {

@@ -1,0 +1,5 @@
+  app.post('/marketReport', require('./api/models/marketReport.js').addMarketReports({cgiHost : conf.cgi.host, cgiPath : conf.cgi.path_marketReport, cgiPort : conf.cgi.port, uploadFileAbsDir : conf.cgi.uploadFileAbsDir}));
+  app.post('/lineChart', require('./api/models/lineChart.js').addLineCharts({cgiHost : conf.cgi.host, cgiPath : conf.cgi.path_lineChart, cgiPort : conf.cgi.port, uploadFileAbsDir : conf.cgi.uploadFileAbsDir}));
+  app.post('/perceptionMap', require('./api/models/perceptionMap.js').addPerceptionMaps({cgiHost : conf.cgi.host, cgiPath : conf.cgi.path_perceptionMap, cgiPort : conf.cgi.port, uploadFileAbsDir : conf.cgi.uploadFileAbsDir}));
+  app.post('/finReport', require('./api/models/finReport.js').addFinReports({cgiHost : conf.cgi.host, cgiPath : conf.cgi.path_finReport, cgiPort : conf.cgi.port, uploadFileAbsDir : conf.cgi.uploadFileAbsDir}));
+  app.post('/volReport', require('./api/models/volReport.js').addVolReports({cgiHost : conf.cgi.host, cgiPath : conf.cgi.path_volReport, cgiPort : conf.cgi.port, uploadFileAbsDir : conf.cgi.uploadFileAbsDir}));

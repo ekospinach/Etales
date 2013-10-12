@@ -2,20 +2,17 @@
 	"name": "Etales",
 	"version": "0.0.1",
 	"description": "Online Business Simulation Game",
-	"directories": {
-		"test": "test"
-	},
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"start": "NODE_ENV=development node server.js"
 	},
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/tnajdek/angular-requirejs-seed.git"
+	"dependencies": {
+		"express":"*",
+		"mongoose":"*",
+		"mongo":"*",
+		"underscore":"*",
+		"formidable":"*",
+		"socket.io":"*"
 	},
-	"author": "ludwiksh <ludwik.applechina@gmail.com>",
-	"license": "MIT",
-	"readmeFilename": "README.md",
-	"gitHead": "22263bfe493ebc74437c80fc4b4d37c24d1aa6f4",
 	"devDependencies": {
 	    "grunt": "~0.4.1",
 	    "grunt-develop": "~0.2.2",
