@@ -5,6 +5,87 @@ define(['angularBootstrap'], function(angularBootstrap) {
 		// because this has happened asynchroneusly we've missed
 		// Angular's initial call to $apply after the controller has been loaded
 		// hence we need to explicityly call it at the end of our Controller constructor
+		var products=[{
+			'Category':'Elecssories',
+			'Brand':'ELAND1',
+			'Variant':'_A',
+			'PF':'ECONOMY',
+			'TL':5,
+			'DI':5,
+			'RMQ':5,
+			'EPV':70
+			'DTP':false
+		},{
+			'Category':'Elecssories',
+			'Brand':'ELAND1',
+			'Variant':'_A',
+			'PF':'ECONOMY',
+			'TL':5,
+			'DI':5,
+			'RMQ':5,
+			'EPV':70
+			'DTP':false
+		},{
+			'Category':'Elecssories',
+			'Brand':'ELAND1',
+			'Variant':'_A',
+			'PF':'ECONOMY',
+			'TL':5,
+			'DI':5,
+			'RMQ':5,
+			'EPV':70
+			'DTP':false
+		},{
+			'Category':'Elecssories',
+			'Brand':'ELAND1',
+			'Variant':'_A',
+			'PF':'ECONOMY',
+			'TL':5,
+			'DI':5,
+			'RMQ':5,
+			'EPV':70
+			'DTP':false
+		},{
+			'Category':'HealthBeauty',
+			'Brand':'HOLAY1',
+			'Variant':'_A',
+			'PF':'PREMIUM',
+			'TL':7,
+			'AA':7,
+			'SL':7,
+			'EPV':6
+			'DTP':false
+		},{
+			'Category':'HealthBeauty',
+			'Brand':'HOLAY1',
+			'Variant':'_A',
+			'PF':'PREMIUM',
+			'TL':7,
+			'AA':7,
+			'SL':7,
+			'EPV':6
+			'DTP':false
+		},{
+			'Category':'HealthBeauty',
+			'Brand':'HOLAY1',
+			'Variant':'_A',
+			'PF':'PREMIUM',
+			'TL':7,
+			'AA':7,
+			'SL':7,
+			'EPV':6
+			'DTP':false
+		},{
+			'Category':'HealthBeauty',
+			'Brand':'HOLAY1',
+			'Variant':'_A',
+			'PF':'PREMIUM',
+			'TL':7,
+			'AA':7,
+			'SL':7,
+			'EPV':6
+			'DTP':false
+		}];
 		var multilingual=[{
 					'shortName':'Products_Portfolio_Management',
 					'labelENG':'Products Portfolio Management',
@@ -133,6 +214,7 @@ define(['angularBootstrap'], function(angularBootstrap) {
 					//shortLanguages[$scope.multilingual[i].label]=$scope.multilingual[i].label;
 				}
 			}
+			console.log(shortLanguages['category']);
 			$scope.shortLanguages=shortLanguages;
 			$scope.fullLanguages=fullLanguages;
 		}
