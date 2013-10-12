@@ -15,5 +15,11 @@
     "angular-mocks": "~1.2.0-rc.1",
     "requirejs": "~2.1.8",
     "requirejs-text": "~2.0.10"
+  },
+  "dependencies": {
+    "underscore": "~1.5.2",
+    "angular-ui-bootstrap-bower": "~0.6.0",
+    "jquery": "~2.0.3",
+    "bootstrap": "~3.0.0"
   }
 }
