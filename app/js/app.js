@@ -5,7 +5,8 @@ define([
 	'directives',
 	'controllers',
 	'angularRoute',
-	'angularXeditable'
+	'angularXeditable',
+	'angularBootstrap'
 	], function (angular, filters, services, directives, controllers) {
 		'use strict';
 		return angular.module('myApp', [
@@ -14,7 +15,8 @@ define([
 			'myApp.filters',
 			'myApp.services',
 			'myApp.directives',
-			'xeditable'
+			'xeditable',
+			'ui.bootstrap'
 		]).run(function(editableOptions){
 			editableOptions.theme = 'bs3';
 		});

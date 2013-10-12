@@ -1,0 +1,212 @@
+<div class="row">
+	<div class="col-md-12">
+    <div style="clear:both;padding:5px 0"></div>
+    <div class="btn-group pull-right" data-toggle="buttons">
+      <label class="btn btn-primary" ng-click="showView(user,period,category,'English')">
+        <input type="radio" name="options"> English
+      </label>
+      <label class="btn btn-primary" ng-click="showView(user,period,category,'Chinese')">
+        <input type="radio" name="options"> Chinese
+      </label>
+    </div>
+    <div class="btn-group pull-right" style="margin-right:10px">
+        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+          Category <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li class=""><a ng-click="">Elecssories</a></li>
+          <li class=""><a ng-click="">HealthBeauty</a></li>       
+        </ul>
+      </div>
+    <div style="clear:both;padding:5px 0"></div>
+    <div class="bs-docs-section">
+      <div class="thumbnail">
+        <table class="table table-striped">
+          <!--<tr>
+            <th>{{shortLanguages.Category}}</th>
+            <th>{{shortLanguages.Brand}}</th>
+            <th>{{shortLanguages.Variant}}</th>
+            <th></th>
+            <th>
+              <p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.PF}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.PF}}<span style="color:red">*</span></p>
+            </th>
+            <th>
+              <p class="text-primary" Popover-animation="true" popover="Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui." popover-title="{{fullLanguages.TL}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.TL}}<span style="color:red">*</span></p>
+            </th>
+            <th>
+              <p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.AA}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.AA}}<span style="color:red">*</span></p>
+            </th>
+            <th>
+              <p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.SL}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.SL}}<span style="color:red">*</span></p>
+            </th>
+            <th>
+              <p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.EPV}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.EPV}}<span style="color:red">*</span></p>
+            </th>
+            <th>
+              <p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.DTP}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.DTP}}<span style="color:red">*</span></p>
+            </th>
+          </tr>
+          <tr>
+            <td>Elecssories</td>
+            <td>ELAND1</td>
+            <td>_A</td>
+            <td></td>
+            <td>
+              <a href="#" editable-select="pack.packs" e-ng-options="p.value as p.text for p in packs">{{ showPacks() }}</a>
+            </td>
+            <td><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></td>
+            <td><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></td>
+            <td><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></td>
+            <td><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></td>
+            <td><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></td>
+            <td></td>
+          </tr>-->
+          <tr>
+            <th>{{fullLanguages.Category}}</th>
+            <th>Elecssories</th>
+            <th>Elecssories</th>
+            <th>Elecssories</th>
+            <th>Elecssories</th>
+            <th>HealthBeauty</th>
+            <th>HealthBeauty</th>
+            <th>HealthBeauty</th>
+            <th>HealthBeauty</th>
+          </tr>
+          <tr>
+            <th>{{fullLanguages.Brand}}</th>
+            <th>ELAND1</th>
+            <th>ELAND1</th>
+            <th>ELAND1</th>
+            <th>ELAND1</th>
+            <th>HOLAY1</th>
+            <th>HOLAY1</th>
+            <th>HOLAY1</th>
+            <th>HOLAY1</th>
+          </tr>
+          <tr>
+            <th>{{fullLanguages.Variant}}</th>
+            <th>_A</th>
+            <th>_A</th>
+            <th>_A</th>
+            <th>_A</th>
+            <th>_B</th>
+            <th>_B</th>
+            <th>_B</th>
+            <th>_B</th>
+          </tr>
+          <tr>
+            <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.PF}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.PF}}<span style="color:red">*</span></p></th>
+            <th><a href="#" editable-select="pack.packs" e-ng-options="p.value as p.text for p in packs">{{ showPacks() }}</a></th>
+            <th><a href="#" editable-select="pack.packs" e-ng-options="p.value as p.text for p in packs">{{ showPacks() }}</a></th>
+            <th><a href="#" editable-select="pack.packs" e-ng-options="p.value as p.text for p in packs">{{ showPacks() }}</a></th>
+            <th><a href="#" editable-select="pack.packs" e-ng-options="p.value as p.text for p in packs">{{ showPacks() }}</a></th>
+            <th><a href="#" editable-select="pack.packs" e-ng-options="p.value as p.text for p in packs">{{ showPacks() }}</a></th>
+            <th><a href="#" editable-select="pack.packs" e-ng-options="p.value as p.text for p in packs">{{ showPacks() }}</a></th>
+            <th><a href="#" editable-select="pack.packs" e-ng-options="p.value as p.text for p in packs">{{ showPacks() }}</a></th>
+            <th><a href="#" editable-select="pack.packs" e-ng-options="p.value as p.text for p in packs">{{ showPacks() }}</a></th>
+          </tr>
+          <tr>
+            <th><p class="text-primary" Popover-animation="true" popover="Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui." popover-title="{{fullLanguages.TL}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.TL}}<span style="color:red">*</span></p></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+          </tr>
+          <tr>
+            <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.AA}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.AA}}<span style="color:red">*</span></p></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+          </tr>
+          <tr>
+            <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.SL}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.SL}}<span style="color:red">*</span></p></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+          </tr>
+          <tr>
+            <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.EPV}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.EPV}}<span style="color:red">*</span></p></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+          </tr>
+          <tr>
+            <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.DTP}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.DTP}}<span style="color:red">*</span></p></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+          </tr>
+          <tr>
+            <th>status</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>          
+            <!--<th>
+              <p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.PF}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.PF}}<span style="color:red">*</span></p>
+            </th>
+           <th>
+              <p class="text-primary" Popover-animation="true" popover="Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui." popover-title="{{fullLanguages.TL}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.TL}}<span style="color:red">*</span></p>
+            </th>
+            <th>
+              <p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.AA}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.AA}}<span style="color:red">*</span></p>
+            </th>
+            <th>
+              <p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.SL}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.SL}}<span style="color:red">*</span></p>
+            </th>
+            <th>
+              <p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.EPV}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.EPV}}<span style="color:red">*</span></p>
+            </th>
+            <th>
+              <p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.DTP}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.DTP}}<span style="color:red">*</span></p>
+            </th> 
+          </tr>
+          <tr>
+            <td>Elecssories</td>
+            <td>ELAND1</td>
+            <td>_A</td>
+            <td></td>
+            <td>
+              <a href="#" editable-select="pack.packs" e-ng-options="p.value as p.text for p in packs">{{ showPacks() }}</a>
+            </td>
+            <td><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></td>
+            <td><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></td>
+            <td><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></td>
+            <td><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></td>
+            <td><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></td>
+            <td></td>
+          </tr>-->
+        </table>
+      </div>
+    </div>
+	</div>
+</div>
