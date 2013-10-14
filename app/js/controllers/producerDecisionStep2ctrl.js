@@ -1,8 +1,9 @@
 define(['angularBootstrap','underscore'], function(angularBootstrap,underscore) {
 	return ['$scope','$rootScope','$http','$filter', function($scope,$rootScope,$http,$filter) {
 		// You can access the scope of the controller from here
-		$scope.welcomeMessage = 'hey this is DecisionCtrl.js!';
 		$rootScope.decisionActive="active";
+		console.log($rootScope.decisionActive);
+		$scope.welcomeMessage = 'hey this is DecisionCtrl.js!';
 		// because this has happened asynchroneusly we've missed
 		// Angular's initial call to $apply after the controller has been loaded
 		// hence we need to explicityly call it at the end of our Controller constructor
@@ -14,8 +15,9 @@ define(['angularBootstrap','underscore'], function(angularBootstrap,underscore) 
 			'TL':5,
 			'DI':5,
 			'RMQ':5,
-			'EPV':70,
-			'DTP':false
+			'PV':70,
+			'NPB':7,
+			'NPE':7
 		},{
 			'Category':'Elecssories',
 			'Brand':'ELAND1',
@@ -24,8 +26,9 @@ define(['angularBootstrap','underscore'], function(angularBootstrap,underscore) 
 			'TL':5,
 			'DI':5,
 			'RMQ':5,
-			'EPV':70,
-			'DTP':false
+			'PV':70,
+			'NPB':7,
+			'NPE':7
 		},{
 			'Category':'Elecssories',
 			'Brand':'ELAND1',
@@ -34,8 +37,9 @@ define(['angularBootstrap','underscore'], function(angularBootstrap,underscore) 
 			'TL':5,
 			'DI':5,
 			'RMQ':5,
-			'EPV':70,
-			'DTP':false
+			'PV':70,
+			'NPB':7,
+			'NPE':7
 		},{
 			'Category':'Elecssories',
 			'Brand':'ELAND1',
@@ -44,8 +48,9 @@ define(['angularBootstrap','underscore'], function(angularBootstrap,underscore) 
 			'TL':5,
 			'DI':5,
 			'RMQ':5,
-			'EPV':70,
-			'DTP':false
+			'PV':70,
+			'NPB':7,
+			'NPE':7
 		},{
 			'Category':'HealthBeauty',
 			'Brand':'HOLAY1',
@@ -54,8 +59,9 @@ define(['angularBootstrap','underscore'], function(angularBootstrap,underscore) 
 			'TL':7,
 			'AA':7,
 			'SL':7,
-			'EPV':6,
-			'DTP':false
+			'PV':6,
+			'NPB':7,
+			'NPE':7
 		},{
 			'Category':'HealthBeauty',
 			'Brand':'HOLAY1',
@@ -64,8 +70,9 @@ define(['angularBootstrap','underscore'], function(angularBootstrap,underscore) 
 			'TL':7,
 			'AA':7,
 			'SL':7,
-			'EPV':6,
-			'DTP':false
+			'PV':6,
+			'NPB':7,
+			'NPE':7
 		},{
 			'Category':'HealthBeauty',
 			'Brand':'HOLAY1',
@@ -74,8 +81,9 @@ define(['angularBootstrap','underscore'], function(angularBootstrap,underscore) 
 			'TL':7,
 			'AA':7,
 			'SL':7,
-			'EPV':6,
-			'DTP':false
+			'PV':6,
+			'NPB':7,
+			'NPE':7
 		},{
 			'Category':'HealthBeauty',
 			'Brand':'HOLAY1',
@@ -84,8 +92,9 @@ define(['angularBootstrap','underscore'], function(angularBootstrap,underscore) 
 			'TL':7,
 			'AA':7,
 			'SL':7,
-			'EPV':6,
-			'DTP':false
+			'PV':6,
+			'NPB':7,
+			'NPE':7
 		}];
 		var multilingual=[{
 					'shortName':'Products_Portfolio_Management',
@@ -142,16 +151,22 @@ define(['angularBootstrap','underscore'], function(angularBootstrap,underscore) 
 					'labelCHN':'增滑技术',
 					'label':''
 				},{
-					'shortName':'EPV',
-					'labelENG':'Estimated Production Volume',
+					'shortName':'PV',
+					'labelENG':'Production Volume',
 					'labelRUS':'',
-					'labelCHN':'估计产量',
+					'labelCHN':'产量',
 					'label':''				
 				},{
-					'shortName':'DTP',
-					'labelENG':'Discontinue this product',
+					'shortName':'NPB',
+					'labelENG':'Next Price BM',
 					'labelRUS':'',
-					'labelCHN':'停止生产',
+					'labelCHN':'下一个成品价格',
+					'label':''						
+				},{
+					'shortName':'NPE',
+					'labelENG':'Next Price Emall',
+					'labelRUS':'',
+					'labelCHN':'下一个网上售价',
 					'label':''						
 				}];
 

@@ -4,6 +4,7 @@ define([
 	'services',
 	'directives',
 	'controllers',
+	//'$rootScope',
 	'angularRoute',
 	'angularXeditable',
 	'angularBootstrap'
@@ -16,8 +17,11 @@ define([
 			'myApp.services',
 			'myApp.directives',
 			'xeditable',
+			//'$rootScope',
 			'ui.bootstrap'
 		]).run(function(editableOptions){
 			editableOptions.theme = 'bs3';
-		});
+		}).run(['$rootScope', '$location', function ($rootScope, $location) {
+		    $rootScope.decisionActive = "";
+		}]);
 });
