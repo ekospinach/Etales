@@ -2,6 +2,10 @@
 	"name": "Etales",
 	"version": "0.0.1",
 	"description": "Online Business Simulation Game",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/ludwiksh/Etales"
+	},	
 	"scripts": {
 		"start": "NODE_ENV=development node server.js"
 	},

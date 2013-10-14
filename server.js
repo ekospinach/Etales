@@ -12,6 +12,13 @@ var path    = require('path'),
     socket.emit('news',{hello: 'world'});
     socket.on('my other event', function(data){
       console.log(data);
+    }).on('disconnect', function(){
+      console.log('disconnect socketIO...');
+      io.sockets.emit('user disconnected', {disconnect:'true'});
+    }).on('private message', function(from, msg){
+      console.log('I received a private message by ', from, ' saying ', msg);
+    }).on('ferret', function(name, fn){
+      fn('服务器端收到:' + name);
     });
   });
 
@@ -30,10 +37,10 @@ var path    = require('path'),
   app.post('/negotiationDecision');
   app.post('/producerDecision');
   app.post('/retailerDecision');
-  
   app.get('/negotiationDecision');
   app.get('/producerDecision');
   app.get('/retailerDecision');
+
   app.get('/marketReport', require('./api/models/marketReport.js').getMarketReport);
   app.get('/lineChart', require('./api/models/lineChart.js').getLineChart);
   app.get('/perceptionMaps/:fileName/:period',require('./api/models/perceptionMap.js').getMapByParams);
