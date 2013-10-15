@@ -15,7 +15,12 @@ define(['angular', 'app'], function(angular, app) {
 		});
 		$routeProvider.when('/producerDecisionStep1',{
 			templateUrl:'partials/producerDecisionStep1.html',
-			controller:'ProducerDecisionStep1Ctrl'
+			controller:'ProducerDecisionStep1Ctrl',
+			resolve:{
+				producerDecision: function(ProducerDecisionLoader) {
+					return ProducerDecisionLoader();
+				}
+			}
 		});
 		$routeProvider.when('/producerDecisionStep2',{
 			templateUrl:'partials/producerDecisionStep2.html',

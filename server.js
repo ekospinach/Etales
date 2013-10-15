@@ -38,8 +38,8 @@ var path    = require('path'),
   app.post('/producerDecision');
   app.post('/retailerDecision');
   app.get('/negotiationDecision');
-  app.get('/producerDecision');
-  app.get('/retailerDecision');
+  app.get('/producerDecision/:producerID/:period/:seminar',require('./api/models/producerDecision.js').getAllProducerDecision);
+  app.get('/retailerDecision'); 
 
   app.get('/marketReport', require('./api/models/marketReport.js').getMarketReport);
   app.get('/lineChart', require('./api/models/lineChart.js').getLineChart);

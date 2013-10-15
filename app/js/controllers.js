@@ -1,8 +1,12 @@
 define(['angular', 'services'], function (angular) {
 	'use strict';
 
+
+
 	return angular.module('myApp.controllers', ['myApp.services'])
-		// Sample controller where service is being used
+		//.service('producerDecisionproducerDecision', function (ProducerDecisionLoader) { 
+		//	return ProducerDecisionLoader();
+		//})
 		.controller('MyCtrl1', ['$scope', 'version', function ($scope, version) {
 			$scope.scopedAppVersion = version;
 			$scope.user = {

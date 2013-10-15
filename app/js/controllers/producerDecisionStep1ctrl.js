@@ -1,8 +1,13 @@
 define(['angularBootstrap','underscore'], function(angularBootstrap,underscore) {
-	return ['$scope','$rootScope','$http','$filter', function($scope,$rootScope,$http,$filter) {
+	return ['$scope','$rootScope','$http','$filter','producerDecision', function($scope,$rootScope,$http,$filter,producerDecision) {
 		// You can access the scope of the controller from here
 		$scope.welcomeMessage = 'hey this is DecisionCtrl.js!';
 		$rootScope.decisionActive="active";
+		//$scope.producerDecision=producerDecision;
+		console.log("1111");
+		console.log(producerDecision);
+		//var myallproducts=ProducerDecisionLoader();
+		//var producerDecision=ProducerDecision.get({producerID: $rootScope.rootProducerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar});
 		// because this has happened asynchroneusly we've missed
 		// Angular's initial call to $apply after the controller has been loaded
 		// hence we need to explicityly call it at the end of our Controller constructor
@@ -157,6 +162,9 @@ define(['angularBootstrap','underscore'], function(angularBootstrap,underscore) 
 
 		var showView=function(user,period,category,language){
 			$scope.user=user,$scope.period=period,$scope.category=category,$scope.language=language;
+
+
+
 			var shortLanguages={},fullLanguages={};
 			if(language=="English"){
 				for(var i=0;i<$scope.multilingual.length;i++){
@@ -221,6 +229,7 @@ define(['angularBootstrap','underscore'], function(angularBootstrap,underscore) 
 			$scope.fullLanguages=fullLanguages;
 		}
 
+
 		var language='English',
 			user='Producer',
 			period=0,
@@ -232,7 +241,6 @@ define(['angularBootstrap','underscore'], function(angularBootstrap,underscore) 
 		$scope.period=period;
 		$scope.showView=showView;
 		showView($scope.user,$scope.period,$scope.category,$scope.language);
-
 		$scope.user = {
 			name: 'awesome user'
 		};  
@@ -270,7 +278,8 @@ define(['angularBootstrap','underscore'], function(angularBootstrap,underscore) 
     };
   };
   $scope.random();
-  
+
+
   var types = ['success', 'info', 'warning', 'danger'];
   $scope.randomStacked = function() {
     $scope.stackedArray = [];
