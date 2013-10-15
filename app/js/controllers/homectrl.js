@@ -1,5 +1,6 @@
-define([], function() {
-	return ['$scope', '$http', function($scope, $http) {
+define(['app'], function(app) {
+
+	app.controller('HomeCtrl',['$scope', '$http', function($scope, $http) {
 		// You can access the scope of the controller from here
 		$scope.welcomeMessage = 'hey this is HomeCtrl.js!';
 
@@ -20,6 +21,6 @@ define([], function() {
 		// Angular's initial call to $apply after the controller has been loaded
 		// hence we need to explicityly call it at the end of our Controller constructor
 		$scope.$apply();
-	}];
+	}]);
 });
 
