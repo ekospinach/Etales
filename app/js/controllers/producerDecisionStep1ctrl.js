@@ -3,11 +3,10 @@ define(['app'], function(app,underscore) {
 		app.controller('producerDecisionStep1Ctrl',
 			['$scope','$rootScope','$http','$filter','prodecisions', function($scope,$rootScope,$http,$filter,prodecisions) {
 			
-			console.log(prodecisions);
-			// You can access the scope of the controller from here
-			$scope.welcomeMessage = 'hey this is DecisionCtrl.js!';
+			//console.log(prodecisions.proCatDecision);
 			$rootScope.decisionActive="active";
-			var allproducts=[{
+			var allProCatDecision=prodecisions.proCatDecision;
+			/*var allproducts=[{
 				'Category':'Elecssories',
 				'Brand':'ELAND1',
 				'Variant':'_A',
@@ -87,7 +86,7 @@ define(['app'], function(app,underscore) {
 				'SL':7,
 				'EPV':6,
 				'DTP':false
-			}];
+			}];*/
 			var multilingual=[{
 						'shortName':'Products_Portfolio_Management',
 						'labelENG':'Products Portfolio Management',
@@ -217,9 +216,38 @@ define(['app'], function(app,underscore) {
 						fullLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].label;
 					}
 				}
-				$scope.products=_.filter(allproducts,function(obj){
-					return (obj.Category==category)
+				var allCatProDecisions=_.filter(allProCatDecision,function(obj){
+					if(category=="HealthBeauty"){
+						return (obj.categoryID==2);
+					}else{
+						return (obj.categoryID==1);
+					}
 	      		});
+	      		//$scope.products=allCatProDecisions[0].proBrandsDecision;
+	      		var count=0;
+	      		var products=new Array();
+	      		for(var i=0;i<allCatProDecisions.length;i++){
+	      			for(var j=0;j<allCatProDecisions[i].proBrandsDecision.length;j++){
+	      				for(var k=0;k<allCatProDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
+	      					products.push(allCatProDecisions[i].proBrandsDecision[j].proVarDecision[k]);
+	      					products[count].category=category;
+	      					products[count].brandName=allCatProDecisions[i].proBrandsDecision[j].brandName;
+	      					count++;
+	      					/*if(products[count].packFormat=="ECONOMY"){
+	      						products[count].packFormat=1;
+	      					}
+	      					else if(products[count].packFormat=="STANDARD"){
+	      						products[count].packFormat=2;
+	      					}
+	      					else if(products[count].packFormat=="PREMIUM"){
+	      						products[count].packFormat=3;
+	      					}*/
+	      					//count++;
+	      				}
+	      			}
+	      		}
+	      		$scope.products=products;
+	      		//console.log($scope.brands);
 				console.log($scope.products);
 				$scope.shortLanguages=shortLanguages;
 				$scope.fullLanguages=fullLanguages;
@@ -240,17 +268,19 @@ define(['app'], function(app,underscore) {
 			$scope.user = {
 				name: 'awesome user'
 			};  
-			$scope.pack = {
+			/*$scope.pack = {
 				packs: 'E'
-			};
+			};*/
 			$scope.packs = [
-			{value: 'E', text: 'ECONOMY'},
-			{value: 'S', text: 'STANDARD'},
-			{value: 'P', text: 'PREMIUM'}
+			{value: 1, text: 'ECONOMY'},
+			{value: 2, text: 'STANDARD'},
+			{value: 3, text: 'PREMIUM'}
 			]; 
 			$scope.showPacks = function() {
-				var selected = $filter('filter')($scope.packs, {value: $scope.pack.packs});
-	    		return ($scope.pack.packs && selected.length) ? selected[0].text : 'Not set';
+				//console.log($scope.products.packFormat);
+				console.log('do');
+				var selected = $filter('filter')($scope.packs, {value: 1});
+	    		return (1 && selected.length) ? selected[0].text : 'Not set';
 			};
 
 			$scope.random = function() {
