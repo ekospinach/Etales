@@ -1,5 +1,4 @@
-define(['angular',
-		'app',
+define(['app',
 		'controllers/producerDecisionStep1Ctrl'], function(angular, app) {
 	'use strict';
 	return app.config(['$routeProvider', function($routeProvider) {
