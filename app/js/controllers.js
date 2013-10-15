@@ -1,8 +1,12 @@
 define(['angular', 'services'], function (angular) {
 	'use strict';
 
+
+
 	return angular.module('myApp.controllers', ['myApp.services'])
-		// Sample controller where service is being used
+		//.service('producerDecisionproducerDecision', function (ProducerDecisionLoader) { 
+		//	return ProducerDecisionLoader();
+		//})
 		.controller('MyCtrl1', ['$scope', 'version', function ($scope, version) {
 			$scope.scopedAppVersion = version;
 			$scope.user = {
@@ -15,8 +19,28 @@ define(['angular', 'services'], function (angular) {
 				$injector.invoke(homectrl, this, {'$scope': $scope});
 			});
 		}])
-		.controller('DecisionCtrl', ['$scope', '$injector', function($scope, $injector) {
-			require(['controllers/decisionctrl'], function(decisionctrl) {
+		.controller('ProducerDecisionStep1Ctrl', ['$scope', '$injector', function($scope, $injector) {
+			require(['controllers/producerDecisionStep1ctrl'], function(decisionctrl) {
+				$injector.invoke(decisionctrl, this, {'$scope': $scope});
+			});
+		}])
+		.controller('ProducerDecisionStep2Ctrl', ['$scope', '$injector', function($scope, $injector) {
+			require(['controllers/producerDecisionStep2ctrl'], function(decisionctrl) {
+				$injector.invoke(decisionctrl, this, {'$scope': $scope});
+			});
+		}])
+		.controller('ProducerDecisionStep3Ctrl', ['$scope', '$injector', function($scope, $injector) {
+			require(['controllers/producerDecisionStep3ctrl'], function(decisionctrl) {
+				$injector.invoke(decisionctrl, this, {'$scope': $scope});
+			});
+		}])
+		.controller('ProducerDecisionStep4Ctrl', ['$scope', '$injector', function($scope, $injector) {
+			require(['controllers/producerDecisionStep4ctrl'], function(decisionctrl) {
+				$injector.invoke(decisionctrl, this, {'$scope': $scope});
+			});
+		}])
+		.controller('RetailerDecisionCtrl', ['$scope', '$injector', function($scope, $injector) {
+			require(['controllers/retailerRecisionCtrl'], function(decisionctrl) {
 				$injector.invoke(decisionctrl, this, {'$scope': $scope});
 			});
 		}])

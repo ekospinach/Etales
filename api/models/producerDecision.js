@@ -1,6 +1,7 @@
 var mongoose = require('mongoose'),
     http = require('http'),
-    util = require('util');
+    util = require('util'),
+    _ = require('underscore');
 
 var proDecisionSchema = mongoose.Schema({
     seminar : String,
@@ -14,7 +15,7 @@ var proDecisionSchema = mongoose.Schema({
 var proCatDecisionSchema = mongoose.Schema({
     categoryID : Number, //1~2
     capacityChange : Number,
-    investInDesign : Number,
+    investInDesign : Number,/*E*/
     investInProductionFlexibility : Number,
     investInTechnology : Number,
     proBrandsDecision : [proBrandDecisionSchema] //Length: TProBrands(1~5) 
@@ -66,4 +67,213 @@ var proVarDecisionSchema = mongoose.Schema({
     nextPriceEmall : Number
 })
 
+
+var producerDecisionModel = mongoose.model('producerDecision', proDecisionSchema);
+
+exports.getAllProducerDecision = function(req, res, next){
+    /*P_1*/
+    var producerDecisions={
+        seminar:'MAY',
+        period:0,
+        producerID:1,
+        nextBudgetExtension:1,
+        approvedBudgetExtension:1,
+        proCatDecision:[{
+            categoryID:1,
+            capacityChange:0,
+            investInDesign:6.13,
+            investInProductionFlexibility:11.57,
+            investInTechnology:3.16,
+            proBrandsDecision:[{
+                brandName:'EGEND1',
+                brandID:11,
+                paranetCompanyID:1,
+                dateOfBirth:-4,
+                dateOfDeath:10,
+                advertisingOffLine:[10,20],
+                advertisingOnLine:15,
+                supportEmall:15,
+                supportTraditionalTrade:[10,20],
+                proVarDecision:[{
+                        varName:'_A',
+                        varID : 111, //varID = BrandID * 10 + varCount
+                        parentBrandID : 11, //brandID
+                        packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
+                        dateOfBirth : -4,
+                        dateOfDeath : 10,
+                        composition : [6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        production : 60,
+                        currentPriceBM : 6.85,
+                        currentPriceEmall : 8.25,
+                        discontinue : false,
+                        nextPriceBM : 7.06,
+                        nextPriceEmall : 7.06
+                }]
+            },{
+                brandName:'EHAYA1',
+                brandID:12,
+                paranetCompanyID:1,
+                dateOfBirth:-4,
+                dateOfDeath:10,
+                advertisingOffLine:[10,20],
+                advertisingOnLine:15,
+                supportEmall:15,
+                supportTraditionalTrade:[10,20],
+                proVarDecision:[{
+                        varName:'_A',
+                        varID : 121, //varID = BrandID * 10 + varCount
+                        parentBrandID : 12, //brandID
+                        packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
+                        dateOfBirth : -4,
+                        dateOfDeath : 10,
+                        composition : [6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        production : 60,
+                        currentPriceBM : 6.85,
+                        currentPriceEmall : 8.25,
+                        discontinue : false,
+                        nextPriceBM : 7.06,
+                        nextPriceEmall : 7.06
+                }]
+            },{
+                brandName:'ELAND1',
+                brandID:13,
+                paranetCompanyID:1,
+                dateOfBirth:-4,
+                dateOfDeath:10,
+                advertisingOffLine:[10,20],
+                advertisingOnLine:15,
+                supportEmall:15,
+                supportTraditionalTrade:[10,20],
+                proVarDecision:[{
+                        varName:'_A',
+                        varID : 131, //varID = BrandID * 10 + varCount
+                        parentBrandID : 13, //brandID
+                        packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
+                        dateOfBirth : -4,
+                        dateOfDeath : 10,
+                        composition : [6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        production : 60,
+                        currentPriceBM : 6.85,
+                        currentPriceEmall : 8.25,
+                        discontinue : false,
+                        nextPriceBM : 7.06,
+                        nextPriceEmall : 7.06
+                },{
+                        varName:'_B',
+                        varID : 132, //varID = BrandID * 10 + varCount
+                        parentBrandID : 13, //brandID
+                        packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
+                        dateOfBirth : -4,
+                        dateOfDeath : 10,
+                        composition : [6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        production : 60,
+                        currentPriceBM : 6.85,
+                        currentPriceEmall : 8.25,
+                        discontinue : false,
+                        nextPriceBM : 7.06,
+                        nextPriceEmall : 7.06                    
+                }]
+            }]
+        },{
+            categoryID:2,
+            capacityChange:0,
+            investInDesign:0,/*null*/
+            investInProductionFlexibility:21.21,
+            investInTechnology:21.21,
+            proBrandsDecision:[{
+                brandName:'HEELY1',
+                brandID:11,
+                paranetCompanyID:1,
+                dateOfBirth:-4,
+                dateOfDeath:10,
+                advertisingOffLine:[10,20],
+                advertisingOnLine:15,
+                supportEmall:15,
+                supportTraditionalTrade:[10,20],
+                proVarDecision:[{
+                        varName:'_A',
+                        varID : 111, //varID = BrandID * 10 + varCount
+                        parentBrandID : 11, //brandID
+                        packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
+                        dateOfBirth : -4,
+                        dateOfDeath : 10,
+                        composition : [6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        production : 60,
+                        currentPriceBM : 6.85,
+                        currentPriceEmall : 8.25,
+                        discontinue : false,
+                        nextPriceBM : 7.06,
+                        nextPriceEmall : 7.06
+                }]
+            },{
+                brandName:'HOTOO1',
+                brandID:12,
+                paranetCompanyID:1,
+                dateOfBirth:-4,
+                dateOfDeath:10,
+                advertisingOffLine:[10,20],
+                advertisingOnLine:15,
+                supportEmall:15,
+                supportTraditionalTrade:[10,20],
+                proVarDecision:[{
+                        varName:'_A',
+                        varID : 121, //varID = BrandID * 10 + varCount
+                        parentBrandID : 12, //brandID
+                        packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
+                        dateOfBirth : -4,
+                        dateOfDeath : 10,
+                        composition : [6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        production : 60,
+                        currentPriceBM : 6.85,
+                        currentPriceEmall : 8.25,
+                        discontinue : false,
+                        nextPriceBM : 7.06,
+                        nextPriceEmall : 7.06
+                }]
+            },{
+                brandName:'HOLAY1',
+                brandID:13,
+                paranetCompanyID:1,
+                dateOfBirth:-4,
+                dateOfDeath:10,
+                advertisingOffLine:[10,20],
+                advertisingOnLine:15,
+                supportEmall:15,
+                supportTraditionalTrade:[10,20],
+                proVarDecision:[{
+                        varName:'_A',
+                        varID : 131, //varID = BrandID * 10 + varCount
+                        parentBrandID : 13, //brandID
+                        packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
+                        dateOfBirth : -4,
+                        dateOfDeath : 10,
+                        composition : [6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        production : 60,
+                        currentPriceBM : 6.85,
+                        currentPriceEmall : 8.25,
+                        discontinue : false,
+                        nextPriceBM : 7.06,
+                        nextPriceEmall : 7.06
+                },{
+                        varName:'_B',
+                        varID : 132, //varID = BrandID * 10 + varCount
+                        parentBrandID : 13, //brandID
+                        packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
+                        dateOfBirth : -4,
+                        dateOfDeath : 10,
+                        composition : [6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        production : 60,
+                        currentPriceBM : 6.85,
+                        currentPriceEmall : 8.25,
+                        discontinue : false,
+                        nextPriceBM : 7.06,
+                        nextPriceEmall : 7.06                    
+                }]
+            }]
+        }]
+    };
+    res.header("Content-Type", "application/json; charset=UTF-8");                                
+    res.statusCode = 200;
+    res.send(producerDecisions);    
+}
 

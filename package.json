@@ -9,6 +9,10 @@
 	"scripts": {
 		"start": "NODE_ENV=development node server.js"
 	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/ludwiksh/Etales"
+	},	
 	"dependencies": {
 		"express":"*",
 		"mongoose":"*",

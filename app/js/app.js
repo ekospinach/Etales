@@ -3,15 +3,15 @@ define([
 	'filters',
 	'services',
 	'directives',
-	'controllers',
 	'angularRoute',
 	'angularXeditable',
-	'angularBootstrap'
+	'angularBootstrap',
+	'underscore',
+	'socketIO'
 	], function (angular, filters, services, directives, controllers) {
 		'use strict';
 		return angular.module('myApp', [
 			'ngRoute',
-			'myApp.controllers',
 			'myApp.filters',
 			'myApp.services',
 			'myApp.directives',
@@ -19,5 +19,10 @@ define([
 			'ui.bootstrap'
 		]).run(function(editableOptions){
 			editableOptions.theme = 'bs3';
-		});
+		}).run(['$rootScope', '$location', function ($rootScope, $location) {
+		    $rootScope.decisionActive = "";
+		    $rootScope.rootProducerID = 1;
+		    $rootScope.rootPeriod = 0;
+		    $rootScope.rootSeminar = "MAY";
+		}]);
 });
