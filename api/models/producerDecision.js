@@ -41,8 +41,8 @@ var proBrandDecisionSchema = mongoose.Schema({
         E_Mall_ID          = 8;
         Admin_ID           = 9;
     */
-    dateOfBirth : Number, //which period this brand be created
-    dateOfDeath : Number, //which period this brand be discontinued
+    dateOfBirth : Number, //which period this brand be created, if this brand is initialized in the beginning, this value should be -4
+    dateOfDeath : Number, //which period this brand be discontinued, if this brand haven't been discontinued, this value should be 10
     advertisingOffLine : [Number], //TMarketDetails, 1-Urban, 2-Rural
     advertisingOnLine : Number,
     supportEmall : Number,
@@ -65,3 +65,5 @@ var proVarDecisionSchema = mongoose.Schema({
     nextPriceBM : Number,
     nextPriceEmall : Number
 })
+
+
