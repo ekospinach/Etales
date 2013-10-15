@@ -1,5 +1,7 @@
-define(['app'], function(angularBootstrap,underscore) {
-	return ['$scope','$rootScope','$http','$filter', function($scope,$rootScope,$http,$filter) {
+define(['app'], function(app,underscore) {
+
+	app.controller('producerDecisionStep2Ctrl',
+		['$scope','$rootScope','$http','$filter', function($scope,$rootScope,$http,$filter) {
 		// You can access the scope of the controller from here
 		$rootScope.decisionActive="active";
 		console.log($rootScope.decisionActive);
@@ -309,3 +311,4 @@ define(['app'], function(angularBootstrap,underscore) {
 		$scope.$apply();
 	}];
 });
+
