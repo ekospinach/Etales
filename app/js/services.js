@@ -5,9 +5,7 @@ define(['angular','angularResource'], function (angular,angularResource) {
 	services.value('version', '0.1');
 
 	services.factory('ProducerDecision',['$resource','$rootScope',function($resource,$rootScope){
-		return $resource('/producerDecision/:producerID/:period/:seminar', {}, {
-        query: {method:'GET', params:{producerID: $rootScope.rootProducerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar}, isArray:true}
-      });
+		return $resource('/producerDecision/:producerID/:period/:seminar',{producerID: $rootScope.rootProducerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar});
 	}]);
 
 	services.factory('ProducerDecisionLoader', ['ProducerDecision', '$route','$rootScope', '$q',function(ProducerDecision, $route,$rootScope, $q) {		

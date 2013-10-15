@@ -1,20 +1,12 @@
 define(['app'], function(app,underscore) {
 
 		app.controller('producerDecisionStep1Ctrl',
-			['$scope','$rootScope','$http','$filter','tk', function($scope,$rootScope,$http,$filter,tk) {
+			['$scope','$rootScope','$http','$filter','prodecisions', function($scope,$rootScope,$http,$filter,prodecisions) {
 			
-			console.log(tk);
+			console.log(prodecisions);
 			// You can access the scope of the controller from here
 			$scope.welcomeMessage = 'hey this is DecisionCtrl.js!';
 			$rootScope.decisionActive="active";
-			//$scope.producerDecision=producerDecision;
-			console.log("1111");
-			//console.log(producerDecision);
-			//var myallproducts=ProducerDecisionLoader();
-			//var producerDecision=ProducerDecision.get({producerID: $rootScope.rootProducerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar});
-			// because this has happened asynchroneusly we've missed
-			// Angular's initial call to $apply after the controller has been loaded
-			// hence we need to explicityly call it at the end of our Controller constructor
 			var allproducts=[{
 				'Category':'Elecssories',
 				'Brand':'ELAND1',
@@ -304,7 +296,7 @@ define(['app'], function(app,underscore) {
 		  };
 		  $scope.randomStacked();
 
-	    $scope.$apply();
+	   // $scope.$apply();
 	}]);
 
 

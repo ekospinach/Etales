@@ -16,7 +16,7 @@ define(['angular',
 			templateUrl:'partials/producerDecisionStep1.html',
 			controller:'producerDecisionStep1Ctrl',
 			resolve:{
-				tk: function(ProducerDecisionLoader) {
+				prodecisions: function(ProducerDecisionLoader) {
 					return ProducerDecisionLoader();
 				}
 			}

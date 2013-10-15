@@ -24,5 +24,6 @@ define([
 		    $rootScope.rootProducerID = 1;
 		    $rootScope.rootPeriod = 0;
 		    $rootScope.rootSeminar = "MAY";
+		    //$rootScope.$$phase || $rootScope.$apply();
 		}]);
 });
