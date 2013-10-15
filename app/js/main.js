@@ -7,7 +7,7 @@ require.config({
 		text: '../bower_components/requirejs-text/text',
 		angularXeditable: '../bower_components/angular-xeditable/dist/js/xeditable',
 		socketIO: '../bower_components/socket.io-client/dist/socket.io',
-//		jquery:'../bower_components/jquery/jquery',
+		jquery:'../bower_components/jquery/jquery',
 		require:'../bower_components/requirejs/require',
 		underscore:'../bower_components/underscore/underscore',
 		angularBootstrap:'../bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls'
