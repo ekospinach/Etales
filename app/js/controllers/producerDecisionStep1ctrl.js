@@ -231,9 +231,9 @@ define(['app'], function(app,underscore) {
 	      				for(var k=0;k<allCatProDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
 	      					products.push(allCatProDecisions[i].proBrandsDecision[j].proVarDecision[k]);
 	      					products[count].category=category;
-	      					products[count].brandName=allCatProDecisions[i].proBrandsDecision[j].brandName;
-	      					count++;
-	      					/*if(products[count].packFormat=="ECONOMY"){
+	      					console.log(allCatProDecisions[i].proBrandsDecision[j].brandName);
+	      					products[count].parentBrandName=allCatProDecisions[i].proBrandsDecision[j].brandName;
+	      					if(products[count].packFormat=="ECONOMY"){
 	      						products[count].packFormat=1;
 	      					}
 	      					else if(products[count].packFormat=="STANDARD"){
@@ -241,14 +241,13 @@ define(['app'], function(app,underscore) {
 	      					}
 	      					else if(products[count].packFormat=="PREMIUM"){
 	      						products[count].packFormat=3;
-	      					}*/
-	      					//count++;
+	      					}
+	      					count++;
 	      				}
 	      			}
 	      		}
+	      		//count=0;
 	      		$scope.products=products;
-	      		//console.log($scope.brands);
-				console.log($scope.products);
 				$scope.shortLanguages=shortLanguages;
 				$scope.fullLanguages=fullLanguages;
 			}
@@ -264,70 +263,51 @@ define(['app'], function(app,underscore) {
 			$scope.user=user;
 			$scope.period=period;
 			$scope.showView=showView;
-			showView($scope.user,$scope.period,$scope.category,$scope.language);
-			$scope.user = {
-				name: 'awesome user'
-			};  
-			/*$scope.pack = {
-				packs: 'E'
-			};*/
+			showView($scope.user,$scope.period,$scope.category,$scope.language); 
 			$scope.packs = [
 			{value: 1, text: 'ECONOMY'},
 			{value: 2, text: 'STANDARD'},
 			{value: 3, text: 'PREMIUM'}
 			]; 
-			$scope.showPacks = function() {
-				//console.log($scope.products.packFormat);
-				console.log('do');
-				var selected = $filter('filter')($scope.packs, {value: 1});
-	    		return (1 && selected.length) ? selected[0].text : 'Not set';
+			$scope.showPacks = function(parentBrandName,varName) {
+				/*var pro=_.find($scope.products,function(obj){
+					return (obj.parentBrandName==parentBrandName&&obj.varName==varName);
+				});
+				var selected = $filter('filter')($scope.packs, {value: pro.packFormat});
+				var ducts=_.reject($scope.products,function(obj){
+					return (obj.parentBrandName==parentBrandName&&obj.varName==varName);
+				});*/
+				var selected;
+				var postion=-1;
+				console.log('done');
+				for(var i=0;i<$scope.products.length;i++){
+					if($scope.products[i].parentBrandName==parentBrandName&&$scope.products[i].varName==varName){
+						//$scope.products[i].packFormat
+						selected = $filter('filter')($scope.packs, {value: $scope.products[i].packFormat});
+						postion=i;
+						break;
+						//return (pro.packFormat && selected.length) ? selected[0].text : 'Not set';
+					}
+				}
+				if(postion!=-1)
+					return ($scope.products[postion].packFormat && selected.length) ? selected[0].text : 'Not set'; 
+				else
+					return 'Not set';
+			};
+			$scope.open = function () {
+				console.log("1");
+			    $scope.shouldBeOpen = true;
 			};
 
-			$scope.random = function() {
-		    var value = Math.floor((Math.random()*100)+1);
-		    var type;
+			$scope.close = function () {
+				console.log("2");
+			    //$scope.closeMsg = 'I was closed at: ' + new Date();
+			    $scope.shouldBeOpen = false;
+			};
 
-		    if (value < 25) {
-		      type = 'success';
-		    } else if (value < 50) {
-		      type = 'info';
-		    } else if (value < 75) {
-		      type = 'warning';
-		    } else {
-		      type = 'danger';
-		    }
-
-		    $scope.dynamic = value;
-		    $scope.dynamicObject = {
-		      value: value,
-		      type: type
-		    };
-		  };
-		  $scope.random();
-
-
-		  var types = ['success', 'info', 'warning', 'danger'];
-		  $scope.randomStacked = function() {
-		    $scope.stackedArray = [];
-		    $scope.stacked = [];
-		    
-		    var n = Math.floor((Math.random()*4)+1);
-
-		    for (var i=0; i < n; i++) {
-		        var value = Math.floor((Math.random()*30)+1);
-		        $scope.stackedArray.push(value);
-		        
-		        var index = Math.floor((Math.random()*4));
-		        $scope.stacked.push({
-		          value: value,
-		          type: types[index]
-		        });
-		    }
-		  };
-		  $scope.randomStacked();
-
-	   // $scope.$apply();
+			$scope.opts = {
+			    backdropFade: true,
+			    dialogFade:true
+			};
 	}]);
-
-
 });

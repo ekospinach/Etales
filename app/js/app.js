@@ -7,7 +7,8 @@ define([
 	'angularXeditable',
 	'angularBootstrap',
 	'underscore',
-	'socketIO'
+	'socketIO',
+	'bootstrap',
 	], function (angular, filters, services, directives, controllers) {
 		'use strict';
 		return angular.module('myApp', [

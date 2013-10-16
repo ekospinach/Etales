@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="col-md-12">
+  <div class="col-md-12">
     <div style="clear:both;padding:10px 0"></div>
     <div class="bs-docs-section">
       <h4>Step 1 of 4</h3>
@@ -42,7 +42,7 @@
           <tr>
             <th>{{fullLanguages.Brand}}</th>
             <th ng-repeat='product in products'>
-            {{product.brandName}}</th>
+            {{product.parentBrandName}}</th>
           </tr>
           <tr>
             <th>{{fullLanguages.Variant}}</th>
@@ -51,7 +51,7 @@
           </tr>
           <tr>
             <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.PF}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.PF}}<span style="color:red">*</span></p></th>
-            <th ng-repeat='product in products'><a href="#" editable-select="pack.packs" e-ng-options="p.value as p.text for p in packs">{{ product.packFormat }}</a></th>
+            <th ng-repeat='product in products'><a href="#" editable-select="product.packFormat" e-ng-options="p.value as p.text for p in packs">{{ showPacks(product.parentBrandName,product.varName) }}</a></th>
           </tr>
           <tr>
             <th><p class="text-primary" Popover-animation="true" popover="Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui." popover-title="{{fullLanguages.TL}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.TL}}<span style="color:red">*</span></p></th>
@@ -78,13 +78,31 @@
             <th ng-repeat='product in products'></th>
           </tr> -->         
         </table>
-        <div class="pull-left">
-          <a ng-click="" class="btn btn-success">New Product</a>
+        <div>
+          <a ng-click="open()" class="btn btn-success">New Product</a>
+              <div modal="shouldBeOpen" class="hide" close="close()" options="opts">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>New Product</h3>
+                    </div>
+                    <div class="modal-body">
+                      <div class="control-group">
+                        <input type="file" name="file" />
+                     </div>
+                    </div>
+                    <div class="modal-footer">
+                      <input class="btn" value="Next" /><input type="button" class="btn btn-warning cancel" ng-click="close()" value="Cancel">
+                    </div>                   
+                  </div>
+                </div>
+              </div>      
+
           <a href="" class="btn btn-danger" disabled="disabled">Delete new product</a>
           <a href="" class="btn btn-primary" disabled="disabled">Commit Portflio decision</a>
           <a href="/#/producerDecisionStep2" class="btn btn-primary">Next</a>
         </div>
       </div>
     </div>
-	</div>
+  </div>
 </div>

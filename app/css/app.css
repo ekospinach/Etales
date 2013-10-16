@@ -45,7 +45,6 @@
 .table-striped th{
   width: 240px;
 }
-/*progress-bar*/
 .progress{
   margin-bottom: 0px;
 }
@@ -71,4 +70,17 @@
 }
 .progress-suceess .bar{
   background-color: #5EB95E;
+}
+.modal {
+display: block;
+}
+.modal-body:before,
+.modal-body:after {
+display: table;
+content: " ";
+}
+.modal-header:before,
+.modal-header:after {
+display: table;
+content: " ";
 }

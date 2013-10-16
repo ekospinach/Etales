@@ -10,6 +10,7 @@ require.config({
 		jquery:'../bower_components/jquery/jquery',
 		require:'../bower_components/requirejs/require',
 		underscore:'../bower_components/underscore/underscore',
+		bootstrap:'../bower_components/bootstrap/dist/js/bootstrap',
 		angularBootstrap:'../bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls'
 	},
 	baseUrl: 'js',
@@ -22,7 +23,9 @@ require.config({
 			'exports':'angular.mock'
 		},
 		'angularXeditable': ['angular'],
-		'angularBootstrap':['jquery','angular']	
+		'bootstrap':['jquery'],
+		'angularBootstrap':['jquery','bootstrap','angular'],
+
 	},
 	priority: [
 		"angular"
