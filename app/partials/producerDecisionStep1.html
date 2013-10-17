@@ -34,11 +34,11 @@
       </div>
         <div style="clear:both"></div>
         <table class="table table-striped">
-          <tr>
+          <!--<tr>
             <th>{{fullLanguages.Category}}</th>
             <th ng-repeat='product in products'>
             {{product.category}}</th>
-          </tr>
+          </tr>-->
           <tr>
             <th>{{fullLanguages.Brand}}</th>
             <th ng-repeat='product in products'>
@@ -47,11 +47,17 @@
           <tr>
             <th>{{fullLanguages.Variant}}</th>
             <th ng-repeat='product in products'>
-            {{product.varName}}</th>
+            {{product.varName}}
+          </th>
           </tr>
           <tr>
-            <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.PF}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.PF}}<span style="color:red">*</span></p></th>
-            <th ng-repeat='product in products'><a href="#" editable-select="product.packFormat" e-ng-options="p.value as p.text for p in packs">{{ showPacks(product.parentBrandName,product.varName) }}</a></th>
+            <th><p>hello</p><!--<p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.PF}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.PF}}<span style="color:red">*</span></p>-->
+            <!--<button popover="I appeared on mouse enter!" popover-trigger="mouseenter" class="btn">Mouseenter</button>-->
+            </th>
+            <th ng-repeat='product in products'>
+              {{selected(1)}}
+              <!--{{ selectPacks(product.parentBrandName,product.varName) }}-->
+              <!--<a href="#" editable-select="product.packFormat" e-ng-options="p.value as p.text for p in packs">{{ selectPacks(product.parentBrandName,product.varName) }}</a>-->
           </tr>
           <tr>
             <th><p class="text-primary" Popover-animation="true" popover="Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui." popover-title="{{fullLanguages.TL}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.TL}}<span style="color:red">*</span></p></th>
@@ -72,11 +78,7 @@
           <tr>
             <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.DTP}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.DTP}}<span style="color:red">*</span></p></th>
             <th ng-repeat='product in products'><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
-          </tr>
-          <!--<tr>
-            <th>status</th>
-            <th ng-repeat='product in products'></th>
-          </tr> -->         
+          </tr>    
         </table>
         <div>
           <a ng-click="open()" class="btn btn-success">New Product</a>
@@ -88,11 +90,59 @@
                     </div>
                     <div class="modal-body">
                       <div class="control-group">
-                        <input type="file" name="file" />
+                        <tabset>
+                          <tab heading="Launch New Brand" select="setAddNewBrand()">
+                            <form role="form">
+                              <div class="form-group">
+                                <label for="lauchNewCategory">Choose Catagory:</label>
+                                <select class="form-control" ng-model="lauchNewCategory">
+                                  <option>Elecssories</option>
+                                  <option>HealthBeauty</option>
+                                </select>
+                              </div>
+                              <div class="form-group">
+                                <label for="lauchNewBrandName">Enter New Brand Name:</label>
+                                <div class="input-group">
+                                  <span class="input-group-addon">E</span>
+                                  <input type="text" class="form-control" ng-model="lauchNewBrandName">
+                                  <span class="input-group-addon">1</span>
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label for="lauchNewVarName">Enter New Variant Name</label>
+                                <input type="text" class="form-control" ng-model="lauchNewVarName">
+                              </div>
+                            </form>
+                          </tab>
+                          <tab heading="Add new product under existed Brand" select="setAddNewProUnderBrand()">
+                            <form role="form">
+                              <div class="form-group">
+                                <label for="addNewCategory">Choose Catagory:</label>
+                                <select class="form-control">
+                                  <option value="1" ng-selected="loadAllBrand(1)">Elecssories</option>
+                                  <option value="1" ng-selected="loadAllBrand(1)">Elecssories</option>
+                                  <option value="2" ng-selected="loadAllBrand(2)">HealthBeauty</option>
+                                </select>
+                              </div>
+                              <div class="form-group">
+                                <label for="addChooseBrand">Choose Brand:</label>
+                                <label ng-repeat="all in alls">{{all.BrandName}}</label>
+                                <!--<select class="form-control" >
+                                  <option ng-repeat="allBrand in allBrands" value="{{allBrand.BrandID}}">{{allBrand.BrandName}}</option>
+                                </select>-->
+                              </div>
+                              <div class="form-group">
+                                <label for="addNewVarName">Enter New Variant Name</label>
+                                <input type="text" class="form-control" ng-model="addNewVarName">
+                              </div>
+                            </form>
+                          </tab>
+                        </tabset>
                      </div>
                     </div>
                     <div class="modal-footer">
-                      <input class="btn" value="Next" /><input type="button" class="btn btn-warning cancel" ng-click="close()" value="Cancel">
+                      <input type="button" value="Add" ng-click="addNewProduct({{parameter}})"/>
+                      <input type="button" class="btn btn-warning cancel" ng-click="close()" value="Cancel">
                     </div>                   
                   </div>
                 </div>
