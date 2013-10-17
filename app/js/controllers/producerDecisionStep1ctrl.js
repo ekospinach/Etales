@@ -1,6 +1,6 @@
 define(['app'], function(app) {
 		app.controller('producerDecisionStep1Ctrl',
-			['$scope','$rootScope','$http','$filter','prodecisions', function($scope,$rootScope,$http,$filter,prodecisions) {
+			['$scope','$rootScope','$http','$filter','prodecisions','ProducerDecision', function($scope,$rootScope,$http,$filter,prodecisions,ProducerDecision) {
 			$rootScope.decisionActive="active";
 			var multilingual=[{
 						'shortName':'Products_Portfolio_Management',
@@ -73,7 +73,7 @@ define(['app'], function(app) {
 			/*Load Page*/
 			var showView=function(user,period,category,language){
 				console.log("showView start");
-				allProCatDecision=prodecisions.proCatDecision;
+				allProCatDecision = prodecisions.proCatDecision;
 				$scope.user=user,$scope.period=period,$scope.category=category,$scope.language=language;
 				var shortLanguages={},fullLanguages={};
 				if(language=="English"){
@@ -228,10 +228,40 @@ define(['app'], function(app) {
 			var loadNameNum=function(){//load the sort
 				/*importantt*/
 			}		
-			/*var addNewProduct=function(parameter){
-				$scope.parameter=parameter;
-				console.log($scope.parameter);
-			}*/
+			var addNewProduct=function(parameter){
+				if(parameter==1){/*lauch new Brand*/
+					//var newproducerDecision=new producerDecision();
+				}else{/*add new product under existed Brand*/
+					var newproducerDecision=new ProducerDecision();
+					newproducerDecision.brandName=$scope.addNewVarName;
+					//newproducerDecision.parentBrandID=$scope.addChooseBrand;
+					newproducerDecision.varName=$scope.addNewVarName;
+					//newproducerDecision.varID=1000;/*important*/
+					if($scope.addNewCategory==1){
+						newproducerDecision.packFormat="Elecssories";
+					}else{
+						newproducerDecision.packFormat="HealthBeauty";
+					}
+					newproducerDecision.period=$scope.period;
+					newproducerDecision.parameter=parameter;
+					newproducerDecision.dateOfDeath="";
+			        newproducerDecision.varID=121;
+			        newproducerDecision.composition=new Array();
+			        newproducerDecision.production="";
+			        newproducerDecision.currentPriceBM="";
+			        newproducerDecision.currentPriceEmall="";
+			        newproducerDecision.discontinue=false;
+			        newproducerDecision.nextPriceBM="";
+			        newproducerDecision.nextPriceEmall="";
+
+			        $scope.products
+					/*newproducerDecision.$save(function(data){
+						console.log(data);
+					},function(){
+						console.log("Error");
+					});*/
+				}
+			}
 			var open = function () {
 			    $scope.shouldBeOpen = true;
 			    setAddNewBrand();
@@ -258,10 +288,11 @@ define(['app'], function(app) {
 			$scope.selectPacks=selectPacks;
 			$scope.selected=selected;
 			$scope.loadNameNum=loadNameNum;
-			console.log("111");
-			require(['../js/functions/addNewProduct'], function (addNewProduct){
+			$scope.addNewProduct=addNewProduct;
+			//console.log("111");
+			/*require(['../js/functions/addNewProduct'], function (addNewProduct){
 　　　　			$scope.addNewProduct=addNewProduct.addNewProduct;
-　　　　		});
+　　　　		});*/
 			//$scope.addNewProduct=addProduct.addNewProduct;
 			$scope.open=open;
 			$scope.close=close;

@@ -5,7 +5,17 @@ define(['angular','angularResource'], function (angular,angularResource) {
 	services.value('version', '0.1');
 
 	services.factory('ProducerDecision',['$resource','$rootScope',function($resource,$rootScope){
-		return $resource('/producerDecision/:producerID/:period/:seminar',{producerID: $rootScope.rootProducerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar});
+		return $resource('/producerDecision/:producerID/:period/:seminar',{producerID: $rootScope.rootProducerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar},
+			{
+				save:{
+					method: "POST",
+					params: {
+						producerID: "@producerID",
+						period:"@period",
+						seminar:"@seminar"
+					}
+				}
+			})
 	}]);
 
 	services.factory('ProducerDecisionLoader', ['ProducerDecision', '$route','$rootScope', '$q',function(ProducerDecision, $route,$rootScope, $q) {		

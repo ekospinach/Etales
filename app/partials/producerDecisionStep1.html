@@ -86,60 +86,62 @@
                     <div class="modal-header">
                         <h3>New Product</h3>
                     </div>
-                    <div class="modal-body">
-                      <div class="control-group">
-                        <tabset>
-                          <tab heading="Launch New Brand" select="setAddNewBrand()">
-                            <form role="form">
-                              <div class="form-group">
-                                <label for="lauchNewCategory">Choose Catagory:</label>
-                                <select class="form-control" ng-model="lauchNewCategory">
-                                  <option>Elecssories</option>
-                                  <option>HealthBeauty</option>
-                                </select>
-                              </div>
-                              <div class="form-group">
-                                <label for="lauchNewBrandName">Enter New Brand Name:</label>
-                                <div class="input-group">
-                                  <span class="input-group-addon">E</span>
-                                  <input type="text" class="form-control" ng-model="lauchNewBrandName">
-                                  <span class="input-group-addon">1</span>
+                    <form method="POST" action="/producerDecision">
+                      <div class="modal-body">
+                        <div class="control-group">
+                          <tabset>
+                            <tab heading="Launch New Brand" select="setAddNewBrand()">
+                              <div class="form">
+                                <div class="form-group">
+                                  <label for="lauchNewCategory">Choose Catagory:</label>
+                                  <select class="form-control" ng-model="lauchNewCategory">
+                                    <option>Elecssories</option>
+                                    <option>HealthBeauty</option>
+                                  </select>
+                                </div>
+                                <div class="form-group">
+                                  <label for="lauchNewBrandName">Enter New Brand Name:</label>
+                                  <div class="input-group">
+                                    <span class="input-group-addon">E</span>
+                                    <input type="text" class="form-control" ng-model="lauchNewBrandName">
+                                    <span class="input-group-addon">1</span>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label for="lauchNewVarName">Enter New Variant Name</label>
+                                  <input type="text" class="form-control" ng-model="lauchNewVarName">
                                 </div>
                               </div>
-                              <div class="form-group">
-                                <label for="lauchNewVarName">Enter New Variant Name</label>
-                                <input type="text" class="form-control" ng-model="lauchNewVarName">
+                            </tab>
+                            <tab heading="Add new product under existed Brand" select="setAddNewProUnderBrand()">
+                              <div class="form">
+                                <div class="form-group">
+                                  <label for="addNewCategory">Choose Catagory:</label>
+                                  <select class="form-control" ng-model="addNewCategory">
+                                    <option value="1" ng-click="loadAllBrand(1)">Elecssories</option>
+                                    <option value="2" ng-click="loadAllBrand(2)">HealthBeauty</option>
+                                  </select>
+                                </div>
+                                <div class="form-group">
+                                  <label for="addChooseBrand">Choose Brand:</label>
+                                  <select class="form-control" ng-model="addChooseBrand">
+                                    <option ng-repeat="allBrand in allBrands" value="{{allBrand.BrandID}}" ng-model="addChooseBrand">{{allBrand.BrandName}}</option>
+                                  </select>
+                                </div>
+                                <div class="form-group">
+                                  <label for="addNewVarName">Enter New Variant Name</label>
+                                  <input type="text" class="form-control" ng-model="addNewVarName">
+                                </div>
                               </div>
-                            </form>
-                          </tab>
-                          <tab heading="Add new product under existed Brand" select="setAddNewProUnderBrand()">
-                            <form role="form">
-                              <div class="form-group">
-                                <label for="addNewCategory">Choose Catagory:</label>
-                                <select class="form-control">
-                                  <option value="1" ng-click="loadAllBrand(1)">Elecssories</option>
-                                  <option value="2" ng-click="loadAllBrand(2)">HealthBeauty</option>
-                                </select>
-                              </div>
-                              <div class="form-group">
-                                <label for="addChooseBrand">Choose Brand:</label>
-                                <select class="form-control" >
-                                  <option ng-repeat="allBrand in allBrands" value="{{allBrand.BrandID}}">{{allBrand.BrandName}}</option>
-                                </select>
-                              </div>
-                              <div class="form-group">
-                                <label for="addNewVarName">Enter New Variant Name</label>
-                                <input type="text" class="form-control" ng-model="addNewVarName">
-                              </div>
-                            </form>
-                          </tab>
-                        </tabset>
-                     </div>
-                    </div>
-                    <div class="modal-footer">
-                      <input type="button" class="btn btn-success" value="Add" ng-click="addNewProduct($scope)"/>
-                      <input type="button" class="btn btn-warning cancel" ng-click="close()" value="Cancel">
-                    </div>                   
+                            </tab>
+                          </tabset>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <input type="button" ng-click="addNewProduct(parameter)" class="btn btn-success" value="Add"/>
+                        <input type="button" class="btn btn-warning cancel" ng-click="close()" value="Cancel">
+                      </div>
+                    </form>                   
                   </div>
                 </div>
               </div>      
