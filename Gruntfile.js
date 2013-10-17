@@ -35,4 +35,4 @@
     'develop',
     'watch']);
 };
-  
+
