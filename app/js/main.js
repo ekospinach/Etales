@@ -12,6 +12,7 @@ require.config({
 		underscore:'../bower_components/underscore/underscore',
 		bootstrap:'../bower_components/bootstrap/dist/js/bootstrap',
 		angularBootstrap:'../bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls'
+		//addProduct:'../js/functions/addNewProduct'
 	},
 	baseUrl: 'js',
 	shim: {

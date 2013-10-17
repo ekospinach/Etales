@@ -1,4 +1,4 @@
-define(['app'], function(app,underscore) {
+define(['app'], function(app) {
 		app.controller('producerDecisionStep1Ctrl',
 			['$scope','$rootScope','$http','$filter','prodecisions', function($scope,$rootScope,$http,$filter,prodecisions) {
 			$rootScope.decisionActive="active";
@@ -159,22 +159,19 @@ define(['app'], function(app,underscore) {
 			}
 			/*set add function is lauch new Brand*/
 			var setAddNewBrand=function(){
-				console.log("setAddNewBrand start");
 				$scope.parameter=1;/*add new Brand*/
-				console.log("setAddNewBrand end");
+				console.log($scope.parameter);
 			}	
 			/*set add function is add under a existed brand*/
 			var setAddNewProUnderBrand=function(){
-				console.log("setAddNewProUnderBrand start");
 				$scope.parameter=2;/*add new product under existed Brand*/
 				var category=1;
 				loadAllBrand(category);
-				console.log("setAddNewProUnderBrand end");
+				console.log($scope.parameter);
 				//$scope.alls=[{'BrandID':1,'BrandName':'BrandName1'},{'BrandID':2,'BrandName':'BrandName2'},{'BrandID':3,'BrandName':'BrandName3'}];
 			}
 			/*LoadSelectCategroy*/
 			var loadSelectCategroy=function(category){
-				console.log("loadSelectCategroy start");
 				return _.filter(allProCatDecision,function(obj){
 					if(category=="HealthBeauty"){
 						return (obj.categoryID==2);
@@ -182,15 +179,12 @@ define(['app'], function(app,underscore) {
 						return (obj.categoryID==1);
 					}
 	      		});
-	      		console.log("loadSelectCategroy end");
 			}
 			/*LoadAllBrand by category*/
 			var loadAllBrand=function(category){
-				console.log("loadAllBrand start");
 				console.log(category);
-				console.log("loadAllBrand end");
-				//$scope.alls=[{'BrandID':1,'BrandName':'BrandName1'},{'BrandID':2,'BrandName':'BrandName2'},{'BrandID':3,'BrandName':'BrandName3'}];
-				/*if(category==1){
+				console.log("start");
+				if(category==1){
 					category="Elecssories";
 				}else{
 					category="HealthBeauty";
@@ -198,21 +192,20 @@ define(['app'], function(app,underscore) {
 				//console.log(category);
 				var allProCatDecision=prodecisions.proCatDecision;
 				var allCatProDecisions=loadSelectCategroy(category);
-	      		var allbrands=new Array();
+	      		var allBrands=new Array();
 	      		for(var i=0;i<allCatProDecisions.length;i++){
 	      			for(var j=0;j<allCatProDecisions[i].proBrandsDecision.length;j++){
-	      				allbrands.push({'BrandID':allCatProDecisions[i].proBrandsDecision[j].brandID,'BrandName':allCatProDecisions[i].proBrandsDecision[j].brandName});
+	      				allBrands.push({'BrandID':allCatProDecisions[i].proBrandsDecision[j].brandID,'BrandName':allCatProDecisions[i].proBrandsDecision[j].brandName});
 	      			}	
 	      		}
-	      		//$scope.allbrands=allbrands;
-	      		$scope.allbrands=[{'BrandID':1,'BrandName':'BrandName1'},{'BrandID':2,'BrandName':'BrandName2'},{'BrandID':3,'BrandName':'BrandName3'}];
+	      		$scope.allBrands=allBrands;
+	      		console.log(allBrands);
+	      		//$scope.allbrands=[{'BrandID':1,'BrandName':'BrandName1'},{'BrandID':2,'BrandName':'BrandName2'},{'BrandID':3,'BrandName':'BrandName3'}];
 	      		//$scope.addNewCategory=$scope.allBrands[0].BrandName;*/
 			}
 
 			var selectPacks = function(parentBrandName,varName) {
-				//console.log($scope.products.length);
-				console.log("selectPacks start");
-				/*var selected,postion=-1;
+				var selected,postion=-1;
 				for(var i=0;i<$scope.products.length;i++){
 					if($scope.products[i].parentBrandName==parentBrandName&&$scope.products[i].varName==varName){
 						selected = $filter('filter')($scope.packs, {value: $scope.products[i].packFormat});
@@ -225,22 +218,20 @@ define(['app'], function(app,underscore) {
 				}
 				else{
 					return 'Not set';	
-				}*/
-				console.log("selectPacks end");
+				}
 			};
 
 			var selected=function(category){
-				console.log("selected start");
 				console.log(category);
-				console.log("selected end");
 			}
 
 			var loadNameNum=function(){//load the sort
 				/*importantt*/
 			}		
-			var addNewProduct=function(parameter){
-				console.log(parameter);
-			}
+			/*var addNewProduct=function(parameter){
+				$scope.parameter=parameter;
+				console.log($scope.parameter);
+			}*/
 			var open = function () {
 			    $scope.shouldBeOpen = true;
 			    setAddNewBrand();
@@ -267,7 +258,11 @@ define(['app'], function(app,underscore) {
 			$scope.selectPacks=selectPacks;
 			$scope.selected=selected;
 			$scope.loadNameNum=loadNameNum;
-			$scope.addNewProduct=addNewProduct;
+			console.log("111");
+			require(['../js/functions/addNewProduct'], function (addNewProduct){
+　　　　			$scope.addNewProduct=addNewProduct.addNewProduct;
+　　　　		});
+			//$scope.addNewProduct=addProduct.addNewProduct;
 			$scope.open=open;
 			$scope.close=close;
 
@@ -286,6 +281,7 @@ define(['app'], function(app,underscore) {
 			};
 			/*Angular-ui-bootstrap modal end*/
 
+     	
 
 	}]);
 });

@@ -51,13 +51,11 @@
           </th>
           </tr>
           <tr>
-            <th><p>hello</p><!--<p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.PF}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.PF}}<span style="color:red">*</span></p>-->
-            <!--<button popover="I appeared on mouse enter!" popover-trigger="mouseenter" class="btn">Mouseenter</button>-->
+            <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.PF}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.PF}}<span style="color:red">*</span></p>
             </th>
             <th ng-repeat='product in products'>
-              {{selected(1)}}
-              <!--{{ selectPacks(product.parentBrandName,product.varName) }}-->
-              <!--<a href="#" editable-select="product.packFormat" e-ng-options="p.value as p.text for p in packs">{{ selectPacks(product.parentBrandName,product.varName) }}</a>-->
+              <a href="#" editable-select="product.packFormat" e-ng-options="p.value as p.text for p in packs">{{ selectPacks(product.parentBrandName,product.varName) }}</a>
+            </th>
           </tr>
           <tr>
             <th><p class="text-primary" Popover-animation="true" popover="Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui." popover-title="{{fullLanguages.TL}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.TL}}<span style="color:red">*</span></p></th>
@@ -119,17 +117,15 @@
                               <div class="form-group">
                                 <label for="addNewCategory">Choose Catagory:</label>
                                 <select class="form-control">
-                                  <option value="1" ng-selected="loadAllBrand(1)">Elecssories</option>
-                                  <option value="1" ng-selected="loadAllBrand(1)">Elecssories</option>
-                                  <option value="2" ng-selected="loadAllBrand(2)">HealthBeauty</option>
+                                  <option value="1" ng-click="loadAllBrand(1)">Elecssories</option>
+                                  <option value="2" ng-click="loadAllBrand(2)">HealthBeauty</option>
                                 </select>
                               </div>
                               <div class="form-group">
                                 <label for="addChooseBrand">Choose Brand:</label>
-                                <label ng-repeat="all in alls">{{all.BrandName}}</label>
-                                <!--<select class="form-control" >
+                                <select class="form-control" >
                                   <option ng-repeat="allBrand in allBrands" value="{{allBrand.BrandID}}">{{allBrand.BrandName}}</option>
-                                </select>-->
+                                </select>
                               </div>
                               <div class="form-group">
                                 <label for="addNewVarName">Enter New Variant Name</label>
@@ -141,7 +137,7 @@
                      </div>
                     </div>
                     <div class="modal-footer">
-                      <input type="button" value="Add" ng-click="addNewProduct({{parameter}})"/>
+                      <input type="button" class="btn btn-success" value="Add" ng-click="addNewProduct($scope)"/>
                       <input type="button" class="btn btn-warning cancel" ng-click="close()" value="Cancel">
                     </div>                   
                   </div>
