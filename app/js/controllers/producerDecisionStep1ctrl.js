@@ -1,93 +1,7 @@
-define(['app'], function(app,underscore) {
-
+define(['app'], function(app) {
 		app.controller('producerDecisionStep1Ctrl',
 			['$scope','$rootScope','$http','$filter','prodecisions', function($scope,$rootScope,$http,$filter,prodecisions) {
-			
-			console.log(prodecisions);
-			// You can access the scope of the controller from here
-			$scope.welcomeMessage = 'hey this is DecisionCtrl.js!';
 			$rootScope.decisionActive="active";
-			var allproducts=[{
-				'Category':'Elecssories',
-				'Brand':'ELAND1',
-				'Variant':'_A',
-				'PF':'ECONOMY',
-				'TL':5,
-				'DI':5,
-				'RMQ':5,
-				'EPV':70,
-				'DTP':false
-			},{
-				'Category':'Elecssories',
-				'Brand':'ELAND1',
-				'Variant':'_A',
-				'PF':'ECONOMY',
-				'TL':5,
-				'DI':5,
-				'RMQ':5,
-				'EPV':70,
-				'DTP':false
-			},{
-				'Category':'Elecssories',
-				'Brand':'ELAND1',
-				'Variant':'_A',
-				'PF':'ECONOMY',
-				'TL':5,
-				'DI':5,
-				'RMQ':5,
-				'EPV':70,
-				'DTP':false
-			},{
-				'Category':'Elecssories',
-				'Brand':'ELAND1',
-				'Variant':'_A',
-				'PF':'ECONOMY',
-				'TL':5,
-				'DI':5,
-				'RMQ':5,
-				'EPV':70,
-				'DTP':false
-			},{
-				'Category':'HealthBeauty',
-				'Brand':'HOLAY1',
-				'Variant':'_A',
-				'PF':'PREMIUM',
-				'TL':7,
-				'AA':7,
-				'SL':7,
-				'EPV':6,
-				'DTP':false
-			},{
-				'Category':'HealthBeauty',
-				'Brand':'HOLAY1',
-				'Variant':'_A',
-				'PF':'PREMIUM',
-				'TL':7,
-				'AA':7,
-				'SL':7,
-				'EPV':6,
-				'DTP':false
-			},{
-				'Category':'HealthBeauty',
-				'Brand':'HOLAY1',
-				'Variant':'_A',
-				'PF':'PREMIUM',
-				'TL':7,
-				'AA':7,
-				'SL':7,
-				'EPV':6,
-				'DTP':false
-			},{
-				'Category':'HealthBeauty',
-				'Brand':'HOLAY1',
-				'Variant':'_A',
-				'PF':'PREMIUM',
-				'TL':7,
-				'AA':7,
-				'SL':7,
-				'EPV':6,
-				'DTP':false
-			}];
 			var multilingual=[{
 						'shortName':'Products_Portfolio_Management',
 						'labelENG':'Products Portfolio Management',
@@ -156,11 +70,11 @@ define(['app'], function(app,underscore) {
 						'label':''						
 					}];
 
+			/*Load Page*/
 			var showView=function(user,period,category,language){
+				console.log("showView start");
+				allProCatDecision=prodecisions.proCatDecision;
 				$scope.user=user,$scope.period=period,$scope.category=category,$scope.language=language;
-
-
-
 				var shortLanguages={},fullLanguages={};
 				if(language=="English"){
 					for(var i=0;i<$scope.multilingual.length;i++){
@@ -187,7 +101,6 @@ define(['app'], function(app,underscore) {
 						$scope.multilingual[i].label=$scope.multilingual[i].labelENG;
 						shortLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].shortName;
 						fullLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].label;
-						//shortLanguages[$scope.multilingual[i].label]=$scope.multilingual[i].label;
 					}
 				}
 				else if(language=="Chinese"){
@@ -217,14 +130,115 @@ define(['app'], function(app,underscore) {
 						fullLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].label;
 					}
 				}
-				$scope.products=_.filter(allproducts,function(obj){
-					return (obj.Category==category)
-	      		});
-				console.log($scope.products);
+				var allCatProDecisions=loadSelectCategroy(category);
+	      		var count=0;
+	      		var products=new Array();
+	      		for(var i=0;i<allCatProDecisions.length;i++){
+	      			for(var j=0;j<allCatProDecisions[i].proBrandsDecision.length;j++){
+	      				for(var k=0;k<allCatProDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
+	      					products.push(allCatProDecisions[i].proBrandsDecision[j].proVarDecision[k]);
+	      					products[count].category=category;
+	      					products[count].parentBrandName=allCatProDecisions[i].proBrandsDecision[j].brandName;
+	      					if(products[count].packFormat=="ECONOMY"){
+	      						products[count].packFormat=1;
+	      					}
+	      					else if(products[count].packFormat=="STANDARD"){
+	      						products[count].packFormat=2;
+	      					}
+	      					else if(products[count].packFormat=="PREMIUM"){
+	      						products[count].packFormat=3;
+	      					}
+	      					count++;
+	      				}
+	      			}
+	      		}
+	      		$scope.products=products;
 				$scope.shortLanguages=shortLanguages;
 				$scope.fullLanguages=fullLanguages;
+				console.log("showView end");
+			}
+			/*set add function is lauch new Brand*/
+			var setAddNewBrand=function(){
+				$scope.parameter=1;/*add new Brand*/
+				console.log($scope.parameter);
+			}	
+			/*set add function is add under a existed brand*/
+			var setAddNewProUnderBrand=function(){
+				$scope.parameter=2;/*add new product under existed Brand*/
+				var category=1;
+				loadAllBrand(category);
+				console.log($scope.parameter);
+				//$scope.alls=[{'BrandID':1,'BrandName':'BrandName1'},{'BrandID':2,'BrandName':'BrandName2'},{'BrandID':3,'BrandName':'BrandName3'}];
+			}
+			/*LoadSelectCategroy*/
+			var loadSelectCategroy=function(category){
+				return _.filter(allProCatDecision,function(obj){
+					if(category=="HealthBeauty"){
+						return (obj.categoryID==2);
+					}else{
+						return (obj.categoryID==1);
+					}
+	      		});
+			}
+			/*LoadAllBrand by category*/
+			var loadAllBrand=function(category){
+				console.log(category);
+				console.log("start");
+				if(category==1){
+					category="Elecssories";
+				}else{
+					category="HealthBeauty";
+				}
+				//console.log(category);
+				var allProCatDecision=prodecisions.proCatDecision;
+				var allCatProDecisions=loadSelectCategroy(category);
+	      		var allBrands=new Array();
+	      		for(var i=0;i<allCatProDecisions.length;i++){
+	      			for(var j=0;j<allCatProDecisions[i].proBrandsDecision.length;j++){
+	      				allBrands.push({'BrandID':allCatProDecisions[i].proBrandsDecision[j].brandID,'BrandName':allCatProDecisions[i].proBrandsDecision[j].brandName});
+	      			}	
+	      		}
+	      		$scope.allBrands=allBrands;
+	      		console.log(allBrands);
+	      		//$scope.allbrands=[{'BrandID':1,'BrandName':'BrandName1'},{'BrandID':2,'BrandName':'BrandName2'},{'BrandID':3,'BrandName':'BrandName3'}];
+	      		//$scope.addNewCategory=$scope.allBrands[0].BrandName;*/
 			}
 
+			var selectPacks = function(parentBrandName,varName) {
+				var selected,postion=-1;
+				for(var i=0;i<$scope.products.length;i++){
+					if($scope.products[i].parentBrandName==parentBrandName&&$scope.products[i].varName==varName){
+						selected = $filter('filter')($scope.packs, {value: $scope.products[i].packFormat});
+						postion=i;
+						break;
+					}
+				}
+				if(postion!=-1){
+					return ($scope.products[postion].packFormat && selected.length) ? selected[0].text : 'Not set'; 
+				}
+				else{
+					return 'Not set';	
+				}
+			};
+
+			var selected=function(category){
+				console.log(category);
+			}
+
+			var loadNameNum=function(){//load the sort
+				/*importantt*/
+			}		
+			/*var addNewProduct=function(parameter){
+				$scope.parameter=parameter;
+				console.log($scope.parameter);
+			}*/
+			var open = function () {
+			    $scope.shouldBeOpen = true;
+			    setAddNewBrand();
+			};
+			var close = function () {
+			    $scope.shouldBeOpen = false;
+			};
 
 			var language='English',
 				user='Producer',
@@ -235,69 +249,39 @@ define(['app'], function(app,underscore) {
 			$scope.language=language;
 			$scope.user=user;
 			$scope.period=period;
+			
+			$scope.setAddNewBrand=setAddNewBrand;
+			$scope.setAddNewProUnderBrand=setAddNewProUnderBrand;
 			$scope.showView=showView;
+			$scope.loadSelectCategroy=loadSelectCategroy;
+			$scope.loadAllBrand=loadAllBrand;
+			$scope.selectPacks=selectPacks;
+			$scope.selected=selected;
+			$scope.loadNameNum=loadNameNum;
+			console.log("111");
+			require(['../js/functions/addNewProduct'], function (addNewProduct){
+　　　　			$scope.addNewProduct=addNewProduct.addNewProduct;
+　　　　		});
+			//$scope.addNewProduct=addProduct.addNewProduct;
+			$scope.open=open;
+			$scope.close=close;
+
+			$scope.parameter=1;/*default add new Brand*/
 			showView($scope.user,$scope.period,$scope.category,$scope.language);
-			$scope.user = {
-				name: 'awesome user'
-			};  
-			$scope.pack = {
-				packs: 'E'
-			};
 			$scope.packs = [
-			{value: 'E', text: 'ECONOMY'},
-			{value: 'S', text: 'STANDARD'},
-			{value: 'P', text: 'PREMIUM'}
+			{value: 1, text: 'ECONOMY'},
+			{value: 2, text: 'STANDARD'},
+			{value: 3, text: 'PREMIUM'}
 			]; 
-			$scope.showPacks = function() {
-				var selected = $filter('filter')($scope.packs, {value: $scope.pack.packs});
-	    		return ($scope.pack.packs && selected.length) ? selected[0].text : 'Not set';
+			/*Angular-ui-bootstrap modal start*/
+
+			$scope.opts = {
+			    backdropFade: true,
+			    dialogFade:true
 			};
+			/*Angular-ui-bootstrap modal end*/
 
-			$scope.random = function() {
-		    var value = Math.floor((Math.random()*100)+1);
-		    var type;
+     	
 
-		    if (value < 25) {
-		      type = 'success';
-		    } else if (value < 50) {
-		      type = 'info';
-		    } else if (value < 75) {
-		      type = 'warning';
-		    } else {
-		      type = 'danger';
-		    }
-
-		    $scope.dynamic = value;
-		    $scope.dynamicObject = {
-		      value: value,
-		      type: type
-		    };
-		  };
-		  $scope.random();
-
-
-		  var types = ['success', 'info', 'warning', 'danger'];
-		  $scope.randomStacked = function() {
-		    $scope.stackedArray = [];
-		    $scope.stacked = [];
-		    
-		    var n = Math.floor((Math.random()*4)+1);
-
-		    for (var i=0; i < n; i++) {
-		        var value = Math.floor((Math.random()*30)+1);
-		        $scope.stackedArray.push(value);
-		        
-		        var index = Math.floor((Math.random()*4));
-		        $scope.stacked.push({
-		          value: value,
-		          type: types[index]
-		        });
-		    }
-		  };
-		  $scope.randomStacked();
-
-	   // $scope.$apply();
 	}]);
-
-
 });

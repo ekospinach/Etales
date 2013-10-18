@@ -7,13 +7,15 @@ var variantHistoryInfoSchema = mongoose.Schema({
     seminar : String,
     varName : String,
     varID : Number,
+    dateOfBirth : Number, //-4~10
+    dateOfDeath : Number, //-4~10
     parentBrandID : Number,
     parentBrandName : String,
+    parentCatID : Number,
     parentCompanyID : Number, (1~9)
+    
     supplierView : supplierViewSchema,
     channelView : [channelViewSchema] //length:TRetailersTotal(1~4)
-    //v...
-    //v_Composition : [Number] ??
 })
 
 //pv...
@@ -29,20 +31,25 @@ var supplierViewSchema = mongoose.Schema({
         volume : single,
         unitCost : single,
         composition : [Number] 
-    }],
-    salesVolume : [Number][Number], //TAllRetailersTotal(1~5), TMarketTotal(1~3)
+    }], //length : TInventoryAgesTotal(0~4)
+    supplierChannelView : [supplierChannelViewSchema]; //length : TAllRetailersTotal(1~5)
+})
+
+var supplierChannelViewSchema = mongoose.Schema({
+    salesVolume : [Number], // TMarketTotal(1~3)
 })
 
 var channelViewSchema = mongoose.Schema({
-    channelMarketView : [channelMarketViewSchema]
+    channelMarketView : [channelMarketViewSchema] //length: TMarketsTotal(1~3)
 })
 
+//rv...
 var channelMarketViewSchema = mongoose.Schema({
     closingInventory : [{  
         volume : single,
         unitCost : single,
         composition : [Number] 
-    }], //length : TInventoryAgesTotal(0~4, Inventory is tracked 3 years backward, any older inventory will be considered also 3 years old, 4 is used to calculated total volume/regardless of age/ and average cost)
+    }], //length : TInventoryAgesTotal(0~4)
     currentUnitAcquisitionCost : Number, //length: TMarkets(1~2)
     salesVolume : Number,  //length: TMarkets(1~2)  
     shelfSpace : Number,

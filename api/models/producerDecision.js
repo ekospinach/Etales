@@ -98,7 +98,7 @@ exports.getAllProducerDecision = function(req, res, next){
                         varName:'_A',
                         varID : 111, //varID = BrandID * 10 + varCount
                         parentBrandID : 11, //brandID
-                        packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
+                        packFormat : 'STANDARD', //ECONOMY, STANDARD, PREMIUM
                         dateOfBirth : -4,
                         dateOfDeath : 10,
                         composition : [6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
@@ -162,7 +162,7 @@ exports.getAllProducerDecision = function(req, res, next){
                         varName:'_B',
                         varID : 132, //varID = BrandID * 10 + varCount
                         parentBrandID : 13, //brandID
-                        packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
+                        packFormat : 'PREMIUM', //ECONOMY, STANDARD, PREMIUM
                         dateOfBirth : -4,
                         dateOfDeath : 10,
                         composition : [6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)

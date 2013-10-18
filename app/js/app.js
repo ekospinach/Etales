@@ -7,7 +7,8 @@ define([
 	'angularXeditable',
 	'angularBootstrap',
 	'underscore',
-	'socketIO'
+	'socketIO',
+	'bootstrap',
 	], function (angular, filters, services, directives, controllers) {
 		'use strict';
 		return angular.module('myApp', [
@@ -24,6 +25,5 @@ define([
 		    $rootScope.rootProducerID = 1;
 		    $rootScope.rootPeriod = 0;
 		    $rootScope.rootSeminar = "MAY";
-		    //$rootScope.$$phase || $rootScope.$apply();
 		}]);
 });
