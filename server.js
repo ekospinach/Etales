@@ -9,15 +9,8 @@ var path    = require('path'),
   Config = require('./config.js');
 
   io.sockets.on('connection', function(socket){
-    socket.emit('news',{hello: 'world'});
-    socket.on('my other event', function(data){
-      console.log(data);
-    }).on('disconnect', function(){
-      console.log('disconnect socketIO...');
-      io.sockets.emit('user disconnected', {disconnect:'true'});
-    }).on('private message', function(from, msg){
-      console.log('I received a private message by ', from, ' saying ', msg);
-    }).on('ferret', function(name, fn){
+    socket.emit('baseChanged',{info: 'DataBase has been update on server side!'});
+    socket.on('ferret', function(name, fn){
       fn('服务器端收到:' + name);
     });
   });
