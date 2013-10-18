@@ -95,16 +95,16 @@
                                 <div class="form-group">
                                   <label for="lauchNewCategory">Choose Catagory:</label>
                                   <select class="form-control" ng-model="lauchNewCategory">
-                                    <option>Elecssories</option>
-                                    <option>HealthBeauty</option>
+                                    <option value="1" ng-click="setBrandName(1)">Elecssories</option>
+                                    <option value="2" ng-click="setBrandName(2)">HealthBeauty</option>
                                   </select>
                                 </div>
                                 <div class="form-group">
                                   <label for="lauchNewBrandName">Enter New Brand Name:</label>
                                   <div class="input-group">
-                                    <span class="input-group-addon">E</span>
+                                    <span class="input-group-addon">{{brandFirstName}}</span>
                                     <input type="text" class="form-control" ng-model="lauchNewBrandName">
-                                    <span class="input-group-addon">1</span>
+                                    <span class="input-group-addon">{{brandLastName}}</span>
                                   </div>
                                 </div>
                                 <div class="form-group">
@@ -124,8 +124,8 @@
                                 </div>
                                 <div class="form-group">
                                   <label for="addChooseBrand">Choose Brand:</label>
-                                  <select class="form-control" ng-model="addChooseBrand">
-                                    <option ng-repeat="allBrand in allBrands" value="{{allBrand.BrandID}}" ng-model="addChooseBrand">{{allBrand.BrandName}}</option>
+                                  <select class="form-control" ng-model="addChooseBrand" >
+                                    <option ng-repeat="allBrand in allBrands" value="{{allBrand.BrandID}}">{{allBrand.BrandName}}</option>
                                   </select>
                                 </div>
                                 <div class="form-group">
