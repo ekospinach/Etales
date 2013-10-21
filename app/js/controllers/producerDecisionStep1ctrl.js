@@ -333,6 +333,7 @@ define(['app'], function(app) {
 				}, function(update){
 					console.log('from ctr: ' + update);
 				};
+				$scope.$broadcast('producerDecisionBaseChanged');
 			}
 
 			var closeInfo=function(){
@@ -424,32 +425,16 @@ define(['app'], function(app) {
 					};
 				}
 				close();
-				//$scope.$broadcast('producerDecisionBaseChanged');
+				//$scope.pageBase=ProducerDecisionBase.getBase();
+				$scope.$broadcast('producerDecisionBaseChanged');
 				//showView($scope.producerID,$scope.period,$scope.category,$scope.language);
 			}
 
 			$scope.$on('producerDecisionBaseChanged', function(event){	
-				/*ProducerDecisionBase.reload({period:'0', seminar:'MAY', producerID:1}).then(function(base){
-					$scope.pageBase = base;
-				}).then(function(){
-					return promiseStep1();
-				}), function(reason){
-					console.log('from ctr: ' + reason);
-				}, function(update){
-					console.log('from ctr: ' + update);
-				};*/
+				$scope.pageBase=ProducerDecisionBase.getBase();
 			});  
 
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
-			/*	ProducerDecisionBase.reload({period:'0', seminar:'MAY', producerID:1}).then(function(base){
-					$scope.pageBase = base;
-				}).then(function(){
-					return promiseStep1();
-				}), function(reason){
-					console.log('from ctr: ' + reason);
-				}, function(update){
-					console.log('from ctr: ' + update);
-				};*/
 			}); 	
 
 	}]);

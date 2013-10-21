@@ -62,7 +62,7 @@ define(['angular','angularResource'], function (angular,angularResource) {
 					$rootScope.$broadcast('producerDecisionBaseChanged', base);
 				},
 				setProducerDecisionValue:function(categoryID,brandName,varName,location,tep,value){
-					startListenChangeFromServer($rootScope);
+					//startListenChangeFromServer($rootScope);
 					for(var i=0;i<base.proCatDecision.length;i++){
 						if(base.proCatDecision[i].categoryID==categoryID){
 							for(var j=0;j<base.proCatDecision[i].proBrandsDecision.length;j++){
@@ -96,10 +96,10 @@ define(['angular','angularResource'], function (angular,angularResource) {
 						}
 					}	
 					console.log(base);
-					$rootScope.$broadcast('producerDecisionBaseChanged', base);
+					//$rootScope.$broadcast('producerDecisionBaseChanged', base);
 				},
 				addNewProduct:function(newproducerDecision,categoryID,parameter){
-					startListenChangeFromServer($rootScope);
+					//startListenChangeFromServer($rootScope);
 					if(parameter==1){
 						for(var i=0;i<base.proCatDecision.length;i++){
 							if(base.proCatDecision[i].categoryID==categoryID){
@@ -120,7 +120,7 @@ define(['angular','angularResource'], function (angular,angularResource) {
 					}
 					console.log(base);
 					//startListenChangeFromServer($rootScope);
-					$rootScope.$broadcast('producerDecisionBaseChanged', base);
+					//$rootScope.$broadcast('producerDecisionBaseChanged', base);
 				},
 				getBase : function(){
 					return base;
