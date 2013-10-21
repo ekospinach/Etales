@@ -74,7 +74,9 @@ define(['app'], function(app) {
 			var language='English',
 				producerID=1,
 				period=0,
-				category='Elecssories';
+				category='Elecssories',
+				isCollapsed=true;
+				$scope.isCollapsed=isCollapsed;
 			$scope.multilingual=multilingual;
 			$scope.category=category;
 			$scope.language=language;
@@ -128,6 +130,7 @@ define(['app'], function(app) {
 					$scope.loadNameNum=loadNameNum;
 					$scope.addNewProduct=addNewProduct;
 					$scope.updateProducerDecision=updateProducerDecision;
+					$scope.getMoreInfo=getMoreInfo;
 				var result=showView($scope.producerID,$scope.period,$scope.category,$scope.language);
 				delay.resolve(result);
 				if (result==1) {
@@ -329,6 +332,12 @@ define(['app'], function(app) {
 				}, function(update){
 					console.log('from ctr: ' + update);
 				};
+			}
+
+			var getMoreInfo=function(brandID,varName){
+				$scope.moreInfo={'parentBrandID':brandID,'varName':varName};
+				//"ParentBrandID="+brandID+"varName="+varName;
+				$scope.isCollapsed=!$scope.isCollapsed;
 			}
 
 			var loadNameNum=function(){//load the sort

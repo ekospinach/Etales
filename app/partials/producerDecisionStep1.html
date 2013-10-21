@@ -33,7 +33,25 @@
         </small>
       </div>
         <div style="clear:both"></div>
-        <table class="table table-striped">
+        <div collapse="isCollapsed">
+          <div class="well well-large">
+            <table class="table table-striped">
+              <tr>
+                <td>parentBrandID:{{moreInfo.parentBrandID}}</td>
+                <td>varName:{{moreInfo.varName}}</td>
+                <td>parentBrandID:{{moreInfo.parentBrandID}}</td>
+                <td>varName:{{moreInfo.varName}}</td>
+              </tr>  
+              <tr>
+                <td>parentBrandID:{{moreInfo.parentBrandID}}</td>
+                <td>varName:{{moreInfo.varName}}</td>
+                <td>parentBrandID:{{moreInfo.parentBrandID}}</td>
+                <td>varName:{{moreInfo.varName}}</td>
+              </tr>            
+            </table>
+          </div>
+        </div>
+        <table class="table table-hover">
           <!--<tr>
             <th>{{fullLanguages.Category}}</th>
             <th ng-repeat='product in products'>
@@ -47,7 +65,7 @@
           <tr>
             <th>{{fullLanguages.Variant}}</th>
             <th ng-repeat='product in products'>
-            {{product.varName}}
+            {{product.varName}}<span><a ng-click="getMoreInfo(product.parentBrandID,product.varName)">more</a></span>
           </th>
           </tr>
           <tr>
