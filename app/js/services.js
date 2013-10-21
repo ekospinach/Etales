@@ -61,6 +61,67 @@ define(['angular','angularResource'], function (angular,angularResource) {
 					base.seminar = sth;
 					$rootScope.$broadcast('producerDecisionBaseChanged', base);
 				},
+				setProducerDecisionValue:function(categoryID,brandName,varName,location,tep,value){
+					startListenChangeFromServer($rootScope);
+					for(var i=0;i<base.proCatDecision.length;i++){
+						if(base.proCatDecision[i].categoryID==categoryID){
+							for(var j=0;j<base.proCatDecision[i].proBrandsDecision.length;j++){
+								if(base.proCatDecision[i].proBrandsDecision[j].brandName==brandName){
+									for(var k=0;k<base.proCatDecision[i].proBrandsDecision[j].proVarDecision.length;k++){
+										if(base.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].varName==varName){
+											if(location=="packFormat"){
+												if(value==1){
+													value="ECONOMY";
+												}
+												if(value==2){
+													value="STANDARD";
+												}
+												if(value==3){
+													value="PREMIUM";
+												}
+											}
+											if(location=="composition"){
+												base.proCatDecision[i].proBrandsDecision[j].proVarDecision[k][location][tep]=value;
+											}
+											else{
+												base.proCatDecision[i].proBrandsDecision[j].proVarDecision[k][location]=value;
+											}
+											break;
+										}
+									}
+									break;
+								}
+							}
+							break;
+						}
+					}	
+					console.log(base);
+					$rootScope.$broadcast('producerDecisionBaseChanged', base);
+				},
+				addNewProduct:function(newproducerDecision,categoryID,parameter){
+					startListenChangeFromServer($rootScope);
+					if(parameter==1){
+						for(var i=0;i<base.proCatDecision.length;i++){
+							if(base.proCatDecision[i].categoryID==categoryID){
+								base.proCatDecision[i].proBrandsDecision.push(newproducerDecision);
+								break;
+							}
+						}
+					}
+					else{
+						for(var i=0;i<base.proCatDecision.length;i++){
+							for(var j=0;j<base.proCatDecision[i].proBrandsDecision.length;j++){
+								if(base.proCatDecision[i].proBrandsDecision[j].brandID==newproducerDecision.parentBrandID){
+									base.proCatDecision[i].proBrandsDecision[j].proVarDecision.push(newproducerDecision);
+								}
+
+							}
+						}
+					}
+					console.log(base);
+					//startListenChangeFromServer($rootScope);
+					$rootScope.$broadcast('producerDecisionBaseChanged', base);
+				},
 				getBase : function(){
 					return base;
 				},
