@@ -131,6 +131,7 @@ define(['app'], function(app) {
 					$scope.addNewProduct=addNewProduct;
 					$scope.updateProducerDecision=updateProducerDecision;
 					$scope.getMoreInfo=getMoreInfo;
+					$scope.closeInfo=closeInfo;
 				var result=showView($scope.producerID,$scope.period,$scope.category,$scope.language);
 				delay.resolve(result);
 				if (result==1) {
@@ -334,10 +335,26 @@ define(['app'], function(app) {
 				};
 			}
 
+			var closeInfo=function(){
+				$scope.isCollapsed=true;
+			}
+
 			var getMoreInfo=function(brandID,varName){
+				/*if($scope.infobrandID=="underfine"&&$scope.infoVarName=="underfine"){
+					$scope.infobrandID=brandID;
+					$scope.infoVarName=varName;
+				}
+				if($scope.infobrandID!=brandID&&$scope.infoVarName!=varName){
+					$scope.isCollapsed=false;
+				}else{
+					$scope.isCollapsed=true;
+				}*/
+				//$scope.infobrandID=brandID;
+				//$scope.infoVarName=varName;
 				$scope.moreInfo={'parentBrandID':brandID,'varName':varName};
 				//"ParentBrandID="+brandID+"varName="+varName;
-				$scope.isCollapsed=!$scope.isCollapsed;
+				//$scope.isCollapsed=!$scope.isCollapsed;
+				$scope.isCollapsed=false;
 			}
 
 			var loadNameNum=function(){//load the sort
@@ -412,7 +429,7 @@ define(['app'], function(app) {
 			}
 
 			$scope.$on('producerDecisionBaseChanged', function(event){	
-				ProducerDecisionBase.reload({period:'0', seminar:'MAY', producerID:1}).then(function(base){
+				/*ProducerDecisionBase.reload({period:'0', seminar:'MAY', producerID:1}).then(function(base){
 					$scope.pageBase = base;
 				}).then(function(){
 					return promiseStep1();
@@ -420,11 +437,11 @@ define(['app'], function(app) {
 					console.log('from ctr: ' + reason);
 				}, function(update){
 					console.log('from ctr: ' + update);
-				};
+				};*/
 			});  
 
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
-				ProducerDecisionBase.reload({period:'0', seminar:'MAY', producerID:1}).then(function(base){
+			/*	ProducerDecisionBase.reload({period:'0', seminar:'MAY', producerID:1}).then(function(base){
 					$scope.pageBase = base;
 				}).then(function(){
 					return promiseStep1();
@@ -432,7 +449,7 @@ define(['app'], function(app) {
 					console.log('from ctr: ' + reason);
 				}, function(update){
 					console.log('from ctr: ' + update);
-				};
+				};*/
 			}); 	
 
 	}]);
