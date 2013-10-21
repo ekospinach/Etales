@@ -1,7 +1,8 @@
 define(['app'], function(app) {
 		app.controller('producerDecisionStep1Ctrl',
-			['$scope','$rootScope','$http','$filter','prodecisions', function($scope,$rootScope,$http,$filter,prodecisions) {
+			['$scope','$q','$rootScope','$http','$filter','prodecisions','ProducerDecision','ProducerDecisionBase', function($scope,$q,$rootScope,$http,$filter,prodecisions,ProducerDecision,ProducerDecisionBase) {
 			$rootScope.decisionActive="active";
+			//var calculate=require('');
 			var multilingual=[{
 						'shortName':'Products_Portfolio_Management',
 						'labelENG':'Products Portfolio Management',
@@ -70,11 +71,81 @@ define(['app'], function(app) {
 						'label':''						
 					}];
 
+			var language='English',
+				producerID=1,
+				period=0,
+				category='Elecssories',
+				isCollapsed=true;
+				$scope.isCollapsed=isCollapsed;
+			$scope.multilingual=multilingual;
+			$scope.category=category;
+			$scope.language=language;
+			$scope.producerID=producerID;
+			$scope.period=period;
+
+			$scope.packs = [{
+				value: 1, text: 'ECONOMY'
+			},{
+				value: 2, text: 'STANDARD'
+			},{
+				value: 3, text: 'PREMIUM'
+			}]; 
+
+			//$scope.open=open;
+			//$scope.close=close;
+
+			$scope.parameter=1;/*default add new Brand*/
+
+			/*Angular-ui-bootstrap modal start*/
+
+			$scope.opts = {
+			    backdropFade: true,
+			    dialogFade:true
+			};
+			/*Angular-ui-bootstrap modal end*/		
+			ProducerDecisionBase.reload({period:'0', seminar:'MAY', producerID:1}).then(function(base){
+				$scope.pageBase = base;
+				//ProducerDecisionBase.setSomething('TEST');	
+			}).then(function(){
+				return promiseStep1();
+			}), function(reason){
+				console.log('from ctr: ' + reason);
+			}, function(update){
+				console.log('from ctr: ' + update);
+			};
+
+			var promiseStep1=function(){
+				var delay=$q.defer();
+				delay.notify('start to show view');
+					$scope.selectPacks=selectPacks;
+					$scope.open=open;
+					$scope.close=close;
+					$scope.setAddNewBrand=setAddNewBrand;
+					$scope.setAddNewProUnderBrand=setAddNewProUnderBrand;
+					$scope.showView=showView;
+					$scope.loadSelectCategroy=loadSelectCategroy;
+					$scope.setBrandName=setBrandName;
+					$scope.loadAllBrand=loadAllBrand;
+					$scope.selected=selected;
+					$scope.loadNameNum=loadNameNum;
+					$scope.addNewProduct=addNewProduct;
+					$scope.updateProducerDecision=updateProducerDecision;
+					$scope.getMoreInfo=getMoreInfo;
+					$scope.closeInfo=closeInfo;
+				var result=showView($scope.producerID,$scope.period,$scope.category,$scope.language);
+				delay.resolve(result);
+				if (result==1) {
+					delay.resolve(result);
+				} else {
+					delay.reject('showView error,products is null');
+				}
+				return delay.promise;
+			}
+
+
 			/*Load Page*/
-			var showView=function(user,period,category,language){
-				console.log("showView start");
-				allProCatDecision=prodecisions.proCatDecision;
-				$scope.user=user,$scope.period=period,$scope.category=category,$scope.language=language;
+			var showView=function(producerID,period,category,language){
+				$scope.producerID=producerID,$scope.period=period,$scope.category=category,$scope.language=language;
 				var shortLanguages={},fullLanguages={};
 				if(language=="English"){
 					for(var i=0;i<$scope.multilingual.length;i++){
@@ -131,7 +202,7 @@ define(['app'], function(app) {
 					}
 				}
 				var allCatProDecisions=loadSelectCategroy(category);
-	      		var count=0;
+	      		var count=0,result=0;
 	      		var products=new Array();
 	      		for(var i=0;i<allCatProDecisions.length;i++){
 	      			for(var j=0;j<allCatProDecisions[i].proBrandsDecision.length;j++){
@@ -152,10 +223,13 @@ define(['app'], function(app) {
 	      				}
 	      			}
 	      		}
+	      		if(count!=0){
+	      			result=1;
+	      		}
 	      		$scope.products=products;
 				$scope.shortLanguages=shortLanguages;
 				$scope.fullLanguages=fullLanguages;
-				console.log("showView end");
+				return result;
 			}
 
 
@@ -163,19 +237,18 @@ define(['app'], function(app) {
 			/*set add function is lauch new Brand*/
 			var setAddNewBrand=function(){
 				$scope.parameter=1;/*add new Brand*/
-				console.log($scope.parameter);
+				$scope.lauchNewCategory=1;
+				setBrandName($scope.lauchNewCategory);
 			}	
 			/*set add function is add under a existed brand*/
 			var setAddNewProUnderBrand=function(){
 				$scope.parameter=2;/*add new product under existed Brand*/
-				var category=1;
-				loadAllBrand(category);
-				console.log($scope.parameter);
-				//$scope.alls=[{'BrandID':1,'BrandName':'BrandName1'},{'BrandID':2,'BrandName':'BrandName2'},{'BrandID':3,'BrandName':'BrandName3'}];
+				$scope.addNewCategory=1;
+				loadAllBrand($scope.addNewCategory);
 			}
 			/*LoadSelectCategroy*/
 			var loadSelectCategroy=function(category){
-				return _.filter(allProCatDecision,function(obj){
+				return _.filter($scope.pageBase.proCatDecision,function(obj){
 					if(category=="HealthBeauty"){
 						return (obj.categoryID==2);
 					}else{
@@ -183,17 +256,24 @@ define(['app'], function(app) {
 					}
 	      		});
 			}
+			/*SetBrand first and last name*/
+			var setBrandName=function(category){
+				if(category==1){
+					category="Elecssories";
+					$scope.brandFirstName="E";
+				}else{
+					category="HealthBeauty";
+					$scope.brandFirstName="H";
+				}
+				$scope.brandLastName=1;/*need check*/
+			}
 			/*LoadAllBrand by category*/
 			var loadAllBrand=function(category){
-				console.log(category);
-				console.log("start");
 				if(category==1){
 					category="Elecssories";
 				}else{
 					category="HealthBeauty";
 				}
-				//console.log(category);
-				var allProCatDecision=prodecisions.proCatDecision;
 				var allCatProDecisions=loadSelectCategroy(category);
 	      		var allBrands=new Array();
 	      		for(var i=0;i<allCatProDecisions.length;i++){
@@ -202,9 +282,11 @@ define(['app'], function(app) {
 	      			}	
 	      		}
 	      		$scope.allBrands=allBrands;
-	      		console.log(allBrands);
-	      		//$scope.allbrands=[{'BrandID':1,'BrandName':'BrandName1'},{'BrandID':2,'BrandName':'BrandName2'},{'BrandID':3,'BrandName':'BrandName3'}];
-	      		//$scope.addNewCategory=$scope.allBrands[0].BrandName;*/
+	      		$scope.addChooseBrand=allBrands[0].BrandID;
+			}
+
+			var selected=function(category){
+				console.log(category);
 			}
 
 			var selectPacks = function(parentBrandName,varName) {
@@ -225,18 +307,8 @@ define(['app'], function(app) {
 				}
 			};
 
-			var selected=function(category){
-				console.log(category);
-			}
-
-			var loadNameNum=function(){//load the sort
-				/*importantt*/
-			}		
-			/*var addNewProduct=function(parameter){
-				$scope.parameter=parameter;
-				console.log($scope.parameter);
-			}*/
 			var open = function () {
+				console.log("1");
 			    $scope.shouldBeOpen = true;
 			    setAddNewBrand();
 			};
@@ -244,48 +316,130 @@ define(['app'], function(app) {
 			    $scope.shouldBeOpen = false;
 			};
 
-			var language='English',
-				user='Producer',
-				period=0,
-				category='Elecssories';
-			$scope.multilingual=multilingual;
-			$scope.category=category;
-			$scope.language=language;
-			$scope.user=user;
-			$scope.period=period;
-			
-			$scope.setAddNewBrand=setAddNewBrand;
-			$scope.setAddNewProUnderBrand=setAddNewProUnderBrand;
-			$scope.showView=showView;
-			$scope.loadSelectCategroy=loadSelectCategroy;
-			$scope.loadAllBrand=loadAllBrand;
-			$scope.selectPacks=selectPacks;
-			$scope.selected=selected;
-			$scope.loadNameNum=loadNameNum;
-			console.log("111");
-			require(['../js/functions/addNewProduct'], function (addNewProduct){
-　　　　			$scope.addNewProduct=addNewProduct.addNewProduct;
-　　　　		});
-			//$scope.addNewProduct=addProduct.addNewProduct;
-			$scope.open=open;
-			$scope.close=close;
+			var updateProducerDecision=function(category,brandName,varName,location,tep,index){
+				var categoryID;
+				if(category=="Elecssories"){
+					categoryID=1;
+				}
+				else{
+					categoryID=2
+				}
+				ProducerDecisionBase.reload({period:'0', seminar:'MAY', producerID:1}).then(function(base){
+					//$scope.pageBase = base;
+					if(location=="composition"){
+						ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,tep,$scope.products[index][location][tep]);							
+					}
+					else{
+						ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,tep,$scope.products[index][location]);													
+					}
+				}), function(reason){
+					console.log('from ctr: ' + reason);
+				}, function(update){
+					console.log('from ctr: ' + update);
+				};
+				$scope.$broadcast('producerDecisionBaseChanged');
+			}
 
-			$scope.parameter=1;/*default add new Brand*/
-			showView($scope.user,$scope.period,$scope.category,$scope.language);
-			$scope.packs = [
-			{value: 1, text: 'ECONOMY'},
-			{value: 2, text: 'STANDARD'},
-			{value: 3, text: 'PREMIUM'}
-			]; 
-			/*Angular-ui-bootstrap modal start*/
+			var closeInfo=function(){
+				$scope.isCollapsed=true;
+			}
 
-			$scope.opts = {
-			    backdropFade: true,
-			    dialogFade:true
-			};
-			/*Angular-ui-bootstrap modal end*/
+			var getMoreInfo=function(brandID,varName){
+				/*if($scope.infobrandID=="underfine"&&$scope.infoVarName=="underfine"){
+					$scope.infobrandID=brandID;
+					$scope.infoVarName=varName;
+				}
+				if($scope.infobrandID!=brandID&&$scope.infoVarName!=varName){
+					$scope.isCollapsed=false;
+				}else{
+					$scope.isCollapsed=true;
+				}*/
+				//$scope.infobrandID=brandID;
+				//$scope.infoVarName=varName;
+				$scope.moreInfo={'parentBrandID':brandID,'varName':varName};
+				//"ParentBrandID="+brandID+"varName="+varName;
+				//$scope.isCollapsed=!$scope.isCollapsed;
+				$scope.isCollapsed=false;
+			}
 
-     	
+			var loadNameNum=function(){//load the sort
+				/*importantt*/
+			}		
+			var addNewProduct=function(parameter){
+				var newBrand=new ProducerDecision();
+				var newproducerDecision=new ProducerDecision();
+					newproducerDecision.packFormat="";
+					newproducerDecision.dateOfBirth=$scope.period;
+					newproducerDecision.parameter=parameter;
+					newproducerDecision.dateOfDeath="";
+			        newproducerDecision.composition=new Array();
+			        newproducerDecision.production="";
+			        newproducerDecision.currentPriceBM="";
+			        newproducerDecision.currentPriceEmall="";
+			        newproducerDecision.discontinue=false;
+			        newproducerDecision.nextPriceBM="";
+			        newproducerDecision.nextPriceEmall="";
+				if(parameter==1){/*lauch new Brand*/
+					newBrand.brandID=15;/*need check*/
+					var proBrandsDecision=_.find($scope.pageBase.proCatDecision,function(obj){
+						return (obj.categoryID==$scope.lauchNewCategory);
+					});
+					require(['../js/controllers/untils/calculate'], function (calculate){
+						newproducerDecision.brandID=calculate.calculateBrandID(proBrandsDecision,$scope.producerID);
+						//console.log(newproducerDecision.brandID);
+						newBrand.brandName=$scope.brandFirstName+$scope.lauchNewBrandName+$scope.brandLastName;
+						newBrand.paranetCompanyID=$scope.producerID;
+						newBrand.dateOfDeath="";
+						newBrand.dateOfBirth=$scope.period;
+						newBrand.advertisingOffLine=new Array();
+						newBrand.advertisingOnLine="";
+						newBrand.supportEmall="";
+						newBrand.supportTraditionalTrade=new Array();
+						newBrand.proVarDecision=new Array();
+
+						newproducerDecision.parentBrandID=newBrand.brandID;
+						newproducerDecision.varName=$scope.lauchNewVarName;/*need check*/
+						newproducerDecision.varID=121;/*need check*/
+						newBrand.proVarDecision.push(newproducerDecision);
+						/*for(var i=0;i<$scope.pageBase.proCatDecision.length;i++){
+							if($scope.pageBase.proCatDecision[i].categoryID=$scope.categoryID){
+								$scope.pageBase.proCatDecision[i].proBrandsDecision.push(newBrand);
+								break;
+							}
+						}*/
+						ProducerDecisionBase.reload({period:'0', seminar:'MAY', producerID:1}).then(function(base){
+							ProducerDecisionBase.addNewProduct(newBrand,$scope.lauchNewCategory,parameter);											
+						}), function(reason){
+							console.log('from ctr: ' + reason);
+						}, function(update){
+								console.log('from ctr: ' + update);
+						};
+　　　　             });
+					
+				}else{/*add new product under existed Brand*/
+					newproducerDecision.parentBrandID=$scope.addChooseBrand;
+					newproducerDecision.varName=$scope.addNewVarName;/*need check*/
+			        newproducerDecision.varID=121;/*need check*/
+			        ProducerDecisionBase.reload({period:'0', seminar:'MAY', producerID:1}).then(function(base){
+						ProducerDecisionBase.addNewProduct(newproducerDecision,$scope.lauchNewCategory,parameter);											
+					}), function(reason){
+						console.log('from ctr: ' + reason);
+					}, function(update){
+							console.log('from ctr: ' + update);
+					};
+				}
+				close();
+				//$scope.pageBase=ProducerDecisionBase.getBase();
+				$scope.$broadcast('producerDecisionBaseChanged');
+				//showView($scope.producerID,$scope.period,$scope.category,$scope.language);
+			}
+
+			$scope.$on('producerDecisionBaseChanged', function(event){	
+				$scope.pageBase=ProducerDecisionBase.getBase();
+			});  
+
+			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
+			}); 	
 
 	}]);
 });

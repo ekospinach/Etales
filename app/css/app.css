@@ -42,7 +42,7 @@
 .editable-input{
   width: 120px;
 }
-.table-striped th{
+.table-hover th{
   width: 240px;
 }
 .progress{
@@ -83,4 +83,10 @@ content: " ";
 .modal-header:after {
 display: table;
 content: " ";
+}
+.collapse{
+  overflow: hidden;
+  position: relative;
+  transition: height 0.35s ease 0s;
+  display: block;
 }

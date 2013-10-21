@@ -277,3 +277,41 @@ exports.getAllProducerDecision = function(req, res, next){
     res.send(producerDecisions);    
 }
 
+exports.addNewProductDecison=function(req,res,next){
+    if(req.body.parameter==1){//lanch new brand
+
+    }else{//add product under brand
+        var newProducerDecision=new producerDecisionModel;
+        newProducerDecision.parentBrandID=req.body.parentBrandID;
+        newProducerDecision.varName=req.body.varName;
+        newProducerDecision.packFormat=req.body.packFormat;
+        newProducerDecision.dateOfBirth=req.body.period;
+        newProducerDecision.dateOfDeath="";
+        newProducerDecision.varID=121;
+        newProducerDecision.composition=new Array();
+        newProducerDecision.production="";
+        newProducerDecision.currentPriceBM="";
+        newProducerDecision.currentPriceEmall="";
+        newProducerDecision.discontinue=false;
+        newProducerDecision.nextPriceBM="";
+        newProducerDecision.nextPriceEmall="";
+        newProducerDecision.save(function(err){
+        console.log('save');
+        if(!err){
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'text/html');
+            res.send({ msg: 'newProducerDecision has been uploaded to the server.',newProducerDecision:newProducerDecision});
+            console.log('done');
+        } else {
+            next(new Error('Save database error.'));                
+        }   
+    });
+
+    //console.log(req.body);
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'text/html');
+        res.send({ msg: 'File has been uploaded to the server.',newProducerDecision:newProducerDecision});
+    }
+    
+}
+
