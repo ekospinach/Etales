@@ -157,6 +157,9 @@ define(['app'], function(app) {
 				$scope.fullLanguages=fullLanguages;
 				console.log("showView end");
 			}
+
+
+
 			/*set add function is lauch new Brand*/
 			var setAddNewBrand=function(){
 				$scope.parameter=1;/*add new Brand*/
@@ -205,6 +208,7 @@ define(['app'], function(app) {
 			}
 
 			var selectPacks = function(parentBrandName,varName) {
+				console.log('testSelectPacks');
 				var selected,postion=-1;
 				for(var i=0;i<$scope.products.length;i++){
 					if($scope.products[i].parentBrandName==parentBrandName&&$scope.products[i].varName==varName){
