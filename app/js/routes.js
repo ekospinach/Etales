@@ -9,12 +9,12 @@ define(['angular',
 			controller:'HomeCtrl'
 		}).when('/producerDecisionStep1',{
 			templateUrl:'partials/producerDecisionStep1.html',
-			controller:'producerDecisionStep1Ctrl',
-			resolve:{
+			controller:'producerDecisionStep1Ctrl'
+			/*resolve:{
 				prodecisions: function(ProducerDecisionLoader) {
 					return ProducerDecisionLoader();
 				}
-			}
+			}*/
 		}).when('/producerDecisionStep2',{
 			templateUrl:'partials/producerDecisionStep2.html',
 			controller:'producerDecisionStep2Ctrl'

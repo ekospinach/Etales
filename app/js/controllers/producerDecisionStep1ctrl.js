@@ -1,6 +1,6 @@
 define(['app'], function(app) {
 		app.controller('producerDecisionStep1Ctrl',
-			['$scope','$q','$rootScope','$http','$filter','prodecisions','ProducerDecision','ProducerDecisionBase', function($scope,$q,$rootScope,$http,$filter,prodecisions,ProducerDecision,ProducerDecisionBase) {
+			['$scope','$q','$rootScope','$http','$filter','ProducerDecision','ProducerDecisionBase', function($scope,$q,$rootScope,$http,$filter,ProducerDecision,ProducerDecisionBase) {
 			$rootScope.decisionActive="active";
 			var calculate='../js/controllers/untils/calculate.js';
 			//var calculate=require('');
@@ -344,8 +344,10 @@ define(['app'], function(app) {
 				/*importantt*/
 			}		
 			var addNewProduct=function(parameter){
-				var newBrand=new ProducerDecision();
-				var newproducerDecision=new ProducerDecision();
+				require(['../js/controllers/untils/calculate'], function (calculate){
+					$scope.close=close;
+					var newBrand=new ProducerDecision();
+					var newproducerDecision=new ProducerDecision();
 					newproducerDecision.packFormat="";
 					newproducerDecision.dateOfBirth=$scope.period;
 					newproducerDecision.parameter=parameter;
@@ -360,11 +362,7 @@ define(['app'], function(app) {
 			        var proBrandsDecision=_.find($scope.pageBase.proCatDecision,function(obj){
 						return (obj.categoryID==$scope.lauchNewCategory);
 					});
-				if(parameter==1){/*lauch new Brand*/
-					/*var proBrandsDecision=_.find($scope.pageBase.proCatDecision,function(obj){
-						return (obj.categoryID==$scope.lauchNewCategory);
-					});*/
-					require(['../js/controllers/untils/calculate'], function (calculate){
+					if(parameter==1){/*lauch new Brand*/
 						newBrand.brandID=calculate.calculateBrandID(proBrandsDecision,$scope.producerID);
 						newBrand.brandName=$scope.brandFirstName+$scope.lauchNewBrandName+$scope.brandLastName;
 						newBrand.paranetCompanyID=$scope.producerID;
@@ -377,26 +375,21 @@ define(['app'], function(app) {
 						newBrand.proVarDecision=new Array();
 						newproducerDecision.parentBrandID=newBrand.brandID;
 						newproducerDecision.varName=$scope.lauchNewVarName;/*need check*/
-						newproducerDecision.varID=10*parentBrandID+1;/*need check*/
+						newproducerDecision.varID=10*newBrand.brandID+1;/*need check*/
 						newBrand.proVarDecision.push(newproducerDecision);
 						ProducerDecisionBase.addNewProduct(newBrand,$scope.lauchNewCategory,parameter);
 						$scope.$broadcast('producerDecisionBaseChanged');
-　　　　             });
-					
-				}else{/*add new product under existed Brand*/
-					newproducerDecision.parentBrandID=$scope.addChooseBrand;
-					newproducerDecision.varName=$scope.addNewVarName;/*need check*/
-					var proVarDecision=_.find(proBrandsDecision.proBrandsDecision,function(obj){
-						return (obj.brandID=newproducerDecision.parentBrandID);
-					})
-					require(['../js/controllers/untils/calculate'], function (calculate){
+					}else{/*add new product under existed Brand*/
+						newproducerDecision.parentBrandID=$scope.addChooseBrand;
+						newproducerDecision.varName=$scope.addNewVarName;/*need check*/
+						var proVarDecision=_.find(proBrandsDecision.proBrandsDecision,function(obj){
+							return (obj.brandID==newproducerDecision.parentBrandID);
+						})
 			        	newproducerDecision.varID=calculate.calculateVarID(proVarDecision,newproducerDecision.parentBrandID);//121;/*need check*/
-			        	//calculate.calculateVarID(proBrandsDecision,newproducerDecision.parentBrandID);
 			        	ProducerDecisionBase.addNewProduct(newproducerDecision,$scope.lauchNewCategory,parameter);	
 						$scope.$broadcast('producerDecisionBaseChanged');
-					});
-				}
-				//close();
+					}
+				});
 			}
 
 			$scope.$on('closemodal',function(event){
