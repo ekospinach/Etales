@@ -98,6 +98,25 @@ define(['angular','angularResource'], function (angular,angularResource) {
 					console.log(base);
 					//$rootScope.$broadcast('producerDecisionBaseChanged', base);
 				},
+				setProducerDecisionBrand:function(categoryID,brandID,location,tep,value){
+					for(var i=0;i<base.proCatDecision.length;i++){
+						if(base.proCatDecision[i].categoryID==categoryID){
+							for(var j=0;j<base.proCatDecision[i].proBrandsDecision.length;j++){
+								if(base.proCatDecision[i].proBrandsDecision[j].brandID==brandID){
+									if(location=="supportTraditionalTrade"||location=="advertisingOffLine"){
+										base.proCatDecision[i].proBrandsDecision[j][location][tep]=value;
+									}
+									else{
+										base.proCatDecision[i].proBrandsDecision[j][location]=value;
+									}
+									break;
+								}
+							}
+							break;
+						}
+					}
+					console.log(base);
+				},
 				addNewProduct:function(newproducerDecision,categoryID,parameter){
 					//startListenChangeFromServer($rootScope);
 					if(parameter==1){
