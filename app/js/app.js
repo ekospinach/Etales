@@ -9,6 +9,7 @@ define([
 	'underscore',
 	'socketIO',
 	'bootstrap',
+	'angularLoadingBar'
 	], function (angular, filters, services, directives, controllers) {
 		'use strict';
 		return angular.module('myApp', [
@@ -17,7 +18,8 @@ define([
 			'myApp.services',
 			'myApp.directives',
 			'xeditable',
-			'ui.bootstrap'
+			'ui.bootstrap',
+			'chieffancypants.loadingBar'
 		]).run(function(editableOptions){
 			editableOptions.theme = 'bs3';
 		}).run(['$rootScope', '$location', function ($rootScope, $location) {

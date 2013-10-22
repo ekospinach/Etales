@@ -4,6 +4,7 @@ require.config({
 		angularRoute: '../bower_components/angular-route/angular-route',
 		angularResource: '../bower_components/angular-resource/angular-resource',
 		angularMocks: '../bower_components/angular-mocks/angular-mocks',
+		angularLoadingBar : '../bower_components/angular-loading-bar/src/loading-bar',
 		text: '../bower_components/requirejs-text/text',
 		angularXeditable: '../bower_components/angular-xeditable/dist/js/xeditable',
 		socketIO: '../bower_components/socket.io-client/dist/socket.io',
@@ -26,7 +27,7 @@ require.config({
 		'angularXeditable': ['angular'],
 		'bootstrap':['jquery'],
 		'angularBootstrap':['jquery','bootstrap','angular'],
-
+		'angularLoadingBar' : ['angular']
 	},
 	priority: [
 		"angular"

@@ -39,6 +39,9 @@ var path    = require('path'),
   app.get('/perceptionMaps/:fileName/:period',require('./api/models/perceptionMap.js').getMapByParams);
   app.get('/finReport', require('./api/models/finReport.js').getFinReport);
   app.get('/volReport', require('./api/models/volReport.js').getVolReport);
+
+  //special calculate API
+  app.get('/productionCost');
   
   app.use(express.errorHandler());
   
