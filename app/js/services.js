@@ -117,6 +117,15 @@ define(['angular','angularResource'], function (angular,angularResource) {
 					}
 					console.log(base);
 				},
+				setProducerDecisionCategory:function(categoryID,location,value){
+					for(var i=0;i<base.proCatDecision.length;i++){
+						if(base.proCatDecision[i].categoryID==categoryID){
+							base.proCatDecision[i][location]=value;
+						}
+						break;
+					}
+					console.log(base);
+				},
 				addNewProduct:function(newproducerDecision,categoryID,parameter){
 					//startListenChangeFromServer($rootScope);
 					if(parameter==1){

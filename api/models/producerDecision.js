@@ -80,7 +80,7 @@ exports.getAllProducerDecision = function(req, res, next){
         approvedBudgetExtension:1,
         proCatDecision:[{
             categoryID:1,
-            capacityChange:0,
+            capacityChange:2,
             investInDesign:6.13,
             investInProductionFlexibility:11.57,
             investInTechnology:3.16,
@@ -176,7 +176,7 @@ exports.getAllProducerDecision = function(req, res, next){
             }]
         },{
             categoryID:2,
-            capacityChange:0,
+            capacityChange:2,
             investInDesign:0,/*null*/
             investInProductionFlexibility:21.21,
             investInTechnology:21.21,
