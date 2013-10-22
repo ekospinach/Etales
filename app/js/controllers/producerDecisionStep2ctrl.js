@@ -1,314 +1,408 @@
-define(['app'], function(app,underscore) {
+define(['app'], function(app) {
+		app.controller('producerDecisionStep2Ctrl',
+			['$scope','$q','$rootScope','$http','$filter','ProducerDecision','ProducerDecisionBase', function($scope,$q,$rootScope,$http,$filter,ProducerDecision,ProducerDecisionBase) {
+			$rootScope.decisionActive="active";
+			var calculate='../js/controllers/untils/calculate.js';
+			//var calculate=require('');
+			var multilingual=[{
+						'shortName':'Products_Portfolio_Management',
+						'labelENG':'Products Portfolio Management',
+						'labelRUS':'',
+						'labelCHN':'产品组合管理',
+						'label':''
+					},{
+						'shortName':'Next',
+						'labelENG':'Next',
+						'labelRUS':'',
+						'labelCHN':'下一步',
+						'label':''
+					},{
+						'shortName':'Category',
+						'labelENG':'Category',
+						'labelRUS':'',
+						'labelCHN':'品类',
+						'label':''
+					},{
+						'shortName':'Brand',
+						'labelENG':'Brand',
+						'labelRUS':'',
+						'labelCHN':'品牌',
+						'label':''
+					},{
+						'shortName':'Variant',
+						'labelENG':'Variant',
+						'labelRUS':'',
+						'labelCHN':'单品',
+						'label':''					
+					},{
+						'shortName':'PF',
+						'labelENG':'Pack Format',
+						'labelRUS':'',
+						'labelCHN':'包',
+						'label':''					
+					},{
+						'shortName':'TL',
+						'labelENG':'Technology Level',
+						'labelRUS':'',
+						'labelCHN':'技术水平',
+						'label':''
+					},{
+						'shortName':'AA',
+						'labelENG':'Active agent',
+						'labelRUS':'',
+						'labelCHN':'活性剂',
+						'label':''
+					},{
+						'shortName':'SL',
+						'labelENG':'Smoothener Level',
+						'labelRUS':'',
+						'labelCHN':'增滑技术',
+						'label':''
+					},{
+						'shortName':'PV',
+						'labelENG':'Production Volume',
+						'labelRUS':'',
+						'labelCHN':'估计产量',
+						'label':''				
+					},{
+						'shortName':'NPB',
+						'labelENG':'Next Price BM',
+						'labelRUS':'',
+						'labelCHN':'下个BM价格',
+						'label':''						
+					},{
+						'shortName':'NPE',
+						'labelENG':'Next Price Emall',
+						'labelRUS':'',
+						'labelCHN':'下个Emall价格',
+						'label':''							
+					}];
 
-	app.controller('producerDecisionStep2Ctrl',
-		['$scope','$rootScope','$http','$filter', function($scope,$rootScope,$http,$filter) {
-		// You can access the scope of the controller from here
-		$rootScope.decisionActive="active";
-		console.log($rootScope.decisionActive);
-		$scope.welcomeMessage = 'hey this is DecisionCtrl.js!';
-		// because this has happened asynchroneusly we've missed
-		// Angular's initial call to $apply after the controller has been loaded
-		// hence we need to explicityly call it at the end of our Controller constructor
-		var allproducts=[{
-			'Category':'Elecssories',
-			'Brand':'ELAND1',
-			'Variant':'_A',
-			'PF':'ECONOMY',
-			'TL':5,
-			'DI':5,
-			'RMQ':5,
-			'PV':70,
-			'NPB':7,
-			'NPE':7
-		},{
-			'Category':'Elecssories',
-			'Brand':'ELAND1',
-			'Variant':'_A',
-			'PF':'ECONOMY',
-			'TL':5,
-			'DI':5,
-			'RMQ':5,
-			'PV':70,
-			'NPB':7,
-			'NPE':7
-		},{
-			'Category':'Elecssories',
-			'Brand':'ELAND1',
-			'Variant':'_A',
-			'PF':'ECONOMY',
-			'TL':5,
-			'DI':5,
-			'RMQ':5,
-			'PV':70,
-			'NPB':7,
-			'NPE':7
-		},{
-			'Category':'Elecssories',
-			'Brand':'ELAND1',
-			'Variant':'_A',
-			'PF':'ECONOMY',
-			'TL':5,
-			'DI':5,
-			'RMQ':5,
-			'PV':70,
-			'NPB':7,
-			'NPE':7
-		},{
-			'Category':'HealthBeauty',
-			'Brand':'HOLAY1',
-			'Variant':'_A',
-			'PF':'PREMIUM',
-			'TL':7,
-			'AA':7,
-			'SL':7,
-			'PV':6,
-			'NPB':7,
-			'NPE':7
-		},{
-			'Category':'HealthBeauty',
-			'Brand':'HOLAY1',
-			'Variant':'_A',
-			'PF':'PREMIUM',
-			'TL':7,
-			'AA':7,
-			'SL':7,
-			'PV':6,
-			'NPB':7,
-			'NPE':7
-		},{
-			'Category':'HealthBeauty',
-			'Brand':'HOLAY1',
-			'Variant':'_A',
-			'PF':'PREMIUM',
-			'TL':7,
-			'AA':7,
-			'SL':7,
-			'PV':6,
-			'NPB':7,
-			'NPE':7
-		},{
-			'Category':'HealthBeauty',
-			'Brand':'HOLAY1',
-			'Variant':'_A',
-			'PF':'PREMIUM',
-			'TL':7,
-			'AA':7,
-			'SL':7,
-			'PV':6,
-			'NPB':7,
-			'NPE':7
-		}];
-		var multilingual=[{
-					'shortName':'Products_Portfolio_Management',
-					'labelENG':'Products Portfolio Management',
-					'labelRUS':'',
-					'labelCHN':'产品组合管理',
-					'label':''
-				},{
-					'shortName':'Next',
-					'labelENG':'Next',
-					'labelRUS':'',
-					'labelCHN':'下一步',
-					'label':''
-				},{
-					'shortName':'Category',
-					'labelENG':'Category',
-					'labelRUS':'',
-					'labelCHN':'品类',
-					'label':''
-				},{
-					'shortName':'Brand',
-					'labelENG':'Brand',
-					'labelRUS':'',
-					'labelCHN':'品牌',
-					'label':''
-				},{
-					'shortName':'Variant',
-					'labelENG':'Variant',
-					'labelRUS':'',
-					'labelCHN':'单品',
-					'label':''					
-				},{
-					'shortName':'PF',
-					'labelENG':'Pack Format',
-					'labelRUS':'',
-					'labelCHN':'包',
-					'label':''					
-				},{
-					'shortName':'TL',
-					'labelENG':'Technology Level',
-					'labelRUS':'',
-					'labelCHN':'技术水平',
-					'label':''
-				},{
-					'shortName':'AA',
-					'labelENG':'Active agent',
-					'labelRUS':'',
-					'labelCHN':'活性剂',
-					'label':''
-				},{
-					'shortName':'SL',
-					'labelENG':'Smoothener Level',
-					'labelRUS':'',
-					'labelCHN':'增滑技术',
-					'label':''
-				},{
-					'shortName':'PV',
-					'labelENG':'Production Volume',
-					'labelRUS':'',
-					'labelCHN':'产量',
-					'label':''				
-				},{
-					'shortName':'NPB',
-					'labelENG':'Next Price BM',
-					'labelRUS':'',
-					'labelCHN':'下一个成品价格',
-					'label':''						
-				},{
-					'shortName':'NPE',
-					'labelENG':'Next Price Emall',
-					'labelRUS':'',
-					'labelCHN':'下一个网上售价',
-					'label':''						
-				}];
+			var language='English',
+				producerID=1,
+				period=0,
+				category='Elecssories',
+				isCollapsed=true;
+				$scope.isCollapsed=isCollapsed;
+			$scope.multilingual=multilingual;
+			$scope.category=category;
+			$scope.language=language;
+			$scope.producerID=producerID;
+			$scope.period=period;
 
-		var showView=function(user,period,category,language){
-			$scope.user=user,$scope.period=period,$scope.category=category,$scope.language=language;
-			var shortLanguages={},fullLanguages={};
-			if(language=="English"){
-				for(var i=0;i<$scope.multilingual.length;i++){
-					if(category=="Elecssories"){
-						if($scope.multilingual[i].shortName=="Active"){
-							$scope.multilingual[i].labelENG="Design Index";
-							$scope.multilingual[i].labelCHN="设计指数";
-						}
-						if($scope.multilingual[i].shortName=="Smootener"){
-							$scope.multilingual[i].labelENG="Raw Materrials Quality";
-							$scope.multilingual[i].labelCHN="原始材料质量";
-						}
-					}
-					else if(category=="HealthBeauty"){
-						if($scope.multilingual[i].shortName=="Active"){
-							$scope.multilingual[i].labelENG="Active agent";
-							$scope.multilingual[i].labelCHN="活性剂";
-						}
-						if($scope.multilingual[i].shortName=="Smootener"){
-							$scope.multilingual[i].labelENG="Smoothener Level";
-							$scope.multilingual[i].labelCHN="增滑技术";
-						}
-					}
-					$scope.multilingual[i].label=$scope.multilingual[i].labelENG;
-					shortLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].shortName;
-					fullLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].label;
-					//shortLanguages[$scope.multilingual[i].label]=$scope.multilingual[i].label;
+
+			//$scope.open=open;
+			//$scope.close=close;
+
+			$scope.parameter=1;/*default add new Brand*/
+
+			/*Angular-ui-bootstrap modal start*/
+
+			$scope.opts = {
+			    backdropFade: true,
+			    dialogFade:true
+			};
+			/*Angular-ui-bootstrap modal end*/		
+			ProducerDecisionBase.reload({period:'0', seminar:'MAY', producerID:1}).then(function(base){
+				$scope.pageBase = base;
+				//ProducerDecisionBase.setSomething('TEST');	
+			}).then(function(){
+				return promiseStep1();
+			}), function(reason){
+				console.log('from ctr: ' + reason);
+			}, function(update){
+				console.log('from ctr: ' + update);
+			};
+
+			var promiseStep1=function(){
+				var delay=$q.defer();
+				delay.notify('start to show view');
+					$scope.selectPacks=selectPacks;
+					$scope.open=open;
+					$scope.close=close;
+					$scope.setAddNewBrand=setAddNewBrand;
+					$scope.setAddNewProUnderBrand=setAddNewProUnderBrand;
+					$scope.showView=showView;
+					$scope.loadSelectCategroy=loadSelectCategroy;
+					$scope.setBrandName=setBrandName;
+					$scope.loadAllBrand=loadAllBrand;
+					$scope.selected=selected;
+					$scope.loadNameNum=loadNameNum;
+					$scope.addNewProduct=addNewProduct;
+					$scope.updateProducerDecision=updateProducerDecision;
+					$scope.getMoreInfo=getMoreInfo;
+					$scope.closeInfo=closeInfo;
+				var result=showView($scope.producerID,$scope.period,$scope.category,$scope.language);
+				delay.resolve(result);
+				if (result==1) {
+					delay.resolve(result);
+				} else {
+					delay.reject('showView error,products is null');
 				}
+				return delay.promise;
 			}
-			else if(language=="Chinese"){
-				for(var i=0;i<$scope.multilingual.length;i++){
-					if(category=="Elecssories"){
-						if($scope.multilingual[i].shortName=="Active"){
-							$scope.multilingual[i].labelENG="Design Index";
-							$scope.multilingual[i].labelCHN="设计指数";
+
+
+			/*Load Page*/
+			var showView=function(producerID,period,category,language){
+				$scope.producerID=producerID,$scope.period=period,$scope.category=category,$scope.language=language;
+				var shortLanguages={},fullLanguages={};
+				if(language=="English"){
+					for(var i=0;i<$scope.multilingual.length;i++){
+						if(category=="Elecssories"){
+							if($scope.multilingual[i].shortName=="Active"){
+								$scope.multilingual[i].labelENG="Design Index";
+								$scope.multilingual[i].labelCHN="设计指数";
+							}
+							if($scope.multilingual[i].shortName=="Smootener"){
+								$scope.multilingual[i].labelENG="Raw Materrials Quality";
+								$scope.multilingual[i].labelCHN="原始材料质量";
+							}
 						}
-						if($scope.multilingual[i].shortName=="Smootener"){
-							$scope.multilingual[i].labelENG="Raw Materrials Quality";
-							$scope.multilingual[i].labelCHN="原始材料质量";
+						else if(category=="HealthBeauty"){
+							if($scope.multilingual[i].shortName=="Active"){
+								$scope.multilingual[i].labelENG="Active agent";
+								$scope.multilingual[i].labelCHN="活性剂";
+							}
+							if($scope.multilingual[i].shortName=="Smootener"){
+								$scope.multilingual[i].labelENG="Smoothener Level";
+								$scope.multilingual[i].labelCHN="增滑技术";
+							}
 						}
+						$scope.multilingual[i].label=$scope.multilingual[i].labelENG;
+						shortLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].shortName;
+						fullLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].label;
 					}
-					else if(category=="HealthBeauty"){
-						if($scope.multilingual[i].shortName=="Active"){
-							$scope.multilingual[i].labelENG="Active agent";
-							$scope.multilingual[i].labelCHN="活性剂";
-						}
-						if($scope.multilingual[i].shortName=="Smootener"){
-							$scope.multilingual[i].labelENG="Smoothener Level";
-							$scope.multilingual[i].labelCHN="增滑技术";
-						}
-					}
-					$scope.multilingual[i].label=$scope.multilingual[i].labelCHN;
-					shortLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].shortName;
-					fullLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].label;
 				}
+				else if(language=="Chinese"){
+					for(var i=0;i<$scope.multilingual.length;i++){
+						if(category=="Elecssories"){
+							if($scope.multilingual[i].shortName=="Active"){
+								$scope.multilingual[i].labelENG="Design Index";
+								$scope.multilingual[i].labelCHN="设计指数";
+							}
+							if($scope.multilingual[i].shortName=="Smootener"){
+								$scope.multilingual[i].labelENG="Raw Materrials Quality";
+								$scope.multilingual[i].labelCHN="原始材料质量";
+							}
+						}
+						else if(category=="HealthBeauty"){
+							if($scope.multilingual[i].shortName=="Active"){
+								$scope.multilingual[i].labelENG="Active agent";
+								$scope.multilingual[i].labelCHN="活性剂";
+							}
+							if($scope.multilingual[i].shortName=="Smootener"){
+								$scope.multilingual[i].labelENG="Smoothener Level";
+								$scope.multilingual[i].labelCHN="增滑技术";
+							}
+						}
+						$scope.multilingual[i].label=$scope.multilingual[i].labelCHN;
+						shortLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].shortName;
+						fullLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].label;
+					}
+				}
+				var allCatProDecisions=loadSelectCategroy(category);
+	      		var count=0,result=0;
+	      		var products=new Array();
+	      		for(var i=0;i<allCatProDecisions.length;i++){
+	      			for(var j=0;j<allCatProDecisions[i].proBrandsDecision.length;j++){
+	      				for(var k=0;k<allCatProDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
+	      					products.push(allCatProDecisions[i].proBrandsDecision[j].proVarDecision[k]);
+	      					products[count].category=category;
+	      					products[count].parentBrandName=allCatProDecisions[i].proBrandsDecision[j].brandName;
+	      					if(products[count].packFormat=="ECONOMY"){
+	      						products[count].packFormat=1;
+	      					}
+	      					else if(products[count].packFormat=="STANDARD"){
+	      						products[count].packFormat=2;
+	      					}
+	      					else if(products[count].packFormat=="PREMIUM"){
+	      						products[count].packFormat=3;
+	      					}
+	      					count++;
+	      				}
+	      			}
+	      		}
+	      		if(count!=0){
+	      			result=1;
+	      		}
+	      		$scope.products=products;
+				$scope.shortLanguages=shortLanguages;
+				$scope.fullLanguages=fullLanguages;
+				return result;
 			}
-			$scope.products=_.filter(allproducts,function(obj){
-				return (obj.Category==category)
-      		});
-			console.log($scope.products);
-			$scope.shortLanguages=shortLanguages;
-			$scope.fullLanguages=fullLanguages;
-		}
+			/*set add function is lauch new Brand*/
+			var setAddNewBrand=function(){
+				$scope.parameter=1;/*add new Brand*/
+				$scope.lauchNewCategory=1;
+				setBrandName($scope.lauchNewCategory);
+			}	
+			/*set add function is add under a existed brand*/
+			var setAddNewProUnderBrand=function(){
+				$scope.parameter=2;/*add new product under existed Brand*/
+				$scope.addNewCategory=1;
+				loadAllBrand($scope.addNewCategory);
+			}
+			/*LoadSelectCategroy*/
+			var loadSelectCategroy=function(category){
+				return _.filter($scope.pageBase.proCatDecision,function(obj){
+					if(category=="HealthBeauty"){
+						return (obj.categoryID==2);
+					}else{
+						return (obj.categoryID==1);
+					}
+	      		});
+			}
+			/*SetBrand first and last name*/
+			var setBrandName=function(category){
+				if(category==1){
+					category="Elecssories";
+					$scope.brandFirstName="E";
+				}else{
+					category="HealthBeauty";
+					$scope.brandFirstName="H";
+				}
+				$scope.brandLastName=1;/*need check*/
+			}
+			/*LoadAllBrand by category*/
+			var loadAllBrand=function(category){
+				if(category==1){
+					category="Elecssories";
+				}else{
+					category="HealthBeauty";
+				}
+				var allCatProDecisions=loadSelectCategroy(category);
+	      		var allBrands=new Array();
+	      		for(var i=0;i<allCatProDecisions.length;i++){
+	      			for(var j=0;j<allCatProDecisions[i].proBrandsDecision.length;j++){
+	      				allBrands.push({'BrandID':allCatProDecisions[i].proBrandsDecision[j].brandID,'BrandName':allCatProDecisions[i].proBrandsDecision[j].brandName});
+	      			}	
+	      		}
+	      		$scope.allBrands=allBrands;
+	      		$scope.addChooseBrand=allBrands[0].BrandID;
+			}
 
-		var language='English',
-			user='Producer',
-			period=0,
-			category='Elecssories';
-		$scope.multilingual=multilingual;
-		$scope.category=category;
-		$scope.language=language;
-		$scope.user=user;
-		$scope.period=period;
-		$scope.showView=showView;
-		showView($scope.user,$scope.period,$scope.category,$scope.language);
+			var selected=function(category){
+				console.log(category);
+			}
 
-		$scope.user = {
-			name: 'awesome user'
-		};  
-		$scope.pack = {
-			packs: 'E'
-		};
-		$scope.packs = [
-		{value: 'E', text: 'ECONOMY'},
-		{value: 'S', text: 'STANDARD'},
-		{value: 'P', text: 'PREMIUM'}
-		]; 
-		$scope.showPacks = function() {
-			var selected = $filter('filter')($scope.packs, {value: $scope.pack.packs});
-    		return ($scope.pack.packs && selected.length) ? selected[0].text : 'Not set';
-		};
+			var selectPacks = function(parentBrandName,varName) {
+				var selected,postion=-1;
+				for(var i=0;i<$scope.products.length;i++){
+					if($scope.products[i].parentBrandName==parentBrandName&&$scope.products[i].varName==varName){
+						selected = $filter('filter')($scope.packs, {value: $scope.products[i].packFormat});
+						postion=i;
+						break;
+					}
+				}
+				if(postion!=-1){
+					return ($scope.products[postion].packFormat && selected.length) ? selected[0].text : 'Not set'; 
+				}
+				else{
+					return 'Not set';	
+				}
+			};
 
-		$scope.random = function() {
-    var value = Math.floor((Math.random()*100)+1);
-    var type;
+			var open = function () {
+				console.log("1");
+			    $scope.shouldBeOpen = true;
+			    setAddNewBrand();
+			};
+			var close = function () {
+				//console.log('111');
+			    $scope.shouldBeOpen = false;
+			};
 
-    if (value < 25) {
-      type = 'success';
-    } else if (value < 50) {
-      type = 'info';
-    } else if (value < 75) {
-      type = 'warning';
-    } else {
-      type = 'danger';
-    }
+			var updateProducerDecision=function(category,brandName,varName,location,tep,index){
+				var categoryID;
+				if(category=="Elecssories"){
+					categoryID=1;
+				}
+				else{
+					categoryID=2
+				}
+				if(location=="composition"){
+					ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,tep,$scope.products[index][location][tep]);							
+				}
+				else{
+					ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,tep,$scope.products[index][location]);													
+				}
+				$scope.$broadcast('producerDecisionBaseChanged');
+			}
 
-    $scope.dynamic = value;
-    $scope.dynamicObject = {
-      value: value,
-      type: type
-    };
-  };
-  $scope.random();
-  
-  var types = ['success', 'info', 'warning', 'danger'];
-  $scope.randomStacked = function() {
-    $scope.stackedArray = [];
-    $scope.stacked = [];
-    
-    var n = Math.floor((Math.random()*4)+1);
+			var closeInfo=function(){
+				$scope.isCollapsed=true;
+			}
 
-    for (var i=0; i < n; i++) {
-        var value = Math.floor((Math.random()*30)+1);
-        $scope.stackedArray.push(value);
-        
-        var index = Math.floor((Math.random()*4));
-        $scope.stacked.push({
-          value: value,
-          type: types[index]
-        });
-    }
-  };
-  $scope.randomStacked();
+			var getMoreInfo=function(brandID,varName){
+				$scope.moreInfo={'parentBrandID':brandID,'varName':varName};
+				$scope.isCollapsed=false;
+			}
 
-		$scope.$apply();
-	}];
+			var loadNameNum=function(){//load the sort
+				/*importantt*/
+			}		
+			var addNewProduct=function(parameter){
+				require(['../js/controllers/untils/calculate'], function (calculate){
+					$scope.close=close;
+					var newBrand=new ProducerDecision();
+					var newproducerDecision=new ProducerDecision();
+					newproducerDecision.packFormat="";
+					newproducerDecision.dateOfBirth=$scope.period;
+					newproducerDecision.parameter=parameter;
+					newproducerDecision.dateOfDeath="";
+			        newproducerDecision.composition=new Array();
+			        newproducerDecision.production="";
+			        newproducerDecision.currentPriceBM="";
+			        newproducerDecision.currentPriceEmall="";
+			        newproducerDecision.discontinue=false;
+			        newproducerDecision.nextPriceBM="";
+			        newproducerDecision.nextPriceEmall="";
+			        var proBrandsDecision=_.find($scope.pageBase.proCatDecision,function(obj){
+						return (obj.categoryID==$scope.lauchNewCategory);
+					});
+					if(parameter==1){/*lauch new Brand*/
+						newBrand.brandID=calculate.calculateBrandID(proBrandsDecision,$scope.producerID);
+						newBrand.brandName=$scope.brandFirstName+$scope.lauchNewBrandName+$scope.brandLastName;
+						newBrand.paranetCompanyID=$scope.producerID;
+						newBrand.dateOfDeath="";
+						newBrand.dateOfBirth=$scope.period;
+						newBrand.advertisingOffLine=new Array();
+						newBrand.advertisingOnLine="";
+						newBrand.supportEmall="";
+						newBrand.supportTraditionalTrade=new Array();
+						newBrand.proVarDecision=new Array();
+						newproducerDecision.parentBrandID=newBrand.brandID;
+						newproducerDecision.varName=$scope.lauchNewVarName;/*need check*/
+						newproducerDecision.varID=10*newBrand.brandID+1;/*need check*/
+						newBrand.proVarDecision.push(newproducerDecision);
+						ProducerDecisionBase.addNewProduct(newBrand,$scope.lauchNewCategory,parameter);
+						$scope.$broadcast('producerDecisionBaseChanged');
+					}else{/*add new product under existed Brand*/
+						newproducerDecision.parentBrandID=$scope.addChooseBrand;
+						newproducerDecision.varName=$scope.addNewVarName;/*need check*/
+						var proVarDecision=_.find(proBrandsDecision.proBrandsDecision,function(obj){
+							return (obj.brandID==newproducerDecision.parentBrandID);
+						})
+			        	newproducerDecision.varID=calculate.calculateVarID(proVarDecision,newproducerDecision.parentBrandID);//121;/*need check*/
+			        	ProducerDecisionBase.addNewProduct(newproducerDecision,$scope.lauchNewCategory,parameter);	
+						$scope.$broadcast('producerDecisionBaseChanged');
+					}
+				});
+			}
+
+			$scope.$on('closemodal',function(event){
+				$scope.shouldBeOpen = false;
+			});
+
+			$scope.$on('producerDecisionBaseChanged', function(event){	
+				$scope.pageBase=ProducerDecisionBase.getBase();
+				showView($scope.producerID,$scope.period,$scope.category,$scope.language);
+				$scope.$broadcast('closemodal');
+
+			});  
+			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
+			}); 	
+
+	}]);
 });
-
