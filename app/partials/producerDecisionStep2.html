@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="col-md-12">
+  <div class="col-md-12">
     <div style="clear:both;padding:10px 0"></div>
     <div class="bs-docs-section">
       <h4>Step 2 of 4</h3>
@@ -33,60 +33,85 @@
         </small>
       </div>
         <div style="clear:both"></div>
-        <table class="table table-striped">
-          <tr>
+        <div collapse="isCollapsed">
+          <div class="well well-large">
+            <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button>
+            <table class="table table-striped">
+              <tr>
+                <td>parentBrandID:{{moreInfo.parentBrandID}}</td>
+                <td>varName:{{moreInfo.varName}}</td>
+                <td>parentBrandID:{{moreInfo.parentBrandID}}</td>
+                <td>varName:{{moreInfo.varName}}</td>
+              </tr>  
+              <tr>
+                <td>parentBrandID:{{moreInfo.parentBrandID}}</td>
+                <td>varName:{{moreInfo.varName}}</td>
+                <td>parentBrandID:{{moreInfo.parentBrandID}}</td>
+                <td>varName:{{moreInfo.varName}}</td>
+              </tr>            
+            </table>
+          </div>
+        </div>
+        <table class="table table-hover">
+          <!--<tr>
             <th>{{fullLanguages.Category}}</th>
             <th ng-repeat='product in products'>
-            {{product.Category}}</th>
-          </tr>
+            {{product.category}}</th>
+          </tr>-->
           <tr>
             <th>{{fullLanguages.Brand}}</th>
             <th ng-repeat='product in products'>
-            {{product.Brand}}</th>
+            {{product.parentBrandName}}</th>
           </tr>
           <tr>
             <th>{{fullLanguages.Variant}}</th>
             <th ng-repeat='product in products'>
-            {{product.Variant}}</th>
+            {{product.varName}}<span><a ng-click="getMoreInfo(product.parentBrandID,product.varName)">more</a></span>
+          </th>
           </tr>
           <tr>
-            <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.PF}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.PF}}<span style="color:red">*</span></p></th>
-            <th ng-repeat='product in products'><a href="#" editable-select="pack.packs" e-ng-options="p.value as p.text for p in packs">{{ showPacks() }}</a></th>
+            <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.PF}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.PF}}<span style="color:red">*</span></p>
+            </th>
+            <th ng-repeat='product in products'>
+              {{product.packFormat}}
+            </th>
           </tr>
           <tr>
             <th><p class="text-primary" Popover-animation="true" popover="Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui." popover-title="{{fullLanguages.TL}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.TL}}<span style="color:red">*</span></p></th>
-            <th ng-repeat='product in products'><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th ng-repeat='product in products'>
+              {{product.composition[1]}}
+            </th>
           </tr>
           <tr>
             <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.AA}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.AA}}<span style="color:red">*</span></p></th>
-            <th ng-repeat='product in products'><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th ng-repeat='product in products'>
+              {{product.composition[0]}}
+            </th>
           </tr>
           <tr>
             <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.SL}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.SL}}<span style="color:red">*</span></p></th>
-            <th ng-repeat='product in products'><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th ng-repeat='product in products'>
+              {{product.composition[2]}}
+            </th>
           </tr>
           <tr>
             <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.PV}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.PV}}<span style="color:red">*</span></p></th>
-            <th ng-repeat='product in products'><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th ng-repeat='product in products'><a href="#" editable-text="product.production" onbeforesave="updateProducerDecision(category,product.parentBrandName,product.varName,'production','0',$index)">{{ product.production || 'empty' }}</a></th>
           </tr>
           <tr>
             <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.NPB}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.NPB}}<span style="color:red">*</span></p></th>
-            <th ng-repeat='product in products'><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th ng-repeat='product in products'><a href="#" editable-text="product.nextPriceBM" onbeforesave="updateProducerDecision(category,product.parentBrandName,product.varName,'nextPriceBM','0',$index)">{{ product.nextPriceBM || 'empty' }}</a></th>
           </tr>
           <tr>
             <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.NPE}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.NPE}}<span style="color:red">*</span></p></th>
-            <th ng-repeat='product in products'><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
-          </tr>
-          <!--<tr>
-            <th>status</th>
-            <th ng-repeat='product in products'></th>
-          </tr> -->         
+            <th ng-repeat='product in products'><a href="#" editable-text="product.production" onbeforesave="updateProducerDecision(category,product.parentBrandName,product.varName,'nextPriceEmall','0',$index)">{{ product.nextPriceEmall || 'empty' }}</a></th>
+          </tr>   
         </table>
-        <div class="pull-left">
-                  <a href="" class="btn btn-primary" disabled="disabled">Commit Portflio decision</a>
-                  <a href="/#/producerDecisionStep2" class="btn btn-primary" style="margin-left:10px" >Next</a>
+        <div>
+          <a href="/#/producerDecisionStep1" class="btn btn-success">Back</a>
+          <a href="/#/producerDecisionStep3" class="btn btn-primary">Next</a>
         </div>
       </div>
     </div>
-	</div>
+  </div>
 </div>

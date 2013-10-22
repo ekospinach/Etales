@@ -31,9 +31,9 @@ define([], function() {
     var calculateVarID=function(proVarDecision,parentBrandID){
     	var result=0;min=parentBrandID*10+1,max=parentBrandID*10+3;
     	var nums=new Array();
-    	for(var i=0;i<proVarDecision.length;i++){
-			if(proVarDecision[i].varID!=undefined){
-				nums.push(proVarDecision[i].varID);
+    	for(var i=0;i<proVarDecision.proVarDecision.length;i++){
+			if(proVarDecision.proVarDecision[i].varID!=undefined){
+				nums.push(proVarDecision.proVarDecision[i].varID);
 			}
 		}
 		nums.sort(function(a,b){return a>b?1:-1});
@@ -51,7 +51,7 @@ define([], function() {
 		return result;
     }
     return {
-    	calculateBrandID : calculateBrandID//,
-    	//calculateVarID	: calculateVarID
+    	calculateBrandID : calculateBrandID,//,
+    	calculateVarID	: calculateVarID
     };
 });

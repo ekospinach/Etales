@@ -35,7 +35,7 @@
         <div style="clear:both"></div>
         <div collapse="isCollapsed">
           <div class="well well-large">
-            <a class="btn btn-success pull-right" ng-click="closeInfo()">关闭</a>
+            <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button>
             <table class="table table-striped">
               <tr>
                 <td>parentBrandID:{{moreInfo.parentBrandID}}</td>
@@ -73,12 +73,12 @@
             <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.PF}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.PF}}<span style="color:red">*</span></p>
             </th>
             <th ng-repeat='product in products'>
-              <a href="#" editable-select="product.packFormat" e-ng-options="p.value as p.text for p in packs" onbeforesave="updateProducerDecision(category,product.parentBrandName,product.varName,'packFormat','0',$index)">{{ selectPacks(product.parentBrandName,product.varName) }}</a>
+              <a href="#" editable-select="product.packFormat" e-ng-options="p.value as p.text for p in packs" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'packFormat','0',$index)">{{ selectPacks(product.parentBrandName,product.varName) }}</a>
             </th>
           </tr>
           <tr>
             <th><p class="text-primary" Popover-animation="true" popover="Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui." popover-title="{{fullLanguages.TL}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.TL}}<span style="color:red">*</span></p></th>
-            <th ng-repeat='product in products'><a href="#" editable-text="product.composition[1]" onbeforesave="updateProducerDecision(category,product.parentBrandName,product.varName,'composition','1',$index)">{{ product.composition[1] || 'empty' }}</a></th>
+            <th ng-repeat='product in products'><a href="#" editable-text="product.composition[1]" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'composition','1',$index)">{{ product.composition[1] || 'empty' }}</a></th>
           </tr>
           <tr>
             <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.AA}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.AA}}<span style="color:red">*</span></p></th>
