@@ -436,6 +436,7 @@ define(['app'], function(app) {
 
 			$scope.$on('producerDecisionBaseChanged', function(event){	
 				$scope.pageBase=ProducerDecisionBase.getBase();
+				$scope.$apply();
 			});  
 
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){

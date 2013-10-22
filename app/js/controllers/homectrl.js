@@ -26,9 +26,9 @@ define(['app'], function(app) {
 			$scope.pageBase = newBase;
 			console.log('Changed from server side:');
 			ProducerDecisionBase.reload({period:'0', seminar:'MAY', producerID:1}).then(function(base){
-
-				ProducerDecisionBase.setSomething('SERVER');			
 				
+				ProducerDecisionBase.setSomething('SERVER');			
+
 			}, function(reason){
 				console.log('from ctr: ' + reason);
 			}, function(update){
