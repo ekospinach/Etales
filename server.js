@@ -32,7 +32,7 @@ var path    = require('path'),
   app.post('/retailerDecision');
   app.get('/negotiationDecision');
   app.get('/producerDecision/:producerID/:period/:seminar',require('./api/models/producerDecision.js').getAllProducerDecision);
-  app.get('/retailerDecision'); 
+  app.get('/retailerDecision/:retailerID/:period/:seminar',require('./api/models/retailerDecision.js').getAllRetailerDecision); 
 
   app.get('/marketReport', require('./api/models/marketReport.js').getMarketReport);
   app.get('/lineChart', require('./api/models/lineChart.js').getLineChart);

@@ -1,8 +1,8 @@
 define(['app'], function(app) {
 		app.controller('retailerDecisionStep1Ctrl',
-			['$scope','$q','$rootScope','$http','$filter','ProducerDecisionBase', function($scope,$q,$rootScope,$http,$filter,ProducerDecision,ProducerDecisionBase) {
+			['$scope','$q','$rootScope','$http','$filter','RetailerDecisionBase', function($scope,$q,$rootScope,$http,$filter,RetailerDecisionBase) {
 			$rootScope.decisionActive="active";
-			var calculate='../js/controllers/untils/calculate.js';
+			//var calculate='../js/controllers/untils/calculate.js';
 			//var calculate=require('');
 			var multilingual=[{
 						'shortName':'Products_Portfolio_Management',
@@ -57,7 +57,8 @@ define(['app'], function(app) {
 			$scope.producerID=producerID;
 			$scope.period=period;
 
-			ProducerDecisionBase.reload({period:'0', seminar:'MAY', producerID:1}).then(function(base){
+			RetailerDecisionBase.reload({period:'0',seminar:'MAY',retailerID:1}).then(function(base){
+			//ProducerDecisionBase.reload({period:'0', seminar:'MAY', producerID:1}).then(function(base){
 				$scope.pageBase = base;
 			}).then(function(){
 				return promiseStep1();
@@ -75,7 +76,7 @@ define(['app'], function(app) {
 					$scope.updateProducerDecision=updateProducerDecision;
 					$scope.getCatagoryMoreInfo=getCatagoryMoreInfo;
 					$scope.closeInfo=closeInfo;
-				var result=showView($scope.producerID,$scope.period,$scope.language);
+				var result=1;//showView($scope.producerID,$scope.period,$scope.language);
 				delay.resolve(result);
 				if (result==1) {
 					delay.resolve(result);

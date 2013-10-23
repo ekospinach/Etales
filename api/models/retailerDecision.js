@@ -19,7 +19,7 @@ var retDecisionSchema = mongoose.Schema({
     nextBudgetExtension : Number,
     approvedBudgetExtension : Number,
     retCatDecision : [retCatDecisionSchema], //length: TCategories(1~2)
-    retMarketDecision [retMarketDecisionSchema] //length: TMarkets(1~2)
+    retMarketDecision: [retMarketDecisionSchema] //length: TMarkets(1~2)
 })
 
 
@@ -98,7 +98,7 @@ var privateLabelVarDecision = mongoose.Schema({
     dateOfBirth : Number,
     packFormat : String,
     composition : [Number],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
-    discontinue : boolean    
+    discontinue : Boolean    
 })
 
 var retailerDecisionModel = mongoose.model('retailerDecision', retDecisionSchema);
@@ -201,7 +201,7 @@ exports.getAllRetailerDecision = function(req, res, next){
                 }] //length: TOneBrandVars(1~3)                
             }]
         }], //length: TCategories(1~2)
-        retMarketDecision [{
+        retMarketDecision: [{
             marketID : 1, //1~2
             categorySurfaceShare : [10,20], //[1]for Elecssories [2]for HealthBeauty
             emptySpaceOptimised : false,
@@ -405,4 +405,7 @@ exports.getAllRetailerDecision = function(req, res, next){
             }] //length : TCategories(1~2)
         }] 
     }
+    res.header("Content-Type", "application/json; charset=UTF-8");                                
+    res.statusCode = 200;
+    res.send(retailerDecisions); 
 }

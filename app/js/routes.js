@@ -4,6 +4,7 @@ define(['angular',
 		'controllers/producerDecisionStep2Ctrl',
 		'controllers/producerDecisionStep3Ctrl',
 		'controllers/producerDecisionStep4Ctrl',
+		'controllers/retailerDecisionStep1Ctrl',
 		'controllers/homeCtrl'], function(angular, app) {
 	'use strict';
 	return app.config(['$routeProvider', function($routeProvider) {
