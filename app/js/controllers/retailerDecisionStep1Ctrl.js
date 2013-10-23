@@ -48,17 +48,17 @@ define(['app'], function(app) {
 						'label':''
 					}];
 			var language='English',
-				producerID=1,
+				retailerID=1,
 				period=0,
 				isCollapsed=true;
 				$scope.isCollapsed=isCollapsed;
 			$scope.multilingual=multilingual;
 			$scope.language=language;
-			$scope.producerID=producerID;
+			$scope.retailerID=retailerID;
 			$scope.period=period;
 
 			RetailerDecisionBase.reload({period:'0',seminar:'MAY',retailerID:1}).then(function(base){
-			//ProducerDecisionBase.reload({period:'0', seminar:'MAY', producerID:1}).then(function(base){
+			//ProducerDecisionBase.reload({period:'0', seminar:'MAY', retailerID:1}).then(function(base){
 				$scope.pageBase = base;
 			}).then(function(){
 				return promiseStep1();
@@ -73,10 +73,10 @@ define(['app'], function(app) {
 				delay.notify('start to show view');
 
 					$scope.showView=showView;
-					$scope.updateProducerDecision=updateProducerDecision;
-					$scope.getCatagoryMoreInfo=getCatagoryMoreInfo;
+					$scope.updateRetailerDecision=updateRetailerDecision;
+					$scope.getMoreInfo=getMoreInfo;
 					$scope.closeInfo=closeInfo;
-				var result=1;//showView($scope.producerID,$scope.period,$scope.language);
+				var result=showView($scope.retailerID,$scope.period,$scope.language);
 				delay.resolve(result);
 				if (result==1) {
 					delay.resolve(result);
@@ -88,8 +88,8 @@ define(['app'], function(app) {
 
 
 			/*Load Page*/
-			var showView=function(producerID,period,language){
-				$scope.producerID=producerID,$scope.period=period,$scope.language=language;
+			var showView=function(retailerID,period,language){
+				$scope.retailerID=retailerID,$scope.period=period,$scope.language=language;
 				var shortLanguages={},fullLanguages={};
 				if(language=="English"){
 					for(var i=0;i<$scope.multilingual.length;i++){
@@ -106,7 +106,7 @@ define(['app'], function(app) {
 					}
 				}
 	      		var count=0,result=0;
-	      		var categorys=new Array();
+	      		/*var categorys=new Array();
 	      		for(var i=0;i<$scope.pageBase.proCatDecision.length;i++){
 	      			categorys.push($scope.pageBase.proCatDecision[i]);
 	      			count++;
@@ -114,13 +114,14 @@ define(['app'], function(app) {
 	      		if(count!=0){
 	      			result=1;
 	      		}
-	      		$scope.categorys=categorys;
+	      		$scope.categorys=categorys;*/
+	      		result=1;
 				$scope.shortLanguages=shortLanguages;
 				$scope.fullLanguages=fullLanguages;
 				return result;
 			}
 
-			var updateProducerDecision=function(categoryID,location,index){
+			var updateRetailerDecision=function(categoryID,location,index){
 				ProducerDecisionBase.setProducerDecisionCategory(categoryID,location,$scope.categorys[index][location]);
 				$scope.$broadcast('producerDecisionBaseChanged');
 			}
@@ -129,8 +130,8 @@ define(['app'], function(app) {
 				$scope.isCollapsed=true;
 			}
 
-			var getCatagoryMoreInfo=function(categoryID){
-				$scope.moreInfo={'categoryID':categoryID};
+			var getMoreInfo=function(){
+				$scope.moreInfo={'categoryID':$scope.retailerID};
 				$scope.isCollapsed=false;
 			}
 
@@ -140,7 +141,7 @@ define(['app'], function(app) {
 
 			$scope.$on('producerDecisionBaseChanged', function(event){	
 				$scope.pageBase=ProducerDecisionBase.getBase();
-				showView($scope.producerID,$scope.period,$scope.language);
+				showView($scope.retailerID,$scope.period,$scope.language);
 				$scope.$broadcast('closemodal');
 
 			});  
