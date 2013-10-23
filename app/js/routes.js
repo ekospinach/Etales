@@ -27,8 +27,6 @@ define(['angular',
 		}).when('/producerDecisionStep4',{
 			templateUrl:'partials/producerDecisionStep4.html',
 			controller:'producerDecisionStep4Ctrl'
-
-
 		}).when('/retailerDecisionStep1',{
 			templateUrl:'partials/retailerDecisionStep1.html',
 			controller:'retailerDecisionStep1Ctrl'
