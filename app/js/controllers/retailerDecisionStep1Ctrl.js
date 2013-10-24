@@ -11,40 +11,40 @@ define(['app'], function(app) {
 						'labelCHN':'产品组合管理',
 						'label':''
 					},{
-						'shortName':'Next',
-						'labelENG':'Next',
-						'labelRUS':'',
-						'labelCHN':'下一步',
-						'label':''
-					},{
-						'shortName':'Category',
-						'labelENG':'Category',
+						'shortName':'COF',
+						'labelENG':'Convenience Off-Line',
 						'labelRUS':'',
 						'labelCHN':'品类',
 						'label':''
 					},{
-						'shortName':'IICC',
-						'labelENG':'Investment in Capacity Change',
+						'shortName':'CON',
+						'labelENG':'Convenience On-Line',
 						'labelRUS':'',
 						'labelCHN':'包',
 						'label':''					
 					},{
-						'shortName':'ITIAT',
-						'labelENG':'Investment to imorove Available Technology',
+						'shortName':'AOF',
+						'labelENG':'Assortment Off-Line',
 						'labelRUS':'',
 						'labelCHN':'技术水平',
 						'label':''
 					},{
-						'shortName':'ITIF',
-						'labelENG':'Investment to improve Flexibility',
+						'shortName':'AON',
+						'labelENG':'Assortment On-Line',
 						'labelRUS':'',
 						'labelCHN':'活性剂',
 						'label':''
 					},{
-						'shortName':'ITIDK',
-						'labelENG':'Investment to improve Design Know-How',
+						'shortName':'POF',
+						'labelENG':'Price Off-Line',
 						'labelRUS':'',
 						'labelCHN':'增滑技术',
+						'label':''
+					},{
+						'shortName':'PON',
+						'labelENG':'Price On-Line',
+						'labelRUS':'',
+						'labelCHN':'下一步',
 						'label':''
 					}];
 			var language='English',
@@ -106,24 +106,16 @@ define(['app'], function(app) {
 					}
 				}
 	      		var count=0,result=0;
-	      		/*var categorys=new Array();
-	      		for(var i=0;i<$scope.pageBase.proCatDecision.length;i++){
-	      			categorys.push($scope.pageBase.proCatDecision[i]);
-	      			count++;
-	      		}
-	      		if(count!=0){
-	      			result=1;
-	      		}
-	      		$scope.categorys=categorys;*/
 	      		result=1;
 				$scope.shortLanguages=shortLanguages;
 				$scope.fullLanguages=fullLanguages;
 				return result;
 			}
 
-			var updateRetailerDecision=function(categoryID,location,index){
-				ProducerDecisionBase.setProducerDecisionCategory(categoryID,location,$scope.categorys[index][location]);
-				$scope.$broadcast('producerDecisionBaseChanged');
+			var updateRetailerDecision=function(location,postion){
+				RetailerDecisionBase.setDetailerDecisionBase(location,postion,$scope.pageBase[location][postion]);
+				//ProducerDecisionBase.setProducerDecisionCategory(location,postion,$scope.categorys[index][location]);
+				$scope.$broadcast('retailerDecisionBaseChanged');
 			}
 
 			var closeInfo=function(){
@@ -139,13 +131,13 @@ define(['app'], function(app) {
 				/*importantt*/
 			}		
 
-			$scope.$on('producerDecisionBaseChanged', function(event){	
-				$scope.pageBase=ProducerDecisionBase.getBase();
+			$scope.$on('retailerDecisionBaseChanged', function(event){	
+				$scope.pageBase=RetailerDecisionBase.getBase();
 				showView($scope.retailerID,$scope.period,$scope.language);
 				$scope.$broadcast('closemodal');
 
 			});  
-			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
+			$scope.$on('retailerDecisionBaseChangedFromServer', function(event, newBase){
 			}); 	
 
 	}]);

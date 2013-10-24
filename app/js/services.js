@@ -223,6 +223,10 @@ define(['angular','angularResource'], function (angular,angularResource) {
 					});
 					return delay.promise;
 				},
+				setDetailerDecisionBase:function(location,postion,value){
+					base[location][postion]=value;
+					console.log(base);
+				},
 				setSomething : function(sth){
 					//post to server...
 					base.seminar = sth;
