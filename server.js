@@ -35,7 +35,6 @@ var path    = require('path'),
   app.get('/producerDecision/:producerID/:period/:seminar',require('./api/models/producerDecision.js').getAllProducerDecision);
   app.get('/retailerDecision'); 
 
-
   app.get('/variantHistoryInfo');
   app.get('/brandHistoryInfo');
   app.get('/companyHistoryInfo');
