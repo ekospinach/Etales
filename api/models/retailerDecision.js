@@ -210,7 +210,7 @@ exports.getAllRetailerDecision = function(req, res, next){
                 CONVENIENCE : 22,
                 ASSORTMENT : 33            
             },
-            serviceLevel : 'SL_MEDIUM', //SL_BASE, SL_FAIR, SL_MEDIUM, SL_ENHANCED, SL_PREMIUM
+            serviceLevel : 'MEDIUM', //SL_BASE, SL_FAIR, SL_MEDIUM, SL_ENHANCED, SL_PREMIUM
             retMarketAssortmentDecision : [{
                 categoryID : 1, //1~2
                 retVariantDecision : [{
@@ -311,7 +311,7 @@ exports.getAllRetailerDecision = function(req, res, next){
                 CONVENIENCE : 33,
                 ASSORTMENT : 44            
             },
-            serviceLevel : 'SL_BASE', //SL_BASE, SL_FAIR, SL_MEDIUM, SL_ENHANCED, SL_PREMIUM
+            serviceLevel : 'BASE', //SL_BASE, SL_FAIR, SL_MEDIUM, SL_ENHANCED, SL_PREMIUM
             retMarketAssortmentDecision : [{
                 categoryID : 1, //1~2
                 retVariantDecision : [{

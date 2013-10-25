@@ -227,6 +227,31 @@ define(['angular','angularResource'], function (angular,angularResource) {
 					base[location][postion]=value;
 					console.log(base);
 				},
+				setMarketDecisionBase:function(marketID,location,postion,value){
+					if(location=="serviceLevel"){
+						switch(value){
+							case 1: value="BASE";break;
+							case 2: value="FAIR";break;
+							case 3: value="MEDIUM";break;
+							case 4: value="ENHANCED";break;
+							case 5: value="PREMIUM";break;
+						}
+					}
+					for(var i=0;i<base.retMarketDecision.length;i++){
+						if(base.retMarketDecision[i].marketID==marketID){
+							if(location=="categorySurfaceShare"){
+								base.retMarketDecision[i][location][postion]=value;
+							}else if(location=="localAdvertising"){
+								base.retMarketDecision[i][location][postion]=value;
+							}else{
+								base.retMarketDecision[i][location]=value;
+							}
+							break;
+						}
+					}
+					console.log(base);
+				}
+				,
 				setSomething : function(sth){
 					//post to server...
 					base.seminar = sth;
