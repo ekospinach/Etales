@@ -404,8 +404,8 @@ define(['app'], function(app) {
 				$scope.pageBase=ProducerDecisionBase.getBase();
 				showView($scope.producerID,$scope.period,$scope.category,$scope.language);
 				$scope.$broadcast('closemodal');
-
 			});  
+			
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
 			}); 	
 

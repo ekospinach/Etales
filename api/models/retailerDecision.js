@@ -6,6 +6,10 @@ var retDecisionSchema = mongoose.Schema({
     seminar : String,
     period : Number,
     retailerID : Number, //TAllRetailers (1~4)
+    seminar : String,
+    period : Number,    
+    nextBudgetExtension : Number,
+    approvedBudgetExtension : Number,
     onlineAdvertising : {
         PRICE : Number,
         CONVENIENCE : Number,
@@ -16,8 +20,6 @@ var retDecisionSchema = mongoose.Schema({
         CONVENIENCE : Number,
         ASSORTMENT : Number        
     },
-    nextBudgetExtension : Number,
-    approvedBudgetExtension : Number,
     retCatDecision : [retCatDecisionSchema], //length: TCategories(1~2)
     retMarketDecision: [retMarketDecisionSchema] //length: TMarkets(1~2)
 })

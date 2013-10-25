@@ -4,8 +4,8 @@ define(['angular','angularResource'], function (angular,angularResource) {
 	var services=angular.module('myApp.services', ['ngResource']);
 	services.value('version', '0.1');
 
-	services.factory('ProducerDecision',['$resource','$rootScope',function($resource,$rootScope){
-		return $resource('/producerDecision/:producerID/:period/:seminar',{producerID: $rootScope.rootProducerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar},
+	services.factory('ProducerDecision',['$resource', function($resource){
+		return $resource('/producerDecision/:producerID/:period/:seminar',{},
 			{
 				save:{
 					method: "POST",
@@ -32,6 +32,19 @@ define(['angular','angularResource'], function (angular,angularResource) {
 			}
 		})
 	}]);
+	services.factory('VariantHistoryInfo', ['$resource', function($resource){
+		return $resource('/variantHistoryInfo/:seminar/:period/:parentBrandName/:varName', {});
+	}]);
+	services.factory('BrandHistoryInfo', ['$resource', function($resource){
+		return $resource('/brandHistoryInfo/:seminar/:period/:brandName', {});
+	}]);
+	services.factory('CompanyHistoryInfo', ['$resource', function($resource){
+		return $resource('/companyHistoryInfo/:seminar/:period/:companyID', {});
+	}]);
+	services.factory('quarterHistoryInfo', ['$resource', function($resource){
+		return $resource('/quarterHistoryInfo/:seminar/:period',{});
+	}])
+
 
 	services.factory('ProducerDecisionLoader', ['ProducerDecision', '$route','$rootScope','$q',function(ProducerDecision, $route, $rootScope, $q) {
 		return function() {

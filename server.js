@@ -30,9 +30,15 @@ var path    = require('path'),
   app.post('/negotiationDecision');
   app.post('/producerDecision',require('./api/models/producerDecision.js').addNewProductDecison);
   app.post('/retailerDecision');
+
   app.get('/negotiationDecision');
   app.get('/producerDecision/:producerID/:period/:seminar',require('./api/models/producerDecision.js').getAllProducerDecision);
   app.get('/retailerDecision/:retailerID/:period/:seminar',require('./api/models/retailerDecision.js').getAllRetailerDecision); 
+
+  app.get('/variantHistoryInfo');
+  app.get('/brandHistoryInfo');
+  app.get('/companyHistoryInfo');
+  app.get('/quarterHistoryInfo');
 
   app.get('/marketReport', require('./api/models/marketReport.js').getMarketReport);
   app.get('/lineChart', require('./api/models/lineChart.js').getLineChart);

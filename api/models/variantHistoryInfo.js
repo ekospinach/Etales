@@ -12,8 +12,7 @@ var variantHistoryInfoSchema = mongoose.Schema({
     parentBrandID : Number,
     parentBrandName : String,
     parentCatID : Number,
-    parentCompanyID : Number, (1~9)
-    
+    parentCompanyID : Number, //(1~9)   
     supplierView : supplierViewSchema,
     channelView : [channelViewSchema] //length:TRetailersTotal(1~4)
 })
