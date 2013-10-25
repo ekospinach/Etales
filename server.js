@@ -27,13 +27,13 @@ var path    = require('path'),
   app.get('/passiveResult');
   app.get('/kernelResult')
 
-  app.post('/negotiationDecision');
-  app.post('/producerDecision',require('./api/models/producerDecision.js').addNewProductDecison);
-  app.post('/retailerDecision');
+  // app.post('/negotiationDecision');
+  // app.post('/producerDecision',require('./api/models/producerDecision.js').addNewProductDecison);
+  // app.post('/retailerDecision');
 
   app.get('/negotiationDecision');
   app.get('/producerDecision/:producerID/:period/:seminar',require('./api/models/producerDecision.js').getAllProducerDecision);
-  app.get('/retailerDecision'); 
+  app.get('/retailerDecision/:retailerID/:period/:seminar',require('./api/models/retailerDecision.js').getAllRetailerDecision); 
 
   app.get('/variantHistoryInfo');
   app.get('/brandHistoryInfo');

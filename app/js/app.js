@@ -24,6 +24,7 @@ define([
 			editableOptions.theme = 'bs3';
 		}).run(['$rootScope', '$location', function ($rootScope, $location) {
 		    $rootScope.decisionActive = "";
+		    $rootScope.rootRetailerID = 1;
 		    $rootScope.rootProducerID = 1;
 		    $rootScope.rootPeriod = 0;
 		    $rootScope.rootSeminar = "MAY";

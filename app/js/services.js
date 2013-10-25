@@ -32,6 +32,20 @@ define(['angular','angularResource'], function (angular,angularResource) {
 		return $resource('/quarterHistoryInfo/:seminar/:period',{});
 	}])
 
+	services.factory('RetailerDecision',['$resource','$rootScope',function($resource,$rootScope){
+		return $resource('retailerDecision/:retailerID/:period/:seminar',{retailerID:$rootScope.rootRetailerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar},
+		{
+			save:{
+				method:"POST",
+				params:{
+						retailerID: "@retailerID",
+						period:"@period",
+						seminar:"@seminar"					
+				}
+			}
+		})
+	}]);
+
 
 	services.factory('ProducerDecisionLoader', ['ProducerDecision', '$route','$rootScope','$q',function(ProducerDecision, $route, $rootScope, $q) {
 		return function() {
@@ -112,6 +126,34 @@ define(['angular','angularResource'], function (angular,angularResource) {
 					console.log(base);
 					//$rootScope.$broadcast('producerDecisionBaseChanged', base);
 				},
+				setProducerDecisionBrand:function(categoryID,brandID,location,tep,value){
+					for(var i=0;i<base.proCatDecision.length;i++){
+						if(base.proCatDecision[i].categoryID==categoryID){
+							for(var j=0;j<base.proCatDecision[i].proBrandsDecision.length;j++){
+								if(base.proCatDecision[i].proBrandsDecision[j].brandID==brandID){
+									if(location=="supportTraditionalTrade"||location=="advertisingOffLine"){
+										base.proCatDecision[i].proBrandsDecision[j][location][tep]=value;
+									}
+									else{
+										base.proCatDecision[i].proBrandsDecision[j][location]=value;
+									}
+									break;
+								}
+							}
+							break;
+						}
+					}
+					console.log(base);
+				},
+				setProducerDecisionCategory:function(categoryID,location,value){
+					for(var i=0;i<base.proCatDecision.length;i++){
+						if(base.proCatDecision[i].categoryID==categoryID){
+							base.proCatDecision[i][location]=value;
+						}
+						break;
+					}
+					console.log(base);
+				},
 				addNewProduct:function(newproducerDecision,categoryID,parameter){
 					//startListenChangeFromServer($rootScope);
 					if(parameter==1){
@@ -172,5 +214,63 @@ define(['angular','angularResource'], function (angular,angularResource) {
 		}
 
 	});
+	services.provider('RetailerDecisionBase', function(){
+		var requestPara = {
+				period : 0,
+				retailerID : 1,
+				seminar : 'TEST',
+			}, base;			
 
+		this.setDefaultPara = function(p) { requestPara = p };
+		this.$get = ['RetailerDecision', '$q','$rootScope', function(RetailerDecision, $q, $rootScope){
+			return {
+				reload : function(p){ 
+					requestPara = p;
+					var delay = $q.defer();
+					getRetailerPromise(RetailerDecision, $q).then(function(){
+						delay.resolve(base);
+						startListenChangeFromServer($rootScope);
+					}, function(reason){
+						delay.reject(reason);
+					}, function(update){
+						delay.notify('notify...')
+					});
+					return delay.promise;
+				},
+				setSomething : function(sth){
+					//post to server...
+					base.seminar = sth;
+					$rootScope.$broadcast('retailerDecisionBaseChanged', base);
+				},
+				getBase : function(){
+					return base;
+				},
+				getPara : function(){
+					return requestPara;
+				}
+			}
+		}];
+		var getRetailerPromise=function(RetailerDecision,q){
+			var delay=q.defer();
+			delay.notify('start to get base from server...');
+			RetailerDecision.get({retailerID:requestPara.retailerID,period:requestPara.period,seminar:requestPara.seminar},function(retailerDecision){
+									base=retailerDecision;
+									delay.resolve(base);
+								},function(){
+									delay.reject('Unable to fetch retailerDecision of seminar:' + requestPara.seminar + ', period:' + requestPara.period + ', retailer:' + requestPara.retailerID);
+								});
+			return delay.promise;
+		}
+		var startListenChangeFromServer = function(rootScope){
+			var socket = io.connect();
+			socket.on('baseChanged', function(data){
+				console.log(data);
+				rootScope.$broadcast('retailerDecisionBaseChangedFromServer', base);
+			}).on('connect', function () { 
+			    socket.emit('ferret', 'tobi', function (data) {
+	      			console.log(data); 
+	    		});
+	  		});					
+		}
+	});
 });

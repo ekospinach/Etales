@@ -68,7 +68,58 @@ var proVarDecisionSchema = mongoose.Schema({
 })
 
 
-var producerDecisionModel = mongoose.model('producerDecision', proDecisionSchema);
+var proDecision = mongoose.model('proDecision', proDecisionSchema);
+
+
+exports.updateProducerDecision = function(req, res, next){
+  var queryCondition = {
+    seminar : req.body.seminar,
+    period : req.body.period,
+    producer : req.body.producerID,
+    behaviour : req.body.behaviour, 
+    /* 
+    switch(behaviour) case...
+    addProduct : categoryID,brandName,varName
+    deleteProduct : categoryID,brandName,varName
+    addBrand : categoryID,brandName
+    deleteBrand : categoryID,brandName
+    updateVariant : categoryID,brandName,varName,location,value[,addtionalIdx]
+    updateBrand : categoryID,brandName,varName,location,value[,addtionalIdx]
+    updateCategory : category,location,value
+    */
+    categoryID : req.body.categoryID,
+    brandName : req.body.brandName,
+    varName : req.body.varName,
+    location : req.body.location,
+    additionalIdx  : req.body.additionalIdx,
+    value : req.body.value
+  }
+
+  console.log(queryCondition);
+
+  proDecision.findOne({seminar : queryCondition.seminar,
+                       period : queryCondition.period,
+                       producerID : queryCondition.producerID},
+                          function(err, doc){
+                            if(!err){
+                                switch(queryCondition.behaviour){
+                                    case 'addProduct':
+                                        
+                                    break;
+                                    case 'deleteProduct':
+                                    break;
+                                    case 'updateVariant':
+                                    break;
+                                    case 'updateBrand':
+                                    break;
+                                    case 'updateCategory':
+                                    break;
+                                }
+                            } else {
+                                next(new Error(err));
+                            }
+                          });
+}
 
 exports.getAllProducerDecision = function(req, res, next){
     /*P_1*/
@@ -80,7 +131,7 @@ exports.getAllProducerDecision = function(req, res, next){
         approvedBudgetExtension:1,
         proCatDecision:[{
             categoryID:1,
-            capacityChange:0,
+            capacityChange:2,
             investInDesign:6.13,
             investInProductionFlexibility:11.57,
             investInTechnology:3.16,
@@ -176,7 +227,7 @@ exports.getAllProducerDecision = function(req, res, next){
             }]
         },{
             categoryID:2,
-            capacityChange:0,
+            capacityChange:2,
             investInDesign:0,/*null*/
             investInProductionFlexibility:21.21,
             investInTechnology:21.21,
@@ -278,60 +329,4 @@ exports.getAllProducerDecision = function(req, res, next){
 }
 
 
-exports.updateProducerDecision = function(req, res, next){
-  var queryCondition = {
-    fileName : req.query.fileName,
-    period : req.query.period,
-  }
-  console.log(queryCondition);
-  perceptionMapModel.findOne({fileName : queryCondition.fileName,
-                          latestHistoryPeriod : queryCondition.period},
-                          function(err, doc){
-                             if(!err){
-                                res.header("Content-Type", "application/json; charset=UTF-8");
-                                res.statusCode = 200;
-                                res.send(doc);
-                             } else {
-                                next(new Error(err));
-                             }
-                          });
-}
-
-// exports.addNewProductDecison=function(req,res,next){
-//     if(req.body.parameter==1){//lanch new brand
-
-//     }else{//add product under brand
-//         var newProducerDecision=new producerDecisionModel;
-//         newProducerDecision.parentBrandID=req.body.parentBrandID;
-//         newProducerDecision.varName=req.body.varName;
-//         newProducerDecision.packFormat=req.body.packFormat;
-//         newProducerDecision.dateOfBirth=req.body.period;
-//         newProducerDecision.dateOfDeath="";
-//         newProducerDecision.varID=121;
-//         newProducerDecision.composition=new Array();
-//         newProducerDecision.production="";
-//         newProducerDecision.currentPriceBM="";
-//         newProducerDecision.currentPriceEmall="";
-//         newProducerDecision.discontinue=false;
-//         newProducerDecision.nextPriceBM="";
-//         newProducerDecision.nextPriceEmall="";
-//         newProducerDecision.save(function(err){
-//         console.log('save');
-//         if(!err){
-//             res.statusCode = 200;
-//             res.setHeader('Content-Type', 'text/html');
-//             res.send({ msg: 'newProducerDecision has been uploaded to the server.',newProducerDecision:newProducerDecision});
-//             console.log('done');
-//         } else {
-//             next(new Error('Save database error.'));                
-//         }   
-//     });
-
-//     //console.log(req.body);
-//         res.statusCode = 200;
-//         res.setHeader('Content-Type', 'text/html');
-//         res.send({ msg: 'File has been uploaded to the server.',newProducerDecision:newProducerDecision});
-//     }
-    
-// }
 
