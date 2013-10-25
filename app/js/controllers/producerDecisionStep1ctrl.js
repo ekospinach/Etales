@@ -95,7 +95,7 @@ define(['app'], function(app) {
 			//$scope.open=open;
 			//$scope.close=close;
 
-			$scope.parameter=1;/*default add new Brand*/
+			$scope.parameter="NewBrand";/*default add new Brand*/
 
 			/*Angular-ui-bootstrap modal start*/
 
@@ -237,13 +237,13 @@ define(['app'], function(app) {
 
 			/*set add function is lauch new Brand*/
 			var setAddNewBrand=function(){
-				$scope.parameter=1;/*add new Brand*/
+				$scope.parameter="NewBrand";/*add new Brand*/
 				$scope.lauchNewCategory=1;
 				setBrandName($scope.lauchNewCategory);
 			}	
 			/*set add function is add under a existed brand*/
 			var setAddNewProUnderBrand=function(){
-				$scope.parameter=2;/*add new product under existed Brand*/
+				$scope.parameter="ExistedBrand";/*add new product under existed Brand*/
 				$scope.addNewCategory=1;
 				loadAllBrand($scope.addNewCategory);
 			}
@@ -318,7 +318,7 @@ define(['app'], function(app) {
 			    $scope.shouldBeOpen = false;
 			};
 
-			var updateProducerDecision=function(category,brandName,varName,location,tep,index){
+			var updateProducerDecision=function(category,brandName,varName,location,addtionalIdx,index){
 				var categoryID;
 				if(category=="Elecssories"){
 					categoryID=1;
@@ -327,10 +327,10 @@ define(['app'], function(app) {
 					categoryID=2
 				}
 				if(location=="composition"){
-					ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,tep,$scope.products[index][location][tep]);							
+					ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,addtionalIdx,$scope.products[index][location][addtionalIdx]);							
 				}
 				else{
-					ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,tep,$scope.products[index][location]);													
+					ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,addtionalIdx,$scope.products[index][location]);													
 				}
 				$scope.$broadcast('producerDecisionBaseChanged');
 			}
@@ -355,7 +355,7 @@ define(['app'], function(app) {
 					newproducerDecision.packFormat="";
 					newproducerDecision.dateOfBirth=$scope.period;
 					newproducerDecision.parameter=parameter;
-					newproducerDecision.dateOfDeath="";
+					newproducerDecision.dateOfDeath=10;
 			        newproducerDecision.composition=new Array();
 			        newproducerDecision.production="";
 			        newproducerDecision.currentPriceBM="";
@@ -366,7 +366,7 @@ define(['app'], function(app) {
 			        var proBrandsDecision=_.find($scope.pageBase.proCatDecision,function(obj){
 						return (obj.categoryID==$scope.lauchNewCategory);
 					});
-					if(parameter==1){/*lauch new Brand*/
+					if(parameter=="NewBrand"){/*lauch new Brand*/
 						newBrand.brandID=calculate.calculateBrandID(proBrandsDecision,$scope.producerID);
 						newBrand.brandName=$scope.brandFirstName+$scope.lauchNewBrandName+$scope.brandLastName;
 						newBrand.paranetCompanyID=$scope.producerID;
@@ -381,7 +381,7 @@ define(['app'], function(app) {
 						newproducerDecision.varName=$scope.lauchNewVarName;/*need check*/
 						newproducerDecision.varID=10*newBrand.brandID+1;/*need check*/
 						newBrand.proVarDecision.push(newproducerDecision);
-						ProducerDecisionBase.addNewProduct(newBrand,$scope.lauchNewCategory,parameter);
+						ProducerDecisionBase.addProductNewBrand(newBrand,$scope.lauchNewCategory);
 						$scope.$broadcast('producerDecisionBaseChanged');
 					}else{/*add new product under existed Brand*/
 						newproducerDecision.parentBrandID=$scope.addChooseBrand;
@@ -390,7 +390,7 @@ define(['app'], function(app) {
 							return (obj.brandID==newproducerDecision.parentBrandID);
 						})
 			        	newproducerDecision.varID=calculate.calculateVarID(proVarDecision,newproducerDecision.parentBrandID);//121;/*need check*/
-			        	ProducerDecisionBase.addNewProduct(newproducerDecision,$scope.lauchNewCategory,parameter);	
+			        	ProducerDecisionBase.addProductExistedBrand(newproducerDecision,$scope.lauchNewCategory);	
 						$scope.$broadcast('producerDecisionBaseChanged');
 					}
 				});

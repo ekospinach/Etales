@@ -169,11 +169,9 @@ define(['app'], function(app) {
 				return result;
 			}
 
-			var updateMarketDecision=function(marketID,location,postion,tep,index){
-				//RetailerDecisionBase.setDetailerDecisionBase(location,postion,$scope.pageBase[location][postion]);
-				//ProducerDecisionBase.setProducerDecisionCategory(location,postion,$scope.categorys[index][location]);
+			var updateMarketDecision=function(marketID,location,postion,addtionalIdx,index){
 				if(location=="categorySurfaceShare"){
-					RetailerDecisionBase.setMarketDecisionBase(marketID,location,tep,$scope.markets[index][location][tep]);					
+					RetailerDecisionBase.setMarketDecisionBase(marketID,location,addtionalIdx,$scope.markets[index][location][addtionalIdx]);					
 				}
 				else if(location=="localAdvertising"){
 					RetailerDecisionBase.setMarketDecisionBase(marketID,location,postion,$scope.markets[index][location][postion]);					

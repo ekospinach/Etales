@@ -1,1 +1,171 @@
-retailerDecisionStep3.html
+<div class="row">
+  <div class="col-md-12">
+    <div style="clear:both;padding:10px 0"></div>
+    <div class="bs-docs-section">
+      <h4>Step 3 of 4</h3>
+      <div class="pull-left" style="width:33%">
+        <h3 style="margin-top:0px">Private Labels Composition</h4>
+        <div class="btn-group pull-left">
+            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+              Category <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li class=""><a ng-click="showView(retailerID,period,'Elecssories',language)">Elecssories</a></li>
+              <li class=""><a ng-click="showView(retailerID,period,'HealthBeauty',language)">HealthBeauty</a></li>       
+            </ul>
+        </div>
+        <div class="btn-group pull-left" data-toggle="buttons" style="margin-left:10px">
+            <label class="btn btn-primary" ng-click="showView(retailerID,period,category,'English')">
+            <input type="radio" name="options"> English</label>
+            <label class="btn btn-primary" ng-click="showView(retailerID,period,category,'Chinese')">
+            <input type="radio" name="options"> Chinese
+            </label>
+        </div>
+      </div>
+      <div class="pull-right" style="width:33%">
+        <progress percent="88" class="progress active"></progress>
+        <small>
+          <em>Total Avaliable Budget for Remaing Period</em>
+        </small>
+        <progress percent="70" class="progress progress-suceess active progress-striped"></progress>
+        <small>
+          <em>Elecssories Available Capacity</em>
+        </small>
+      </div>
+        <div style="clear:both"></div>
+        <div collapse="isCollapsed">
+          <div class="well well-large">
+            <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button>
+            <table class="table table-striped">
+              <tr>
+                <td>parentBrandID:{{moreInfo.parentBrandID}}</td>
+                <td>varName:{{moreInfo.varName}}</td>
+                <td>parentBrandID:{{moreInfo.parentBrandID}}</td>
+                <td>varName:{{moreInfo.varName}}</td>
+              </tr>  
+              <tr>
+                <td>parentBrandID:{{moreInfo.parentBrandID}}</td>
+                <td>varName:{{moreInfo.varName}}</td>
+                <td>parentBrandID:{{moreInfo.parentBrandID}}</td>
+                <td>varName:{{moreInfo.varName}}</td>
+              </tr>            
+            </table>
+          </div>
+        </div>
+        <table class="table table-hover">
+          <!--<tr>
+            <th>{{fullLanguages.Category}}</th>
+            <th ng-repeat='product in products'>
+            {{product.category}}</th>
+          </tr>-->
+          <tr>
+            <th>{{fullLanguages.Brand}}</th>
+            <th ng-repeat='product in products'>
+            {{product.parentBrandName}}</th>
+          </tr>
+          <tr>
+            <th>{{fullLanguages.Variant}}</th>
+            <th ng-repeat='product in products'>
+            {{product.varName}}<span><a ng-click="getMoreInfo(product.parentBrandID,product.varName)">more</a></span>
+          </th>
+          </tr>
+          <tr>
+            <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.PF}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.PF}}<span style="color:red">*</span></p>
+            </th>
+            <th ng-repeat='product in products'>
+              <a href="#" editable-select="product.packFormat" e-ng-options="p.value as p.text for p in packs" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'packFormat','0',$index)">{{ selectPacks(product.parentBrandName,product.varName) }}</a>
+            </th>
+          </tr>
+          <tr>
+            <th><p class="text-primary" Popover-animation="true" popover="Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui." popover-title="{{fullLanguages.TL}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.TL}}<span style="color:red">*</span></p></th>
+            <th ng-repeat='product in products'><a href="#" editable-text="product.composition[1]" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'composition','1',$index)">{{ product.composition[1] || 'empty' }}</a></th>
+          </tr>
+          <tr>
+            <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.AA}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.AA}}<span style="color:red">*</span></p></th>
+            <th ng-repeat='product in products'><a href="#" editable-text="product.composition[0]" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'composition','0',$index)">{{ product.composition[0] || 'empty' }}</a></th>
+          </tr>
+          <tr>
+            <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.SL}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.SL}}<span style="color:red">*</span></p></th>
+            <th ng-repeat='product in products'><a href="#" editable-text="product.composition[2]" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'composition','2',$index)">{{ product.composition[2] || 'empty' }}</a></th>
+          </tr>
+          <tr>
+            <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.DTP}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.DTP}}<span style="color:red">*</span></p></th>
+            <th ng-repeat='product in products'><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+          </tr>    
+        </table>
+        <div>
+          <a ng-click="open()" class="btn btn-success">New Product</a>
+              <div modal="shouldBeOpen" class="hide" close="close()" options="opts">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>New Product</h3>
+                    </div>
+                    <form method="POST" action="/producerDecision">
+                      <div class="modal-body">
+                        <div class="control-group">
+                          <tabset>
+                            <tab heading="Launch New Brand" select="setAddNewBrand()">
+                              <div class="form">
+                                <div class="form-group">
+                                  <label for="lauchNewCategory">Choose Catagory:</label>
+                                  <select class="form-control" ng-model="lauchNewCategory">
+                                    <option value="1" ng-click="setBrandName(1)">Elecssories</option>
+                                    <option value="2" ng-click="setBrandName(2)">HealthBeauty</option>
+                                  </select>
+                                </div>
+                                <div class="form-group">
+                                  <label for="lauchNewBrandName">Enter New Brand Name:</label>
+                                  <div class="input-group">
+                                    <span class="input-group-addon">{{brandFirstName}}</span>
+                                    <input type="text" class="form-control" ng-model="lauchNewBrandName">
+                                    <span class="input-group-addon">{{brandLastName}}</span>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label for="lauchNewVarName">Enter New Variant Name</label>
+                                  <input type="text" class="form-control" ng-model="lauchNewVarName">
+                                </div>
+                              </div>
+                            </tab>
+                            <tab heading="Add new product under existed Brand" select="setAddNewProUnderBrand()">
+                              <div class="form">
+                                <div class="form-group">
+                                  <label for="addNewCategory">Choose Catagory:</label>
+                                  <select class="form-control" ng-model="addNewCategory">
+                                    <option value="1" ng-click="loadAllBrand(1)">Elecssories</option>
+                                    <option value="2" ng-click="loadAllBrand(2)">HealthBeauty</option>
+                                  </select>
+                                </div>
+                                <div class="form-group">
+                                  <label for="addChooseBrand">Choose Brand:</label>
+                                  <select class="form-control" ng-model="addChooseBrand" >
+                                    <option ng-repeat="allBrand in allBrands" value="{{allBrand.BrandID}}">{{allBrand.BrandName}}</option>
+                                  </select>
+                                </div>
+                                <div class="form-group">
+                                  <label for="addNewVarName">Enter New Variant Name</label>
+                                  <input type="text" class="form-control" ng-model="addNewVarName">
+                                </div>
+                              </div>
+                            </tab>
+                          </tabset>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <input type="button" ng-click="addNewProduct(parameter)" class="btn btn-success" value="Add"/>
+                        <input type="button" class="btn btn-warning cancel" ng-click="close()" value="Cancel">
+                      </div>
+                    </form>                   
+                  </div>
+                </div>
+              </div>      
+
+          <a href="" class="btn btn-danger" disabled="disabled">Delete new product</a>
+          <a href="" class="btn btn-primary" disabled="disabled">Commit Portflio decision</a>
+          <a href="/#/producerDecisionStep2" class="btn btn-primary">Next</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
