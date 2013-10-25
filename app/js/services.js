@@ -43,7 +43,7 @@ define(['angular','angularResource'], function (angular,angularResource) {
 	}]);
 	services.factory('quarterHistoryInfo', ['$resource', function($resource){
 		return $resource('/quarterHistoryInfo/:seminar/:period',{});
-	}])
+	}]);
 
 
 	services.factory('ProducerDecisionLoader', ['ProducerDecision', '$route','$rootScope','$q',function(ProducerDecision, $route, $rootScope, $q) {

@@ -412,10 +412,11 @@ define(['app'], function(app) {
 			        newretailerDecision.discontinue=false;
 			        //newretailerDecision.nextPriceBM="";
 			        //newretailerDecision.nextPriceEmall="";
-			        var retVariantDecision=_.find($scope.pageBase.retCatDecision,function(obj){
-						return (obj.categoryID==$scope.lauchNewCategory);
-					});
+
 					if(parameter=="NewBrand"){/*lauch new Brand*/
+						var retVariantDecision=_.find($scope.pageBase.retCatDecision,function(obj){
+							return (obj.categoryID==$scope.lauchNewCategory);
+						});
 						newBrand.brandID=calculateBrandID(retVariantDecision,$scope.retailerID);
 						newBrand.brandName=$scope.brandFirstName+$scope.lauchNewBrandName+$scope.brandLastName;
 						newBrand.paranetCompanyID=$scope.retailerID;
@@ -430,34 +431,29 @@ define(['app'], function(app) {
 						newretailerDecision.varName=$scope.lauchNewVarName;/*need check*/
 						newretailerDecision.varID=10*newBrand.brandID+1;/*need check*/
 						newBrand.privateLabelVarDecision.push(newretailerDecision);
-						
 						RetailerDecisionBase.addProductNewBrand(newBrand,$scope.lauchNewCategory);
-						
-						$scope.$broadcast('retailerDecisionBaseChanged');
 					}else{/*add new product under existed Brand*/
+						var retVariantDecision=_.find($scope.pageBase.retCatDecision,function(obj){
+							return (obj.categoryID==$scope.addNewCategory);
+						}); 
 						newretailerDecision.parentBrandID=$scope.addChooseBrand;
 						newretailerDecision.varName=$scope.addNewVarName;/*need check*/
 						var privateLabelVarDecision=_.find(retVariantDecision.retVariantDecision,function(obj){
 							return (obj.brandID==newretailerDecision.parentBrandID);
 						})
 			        	newretailerDecision.varID=calculateVarID(privateLabelVarDecision,newretailerDecision.parentBrandID);//121;/*need check*/
-			        	
-			        	RetailerDecisionBase.addProductExistedBrand(newretailerDecision,$scope.lauchNewCategory);	
-						
-						$scope.$broadcast('retailerDecisionBaseChanged');
+			        	RetailerDecisionBase.addProductExistedBrand(newretailerDecision,$scope.addNewCategory);							
 					}
+					close();
+					$scope.$broadcast('retailerDecisionBaseChanged');
 				//});
 			}
 
-			$scope.$on('closemodal',function(event){
-				$scope.shouldBeOpen = false;
-			});
 
 			$scope.$on('retailerDecisionBaseChanged', function(event){	
 				$scope.pageBase=RetailerDecisionBase.getBase();
 				showView($scope.retailerID,$scope.period,$scope.category,$scope.language);
-				$scope.$broadcast('closemodal');
-
+				//$scope.$broadcast('closemodal');
 			});  
 			$scope.$on('retailerDecisionBaseChangedFromServer', function(event, newBase){
 			}); 	

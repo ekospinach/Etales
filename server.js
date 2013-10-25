@@ -28,7 +28,7 @@ var path    = require('path'),
   app.get('/kernelResult')
 
   app.post('/negotiationDecision');
-  app.post('/producerDecision',require('./api/models/producerDecision.js').addNewProductDecison);
+  app.post('/producerDecision');//,require('./api/models/producerDecision.js').addNewProductDecison);
   app.post('/retailerDecision');
 
   app.get('/negotiationDecision');
