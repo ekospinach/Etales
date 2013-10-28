@@ -187,7 +187,7 @@ exports.getAllProducerDecision = function(req, res, next){
         },{
             categoryID:2,
             capacityChange:2,
-            investInDesign:0,/*null*/
+            investInDesign:undefined,/*null*/
             investInProductionFlexibility:21.21,
             investInTechnology:21.21,
             proBrandsDecision:[{
