@@ -311,8 +311,8 @@ define(['angular','angularResource'], function (angular,angularResource) {
 					console.log(base);
 				},
 				addProductExistedBrand:function(newproducerDecision,categoryID){
-					for(var i=0;i<base.retCatDecision.length;i++){
-						for(var j=0;j<base.retCatDecision[i].retVariantDecision.length;j++){
+					for(var i=1;i<base.retCatDecision.length;i++){
+						for(var j=1;j<base.retCatDecision[i].retVariantDecision.length;j++){
 							if(base.retCatDecision[i].retVariantDecision[j].brandID==newproducerDecision.parentBrandID){
 								base.retCatDecision[i].retVariantDecision[j].privateLabelVarDecision.push(newproducerDecision);
 							}

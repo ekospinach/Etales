@@ -78,15 +78,15 @@
           </tr>
           <tr>
             <th><p class="text-primary" Popover-animation="true" popover="Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui." popover-title="{{fullLanguages.TL}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.TL}}<span style="color:red">*</span></p></th>
-            <th ng-repeat='product in products'><a href="#" editable-text="product.composition[1]" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'composition','1',$index)">{{ product.composition[1] || 'empty' }}</a></th>
+            <th ng-repeat='product in products'><a href="#" editable-text="product.composition[2]" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'composition','2',$index)">{{ product.composition[2] || 'empty' }}</a></th>
           </tr>
           <tr>
             <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.AA}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.AA}}<span style="color:red">*</span></p></th>
-            <th ng-repeat='product in products'><a href="#" editable-text="product.composition[0]" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'composition','0',$index)">{{ product.composition[0] || 'empty' }}</a></th>
+            <th ng-repeat='product in products'><a href="#" editable-text="product.composition[1]" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'composition','1',$index)">{{ product.composition[1] || 'empty' }}</a></th>
           </tr>
           <tr>
             <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.SL}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.SL}}<span style="color:red">*</span></p></th>
-            <th ng-repeat='product in products'><a href="#" editable-text="product.composition[2]" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'composition','2',$index)">{{ product.composition[2] || 'empty' }}</a></th>
+            <th ng-repeat='product in products'><a href="#" editable-text="product.composition[3]" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'composition','3',$index)">{{ product.composition[3] || 'empty' }}</a></th>
           </tr>
           <tr>
             <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.DTP}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.DTP}}<span style="color:red">*</span></p></th>
@@ -163,7 +163,8 @@
 
           <a href="" class="btn btn-danger" disabled="disabled">Delete new product</a>
           <a href="" class="btn btn-primary" disabled="disabled">Commit Portflio decision</a>
-          <a href="/#/producerDecisionStep2" class="btn btn-primary">Next</a>
+          <a href="/#/retailerDecisionStep2" class="btn btn-primary">Back</a>
+          <a href="/#/retailerDecisionStep4" class="btn btn-success">Next</a>
         </div>
       </div>
     </div>
