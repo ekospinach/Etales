@@ -124,21 +124,27 @@ exports.getAllRetailerDecision = function(req, res, next){
         nextBudgetExtension : 15,
         approvedBudgetExtension : 16,
         retCatDecision : [{
+            //undefined
+        },{
             categoryID:1,
             retVariantDecision:[{
+                //undefined
+            },{
                 brandName : 'ELISA5',
                 brandID : 51,
                 parentCompanyID : 5,
                 dateOfBirth : -4, //which period this brand be created, if this brand is initialized in the beginning, this value should be -4
                 dateOfDeath : 10, //which period this brand be discontinued, if this brand haven't been discontinued, this value should be 10
                 privateLabelVarDecision : [{
+                    //undefined
+                },{
                     varName : '_A',
                     varID : 511,
                     parentBrandID : 51,
                     dateOfDeath : -4,
                     dateOfBirth : 10,
                     packFormat : 'STANDARD',
-                    composition : [4,4,4],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                    composition : [undefined,4,4,4],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                     discontinue : false    
                 },{
                     varName : '_B',
@@ -147,7 +153,7 @@ exports.getAllRetailerDecision = function(req, res, next){
                     dateOfDeath : -4,
                     dateOfBirth : 10,
                     packFormat : 'STANDARD',
-                    composition : [5,5,5],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                    composition : [undefined,5,5,5],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                     discontinue : false                     
                 }] //length: TOneBrandVars(1~3)
             },{
@@ -157,32 +163,38 @@ exports.getAllRetailerDecision = function(req, res, next){
                 dateOfBirth : -4, //which period this brand be created, if this brand is initialized in the beginning, this value should be -4
                 dateOfDeath : 10, //which period this brand be discontinued, if this brand haven't been discontinued, this value should be 10
                 privateLabelVarDecision : [{
+                    //undefined
+                },{
                     varName : '_A',
                     varID : 521,
                     parentBrandID : 52,
                     dateOfDeath : -4,
                     dateOfBirth : 10,
                     packFormat : 'PREMIUM',
-                    composition : [4,4,4],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                    composition : [undefined,4,4,4],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                     discontinue : false    
                 }] //length: TOneBrandVars(1~3)
             }]
         },{
             categoryID:2,
             retVariantDecision:[{
+                //undefined
+            },{
                 brandName : 'HARIS5',
                 brandID : 51,
                 parentCompanyID : 5,
                 dateOfBirth : -4, //which period this brand be created, if this brand is initialized in the beginning, this value should be -4
                 dateOfDeath : 10, //which period this brand be discontinued, if this brand haven't been discontinued, this value should be 10
                 privateLabelVarDecision : [{
+                    //undefined
+                },{
                     varName : '_A',
                     varID : 511,
                     parentBrandID : 51,
                     dateOfDeath : -4,
                     dateOfBirth : 10,
                     packFormat : 'ECONOMY',
-                    composition : [3,3,3],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                    composition : [undefined,3,3,3],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                     discontinue : false    
                 }] //length: TOneBrandVars(1~3)
             },{
@@ -192,20 +204,24 @@ exports.getAllRetailerDecision = function(req, res, next){
                 dateOfBirth : -4, //which period this brand be created, if this brand is initialized in the beginning, this value should be -4
                 dateOfDeath : 10, //which period this brand be discontinued, if this brand haven't been discontinued, this value should be 10
                 privateLabelVarDecision : [{
+                    //undefined
+                },{
                     varName : '_A',
                     varID : 521,
                     parentBrandID : 52,
                     dateOfDeath : -4,
                     dateOfBirth : 10,
                     packFormat : 'STANDARD',
-                    composition : [6,6,6],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                    composition : [undefined,6,6,6],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                     discontinue : false    
                 }] //length: TOneBrandVars(1~3)                
             }]
         }], //length: TCategories(1~2)
         retMarketDecision: [{
+            //undefined
+        },{
             marketID : 1, //1~2
-            categorySurfaceShare : [10,20], //[1]for Elecssories [2]for HealthBeauty
+            categorySurfaceShare : [undefined,10,20], //[1]for Elecssories [2]for HealthBeauty
             emptySpaceOptimised : false,
             localAdvertising : {
                 PRICE : 11,
@@ -214,8 +230,12 @@ exports.getAllRetailerDecision = function(req, res, next){
             },
             serviceLevel : 'MEDIUM', //SL_BASE, SL_FAIR, SL_MEDIUM, SL_ENHANCED, SL_PREMIUM
             retMarketAssortmentDecision : [{
+                //undefined
+            },{
                 categoryID : 1, //1~2
                 retVariantDecision : [{
+                    //undefined
+                },{
                     brandID : 51,
                     variantID : 511,
                     brandName : 'Etales15', //need Dariusz to add this in dataStruture
@@ -261,6 +281,8 @@ exports.getAllRetailerDecision = function(req, res, next){
             },{
                 categoryID:2,
                 retVariantDecision : [{
+                    //undefined
+                },{
                     brandID : 51,
                     variantID : 511,
                     brandName : 'Health15', //need Dariusz to add this in dataStruture
@@ -306,7 +328,7 @@ exports.getAllRetailerDecision = function(req, res, next){
             }] //length : TCategories(1~2)
         },{
             marketID : 2, //1~2
-            categorySurfaceShare : [20,30], //[1]for Elecssories [2]for HealthBeauty
+            categorySurfaceShare : [undefined,20,30], //[1]for Elecssories [2]for HealthBeauty
             emptySpaceOptimised : false,
             localAdvertising : {
                 PRICE : 22,
@@ -315,8 +337,12 @@ exports.getAllRetailerDecision = function(req, res, next){
             },
             serviceLevel : 'BASE', //SL_BASE, SL_FAIR, SL_MEDIUM, SL_ENHANCED, SL_PREMIUM
             retMarketAssortmentDecision : [{
+                //undefined
+            },{
                 categoryID : 1, //1~2
                 retVariantDecision : [{
+                    //undefined
+                },{
                     brandID : 51,
                     variantID : 511,
                     brandName : 'Etales1', //need Dariusz to add this in dataStruture
@@ -362,6 +388,8 @@ exports.getAllRetailerDecision = function(req, res, next){
             },{
                 categoryID:2,
                 retVariantDecision : [{
+                    //undefined
+                },{
                     brandID : 51,
                     variantID : 511,
                     brandName : 'Health1', //need Dariusz to add this in dataStruture
