@@ -143,7 +143,7 @@ define(['app'], function(app) {
 				}
 	      		var count=0,result=0;
 	      		result=1;
-	      		for(var i=0;i<$scope.pageBase.retMarketDecision.length;i++){
+	      		for(var i=1;i<$scope.pageBase.retMarketDecision.length;i++){
 	      			if($scope.pageBase.retMarketDecision[i].marketID==1){
 	      				$scope.pageBase.retMarketDecision[i].marketName="Urban";			
 	      			}else if($scope.pageBase.retMarketDecision[i].marketID==2){
