@@ -163,8 +163,8 @@ define(['angular','angularResource'], function (angular,angularResource) {
 					console.log(base);
 				},
 				addProductExistedBrand:function(newproducerDecision,categoryID){
-					for(var i=0;i<base.proCatDecision.length;i++){
-						for(var j=0;j<base.proCatDecision[i].proBrandsDecision.length;j++){
+					for(var i=1;i<base.proCatDecision.length;i++){
+						for(var j=1;j<base.proCatDecision[i].proBrandsDecision.length;j++){
 							if(base.proCatDecision[i].proBrandsDecision[j].brandID==newproducerDecision.parentBrandID){
 								base.proCatDecision[i].proBrandsDecision[j].proVarDecision.push(newproducerDecision);
 							}

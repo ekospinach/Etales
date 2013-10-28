@@ -259,8 +259,8 @@ define(['app'], function(app) {
 	      		var count=0,result=0;
 	      		var products=new Array();
 	      		for(var i=0;i<allCatProDecisions.length;i++){
-	      			for(var j=0;j<allCatProDecisions[i].proBrandsDecision.length;j++){
-	      				for(var k=0;k<allCatProDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
+	      			for(var j=1;j<allCatProDecisions[i].proBrandsDecision.length;j++){
+	      				for(var k=1;k<allCatProDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
 	      					products.push(allCatProDecisions[i].proBrandsDecision[j].proVarDecision[k]);
 	      					products[count].category=category;
 	      					products[count].parentBrandName=allCatProDecisions[i].proBrandsDecision[j].brandName;
@@ -281,6 +281,7 @@ define(['app'], function(app) {
 	      			result=1;
 	      		}
 	      		$scope.products=products;
+	      		console.log(products);
 				$scope.shortLanguages=shortLanguages;
 				$scope.fullLanguages=fullLanguages;
 				return result;
@@ -331,7 +332,7 @@ define(['app'], function(app) {
 				var allCatProDecisions=loadSelectCategroy(category);
 	      		var allBrands=new Array();
 	      		for(var i=0;i<allCatProDecisions.length;i++){
-	      			for(var j=0;j<allCatProDecisions[i].proBrandsDecision.length;j++){
+	      			for(var j=1;j<allCatProDecisions[i].proBrandsDecision.length;j++){
 	      				allBrands.push({'BrandID':allCatProDecisions[i].proBrandsDecision[j].brandID,'BrandName':allCatProDecisions[i].proBrandsDecision[j].brandName});
 	      			}	
 	      		}
@@ -409,7 +410,7 @@ define(['app'], function(app) {
 					newproducerDecision.dateOfBirth=$scope.period;
 					newproducerDecision.parameter=parameter;
 					newproducerDecision.dateOfDeath=10;
-			        newproducerDecision.composition=new Array();
+			        newproducerDecision.composition=new Array(undefined);
 			        newproducerDecision.production="";
 			        newproducerDecision.currentPriceBM="";
 			        newproducerDecision.currentPriceEmall="";
@@ -425,11 +426,12 @@ define(['app'], function(app) {
 						newBrand.paranetCompanyID=$scope.producerID;
 						newBrand.dateOfDeath="";
 						newBrand.dateOfBirth=$scope.period;
-						newBrand.advertisingOffLine=new Array();
+						newBrand.advertisingOffLine=new Array(undefined);
 						newBrand.advertisingOnLine="";
 						newBrand.supportEmall="";
-						newBrand.supportTraditionalTrade=new Array();
+						newBrand.supportTraditionalTrade=new Array(undefined);
 						newBrand.proVarDecision=new Array();
+						newBrand.proVarDecision.push({});
 						newproducerDecision.parentBrandID=newBrand.brandID;
 						newproducerDecision.varName=$scope.lauchNewVarName;/*need check*/
 						newproducerDecision.varID=10*newBrand.brandID+1;/*need check*/
