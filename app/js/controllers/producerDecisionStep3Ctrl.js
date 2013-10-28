@@ -141,7 +141,7 @@ define(['app'], function(app) {
 	      		var count=0,result=0;
 	      		var brands=new Array();
 	      		for(var i=0;i<allCatProDecisions.length;i++){
-	      			for(var j=0;j<allCatProDecisions[i].proBrandsDecision.length;j++){
+	      			for(var j=1;j<allCatProDecisions[i].proBrandsDecision.length;j++){
 	      				brands.push(allCatProDecisions[i].proBrandsDecision[j]);
 	      				count++;
 	      			}

@@ -191,8 +191,8 @@ define(['app'], function(app) {
 	      		var count=0,result=0;
 	      		var products=new Array();
 	      		for(var i=0;i<allCatProDecisions.length;i++){
-	      			for(var j=0;j<allCatProDecisions[i].proBrandsDecision.length;j++){
-	      				for(var k=0;k<allCatProDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
+	      			for(var j=1;j<allCatProDecisions[i].proBrandsDecision.length;j++){
+	      				for(var k=1;k<allCatProDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
 	      					products.push(allCatProDecisions[i].proBrandsDecision[j].proVarDecision[k]);
 	      					products[count].category=category;
 	      					products[count].parentBrandName=allCatProDecisions[i].proBrandsDecision[j].brandName;
