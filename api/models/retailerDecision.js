@@ -212,16 +212,16 @@ exports.getAllRetailerDecision = function(req, res, next){
                 CONVENIENCE : 22,
                 ASSORTMENT : 33            
             },
-            serviceLevel : 'SL_MEDIUM', //SL_BASE, SL_FAIR, SL_MEDIUM, SL_ENHANCED, SL_PREMIUM
+            serviceLevel : 'MEDIUM', //SL_BASE, SL_FAIR, SL_MEDIUM, SL_ENHANCED, SL_PREMIUM
             retMarketAssortmentDecision : [{
                 categoryID : 1, //1~2
                 retVariantDecision : [{
                     brandID : 51,
                     variantID : 511,
-                    brandName : 'Etales1', //need Dariusz to add this in dataStruture
+                    brandName : 'Etales15', //need Dariusz to add this in dataStruture
                     varName : '_A', //need Dariusz to add this in dataStruture
                     dateOfBirth : -4,
-                    dateOfDeath : 20,
+                    dateOfDeath : 10,
                     order : 90,
                     pricePromotions : {
                         promo_Frequency : 39, //range: 0~52
@@ -232,7 +232,7 @@ exports.getAllRetailerDecision = function(req, res, next){
                 },{
                     brandID : 52,
                     variantID : 512,
-                    brandName : 'Etales2', //need Dariusz to add this in dataStruture
+                    brandName : 'Etales25', //need Dariusz to add this in dataStruture
                     varName : '_A', //need Dariusz to add this in dataStruture
                     dateOfBirth : -4,
                     dateOfDeath : 10,
@@ -246,7 +246,7 @@ exports.getAllRetailerDecision = function(req, res, next){
                 },{
                     brandID : 53,
                     variantID : 513,
-                    brandName : 'Etales3', //need Dariusz to add this in dataStruture
+                    brandName : 'Etales35', //need Dariusz to add this in dataStruture
                     varName : '_A', //need Dariusz to add this in dataStruture
                     dateOfBirth : -4,
                     dateOfDeath : 10,
@@ -263,10 +263,10 @@ exports.getAllRetailerDecision = function(req, res, next){
                 retVariantDecision : [{
                     brandID : 51,
                     variantID : 511,
-                    brandName : 'Health1', //need Dariusz to add this in dataStruture
+                    brandName : 'Health15', //need Dariusz to add this in dataStruture
                     varName : '_A', //need Dariusz to add this in dataStruture
                     dateOfBirth : -4,
-                    dateOfDeath : 20,
+                    dateOfDeath : 10,
                     order : 90,
                     pricePromotions : {
                         promo_Frequency : 39, //range: 0~52
@@ -277,7 +277,7 @@ exports.getAllRetailerDecision = function(req, res, next){
                 },{
                     brandID : 52,
                     variantID : 512,
-                    brandName : 'Health2', //need Dariusz to add this in dataStruture
+                    brandName : 'Health25', //need Dariusz to add this in dataStruture
                     varName : '_A', //need Dariusz to add this in dataStruture
                     dateOfBirth : -4,
                     dateOfDeath : 10,
@@ -291,7 +291,7 @@ exports.getAllRetailerDecision = function(req, res, next){
                 },{
                     brandID : 53,
                     variantID : 513,
-                    brandName : 'Health3', //need Dariusz to add this in dataStruture
+                    brandName : 'Health35', //need Dariusz to add this in dataStruture
                     varName : '_A', //need Dariusz to add this in dataStruture
                     dateOfBirth : -4,
                     dateOfDeath : 10,
@@ -313,7 +313,7 @@ exports.getAllRetailerDecision = function(req, res, next){
                 CONVENIENCE : 33,
                 ASSORTMENT : 44            
             },
-            serviceLevel : 'SL_BASE', //SL_BASE, SL_FAIR, SL_MEDIUM, SL_ENHANCED, SL_PREMIUM
+            serviceLevel : 'BASE', //SL_BASE, SL_FAIR, SL_MEDIUM, SL_ENHANCED, SL_PREMIUM
             retMarketAssortmentDecision : [{
                 categoryID : 1, //1~2
                 retVariantDecision : [{
