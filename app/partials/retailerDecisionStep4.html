@@ -1,0 +1,105 @@
+<div class="row">
+  <div class="col-md-12">
+    <div style="clear:both;padding:10px 0"></div>
+    <div class="bs-docs-section">
+      <h4>Step 4 of 4</h4>
+      <div class="pull-left" style="width:33%">
+        <h3 style="margin-top:0px">Order,Pricing and Shelf Allocation </h3>
+        <div class="btn-group pull-left">
+            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+              Category <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li class=""><a ng-click="showView(retailerID,period,'Elecssories',market,language)">Elecssories</a></li>
+              <li class=""><a ng-click="showView(retailerID,period,'HealthBeauty',market,language)">HealthBeauty</a></li>       
+            </ul>
+        </div>
+        <div class="btn-group pull-left" style="margin-left:10px">
+            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+              Market <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li class=""><a ng-click="showView(retailerID,period,category,'Urban',language)">Urban</a></li>
+              <li class=""><a ng-click="showView(retailerID,period,category,'Rural',language)">Rural</a></li>       
+            </ul>
+        </div>        
+        <div class="btn-group pull-left" data-toggle="buttons" style="margin-left:10px">
+            <label class="btn btn-primary" ng-click="showView(retailerID,period,category,market,'English')">
+            <input type="radio" name="options"> English</label>
+            <label class="btn btn-primary" ng-click="showView(retailerID,period,category,market,'Chinese')">
+            <input type="radio" name="options"> Chinese
+            </label>
+        </div>
+      </div>
+      <div class="pull-right" style="width:33%">
+        <progress percent="88" class="progress active"></progress>
+        <small>
+          <em>Total Avaliable Budget for Remaing Period</em>
+        </small>
+        <progress percent="70" class="progress progress-suceess active progress-striped"></progress>
+        <small>
+          <em>Elecssories Available Capacity</em>
+        </small>
+      </div>
+        <div style="clear:both"></div>
+        <div collapse="isCollapsed">
+          <div class="well well-large">
+            <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button>
+            <table class="table table-striped">
+              <tr>
+                <td>Brand:{{moreInfo.BrandName}}</td>
+                <td>Brand:{{moreInfo.BrandName}}</td>
+                <td>Brand:{{moreInfo.BrandName}}</td>
+                <td>Brand:{{moreInfo.BrandName}}</td>
+              </tr>  
+              <tr>
+                <td>Brand:{{moreInfo.BrandName}}</td>
+                <td>Brand:{{moreInfo.BrandName}}</td>
+                <td>Brand:{{moreInfo.BrandName}}</td>
+                <td>Brand:{{moreInfo.BrandName}}</td>
+              </tr>            
+            </table>
+          </div>
+        </div>
+        <table class="table table-hover">
+          <tr style="display:{{shouldShow}}">
+            <th>{{fullLanguages.Category}}</th>
+            <th>{{fullLanguages.Brand}}</th>
+            <th>{{fullLanguages.Variant}}</th>
+            <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.UOV}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.UOV}}<span style="color:red">*</span></p>
+            </th>
+            <th><p class="text-primary" Popover-animation="true" popover="Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui." popover-title="{{fullLanguages.USS}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.USS}}<span style="color:red">*</span></p></th>
+            <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.URP}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.URP}}<span style="color:red">*</span></p></th>
+            <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.UPF}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.UPF}}<span style="color:red">*</span></p></th>
+            <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.URR}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.URR}}<span style="color:red">*</span></p></th>
+          </tr>
+          <tr style="display:{{shouldHide}}">
+            <th>{{fullLanguages.Category}}</th>
+            <th>{{fullLanguages.Brand}}</th>
+            <th>{{fullLanguages.Variant}}</th>
+            <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.ROV}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.ROV}}<span style="color:red">*</span></p>
+            </th>
+            <th><p class="text-primary" Popover-animation="true" popover="Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui." popover-title="{{fullLanguages.RSS}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.RSS}}<span style="color:red">*</span></p></th>
+            <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.RRP}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.RRP}}<span style="color:red">*</span></p></th>
+            <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.RPF}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.RPF}}<span style="color:red">*</span></p></th>
+            <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.RRR}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.RRR}}<span style="color:red">*</span></p></th>
+          </tr>
+          <tr ng-repeat="product in products">
+            <td>{{category}}</td>
+            <td>{{product.brandName}}</td>
+            <td>{{product.varName}}</td>
+            <td><a href="#" editable-text="product.order" onaftersave="updateRetailerDecision(category,market,product.brandID,'order','postion',$index)">{{ product.order || 'empty' }}</a></td>
+            <td><a href="#" editable-text="product.shelfSpace" onaftersave="updateRetailerDecision(category,market,product.brandID,'shelfSpace','postion',$index)">{{ product.shelfSpace || 'empty' }}</a></td>
+            <td><a href="#" editable-text="product.retailerPrice" onaftersave="updateRetailerDecision(category,market,product.brandID,'retailerPrice','postion',$index)">{{ product.retailerPrice || 'empty' }}</a></td>
+            <td><a href="#" editable-text="product.pricePromotions.promo_Frequency" onaftersave="updateRetailerDecision(category,market,product.brandID,'pricePromotions','promo_Frequency',$index)">{{ product.pricePromotions.promo_Frequency || 'empty' }}</a></td>
+            <td><a href="#" editable-text="product.pricePromotions.promo_Rate" onaftersave="updateRetailerDecision(category,market,product.brandID,'pricePromotions','promo_Rate',$index)">{{ product.pricePromotions.promo_Rate || 'empty' }}</a></td>
+          </tr>  
+        </table>
+        <div>
+          <a href="/#/producerDecisionStep3" class="btn btn-success">Back</a>
+          <!--<a href="/#/producerDecisionStep4" class="btn btn-primary">Next</a>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

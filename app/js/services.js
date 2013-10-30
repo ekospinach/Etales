@@ -231,10 +231,12 @@ define(['angular','angularResource'], function (angular,angularResource) {
 					});
 					return delay.promise;
 				},
-				setDetailerDecisionBase:function(location,postion,value){
+				//step1
+				setRetailerDecisionBase:function(location,postion,value){
 					base[location][postion]=value;
 					console.log(base);
 				},
+				//step2
 				setMarketDecisionBase:function(marketID,location,postion,value){
 					if(location=="serviceLevel"){
 						switch(value){
@@ -259,6 +261,7 @@ define(['angular','angularResource'], function (angular,angularResource) {
 					}
 					console.log(base);
 				},
+				//step3
 				setRetailerDecisionValue:function(categoryID,brandName,varName,location,addtionalIdx,value){
 					//startListenChangeFromServer($rootScope);
 					for(var i=0;i<base.retCatDecision.length;i++){
@@ -296,6 +299,31 @@ define(['angular','angularResource'], function (angular,angularResource) {
 					console.log(base);
 					//$rootScope.$broadcast('producerDecisionBaseChanged', base);
 				},
+				//step4
+				setRetailerDecision:function(categoryID,marketID,brandID,location,postion,value){
+					for(var i=0;i<base.retMarketDecision.length;i++){
+						if(base.retMarketDecision[i].marketID==marketID){
+							for(var j=0;j<base.retMarketDecision[i].retMarketAssortmentDecision.length;j++){
+								if(base.retMarketDecision[i].retMarketAssortmentDecision[j].categoryID==categoryID){
+									for(var k=0;k<base.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision.length;k++){
+										if(base.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].brandID==brandID){
+											if(location=="pricePromotions"){
+												base.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k][location][postion]=value;
+											}else{
+												base.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k][location]=value;
+											}
+											break;
+										}
+									}
+									break;
+								}
+							}
+							break;
+						}
+					}
+					console.log(base);
+				}
+				,
 				setSomething : function(sth){
 					//post to server...
 					base.seminar = sth;

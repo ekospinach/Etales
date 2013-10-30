@@ -187,15 +187,15 @@ define(['app'], function(app) {
 						fullLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].label;
 					}
 				}
-				var allCatProDecisions=loadSelectCategroy(category);
+				var allProCatDecisions=loadSelectCategroy(category);
 	      		var count=0,result=0;
 	      		var products=new Array();
-	      		for(var i=0;i<allCatProDecisions.length;i++){
-	      			for(var j=1;j<allCatProDecisions[i].proBrandsDecision.length;j++){
-	      				for(var k=1;k<allCatProDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
-	      					products.push(allCatProDecisions[i].proBrandsDecision[j].proVarDecision[k]);
+	      		for(var i=0;i<allProCatDecisions.length;i++){
+	      			for(var j=1;j<allProCatDecisions[i].proBrandsDecision.length;j++){
+	      				for(var k=1;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
+	      					products.push(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]);
 	      					products[count].category=category;
-	      					products[count].parentBrandName=allCatProDecisions[i].proBrandsDecision[j].brandName;
+	      					products[count].parentBrandName=allProCatDecisions[i].proBrandsDecision[j].brandName;
 	      					if(products[count].packFormat=="ECONOMY"){
 	      						products[count].packFormat=1;
 	      					}

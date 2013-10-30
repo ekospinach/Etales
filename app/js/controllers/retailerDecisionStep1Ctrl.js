@@ -113,7 +113,7 @@ define(['app'], function(app) {
 			}
 
 			var updateRetailerDecision=function(location,postion){
-				RetailerDecisionBase.setDetailerDecisionBase(location,postion,$scope.pageBase[location][postion]);
+				RetailerDecisionBase.setRetailerDecisionBase(location,postion,$scope.pageBase[location][postion]);
 				//ProducerDecisionBase.setProducerDecisionCategory(location,postion,$scope.categorys[index][location]);
 				$scope.$broadcast('retailerDecisionBaseChanged');
 			}

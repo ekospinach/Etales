@@ -137,12 +137,12 @@ define(['app'], function(app) {
 						fullLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].label;
 					}
 				}
-				var allCatProDecisions=loadSelectCategroy(category);
+				var allProCatDecisions=loadSelectCategroy(category);
 	      		var count=0,result=0;
 	      		var brands=new Array();
-	      		for(var i=0;i<allCatProDecisions.length;i++){
-	      			for(var j=1;j<allCatProDecisions[i].proBrandsDecision.length;j++){
-	      				brands.push(allCatProDecisions[i].proBrandsDecision[j]);
+	      		for(var i=0;i<allProCatDecisions.length;i++){
+	      			for(var j=1;j<allProCatDecisions[i].proBrandsDecision.length;j++){
+	      				brands.push(allProCatDecisions[i].proBrandsDecision[j]);
 	      				count++;
 	      			}
 	      		}
