@@ -140,10 +140,12 @@ define(['app'], function(app) {
 			$scope.$on('producerDecisionBaseChanged', function(event){	
 				$scope.pageBase=ProducerDecisionBase.getBase();
 				showView($scope.producerID,$scope.period,$scope.language);
-				$scope.$broadcast('closemodal');
+				//$scope.$broadcast('closemodal');
 
 			});  
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
+				$scope.pageBase=ProducerDecisionBase.getBase();
+				showView($scope.producerID,$scope.period,$scope.language);
 			}); 	
 
 	}]);
