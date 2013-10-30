@@ -87,6 +87,7 @@ exports.updateProducerDecision = function(io){
         updateBrand : categoryID,brandName,varName,location,value[,additionalIdx]
         updateCategory : category,location,value
         */
+        brandID:req.body.brandID,
         categoryID : req.body.categoryID,
         brandName : req.body.brandName,
         varName : req.body.varName,
@@ -95,7 +96,7 @@ exports.updateProducerDecision = function(io){
         value : req.body.value
       }
 
-      console.log(queryCondition);
+      //console.log(queryCondition);
 
       proDecision.findOne({seminar : queryCondition.seminar,
                            period : queryCondition.period,
@@ -114,18 +115,22 @@ exports.updateProducerDecision = function(io){
                                         case 'addProductNewBrand':
                                             for (var i = 0; i < doc.proCatDecision.length; i++) {
                                                 if(doc.proCatDecision[i].categoryID == queryCondition.categoryID){
-                                                    doc.proCatDecision[i].proBrandsDecision.push(value);
+                                                    doc.proCatDecision[i].proBrandsDecision.push(queryCondition.value);
                                                 }
                                             };
                                             break;
                                         case 'addProductExistedBrand':
                                             for (var i = 0; i < doc.proCatDecision.length; i++) {
-                                                if(doc.proCatDecision[i].categoryID == queryCondition.categoryID){                                        
+                                                if(doc.proCatDecision[i].categoryID == queryCondition.categoryID){
+                                                //console.log(doc.proCatDecision[i].categoryID+" bitch "+queryCondition.categoryID);                                      
                                                     for (var j = 0; j < doc.proCatDecision[i].proBrandsDecision.length; j++) {
-                                                        if(doc.proCatDecision[i].proBrandsDecision[j].brandName == queryCondition.brandName){
-                                                            doc.proCatDecision[i].proBrandsDecision[j].proVarDecision.push(value);
+                                                        //console.log(doc.proCatDecision[i].proBrandsDecision[j].brandID+" bitch "+queryCondition.brandID);                                      
+                                                        if(doc.proCatDecision[i].proBrandsDecision[j].brandID == queryCondition.brandID){
+                                                            doc.proCatDecision[i].proBrandsDecision[j].proVarDecision.push(queryCondition.value);
+                                                            break;
                                                         }
-                                                    }                                    
+                                                    }      
+                                                    break;                              
                                                 }
                                             };
                                             break;
@@ -133,7 +138,7 @@ exports.updateProducerDecision = function(io){
                                             for (var i = 0; i < doc.proCatDecision.length; i++) {
                                                 if(doc.proCatDecision[i].categoryID == queryCondition.categoryID){
                                                     for (var j = 0; j < doc.proCatDecision[i].proBrandsDecision.length; j++) {
-                                                        if(doc.proCatDecision[i].proBrandsDecision[j].brandName == queryCondition.brandName){
+                                                        if(doc.proCatDecision[i].proBrandsDecision[j].brandID == queryCondition.brandID){
                                                             for (var k = 0; k < proCatDecision[i].proBrandsDecision[j].proVarDecision.length; k++) {
                                                                 if(proCatDecision[i].proBrandsDecision[j].proVarDecision[k].varName == queryCondition.varName){
                                                                     delete proCatDecision[i].proBrandsDecision[j].proVarDecision[k]; //set undefined 
