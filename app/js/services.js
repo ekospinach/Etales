@@ -46,20 +46,6 @@ define(['angular','angularResource'], function (angular,angularResource) {
 		})
 	}]);
 
-	services.factory('VariantHistoryInfo', ['$resource', function($resource){
-		return $resource('/variantHistoryInfo/:seminar/:period/:parentBrandName/:varName', {});
-	}]);
-	services.factory('BrandHistoryInfo', ['$resource', function($resource){
-		return $resource('/brandHistoryInfo/:seminar/:period/:brandName', {});
-	}]);
-	services.factory('CompanyHistoryInfo', ['$resource', function($resource){
-		return $resource('/companyHistoryInfo/:seminar/:period/:companyID', {});
-	}]);
-	services.factory('quarterHistoryInfo', ['$resource', function($resource){
-		return $resource('/quarterHistoryInfo/:seminar/:period',{});
-	}]);
-
-
 	services.factory('ProducerDecisionLoader', ['ProducerDecision', '$route','$rootScope','$q',function(ProducerDecision, $route, $rootScope, $q) {
 		return function() {
 			var delay = $q.defer();
@@ -89,7 +75,7 @@ define(['angular','angularResource'], function (angular,angularResource) {
 					var delay = $q.defer();
 					getLoaderPromise(ProducerDecision, $q).then(function(){
 						delay.resolve(base);
-						startListenChangeFromServer($rootScope);
+//						startListenChangeFromServer($rootScope);
 					}, function(reason){
 						delay.reject(reason);
 					}, function(update){
@@ -97,6 +83,13 @@ define(['angular','angularResource'], function (angular,angularResource) {
 					});
 					return delay.promise;
 				},
+				startListenChangeFromServer : function(){
+					var socket = io.connect();
+					socket.on('baseChanged', function(data){
+						console.log(data);
+						$rootScope.$broadcast('producerDecisionBaseChangedFromServer', base);
+					});					
+				},				
 				setSomething : function(sth){
 					//post to server...
 					base.seminar = sth;
@@ -209,20 +202,8 @@ define(['angular','angularResource'], function (angular,angularResource) {
 			});
 			return delay.promise;			
 		}
-
-		var startListenChangeFromServer = function(rootScope){
-			var socket = io.connect();
-			socket.on('baseChanged', function(data){
-				console.log(data);
-				rootScope.$broadcast('producerDecisionBaseChangedFromServer', base);
-			}).on('connect', function () { 
-			    socket.emit('ferret', 'tobi', function (data) {
-	      			console.log(data); 
-	    		});
-	  		});					
-		}
-
 	});
+
 	services.provider('RetailerDecisionBase', function(){
 		var requestPara = {
 				period : 0,
@@ -245,6 +226,13 @@ define(['angular','angularResource'], function (angular,angularResource) {
 						delay.notify('notify...')
 					});
 					return delay.promise;
+				},
+				startListenChangeFromServer : function(){
+					var socket = io.connect();
+					socket.on('baseChanged', function(data){
+						console.log(data);
+						$rootScope.$broadcast('retailerDecisionBaseChangedFromServer', base);
+					});					
 				},
 				//step1
 				setRetailerDecisionBase:function(location,postion,value){
@@ -381,17 +369,6 @@ define(['angular','angularResource'], function (angular,angularResource) {
 									delay.reject('Unable to fetch retailerDecision of seminar:' + requestPara.seminar + ', period:' + requestPara.period + ', retailer:' + requestPara.retailerID);
 								});
 			return delay.promise;
-		}
-		var startListenChangeFromServer = function(rootScope){
-			var socket = io.connect();
-			socket.on('baseChanged', function(data){
-				console.log(data);
-				rootScope.$broadcast('retailerDecisionBaseChangedFromServer', base);
-			}).on('connect', function () { 
-			    socket.emit('ferret', 'tobi', function (data) {
-	      			console.log(data); 
-	    		});
-	  		});					
 		}
 	});
 });
