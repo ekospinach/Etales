@@ -28,7 +28,7 @@ var path    = require('path'),
   app.get('/kernelResult')
 
   app.post('/negotiationDecision');
-  app.post('/producerDecision',require('./api/models/producerDecision.js').updateProducerDecision);
+  app.post('/producerDecision',require('./api/models/producerDecision.js').updateProducerDecision(io));
   app.post('/retailerDecision');
 
 
@@ -57,7 +57,6 @@ var path    = require('path'),
   app.use(express.errorHandler());
 
 
-  
   port = parseInt(process.env.PORT, 10) || conf.server.port;
   mongoose.connect('mongodb://localhost/Etales');
   var db = mongoose.connection;

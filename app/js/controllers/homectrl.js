@@ -3,6 +3,10 @@ define(['app','socketIO'], function(app) {
 	app.controller('HomeCtrl',['$scope', '$http', 'ProducerDecisionBase', function($scope, $http, ProducerDecisionBase) {
 		// You can access the scope of the controller from here
 		$scope.welcomeMessage = 'hey this is HomeCtrl.js!';
+		var socket = io.connect();
+		socket.on('baseChangedNew', function(data){
+			console.log('from server socketIO:' + data);
+		});
 
 		$scope.newDoc = function(){
 			$http({method: 'GET', url: '/newDoc'}).then(function(res){
@@ -17,7 +21,7 @@ define(['app','socketIO'], function(app) {
 		    seminar : 'MAY',
 		    period : 0,
 		    producerID : 1,
-		    behaviour : 'updateVariant', 
+		    behaviour : 'updateCategory', 
 		    /* 
 		    switch(behaviour) case...
 		    addProductNewBrand : categoryID
@@ -30,10 +34,10 @@ define(['app','socketIO'], function(app) {
 		    */
 		    categoryID : 1,
 		    brandName : 'EGEND1',
-		    varName : '_A',
-		    location : 'production',
+		    varName : '',
+		    location : 'investInDesign',
 		    additionalIdx  : 1,
-		    value : 8888
+		    value : 333
 		  }	
 
 		  $http({method:'POST', url:'/producerDecision', data: queryCondition}).then(function(res){
@@ -43,10 +47,6 @@ define(['app','socketIO'], function(app) {
 		  })
 		}
 
-		var socket = io.connect('http://localhost:8888');
-		socket.on('baseChanged', function(data){
-			console.log(data);
-		});
 		
 		ProducerDecisionBase.reload({period:'0', seminar:'MAY', producerID:1}).then(function(base){
 			$scope.pageBase = base;

@@ -3,24 +3,21 @@ var mongoose = require('mongoose'),
     util = require('util'),
     _ = require('underscore');
 
-var proDecisionSchema = mongoose.Schema({
-    seminar : String,
-    period : Number,
-    producerID : Number, //1~4
-    nextBudgetExtension : Number,
-    approvedBudgetExtension : Number,
-    proCatDecision : [proCatDecisionSchema] //Length: TCategories(1~2)
+var proVarDecisionSchema = mongoose.Schema({
+    varName : String,
+    varID : Number, //varID = BrandID * 10 + varCount
+    parentBrandID : Number, //brandID
+    packFormat : String, //ECONOMY, STANDARD, PREMIUM
+    dateOfBirth : Number,
+    dateOfDeath : Number,
+    composition : [Number], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+    production : Number,
+    currentPriceBM : Number,
+    currentPriceEmall : Number,
+    discontinue : Boolean,
+    nextPriceBM : Number,
+    nextPriceEmall : Number
 })
-
-var proCatDecisionSchema = mongoose.Schema({
-    categoryID : Number, //1~2
-    capacityChange : Number,
-    investInDesign : Number,/*E*/
-    investInProductionFlexibility : Number,
-    investInTechnology : Number,
-    proBrandsDecision : [proBrandDecisionSchema] //Length: TProBrands(1~5) 
-})
-
 
 var proBrandDecisionSchema = mongoose.Schema({
     brandName : String,
@@ -52,182 +49,183 @@ var proBrandDecisionSchema = mongoose.Schema({
     proVarDecision : [proVarDecisionSchema] //Length: TOneBrandVars(1~3)
 })
 
-var proVarDecisionSchema = mongoose.Schema({
-    varName : String,
-    varID : Number, //varID = BrandID * 10 + varCount
-    parentBrandID : Number, //brandID
-    packFormat : String, //ECONOMY, STANDARD, PREMIUM
-    dateOfBirth : Number,
-    dateOfDeath : Number,
-    composition : [Number], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
-    production : Number,
-    currentPriceBM : Number,
-    currentPriceEmall : Number,
-    discontinue : Boolean,
-    nextPriceBM : Number,
-    nextPriceEmall : Number
+var proCatDecisionSchema = mongoose.Schema({
+    categoryID : Number, //1~2
+    capacityChange : Number,
+    investInDesign : Number,/*E*/
+    investInProductionFlexibility : Number,
+    investInTechnology : Number,
+    proBrandsDecision : [proBrandDecisionSchema] //Length: TProBrands(1~5) 
 })
 
+var proDecisionSchema = mongoose.Schema({
+    seminar : String,
+    period : Number,
+    producerID : Number, //1~4
+    nextBudgetExtension : Number,
+    approvedBudgetExtension : Number,
+    proCatDecision : [proCatDecisionSchema] //Length: TCategories(1~2)
+})
 
 var proDecision = mongoose.model('proDecision', proDecisionSchema);
 
 
-exports.updateProducerDecision = function(req, res, next){
-  var queryCondition = {
-    seminar : req.body.seminar,
-    period : req.body.period,
-    producerID : req.body.producerID,
-    behaviour : req.body.behaviour, 
-    /* 
-    switch(behaviour) case...
-    addProductNewBrand : categoryID
-    addProdcutExistedBrand : categoryID,brandName
-    deleteProduct : categoryID,brandName,varName
-    deleteBrand : categoryID,brandName
-    updateVariant : categoryID,brandName,varName,location,value[,addtionalIdx]
-    updateBrand : categoryID,brandName,varName,location,value[,addtionalIdx]
-    updateCategory : category,location,value
-    */
-    categoryID : req.body.categoryID,
-    brandName : req.body.brandName,
-    varName : req.body.varName,
-    location : req.body.location,
-    additionalIdx  : req.body.additionalIdx,
-    value : req.body.value
-  }
+exports.updateProducerDecision = function(io){
+  return function(req, res, next){
+      var queryCondition = {
+        seminar : req.body.seminar,
+        period : req.body.period,
+        producerID : req.body.producerID,
+        behaviour : req.body.behaviour, 
+        /* 
+        switch(behaviour) case...
+        addProductNewBrand : categoryID
+        addProdcutExistedBrand : categoryID,brandName
+        deleteProduct : categoryID,brandName,varName
+        deleteBrand : categoryID,brandName
+        updateVariant : categoryID,brandName,varName,location,value[,additionalIdx]
+        updateBrand : categoryID,brandName,varName,location,value[,additionalIdx]
+        updateCategory : category,location,value
+        */
+        categoryID : req.body.categoryID,
+        brandName : req.body.brandName,
+        varName : req.body.varName,
+        location : req.body.location,
+        additionalIdx  : req.body.additionalIdx,
+        value : req.body.value
+      }
 
-  console.log(queryCondition);
+      console.log(queryCondition);
 
-  proDecision.findOne({seminar : queryCondition.seminar,
-                       period : queryCondition.period,
-                       producerID : queryCondition.producerID},
-                       function(err, doc){
-                            if(err) {next(new Error(err));}
-                            if(!doc) {
-                                console.log('cannot find matched doc...');
-                                res.send(404, {error:'Cannot find matched doc...'});
-                            } else {
-                                console.log('no error:' + doc);
-                                var isUpdated = true;
-                                switch(queryCondition.behaviour){
-                                    case 'addProductNewBrand':
-                                        for (var i = 0; i < doc.proCatDecision.length; i++) {
-                                            if(doc.proCatDecision[i].categoryID == queryCondition.categoryID){
-                                                doc.proCatDecision[i].proBrandsDecision.push(value);
-                                            }
-                                        };
-                                        break;
-                                    case 'addProductExistedBrand':
-                                        for (var i = 0; i < doc.proCatDecision.length; i++) {
-                                            if(doc.proCatDecision[i].categoryID == queryCondition.categoryID){                                        
-                                                for (var j = 0; j < doc.proCatDecision[i].proBrandsDecision.length; j++) {
-                                                    if(doc.proCatDecision[i].proBrandsDecision[j].brandName == queryCondition.brandName){
-                                                        doc.proCatDecision[i].proBrandsDecision[j].proVarDecision.push(value);
-                                                    }
-                                                }                                    
-                                            }
-                                        };
-                                        break;
-                                    case 'deleteProduct':
-                                        for (var i = 0; i < doc.proCatDecision.length; i++) {
-                                            if(doc.proCatDecision[i].categoryID == queryCondition.categoryID){
-                                                for (var j = 0; j < doc.proCatDecision[i].proBrandsDecision.length; j++) {
-                                                    if(doc.proCatDecision[i].proBrandsDecision[j].brandName == queryCondition.brandName){
-                                                        for (var k = 0; k < proCatDecision[i].proBrandsDecision[j].proVarDecision.length; k++) {
-                                                            if(proCatDecision[i].proBrandsDecision[j].proVarDecision[k].varName == queryCondition.varName){
-                                                                delete proCatDecision[i].proBrandsDecision[j].proVarDecision[k]; //set undefined 
-                                                            }
-                                                        };
-                                                    }
-                                                };
-                                            }
-                                        };
-                                        break;
-                                    case 'deleteBrand':
-                                        for (var i = 0; i < doc.proCatDecision.length; i++) {
-                                            if(doc.proCatDecision[i].categoryID == queryCondition.categoryID){
-                                                for (var j = 0; j < doc.proCatDecision[i].proBrandsDecision.length; j++) {
-                                                    if(doc.proCatDecision[i].proBrandsDecision[j].brandName == queryCondition.brandName){
-                                                        delete doc.proCatDecision[i].proBrandsDecision[j]; //set undefined 
-                                                    }
-                                                };
-                                            }
-                                        };
-                                        break;
-                                    case 'updateVariant':
-                                        console.log('update Variant');
-                                        for(var i = 0; i < doc.proCatDecision.length; i++){
-                                            if(doc.proCatDecision[i].categoryID == queryCondition.categoryID){
-                                                for(var j = 0; j < doc.proCatDecision[i].proBrandsDecision.length; j++){
-                                                    if(doc.proCatDecision[i].proBrandsDecision[j].brandName == queryCondition.brandName){
-                                                        for(var k = 0; k < doc.proCatDecision[i].proBrandsDecision[j].proVarDecision.length; k++){
-                                                            if(doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].varName == queryCondition.varName){
-                                                                if(queryCondition.location == "packFormat"){
-                                                                    switch(value){
-                                                                        case 1: value = "ECONOMY";break;
-                                                                        case 2: value = "STANDARD";break;
-                                                                        case 3: value = "PREMIUM";break;
-                                                                    }
+      proDecision.findOne({seminar : queryCondition.seminar,
+                           period : queryCondition.period,
+                           producerID : queryCondition.producerID},
+                           function(err, doc){
+                                if(err) {next(new Error(err));}
+                                if(!doc) {
+                                    console.log('cannot find matched doc...');
+                                    res.send(404, {error:'Cannot find matched doc...'});
+                                } else {
+                                    var isUpdated = true;
+                                    console.log('before:');
+                                    console.log(doc.proCatDecision[0].proBrandsDecision[0]);
+
+                                    switch(queryCondition.behaviour){
+                                        case 'addProductNewBrand':
+                                            for (var i = 0; i < doc.proCatDecision.length; i++) {
+                                                if(doc.proCatDecision[i].categoryID == queryCondition.categoryID){
+                                                    doc.proCatDecision[i].proBrandsDecision.push(value);
+                                                }
+                                            };
+                                            break;
+                                        case 'addProductExistedBrand':
+                                            for (var i = 0; i < doc.proCatDecision.length; i++) {
+                                                if(doc.proCatDecision[i].categoryID == queryCondition.categoryID){                                        
+                                                    for (var j = 0; j < doc.proCatDecision[i].proBrandsDecision.length; j++) {
+                                                        if(doc.proCatDecision[i].proBrandsDecision[j].brandName == queryCondition.brandName){
+                                                            doc.proCatDecision[i].proBrandsDecision[j].proVarDecision.push(value);
+                                                        }
+                                                    }                                    
+                                                }
+                                            };
+                                            break;
+                                        case 'deleteProduct':
+                                            for (var i = 0; i < doc.proCatDecision.length; i++) {
+                                                if(doc.proCatDecision[i].categoryID == queryCondition.categoryID){
+                                                    for (var j = 0; j < doc.proCatDecision[i].proBrandsDecision.length; j++) {
+                                                        if(doc.proCatDecision[i].proBrandsDecision[j].brandName == queryCondition.brandName){
+                                                            for (var k = 0; k < proCatDecision[i].proBrandsDecision[j].proVarDecision.length; k++) {
+                                                                if(proCatDecision[i].proBrandsDecision[j].proVarDecision[k].varName == queryCondition.varName){
+                                                                    delete proCatDecision[i].proBrandsDecision[j].proVarDecision[k]; //set undefined 
                                                                 }
-                                                                if(queryCondition.location=="composition"){ doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k][queryCondition.location][queryCondition.addtionalIdx] = queryCondition.value;}
-                                                                else{ 
-                                                                    console.log('before:' + doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k][queryCondition.location] +', ---> ' + queryCondition.value);
-                                                                    console.log(i + '/' + j + '/' + k + '/' + queryCondition.location);
-                                                                    doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k][queryCondition.location] = queryCondition.value;
-                                                                    console.log('after:' + doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k][queryCondition.location]);
-
-                                                                }                                                            
-                                                            }
-                                                        }                                                    
+                                                            };
+                                                        }
+                                                    };
+                                                }
+                                            };
+                                            break;
+                                        case 'deleteBrand':
+                                            for (var i = 0; i < doc.proCatDecision.length; i++) {
+                                                if(doc.proCatDecision[i].categoryID == queryCondition.categoryID){
+                                                    for (var j = 0; j < doc.proCatDecision[i].proBrandsDecision.length; j++) {
+                                                        if(doc.proCatDecision[i].proBrandsDecision[j].brandName == queryCondition.brandName){
+                                                            delete doc.proCatDecision[i].proBrandsDecision[j]; //set undefined 
+                                                        }
+                                                    };
+                                                }
+                                            };
+                                            break;
+                                        case 'updateVariant':
+                                            console.log('update Variant');
+                                            for(var i = 0; i < doc.proCatDecision.length; i++){
+                                                if(doc.proCatDecision[i].categoryID == queryCondition.categoryID){
+                                                    for(var j = 0; j < doc.proCatDecision[i].proBrandsDecision.length; j++){
+                                                        if(doc.proCatDecision[i].proBrandsDecision[j].brandName == queryCondition.brandName){
+                                                            for(var k = 0; k < doc.proCatDecision[i].proBrandsDecision[j].proVarDecision.length; k++){
+                                                                if(doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].varName == queryCondition.varName){
+                                                                    if(queryCondition.location == "packFormat"){
+                                                                        switch(value){
+                                                                            case 1: value = "ECONOMY";break;
+                                                                            case 2: value = "STANDARD";break;
+                                                                            case 3: value = "PREMIUM";break;
+                                                                        }
+                                                                    }
+                                                                    if(queryCondition.location=="composition"){ doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k][queryCondition.location][queryCondition.additionalIdx] = queryCondition.value;}
+                                                                    else{ 
+                                                                        doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k][queryCondition.location] = queryCondition.value;
+                                                                        
+                                                                    }                                                            
+                                                                }
+                                                            }                                                    
+                                                        }
                                                     }
                                                 }
-                                            }
-                                        }    
-                                        //doc.nextBudgetExtension = 9999;
+                                            }    
+                                            break;
+                                        case 'updateBrand':
+                                            for (var i = 0; i < doc.proCatDecision.length; i++) {
+                                                if(doc.proCatDecision[i].categoryID == queryCondition.categoryID){
+                                                    for (var j = 0; j < doc.proCatDecision[i].proBrandsDecision.length; j++) {
+                                                        if(doc.proCatDecision[i].proBrandsDecision[j].brandName == queryCondition.brandName){
+                                                            console.log(doc.proCatDecision[i].proBrandsDecision[j].brandName);
+                                                            if(queryCondition.location == "supportTraditionalTrade" || queryCondition.location == "advertisingOffLine"){
+                                                                doc.proCatDecision[i].proBrandsDecision[j][queryCondition.location][queryCondition.additionalIdx] = queryCondition.value;
+                                                                //console.log(i + '/' + j + '/' + queryCondition.location + '/' + queryCondition.additionalIdx);
+
+                                                            } else {
+                                                                doc.proCatDecision[i].proBrandsDecision[j][queryCondition.location] = queryCondition.value;
+                                                            }
+                                                        }
+                                                    };
+                                                }
+                                            };
+                                            break;
+                                        case 'updateCategory':
+                                            for (var i = 0; i < doc.proCatDecision.length; i++) {
+                                                if(doc.proCatDecision[i].categoryID == queryCondition.categoryID){
+                                                    doc.proCatDecision[i][queryCondition.location] = queryCondition.value;
+                                                }
+                                            };
+                                            break;
+                                        default:
+                                            isUpdated = false;
+                                            res.send(404, 'cannot find matched query behaviour.');                                    
+                                    }
+
+                                    if(isUpdated){
+                                        doc.markModified('proCatDecision'); 
                                         doc.save(function(err, doc, numberAffected){
                                             if(err) next(new Error(err));
                                             console.log('save updated, number affected:'+numberAffected);
-                                            console.log(doc.proCatDecision[0].proBrandsDecision[0]);
+                                            io.sockets.emit('baseChangedNew', 'this is a baseChanged');
+                                            res.send(200, 'mission complete!');
                                         });                                   
 
-                                        break;
-                                    case 'updateBrand':
-                                        for (var i = 0; i < doc.proCatDecision.length; i++) {
-                                            if(doc.proCatDecision[i].categoryID == queryCondition.categoryID){
-                                                for (var j = 0; j < doc.proCatDecision[i].proBrandsDecision.length; j++) {
-                                                    if(doc.proCatDecision[i].proBrandsDecision[i].brandName == queryCondition.brandName){
-                                                        if(queryCondition.location == "supportTraditionalTrade" || queryCondition.location == "advertisingOffLine"){
-                                                            doc.proCatDecision[i].proBrandsDecision[j][queryCondition.location][queryCondition.addtionalIdx] = queryCondition.value;
-                                                        } else {
-                                                            doc.proCatDecision[i].proBrandsDecision[j][queryCondition.location] = queryCondition.value;
-                                                        }
-                                                    }
-                                                };
-                                            }
-                                        };
-                                        break;
-                                    case 'updateCategory':
-                                        for (var i = 0; i < doc.proCatDecision.length; i++) {
-                                            if(doc.proCatDecision[i].categoryID == queryCondition.categoryID){
-                                                doc.proCatDecision[i][queryCondition.location] = queryCondition.value;
-                                            }
-                                        };
-                                        break;
-                                    default:
-                                        isUpdated = false;
-                                        res.send(404, 'cannot find matched query behaviour.');                                    
+                                    }     
                                 }
 
-                                if(isUpdated){
-                                    var io = require('socket.io').listen(8888);
-                                    io.sockets.on('connection', function(socket){                                
-                                        socket.emit('baseChanged',{info: 'DataBase has been update on server side!'});                                        
-                                    });
-                                    res.send(200, 'mission complete!');
-                                }     
-                            }
-
-                        });
+                            });
+  }
 }
 
 
