@@ -192,7 +192,7 @@ define(['angular','angularResource'], function (angular,angularResource) {
 
 				},
 				//错误：brandId有可能在在两个category中重复，所以这里应该先判断categoryID是否正确,或者直接使用brandName来做判断，因为brandName是唯一的
-				addProductExistedBrand:function(newproducerDecision,categoryID,brandID){
+				addProductExistedBrand:function(newproducerDecision,categoryID,brandName){
 					/*for(var i=1;i<base.proCatDecision.length;i++){
 						for(var j=1;j<base.proCatDecision[i].proBrandsDecision.length;j++){
 							if(base.proCatDecision[i].proBrandsDecision[j].brandID==newproducerDecision.parentBrandID){
@@ -218,7 +218,7 @@ define(['angular','angularResource'], function (angular,angularResource) {
 							    */
 						categoryID : categoryID,
 						value : newproducerDecision,
-						brandID:brandID
+						brandName:brandName
 					}
 					$http({method:'POST', url:'/producerDecision', data: queryCondition}).then(function(res){
 						$rootScope.$broadcast('producerDecisionBaseChanged', base);

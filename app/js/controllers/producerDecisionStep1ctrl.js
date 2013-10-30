@@ -448,7 +448,14 @@ define(['app'], function(app) {
 							return (obj.brandID==newproducerDecision.parentBrandID);
 						});
 			        	newproducerDecision.varID=calculateVarID(proVarDecision,newproducerDecision.parentBrandID);//121;/*need check*/
-			        	ProducerDecisionBase.addProductExistedBrand(newproducerDecision,$scope.addNewCategory,newproducerDecision.parentBrandID);	
+			        	var newBrandName="";
+			        	for(var i=0;i<$scope.allBrands.length;i++){
+			        		if($scope.allBrands[i].BrandID==newproducerDecision.parentBrandID){
+			        			newBrandName=$scope.allBrands[i].BrandName;
+			        			break;
+			        		}
+			        	}
+			        	ProducerDecisionBase.addProductExistedBrand(newproducerDecision,$scope.addNewCategory,newBrandName);	
 						//$scope.$broadcast('producerDecisionBaseChanged');
 					}
 					close();
