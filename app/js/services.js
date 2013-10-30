@@ -158,24 +158,74 @@ define(['angular','angularResource'], function (angular,angularResource) {
 					console.log(base);
 				},
 				addProductNewBrand:function(newproducerDecision,categoryID){
-					for(var i=0;i<base.proCatDecision.length;i++){
+					/*for(var i=0;i<base.proCatDecision.length;i++){
 						if(base.proCatDecision[i].categoryID==categoryID){
 							base.proCatDecision[i].proBrandsDecision.push(newproducerDecision);
 							break;
 						}
 					}
-					console.log(base);
+					console.log(base);*/
+					var queryCondition = {
+						seminar : 'MAY',
+						period : 0,
+						producerID : 1,
+						behaviour : 'addProductNewBrand', 
+							    /* 
+							    switch(behaviour) case...
+							    addProductNewBrand : categoryID
+							    addProdcutExistedBrand : categoryID,brandName
+							    deleteProduct : categoryID,brandName,varName
+							    deleteBrand : categoryID,brandName
+							    updateVariant : categoryID,brandName,varName,location,value[,addtionalIdx]
+							    updateBrand : categoryID,brandName,varName,location,value[,addtionalIdx]
+							    updateCategory : category,location,value
+							    */
+						categoryID : categoryID,
+						value : newproducerDecision
+					}
+					$http({method:'POST', url:'/producerDecision', data: queryCondition}).then(function(res){
+						$rootScope.$broadcast('producerDecisionBaseChanged', base);
+					 	console.log('Success:' + res);
+					 },function(res){
+						console.log('Failed:' + res);
+					});
+
 				},
 				//错误：brandId有可能在在两个category中重复，所以这里应该先判断categoryID是否正确,或者直接使用brandName来做判断，因为brandName是唯一的
-				addProductExistedBrand:function(newproducerDecision,categoryID){
-					for(var i=1;i<base.proCatDecision.length;i++){
+				addProductExistedBrand:function(newproducerDecision,categoryID,brandID){
+					/*for(var i=1;i<base.proCatDecision.length;i++){
 						for(var j=1;j<base.proCatDecision[i].proBrandsDecision.length;j++){
 							if(base.proCatDecision[i].proBrandsDecision[j].brandID==newproducerDecision.parentBrandID){
 								base.proCatDecision[i].proBrandsDecision[j].proVarDecision.push(newproducerDecision);
 							}
 						}
 					}
-					console.log(base);
+					console.log(base);*/
+					var queryCondition = {
+						seminar : 'MAY',
+						period : 0,
+						producerID : 1,
+						behaviour : 'addProductExistedBrand', 
+							    /* 
+							    switch(behaviour) case...
+							    addProductNewBrand : categoryID
+							    addProductExistedBrand : categoryID,brandName
+							    deleteProduct : categoryID,brandName,varName
+							    deleteBrand : categoryID,brandName
+							    updateVariant : categoryID,brandName,varName,location,value[,addtionalIdx]
+							    updateBrand : categoryID,brandName,varName,location,value[,addtionalIdx]
+							    updateCategory : category,location,value
+							    */
+						categoryID : categoryID,
+						value : newproducerDecision,
+						brandID:brandID
+					}
+					$http({method:'POST', url:'/producerDecision', data: queryCondition}).then(function(res){
+						$rootScope.$broadcast('producerDecisionBaseChanged', base);
+					 	console.log('Success:' + res);
+					 },function(res){
+						console.log('Failed:' + res);
+					});
 				},
 				getBase : function(){
 					return base;

@@ -446,9 +446,9 @@ define(['app'], function(app) {
 						newproducerDecision.varName=$scope.addNewVarName;/*need check*/
 						var proVarDecision=_.find(proBrandsDecision.proBrandsDecision,function(obj){
 							return (obj.brandID==newproducerDecision.parentBrandID);
-						})
+						});
 			        	newproducerDecision.varID=calculateVarID(proVarDecision,newproducerDecision.parentBrandID);//121;/*need check*/
-			        	ProducerDecisionBase.addProductExistedBrand(newproducerDecision,$scope.addNewCategory);	
+			        	ProducerDecisionBase.addProductExistedBrand(newproducerDecision,$scope.addNewCategory,newproducerDecision.parentBrandID);	
 						//$scope.$broadcast('producerDecisionBaseChanged');
 					}
 					close();
