@@ -64,11 +64,11 @@ define(['angular','angularResource'], function (angular,angularResource) {
 		var requestPara = {
 				period : 0,
 				producerID : 1,
-				seminar : 'TEST',
+				seminar : 'MAY',
 			}, base;			
 
 		this.setDefaultPara = function(p) { requestPara = p };
-		this.$get = ['ProducerDecision', '$q','$rootScope', function(ProducerDecision, $q, $rootScope){
+		this.$get = ['ProducerDecision', '$q','$rootScope','$http', function(ProducerDecision, $q, $rootScope,$http){
 			return {
 				reload : function(p){ 
 					requestPara = p;
@@ -85,8 +85,8 @@ define(['angular','angularResource'], function (angular,angularResource) {
 				},
 				startListenChangeFromServer : function(){
 					var socket = io.connect();
-					socket.on('baseChanged', function(data){
-						console.log(data);
+					socket.on('baseChangedNew', function(data){
+						//console.log(data);
 						$rootScope.$broadcast('producerDecisionBaseChangedFromServer', base);
 					});					
 				},				
@@ -95,43 +95,39 @@ define(['angular','angularResource'], function (angular,angularResource) {
 					base.seminar = sth;
 					$rootScope.$broadcast('producerDecisionBaseChanged', base);
 				},
-				setProducerDecisionValue:function(categoryID,brandName,varName,location,addtionalIdx,value){
-					//startListenChangeFromServer($rootScope);
-					for(var i=0;i<base.proCatDecision.length;i++){
-						if(base.proCatDecision[i].categoryID==categoryID){
-							for(var j=0;j<base.proCatDecision[i].proBrandsDecision.length;j++){
-								if(base.proCatDecision[i].proBrandsDecision[j].brandName==brandName){
-									for(var k=0;k<base.proCatDecision[i].proBrandsDecision[j].proVarDecision.length;k++){
-										if(base.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].varName==varName){
-											if(location=="packFormat"){
-												if(value==1){
-													value="ECONOMY";
-												}
-												if(value==2){
-													value="STANDARD";
-												}
-												if(value==3){
-													value="PREMIUM";
-												}
-											}
-											if(location=="composition"){
-												base.proCatDecision[i].proBrandsDecision[j].proVarDecision[k][location][addtionalIdx]=value;
-											}
-											else{
-												base.proCatDecision[i].proBrandsDecision[j].proVarDecision[k][location]=value;
-											}
-											break;
-										}
-									}
-									break;
-								}
-							}
-							break;
-						}
-					}	
-					console.log(base);
-					//$rootScope.$broadcast('producerDecisionBaseChanged', base);
+				//step1 & step2
+				setProducerDecisionValue:function(categoryID,brandName,varName,location,additionalIdx,value){
+
+					var queryCondition = {
+						seminar : 'MAY',
+						period : 0,
+						producerID : 1,
+						behaviour : 'updateVariant', 
+							    /* 
+							    switch(behaviour) case...
+							    addProductNewBrand : categoryID
+							    addProdcutExistedBrand : categoryID,brandName
+							    deleteProduct : categoryID,brandName,varName
+							    deleteBrand : categoryID,brandName
+							    updateVariant : categoryID,brandName,varName,location,value[,addtionalIdx]
+							    updateBrand : categoryID,brandName,varName,location,value[,addtionalIdx]
+							    updateCategory : category,location,value
+							    */
+						categoryID : categoryID,
+						brandName : brandName,
+						varName : varName,
+						location : location,
+						additionalIdx  : additionalIdx,
+						value : value
+					}
+					$http({method:'POST', url:'/producerDecision', data: queryCondition}).then(function(res){
+						$rootScope.$broadcast('producerDecisionBaseChanged', base);
+					 	console.log('Success:' + res);
+					 },function(res){
+						console.log('Failed:' + res);
+					});
 				},
+				//step3
 				setProducerDecisionBrand:function(categoryID,brandID,location,addtionalIdx,value){
 					for(var i=0;i<base.proCatDecision.length;i++){
 						if(base.proCatDecision[i].categoryID==categoryID){
@@ -151,6 +147,7 @@ define(['angular','angularResource'], function (angular,angularResource) {
 					}
 					console.log(base);
 				},
+				//step4
 				setProducerDecisionCategory:function(categoryID,location,value){
 					for(var i=0;i<base.proCatDecision.length;i++){
 						if(base.proCatDecision[i].categoryID==categoryID){

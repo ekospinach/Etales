@@ -104,6 +104,7 @@ define(['app'], function(app) {
 			    dialogFade:true
 			};
 			/*Angular-ui-bootstrap modal end*/		
+			ProducerDecisionBase.startListenChangeFromServer();
 			ProducerDecisionBase.reload({period:'0', seminar:'MAY', producerID:1}).then(function(base){
 				$scope.pageBase = base;
 				//ProducerDecisionBase.setSomething('TEST');	
@@ -281,7 +282,6 @@ define(['app'], function(app) {
 	      			result=1;
 	      		}
 	      		$scope.products=products;
-	      		console.log(products);
 				$scope.shortLanguages=shortLanguages;
 				$scope.fullLanguages=fullLanguages;
 				return result;
@@ -345,7 +345,7 @@ define(['app'], function(app) {
 			}
 
 			var selectPacks = function(parentBrandName,varName) {
-				console.log('testSelectPacks');
+				//console.log('testSelectPacks');
 				var selected,postion=-1;
 				for(var i=0;i<$scope.products.length;i++){
 					if($scope.products[i].parentBrandName==parentBrandName&&$scope.products[i].varName==varName){
@@ -372,7 +372,7 @@ define(['app'], function(app) {
 			    $scope.shouldBeOpen = false;
 			};
 
-			var updateProducerDecision=function(category,brandName,varName,location,addtionalIdx,index){
+			var updateProducerDecision=function(category,brandName,varName,location,additionalIdx,index){
 				var categoryID;
 				if(category=="Elecssories"){
 					categoryID=1;
@@ -381,12 +381,12 @@ define(['app'], function(app) {
 					categoryID=2
 				}
 				if(location=="composition"){
-					ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,addtionalIdx,$scope.products[index][location][addtionalIdx]);							
+					ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,additionalIdx,$scope.products[index][location][additionalIdx]);							
 				}
 				else{
-					ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,addtionalIdx,$scope.products[index][location]);													
+					ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,additionalIdx,$scope.products[index][location]);													
 				}
-				$scope.$broadcast('producerDecisionBaseChanged');
+				//$scope.$broadcast('producerDecisionBaseChanged');
 			}
 
 			var closeInfo=function(){
@@ -452,16 +452,23 @@ define(['app'], function(app) {
 						//$scope.$broadcast('producerDecisionBaseChanged');
 					}
 					close();
-					$scope.$broadcast('producerDecisionBaseChanged');
+					//$scope.$broadcast('producerDecisionBaseChanged');
 				//});
 			}
-
-			$scope.$on('producerDecisionBaseChanged', function(event){	
-				$scope.pageBase=ProducerDecisionBase.getBase();
-				showView($scope.producerID,$scope.period,$scope.category,$scope.language);
-			});  
+ 
 			
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
+				ProducerDecisionBase.reload({period:'0', seminar:'MAY', producerID:1}).then(function(base){
+					$scope.pageBase = base;	
+				}).then(function(){
+					return promiseStep1();
+				}), function(reason){
+					console.log('from ctr: ' + reason);
+				}, function(update){
+					console.log('from ctr: ' + update);
+				};
+				console.log("producerDecisionBaseChangedFromServer start to reload");
+				showView($scope.producerID,$scope.period,$scope.category,$scope.language);
 			}); 	
 
 	}]);
