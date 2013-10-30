@@ -106,7 +106,7 @@ define(['app'], function(app) {
 				}
 	      		var count=0,result=0;
 	      		var categorys=new Array();
-	      		for(var i=0;i<$scope.pageBase.proCatDecision.length;i++){
+	      		for(var i=1;i<$scope.pageBase.proCatDecision.length;i++){
 	      			categorys.push($scope.pageBase.proCatDecision[i]);
 	      			count++;
 	      		}

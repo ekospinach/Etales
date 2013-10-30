@@ -178,8 +178,8 @@ define(['angular','angularResource'], function (angular,angularResource) {
 				},
 				//错误：brandId有可能在在两个category中重复，所以这里应该先判断categoryID是否正确,或者直接使用brandName来做判断，因为brandName是唯一的
 				addProductExistedBrand:function(newproducerDecision,categoryID){
-					for(var i=0;i<base.proCatDecision.length;i++){
-						for(var j=0;j<base.proCatDecision[i].proBrandsDecision.length;j++){
+					for(var i=1;i<base.proCatDecision.length;i++){
+						for(var j=1;j<base.proCatDecision[i].proBrandsDecision.length;j++){
 							if(base.proCatDecision[i].proBrandsDecision[j].brandID==newproducerDecision.parentBrandID){
 								base.proCatDecision[i].proBrandsDecision[j].proVarDecision.push(newproducerDecision);
 							}
@@ -246,10 +246,12 @@ define(['angular','angularResource'], function (angular,angularResource) {
 					});
 					return delay.promise;
 				},
-				setDetailerDecisionBase:function(location,postion,value){
+				//step1
+				setRetailerDecisionBase:function(location,postion,value){
 					base[location][postion]=value;
 					console.log(base);
 				},
+				//step2
 				setMarketDecisionBase:function(marketID,location,postion,value){
 					if(location=="serviceLevel"){
 						switch(value){
@@ -274,6 +276,7 @@ define(['angular','angularResource'], function (angular,angularResource) {
 					}
 					console.log(base);
 				},
+				//step3
 				setRetailerDecisionValue:function(categoryID,brandName,varName,location,addtionalIdx,value){
 					//startListenChangeFromServer($rootScope);
 					for(var i=0;i<base.retCatDecision.length;i++){
@@ -311,6 +314,31 @@ define(['angular','angularResource'], function (angular,angularResource) {
 					console.log(base);
 					//$rootScope.$broadcast('producerDecisionBaseChanged', base);
 				},
+				//step4
+				setRetailerDecision:function(categoryID,marketID,brandID,location,postion,value){
+					for(var i=0;i<base.retMarketDecision.length;i++){
+						if(base.retMarketDecision[i].marketID==marketID){
+							for(var j=0;j<base.retMarketDecision[i].retMarketAssortmentDecision.length;j++){
+								if(base.retMarketDecision[i].retMarketAssortmentDecision[j].categoryID==categoryID){
+									for(var k=0;k<base.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision.length;k++){
+										if(base.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].brandID==brandID){
+											if(location=="pricePromotions"){
+												base.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k][location][postion]=value;
+											}else{
+												base.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k][location]=value;
+											}
+											break;
+										}
+									}
+									break;
+								}
+							}
+							break;
+						}
+					}
+					console.log(base);
+				}
+				,
 				setSomething : function(sth){
 					//post to server...
 					base.seminar = sth;
@@ -326,8 +354,8 @@ define(['angular','angularResource'], function (angular,angularResource) {
 					console.log(base);
 				},
 				addProductExistedBrand:function(newproducerDecision,categoryID){
-					for(var i=0;i<base.retCatDecision.length;i++){
-						for(var j=0;j<base.retCatDecision[i].retVariantDecision.length;j++){
+					for(var i=1;i<base.retCatDecision.length;i++){
+						for(var j=1;j<base.retCatDecision[i].retVariantDecision.length;j++){
 							if(base.retCatDecision[i].retVariantDecision[j].brandID==newproducerDecision.parentBrandID){
 								base.retCatDecision[i].retVariantDecision[j].privateLabelVarDecision.push(newproducerDecision);
 							}
