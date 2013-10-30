@@ -87,7 +87,6 @@ exports.updateProducerDecision = function(io){
         updateBrand : categoryID,brandName,varName,location,value[,additionalIdx]
         updateCategory : category,location,value
         */
-        brandID:req.body.brandID,
         categoryID : req.body.categoryID,
         brandName : req.body.brandName,
         varName : req.body.varName,
@@ -125,7 +124,7 @@ exports.updateProducerDecision = function(io){
                                                 //console.log(doc.proCatDecision[i].categoryID+" bitch "+queryCondition.categoryID);                                      
                                                     for (var j = 0; j < doc.proCatDecision[i].proBrandsDecision.length; j++) {
                                                         //console.log(doc.proCatDecision[i].proBrandsDecision[j].brandID+" bitch "+queryCondition.brandID);                                      
-                                                        if(doc.proCatDecision[i].proBrandsDecision[j].brandID == queryCondition.brandID){
+                                                        if(doc.proCatDecision[i].proBrandsDecision[j].brandName == queryCondition.brandName){
                                                             doc.proCatDecision[i].proBrandsDecision[j].proVarDecision.push(queryCondition.value);
                                                             break;
                                                         }
@@ -138,7 +137,7 @@ exports.updateProducerDecision = function(io){
                                             for (var i = 0; i < doc.proCatDecision.length; i++) {
                                                 if(doc.proCatDecision[i].categoryID == queryCondition.categoryID){
                                                     for (var j = 0; j < doc.proCatDecision[i].proBrandsDecision.length; j++) {
-                                                        if(doc.proCatDecision[i].proBrandsDecision[j].brandID == queryCondition.brandID){
+                                                        if(doc.proCatDecision[i].proBrandsDecision[j].brandName == queryCondition.brandName){
                                                             for (var k = 0; k < proCatDecision[i].proBrandsDecision[j].proVarDecision.length; k++) {
                                                                 if(proCatDecision[i].proBrandsDecision[j].proVarDecision[k].varName == queryCondition.varName){
                                                                     delete proCatDecision[i].proBrandsDecision[j].proVarDecision[k]; //set undefined 
