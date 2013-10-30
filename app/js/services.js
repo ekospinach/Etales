@@ -19,6 +19,19 @@ define(['angular','angularResource'], function (angular,angularResource) {
 
 	}]);
 
+	services.factory('VariantHistoryInfo', ['$resource', function($resource){
+		return $resource('/variantHistoryInfo/:seminar/:period/:parentBrandName/:varName', {});
+	}]);
+	services.factory('BrandHistoryInfo', ['$resource', function($resource){
+		return $resource('/brandHistoryInfo/:seminar/:period/:brandName', {});
+	}]);
+	services.factory('CompanyHistoryInfo', ['$resource', function($resource){
+		return $resource('/companyHistoryInfo/:seminar/:period/:companyID', {});
+	}]);
+	services.factory('quarterHistoryInfo', ['$resource', function($resource){
+		return $resource('/quarterHistoryInfo/:seminar/:period',{});
+	}])
+
 	services.factory('RetailerDecision',['$resource','$rootScope',function($resource,$rootScope){
 		return $resource('retailerDecision/:retailerID/:period/:seminar',{retailerID:$rootScope.rootRetailerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar},
 		{
@@ -32,6 +45,7 @@ define(['angular','angularResource'], function (angular,angularResource) {
 			}
 		})
 	}]);
+
 	services.factory('VariantHistoryInfo', ['$resource', function($resource){
 		return $resource('/variantHistoryInfo/:seminar/:period/:parentBrandName/:varName', {});
 	}]);
@@ -162,6 +176,7 @@ define(['angular','angularResource'], function (angular,angularResource) {
 					}
 					console.log(base);
 				},
+				//错误：brandId有可能在在两个category中重复，所以这里应该先判断categoryID是否正确,或者直接使用brandName来做判断，因为brandName是唯一的
 				addProductExistedBrand:function(newproducerDecision,categoryID){
 					for(var i=1;i<base.proCatDecision.length;i++){
 						for(var j=1;j<base.proCatDecision[i].proBrandsDecision.length;j++){

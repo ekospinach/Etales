@@ -8,12 +8,12 @@ var path    = require('path'),
   io = require('socket.io').listen(server),
   Config = require('./config.js');
 
-  io.sockets.on('connection', function(socket){
-    socket.emit('baseChanged',{info: 'DataBase has been update on server side!'});
-    socket.on('ferret', function(name, fn){
-      fn('服务器端收到:' + name);
-    });
-  });
+  // io.sockets.on('connection', function(socket){
+  //   socket.emit('baseChanged',{info: 'DataBase has been update on server side!'});
+  //   socket.on('ferret', function(name, fn){
+  //     fn('服务器端收到:' + name);
+  //   });
+  // });
 
   conf = new Config();
   app.use(express.favicon());
@@ -28,8 +28,9 @@ var path    = require('path'),
   app.get('/kernelResult')
 
   app.post('/negotiationDecision');
-  app.post('/producerDecision');//,require('./api/models/producerDecision.js').addNewProductDecison);
+  app.post('/producerDecision',require('./api/models/producerDecision.js').updateProducerDecision(io));
   app.post('/retailerDecision');
+
 
   app.get('/negotiationDecision');
   app.get('/producerDecision/:producerID/:period/:seminar',require('./api/models/producerDecision.js').getAllProducerDecision);
@@ -48,11 +49,16 @@ var path    = require('path'),
 
   //special calculate API
   app.get('/productionCost');
+
+  app.get('/newDoc', require('./api/models/producerDecision.js').newDoc);
   
+  // app.use(require('./api/errorHandlers.js').logErrors);
+  // app.use(require('./api/errorHandlers.js').)
   app.use(express.errorHandler());
-  
+
+
   port = parseInt(process.env.PORT, 10) || conf.server.port;
-  mongoose.connect('mongodb://localhost/EtalesRV');
+  mongoose.connect('mongodb://localhost/Etales');
   var db = mongoose.connection;
   db.on('error', console.error.bind(console, 'connection error:'));
   db.once('open', function(response,request) {
