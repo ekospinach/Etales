@@ -192,21 +192,25 @@ define(['app'], function(app) {
 	      		var products=new Array();
 	      		for(var i=0;i<allProCatDecisions.length;i++){
 	      			for(var j=1;j<allProCatDecisions[i].proBrandsDecision.length;j++){
-	      				for(var k=1;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
-	      					products.push(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]);
-	      					products[count].category=category;
-	      					products[count].parentBrandName=allProCatDecisions[i].proBrandsDecision[j].brandName;
-	      					if(products[count].packFormat=="ECONOMY"){
-	      						products[count].packFormat=1;
-	      					}
-	      					else if(products[count].packFormat=="STANDARD"){
-	      						products[count].packFormat=2;
-	      					}
-	      					else if(products[count].packFormat=="PREMIUM"){
-	      						products[count].packFormat=3;
-	      					}
-	      					count++;
-	      				}
+	      				if(allProCatDecisions[i].proBrandsDecision[j]!=undefined){
+		      				for(var k=1;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
+		      					if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]!=undefined){
+		      						products.push(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]);
+			      					products[count].category=category;
+			      					products[count].parentBrandName=allProCatDecisions[i].proBrandsDecision[j].brandName;
+			      					if(products[count].packFormat=="ECONOMY"){
+			      						products[count].packFormat=1;
+			      					}
+			      					else if(products[count].packFormat=="STANDARD"){
+			      						products[count].packFormat=2;
+			      					}
+			      					else if(products[count].packFormat=="PREMIUM"){
+			      						products[count].packFormat=3;
+			      					}
+			      					count++;
+		      					}
+		      				}
+		      			}
 	      			}
 	      		}
 	      		if(count!=0){
@@ -242,7 +246,6 @@ define(['app'], function(app) {
 				else{
 					ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,tep,$scope.products[index][location]);													
 				}
-				$scope.$broadcast('producerDecisionBaseChanged');
 			}
 
 			var closeInfo=function(){
@@ -258,14 +261,19 @@ define(['app'], function(app) {
 				/*importantt*/
 			}		
 
-			$scope.$on('producerDecisionBaseChanged', function(event){	
-				$scope.pageBase=ProducerDecisionBase.getBase();
-				showView($scope.producerID,$scope.period,$scope.category,$scope.language);
-				$scope.$broadcast('closemodal');
-
-			});  
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
-			}); 	
+				ProducerDecisionBase.reload({period:'0', seminar:'MAY', producerID:1}).then(function(base){
+					$scope.pageBase = base;	
+				}).then(function(){
+					return promiseStep1();
+				}), function(reason){
+					console.log('from ctr: ' + reason);
+				}, function(update){
+					console.log('from ctr: ' + update);
+				};
+				console.log("producerDecisionBaseChangedFromServer start to reload");
+				showView($scope.producerID,$scope.period,$scope.category,$scope.language);
+			});
 
 	}]);
 });
