@@ -137,16 +137,16 @@ define(['app'], function(app) {
 				/*importantt*/
 			}		
 
-			$scope.$on('producerDecisionBaseChanged', function(event){	
-				$scope.pageBase=ProducerDecisionBase.getBase();
-				showView($scope.producerID,$scope.period,$scope.language);
-				//$scope.$broadcast('closemodal');
-
-			});  
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
-				$scope.pageBase=ProducerDecisionBase.getBase();
-				showView($scope.producerID,$scope.period,$scope.language);
-			}); 	
-
+				ProducerDecisionBase.reload({period:'0', seminar:'MAY', producerID:1}).then(function(base){
+					$scope.pageBase = base;	
+				}).then(function(){
+					return promiseStep1();
+				}), function(reason){
+					console.log('from ctr: ' + reason);
+				}, function(update){
+					console.log('from ctr: ' + update);
+				};
+			});	
 	}]);
 });
