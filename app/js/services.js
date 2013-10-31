@@ -226,6 +226,33 @@ define(['angular','angularResource'], function (angular,angularResource) {
 						console.log('Failed:' + res);
 					});
 				},
+				deleteProduct:function(categoryID,brandName,varName){
+					var queryCondition = {
+						seminar : 'MAY',
+						period : 0,
+						producerID : 1,
+						behaviour : 'deleteProduct', 
+							    /* 
+							    switch(behaviour) case...
+							    addProductNewBrand : categoryID
+							    addProductExistedBrand : categoryID,brandName
+							    deleteProduct : categoryID,brandName,varName
+							    deleteBrand : categoryID,brandName
+							    updateVariant : categoryID,brandName,varName,location,value[,addtionalIdx]
+							    updateBrand : categoryID,brandName,varName,location,value[,addtionalIdx]
+							    updateCategory : category,location,value
+							    */
+						categoryID : categoryID,
+						varName : varName,
+						brandName:brandName
+					}
+					$http({method:'POST', url:'/producerDecision', data: queryCondition}).then(function(res){
+						$rootScope.$broadcast('producerDecisionBaseChanged', base);
+					 	console.log('Success:' + res);
+					 },function(res){
+						console.log('Failed:' + res);
+					});
+				},
 				getBase : function(){
 					return base;
 				},
