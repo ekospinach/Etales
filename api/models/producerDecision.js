@@ -272,7 +272,7 @@ exports.getAllProducerDecision = function(req, res, next){
 
 
 exports.newDoc = function(req, res, next){
-    var newDoc = new proDecision({
+    var newDoc1 = new proDecision({
         seminar:'MAY',
         period:0,
         producerID:1,
@@ -387,7 +387,7 @@ exports.newDoc = function(req, res, next){
         },{
             categoryID:2,
             capacityChange:2,
-            investInDesign:undefined,/*null*/
+            investInDesign:undefined,
             investInProductionFlexibility:21.21,
             investInTechnology:21.21,
             proBrandsDecision:[{
@@ -490,10 +490,455 @@ exports.newDoc = function(req, res, next){
             }]
         }]
     });
-
-    newDoc.save(function(err){
+    var newDoc2=new proDecision({
+        seminar:'MAY',
+        period:0,
+        producerID:2,
+        nextBudgetExtension:1,
+        approvedBudgetExtension:1,
+        proCatDecision:[{
+            //undefined
+        },{
+            categoryID:1,
+            capacityChange:2,
+            investInDesign:6.13,
+            investInProductionFlexibility:11.57,
+            investInTechnology:3.16,
+            proBrandsDecision:[{
+                //undefined
+            },{
+                brandName:'EGEND2',
+                brandID:11,
+                paranetCompanyID:2,
+                dateOfBirth:-4,
+                dateOfDeath:10,
+                advertisingOffLine:[null,10,20],
+                advertisingOnLine:15,
+                supportEmall:15,
+                supportTraditionalTrade:[null,10,20],
+                proVarDecision:[{
+                    //undefined
+                },{
+                        varName:'_A',
+                        varID : 111, //varID = BrandID * 10 + varCount
+                        parentBrandID : 11, //brandID
+                        packFormat : 'STANDARD', //ECONOMY, STANDARD, PREMIUM
+                        dateOfBirth : -4,
+                        dateOfDeath : 10,
+                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        production : 60,
+                        currentPriceBM : 6.85,
+                        currentPriceEmall : 8.25,
+                        discontinue : false,
+                        nextPriceBM : 7.06,
+                        nextPriceEmall : 7.06
+                }]
+            },{
+                brandName:'EHAYA2',
+                brandID:12,
+                paranetCompanyID:2,
+                dateOfBirth:-4,
+                dateOfDeath:10,
+                advertisingOffLine:[null,10,20],
+                advertisingOnLine:15,
+                supportEmall:15,
+                supportTraditionalTrade:[null,10,20],
+                proVarDecision:[{
+                    //undefined
+                },{
+                        varName:'_A',
+                        varID : 121, //varID = BrandID * 10 + varCount
+                        parentBrandID : 12, //brandID
+                        packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
+                        dateOfBirth : -4,
+                        dateOfDeath : 10,
+                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        production : 60,
+                        currentPriceBM : 6.85,
+                        currentPriceEmall : 8.25,
+                        discontinue : false,
+                        nextPriceBM : 7.06,
+                        nextPriceEmall : 7.06
+                }]
+            },{
+                brandName:'ELAND2',
+                brandID:13,
+                paranetCompanyID:2,
+                dateOfBirth:-4,
+                dateOfDeath:10,
+                advertisingOffLine:[null,10,20],
+                advertisingOnLine:15,
+                supportEmall:15,
+                supportTraditionalTrade:[null,10,20],
+                proVarDecision:[{
+                    //undefined                    
+                },{
+                        varName:'_A',
+                        varID : 131, //varID = BrandID * 10 + varCount
+                        parentBrandID : 13, //brandID
+                        packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
+                        dateOfBirth : -4,
+                        dateOfDeath : 10,
+                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        production : 60,
+                        currentPriceBM : 6.85,
+                        currentPriceEmall : 8.25,
+                        discontinue : false,
+                        nextPriceBM : 7.06,
+                        nextPriceEmall : 7.06
+                },{
+                        varName:'_B',
+                        varID : 132, //varID = BrandID * 10 + varCount
+                        parentBrandID : 13, //brandID
+                        packFormat : 'PREMIUM', //ECONOMY, STANDARD, PREMIUM
+                        dateOfBirth : -4,
+                        dateOfDeath : 10,
+                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        production : 60,
+                        currentPriceBM : 6.85,
+                        currentPriceEmall : 8.25,
+                        discontinue : false,
+                        nextPriceBM : 7.06,
+                        nextPriceEmall : 7.06                    
+                }]
+            }]
+        },{
+            categoryID:2,
+            capacityChange:2,
+            investInDesign:undefined,
+            investInProductionFlexibility:21.21,
+            investInTechnology:21.21,
+            proBrandsDecision:[{
+                //undefined
+            },{
+                brandName:'HEELY2',
+                brandID:11,
+                paranetCompanyID:2,
+                dateOfBirth:-4,
+                dateOfDeath:10,
+                advertisingOffLine:[10,20],
+                advertisingOnLine:15,
+                supportEmall:15,
+                supportTraditionalTrade:[10,20],
+                proVarDecision:[{
+                    //undefined
+                },{
+                        varName:'_A',
+                        varID : 111, //varID = BrandID * 10 + varCount
+                        parentBrandID : 11, //brandID
+                        packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
+                        dateOfBirth : -4,
+                        dateOfDeath : 10,
+                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        production : 60,
+                        currentPriceBM : 6.85,
+                        currentPriceEmall : 8.25,
+                        discontinue : false,
+                        nextPriceBM : 7.06,
+                        nextPriceEmall : 7.06
+                }]
+            },{
+                brandName:'HOTOO2',
+                brandID:12,
+                paranetCompanyID:2,
+                dateOfBirth:-4,
+                dateOfDeath:10,
+                advertisingOffLine:[null,10,20],
+                advertisingOnLine:15,
+                supportEmall:15,
+                supportTraditionalTrade:[null,10,20],
+                proVarDecision:[{                    
+                    //undefined
+                },{
+                        varName:'_A',
+                        varID : 121, //varID = BrandID * 10 + varCount
+                        parentBrandID : 12, //brandID
+                        packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
+                        dateOfBirth : -4,
+                        dateOfDeath : 10,
+                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        production : 60,
+                        currentPriceBM : 6.85,
+                        currentPriceEmall : 8.25,
+                        discontinue : false,
+                        nextPriceBM : 7.06,
+                        nextPriceEmall : 7.06
+                }]
+            },{
+                brandName:'HOLAY2',
+                brandID:13,
+                paranetCompanyID:2,
+                dateOfBirth:-4,
+                dateOfDeath:10,
+                advertisingOffLine:[null,10,20],
+                advertisingOnLine:15,
+                supportEmall:15,
+                supportTraditionalTrade:[null,10,20],
+                proVarDecision:[{
+                    //undefined
+                },{
+                        varName:'_A',
+                        varID : 131, //varID = BrandID * 10 + varCount
+                        parentBrandID : 13, //brandID
+                        packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
+                        dateOfBirth : -4,
+                        dateOfDeath : 10,
+                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        production : 60,
+                        currentPriceBM : 6.85,
+                        currentPriceEmall : 8.25,
+                        discontinue : false,
+                        nextPriceBM : 7.06,
+                        nextPriceEmall : 7.06
+                },{
+                        varName:'_B',
+                        varID : 132, //varID = BrandID * 10 + varCount
+                        parentBrandID : 13, //brandID
+                        packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
+                        dateOfBirth : -4,
+                        dateOfDeath : 10,
+                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        production : 60,
+                        currentPriceBM : 6.85,
+                        currentPriceEmall : 8.25,
+                        discontinue : false,
+                        nextPriceBM : 7.06,
+                        nextPriceEmall : 7.06                    
+                }]
+            }]
+        }]
+    });
+    var newDoc3=new proDecision({
+        seminar:'MAY',
+        period:0,
+        producerID:3,
+        nextBudgetExtension:1,
+        approvedBudgetExtension:1,
+        proCatDecision:[{
+            //undefined
+        },{
+            categoryID:1,
+            capacityChange:2,
+            investInDesign:6.13,
+            investInProductionFlexibility:11.57,
+            investInTechnology:3.16,
+            proBrandsDecision:[{
+                //undefined
+            },{
+                brandName:'EGEND3',
+                brandID:11,
+                paranetCompanyID:3,
+                dateOfBirth:-4,
+                dateOfDeath:10,
+                advertisingOffLine:[null,10,20],
+                advertisingOnLine:15,
+                supportEmall:15,
+                supportTraditionalTrade:[null,10,20],
+                proVarDecision:[{
+                    //undefined
+                },{
+                        varName:'_A',
+                        varID : 111, //varID = BrandID * 10 + varCount
+                        parentBrandID : 11, //brandID
+                        packFormat : 'STANDARD', //ECONOMY, STANDARD, PREMIUM
+                        dateOfBirth : -4,
+                        dateOfDeath : 10,
+                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        production : 60,
+                        currentPriceBM : 6.85,
+                        currentPriceEmall : 8.25,
+                        discontinue : false,
+                        nextPriceBM : 7.06,
+                        nextPriceEmall : 7.06
+                }]
+            },{
+                brandName:'EHAYA3',
+                brandID:12,
+                paranetCompanyID:3,
+                dateOfBirth:-4,
+                dateOfDeath:10,
+                advertisingOffLine:[null,10,20],
+                advertisingOnLine:15,
+                supportEmall:15,
+                supportTraditionalTrade:[null,10,20],
+                proVarDecision:[{
+                    //undefined
+                },{
+                        varName:'_A',
+                        varID : 121, //varID = BrandID * 10 + varCount
+                        parentBrandID : 12, //brandID
+                        packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
+                        dateOfBirth : -4,
+                        dateOfDeath : 10,
+                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        production : 60,
+                        currentPriceBM : 6.85,
+                        currentPriceEmall : 8.25,
+                        discontinue : false,
+                        nextPriceBM : 7.06,
+                        nextPriceEmall : 7.06
+                }]
+            },{
+                brandName:'ELAND3',
+                brandID:13,
+                paranetCompanyID:3,
+                dateOfBirth:-4,
+                dateOfDeath:10,
+                advertisingOffLine:[null,10,20],
+                advertisingOnLine:15,
+                supportEmall:15,
+                supportTraditionalTrade:[null,10,20],
+                proVarDecision:[{
+                    //undefined                    
+                },{
+                        varName:'_A',
+                        varID : 131, //varID = BrandID * 10 + varCount
+                        parentBrandID : 13, //brandID
+                        packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
+                        dateOfBirth : -4,
+                        dateOfDeath : 10,
+                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        production : 60,
+                        currentPriceBM : 6.85,
+                        currentPriceEmall : 8.25,
+                        discontinue : false,
+                        nextPriceBM : 7.06,
+                        nextPriceEmall : 7.06
+                },{
+                        varName:'_B',
+                        varID : 132, //varID = BrandID * 10 + varCount
+                        parentBrandID : 13, //brandID
+                        packFormat : 'PREMIUM', //ECONOMY, STANDARD, PREMIUM
+                        dateOfBirth : -4,
+                        dateOfDeath : 10,
+                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        production : 60,
+                        currentPriceBM : 6.85,
+                        currentPriceEmall : 8.25,
+                        discontinue : false,
+                        nextPriceBM : 7.06,
+                        nextPriceEmall : 7.06                    
+                }]
+            }]
+        },{
+            categoryID:2,
+            capacityChange:2,
+            investInDesign:undefined,
+            investInProductionFlexibility:21.21,
+            investInTechnology:21.21,
+            proBrandsDecision:[{
+                //undefined
+            },{
+                brandName:'HEELY3',
+                brandID:11,
+                paranetCompanyID:3,
+                dateOfBirth:-4,
+                dateOfDeath:10,
+                advertisingOffLine:[10,20],
+                advertisingOnLine:15,
+                supportEmall:15,
+                supportTraditionalTrade:[10,20],
+                proVarDecision:[{
+                    //undefined
+                },{
+                        varName:'_A',
+                        varID : 111, //varID = BrandID * 10 + varCount
+                        parentBrandID : 11, //brandID
+                        packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
+                        dateOfBirth : -4,
+                        dateOfDeath : 10,
+                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        production : 60,
+                        currentPriceBM : 6.85,
+                        currentPriceEmall : 8.25,
+                        discontinue : false,
+                        nextPriceBM : 7.06,
+                        nextPriceEmall : 7.06
+                }]
+            },{
+                brandName:'HOTOO3',
+                brandID:12,
+                paranetCompanyID:3,
+                dateOfBirth:-4,
+                dateOfDeath:10,
+                advertisingOffLine:[null,10,20],
+                advertisingOnLine:15,
+                supportEmall:15,
+                supportTraditionalTrade:[null,10,20],
+                proVarDecision:[{                    
+                    //undefined
+                },{
+                        varName:'_A',
+                        varID : 121, //varID = BrandID * 10 + varCount
+                        parentBrandID : 12, //brandID
+                        packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
+                        dateOfBirth : -4,
+                        dateOfDeath : 10,
+                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        production : 60,
+                        currentPriceBM : 6.85,
+                        currentPriceEmall : 8.25,
+                        discontinue : false,
+                        nextPriceBM : 7.06,
+                        nextPriceEmall : 7.06
+                }]
+            },{
+                brandName:'HOLAY3',
+                brandID:13,
+                paranetCompanyID:3,
+                dateOfBirth:-4,
+                dateOfDeath:10,
+                advertisingOffLine:[null,10,20],
+                advertisingOnLine:15,
+                supportEmall:15,
+                supportTraditionalTrade:[null,10,20],
+                proVarDecision:[{
+                    //undefined
+                },{
+                        varName:'_A',
+                        varID : 131, //varID = BrandID * 10 + varCount
+                        parentBrandID : 13, //brandID
+                        packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
+                        dateOfBirth : -4,
+                        dateOfDeath : 10,
+                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        production : 60,
+                        currentPriceBM : 6.85,
+                        currentPriceEmall : 8.25,
+                        discontinue : false,
+                        nextPriceBM : 7.06,
+                        nextPriceEmall : 7.06
+                },{
+                        varName:'_B',
+                        varID : 132, //varID = BrandID * 10 + varCount
+                        parentBrandID : 13, //brandID
+                        packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
+                        dateOfBirth : -4,
+                        dateOfDeath : 10,
+                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        production : 60,
+                        currentPriceBM : 6.85,
+                        currentPriceEmall : 8.25,
+                        discontinue : false,
+                        nextPriceBM : 7.06,
+                        nextPriceEmall : 7.06                    
+                }]
+            }]
+        }]
+    });
+    newDoc1.save(function(err){
         if (err) next(new Error(err));
-        console.log('insert successfully');
+        console.log('producer1 insert successfully');
+        //res.end('insert successfully');
+    });
+    newDoc2.save(function(err){
+        if (err) next(new Error(err));
+        console.log('producer2 insert successfully');
+        //res.end('insert successfully');
+    });
+    newDoc3.save(function(err){
+        if (err) next(new Error(err));
+        console.log('producer3 insert successfully');
         res.end('insert successfully');
-    })
+    });
 }
