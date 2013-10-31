@@ -56,11 +56,11 @@
           </tr>
           <tr>
             <th><p class="text-primary" Popover-animation="true" popover="Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui." popover-title="{{fullLanguages.ITIAT}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.ITIAT}}<span style="color:red">*</span></p></th>
-            <th ng-repeat='category in categorys'><a href="#" editable-text="category.investInTechnology" onaftersave="updateProducerDecision(categoryID,'investInTechnology',$index)">{{ category.investInTechnology || 'empty' }}</a></th>
+            <th ng-repeat='category in categorys'><a href="#" editable-text="category.investInTechnology" onaftersave="updateProducerDecision(category.categoryID,'investInTechnology',$index)">{{ category.investInTechnology || 'empty' }}</a></th>
           </tr>
           <tr>
             <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.ITIF}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.ITIF}}<span style="color:red">*</span></p></th>
-            <th ng-repeat='category in categorys'><a href="#" editable-text="category.investInProductionFlexibility" onaftersave="updateProducerDecision(categoryID,'investInProductionFlexibility',$index)">{{ category.investInProductionFlexibility || 'empty' }}</a></th>
+            <th ng-repeat='category in categorys'><a href="#" editable-text="category.investInProductionFlexibility" onaftersave="updateProducerDecision(category.categoryID,'investInProductionFlexibility',$index)">{{ category.investInProductionFlexibility || 'empty' }}</a></th>
           </tr>
           <tr>
             <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.ITIDK}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.ITIDK}}<span style="color:red">*</span></p></th>

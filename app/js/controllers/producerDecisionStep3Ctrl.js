@@ -142,8 +142,10 @@ define(['app'], function(app) {
 	      		var brands=new Array();
 	      		for(var i=0;i<allProCatDecisions.length;i++){
 	      			for(var j=1;j<allProCatDecisions[i].proBrandsDecision.length;j++){
-	      				brands.push(allProCatDecisions[i].proBrandsDecision[j]);
-	      				count++;
+	      				if(allProCatDecisions[i].proBrandsDecision[j]!=undefined){
+	      					brands.push(allProCatDecisions[i].proBrandsDecision[j]);
+	      					count++;
+	      				}
 	      			}
 	      		}
 	      		if(count!=0){
@@ -166,7 +168,7 @@ define(['app'], function(app) {
 	      		});
 			}
 
-			var updateProducerDecision=function(category,brandID,location,tep,index){
+			var updateProducerDecision=function(category,brandName,location,tep,index){
 				var categoryID;
 				if(category=="Elecssories"){
 					categoryID=1;
@@ -175,12 +177,11 @@ define(['app'], function(app) {
 					categoryID=2
 				}
 				if(location=="supportTraditionalTrade"||location=="advertisingOffLine"){
-					ProducerDecisionBase.setProducerDecisionBrand(categoryID,brandID,location,tep,$scope.brands[index][location][tep]);							
+					ProducerDecisionBase.setProducerDecisionBrand(categoryID,brandName,location,tep,$scope.brands[index][location][tep]);							
 				}
 				else{
-					ProducerDecisionBase.setProducerDecisionBrand(categoryID,brandID,location,tep,$scope.brands[index][location]);													
+					ProducerDecisionBase.setProducerDecisionBrand(categoryID,brandName,location,tep,$scope.brands[index][location]);													
 				}
-				$scope.$broadcast('producerDecisionBaseChanged');
 			}
 
 			var closeInfo=function(){
@@ -196,14 +197,16 @@ define(['app'], function(app) {
 				/*importantt*/
 			}		
 
-			$scope.$on('producerDecisionBaseChanged', function(event){	
-				$scope.pageBase=ProducerDecisionBase.getBase();
-				showView($scope.producerID,$scope.period,$scope.category,$scope.language);
-				$scope.$broadcast('closemodal');
-
-			});  
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
-			}); 	
-
+				ProducerDecisionBase.reload({period:'0', seminar:'MAY', producerID:1}).then(function(base){
+					$scope.pageBase = base;	
+				}).then(function(){
+					return promiseStep1();
+				}), function(reason){
+					console.log('from ctr: ' + reason);
+				}, function(update){
+					console.log('from ctr: ' + update);
+				};
+			});	
 	}]);
 });

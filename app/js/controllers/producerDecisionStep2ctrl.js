@@ -271,8 +271,6 @@ define(['app'], function(app) {
 				}, function(update){
 					console.log('from ctr: ' + update);
 				};
-				console.log("producerDecisionBaseChangedFromServer start to reload");
-				showView($scope.producerID,$scope.period,$scope.category,$scope.language);
 			});
 
 	}]);
