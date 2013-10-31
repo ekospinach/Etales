@@ -269,23 +269,25 @@ define(['app'], function(app) {
 	      		var products=new Array();
 	      		for(var i=0;i<allProCatDecisions.length;i++){
 	      			for(var j=1;j<allProCatDecisions[i].proBrandsDecision.length;j++){
-	      				for(var k=1;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
-	      					if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]!=undefined){
-	      						products.push(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]);
-		      					products[count].category=category;
-		      					products[count].parentBrandName=allProCatDecisions[i].proBrandsDecision[j].brandName;
-		      					if(products[count].packFormat=="ECONOMY"){
-		      						products[count].packFormat=1;
+	      				if(allProCatDecisions[i].proBrandsDecision[j]!=undefined){
+		      				for(var k=1;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
+		      					if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]!=undefined){
+		      						products.push(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]);
+			      					products[count].category=category;
+			      					products[count].parentBrandName=allProCatDecisions[i].proBrandsDecision[j].brandName;
+			      					if(products[count].packFormat=="ECONOMY"){
+			      						products[count].packFormat=1;
+			      					}
+			      					else if(products[count].packFormat=="STANDARD"){
+			      						products[count].packFormat=2;
+			      					}
+			      					else if(products[count].packFormat=="PREMIUM"){
+			      						products[count].packFormat=3;
+			      					}
+			      					count++;
 		      					}
-		      					else if(products[count].packFormat=="STANDARD"){
-		      						products[count].packFormat=2;
-		      					}
-		      					else if(products[count].packFormat=="PREMIUM"){
-		      						products[count].packFormat=3;
-		      					}
-		      					count++;
-	      					}
-	      				}
+		      				}
+		      			}
 	      			}
 	      		}
 	      		if(count!=0){
@@ -343,7 +345,9 @@ define(['app'], function(app) {
 	      		var allBrands=new Array();
 	      		for(var i=0;i<allCatProDecisions.length;i++){
 	      			for(var j=1;j<allCatProDecisions[i].proBrandsDecision.length;j++){
-	      				allBrands.push({'BrandID':allCatProDecisions[i].proBrandsDecision[j].brandID,'BrandName':allCatProDecisions[i].proBrandsDecision[j].brandName});
+	      				if(allCatProDecisions[i].proBrandsDecision[j]!=undefined){
+		      				allBrands.push({'BrandID':allCatProDecisions[i].proBrandsDecision[j].brandID,'BrandName':allCatProDecisions[i].proBrandsDecision[j].brandName});	      					
+	      				}
 	      			}	
 	      		}
 	      		$scope.allBrands=allBrands;

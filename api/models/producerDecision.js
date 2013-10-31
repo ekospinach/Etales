@@ -147,6 +147,24 @@ exports.updateProducerDecision = function(io){
                                                     };
                                                 }
                                             };
+                                            var count=0;
+                                            for (var i = 0; i < doc.proCatDecision.length; i++) {
+                                                if(doc.proCatDecision[i].categoryID == queryCondition.categoryID){
+                                                    for (var j = 0; j < doc.proCatDecision[i].proBrandsDecision.length; j++) {
+                                                        if(doc.proCatDecision[i].proBrandsDecision[j]!=undefined&&doc.proCatDecision[i].proBrandsDecision[j].brandName == queryCondition.brandName){
+                                                            for (var k = 0; k < doc.proCatDecision[i].proBrandsDecision[j].proVarDecision.length; k++) {
+                                                                if(doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k]!=undefined&&doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].varName != undefined){
+                                                                    count++;
+                                                                    //delete doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k]; //set undefined 
+                                                                }
+                                                            }
+                                                            if(count==0){
+                                                                delete doc.proCatDecision[i].proBrandsDecision[j];
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            };
                                             break;
                                         case 'deleteBrand':
                                             for (var i = 0; i < doc.proCatDecision.length; i++) {
