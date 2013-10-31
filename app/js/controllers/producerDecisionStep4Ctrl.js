@@ -57,7 +57,7 @@ define(['app'], function(app) {
 			$scope.producerID=producerID;
 			$scope.period=period;
 
-			ProducerDecisionBase.reload({period:'0', seminar:'MAY', producerID:1}).then(function(base){
+			ProducerDecisionBase.reload({producerID:$rootScope.rootProducerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar}).then(function(base){
 				$scope.pageBase = base;
 			}).then(function(){
 				return promiseStep1();
@@ -138,7 +138,7 @@ define(['app'], function(app) {
 			}		
 
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
-				ProducerDecisionBase.reload({period:'0', seminar:'MAY', producerID:1}).then(function(base){
+				ProducerDecisionBase.reload({producerID:$rootScope.rootProducerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar}).then(function(base){
 					$scope.pageBase = base;	
 				}).then(function(){
 					return promiseStep1();

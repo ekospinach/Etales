@@ -269,8 +269,6 @@ exports.getAllProducerDecision = function(req, res, next){
                         }); 
 }
 
-
-
 exports.newDoc = function(req, res, next){
     var newDoc1 = new proDecision({
         seminar:'MAY',

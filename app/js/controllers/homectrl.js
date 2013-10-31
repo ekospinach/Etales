@@ -1,6 +1,6 @@
 define(['app','socketIO'], function(app) {
 
-	app.controller('HomeCtrl',['$scope', '$http', 'ProducerDecisionBase', function($scope, $http, ProducerDecisionBase) {
+	app.controller('HomeCtrl',['$scope', '$http', 'ProducerDecisionBase','$rootScope', function($scope, $http, ProducerDecisionBase,$rootScope) {
 		// You can access the scope of the controller from here
 		$scope.welcomeMessage = 'hey this is HomeCtrl.js!';
 		var socket = io.connect();
@@ -48,7 +48,7 @@ define(['app','socketIO'], function(app) {
 		}
 
 		
-		ProducerDecisionBase.reload({period:'0', seminar:'MAY', producerID:1}).then(function(base){
+		ProducerDecisionBase.reload({producerID:$rootScope.rootProducerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar}).then(function(base){
 			$scope.pageBase = base;
 			console.log($scope.pageBase);
 			$scope.pageBase = ProducerDecisionBase.getPara();

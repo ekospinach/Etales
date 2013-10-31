@@ -4,7 +4,7 @@ define(['angular','angularResource'], function (angular,angularResource) {
 	var services=angular.module('myApp.services', ['ngResource']);
 	services.value('version', '0.1');
 
-	services.factory('ProducerDecision',['$resource', function($resource){
+	services.factory('ProducerDecision',['$resource','$rootScope', function($resource,$rootScope){
 		return $resource('/producerDecision/:producerID/:period/:seminar',{},
 			{
 				save:{
@@ -33,7 +33,7 @@ define(['angular','angularResource'], function (angular,angularResource) {
 	}])
 
 	services.factory('RetailerDecision',['$resource','$rootScope',function($resource,$rootScope){
-		return $resource('retailerDecision/:retailerID/:period/:seminar',{retailerID:$rootScope.rootRetailerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar},
+		return $resource('retailerDecision/:retailerID/:period/:seminar',{},
 		{
 			save:{
 				method:"POST",
