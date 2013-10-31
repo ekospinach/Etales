@@ -136,6 +136,7 @@ define(['app'], function(app) {
 					$scope.closeInfo=closeInfo;
 					$scope.calculateBrandID=calculateBrandID;
 					$scope.calculateVarID=calculateVarID;
+					$scope.deleteProduct=deleteProduct;
 				var result=showView($scope.producerID,$scope.period,$scope.category,$scope.language);
 				delay.resolve(result);
 				if (result==1) {
@@ -150,7 +151,7 @@ define(['app'], function(app) {
 				var result=0,min=10*producerID+1,max=producerID*10+5;
 				var nums=new Array();
 				for(var i=0;i<proBrandsDecision.proBrandsDecision.length;i++){
-					if(proBrandsDecision.proBrandsDecision[i].brandID!=undefined){
+					if(proBrandsDecision.proBrandsDecision[i]!=undefined&&proBrandsDecision.proBrandsDecision[i].brandID!=undefined){
 						nums.push(proBrandsDecision.proBrandsDecision[i].brandID);
 					}
 				}
@@ -178,7 +179,7 @@ define(['app'], function(app) {
 		    	var result=0;min=parentBrandID*10+1,max=parentBrandID*10+3;
 		    	var nums=new Array();
 		    	for(var i=0;i<proVarDecision.proVarDecision.length;i++){
-					if(proVarDecision.proVarDecision[i].varID!=undefined){
+					if(proVarDecision.proVarDecision[i]!=undefined&&proVarDecision.proVarDecision[i].varID!=undefined){
 						nums.push(proVarDecision.proVarDecision[i].varID);
 					}
 				}
@@ -197,7 +198,14 @@ define(['app'], function(app) {
 				return result;
 		    }
 
-
+		    var deleteProduct=function(category,brandName,varName){
+		    	if(category=="Elecssories"){
+		    		category=1;
+		    	}else{
+		    		category=2;
+		    	}
+		    	ProducerDecisionBase.deleteProduct(category,brandName,varName);	
+		    }
 			/*Load Page*/
 			var showView=function(producerID,period,category,language){
 				$scope.producerID=producerID,$scope.period=period,$scope.category=category,$scope.language=language;
@@ -262,19 +270,21 @@ define(['app'], function(app) {
 	      		for(var i=0;i<allProCatDecisions.length;i++){
 	      			for(var j=1;j<allProCatDecisions[i].proBrandsDecision.length;j++){
 	      				for(var k=1;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
-	      					products.push(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]);
-	      					products[count].category=category;
-	      					products[count].parentBrandName=allProCatDecisions[i].proBrandsDecision[j].brandName;
-	      					if(products[count].packFormat=="ECONOMY"){
-	      						products[count].packFormat=1;
+	      					if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]!=undefined){
+	      						products.push(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]);
+		      					products[count].category=category;
+		      					products[count].parentBrandName=allProCatDecisions[i].proBrandsDecision[j].brandName;
+		      					if(products[count].packFormat=="ECONOMY"){
+		      						products[count].packFormat=1;
+		      					}
+		      					else if(products[count].packFormat=="STANDARD"){
+		      						products[count].packFormat=2;
+		      					}
+		      					else if(products[count].packFormat=="PREMIUM"){
+		      						products[count].packFormat=3;
+		      					}
+		      					count++;
 	      					}
-	      					else if(products[count].packFormat=="STANDARD"){
-	      						products[count].packFormat=2;
-	      					}
-	      					else if(products[count].packFormat=="PREMIUM"){
-	      						products[count].packFormat=3;
-	      					}
-	      					count++;
 	      				}
 	      			}
 	      		}

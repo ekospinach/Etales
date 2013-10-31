@@ -138,9 +138,9 @@ exports.updateProducerDecision = function(io){
                                                 if(doc.proCatDecision[i].categoryID == queryCondition.categoryID){
                                                     for (var j = 0; j < doc.proCatDecision[i].proBrandsDecision.length; j++) {
                                                         if(doc.proCatDecision[i].proBrandsDecision[j].brandName == queryCondition.brandName){
-                                                            for (var k = 0; k < proCatDecision[i].proBrandsDecision[j].proVarDecision.length; k++) {
-                                                                if(proCatDecision[i].proBrandsDecision[j].proVarDecision[k].varName == queryCondition.varName){
-                                                                    delete proCatDecision[i].proBrandsDecision[j].proVarDecision[k]; //set undefined 
+                                                            for (var k = 0; k < doc.proCatDecision[i].proBrandsDecision[j].proVarDecision.length; k++) {
+                                                                if(doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k]!=undefined&&doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].varName == queryCondition.varName){
+                                                                    delete doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k]; //set undefined 
                                                                 }
                                                             };
                                                         }
