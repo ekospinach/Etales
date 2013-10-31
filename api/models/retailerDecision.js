@@ -25,7 +25,7 @@ var retDecisionSchema = mongoose.Schema({
 })
 
 
-//date struture for decision (step 1,2,4)
+//date struture for decision (step 2,4)
 var retMarketDecisionSchema = mongoose.Schema({
     marketID : Number, //1~2
     categorySurfaceShare : [Number], //[1]for Elecssories [2]for HealthBeauty
@@ -104,6 +104,35 @@ var privateLabelVarDecision = mongoose.Schema({
 })
 
 var retailerDecisionModel = mongoose.model('retailerDecision', retDecisionSchema);
+
+exports.updateRetailerDecision = function(io){
+    return function(req, res, next){
+        var queryCondition = {
+            seminar : req.body.seminar,
+            period : req.body.period,
+            retailerID : req.body.producerID,
+            behaviour : req.body.hehaviour,
+            /*
+            - step 1
+            updateGeneralDecision
+
+            - step 2
+            updateMarketDecision            
+
+            - step 3
+            addProductNewBrand
+            addProductExistedBrand
+            deleteProduct
+            deleteBrand
+
+            - step 4
+            updateOrders
+            addOrders
+            deleteOrders
+            */
+        }
+    }
+}
 
 exports.getAllRetailerDecision = function(req, res, next){
     /*R_1*/

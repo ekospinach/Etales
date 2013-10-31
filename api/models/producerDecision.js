@@ -78,13 +78,17 @@ exports.updateProducerDecision = function(io){
         producerID : req.body.producerID,
         behaviour : req.body.behaviour, 
         /* 
-        switch(behaviour) case...
+        - step 1&2
         addProductNewBrand : categoryID
-        addProdcutExistedBrand : categoryID,brandName
         deleteProduct : categoryID,brandName,varName
         deleteBrand : categoryID,brandName
         updateVariant : categoryID,brandName,varName,location,value[,additionalIdx]
+        addProdcutExistedBrand : categoryID,brandName
+        
+        - step 3
         updateBrand : categoryID,brandName,varName,location,value[,additionalIdx]
+
+        - step 4
         updateCategory : category,location,value
         */
         categoryID : req.body.categoryID,

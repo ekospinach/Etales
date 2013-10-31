@@ -75,7 +75,6 @@ define(['angular','angularResource'], function (angular,angularResource) {
 					var delay = $q.defer();
 					getLoaderPromise(ProducerDecision, $q).then(function(){
 						delay.resolve(base);
-//						startListenChangeFromServer($rootScope);
 					}, function(reason){
 						delay.reject(reason);
 					}, function(update){
