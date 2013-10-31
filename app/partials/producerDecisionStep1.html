@@ -94,7 +94,8 @@
           </tr>
           <tr>
             <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.DTP}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.DTP}}<span style="color:red">*</span></p></th>
-            <th ng-repeat='product in products'><a href="#" editable-text="user.name">{{ user.name || 'empty' }}</a></th>
+            <th ng-repeat='product in products'>
+              <a href="#" editable-checkbox="product.discontinue" e-title="DisContinue this product?" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'discontinue','0',$index)">{{ product.discontinue && "DisContinue" || "Continue!" }}</a></th>
           </tr>    
         </table>
         <div>
