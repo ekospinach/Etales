@@ -108,7 +108,7 @@ exports.updateProducerDecision = function(io){
                                 if(err) {next(new Error(err));}
                                 if(!doc) {
                                     console.log('cannot find matched doc...');
-                                    res.send(404, {error:'Cannot find matched doc...'});
+                                    res.send(404,'Cannot find matched producer decision doc...');
                                 } else {
                                     var isUpdated = true;
                                     console.log('before:');
@@ -235,7 +235,7 @@ exports.updateProducerDecision = function(io){
                                             break;
                                         default:
                                             isUpdated = false;
-                                            res.send(404, 'cannot find matched query behaviour.');                                    
+                                            res.send(404, 'cannot find matched query behaviour:' + queryCondition.behaviour);                                    
                                     }
 
                                     if(isUpdated){
@@ -261,15 +261,13 @@ exports.getAllProducerDecision = function(req, res, next){
                         period:req.params.period,
                         producerID:req.params.producerID},function(err,doc){
                             if(err) {next(new Error(err));}
-                                if(!doc) {
-                                    console.log('cannot find matched doc...');
-                                    res.send(404, {error:'Cannot find matched doc...'});
-                                } else {
-                                    console.log(doc);
-                                    res.header("Content-Type", "application/json; charset=UTF-8");                                
-                                    res.statusCode = 200;
-                                    res.send(doc);    
-                                }
+                            if(!doc) {
+                                res.send(404, error:'Cannot find matched producer decision doc.');
+                            } else {
+                                res.header("Content-Type", "application/json; charset=UTF-8");                                
+                                res.statusCode = 200;
+                                res.send(doc);
+                            }
                         }); 
 }
 
