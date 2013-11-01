@@ -356,9 +356,9 @@ define(['angular','angularResource'], function (angular,angularResource) {
 						}
 					}
 					var queryCondition = {
-						seminar : 'MAY',
-						period : 0,
-						retailerID : 1,
+						seminar : $rootScope.rootSeminar,
+						period : $rootScope.rootPeriod,
+						retailerID :$rootScope.rootRetailerID,
 						behaviour : 'updatePrivateLabel', 
 						categoryID : categoryID,
 						brandName : brandName,
@@ -406,23 +406,61 @@ define(['angular','angularResource'], function (angular,angularResource) {
 					$rootScope.$broadcast('retailerDecisionBaseChanged', base);
 				},				
 				addProductNewBrand:function(newproducerDecision,categoryID){
-					for(var i=0;i<base.retCatDecision.length;i++){
+					/*for(var i=0;i<base.retCatDecision.length;i++){
 						if(base.retCatDecision[i].categoryID==categoryID){
 							base.retCatDecision[i].retVariantDecision.push(newproducerDecision);
 							break;
 						}
 					}
-					console.log(base);
-				},
-				addProductExistedBrand:function(newproducerDecision,categoryID){
-					for(var i=1;i<base.retCatDecision.length;i++){
-						for(var j=1;j<base.retCatDecision[i].retVariantDecision.length;j++){
-							if(base.retCatDecision[i].retVariantDecision[j].brandID==newproducerDecision.parentBrandID){
-								base.retCatDecision[i].retVariantDecision[j].privateLabelVarDecision.push(newproducerDecision);
-							}
-						}
+					console.log(base);*/
+					var queryCondition = {
+						seminar : $rootScope.rootSeminar,
+						period : $rootScope.rootPeriod,
+						retailerID :$rootScope.rootRetailerID,
+						behaviour : 'addProductNewBrand', 
+						categoryID : categoryID,
+						value : newproducerDecision
 					}
-					console.log(base);
+					$http({method:'POST', url:'/retailerDecision', data: queryCondition}).then(function(res){
+						$rootScope.$broadcast('retailerDecisionBaseChanged', base);
+					 	console.log('Success:' + res);
+					 },function(res){
+						console.log('Failed:' + res);
+					});
+				},
+				addProductExistedBrand:function(newproducerDecision,categoryID,brandName){
+					var queryCondition = {
+						seminar : $rootScope.rootSeminar,
+						period : $rootScope.rootPeriod,
+						retailerID :$rootScope.rootRetailerID,
+						behaviour : 'addProductExistedBrand', 
+						categoryID : categoryID,
+						brandName : brandName,
+						value : newproducerDecision
+					}
+					$http({method:'POST', url:'/retailerDecision', data: queryCondition}).then(function(res){
+						$rootScope.$broadcast('retailerDecisionBaseChanged', base);
+					 	console.log('Success:' + res);
+					 },function(res){
+						console.log('Failed:' + res);
+					});					
+				},
+				deleteProduct:function(categoryID,brandName,varName){
+					var queryCondition = {
+						seminar : $rootScope.rootSeminar,
+						period : $rootScope.rootPeriod,
+						retailerID :$rootScope.rootRetailerID,
+						behaviour : 'deleteProduct', 
+						categoryID : categoryID,
+						varName : varName,
+						brandName:brandName
+					}
+					$http({method:'POST', url:'/retailerDecision', data: queryCondition}).then(function(res){
+						$rootScope.$broadcast('retailerDecisionBaseChanged', base);
+					 	console.log('Success:' + res);
+					 },function(res){
+						console.log('Failed:' + res);
+					});
 				},
 				getBase : function(){
 					return base;

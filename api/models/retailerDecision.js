@@ -141,8 +141,8 @@ exports.newDoc=function(req,res,next){
                     varName : '_A',
                     varID : 511,
                     parentBrandID : 51,
-                    dateOfDeath : -4,
-                    dateOfBirth : 10,
+                    dateOfBirth : -4,
+                    dateOfDeath : 10,
                     packFormat : 'STANDARD',
                     composition : [null,4,4,4],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                     discontinue : false    
@@ -150,8 +150,8 @@ exports.newDoc=function(req,res,next){
                     varName : '_B',
                     varID : 512,
                     parentBrandID : 51,
-                    dateOfDeath : -4,
-                    dateOfBirth : 10,
+                    dateOfBirth : -4,
+                    dateOfDeath : 10,
                     packFormat : 'STANDARD',
                     composition : [null,5,5,5],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                     discontinue : false                     
@@ -168,8 +168,8 @@ exports.newDoc=function(req,res,next){
                     varName : '_A',
                     varID : 521,
                     parentBrandID : 52,
-                    dateOfDeath : -4,
-                    dateOfBirth : 10,
+                    dateOfBirth : -4,
+                    dateOfDeath : 10,
                     packFormat : 'PREMIUM',
                     composition : [null,4,4,4],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                     discontinue : false    
@@ -191,8 +191,8 @@ exports.newDoc=function(req,res,next){
                     varName : '_A',
                     varID : 511,
                     parentBrandID : 51,
-                    dateOfDeath : -4,
-                    dateOfBirth : 10,
+                    dateOfBirth : -4,
+                    dateOfDeath : 10,
                     packFormat : 'ECONOMY',
                     composition : [null,3,3,3],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                     discontinue : false    
@@ -209,8 +209,8 @@ exports.newDoc=function(req,res,next){
                     varName : '_A',
                     varID : 521,
                     parentBrandID : 52,
-                    dateOfDeath : -4,
-                    dateOfBirth : 10,
+                    dateOfBirth : -4,
+                    dateOfDeath : 10,
                     packFormat : 'STANDARD',
                     composition : [null,6,6,6],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                     discontinue : false    
@@ -528,10 +528,61 @@ exports.updateRetailerDecision = function(io){
                                             decision="retCatDecision";
                                         break;
                                         case 'addProductNewBrand':
+                                            for(var i=0;i<doc.retCatDecision.length;i++){
+                                                if(doc.retCatDecision[i].categoryID==queryCondition.categoryID){
+                                                    doc.retCatDecision[i].privateLabelDecision.push(queryCondition.value);
+                                                    break;
+                                                }
+                                            }
+                                            decision="retCatDecision";                    
                                         break;
                                         case 'addProductExistedBrand':
+                                            for(var i=1;i<doc.retCatDecision.length;i++){
+                                                if(doc.retCatDecision[i].categoryID==queryCondition.categoryID){
+                                                    for(j=1;j<doc.retCatDecision[i].privateLabelDecision.length;j++){
+                                                        if(doc.retCatDecision[i].privateLabelDecision[j]!=undefined&&doc.retCatDecision[i].privateLabelDecision[j].brandName==queryCondition.brandName){
+                                                            doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision.push(queryCondition.value);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            decision="retCatDecision";
                                         break;
                                         case 'deleteProduct':
+                                            for(var i=0;i<doc.retCatDecision.length;i++){
+                                                if(doc.retCatDecision[i].categoryID==queryCondition.categoryID){
+                                                    for(var j=0;j<doc.retCatDecision[i].privateLabelDecision.length;j++){
+                                                        if(doc.retCatDecision[i].privateLabelDecision[j]!=undefined&&doc.retCatDecision[i].privateLabelDecision[j].brandName==queryCondition.brandName){
+                                                            //delete doc.retCatDecision[i].privateLabelDecision[j]
+                                                            for(k=0;k<doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision.length;k++){
+                                                                if(doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k]!=undefined&&doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k].varName==queryCondition.varName){
+                                                                    delete doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k];
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            var count=0;
+                                            for(var i=0;i<doc.retCatDecision.length;i++){
+                                                if(doc.retCatDecision[i].categoryID==queryCondition.categoryID){
+                                                    for(var j=0;j<doc.retCatDecision[i].privateLabelDecision.length;j++){
+                                                        if(doc.retCatDecision[i].privateLabelDecision[j]!=undefined&&doc.retCatDecision[i].privateLabelDecision[j].brandName==queryCondition.brandName){
+                                                            //delete doc.retCatDecision[i].privateLabelDecision[j]
+                                                            for(k=0;k<doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision.length;k++){
+                                                                if(doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k]!=undefined&&doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k].varName!=undefined){
+                                                                    count++;
+                                                                    //delete doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k];
+                                                                }
+                                                            }
+                                                            if(count==0){
+                                                                delete doc.retCatDecision[i].privateLabelDecision[j];
+                                                            }   
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            decision="retCatDecision";
                                         break;
                                         case 'updateOrders':
                                         break;
