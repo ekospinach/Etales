@@ -113,7 +113,7 @@ define(['app'], function(app) {
 			$scope.shouldShow=shouldShow;
 			$scope.shouldHide=shouldHide;
 
-			RetailerDecisionBase.reload({period:'0',seminar:'MAY',retailerID:1}).then(function(base){
+			RetailerDecisionBase.reload({retailerID:$rootScope.rootRetailerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar}).then(function(base){
 			//ProducerDecisionBase.reload({period:'0', seminar:'MAY', retailerID:1}).then(function(base){
 				$scope.pageBase = base;
 			}).then(function(){

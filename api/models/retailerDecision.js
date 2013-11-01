@@ -458,6 +458,7 @@ exports.updateRetailerDecision = function(io){
             value : req.body.value
         }
         console.log(queryCondition);
+        console.log("___________");
         retDecision.findOne({seminar:queryCondition.seminar,
                             period:queryCondition.period,
                             retailerID:queryCondition.retailerID},function(err,doc){
@@ -470,14 +471,26 @@ exports.updateRetailerDecision = function(io){
                                     var decision="retMarketDecision";
                                     switch(queryCondition.behaviour){
                                         case 'updateGeneralDecision':
-                                                console.log("step1");
-                                                //console.log(doc[queryCondition.location][queryCondition.postion]);
-                                                console.log(doc["tradtionalAdvertising"]["CONVENIENCE"])
                                                 doc[queryCondition.location][queryCondition.additionalIdx]=queryCondition.value;
                                                 decision="";
-                                                console.log(doc[queryCondition.location][queryCondition.additionalIdx]);
                                         break;
                                         case 'updateMarketDecision':
+                                            for(var i=0;i<doc.retMarketDecision.length;i++){
+                                                if(doc.retMarketDecision[i].marketID==queryCondition.marketID){
+                                                    if(queryCondition.location=="categorySurfaceShare"||queryCondition.location=="localAdvertising"){
+                                                        console.log("test start");
+                                                        console.log(doc.retMarketDecision[i][queryCondition.location][queryCondition.additionalIdx]);
+                                                        doc.retMarketDecision[i][queryCondition.location][queryCondition.additionalIdx]=queryCondition.value;
+                                                        console.log(doc.retMarketDecision[i][queryCondition.location][queryCondition.additionalIdx]);
+                                                        console.log("test end");
+                                                    }else{
+                                                        doc.retMarketDecision[i][queryCondition.location]=queryCondition.value;
+                                                    }
+                                                    break;
+                                                }
+                                            };
+                                            //doc.retMarketDecision[1]['categorySurfaceShare'][2]=1000;
+                                            decision="retMarketDecision";
                                         break;
                                         case 'updatePrivateLabel':
                                             for(var i=0;i<doc.retCatDecision.length;i++){
@@ -528,10 +541,8 @@ exports.updateRetailerDecision = function(io){
                                         break;
                                     }
                                     if(isUpdated){
-                                        if(decision!=""){
-                                            doc.markModified(decision);
-                                        } 
                                         console.log(doc);
+                                        doc.markModified(decision);
                                         doc.save(function(err, doc, numberAffected){
                                             if(err) next(new Error(err));
                                             console.log('save updated hhq, number affected:'+numberAffected);

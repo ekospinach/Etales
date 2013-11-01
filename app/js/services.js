@@ -329,19 +329,22 @@ define(['angular','angularResource'], function (angular,angularResource) {
 							case 5: value="PREMIUM";break;
 						}
 					}
-					for(var i=0;i<base.retMarketDecision.length;i++){
-						if(base.retMarketDecision[i].marketID==marketID){
-							if(location=="categorySurfaceShare"){
-								base.retMarketDecision[i][location][additionalIdx]=value;
-							}else if(location=="localAdvertising"){
-								base.retMarketDecision[i][location][additionalIdx]=value;
-							}else{
-								base.retMarketDecision[i][location]=value;
-							}
-							break;
-						}
+					var queryCondition = {
+						seminar : $rootScope.rootSeminar,
+						period : $rootScope.rootPeriod,
+						retailerID :$rootScope.rootRetailerID,
+						behaviour : 'updateMarketDecision', 
+						marketID : marketID,
+						location : location,
+						additionalIdx  : additionalIdx,
+						value : value
 					}
-					console.log(base);
+					$http({method:'POST', url:'/retailerDecision', data: queryCondition}).then(function(res){
+						$rootScope.$broadcast('retailerDecisionBaseChanged', base);
+					 	console.log('Success:' + res);
+					 },function(res){
+						console.log('Failed:' + res);
+					});
 				},
 				//step3
 				setRetailerDecisionValue:function(categoryID,brandName,varName,location,additionalIdx,value){
@@ -357,26 +360,6 @@ define(['angular','angularResource'], function (angular,angularResource) {
 						period : 0,
 						retailerID : 1,
 						behaviour : 'updatePrivateLabel', 
-							    /* 
-							    switch(behaviour) case...
-					            - step 1
-					            updateGeneralDecision
-
-					            - step 2
-					            updateMarketDecision            
-
-					            - step 3
-					            addProductNewBrand
-					            addProductExistedBrand
-					            deleteProduct
-					            deleteBrand
-					            updatePrivateLabel
-
-					            - step 4
-					            updateOrders
-					            addOrders
-					            deleteOrders
-							    */
 						categoryID : categoryID,
 						brandName : brandName,
 						varName:varName,

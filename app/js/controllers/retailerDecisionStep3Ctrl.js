@@ -101,7 +101,7 @@ define(['app'], function(app) {
 			    dialogFade:true
 			};
 			/*Angular-ui-bootstrap modal end*/		
-			RetailerDecisionBase.reload({period:'0',seminar:'MAY',retailerID:1}).then(function(base){
+			RetailerDecisionBase.reload({retailerID:$rootScope.rootRetailerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar}).then(function(base){
 				$scope.pageBase = base;
 			}).then(function(){
 				return promiseStep1();
