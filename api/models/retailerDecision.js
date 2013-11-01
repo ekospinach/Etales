@@ -511,7 +511,7 @@ exports.updateRetailerDecision = function(io){
                                                                         }
                                                                     }
                                                                     if(queryCondition.location=="composition"){
-                                                                        doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k][queryCondition.location][additionalIdx]=queryCondition.value;
+                                                                        doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k][queryCondition.location][queryCondition.additionalIdx]=queryCondition.value;
                                                                     }
                                                                     else{
                                                                         doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k][queryCondition.location]=queryCondition.value;

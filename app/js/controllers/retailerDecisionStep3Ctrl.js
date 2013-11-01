@@ -446,17 +446,18 @@ define(['app'], function(app) {
 			        	RetailerDecisionBase.addProductExistedBrand(newretailerDecision,$scope.addNewCategory);							
 					}
 					close();
-					$scope.$broadcast('retailerDecisionBaseChanged');
-				//});
 			}
 
-
-			$scope.$on('retailerDecisionBaseChanged', function(event){	
-				$scope.pageBase=RetailerDecisionBase.getBase();
-				showView($scope.retailerID,$scope.period,$scope.category,$scope.language);
-				//$scope.$broadcast('closemodal');
-			});  
 			$scope.$on('retailerDecisionBaseChangedFromServer', function(event, newBase){
+				RetailerDecisionBase.reload({retailerID:$rootScope.rootRetailerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar}).then(function(base){
+					$scope.pageBase = base;
+				}).then(function(){
+					return promiseStep1();
+				}), function(reason){
+					console.log('from ctr: ' + reason);
+				}, function(update){
+					console.log('from ctr: ' + update);
+				};
 			}); 	
 
 	}]);
