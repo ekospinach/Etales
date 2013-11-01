@@ -255,11 +255,11 @@ define(['app'], function(app) {
 	      		var count=0,result=0;
 	      		var products=new Array();
 	      		for(var i=0;i<allRetCatDecisions.length;i++){
-	      			for(var j=1;j<allRetCatDecisions[i].retVariantDecision.length;j++){
-	      				for(var k=1;k<allRetCatDecisions[i].retVariantDecision[j].privateLabelVarDecision.length;k++){
-	      					products.push(allRetCatDecisions[i].retVariantDecision[j].privateLabelVarDecision[k]);
+	      			for(var j=1;j<allRetCatDecisions[i].privateLabelDecision.length;j++){
+	      				for(var k=1;k<allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision.length;k++){
+	      					products.push(allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k]);
 	      					products[count].category=category;
-	      					products[count].parentBrandName=allRetCatDecisions[i].retVariantDecision[j].brandName;
+	      					products[count].parentBrandName=allRetCatDecisions[i].privateLabelDecision[j].brandName;
 	      					if(products[count].packFormat=="ECONOMY"){
 	      						products[count].packFormat=1;
 	      					}

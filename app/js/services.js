@@ -98,9 +98,9 @@ define(['angular','angularResource'], function (angular,angularResource) {
 				setProducerDecisionValue:function(categoryID,brandName,varName,location,additionalIdx,value){
 
 					var queryCondition = {
-						seminar : 'MAY',
-						period : 0,
-						producerID : 1,
+						seminar : $rootScope.rootSeminar,
+						period : $rootScope.rootPeriod,
+						producerID :$rootScope.rootProducerID,
 						behaviour : 'updateVariant', 
 							    /* 
 							    switch(behaviour) case...
@@ -129,9 +129,9 @@ define(['angular','angularResource'], function (angular,angularResource) {
 				//step3
 				setProducerDecisionBrand:function(categoryID,brandName,location,additionalIdx,value){
 					var queryCondition = {
-						seminar : 'MAY',
-						period : 0,
-						producerID : 1,
+						seminar : $rootScope.rootSeminar,
+						period : $rootScope.rootPeriod,
+						producerID :$rootScope.rootProducerID,
 						behaviour : 'updateBrand', 
 							    /* 
 							    switch(behaviour) case...
@@ -159,9 +159,9 @@ define(['angular','angularResource'], function (angular,angularResource) {
 				//step4
 				setProducerDecisionCategory:function(categoryID,location,value){
 					var queryCondition = {
-						seminar : 'MAY',
-						period : 0,
-						producerID : 1,
+						seminar : $rootScope.rootSeminar,
+						period : $rootScope.rootPeriod,
+						producerID :$rootScope.rootProducerID,
 						behaviour : 'updateCategory', 
 						categoryID : categoryID,
 						location : location,
@@ -176,9 +176,9 @@ define(['angular','angularResource'], function (angular,angularResource) {
 				},
 				addProductNewBrand:function(newproducerDecision,categoryID){
 					var queryCondition = {
-						seminar : 'MAY',
-						period : 0,
-						producerID : 1,
+						seminar : $rootScope.rootSeminar,
+						period : $rootScope.rootPeriod,
+						producerID :$rootScope.rootProducerID,
 						behaviour : 'addProductNewBrand', 
 						categoryID : categoryID,
 						value : newproducerDecision
@@ -193,9 +193,9 @@ define(['angular','angularResource'], function (angular,angularResource) {
 				},
 				addProductExistedBrand:function(newproducerDecision,categoryID,brandName){
 					var queryCondition = {
-						seminar : 'MAY',
-						period : 0,
-						producerID : 1,
+						seminar : $rootScope.rootSeminar,
+						period : $rootScope.rootPeriod,
+						producerID :$rootScope.rootProducerID,
 						behaviour : 'addProductExistedBrand', 
 						categoryID : categoryID,
 						value : newproducerDecision,
@@ -210,9 +210,9 @@ define(['angular','angularResource'], function (angular,angularResource) {
 				},
 				deleteProduct:function(categoryID,brandName,varName){
 					var queryCondition = {
-						seminar : 'MAY',
-						period : 0,
-						producerID : 1,
+						seminar : $rootScope.rootSeminar,
+						period : $rootScope.rootPeriod,
+						producerID :$rootScope.rootProducerID,
 						behaviour : 'deleteProduct', 
 
 						categoryID : categoryID,
@@ -312,12 +312,12 @@ define(['angular','angularResource'], function (angular,angularResource) {
 				//step3
 				setRetailerDecisionValue:function(categoryID,brandName,varName,location,addtionalIdx,value){
 					//startListenChangeFromServer($rootScope);
-					for(var i=0;i<base.retCatDecision.length;i++){
+					/*for(var i=0;i<base.retCatDecision.length;i++){
 						if(base.retCatDecision[i].categoryID==categoryID){
-							for(var j=0;j<base.retCatDecision[i].retVariantDecision.length;j++){
-								if(base.retCatDecision[i].retVariantDecision[j].brandName==brandName){
-									for(var k=0;k<base.retCatDecision[i].retVariantDecision[j].privateLabelVarDecision.length;k++){
-										if(base.retCatDecision[i].retVariantDecision[j].privateLabelVarDecision[k].varName==varName){
+							for(var j=0;j<base.retCatDecision[i].privateLabelDecision.length;j++){
+								if(base.retCatDecision[i].privateLabelDecision[j].brandName==brandName){
+									for(var k=0;k<base.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision.length;k++){
+										if(base.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k].varName==varName){
 											if(location=="packFormat"){
 												if(value==1){
 													value="ECONOMY";
@@ -330,10 +330,10 @@ define(['angular','angularResource'], function (angular,angularResource) {
 												}
 											}
 											if(location=="composition"){
-												base.retCatDecision[i].retVariantDecision[j].privateLabelVarDecision[k][location][addtionalIdx]=value;
+												base.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k][location][addtionalIdx]=value;
 											}
 											else{
-												base.retCatDecision[i].retVariantDecision[j].privateLabelVarDecision[k][location]=value;
+												base.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k][location]=value;
 											}
 											break;
 										}
@@ -344,7 +344,41 @@ define(['angular','angularResource'], function (angular,angularResource) {
 							break;
 						}
 					}	
-					console.log(base);
+					console.log(base);*/
+					if(location=="packFormat"){
+						switch(value){
+							case 1:"ECONOMY";break;
+							case 2:"STANDARD";break;
+							case 3:"PREMIUM";break;
+						}
+					}
+					var queryCondition = {
+						seminar : 'MAY',
+						period : 0,
+						producerID : 1,
+						behaviour : 'updateBrand', 
+							    /* 
+							    switch(behaviour) case...
+							    addProductNewBrand : categoryID
+							    addProdcutExistedBrand : categoryID,brandName
+							    deleteProduct : categoryID,brandName,varName
+							    deleteBrand : categoryID,brandName
+							    updateVariant : categoryID,brandName,varName,location,value[,addtionalIdx]
+							    updateBrand : categoryID,brandName,varName,location,value[,addtionalIdx]
+							    updateCategory : category,location,value
+							    */
+						categoryID : categoryID,
+						brandName : brandName,
+						location : location,
+						additionalIdx  : additionalIdx,
+						value : value
+					}
+					$http({method:'POST', url:'/producerDecision', data: queryCondition}).then(function(res){
+						$rootScope.$broadcast('producerDecisionBaseChanged', base);
+					 	console.log('Success:' + res);
+					 },function(res){
+						console.log('Failed:' + res);
+					});
 					//$rootScope.$broadcast('producerDecisionBaseChanged', base);
 				},
 				//step4

@@ -8,8 +8,16 @@ define(['app','socketIO'], function(app) {
 			console.log('from server socketIO:' + data);
 		});
 
-		$scope.newDoc = function(){
-			$http({method: 'GET', url: '/newDoc'}).then(function(res){
+		$scope.proNewDoc = function(){
+			$http({method: 'GET', url: '/proNewDoc'}).then(function(res){
+				console.log(res);
+			},function(res){
+				console.log(res);
+			});
+		}
+
+		$scope.retNewDoc=function(){
+			$http({method: 'GET', url: '/retNewDoc'}).then(function(res){
 				console.log(res);
 			},function(res){
 				console.log(res);

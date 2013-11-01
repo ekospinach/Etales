@@ -50,7 +50,8 @@ var path    = require('path'),
   //special calculate API
   app.get('/productionCost');
 
-  app.get('/newDoc', require('./api/models/producerDecision.js').newDoc);
+  app.get('/proNewDoc', require('./api/models/producerDecision.js').newDoc);
+  app.get('/retNewDoc', require('./api/models/retailerDecision.js').newDoc);
   
   // app.use(require('./api/errorHandlers.js').logErrors);
   // app.use(require('./api/errorHandlers.js').)

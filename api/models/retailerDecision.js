@@ -2,68 +2,15 @@ var mongoose = require('mongoose'),
     http = require('http'),
     util = require('util');
 
-var retDecisionSchema = mongoose.Schema({
-    seminar : String,
-    period : Number,
-    retailerID : Number, //TAllRetailers (1~4)
-    seminar : String,
-    period : Number,    
-    nextBudgetExtension : Number,
-    approvedBudgetExtension : Number,
-    onlineAdvertising : {
-        PRICE : Number,
-        CONVENIENCE : Number,
-        ASSORTMENT : Number
-    },
-    tradtionalAdvertising : {
-        PRICE : Number,
-        CONVENIENCE : Number,
-        ASSORTMENT : Number        
-    },
-    retCatDecision : [retCatDecisionSchema], //length: TCategories(1~2)
-    retMarketDecision: [retMarketDecisionSchema] //length: TMarkets(1~2)
-})
-
-
-//date struture for decision (step 2,4)
-var retMarketDecisionSchema = mongoose.Schema({
-    marketID : Number, //1~2
-    categorySurfaceShare : [Number], //[1]for Elecssories [2]for HealthBeauty
-    emptySpaceOptimised : Boolean,
-    localAdvertising : {
-        PRICE : Number,
-        CONVENIENCE : Number,
-        ASSORTMENT : Number            
-    },
-    serviceLevel : String, //SL_BASE, SL_FAIR, SL_MEDIUM, SL_ENHANCED, SL_PREMIUM
-    retMarketAssortmentDecision : [retQuarterAssortmentDecisionSchema] //length : TCategories(1~2)
-})
-
-var retQuarterAssortmentDecisionSchema = mongoose.Schema({
-    categoryID : Number, //1~2
-    retVariantDecision : [retVariantDecisionSchema] //length : TRetVariants(1~21)
-})
-
-var retVariantDecisionSchema = mongoose.Schema({
-    brandID : Number,
-    variantID : Number,
-    brandName : String, //need Dariusz to add this in dataStruture
-    varName : String, //need Dariusz to add this in dataStruture
-    dateOfBirth : Number,
+var privateLabelVarDecision = mongoose.Schema({
+    varName : String,
+    varID : Number,
+    parentBrandID : Number,
     dateOfDeath : Number,
-    order : Number,
-    pricePromotions : {
-        promo_Frequency : Number, //range: 0~52
-        promo_Rate : Number //0~1
-    },
-    retailerPrice : Number,
-    shelfSpace : Number //saved as a %
-})
-
-//date strute for private labels (step 3)
-var retCatDecisionSchema = mongoose.Schema({
-    categoryID : Number, //1~2
-    privateLabelDecision : [privateLabelDecisionSchema] //length: TPrivateLabels(1~4, effective number is 3)
+    dateOfBirth : Number,
+    packFormat : String,
+    composition : [Number],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+    discontinue : Boolean    
 })
 
 var privateLabelDecisionSchema = mongoose.Schema({
@@ -92,51 +39,74 @@ var privateLabelDecisionSchema = mongoose.Schema({
     privateLabelVarDecision : [privateLabelVarDecision] //length: TOneBrandVars(1~3)
 })
 
-var privateLabelVarDecision = mongoose.Schema({
-    varName : String,
-    varID : Number,
-    parentBrandID : Number,
-    dateOfDeath : Number,
-    dateOfBirth : Number,
-    packFormat : String,
-    composition : [Number],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
-    discontinue : Boolean    
+//date strute for private labels (step 3)
+var retCatDecisionSchema = mongoose.Schema({
+    categoryID : Number, //1~2
+    privateLabelDecision : [privateLabelDecisionSchema] //length: TPrivateLabels(1~4, effective number is 3)
 })
 
-var retailerDecisionModel = mongoose.model('retailerDecision', retDecisionSchema);
+var retVariantDecisionSchema = mongoose.Schema({
+    brandID : Number,
+    variantID : Number,
+    brandName : String, //need Dariusz to add this in dataStruture
+    varName : String, //need Dariusz to add this in dataStruture
+    dateOfBirth : Number,
+    dateOfDeath : Number,
+    order : Number,
+    pricePromotions : {
+        promo_Frequency : Number, //range: 0~52
+        promo_Rate : Number //0~1
+    },
+    retailerPrice : Number,
+    shelfSpace : Number //saved as a %
+})
 
-exports.updateRetailerDecision = function(io){
-    return function(req, res, next){
-        var queryCondition = {
-            seminar : req.body.seminar,
-            period : req.body.period,
-            retailerID : req.body.producerID,
-            behaviour : req.body.hehaviour,
-            /*
-            - step 1
-            updateGeneralDecision
+var retQuarterAssortmentDecisionSchema = mongoose.Schema({
+    categoryID : Number, //1~2
+    retVariantDecision : [retVariantDecisionSchema] //length : TRetVariants(1~21)
+})
 
-            - step 2
-            updateMarketDecision            
+//date struture for decision (step 2,4)
+var retMarketDecisionSchema = mongoose.Schema({
+    marketID : Number, //1~2
+    categorySurfaceShare : [Number], //[1]for Elecssories [2]for HealthBeauty
+    emptySpaceOptimised : Boolean,
+    localAdvertising : {
+        PRICE : Number,
+        CONVENIENCE : Number,
+        ASSORTMENT : Number            
+    },
+    serviceLevel : String, //SL_BASE, SL_FAIR, SL_MEDIUM, SL_ENHANCED, SL_PREMIUM
+    retMarketAssortmentDecision : [retQuarterAssortmentDecisionSchema] //length : TCategories(1~2)
+})
 
-            - step 3
-            addProductNewBrand
-            addProductExistedBrand
-            deleteProduct
-            deleteBrand
+var retDecisionSchema = mongoose.Schema({
+    seminar : String,
+    period : Number,
+    retailerID : Number, //TAllRetailers (1~4)
+    seminar : String,
+    period : Number,    
+    nextBudgetExtension : Number,
+    approvedBudgetExtension : Number,
+    onlineAdvertising : {
+        PRICE : Number,
+        CONVENIENCE : Number,
+        ASSORTMENT : Number
+    },
+    tradtionalAdvertising : {
+        PRICE : Number,
+        CONVENIENCE : Number,
+        ASSORTMENT : Number        
+    },
+    retCatDecision : [retCatDecisionSchema], //length: TCategories(1~2)
+    retMarketDecision: [retMarketDecisionSchema] //length: TMarkets(1~2)
+})
 
-            - step 4
-            updateOrders
-            addOrders
-            deleteOrders
-            */
-        }
-    }
-}
+var retDecision = mongoose.model('retailerDecision', retDecisionSchema);
 
-exports.getAllRetailerDecision = function(req, res, next){
-    /*R_1*/
-    var retailerDecisions={
+
+exports.newDoc=function(req,res,next){
+    var newDoc=new retDecision({
         seminar : 'MAY',
         period : 0,
         retailerID:1,
@@ -156,7 +126,7 @@ exports.getAllRetailerDecision = function(req, res, next){
             //undefined
         },{
             categoryID:1,
-            retVariantDecision:[{
+            privateLabelDecision:[{
                 //undefined
             },{
                 brandName : 'ELISA5',
@@ -164,6 +134,7 @@ exports.getAllRetailerDecision = function(req, res, next){
                 parentCompanyID : 5,
                 dateOfBirth : -4, //which period this brand be created, if this brand is initialized in the beginning, this value should be -4
                 dateOfDeath : 10, //which period this brand be discontinued, if this brand haven't been discontinued, this value should be 10
+                
                 privateLabelVarDecision : [{
                     //undefined
                 },{
@@ -173,7 +144,7 @@ exports.getAllRetailerDecision = function(req, res, next){
                     dateOfDeath : -4,
                     dateOfBirth : 10,
                     packFormat : 'STANDARD',
-                    composition : [undefined,4,4,4],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                    composition : [null,4,4,4],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                     discontinue : false    
                 },{
                     varName : '_B',
@@ -182,7 +153,7 @@ exports.getAllRetailerDecision = function(req, res, next){
                     dateOfDeath : -4,
                     dateOfBirth : 10,
                     packFormat : 'STANDARD',
-                    composition : [undefined,5,5,5],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                    composition : [null,5,5,5],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                     discontinue : false                     
                 }] //length: TOneBrandVars(1~3)
             },{
@@ -200,13 +171,13 @@ exports.getAllRetailerDecision = function(req, res, next){
                     dateOfDeath : -4,
                     dateOfBirth : 10,
                     packFormat : 'PREMIUM',
-                    composition : [undefined,4,4,4],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                    composition : [null,4,4,4],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                     discontinue : false    
                 }] //length: TOneBrandVars(1~3)
             }]
         },{
             categoryID:2,
-            retVariantDecision:[{
+            privateLabelDecision:[{
                 //undefined
             },{
                 brandName : 'HARIS5',
@@ -223,7 +194,7 @@ exports.getAllRetailerDecision = function(req, res, next){
                     dateOfDeath : -4,
                     dateOfBirth : 10,
                     packFormat : 'ECONOMY',
-                    composition : [undefined,3,3,3],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                    composition : [null,3,3,3],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                     discontinue : false    
                 }] //length: TOneBrandVars(1~3)
             },{
@@ -241,7 +212,7 @@ exports.getAllRetailerDecision = function(req, res, next){
                     dateOfDeath : -4,
                     dateOfBirth : 10,
                     packFormat : 'STANDARD',
-                    composition : [undefined,6,6,6],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                    composition : [null,6,6,6],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                     discontinue : false    
                 }] //length: TOneBrandVars(1~3)                
             }]
@@ -250,7 +221,7 @@ exports.getAllRetailerDecision = function(req, res, next){
             //undefined
         },{
             marketID : 1, //1~2
-            categorySurfaceShare : [undefined,10,20], //[1]for Elecssories [2]for HealthBeauty
+            categorySurfaceShare : [null,10,20], //[1]for Elecssories [2]for HealthBeauty
             emptySpaceOptimised : false,
             localAdvertising : {
                 PRICE : 11,
@@ -357,7 +328,7 @@ exports.getAllRetailerDecision = function(req, res, next){
             }] //length : TCategories(1~2)
         },{
             marketID : 2, //1~2
-            categorySurfaceShare : [undefined,20,30], //[1]for Elecssories [2]for HealthBeauty
+            categorySurfaceShare : [null,20,30], //[1]for Elecssories [2]for HealthBeauty
             emptySpaceOptimised : false,
             localAdvertising : {
                 PRICE : 22,
@@ -463,8 +434,129 @@ exports.getAllRetailerDecision = function(req, res, next){
                 }]
             }] //length : TCategories(1~2)
         }] 
+    });
+    newDoc.save(function(err){
+        if (err) next(new Error(err));
+        console.log('retailer insert successfully');
+        res.end('insert successfully');
+    });
+}
+
+exports.updateRetailerDecision = function(io){
+    return function(req, res, next){
+        var queryCondition = {
+            seminar : req.body.seminar,
+            period : req.body.period,
+            retailerID : req.body.producerID,
+            behaviour : req.body.hehaviour,
+            /*
+            - step 1
+            updateGeneralDecision
+
+            - step 2
+            updateMarketDecision            
+
+            - step 3
+            addProductNewBrand
+            addProductExistedBrand
+            deleteProduct
+            deleteBrand
+            updatePrivateLabel
+
+            - step 4
+            updateOrders
+            addOrders
+            deleteOrders
+            */
+            brandName : req.body.brandName,
+            varName : req.body.varName,
+            categoryID : req.body.categoryID,
+            marketID : req.body.marketID,
+            location : req.body.location,
+            additionalIdx : req.body.additionalIdx,
+            value : req.body.value
+        }
+        retDecision.findOne({seminar:req.params.seminar,
+                            period:req.params.period,
+                            retailerID:req.params.retailerID},function(err,doc){
+                            if(err) {next(new Error(err));}
+                                if(!doc) {
+                                    console.log('cannot find matched doc...');
+                                    res.send(404, {error:'Cannot find matched doc...'});
+                                } else {
+                                    var isUpdated=true;
+                                    switch(queryCondition.behaviour){
+                                        case 'updateGeneralDecision':
+                                                console.log("1");
+                                        break;
+                                        case 'updateMarketDecision':
+                                        break;
+                                        case 'updatePrivateLabel':
+                                            for(var i=0;i<doc.retCatDecision.length;i++){
+                                                if(doc.retCatDecision[i].categoryID==categoryID){
+                                                    for(var j=0;j<doc.retCatDecision[i].privateLabelDecision.length;j++){
+                                                        if(doc.retCatDecision[i].privateLabelDecision[j].brandName==brandName){
+                                                            for(var k=0;k<doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision.length;k++){
+                                                                if(doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k].varName==varName){
+                                                                    if(location=="packFormat"){
+                                                                        if(value==1){
+                                                                            value="ECONOMY";
+                                                                        }
+                                                                        if(value==2){
+                                                                            value="STANDARD";
+                                                                        }
+                                                                        if(value==3){
+                                                                            value="PREMIUM";
+                                                                        }
+                                                                    }
+                                                                    if(location=="composition"){
+                                                                        doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k][location][addtionalIdx]=value;
+                                                                    }
+                                                                    else{
+                                                                        doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k][location]=value;
+                                                                    }
+                                                                    break;
+                                                                }
+                                                            }
+                                                            break;
+                                                        }
+                                                    }
+                                                    break;
+                                                }
+                                            };
+                                        break;
+                                        case 'addProductNewBrand':
+                                        break;
+                                        case 'addProductExistedBrand':
+                                        break;
+                                        case 'deleteProduct':
+                                        break;
+                                        case 'updateOrders':
+                                        break;
+                                        case 'addOrders':
+                                        break;
+                                        case 'deleteOrders':
+                                        break;
+                                    }
+                                }
+                        }); 
     }
-    res.header("Content-Type", "application/json; charset=UTF-8");                                
-    res.statusCode = 200;
-    res.send(retailerDecisions); 
+}
+
+exports.getAllRetailerDecision = function(req, res, next){
+    /*R_1*/
+    retDecision.findOne({seminar:req.params.seminar,
+                        period:req.params.period,
+                        retailerID:req.params.retailerID},function(err,doc){
+                            if(err) {next(new Error(err));}
+                                if(!doc) {
+                                    console.log('cannot find matched doc...');
+                                    res.send(404, {error:'Cannot find matched doc...'});
+                                } else {
+                                    console.log(doc);
+                                    res.header("Content-Type", "application/json; charset=UTF-8");                                
+                                    res.statusCode = 200;
+                                    res.send(doc);    
+                                }
+                        }); 
 }
