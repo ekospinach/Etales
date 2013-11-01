@@ -29,7 +29,7 @@ var path    = require('path'),
 
   app.post('/negotiationDecision');
   app.post('/producerDecision',require('./api/models/producerDecision.js').updateProducerDecision(io));
-  app.post('/retailerDecision');
+  app.post('/retailerDecision',require('./api/models/retailerDecision.js').updateRetailerDecision(io));
 
 
   app.get('/negotiationDecision');

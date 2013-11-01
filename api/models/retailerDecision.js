@@ -447,27 +447,8 @@ exports.updateRetailerDecision = function(io){
         var queryCondition = {
             seminar : req.body.seminar,
             period : req.body.period,
-            retailerID : req.body.producerID,
-            behaviour : req.body.hehaviour,
-            /*
-            - step 1
-            updateGeneralDecision
-
-            - step 2
-            updateMarketDecision            
-
-            - step 3
-            addProductNewBrand
-            addProductExistedBrand
-            deleteProduct
-            deleteBrand
-            updatePrivateLabel
-
-            - step 4
-            updateOrders
-            addOrders
-            deleteOrders
-            */
+            retailerID : req.body.retailerID,
+            behaviour : req.body.behaviour,
             brandName : req.body.brandName,
             varName : req.body.varName,
             categoryID : req.body.categoryID,
@@ -476,44 +457,51 @@ exports.updateRetailerDecision = function(io){
             additionalIdx : req.body.additionalIdx,
             value : req.body.value
         }
-        retDecision.findOne({seminar:req.params.seminar,
-                            period:req.params.period,
-                            retailerID:req.params.retailerID},function(err,doc){
+        console.log(queryCondition);
+        retDecision.findOne({seminar:queryCondition.seminar,
+                            period:queryCondition.period,
+                            retailerID:queryCondition.retailerID},function(err,doc){
                             if(err) {next(new Error(err));}
                                 if(!doc) {
                                     console.log('cannot find matched doc...');
                                     res.send(404, {error:'Cannot find matched doc...'});
                                 } else {
                                     var isUpdated=true;
+                                    var decision="retMarketDecision";
                                     switch(queryCondition.behaviour){
                                         case 'updateGeneralDecision':
-                                                console.log("1");
+                                                console.log("step1");
+                                                //console.log(doc[queryCondition.location][queryCondition.postion]);
+                                                console.log(doc["tradtionalAdvertising"]["CONVENIENCE"])
+                                                doc[queryCondition.location][queryCondition.additionalIdx]=queryCondition.value;
+                                                decision="";
+                                                console.log(doc[queryCondition.location][queryCondition.additionalIdx]);
                                         break;
                                         case 'updateMarketDecision':
                                         break;
                                         case 'updatePrivateLabel':
                                             for(var i=0;i<doc.retCatDecision.length;i++){
-                                                if(doc.retCatDecision[i].categoryID==categoryID){
+                                                if(doc.retCatDecision[i].categoryID==queryCondition.categoryID){
                                                     for(var j=0;j<doc.retCatDecision[i].privateLabelDecision.length;j++){
-                                                        if(doc.retCatDecision[i].privateLabelDecision[j].brandName==brandName){
+                                                        if(doc.retCatDecision[i].privateLabelDecision[j].brandName==queryCondition.brandName){
                                                             for(var k=0;k<doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision.length;k++){
-                                                                if(doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k].varName==varName){
-                                                                    if(location=="packFormat"){
-                                                                        if(value==1){
-                                                                            value="ECONOMY";
+                                                                if(doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k].varName==queryCondition.varName){
+                                                                    if(queryCondition.location=="packFormat"){
+                                                                        if(queryCondition.value==1){
+                                                                            queryCondition.value="ECONOMY";
                                                                         }
-                                                                        if(value==2){
-                                                                            value="STANDARD";
+                                                                        if(queryCondition.value==2){
+                                                                            queryCondition.value="STANDARD";
                                                                         }
-                                                                        if(value==3){
-                                                                            value="PREMIUM";
+                                                                        if(queryCondition.value==3){
+                                                                            queryCondition.value="PREMIUM";
                                                                         }
                                                                     }
-                                                                    if(location=="composition"){
-                                                                        doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k][location][addtionalIdx]=value;
+                                                                    if(queryCondition.location=="composition"){
+                                                                        doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k][queryCondition.location][additionalIdx]=queryCondition.value;
                                                                     }
                                                                     else{
-                                                                        doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k][location]=value;
+                                                                        doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k][queryCondition.location]=queryCondition.value;
                                                                     }
                                                                     break;
                                                                 }
@@ -524,6 +512,7 @@ exports.updateRetailerDecision = function(io){
                                                     break;
                                                 }
                                             };
+                                            decision="retCatDecision";
                                         break;
                                         case 'addProductNewBrand':
                                         break;
@@ -538,6 +527,19 @@ exports.updateRetailerDecision = function(io){
                                         case 'deleteOrders':
                                         break;
                                     }
+                                    if(isUpdated){
+                                        if(decision!=""){
+                                            doc.markModified(decision);
+                                        } 
+                                        console.log(doc);
+                                        doc.save(function(err, doc, numberAffected){
+                                            if(err) next(new Error(err));
+                                            console.log('save updated hhq, number affected:'+numberAffected);
+                                            io.sockets.emit('retailerBaseChanged', 'this is a baseChanged');
+                                            res.send(200, 'mission complete!');
+                                        });                                   
+                                    }    
+
                                 }
                         }); 
     }

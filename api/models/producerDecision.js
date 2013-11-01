@@ -111,8 +111,8 @@ exports.updateProducerDecision = function(io){
                                     res.send(404, {error:'Cannot find matched doc...'});
                                 } else {
                                     var isUpdated = true;
-                                    console.log('before:');
-                                    console.log(doc.proCatDecision[0].proBrandsDecision[0]);
+                                    //console.log('before:');
+                                    //console.log(doc.proCatDecision[0].proBrandsDecision[0]);
 
                                     switch(queryCondition.behaviour){
                                         case 'addProductNewBrand':
@@ -243,7 +243,7 @@ exports.updateProducerDecision = function(io){
                                         doc.save(function(err, doc, numberAffected){
                                             if(err) next(new Error(err));
                                             console.log('save updated, number affected:'+numberAffected);
-                                            io.sockets.emit('baseChangedNew', 'this is a baseChanged');
+                                            io.sockets.emit('producerBaseChanged', 'this is a baseChanged');
                                             res.send(200, 'mission complete!');
                                         });                                   
 

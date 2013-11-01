@@ -84,7 +84,7 @@ define(['angular','angularResource'], function (angular,angularResource) {
 				},
 				startListenChangeFromServer : function(){
 					var socket = io.connect();
-					socket.on('baseChangedNew', function(data){
+					socket.on('producerBaseChanged', function(data){
 						//console.log(data);
 						$rootScope.$broadcast('producerDecisionBaseChangedFromServer', base);
 					});					
@@ -258,7 +258,7 @@ define(['angular','angularResource'], function (angular,angularResource) {
 			}, base;			
 
 		this.setDefaultPara = function(p) { requestPara = p };
-		this.$get = ['RetailerDecision', '$q','$rootScope', function(RetailerDecision, $q, $rootScope){
+		this.$get = ['RetailerDecision', '$q','$rootScope','$http', function(RetailerDecision, $q, $rootScope,$http){
 			return {
 				reload : function(p){ 
 					requestPara = p;
@@ -274,18 +274,52 @@ define(['angular','angularResource'], function (angular,angularResource) {
 				},
 				startListenChangeFromServer : function(){
 					var socket = io.connect();
-					socket.on('baseChanged', function(data){
+					socket.on('retailerBaseChanged', function(data){
 						console.log(data);
 						$rootScope.$broadcast('retailerDecisionBaseChangedFromServer', base);
 					});					
 				},
 				//step1
-				setRetailerDecisionBase:function(location,postion,value){
-					base[location][postion]=value;
-					console.log(base);
+								/* 
+							    switch(behaviour) case...
+					            - step 1
+					            updateGeneralDecision
+
+					            - step 2
+					            updateMarketDecision            
+
+					            - step 3
+					            addProductNewBrand
+					            addProductExistedBrand
+					            deleteProduct
+					            deleteBrand
+					            updatePrivateLabel
+
+					            - step 4
+					            updateOrders
+					            addOrders
+					            deleteOrders
+							    */
+				//step1
+				setRetailerDecisionBase:function(location,additionalIdx,value){
+					var queryCondition = {
+						seminar : $rootScope.rootSeminar,
+						period : $rootScope.rootPeriod,
+						retailerID :$rootScope.rootRetailerID,
+						behaviour : 'updateGeneralDecision', 
+						location : location,
+						additionalIdx  : additionalIdx,
+						value : value
+					}
+					$http({method:'POST', url:'/retailerDecision', data: queryCondition}).then(function(res){
+						$rootScope.$broadcast('retailerDecisionBaseChanged', base);
+					 	console.log('Success:' + res);
+					 },function(res){
+						console.log('Failed:' + res);
+					});
 				},
 				//step2
-				setMarketDecisionBase:function(marketID,location,postion,value){
+				setMarketDecisionBase:function(marketID,location,additionalIdx,value){
 					if(location=="serviceLevel"){
 						switch(value){
 							case 1: value="BASE";break;
@@ -298,9 +332,9 @@ define(['angular','angularResource'], function (angular,angularResource) {
 					for(var i=0;i<base.retMarketDecision.length;i++){
 						if(base.retMarketDecision[i].marketID==marketID){
 							if(location=="categorySurfaceShare"){
-								base.retMarketDecision[i][location][postion]=value;
+								base.retMarketDecision[i][location][additionalIdx]=value;
 							}else if(location=="localAdvertising"){
-								base.retMarketDecision[i][location][postion]=value;
+								base.retMarketDecision[i][location][additionalIdx]=value;
 							}else{
 								base.retMarketDecision[i][location]=value;
 							}
@@ -310,71 +344,48 @@ define(['angular','angularResource'], function (angular,angularResource) {
 					console.log(base);
 				},
 				//step3
-				setRetailerDecisionValue:function(categoryID,brandName,varName,location,addtionalIdx,value){
-					//startListenChangeFromServer($rootScope);
-					/*for(var i=0;i<base.retCatDecision.length;i++){
-						if(base.retCatDecision[i].categoryID==categoryID){
-							for(var j=0;j<base.retCatDecision[i].privateLabelDecision.length;j++){
-								if(base.retCatDecision[i].privateLabelDecision[j].brandName==brandName){
-									for(var k=0;k<base.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision.length;k++){
-										if(base.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k].varName==varName){
-											if(location=="packFormat"){
-												if(value==1){
-													value="ECONOMY";
-												}
-												if(value==2){
-													value="STANDARD";
-												}
-												if(value==3){
-													value="PREMIUM";
-												}
-											}
-											if(location=="composition"){
-												base.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k][location][addtionalIdx]=value;
-											}
-											else{
-												base.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k][location]=value;
-											}
-											break;
-										}
-									}
-									break;
-								}
-							}
-							break;
-						}
-					}	
-					console.log(base);*/
+				setRetailerDecisionValue:function(categoryID,brandName,varName,location,additionalIdx,value){
 					if(location=="packFormat"){
 						switch(value){
-							case 1:"ECONOMY";break;
-							case 2:"STANDARD";break;
-							case 3:"PREMIUM";break;
+							case 1:value="ECONOMY";break;
+							case 2:value="STANDARD";break;
+							case 3:value="PREMIUM";break;
 						}
 					}
 					var queryCondition = {
 						seminar : 'MAY',
 						period : 0,
-						producerID : 1,
-						behaviour : 'updateBrand', 
+						retailerID : 1,
+						behaviour : 'updatePrivateLabel', 
 							    /* 
 							    switch(behaviour) case...
-							    addProductNewBrand : categoryID
-							    addProdcutExistedBrand : categoryID,brandName
-							    deleteProduct : categoryID,brandName,varName
-							    deleteBrand : categoryID,brandName
-							    updateVariant : categoryID,brandName,varName,location,value[,addtionalIdx]
-							    updateBrand : categoryID,brandName,varName,location,value[,addtionalIdx]
-							    updateCategory : category,location,value
+					            - step 1
+					            updateGeneralDecision
+
+					            - step 2
+					            updateMarketDecision            
+
+					            - step 3
+					            addProductNewBrand
+					            addProductExistedBrand
+					            deleteProduct
+					            deleteBrand
+					            updatePrivateLabel
+
+					            - step 4
+					            updateOrders
+					            addOrders
+					            deleteOrders
 							    */
 						categoryID : categoryID,
 						brandName : brandName,
+						varName:varName,
 						location : location,
 						additionalIdx  : additionalIdx,
 						value : value
 					}
-					$http({method:'POST', url:'/producerDecision', data: queryCondition}).then(function(res){
-						$rootScope.$broadcast('producerDecisionBaseChanged', base);
+					$http({method:'POST', url:'/retailerDecision', data: queryCondition}).then(function(res){
+						$rootScope.$broadcast('retailerDecisionBaseChanged', base);
 					 	console.log('Success:' + res);
 					 },function(res){
 						console.log('Failed:' + res);
@@ -382,7 +393,7 @@ define(['angular','angularResource'], function (angular,angularResource) {
 					//$rootScope.$broadcast('producerDecisionBaseChanged', base);
 				},
 				//step4
-				setRetailerDecision:function(categoryID,marketID,brandID,location,postion,value){
+				setRetailerDecision:function(categoryID,marketID,brandID,location,additionalIdx,value){
 					for(var i=0;i<base.retMarketDecision.length;i++){
 						if(base.retMarketDecision[i].marketID==marketID){
 							for(var j=0;j<base.retMarketDecision[i].retMarketAssortmentDecision.length;j++){
@@ -390,7 +401,7 @@ define(['angular','angularResource'], function (angular,angularResource) {
 									for(var k=0;k<base.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision.length;k++){
 										if(base.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].brandID==brandID){
 											if(location=="pricePromotions"){
-												base.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k][location][postion]=value;
+												base.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k][location][additionalIdx]=value;
 											}else{
 												base.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k][location]=value;
 											}
