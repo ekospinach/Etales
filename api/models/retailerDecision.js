@@ -585,6 +585,28 @@ exports.updateRetailerDecision = function(io){
                                             decision="retCatDecision";
                                         break;
                                         case 'updateOrders':
+                                            for(var i=0;i<doc.retMarketDecision.length;i++){
+                                                if(doc.retMarketDecision[i].marketID==queryCondition.marketID){
+                                                    for(var j=0;j<doc.retMarketDecision[i].retMarketAssortmentDecision.length;j++){
+                                                        if(doc.retMarketDecision[i].retMarketAssortmentDecision[j].categoryID==queryCondition.categoryID){
+                                                            for(var k=0;k<doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision.length;k++){
+                                                                if(doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k]!=undefined&&doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].brandName==queryCondition.brandName&&doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].varName==queryCondition.varName){
+                                                                    if(queryCondition.location=="pricePromotions"){
+                                                                        doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k][queryCondition.location][queryCondition.additionalIdx]=queryCondition.value;
+                                                                    }
+                                                                    else{
+                                                                        doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k][queryCondition.location]=queryCondition.value;                                                                        
+                                                                    }
+                                                                    break;
+                                                                }
+                                                            }
+                                                            break;
+                                                        }
+                                                    }
+                                                    break;
+                                                }
+                                            }
+                                            decision="retMarketDecision";
                                         break;
                                         case 'addOrders':
                                         break;

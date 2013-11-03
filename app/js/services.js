@@ -376,8 +376,8 @@ define(['angular','angularResource'], function (angular,angularResource) {
 					//$rootScope.$broadcast('producerDecisionBaseChanged', base);
 				},
 				//step4
-				setRetailerDecision:function(categoryID,marketID,brandID,location,additionalIdx,value){
-					for(var i=0;i<base.retMarketDecision.length;i++){
+				setRetailerDecision:function(categoryID,marketID,brandName,varName,location,additionalIdx,value){
+					/*for(var i=0;i<base.retMarketDecision.length;i++){
 						if(base.retMarketDecision[i].marketID==marketID){
 							for(var j=0;j<base.retMarketDecision[i].retMarketAssortmentDecision.length;j++){
 								if(base.retMarketDecision[i].retMarketAssortmentDecision[j].categoryID==categoryID){
@@ -396,10 +396,28 @@ define(['angular','angularResource'], function (angular,angularResource) {
 							}
 							break;
 						}
+					}*/
+					var queryCondition = {
+						seminar : $rootScope.rootSeminar,
+						period : $rootScope.rootPeriod,
+						retailerID :$rootScope.rootRetailerID,
+						behaviour : 'updateOrders', 
+						categoryID : categoryID,
+						marketID : marketID,
+						brandName : brandName,
+						varName:varName,
+						location : location,
+						additionalIdx  : additionalIdx,
+						value : value
 					}
-					console.log(base);
-				}
-				,
+					$http({method:'POST', url:'/retailerDecision', data: queryCondition}).then(function(res){
+						$rootScope.$broadcast('retailerDecisionBaseChanged', base);
+					 	console.log('Success:' + res);
+					 },function(res){
+						console.log('Failed:' + res);
+					});
+
+				},
 				setSomething : function(sth){
 					//post to server...
 					base.seminar = sth;

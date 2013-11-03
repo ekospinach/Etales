@@ -88,11 +88,11 @@
             <td>{{category}}</td>
             <td>{{product.brandName}}</td>
             <td>{{product.varName}}</td>
-            <td><a href="#" editable-text="product.order" onaftersave="updateRetailerDecision(category,market,product.brandID,'order','postion',$index)">{{ product.order || 'empty' }}</a></td>
-            <td><a href="#" editable-text="product.shelfSpace" onaftersave="updateRetailerDecision(category,market,product.brandID,'shelfSpace','postion',$index)">{{ product.shelfSpace || 'empty' }}</a></td>
-            <td><a href="#" editable-text="product.retailerPrice" onaftersave="updateRetailerDecision(category,market,product.brandID,'retailerPrice','postion',$index)">{{ product.retailerPrice || 'empty' }}</a></td>
-            <td><a href="#" editable-text="product.pricePromotions.promo_Frequency" onaftersave="updateRetailerDecision(category,market,product.brandID,'pricePromotions','promo_Frequency',$index)">{{ product.pricePromotions.promo_Frequency || 'empty' }}</a></td>
-            <td><a href="#" editable-text="product.pricePromotions.promo_Rate" onaftersave="updateRetailerDecision(category,market,product.brandID,'pricePromotions','promo_Rate',$index)">{{ product.pricePromotions.promo_Rate || 'empty' }}</a></td>
+            <td><a href="#" editable-text="product.order" onaftersave="updateRetailerDecision(category,market,product.brandName,product.varName,'order','postion',$index)">{{ product.order || 'empty' }}</a></td>
+            <td><a href="#" editable-text="product.shelfSpace" onaftersave="updateRetailerDecision(category,market,product.brandName,product.varName,'shelfSpace','postion',$index)">{{ product.shelfSpace || 'empty' }}</a></td>
+            <td><a href="#" editable-text="product.retailerPrice" onaftersave="updateRetailerDecision(category,market,product.brandName,product.varName,'retailerPrice','postion',$index)">{{ product.retailerPrice || 'empty' }}</a></td>
+            <td><a href="#" editable-text="product.pricePromotions.promo_Frequency" onaftersave="updateRetailerDecision(category,market,product.brandName,product.varName,'pricePromotions','promo_Frequency',$index)">{{ product.pricePromotions.promo_Frequency || 'empty' }}</a></td>
+            <td><a href="#" editable-text="product.pricePromotions.promo_Rate" onaftersave="updateRetailerDecision(category,market,product.brandName,product.varName,'pricePromotions','promo_Rate',$index)">{{ product.pricePromotions.promo_Rate || 'empty' }}</a></td>
           </tr>  
         </table>
         <div>

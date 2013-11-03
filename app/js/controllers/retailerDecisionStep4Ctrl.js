@@ -208,7 +208,7 @@ define(['app'], function(app) {
 				return result;
 			}
 
-			var updateRetailerDecision=function(category,market,brandID,location,postion,addtionalIdx){
+			var updateRetailerDecision=function(category,market,brandName,varName,location,postion,addtionalIdx){
 				if(market=="Urban"){
 					market=1;
 				}
@@ -222,9 +222,9 @@ define(['app'], function(app) {
 					category=2;
 				}
 				if(location=="pricePromotions"){
-					RetailerDecisionBase.setRetailerDecision(category,market,brandID,location,postion,$scope.products[addtionalIdx][location][postion]);					
+					RetailerDecisionBase.setRetailerDecision(category,market,brandName,varName,location,postion,$scope.products[addtionalIdx][location][postion]);					
 				}else{
-					RetailerDecisionBase.setRetailerDecision(category,market,brandID,location,postion,$scope.products[addtionalIdx][location]);					
+					RetailerDecisionBase.setRetailerDecision(category,market,brandName,varName,location,postion,$scope.products[addtionalIdx][location]);					
 				}
 				$scope.$broadcast('retailerDecisionBaseChanged');
 			}
