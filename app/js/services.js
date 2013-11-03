@@ -94,6 +94,9 @@ define(['angular','angularResource'], function (angular,angularResource) {
 					base.seminar = sth;
 					$rootScope.$broadcast('producerDecisionBaseChanged', base);
 				},
+				getAllProduct:function(producerID,categoryID){
+					$http
+				},
 				//step1 & step2
 				setProducerDecisionValue:function(categoryID,brandName,varName,location,additionalIdx,value){
 

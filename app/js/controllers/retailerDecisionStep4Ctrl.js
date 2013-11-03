@@ -142,6 +142,18 @@ define(['app'], function(app) {
 				return delay.promise;
 			}
 
+			var loadAllOder=function(){
+				ProducerDecisionBase.reload({producerID:1,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar}).then(function(base){
+					$scope.pageBase = base;	
+				}).then(function(){
+					ProducerDecisionBase.reload({producerID:1,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar});
+				}), function(reason){
+					console.log('from ctr: ' + reason);
+				}, function(update){
+					console.log('from ctr: ' + update);
+				};
+			}
+
 			/*LoadSelectCategroy*/
 			var loadSelectCategroy=function(market,category){
 				if(market=="Urban"){
@@ -202,9 +214,26 @@ define(['app'], function(app) {
 	      			result=1;
 	      		}
 	      		$scope.products=products;
-	      		console.log(products);
 				$scope.shortLanguages=shortLanguages;
 				$scope.fullLanguages=fullLanguages;
+				if(category=="Elecssories"){
+					category=1;
+				}
+				if(category=="HealthBeauty"){
+					category=2;
+				}
+				var orderProducts=products;
+				//添加retailer load
+
+				for(var i=1;i<=3;i++){
+					var url='/producerDecision/'+i+'/'+$rootScope.rootPeriod+'/'+$rootScope.rootSeminar+'/'+category;
+					$http.get(url).success(function(data){
+						for(var j=0;j<data.length;j++){
+							orderProducts.push(data[j]);
+						}
+						$scope.orderProducts=orderProducts;
+					});
+				}
 				return result;
 			}
 

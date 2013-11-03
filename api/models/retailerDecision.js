@@ -629,6 +629,46 @@ exports.updateRetailerDecision = function(io){
     }
 }
 
+exports.getAllRetailerProduct=function(req,res,next){
+    retDecision.findOne({seminar:req.params.seminar,
+                        period:req.params.period,
+                        retailerID:req.params.retailerID},function(err,doc){
+                            if(err) {next(new Error(err));}
+                                if(!doc) {
+                                    console.log('cannot find matched doc...');
+                                    res.send(404, {error:'Cannot find matched doc...'});
+                                } else {
+                                    var allRetailerDecisions=_.filter($scope.pageBase.retCatDecision,function(obj){
+                                        return (obj.categoryID==req.params.categoryID);
+                                    });
+                                    var products=new Array();
+                                    var count=0;
+                                    for(var i=0;i<allRetCatDecisions.length;i++){
+                                        for(var j=1;j<allRetCatDecisions[i].privateLabelDecision.length;j++){
+                                            if(allRetCatDecisions[i].privateLabelDecision[j]!=undefined){
+                                                for(var k=1;k<allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision.length;k++){
+                                                    if(allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k]!=undefined){
+                                                        products.push({'categoryID':req.params.categoryID,
+                                                            'brandName':allProCatDecisions[i].proBrandsDecision[j].brandName,
+                                                            'varName':allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k].varName,
+                                                            'brandID':allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k].parentBrandID,
+                                                            'varID':allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k].varID,
+                                                            'parentID':allRetCatDecisions[i].privateLabelDecision[j].paranetCompanyID});
+                                                        count++;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if(count!=0){
+                                        res.header("Content-Type", "application/json; charset=UTF-8");                                
+                                        res.statusCode = 200;
+                                        res.send(products);    
+                                    }
+                                }
+                        });
+}
+
 exports.getAllRetailerDecision = function(req, res, next){
     /*R_1*/
     retDecision.findOne({seminar:req.params.seminar,

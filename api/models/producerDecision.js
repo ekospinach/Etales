@@ -265,12 +265,51 @@ exports.getAllProducerDecision = function(req, res, next){
                                     console.log('cannot find matched doc...');
                                     res.send(404, {error:'Cannot find matched doc...'});
                                 } else {
-                                    console.log(doc);
                                     res.header("Content-Type", "application/json; charset=UTF-8");                                
                                     res.statusCode = 200;
                                     res.send(doc);    
                                 }
                         }); 
+}
+
+exports.getAllProducerProduct=function(req,res,next){
+    proDecision.findOne({seminar:req.params.seminar,
+                        period:req.params.period,
+                        producerID:req.params.producerID},function(err,doc){
+                            if(err) {next(new Error(err));}
+                                if(!doc) {
+                                    console.log('cannot find matched doc...');
+                                    res.send(404, {error:'Cannot find matched doc...'});
+                                } else {
+                                    var allProCatDecisions=_.filter(doc.proCatDecision,function(obj){
+                                        return (obj.categoryID==req.params.categoryID);
+                                    });
+                                    var products=new Array();
+                                    var count=0;
+                                    for(var i=0;i<allProCatDecisions.length;i++){
+                                        for(var j=1;j<allProCatDecisions[i].proBrandsDecision.length;j++){
+                                            if(allProCatDecisions[i].proBrandsDecision[j]!=undefined){
+                                                for(var k=1;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
+                                                    if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]!=undefined){
+                                                        products.push({'categoryID':req.params.categoryID,
+                                                            'brandName':allProCatDecisions[i].proBrandsDecision[j].brandName,
+                                                            'varName':allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varName,
+                                                            'brandID':allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].parentBrandID,
+                                                            'varID':allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID,
+                                                            'parentID':allProCatDecisions[i].proBrandsDecision[j].paranetCompanyID});
+                                                        count++;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if(count!=0){
+                                        res.header("Content-Type", "application/json; charset=UTF-8");                                
+                                        res.statusCode = 200;
+                                        res.send(products);   
+                                    } 
+                                }
+                            }); 
 }
 
 exports.newDoc = function(req, res, next){
