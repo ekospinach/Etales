@@ -35,7 +35,7 @@ var path    = require('path'),
   app.get('/negotiationDecision');
   app.get('/producerDecision/:producerID/:period/:seminar/:categoryID',require('./api/models/producerDecision.js').getAllProducerProduct);
   app.get('/producerDecision/:producerID/:period/:seminar',require('./api/models/producerDecision.js').getAllProducerDecision);
-  app.get('/retailerDecision/:retailerID:/period/:seminar/:categoryID',require('./api/models/retailerDecision.js').gertAllRetailerProduct);
+  app.get('/retailerDecision/:retailerID/:period/:seminar/:categoryID',require('./api/models/retailerDecision.js').getAllRetailerProduct);
   app.get('/retailerDecision/:retailerID/:period/:seminar',require('./api/models/retailerDecision.js').getAllRetailerDecision); 
 
   app.get('/variantHistoryInfo');

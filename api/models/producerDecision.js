@@ -296,7 +296,7 @@ exports.getAllProducerProduct=function(req,res,next){
                                                             'varName':allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varName,
                                                             'brandID':allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].parentBrandID,
                                                             'varID':allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID,
-                                                            'parentID':allProCatDecisions[i].proBrandsDecision[j].paranetCompanyID});
+                                                            'parentName':req.params.seminar+'_P_'+req.params.producerID});
                                                         count++;
                                                     }
                                                 }

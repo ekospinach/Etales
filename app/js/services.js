@@ -95,7 +95,7 @@ define(['angular','angularResource'], function (angular,angularResource) {
 					$rootScope.$broadcast('producerDecisionBaseChanged', base);
 				},
 				getAllProduct:function(producerID,categoryID){
-					$http
+					$http({method:'GET',url:''})
 				},
 				//step1 & step2
 				setProducerDecisionValue:function(categoryID,brandName,varName,location,additionalIdx,value){
@@ -278,7 +278,7 @@ define(['angular','angularResource'], function (angular,angularResource) {
 				startListenChangeFromServer : function(){
 					var socket = io.connect();
 					socket.on('retailerBaseChanged', function(data){
-						console.log(data);
+						//console.log(data);
 						$rootScope.$broadcast('retailerDecisionBaseChangedFromServer', base);
 					});					
 				},
@@ -299,9 +299,9 @@ define(['angular','angularResource'], function (angular,angularResource) {
 					            updatePrivateLabel
 
 					            - step 4
-					            updateOrders
-					            addOrders
-					            deleteOrders
+					            updateOrder
+					            addOrder
+					            deleteOrder
 							    */
 				//step1
 				setRetailerDecisionBase:function(location,additionalIdx,value){
@@ -380,31 +380,11 @@ define(['angular','angularResource'], function (angular,angularResource) {
 				},
 				//step4
 				setRetailerDecision:function(categoryID,marketID,brandName,varName,location,additionalIdx,value){
-					/*for(var i=0;i<base.retMarketDecision.length;i++){
-						if(base.retMarketDecision[i].marketID==marketID){
-							for(var j=0;j<base.retMarketDecision[i].retMarketAssortmentDecision.length;j++){
-								if(base.retMarketDecision[i].retMarketAssortmentDecision[j].categoryID==categoryID){
-									for(var k=0;k<base.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision.length;k++){
-										if(base.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].brandID==brandID){
-											if(location=="pricePromotions"){
-												base.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k][location][additionalIdx]=value;
-											}else{
-												base.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k][location]=value;
-											}
-											break;
-										}
-									}
-									break;
-								}
-							}
-							break;
-						}
-					}*/
 					var queryCondition = {
 						seminar : $rootScope.rootSeminar,
 						period : $rootScope.rootPeriod,
 						retailerID :$rootScope.rootRetailerID,
-						behaviour : 'updateOrders', 
+						behaviour : 'updateOrder', 
 						categoryID : categoryID,
 						marketID : marketID,
 						brandName : brandName,
@@ -427,13 +407,6 @@ define(['angular','angularResource'], function (angular,angularResource) {
 					$rootScope.$broadcast('retailerDecisionBaseChanged', base);
 				},				
 				addProductNewBrand:function(newproducerDecision,categoryID){
-					/*for(var i=0;i<base.retCatDecision.length;i++){
-						if(base.retCatDecision[i].categoryID==categoryID){
-							base.retCatDecision[i].retVariantDecision.push(newproducerDecision);
-							break;
-						}
-					}
-					console.log(base);*/
 					var queryCondition = {
 						seminar : $rootScope.rootSeminar,
 						period : $rootScope.rootPeriod,
@@ -475,6 +448,22 @@ define(['angular','angularResource'], function (angular,angularResource) {
 						categoryID : categoryID,
 						varName : varName,
 						brandName:brandName
+					}
+					$http({method:'POST', url:'/retailerDecision', data: queryCondition}).then(function(res){
+						$rootScope.$broadcast('retailerDecisionBaseChanged', base);
+					 	console.log('Success:' + res);
+					 },function(res){
+						console.log('Failed:' + res);
+					});
+				},
+				addOrder:function(marketID,product){
+					var queryCondition = {
+						seminar : $rootScope.rootSeminar,
+						period : $rootScope.rootPeriod,
+						retailerID :$rootScope.rootRetailerID,
+						behaviour : 'addOrder', 
+						marketID:marketID,
+						value:product
 					}
 					$http({method:'POST', url:'/retailerDecision', data: queryCondition}).then(function(res){
 						$rootScope.$broadcast('retailerDecisionBaseChanged', base);

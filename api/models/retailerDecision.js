@@ -1,6 +1,7 @@
 var mongoose = require('mongoose'),
     http = require('http'),
-    util = require('util');
+    util = require('util'),
+    _ = require('underscore');
 
 var privateLabelVarDecision = mongoose.Schema({
     varName : String,
@@ -584,7 +585,7 @@ exports.updateRetailerDecision = function(io){
                                             }
                                             decision="retCatDecision";
                                         break;
-                                        case 'updateOrders':
+                                        case 'updateOrder':
                                             for(var i=0;i<doc.retMarketDecision.length;i++){
                                                 if(doc.retMarketDecision[i].marketID==queryCondition.marketID){
                                                     for(var j=0;j<doc.retMarketDecision[i].retMarketAssortmentDecision.length;j++){
@@ -608,9 +609,21 @@ exports.updateRetailerDecision = function(io){
                                             }
                                             decision="retMarketDecision";
                                         break;
-                                        case 'addOrders':
+                                        case 'addOrder':
+                                            for(var i=0;i<doc.retMarketDecision.length;i++){
+                                                if(doc.retMarketDecision[i].marketID==queryCondition.marketID){
+                                                    for(var j=0;j<doc.retMarketDecision[i].retMarketAssortmentDecision.length;j++){
+                                                        if(doc.retMarketDecision[i].retMarketAssortmentDecision[j].categoryID==queryCondition.value.categoryID){
+                                                            doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision.push(queryCondition.value);
+                                                            break;
+                                                        }
+                                                    }
+                                                    break;
+                                                }
+                                            }
+                                            decision="retMarketDecision";
                                         break;
-                                        case 'deleteOrders':
+                                        case 'deleteOrder':
                                         break;
                                     }
                                     if(isUpdated){
@@ -638,7 +651,7 @@ exports.getAllRetailerProduct=function(req,res,next){
                                     console.log('cannot find matched doc...');
                                     res.send(404, {error:'Cannot find matched doc...'});
                                 } else {
-                                    var allRetailerDecisions=_.filter($scope.pageBase.retCatDecision,function(obj){
+                                    var allRetCatDecisions=_.filter(doc.retCatDecision,function(obj){
                                         return (obj.categoryID==req.params.categoryID);
                                     });
                                     var products=new Array();
@@ -649,11 +662,11 @@ exports.getAllRetailerProduct=function(req,res,next){
                                                 for(var k=1;k<allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision.length;k++){
                                                     if(allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k]!=undefined){
                                                         products.push({'categoryID':req.params.categoryID,
-                                                            'brandName':allProCatDecisions[i].proBrandsDecision[j].brandName,
+                                                            'brandName':allRetCatDecisions[i].privateLabelDecision[j].brandName,
                                                             'varName':allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k].varName,
                                                             'brandID':allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k].parentBrandID,
                                                             'varID':allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k].varID,
-                                                            'parentID':allRetCatDecisions[i].privateLabelDecision[j].paranetCompanyID});
+                                                            'parentName':req.params.seminar+'_R_'+req.params.retailerID});
                                                         count++;
                                                     }
                                                 }

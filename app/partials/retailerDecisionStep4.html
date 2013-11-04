@@ -97,40 +97,35 @@
         </table>
         <div>
           <a ng-click="open()" class="btn btn-success">New Product</a>
-              <div modal="shouldBeOpen" class="hide" close="close()" options="opts">
-                <div modal="shouldBeOpen" class="hide" close="close()" options="opts">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        Order Product
-                      </div>
-                      <div class="modal-body">
-                        <table class="table table-hover">
-                          <tr>
-                            <th>Brand</th>
-                            <th>Var</th>
-                            <th>Produced by..</th>
-                            <th>choose</th>
-                          </tr>
-                          <tr ng-repeat="orderProduct in orderProducts">
-                            <td>orderProduct.brandName</td>
-                            <td>orderProduct.VarName</td>
-                            <td></td>
-                            <td></td>                            
-                          </tr>
-                        </table>
-                      </div>
-                      <div class="modal-footer">
-                        <input type="button" class="btn btn-warning cancel" ng-click="close()" value="Cancel">
-                      </div>
+            <div modal="shouldBeOpen" class="hide" close="close()" options="opts">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">Order Product</div>
+                    <div class="modal-body">
+                      <table class="table table-hover">
+                        <tr>
+                          <th>Brand</th>
+                          <th>Var</th>
+                          <th>Produced by..</th>
+                          <th>choose</th>
+                        </tr>
+                        <tr ng-repeat="orderProduct in orderProducts">
+                          <td>{{orderProduct.brandName}}</td>
+                          <td>{{orderProduct.varName}}</td>
+                          <td>{{orderProduct.parentName}}</td>
+                          <td><a class="btn btn-warning btn-xs" ng-click="addOrder(market,orderProduct)">Add</a></td>                            
+                        </tr>
+                      </table>
                     </div>
+                  <div class="modal-footer">
+                    <input type="button" class="btn btn-danger cancel" ng-click="close()" value="Cancel">
                   </div>
                 </div>
               </div>
+            </div>
           <a href="/#/producerDecisionStep3" class="btn btn-success">Back</a>
           <!--<a href="/#/producerDecisionStep4" class="btn btn-primary">Next</a>-->
         </div>
-      </div>
     </div>
   </div>
 </div>
