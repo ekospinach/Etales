@@ -105,7 +105,6 @@ var retDecisionSchema = mongoose.Schema({
 
 var retDecision = mongoose.model('retailerDecision', retDecisionSchema);
 
-
 exports.newDoc=function(req,res,next){
     var newDoc=new retDecision({
         seminar : 'MAY',
