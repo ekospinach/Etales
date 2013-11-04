@@ -62,111 +62,53 @@ var retVariantDecisionSchema = mongoose.Schema({
     shelfSpace : Number //saved as a %
 })
 
-var retDecision = mongoose.model('retDecision', retDecisionSchema);
 
-exports.updateRetailerDecision = function(io){
-    return function(req, res, next){
-        var queryCondition = {
-            seminar : req.body.seminar,
-            period : req.body.period,
-            retailerID : req.body.producerID,
-            behaviour : req.body.hehaviour,
-            /*
-            - step 1
-            updateGeneralDecision : location,additionalIdx,value
+var retQuarterAssortmentDecisionSchema = mongoose.Schema({
+    categoryID : Number, //1~2
+    retVariantDecision : [retVariantDecisionSchema] //length : TRetVariants(1~21)
+})
 
-            - step 2
-            updateMarketDecision : marketID,location,additionalIdx,value           
+//date struture for decision (step 2,4)
+var retMarketDecisionSchema = mongoose.Schema({
+    marketID : Number, //1~2
+    categorySurfaceShare : [Number], //[1]for Elecssories [2]for HealthBeauty
+    emptySpaceOptimised : Boolean,
+    localAdvertising : {
+        PRICE : Number,
+        CONVENIENCE : Number,
+        ASSORTMENT : Number            
+    },
+    serviceLevel : String, //SL_BASE, SL_FAIR, SL_MEDIUM, SL_ENHANCED, SL_PREMIUM
+    retMarketAssortmentDecision : [retQuarterAssortmentDecisionSchema] //length : TCategories(1~2)
+})
 
-            - step 3
-            addProductNewBrand : categoryID,value
-            addProductExistedBrand categoryID,value
-            deleteProduct : categoryID,brandName,varName
-            deleteBrand : categoryID,brandName
-            updatePrivateLabel : categoryID,brandName,varName,location[,additionalIdx],value
+var retDecisionSchema = mongoose.Schema({
+    seminar : String,
+    period : Number,
+    retailerID : Number, //TAllRetailers (1~4)
+    seminar : String,
+    period : Number,    
+    nextBudgetExtension : Number,
+    approvedBudgetExtension : Number,
+    onlineAdvertising : {
+        PRICE : Number,
+        CONVENIENCE : Number,
+        ASSORTMENT : Number
+    },
+    tradtionalAdvertising : {
+        PRICE : Number,
+        CONVENIENCE : Number,
+        ASSORTMENT : Number        
+    },
+    retCatDecision : [retCatDecisionSchema], //length: TCategories(1~2)
+    retMarketDecision: [retMarketDecisionSchema] //length: TMarkets(1~2)
+})
 
-            - step 4
-            updateOrders : categoryID,marketID,brandName,varName,location[,additionalIdx],value
-            addOrders : categoryID,
-            deleteOrders
-            */
-            varName : req.body.varName,
-            brandName : req.body.brandName,
-            categoryID : req.body.marketID,
-            marketID : req.body.marketID,
-            location : req.body.location,
-            additionalIdx : req.body.additionalIdx,
-            value : req.body.value
-        }
+var retDecision = mongoose.model('retailerDecision', retDecisionSchema);
 
-        retDecision.findOne({seminar : queryCondition.seminar,
-                             period : queryCondition.period,
-                             producerID : queryCondition.producerID},
-                             function(err, doc){
-                                if(err) {next(new Error(err));}
-                                if(!doc){
-                                    console.log('cannot find matched doc...');
-                                    res.send(404, 'Cannot find matched retailer decision doc');
-                                } else {
-                                    var isUpdated = true;
-                                    switch(queryCondition.behaviour){
-                                        case 'updateGeneralDecision':
-                                            doc[queryCondition.location][additionalIdx] = value;
-                                            break;
-                                        case 'updateMarketDecision':
-                                            
 
-                                        case 'addProductNewBrand':
-                                        case 'addProductExistedBrand':
-                                        case 'deleteProduct':
-                                        case 'deleteBrand':
-                                        case 'updateOrders':
-                                        case 'addOrders':
-                                        case 'deleteOrders':
-                                        default:
-                                            isUpdated = false;
-                                            res.send(404, 'cannot find mached query behaviour:' + queryCondition.behaviour);
-                                    }
-                                    if(isUpdated){
-                                        doc.markModified('retCatDecision');
-                                        doc.markModified('retMarketDecision');
-                                        doc.save(function(err, doc, numberAffected){
-                                            if(err) next(new Error(err));
-                                            console.log('save updated, number affected:' + numberAffected);
-                                            io.sockets.emit('baseChangedNew', 'this is a baseChanged');
-                                            res.send(200, 'mission complete');
-                                        })
-                                    }
-                                }
-
-                             });
-
-    }
-}
-
-exports.getAllRetailerDecision = function(req, res, next){
-    retDecision.findOne({seminar:req.params.seminar,
-                         period:req.params.period,
-                         producerID:req.params.producerID},function(err,doc){
-                            if(err) {next(new Error(err));}
-                            if(!doc){
-                                res.send(404, 'cannot find matched retailer decision doc.')
-                            } else {
-                                res.header("Content-Type", "application/json; charset=UTF-8");                                
-                                res.statusCode = 200;
-                                res.send(doc);
-                            }
-
-    })
-}
-
-exports.newDoc = function(req, res, next){
-   //new retailer decision...
-}
-
-exports.getAllRetailerDecision = function(req, res, next){
-    /*R_1*/
-    var retailerDecisions={
+exports.newDoc=function(req,res,next){
+    var newDoc=new retDecision({
         seminar : 'MAY',
         period : 0,
         retailerID:1,
