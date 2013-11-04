@@ -87,7 +87,7 @@ define(['app'], function(app) {
 			/*Angular-ui-bootstrap modal start*/
 
 			/*Angular-ui-bootstrap modal end*/		
-			ProducerDecisionBase.reload({period:'0', seminar:'MAY', producerID:1}).then(function(base){
+			ProducerDecisionBase.reload({producerID:$rootScope.rootProducerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar}).then(function(base){
 				$scope.pageBase = base;
 				//ProducerDecisionBase.setSomething('TEST');	
 			}).then(function(){
@@ -198,7 +198,7 @@ define(['app'], function(app) {
 			}		
 
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
-				ProducerDecisionBase.reload({period:'0', seminar:'MAY', producerID:1}).then(function(base){
+				ProducerDecisionBase.reload({producerID:$rootScope.rootProducerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar}).then(function(base){
 					$scope.pageBase = base;	
 				}).then(function(){
 					return promiseStep1();

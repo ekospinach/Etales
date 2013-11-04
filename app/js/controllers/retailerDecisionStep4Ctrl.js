@@ -1,6 +1,6 @@
 define(['app'], function(app) {
 		app.controller('retailerDecisionStep4Ctrl',
-			['$scope','$q','$rootScope','$http','$filter','RetailerDecisionBase', function($scope,$q,$rootScope,$http,$filter,RetailerDecisionBase) {
+			['$scope','$q','$rootScope','$http','$filter','RetailerDecisionBase','ProducerDecisionBase', function($scope,$q,$rootScope,$http,$filter,RetailerDecisionBase,ProducerDecisionBase) {
 			$rootScope.decisionActive="active";
 			//var calculate='../js/controllers/untils/calculate.js';
 			//var calculate=require('');
@@ -113,7 +113,9 @@ define(['app'], function(app) {
 			$scope.shouldShow=shouldShow;
 			$scope.shouldHide=shouldHide;
 
-			RetailerDecisionBase.reload({period:'0',seminar:'MAY',retailerID:1}).then(function(base){
+			
+			ProducerDecisionBase.startListenChangeFromServer();
+			RetailerDecisionBase.reload({retailerID:$rootScope.rootRetailerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar}).then(function(base){
 			//ProducerDecisionBase.reload({period:'0', seminar:'MAY', retailerID:1}).then(function(base){
 				$scope.pageBase = base;
 			}).then(function(){
@@ -132,6 +134,9 @@ define(['app'], function(app) {
 					$scope.updateRetailerDecision=updateRetailerDecision;
 					$scope.getMoreInfo=getMoreInfo;
 					$scope.closeInfo=closeInfo;
+					$scope.open=open;
+					$scope.close=close;
+					$scope.addOrder=addOrder;
 				var result=showView($scope.retailerID,$scope.period,$scope.category,$scope.market,$scope.language);
 				delay.resolve(result);
 				if (result==1) {
@@ -140,6 +145,25 @@ define(['app'], function(app) {
 					delay.reject('showView error,products is null');
 				}
 				return delay.promise;
+			}
+
+			var open = function () {
+			    $scope.shouldBeOpen = true;
+			};
+			var close = function () {
+			    $scope.shouldBeOpen = false;
+			};
+
+			var loadAllOder=function(){
+				ProducerDecisionBase.reload({producerID:1,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar}).then(function(base){
+					$scope.pageBase = base;	
+				}).then(function(){
+					ProducerDecisionBase.reload({producerID:1,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar});
+				}), function(reason){
+					console.log('from ctr: ' + reason);
+				}, function(update){
+					console.log('from ctr: ' + update);
+				};
 			}
 
 			/*LoadSelectCategroy*/
@@ -202,13 +226,35 @@ define(['app'], function(app) {
 	      			result=1;
 	      		}
 	      		$scope.products=products;
-	      		console.log(products);
 				$scope.shortLanguages=shortLanguages;
 				$scope.fullLanguages=fullLanguages;
+				if(category=="Elecssories"){
+					category=1;
+				}
+				if(category=="HealthBeauty"){
+					category=2;
+				}
+				var orderProducts=new Array();
+				//添加retailer load
+				var url='/retailerDecision/'+$rootScope.rootRetailerID+'/'+$rootScope.rootPeriod+'/'+$rootScope.rootSeminar+'/'+category;
+				$http.get(url).success(function(data){
+					for(var i=0;i<data.length;i++){
+						orderProducts.push(data[i]);
+					}
+					for(var i=1;i<=3;i++){
+						url='/producerDecision/'+i+'/'+$rootScope.rootPeriod+'/'+$rootScope.rootSeminar+'/'+category;
+						$http.get(url).success(function(data){
+							for(var j=0;j<data.length;j++){
+								orderProducts.push(data[j]);
+							}
+							$scope.orderProducts=orderProducts;
+						});
+					}					
+				});
 				return result;
 			}
 
-			var updateRetailerDecision=function(category,market,brandID,location,postion,addtionalIdx){
+			var updateRetailerDecision=function(category,market,brandName,varName,location,postion,addtionalIdx){
 				if(market=="Urban"){
 					market=1;
 				}
@@ -222,11 +268,11 @@ define(['app'], function(app) {
 					category=2;
 				}
 				if(location=="pricePromotions"){
-					RetailerDecisionBase.setRetailerDecision(category,market,brandID,location,postion,$scope.products[addtionalIdx][location][postion]);					
+					RetailerDecisionBase.setRetailerDecision(category,market,brandName,varName,location,postion,$scope.products[addtionalIdx][location][postion]);					
 				}else{
-					RetailerDecisionBase.setRetailerDecision(category,market,brandID,location,postion,$scope.products[addtionalIdx][location]);					
+					RetailerDecisionBase.setRetailerDecision(category,market,brandName,varName,location,postion,$scope.products[addtionalIdx][location]);					
 				}
-				$scope.$broadcast('retailerDecisionBaseChanged');
+				//$scope.$broadcast('retailerDecisionBaseChanged');
 			}
 
 			var closeInfo=function(){
@@ -242,13 +288,37 @@ define(['app'], function(app) {
 				/*importantt*/
 			}		
 
-			$scope.$on('retailerDecisionBaseChanged', function(event){	
-				$scope.pageBase=RetailerDecisionBase.getBase();
-				showView($scope.retailerID,$scope.period,$scope.category,$scope.market,$scope.language);
-				$scope.$broadcast('closemodal');
+			var addOrder=function(market,product){
+				product.dateOfBirth=$rootScope.rootPeriod;
+				product.dateOfDeath=10;
+				product.Order=null;
+				product.retailerPrice=null;
+				product.shelfSpace=null;
+				product.pricePromotions=new Array(null,null);
+				if(market=="Urban"){
+					RetailerDecisionBase.addOrder(1,product);
+				}
+				else{
+					RetailerDecisionBase.addOrder(2,product);
+				}
+			}
 
-			});  
+			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
+				console.log('producerDecisionBaseChangedFromServer');
+				showView($scope.retailerID,$scope.period,$scope.category,$scope.market,$scope.language);
+			}); 	
+
 			$scope.$on('retailerDecisionBaseChangedFromServer', function(event, newBase){
+				console.log('retailerDecisionBaseChangedFromServer');
+				RetailerDecisionBase.reload({retailerID:$rootScope.rootRetailerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar}).then(function(base){
+					$scope.pageBase = base;
+				}).then(function(){
+					return promiseStep1();
+				}), function(reason){
+					console.log('from ctr: ' + reason);
+				}, function(update){
+					console.log('from ctr: ' + update);
+				};
 			}); 	
 
 	}]);

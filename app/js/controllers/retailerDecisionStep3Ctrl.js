@@ -101,7 +101,7 @@ define(['app'], function(app) {
 			    dialogFade:true
 			};
 			/*Angular-ui-bootstrap modal end*/		
-			RetailerDecisionBase.reload({period:'0',seminar:'MAY',retailerID:1}).then(function(base){
+			RetailerDecisionBase.reload({retailerID:$rootScope.rootRetailerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar}).then(function(base){
 				$scope.pageBase = base;
 			}).then(function(){
 				return promiseStep1();
@@ -131,6 +131,7 @@ define(['app'], function(app) {
 					$scope.closeInfo=closeInfo;
 					$scope.calculateBrandID=calculateBrandID;
 					$scope.calculateVarID=calculateVarID;
+					$scope.deleteProduct=deleteProduct;
 				var result=showView($scope.retailerID,$scope.period,$scope.category,$scope.language);
 				delay.resolve(result);
 				if (result==1) {
@@ -144,9 +145,9 @@ define(['app'], function(app) {
 			var calculateBrandID=function(retVariantDecision,retailerID){
 				var result=0,min=10*(retailerID+4)+1,max=(retailerID+4)*10+4;
 				var nums=new Array();
-				for(var i=0;i<retVariantDecision.retVariantDecision.length;i++){
-					if(retVariantDecision.retVariantDecision[i].brandID!=undefined){
-						nums.push(retVariantDecision.retVariantDecision[i].brandID);
+				for(var i=0;i<retVariantDecision.privateLabelDecision.length;i++){
+					if(retVariantDecision.privateLabelDecision[i]!=undefined&&retVariantDecision.privateLabelDecision[i].brandID!=undefined){
+						nums.push(retVariantDecision.privateLabelDecision[i].brandID);
 					}
 				}
 				nums.sort(function(a,b){return a>b?1:-1});
@@ -169,12 +170,12 @@ define(['app'], function(app) {
 				return result;
 		    }
 
-		    var calculateVarID=function(retVariantDecision,parentBrandID){
+		    var calculateVarID=function(privateLabelDecision,parentBrandID){
 		    	var result=0;min=parentBrandID*10+1,max=parentBrandID*10+3;
 		    	var nums=new Array();
-		    	for(var i=0;i<retVariantDecision.privateLabelVarDecision.length;i++){
-					if(retVariantDecision.privateLabelVarDecision[i].varID!=undefined){
-						nums.push(retVariantDecision.privateLabelVarDecision[i].varID);
+		    	for(var i=0;i<privateLabelDecision.privateLabelVarDecision.length;i++){
+					if(privateLabelDecision.privateLabelVarDecision[i]!=undefined&&privateLabelDecision.privateLabelVarDecision[i].varID!=undefined){
+						nums.push(privateLabelDecision.privateLabelVarDecision[i].varID);
 					}
 				}
 				nums.sort(function(a,b){return a>b?1:-1});
@@ -192,7 +193,14 @@ define(['app'], function(app) {
 				return result;
 		    }
 
-
+		    var deleteProduct=function(category,brandName,varName){
+		    	if(category=="Elecssories"){
+		    		category=1;
+		    	}else{
+		    		category=2;
+		    	}
+		    	RetailerDecisionBase.deleteProduct(category,brandName,varName);	
+		    }
 			/*Load Page*/
 			var showView=function(retailerID,period,category,language){
 				$scope.retailerID=retailerID,$scope.period=period,$scope.category=category,$scope.language=language;
@@ -255,21 +263,25 @@ define(['app'], function(app) {
 	      		var count=0,result=0;
 	      		var products=new Array();
 	      		for(var i=0;i<allRetCatDecisions.length;i++){
-	      			for(var j=1;j<allRetCatDecisions[i].retVariantDecision.length;j++){
-	      				for(var k=1;k<allRetCatDecisions[i].retVariantDecision[j].privateLabelVarDecision.length;k++){
-	      					products.push(allRetCatDecisions[i].retVariantDecision[j].privateLabelVarDecision[k]);
-	      					products[count].category=category;
-	      					products[count].parentBrandName=allRetCatDecisions[i].retVariantDecision[j].brandName;
-	      					if(products[count].packFormat=="ECONOMY"){
-	      						products[count].packFormat=1;
-	      					}
-	      					else if(products[count].packFormat=="STANDARD"){
-	      						products[count].packFormat=2;
-	      					}
-	      					else if(products[count].packFormat=="PREMIUM"){
-	      						products[count].packFormat=3;
-	      					}
-	      					count++;
+	      			for(var j=1;j<allRetCatDecisions[i].privateLabelDecision.length;j++){
+	      				if(allRetCatDecisions[i].privateLabelDecision[j]!=undefined){
+	      					for(var k=1;k<allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision.length;k++){
+		      					if(allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k]!=undefined){
+		      						products.push(allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k]);
+			      					products[count].category=category;
+			      					products[count].parentBrandName=allRetCatDecisions[i].privateLabelDecision[j].brandName;
+			      					if(products[count].packFormat=="ECONOMY"){
+			      						products[count].packFormat=1;
+			      					}
+			      					else if(products[count].packFormat=="STANDARD"){
+			      						products[count].packFormat=2;
+			      					}
+			      					else if(products[count].packFormat=="PREMIUM"){
+			      						products[count].packFormat=3;
+			      					}
+			      					count++;
+		      					}
+		      				}
 	      				}
 	      			}
 	      		}
@@ -327,8 +339,10 @@ define(['app'], function(app) {
 				var allretCatDecisions=loadSelectCategroy(category);
 	      		var allBrands=new Array();
 	      		for(var i=0;i<allretCatDecisions.length;i++){
-	      			for(var j=1;j<allretCatDecisions[i].retVariantDecision.length;j++){
-	      				allBrands.push({'BrandID':allretCatDecisions[i].retVariantDecision[j].brandID,'BrandName':allretCatDecisions[i].retVariantDecision[j].brandName});
+	      			for(var j=1;j<allretCatDecisions[i].privateLabelDecision.length;j++){
+	      				if(allretCatDecisions[i].privateLabelDecision[j]!=undefined){
+	      					allBrands.push({'BrandID':allretCatDecisions[i].privateLabelDecision[j].brandID,'BrandName':allretCatDecisions[i].privateLabelDecision[j].brandName});
+	      				}
 	      			}	
 	      		}
 	      		$scope.allBrands=allBrands;
@@ -439,24 +453,31 @@ define(['app'], function(app) {
 						}); 
 						newretailerDecision.parentBrandID=$scope.addChooseBrand;
 						newretailerDecision.varName=$scope.addNewVarName;/*need check*/
-						var privateLabelVarDecision=_.find(retVariantDecision.retVariantDecision,function(obj){
+						var privateLabelDecision=_.find(retVariantDecision.privateLabelDecision,function(obj){
 							return (obj.brandID==newretailerDecision.parentBrandID);
-						})
-			        	newretailerDecision.varID=calculateVarID(privateLabelVarDecision,newretailerDecision.parentBrandID);//121;/*need check*/
-			        	RetailerDecisionBase.addProductExistedBrand(newretailerDecision,$scope.addNewCategory);							
+						});
+			        	newretailerDecision.varID=calculateVarID(privateLabelDecision,newretailerDecision.parentBrandID);//121;/*need check*/
+			        	var newBrandName="";
+			        	for(var i=0;i<$scope.allBrands.length;i++){
+			        		if($scope.allBrands[i].BrandID==newretailerDecision.parentBrandID){
+			        			newBrandName=$scope.allBrands[i].BrandName;
+			        		}
+			        	}
+			        	RetailerDecisionBase.addProductExistedBrand(newretailerDecision,$scope.addNewCategory,newBrandName);							
 					}
 					close();
-					$scope.$broadcast('retailerDecisionBaseChanged');
-				//});
 			}
 
-
-			$scope.$on('retailerDecisionBaseChanged', function(event){	
-				$scope.pageBase=RetailerDecisionBase.getBase();
-				showView($scope.retailerID,$scope.period,$scope.category,$scope.language);
-				//$scope.$broadcast('closemodal');
-			});  
 			$scope.$on('retailerDecisionBaseChangedFromServer', function(event, newBase){
+				RetailerDecisionBase.reload({retailerID:$rootScope.rootRetailerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar}).then(function(base){
+					$scope.pageBase = base;
+				}).then(function(){
+					return promiseStep1();
+				}), function(reason){
+					console.log('from ctr: ' + reason);
+				}, function(update){
+					console.log('from ctr: ' + update);
+				};
 			}); 	
 
 	}]);

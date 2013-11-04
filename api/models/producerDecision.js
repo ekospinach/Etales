@@ -38,7 +38,7 @@ var proBrandDecisionSchema = mongoose.Schema({
         Ret_2_ID           = 6;
         TradTrade_ID       = 7;
         E_Mall_ID          = 8;
-        Admin_ID           = 9;
+        Admin_ID           = 9;x
     */
     dateOfBirth : Number, //which period this brand be created, if this brand is initialized in the beginning, this value should be -4
     dateOfDeath : Number, //which period this brand be discontinued, if this brand haven't been discontinued, this value should be 10
@@ -111,8 +111,8 @@ exports.updateProducerDecision = function(io){
                                     res.send(404,'Cannot find matched producer decision doc...');
                                 } else {
                                     var isUpdated = true;
-                                    console.log('before:');
-                                    console.log(doc.proCatDecision[0].proBrandsDecision[0]);
+                                    //console.log('before:');
+                                    //console.log(doc.proCatDecision[0].proBrandsDecision[0]);
 
                                     switch(queryCondition.behaviour){
                                         case 'addProductNewBrand':
@@ -243,7 +243,7 @@ exports.updateProducerDecision = function(io){
                                         doc.save(function(err, doc, numberAffected){
                                             if(err) next(new Error(err));
                                             console.log('save updated, number affected:'+numberAffected);
-                                            io.sockets.emit('baseChangedNew', 'this is a baseChanged');
+                                            io.sockets.emit('producerBaseChanged', 'this is a baseChanged');
                                             res.send(200, 'mission complete!');
                                         });                                   
 
@@ -271,7 +271,45 @@ exports.getAllProducerDecision = function(req, res, next){
                         }); 
 }
 
-
+exports.getAllProducerProduct=function(req,res,next){
+    proDecision.findOne({seminar:req.params.seminar,
+                        period:req.params.period,
+                        producerID:req.params.producerID},function(err,doc){
+                            if(err) {next(new Error(err));}
+                                if(!doc) {
+                                    console.log('cannot find matched doc...');
+                                    res.send(404, {error:'Cannot find matched doc...'});
+                                } else {
+                                    var allProCatDecisions=_.filter(doc.proCatDecision,function(obj){
+                                        return (obj.categoryID==req.params.categoryID);
+                                    });
+                                    var products=new Array();
+                                    var count=0;
+                                    for(var i=0;i<allProCatDecisions.length;i++){
+                                        for(var j=1;j<allProCatDecisions[i].proBrandsDecision.length;j++){
+                                            if(allProCatDecisions[i].proBrandsDecision[j]!=undefined){
+                                                for(var k=1;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
+                                                    if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]!=undefined){
+                                                        products.push({'categoryID':req.params.categoryID,
+                                                            'brandName':allProCatDecisions[i].proBrandsDecision[j].brandName,
+                                                            'varName':allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varName,
+                                                            'brandID':allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].parentBrandID,
+                                                            'varID':allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID,
+                                                            'parentName':req.params.seminar+'_P_'+req.params.producerID});
+                                                        count++;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if(count!=0){
+                                        res.header("Content-Type", "application/json; charset=UTF-8");                                
+                                        res.statusCode = 200;
+                                        res.send(products);   
+                                    } 
+                                }
+                            }); 
+}
 
 exports.newDoc = function(req, res, next){
     var newDoc1 = new proDecision({

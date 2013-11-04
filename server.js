@@ -29,11 +29,13 @@ var path    = require('path'),
 
   app.post('/negotiationDecision');
   app.post('/producerDecision',require('./api/models/producerDecision.js').updateProducerDecision(io));
-  app.post('/retailerDecision');
+  app.post('/retailerDecision',require('./api/models/retailerDecision.js').updateRetailerDecision(io));
 
 
   app.get('/negotiationDecision');
+  app.get('/producerDecision/:producerID/:period/:seminar/:categoryID',require('./api/models/producerDecision.js').getAllProducerProduct);
   app.get('/producerDecision/:producerID/:period/:seminar',require('./api/models/producerDecision.js').getAllProducerDecision);
+  app.get('/retailerDecision/:retailerID/:period/:seminar/:categoryID',require('./api/models/retailerDecision.js').getAllRetailerProduct);
   app.get('/retailerDecision/:retailerID/:period/:seminar',require('./api/models/retailerDecision.js').getAllRetailerDecision); 
 
   app.get('/variantHistoryInfo');
@@ -50,7 +52,8 @@ var path    = require('path'),
   //special calculate API
   app.get('/productionCost');
 
-  app.get('/newDoc', require('./api/models/producerDecision.js').newDoc);
+  app.get('/proNewDoc', require('./api/models/producerDecision.js').newDoc);
+  app.get('/retNewDoc', require('./api/models/retailerDecision.js').newDoc);
   
   // app.use(require('./api/errorHandlers.js').logErrors);
   // app.use(require('./api/errorHandlers.js').)

@@ -25,7 +25,7 @@ define([
 		}).run(['$rootScope', '$location', function ($rootScope, $location) {
 		    $rootScope.decisionActive = "";
 		    $rootScope.rootRetailerID = 1;
-		    $rootScope.rootProducerID = 1;
+		    $rootScope.rootProducerID = 2;
 		    $rootScope.rootPeriod = 0;
 		    $rootScope.rootSeminar = "MAY";
 		}]);

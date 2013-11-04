@@ -74,8 +74,7 @@ define(['app'], function(app) {
 			$scope.retailerID=retailerID;
 			$scope.period=period;
 
-			RetailerDecisionBase.reload({period:'0',seminar:'MAY',retailerID:1}).then(function(base){
-			//ProducerDecisionBase.reload({period:'0', seminar:'MAY', retailerID:1}).then(function(base){
+			RetailerDecisionBase.reload({retailerID:$rootScope.rootRetailerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar}).then(function(base){
 				$scope.pageBase = base;
 			}).then(function(){
 				return promiseStep1();
@@ -179,7 +178,6 @@ define(['app'], function(app) {
 				else{
 					RetailerDecisionBase.setMarketDecisionBase(marketID,location,postion,$scope.markets[index][location]);										
 				}
-				$scope.$broadcast('retailerDecisionBaseChanged');
 			}
 
 			var closeInfo=function(){
@@ -194,14 +192,17 @@ define(['app'], function(app) {
 			var loadNameNum=function(){//load the sort
 				/*importantt*/
 			}		
-
-			$scope.$on('retailerDecisionBaseChanged', function(event){	
-				$scope.pageBase=RetailerDecisionBase.getBase();
-				showView($scope.retailerID,$scope.period,$scope.language);
-				$scope.$broadcast('closemodal');
-
-			});  
+			
 			$scope.$on('retailerDecisionBaseChangedFromServer', function(event, newBase){
+				RetailerDecisionBase.reload({retailerID:$rootScope.rootRetailerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar}).then(function(base){
+					$scope.pageBase = base;
+				}).then(function(){
+					return promiseStep1();
+				}), function(reason){
+					console.log('from ctr: ' + reason);
+				}, function(update){
+					console.log('from ctr: ' + update);
+				};
 			}); 	
 
 	}]);
