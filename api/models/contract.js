@@ -4,6 +4,26 @@ var mongoose  = require('mongoose'),
 	_ = require('underscore');
 	uniqueValidator = require('mongoose-unique-validator');
 
+var contractSchema = mongoose.Schema({
+	contractCode : {type: String, require: true, unique: true}, //sth + period + seminar, must be 
+	period : Number,
+	seminar : String,
+	draftedByCompanyID : Number,
+    /*
+        Prod_1_ID          = 1;
+        Prod_2_ID          = 2;
+        Prod_3_ID          = 3;
+        Prod_4_ID          = 4;
+        Ret_1_ID           = 5;
+        Ret_2_ID           = 6;
+    */
+    producerID : Number,
+    retailerID : Number,
+    isDraftFinished : Boolean
+})
+
+contractSchema.plugin(uniqueValidator);
+
 var contractDetailsSchema = mongoose.Schema({
 	contractCode : String, 
 	userType : String, // 'P' or 'R'
@@ -27,26 +47,6 @@ var contractDetailsSchema = mongoose.Schema({
 })
 
 
-
-var contractSchema = mongoose.Schema({
-	contractCode : {type: String, require: true, unique: true}, //sth + period + seminar, must be 
-	period : Number,
-	seminar : String,
-	draftedByCompanyID : Number,
-    /*
-        Prod_1_ID          = 1;
-        Prod_2_ID          = 2;
-        Prod_3_ID          = 3;
-        Prod_4_ID          = 4;
-        Ret_1_ID           = 5;
-        Ret_2_ID           = 6;
-    */
-    producerID : Number,
-    retailerID : Number,
-    isDraftFinished : Boolean
-})
-
-contractSchema.plugin(uniqueValidator);
 
 var contract = mongoose.model('contract', contractSchema);
 var contractDetailsSchema = mongoose.model('contractDetails', contractDetails);
