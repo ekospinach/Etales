@@ -27,7 +27,19 @@ contractSchema.plugin(uniqueValidator);
 var contractDetailsSchema = mongoose.Schema({
 	contractCode : String, 
 	userType : String, // 'P' or 'R'
-	negotiationItem : String,
+	negotiationItem : String, 
+	/*
+    nc_MinimumOrder
+    nc_VolumeDiscountRate
+
+    nc_PaymentDays
+
+    nc_SalesTargetVolume
+    nc_PerformanceBonusAmount
+    nc_PerformanceBonusRate
+
+    nc_OtherCompensation
+	*/
 	relatedBrandName : String,
 	relatedBrandID : Number,
 

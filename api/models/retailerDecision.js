@@ -1,4 +1,4 @@
-var mongoose = require('mongoose'),
+git var mongoose = require('mongoose'),
     http = require('http'),
     util = require('util'),
     _ = require('underscore');
