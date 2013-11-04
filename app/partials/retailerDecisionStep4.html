@@ -87,7 +87,7 @@
           <tr ng-repeat="product in products">
             <td>{{category}}</td>
             <td>{{product.brandName}}</td>
-            <td>{{product.varName}}</td>
+            <td>{{product.varName}}<button type="button" class="btn btn-danger btn-xs {{(product.dateOfBirth==-4)?'hide':'show'}}" ng-click="deleteOrder(market,category,product.brandName,product.varName)">Delete</button></td>
             <td><a href="#" editable-text="product.order" onaftersave="updateRetailerDecision(category,market,product.brandName,product.varName,'order','postion',$index)">{{ product.order || 'empty' }}</a></td>
             <td><a href="#" editable-text="product.shelfSpace" onaftersave="updateRetailerDecision(category,market,product.brandName,product.varName,'shelfSpace','postion',$index)">{{ product.shelfSpace || 'empty' }}</a></td>
             <td><a href="#" editable-text="product.retailerPrice" onaftersave="updateRetailerDecision(category,market,product.brandName,product.varName,'retailerPrice','postion',$index)">{{ product.retailerPrice || 'empty' }}</a></td>

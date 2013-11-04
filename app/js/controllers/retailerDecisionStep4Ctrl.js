@@ -137,6 +137,7 @@ define(['app'], function(app) {
 					$scope.open=open;
 					$scope.close=close;
 					$scope.addOrder=addOrder;
+					$scope.deleteOrder=deleteOrder;
 				var result=showView($scope.retailerID,$scope.period,$scope.category,$scope.market,$scope.language);
 				delay.resolve(result);
 				if (result==1) {
@@ -301,6 +302,24 @@ define(['app'], function(app) {
 				else{
 					RetailerDecisionBase.addOrder(2,product);
 				}
+				close();
+			}
+
+			var deleteOrder=function(market,category,brandName,varName){
+				if(market=="Urban"){
+					market=1;
+				}
+				if(market=="Rural"){
+					market=2;
+				}
+				if(category=="Elecssories"){
+					category=1;
+				}
+				if(category=="HealthBeauty"){
+					category=2;
+				}
+				RetailerDecisionBase.deleteOrder(market,category,brandName,varName);
+				close();
 			}
 
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
