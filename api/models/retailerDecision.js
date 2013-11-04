@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
     http = require('http'),
     util = require('util');
 
-:var retDecisionSchema = mongoose.Schema({
+var retDecisionSchema = mongoose.Schema({
     seminar : String,
     period : Number,
     retailerID : Number, //TAllRetailers (1~4)
