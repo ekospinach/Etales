@@ -62,6 +62,7 @@ var retVariantDecisionSchema = mongoose.Schema({
     shelfSpace : Number //saved as a %
 })
 
+
 var retQuarterAssortmentDecisionSchema = mongoose.Schema({
     categoryID : Number, //1~2
     retVariantDecision : [retVariantDecisionSchema] //length : TRetVariants(1~21)

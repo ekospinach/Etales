@@ -38,7 +38,7 @@ var proBrandDecisionSchema = mongoose.Schema({
         Ret_2_ID           = 6;
         TradTrade_ID       = 7;
         E_Mall_ID          = 8;
-        Admin_ID           = 9;
+        Admin_ID           = 9;x
     */
     dateOfBirth : Number, //which period this brand be created, if this brand is initialized in the beginning, this value should be -4
     dateOfDeath : Number, //which period this brand be discontinued, if this brand haven't been discontinued, this value should be 10
