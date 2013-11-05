@@ -73,7 +73,7 @@ exports.updateContract = function(io){
 
 exports.newDoc=function(req,res,next){
 	var newDoc1=new contract({
-		contractCode : 'P1vsR1', 
+		contractCode : 'P1vsR1_MAY_0', 
 		period : 0,
 		seminar : "MAY",
 		draftedByCompanyID : 1,
@@ -82,7 +82,7 @@ exports.newDoc=function(req,res,next){
 	    isDraftFinished : false
 	});
 	var newDoc2=new contract({
-		contractCode : 'P1vsR2', 
+		contractCode : 'P1vsR2_MAY_0', 
 		period : 0,
 		seminar : "MAY",
 		draftedByCompanyID : 1,
@@ -91,7 +91,7 @@ exports.newDoc=function(req,res,next){
 	    isDraftFinished : false
 	});
 	var newDoc3=new contract({
-		contractCode : 'P2vsR1', 
+		contractCode : 'P2vsR1_MAY_0', 
 		period : 0,
 		seminar : "MAY",
 		draftedByCompanyID : 2,
@@ -100,7 +100,7 @@ exports.newDoc=function(req,res,next){
 	    isDraftFinished : false
 	});
 	var newDoc4=new contract({
-		contractCode : 'P2vsR2', 
+		contractCode : 'P2vsR2_MAY_0', 
 		period : 0,
 		seminar : "MAY",
 		draftedByCompanyID : 2,
@@ -109,7 +109,7 @@ exports.newDoc=function(req,res,next){
 	    isDraftFinished : false
 	});
 	var newDoc5=new contract({
-		contractCode : 'P3vsR1', 
+		contractCode : 'P3vsR1_MAY_0', 
 		period : 0,
 		seminar : "MAY",
 		draftedByCompanyID : 3,
@@ -118,7 +118,7 @@ exports.newDoc=function(req,res,next){
 	    isDraftFinished : false
 	});
 	var newDoc6=new contract({
-		contractCode : 'P3vsR2', 
+		contractCode : 'P3vsR2_MAY_0', 
 		period : 0,
 		seminar : "MAY",
 		draftedByCompanyID : 3,
@@ -127,22 +127,22 @@ exports.newDoc=function(req,res,next){
 	    isDraftFinished : false
 	});
 	var newDoc7=new contract({
-		contractCode : 'P1vsR1', 
+		contractCode : 'P1vsR1_MAY_1', 
 		period : 1,
 		seminar : "MAY",
-		draftedByCompanyID : 1,
+		draftedByCompanyID : 5,
 	    producerID : 1,
 	    retailerID : 1,
-	    isDraftFinished : false
+	    isDraftFinished : true
 	});
 	var newDoc8=new contract({
-		contractCode : 'P1vsR2', 
+		contractCode : 'P1vsR2_MAY_1', 
 		period : 1,
 		seminar : "MAY",
-		draftedByCompanyID : 1,
+		draftedByCompanyID : 6,
 	    producerID : 1,
 	    retailerID : 2,
-	    isDraftFinished : false
+	    isDraftFinished : true
 	});
 	newDoc1.save(function(err){
 		if(err) next(new Error(err));
