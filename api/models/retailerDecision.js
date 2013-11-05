@@ -106,7 +106,6 @@ var retDecisionSchema = mongoose.Schema({
 
 var retDecision = mongoose.model('retailerDecision', retDecisionSchema);
 
-
 exports.newDoc=function(req,res,next){
     var newDoc=new retDecision({
         seminar : 'MAY',
@@ -459,8 +458,6 @@ exports.updateRetailerDecision = function(io){
             additionalIdx : req.body.additionalIdx,
             value : req.body.value
         }
-        console.log(queryCondition);
-        console.log("___________");
         retDecision.findOne({seminar:queryCondition.seminar,
                             period:queryCondition.period,
                             retailerID:queryCondition.retailerID},function(err,doc){
@@ -625,10 +622,34 @@ exports.updateRetailerDecision = function(io){
                                             decision="retMarketDecision";
                                         break;
                                         case 'deleteOrder':
+                                        console.log("start!!!!!!!!!!!!!");
+                                            for(var i=0;i<doc.retMarketDecision.length;i++){
+                                                if(doc.retMarketDecision[i].marketID==queryCondition.marketID){
+                                                    console.log("111111111111!!!!!!!!!!!");
+                                                    for(var j=0;j<doc.retMarketDecision[i].retMarketAssortmentDecision.length;j++){
+                                                        if(doc.retMarketDecision[i].retMarketAssortmentDecision[j].categoryID==queryCondition.categoryID){
+                                                            console.log("2222222222!!!!!!!!!!!");
+                                                            console.log(doc.retMarketDecision[i].retMarketAssortmentDecision[j]);
+                                                            for(var k=0;k<doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision.length;k++){
+                                                                console.log(doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k]);
+                                                                if(doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k]!=undefined&&doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].brandName==queryCondition.brandName&&doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].varName==queryCondition.varName){
+                                                                    console.log("333333333333!!!!!!!!!!");
+                                                                    doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision.splice(k,1);
+                                                                    console.log("4444444444444!!!!!!!!!!!!!");
+                                                                    break;
+                                                                }
+                                                            }
+                                                            break;
+                                                        }
+                                                    }
+                                                    break;
+                                                }
+                                            }
+                                            decision="retMarketDecision";
                                         break;
                                     }
                                     if(isUpdated){
-                                        console.log(doc);
+                                        //console.log(doc);
                                         doc.markModified(decision);
                                         doc.save(function(err, doc, numberAffected){
                                             if(err) next(new Error(err));
@@ -693,7 +714,7 @@ exports.getAllRetailerDecision = function(req, res, next){
                                     console.log('cannot find matched doc...');
                                     res.send(404, {error:'Cannot find matched doc...'});
                                 } else {
-                                    console.log(doc);
+                                    //console.log(doc);
                                     res.header("Content-Type", "application/json; charset=UTF-8");                                
                                     res.statusCode = 200;
                                     res.send(doc);    

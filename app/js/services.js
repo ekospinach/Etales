@@ -280,7 +280,7 @@ define(['angular','angularResource'], function (angular,angularResource) {
 					socket.on('retailerBaseChanged', function(data){
 						//console.log(data);
 						$rootScope.$broadcast('retailerDecisionBaseChangedFromServer', base);
-					});					
+					});				
 				},
 				//step1
 								/* 
@@ -471,6 +471,24 @@ define(['angular','angularResource'], function (angular,angularResource) {
 					 },function(res){
 						console.log('Failed:' + res);
 					});
+				},
+				deleteOrder:function(marketID,categoryID,brandName,varName){
+					var queryCondition = {
+						seminar : $rootScope.rootSeminar,
+						period : $rootScope.rootPeriod,
+						retailerID :$rootScope.rootRetailerID,
+						behaviour : 'deleteOrder', 
+						marketID:marketID,
+						categoryID:categoryID,
+						brandName:brandName,
+						varName:varName
+					}
+					$http({method:'POST', url:'/retailerDecision', data: queryCondition}).then(function(res){
+						$rootScope.$broadcast('retailerDecisionBaseChanged', base);
+					 	console.log('Success:' + res);
+					 },function(res){
+						console.log('Failed:' + res);
+					});					
 				},
 				getBase : function(){
 					return base;

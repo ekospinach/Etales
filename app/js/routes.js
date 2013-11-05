@@ -8,6 +8,7 @@ define(['angular',
 		'controllers/retailerDecisionStep2Ctrl',
 		'controllers/retailerDecisionStep3Ctrl',
 		'controllers/retailerDecisionStep4Ctrl',
+		'controllers/contractCtrl',
 		'controllers/homeCtrl'], function(angular, app) {
 	'use strict';
 	return app.config(['$routeProvider', function($routeProvider) {
@@ -17,11 +18,6 @@ define(['angular',
 		}).when('/producerDecisionStep1',{
 			templateUrl:'partials/producerDecisionStep1.html',
 			controller:'producerDecisionStep1Ctrl'
-			/*resolve:{
-				prodecisions: function(ProducerDecisionLoader) {
-					return ProducerDecisionLoader();
-				}
-			}*/
 		}).when('/producerDecisionStep2',{
 			templateUrl:'partials/producerDecisionStep2.html',
 			controller:'producerDecisionStep2Ctrl'
@@ -43,6 +39,9 @@ define(['angular',
 		}).when('/retailerDecisionStep4',{
 			templateUrl:'partials/retailerDecisionStep4.html',
 			controller:'retailerDecisionStep4Ctrl'
+		}).when('/contract',{
+			templateUrl:'partials/contract.html',
+			controller:'contractCtrl',
 		});	
 
 		$routeProvider.otherwise({redirectTo: '/home'});
