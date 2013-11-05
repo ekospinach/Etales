@@ -183,7 +183,7 @@ exports.getContractList = function(req, res, next){
 	var data="";
 	if(req.params.contractUserID==1||req.params.contractUserID==2||req.params.contractUserID==3){
 		data={'seminar':req.params.seminar,'producerID':req.params.contractUserID};
-	}else if(req.params.contractUserID==4||req.params.contractUserID==5){
+	}else if(req.params.contractUserID==5||req.params.contractUserID==6){
 		data={'seminar':req.params.seminar,'retailerID':req.params.contractUserID-4};
 	}else{
 		data={'seminar':req.params.seminar};
