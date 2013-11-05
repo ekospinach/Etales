@@ -307,7 +307,7 @@ define(['app'], function(app) {
 
 			var deleteOrder=function(market,category,brandName,varName){
 				if(market=="Urban"){
-					market=1;
+				market=1;
 				}
 				if(market=="Rural"){
 					market=2;
