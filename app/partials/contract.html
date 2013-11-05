@@ -41,6 +41,7 @@
 		    		<th>Retailer</th>
 		    		<th>Drafted By</th>
 		    		<th>Ready?</th>
+		    		<th>Choose</th>
 		    	</tr>
 		    	<tr ng-repeat="allContract in allContracts">
 		    		<td>{{allContract.contractCode}}</td>
@@ -57,6 +58,45 @@
 		    					</label>
 		    				</div>
 		    			</fieldset>
+		    		</td>
+		    		<td>
+		    			<a class="btn btn-primary" ng-click="openDetails(allContract)">
+		    				ShowDetails
+		    			</a>
+		    			<div modal="detailModal" class="hide" close="closeDetails()" options="detailOpts">
+		    				<div class="modal-dialog">
+		    					<div class="modal-content">
+		    						<div class="modal-header">
+		    							<div>
+			    							<h3>
+			    								Contract:{{Detail.contractCode}}
+			    							</h3>
+			    							<h4>
+			    								Producer {{Detail.producerID}} Retailer {{Detail.retailerID}},{{Detail.seminar}}
+			    							</h4>
+		    							</div>
+		    							<div>
+		    								<div class="btn-group">
+									        	<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+									              Category <span class="caret"></span>
+									            </button>
+									            <ul class="dropdown-menu">
+									              <li class=""><a ng-click="">Elecssories</a></li>
+									              <li class=""><a ng-click="">HealthBeauty</a></li>         
+									            </ul>
+									        </div>
+		    							</div>
+		    						</div>
+		    						<div class="modal-body">
+		    							xxxxx
+		    						</div>
+		    						<div class="modal-footer">
+		    							<a class="btn btn-success">Commit</a>
+		    							<a class="btn btn-primary">Compare and Refresh</a>
+		    						</div>
+		    					</div>
+		    				</div>
+		    			</div>
 		    		</td>
 		    	</tr>
 		    </table>

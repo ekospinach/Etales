@@ -24,6 +24,23 @@ define(['app'], function(app) {
 				console.log($scope.allContracts);
 			}
 
+			$scope.openDetails=function(contract){
+				$scope.detailModal=true;
+			}
+			$scope.closeDetails=function(){
+				$scope.detailModal=false;
+			}
+
+			$scope.detailOpts = {
+			    backdropFade: true,
+			    dialogFade:true
+			};
+
+			$scope.itemOpts = {
+			    backdropFade: false,
+			    dialogFade:true
+			};
+
 			$scope.contractUserID=$rootScope.rootContractUserID;
 			$scope.producerID=1;
 			$scope.retailerID=1;

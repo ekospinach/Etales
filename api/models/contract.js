@@ -28,6 +28,18 @@ var contractDetailsSchema = mongoose.Schema({
 	contractCode : String, 
 	userType : String, // 'P' or 'R'
 	negotiationItem : String,
+	/*
+    nc_MinimumOrder
+    nc_VolumeDiscountRate
+
+    nc_PaymentDays
+
+    nc_SalesTargetVolume
+    nc_PerformanceBonusAmount
+    nc_PerformanceBonusRate
+
+    nc_OtherCompensation
+	*/
 	relatedBrandName : String,
 	relatedBrandID : Number,
 
@@ -177,6 +189,51 @@ exports.newDoc=function(req,res,next){
 		console.log('contract8 insert successfully');
 		res.end('insert successfully');
 	});
+}
+
+exports.newDetail=function(req,res,next){
+	var newDetail1=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "Minimim Order & Discount Rate",
+		relatedBrandName : "ELAND1",
+		relatedBrandID : 51,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 10,
+		brand_urbanValue : Number,
+		brand_ruralValue : Number,
+		variant_A_urbanValue : Number,
+		variant_A_ruralValue : Number,
+		variant_B_urbanValue : Number,
+		variant_B_ruralValue : Number,
+		variant_C_urbanValue : Number,
+		variant_C_ruralValue : Number,
+		isVerified : Boolean,
+		amount_or_rate : Boolean		
+	})
+	var newDetail2=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : String,
+		relatedBrandName : String,
+		relatedBrandID : Number,
+
+		useBrandDetails : Boolean,
+		useVariantDetails : Boolean,
+		displayValue : String,
+		brand_urbanValue : Number,
+		brand_ruralValue : Number,
+		variant_A_urbanValue : Number,
+		variant_A_ruralValue : Number,
+		variant_B_urbanValue : Number,
+		variant_B_ruralValue : Number,
+		variant_C_urbanValue : Number,
+		variant_C_ruralValue : Number,
+		isVerified : Boolean,
+		amount_or_rate : Boolean			
+	})
 }
 
 exports.getContractList = function(req, res, next){
