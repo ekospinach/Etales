@@ -262,7 +262,7 @@ exports.getAllProducerDecision = function(req, res, next){
                         producerID:req.params.producerID},function(err,doc){
                             if(err) {next(new Error(err));}
                             if(!doc) {
-                                res.send(404, error:'Cannot find matched producer decision doc.');
+                                res.send(404, 'Cannot find matched producer decision doc.');
                             } else {
                                 res.header("Content-Type", "application/json; charset=UTF-8");                                
                                 res.statusCode = 200;
