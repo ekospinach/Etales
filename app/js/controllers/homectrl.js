@@ -24,6 +24,18 @@ define(['app','socketIO'], function(app) {
 			});
 		}
 
+		$scope.conNewDoc=function(){
+			$http({method:'GET',url:'/conNewDoc'}).then(function(res){
+				console.log(res);
+			},function(res){
+				console.log(res);
+			});
+		}
+
+		$scope.setContractUser=function(userID){
+			$rootScope.rootContractUserID=userID;
+		}
+
 		$scope.testPost = function(){
 		  var queryCondition = {
 		    seminar : 'MAY',

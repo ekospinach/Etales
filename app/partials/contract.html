@@ -1,104 +1,64 @@
 <div class="row">
-  <div class="col-md-12">
-    <div style="clear:both;padding:10px 0"></div>
-    <div class="bs-docs-section">
-      <h4>Step 1 of 4</h4>
-      <div class="pull-left" style="width:33%">
-        <h3 style="margin-top:0px">Products Portfolio Management</h3>
-        <div class="btn-group pull-left">
-            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
-              Category <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-              <li class=""><a ng-click="showView(producerID,period,'Elecssories',language)">Elecssories</a></li>
-              <li class=""><a ng-click="showView(producerID,period,'HealthBeauty',language)">HealthBeauty</a></li>       
-            </ul>
-        </div>
-        <div class="btn-group pull-left" data-toggle="buttons" style="margin-left:10px">
-            <label class="btn btn-primary" ng-click="showView(producerID,period,category,'English')">
-            <input type="radio" name="options"> English</label>
-            <label class="btn btn-primary" ng-click="showView(producerID,period,category,'Chinese')">
-            <input type="radio" name="options"> Chinese
-            </label>
-        </div>
-      </div>
-      <div class="pull-right" style="width:33%">
-        <progress percent="88" class="progress active"></progress>
-        <small>
-          <em>Total Avaliable Budget for Remaing Period</em>
-        </small>
-        <progress percent="70" class="progress progress-suceess active progress-striped"></progress>
-        <small>
-          <em>Elecssories Available Capacity</em>
-        </small>
-      </div>
-        <div style="clear:both"></div>
-        <div collapse="isCollapsed">
-          <div class="well well-large">
-            <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button>
-            <table class="table table-striped">
-              <tr>
-                <td>parentBrandID:{{moreInfo.parentBrandID}}</td>
-                <td>varName:{{moreInfo.varName}}</td>
-                <td>parentBrandID:{{moreInfo.parentBrandID}}</td>
-                <td>varName:{{moreInfo.varName}}</td>
-              </tr>  
-              <tr>
-                <td>parentBrandID:{{moreInfo.parentBrandID}}</td>
-                <td>varName:{{moreInfo.varName}}</td>
-                <td>parentBrandID:{{moreInfo.parentBrandID}}</td>
-                <td>varName:{{moreInfo.varName}}</td>
-              </tr>            
-            </table>
-          </div>
-        </div>
-        <table class="table table-hover">
-          <!--<tr>
-            <th>{{fullLanguages.Category}}</th>
-            <th ng-repeat='product in products'>
-            {{product.category}}</th>
-          </tr>-->
-          <tr>
-            <th>{{fullLanguages.Brand}}</th>
-            <th ng-repeat='product in products'>
-            {{product.parentBrandName}}</th>
-          </tr>
-          <tr>
-            <th>{{fullLanguages.Variant}}</th>
-            <th ng-repeat='product in products'>
-            {{product.varName}}<span><a ng-click="getMoreInfo(product.parentBrandID,product.varName)">more</a></span><button type="button" class="btn btn-danger btn-xs {{(product.dateOfBirth==-4)?'hide':'show'}}" ng-click="deleteProduct(category,product.parentBrandName,product.varName)">Delete</button>
-          </th>
-          </tr>
-          <tr>
-            <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.PF}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.PF}}<span style="color:red">*</span></p>
-            </th>
-            <th ng-repeat='product in products'>
-              <a href="#" editable-select="product.packFormat" e-ng-options="p.value as p.text for p in packs" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'packFormat','0',$index)">{{ selectPacks(product.parentBrandName,product.varName) }}</a>
-            </th>
-          </tr>
-          <tr>
-            <th><p class="text-primary" Popover-animation="true" popover="Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui." popover-title="{{fullLanguages.TL}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.TL}}<span style="color:red">*</span></p></th>
-            <th ng-repeat='product in products'><a href="#" editable-text="product.composition[2]" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'composition','2',$index)">{{ product.composition[2] || 'empty' }}</a></th>
-          </tr>
-          <tr>
-            <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.AA}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.AA}}<span style="color:red">*</span></p></th>
-            <th ng-repeat='product in products'><a href="#" editable-text="product.composition[1]" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'composition','1',$index)">{{ product.composition[1] || 'empty' }}</a></th>
-          </tr>
-          <tr>
-            <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.SL}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.SL}}<span style="color:red">*</span></p></th>
-            <th ng-repeat='product in products'><a href="#" editable-text="product.composition[3]" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'composition','3',$index)">{{ product.composition[3] || 'empty' }}</a></th>
-          </tr>
-          <tr>
-            <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.EPV}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.EPV}}<span style="color:red">*</span></p></th>
-            <th ng-repeat='product in products'><a href="#" editable-text="product.production" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'production','0',$index)">{{ product.production || 'empty' }}</a></th>
-          </tr>
-          <tr>
-            <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.DTP}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.DTP}}<span style="color:red">*</span></p></th>
-            <th ng-repeat='product in products'>
-              <a href="#" editable-checkbox="product.discontinue" e-title="DisContinue this product?" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'discontinue','0',$index)">{{ product.discontinue && "DisContinue" || "Continue!" }}</a></th>
-          </tr>    
-        </table>
-      </div>
-    </div>
-  </div>
+	<div class="col-md-12">
+	    <div style="clear:both;padding:10px 0"></div>
+	    <div class="bs-docs-section">
+	    	<h3>ContractList</h3>
+	    	<div class="pull-left">
+		        <div class="btn-group pull-left" style="display:{{shouldShow}}">
+		        	<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+		              Producer <span class="caret"></span>
+		            </button>
+		            <ul class="dropdown-menu">
+		              <li class=""><a ng-click="filterUser(1,retailerID)">Producer 1</a></li>
+		              <li class=""><a ng-click="filterUser(2,retailerID)">Producer 2</a></li>
+		              <li class=""><a ng-click="filterUser(3,retailerID)">Producer 3</a></li>         
+		            </ul>
+		        </div>
+		        <div class="btn-group pull-left" style="display:{{shouldShow}}">
+		        	<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" style="margin-left:10px">
+		              Retailer <span class="caret"></span>
+		            </button>
+		            <ul class="dropdown-menu">
+		              <li class=""><a ng-click="filterUser(producerID,1)">Retailer 1</a></li>
+		              <li class=""><a ng-click="filterUser(producerID,2)">Retailer 2</a></li>      
+		            </ul>
+		        </div>
+		        <div class="btn-group pull-left" data-toggle="buttons" style="margin-left:10px">
+		            <label class="btn btn-primary" ng-click="">
+		            	<input type="radio" name="options">English
+		            </label>
+		            <label class="btn btn-primary" ng-click="">
+		            	<input type="radio" name="options">Chinese
+		            </label>
+		        </div>
+		    </div>
+		    <div style="clear:both"></div>
+		    <table class="table table-hover">
+		    	<tr>
+		    		<th>Contract Name</th>
+		    		<th>Period</th>
+		    		<th>Producer</th>
+		    		<th>Retailer</th>
+		    		<th>Drafted By</th>
+		    		<th>Ready?</th>
+		    	</tr>
+		    	<tr ng-repeat="allContract in allContracts">
+		    		<td>{{allContract.contractCode}}</td>
+		    		<td>{{allContract.period}}</td>
+		    		<td>{{rootSeminar}}_P_{{allContract.producerID}}</td>
+		    		<td>{{rootSeminar}}_R_{{(allContract.retailerID)}}</td>
+		    		<td>{{rootSeminar}}_{{(allContract.draftedByCompanyID>3)?'R':'P'}}_{{(allContract.draftedByCompanyID>3)?(allContract.draftedByCompanyID-4):allContract.draftedByCompanyID}}</td>
+		    		<td>
+		    			<fieldset disabled>
+		    				<div class="checkbox">
+		    					<label>
+		    						<input type="checkbox" value="{{allContract.isDraftFinished}}">
+		    					</label>
+		    				</div>
+		    			</fieldset>
+		    		</td>
+		    	</tr>
+		    </table>
+	    </div>
+	</div>
 </div>

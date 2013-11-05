@@ -37,6 +37,7 @@ var path    = require('path'),
   app.get('/producerDecision/:producerID/:period/:seminar',require('./api/models/producerDecision.js').getAllProducerDecision);
   app.get('/retailerDecision/:retailerID/:period/:seminar/:categoryID',require('./api/models/retailerDecision.js').getAllRetailerProduct);
   app.get('/retailerDecision/:retailerID/:period/:seminar',require('./api/models/retailerDecision.js').getAllRetailerDecision); 
+  app.get('/contract/:seminar/:contractUserID',require('./api/models/contract.js').getContractList);
 
   app.get('/variantHistoryInfo');
   app.get('/brandHistoryInfo');
@@ -54,7 +55,8 @@ var path    = require('path'),
 
   app.get('/proNewDoc', require('./api/models/producerDecision.js').newDoc);
   app.get('/retNewDoc', require('./api/models/retailerDecision.js').newDoc);
-  
+  app.get('/conNewDoc', require('./api/models/contract.js').newDoc);
+
   // app.use(require('./api/errorHandlers.js').logErrors);
   // app.use(require('./api/errorHandlers.js').)
   app.use(express.errorHandler());

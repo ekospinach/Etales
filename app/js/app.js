@@ -28,5 +28,6 @@ define([
 		    $rootScope.rootProducerID = 2;
 		    $rootScope.rootPeriod = 0;
 		    $rootScope.rootSeminar = "MAY";
+		    $rootScope.rootContractUserID=1;
 		}]);
 });
