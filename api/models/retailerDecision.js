@@ -664,7 +664,7 @@ exports.updateRetailerDecision = function(io){
     }
 }
 
-exports.getAllRetailerProduct=function(req,res,next){
+exports.getRetailerProductList=function(req,res,next){
     retDecision.findOne({seminar:req.params.seminar,
                         period:req.params.period,
                         retailerID:req.params.retailerID},function(err,doc){

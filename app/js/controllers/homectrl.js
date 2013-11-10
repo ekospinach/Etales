@@ -32,6 +32,14 @@ define(['app','socketIO'], function(app) {
 			});
 		}
 
+		$scope.conDetNewDoc=function(){
+			$http({method:'GET',url:'/conDetNewDoc'}).then(function(res){
+				console.log(res);
+			},function(res){
+				console.log(res);
+			});			
+		}
+
 		$scope.setContractUser=function(userID){
 			$rootScope.rootContractUserID=userID;
 		}

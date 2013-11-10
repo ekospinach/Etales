@@ -237,13 +237,13 @@ define(['app'], function(app) {
 				}
 				var orderProducts=new Array();
 				//添加retailer load
-				var url='/retailerDecision/'+$rootScope.rootRetailerID+'/'+$rootScope.rootPeriod+'/'+$rootScope.rootSeminar+'/'+category;
+				var url='/retailerProducts/'+$rootScope.rootRetailerID+'/'+$rootScope.rootPeriod+'/'+$rootScope.rootSeminar+'/'+category;
 				$http.get(url).success(function(data){
 					for(var i=0;i<data.length;i++){
 						orderProducts.push(data[i]);
 					}
 					for(var i=1;i<=3;i++){
-						url='/producerDecision/'+i+'/'+$rootScope.rootPeriod+'/'+$rootScope.rootSeminar+'/'+category;
+						url='/producerProducts/'+i+'/'+$rootScope.rootPeriod+'/'+$rootScope.rootSeminar+'/'+category;
 						$http.get(url).success(function(data){
 							for(var j=0;j<data.length;j++){
 								orderProducts.push(data[j]);

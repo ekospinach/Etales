@@ -192,48 +192,2118 @@ exports.newDoc=function(req,res,next){
 }
 
 exports.newDetail=function(req,res,next){
+	/*Brand_E_1*/
 	var newDetail1=new contractDetails({
 		contractCode : "P1vsR1_MAY_0", 
 		userType : "P", // 'P' or 'R'
-		negotiationItem : "Minimim Order & Discount Rate",
-		relatedBrandName : "ELAND1",
-		relatedBrandID : 51,
+		negotiationItem : "nc_MinimumOrder",
+		relatedBrandName : "EGEND1",
+		relatedBrandID : 11,
 
 		useBrandDetails : true,
 		useVariantDetails : false,
 		displayValue : 10,
-		brand_urbanValue : Number,
-		brand_ruralValue : Number,
-		variant_A_urbanValue : Number,
-		variant_A_ruralValue : Number,
-		variant_B_urbanValue : Number,
-		variant_B_ruralValue : Number,
-		variant_C_urbanValue : Number,
-		variant_C_ruralValue : Number,
-		isVerified : Boolean,
-		amount_or_rate : Boolean		
-	})
+		brand_urbanValue : 20,
+		brand_ruralValue : 21,
+		variant_A_urbanValue : 11,
+		variant_A_ruralValue : 12,
+		variant_B_urbanValue : 13,
+		variant_B_ruralValue : 14,
+		variant_C_urbanValue : 15,
+		variant_C_ruralValue : 16,
+		isVerified : false,
+		amount_or_rate : true		
+	});
 	var newDetail2=new contractDetails({
 		contractCode : "P1vsR1_MAY_0", 
 		userType : "R", // 'P' or 'R'
-		negotiationItem : String,
-		relatedBrandName : String,
-		relatedBrandID : Number,
+		negotiationItem : "nc_MinimumOrder",
+		relatedBrandName : "EGEND1",
+		relatedBrandID : 11,
 
-		useBrandDetails : Boolean,
-		useVariantDetails : Boolean,
-		displayValue : String,
-		brand_urbanValue : Number,
-		brand_ruralValue : Number,
-		variant_A_urbanValue : Number,
-		variant_A_ruralValue : Number,
-		variant_B_urbanValue : Number,
-		variant_B_ruralValue : Number,
-		variant_C_urbanValue : Number,
-		variant_C_ruralValue : Number,
-		isVerified : Boolean,
-		amount_or_rate : Boolean			
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 11,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : true			
+	});
+	var newDetail3=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_VolumeDiscountRate",
+		relatedBrandName : "EGEND1",
+		relatedBrandID : 11,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 30,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	var newDetail4=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_VolumeDiscountRate",
+		relatedBrandName : "EGEND1",
+		relatedBrandID : 11,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 40,
+		brand_urbanValue : 24,
+		brand_ruralValue : 25,
+		variant_A_urbanValue : 31,
+		variant_A_ruralValue : 32,
+		variant_B_urbanValue : 33,
+		variant_B_ruralValue : 34,
+		variant_C_urbanValue : 35,
+		variant_C_ruralValue : 36,
+		isVerified : false,
+		amount_or_rate : true			
+	});
+	var newDetail5=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_PaymentDays",
+		relatedBrandName : "EGEND1",
+		relatedBrandID : 11,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 10,
+		brand_urbanValue : 20,
+		brand_ruralValue : 21,
+		variant_A_urbanValue : 11,
+		variant_A_ruralValue : 12,
+		variant_B_urbanValue : 13,
+		variant_B_ruralValue : 14,
+		variant_C_urbanValue : 15,
+		variant_C_ruralValue : 16,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	var newDetail6=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_PaymentDays",
+		relatedBrandName : "EGEND1",
+		relatedBrandID : 11,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 11,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : true			
+	});	
+	var newDetail7=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_SalesTargetVolume",
+		relatedBrandName : "EGEND1",
+		relatedBrandID : 11,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 10,
+		brand_urbanValue : 20,
+		brand_ruralValue : 21,
+		variant_A_urbanValue : 11,
+		variant_A_ruralValue : 12,
+		variant_B_urbanValue : 13,
+		variant_B_ruralValue : 14,
+		variant_C_urbanValue : 15,
+		variant_C_ruralValue : 16,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	var newDetail8=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_SalesTargetVolume",
+		relatedBrandName : "EGEND1",
+		relatedBrandID : 11,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 11,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : false			
+	});
+	var newDetail9=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_PerformanceBonusAmount",
+		relatedBrandName : "EGEND1",
+		relatedBrandID : 11,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 10,
+		brand_urbanValue : 20,
+		brand_ruralValue : 21,
+		variant_A_urbanValue : 11,
+		variant_A_ruralValue : 12,
+		variant_B_urbanValue : 13,
+		variant_B_ruralValue : 14,
+		variant_C_urbanValue : 15,
+		variant_C_ruralValue : 16,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	var newDetail10=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_PerformanceBonusAmount",
+		relatedBrandName : "EGEND1",
+		relatedBrandID : 11,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 11,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : false			
+	});
+	var newDetail11=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_PerformanceBonusRate",
+		relatedBrandName : "EGEND1",
+		relatedBrandID : 11,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 10,
+		brand_urbanValue : 20,
+		brand_ruralValue : 21,
+		variant_A_urbanValue : 11,
+		variant_A_ruralValue : 12,
+		variant_B_urbanValue : 13,
+		variant_B_ruralValue : 14,
+		variant_C_urbanValue : 15,
+		variant_C_ruralValue : 16,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	var newDetail12=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_PerformanceBonusRate",
+		relatedBrandName : "EGEND1",
+		relatedBrandID : 11,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 11,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : false			
+	});
+	var newDetail13=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_OtherCompensation",
+		relatedBrandName : "EGEND1",
+		relatedBrandID : 11,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 10,
+		brand_urbanValue : 20,
+		brand_ruralValue : 21,
+		variant_A_urbanValue : 11,
+		variant_A_ruralValue : 12,
+		variant_B_urbanValue : 13,
+		variant_B_ruralValue : 14,
+		variant_C_urbanValue : 15,
+		variant_C_ruralValue : 16,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	var newDetail14=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_OtherCompensation",
+		relatedBrandName : "EGEND1",
+		relatedBrandID : 11,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 11,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : false			
+	});
+	newDetail1.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail1 insert successfully');
+	});
+	newDetail2.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail2 insert successfully');
+	});
+	newDetail3.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail3 insert successfully');
+	});
+	newDetail4.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail4 insert successfully');
+	});
+	newDetail5.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail5 insert successfully');
+	});
+	newDetail6.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail6 insert successfully');
+	});
+	newDetail7.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail7 insert successfully');
+	});
+	newDetail8.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail8 insert successfully');
+	});
+	newDetail9.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail9 insert successfully');
+	});
+	newDetail10.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail10 insert successfully');
+	});
+	newDetail11.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail11 insert successfully');		
+	});
+	newDetail12.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail12 insert successfully');
+	});
+	newDetail13.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail13 insert successfully');
+	});
+	newDetail14.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail14 insert successfully');
+	});
+	/*Brand_H_1*/
+	newDetail1=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_MinimumOrder",
+		relatedBrandName : "HEELY1",
+		relatedBrandID : 11,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 10,
+		brand_urbanValue : 20,
+		brand_ruralValue : 21,
+		variant_A_urbanValue : 11,
+		variant_A_ruralValue : 12,
+		variant_B_urbanValue : 13,
+		variant_B_ruralValue : 14,
+		variant_C_urbanValue : 15,
+		variant_C_ruralValue : 16,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	newDetail2=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_MinimumOrder",
+		relatedBrandName : "HEELY1",
+		relatedBrandID : 11,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 11,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : true			
+	});
+	newDetail3=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_VolumeDiscountRate",
+		relatedBrandName : "HEELY1",
+		relatedBrandID : 11,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 30,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	newDetail4=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_VolumeDiscountRate",
+		relatedBrandName : "HEELY1",
+		relatedBrandID : 11,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 40,
+		brand_urbanValue : 24,
+		brand_ruralValue : 25,
+		variant_A_urbanValue : 31,
+		variant_A_ruralValue : 32,
+		variant_B_urbanValue : 33,
+		variant_B_ruralValue : 34,
+		variant_C_urbanValue : 35,
+		variant_C_ruralValue : 36,
+		isVerified : false,
+		amount_or_rate : true			
+	});
+	newDetail5=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_PaymentDays",
+		relatedBrandName : "HEELY1",
+		relatedBrandID : 11,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 10,
+		brand_urbanValue : 20,
+		brand_ruralValue : 21,
+		variant_A_urbanValue : 11,
+		variant_A_ruralValue : 12,
+		variant_B_urbanValue : 13,
+		variant_B_ruralValue : 14,
+		variant_C_urbanValue : 15,
+		variant_C_ruralValue : 16,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	newDetail6=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_PaymentDays",
+		relatedBrandName : "HEELY1",
+		relatedBrandID : 11,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 11,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : true			
+	});	
+	newDetail7=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_SalesTargetVolume",
+		relatedBrandName : "HEELY1",
+		relatedBrandID : 11,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 10,
+		brand_urbanValue : 20,
+		brand_ruralValue : 21,
+		variant_A_urbanValue : 11,
+		variant_A_ruralValue : 12,
+		variant_B_urbanValue : 13,
+		variant_B_ruralValue : 14,
+		variant_C_urbanValue : 15,
+		variant_C_ruralValue : 16,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	newDetail8=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_SalesTargetVolume",
+		relatedBrandName : "HEELY1",
+		relatedBrandID : 11,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 11,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : false			
+	});
+	newDetail9=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_PerformanceBonusAmount",
+		relatedBrandName : "HEELY1",
+		relatedBrandID : 11,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 10,
+		brand_urbanValue : 20,
+		brand_ruralValue : 21,
+		variant_A_urbanValue : 11,
+		variant_A_ruralValue : 12,
+		variant_B_urbanValue : 13,
+		variant_B_ruralValue : 14,
+		variant_C_urbanValue : 15,
+		variant_C_ruralValue : 16,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	newDetail10=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_PerformanceBonusAmount",
+		relatedBrandName : "HEELY1",
+		relatedBrandID : 11,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 11,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : false			
+	});
+	newDetail11=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_PerformanceBonusRate",
+		relatedBrandName : "HEELY1",
+		relatedBrandID : 11,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 10,
+		brand_urbanValue : 20,
+		brand_ruralValue : 21,
+		variant_A_urbanValue : 11,
+		variant_A_ruralValue : 12,
+		variant_B_urbanValue : 13,
+		variant_B_ruralValue : 14,
+		variant_C_urbanValue : 15,
+		variant_C_ruralValue : 16,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	newDetail12=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_PerformanceBonusRate",
+		relatedBrandName : "HEELY1",
+		relatedBrandID : 11,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 11,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : false			
+	});
+	newDetail13=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_OtherCompensation",
+		relatedBrandName : "HEELY1",
+		relatedBrandID : 11,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 10,
+		brand_urbanValue : 20,
+		brand_ruralValue : 21,
+		variant_A_urbanValue : 11,
+		variant_A_ruralValue : 12,
+		variant_B_urbanValue : 13,
+		variant_B_ruralValue : 14,
+		variant_C_urbanValue : 15,
+		variant_C_ruralValue : 16,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	newDetail14=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_OtherCompensation",
+		relatedBrandName : "HEELY1",
+		relatedBrandID : 11,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 11,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : false			
+	});
+	newDetail1.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail1 insert successfully');
+	});
+	newDetail2.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail2 insert successfully');
+	});
+	newDetail3.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail3 insert successfully');
+	});
+	newDetail4.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail4 insert successfully');
+	});
+	newDetail5.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail5 insert successfully');
+	});
+	newDetail6.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail6 insert successfully');
+	});
+	newDetail7.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail7 insert successfully');
+	});
+	newDetail8.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail8 insert successfully');
+	});
+	newDetail9.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail9 insert successfully');
+	});
+	newDetail10.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail10 insert successfully');
+	});
+	newDetail11.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail11 insert successfully');		
+	});
+	newDetail12.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail12 insert successfully');
+	});
+	newDetail13.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail13 insert successfully');
+	});
+	newDetail14.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail14 insert successfully');
+	});
+
+	/*Brand_E_2*/
+	newDetail1=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_MinimumOrder",
+		relatedBrandName : "EHAYA1",
+		relatedBrandID : 12,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 10,
+		brand_urbanValue : 20,
+		brand_ruralValue : 21,
+		variant_A_urbanValue : 11,
+		variant_A_ruralValue : 12,
+		variant_B_urbanValue : 13,
+		variant_B_ruralValue : 14,
+		variant_C_urbanValue : 15,
+		variant_C_ruralValue : 16,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	newDetail2=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_MinimumOrder",
+		relatedBrandName : "EHAYA1",
+		relatedBrandID : 12,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 11,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : true			
+	});
+	newDetail3=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_VolumeDiscountRate",
+		relatedBrandName : "EHAYA1",
+		relatedBrandID : 12,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 30,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	newDetail4=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_VolumeDiscountRate",
+		relatedBrandName : "EHAYA1",
+		relatedBrandID : 12,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 40,
+		brand_urbanValue : 24,
+		brand_ruralValue : 25,
+		variant_A_urbanValue : 31,
+		variant_A_ruralValue : 32,
+		variant_B_urbanValue : 33,
+		variant_B_ruralValue : 34,
+		variant_C_urbanValue : 35,
+		variant_C_ruralValue : 36,
+		isVerified : false,
+		amount_or_rate : true			
+	});
+	newDetail5=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_PaymentDays",
+		relatedBrandName : "EHAYA1",
+		relatedBrandID : 12,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 10,
+		brand_urbanValue : 20,
+		brand_ruralValue : 21,
+		variant_A_urbanValue : 11,
+		variant_A_ruralValue : 12,
+		variant_B_urbanValue : 13,
+		variant_B_ruralValue : 14,
+		variant_C_urbanValue : 15,
+		variant_C_ruralValue : 16,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	newDetail6=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_PaymentDays",
+		relatedBrandName : "EHAYA1",
+		relatedBrandID : 12,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 11,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : true			
+	});	
+	newDetail7=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_SalesTargetVolume",
+		relatedBrandName : "EHAYA1",
+		relatedBrandID : 12,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 10,
+		brand_urbanValue : 20,
+		brand_ruralValue : 21,
+		variant_A_urbanValue : 11,
+		variant_A_ruralValue : 12,
+		variant_B_urbanValue : 13,
+		variant_B_ruralValue : 14,
+		variant_C_urbanValue : 15,
+		variant_C_ruralValue : 16,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	newDetail8=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_SalesTargetVolume",
+		relatedBrandName : "EHAYA1",
+		relatedBrandID : 12,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 11,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : false			
+	});
+	newDetail9=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_PerformanceBonusAmount",
+		relatedBrandName : "EHAYA1",
+		relatedBrandID : 12,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 10,
+		brand_urbanValue : 20,
+		brand_ruralValue : 21,
+		variant_A_urbanValue : 11,
+		variant_A_ruralValue : 12,
+		variant_B_urbanValue : 13,
+		variant_B_ruralValue : 14,
+		variant_C_urbanValue : 15,
+		variant_C_ruralValue : 16,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	newDetail10=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_PerformanceBonusAmount",
+		relatedBrandName : "EHAYA1",
+		relatedBrandID : 12,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 11,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : false			
+	});
+	newDetail11=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_PerformanceBonusRate",
+		relatedBrandName : "EHAYA1",
+		relatedBrandID : 12,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 10,
+		brand_urbanValue : 20,
+		brand_ruralValue : 21,
+		variant_A_urbanValue : 11,
+		variant_A_ruralValue : 12,
+		variant_B_urbanValue : 13,
+		variant_B_ruralValue : 14,
+		variant_C_urbanValue : 15,
+		variant_C_ruralValue : 16,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	newDetail12=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_PerformanceBonusRate",
+		relatedBrandName : "EHAYA1",
+		relatedBrandID : 12,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 11,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : false			
+	});
+	newDetail13=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_OtherCompensation",
+		relatedBrandName : "EHAYA1",
+		relatedBrandID : 12,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 10,
+		brand_urbanValue : 20,
+		brand_ruralValue : 21,
+		variant_A_urbanValue : 11,
+		variant_A_ruralValue : 12,
+		variant_B_urbanValue : 13,
+		variant_B_ruralValue : 14,
+		variant_C_urbanValue : 15,
+		variant_C_ruralValue : 16,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	newDetail14=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_OtherCompensation",
+		relatedBrandName : "EHAYA1",
+		relatedBrandID : 12,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 11,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : false			
+	});
+	newDetail1.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail1 insert successfully');
+	});
+	newDetail2.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail2 insert successfully');
+	});
+	newDetail3.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail3 insert successfully');
+	});
+	newDetail4.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail4 insert successfully');
+	});
+	newDetail5.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail5 insert successfully');
+	});
+	newDetail6.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail6 insert successfully');
+	});
+	newDetail7.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail7 insert successfully');
+	});
+	newDetail8.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail8 insert successfully');
+	});
+	newDetail9.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail9 insert successfully');
+	});
+	newDetail10.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail10 insert successfully');
+	});
+	newDetail11.save(function(err){
+		if(err) next(next(new Error(err)));
+		console.log('detail11 insert successfully');
 	})
+
+	newDetail12.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail12 insert successfully');
+	});
+	newDetail13.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail13 insert successfully');
+	});
+	newDetail14.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail14 insert successfully');
+	});
+	/*Brand_H_2*/
+	newDetail1=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_MinimumOrder",
+		relatedBrandName : "HOTOO1",
+		relatedBrandID : 12,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 10,
+		brand_urbanValue : 20,
+		brand_ruralValue : 21,
+		variant_A_urbanValue : 11,
+		variant_A_ruralValue : 12,
+		variant_B_urbanValue : 13,
+		variant_B_ruralValue : 14,
+		variant_C_urbanValue : 15,
+		variant_C_ruralValue : 16,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	newDetail2=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_MinimumOrder",
+		relatedBrandName : "HOTOO1",
+		relatedBrandID : 12,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 11,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : true			
+	});
+	newDetail3=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_VolumeDiscountRate",
+		relatedBrandName : "HOTOO1",
+		relatedBrandID : 12,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 30,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	newDetail4=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_VolumeDiscountRate",
+		relatedBrandName : "HOTOO1",
+		relatedBrandID : 12,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 40,
+		brand_urbanValue : 24,
+		brand_ruralValue : 25,
+		variant_A_urbanValue : 31,
+		variant_A_ruralValue : 32,
+		variant_B_urbanValue : 33,
+		variant_B_ruralValue : 34,
+		variant_C_urbanValue : 35,
+		variant_C_ruralValue : 36,
+		isVerified : false,
+		amount_or_rate : true			
+	});
+	newDetail5=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_PaymentDays",
+		relatedBrandName : "HOTOO1",
+		relatedBrandID : 12,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 10,
+		brand_urbanValue : 20,
+		brand_ruralValue : 21,
+		variant_A_urbanValue : 11,
+		variant_A_ruralValue : 12,
+		variant_B_urbanValue : 13,
+		variant_B_ruralValue : 14,
+		variant_C_urbanValue : 15,
+		variant_C_ruralValue : 16,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	newDetail6=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_PaymentDays",
+		relatedBrandName : "HOTOO1",
+		relatedBrandID : 12,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 11,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : true			
+	});	
+	newDetail7=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_SalesTargetVolume",
+		relatedBrandName : "HOTOO1",
+		relatedBrandID : 12,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 10,
+		brand_urbanValue : 20,
+		brand_ruralValue : 21,
+		variant_A_urbanValue : 11,
+		variant_A_ruralValue : 12,
+		variant_B_urbanValue : 13,
+		variant_B_ruralValue : 14,
+		variant_C_urbanValue : 15,
+		variant_C_ruralValue : 16,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	newDetail8=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_SalesTargetVolume",
+		relatedBrandName : "HOTOO1",
+		relatedBrandID : 12,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 11,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : false			
+	});
+	newDetail9=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_PerformanceBonusAmount",
+		relatedBrandName : "HOTOO1",
+		relatedBrandID : 12,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 10,
+		brand_urbanValue : 20,
+		brand_ruralValue : 21,
+		variant_A_urbanValue : 11,
+		variant_A_ruralValue : 12,
+		variant_B_urbanValue : 13,
+		variant_B_ruralValue : 14,
+		variant_C_urbanValue : 15,
+		variant_C_ruralValue : 16,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	newDetail10=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_PerformanceBonusAmount",
+		relatedBrandName : "HOTOO1",
+		relatedBrandID : 12,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 11,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : false			
+	});
+	newDetail11=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_PerformanceBonusRate",
+		relatedBrandName : "HOTOO1",
+		relatedBrandID : 12,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 10,
+		brand_urbanValue : 20,
+		brand_ruralValue : 21,
+		variant_A_urbanValue : 11,
+		variant_A_ruralValue : 12,
+		variant_B_urbanValue : 13,
+		variant_B_ruralValue : 14,
+		variant_C_urbanValue : 15,
+		variant_C_ruralValue : 16,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	newDetail12=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_PerformanceBonusRate",
+		relatedBrandName : "HOTOO1",
+		relatedBrandID : 12,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 11,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : false			
+	});
+	newDetail13=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_OtherCompensation",
+		relatedBrandName : "HOTOO1",
+		relatedBrandID : 12,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 10,
+		brand_urbanValue : 20,
+		brand_ruralValue : 21,
+		variant_A_urbanValue : 11,
+		variant_A_ruralValue : 12,
+		variant_B_urbanValue : 13,
+		variant_B_ruralValue : 14,
+		variant_C_urbanValue : 15,
+		variant_C_ruralValue : 16,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	newDetail14=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_OtherCompensation",
+		relatedBrandName : "HOTOO1",
+		relatedBrandID : 12,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 11,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : false			
+	});
+	newDetail1.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail1 insert successfully');
+	});
+	newDetail2.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail2 insert successfully');
+	});
+	newDetail3.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail3 insert successfully');
+	});
+	newDetail4.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail4 insert successfully');
+	});
+	newDetail5.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail5 insert successfully');
+	});
+	newDetail6.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail6 insert successfully');
+	});
+	newDetail7.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail7 insert successfully');
+	});
+	newDetail8.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail8 insert successfully');
+	});
+	newDetail9.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail9 insert successfully');
+	});
+	newDetail10.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail10 insert successfully');
+	});
+	newDetail11.save(function(err){
+		if(err) next(next(new Error(err)));
+		console.log('detail11 insert successfully');
+	})
+
+	newDetail12.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail12 insert successfully');
+	});
+	newDetail13.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail13 insert successfully');
+	});
+	newDetail14.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail14 insert successfully');
+	});
+	/*Brand_E_3*/
+	newDetail1=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_MinimumOrder",
+		relatedBrandName : "ELAND1",
+		relatedBrandID : 13,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 10,
+		brand_urbanValue : 20,
+		brand_ruralValue : 21,
+		variant_A_urbanValue : 11,
+		variant_A_ruralValue : 12,
+		variant_B_urbanValue : 13,
+		variant_B_ruralValue : 14,
+		variant_C_urbanValue : 15,
+		variant_C_ruralValue : 16,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	newDetail2=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_MinimumOrder",
+		relatedBrandName : "ELAND1",
+		relatedBrandID : 13,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 11,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : true			
+	});
+	newDetail3=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_VolumeDiscountRate",
+		relatedBrandName : "ELAND1",
+		relatedBrandID : 13,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 30,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	newDetail4=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_VolumeDiscountRate",
+		relatedBrandName : "ELAND1",
+		relatedBrandID : 13,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 40,
+		brand_urbanValue : 24,
+		brand_ruralValue : 25,
+		variant_A_urbanValue : 31,
+		variant_A_ruralValue : 32,
+		variant_B_urbanValue : 33,
+		variant_B_ruralValue : 34,
+		variant_C_urbanValue : 35,
+		variant_C_ruralValue : 36,
+		isVerified : false,
+		amount_or_rate : true			
+	});
+	newDetail5=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_PaymentDays",
+		relatedBrandName : "ELAND1",
+		relatedBrandID : 13,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 10,
+		brand_urbanValue : 20,
+		brand_ruralValue : 21,
+		variant_A_urbanValue : 11,
+		variant_A_ruralValue : 12,
+		variant_B_urbanValue : 13,
+		variant_B_ruralValue : 14,
+		variant_C_urbanValue : 15,
+		variant_C_ruralValue : 16,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	newDetail6=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_PaymentDays",
+		relatedBrandName : "ELAND1",
+		relatedBrandID : 13,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 11,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : true			
+	});	
+	newDetail7=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_SalesTargetVolume",
+		relatedBrandName : "ELAND1",
+		relatedBrandID : 13,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 10,
+		brand_urbanValue : 20,
+		brand_ruralValue : 21,
+		variant_A_urbanValue : 11,
+		variant_A_ruralValue : 12,
+		variant_B_urbanValue : 13,
+		variant_B_ruralValue : 14,
+		variant_C_urbanValue : 15,
+		variant_C_ruralValue : 16,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	newDetail8=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_SalesTargetVolume",
+		relatedBrandName : "ELAND1",
+		relatedBrandID : 13,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 11,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : false			
+	});
+	newDetail9=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_PerformanceBonusAmount",
+		relatedBrandName : "ELAND1",
+		relatedBrandID : 13,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 10,
+		brand_urbanValue : 20,
+		brand_ruralValue : 21,
+		variant_A_urbanValue : 11,
+		variant_A_ruralValue : 12,
+		variant_B_urbanValue : 13,
+		variant_B_ruralValue : 14,
+		variant_C_urbanValue : 15,
+		variant_C_ruralValue : 16,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	newDetail10=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_PerformanceBonusAmount",
+		relatedBrandName : "ELAND1",
+		relatedBrandID : 13,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 11,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : false			
+	});
+	newDetail11=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_PerformanceBonusRate",
+		relatedBrandName : "ELAND1",
+		relatedBrandID : 13,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 10,
+		brand_urbanValue : 20,
+		brand_ruralValue : 21,
+		variant_A_urbanValue : 11,
+		variant_A_ruralValue : 12,
+		variant_B_urbanValue : 13,
+		variant_B_ruralValue : 14,
+		variant_C_urbanValue : 15,
+		variant_C_ruralValue : 16,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	newDetail12=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_PerformanceBonusRate",
+		relatedBrandName : "ELAND1",
+		relatedBrandID : 13,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 11,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : false			
+	});
+	newDetail13=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_OtherCompensation",
+		relatedBrandName : "ELAND1",
+		relatedBrandID : 13,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 10,
+		brand_urbanValue : 20,
+		brand_ruralValue : 21,
+		variant_A_urbanValue : 11,
+		variant_A_ruralValue : 12,
+		variant_B_urbanValue : 13,
+		variant_B_ruralValue : 14,
+		variant_C_urbanValue : 15,
+		variant_C_ruralValue : 16,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	newDetail14=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_OtherCompensation",
+		relatedBrandName : "ELAND1",
+		relatedBrandID : 13,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 11,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : false			
+	});
+	newDetail1.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail1 insert successfully');
+	});
+	newDetail2.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail2 insert successfully');
+	});
+	newDetail3.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail3 insert successfully');
+	});
+	newDetail4.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail4 insert successfully');
+	});
+	newDetail5.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail5 insert successfully');
+	});
+	newDetail6.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail6 insert successfully');
+	});
+	newDetail7.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail7 insert successfully');
+	});
+	newDetail8.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail8 insert successfully');
+	});
+	newDetail9.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail9 insert successfully');
+	});
+	newDetail10.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail10 insert successfully');
+	});
+	newDetail11.save(function(err){
+		if(err) next(next(new Error(err)));
+		console.log('detail11 insert successfully');
+	})
+
+	newDetail12.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail12 insert successfully');
+	});
+	newDetail13.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail13 insert successfully');
+	});
+	newDetail14.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail14 insert successfully');
+	});
+	/*Brand_H_3*/
+	newDetail1=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_MinimumOrder",
+		relatedBrandName : "HOLAY1",
+		relatedBrandID : 13,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 10,
+		brand_urbanValue : 20,
+		brand_ruralValue : 21,
+		variant_A_urbanValue : 11,
+		variant_A_ruralValue : 12,
+		variant_B_urbanValue : 13,
+		variant_B_ruralValue : 14,
+		variant_C_urbanValue : 15,
+		variant_C_ruralValue : 16,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	newDetail2=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_MinimumOrder",
+		relatedBrandName : "HOLAY1",
+		relatedBrandID : 13,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 11,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : true			
+	});
+	newDetail3=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_VolumeDiscountRate",
+		relatedBrandName : "HOLAY1",
+		relatedBrandID : 13,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 30,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	newDetail4=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_VolumeDiscountRate",
+		relatedBrandName : "HOLAY1",
+		relatedBrandID : 13,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 40,
+		brand_urbanValue : 24,
+		brand_ruralValue : 25,
+		variant_A_urbanValue : 31,
+		variant_A_ruralValue : 32,
+		variant_B_urbanValue : 33,
+		variant_B_ruralValue : 34,
+		variant_C_urbanValue : 35,
+		variant_C_ruralValue : 36,
+		isVerified : false,
+		amount_or_rate : true			
+	});
+	newDetail5=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_PaymentDays",
+		relatedBrandName : "HOLAY1",
+		relatedBrandID : 13,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 10,
+		brand_urbanValue : 20,
+		brand_ruralValue : 21,
+		variant_A_urbanValue : 11,
+		variant_A_ruralValue : 12,
+		variant_B_urbanValue : 13,
+		variant_B_ruralValue : 14,
+		variant_C_urbanValue : 15,
+		variant_C_ruralValue : 16,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	newDetail6=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_PaymentDays",
+		relatedBrandName : "HOLAY1",
+		relatedBrandID : 13,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 11,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : true			
+	});	
+	newDetail7=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_SalesTargetVolume",
+		relatedBrandName : "HOLAY1",
+		relatedBrandID : 13,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 10,
+		brand_urbanValue : 20,
+		brand_ruralValue : 21,
+		variant_A_urbanValue : 11,
+		variant_A_ruralValue : 12,
+		variant_B_urbanValue : 13,
+		variant_B_ruralValue : 14,
+		variant_C_urbanValue : 15,
+		variant_C_ruralValue : 16,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	newDetail8=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_SalesTargetVolume",
+		relatedBrandName : "HOLAY1",
+		relatedBrandID : 13,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 11,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : false			
+	});
+	newDetail9=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_PerformanceBonusAmount",
+		relatedBrandName : "HOLAY1",
+		relatedBrandID : 13,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 10,
+		brand_urbanValue : 20,
+		brand_ruralValue : 21,
+		variant_A_urbanValue : 11,
+		variant_A_ruralValue : 12,
+		variant_B_urbanValue : 13,
+		variant_B_ruralValue : 14,
+		variant_C_urbanValue : 15,
+		variant_C_ruralValue : 16,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	newDetail10=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_PerformanceBonusAmount",
+		relatedBrandName : "HOLAY1",
+		relatedBrandID : 13,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 11,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : false			
+	});
+	newDetail11=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_PerformanceBonusRate",
+		relatedBrandName : "HOLAY1",
+		relatedBrandID : 13,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 10,
+		brand_urbanValue : 20,
+		brand_ruralValue : 21,
+		variant_A_urbanValue : 11,
+		variant_A_ruralValue : 12,
+		variant_B_urbanValue : 13,
+		variant_B_ruralValue : 14,
+		variant_C_urbanValue : 15,
+		variant_C_ruralValue : 16,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	newDetail12=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_PerformanceBonusRate",
+		relatedBrandName : "HOLAY1",
+		relatedBrandID : 13,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 11,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : false			
+	});
+	newDetail13=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "P", // 'P' or 'R'
+		negotiationItem : "nc_OtherCompensation",
+		relatedBrandName : "HOLAY1",
+		relatedBrandID : 13,
+
+		useBrandDetails : true,
+		useVariantDetails : false,
+		displayValue : 10,
+		brand_urbanValue : 20,
+		brand_ruralValue : 21,
+		variant_A_urbanValue : 11,
+		variant_A_ruralValue : 12,
+		variant_B_urbanValue : 13,
+		variant_B_ruralValue : 14,
+		variant_C_urbanValue : 15,
+		variant_C_ruralValue : 16,
+		isVerified : false,
+		amount_or_rate : true		
+	});
+	newDetail14=new contractDetails({
+		contractCode : "P1vsR1_MAY_0", 
+		userType : "R", // 'P' or 'R'
+		negotiationItem : "nc_OtherCompensation",
+		relatedBrandName : "HOLAY1",
+		relatedBrandID : 13,
+
+		useBrandDetails : false,
+		useVariantDetails : true,
+		displayValue : 11,
+		brand_urbanValue : 22,
+		brand_ruralValue : 23,
+		variant_A_urbanValue : 21,
+		variant_A_ruralValue : 22,
+		variant_B_urbanValue : 23,
+		variant_B_ruralValue : 24,
+		variant_C_urbanValue : 25,
+		variant_C_ruralValue : 26,
+		isVerified : false,
+		amount_or_rate : false			
+	});
+	newDetail1.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail1 insert successfully');
+	});
+	newDetail2.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail2 insert successfully');
+	});
+	newDetail3.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail3 insert successfully');
+	});
+	newDetail4.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail4 insert successfully');
+	});
+	newDetail5.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail5 insert successfully');
+	});
+	newDetail6.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail6 insert successfully');
+	});
+	newDetail7.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail7 insert successfully');
+	});
+	newDetail8.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail8 insert successfully');
+	});
+	newDetail9.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail9 insert successfully');
+	});
+	newDetail10.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail10 insert successfully');
+	});
+	newDetail11.save(function(err){
+		if(err) next(next(new Error(err)));
+		console.log('detail11 insert successfully');
+	})
+
+	newDetail12.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail12 insert successfully');
+	});
+	newDetail13.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail13 insert successfully');
+	});
+	newDetail14.save(function(err){
+		if(err) next(new Error(err));
+		console.log('detail14 insert successfully');
+		res.end('insert successfully');
+	});
 }
 
 exports.getContractList = function(req, res, next){
@@ -316,7 +2386,13 @@ exports.updateContractDetails = function(io){
 	}
 }
 
-exports.getContractDetails = function(res, req, next){
-
+exports.getContractDetails = function(req, res, next){
+	contractDetails.find({'contractCode':req.params.contractCode},function(err,docs){
+		if(docs){
+			res.send(200,docs);
+		}else{
+			res.send(404,'there is no contract');
+		}
+	})
 }
 

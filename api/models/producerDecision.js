@@ -271,7 +271,7 @@ exports.getAllProducerDecision = function(req, res, next){
                         }); 
 }
 
-exports.getAllProducerProduct=function(req,res,next){
+exports.getProducerProductList=function(req,res,next){
     proDecision.findOne({seminar:req.params.seminar,
                         period:req.params.period,
                         producerID:req.params.producerID},function(err,doc){
@@ -306,6 +306,41 @@ exports.getAllProducerProduct=function(req,res,next){
                                         res.header("Content-Type", "application/json; charset=UTF-8");                                
                                         res.statusCode = 200;
                                         res.send(products);   
+                                    } 
+                                }
+                            }); 
+}
+
+exports.getProducerBrandList=function(req,res,next){
+    proDecision.findOne({seminar:req.params.seminar,
+                        period:req.params.period,
+                        producerID:req.params.producerID},function(err,doc){
+                            if(err) {next(new Error(err));}
+                                if(!doc) {
+                                    console.log('cannot find matched doc...');
+                                    res.send(404, {error:'Cannot find matched doc...'});
+                                } else {
+                                    var allProCatDecisions=_.filter(doc.proCatDecision,function(obj){
+                                        return (obj.categoryID==req.params.categoryID);
+                                    });
+                                    var brands=new Array();
+                                    var count=0;
+                                    for(var i=0;i<doc.proCatDecision.length;i++){
+                                        if(doc.proCatDecision[i].proBrandsDecision.length!=0){
+                                            for(var j=0;j<doc.proCatDecision[i].proBrandsDecision.length;j++){
+                                                if(doc.proCatDecision[i].proBrandsDecision[j].proVarDecision.length!=0){
+                                                    brands.push({'category':doc.proCatDecision[i].categoryID,
+                                                            'brandName':doc.proCatDecision[i].proBrandsDecision[j].brandName,
+                                                            'brandID':doc.proCatDecision[i].proBrandsDecision[j].brandID});
+                                                    count++;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if(count!=0){
+                                        res.header("Content-Type", "application/json; charset=UTF-8");                                
+                                        res.statusCode = 200;
+                                        res.send(brands);   
                                     } 
                                 }
                             }); 
