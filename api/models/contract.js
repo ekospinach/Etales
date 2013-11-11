@@ -2335,6 +2335,7 @@ exports.duplicateContract = function(req, res, next){
 exports.updateContractDetails = function(io){
   	return function(req, res, next){
   		//console.log(req.body);
+  		var result=false;
   		var queryCondition={
   			contractCode:req.body.contractCode,
   			userType:req.body.userType,
@@ -2387,21 +2388,89 @@ exports.updateContractDetails = function(io){
 	  				doc.useBrandDetails=false;
 	  				doc.useVariantDetails=true;
   				}
-  				if(queryCondition.negotiationItem=="nc_PerformanceBonusAmount"){
-  					doc.amount_or_rate=true;
-  				}
-  				if(queryCondition.negotiationItem=="nc_PerformanceBonusRate"){
-  					doc.amount_or_rate=false;
-  				}
   				doc.save(function(err,doc,numberAffected){
   					if(err){
   						next(new Error(err));
   					}
   					console.log('save update,number affected:'+numberAffected);
-  					res.send(200, 'mission complete!');
+  					result=true;
+  					//res.send(200, 'mission complete!');
   				})
   			}
   		});
+		if(queryCondition.negotiationItem=="nc_VolumeDiscountRate"){
+			contractDetails.findOne({
+				contractCode:queryCondition.contractCode,
+				negotiationItem:"nc_MinimumOrder",
+	  			userType:queryCondition.userType,
+	  			relatedBrandName:queryCondition.relatedBrandName,
+  				relatedBrandID:queryCondition.relatedBrandID
+			},function(err,doc){
+				if(err){
+	  				next(new Error(err));
+	  			}
+	  			if(!doc){
+	  				console.log('cannot find matched doc....');
+	  				res.send(404,'cannot find matched detail ...');
+	  			}else{
+	  				if(queryCondition.type=="brand"){
+	  					doc.useBrandDetails=true;
+	  					doc.useVariantDetails=false;
+	  				}else{
+	  					doc.useVariantDetails=true;
+	  					doc.useBrandDetails=false;
+	  				}
+	  				doc.save(function(err,doc,numberAffected){
+	  					if(err){
+	  						next(new Error(err));
+	  					}
+	  					console.log('save useBrandDetails/useVariantDetails successfully,numberAffected:'+numberAffected);
+	  					res.send(200, 'mission complete!');
+	  				})
+	  			}
+			})
+		}
+		else if(queryCondition.negotiationItem=="nc_PerformanceBonusAmount"||queryCondition.negotiationItem=="nc_PerformanceBonusRate"){
+			contractDetails.findOne({
+				contractCode:queryCondition.contractCode,
+				negotiationItem:"nc_SalesTargetVolume",
+	  			userType:queryCondition.userType,
+	  			relatedBrandName:queryCondition.relatedBrandName,
+  				relatedBrandID:queryCondition.relatedBrandID
+			},function(err,doc){
+				if(err){
+	  				next(new Error(err));
+	  			}
+	  			if(!doc){
+	  				console.log('cannot find matched doc....');
+	  				res.send(404,'cannot find matched detail ...');
+	  			}else{
+	  				if(queryCondition.type=="brand"){
+	  					doc.useBrandDetails=true;
+	  					doc.useVariantDetails=false;
+	  				}
+	  				else if(queryCondition.type=="variant"){
+	  					doc.useVariantDetails=true;
+	  					doc.useBrandDetails=false;
+	  				}
+	  				if(queryCondition.negotiationItem=="nc_PerformanceBonusAmount"){
+	  					doc.amount_or_rate=true;
+	  				}else if(queryCondition.negotiationItem=="nc_PerformanceBonusRate"){
+	  					doc.amount_or_rate=false;
+	  				}
+	  				doc.save(function(err,doc,numberAffected){
+	  					if(err){
+	  						next(new Error(err));
+	  					}
+	  					console.log('save useBrandDetails/useVariantDetails successfully,numberAffected:'+numberAffected);
+	  					res.send(200, 'mission complete!');
+	  				})
+	  			}
+			})
+		}
+    }
+    if(result){
+    	res.send(200, 'mission complete!');
     }
 		/*var query = {
 			contractCode : req.body.contractCode,
