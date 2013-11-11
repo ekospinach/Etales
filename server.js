@@ -25,12 +25,12 @@ var path    = require('path'),
 
   app.get('/initializationResult');
   app.get('/passiveResult');
-  app.get('/kernelResult')
+  app.get('/kernelResult');
 
   app.post('/negotiationDecision');
   app.post('/producerDecision',require('./api/models/producerDecision.js').updateProducerDecision(io));
   app.post('/retailerDecision',require('./api/models/retailerDecision.js').updateRetailerDecision(io));
-
+  app.post('/updateContractDetails',require('./api/models/contract.js').updateContractDetails(io));
 
   app.get('/negotiationDecision');
   app.get('/producerDecision/:producerID/:period/:seminar',require('./api/models/producerDecision.js').getAllProducerDecision);

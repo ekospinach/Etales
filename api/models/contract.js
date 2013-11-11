@@ -2334,7 +2334,76 @@ exports.duplicateContract = function(req, res, next){
 
 exports.updateContractDetails = function(io){
   	return function(req, res, next){
-		var query = {
+  		//console.log(req.body);
+  		var queryCondition={
+  			contractCode:req.body.contractCode,
+  			userType:req.body.userType,
+  			negotiationItem:req.body.negotiationItem,
+  			relatedBrandName:req.body.relatedBrandName,
+  			relatedBrandID:req.body.relatedBrandID,
+  			type:req.body.type,
+  			location:req.body.location,
+  			index:req.body.index,
+  			value:req.body.value,
+  		};
+  		contractDetails.findOne({
+  			contractCode:queryCondition.contractCode,
+  			userType:queryCondition.userType,
+  			negotiationItem:queryCondition.negotiationItem,
+  			relatedBrandName:queryCondition.relatedBrandName,
+  			relatedBrandID:queryCondition.relatedBrandID
+  		},function(err,doc){
+  			if(err){
+  				next(new Error(err));
+  			}
+  			if(!doc){
+  				console.log('cannot find matched doc....');
+  				res.send(404,'cannot find matched detail ...');
+  			}else{
+  				if(queryCondition.type=="brand"){
+  					if(queryCondition.location=="rural"){
+	  					doc.brand_ruralValue=queryCondition.value;
+	  				}else{
+	  					doc.brand_urbanValue=queryCondition.value;
+	  				}
+	  				doc.useBrandDetails=true;
+	  				doc.useVariantDetails=false;
+  				}
+  				if(queryCondition.type=="variant"){
+					if(queryCondition.location=="rural"){
+	  					//doc.brand_ruralValue=queryCondition.value;
+	  					switch(queryCondition.index){
+	  						case 0:doc.variant_A_ruralValue=queryCondition.value;break;
+	  						case 1:doc.variant_B_ruralValue=queryCondition.value;break;
+	  						case 2:doc.variant_C_ruralValue=queryCondition.value;break;
+	  					}
+	  				}else{
+	  					switch(queryCondition.index){
+	  						case 0:doc.variant_A_urbanValue=queryCondition.value;break;
+	  						case 1:doc.variant_B_urbanValue=queryCondition.value;break;
+	  						case 2:doc.variant_C_urbanValue=queryCondition.value;break;
+	  					}
+	  				}
+	  				doc.useBrandDetails=false;
+	  				doc.useVariantDetails=true;
+  				}
+  				if(queryCondition.negotiationItem=="nc_PerformanceBonusAmount"){
+  					doc.amount_or_rate=true;
+  				}
+  				if(queryCondition.negotiationItem=="nc_PerformanceBonusRate"){
+  					doc.amount_or_rate=false;
+  				}
+  				doc.save(function(err,doc,numberAffected){
+  					if(err){
+  						next(new Error(err));
+  					}
+  					console.log('save update,number affected:'+numberAffected);
+  					res.send(200, 'mission complete!');
+  				})
+  			}
+  		});
+    }
+		/*var query = {
 			contractCode : req.body.contractCode,
 			userType : req.body.userType,
 			negotiationItem : req.body.negotiationItem,
@@ -2383,7 +2452,7 @@ exports.updateContractDetails = function(io){
 	 					  	 io.sockets.emit('contarctDetailsChanged', {contractCode : query.contractCode}); 					  	 
 						  	 res.send(200, 'Contract details update done.')
 						  });
-	}
+	}*/
 }
 
 exports.getContractDetails = function(req, res, next){
