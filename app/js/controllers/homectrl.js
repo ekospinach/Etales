@@ -3,11 +3,26 @@ define(['app','socketIO'], function(app) {
 	app.controller('HomeCtrl',['$scope', '$http', 'ProducerDecisionBase','$rootScope', function($scope, $http, ProducerDecisionBase,$rootScope) {
 		// You can access the scope of the controller from here
 		$scope.welcomeMessage = 'hey this is HomeCtrl.js!';
-		var socket = io.connect();
+
+		var socket = io.connect('http://localhost');
 		socket.on('baseChangedNew', function(data){
 			console.log('from server socketIO:' + data);
+		}).on('KernalPassiveProcess', function(data){
+			console.log('from Kernal & Passive module:' + data.msg);
 		});
 
+		$scope.testPassive = function(){
+		  var postData = {
+		  	seminar : 'ROUND1',
+		  	period : 0
+		  }
+		  $http({method:'POST', url:'/passiveSeminar', data: postData}).then(function(res){
+		  	console.log('testPassive Success:' + res);
+		  },function(res){
+		  	console.log('testPassive Failed:' + res);
+		  })			
+		}
+		
 		$scope.proNewDoc = function(){
 			$http({method: 'GET', url: '/proNewDoc'}).then(function(res){
 				console.log(res);
@@ -90,7 +105,7 @@ define(['app','socketIO'], function(app) {
 			$scope.pageBase = newBase;
 			console.log('Changed from server side:');
 			ProducerDecisionBase.reload({period:'0', seminar:'MAY', producerID:1}).then(function(base){
-				
+		
 				ProducerDecisionBase.setSomething('SERVER');			
 
 			}, function(reason){
@@ -99,7 +114,7 @@ define(['app','socketIO'], function(app) {
 				console.log('from ctr: ' + update);
 			})	
 		});
-
 	}]);
+
 });
 

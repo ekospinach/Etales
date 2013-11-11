@@ -60,6 +60,7 @@ var contractDetailsSchema = mongoose.Schema({
 
 
 
+
 var contract = mongoose.model('contract', contractSchema);
 var contractDetails = mongoose.model('contractDetails', contractDetailsSchema);
 

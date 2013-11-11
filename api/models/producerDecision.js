@@ -2,6 +2,7 @@ var mongoose = require('mongoose'),
     http = require('http'),
     util = require('util'),
     _ = require('underscore');
+    request = require('request');
 
 var proVarDecisionSchema = mongoose.Schema({
     varName : String,
@@ -69,6 +70,93 @@ var proDecisionSchema = mongoose.Schema({
 
 var proDecision = mongoose.model('proDecision', proDecisionSchema);
 
+exports.exportToBinary = function(options){
+    var period = options.period;
+//    socket.emit('KernalPassiveProcess',{status: 'info', msg: 'Write producer decision into binary...'});
+    proDecision.findOne({seminar : options.seminar,
+                           period : options.period,
+                           producerID : options.producerID},
+                           function(err, doc){
+                                if(err) {next(new Error(err));}
+                                if(!doc) {
+                                    console.log('cannot find matched doc, ' + 'producerID:' + options.producerID + '/seminar:' + options.seminar + '/period:' + options.period);
+  //                                  socket.emit('KernalPassiveProcess',{status: 'error', msg: 'Cannot find matched producer decision doc to export binary.'});
+                                } else {        
+                                    //console.log(JSON.stringify(doc));
+                                    // var requestOptions = {
+                                    //     uri : 'http://' + options.cgiHost + ':' + options.cgiPort + options.cgiPath,
+                                    //     method : 'POST',
+                                    //     json : {
+                                    //         jsonData : doc
+                                    //     }
+                                    // }
+                                    // request(requestOptions, function(error, response, body){
+                                    //     console.log('res status' + response.statusCode);
+                                    // })
+
+request.post('http://' + options.cgiHost + ':' + options.cgiPort + options.cgiPath, {form: {jsonData: JSON.stringify(doc)} });
+                                    // require('../utils/http.js').post('http://' + options.cgiHost + ':' + options.cgiPort + options.cgiPath, { jsonData : JSON.stringify(doc) }, function(data){
+                                    //     console.log(data);
+                                    // })
+                                }
+                           });
+}
+
+exports.addProducerDecisions = function(options, socket){
+    var startFrom = options.startFrom,
+    endwith = options.endWith;
+    socket.emit('InitialiseProcess', { msg: 'Adding producer decisions into database...' });
+
+   (function sendRequest(currentPeriod){        
+      var reqOptions = {
+          hostname: options.cgiHost,
+          port: options.cgiPort,
+          path: options.cgiPath + '?period=' + currentPeriod + '&seminar=' + options.seminar + '&producerID=' + options.producerID
+      };
+      http.get(reqOptions, function(response) { 
+        var data = '';
+        response.setEncoding('utf8');
+        response.on('data', function(chunk){
+          data += chunk;
+        }).on('end', function(){
+          //ask Oleg to fix here, should return 404 when result beyound the existed period.
+          console.log('response statusCode from CGI(' + options.cgiPath + ') for period ' + currentPeriod + ': ' + response.statusCode);
+          if ( response.statusCode === (404 || 500) ) next(new Error('Read beyound result file, data of period ' + currentPeriod + ' do not exist.'));
+          else{
+            try {
+              var singleDecision = JSON.parse(data);
+            } catch(e) {
+              next(new Error('Read decision file failed, please only choose existed period.'));
+              console.log(e);
+            }
+          }      
+          if (!singleDecision) return; 
+          proDecision.update({seminar: singleDecision.seminar, 
+                              period: singleDecision.period,
+                              producerID: singleDecision.producerID},
+                              {nextBudgetExtension: singleDecision.nextBudgetExtension,
+                               approvedBudgetExtension: singleDecision.approvedBudgetExtension,
+                               proCatDecision: singleDecision.proCatDecision},
+                                {upsert: true},
+                                function(err, numberAffected, raw){
+                                  if(err) next(new Error(err));
+                                  console.log('producerDecision generated: the number of updated documents was %d', numberAffected);
+                                  currentPeriod--;
+                                  if (currentPeriod >= startFrom) {
+                                     sendRequest(currentPeriod);
+                                  } else {
+                                     console.log('producerDecision generate done. from period' + startFrom + ' to ' + endWith);
+                                     socket.emit('InitialiseProcess', { msg: 'Producer decision generation done.' });
+                                  }
+                                });   
+          
+        });
+
+      }).on('error', function(e){
+        next(new Error('errorFrom addProducerDecisions' + e.message));
+      });
+    })(endWith);
+}
 
 exports.updateProducerDecision = function(io){
   return function(req, res, next){

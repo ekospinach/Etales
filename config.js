@@ -10,6 +10,8 @@ module.exports = function(){
 				  path_perceptionMap : '/cgi-bin/perceptionMap.exe',		
 				  path_finReport : '/cgi-bin/finReport.exe',		
 				  path_volReport : '/cgi-bin/volReport.exe',
+				  path_producerDecision : '/cgi-bin/producerDecision.exe',
+				  path_retailerDecision : '/cgi-bin/retailerDecision.exe',
    			  	  uploadFileAbsDir : '&filepath=\\\\vmware-host\\Shared%20Folders\\ludwikOnMac\\Code\\Actived\\Etales-result-viewer\\upload\\'
 				},
 				server : {

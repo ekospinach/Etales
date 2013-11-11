@@ -8,13 +8,6 @@ var path    = require('path'),
   io = require('socket.io').listen(server),
   Config = require('./config.js');
 
-  // io.sockets.on('connection', function(socket){
-  //   socket.emit('baseChanged',{info: 'DataBase has been update on server side!'});
-  //   socket.on('ferret', function(name, fn){
-  //     fn('服务器端收到:' + name);
-  //   });
-  // });
-
   conf = new Config();
   app.use(express.favicon());
   app.use(express.json());
@@ -23,21 +16,21 @@ var path    = require('path'),
   app.use(express.static(path.join(__dirname, '/app')));
   app.use(express.logger());
 
-  app.get('/initializationResult');
-  app.get('/passiveResult');
-  app.get('/kernelResult')
+//  app.post('/initializationResult');
+  app.post('/passiveSeminar', require('./api/passiveSeminar.js').passiveSeminar(io));
+  //app.post('/kernelResult')
 
-  app.post('/negotiationDecision');
+  app.post('/contract');
+  app.post('/contractDetails');
   app.post('/producerDecision',require('./api/models/producerDecision.js').updateProducerDecision(io));
   app.post('/retailerDecision',require('./api/models/retailerDecision.js').updateRetailerDecision(io));
-
-
-  app.get('/negotiationDecision');
+  
   app.get('/producerDecision/:producerID/:period/:seminar/:categoryID',require('./api/models/producerDecision.js').getAllProducerProduct);
   app.get('/producerDecision/:producerID/:period/:seminar',require('./api/models/producerDecision.js').getAllProducerDecision);
   app.get('/retailerDecision/:retailerID/:period/:seminar/:categoryID',require('./api/models/retailerDecision.js').getAllRetailerProduct);
   app.get('/retailerDecision/:retailerID/:period/:seminar',require('./api/models/retailerDecision.js').getAllRetailerDecision); 
   app.get('/contract/:seminar/:contractUserID',require('./api/models/contract.js').getContractList);
+  app.get('/contractDetails');
 
   app.get('/variantHistoryInfo');
   app.get('/brandHistoryInfo');
