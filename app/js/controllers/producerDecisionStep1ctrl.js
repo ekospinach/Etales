@@ -264,9 +264,9 @@ define(['app'], function(app) {
 	      		var count=0,result=0;
 	      		var products=new Array();
 	      		for(var i=0;i<allProCatDecisions.length;i++){
-	      			for(var j=1;j<allProCatDecisions[i].proBrandsDecision.length;j++){
+	      			for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
 	      				if(allProCatDecisions[i].proBrandsDecision[j]!=undefined){
-		      				for(var k=1;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
+		      				for(var k=0;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
 		      					if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]!=undefined){
 		      						products.push(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]);
 			      					products[count].category=category;
@@ -338,7 +338,7 @@ define(['app'], function(app) {
 				var allCatProDecisions=loadSelectCategroy(category);
 	      		var allBrands=new Array();
 	      		for(var i=0;i<allCatProDecisions.length;i++){
-	      			for(var j=1;j<allCatProDecisions[i].proBrandsDecision.length;j++){
+	      			for(var j=0;j<allCatProDecisions[i].proBrandsDecision.length;j++){
 	      				if(allCatProDecisions[i].proBrandsDecision[j]!=undefined){
 		      				allBrands.push({'BrandID':allCatProDecisions[i].proBrandsDecision[j].brandID,'BrandName':allCatProDecisions[i].proBrandsDecision[j].brandName});	      					
 	      				}
@@ -434,7 +434,7 @@ define(['app'], function(app) {
 					newBrand.supportEmall="";
 					newBrand.supportTraditionalTrade=new Array(undefined);
 					newBrand.proVarDecision=new Array();
-					newBrand.proVarDecision.push({});
+					//newBrand.proVarDecision.push({});
 					newproducerDecision.parentBrandID=newBrand.brandID;
 					newproducerDecision.varName=$scope.lauchNewVarName;/*need check*/
 					newproducerDecision.varID=10*newBrand.brandID+1;/*need check*/
