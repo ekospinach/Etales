@@ -56,11 +56,11 @@
           </tr>
           <tr>
             <th><p class="text-primary" Popover-animation="true" popover="Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui." popover-title="{{fullLanguages.HSSA}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.HSSA}}<span style="color:red">*</span></p></th>
-            <th ng-repeat='market in markets'><a href="#" editable-text="market.categorySurfaceShare[2]" onaftersave="updateMarketDecision(market.marketID,'categorySurfaceShare','postion','2',$index)">{{ market.categorySurfaceShare[2] || 'empty' }}</a></th>
+            <th ng-repeat='market in markets'><a href="#" editable-text="market.categorySurfaceShare[1]" onaftersave="updateMarketDecision(market.marketID,'categorySurfaceShare','postion','1',$index)">{{ market.categorySurfaceShare[1] || 'empty' }}</a></th>
           </tr>
           <tr>
             <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.ESSA}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.ESSA}}<span style="color:red">*</span></p></th>
-            <th ng-repeat='market in markets'><a href="#" editable-text="market.categorySurfaceShare[1]" onaftersave="updateMarketDecision(market.marketID,'categorySurfaceShare','postion','1',$index)">{{ market.categorySurfaceShare[1] || 'empty' }}</a></th>
+            <th ng-repeat='market in markets'><a href="#" editable-text="market.categorySurfaceShare[0]" onaftersave="updateMarketDecision(market.marketID,'categorySurfaceShare','postion','0',$index)">{{ market.categorySurfaceShare[0] || 'empty' }}</a></th>
           </tr>
           <tr>
             <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.LCA}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.LCA}}<span style="color:red">*</span></p></th>

@@ -413,7 +413,7 @@ define(['app'], function(app) {
 				newproducerDecision.dateOfBirth=$scope.period;
 				newproducerDecision.parameter=parameter;
 				newproducerDecision.dateOfDeath=10;
-		        newproducerDecision.composition=new Array(undefined);
+		        newproducerDecision.composition=new Array();
 		        newproducerDecision.production="";
 		        newproducerDecision.currentPriceBM="";
 		        newproducerDecision.currentPriceEmall="";
@@ -429,10 +429,10 @@ define(['app'], function(app) {
 					newBrand.paranetCompanyID=$scope.producerID;
 					newBrand.dateOfDeath="";
 					newBrand.dateOfBirth=$scope.period;
-					newBrand.advertisingOffLine=new Array(undefined);
+					newBrand.advertisingOffLine=new Array();
 					newBrand.advertisingOnLine="";
 					newBrand.supportEmall="";
-					newBrand.supportTraditionalTrade=new Array(undefined);
+					newBrand.supportTraditionalTrade=new Array();
 					newBrand.proVarDecision=new Array();
 					//newBrand.proVarDecision.push({});
 					newproducerDecision.parentBrandID=newBrand.brandID;

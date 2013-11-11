@@ -263,9 +263,9 @@ define(['app'], function(app) {
 	      		var count=0,result=0;
 	      		var products=new Array();
 	      		for(var i=0;i<allRetCatDecisions.length;i++){
-	      			for(var j=1;j<allRetCatDecisions[i].privateLabelDecision.length;j++){
+	      			for(var j=0;j<allRetCatDecisions[i].privateLabelDecision.length;j++){
 	      				if(allRetCatDecisions[i].privateLabelDecision[j]!=undefined){
-	      					for(var k=1;k<allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision.length;k++){
+	      					for(var k=0;k<allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision.length;k++){
 		      					if(allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k]!=undefined){
 		      						products.push(allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k]);
 			      					products[count].category=category;
@@ -339,7 +339,7 @@ define(['app'], function(app) {
 				var allretCatDecisions=loadSelectCategroy(category);
 	      		var allBrands=new Array();
 	      		for(var i=0;i<allretCatDecisions.length;i++){
-	      			for(var j=1;j<allretCatDecisions[i].privateLabelDecision.length;j++){
+	      			for(var j=0;j<allretCatDecisions[i].privateLabelDecision.length;j++){
 	      				if(allretCatDecisions[i].privateLabelDecision[j]!=undefined){
 	      					allBrands.push({'BrandID':allretCatDecisions[i].privateLabelDecision[j].brandID,'BrandName':allretCatDecisions[i].privateLabelDecision[j].brandName});
 	      				}
@@ -419,7 +419,7 @@ define(['app'], function(app) {
 					newretailerDecision.dateOfBirth=$scope.period;
 					//newretailerDecision.parameter=parameter;
 					newretailerDecision.dateOfDeath=10;
-			        newretailerDecision.composition=new Array(undefined);
+			        newretailerDecision.composition=new Array();
 			        //newretailerDecision.production="";
 			        //newretailerDecision.currentPriceBM="";
 			        //newretailerDecision.currentPriceEmall="";
@@ -444,7 +444,6 @@ define(['app'], function(app) {
 						newretailerDecision.parentBrandID=newBrand.brandID;
 						newretailerDecision.varName=$scope.lauchNewVarName;/*need check*/
 						newretailerDecision.varID=10*newBrand.brandID+1;/*need check*/
-						newBrand.privateLabelVarDecision.push({});
 						newBrand.privateLabelVarDecision.push(newretailerDecision);
 						RetailerDecisionBase.addProductNewBrand(newBrand,$scope.lauchNewCategory);
 					}else{/*add new product under existed Brand*/

@@ -124,12 +124,8 @@ exports.newDoc=function(req,res,next){
         nextBudgetExtension : 15,
         approvedBudgetExtension : 16,
         retCatDecision : [{
-            //undefined
-        },{
             categoryID:1,
             privateLabelDecision:[{
-                //undefined
-            },{
                 brandName : 'ELISA5',
                 brandID : 51,
                 parentCompanyID : 5,
@@ -137,15 +133,13 @@ exports.newDoc=function(req,res,next){
                 dateOfDeath : 10, //which period this brand be discontinued, if this brand haven't been discontinued, this value should be 10
                 
                 privateLabelVarDecision : [{
-                    //undefined
-                },{
                     varName : '_A',
                     varID : 511,
                     parentBrandID : 51,
                     dateOfBirth : -4,
                     dateOfDeath : 10,
                     packFormat : 'STANDARD',
-                    composition : [null,4,4,4],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                    composition : [4,4,4],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                     discontinue : false    
                 },{
                     varName : '_B',
@@ -154,7 +148,7 @@ exports.newDoc=function(req,res,next){
                     dateOfBirth : -4,
                     dateOfDeath : 10,
                     packFormat : 'STANDARD',
-                    composition : [null,5,5,5],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                    composition : [5,5,5],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                     discontinue : false                     
                 }] //length: TOneBrandVars(1~3)
             },{
@@ -164,38 +158,32 @@ exports.newDoc=function(req,res,next){
                 dateOfBirth : -4, //which period this brand be created, if this brand is initialized in the beginning, this value should be -4
                 dateOfDeath : 10, //which period this brand be discontinued, if this brand haven't been discontinued, this value should be 10
                 privateLabelVarDecision : [{
-                    //undefined
-                },{
                     varName : '_A',
                     varID : 521,
                     parentBrandID : 52,
                     dateOfBirth : -4,
                     dateOfDeath : 10,
                     packFormat : 'PREMIUM',
-                    composition : [null,4,4,4],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                    composition : [4,4,4],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                     discontinue : false    
                 }] //length: TOneBrandVars(1~3)
             }]
         },{
             categoryID:2,
             privateLabelDecision:[{
-                //undefined
-            },{
                 brandName : 'HARIS5',
                 brandID : 51,
                 parentCompanyID : 5,
                 dateOfBirth : -4, //which period this brand be created, if this brand is initialized in the beginning, this value should be -4
                 dateOfDeath : 10, //which period this brand be discontinued, if this brand haven't been discontinued, this value should be 10
                 privateLabelVarDecision : [{
-                    //undefined
-                },{
                     varName : '_A',
                     varID : 511,
                     parentBrandID : 51,
                     dateOfBirth : -4,
                     dateOfDeath : 10,
                     packFormat : 'ECONOMY',
-                    composition : [null,3,3,3],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                    composition : [3,3,3],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                     discontinue : false    
                 }] //length: TOneBrandVars(1~3)
             },{
@@ -205,24 +193,20 @@ exports.newDoc=function(req,res,next){
                 dateOfBirth : -4, //which period this brand be created, if this brand is initialized in the beginning, this value should be -4
                 dateOfDeath : 10, //which period this brand be discontinued, if this brand haven't been discontinued, this value should be 10
                 privateLabelVarDecision : [{
-                    //undefined
-                },{
                     varName : '_A',
                     varID : 521,
                     parentBrandID : 52,
                     dateOfBirth : -4,
                     dateOfDeath : 10,
                     packFormat : 'STANDARD',
-                    composition : [null,6,6,6],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                    composition : [6,6,6],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                     discontinue : false    
                 }] //length: TOneBrandVars(1~3)                
             }]
         }], //length: TCategories(1~2)
         retMarketDecision: [{
-            //undefined
-        },{
             marketID : 1, //1~2
-            categorySurfaceShare : [null,10,20], //[1]for Elecssories [2]for HealthBeauty
+            categorySurfaceShare : [10,20], //[1]for Elecssories [2]for HealthBeauty
             emptySpaceOptimised : false,
             localAdvertising : {
                 PRICE : 11,
@@ -231,12 +215,8 @@ exports.newDoc=function(req,res,next){
             },
             serviceLevel : 'MEDIUM', //SL_BASE, SL_FAIR, SL_MEDIUM, SL_ENHANCED, SL_PREMIUM
             retMarketAssortmentDecision : [{
-                //undefined
-            },{
                 categoryID : 1, //1~2
                 retVariantDecision : [{
-                    //undefined
-                },{
                     brandID : 51,
                     variantID : 511,
                     brandName : 'Etales15', //need Dariusz to add this in dataStruture
@@ -282,8 +262,6 @@ exports.newDoc=function(req,res,next){
             },{
                 categoryID:2,
                 retVariantDecision : [{
-                    //undefined
-                },{
                     brandID : 51,
                     variantID : 511,
                     brandName : 'Health15', //need Dariusz to add this in dataStruture
@@ -329,7 +307,7 @@ exports.newDoc=function(req,res,next){
             }] //length : TCategories(1~2)
         },{
             marketID : 2, //1~2
-            categorySurfaceShare : [null,20,30], //[1]for Elecssories [2]for HealthBeauty
+            categorySurfaceShare : [20,30], //[1]for Elecssories [2]for HealthBeauty
             emptySpaceOptimised : false,
             localAdvertising : {
                 PRICE : 22,
@@ -338,12 +316,8 @@ exports.newDoc=function(req,res,next){
             },
             serviceLevel : 'BASE', //SL_BASE, SL_FAIR, SL_MEDIUM, SL_ENHANCED, SL_PREMIUM
             retMarketAssortmentDecision : [{
-                //undefined
-            },{
                 categoryID : 1, //1~2
                 retVariantDecision : [{
-                    //undefined
-                },{
                     brandID : 51,
                     variantID : 511,
                     brandName : 'Etales1', //need Dariusz to add this in dataStruture
@@ -389,8 +363,6 @@ exports.newDoc=function(req,res,next){
             },{
                 categoryID:2,
                 retVariantDecision : [{
-                    //undefined
-                },{
                     brandID : 51,
                     variantID : 511,
                     brandName : 'Health1', //need Dariusz to add this in dataStruture
@@ -477,11 +449,7 @@ exports.updateRetailerDecision = function(io){
                                             for(var i=0;i<doc.retMarketDecision.length;i++){
                                                 if(doc.retMarketDecision[i].marketID==queryCondition.marketID){
                                                     if(queryCondition.location=="categorySurfaceShare"||queryCondition.location=="localAdvertising"){
-                                                        console.log("test start");
-                                                        console.log(doc.retMarketDecision[i][queryCondition.location][queryCondition.additionalIdx]);
                                                         doc.retMarketDecision[i][queryCondition.location][queryCondition.additionalIdx]=queryCondition.value;
-                                                        console.log(doc.retMarketDecision[i][queryCondition.location][queryCondition.additionalIdx]);
-                                                        console.log("test end");
                                                     }else{
                                                         doc.retMarketDecision[i][queryCondition.location]=queryCondition.value;
                                                     }
@@ -536,9 +504,9 @@ exports.updateRetailerDecision = function(io){
                                             decision="retCatDecision";                    
                                         break;
                                         case 'addProductExistedBrand':
-                                            for(var i=1;i<doc.retCatDecision.length;i++){
+                                            for(var i=0;i<doc.retCatDecision.length;i++){
                                                 if(doc.retCatDecision[i].categoryID==queryCondition.categoryID){
-                                                    for(j=1;j<doc.retCatDecision[i].privateLabelDecision.length;j++){
+                                                    for(j=0;j<doc.retCatDecision[i].privateLabelDecision.length;j++){
                                                         if(doc.retCatDecision[i].privateLabelDecision[j]!=undefined&&doc.retCatDecision[i].privateLabelDecision[j].brandName==queryCondition.brandName){
                                                             doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision.push(queryCondition.value);
                                                         }
@@ -622,20 +590,15 @@ exports.updateRetailerDecision = function(io){
                                             decision="retMarketDecision";
                                         break;
                                         case 'deleteOrder':
-                                        console.log("start!!!!!!!!!!!!!");
                                             for(var i=0;i<doc.retMarketDecision.length;i++){
-                                                if(doc.retMarketDecision[i].marketID==queryCondition.marketID){
-                                                    console.log("111111111111!!!!!!!!!!!");
+                                                if(doc.retMarketDecision[i].marketID==queryCondition.marketID){           
                                                     for(var j=0;j<doc.retMarketDecision[i].retMarketAssortmentDecision.length;j++){
                                                         if(doc.retMarketDecision[i].retMarketAssortmentDecision[j].categoryID==queryCondition.categoryID){
-                                                            console.log("2222222222!!!!!!!!!!!");
                                                             console.log(doc.retMarketDecision[i].retMarketAssortmentDecision[j]);
                                                             for(var k=0;k<doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision.length;k++){
                                                                 console.log(doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k]);
                                                                 if(doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k]!=undefined&&doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].brandName==queryCondition.brandName&&doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].varName==queryCondition.varName){
-                                                                    console.log("333333333333!!!!!!!!!!");
                                                                     doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision.splice(k,1);
-                                                                    console.log("4444444444444!!!!!!!!!!!!!");
                                                                     break;
                                                                 }
                                                             }
@@ -679,9 +642,9 @@ exports.getRetailerProductList=function(req,res,next){
                                     var products=new Array();
                                     var count=0;
                                     for(var i=0;i<allRetCatDecisions.length;i++){
-                                        for(var j=1;j<allRetCatDecisions[i].privateLabelDecision.length;j++){
+                                        for(var j=0;j<allRetCatDecisions[i].privateLabelDecision.length;j++){
                                             if(allRetCatDecisions[i].privateLabelDecision[j]!=undefined){
-                                                for(var k=1;k<allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision.length;k++){
+                                                for(var k=0;k<allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision.length;k++){
                                                     if(allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k]!=undefined){
                                                         products.push({'categoryID':req.params.categoryID,
                                                             'brandName':allRetCatDecisions[i].privateLabelDecision[j].brandName,
