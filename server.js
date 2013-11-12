@@ -16,42 +16,32 @@ var path    = require('path'),
   app.use(express.static(path.join(__dirname, '/app')));
   app.use(express.logger());
 
-<<<<<<< HEAD
+
   app.get('/initializationResult');
   app.get('/passiveResult');
   app.get('/kernelResult');
-=======
 //  app.post('/initialiseSeminar', require('./api/initialiseSeminar.js').initialiseSeminar(io));
   app.post('/passiveSeminar', require('./api/passiveSeminar.js').passiveSeminar(io));
   //app.post('/kernelResult')
->>>>>>> 40bf876f8bd5b3a13c06ae54cc9372bfe88aaba9
 
   app.post('/contract');
   app.post('/contractDetails');
   app.post('/producerDecision',require('./api/models/producerDecision.js').updateProducerDecision(io));
   app.post('/retailerDecision',require('./api/models/retailerDecision.js').updateRetailerDecision(io));
-<<<<<<< HEAD
-  app.post('/updateContractDetails',require('./api/models/contract.js').updateContractDetails(io));
 
   app.get('/negotiationDecision');
-=======
+  app.post('/updateContractDetails',require('./api/models/contract.js').updateContractDetails(io));
   
-  app.get('/producerDecision/:producerID/:period/:seminar/:categoryID',require('./api/models/producerDecision.js').getAllProducerProduct);
->>>>>>> 40bf876f8bd5b3a13c06ae54cc9372bfe88aaba9
   app.get('/producerDecision/:producerID/:period/:seminar',require('./api/models/producerDecision.js').getAllProducerDecision);
   app.get('/producerProducts/:producerID/:period/:seminar/:categoryID',require('./api/models/producerDecision.js').getProducerProductList);
   app.get('/producerBrands/:producerID/:period/:seminar',require('./api/models/producerDecision.js').getProducerBrandList);
 
   app.get('/retailerDecision/:retailerID/:period/:seminar',require('./api/models/retailerDecision.js').getAllRetailerDecision); 
-<<<<<<< HEAD
+
   app.get('/retailerProducts/:retailerID/:period/:seminar/:categoryID',require('./api/models/retailerDecision.js').getRetailerProductList);
-  //app.get('/retailerBrands/:retailerID/:period/:seminar',require('./api/models/retailerDecision.js').getReatilerBrandList);
+
   app.get('/contracts/:seminar/:contractUserID',require('./api/models/contract.js').getContractList);
   app.get('/contractDetails/:contractCode',require('./api/models/contract.js').getContractDetails);
-=======
-  app.get('/contract/:seminar/:contractUserID',require('./api/models/contract.js').getContractList);
-  app.get('/contractDetails');
->>>>>>> 40bf876f8bd5b3a13c06ae54cc9372bfe88aaba9
 
   app.get('/variantHistoryInfo');
   app.get('/brandHistoryInfo');
