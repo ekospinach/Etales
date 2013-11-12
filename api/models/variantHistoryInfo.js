@@ -13,7 +13,7 @@ var variantHistoryInfoSchema = mongoose.Schema({
     parentBrandName : String,
     parentCatID : Number,
     parentCompanyID : Number, //(1~9)   
-    supplierView : supplierViewSchema,
+    supplierView : [supplierViewSchema],
     channelView : [channelViewSchema] //length:TRetailersTotal(1~4)
 })
 
@@ -27,11 +27,11 @@ var supplierViewSchema = mongoose.Schema({
     composition : Number,  //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
     productionVolume : Number,
     initialInventory : [{  
-        volume : single,
-        unitCost : single,
+        volume : String,
+        unitCost : String,
         composition : [Number] 
     }], //length : TInventoryAgesTotal(0~4)
-    supplierChannelView : [supplierChannelViewSchema]; //length : TAllRetailersTotal(1~5)
+    supplierChannelView : [supplierChannelViewSchema] //length : TAllRetailersTotal(1~5)
 })
 
 var supplierChannelViewSchema = mongoose.Schema({
@@ -45,8 +45,8 @@ var channelViewSchema = mongoose.Schema({
 //rv...
 var channelMarketViewSchema = mongoose.Schema({
     closingInventory : [{  
-        volume : single,
-        unitCost : single,
+        volume : String,
+        unitCost : String,
         composition : [Number] 
     }], //length : TInventoryAgesTotal(0~4)
     currentUnitAcquisitionCost : Number, //length: TMarkets(1~2)
