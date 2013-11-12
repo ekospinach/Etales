@@ -13,7 +13,7 @@ define(['app','socketIO'], function(app) {
 
 		$scope.testPassive = function(){
 		  var postData = {
-		  	seminar : 'ROUND1',
+		  	seminar : 'MAY',
 		  	period : 0
 		  }
 		  $http({method:'POST', url:'/passiveSeminar', data: postData}).then(function(res){
@@ -21,6 +21,18 @@ define(['app','socketIO'], function(app) {
 		  },function(res){
 		  	console.log('testPassive Failed:' + res);
 		  })			
+		}
+
+		$scope.testInitialise = function(){
+		  var postData = {
+		  	seminar : 'MAY',
+		  }
+		  $http({method:'POST', url:'/initialiseSeminar', data: postData}).then(function(res){
+		  	console.log('testInitialise Success:' + res);
+		  },function(res){
+		  	console.log('testInitialise Failed:' + res);
+		  })			
+
 		}
 		
 		$scope.proNewDoc = function(){

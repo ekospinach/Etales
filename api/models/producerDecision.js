@@ -3,6 +3,7 @@ var mongoose = require('mongoose'),
     util = require('util'),
     _ = require('underscore');
     request = require('request');
+    q = require('q');
 
 var proVarDecisionSchema = mongoose.Schema({
     varName : String,
@@ -93,7 +94,7 @@ exports.exportToBinary = function(options){
                                     // request(requestOptions, function(error, response, body){
                                     //     console.log('res status' + response.statusCode);
                                     // })
-
+console.log( JSON.stringify(doc));
 request.post('http://' + options.cgiHost + ':' + options.cgiPort + options.cgiPath, {form: {jsonData: JSON.stringify(doc)} });
                                     // require('../utils/http.js').post('http://' + options.cgiHost + ':' + options.cgiPort + options.cgiPath, { jsonData : JSON.stringify(doc) }, function(data){
                                     //     console.log(data);
@@ -103,9 +104,9 @@ request.post('http://' + options.cgiHost + ':' + options.cgiPort + options.cgiPa
 }
 
 exports.addProducerDecisions = function(options, socket){
+    var deferred = q.defer();
     var startFrom = options.startFrom,
     endwith = options.endWith;
-    socket.emit('InitialiseProcess', { msg: 'Adding producer decisions into database...' });
 
    (function sendRequest(currentPeriod){        
       var reqOptions = {
@@ -113,6 +114,7 @@ exports.addProducerDecisions = function(options, socket){
           port: options.cgiPort,
           path: options.cgiPath + '?period=' + currentPeriod + '&seminar=' + options.seminar + '&producerID=' + options.producerID
       };
+
       http.get(reqOptions, function(response) { 
         var data = '';
         response.setEncoding('utf8');
@@ -122,12 +124,11 @@ exports.addProducerDecisions = function(options, socket){
           //ask Oleg to fix here, should return 404 when result beyound the existed period.
           console.log('response statusCode from CGI(' + options.cgiPath + ') for period ' + currentPeriod + ': ' + response.statusCode);
           if ( response.statusCode === (404 || 500) ) next(new Error('Read beyound result file, data of period ' + currentPeriod + ' do not exist.'));
-          else{
+          else {
             try {
               var singleDecision = JSON.parse(data);
             } catch(e) {
-              next(new Error('Read decision file failed, please only choose existed period.'));
-              console.log(e);
+              deferred.reject({msg: 'Read decision file failed, please only choose existed period.', options:options});
             }
           }      
           if (!singleDecision) return; 
@@ -139,23 +140,22 @@ exports.addProducerDecisions = function(options, socket){
                                proCatDecision: singleDecision.proCatDecision},
                                 {upsert: true},
                                 function(err, numberAffected, raw){
-                                  if(err) next(new Error(err));
-                                  console.log('producerDecision generated: the number of updated documents was %d', numberAffected);
+                                  if(err) deferred.reject({msg:err, options: options});                                  
+                                  deferred.notify({msg: 'producerDecision generated: the number of updated documents was' + numberAffected})
                                   currentPeriod--;
                                   if (currentPeriod >= startFrom) {
                                      sendRequest(currentPeriod);
                                   } else {
-                                     console.log('producerDecision generate done. from period' + startFrom + ' to ' + endWith);
-                                     socket.emit('InitialiseProcess', { msg: 'Producer decision generation done.' });
-                                  }
+                                     deferred.resolve({msg:'producerDecision generate done. from period' + startFrom + ' to ' + endWith, options: options});
+                                    }
                                 });   
-          
         });
-
       }).on('error', function(e){
-        next(new Error('errorFrom addProducerDecisions' + e.message));
+        deferred.reject({msg:'errorFrom addProducerDecisions' + e.message,options: options}); 
       });
     })(endWith);
+
+    return deferred.promise;
 }
 
 exports.updateProducerDecision = function(io){

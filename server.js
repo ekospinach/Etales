@@ -16,7 +16,7 @@ var path    = require('path'),
   app.use(express.static(path.join(__dirname, '/app')));
   app.use(express.logger());
 
-//  app.post('/initializationResult');
+//  app.post('/initialiseSeminar', require('./api/initialiseSeminar.js').initialiseSeminar(io));
   app.post('/passiveSeminar', require('./api/passiveSeminar.js').passiveSeminar(io));
   //app.post('/kernelResult')
 
