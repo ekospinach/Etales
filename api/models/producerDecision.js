@@ -2,6 +2,8 @@ var mongoose = require('mongoose'),
     http = require('http'),
     util = require('util'),
     _ = require('underscore');
+    request = require('request');
+    q = require('q');
 
 var proVarDecisionSchema = mongoose.Schema({
     varName : String,
@@ -69,6 +71,92 @@ var proDecisionSchema = mongoose.Schema({
 
 var proDecision = mongoose.model('proDecision', proDecisionSchema);
 
+exports.exportToBinary = function(options){
+    var period = options.period;
+//    socket.emit('KernalPassiveProcess',{status: 'info', msg: 'Write producer decision into binary...'});
+    proDecision.findOne({seminar : options.seminar,
+                           period : options.period,
+                           producerID : options.producerID},
+                           function(err, doc){
+                                if(err) {next(new Error(err));}
+                                if(!doc) {
+                                    console.log('cannot find matched doc, ' + 'producerID:' + options.producerID + '/seminar:' + options.seminar + '/period:' + options.period);
+  //                                  socket.emit('KernalPassiveProcess',{status: 'error', msg: 'Cannot find matched producer decision doc to export binary.'});
+                                } else {        
+                                    //console.log(JSON.stringify(doc));
+                                    // var requestOptions = {
+                                    //     uri : 'http://' + options.cgiHost + ':' + options.cgiPort + options.cgiPath,
+                                    //     method : 'POST',
+                                    //     json : {
+                                    //         jsonData : doc
+                                    //     }
+                                    // }
+                                    // request(requestOptions, function(error, response, body){
+                                    //     console.log('res status' + response.statusCode);
+                                    // })
+console.log( JSON.stringify(doc));
+request.post('http://' + options.cgiHost + ':' + options.cgiPort + options.cgiPath, {form: {jsonData: JSON.stringify(doc)} });
+                                    // require('../utils/http.js').post('http://' + options.cgiHost + ':' + options.cgiPort + options.cgiPath, { jsonData : JSON.stringify(doc) }, function(data){
+                                    //     console.log(data);
+                                    // })
+                                }
+                           });
+}
+
+exports.addProducerDecisions = function(options, socket){
+    var deferred = q.defer();
+    var startFrom = options.startFrom,
+    endwith = options.endWith;
+
+   (function sendRequest(currentPeriod){        
+      var reqOptions = {
+          hostname: options.cgiHost,
+          port: options.cgiPort,
+          path: options.cgiPath + '?period=' + currentPeriod + '&seminar=' + options.seminar + '&producerID=' + options.producerID
+      };
+
+      http.get(reqOptions, function(response) { 
+        var data = '';
+        response.setEncoding('utf8');
+        response.on('data', function(chunk){
+          data += chunk;
+        }).on('end', function(){
+          //ask Oleg to fix here, should return 404 when result beyound the existed period.
+          console.log('response statusCode from CGI(' + options.cgiPath + ') for period ' + currentPeriod + ': ' + response.statusCode);
+          if ( response.statusCode === (404 || 500) ) next(new Error('Read beyound result file, data of period ' + currentPeriod + ' do not exist.'));
+          else {
+            try {
+              var singleDecision = JSON.parse(data);
+            } catch(e) {
+              deferred.reject({msg: 'Read decision file failed, please only choose existed period.', options:options});
+            }
+          }      
+          if (!singleDecision) return; 
+          proDecision.update({seminar: singleDecision.seminar, 
+                              period: singleDecision.period,
+                              producerID: singleDecision.producerID},
+                              {nextBudgetExtension: singleDecision.nextBudgetExtension,
+                               approvedBudgetExtension: singleDecision.approvedBudgetExtension,
+                               proCatDecision: singleDecision.proCatDecision},
+                                {upsert: true},
+                                function(err, numberAffected, raw){
+                                  if(err) deferred.reject({msg:err, options: options});                                  
+                                  deferred.notify({msg: 'producerDecision generated: the number of updated documents was' + numberAffected})
+                                  currentPeriod--;
+                                  if (currentPeriod >= startFrom) {
+                                     sendRequest(currentPeriod);
+                                  } else {
+                                     deferred.resolve({msg:'producerDecision generate done. from period' + startFrom + ' to ' + endWith, options: options});
+                                    }
+                                });   
+        });
+      }).on('error', function(e){
+        deferred.reject({msg:'errorFrom addProducerDecisions' + e.message,options: options}); 
+      });
+    })(endWith);
+
+    return deferred.promise;
+}
 
 exports.updateProducerDecision = function(io){
   return function(req, res, next){

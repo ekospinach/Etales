@@ -18,6 +18,12 @@
 			<Projects Include="volReport\volReport.dproj">
 				<Dependencies/>
 			</Projects>
+			<Projects Include="producerDecision\producerDecision.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="retailerDecision\retailerDecision.dproj">
+				<Dependencies/>
+			</Projects>
 		</ItemGroup>
 		<ProjectExtensions>
 			<Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -71,14 +77,32 @@
 		<Target Name="volReport:Make">
 			<MSBuild Projects="volReport\volReport.dproj" Targets="Make"/>
 		</Target>
+		<Target Name="producerDecision">
+			<MSBuild Projects="producerDecision\producerDecision.dproj"/>
+		</Target>
+		<Target Name="producerDecision:Clean">
+			<MSBuild Projects="producerDecision\producerDecision.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="producerDecision:Make">
+			<MSBuild Projects="producerDecision\producerDecision.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="retailerDecision">
+			<MSBuild Projects="retailerDecision\retailerDecision.dproj"/>
+		</Target>
+		<Target Name="retailerDecision:Clean">
+			<MSBuild Projects="retailerDecision\retailerDecision.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="retailerDecision:Make">
+			<MSBuild Projects="retailerDecision\retailerDecision.dproj" Targets="Make"/>
+		</Target>
 		<Target Name="Build">
-			<CallTarget Targets="marketReport;lineChart;perceptionMap;finReport;volReport"/>
+			<CallTarget Targets="marketReport;lineChart;perceptionMap;finReport;volReport;producerDecision;retailerDecision"/>
 		</Target>
 		<Target Name="Clean">
-			<CallTarget Targets="marketReport:Clean;lineChart:Clean;perceptionMap:Clean;finReport:Clean;volReport:Clean"/>
+			<CallTarget Targets="marketReport:Clean;lineChart:Clean;perceptionMap:Clean;finReport:Clean;volReport:Clean;producerDecision:Clean;retailerDecision:Clean"/>
 		</Target>
 		<Target Name="Make">
-			<CallTarget Targets="marketReport:Make;lineChart:Make;perceptionMap:Make;finReport:Make;volReport:Make"/>
+			<CallTarget Targets="marketReport:Make;lineChart:Make;perceptionMap:Make;finReport:Make;volReport:Make;producerDecision:Make;retailerDecision:Make"/>
 		</Target>
 		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
 	</Project>

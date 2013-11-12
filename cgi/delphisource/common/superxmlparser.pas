@@ -1,12 +1,28 @@
-unit superxmlparser;
+(*
+ *                         Super Object Toolkit
+ *
+ * Usage allowed under the restrictions of the Lesser GNU General Public License
+ * or alternatively the restrictions of the Mozilla Public License 1.1
+ *
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License for
+ * the specific language governing rights and limitations under the License.
+ *
+ * Embarcadero Technologies Inc is not permitted to use or redistribute
+ * this source code without explicit permission.
+ *
+ * Unit owner : Henri Gourvest <hgourvest@gmail.com>
+ * Web site   : http://www.progdigy.com
+ *)
+
+ unit superxmlparser;
 {$IFDEF FPC}
   {$MODE OBJFPC}{$H+}
 {$ENDIF}
 
 interface
 
-uses superobject, classes;
-
+uses superobject, classes, supertypes;
 
 type
   TOnProcessingInstruction = procedure(const PI, PIParent: ISuperObject);
@@ -15,10 +31,17 @@ function XMLParseString(const data: SOString; pack: Boolean = false; onpi: TOnPr
 function XMLParseStream(stream: TStream; pack: Boolean = false; onpi: TOnProcessingInstruction = nil): ISuperObject;
 function XMLParseFile(const FileName: string; pack: Boolean = false; onpi: TOnProcessingInstruction = nil): ISuperObject;
 
+{$IFDEF UNICODE}
+type
+  TXMLWriteMethod = reference to procedure(const data: string);
+procedure XMLWrite(const node: ISuperObject; const method: TXMLWriteMethod);
+{$ENDIF}
+
 const
   xmlname       = '#name';
   xmlattributes = '#attributes';
   xmlchildren   = '#children';
+  xmltext       = '#text';
 
   dtdname = '#name';
   dtdPubidLiteral = '#pubidliteral';
@@ -86,6 +109,65 @@ type
   TSuperXMLElementClass = (xcNone, xcElement, xcComment, xcString, xcCdata, xcDocType, xcProcessInst);
   TSuperXMLEncoding = ({$IFNDEF UNIX}xnANSI,{$ENDIF} xnUTF8, xnUnicode);
 
+{$IFDEF UNICODE}
+  procedure XMLWrite(const node: ISuperObject; const method: TXMLWriteMethod);
+     procedure Escape(const str: string);
+    var
+      p1, p2: PChar;
+      procedure push(const data: string);
+      begin
+        if p2 > p1 then
+          method(Copy(p1, 0, p2-p1));
+        Inc(p2);
+        p1 := p2;
+        if data <> '' then
+          method(data);
+      end;
+    begin
+      p1 := PChar(str);
+      p2 := p1;
+
+      while True do
+        case p2^ of
+          '<': push('&lt;');
+          '>': push('&gt;');
+          '&': push('&amp;');
+          '"': push('&quot;');
+          #0 :
+            begin
+              push('');
+              Break;
+            end;
+        else
+          inc(p2);
+        end;
+    end;
+  var
+    o: ISuperObject;
+    ent: TSuperAvlEntry;
+  begin
+    method('<' + node.S[xmlname]);
+    if ObjectIsType(node[xmlattributes], stObject) then
+      for ent in node[xmlattributes].AsObject do
+      begin
+        method(' ' + ent.Name + '="');
+        Escape(ent.Value.AsString);
+        method('"');
+      end;
+    if ObjectIsType(node[xmlchildren], stArray) then
+    begin
+      method('>');
+      for o in node[xmlchildren] do
+        if ObjectIsType(o, stString) then
+          Escape(o.AsString) else
+          XMLWrite(o, method);
+      method('</' + node.S[xmlname] + '>');
+    end else
+      method('/>');
+  end;
+{$ENDIF}
+
+type
   PSuperXMLStack = ^TSuperXMLStack;
   TSuperXMLStack = record
     state: TSuperXMLState;
@@ -206,7 +288,7 @@ const
         if FStack^.prev <> nil then
           AddProperty(FStack^.prev^.obj, anobject.AsArray[0], FStack^.obj.AsObject.S[xmlname]) else
           begin
-            AddProperty(FStack^.obj, anobject.AsArray[0], '#text');
+            AddProperty(FStack^.obj, anobject.AsArray[0], xmltext);
             FStack^.obj.AsObject.Delete(xmlchildren);
           end;
       end
@@ -231,12 +313,16 @@ const
             AddProperty(FStack^.obj, anobject2, anobject2.AsObject.S[xmlname]);
             anobject2.AsObject.Delete(xmlname);
           end else
-            AddProperty(FStack^.obj, anobject2, '#text');
+            AddProperty(FStack^.obj, anobject2, xmltext);
         end;
         FStack^.obj.Delete(xmlchildren);
       end;
-      if FStack^.prev <> nil then
-        AddProperty(FStack^.prev^.obj, FStack^.obj, FStack^.obj.AsObject.S[xmlname]);
+      if (FStack^.prev <> nil) and (FStack^.obj.AsObject.count > 1) then
+      begin
+        if (FStack^.obj.AsObject.count = 2) and (FStack^.obj.AsObject[xmltext] <> nil) then
+          AddProperty(FStack^.prev^.obj, FStack^.obj.AsObject[xmltext], FStack^.obj.AsObject.S[xmlname]) else
+          AddProperty(FStack^.prev^.obj, FStack^.obj, FStack^.obj.AsObject.S[xmlname]);
+      end;
       FStack^.obj.Delete(xmlname);
     end;
   end;
@@ -1189,17 +1275,14 @@ redo:
           end;
         end;
 
-        if (ch >= min) then
+        if (ret >= min) then
         begin
           dst^ := WideChar(ret);
           inc(Result);
         end else
-        begin
           // too small utf8 bloc
           // ignore and continue
           Continue;
-        end;
-
     end;
     inc(dst);
   end;
