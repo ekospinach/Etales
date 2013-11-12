@@ -7,27 +7,43 @@
 		<link rel="stylesheet" type="text/css" href="/bower_components/angular-xeditable/dist/css/xeditable.css">
 		<link rel="stylesheet" type="text/css" href="/bower_components/angular-loading-bar/src/loading-bar.css">		
 		<link rel="stylesheet" type="text/css" media="all" href="css/app.css" />
+		<link rel="stylesheet" type="text/css" media="all" href="css/docs.css" />
 	</head>
-	<body>
-		<div class="navbar navbar-inverse navbar-fixed-top bs-docs-nav">
-		  <div class="container">
-		      <a class="navbar-brand" href="#/home">E-tales</a>
-		      <ul class="nav navbar-nav">
-		          <li class="active" active-nav> <a href="#/home">Home</a></li>
-		          <li class="{{rootShow}}" artive-nav> <a href="#/map">Map</a></li>
-		          <li class="{{rootShow}}" active-nav> <a href="#/catreport">Reports</a></li>   
-		          <li class="{{rootShow}}" active-nav> <a href="#/chart">Charts</a></li>     
-		          <li class="{{rootShow}}" active-nav> <a href="#/report">Market Studies</a></li> 
-		          <li class="{{decisionActive}}" active-nav> <a href="#/producerDecisionStep1">Decision</a></li>
-		          <li active-nav><a href="#/retailerDecisionStep1">Retailer For Test</a></li>    
-		      </ul>
-		  </div>
+	<body class="bs-docs-home">
+		<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+			<div class="container">
+				<div class="navbar-header">
+					<button class="navbar-toggle" data-target=".bs-navbar-collapse" data-toggle="collapse" type="button">
+					<a class="navbar-brand" href="./">E-tales</a>
+				</div>
+				<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+					
+					<ul class="nav navbar-nav">
+						<li class="active" active-nav> <a href="#/home">Home</a></li>
+						<li class="{{rootShow}}" artive-nav> <a href="#/map">Map</a></li>
+		          		<li class="{{rootShow}}" active-nav> <a href="#/catreport">Reports</a></li>   
+		          		<li class="{{rootShow}}" active-nav> <a href="#/chart">Charts</a></li>     
+		          		<li class="{{rootShow}}" active-nav> <a href="#/report">Market Studies</a></li> 
+		          		<li class="{{decisionActive}}" active-nav> <a href="#/producerDecisionStep1">Decision</a></li>
+		          		<li active-nav><a href="#/retailerDecisionStep1">Retailer For Test</a></li>    
+		      		</ul>
+		      		<!--
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<a href="">Admin Login</a>
+						</li>
+					</ul>
+				-->
+				</nav>
+			</div>
+		</header>
+		<div ng-view>
+	    	
+	    </div>
+	    <div class="container bs-docs-container">
+			
 		</div>
-		<div style="clear:both;padding:25px 0"></div>
-		<div class="container bs-docs-container">
-	    	<div ng-view>
-	    	</div>
-		</div>
-		<script data-main="js/main" src="/bower_components/requirejs/require.js"></script>	
+	    <script data-main="js/main" src="/bower_components/requirejs/require.js"></script>
 	</body>
+
 </html>

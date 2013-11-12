@@ -1,0 +1,72 @@
+<main id="content" class="bs-masthead" role="main">
+	<div class="container">
+		<h1>Etales</h1>
+		<p class="lead">Sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.</p>
+		<p>
+			<a class="btn btn-outline-inverse btn-lg"  href="" ng-click="openLoginModal()">Get started</a>
+			<a class="btn btn-outline-inverse btn-lg"  href="" ng-click="openAdminLoginModal()">Admin entrance</a>
+		</p>
+	</div>
+</main>
+<!--modal-->
+	<div modal="loginModal" class="hide" close="closeLoginModal()" options="loginOpts">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3>User Login</h3>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="userRole">Your Role</label>
+						<select class="form-control" ng-model="userRole">
+							<option value="1">Producer 1</option>
+							<option value="2">Producer 2</option>
+							<option value="3">Producer 3</option>
+							<option value="4">Retailer 1</option>
+							<option value="5">Retailer 2</option>
+						</select>
+	         		</div>
+	         		<div class="form-group">
+	         			<label for="seminar">Seminar</label>
+	         			<input type="text" id="seminar" placeholder="Seminar Code"class="form-control" ng-model="userSeminar" required>
+	         		</div>
+	         		<div class="form-group">
+	         			<label for="password">Password</label>
+	         			<input type="password" id="password" placeholder="your password" class="form-control" ng-model="userPassword" required>
+	         		</div>
+				</div>
+				<div class="modal-footer">
+					<a class="btn btn-default" ng-click="closeLoginModal()">Cancel</a>
+					<a class="btn btn-primary" ng-click="">
+						Login
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div modal="aminLoginModal" class="hide" close="closeAdminLoginModal()" options="adminLoginOpts">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h3>Admin Login</h3>
+						</div>
+						<div class="modal-body">
+			         		<div class="form-group">
+			         			<label for="seminar">Seminar</label>
+			         			<input type="text" id="seminar" placeholder="Seminar Code"class="form-control" ng-model="adminSeminar" required>
+			         		</div>
+			         		<div class="form-group">
+			         			<label for="password">Password</label>
+			         			<input type="password" id="password" placeholder="your password" class="form-control" ng-model="adminPassword" required>
+			         		</div>
+						</div>
+						<div class="modal-footer">
+							<a class="btn btn-default" ng-click="closeAdminLoginModal()">Cancel</a>
+							<a class="btn btn-primary" ng-click="">
+								Login
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+</div>
