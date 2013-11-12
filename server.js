@@ -26,7 +26,8 @@ var path    = require('path'),
   app.post('/retailerDecision',require('./api/models/retailerDecision.js').updateRetailerDecision(io));
   app.post('/updateContractDetails',require('./api/models/contract.js').updateContractDetails(io));
   
-  app.get('/producerDecision/:producerID/:period/:seminar/:categoryID',require('./api/models/producerDecision.js').getAllProducerProduct);
+  //app.get('/producerDecision/:producerID/:period/:seminar/:categoryID',require('./api/models/producerDecision.js').getAllProducerProduct);
+
   app.get('/producerDecision/:producerID/:period/:seminar',require('./api/models/producerDecision.js').getAllProducerDecision);
   app.get('/producerProducts/:producerID/:period/:seminar/:categoryID',require('./api/models/producerDecision.js').getProducerProductList);
   app.get('/producerBrands/:producerID/:period/:seminar',require('./api/models/producerDecision.js').getProducerBrandList);
