@@ -60,3 +60,21 @@ var channelMarketViewSchema = mongoose.Schema({
     }
 })
 
+var variantHistory = mongoose.model('variantHistory',variantHistoryInfoSchema);
+
+/*exports.newDoc=function(req,res,next){
+    var newDoc=new variantHistory({
+        period : 0,
+        seminar : "MAY",
+        varName : String,
+        varID : Number,
+        dateOfBirth : Number, //-4~10
+        dateOfDeath : Number, //-4~10
+        parentBrandID : Number,
+        parentBrandName : String,
+        parentCatID : Number,
+        parentCompanyID : Number, //(1~9)   
+        supplierView : [supplierViewSchema],
+        channelView : [channelViewSchema] 
+    })
+}*/
