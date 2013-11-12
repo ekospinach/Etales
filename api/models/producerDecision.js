@@ -359,7 +359,7 @@ exports.getAllProducerDecision = function(req, res, next){
                         }); 
 }
 
-exports.getAllProducerProduct=function(req,res,next){
+exports.getProducerProductList=function(req,res,next){
     proDecision.findOne({seminar:req.params.seminar,
                         period:req.params.period,
                         producerID:req.params.producerID},function(err,doc){
@@ -374,9 +374,9 @@ exports.getAllProducerProduct=function(req,res,next){
                                     var products=new Array();
                                     var count=0;
                                     for(var i=0;i<allProCatDecisions.length;i++){
-                                        for(var j=1;j<allProCatDecisions[i].proBrandsDecision.length;j++){
+                                        for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
                                             if(allProCatDecisions[i].proBrandsDecision[j]!=undefined){
-                                                for(var k=1;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
+                                                for(var k=0;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
                                                     if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]!=undefined){
                                                         products.push({'categoryID':req.params.categoryID,
                                                             'brandName':allProCatDecisions[i].proBrandsDecision[j].brandName,
@@ -399,6 +399,41 @@ exports.getAllProducerProduct=function(req,res,next){
                             }); 
 }
 
+exports.getProducerBrandList=function(req,res,next){
+    proDecision.findOne({seminar:req.params.seminar,
+                        period:req.params.period,
+                        producerID:req.params.producerID},function(err,doc){
+                            if(err) {next(new Error(err));}
+                                if(!doc) {
+                                    console.log('cannot find matched doc...');
+                                    res.send(404, {error:'Cannot find matched doc...'});
+                                } else {
+                                    var allProCatDecisions=_.filter(doc.proCatDecision,function(obj){
+                                        return (obj.categoryID==req.params.categoryID);
+                                    });
+                                    var brands=new Array();
+                                    var count=0;
+                                    for(var i=0;i<doc.proCatDecision.length;i++){
+                                        if(doc.proCatDecision[i].proBrandsDecision.length!=0){
+                                            for(var j=0;j<doc.proCatDecision[i].proBrandsDecision.length;j++){
+                                                if(doc.proCatDecision[i].proBrandsDecision[j].proVarDecision.length!=0){
+                                                    brands.push({'category':doc.proCatDecision[i].categoryID,
+                                                            'brandName':doc.proCatDecision[i].proBrandsDecision[j].brandName,
+                                                            'brandID':doc.proCatDecision[i].proBrandsDecision[j].brandID});
+                                                    count++;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if(count!=0){
+                                        res.header("Content-Type", "application/json; charset=UTF-8");                                
+                                        res.statusCode = 200;
+                                        res.send(brands);   
+                                    } 
+                                }
+                            }); 
+}
+
 exports.newDoc = function(req, res, next){
     var newDoc1 = new proDecision({
         seminar:'MAY',
@@ -407,35 +442,29 @@ exports.newDoc = function(req, res, next){
         nextBudgetExtension:1,
         approvedBudgetExtension:1,
         proCatDecision:[{
-            //undefined
-        },{
             categoryID:1,
             capacityChange:2,
             investInDesign:6.13,
             investInProductionFlexibility:11.57,
             investInTechnology:3.16,
             proBrandsDecision:[{
-                //undefined
-            },{
                 brandName:'EGEND1',
                 brandID:11,
                 paranetCompanyID:1,
                 dateOfBirth:-4,
                 dateOfDeath:10,
-                advertisingOffLine:[null,10,20],
+                advertisingOffLine:[10,20],
                 advertisingOnLine:15,
                 supportEmall:15,
-                supportTraditionalTrade:[null,10,20],
+                supportTraditionalTrade:[10,20],
                 proVarDecision:[{
-                    //undefined
-                },{
                         varName:'_A',
                         varID : 111, //varID = BrandID * 10 + varCount
                         parentBrandID : 11, //brandID
                         packFormat : 'STANDARD', //ECONOMY, STANDARD, PREMIUM
                         dateOfBirth : -4,
                         dateOfDeath : 10,
-                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        composition : [6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                         production : 60,
                         currentPriceBM : 6.85,
                         currentPriceEmall : 8.25,
@@ -449,20 +478,18 @@ exports.newDoc = function(req, res, next){
                 paranetCompanyID:1,
                 dateOfBirth:-4,
                 dateOfDeath:10,
-                advertisingOffLine:[null,10,20],
+                advertisingOffLine:[10,20],
                 advertisingOnLine:15,
                 supportEmall:15,
-                supportTraditionalTrade:[null,10,20],
+                supportTraditionalTrade:[10,20],
                 proVarDecision:[{
-                    //undefined
-                },{
                         varName:'_A',
                         varID : 121, //varID = BrandID * 10 + varCount
                         parentBrandID : 12, //brandID
                         packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
                         dateOfBirth : -4,
                         dateOfDeath : 10,
-                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        composition : [6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                         production : 60,
                         currentPriceBM : 6.85,
                         currentPriceEmall : 8.25,
@@ -476,20 +503,18 @@ exports.newDoc = function(req, res, next){
                 paranetCompanyID:1,
                 dateOfBirth:-4,
                 dateOfDeath:10,
-                advertisingOffLine:[null,10,20],
+                advertisingOffLine:[10,20],
                 advertisingOnLine:15,
                 supportEmall:15,
-                supportTraditionalTrade:[null,10,20],
+                supportTraditionalTrade:[10,20],
                 proVarDecision:[{
-                    //undefined                    
-                },{
                         varName:'_A',
                         varID : 131, //varID = BrandID * 10 + varCount
                         parentBrandID : 13, //brandID
                         packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
                         dateOfBirth : -4,
                         dateOfDeath : 10,
-                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        composition : [6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                         production : 60,
                         currentPriceBM : 6.85,
                         currentPriceEmall : 8.25,
@@ -503,7 +528,7 @@ exports.newDoc = function(req, res, next){
                         packFormat : 'PREMIUM', //ECONOMY, STANDARD, PREMIUM
                         dateOfBirth : -4,
                         dateOfDeath : 10,
-                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        composition : [6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                         production : 60,
                         currentPriceBM : 6.85,
                         currentPriceEmall : 8.25,
@@ -519,8 +544,6 @@ exports.newDoc = function(req, res, next){
             investInProductionFlexibility:21.21,
             investInTechnology:21.21,
             proBrandsDecision:[{
-                //undefined
-            },{
                 brandName:'HEELY1',
                 brandID:11,
                 paranetCompanyID:1,
@@ -531,15 +554,13 @@ exports.newDoc = function(req, res, next){
                 supportEmall:15,
                 supportTraditionalTrade:[10,20],
                 proVarDecision:[{
-                    //undefined
-                },{
                         varName:'_A',
                         varID : 111, //varID = BrandID * 10 + varCount
                         parentBrandID : 11, //brandID
                         packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
                         dateOfBirth : -4,
                         dateOfDeath : 10,
-                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        composition : [6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                         production : 60,
                         currentPriceBM : 6.85,
                         currentPriceEmall : 8.25,
@@ -553,20 +574,18 @@ exports.newDoc = function(req, res, next){
                 paranetCompanyID:1,
                 dateOfBirth:-4,
                 dateOfDeath:10,
-                advertisingOffLine:[null,10,20],
+                advertisingOffLine:[10,20],
                 advertisingOnLine:15,
                 supportEmall:15,
-                supportTraditionalTrade:[null,10,20],
-                proVarDecision:[{                    
-                    //undefined
-                },{
+                supportTraditionalTrade:[10,20],
+                proVarDecision:[{
                         varName:'_A',
                         varID : 121, //varID = BrandID * 10 + varCount
                         parentBrandID : 12, //brandID
                         packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
                         dateOfBirth : -4,
                         dateOfDeath : 10,
-                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        composition : [6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                         production : 60,
                         currentPriceBM : 6.85,
                         currentPriceEmall : 8.25,
@@ -580,20 +599,18 @@ exports.newDoc = function(req, res, next){
                 paranetCompanyID:1,
                 dateOfBirth:-4,
                 dateOfDeath:10,
-                advertisingOffLine:[null,10,20],
+                advertisingOffLine:[10,20],
                 advertisingOnLine:15,
                 supportEmall:15,
-                supportTraditionalTrade:[null,10,20],
+                supportTraditionalTrade:[10,20],
                 proVarDecision:[{
-                    //undefined
-                },{
                         varName:'_A',
                         varID : 131, //varID = BrandID * 10 + varCount
                         parentBrandID : 13, //brandID
                         packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
                         dateOfBirth : -4,
                         dateOfDeath : 10,
-                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        composition : [6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                         production : 60,
                         currentPriceBM : 6.85,
                         currentPriceEmall : 8.25,
@@ -607,7 +624,7 @@ exports.newDoc = function(req, res, next){
                         packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
                         dateOfBirth : -4,
                         dateOfDeath : 10,
-                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        composition : [6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                         production : 60,
                         currentPriceBM : 6.85,
                         currentPriceEmall : 8.25,
@@ -625,35 +642,29 @@ exports.newDoc = function(req, res, next){
         nextBudgetExtension:1,
         approvedBudgetExtension:1,
         proCatDecision:[{
-            //undefined
-        },{
             categoryID:1,
             capacityChange:2,
             investInDesign:6.13,
             investInProductionFlexibility:11.57,
             investInTechnology:3.16,
             proBrandsDecision:[{
-                //undefined
-            },{
                 brandName:'EGEND2',
                 brandID:11,
                 paranetCompanyID:2,
                 dateOfBirth:-4,
                 dateOfDeath:10,
-                advertisingOffLine:[null,10,20],
+                advertisingOffLine:[10,20],
                 advertisingOnLine:15,
                 supportEmall:15,
-                supportTraditionalTrade:[null,10,20],
+                supportTraditionalTrade:[10,20],
                 proVarDecision:[{
-                    //undefined
-                },{
                         varName:'_A',
                         varID : 111, //varID = BrandID * 10 + varCount
                         parentBrandID : 11, //brandID
                         packFormat : 'STANDARD', //ECONOMY, STANDARD, PREMIUM
                         dateOfBirth : -4,
                         dateOfDeath : 10,
-                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        composition : [6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                         production : 60,
                         currentPriceBM : 6.85,
                         currentPriceEmall : 8.25,
@@ -667,20 +678,18 @@ exports.newDoc = function(req, res, next){
                 paranetCompanyID:2,
                 dateOfBirth:-4,
                 dateOfDeath:10,
-                advertisingOffLine:[null,10,20],
+                advertisingOffLine:[10,20],
                 advertisingOnLine:15,
                 supportEmall:15,
-                supportTraditionalTrade:[null,10,20],
+                supportTraditionalTrade:[10,20],
                 proVarDecision:[{
-                    //undefined
-                },{
                         varName:'_A',
                         varID : 121, //varID = BrandID * 10 + varCount
                         parentBrandID : 12, //brandID
                         packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
                         dateOfBirth : -4,
                         dateOfDeath : 10,
-                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        composition : [6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                         production : 60,
                         currentPriceBM : 6.85,
                         currentPriceEmall : 8.25,
@@ -694,20 +703,18 @@ exports.newDoc = function(req, res, next){
                 paranetCompanyID:2,
                 dateOfBirth:-4,
                 dateOfDeath:10,
-                advertisingOffLine:[null,10,20],
+                advertisingOffLine:[10,20],
                 advertisingOnLine:15,
                 supportEmall:15,
-                supportTraditionalTrade:[null,10,20],
+                supportTraditionalTrade:[10,20],
                 proVarDecision:[{
-                    //undefined                    
-                },{
                         varName:'_A',
                         varID : 131, //varID = BrandID * 10 + varCount
                         parentBrandID : 13, //brandID
                         packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
                         dateOfBirth : -4,
                         dateOfDeath : 10,
-                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        composition : [6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                         production : 60,
                         currentPriceBM : 6.85,
                         currentPriceEmall : 8.25,
@@ -721,7 +728,7 @@ exports.newDoc = function(req, res, next){
                         packFormat : 'PREMIUM', //ECONOMY, STANDARD, PREMIUM
                         dateOfBirth : -4,
                         dateOfDeath : 10,
-                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        composition : [6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                         production : 60,
                         currentPriceBM : 6.85,
                         currentPriceEmall : 8.25,
@@ -737,8 +744,6 @@ exports.newDoc = function(req, res, next){
             investInProductionFlexibility:21.21,
             investInTechnology:21.21,
             proBrandsDecision:[{
-                //undefined
-            },{
                 brandName:'HEELY2',
                 brandID:11,
                 paranetCompanyID:2,
@@ -749,15 +754,13 @@ exports.newDoc = function(req, res, next){
                 supportEmall:15,
                 supportTraditionalTrade:[10,20],
                 proVarDecision:[{
-                    //undefined
-                },{
                         varName:'_A',
                         varID : 111, //varID = BrandID * 10 + varCount
                         parentBrandID : 11, //brandID
                         packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
                         dateOfBirth : -4,
                         dateOfDeath : 10,
-                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        composition : [6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                         production : 60,
                         currentPriceBM : 6.85,
                         currentPriceEmall : 8.25,
@@ -771,20 +774,18 @@ exports.newDoc = function(req, res, next){
                 paranetCompanyID:2,
                 dateOfBirth:-4,
                 dateOfDeath:10,
-                advertisingOffLine:[null,10,20],
+                advertisingOffLine:[10,20],
                 advertisingOnLine:15,
                 supportEmall:15,
-                supportTraditionalTrade:[null,10,20],
-                proVarDecision:[{                    
-                    //undefined
-                },{
+                supportTraditionalTrade:[10,20],
+                proVarDecision:[{
                         varName:'_A',
                         varID : 121, //varID = BrandID * 10 + varCount
                         parentBrandID : 12, //brandID
                         packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
                         dateOfBirth : -4,
                         dateOfDeath : 10,
-                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        composition : [6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                         production : 60,
                         currentPriceBM : 6.85,
                         currentPriceEmall : 8.25,
@@ -798,20 +799,18 @@ exports.newDoc = function(req, res, next){
                 paranetCompanyID:2,
                 dateOfBirth:-4,
                 dateOfDeath:10,
-                advertisingOffLine:[null,10,20],
+                advertisingOffLine:[10,20],
                 advertisingOnLine:15,
                 supportEmall:15,
-                supportTraditionalTrade:[null,10,20],
+                supportTraditionalTrade:[10,20],
                 proVarDecision:[{
-                    //undefined
-                },{
                         varName:'_A',
                         varID : 131, //varID = BrandID * 10 + varCount
                         parentBrandID : 13, //brandID
                         packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
                         dateOfBirth : -4,
                         dateOfDeath : 10,
-                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        composition : [6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                         production : 60,
                         currentPriceBM : 6.85,
                         currentPriceEmall : 8.25,
@@ -825,7 +824,7 @@ exports.newDoc = function(req, res, next){
                         packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
                         dateOfBirth : -4,
                         dateOfDeath : 10,
-                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        composition : [6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                         production : 60,
                         currentPriceBM : 6.85,
                         currentPriceEmall : 8.25,
@@ -843,35 +842,29 @@ exports.newDoc = function(req, res, next){
         nextBudgetExtension:1,
         approvedBudgetExtension:1,
         proCatDecision:[{
-            //undefined
-        },{
             categoryID:1,
             capacityChange:2,
             investInDesign:6.13,
             investInProductionFlexibility:11.57,
             investInTechnology:3.16,
             proBrandsDecision:[{
-                //undefined
-            },{
                 brandName:'EGEND3',
                 brandID:11,
                 paranetCompanyID:3,
                 dateOfBirth:-4,
                 dateOfDeath:10,
-                advertisingOffLine:[null,10,20],
+                advertisingOffLine:[10,20],
                 advertisingOnLine:15,
                 supportEmall:15,
-                supportTraditionalTrade:[null,10,20],
+                supportTraditionalTrade:[10,20],
                 proVarDecision:[{
-                    //undefined
-                },{
                         varName:'_A',
                         varID : 111, //varID = BrandID * 10 + varCount
                         parentBrandID : 11, //brandID
                         packFormat : 'STANDARD', //ECONOMY, STANDARD, PREMIUM
                         dateOfBirth : -4,
                         dateOfDeath : 10,
-                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        composition : [6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                         production : 60,
                         currentPriceBM : 6.85,
                         currentPriceEmall : 8.25,
@@ -885,20 +878,18 @@ exports.newDoc = function(req, res, next){
                 paranetCompanyID:3,
                 dateOfBirth:-4,
                 dateOfDeath:10,
-                advertisingOffLine:[null,10,20],
+                advertisingOffLine:[10,20],
                 advertisingOnLine:15,
                 supportEmall:15,
-                supportTraditionalTrade:[null,10,20],
+                supportTraditionalTrade:[10,20],
                 proVarDecision:[{
-                    //undefined
-                },{
                         varName:'_A',
                         varID : 121, //varID = BrandID * 10 + varCount
                         parentBrandID : 12, //brandID
                         packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
                         dateOfBirth : -4,
                         dateOfDeath : 10,
-                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        composition : [6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                         production : 60,
                         currentPriceBM : 6.85,
                         currentPriceEmall : 8.25,
@@ -912,20 +903,18 @@ exports.newDoc = function(req, res, next){
                 paranetCompanyID:3,
                 dateOfBirth:-4,
                 dateOfDeath:10,
-                advertisingOffLine:[null,10,20],
+                advertisingOffLine:[10,20],
                 advertisingOnLine:15,
                 supportEmall:15,
-                supportTraditionalTrade:[null,10,20],
+                supportTraditionalTrade:[10,20],
                 proVarDecision:[{
-                    //undefined                    
-                },{
                         varName:'_A',
                         varID : 131, //varID = BrandID * 10 + varCount
                         parentBrandID : 13, //brandID
                         packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
                         dateOfBirth : -4,
                         dateOfDeath : 10,
-                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        composition : [6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                         production : 60,
                         currentPriceBM : 6.85,
                         currentPriceEmall : 8.25,
@@ -939,7 +928,7 @@ exports.newDoc = function(req, res, next){
                         packFormat : 'PREMIUM', //ECONOMY, STANDARD, PREMIUM
                         dateOfBirth : -4,
                         dateOfDeath : 10,
-                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        composition : [6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                         production : 60,
                         currentPriceBM : 6.85,
                         currentPriceEmall : 8.25,
@@ -955,8 +944,6 @@ exports.newDoc = function(req, res, next){
             investInProductionFlexibility:21.21,
             investInTechnology:21.21,
             proBrandsDecision:[{
-                //undefined
-            },{
                 brandName:'HEELY3',
                 brandID:11,
                 paranetCompanyID:3,
@@ -967,15 +954,13 @@ exports.newDoc = function(req, res, next){
                 supportEmall:15,
                 supportTraditionalTrade:[10,20],
                 proVarDecision:[{
-                    //undefined
-                },{
                         varName:'_A',
                         varID : 111, //varID = BrandID * 10 + varCount
                         parentBrandID : 11, //brandID
                         packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
                         dateOfBirth : -4,
                         dateOfDeath : 10,
-                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        composition : [6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                         production : 60,
                         currentPriceBM : 6.85,
                         currentPriceEmall : 8.25,
@@ -989,20 +974,18 @@ exports.newDoc = function(req, res, next){
                 paranetCompanyID:3,
                 dateOfBirth:-4,
                 dateOfDeath:10,
-                advertisingOffLine:[null,10,20],
+                advertisingOffLine:[10,20],
                 advertisingOnLine:15,
                 supportEmall:15,
-                supportTraditionalTrade:[null,10,20],
-                proVarDecision:[{                    
-                    //undefined
-                },{
+                supportTraditionalTrade:[10,20],
+                proVarDecision:[{
                         varName:'_A',
                         varID : 121, //varID = BrandID * 10 + varCount
                         parentBrandID : 12, //brandID
                         packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
                         dateOfBirth : -4,
                         dateOfDeath : 10,
-                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        composition : [6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                         production : 60,
                         currentPriceBM : 6.85,
                         currentPriceEmall : 8.25,
@@ -1016,20 +999,18 @@ exports.newDoc = function(req, res, next){
                 paranetCompanyID:3,
                 dateOfBirth:-4,
                 dateOfDeath:10,
-                advertisingOffLine:[null,10,20],
+                advertisingOffLine:[10,20],
                 advertisingOnLine:15,
                 supportEmall:15,
-                supportTraditionalTrade:[null,10,20],
+                supportTraditionalTrade:[10,20],
                 proVarDecision:[{
-                    //undefined
-                },{
                         varName:'_A',
                         varID : 131, //varID = BrandID * 10 + varCount
                         parentBrandID : 13, //brandID
                         packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
                         dateOfBirth : -4,
                         dateOfDeath : 10,
-                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        composition : [6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                         production : 60,
                         currentPriceBM : 6.85,
                         currentPriceEmall : 8.25,
@@ -1043,7 +1024,7 @@ exports.newDoc = function(req, res, next){
                         packFormat : 'ECONOMY', //ECONOMY, STANDARD, PREMIUM
                         dateOfBirth : -4,
                         dateOfDeath : 10,
-                        composition : [null,6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                        composition : [6,6,7], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                         production : 60,
                         currentPriceBM : 6.85,
                         currentPriceEmall : 8.25,

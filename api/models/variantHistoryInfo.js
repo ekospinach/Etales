@@ -13,7 +13,7 @@ var variantHistoryInfoSchema = mongoose.Schema({
     parentBrandName : String,
     parentCatID : Number,
     parentCompanyID : Number, //(1~9)   
-    supplierView : supplierViewSchema,
+    supplierView : [supplierViewSchema],
     channelView : [channelViewSchema] //length:TRetailersTotal(1~4)
 })
 
@@ -27,11 +27,11 @@ var supplierViewSchema = mongoose.Schema({
     composition : Number,  //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
     productionVolume : Number,
     initialInventory : [{  
-        volume : single,
-        unitCost : single,
+        volume : String,
+        unitCost : String,
         composition : [Number] 
     }], //length : TInventoryAgesTotal(0~4)
-    supplierChannelView : [supplierChannelViewSchema]; //length : TAllRetailersTotal(1~5)
+    supplierChannelView : [supplierChannelViewSchema] //length : TAllRetailersTotal(1~5)
 })
 
 var supplierChannelViewSchema = mongoose.Schema({
@@ -45,8 +45,8 @@ var channelViewSchema = mongoose.Schema({
 //rv...
 var channelMarketViewSchema = mongoose.Schema({
     closingInventory : [{  
-        volume : single,
-        unitCost : single,
+        volume : String,
+        unitCost : String,
         composition : [Number] 
     }], //length : TInventoryAgesTotal(0~4)
     currentUnitAcquisitionCost : Number, //length: TMarkets(1~2)
@@ -60,3 +60,21 @@ var channelMarketViewSchema = mongoose.Schema({
     }
 })
 
+var variantHistory = mongoose.model('variantHistory',variantHistoryInfoSchema);
+
+/*exports.newDoc=function(req,res,next){
+    var newDoc=new variantHistory({
+        period : 0,
+        seminar : "MAY",
+        varName : String,
+        varID : Number,
+        dateOfBirth : Number, //-4~10
+        dateOfDeath : Number, //-4~10
+        parentBrandID : Number,
+        parentBrandName : String,
+        parentCatID : Number,
+        parentCompanyID : Number, //(1~9)   
+        supplierView : [supplierViewSchema],
+        channelView : [channelViewSchema] 
+    })
+}*/

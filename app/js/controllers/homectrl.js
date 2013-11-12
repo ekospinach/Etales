@@ -59,6 +59,47 @@ define(['app','socketIO'], function(app) {
 			});
 		}
 
+		$scope.conDetNewDoc=function(){
+			$http({method:'GET',url:'/conDetNewDoc'}).then(function(res){
+				console.log(res);
+			},function(res){
+				console.log(res);
+			});			
+		}
+
+		$scope.variantHistoryNewDoc=function(){
+			$http({method:'GET',url:'/variantHistoryNewDoc'}).then(function(res){
+				console.log(res);
+			},function(res){
+				console.log(res);
+			});		
+		}
+
+		$scope.brandHistoryNewDoc=function(){
+			$http({method:'GET',url:'/brandHistoryNewDoc'}).then(function(res){
+				console.log(res);
+			},function(res){
+				console.log(res);
+			});		
+		}
+
+		$scope.companyHistoryNewDoc=function(){
+			$http({method:'GET',url:'/companyHistoryNewDoc'}).then(function(res){
+				console.log(res);
+			},function(res){
+				console.log(res);
+			});		
+		}
+
+		$scope.quarterHistoryNewDoc=function(){
+			$http({method:'GET',url:'/quarterHistoryNewDoc'}).then(function(res){
+				console.log(res);
+			},function(res){
+				console.log(res);
+			});	
+		}
+
+
 		$scope.setContractUser=function(userID){
 			$rootScope.rootContractUserID=userID;
 		}
