@@ -5,6 +5,8 @@ var mongoose  = require('mongoose'),
 	uniqueValidator = require('mongoose-unique-validator');
 
 var allDealSchema = mongoose.Schema({
+    period : Number,
+    seminar : String,
     producerDeal : [producerDealSchema]
 })
 

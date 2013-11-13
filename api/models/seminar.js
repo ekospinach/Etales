@@ -40,3 +40,4 @@ var memberSchema = mongoose.Schema({
 	description : Stirng
 })
 
+seminarSchema.plugin(uniqueValidator);

@@ -9,6 +9,7 @@ define(['angular',
 		'controllers/retailerDecisionStep3Ctrl',
 		'controllers/retailerDecisionStep4Ctrl',
 		'controllers/contractCtrl',
+		'controllers/loginCtrl',
 		'controllers/homeCtrl'], function(angular, app) {
 	'use strict';
 	return app.config(['$routeProvider', function($routeProvider) {
@@ -42,8 +43,11 @@ define(['angular',
 		}).when('/contract',{
 			templateUrl:'partials/contract.html',
 			controller:'contractCtrl',
+		}).when('/login',{
+			templateUrl:'partials/login.html',
+			controller:'loginCtrl',
 		});	
 
-		$routeProvider.otherwise({redirectTo: '/home'});
+		$routeProvider.otherwise({redirectTo: '/login'});
 	}]);
 });
