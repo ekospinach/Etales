@@ -23,11 +23,35 @@ define(['app','socketIO'], function(app) {
 				'currentPeriod':0,
 				//'seminarDate':
 			}
-			$http.post('/addSeminar',data).success(function(data){
-				//console.log(data);
+			$http({method: 'POST', url: '/addSeminar',data:data}).success(function(data, status, headers, config) {
+				showbubleMsg('Save new seminar successfully',2);
 				$scope.seminars.push(data);
+			}).error(function(data, status, headers, config) {
+				showbubleMsg('Insert failure, ' + data,1);
 			});
 		}
+
+		var showbubleMsg = function(content, status){
+	 		$scope.bubleMsg = ' ' + content;
+	 		switch(status){
+	 			case 1: 
+	 				$scope.bubleClassName = 'alert alert-danger'; 
+	 				$scope.bubleTitle = 'Error!';
+	 				break;
+	 			case 2: 
+	 				$scope.bubleClassName = 'alert alert-success'; 
+	 				$scope.bubleTitle = 'Success!';
+	 				break;
+	 			case 3:
+	 				$scope.bubleClassName = 'alert alert-block'; 
+	 				$scope.bubleTitle = 'Warning!';
+	 				break;	 			
+	 			default:
+	 			 $scope.bubleClassName = 'alert'; 
+	 		}
+	 		console.log('infoBuble.show');
+	 		$scope.infoBuble = true;
+	 	};
 	}]);
 
 });
