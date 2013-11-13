@@ -97,6 +97,13 @@ define(['app','socketIO'], function(app) {
 			});	
 		}
 
+		$scope.seminarNewDoc=function(){
+			$http({method:'GET',url:'/seminarNewDoc'}).then(function(res){
+				console.log(res);
+			},function(res){
+				console.log(res);
+			});				
+		}
 
 		$scope.setContractUser=function(userID){
 			$rootScope.rootContractUserID=userID;
