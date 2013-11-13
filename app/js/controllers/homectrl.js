@@ -5,15 +5,14 @@ define(['app','socketIO'], function(app) {
 		$scope.welcomeMessage = 'hey this is HomeCtrl.js!';
 
 		var socket = io.connect('http://localhost');
-		socket.on('baseChangedNew', function(data){
-			console.log('from server socketIO:' + data);
-		}).on('KernalPassiveProcess', function(data){
-			console.log('from Kernal & Passive module:' + data.msg);
+		socket.on('AdminProcessLog', function(data){
+			console.log('Log:' + data.msg + ', isError:' + data.isError);
 		});
+
 
 		$scope.testPassive = function(){
 		  var postData = {
-		  	seminar : 'MAY',
+		  	seminar : 'ROUND1',
 		  	period : 0
 		  }
 		  $http({method:'POST', url:'/passiveSeminar', data: postData}).then(function(res){
@@ -25,14 +24,13 @@ define(['app','socketIO'], function(app) {
 
 		$scope.testInitialise = function(){
 		  var postData = {
-		  	seminar : 'MAY',
+		  	seminar : 'ROUND1',
 		  }
 		  $http({method:'POST', url:'/initialiseSeminar', data: postData}).then(function(res){
-		  	console.log('testInitialise Success:' + res);
+		  	console.log('testInitialise Success:' + res.data);
 		  },function(res){
-		  	console.log('testInitialise Failed:' + res);
+		  	console.log('testInitialise Failed:' + res.data);
 		  })			
-
 		}
 		
 		$scope.proNewDoc = function(){

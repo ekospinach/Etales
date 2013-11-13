@@ -17,10 +17,7 @@ var path    = require('path'),
   app.use(express.logger());
 
 
-  app.get('/initializationResult');
-  app.get('/passiveResult');
-  app.get('/kernelResult');
-//  app.post('/initialiseSeminar', require('./api/initialiseSeminar.js').initialiseSeminar(io));
+  app.post('/initialiseSeminar', require('./api/initialiseSeminar.js').initialiseSeminar(io));
   app.post('/passiveSeminar', require('./api/passiveSeminar.js').passiveSeminar(io));
   //app.post('/kernelResult')
 

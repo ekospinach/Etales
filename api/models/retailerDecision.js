@@ -1,7 +1,8 @@
 var mongoose = require('mongoose'),
     http = require('http'),
     util = require('util'),
-    _ = require('underscore');
+    _ = require('underscore'),
+    q = require('q');
 
 var privateLabelVarDecision = mongoose.Schema({
     varName : String,
@@ -105,10 +106,10 @@ var retDecisionSchema = mongoose.Schema({
 var retDecision = mongoose.model('retailerDecision', retDecisionSchema);
 
 
-exports.addRetailerDecisions = function(options, socket){
+exports.addRetailerDecisions = function(options){
     var startFrom = options.startFrom,
-    endwith = options.endWith;
-    socket.emit('InitialiseProcess', { msg: 'Adding retailer decisions into database...' });
+    endWith = options.endWith,
+    deferred = q.defer();    
 
    (function sendRequest(currentPeriod){        
       var reqOptions = {
@@ -123,13 +124,13 @@ exports.addRetailerDecisions = function(options, socket){
           data += chunk;
         }).on('end', function(){
           //ask Oleg to fix here, should return 404 when result beyound the existed period.
-          console.log('response statusCode from CGI(' + options.cgiPath + ') for period ' + currentPeriod + ': ' + response.statusCode);
-          if ( response.statusCode === (404 || 500) ) next(new Error('Read beyound result file, data of period ' + currentPeriod + ' do not exist.'));
+          if ( response.statusCode === (404 || 500) ) 
+            deferred.reject({msg:'Get 404 error from CGI server, reqOptions:' + JSON.stringify(reqOptions)});
           else{
             try {
               var singleDecision = JSON.parse(data);
             } catch(e) {
-              next(new Error('Read decision file failed, please only choose existed period.'));
+              deferred.reject({msg: 'Read decision file failed or something else, cannot parse JSON data from CGI:' + data, options:options});
               console.log(e);
             }
           }      
@@ -146,21 +147,21 @@ exports.addRetailerDecisions = function(options, socket){
                                 {upsert: true},
                                 function(err, numberAffected, raw){
                                   if(err) next(new Error(err));
-                                  console.log('retailerDecision generated: the number of updated documents was %d', numberAffected);
                                   currentPeriod--;
                                   if (currentPeriod >= startFrom) {
                                      sendRequest(currentPeriod);
                                   } else {
-                                     console.log('retailerDecision generate done. from period' + startFrom + ' to ' + endWith);
-                                     socket.emit('InitialiseProcess', { msg: 'Retailer decision generation done.' });      
+                                     deferred.resolve({msg:'retailerDecision(retailer:'+ options.retailerID + ', seminar:' + options.seminar + ') import done. from period' + startFrom + ' to ' + endWith, options: options});                                    
                                   }
                                 });   
         });
       }).on('error', function(e){
-        next(new Error('errorFrom addProducerDecisions' + e.message));
+        deferred.reject({msg:'errorFrom addRetailerDecisions' + e.message,options: options}); 
       });
     })(endWith);
 
+    return deferred.promise;
+    
 }
 
 exports.newDoc=function(req,res,next){

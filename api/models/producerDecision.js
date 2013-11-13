@@ -72,41 +72,34 @@ var proDecisionSchema = mongoose.Schema({
 var proDecision = mongoose.model('proDecision', proDecisionSchema);
 
 exports.exportToBinary = function(options){
+    var deferred = q.defer();
     var period = options.period;
-//    socket.emit('KernalPassiveProcess',{status: 'info', msg: 'Write producer decision into binary...'});
     proDecision.findOne({seminar : options.seminar,
                            period : options.period,
                            producerID : options.producerID},
                            function(err, doc){
-                                if(err) {next(new Error(err));}
+                                if(err) deferred.reject({msg:err, options: options}); 
                                 if(!doc) {
-                                    console.log('cannot find matched doc, ' + 'producerID:' + options.producerID + '/seminar:' + options.seminar + '/period:' + options.period);
-  //                                  socket.emit('KernalPassiveProcess',{status: 'error', msg: 'Cannot find matched producer decision doc to export binary.'});
+                                    deferred.reject({msg: 'Export to binary, cannot find matched doc. ' + 'producerID:' + options.producerID + '/seminar:' + options.seminar + '/period:' + options.period});
                                 } else {        
-                                    //console.log(JSON.stringify(doc));
-                                    // var requestOptions = {
-                                    //     uri : 'http://' + options.cgiHost + ':' + options.cgiPort + options.cgiPath,
-                                    //     method : 'POST',
-                                    //     json : {
-                                    //         jsonData : doc
-                                    //     }
-                                    // }
-                                    // request(requestOptions, function(error, response, body){
-                                    //     console.log('res status' + response.statusCode);
-                                    // })
-console.log( JSON.stringify(doc));
-request.post('http://' + options.cgiHost + ':' + options.cgiPort + options.cgiPath, {form: {jsonData: JSON.stringify(doc)} });
-                                    // require('../utils/http.js').post('http://' + options.cgiHost + ':' + options.cgiPort + options.cgiPath, { jsonData : JSON.stringify(doc) }, function(data){
-                                    //     console.log(data);
-                                    // })
+                                    request.post('http://' + options.cgiHost + ':' + options.cgiPort + options.cgiPath, {form: {jsonData: JSON.stringify(doc)}}, function(error, response){
+                                        console.log('status:' + response.status);
+                                        console.log('body:' + response.body);
+                                        if (response.status === (500 || 404)) {
+                                            deferred.reject({msg: 'Failed to export binary, get 500 from CGI server(POST action):' + JSON.stringify(options)});
+                                        } else {
+                                            deferred.resolve({msg: 'Export binary done, producer:' + options.producerID +', period' + options.period});
+                                        }
+                                    });
                                 }
                            });
+    return deferred.promise;
 }
 
 exports.addProducerDecisions = function(options, socket){
     var deferred = q.defer();
     var startFrom = options.startFrom,
-    endwith = options.endWith;
+    endWith = options.endWith;
 
    (function sendRequest(currentPeriod){        
       var reqOptions = {
@@ -122,13 +115,14 @@ exports.addProducerDecisions = function(options, socket){
           data += chunk;
         }).on('end', function(){
           //ask Oleg to fix here, should return 404 when result beyound the existed period.
-          console.log('response statusCode from CGI(' + options.cgiPath + ') for period ' + currentPeriod + ': ' + response.statusCode);
-          if ( response.statusCode === (404 || 500) ) next(new Error('Read beyound result file, data of period ' + currentPeriod + ' do not exist.'));
+         //          console.log('response statusCode from CGI(' + options.cgiPath + ') for period ' + currentPeriod + ': ' + response.statusCode);
+          if ( response.statusCode === (404 || 500) ) 
+            deferred.reject({msg:'Get 404 error from CGI server, reqOptions:' + JSON.stringify(reqOptions)});
           else {
             try {
               var singleDecision = JSON.parse(data);
             } catch(e) {
-              deferred.reject({msg: 'Read decision file failed, please only choose existed period.', options:options});
+              deferred.reject({msg: 'Read decision file failed or something else, cannot parse JSON data from CGI:' + data, options:options});
             }
           }      
           if (!singleDecision) return; 
@@ -141,13 +135,12 @@ exports.addProducerDecisions = function(options, socket){
                                 {upsert: true},
                                 function(err, numberAffected, raw){
                                   if(err) deferred.reject({msg:err, options: options});                                  
-                                  deferred.notify({msg: 'producerDecision generated: the number of updated documents was' + numberAffected})
                                   currentPeriod--;
                                   if (currentPeriod >= startFrom) {
                                      sendRequest(currentPeriod);
                                   } else {
-                                     deferred.resolve({msg:'producerDecision generate done. from period' + startFrom + ' to ' + endWith, options: options});
-                                    }
+                                     deferred.resolve({msg:'producerDecision(producer:'+ options.producerID + ', seminar:' + options.seminar + ') import done. from period' + startFrom + ' to ' + endWith, options: options});
+                                  }
                                 });   
         });
       }).on('error', function(e){
