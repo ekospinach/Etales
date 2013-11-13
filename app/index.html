@@ -9,23 +9,35 @@
 		<link rel="stylesheet" type="text/css" media="all" href="css/app.css" />
 		<link rel="stylesheet" type="text/css" media="all" href="css/docs.css" />
 	</head>
-	<body class="bs-docs-home">
+	<body class="{{rootBodyClass}}">
 		<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
 			<div class="container">
 				<div class="navbar-header">
-					<button class="navbar-toggle" data-target=".bs-navbar-collapse" data-toggle="collapse" type="button">
 					<a class="navbar-brand" href="./">E-tales</a>
 				</div>
-				<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-					
+				<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">		
 					<ul class="nav navbar-nav">
-						<li class="active" active-nav> <a href="#/home">Home</a></li>
-						<li class="{{rootShow}}" artive-nav> <a href="#/map">Map</a></li>
-		          		<li class="{{rootShow}}" active-nav> <a href="#/catreport">Reports</a></li>   
-		          		<li class="{{rootShow}}" active-nav> <a href="#/chart">Charts</a></li>     
-		          		<li class="{{rootShow}}" active-nav> <a href="#/report">Market Studies</a></li> 
-		          		<li class="{{decisionActive}}" active-nav> <a href="#/producerDecisionStep1">Decision</a></li>
-		          		<li active-nav><a href="#/retailerDecisionStep1">Retailer For Test</a></li>    
+						<li class="active" active-nav>
+							<a href="#/home">Home</a>
+						</li>
+						<li class="{{rootShow}}" artive-nav>
+							<a href="#/map">Map</a>
+						</li>
+		          		<li class="{{rootShow}}" active-nav>
+		          			<a href="#/catreport">Reports</a>
+		          		</li>   
+		          		<li class="{{rootShow}}" active-nav>
+		          			<a href="#/chart">Charts</a>
+		          		</li>     
+		          		<li class="{{rootShow}}" active-nav>
+		          			<a href="#/report">Market Studies</a>
+		          		</li> 
+		          		<li class="{{decisionActive}}" active-nav>
+		          			<a href="#/producerDecisionStep1">Decision</a>
+		          		</li>
+		          		<li active-nav>
+		          			<a href="#/retailerDecisionStep1">Retailer For Test</a>
+		          		</li>    
 		      		</ul>
 		      		<!--
 					<ul class="nav navbar-nav navbar-right">
@@ -40,9 +52,6 @@
 		<div ng-view>
 	    	
 	    </div>
-	    <div class="container bs-docs-container">
-			
-		</div>
 	    <script data-main="js/main" src="/bower_components/requirejs/require.js"></script>
 	</body>
 

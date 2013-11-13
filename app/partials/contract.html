@@ -1,72 +1,79 @@
-<div class="row">
-	<div class="col-md-12">
-	    <div style="clear:both;padding:10px 0"></div>
-	    <div class="bs-docs-section">
-	    	<h3>ContractList</h3>
-	    	<div class="pull-left">
-		        <div class="btn-group pull-left" style="display:{{shouldShow}}">
-		        	<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
-		              Producer <span class="caret"></span>
-		            </button>
-		            <ul class="dropdown-menu">
-		              <li class=""><a ng-click="filterUser(1,retailerID)">Producer 1</a></li>
-		              <li class=""><a ng-click="filterUser(2,retailerID)">Producer 2</a></li>
-		              <li class=""><a ng-click="filterUser(3,retailerID)">Producer 3</a></li>         
-		            </ul>
-		        </div>
-		        <div class="btn-group pull-left" style="display:{{shouldShow}}">
-		        	<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" style="margin-left:10px">
-		              Retailer <span class="caret"></span>
-		            </button>
-		            <ul class="dropdown-menu">
-		              <li class=""><a ng-click="filterUser(producerID,1)">Retailer 1</a></li>
-		              <li class=""><a ng-click="filterUser(producerID,2)">Retailer 2</a></li>      
-		            </ul>
-		        </div>
-		        <div class="btn-group pull-left" data-toggle="buttons" style="margin-left:10px">
-		            <label class="btn btn-primary" ng-click="">
-		            	<input type="radio" name="options">English
-		            </label>
-		            <label class="btn btn-primary" ng-click="">
-		            	<input type="radio" name="options">Chinese
-		            </label>
-		        </div>
+<div id="content" class="bs-header">
+    <div class="container">
+        <h1>Contract</h1>
+        <p>We deliver a highly disruptive and transformational experiential learning model on a global scale !</p>
+    </div>
+</div>
+<div class="container bs-docs-container">
+	<div class="row">
+		<div class="col-md-12">
+		    <div class="bs-docs-section">
+		    	<h3>ContractList</h3>
+		    	<div class="pull-left">
+			        <div class="btn-group pull-left" style="display:{{shouldShow}}">
+			        	<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+			              Producer <span class="caret"></span>
+			            </button>
+			            <ul class="dropdown-menu">
+			              <li class=""><a ng-click="filterUser(1,retailerID)">Producer 1</a></li>
+			              <li class=""><a ng-click="filterUser(2,retailerID)">Producer 2</a></li>
+			              <li class=""><a ng-click="filterUser(3,retailerID)">Producer 3</a></li>         
+			            </ul>
+			        </div>
+			        <div class="btn-group pull-left" style="display:{{shouldShow}}">
+			        	<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" style="margin-left:10px">
+			              Retailer <span class="caret"></span>
+			            </button>
+			            <ul class="dropdown-menu">
+			              <li class=""><a ng-click="filterUser(producerID,1)">Retailer 1</a></li>
+			              <li class=""><a ng-click="filterUser(producerID,2)">Retailer 2</a></li>      
+			            </ul>
+			        </div>
+			        <div class="btn-group pull-left" data-toggle="buttons" style="margin-left:10px">
+			            <label class="btn btn-primary" ng-click="">
+			            	<input type="radio" name="options">English
+			            </label>
+			            <label class="btn btn-primary" ng-click="">
+			            	<input type="radio" name="options">Chinese
+			            </label>
+			        </div>
+			    </div>
+			    <div style="clear:both"></div>
+			    <table class="table table-hover">
+			    	<tr>
+			    		<th>Contract Name</th>
+			    		<th>Period</th>
+			    		<th>Producer</th>
+			    		<th>Retailer</th>
+			    		<th>Drafted By</th>
+			    		<th>Ready?</th>
+			    		<th>Choose</th>
+			    	</tr>
+			    	<tr ng-repeat="allContract in allContracts">
+			    		<td>{{allContract.contractCode}}</td>
+			    		<td>{{allContract.period}}</td>
+			    		<td>{{rootSeminar}}_P_{{allContract.producerID}}</td>
+			    		<td>{{rootSeminar}}_R_{{(allContract.retailerID)}}</td>
+			    		<td>{{rootSeminar}}_{{(allContract.draftedByCompanyID>3)?'R':'P'}}_{{(allContract.draftedByCompanyID>3)?(allContract.draftedByCompanyID-4):allContract.draftedByCompanyID}}</td>
+			    		<td>
+			    			<fieldset disabled>
+			    				<div class="checkbox">
+			    					<label>
+			    						<input type="checkbox" checked style="display:{{(allContract.isDraftFinished)?'block':'none'}}">
+			    						<input type="checkbox" style="display:{{(allContract.isDraftFinished)?'none':'block'}}"></div>
+			    					</label>
+			    				</div>
+			    			</fieldset>
+			    		</td>
+			    		<td>
+			    			<a class="btn btn-primary" ng-click="openDetailModal(allContract)">
+			    				ShowDetails
+			    			</a>
+			    		</td>
+			    	</tr>
+			    </table>
 		    </div>
-		    <div style="clear:both"></div>
-		    <table class="table table-hover">
-		    	<tr>
-		    		<th>Contract Name</th>
-		    		<th>Period</th>
-		    		<th>Producer</th>
-		    		<th>Retailer</th>
-		    		<th>Drafted By</th>
-		    		<th>Ready?</th>
-		    		<th>Choose</th>
-		    	</tr>
-		    	<tr ng-repeat="allContract in allContracts">
-		    		<td>{{allContract.contractCode}}</td>
-		    		<td>{{allContract.period}}</td>
-		    		<td>{{rootSeminar}}_P_{{allContract.producerID}}</td>
-		    		<td>{{rootSeminar}}_R_{{(allContract.retailerID)}}</td>
-		    		<td>{{rootSeminar}}_{{(allContract.draftedByCompanyID>3)?'R':'P'}}_{{(allContract.draftedByCompanyID>3)?(allContract.draftedByCompanyID-4):allContract.draftedByCompanyID}}</td>
-		    		<td>
-		    			<fieldset disabled>
-		    				<div class="checkbox">
-		    					<label>
-		    						<input type="checkbox" checked style="display:{{(allContract.isDraftFinished)?'block':'none'}}">
-		    						<input type="checkbox" style="display:{{(allContract.isDraftFinished)?'none':'block'}}"></div>
-		    					</label>
-		    				</div>
-		    			</fieldset>
-		    		</td>
-		    		<td>
-		    			<a class="btn btn-primary" ng-click="openDetailModal(allContract)">
-		    				ShowDetails
-		    			</a>
-		    		</td>
-		    	</tr>
-		    </table>
-	    </div>
+		</div>
 	</div>
 </div>
 <!--dialogs-->

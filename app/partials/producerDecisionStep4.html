@@ -1,78 +1,85 @@
-<div class="row">
-  <div class="col-md-12">
-    <div style="clear:both;padding:10px 0"></div>
-    <div class="bs-docs-section">
-      <h4>Step 4 of 4</h4>
-      <div class="pull-left" style="width:33%">
-        <h3 style="margin-top:0px">Category Decision</h3>
-        <div class="btn-group pull-left" data-toggle="buttons">
-            <label class="btn btn-primary" ng-click="showView(user,period,'English')">
-            <input type="radio" name="options"> English</label>
-            <label class="btn btn-primary" ng-click="showView(user,period,'Chinese')">
-            <input type="radio" name="options"> Chinese
-            </label>
-        </div>
-      </div>
-      <div class="pull-right" style="width:33%">
-        <progress percent="88" class="progress active"></progress>
-        <small>
-          <em>Total Avaliable Budget for Remaing Period</em>
-        </small>
-        <progress percent="70" class="progress progress-suceess active progress-striped"></progress>
-        <small>
-          <em>Elecssories Available Capacity</em>
-        </small>
-      </div>
-        <div style="clear:both"></div>
-        <div collapse="isCollapsed">
-          <div class="well well-large">
-            <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button>
-            <table class="table table-striped">
-              <tr>
-                <td>category:{{moreInfo.categoryID}}</td>
-                <td>category:{{moreInfo.categoryID}}</td>
-                <td>category:{{moreInfo.categoryID}}</td>
-                <td>category:{{moreInfo.categoryID}}</td>
-              </tr>  
-              <tr>
-                <td>category:{{moreInfo.categoryID}}</td>
-                <td>category:{{moreInfo.categoryID}}</td>
-                <td>category:{{moreInfo.categoryID}}</td>
-                <td>category:{{moreInfo.categoryID}}</td>
-              </tr>            
-            </table>
+<div id="content" class="bs-header">
+    <div class="container">
+        <h1>Producer Decision Step 4</h1>
+        <p>We deliver a highly disruptive and transformational experiential learning model on a global scale !</p>
+    </div>
+</div>
+<div class="container bs-docs-container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="bs-docs-section">
+        <h4>Step 4 of 4</h4>
+        <div class="pull-left" style="width:33%">
+          <h3 style="margin-top:0px">Category Decision</h3>
+          <div class="btn-group pull-left" data-toggle="buttons">
+              <label class="btn btn-primary" ng-click="showView(user,period,'English')">
+              <input type="radio" name="options"> English</label>
+              <label class="btn btn-primary" ng-click="showView(user,period,'Chinese')">
+              <input type="radio" name="options"> Chinese
+              </label>
           </div>
         </div>
-        <table class="table table-hover">
-          <tr>
-            <th>{{fullLanguages.Category}}</th>
-            <th>Elecssories<span><a ng-click="getCategoryMoreInfo(1)">more</a></span></th>
-            <th>HealthBeauty<span><a ng-click="getCategoryMoreInfo(2)">more</a></span></th>
-          </tr>
-          <tr>
-            <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.IICC}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.IICC}}<span style="color:red">*</span></p>
-            </th>
-            <th ng-repeat='category in categorys'><a href="#" editable-text="category.capacityChange" onaftersave="updateProducerDecision(category.categoryID,'capacityChange',$index)">{{ category.capacityChange || 'empty' }}</a></th>
-          </tr>
-          <tr>
-            <th><p class="text-primary" Popover-animation="true" popover="Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui." popover-title="{{fullLanguages.ITIAT}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.ITIAT}}<span style="color:red">*</span></p></th>
-            <th ng-repeat='category in categorys'><a href="#" editable-text="category.investInTechnology" onaftersave="updateProducerDecision(category.categoryID,'investInTechnology',$index)">{{ category.investInTechnology || 'empty' }}</a></th>
-          </tr>
-          <tr>
-            <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.ITIF}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.ITIF}}<span style="color:red">*</span></p></th>
-            <th ng-repeat='category in categorys'><a href="#" editable-text="category.investInProductionFlexibility" onaftersave="updateProducerDecision(category.categoryID,'investInProductionFlexibility',$index)">{{ category.investInProductionFlexibility || 'empty' }}</a></th>
-          </tr>
-          <tr>
-            <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.ITIDK}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.ITIDK}}<span style="color:red">*</span></p></th>
-            <th>
-              <a href="#" editable-text="categorys[0].investInDesign" onaftersave="updateProducerDecision(1,'investInDesign',0)">{{ categorys[0].investInDesign || 'empty' }}</a>
-            </th>
-            <th></th>
-          </tr>
-        </table>
-        <div>
-          <a href="/#/producerDecisionStep3" class="btn btn-success">Back</a>
-          <!--<a href="/#/producerDecisionStep4" class="btn btn-primary">Next</a>-->
+        <div class="pull-right" style="width:33%">
+          <progress percent="88" class="progress active"></progress>
+          <small>
+            <em>Total Avaliable Budget for Remaing Period</em>
+          </small>
+          <progress percent="70" class="progress progress-suceess active progress-striped"></progress>
+          <small>
+            <em>Elecssories Available Capacity</em>
+          </small>
+        </div>
+          <div style="clear:both"></div>
+          <div collapse="isCollapsed">
+            <div class="well well-large">
+              <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button>
+              <table class="table table-striped">
+                <tr>
+                  <td>category:{{moreInfo.categoryID}}</td>
+                  <td>category:{{moreInfo.categoryID}}</td>
+                  <td>category:{{moreInfo.categoryID}}</td>
+                  <td>category:{{moreInfo.categoryID}}</td>
+                </tr>  
+                <tr>
+                  <td>category:{{moreInfo.categoryID}}</td>
+                  <td>category:{{moreInfo.categoryID}}</td>
+                  <td>category:{{moreInfo.categoryID}}</td>
+                  <td>category:{{moreInfo.categoryID}}</td>
+                </tr>            
+              </table>
+            </div>
+          </div>
+          <table class="table table-hover">
+            <tr>
+              <th>{{fullLanguages.Category}}</th>
+              <th>Elecssories<span><a ng-click="getCategoryMoreInfo(1)">more</a></span></th>
+              <th>HealthBeauty<span><a ng-click="getCategoryMoreInfo(2)">more</a></span></th>
+            </tr>
+            <tr>
+              <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.IICC}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.IICC}}<span style="color:red">*</span></p>
+              </th>
+              <th ng-repeat='category in categorys'><a href="#" editable-text="category.capacityChange" onaftersave="updateProducerDecision(category.categoryID,'capacityChange',$index)">{{ category.capacityChange || 'empty' }}</a></th>
+            </tr>
+            <tr>
+              <th><p class="text-primary" Popover-animation="true" popover="Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui." popover-title="{{fullLanguages.ITIAT}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.ITIAT}}<span style="color:red">*</span></p></th>
+              <th ng-repeat='category in categorys'><a href="#" editable-text="category.investInTechnology" onaftersave="updateProducerDecision(category.categoryID,'investInTechnology',$index)">{{ category.investInTechnology || 'empty' }}</a></th>
+            </tr>
+            <tr>
+              <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.ITIF}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.ITIF}}<span style="color:red">*</span></p></th>
+              <th ng-repeat='category in categorys'><a href="#" editable-text="category.investInProductionFlexibility" onaftersave="updateProducerDecision(category.categoryID,'investInProductionFlexibility',$index)">{{ category.investInProductionFlexibility || 'empty' }}</a></th>
+            </tr>
+            <tr>
+              <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.ITIDK}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.ITIDK}}<span style="color:red">*</span></p></th>
+              <th>
+                <a href="#" editable-text="categorys[0].investInDesign" onaftersave="updateProducerDecision(1,'investInDesign',0)">{{ categorys[0].investInDesign || 'empty' }}</a>
+              </th>
+              <th></th>
+            </tr>
+          </table>
+          <div>
+            <a href="/#/producerDecisionStep3" class="btn btn-success">Back</a>
+            <!--<a href="/#/producerDecisionStep4" class="btn btn-primary">Next</a>-->
+          </div>
         </div>
       </div>
     </div>
