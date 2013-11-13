@@ -31,6 +31,20 @@ define(['app','socketIO'], function(app) {
 			});
 		}
 
+		$scope.openSeminarModal=function(seminar){
+			$scope.selectSeminar=seminar;
+			$scope.seminarModal=true;
+		}
+
+		$scope.closeSeminarModal=function(){
+			$scope.seminarModal=false;
+		}
+
+		$scope.seminarOpts = {
+			backdropFade: true,
+			dialogFade:true
+		};
+
 		var showbubleMsg = function(content, status){
 	 		$scope.bubleMsg = ' ' + content;
 	 		switch(status){
