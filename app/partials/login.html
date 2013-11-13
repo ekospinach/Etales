@@ -62,9 +62,12 @@
 			         	<input type="password" id="password" placeholder="your password" class="form-control" ng-model="adminPassword" required>
 			   		</div>
 				</div>
+				<div class="{{bubleClassName}} fade in" ng-show='true'>
+					<strong>{{bubleTitle}}</strong>{{bubleMsg}}
+				</div>		
 				<div class="modal-footer">
 					<a class="btn btn-default" ng-click="closeAdminLoginModal()">Cancel</a>
-					<a class="btn btn-primary" ng-click="">Login</a>
+					<a class="btn btn-primary" ng-click="adminLogin()">Login</a>
 				</div>
 			</div>
 		</div>
