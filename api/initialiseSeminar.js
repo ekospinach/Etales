@@ -33,17 +33,14 @@ exports.initialiseSeminar = function(io){
 		}).then(function(result){
             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
 			options.retailerID = '2';			
-			options.cgiPath = conf.cgi.path_retailerDecision;
 			return require('./models/retailerDecision.js').addRetailerDecisions(options);			
 		}).then(function(result){
             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
 			options.retailerID = '3';			
-			options.cgiPath = conf.cgi.path_retailerDecision;			
 			return require('./models/retailerDecision.js').addRetailerDecisions(options);			
 		}).then(function(result){
             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
 			options.retailerID = '4';			
-			options.cgiPath = conf.cgi.path_retailerDecision;			
 			return require('./models/retailerDecision.js').addRetailerDecisions(options);						
 		}).then(function(result){ //log the success info
             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	
@@ -56,9 +53,10 @@ exports.initialiseSeminar = function(io){
             io.sockets.emit('AdminProcessLog', { msg: progress.msg, isError: false });			
 		})
 	
+
 		//import negotiations...
 		//...		
-		//import reports and charts...
+		//import reports and charts and historyInfo...
 		//...		
 	    // require('./models/marketReport.js').addMarketReports({cgiHost : conf.cgi.host, cgiPath : conf.cgi.path_marketReport, cgiPort : conf.cgi.port, seminar : req.body.seminar, startFrom: -3, endWith:0,}, socket);
 	    // require('./models/lineChart.js').addLineCharts({cgiHost : conf.cgi.host, cgiPath : conf.cgi.path_lineChart, cgiPort : conf.cgi.port, seminar : req.body.seminar, startFrom: -3, endWith:0,}, socket);

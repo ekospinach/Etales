@@ -41,6 +41,7 @@ var memberSchema = mongoose.Schema({
 })
 
 seminarSchema.plugin(uniqueValidator);
+
 var seminar=mongoose.model('seminar', seminarSchema);
 
 exports.newDoc=function(req,res,next){

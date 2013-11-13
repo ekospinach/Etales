@@ -105,6 +105,30 @@ var retDecisionSchema = mongoose.Schema({
 
 var retDecision = mongoose.model('retailerDecision', retDecisionSchema);
 
+exports.exportToBinary = function(options){
+    var deferred = q.defer();
+    var period = options.period;
+    retDecision.findOne({seminar : options.seminar,
+                           period : options.period,
+                           retailerID : options.retailerID},
+                           function(err, doc){
+                                if(err) deferred.reject({msg:err, options: options}); 
+                                if(!doc) {
+                                    deferred.reject({msg: 'Export to binary, cannot find matched doc. ' + 'retailerID:' + options.retailerID + '/seminar:' + options.seminar + '/period:' + options.period});
+                                } else {        
+                                    request.post('http://' + options.cgiHost + ':' + options.cgiPort + options.cgiPath, {form: {jsonData: JSON.stringify(doc)}}, function(error, response){
+                                        console.log('status:' + response.status);
+                                        console.log('body:' + response.body);
+                                        if (response.status === (500 || 404)) {
+                                            deferred.reject({msg: 'Failed to export binary, get 500 from CGI server(POST action):' + JSON.stringify(options)});
+                                        } else {
+                                            deferred.resolve({msg: 'Export binary done, retailer:' + options.retailerID +', period' + options.period});
+                                        }
+                                    });
+                                }
+                           });
+    return deferred.promise;
+}
 
 exports.addRetailerDecisions = function(options){
     var startFrom = options.startFrom,
