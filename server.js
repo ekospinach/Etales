@@ -32,6 +32,10 @@ var path    = require('path'),
   app.get('/negotiationDecision');
   app.post('/updateContractDetails',require('./api/models/contract.js').updateContractDetails(io));
   
+
+  //add Seminar
+  app.post('/addSeminar',require('./api/models/seminar.js').addSeminar);
+
   app.get('/producerDecision/:producerID/:period/:seminar',require('./api/models/producerDecision.js').getAllProducerDecision);
   app.get('/producerProducts/:producerID/:period/:seminar/:categoryID',require('./api/models/producerDecision.js').getProducerProductList);
   app.get('/producerBrands/:producerID/:period/:seminar',require('./api/models/producerDecision.js').getProducerBrandList);
@@ -39,6 +43,8 @@ var path    = require('path'),
   app.get('/retailerDecision/:retailerID/:period/:seminar',require('./api/models/retailerDecision.js').getAllRetailerDecision); 
 
   app.get('/retailerProducts/:retailerID/:period/:seminar/:categoryID',require('./api/models/retailerDecision.js').getRetailerProductList);
+  //seminar List
+  app.get('/seminarList',require('./api/models/seminar.js').getSeminarList);
 
   app.get('/contracts/:seminar/:contractUserID',require('./api/models/contract.js').getContractList);
   app.get('/contractDetails/:contractCode',require('./api/models/contract.js').getContractDetails);
@@ -65,6 +71,7 @@ var path    = require('path'),
   app.get('/brandHistoryNewDoc',require('./api/models/brandHistoryInfo.js').newDoc);
   //app.get('/companyHistoryNewDoc',require('./api/models/companyHistoryInfo.js').newDoc);
   //app.get('/quarterHistoryNewDoc',require('./api/models/quarterHistoryInfo.js').newDoc);
+  app.get('/seminarNewDoc',require('./api/models/seminar.js').newDoc);
 
   // app.use(require('./api/errorHandlers.js').logErrors);
   // app.use(require('./api/errorHandlers.js').)
