@@ -144,7 +144,7 @@ exports.addProducerDecisions = function(options, socket){
                                 });   
         });
       }).on('error', function(e){
-        deferred.reject({msg:'errorFrom addProducerDecisions' + e.message,options: options}); 
+        deferred.reject({msg:'errorFrom addProducerDecisions:' + e.message + ', requestOptions:' + JSON.stringify(reqOptions),options: options}); 
       });
     })(endWith);
 
