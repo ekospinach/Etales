@@ -108,6 +108,7 @@ exports.addProducerDecisions = function(options, socket){
           path: options.cgiPath + '?period=' + currentPeriod + '&seminar=' + options.seminar + '&producerID=' + options.producerID
       };
 
+      console.log(reqOptions);
       http.get(reqOptions, function(response) { 
         var data = '';
         response.setEncoding('utf8');
@@ -115,7 +116,7 @@ exports.addProducerDecisions = function(options, socket){
           data += chunk;
         }).on('end', function(){
           //ask Oleg to fix here, should return 404 when result beyound the existed period.
-         //          console.log('response statusCode from CGI(' + options.cgiPath + ') for period ' + currentPeriod + ': ' + response.statusCode);
+                   console.log('response statusCode from CGI(' + options.cgiPath + ') for period ' + currentPeriod + ': ' + response.statusCode);
           if ( response.statusCode === (404 || 500) ) 
             deferred.reject({msg:'Get 404 error from CGI server, reqOptions:' + JSON.stringify(reqOptions)});
           else {
@@ -144,6 +145,10 @@ exports.addProducerDecisions = function(options, socket){
                                 });   
         });
       }).on('error', function(e){
+        console.log("!!!!!");
+        console.log(reqOptions);
+        console.log("?????");
+        console.log(options);
         deferred.reject({msg:'errorFrom addProducerDecisions' + e.message,options: options}); 
       });
     })(endWith);
