@@ -145,11 +145,7 @@ exports.addProducerDecisions = function(options, socket){
                                 });   
         });
       }).on('error', function(e){
-        console.log("!!!!!");
-        console.log(reqOptions);
-        console.log("?????");
-        console.log(options);
-        deferred.reject({msg:'errorFrom addProducerDecisions' + e.message,options: options}); 
+        deferred.reject({msg:'errorFrom addProducerDecisions:' + e.message + ', requestOptions:' + JSON.stringify(reqOptions),options: options});
       });
     })(endWith);
 
