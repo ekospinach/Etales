@@ -514,15 +514,8 @@ exports.updateRetailerDecision = function(io){
                                     var decision="retMarketDecision";
                                     switch(queryCondition.behaviour){
                                         case 'updateGeneralDecision':
-                                                //doc[queryCondition.location]=queryCondition.value;
+                                                doc[queryCondition.location][queryCondition.additionalIdx]=parseInt(queryCondition.value);
                                                 //console.log(doc[queryCondition.location][queryCondition.additionalIdx]);
-                                                //doc[queryCondition.location]=new Array(1,1,1);
-                                                //console.log(doc[queryCondition.location].push(1));
-                                                JSON.stringify(doc[queryCondition.location]);
-                                                console.log(doc[queryCondition.location][queryCondition.additionalIdx]);
-                                                //console.log(doc[queryCondition.location].first);
-                                                //doc[queryCondition.location][queryCondition.additionalIdx]=queryCondition.value;
-                                                decision="";
                                         break;
                                         case 'updateMarketDecision':
                                             for(var i=0;i<doc.retMarketDecision.length;i++){
@@ -535,8 +528,6 @@ exports.updateRetailerDecision = function(io){
                                                     break;
                                                 }
                                             };
-                                            //doc.retMarketDecision[1]['categorySurfaceShare'][2]=1000;
-                                            decision="retMarketDecision";
                                         break;
                                         case 'updatePrivateLabel':
                                             for(var i=0;i<doc.retCatDecision.length;i++){
@@ -571,7 +562,6 @@ exports.updateRetailerDecision = function(io){
                                                     break;
                                                 }
                                             };
-                                            decision="retCatDecision";
                                         break;
                                         case 'addProductNewBrand':
                                             for(var i=0;i<doc.retCatDecision.length;i++){
@@ -592,7 +582,6 @@ exports.updateRetailerDecision = function(io){
                                                     }
                                                 }
                                             }
-                                            decision="retCatDecision";
                                         break;
                                         case 'deleteProduct':
                                             for(var i=0;i<doc.retCatDecision.length;i++){
@@ -628,7 +617,6 @@ exports.updateRetailerDecision = function(io){
                                                     }
                                                 }
                                             }
-                                            decision="retCatDecision";
                                         break;
                                         case 'updateOrder':
                                             for(var i=0;i<doc.retMarketDecision.length;i++){
@@ -652,7 +640,6 @@ exports.updateRetailerDecision = function(io){
                                                     break;
                                                 }
                                             }
-                                            decision="retMarketDecision";
                                         break;
                                         case 'addOrder':
                                             for(var i=0;i<doc.retMarketDecision.length;i++){
@@ -666,7 +653,6 @@ exports.updateRetailerDecision = function(io){
                                                     break;
                                                 }
                                             }
-                                            decision="retMarketDecision";
                                         break;
                                         case 'deleteOrder':
                                             for(var i=0;i<doc.retMarketDecision.length;i++){
@@ -687,14 +673,16 @@ exports.updateRetailerDecision = function(io){
                                                     break;
                                                 }
                                             }
-                                            decision="retMarketDecision";
                                         break;
                                     }
                                     if(isUpdated){
-                                        //console.log(doc);
-                                        doc.markModified(decision);
+                                        doc.markModified('tradtionalAdvertising');
+                                        doc.markModified('onlineAdvertising');
+                                        doc.markModified('retMarketDecision');
+                                        doc.markModified('retCatDecision');
                                         doc.save(function(err, doc, numberAffected){
                                             if(err) next(new Error(err));
+                                            console.log(doc);
                                             console.log('save updated hhq, number affected:'+numberAffected);
                                             io.sockets.emit('retailerBaseChanged', 'this is a baseChanged');
                                             res.send(200, 'mission complete!');
