@@ -678,6 +678,8 @@ exports.updateRetailerDecision = function(io){
                                     if(isUpdated){
                                         doc.markModified('tradtionalAdvertising');
                                         doc.markModified('onlineAdvertising');
+                                        doc.markModified('categorySurfaceShare');
+                                        doc.markModified('localAdvertising');
                                         doc.markModified('retMarketDecision');
                                         doc.markModified('retCatDecision');
                                         doc.save(function(err, doc, numberAffected){
