@@ -512,6 +512,7 @@ exports.updateRetailerDecision = function(io){
             additionalIdx : req.body.additionalIdx,
             value : req.body.value
         }
+        console.log(queryCondition);
         retDecision.findOne({seminar:queryCondition.seminar,
                             period:queryCondition.period,
                             retailerID:queryCondition.retailerID},function(err,doc){
@@ -524,7 +525,14 @@ exports.updateRetailerDecision = function(io){
                                     var decision="retMarketDecision";
                                     switch(queryCondition.behaviour){
                                         case 'updateGeneralDecision':
-                                                doc[queryCondition.location][queryCondition.additionalIdx]=queryCondition.value;
+                                                //doc[queryCondition.location]=queryCondition.value;
+                                                //console.log(doc[queryCondition.location][queryCondition.additionalIdx]);
+                                                //doc[queryCondition.location]=new Array(1,1,1);
+                                                //console.log(doc[queryCondition.location].push(1));
+                                                JSON.stringify(doc[queryCondition.location]);
+                                                console.log(doc[queryCondition.location][queryCondition.additionalIdx]);
+                                                //console.log(doc[queryCondition.location].first);
+                                                //doc[queryCondition.location][queryCondition.additionalIdx]=queryCondition.value;
                                                 decision="";
                                         break;
                                         case 'updateMarketDecision':
