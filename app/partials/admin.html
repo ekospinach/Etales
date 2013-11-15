@@ -91,7 +91,7 @@
 					<tabset>
 						<tab heading="Operation" class="tab-pane">
 							<p>
-								<a class="btn btn-success">Initialise</a>
+								<a class="btn btn-success" ng-click="initialiseSeminar(selectSeminar.seminarCode)">Initialise</a>
 							</p>
 							<p>
 								<div class="col-xs-3">
@@ -106,16 +106,35 @@
 						</tab>
 						<tab heading="Edit">
 							<p>Producer 1 Password:
-								<a href="#" editable-text="selectSeminar.producers[0].password" onaftersave="">
+								<a href="#" editable-text="selectSeminar.producers[0].password" onaftersave="updatePassword(selectSeminar,'producers',0)">
 									{{ selectSeminar.producers[0].password || 'empty' }}
 								</a>
 							</p>
+							<p>Producer 2 Password:
+								<a href="#" editable-text="selectSeminar.producers[1].password" onaftersave="updatePassword(selectSeminar,'producers',1)">
+									{{ selectSeminar.producers[1].password || 'empty' }}
+								</a>
+							</p>
+							<p>Producer 3 Password:
+								<a href="#" editable-text="selectSeminar.producers[2].password" onaftersave="updatePassword(selectSeminar,'producers',2)">
+									{{ selectSeminar.producers[2].password || 'empty' }}
+								</a>
+							</p>
 							<p>Retailer 1 Password:
-								<a href="#" editable-text="selectSeminar.retailers[0].password" onaftersave="">
+								<a href="#" editable-text="selectSeminar.retailers[0].password" onaftersave="updatePassword(selectSeminar,'retailers',0)">
 									{{ selectSeminar.retailers[0].password || 'empty' }}
 								</a>
 							</p>
-
+							<p>Retailer 2 Password:
+								<a href="#" editable-text="selectSeminar.retailers[1].password" onaftersave="updatePassword(selectSeminar,'retailers',1)">
+									{{ selectSeminar.retailers[1].password || 'empty' }}
+								</a>
+							</p>
+							<p>Facilitator Password:
+								<a href="#" editable-text="selectSeminar.facilitator[0].password" onaftersave="updatePassword(selectSeminar,'facilitator',0)">
+									{{ selectSeminar.facilitator[0].password || 'empty' }}
+								</a>
+							</p>
 						</tab>
 					</tabset>
 				</div>

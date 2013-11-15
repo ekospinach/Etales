@@ -37,8 +37,8 @@ module.exports = function(){
 		case 'monsoul':
 			return {
 				cgi : {
-				  port : 8080,
-				  host : 'http://192.168.1.100',
+				  port : 800,
+				  host : '192.168.1.100',
 				  path_marketReport : '/cgi-bin/marketReport.exe',
 				  path_lineChart : '/cgi-bin/lineChart.exe',
 				  path_perceptionMap : '/cgi-bin/perceptionMap.exe',				

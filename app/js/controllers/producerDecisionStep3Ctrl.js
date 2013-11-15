@@ -142,7 +142,7 @@ define(['app'], function(app) {
 	      		var brands=new Array();
 	      		for(var i=0;i<allProCatDecisions.length;i++){
 	      			for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
-	      				if(allProCatDecisions[i].proBrandsDecision[j]!=undefined){
+	      				if(allProCatDecisions[i].proBrandsDecision[j]!=undefined&&allProCatDecisions[i].proBrandsDecision[j].brandID!=undefined&&allProCatDecisions[i].proBrandsDecision[j].brandID!=0){
 	      					brands.push(allProCatDecisions[i].proBrandsDecision[j]);
 	      					count++;
 	      				}

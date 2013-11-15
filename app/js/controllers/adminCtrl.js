@@ -45,6 +45,34 @@ define(['app','socketIO'], function(app) {
 			dialogFade:true
 		};
 
+		$scope.initialiseSeminar=function(seminarCode){
+			var postData={
+				seminar:seminarCode,
+			}
+			$http({method:'POST', url:'/initialiseSeminar', data: postData}).then(function(res){
+		  		console.log('testInitialise Success:' + res.data);
+		  	},function(res){
+		  		console.log('testInitialise Failed:' + res.data);
+		  	})		
+		}
+
+		$scope.updatePassword=function(seminar,location,additionalIdx){
+			var data={
+				seminarCode:seminar.seminarCode,
+				location:location,
+				additionalIdx:additionalIdx,
+				value:seminar[location][additionalIdx].password,
+				behaviour:'updatePassword'
+			}
+			$http({method: 'POST', url: '/updateSeminar',data:data}).
+			  success(function(data, status, headers, config) {
+			  	console.log('update success');
+			  }).
+			  error(function(data, status, headers, config) {
+			  	console.log('update error');
+			  });
+		}
+
 		var showbubleMsg = function(content, status){
 	 		$scope.bubleMsg = ' ' + content;
 	 		switch(status){

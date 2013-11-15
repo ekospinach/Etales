@@ -42,6 +42,8 @@ var path    = require('path'),
   app.get('/retailerProducts/:retailerID/:period/:seminar/:categoryID',require('./api/models/retailerDecision.js').getRetailerProductList);
   //seminar List
   app.get('/seminarList',require('./api/models/seminar.js').getSeminarList);
+  //update seminar
+  app.post('/updateSeminar',require('./api/models/seminar.js').updateSeminar);
 
   app.get('/contracts/:seminar/:contractUserID',require('./api/models/contract.js').getContractList);
   app.get('/contractDetails/:contractCode',require('./api/models/contract.js').getContractDetails);
