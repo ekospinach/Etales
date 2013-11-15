@@ -70,6 +70,8 @@ var proDecisionSchema = mongoose.Schema({
 })
 
 var proDecision = mongoose.model('proDecision', proDecisionSchema);
+var proVarDecision=mongoose.model('proVarDecision',proVarDecisionSchema);
+var proBrandsDecision=mongoose.model('proBrandsDecision',proBrandDecisionSchema)
 
 exports.exportToBinary = function(options){
     var deferred = q.defer();
@@ -232,13 +234,42 @@ exports.updateProducerDecision = function(io){
                                             };
                                             break;
                                         case 'deleteProduct':
+                                            var nullVarDecision=new proVarDecision();
+                                            nullVarDecision.packFormat="";
+                                            nullVarDecision.dateOfBirth=0;
+                                            nullVarDecision.dateOfDeath=0;
+                                            nullVarDecision.composition=new Array(0,0,0);
+                                            nullVarDecision.production=0;
+                                            nullVarDecision.currentPriceBM=0;
+                                            nullVarDecision.currentPriceEmall=0;
+                                            nullVarDecision.discontinue=false;
+                                            nullVarDecision.nextPriceBM=0;
+                                            nullVarDecision.nextPriceEmall=0;
+                                            nullVarDecision.parentBrandID=0;
+                                            nullVarDecision.varName="";/*need check*/
+                                            nullVarDecision.varID=0;/*need check*/
+
+                                            var nullBrandDecision=new proBrandsDecision();
+                                            nullBrandDecision.brandID=0;
+                                            nullBrandDecision.brandName="",
+                                            
+                                            nullBrandDecision.paranetCompanyID=0, 
+                                            nullBrandDecision.dateOfBirth=0, 
+                                            nullBrandDecision.dateOfDeath=0, 
+                                            nullBrandDecision.advertisingOffLine=[0,0], 
+                                            nullBrandDecision.advertisingOnLine=0,
+                                            nullBrandDecision.supportEmall=0,
+                                            nullBrandDecision.supportTraditionalTrade=new Array(0,0,0), 
+                                            nullBrandDecision.proVarDecision=new Array();
+                                            nullBrandDecision.proVarDecision.push(nullVarDecision,nullVarDecision,nullVarDecision);
+                                            console.log(nullVarDecision);
                                             for (var i = 0; i < doc.proCatDecision.length; i++) {
                                                 if(doc.proCatDecision[i].categoryID == queryCondition.categoryID){
                                                     for (var j = 0; j < doc.proCatDecision[i].proBrandsDecision.length; j++) {
-                                                        if(doc.proCatDecision[i].proBrandsDecision[j]!=undefined&&doc.proCatDecision[i].proBrandsDecision[j].brandName == queryCondition.brandName){
+                                                        if(doc.proCatDecision[i].proBrandsDecision[j]!=undefined&&doc.proCatDecision[i].proBrandsDecision[j].brandID!=undefined&&doc.proCatDecision[i].proBrandsDecision[j].brandID!=0&&doc.proCatDecision[i].proBrandsDecision[j].brandName == queryCondition.brandName){
                                                             for (var k = 0; k < doc.proCatDecision[i].proBrandsDecision[j].proVarDecision.length; k++) {
                                                                 if(doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k]!=undefined&&doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].varName == queryCondition.varName){
-                                                                    delete doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k]; //set undefined 
+                                                                    doc.proCatDecision[i].proBrandsDecision[j].proVarDecision.splice(k,1,nullVarDecision);
                                                                 }
                                                             };
                                                         }
@@ -249,15 +280,14 @@ exports.updateProducerDecision = function(io){
                                             for (var i = 0; i < doc.proCatDecision.length; i++) {
                                                 if(doc.proCatDecision[i].categoryID == queryCondition.categoryID){
                                                     for (var j = 0; j < doc.proCatDecision[i].proBrandsDecision.length; j++) {
-                                                        if(doc.proCatDecision[i].proBrandsDecision[j]!=undefined&&doc.proCatDecision[i].proBrandsDecision[j].brandName == queryCondition.brandName){
+                                                        if(doc.proCatDecision[i].proBrandsDecision[j]!=undefined&&doc.proCatDecision[i].proBrandsDecision[j].brandID!=undefined&&doc.proCatDecision[i].proBrandsDecision[j].brandID!=0&&doc.proCatDecision[i].proBrandsDecision[j].brandName == queryCondition.brandName){
                                                             for (var k = 0; k < doc.proCatDecision[i].proBrandsDecision[j].proVarDecision.length; k++) {
-                                                                if(doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k]!=undefined&&doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].varName != undefined){
+                                                                if(doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k]!=undefined&&doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].varName != undefined&&doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].varID != undefined&&doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].varID != 0){
                                                                     count++;
-                                                                    //delete doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k]; //set undefined 
                                                                 }
                                                             }
                                                             if(count==0){
-                                                                delete doc.proCatDecision[i].proBrandsDecision[j];
+                                                                doc.proCatDecision[i].proBrandsDecision.splice(j,1,nullBrandDecision);
                                                             }
                                                         }
                                                     }
@@ -332,6 +362,12 @@ exports.updateProducerDecision = function(io){
 
                                     if(isUpdated){
                                         doc.markModified('proCatDecision'); 
+                                        doc.markModified('composition');
+                                        doc.markModified('proVarDecision');
+                                        doc.markModified('advertisingOffLine');
+                                        doc.markModified('supportTraditionalTrade');
+                                        doc.markModified('proVarDecision');
+                                        doc.markModified('proBrandsDecision');
                                         doc.save(function(err, doc, numberAffected){
                                             if(err) next(new Error(err));
                                             console.log('save updated, number affected:'+numberAffected);

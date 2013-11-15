@@ -146,7 +146,7 @@ define(['app'], function(app) {
 				var result=0,min=10*(retailerID+4)+1,max=(retailerID+4)*10+4;
 				var nums=new Array();
 				for(var i=0;i<retVariantDecision.privateLabelDecision.length;i++){
-					if(retVariantDecision.privateLabelDecision[i]!=undefined&&retVariantDecision.privateLabelDecision[i].brandID!=undefined){
+					if(retVariantDecision.privateLabelDecision[i]!=undefined&&retVariantDecision.privateLabelDecision[i].brandID!=undefined&&retVariantDecision.privateLabelDecision[i].brandID!=0){
 						nums.push(retVariantDecision.privateLabelDecision[i].brandID);
 					}
 				}
@@ -174,7 +174,7 @@ define(['app'], function(app) {
 		    	var result=0;min=parentBrandID*10+1,max=parentBrandID*10+3;
 		    	var nums=new Array();
 		    	for(var i=0;i<privateLabelDecision.privateLabelVarDecision.length;i++){
-					if(privateLabelDecision.privateLabelVarDecision[i]!=undefined&&privateLabelDecision.privateLabelVarDecision[i].varID!=undefined){
+					if(privateLabelDecision.privateLabelVarDecision[i]!=undefined&&privateLabelDecision.privateLabelVarDecision[i].varID!=undefined&&privateLabelDecision.privateLabelVarDecision[i].varID!=0){
 						nums.push(privateLabelDecision.privateLabelVarDecision[i].varID);
 					}
 				}
@@ -264,26 +264,26 @@ define(['app'], function(app) {
 	      		var products=new Array();
 	      		for(var i=0;i<allRetCatDecisions.length;i++){
 	      			for(var j=0;j<allRetCatDecisions[i].privateLabelDecision.length;j++){
-	      				if(allRetCatDecisions[i].privateLabelDecision[j]!=undefined){
-	      					for(var k=0;k<allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision.length;k++){
-		      					if(allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k]!=undefined){
-		      						products.push(allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k]);
-			      					products[count].category=category;
-			      					products[count].parentBrandName=allRetCatDecisions[i].privateLabelDecision[j].brandName;
-			      					if(products[count].packFormat=="ECONOMY"){
-			      						products[count].packFormat=1;
-			      					}
-			      					else if(products[count].packFormat=="STANDARD"){
-			      						products[count].packFormat=2;
-			      					}
-			      					else if(products[count].packFormat=="PREMIUM"){
-			      						products[count].packFormat=3;
-			      					}
-			      					count++;
-		      					}
+						if(allRetCatDecisions[i].privateLabelDecision[j]!=undefined&&allRetCatDecisions[i].privateLabelDecision[j].brandID!=undefined&&allRetCatDecisions[i].privateLabelDecision[j].brandID!=0){      				
+		      				for(var k=0;k<allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision.length;k++){
+			      				if(allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k]!=undefined&&allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k].varID!=undefined&&allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k].varID!=0){
+			      					products.push(allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k]);
+				      				products[count].category=category;
+				      				products[count].parentBrandName=allRetCatDecisions[i].privateLabelDecision[j].brandName;
+				      				if(products[count].packFormat=="ECONOMY"){
+				   						products[count].packFormat=1;
+				   					}
+				      				else if(products[count].packFormat=="STANDARD"){
+				      					products[count].packFormat=2;
+				      				}
+				      				else if(products[count].packFormat=="PREMIUM"){
+				      					products[count].packFormat=3;
+				   					}
+				   					count++;
+			  					}
 		      				}
-	      				}
-	      			}
+		      			}
+      				}
 	      		}
 	      		if(count!=0){
 	      			result=1;
@@ -293,8 +293,6 @@ define(['app'], function(app) {
 				$scope.fullLanguages=fullLanguages;
 				return result;
 			}
-
-
 
 			/*set add function is lauch new Brand*/
 			var setAddNewBrand=function(){
@@ -327,7 +325,7 @@ define(['app'], function(app) {
 					category="HealthBeauty";
 					$scope.brandFirstName="H";
 				}
-				$scope.brandLastName=1;/*need check*/
+				$scope.brandLastName=$rootScope.rootRetailerID+4;/*need check*/
 			}
 			/*LoadAllBrand by category*/
 			var loadAllBrand=function(category){
@@ -340,7 +338,7 @@ define(['app'], function(app) {
 	      		var allBrands=new Array();
 	      		for(var i=0;i<allretCatDecisions.length;i++){
 	      			for(var j=0;j<allretCatDecisions[i].privateLabelDecision.length;j++){
-	      				if(allretCatDecisions[i].privateLabelDecision[j]!=undefined){
+	      				if(allretCatDecisions[i].privateLabelDecision[j]!=undefined&&allretCatDecisions[i].privateLabelDecision[j].brandID!=undefined&&allretCatDecisions[i].privateLabelDecision[j].brandID!=0){
 	      					allBrands.push({'BrandID':allretCatDecisions[i].privateLabelDecision[j].brandID,'BrandName':allretCatDecisions[i].privateLabelDecision[j].brandName});
 	      				}
 	      			}	
