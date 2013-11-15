@@ -84,46 +84,62 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h3>Seminar</h3>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeSeminarModal()">&times;</button>
+					<h4 class="modal-title">Seminar : {{selectSeminar.seminarCode}}</h4>
 				</div>
 				<div class="modal-body">
 					<tabset>
-						<tab heading="Operation">
-							<p>Seminar:{{selectSeminar.seminarCode}}</p>
-							<p>seminarDescription:
-								<a href="#" editable-text="selectSeminar.seminarDescription" onaftersave="">
-									{{ selectSeminar.seminarDescription || 'empty' }}
-								</a>
+						<tab heading="Operation" class="tab-pane">
+							<p>
+								<a class="btn btn-success" ng-click="initialiseSeminar(selectSeminar.seminarCode)">Initialise</a>
 							</p>
 							<p>
-								<a class="btn btn-success">Initialise</a>
-							</p>
-							<p>
-								<select class="form-control" ng-model="userRole">
-									<option value="1">Period 1</option>
-									<option value="2">Period 2</option>
-									<option value="3">Period 3</option>
-								</select>
-								<a class="btn btn-warning">Run</a>
+								<div class="col-xs-3">
+									<select class="form-control" ng-model="userRole">
+										<option value="1">Period 1</option>
+										<option value="2">Period 2</option>
+										<option value="3">Period 3</option>
+									</select>
+								</div>
+								<a class="btn btn-warning" style="margin-left:20px">Run</a>
 							</p>
 						</tab>
 						<tab heading="Edit">
 							<p>Producer 1 Password:
-								<a href="#" editable-text="selectSeminar.producers[0].password" onaftersave="">
+								<a href="#" editable-text="selectSeminar.producers[0].password" onaftersave="updatePassword(selectSeminar,'producers',0)">
 									{{ selectSeminar.producers[0].password || 'empty' }}
 								</a>
 							</p>
+							<p>Producer 2 Password:
+								<a href="#" editable-text="selectSeminar.producers[1].password" onaftersave="updatePassword(selectSeminar,'producers',1)">
+									{{ selectSeminar.producers[1].password || 'empty' }}
+								</a>
+							</p>
+							<p>Producer 3 Password:
+								<a href="#" editable-text="selectSeminar.producers[2].password" onaftersave="updatePassword(selectSeminar,'producers',2)">
+									{{ selectSeminar.producers[2].password || 'empty' }}
+								</a>
+							</p>
 							<p>Retailer 1 Password:
-								<a href="#" editable-text="selectSeminar.retailers[0].password" onaftersave="">
+								<a href="#" editable-text="selectSeminar.retailers[0].password" onaftersave="updatePassword(selectSeminar,'retailers',0)">
 									{{ selectSeminar.retailers[0].password || 'empty' }}
 								</a>
 							</p>
-
+							<p>Retailer 2 Password:
+								<a href="#" editable-text="selectSeminar.retailers[1].password" onaftersave="updatePassword(selectSeminar,'retailers',1)">
+									{{ selectSeminar.retailers[1].password || 'empty' }}
+								</a>
+							</p>
+							<p>Facilitator Password:
+								<a href="#" editable-text="selectSeminar.facilitator[0].password" onaftersave="updatePassword(selectSeminar,'facilitator',0)">
+									{{ selectSeminar.facilitator[0].password || 'empty' }}
+								</a>
+							</p>
 						</tab>
 					</tabset>
 				</div>
 				<div class="modal-footer">
-					<a class="btn btn-default" ng-click="closeSeminarModal()">Cancel</a>
+					<a class="btn btn-default" ng-click="closeSeminarModal()">Close</a>
 				</div>
 			</div>
 		</div>

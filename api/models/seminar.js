@@ -1907,10 +1907,7 @@ exports.getSeminarList=function(req,res,next){
 }
 
 exports.addSeminar=function(req,res,next){
-	var Newseminar;
-	console.log("POST: ");
-	console.log(req.body);
-	Newseminar = new seminar({
+	var Newseminar = new seminar({
 		seminarCode: req.body.seminarCode,
 		seminarDescription: req.body.seminarDescription,
 		seminarDate: Date.now(),
@@ -1992,7 +1989,6 @@ exports.addSeminar=function(req,res,next){
 			password : "310"
 		}]
 	});
-	console.log(Newseminar);
 	Newseminar.save(function(err) {
 		if(!err){
 			res.send(200,Newseminar);
@@ -2003,3 +1999,47 @@ exports.addSeminar=function(req,res,next){
 	});
 }
 
+exports.updateSeminar=function(req,res,next){
+	var queryCondition={
+		seminarCode:req.body.seminarCode,
+		currentPeriod:req.body.currentPeriod,
+		behaviour:req.body.behaviour,
+		/*
+		password:edit password(need location ,additionalIdx,value)
+		*/
+		location:req.body.location,
+		additionalIdx:req.body.additionalIdx,
+		value:req.body.value
+	};
+	console.log(queryCondition);
+	seminar.findOne({seminarCode:queryCondition.seminarCode},function(err,doc){
+		if(err){
+			next(new Error(err));
+		}
+		if(!doc){
+			console.log("cannot find matched doc....");
+			res.send(404,'cannot find matched doc....');
+		}else{
+			var isUpdate=true;
+			switch(queryCondition.behaviour){
+				case 'updatePassword':
+					doc[queryCondition.location][queryCondition.additionalIdx].password=queryCondition.value;
+					break;
+			}
+			if(isUpdate){
+				doc.markModified('facilitator');
+				doc.markModified('retailers');
+				doc.markModified('producers');
+				console.log(doc.producers[0].password);
+				doc.save(function(err,doc,numberAffected){
+					if(err){
+						next(new Error(err));
+					}
+					console.log('save updated, number affected:'+numberAffected+'doc:'+doc);
+                    res.send(200, 'mission complete!');
+				});
+			}
+
+		}
+	});
+}

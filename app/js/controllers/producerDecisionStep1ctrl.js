@@ -147,8 +147,8 @@ define(['app'], function(app) {
 				var result=0,min=10*producerID+1,max=producerID*10+5;
 				var nums=new Array();
 				for(var i=0;i<proBrandsDecision.proBrandsDecision.length;i++){
-					if(proBrandsDecision.proBrandsDecision[i]!=undefined&&proBrandsDecision.proBrandsDecision[i].brandID!=undefined){
-						nums.push(proBrandsDecision.proBrandsDecision[i].brandID);
+					if(proBrandsDecision.proBrandsDecision[i]!=undefined&&proBrandsDecision.proBrandsDecision[i].brandID!=undefined&&proBrandsDecision.proBrandsDecision[i].brandID!=0){
+						nums.push(proBrandsDecision.proBrandsDecision[i].brandID);						
 					}
 				}
 				nums.sort(function(a,b){return a>b?1:-1});
@@ -175,7 +175,7 @@ define(['app'], function(app) {
 		    	var result=0;min=parentBrandID*10+1,max=parentBrandID*10+3;
 		    	var nums=new Array();
 		    	for(var i=0;i<proVarDecision.proVarDecision.length;i++){
-					if(proVarDecision.proVarDecision[i]!=undefined&&proVarDecision.proVarDecision[i].varID!=undefined){
+					if(proVarDecision.proVarDecision[i]!=undefined&&proVarDecision.proVarDecision[i].varID!=undefined&&proVarDecision.proVarDecision[i].varID!=0){
 						nums.push(proVarDecision.proVarDecision[i].varID);
 					}
 				}
@@ -265,9 +265,9 @@ define(['app'], function(app) {
 	      		var products=new Array();
 	      		for(var i=0;i<allProCatDecisions.length;i++){
 	      			for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
-	      				if(allProCatDecisions[i].proBrandsDecision[j]!=undefined){
+	      				if(allProCatDecisions[i].proBrandsDecision[j].brandID!=undefined&&allProCatDecisions[i].proBrandsDecision[j].brandID!=0){
 		      				for(var k=0;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
-		      					if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]!=undefined){
+		      					if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=0&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=undefined){
 		      						products.push(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]);
 			      					products[count].category=category;
 			      					products[count].parentBrandName=allProCatDecisions[i].proBrandsDecision[j].brandName;
@@ -339,7 +339,7 @@ define(['app'], function(app) {
 	      		var allBrands=new Array();
 	      		for(var i=0;i<allCatProDecisions.length;i++){
 	      			for(var j=0;j<allCatProDecisions[i].proBrandsDecision.length;j++){
-	      				if(allCatProDecisions[i].proBrandsDecision[j]!=undefined){
+	      				if(allCatProDecisions[i].proBrandsDecision[j]!=undefined&&allCatProDecisions[i].proBrandsDecision[j].brandID!=undefined&&allCatProDecisions[i].proBrandsDecision[j].brandID!=0){
 		      				allBrands.push({'BrandID':allCatProDecisions[i].proBrandsDecision[j].brandID,'BrandName':allCatProDecisions[i].proBrandsDecision[j].brandName});	      					
 	      				}
 	      			}	
@@ -404,10 +404,26 @@ define(['app'], function(app) {
 
 			var loadNameNum=function(){//load the sort
 				/*importantt*/
+				return $rootScope.rootProducerID;
 			}		
 			var addNewProduct=function(parameter){
 				$scope.close=close;
 				var newBrand=new ProducerDecision();
+				var nullDecision=new ProducerDecision();
+				nullDecision.packFormat="";
+				nullDecision.dateOfBirth=0;
+				nullDecision.dateOfDeath=0;
+		        nullDecision.composition=new Array(0,0,0);
+		        nullDecision.production=0;
+		        nullDecision.currentPriceBM=0;
+		        nullDecision.currentPriceEmall=0;
+		        nullDecision.discontinue=false;
+			    nullDecision.nextPriceBM=0;
+			    nullDecision.nextPriceEmall=0;
+			    nullDecision.parentBrandID=0;
+				nullDecision.varName="";/*need check*/
+				nullDecision.varID=0;/*need check*/
+
 				var newproducerDecision=new ProducerDecision();
 				newproducerDecision.packFormat="";
 				newproducerDecision.dateOfBirth=$scope.period;
@@ -425,7 +441,7 @@ define(['app'], function(app) {
 						return (obj.categoryID==$scope.lauchNewCategory);
 					});
 					newBrand.brandID=calculateBrandID(proBrandsDecision,$scope.producerID);
-					newBrand.brandName=$scope.brandFirstName+$scope.lauchNewBrandName+$scope.brandLastName;
+					newBrand.brandName=$scope.brandFirstName+$scope.lauchNewBrandName+$rootScope.rootProducerID;
 					newBrand.paranetCompanyID=$scope.producerID;
 					newBrand.dateOfDeath="";
 					newBrand.dateOfBirth=$scope.period;
@@ -438,7 +454,8 @@ define(['app'], function(app) {
 					newproducerDecision.parentBrandID=newBrand.brandID;
 					newproducerDecision.varName=$scope.lauchNewVarName;/*need check*/
 					newproducerDecision.varID=10*newBrand.brandID+1;/*need check*/
-					newBrand.proVarDecision.push(newproducerDecision);
+					//need add 2 null vars
+					newBrand.proVarDecision.push(newproducerDecision,nullDecision,nullDecision);
 					ProducerDecisionBase.addProductNewBrand(newBrand,$scope.lauchNewCategory);
 				}else{/*add new product under existed Brand*/
 					var proBrandsDecision=_.find($scope.pageBase.proCatDecision,function(obj){

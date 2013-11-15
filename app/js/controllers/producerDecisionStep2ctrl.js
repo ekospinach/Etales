@@ -93,10 +93,7 @@ define(['app'], function(app) {
 			//$scope.close=close;
 
 			$scope.parameter=1;/*default add new Brand*/
-
-			/*Angular-ui-bootstrap modal start*/
-
-			/*Angular-ui-bootstrap modal end*/		
+	
 			ProducerDecisionBase.reload({producerID:$rootScope.rootProducerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar}).then(function(base){
 				$scope.pageBase = base;
 				//ProducerDecisionBase.setSomething('TEST');	
@@ -192,9 +189,9 @@ define(['app'], function(app) {
 	      		var products=new Array();
 	      		for(var i=0;i<allProCatDecisions.length;i++){
 	      			for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
-	      				if(allProCatDecisions[i].proBrandsDecision[j]!=undefined){
+	      				if(allProCatDecisions[i].proBrandsDecision[j]!=undefined&&allProCatDecisions[i].proBrandsDecision[j].brandID!=undefined&&allProCatDecisions[i].proBrandsDecision[j].brandID!=0){
 		      				for(var k=0;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
-		      					if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]!=undefined){
+		      					if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]!=undefined&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=undefined&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=0){
 		      						products.push(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]);
 			      					products[count].category=category;
 			      					products[count].parentBrandName=allProCatDecisions[i].proBrandsDecision[j].brandName;

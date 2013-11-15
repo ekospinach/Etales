@@ -18,6 +18,7 @@ exports.initialiseSeminar = function(io){
 		//...		
 		//if callback is true, import decisions....
 		require('./models/producerDecision.js').addProducerDecisions(options).then(function(result){
+			console.log(result);
             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
 			options.producerID = '2';			
 			return require('./models/producerDecision.js').addProducerDecisions(options);

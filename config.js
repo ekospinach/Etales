@@ -37,13 +37,20 @@ module.exports = function(){
 		case 'monsoul':
 			return {
 				cgi : {
-				  port : 8080,
-				  host : '10.20.30.9',
+				  port : 800,
+				  host : '192.168.1.100',
 				  path_marketReport : '/cgi-bin/marketReport.exe',
 				  path_lineChart : '/cgi-bin/lineChart.exe',
 				  path_perceptionMap : '/cgi-bin/perceptionMap.exe',				
 				  path_finReport : '/cgi-bin/finReport.exe',				
 				  path_volReport : '/cgi-bin/volReport.exe',
+				  path_marketReport : '/cgi-bin/marketReport.exe',
+				  path_lineChart : '/cgi-bin/lineChart.exe',
+				  path_perceptionMap : '/cgi-bin/perceptionMap.exe',		
+				  path_finReport : '/cgi-bin/finReport.exe',		
+				  path_volReport : '/cgiexe-bin/volReport.exe',
+				  path_producerDecision : '/cgi-bin/producerDecision.exe',
+				  path_retailerDecision : '/cgi-bin/retailerDecision.exe',				  
 				  uploadFileAbsDir : ''
 				},
 				server : {
