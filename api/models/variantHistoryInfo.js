@@ -27,8 +27,8 @@ var supplierViewSchema = mongoose.Schema({
     composition : Number,  //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
     productionVolume : Number,
     initialInventory : [{  
-        volume : String,
-        unitCost : String,
+        volume : Number,
+        unitCost : Number,
         composition : [Number] 
     }], //length : TInventoryAgesTotal(0~4)
     supplierChannelView : [supplierChannelViewSchema] //length : TAllRetailersTotal(1~5)
@@ -49,8 +49,8 @@ var channelMarketViewSchema = mongoose.Schema({
         unitCost : String,
         composition : [Number] 
     }], //length : TInventoryAgesTotal(0~4)
-    currentUnitAcquisitionCost : Number, //length: TMarkets(1~2)
-    salesVolume : Number,  //length: TMarkets(1~2)  
+    currentUnitAcquisitionCost : Number, 
+    salesVolume : Number,  
     shelfSpace : Number,
     marketPrice : Number,
     netMarketPrice : Number,

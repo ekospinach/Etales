@@ -126,6 +126,7 @@ exports.addProducerDecisions = function(options, socket){
             }
           }      
           if (!singleDecision) return; 
+          console.log(util.inspect(singleDecision, {depth:null}));
           proDecision.update({seminar: singleDecision.seminar, 
                               period: singleDecision.period,
                               producerID: singleDecision.producerID},
