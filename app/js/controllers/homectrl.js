@@ -24,7 +24,7 @@ define(['app','socketIO'], function(app) {
 
 		$scope.testInitialise = function(){
 		  var postData = {
-		  	seminar : 'ROUND1',
+		  	seminar : 'MAY',
 		  }
 		  $http({method:'POST', url:'/initialiseSeminar', data: postData}).then(function(res){
 		  	console.log('testInitialise Success:' + res.data);
