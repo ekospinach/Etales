@@ -12,9 +12,10 @@ define(['angular',
 		'controllers/contractCtrl',
 		'controllers/loginCtrl',
 		'controllers/adminCtrl',
-		'controllers/homeCtrl'], function(angular, app) {
+		'controllers/homeCtrl',
+		'controllers/navbarCtrl'], function(angular, app) {
 	'use strict';
-	return app.config(['$routeProvider', function($routeProvider) {
+	return app.config(['$routeProvider','$httpProvider', function($routeProvider, $httpProvider) {
 
 		var access = routingConfig.accessLevels;
 		$routeProvider.when('/home',{
@@ -24,39 +25,39 @@ define(['angular',
 		}).when('/producerDecisionStep1',{
 			templateUrl:'partials/producerDecisionStep1.html',
 			controller:'producerDecisionStep1Ctrl',
-			access : access.public			
+			access : access.producerView			
 		}).when('/producerDecisionStep2',{
 			templateUrl:'partials/producerDecisionStep2.html',
 			controller:'producerDecisionStep2Ctrl',
-			access : access.public			
+			access : access.producerView			
 		}).when('/producerDecisionStep3',{
 			templateUrl:'partials/producerDecisionStep3.html',
 			controller:'producerDecisionStep3Ctrl',
-			access : access.public			
+			access : access.producerView			
 		}).when('/producerDecisionStep4',{
 			templateUrl:'partials/producerDecisionStep4.html',
 			controller:'producerDecisionStep4Ctrl',
-			access : access.public			
+			access : access.producerView			
 		}).when('/retailerDecisionStep1',{
 			templateUrl:'partials/retailerDecisionStep1.html',
 			controller:'retailerDecisionStep1Ctrl',
-			access : access.public			
+			access : access.retailerView			
 		}).when('/retailerDecisionStep2',{
 			templateUrl:'partials/retailerDecisionStep2.html',
 			controller:'retailerDecisionStep2Ctrl',
-			access : access.public			
+			access : access.retailerView			
 		}).when('/retailerDecisionStep3',{
 			templateUrl:'partials/retailerDecisionStep3.html',
 			controller:'retailerDecisionStep3Ctrl',
-			access : access.public			
+			access : access.retailerView			
 		}).when('/retailerDecisionStep4',{
 			templateUrl:'partials/retailerDecisionStep4.html',
 			controller:'retailerDecisionStep4Ctrl',
-			access : access.public			
+			access : access.retailerView			
 		}).when('/contract',{
 			templateUrl:'partials/contract.html',
 			controller:'contractCtrl',
-			access : access.public			
+			access : access.playerView		
 		}).when('/login',{
 			templateUrl:'partials/login.html',
 			controller:'loginCtrl',
@@ -68,5 +69,29 @@ define(['angular',
 		});	
 
 		$routeProvider.otherwise({redirectTo: '/login'});
+
+      var interceptor = ['$location', '$q', function($location, $q) {
+        function success(response) {
+            return response;
+        }
+
+        function error(response) {
+
+            if(response.status === 401) {
+                $location.path('/login');
+                return $q.reject(response);
+            }
+            else {
+                return $q.reject(response);
+            }
+        }
+
+        return function(promise) {
+            return promise.then(success, error);
+        }
+    }];
+
+    $httpProvider.responseInterceptors.push(interceptor);
+
 	}]);
 });

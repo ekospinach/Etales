@@ -22,7 +22,8 @@
             'producerView': ['producer','facilitator'],
             'retailerView' : ['retailer','facilitator'],
             'facilitatorView' : ['facilitator'],
-            'adminView' : ['admin']
+            'adminView' : ['admin'],
+            'playerView' : ['producer','facilitator','retailer']
         }
 
     }

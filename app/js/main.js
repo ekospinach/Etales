@@ -1,6 +1,7 @@
 require.config({
 	paths: {
 		angular: '../bower_components/angular/angular',
+		angularCookies: '../bower_components/angular-cookies/angular-cookies',
 		angularRoute: '../bower_components/angular-route/angular-route',
 		angularResource: '../bower_components/angular-resource/angular-resource',
 		angularMocks: '../bower_components/angular-mocks/angular-mocks',
@@ -12,7 +13,8 @@ require.config({
 		require:'../bower_components/requirejs/require',
 		underscore:'../bower_components/underscore/underscore',
 		bootstrap:'../bower_components/bootstrap/dist/js/bootstrap',
-		angularBootstrap:'../bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls'
+		angularBootstrap:'../bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls',
+		routingConfig : './routingConfig'
 		//addProduct:'../js/functions/addNewProduct'
 	},
 	baseUrl: 'js',
@@ -20,6 +22,7 @@ require.config({
 		'angular' : {'exports' : 'angular'},
 		'angularRoute': ['angular'],
 		'angularResource':['angular'],
+		'angularCookies': ['angular'],
 		'angularMocks': {
 			deps:['angular'],
 			'exports':'angular.mock'

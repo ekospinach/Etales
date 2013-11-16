@@ -1,8 +1,8 @@
-define(['app','socketIO'], function(app) {
+define(['app','socketIO','routingConfig'], function(app) {
 
-	app.controller('HomeCtrl',['$scope', '$http', 'ProducerDecisionBase','$rootScope', function($scope, $http, ProducerDecisionBase,$rootScope) {
+	app.controller('HomeCtrl',['$scope', '$http', 'ProducerDecisionBase','$rootScope','Auth', function($scope, $http, ProducerDecisionBase,$rootScope,Auth) {
 		// You can access the scope of the controller from here
-		$scope.welcomeMessage = 'hey this is HomeCtrl.js!';
+		var userRoles = routingConfig.userRoles;
 
 		var socket = io.connect('http://localhost');
 		socket.on('AdminProcessLog', function(data){
@@ -31,6 +31,35 @@ define(['app','socketIO'], function(app) {
 		  },function(res){
 		  	console.log('testInitialise Failed:' + res.data);
 		  })			
+		}
+
+		$scope.testAuth = function(){
+
+			console.log(userRoles);
+			console.log(routingConfig.accessLevels);
+	        Auth.login({
+	                username: 'MAY^' + userRoles.retailer + '^1',
+	                password: '210',
+	                rememberme: true
+	            },
+	            function(res) {
+	                console.log('login successfully, currentUser:' + $rootScope.user);
+	            },
+	            function(err) {
+	            	console.log(err);
+	            });			
+		}
+
+		$scope.logOut = function(){
+			Auth.logout(function(res){
+				console.log('just log out.');
+			},function(err){
+				console.log(err);
+			})
+		}
+		
+		$scope.showUser = function(){
+			console.log($rootScope.user);
 		}
 		
 		$scope.proNewDoc = function(){

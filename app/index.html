@@ -9,7 +9,7 @@
 		<link rel="stylesheet" type="text/css" media="all" href="css/app.css" />
 		<link rel="stylesheet" type="text/css" media="all" href="css/docs.css" />
 	</head>
-	<body class="{{rootBodyClass}}">
+	<body class="{{rootBodyClass}}" ng-controller="NavbarCtrl">
 		<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
 			<div class="container">
 				<div class="navbar-header">
@@ -17,38 +17,44 @@
 				</div>
 				<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">		
 					<ul class="nav navbar-nav">
-						<li class="active" active-nav>
-							<a href="#/home">Home</a>
+						<li class="active" access-level='{{accessLevels.public}}' active-nav>
+							<a href="#/home">Participant manual</a>
 						</li>
-						<li class="{{rootShow}}" artive-nav>
+						<li class="{{rootShow}}" access-level='{{accessLevels.playerView}}' artive-nav>
 							<a href="#/map">Map</a>
 						</li>
-		          		<li class="{{rootShow}}" active-nav>
+		          		<li class="{{rootShow}}" access-level='{{accessLevels.playerView}}' active-nav>
 		          			<a href="#/catreport">Reports</a>
 		          		</li>   
-		          		<li class="{{rootShow}}" active-nav>
+		          		<li class="{{rootShow}}" access-level='{{accessLevels.playerView}}' active-nav>
 		          			<a href="#/chart">Charts</a>
 		          		</li>     
-		          		<li class="{{rootShow}}" active-nav>
-		          			<a href="#/report">Market Studies</a>
+		          		<li class="{{rootShow}}" access-level='{{accessLevels.playerView}}' active-nav>
+		          			<a href="#/report">Market studies</a>
 		          		</li> 
-		          		<li class="{{decisionActive}}" active-nav>
-		          			<a href="#/producerDecisionStep1">Decision</a>
+		          		<li class="{{decisionActive}}" access-level='{{accessLevels.producerView}}' active-nav>
+		          			<a href="#/producerDecisionStep1">Producer decision</a>
 		          		</li>
-		          		<li active-nav>
-		          			<a href="#/retailerDecisionStep1">Retailer For Test</a>
+		          		<li access-level='{{accessLevels.retailerView}}' active-nav>
+		          			<a href="#/retailerDecisionStep1">Retailer decision</a>
 		          		</li>    
 		      		</ul>
-		      		<!--
-					<ul class="nav navbar-nav navbar-right">
-						<li>
-							<a href="">Admin Login</a>
-						</li>
-					</ul>
-				-->
+
+				    <ul class="nav pull-right">
+				        <li id="userInfo" data-access-level="{{ accessLevels.playerView }}" class="pull-right">
+					        <a>
+					          Seminar <strong>{{ user.seminar }}&nbsp;</strong>
+					          <span data-ng-class="{&quot;label-info&quot;: user.role == userRoles.producer, &quot;label-success&quot;: user.role == userRoles.retailer, &quot;label-default&quot;: user.role == userRoles.facilitator,&quot;label-danger&quot;: user.role == userRoles.info}" class="label">{{ getUserRoleText(user.role) }} </span>
+					        </a>
+				        </li>      
+				    </ul>
+
 				</nav>
+
+
 			</div>
 		</header>
+
 		<div ng-view>
 	    	
 	    </div>
