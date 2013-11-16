@@ -12,6 +12,11 @@ module.exports = function(){
 				  path_volReport : '/cgi-bin/volReport.exe',
 				  path_producerDecision : '/cgi-bin/producerDecision.exe',
 				  path_retailerDecision : '/cgi-bin/retailerDecision.exe',
+				  path_brandHistoryInfo : '/cgi-bin/brandHistoryInfo.exe',
+				  path_variantHistoryInfo : '/cgi-bin/variantHistoryInfo.exe',
+				  path_companyHistoryInfo : '/cgi-bin/companyHistoryInfo.exe',
+				  path_quarterHistoryInfo : '/cgi-bin/quarterHistoryInfo.exe',
+
    			  	  uploadFileAbsDir : '&filepath=\\\\vmware-host\\Shared%20Folders\\ludwikOnMac\\Code\\Actived\\Etales-result-viewer\\upload\\'
 				},
 				server : {
@@ -51,6 +56,10 @@ module.exports = function(){
 				  path_volReport : '/cgiexe-bin/volReport.exe',
 				  path_producerDecision : '/cgi-bin/producerDecision.exe',
 				  path_retailerDecision : '/cgi-bin/retailerDecision.exe',				  
+				  path_brandHistoryInfo : '/cgi-bin/brandHistoryInfo.exe',
+				  path_variantHistoryInfo : '/cgi-bin/variantHistoryInfo.exe',
+				  path_companyHistoryInfo : '/cgi-bin/companyHistoryInfo.exe',
+				  path_quarterHistoryInfo : '/cgi-bin/quarterHistoryInfo.exe',
 				  uploadFileAbsDir : ''
 				},
 				server : {

@@ -147,7 +147,7 @@ exports.addRetailerDecisions = function(options){
             }
           }      
           if (!singleDecision) return; 
-          console.log(singleDecision);
+//          console.log(singleDecision);
           retDecision.update({seminar: singleDecision.seminar, 
                               period: singleDecision.period,
                               retailerID: singleDecision.retailerID},

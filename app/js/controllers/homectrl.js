@@ -9,7 +9,6 @@ define(['app','socketIO','routingConfig'], function(app) {
 			console.log('Log:' + data.msg + ', isError:' + data.isError);
 		});
 
-
 		$scope.testPassive = function(){
 		  var postData = {
 		  	seminar : 'ROUND1',
@@ -23,6 +22,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 		}
 
 		$scope.testInitialise = function(){
+			console.log('testIni');
 		  var postData = {
 		  	seminar : 'MAY',
 		  }
@@ -34,12 +34,11 @@ define(['app','socketIO','routingConfig'], function(app) {
 		}
 
 		$scope.testAuth = function(){
-
 			console.log(userRoles);
 			console.log(routingConfig.accessLevels);
 	        Auth.login({
-	                username: 'MAY^' + userRoles.retailer + '^1',
-	                password: '210',
+	                username: 'MAY^' + userRoles.producer + '^1',
+	                password: '110',
 	                rememberme: true
 	            },
 	            function(res) {

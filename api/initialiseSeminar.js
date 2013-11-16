@@ -13,6 +13,7 @@ exports.initialiseSeminar = function(io){
 			cgiPort : conf.cgi.port,			
 			cgiPath : conf.cgi.path_producerDecision, 
 		}	
+		console.log('ini on the server');
 
 		//call Initialize on the server, callback		
 		//...		
@@ -42,7 +43,11 @@ exports.initialiseSeminar = function(io){
 		}).then(function(result){
             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
 			options.retailerID = '4';			
-			return require('./models/retailerDecision.js').addRetailerDecisions(options);						
+			return require('./models/retailerDecision.js').addRetailerDecisions(options);		
+		}).then(function(result){
+            io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });		
+            options.cgiPath = conf.cgi.path_brandHistoryInfo;			
+			return require('./models/brandHistoryInfo.js').addInfos(options);								
 		}).then(function(result){ //log the success info
             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	
             res.send(200, 'success');

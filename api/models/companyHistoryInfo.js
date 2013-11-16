@@ -5,7 +5,7 @@ var mongoose = require('mongoose'),
 var companyHistoryInfoSchema = mongoose.Schema({
 	period : Number,
 	seminar : String,
-	companyID : Number, //(1~9)
+	//companyID : Number, //(1~9)
 	producerView : [producerViewSchema], //1~4
 	retailerView : [retailerViewSchema]  //1~4
 })
