@@ -146,7 +146,8 @@ define(['app'], function(app) {
 				var result=0,min=10*(retailerID+4)+1,max=(retailerID+4)*10+4;
 				var nums=new Array();
 				for(var i=0;i<retVariantDecision.privateLabelDecision.length;i++){
-					if(retVariantDecision.privateLabelDecision[i]!=undefined&&retVariantDecision.privateLabelDecision[i].brandID!=undefined&&retVariantDecision.privateLabelDecision[i].brandID!=0){
+					if(retVariantDecision.privateLabelDecision[i]!=undefined&&retVariantDecision.privateLabelDecision[i].brandName!=undefined&&retVariantDecision.privateLabelDecision[i].brandName!=""){
+					//if(retVariantDecision.privateLabelDecision[i]!=undefined&&retVariantDecision.privateLabelDecision[i].brandID!=undefined&&retVariantDecision.privateLabelDecision[i].brandID!=0){
 						nums.push(retVariantDecision.privateLabelDecision[i].brandID);
 					}
 				}
@@ -174,7 +175,8 @@ define(['app'], function(app) {
 		    	var result=0;min=parentBrandID*10+1,max=parentBrandID*10+3;
 		    	var nums=new Array();
 		    	for(var i=0;i<privateLabelDecision.privateLabelVarDecision.length;i++){
-					if(privateLabelDecision.privateLabelVarDecision[i]!=undefined&&privateLabelDecision.privateLabelVarDecision[i].varID!=undefined&&privateLabelDecision.privateLabelVarDecision[i].varID!=0){
+					if(privateLabelDecision.privateLabelVarDecision[i]!=undefined&&privateLabelDecision.privateLabelVarDecision[i].varName!=undefined&&privateLabelDecision.privateLabelVarDecision[i].varName!=""){
+					//if(privateLabelDecision.privateLabelVarDecision[i]!=undefined&&privateLabelDecision.privateLabelVarDecision[i].varID!=undefined&&privateLabelDecision.privateLabelVarDecision[i].varID!=0){
 						nums.push(privateLabelDecision.privateLabelVarDecision[i].varID);
 					}
 				}

@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
     _ = require('underscore'),
     q = require('q');
 
-var privateLabelVarDecision = mongoose.Schema({
+var privateLabelVarDecisionSchema = mongoose.Schema({
     varName : String,
     varID : Number,
     parentBrandID : Number,
@@ -38,7 +38,7 @@ var privateLabelDecisionSchema = mongoose.Schema({
     */  
     dateOfBirth : Number, //which period this brand be created, if this brand is initialized in the beginning, this value should be -4
     dateOfDeath : Number, //which period this brand be discontinued, if this brand haven't been discontinued, this value should be 10
-    privateLabelVarDecision : [privateLabelVarDecision] //length: TOneBrandVars(1~3)
+    privateLabelVarDecision : [privateLabelVarDecisionSchema] //length: TOneBrandVars(1~3)
 })
 
 //date strute for private labels (step 3)
@@ -92,6 +92,8 @@ var retDecisionSchema = mongoose.Schema({
 })
 
 var retDecision = mongoose.model('retailerDecision', retDecisionSchema);
+var privateLabelVarDecision = mongoose.model('privateLabelVarDecision',privateLabelVarDecisionSchema);
+var retVariantDecision= mongoose.model('retVariantDecision',retVariantDecisionSchema);
 
 exports.exportToBinary = function(options){
     var deferred = q.defer();
@@ -583,17 +585,36 @@ exports.updateRetailerDecision = function(io){
                                                     for(j=0;j<doc.retCatDecision[i].privateLabelDecision.length;j++){
                                                         if(doc.retCatDecision[i].privateLabelDecision[j]!=undefined&&doc.retCatDecision[i].privateLabelDecision[j].brandName==queryCondition.brandName){
                                                             for(var k=0;k<doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision.length;k++){
-                                                                if(doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k]!=undefined&&doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k].varID!=0&&doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k].varName==""){
+                                                                if(doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k]!=undefined&&doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k].varID==0&&doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k].varName==""){
+                                                                    //console.log("find");
                                                                     doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision.splice(k,1,queryCondition.value);
+                                                                    break;
                                                                 }
                                                             }
+                                                            break;
                                                             //doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision.push(queryCondition.value);
                                                         }
                                                     }
+                                                    break;
                                                 }
                                             }
                                         break;
                                         case 'deleteProduct':
+                                            var nullVarDecision=new privateLabelVarDecision();
+                                            nullVarDecision.varName="";
+                                            //nullVarDecision.varID=0;
+                                            nullVarDecision.parentBrandID=0;
+                                            nullVarDecision.dateOfDeath=0;
+                                            nullVarDecision.dateOfBirth=0;
+                                            nullVarDecision.packFormat="";
+                                            nullVarDecision.composition=[0,0,0];
+                                            nullVarDecision.discontinue=false;
+
+                                            var nullBrandDecision=new retVariantDecision();
+                                            nullBrandDecision.brandName="";
+                                            //nullBrandDecision.brandID=0;
+                                            nullBrandDecision.parentCompanyID=0;
+
                                             for(var i=0;i<doc.retCatDecision.length;i++){
                                                 if(doc.retCatDecision[i].categoryID==queryCondition.categoryID){
                                                     for(var j=0;j<doc.retCatDecision[i].privateLabelDecision.length;j++){
