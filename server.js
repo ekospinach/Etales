@@ -47,6 +47,8 @@ var path    = require('path'),
 
   app.get('/contracts/:seminar/:contractUserID',require('./api/models/contract.js').getContractList);
   app.get('/contractDetails/:contractCode',require('./api/models/contract.js').getContractDetails);
+  //add new contract
+  app.post('/addContract',require('./api/models/contract.js').addContract(io));
 
   app.get('/variantHistoryInfo');
   app.get('/brandHistoryInfo');

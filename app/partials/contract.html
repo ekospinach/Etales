@@ -10,7 +10,15 @@
 		    <div class="bs-docs-section">
 		    	<h3>ContractList</h3>
 		    	<div class="pull-left">
-			        <div class="btn-group pull-left" style="display:{{shouldShow}}">
+		    		<div class="btn-group pull-left" data-toggle="buttons">
+			            <label class="btn btn-primary" ng-click="">
+			            	<input type="radio" name="options">English
+			            </label>
+			            <label class="btn btn-primary" ng-click="">
+			            	<input type="radio" name="options">Chinese
+			            </label>
+			        </div>
+			        <div class="btn-group pull-left" style="display:{{shouldShow}};margin-left:20px">
 			        	<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
 			              Producer <span class="caret"></span>
 			            </button>
@@ -20,7 +28,7 @@
 			              <li class=""><a ng-click="filterUser(3,retailerID)">Producer 3</a></li>         
 			            </ul>
 			        </div>
-			        <div class="btn-group pull-left" style="display:{{shouldShow}}">
+			        <div class="btn-group pull-left" style="display:{{shouldShow}};margin-left:20px">
 			        	<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" style="margin-left:10px">
 			              Retailer <span class="caret"></span>
 			            </button>
@@ -28,14 +36,6 @@
 			              <li class=""><a ng-click="filterUser(producerID,1)">Retailer 1</a></li>
 			              <li class=""><a ng-click="filterUser(producerID,2)">Retailer 2</a></li>      
 			            </ul>
-			        </div>
-			        <div class="btn-group pull-left" data-toggle="buttons" style="margin-left:10px">
-			            <label class="btn btn-primary" ng-click="">
-			            	<input type="radio" name="options">English
-			            </label>
-			            <label class="btn btn-primary" ng-click="">
-			            	<input type="radio" name="options">Chinese
-			            </label>
 			        </div>
 			    </div>
 			    <div style="clear:both"></div>
@@ -72,22 +72,60 @@
 			    		</td>
 			    	</tr>
 			    </table>
+			    <a class="btn btn-primary" ng-click="openInsertModal()">
+			    	New Contract</a>
 		    </div>
 		</div>
 	</div>
 </div>
 <!--dialogs-->
+<div modal="insertModal" class="hide" close="closeInsertModal()" options="insertOpts">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeInsertModal()">&times;</button>
+				<h4 class="modal-title">New Negotiation</h4>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label for="contractCode">ContractCode:</label>
+					<div style="clear:both"></div>
+					<div class="col-xs-5 input-group">
+						<input type="text" id="contractCode" placeholder="contractCode" class="form-control" ng-model="newContractCode" required>
+						<span class="input-group-addon">{{contractCodeLastName}}</span>
+					</div>
+					<div style="clear:both"></div>
+				</div>
+				<div class="form-group">
+					<label for="retailerID">Contract To:</label>
+					<div style="clear:both"></div>
+					<div class="col-xs-5">
+						<select class="form-control" ng-model="newRetailerID">
+							<option value="1">Retailer 1</option>
+							<option value="2">Retailer 2</option>
+						</select>
+					</div>
+					<div style="clear:both"></div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<a class="btn btn-default">Cancel</a>
+				<a class="btn btn-primary" ng-click="addNewContract()">Add</a>
+			</div>
+		</div>
+	</div>
+</div>
+
 <div modal="detailModal" class="hide" close="closeDetailModal()" options="detailOpts">
 	<div class="modal-dialog" style="width:1000px">
 		<div class="modal-content">
 		    <div class="modal-header">
-		    	<div style="width:70%">
-		    		<h3>
-		    			Contract:{{Detail.contractCode}}
-		    		</h3>
-		    		<h4>
+		    	<div>
+		    		<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeDetailModal()">&times;</button>
+					<h4 class="modal-title">Contract:{{Detail.contractCode}}</h4>
+		    		<h5>
 		    			Producer {{Detail.producerID}} Retailer {{Detail.retailerID}},{{Detail.seminar}}
-		    		</h4>
+		    		</h5>
 		    	</div>
 		    	<div class="pull-right">
 		    		<div class="btn-group">
@@ -241,6 +279,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<div style="background-color:yellow">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeEditModal()">&times;</button>
 					<h4>{{editDetail.negotiationItem}},{{rootSeminar}}_{{editDetail.relatedBrandName}}</h4>
 				</div>
 				<div class="btn-group pull-right" data-toggle="buttons">
@@ -514,7 +553,7 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<a class="btn btn-warning" ng-click="closeEditModal()">Cancel</a>
+				<a class="btn btn-warning" ng-click="closeEditModal()">Close</a>
 			</div>
 		</div>
 	</div>
@@ -525,6 +564,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<div style="background-color:yellow">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeViewModal()">&times;</button>
 					<h4>{{editDetail.negotiationItem}},{{rootSeminar}}_{{editDetail.relatedBrandName}}</h4>
 				</div>
 				<div class="btn-group pull-right" data-toggle="buttons">
@@ -803,6 +843,7 @@
 				</div>
 			</div>
 			<div class="modal-footer">
+				<a class="btn btn-warning" ng-click="closeViewModal()">Close</a>
 			</div>
 		</div>
 	</div>

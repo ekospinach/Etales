@@ -122,9 +122,6 @@ exports.addProducerDecisions = function(options, socket){
             deferred.reject({msg:'Get 404 error from CGI server, reqOptions:' + JSON.stringify(reqOptions)});
           else {
             try {
-                console.log("!!!!!!!!!!!");
-                console.log(data);
-                console.log("??????");
               var singleDecision = JSON.parse(data);
             } catch(e) {
               deferred.reject({msg: 'Read decision file failed or something else, cannot parse JSON data from CGI:' + data, options:options});
@@ -198,9 +195,6 @@ exports.updateProducerDecision = function(io){
                                     res.send(404,'Cannot find matched producer decision doc...');
                                 } else {
                                     var isUpdated = true;
-                                    //console.log('before:');
-                                    //console.log(doc.proCatDecision[0].proBrandsDecision[0]);
-
                                     switch(queryCondition.behaviour){
                                         case 'addProductNewBrand':
                                             for (var i = 0; i < doc.proCatDecision.length; i++) {
