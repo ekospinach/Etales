@@ -2,7 +2,11 @@ var mongoose = require('mongoose'),
     http = require('http'),
     util = require('util'),
     _ = require('underscore'),
-	uniqueValidator = require('mongoose-unique-validator');    
+	uniqueValidator = require('mongoose-unique-validator'),
+	passport = require('passport'),
+	LocalStrategy = require('passport-local').Strategy,
+	userRoles = require('../../app/js/routingConfig').userRoles,
+	check = require('validator');
 
 var seminarSchema = mongoose.Schema({
 	seminarCode : {type:String, require:true, unique:true},
@@ -42,7 +46,61 @@ var memberSchema = mongoose.Schema({
 
 seminarSchema.plugin(uniqueValidator);
 
-var seminar=mongoose.model('seminar', seminarSchema);
+var seminar = mongoose.model('seminar', seminarSchema);
+
+exports.localStrategy = new LocalStrategy(function(username, password, done){
+	    var parameters = ['','',''],j = 0;    
+	    for (var i = 0; i < username.length; i++) {
+	      if(username[i] == '^') j = j + 1;
+	      else parameters[j] = parameters[j] + username[i]; 
+	      if(j>2) break;      
+	    };
+	    var para_seminar = parameters[0],
+	    para_role = parameters[1],
+	    para_roleID = parameters[2];
+	    console.log('seminar:' + para_seminar + ',role:' + para_role + ',roleID:' + para_roleID);
+		seminar.findOne({seminarCode:para_seminar},function(err,doc){
+			if(err){ return done(err); }
+			if(!doc){ console.log('incorrestseminar'); return done(null, false, {message:'Incorrect seminar code.'}); }
+			if(!doc.isInitialise) { console.log('notIni');  return done(null, false, {message:'Seminar has not opened.'})}
+			switch(parseInt(para_role, 10)){
+				case userRoles.producer:
+					if(doc.producers[para_roleID-1].password != password){ return done(null, false, {message:'Incorrect password'}); }
+					break;
+				case userRoles.retailer:
+					if(doc.retailers[para_roleID-1].password != password){ return done(null, false, {message:'Incorrect password'}); }
+					break;
+				case userRoles.facilitator:
+					if(doc.facilitator[para_roleID-1].password != password){ return done(null, false, {message:'Incorrect password'}); }
+					break;				
+				default:
+					return done(null, false, {message:'role does not exist.'});
+			}			
+			return done(null, { seminar: para_seminar, role: para_role, roleID: para_roleID, username: username });
+		});
+});
+
+exports.serializeUser = function(user, done){
+	done(null, user.username);
+}
+
+exports.deserializeUser = function(username, done){
+    var parameters = ['','',''],j = 0;    
+    for (var i = 0; i < username.length; i++) {
+      if(username[i] == '^') j = j + 1;
+      else parameters[j] = parameters[j] + username[i]; 
+      if(j>2) break;      
+    };
+    var para_seminar = parameters[0],
+    para_role = parameters[1],
+    para_roleID = parameters[2];	
+	seminar.findOne({seminarCode:para_seminar},function(err,doc){
+		if(err){ return done(err); }
+		if(!doc){ console.log('incorrestseminar'); return done(null, false, {message:'Incorrect seminar code.'}); }
+		if(!doc.isInitialise) {  return done(null, false, {message:'Seminar has not opened.'})}
+		return done(null, { seminar: para_seminar, role: para_role, roleID: para_roleID, username: username });
+	});
+}
 
 exports.newDoc=function(req,res,next){
 	var newDoc=new seminar({

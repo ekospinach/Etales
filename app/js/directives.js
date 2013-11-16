@@ -23,6 +23,25 @@ define(['angular', 'services'], function(angular, services) {
 		            });
 		        }
 		    };
+		}])
+		.directive('accessLevel', ['$rootScope', 'Auth', function($rootScope, Auth) {
+		    return {
+		        restrict: 'A',
+		        link: function(scope, element, attrs) {
+		            var prevDisp = element.css('display');
+		            $rootScope.$watch('user.role', function(role) {
+		                //console.log('Directive handle, attrs.accessLevel: ' + attrs.accessLevel + ',try to call auth.authorize()...');
+		                if(!Auth.authorize(attrs.accessLevel))
+		                    element.css('display', 'none');
+		                else
+		                    element.css('display', prevDisp);
+
+		                //console.log('function Auth.authorize result:' + Auth.authorize(attrs.accessLevel));
+		                //console.log('-----------------------');
+		            });
+		        }
+		    };
 		}]);
+
 	}
 );

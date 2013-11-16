@@ -1,8 +1,52 @@
-define(['angular','angularResource'], function (angular,angularResource) {
+define(['angular','angularResource','routingConfig'], function (angular,angularResource) {
 	'use strict';
 
 	var services=angular.module('myApp.services', ['ngResource']);
 	services.value('version', '0.1');
+
+	services.factory('Auth', function($http, $rootScope, $cookieStore){
+	    var accessLevels = routingConfig.accessLevels
+	        , userRoles = routingConfig.userRoles;
+
+	    $rootScope.user = $cookieStore.get('user') || { username: '', role: userRoles.guest };
+	    $cookieStore.remove('user');
+
+	    $rootScope.accessLevels = accessLevels;
+	    $rootScope.userRoles = userRoles;
+
+	    return {
+	        authorize: function(accessLevel, role) {         
+	            if(role === undefined) {
+	                role = $rootScope.user.role;
+	            }
+	            console.log('start authorize, role:' + role + ', accessLevel:' + accessLevel);
+	            return accessLevel & role;
+	        },
+	        isLoggedIn: function(user) {
+	            if(user === undefined)
+	                user = $rootScope.user;
+	            return user.role === userRoles.producer 
+	            	|| user.role === userRoles.retailer
+	            	|| user.role === userRoles.facilitator 
+	            	|| user.role === userRoles.admin;
+	        },
+	        login: function(user, success, error) {
+	            $http.post('/login', user).success(function(user){
+	                $rootScope.user = user;
+	                success(user);
+	            }).error(error);
+	        },
+	        logout: function(success, error) {
+	            $http.post('/logout').success(function() {
+	                $rootScope.user.username = '';
+	                $rootScope.user.role = userRoles.guest;
+	                success();
+	            }).error(error);
+	        },
+	        accessLevels: accessLevels,
+	        userRoles: userRoles
+	    };
+	});
 
 	services.factory('ProducerDecision',['$resource','$rootScope', function($resource,$rootScope){
 		return $resource('/producerDecision/:producerID/:period/:seminar',{},
@@ -18,7 +62,6 @@ define(['angular','angularResource'], function (angular,angularResource) {
 			})
 
 	}]);
-
 	services.factory('VariantHistoryInfo', ['$resource', function($resource){
 		return $resource('/variantHistoryInfo/:seminar/:period/:parentBrandName/:varName', {});
 	}]);
