@@ -1,5 +1,6 @@
 var path    = require('path'),
 <<<<<<< HEAD
+<<<<<<< HEAD
     mongoose = require('mongoose'),
     files    = require('./api/models/file.js'),
     express = require('express');

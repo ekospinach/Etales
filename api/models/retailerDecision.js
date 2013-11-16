@@ -566,18 +566,28 @@ exports.updateRetailerDecision = function(io){
                                         case 'addProductNewBrand':
                                             for(var i=0;i<doc.retCatDecision.length;i++){
                                                 if(doc.retCatDecision[i].categoryID==queryCondition.categoryID){
-                                                    doc.retCatDecision[i].privateLabelDecision.push(queryCondition.value);
+                                                    for(var j=0;j<doc.retCatDecision[i].privateLabelDecision.length;j++){
+                                                        //if varName is null ,var is null
+                                                        if(doc.retCatDecision[i].privateLabelDecision[j]!=undefined&&doc.retCatDecision[i].privateLabelDecision[j].brandID!=0&&doc.retCatDecision[i].privateLabelDecision[j].brandName==""){
+                                                            doc.retCatDecision[i].privateLabelDecision.splice(j,1,queryCondition.value);
+                                                            break;
+                                                        }
+                                                    }
                                                     break;
                                                 }
-                                            }
-                                            decision="retCatDecision";                    
+                                            }                  
                                         break;
                                         case 'addProductExistedBrand':
                                             for(var i=0;i<doc.retCatDecision.length;i++){
                                                 if(doc.retCatDecision[i].categoryID==queryCondition.categoryID){
                                                     for(j=0;j<doc.retCatDecision[i].privateLabelDecision.length;j++){
                                                         if(doc.retCatDecision[i].privateLabelDecision[j]!=undefined&&doc.retCatDecision[i].privateLabelDecision[j].brandName==queryCondition.brandName){
-                                                            doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision.push(queryCondition.value);
+                                                            for(var k=0;k<doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision.length;k++){
+                                                                if(doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k]!=undefined&&doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k].varID!=0&&doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k].varName==""){
+                                                                    doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision.splice(k,1,queryCondition.value);
+                                                                }
+                                                            }
+                                                            //doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision.push(queryCondition.value);
                                                         }
                                                     }
                                                 }
