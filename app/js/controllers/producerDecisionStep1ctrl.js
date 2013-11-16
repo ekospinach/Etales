@@ -407,7 +407,6 @@ define(['app'], function(app) {
 				return $rootScope.rootProducerID;
 			}		
 			var addNewProduct=function(parameter){
-				$scope.close=close;
 				var newBrand=new ProducerDecision();
 				var nullDecision=new ProducerDecision();
 				nullDecision.packFormat="";
@@ -427,7 +426,7 @@ define(['app'], function(app) {
 				var newproducerDecision=new ProducerDecision();
 				newproducerDecision.packFormat="";
 				newproducerDecision.dateOfBirth=$scope.period;
-				newproducerDecision.parameter=parameter;
+				//newproducerDecision.parameter=parameter;
 				newproducerDecision.dateOfDeath=10;
 		        newproducerDecision.composition=new Array();
 		        newproducerDecision.production="";

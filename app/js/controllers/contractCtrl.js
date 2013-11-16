@@ -258,7 +258,7 @@ define(['app'], function(app) {
 			$scope.openInsertModal=function(){
 				$scope.contractCodeLastName="_"+$rootScope.rootSeminar+'_'+$rootScope.rootPeriod;
 				$scope.insertModal=true;
-				console.log($scope.contractCodeLastName);
+				//console.log($scope.contractCodeLastName);
 			}
 
 			var closeInsertModal=function(){

@@ -152,6 +152,6 @@ exports.newDoc=function(req,res,next){
             next (new Error(err));
         }
         console.log('brandHistory1 insert');
-        res.send('insert success');
+        res.send(200,'insert success');
     })
 }
