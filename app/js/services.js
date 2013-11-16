@@ -368,11 +368,11 @@ define(['angular','angularResource','routingConfig'], function (angular,angularR
 				setMarketDecisionBase:function(marketID,location,additionalIdx,value){
 					if(location=="serviceLevel"){
 						switch(value){
-							case 1: value="BASE";break;
-							case 2: value="FAIR";break;
-							case 3: value="MEDIUM";break;
-							case 4: value="ENHANCED";break;
-							case 5: value="PREMIUM";break;
+							case 1: value="SL_BASE";break;
+							case 2: value="SL_FAIR";break;
+							case 3: value="SL_MEDIUM";break;
+							case 4: value="SL_ENHANCED";break;
+							case 5: value="SL_PREMIUM";break;
 						}
 					}
 					var queryCondition = {

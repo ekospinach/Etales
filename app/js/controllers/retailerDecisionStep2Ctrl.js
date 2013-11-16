@@ -54,15 +54,15 @@ define(['app'], function(app) {
 						'label':''
 					}];
 			$scope.packs = [{
-				value: 1, text: 'BASE'
+				value: 1, text: 'SL_BASE'
 			},{
-				value: 2, text: 'FAIR'
+				value: 2, text: 'SL_FAIR'
 			},{
-				value: 3, text: 'MEDIUM'
+				value: 3, text: 'SL_MEDIUM'
 			},{
-				value: 4, text: 'ENHANCED'
+				value: 4, text: 'SL_ENHANCED'
 			},{
-				value: 5, text: 'PREMIUM'
+				value: 5, text: 'SL_PREMIUM'
 			}]; 
 			var language='English',
 				retailerID=1,
@@ -148,15 +148,15 @@ define(['app'], function(app) {
 	      			}else if($scope.pageBase.retMarketDecision[i].marketID==2){
 	      				$scope.pageBase.retMarketDecision[i].marketName="Rural";
 	      			}
-	      			if($scope.pageBase.retMarketDecision[i].serviceLevel=="BASE"){
+	      			if($scope.pageBase.retMarketDecision[i].serviceLevel=="SL_BASE"){
 	      				$scope.pageBase.retMarketDecision[i].serviceLevel=1;
-	      			}else if($scope.pageBase.retMarketDecision[i].serviceLevel=="FAIR"){
+	      			}else if($scope.pageBase.retMarketDecision[i].serviceLevel=="SL_FAIR"){
 	      				$scope.pageBase.retMarketDecision[i].serviceLevel=2;
-	      			}else if($scope.pageBase.retMarketDecision[i].serviceLevel=="MEDIUM"){
+	      			}else if($scope.pageBase.retMarketDecision[i].serviceLevel=="SL_MEDIUM"){
 	      				$scope.pageBase.retMarketDecision[i].serviceLevel=3;
-	      			}else if($scope.pageBase.retMarketDecision[i].serviceLevel=="ENHANCED"){
+	      			}else if($scope.pageBase.retMarketDecision[i].serviceLevel=="SL_ENHANCED"){
 	      				$scope.pageBase.retMarketDecision[i].serviceLevel=4;
-	      			}else if($scope.pageBase.retMarketDecision[i].serviceLevel=="PREMIUM"){
+	      			}else if($scope.pageBase.retMarketDecision[i].serviceLevel=="SL_PREMIUM"){
 	      				$scope.pageBase.retMarketDecision[i].serviceLevel=5;
 	      			}
 	      			markets.push($scope.pageBase.retMarketDecision[i]);
@@ -169,11 +169,8 @@ define(['app'], function(app) {
 			}
 
 			var updateMarketDecision=function(marketID,location,postion,addtionalIdx,index){
-				if(location=="categorySurfaceShare"){
+				if(location=="categorySurfaceShare"||location=="localAdvertising"){
 					RetailerDecisionBase.setMarketDecisionBase(marketID,location,addtionalIdx,$scope.markets[index][location][addtionalIdx]);					
-				}
-				else if(location=="localAdvertising"){
-					RetailerDecisionBase.setMarketDecisionBase(marketID,location,postion,$scope.markets[index][location][postion]);					
 				}
 				else{
 					RetailerDecisionBase.setMarketDecisionBase(marketID,location,postion,$scope.markets[index][location]);										

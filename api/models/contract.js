@@ -24,6 +24,7 @@ var contractSchema = mongoose.Schema({
 
 contractSchema.plugin(uniqueValidator);
 
+
 var contractDetailsSchema = mongoose.Schema({
 	contractCode : String, 
 	userType : String, // 'P' or 'R'
@@ -58,29 +59,26 @@ var contractDetailsSchema = mongoose.Schema({
 	amount_or_rate : Boolean
 })
 
-
-
-
 var contract = mongoose.model('contract', contractSchema);
 var contractDetails = mongoose.model('contractDetails', contractDetailsSchema);
 
-exports.updateContract = function(io){
+exports.addContract = function(io){
   return function(req, res, next){
-	contract.update({contractCode : req.body.contractCode,
-					 period : req.body.period,
-					 seminar : req.body.seminar},
-					 {draftedByCompanyID : req.body.draftedByCompanyID,
-					  producerID : req.body.producerID,
-					  retailerID : req.body.retailerID,
-					  isDraftFinished : req.body.isDraftFinished},
-					  {upsert : true},
-					  function(err, numberAffected, raw){
-					  	 if (err) return next(new Error(err));
- 					  	 console.log('the number of updated documents was %d', numberAffected);
- 					  	 //here : parameter should be added, client reload resource depends on parameter
- 					  	 io.sockets.emit('contarctListChanged', {producerID: req.body.producerID, retailerID: req.body.retailerID}); 
-					  	 res.send(200, 'Contract update done.')
-					  });
+  	var newContract=new contract({
+  		contractCode : req.body.contractCode,
+		period : req.body.period,
+		seminar : req.body.seminar,
+		draftedByCompanyID : req.body.draftedByCompanyID,
+		producerID : req.body.producerID,
+		retailerID : req.body.retailerID,
+		isDraftFinished : false
+  	});
+  	/*need add Contract Detail*/
+  	newContract.save(function(err){
+		if(err) next(new Error(err));
+		io.sockets.emit('contarctListChanged', {producerID: req.body.producerID, retailerID: req.body.retailerID}); 
+		res.send(200,newContract);
+	});
   }
 }
 

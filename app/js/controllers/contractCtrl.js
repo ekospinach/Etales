@@ -255,6 +255,34 @@ define(['app'], function(app) {
 				}
 			}
 
+			$scope.openInsertModal=function(){
+				$scope.contractCodeLastName="_"+$rootScope.rootSeminar+'_'+$rootScope.rootPeriod;
+				$scope.insertModal=true;
+				console.log($scope.contractCodeLastName);
+			}
+
+			var closeInsertModal=function(){
+				$scope.insertModal=false;
+			}
+
+			$scope.addNewContract=function(){
+				var data={
+					'contractCode':$scope.newContractCode+$scope.contractCodeLastName,
+					'seminar':$rootScope.rootSeminar,
+					'period':$rootScope.rootPeriod,
+					'draftedByCompanyID':$rootScope.rootProducerID,
+					'producerID':$rootScope.rootProducerID,
+					'retailerID':$scope.newRetailerID
+				}
+				$http({method: 'POST', url: '/addContract',data:data}).success(function(data){
+					$scope.allContracts.push(data);
+					closeInsertModal();
+				}).error(function(err){
+					console.log(err);
+				})
+				//$http
+			}
+
 			$scope.openEditModal=function(Detail){
 				$scope.editModal=true;
 				loadModalDate(Detail);
@@ -305,27 +333,6 @@ define(['app'], function(app) {
 					}else{
 						value=detail.brand_urbanValue;
 					}
-					/*if(location=="rural"){
-						//if(item=="nc_VolumeDiscountRate"){
-						//	value=detail.brand_ruralValue;
-						//}else if(item=="nc_PerformanceBonusRate"){
-						//	value=detail.rate_ruralValue;
-						//}else if(item=="nc_PerformanceBonusAmount"){
-						//	value=detail.amout_ruralValue;
-						//}else{
-							value=detail.brand_ruralValue;
-						}
-					}else{
-						if(item=="nc_VolumeDiscountRate"){
-							value=detail.brand_urbanValue;
-						}else if(item=="nc_PerformanceBonusRate"){
-							value=detail.rate_urbanValue;
-						}else if(item=="nc_PerformanceBonusAmount"){
-							value=detail.amout_urbanValue;
-						}else{
-							value=detail.brand_urbanValue;
-						}
-					}*/
 				}
 				else{
 					if(location=="rural"){
@@ -389,6 +396,7 @@ define(['app'], function(app) {
 			$scope.showDetailModal=showDetailModal;
 			$scope.loadModalDate=loadModalDate;
 			$scope.filterUser=filterUser;
+			$scope.closeInsertModal=closeInsertModal;
 			showView($scope.contractUserID);
 		}]
 	)

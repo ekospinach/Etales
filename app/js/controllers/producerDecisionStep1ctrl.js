@@ -95,7 +95,7 @@ define(['app'], function(app) {
 
 			/*Angular-ui-bootstrap modal start*/
 
-			$scope.opts = {
+			$scope.productModalOpts = {
 			    backdropFade: true,
 			    dialogFade:true
 			};
@@ -116,8 +116,8 @@ define(['app'], function(app) {
 				var delay=$q.defer();
 				delay.notify('start to show view');
 					$scope.selectPacks=selectPacks;
-					$scope.open=open;
-					$scope.close=close;
+					$scope.openProductModal=openProductModal;
+					$scope.closeProductModal=closeProductModal;
 					$scope.setAddNewBrand=setAddNewBrand;
 					$scope.setAddNewProUnderBrand=setAddNewProUnderBrand;
 					$scope.showView=showView;
@@ -369,12 +369,12 @@ define(['app'], function(app) {
 				}
 			};
 
-			var open = function () {
-			    $scope.shouldBeOpen = true;
+			var openProductModal = function () {
+			    $scope.productModal = true;
 			    setAddNewBrand();
 			};
-			var close = function () {
-			    $scope.shouldBeOpen = false;
+			var closeProductModal = function () {
+			    $scope.productModal = false;
 			};
 
 			var updateProducerDecision=function(category,brandName,varName,location,additionalIdx,index){
@@ -476,7 +476,7 @@ define(['app'], function(app) {
 			       	}
 			       	ProducerDecisionBase.addProductExistedBrand(newproducerDecision,$scope.addNewCategory,newBrandName);	
 				}
-				close();
+				closeProductModal();
 			}
  
 			

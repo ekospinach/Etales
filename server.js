@@ -1,4 +1,5 @@
 var path    = require('path'),
+<<<<<<< HEAD
     mongoose = require('mongoose'),
     files    = require('./api/models/file.js'),
     express = require('express');
@@ -39,8 +40,6 @@ app.post('/login', require('./api/auth').login);
 app.post('/logout', require('./api/auth').logout);
 
 
-
-
 app.post('/initialiseSeminar', require('./api/initialiseSeminar.js').initialiseSeminar(io));
 app.post('/passiveSeminar', require('./api/passiveSeminar.js').passiveSeminar(io));
 //app.post('/kernelResult')
@@ -71,6 +70,8 @@ app.post('/updateSeminar',require('./api/models/seminar.js').updateSeminar);
 
 app.get('/contracts/:seminar/:contractUserID',require('./api/models/contract.js').getContractList);
 app.get('/contractDetails/:contractCode',require('./api/models/contract.js').getContractDetails);
+//add new contract
+app.post('/addContract',require('./api/models/contract.js').addContract(io));
 
 app.get('/variantHistoryInfo');
 app.get('/brandHistoryInfo');
@@ -109,3 +110,4 @@ db.once('open', function(response,request) {
           console.log('Server listening on port ' + port);
       });
 });    
+
