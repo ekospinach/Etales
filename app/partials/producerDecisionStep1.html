@@ -84,7 +84,7 @@
               <p class="text-primary" Popover-animation="true" popover="Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui." popover-title="{{fullLanguages.TL}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.TL}}<span style="color:red">*</span></p>
             </th>
             <th ng-repeat='product in products'>
-              <a href="#" editable-text="product.composition[1]" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'composition','1',$index)">{{ product.composition[1] || 'empty' }}</a>
+              <a href="#" editable-text="product.composition[1]" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'composition','1',$index)">{{ product.composition[1] || 0 }}</a>
             </th>
           </tr>
           <tr>
@@ -92,7 +92,7 @@
               <p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.AA}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.AA}}<span style="color:red">*</span></p>
             </th>
             <th ng-repeat='product in products'>
-              <a href="#" editable-text="product.composition[0]" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'composition','0',$index)">{{ product.composition[0] || 'empty' }}</a>
+              <a href="#" editable-text="product.composition[0]" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'composition','0',$index)">{{ product.composition[0] || 0 }}</a>
             </th>
           </tr>
           <tr>
@@ -100,7 +100,7 @@
               <p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.SL}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.SL}}<span style="color:red">*</span></p>
             </th>
             <th ng-repeat='product in products'>
-              <a href="#" editable-text="product.composition[2]" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'composition','2',$index)">{{ product.composition[2] || 'empty' }}</a>
+              <a href="#" editable-text="product.composition[2]" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'composition','2',$index)">{{ product.composition[2] || 0 }}</a>
             </th>
           </tr>
           <tr>
@@ -108,7 +108,7 @@
               <p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.EPV}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.EPV}}<span style="color:red">*</span></p>
             </th>
             <th ng-repeat='product in products'>
-              <a href="#" editable-text="product.production" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'production','0',$index)">{{ product.production || 'empty' }}</a>
+              <a href="#" editable-text="product.production" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'production','0',$index)">{{ product.production || 0 }}</a>
             </th>
           </tr>
           <tr>
@@ -145,9 +145,9 @@
                 <div class="form">
                   <div class="form-group">
                     <label for="lauchNewCategory">Choose Catagory:</label>
-                    <select class="form-control" ng-model="lauchNewCategory">
-                      <option value="1" ng-click="setBrandName(1)">Elecssories</option>
-                      option value="2" ng-click="setBrandName(2)">HealthBeauty</option>
+                    <select class="form-control" ng-model="lauchNewCategory" ng-change="setBrandName(lauchNewCategory)">
+                      <option value="1">Elecssories</option>
+                      <option value="2">HealthBeauty</option>
                     </select>
                   </div>
                   <div class="form-group">
@@ -168,9 +168,9 @@
                 <div class="form">
                   <div class="form-group">
                     <label for="addNewCategory">Choose Catagory:</label>
-                    <select class="form-control" ng-model="addNewCategory">
-                      <option value="1" ng-click="loadAllBrand(1)">Elecssories</option>
-                      <option value="2" ng-click="loadAllBrand(2)">HealthBeauty</option>
+                    <select class="form-control" ng-model="addNewCategory" ng-change="loadAllBrand(addNewCategory)">
+                      <option value="1">Elecssories</option>
+                      <option value="2">HealthBeauty</option>
                     </select>
                   </div>
                   <div class="form-group">

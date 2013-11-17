@@ -102,15 +102,15 @@
             </tr>
             <tr>
               <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.PV}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.PV}}<span style="color:red">*</span></p></th>
-              <th ng-repeat='product in products'><a href="#" editable-text="product.production" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'production','0',$index)">{{ product.production || 'empty' }}</a></th>
+              <th ng-repeat='product in products'><a href="#" editable-text="product.production" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'production','0',$index)">{{ product.production || 0 }}</a></th>
             </tr>
             <tr>
               <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.NPB}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.NPB}}<span style="color:red">*</span></p></th>
-              <th ng-repeat='product in products'><a href="#" editable-text="product.nextPriceBM" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'nextPriceBM','0',$index)">{{ product.nextPriceBM || 'empty' }}</a></th>
+              <th ng-repeat='product in products'><a href="#" editable-text="product.nextPriceBM" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'nextPriceBM','0',$index)">{{ product.nextPriceBM || 0 }}</a></th>
             </tr>
             <tr>
               <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.NPE}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.NPE}}<span style="color:red">*</span></p></th>
-              <th ng-repeat='product in products'><a href="#" editable-text="product.nextPriceEmall" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'nextPriceEmall','0',$index)">{{ product.nextPriceEmall || 'empty' }}</a></th>
+              <th ng-repeat='product in products'><a href="#" editable-text="product.nextPriceEmall" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'nextPriceEmall','0',$index)">{{ product.nextPriceEmall || 0 }}</a></th>
             </tr>   
           </table>
           <div>

@@ -71,8 +71,9 @@ define(['app'], function(app) {
 					}];
 
 			var language='English',
-				producerID=1,
-				period=0,
+				//producerID=1,
+				producerID=$rootScope.user.username.substring($rootScope.user.username.length-1);
+				period=$rootScope.currentPeriod,
 				category='Elecssories',
 				isCollapsed=true;
 				$scope.isCollapsed=isCollapsed;
@@ -101,7 +102,7 @@ define(['app'], function(app) {
 			};
 			/*Angular-ui-bootstrap modal end*/		
 			ProducerDecisionBase.startListenChangeFromServer();
-			ProducerDecisionBase.reload({producerID:$rootScope.rootProducerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar}).then(function(base){
+			ProducerDecisionBase.reload({producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 				$scope.pageBase = base;
 				//ProducerDecisionBase.setSomething('TEST');	
 			}).then(function(){
@@ -326,7 +327,7 @@ define(['app'], function(app) {
 					category="HealthBeauty";
 					$scope.brandFirstName="H";
 				}
-				$scope.brandLastName=1;/*need check*/
+				$scope.brandLastName=$rootScope.user.username.substring($rootScope.user.username.length-1);/*need check*/
 			}
 			/*LoadAllBrand by category*/
 			var loadAllBrand=function(category){
@@ -404,7 +405,7 @@ define(['app'], function(app) {
 
 			var loadNameNum=function(){//load the sort
 				/*importantt*/
-				return $rootScope.rootProducerID;
+				return $rootScope.user.username.substring($rootScope.user.username.length-1);
 			}		
 			var addNewProduct=function(parameter){
 				var newBrand=new ProducerDecision();
@@ -440,7 +441,7 @@ define(['app'], function(app) {
 						return (obj.categoryID==$scope.lauchNewCategory);
 					});
 					newBrand.brandID=calculateBrandID(proBrandsDecision,$scope.producerID);
-					newBrand.brandName=$scope.brandFirstName+$scope.lauchNewBrandName+$rootScope.rootProducerID;
+					newBrand.brandName=$scope.brandFirstName+$scope.lauchNewBrandName+$rootScope.user.username.substring($rootScope.user.username.length-1);
 					newBrand.paranetCompanyID=$scope.producerID;
 					newBrand.dateOfDeath="";
 					newBrand.dateOfBirth=$scope.period;
@@ -480,7 +481,7 @@ define(['app'], function(app) {
  
 			
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
-				ProducerDecisionBase.reload({producerID:$rootScope.rootProducerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar}).then(function(base){
+				ProducerDecisionBase.reload({producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 					$scope.pageBase = base;	
 				}).then(function(){
 					return promiseStep1();

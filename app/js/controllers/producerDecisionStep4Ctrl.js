@@ -48,8 +48,8 @@ define(['app'], function(app) {
 						'label':''
 					}];
 			var language='English',
-				producerID=1,
-				period=0,
+				producerID=$rootScope.user.username.substring($rootScope.user.username.length-1);
+				period=$rootScope.currentPeriod,
 				isCollapsed=true;
 				$scope.isCollapsed=isCollapsed;
 			$scope.multilingual=multilingual;
@@ -57,7 +57,7 @@ define(['app'], function(app) {
 			$scope.producerID=producerID;
 			$scope.period=period;
 
-			ProducerDecisionBase.reload({producerID:$rootScope.rootProducerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar}).then(function(base){
+			ProducerDecisionBase.reload({producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 				$scope.pageBase = base;
 			}).then(function(){
 				return promiseStep1();
@@ -138,7 +138,7 @@ define(['app'], function(app) {
 			}		
 
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
-				ProducerDecisionBase.reload({producerID:$rootScope.rootProducerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar}).then(function(base){
+				ProducerDecisionBase.reload({producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 					$scope.pageBase = base;	
 				}).then(function(){
 					return promiseStep1();

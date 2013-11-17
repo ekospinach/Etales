@@ -73,8 +73,8 @@ define(['app'], function(app) {
 					}];
 
 			var language='English',
-				retailerID=1,
-				period=0,
+				retailerID=$rootScope.user.username.substring($rootScope.user.username.length-1);
+				period=$rootScope.currentPeriod,
 				category='Elecssories',
 				isCollapsed=true;
 				$scope.isCollapsed=isCollapsed;
@@ -101,7 +101,7 @@ define(['app'], function(app) {
 			    dialogFade:true
 			};
 			/*Angular-ui-bootstrap modal end*/		
-			RetailerDecisionBase.reload({retailerID:$rootScope.rootRetailerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar}).then(function(base){
+			RetailerDecisionBase.reload({retailerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 				$scope.pageBase = base;
 			}).then(function(){
 				return promiseStep1();
@@ -330,7 +330,7 @@ define(['app'], function(app) {
 					category="HealthBeauty";
 					$scope.brandFirstName="H";
 				}
-				$scope.brandLastName=$rootScope.rootRetailerID+4;/*need check*/
+				$scope.brandLastName=$rootScope.user.username.substring($rootScope.user.username.length-1)+4;/*need check*/
 			}
 			/*LoadAllBrand by category*/
 			var loadAllBrand=function(category){
@@ -472,7 +472,7 @@ define(['app'], function(app) {
 			}
 
 			$scope.$on('retailerDecisionBaseChangedFromServer', function(event, newBase){
-				RetailerDecisionBase.reload({retailerID:$rootScope.rootRetailerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar}).then(function(base){
+				RetailerDecisionBase.reload({retailerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 					$scope.pageBase = base;
 				}).then(function(){
 					return promiseStep1();
