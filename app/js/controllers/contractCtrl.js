@@ -27,7 +27,7 @@ define(['app'], function(app) {
 				$scope.detailModal=true;
 				$scope.Detail=contract;
 				var category="Elecssories";
-				if(contract.producerID==contract.draftedByCompanyID){
+				if(contract.producerID==contract.draftedByCompanyID&&$rootScope.user.username.substring($rootScope.user.username.length-3,$rootScope.user.username.length-2)==2&&contract.producerID==$rootScope.user.username.substring($rootScope.user.username.length-1)){
 					$scope.shouldBeEdit="inline";
 					$scope.shouldBeView="none";
 				}else{

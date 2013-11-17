@@ -52,9 +52,9 @@
 			    	<tr ng-repeat="allContract in allContracts">
 			    		<td>{{allContract.contractCode}}</td>
 			    		<td>{{allContract.period}}</td>
-			    		<td>{{rootSeminar}}_P_{{allContract.producerID}}</td>
-			    		<td>{{rootSeminar}}_R_{{(allContract.retailerID)}}</td>
-			    		<td>{{rootSeminar}}_{{(allContract.draftedByCompanyID>3)?'R':'P'}}_{{(allContract.draftedByCompanyID>3)?(allContract.draftedByCompanyID-4):allContract.draftedByCompanyID}}</td>
+			    		<td>{{user.seminar}}_P_{{allContract.producerID}}</td>
+			    		<td>{{user.seminar}}_R_{{(allContract.retailerID)}}</td>
+			    		<td>{{user.seminar}}_{{(allContract.draftedByCompanyID>3)?'R':'P'}}_{{(allContract.draftedByCompanyID>3)?(allContract.draftedByCompanyID-4):allContract.draftedByCompanyID}}</td>
 			    		<td>
 			    			<fieldset disabled>
 			    				<div class="checkbox">
@@ -280,7 +280,7 @@
 			<div class="modal-header">
 				<div style="background-color:yellow">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeEditModal()">&times;</button>
-					<h4>{{editDetail.negotiationItem}},{{rootSeminar}}_{{editDetail.relatedBrandName}}</h4>
+					<h4>{{editDetail.negotiationItem}},{{user.seminar}}_{{editDetail.relatedBrandName}}</h4>
 				</div>
 				<div class="btn-group pull-right" data-toggle="buttons">
 					<label class="btn btn-primary" ng-click="setShowDetailType('Brand')">
@@ -565,7 +565,7 @@
 			<div class="modal-header">
 				<div style="background-color:yellow">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeViewModal()">&times;</button>
-					<h4>{{editDetail.negotiationItem}},{{rootSeminar}}_{{editDetail.relatedBrandName}}</h4>
+					<h4>{{editDetail.negotiationItem}},{{user.seminar}}_{{editDetail.relatedBrandName}}</h4>
 				</div>
 				<div class="btn-group pull-right" data-toggle="buttons">
 					<label class="btn btn-primary" ng-click="setShowDetailType('Brand')">
