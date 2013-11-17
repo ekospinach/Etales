@@ -32,15 +32,12 @@ app.use(app.router);
 app.use(express.static(path.join(__dirname, '/app')));
 app.use(express.logger());
 
-
 //user authenticate
 passport.use(require('./api/models/seminar').localStrategy);
 passport.serializeUser(require('./api/models/seminar').serializeUser);
 passport.deserializeUser(require('./api/models/seminar').deserializeUser);
 app.post('/login', require('./api/auth').login);
 app.post('/logout', require('./api/auth').logout);
-
-
 
 app.post('/initialiseSeminar', require('./api/initialiseSeminar.js').initialiseSeminar(io));
 app.post('/passiveSeminar', require('./api/passiveSeminar.js').passiveSeminar(io));
@@ -53,7 +50,6 @@ app.post('/retailerDecision',require('./api/models/retailerDecision.js').updateR
 
 app.get('/negotiationDecision');
 app.post('/updateContractDetails',require('./api/models/contract.js').updateContractDetails(io));
-
 
 //add Seminar
 app.post('/addSeminar',require('./api/models/seminar.js').addSeminar);
@@ -97,11 +93,8 @@ app.get('/variantHistoryNewDoc',require('./api/models/variantHistoryInfo.js').ne
 app.get('/brandHistoryNewDoc',require('./api/models/brandHistoryInfo.js').newDoc);
 app.get('/companyHistoryNewDoc',require('./api/models/companyHistoryInfo.js').newDoc);
 app.get('/quarterHistoryNewDoc',require('./api/models/quarterHistoryInfo.js').newDoc);
-
 app.get('/seminarNewDoc',require('./api/models/seminar.js').newDoc);
 
-// app.use(require('./api/errorHandlers.js').logErrors);
-// app.use(require('./api/errorHandlers.js').)
 app.use(express.errorHandler());
 
 
