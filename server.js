@@ -1,5 +1,6 @@
-var path    = require('path'),
+require('newrelic');
 
+var path    = require('path'),
 
 mongoose = require('mongoose'),
 files    = require('./api/models/file.js'),
@@ -96,11 +97,13 @@ app.get('/variantHistoryNewDoc',require('./api/models/variantHistoryInfo.js').ne
 app.get('/brandHistoryNewDoc',require('./api/models/brandHistoryInfo.js').newDoc);
 app.get('/companyHistoryNewDoc',require('./api/models/companyHistoryInfo.js').newDoc);
 app.get('/quarterHistoryNewDoc',require('./api/models/quarterHistoryInfo.js').newDoc);
+
 app.get('/seminarNewDoc',require('./api/models/seminar.js').newDoc);
 
 // app.use(require('./api/errorHandlers.js').logErrors);
 // app.use(require('./api/errorHandlers.js').)
 app.use(express.errorHandler());
+
 
 port = parseInt(process.env.PORT, 10) || conf.server.port;
 mongoose.connect('mongodb://localhost/Etales');

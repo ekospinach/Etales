@@ -98,7 +98,7 @@ exports.exportToBinary = function(options){
     return deferred.promise;
 }
 
-exports.addProducerDecisions = function(options, socket){
+exports.addProducerDecisions = function(options){
     var deferred = q.defer();
     var startFrom = options.startFrom,
     endWith = options.endWith;
@@ -128,7 +128,7 @@ exports.addProducerDecisions = function(options, socket){
             }
           }      
           if (!singleDecision) return; 
-          console.log(util.inspect(singleDecision, {depth:null}));
+         // console.log(util.inspect(singleDecision, {depth:null}));
           proDecision.update({seminar: singleDecision.seminar, 
                               period: singleDecision.period,
                               producerID: singleDecision.producerID},

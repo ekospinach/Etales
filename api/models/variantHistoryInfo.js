@@ -62,6 +62,91 @@ var channelMarketViewSchema = mongoose.Schema({
 
 var variantHistory = mongoose.model('variantHistory',variantHistoryInfoSchema);
 
+exports.addInfos = function(options){
+    var deferred = q.defer();
+    var startFrom = options.startFrom,
+    endWith = options.endWith;
+
+   (function sendRequest(currentPeriod){        
+      var reqOptions = {
+          hostname: options.cgiHost,
+          port: options.cgiPort,
+          path: options.cgiPath + '?period=' + currentPeriod + '&seminar=' + options.seminar
+      };
+
+      http.get(reqOptions, function(response) { 
+        var data = '';
+        response.setEncoding('utf8');
+        response.on('data', function(chunk){
+          data += chunk;
+        }).on('end', function(){
+          //ask Oleg to fix here, should return 404 when result beyound the existed period.
+                   console.log('response statusCode from CGI(' + options.cgiPath + ') for period ' + currentPeriod + ': ' + response.statusCode);
+          if ( response.statusCode === (404 || 500) ) 
+            deferred.reject({msg:'Get 404 error from CGI server, reqOptions:' + JSON.stringify(reqOptions)});
+          else {
+            try {
+              var infoGroup = JSON.parse(data);
+            } catch(e) {
+              deferred.reject({msg: 'Read decision file failed or something else, cannot parse JSON data from CGI:' + data, options:options});
+            }
+          }      
+          if (!infoGroup) return; 
+
+//          console.log(util.inspect(infoGroup, {depth:null}));
+          (function singleUpdate(idx){
+            if( (infoGroup[idx].varName != '') && (infoGroup[idx].parentBrandName != '')){
+              variantHistory.update({seminar: infoGroup[idx].seminar, 
+                                  period: infoGroup[idx].period,
+                                  parentBrandName: infoGroup[idx].parentBrandName,
+                                  parentBrandID: infoGroup[idx].parentBrandID,
+                                  parentCatID : infoGroup[idx].parentCatID,
+                                  parentCompanyID : infoGroup[idx].parentCompanyID,
+                                  varName : infoGroup[idx].varName,
+                                  varID : infoGroup[idx].varID},
+                                  {dateOfBirth: infoGroup[idx].dateOfBirth,
+                                   dateOfDeath: infoGroup[idx].dateOfDeath,
+                                   supplierView: infoGroup[idx].supplierView,
+                                   channelView: infoGroup[idx].channelView},
+                                    {upsert: true},
+                                    function(err, numberAffected, raw){
+                                      if(err) deferred.reject({msg:err, options: options});       
+                                      idx--;
+                                      if(idx >= 0){
+                                        singleUpdate(idx);
+                                      } else {
+                                        currentPeriod--;
+                                        if (currentPeriod >= startFrom) {
+                                           sendRequest(currentPeriod);
+                                        } else {
+                                           deferred.resolve({msg:'variantHistoryInfo(seminar:' + options.seminar + ') import done. from period' + startFrom + ' to ' + endWith, options: options});
+                                        }
+                                      }                           
+                                    });   
+
+            } else {
+                idx--;
+                if(idx >= 0){
+                    singleUpdate(idx);
+                } else {
+                    currentPeriod--;
+                    if (currentPeriod >= startFrom) {
+                       sendRequest(currentPeriod);
+                    } else {
+                       deferred.resolve({msg:'variantHistoryInfo(seminar:' + options.seminar + ') import done. from period' + startFrom + ' to ' + endWith, options: options});
+                    }
+                }
+            } 
+          })(infoGroup.length-1);
+        });
+      }).on('error', function(e){
+        deferred.reject({msg:'errorFrom variantHistoryInfo import:' + e.message + ', requestOptions:' + JSON.stringify(reqOptions),options: options});
+      });
+    })(endWith);
+
+    return deferred.promise;
+}
+
 exports.newDoc=function(req,res,next){
     var newDoc=new variantHistory({
         period : 0,

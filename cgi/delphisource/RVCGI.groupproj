@@ -24,6 +24,18 @@
 			<Projects Include="retailerDecision\retailerDecision.dproj">
 				<Dependencies/>
 			</Projects>
+			<Projects Include="variantHistoryInfo\variantHistoryInfo.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="companyHistoryInfo\companyHistoryInfo.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="brandHistoryinfo\brandHistoryInfo.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="quarterHistoryInfo\quarterHistoryInfo.dproj">
+				<Dependencies/>
+			</Projects>
 		</ItemGroup>
 		<ProjectExtensions>
 			<Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -95,14 +107,50 @@
 		<Target Name="retailerDecision:Make">
 			<MSBuild Projects="retailerDecision\retailerDecision.dproj" Targets="Make"/>
 		</Target>
+		<Target Name="variantHistoryInfo">
+			<MSBuild Projects="variantHistoryInfo\variantHistoryInfo.dproj"/>
+		</Target>
+		<Target Name="variantHistoryInfo:Clean">
+			<MSBuild Projects="variantHistoryInfo\variantHistoryInfo.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="variantHistoryInfo:Make">
+			<MSBuild Projects="variantHistoryInfo\variantHistoryInfo.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="companyHistoryInfo">
+			<MSBuild Projects="companyHistoryInfo\companyHistoryInfo.dproj"/>
+		</Target>
+		<Target Name="companyHistoryInfo:Clean">
+			<MSBuild Projects="companyHistoryInfo\companyHistoryInfo.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="companyHistoryInfo:Make">
+			<MSBuild Projects="companyHistoryInfo\companyHistoryInfo.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="brandHistoryInfo">
+			<MSBuild Projects="brandHistoryinfo\brandHistoryInfo.dproj"/>
+		</Target>
+		<Target Name="brandHistoryInfo:Clean">
+			<MSBuild Projects="brandHistoryinfo\brandHistoryInfo.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="brandHistoryInfo:Make">
+			<MSBuild Projects="brandHistoryinfo\brandHistoryInfo.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="quarterHistoryInfo">
+			<MSBuild Projects="quarterHistoryInfo\quarterHistoryInfo.dproj"/>
+		</Target>
+		<Target Name="quarterHistoryInfo:Clean">
+			<MSBuild Projects="quarterHistoryInfo\quarterHistoryInfo.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="quarterHistoryInfo:Make">
+			<MSBuild Projects="quarterHistoryInfo\quarterHistoryInfo.dproj" Targets="Make"/>
+		</Target>
 		<Target Name="Build">
-			<CallTarget Targets="marketReport;lineChart;perceptionMap;finReport;volReport;producerDecision;retailerDecision"/>
+			<CallTarget Targets="marketReport;lineChart;perceptionMap;finReport;volReport;producerDecision;retailerDecision;variantHistoryInfo;companyHistoryInfo;brandHistoryInfo;quarterHistoryInfo"/>
 		</Target>
 		<Target Name="Clean">
-			<CallTarget Targets="marketReport:Clean;lineChart:Clean;perceptionMap:Clean;finReport:Clean;volReport:Clean;producerDecision:Clean;retailerDecision:Clean"/>
+			<CallTarget Targets="marketReport:Clean;lineChart:Clean;perceptionMap:Clean;finReport:Clean;volReport:Clean;producerDecision:Clean;retailerDecision:Clean;variantHistoryInfo:Clean;companyHistoryInfo:Clean;brandHistoryInfo:Clean;quarterHistoryInfo:Clean"/>
 		</Target>
 		<Target Name="Make">
-			<CallTarget Targets="marketReport:Make;lineChart:Make;perceptionMap:Make;finReport:Make;volReport:Make;producerDecision:Make;retailerDecision:Make"/>
+			<CallTarget Targets="marketReport:Make;lineChart:Make;perceptionMap:Make;finReport:Make;volReport:Make;producerDecision:Make;retailerDecision:Make;variantHistoryInfo:Make;companyHistoryInfo:Make;brandHistoryInfo:Make;quarterHistoryInfo:Make"/>
 		</Target>
 		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
 	</Project>
