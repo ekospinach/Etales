@@ -1,3 +1,5 @@
+require('newrelic');
+
 var path    = require('path'),
     mongoose = require('mongoose'),
     files    = require('./api/models/file.js'),

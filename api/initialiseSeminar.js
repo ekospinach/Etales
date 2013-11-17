@@ -52,6 +52,14 @@ exports.initialiseSeminar = function(io){
             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });		
             options.cgiPath = conf.cgi.path_variantHistoryInfo;			
 			return require('./models/variantHistoryInfo.js').addInfos(options);										
+		}).then(function(result){
+            io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });		
+            options.cgiPath = conf.cgi.path_companyHistoryInfo;			
+			return require('./models/companyHistoryInfo.js').addInfos(options);				
+		}).then(function(result){
+            io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });		
+            options.cgiPath = conf.cgi.path_quarterHistoryInfo;			
+			return require('./models/quarterHistoryInfo.js').addInfos(options);					
 		}).then(function(result){ //log the success info
             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	
             res.send(200, 'success');
