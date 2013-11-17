@@ -398,9 +398,12 @@ define(['app'], function(app) {
 				$scope.isCollapsed=true;
 			}
 
-			var getMoreInfo=function(brandID,varName){
-				$scope.moreInfo={'parentBrandID':brandID,'varName':varName};
+			var getMoreInfo=function(brandName,varName){
 				$scope.isCollapsed=false;
+				var url='/variantHistoryInfo/'+$scope.user.seminar+'/'+$rootScope.currentPeriod+'/'+brandName+'/'+varName;
+				$http.get(url).success(function(data){
+					$scope.history=date;
+				})
 			}
 
 			var loadNameNum=function(){//load the sort

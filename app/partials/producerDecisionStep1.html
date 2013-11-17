@@ -44,18 +44,28 @@
           <div class="well well-large">
             <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button>
             <table class="table table-striped">
+              <tr style="backgroud-color:gray">Current Period({{currentPeriod}})</tr>
               <tr>
-                <td>parentBrandID:{{moreInfo.parentBrandID}}</td>
-                <td>varName:{{moreInfo.varName}}</td>
-                <td>parentBrandID:{{moreInfo.parentBrandID}}</td>
-                <td>varName:{{moreInfo.varName}}</td>
+                <td>Unit Production cost:</td>
+                <td>Acquired design technology level:</td>
+                <td>Acquired design level:</td>
+              </tr>
+              <tr style="margin-top:20px;backgroud-color:gray">Previous period({{(currentPeriod-1)}})</tr>
+              <tr>
+                <th>Sales Volume:</th>
+                <td>unit production cost:</td>
+                <td>production Volume:</td>
               </tr>
               <tr>
-                <td>parentBrandID:{{moreInfo.parentBrandID}}</td>
-                <td>varName:{{moreInfo.varName}}</td>
-                <td>parentBrandID:{{moreInfo.parentBrandID}}</td>
-                <td>varName:{{moreInfo.varName}}</td>
-              </tr>            
+                <td>initial inventory:</td>
+                <td>Current price BM:</td>
+                <td>Current price emall:</td>
+              </tr>         
+              <tr>
+                <td>Design Index:</td>
+                <td>Technology Level:</td>
+                <td>Raw Materials Quality:</td>
+              </tr>
             </table>
           </div>
         </div>
@@ -67,7 +77,7 @@
           <tr>
             <th>{{fullLanguages.Variant}}</th>
             <th ng-repeat='product in products'>{{product.varName}}
-              <span><a ng-click="getMoreInfo(product.parentBrandID,product.varName)">more</a></span>
+              <span><a ng-click="getMoreInfo(product.parentBrandName,product.varName)">more</a></span>
               <button type="button" class="btn btn-danger btn-xs {{(product.dateOfBirth==-4)?'hide':'show'}}" ng-click="deleteProduct(category,product.parentBrandName,product.varName)">Delete</button>
             </th>
           </tr>
