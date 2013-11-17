@@ -17,7 +17,7 @@ exports.initialiseSeminar = function(io){
 
 		//call Initialize on the server, callback		
 		//...		
-		//if callback is true, import decisions....
+		//Import Decisions and Negotiation
 		require('./models/producerDecision.js').addProducerDecisions(options).then(function(result){
 			console.log(result);
             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
@@ -43,7 +43,9 @@ exports.initialiseSeminar = function(io){
 		}).then(function(result){
             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
 			options.retailerID = '4';			
-			return require('./models/retailerDecision.js').addRetailerDecisions(options);		
+			return require('./models/retailerDecision.js').addRetailerDecisions(options);	
+
+		//import historyInformation		
 		}).then(function(result){
             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });		
             options.cgiPath = conf.cgi.path_brandHistoryInfo;			
@@ -59,7 +61,33 @@ exports.initialiseSeminar = function(io){
 		}).then(function(result){
             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });		
             options.cgiPath = conf.cgi.path_quarterHistoryInfo;			
-			return require('./models/quarterHistoryInfo.js').addInfos(options);					
+			return require('./models/quarterHistoryInfo.js').addInfos(options);		
+
+		//import reports and charts		
+		}).then(function(result){
+			//need start from -2 until Dariusz fix the issue in result file
+			options.startFrom = -2;
+            io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });		
+            options.cgiPath = conf.cgi.path_marketReport;			
+			return require('./models/marketReport.js').addInfos(options);	
+		}).then(function(result){
+            io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });		
+            options.cgiPath = conf.cgi.path_lineChart;			
+			return require('./models/lineChart.js').addInfos(options);	
+		}).then(function(result){
+            io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });		
+            options.cgiPath = conf.cgi.path_perceptionMap;			
+			return require('./models/perceptionMap.js').addInfos(options);	
+		}).then(function(result){
+            io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });		
+            options.cgiPath = conf.cgi.path_finReport;			
+			return require('./models/finReport.js').addInfos(options);	
+		}).then(function(result){
+            io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });		
+            options.cgiPath = conf.cgi.path_volReport;			
+			return require('./models/volReport.js').addInfos(options);	
+
+		//deal with promises chain 						
 		}).then(function(result){ //log the success info
             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	
             res.send(200, 'success');
