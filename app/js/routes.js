@@ -13,6 +13,10 @@ define(['angular',
 		'controllers/loginCtrl',
 		'controllers/adminCtrl',
 		'controllers/homeCtrl',
+		'controllers/mapCtrl',
+		'controllers/marketReportCtrl',
+		'controllers/lineChartCtrl',
+		'controllers/reportCtrl',
 		'controllers/navbarCtrl'], function(angular, app) {
 	'use strict';
 	return app.config(['$routeProvider','$httpProvider', function($routeProvider, $httpProvider) {
@@ -66,6 +70,27 @@ define(['angular',
 			templateUrl:'partials/admin.html',
 			controller:'adminCtrl',
 			access : access.public			
+		}).when('/map',{
+			controller: 'mapCtrl',
+			templateUrl:'partials/map.html',
+			access:access.playerView,
+			resolve:{
+				map:function(MapLoader){
+					return MapLoader();
+          		}
+        	}
+		}).when('/marketReport',{
+			controller:'marketReportCtrl',
+			templateUrl:'partials/marketReport.html',
+			access:access.playerView
+		}).when('/lineChart',{
+			controller:'lineChartCtrl',
+			templateUrl:'partials/lineChart.html',
+			access:access.playerView
+		}).when('/report',{
+			controller:'reportCtrl',
+			templateUrl:'partials/report.html',
+			access:access.playerView
 		});	
 
 		$routeProvider.otherwise({redirectTo: '/login'});

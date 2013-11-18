@@ -1,0 +1,105 @@
+<div id="content" class="bs-header">
+    <div class="container">
+        <h1>LineChart</h1>
+        <p>We deliver a highly disruptive and transformational experiential learning model on a global scale !</p>
+    </div>
+</div>
+
+<div class="bs-old-docs">
+    <div class="container">
+        <strong>
+            Traditional learning models are broken.
+        </strong>
+    </div>
+</div>
+<div class="container bs-docs-container">
+    <div class="row">
+
+		<div class="col-lg-3" angular-bootstrap>
+			<div class="bs-sidebar hidden-print" role="complementary">
+				<ul class="nav bs-sidenav">
+					<li class="">
+						<a ng-click="getLineChart(seminar,'Profitability Absolute RMB',period)">Profitability Absolute RMB</a>
+					</li>
+					<li class="">
+						<a ng-click="getLineChart(seminar,'Profitability as %25 of Sales',period)">Profitability as % of Sales</a>
+					</li>
+					<li class="">
+						<a ng-click="getLineChart(seminar,'Expenses',period)">Expenses</a>
+					</li>
+					<li class="">
+						<a ng-click="getLineChart(seminar,'Wholesales Market Results',period)">Wholesales Market Results</a>
+					</li>
+					<li class="">
+						<a ng-click="getLineChart(seminar,'Retail Market Results',period)">Retail Market Results</a>
+					</li>
+				</ul>
+		    </div>
+		</div>
+
+		<div class="col-lg-9">
+			<br>
+			<h3>{{showGroupENG}}</h3>
+			<h4 class="pull-left"><span class="label label-warning">{{cat}}</span></h4>
+			<h4 class="pull-left" style="margin-left:10px"><span class="label label-success">{{market}}</span></h4>
+			<h4 class="pull-left" style="margin-left:10px"><span class="label label-danger">{{role}}</span></h4>
+			<h4 class="pull-left" style="margin-left:10px"><span class="label label-info">Period:{{period}}</span></h4>
+			<div style="padding:1px 0;clear:both"></div>
+			<div class="btn-group">
+			  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+			    Category <span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu">
+			    <li><a ng-click="showLineChart('Elecsories',market,role,language)">Elecssories</a></li>
+			    <li><a ng-click="showLineChart('HealthBeauties',market,role,language)">HealthBeauties</a></li>
+			    <li><a ng-click="showLineChart('Total',market,role,language)">Total</a></li>
+			  </ul>
+			</div>
+			<div class="btn-group">
+			  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+			    Market <span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu">
+			    <li><a ng-click="showLineChart(cat,'Urban',role,language)">Urban</a></li>
+			    <li><a ng-click="showLineChart(cat,'Rural',role,language)">Rural</a></li>
+			    <li><a ng-click="showLineChart(cat,'Total',role,language)">Total</a></li>
+			  </ul>
+			 </div>
+			 <div class="btn-group">
+			  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+			    Role <span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu">
+			    <li><a ng-click="showLineChart(cat,market,'Producer',language)">Producer</a></li>
+			    <li><a ng-click="showLineChart(cat,market,'Retailer',language)">Retailer</a></li>
+			  </ul>
+			</div>
+			<div class="btn-group pull-right" data-toggle="buttons">
+				  <label class="btn btn-primary" ng-click="showLineChart(cat,market,role,'Chinese')">
+				    <input type="radio" name="options" > Chinese
+				  </label>
+				  <label class="btn btn-primary" ng-click="showLineChart(cat,market,role,'English')">
+				    <input type="radio" name="options"> English
+				  </label>
+				  <label class="btn btn-primary" ng-click="showLineChart(cat,market,role,'Russian')">
+				    <input type="radio" name="options"> Russian
+				  </label>
+				</div>
+			<div class="btn-group">
+			  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+			    Period <span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu">
+			    <li ng-repeat="newperiod in periods"><a ng-click="getLineChart(seminar,realGroupENG,newperiod)">{{newperiod}}</a></li>
+			  </ul>
+			 </div>
+			 <div style="clear:both"></div>
+			 <div google-chart chart1="chart1"  style="width:50%;float:left;height:400px" id="chart1"></div>
+			 <div google-chart2 chart2="chart2" style="width:50%;float:left;height:400px" id="chart2"></div>
+			 <div google-chart3 chart3="chart3" style="width:50%;float:left;height:400px" id="chart3"></div>
+			 <div google-chart4 chart4="chart4" style="width:50%;float:left;height:400px" id="chart4"></div>
+		</div>
+	</div>
+</div>
+
+
