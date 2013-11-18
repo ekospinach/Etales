@@ -53,7 +53,6 @@ app.post('/retailerDecision',require('./api/models/retailerDecision.js').updateR
 app.get('/negotiationDecision');
 app.post('/updateContractDetails',require('./api/models/contract.js').updateContractDetails(io));
 
-
 //add Seminar
 app.post('/addSeminar',require('./api/models/seminar.js').addSeminar);
 
@@ -88,11 +87,8 @@ app.get('/volReport', require('./api/models/volReport.js').getVolReport);
 
 //special calculate API
 app.get('/productionCost');
-
 app.get('/seminarNewDoc',require('./api/models/seminar.js').newDoc);
 
-// app.use(require('./api/errorHandlers.js').logErrors);
-// app.use(require('./api/errorHandlers.js').)
 app.use(express.errorHandler());
 
 

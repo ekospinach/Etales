@@ -17,9 +17,8 @@ exports.initialiseSeminar = function(io){
 
 		//call Initialize on the server, callback		
 		//...		
-		//Import Decisions and Negotiation
+		//import Decisions and Negotiation
 		require('./models/producerDecision.js').addProducerDecisions(options).then(function(result){
-			console.log(result);
             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
 			options.producerID = '2';			
 			return require('./models/producerDecision.js').addProducerDecisions(options);
@@ -44,6 +43,10 @@ exports.initialiseSeminar = function(io){
             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
 			options.retailerID = '4';			
 			return require('./models/retailerDecision.js').addRetailerDecisions(options);	
+		// }).then(function(result){
+  //           io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
+  //           options.cgiPath = conf.cgi.path_negotiationDecision;
+		// 	return require('./models/allDeal.js').addDecisions(options);	
 
 		//import historyInformation		
 		}).then(function(result){
