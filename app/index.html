@@ -22,36 +22,36 @@
 							<a href="#/home">Participant manual</a>
 						</li>
 						<li class="{{rootShow}}" access-level='{{accessLevels.playerView}}' artive-nav>
-							<a href="#/map">Map</a>
+							<a href="#/map">My company</a>
 						</li>
 		          		<li class="{{rootShow}}" access-level='{{accessLevels.playerView}}' active-nav>
-		          			<a href="#/report">Reports</a>
+		          			<a href="#/report">Financial reports</a>
 		          		</li>   
 		          		<li class="{{rootShow}}" access-level='{{accessLevels.playerView}}' active-nav>
-		          			<a href="#/lineChart">Charts</a>
+		          			<a href="#/lineChart">Trend charts</a>
 		          		</li>     
 		          		<li class="{{rootShow}}" access-level='{{accessLevels.playerView}}' active-nav>
 		          			<a href="#/marketReport">Market studies</a>
 		          		</li> 
-		          		<li class="{{decisionActive}}" access-level='{{accessLevels.producerView}}' active-nav>
-		          			<a href="#/producerDecisionStep1">Producer decision</a>
-		          		</li>
-		          		<li access-level='{{accessLevels.retailerView}}' active-nav>
-		          			<a href="#/retailerDecisionStep1">Retailer decision</a>
-		          		</li>
 		          		<li access-level='{{accessLevels.playerView}}' active-nav>
 		          			<a href="#/contract">Negotiation</a>
 		          		</li>      
+		          		<li class="{{decisionActive}}" access-level='{{accessLevels.producerView}}' active-nav>
+		          			<a href="#/producerDecisionStep1">Make Decision</a>
+		          		</li>
+		          		<li access-level='{{accessLevels.retailerView}}' active-nav>
+		          			<a href="#/retailerDecisionStep1">Make Decision</a>
+		          		</li>
 		      		</ul>
 
 				    <ul class="nav pull-right">
 				        <li id="userInfo" data-access-level="{{ accessLevels.playerView }}" class="pull-right">
 				        	<div style="clear:both"></div>
-					        <a class="pull-left">
-					          <label class="pull-left">Seminar</label>
-					          <strong class="pull-left">{{ user.seminar }}&nbsp;</strong>
+<!-- 					        <a class="pull-left">
+ --><!-- 					          <label class="pull-left">Seminar</label>
+					          <strong class="pull-left">{{ user.seminar }}&nbsp;</strong> -->
 					          <span data-ng-class="{&quot;label-info&quot;: user.role == userRoles.producer, &quot;label-success&quot;: user.role == userRoles.retailer, &quot;label-default&quot;: user.role == userRoles.facilitator,&quot;label-danger&quot;: user.role == userRoles.info}" class="label pull-left">{{ getUserRoleText(user.role) }} </span>
-					        </a>
+					        <!-- </a> -->
 					        <div style="clear:both"></div>
 					        <!--<a class="btn btn-xs btn-primary" ng-click="Auth.logout()">logout</a>-->
 				        </li>      

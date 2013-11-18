@@ -433,12 +433,21 @@ var
       end;
     end;
 
-    function getSeminar(const filePath : string): string;
+    function getSeminar(const filePath : string): string; overload;
     var
       i_tmp : Integer;
     begin
       i_tmp := LastDelimiter('.',filePath) + 1;
       Result := Copy(filePath, i_tmp, 10);
+    end;
+
+    function getSeminar(): string; overload;
+    begin
+      Result := dummySeminar;
+	  if sListData.IndexOfName('filepath') <> -1 then
+		  Result := getSeminar(getFileName);
+    if sListData.IndexOfName('seminar') <> -1 then
+      Result  := sListData.Values['seminar'];
     end;
 
     function getPeriod(): Integer;
@@ -447,6 +456,7 @@ var
       if sListData.IndexOfName('period') <> -1 then
          Result := StrToInt(sListData.Values['period']);
     end;
+
 
     function serveRequest(docType : Integer) : ISuperObject;
     var
@@ -607,11 +617,25 @@ begin
     if sValue='GET' then
       begin
         // GET
+//1.Market Report
+//Action: GET
+//Parameter: seminar, period
+//Route example : ../marketReport.exe?seminar=MAY&period=0
+//Response:
+//status code 200, JSON record”S" which is defined in related schema, including all the marketReport”S" which meets the specified parameters(seminar/period), response content should be a array. CGI should decide which result file to read totally depends on seminar instead of *fileName (which is one of old version parameters).
+
         sValue := getVariable('QUERY_STRING');
         Explode(sValue, sListData);
 //        WriteLn('<H4>Values passed in mode <i>get http</i> :</H4>'+sDati);
 //        for i:= 0 to sListData.Count-1 do
 //           WriteLn(DecodeUrl(sListData[i])+'<BR>');
+        // initialize globals
+        currentSeminar := getSeminar;
+        currentPeriod := getPeriod;
+
+
+        // Now let's make some JSON stuff here
+             makeJson;
       end
     else
       // POST
@@ -647,14 +671,6 @@ begin
       end;
     // List of environment variables
 //    WriteAllEnvironVariables;
-
-    // initialize globals
-    currentSeminar := getSeminar(getFileName);
-    currentPeriod := getPeriod;
-
-
-    // Now let's make some JSON stuff here
-         makeJson;
 
 //    WriteLn('</BODY></HTML>');
   finally

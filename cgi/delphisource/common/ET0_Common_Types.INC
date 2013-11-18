@@ -71,13 +71,15 @@ Type
                              end;
 
   TVariantInventoriesDetails = array[TInventoryAgesTotal] of TVariantInventoryDetails;
+  
+  TSegmentsData              = array[TSegments] of single;
   TSegmentsTotalData         = array[TSegmentsTotal] of single;
 
 
-  TMarketsBytes              = array[TMarkets] of byte;
-  TCategoriesBytes           = array[TCategories] of byte;
-  TMarketsSet                = set of TMarkets;
-  TCategoriesSet             = set of TCategories;
+  TMarketsBytes              = array[TMarkets] of byte;       { identifies current markets, ID taken from TMarketsUniverse }
+  TCategoriesBytes           = array[TCategories] of byte;    { identifies current categories, ID taken from TCategoriesUniverse }
+  TMarketsSet                = set of TMarkets;               { defines # of current markets }
+  TCategoriesSet             = set of TCategories;            { defines # of current categories }
 
   TMarketsUniverse           = 1..MarketsUniverse;
   TCategoriesUniverse        = 1..CategoriesUniverse;
@@ -86,16 +88,18 @@ Type
   TDesignsDetails           = array[TDesign] of single;
   TIngredientsDetails       = array[TIngredientsInput] of single;
   TAllIngredientsDetails    = array[TSpecs] of TIngredientsDetails;
+  
+  TServiceLevelsData        = array[TServiceLevel] of single;
  
   TSpecsToBasePerceptionDetails = array[TVarBasePerceptions, TSpecsExtended] of single;
 
   TCumulatedVolumesDetails  = array[TSpecs, TSpecsIndices] of single;
 	
-	TWebTrawlerDimensions     = ( SENTIMENT, STRENGTH );  
+  TWebTrawlerDimensions     = ( SENTIMENT, STRENGTH );  
 	
-	TWebTrawlerIndices        = array[TWebTrawlerDimensions] of single; 
+  TWebTrawlerIndices        = array[TWebTrawlerDimensions] of single; 
 
-  TPackFormatDetails       = array[TVarPackFormat] of single;
+  TPackFormatDetails         = array[TVarPackFormat] of single;
 	
 	
   
@@ -197,8 +201,10 @@ Type
   TRetCategoriesDecisions = array[TCategories] of TRetCategoryDecision;
 
   TRetVariantDecision = record
-                          drv_BrandID          : TBrandID;
+                          drv_BrandID          : TBrandID;   
                           drv_VariantID        : TVarID;
+                          drv_BrandName        : TBrandName;       { ADDED on HAO's request on October 21 }
+                          drv_VariantName      : TVarName;         { ADDED on HAO's request on October 21 }
                           drv_DateofBirth      : TTimeSpan;
                           drv_DateOfDeath      : TTimeSpan;
                           drv_Order            : single;
@@ -364,25 +370,32 @@ TOneQuarterExogenous =
       Market_ID                       : TMarketsUniverse;
       Category_ID                     : TCategoriesUniverse;
       
-      AverageGrowthRate               : single;
+      ActiveInternetUseRateByNetizens : TSegmentsData;
+      CategoryPenetrationGrowthRate   : single;
+      ConsumptionRateChange           : TSegmentsData;
+      ConsumersSegmentsSplit          : TSegmentsData;
       DelistedGoodsLossRate           : single;
       EMallMarkup                     : single;
       EMallPriceCorrection            : single;
       IHC_Percentage                  : single;
-		   InflationRate                   : single;
-      InStoreCostPerSqMeter           : array[TServiceLevel] of single;
+	  InflationRate                   : single;
+      InternetPenetration             : TSegmentsData;
+      InStoreCostPerSqMeter           : TServiceLevelsData;
+      OnLineOnlyBuyingRate            : TSegmentsData;
+      PopulationGrowthRate            : single;
+      ProdCost_LogisticsCost          : single;
+      ProdCost_IngredientPrices       : TAllIngredientsDetails;
+      RequiredNominalPricesIndex      : TSegmentsData;    { Used instead of inflation to gauge prices evolution. Ratios above RNPI result in reducing Consumption Rate growth } 
       RetAmortisationRate             : single;  
       RetEquipmentRunningRate         : single;
       RetRealEstateRentRate           : single;
       ShelfSpaceMinimum               : single; 
       ShelfOptimisationCostPerSqMeter : single;    
-      StaffCostPerSqMeter             : array[TServiceLevel] of single;
+      StaffCostPerSqMeter             : TServiceLevelsData;
       TaxRate                         : single;
       TraditionalTradeMarkup          : single;
       TraditionalTradePriceCorrection : single;
       VariantsMaxAtTraditionalStore   : byte;
-      ProdCost_LogisticsCost          : single;
-      ProdCost_IngredientPrices       : TAllIngredientsDetails;
     end;
 
 TExogenous = array[TMarkets, TCategories] of TOneQuarterExogenous;

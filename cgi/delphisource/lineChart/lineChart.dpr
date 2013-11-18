@@ -432,12 +432,21 @@ var
         end;
       end;
 
-    function getSeminar(const filePath : string): string;
+    function getSeminar(const filePath : string): string; overload;
     var
       i_tmp : Integer;
     begin
       i_tmp := LastDelimiter('.',filePath) + 1;
       Result := Copy(filePath, i_tmp, 10);
+    end;
+
+    function getSeminar(): string; overload;
+    begin
+      Result := dummySeminar;
+	  if sListData.IndexOfName('filepath') <> -1 then
+		  Result := getSeminar(getFileName);
+    if sListData.IndexOfName('seminar') <> -1 then
+      Result  := sListData.Values['seminar'];
     end;
 
     function getPeriod(): Integer;
@@ -446,7 +455,6 @@ var
       if sListData.IndexOfName('period') <> -1 then
          Result := StrToInt(sListData.Values['period']);
     end;
-
 
     function buildOneChart(scrType,curPeriod,curMkt,curCat,curRole: integer) : ISuperObject;
     var
@@ -684,8 +692,26 @@ begin
     if sValue='GET' then
       begin
         // GET
+//3.Line Charts
+//Action: GET
+//Parameter: seminar, period
+//Route example : ../lineCharts.exe?seminar=MAY&period=0
+//Response:
+//status code 200, JSON record which is defined in related schema which meets the specified parameters(seminar/period)CGI should decide which result file to read totally depends on seminar instead of *fileName (which is one of old version parameters).
+
         sValue := getVariable('QUERY_STRING');
         Explode(sValue, sListData);
+        // initialize globals
+        currentSeminar := getSeminar;
+        currentPeriod := getPeriod;
+
+        {** Read results file **}
+            vReadRes := ReadResultsTwo(currentPeriod); // read results file
+
+
+        // Now let's make some JSON stuff here
+             makeJson(currentPeriod);
+
 //        WriteLn('<H4>Values passed in mode <i>get http</i> :</H4>'+sDati);
 //        for i:= 0 to sListData.Count-1 do
 //           WriteLn(DecodeUrl(sListData[i])+'<BR>');
@@ -702,7 +728,7 @@ begin
         begin
           iSize := strtoint(sValue);
           SetLength(sDati,iSize);
-          
+
           bUpload := false;
           sValue := getVariable('HTTP_CONTENT_TYPE');
           if (Trim(sValue)<>'') and (Trim(sValue) <> 'application/x-www-form-urlencoded') then
@@ -724,17 +750,6 @@ begin
       end;
     // List of environment variables
 //    WriteAllEnvironVariables;
-
-    // initialize globals
-    currentSeminar := getSeminar(getFileName);
-    currentPeriod := getPeriod;
-
-    {** Read results file **}
-        vReadRes := ReadResultsTwo(currentPeriod); // read results file
-
-
-    // Now let's make some JSON stuff here
-         makeJson(currentPeriod);
 
 //    WriteLn('</BODY></HTML>');
   finally
