@@ -189,6 +189,7 @@ exports.getMarketReport = function(req, res, next){
                              if(!err){
                                 res.header("Content-Type", "application/json; charset=UTF-8");
                                 res.statusCode = 200;
+                                console.log("@@@@@@@@");
                                 res.send(doc);
                              } else {
                                 next(new Error(err));

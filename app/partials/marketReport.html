@@ -1,0 +1,106 @@
+<div id="content" class="bs-header">
+    <div class="container">
+        <h1>Home</h1>
+        <p>We deliver a highly disruptive and transformational experiential learning model on a global scale !</p>
+    </div>
+</div>
+
+<div class="bs-old-docs">
+    <div class="container">
+        <strong>
+            Traditional learning models are broken.
+        </strong>
+    </div>
+</div>
+<div class="container bs-docs-container">
+    <div class="row">
+        <!--<div class="col-lg-12">
+            <div class="bs-docs-section">-->
+
+		<div class="col-lg-3" angular-bootstrap>
+			<div class="bs-sidebar hidden-print" role="complementary">
+				<ul class="nav bs-sidenav">	
+					<li class="active">
+						<a>Market Studies</a>
+						<ul class="nav second-sidenav">
+							<li class="active">
+								<a ng-click="getReport(seminar,'Brand Awareness',period)">Brand Awareness</a>
+							</li>
+							<li class="">
+								<a ng-click="getReport(seminar,'Market Share (Volume)',period)">Brand Market Share(Volume)</a>
+							</li>
+							<li class="">
+								<a ng-click="getReport(seminar,'Market Share (Value)',period)">Brand Market Share(Value)</a>
+							</li>
+							<li class="">
+								<a ng-click="getReport(seminar,'Average Net Market Price',period)">Average Net Market Price</a>
+							</li>
+							<li class="">
+								<a ng-click="getReport(seminar,'Brand Visibility Share (shelf space %2B in-store activity)',period)">Brand Visibility Share</a>
+							</li>
+							<li class="">
+								<a ng-click="getReport(seminar,'Consumer off-take',period)">Consumer off-take</a>
+							</li>
+						</ul>
+					</li>	
+				</ul>
+		    </div>
+		</div>
+
+		<div class="col-lg-9">
+			<div style="padding:10px 0;clear:both"></div>
+			<h3>{{showTitleENG}}</h3>
+			<h4 class="pull-left"><span class="label label-warning">{{cat}}</span></h4>
+			<h4 class="pull-left" style="margin-left:10px"><span class="label label-success">{{market}}</span></h4>
+			<h4 class="pull-left" style="margin-left:10px"><span class="label label-info">Period:{{period}}</span></h4>
+			<div style="padding:1px 0;clear:both"></div>
+			<div class="btn-group">
+				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+			    Category <span class="caret"></span>
+			 	</button>
+			  	<ul class="dropdown-menu">
+			    	<li><a ng-click="showReport('Elecsories',market,language)">Elecsories</a></li>
+			    	<li><a ng-click="showReport('HealthBeauties',market,language)">HealthBeauties</a></li>
+			  	</ul>
+			</div>
+
+			<div class="btn-group">
+			  	<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+			    Market <span class="caret"></span>
+			  	</button>
+			  	<ul class="dropdown-menu">
+			    	<li><a ng-click="showReport(cat,'Urban',language)">Urban</a></li>
+			    	<li><a ng-click="showReport(cat,'Rural',language)">Rural</a></li>
+			    	<li><a ng-click="showReport(cat,'Total',language)">Total</a></li>
+			  	</ul>
+			</div>
+
+			<div class="btn-group">
+			  	<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+			    Period <span class="caret"></span>
+			  	</button>
+			  	<ul class="dropdown-menu">
+			    	<li ng-repeat="newperiod in periods"><a ng-click="getReport(seminar,realTitleENG,newperiod)">{{newperiod}}</a></li>
+			  	</ul>
+			</div>
+			<div class="btn-group pull-right" data-toggle="buttons">
+				<label class="btn btn-primary" ng-click="showReport(cat,market,'Russian')">
+			    	<input type="radio" name="options" > Russian
+			  	</label>
+			  	<label class="btn btn-primary" ng-click="showReport(cat,market,'English')">
+			    	<input type="radio" name="options"> English
+			  	</label>
+			  	<label class="btn btn-primary" ng-click="showReport(cat,market,'Chinese')">
+			    	<input type="radio" name="options"> Chinese
+			  	</label>
+			</div>
+
+			<div style="clear:both"></div>
+			<h3>{{optitle}}</h3>
+			<div google-table charttable="charttable" style={{charttable.cssStyle}} id="charttable"/></div>		
+		</div>
+	</div>
+</div>
+
+
+

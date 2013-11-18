@@ -14,7 +14,12 @@ require.config({
 		underscore:'../bower_components/underscore/underscore',
 		bootstrap:'../bower_components/bootstrap/dist/js/bootstrap',
 		angularBootstrap:'../bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls',
-		routingConfig : './routingConfig'
+		routingConfig : './routingConfig',
+		//jquery-jqplot-->Map.html
+		jqplot:'../bower_components/jqplot/jquery.jqplot.min',
+		bubbleRenderer:'./map/jqplot.bubbleRenderer',
+		tree:'./map/bootstrap-tree',
+		chart:'../bower_components/angular-google-chart/ng-google-chart'
 		//addProduct:'../js/functions/addNewProduct'
 	},
 	baseUrl: 'js',
@@ -30,7 +35,10 @@ require.config({
 		'angularXeditable': ['angular'],
 		'bootstrap':['jquery'],
 		'angularBootstrap':['jquery','bootstrap','angular'],
-		'angularLoadingBar' : ['angular']
+		'angularLoadingBar' : ['angular'],
+		'jqplot':['jquery'],
+		'bubbleRenderer':['jqplot','jquery'],
+		'tree':['jquery']
 	},
 	priority: [
 		"angular"

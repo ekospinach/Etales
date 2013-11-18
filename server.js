@@ -81,7 +81,7 @@ app.get('/quarterHistoryInfo/:seminar/:period',require('./api/models/quarterHist
 
 app.get('/marketReport', require('./api/models/marketReport.js').getMarketReport);
 app.get('/lineChart', require('./api/models/lineChart.js').getLineChart);
-app.get('/perceptionMaps/:fileName/:period',require('./api/models/perceptionMap.js').getMapByParams);
+app.get('/perceptionMaps/:seminar/:period',require('./api/models/perceptionMap.js').getMapByParams);
 app.get('/finReport', require('./api/models/finReport.js').getFinReport);
 app.get('/volReport', require('./api/models/volReport.js').getVolReport);
 

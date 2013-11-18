@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="/bower_components/angular-xeditable/dist/css/xeditable.css">
+		<link rel="stylesheet" type="text/css" href="/bower_components/jqplot/jquery.jqplot.min.css">
 		<link rel="stylesheet" type="text/css" href="/bower_components/angular-loading-bar/src/loading-bar.css">		
 		<link rel="stylesheet" type="text/css" media="all" href="css/app.css" />
 		<link rel="stylesheet" type="text/css" media="all" href="css/docs.css" />
@@ -24,13 +25,13 @@
 							<a href="#/map">Map</a>
 						</li>
 		          		<li class="{{rootShow}}" access-level='{{accessLevels.playerView}}' active-nav>
-		          			<a href="#/catreport">Reports</a>
+		          			<a href="#/report">Reports</a>
 		          		</li>   
 		          		<li class="{{rootShow}}" access-level='{{accessLevels.playerView}}' active-nav>
-		          			<a href="#/chart">Charts</a>
+		          			<a href="#/lineChart">Charts</a>
 		          		</li>     
 		          		<li class="{{rootShow}}" access-level='{{accessLevels.playerView}}' active-nav>
-		          			<a href="#/report">Market studies</a>
+		          			<a href="#/marketReport">Market studies</a>
 		          		</li> 
 		          		<li class="{{decisionActive}}" access-level='{{accessLevels.producerView}}' active-nav>
 		          			<a href="#/producerDecisionStep1">Producer decision</a>
@@ -63,6 +64,10 @@
 	    	
 	    </div>
 	    <script data-main="js/main" src="/bower_components/requirejs/require.js"></script>
+	    <script type="text/javascript" src = "http://www.google.com/jsapi" charset="utf-8"></script>
+	    <script type="text/javascript">
+	    	google.load('visualization', '1', {packages: ['corechart']});
+	    </script>  
 	</body>
 
 </html>

@@ -187,6 +187,7 @@ exports.getFinReport = function(req, res, next){
                                   var singleReport = _.find(doc.reportCollection, function(report){ return report.role == queryCondition.role });                                
                                   res.header("Content-Type", "application/json; charset=UTF-8");                                
                                   res.statusCode = 200;
+                                  console.log("!!!!!!!!");
                                   res.send(singleReport);                                  
                                 } else {
                                   next(new Error(queryCondition + ": doc doesn't exist"));                                        

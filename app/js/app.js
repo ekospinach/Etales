@@ -10,7 +10,10 @@ define([
 	'socketIO',
 	'bootstrap',
 	'angularLoadingBar',
-	'angularCookies'
+	'angularCookies',
+	'jqplot',
+	'bubbleRenderer',
+	'tree'
 	], function (angular, filters, services, directives, controllers) {
 		'use strict';
 		return angular.module('myApp', [
@@ -25,12 +28,10 @@ define([
 		]).run(function(editableOptions){
 			editableOptions.theme = 'bs3';
 		}).run(['$rootScope', '$location','Auth', function ($rootScope, $location, Auth) {
-		    //$rootScope.decisionActive = "";
-		    //$rootScope.rootRetailerID = 1;
-		    //$rootScope.rootProducerID = 1;
 		    $rootScope.currentPeriod = 0;
-		    //$rootScope.rootSeminar = "MAY";
-		    //$rootScope.rootContractUserID=1;
+		    $rootScope.mapPeriod=0;
+		    $rootScope.rootStartFrom=-2;
+		    $rootScope.rootEndWith=0; 
 
 	        $rootScope.$on("$routeChangeStart", function (event, next, current) {
 	            console.log('handle rootscope...');

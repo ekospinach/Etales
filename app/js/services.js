@@ -48,6 +48,22 @@ define(['angular','angularResource','routingConfig'], function (angular,angularR
 	    };
 	});
 
+	services.factory('Map',['$resource',function($resource){
+    	return $resource('/perceptionMaps/:seminar/:period',{seminar:'@seminar',period:'@period'});
+	}]);
+
+	services.factory('MapLoader', ['Map', '$route','$rootScope', '$q',function(Map, $route,$rootScope, $q) {
+    	return function() {
+    		var delay = $q.defer();
+    		Map.get({seminar: $rootScope.user.seminar,period:$rootScope.mapPeriod}, function(map) {
+    			delay.resolve(map);
+    		}, function() {
+    			delay.reject('Unable to fetch file '  + $route.current.params.id);
+    		});
+    		return delay.promise;
+  		};
+	}]);
+
 	services.factory('ProducerDecision',['$resource','$rootScope', function($resource,$rootScope){
 		return $resource('/producerDecision/:producerID/:period/:seminar',{},
 			{
