@@ -54,7 +54,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 				console.log('just log out.');
 			},function(err){
 				console.log(err);
-			})
+			});
 		}
 		
 		$scope.showUser = function(){

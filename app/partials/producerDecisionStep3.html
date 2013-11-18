@@ -67,15 +67,15 @@
             <tr>
               <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.UAO}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.UAO}}<span style="color:red">*</span></p>
               </th>
-              <th ng-repeat='brand in brands'><a href="#" editable-text="brand.advertisingOffLine[0]" onaftersave="updateProducerDecision(category,brand.brandName,'advertisingOffLine','0',$index)">{{ brand.advertisingOffLine[0] || 'empty' }}</a></th>
+              <th ng-repeat='brand in brands'><a href="#" editable-text="brand.advertisingOffLine[0]" onaftersave="updateProducerDecision(category,brand.brandName,'advertisingOffLine','0',$index)">{{ brand.advertisingOffLine[0] || 0 }}</a></th>
             </tr>
             <tr>
               <th><p class="text-primary" Popover-animation="true" popover="Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui." popover-title="{{fullLanguages.UTTS}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.UTTS}}<span style="color:red">*</span></p></th>
-              <th ng-repeat='brand in brands'><a href="#" editable-text="brand.supportTraditionalTrade[0]" onaftersave="updateProducerDecision(category,brand.brandName,'supportTraditionalTrade','0',$index)">{{ brand.supportTraditionalTrade[0] || 'empty' }}</a></th>
+              <th ng-repeat='brand in brands'><a href="#" editable-text="brand.supportTraditionalTrade[0]" onaftersave="updateProducerDecision(category,brand.brandName,'supportTraditionalTrade','0',$index)">{{ brand.supportTraditionalTrade[0] || 0 }}</a></th>
             </tr>
             <tr>
               <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.RAO}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.RAO}}<span style="color:red">*</span></p></th>
-              <th ng-repeat='brand in brands'><a href="#" editable-text="brand.advertisingOffLine[1]" onaftersave="updateProducerDecision(category,brand.brandName,'advertisingOffLine','1',$index)">{{ brand.advertisingOffLine[1] || 'empty' }}</a></th>
+              <th ng-repeat='brand in brands'><a href="#" editable-text="brand.advertisingOffLine[1]" onaftersave="updateProducerDecision(category,brand.brandName,'advertisingOffLine','1',$index)">{{ brand.advertisingOffLine[1] || 0 }}</a></th>
             </tr>
             <tr>
               <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.RTTS}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.RTTS}}<span style="color:red">*</span></p></th>
@@ -87,7 +87,7 @@
             </tr> 
             <tr>
               <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.EVI}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.EVI}}<span style="color:red">*</span></p></th>
-              <th ng-repeat='brand in brands'><a href="#" editable-text="brand.supportEmall" onaftersave="updateProducerDecision(category,brand.brandName,'supportEmall','1',$index)">{{ brand.supportEmall || 'empty' }}</a></th>
+              <th ng-repeat='brand in brands'><a href="#" editable-text="brand.supportEmall" onaftersave="updateProducerDecision(category,brand.brandName,'supportEmall','1',$index)">{{ brand.supportEmall || 0 }}</a></th>
             </tr>    
           </table>
           <div>

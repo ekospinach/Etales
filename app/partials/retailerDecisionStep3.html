@@ -127,9 +127,9 @@
                 <div class="form">
                   <div class="form-group">
                     <label for="lauchNewCategory">Choose Catagory:</label>
-                    <select class="form-control" ng-model="lauchNewCategory">
-                      <option value="1" ng-click="setBrandName(1)">Elecssories</option>
-                      <option value="2" ng-click="setBrandName(2)">HealthBeauty</option>
+                    <select class="form-control" ng-model="lauchNewCategory" ng-change="setBrandName(lauchNewCategory)">
+                      <option value="1">Elecssories</option>
+                      <option value="2">HealthBeauty</option>
                     </select>
                   </div>
                   <div class="form-group">
@@ -150,9 +150,9 @@
                 <div class="form">
                   <div class="form-group">
                     <label for="addNewCategory">Choose Catagory:</label>
-                    <select class="form-control" ng-model="addNewCategory">
-                      <option value="1" ng-click="loadAllBrand(1)">Elecssories</option>
-                      <option value="2" ng-click="loadAllBrand(2)">HealthBeauty</option>
+                    <select class="form-control" ng-model="addNewCategory" ng-change="loadAllBrand(addNewCategory)">
+                      <option value="1">Elecssories</option>
+                      <option value="2">HealthBeauty</option>
                     </select>
                   </div>
                   <div class="form-group">

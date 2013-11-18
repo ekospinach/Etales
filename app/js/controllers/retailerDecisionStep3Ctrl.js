@@ -73,8 +73,8 @@ define(['app'], function(app) {
 					}];
 
 			var language='English',
-				retailerID=1,
-				period=0,
+				retailerID=$rootScope.user.username.substring($rootScope.user.username.length-1);
+				period=$rootScope.currentPeriod,
 				category='Elecssories',
 				isCollapsed=true;
 				$scope.isCollapsed=isCollapsed;
@@ -101,7 +101,7 @@ define(['app'], function(app) {
 			    dialogFade:true
 			};
 			/*Angular-ui-bootstrap modal end*/		
-			RetailerDecisionBase.reload({retailerID:$rootScope.rootRetailerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar}).then(function(base){
+			RetailerDecisionBase.reload({retailerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 				$scope.pageBase = base;
 			}).then(function(){
 				return promiseStep1();
@@ -146,7 +146,8 @@ define(['app'], function(app) {
 				var result=0,min=10*(retailerID+4)+1,max=(retailerID+4)*10+4;
 				var nums=new Array();
 				for(var i=0;i<retVariantDecision.privateLabelDecision.length;i++){
-					if(retVariantDecision.privateLabelDecision[i]!=undefined&&retVariantDecision.privateLabelDecision[i].brandID!=undefined&&retVariantDecision.privateLabelDecision[i].brandID!=0){
+					if(retVariantDecision.privateLabelDecision[i]!=undefined&&retVariantDecision.privateLabelDecision[i].brandName!=undefined&&retVariantDecision.privateLabelDecision[i].brandName!=""){
+					//if(retVariantDecision.privateLabelDecision[i]!=undefined&&retVariantDecision.privateLabelDecision[i].brandID!=undefined&&retVariantDecision.privateLabelDecision[i].brandID!=0){
 						nums.push(retVariantDecision.privateLabelDecision[i].brandID);
 					}
 				}
@@ -174,7 +175,8 @@ define(['app'], function(app) {
 		    	var result=0;min=parentBrandID*10+1,max=parentBrandID*10+3;
 		    	var nums=new Array();
 		    	for(var i=0;i<privateLabelDecision.privateLabelVarDecision.length;i++){
-					if(privateLabelDecision.privateLabelVarDecision[i]!=undefined&&privateLabelDecision.privateLabelVarDecision[i].varID!=undefined&&privateLabelDecision.privateLabelVarDecision[i].varID!=0){
+					if(privateLabelDecision.privateLabelVarDecision[i]!=undefined&&privateLabelDecision.privateLabelVarDecision[i].varName!=undefined&&privateLabelDecision.privateLabelVarDecision[i].varName!=""){
+					//if(privateLabelDecision.privateLabelVarDecision[i]!=undefined&&privateLabelDecision.privateLabelVarDecision[i].varID!=undefined&&privateLabelDecision.privateLabelVarDecision[i].varID!=0){
 						nums.push(privateLabelDecision.privateLabelVarDecision[i].varID);
 					}
 				}
@@ -328,7 +330,7 @@ define(['app'], function(app) {
 					category="HealthBeauty";
 					$scope.brandFirstName="H";
 				}
-				$scope.brandLastName=$rootScope.rootRetailerID+4;/*need check*/
+				$scope.brandLastName=$rootScope.user.username.substring($rootScope.user.username.length-1)+4;/*need check*/
 			}
 			/*LoadAllBrand by category*/
 			var loadAllBrand=function(category){
@@ -470,7 +472,7 @@ define(['app'], function(app) {
 			}
 
 			$scope.$on('retailerDecisionBaseChangedFromServer', function(event, newBase){
-				RetailerDecisionBase.reload({retailerID:$rootScope.rootRetailerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar}).then(function(base){
+				RetailerDecisionBase.reload({retailerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 					$scope.pageBase = base;
 				}).then(function(){
 					return promiseStep1();

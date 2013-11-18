@@ -19,6 +19,25 @@ var categoryMarketViewSchema = mongoose.Schema({
 
 var quarterHistory=mongoose.model('quarterHistory',quarterHistoryInfoSchema);
 
+
+exports.getQuarterHistory=function(req,res,next){
+	quarterHistory.findOne({
+		seminar:req.params.seminar,
+		period:req.params.period
+	},function(err,doc){
+		if(err){
+			next(new Error(err));
+		}
+		if(!doc){
+			res.send(404,'cannot find the doc');
+		}else{
+            res.header("Content-Type", "application/json; charset=UTF-8");                                
+            res.statusCode = 200;
+            res.send(doc);			
+		}
+	})
+}
+
 exports.addInfos = function(options){
     var deferred = q.defer();
     var startFrom = options.startFrom,
@@ -74,30 +93,3 @@ exports.addInfos = function(options){
     return deferred.promise;
 }
 
-
-exports.newDoc=function(req,res,next){
-	var newDoc=new quarterHistory({
-		period:0,
-		seminar:"MAY",
-		categoryView:[{
-			categoryMarketView:[{
-				segmentsVolumes:[22,23,24,25,26]
-			},{
-				segmentsVolumes:[32,33,34,35,36]
-			}]
-		},{
-			categoryMarketView:[{
-				segmentsVolumes:[122,123,124,125,126]
-			},{
-				segmentsVolumes:[132,133,134,135,136]
-			}]
-		}]
-	});
-	newDoc.save(function(err){
-		if(err){
-			next(new Error(err));
-		}
-		console.log('quarterHistoryHistoryInfo insert success');
-		res.send(200,'insert success')
-	})
-}

@@ -31,6 +31,25 @@ var channelViewSchema = mongoose.Schema({
 
 var brandHistory = mongoose.model('brandHistory',brandHistoryInfoSchema);
 
+exports.getBrandHistory=function(req,res,next){
+    brandHistory.findOne({
+        seminar:req.params.seminar,
+        period:req.params.period,
+        brandName:req.params.brandName
+    },function(err,doc){
+        if(err){
+            next(new Error(err));
+        }
+        if(!doc){
+            res.send(404,'cannot find the doc');
+        }else{
+            res.header("Content-Type", "application/json; charset=UTF-8");                                
+            res.statusCode = 200;
+            res.send(doc);
+        }
+    })
+}
+
 exports.addInfos = function(options){
     var deferred = q.defer();
     var startFrom = options.startFrom,
@@ -114,128 +133,3 @@ exports.addInfos = function(options){
     return deferred.promise;
 }
 
-
-exports.newDoc=function(req,res,next){
-    var newDoc=new brandHistory({
-        period : 0,
-        seminar : "MAY",
-        brandName : "EGEND1",
-        brandID : 11,
-        dateOfBirth : -4, //-4~10
-        dateOfDeath : 10, //-4~10
-        parentCatID : 1,    
-        parentCompanyID : 1, 
-        supplierView:[{
-            awareness:[10,20],
-            socialNetworksScore:[{
-                sentiment:1,
-                strength:1
-            }]
-        }],
-        channelView:[{
-            visibilityShare:[2,3,4]
-        }]
-    },{
-        period : 0,
-        seminar : "MAY",
-        brandName : "EHAYA1",
-        brandID : 12,
-        dateOfBirth : -4, //-4~10
-        dateOfDeath : 10, //-4~10
-        parentCatID : 1,    
-        parentCompanyID : 1, 
-        supplierView:[{
-            awareness:[20,30],
-            socialNetworksScore:[{
-                sentiment:2,
-                strength:3
-            }]
-        }],
-        channelView:[{
-            visibilityShare:[4,5,6]
-        }]
-    },{
-        period : 0,
-        seminar : "MAY",
-        brandName : "ELAND1",
-        brandID : 13,
-        dateOfBirth : -4, //-4~10
-        dateOfDeath : 10, //-4~10
-        parentCatID : 1,    
-        parentCompanyID : 1, 
-        supplierView:[{
-            awareness:[30,40],
-            socialNetworksScore:[{
-                sentiment:4,
-                strength:5
-            }]
-        }],
-        channelView:[{
-            visibilityShare:[4,5,6]
-        }]       
-    },{
-        period : 0,
-        seminar : "MAY",
-        brandName : "HEELY1",
-        brandID : 11,
-        dateOfBirth : -4, //-4~10
-        dateOfDeath : 10, //-4~10
-        parentCatID : 2,    
-        parentCompanyID : 1, 
-        supplierView:[{
-            awareness:[35,45],
-            socialNetworksScore:[{
-                sentiment:4.5,
-                strength:5.5
-            }]
-        }],
-        channelView:[{
-            visibilityShare:[4,5,6]
-        }]        
-    },{
-        period : 0,
-        seminar : "MAY",
-        brandName : "HOTOO1",
-        brandID : 12,
-        dateOfBirth : -4, //-4~10
-        dateOfDeath : 10, //-4~10
-        parentCatID : 2,    
-        parentCompanyID : 1, 
-        supplierView:[{
-            awareness:[25,35],
-            socialNetworksScore:[{
-                sentiment:4.5,
-                strength:5.5
-            }]
-        }],
-        channelView:[{
-            visibilityShare:[4,5,6]
-        }]         
-    },{
-        period : 0,
-        seminar : "MAY",
-        brandName : "HOLAY1",
-        brandID : 13,
-        dateOfBirth : -4, //-4~10
-        dateOfDeath : 10, //-4~10
-        parentCatID : 2,    
-        parentCompanyID : 1, 
-        supplierView:[{
-            awareness:[55,25],
-            socialNetworksScore:[{
-                sentiment:4.5,
-                strength:5.5
-            }]
-        }],
-        channelView:[{
-            visibilityShare:[4,5,6]
-        }]        
-    });
-    newDoc.save(function(err){
-        if(err){
-            next (new Error(err));
-        }
-        console.log('brandHistory1 insert');
-        res.send(200,'insert success');
-    })
-}

@@ -25,12 +25,12 @@ define([
 		]).run(function(editableOptions){
 			editableOptions.theme = 'bs3';
 		}).run(['$rootScope', '$location','Auth', function ($rootScope, $location, Auth) {
-		    $rootScope.decisionActive = "";
-		    $rootScope.rootRetailerID = 1;
-		    $rootScope.rootProducerID = 1;
-		    $rootScope.rootPeriod = 0;
-		    $rootScope.rootSeminar = "MAY";
-		    $rootScope.rootContractUserID=1;
+		    //$rootScope.decisionActive = "";
+		    //$rootScope.rootRetailerID = 1;
+		    //$rootScope.rootProducerID = 1;
+		    $rootScope.currentPeriod = 0;
+		    //$rootScope.rootSeminar = "MAY";
+		    //$rootScope.rootContractUserID=1;
 
 	        $rootScope.$on("$routeChangeStart", function (event, next, current) {
 	            console.log('handle rootscope...');

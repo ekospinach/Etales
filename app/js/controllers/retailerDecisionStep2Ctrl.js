@@ -65,8 +65,8 @@ define(['app'], function(app) {
 				value: 5, text: 'SL_PREMIUM'
 			}]; 
 			var language='English',
-				retailerID=1,
-				period=0,
+				retailerID=$rootScope.user.username.substring($rootScope.user.username.length-1),
+				period=$rootScope.currentPeriod,
 				isCollapsed=true;
 				$scope.isCollapsed=isCollapsed;
 			$scope.multilingual=multilingual;
@@ -74,7 +74,7 @@ define(['app'], function(app) {
 			$scope.retailerID=retailerID;
 			$scope.period=period;
 
-			RetailerDecisionBase.reload({retailerID:$rootScope.rootRetailerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar}).then(function(base){
+			RetailerDecisionBase.reload({retailerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 				$scope.pageBase = base;
 			}).then(function(){
 				return promiseStep1();
@@ -191,7 +191,7 @@ define(['app'], function(app) {
 			}		
 			
 			$scope.$on('retailerDecisionBaseChangedFromServer', function(event, newBase){
-				RetailerDecisionBase.reload({retailerID:$rootScope.rootRetailerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar}).then(function(base){
+				RetailerDecisionBase.reload({retailerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 					$scope.pageBase = base;
 				}).then(function(){
 					return promiseStep1();

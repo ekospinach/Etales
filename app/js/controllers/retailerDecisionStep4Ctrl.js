@@ -96,8 +96,8 @@ define(['app'], function(app) {
 						'label':''				
 					}];
 			var language='English',
-				retailerID=1,
-				period=0,
+				retailerID=$rootScope.user.username.substring($rootScope.user.username.length-1);
+				period=$rootScope.currentPeriod,
 				category="Elecssories",
 				market="Urban",
 				shouldShow="",
@@ -115,7 +115,7 @@ define(['app'], function(app) {
 
 			
 			ProducerDecisionBase.startListenChangeFromServer();
-			RetailerDecisionBase.reload({retailerID:$rootScope.rootRetailerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar}).then(function(base){
+			RetailerDecisionBase.reload({retailerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 			//ProducerDecisionBase.reload({period:'0', seminar:'MAY', retailerID:1}).then(function(base){
 				$scope.pageBase = base;
 			}).then(function(){
@@ -243,7 +243,7 @@ define(['app'], function(app) {
 						orderProducts.push(data[i]);
 					}
 					for(var i=1;i<=3;i++){
-						url='/producerProducts/'+i+'/'+$rootScope.rootPeriod+'/'+$rootScope.rootSeminar+'/'+category;
+						url='/producerProducts/'+i+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.seminar+'/'+category;
 						$http.get(url).success(function(data){
 							for(var j=0;j<data.length;j++){
 								orderProducts.push(data[j]);
@@ -329,7 +329,7 @@ define(['app'], function(app) {
 
 			$scope.$on('retailerDecisionBaseChangedFromServer', function(event, newBase){
 				console.log('retailerDecisionBaseChangedFromServer');
-				RetailerDecisionBase.reload({retailerID:$rootScope.rootRetailerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar}).then(function(base){
+				RetailerDecisionBase.reload({retailerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 					$scope.pageBase = base;
 				}).then(function(){
 					return promiseStep1();

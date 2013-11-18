@@ -77,8 +77,8 @@ define(['app'], function(app) {
 					}];
 
 			var language='English',
-				producerID=1,
-				period=0,
+				producerID=$rootScope.user.username.substring($rootScope.user.username.length-1);
+				period=$rootScope.currentPeriod,
 				category='Elecssories',
 				isCollapsed=true;
 				$scope.isCollapsed=isCollapsed;
@@ -94,7 +94,7 @@ define(['app'], function(app) {
 
 			$scope.parameter=1;/*default add new Brand*/
 	
-			ProducerDecisionBase.reload({producerID:$rootScope.rootProducerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar}).then(function(base){
+			ProducerDecisionBase.reload({producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 				$scope.pageBase = base;
 				//ProducerDecisionBase.setSomething('TEST');	
 			}).then(function(){
@@ -259,7 +259,7 @@ define(['app'], function(app) {
 			}		
 
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
-				ProducerDecisionBase.reload({producerID:$rootScope.rootProducerID,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar}).then(function(base){
+				ProducerDecisionBase.reload({producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 					$scope.pageBase = base;	
 				}).then(function(){
 					return promiseStep1();

@@ -107,7 +107,7 @@ define(['angular','angularResource','routingConfig'], function (angular,angularR
 		var requestPara = {
 				period : 0,
 				producerID : 1,
-				seminar : 'MAY',
+				seminar : 'Hello',
 			}, base;			
 
 		this.setDefaultPara = function(p) { requestPara = p };
@@ -144,9 +144,9 @@ define(['angular','angularResource','routingConfig'], function (angular,angularR
 				setProducerDecisionValue:function(categoryID,brandName,varName,location,additionalIdx,value){
 
 					var queryCondition = {
-						seminar : $rootScope.rootSeminar,
-						period : $rootScope.rootPeriod,
-						producerID :$rootScope.rootProducerID,
+						producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),
+						period:$rootScope.currentPeriod,
+						seminar:$rootScope.user.seminar,
 						behaviour : 'updateVariant', 
 							    /* 
 							    switch(behaviour) case...
@@ -175,9 +175,9 @@ define(['angular','angularResource','routingConfig'], function (angular,angularR
 				//step3
 				setProducerDecisionBrand:function(categoryID,brandName,location,additionalIdx,value){
 					var queryCondition = {
-						seminar : $rootScope.rootSeminar,
-						period : $rootScope.rootPeriod,
-						producerID :$rootScope.rootProducerID,
+						producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),
+						period:$rootScope.currentPeriod,
+						seminar:$rootScope.user.seminar,
 						behaviour : 'updateBrand', 
 							    /* 
 							    switch(behaviour) case...
@@ -205,9 +205,9 @@ define(['angular','angularResource','routingConfig'], function (angular,angularR
 				//step4
 				setProducerDecisionCategory:function(categoryID,location,value){
 					var queryCondition = {
-						seminar : $rootScope.rootSeminar,
-						period : $rootScope.rootPeriod,
-						producerID :$rootScope.rootProducerID,
+						producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),
+						period:$rootScope.currentPeriod,
+						seminar:$rootScope.user.seminar,
 						behaviour : 'updateCategory', 
 						categoryID : categoryID,
 						location : location,
@@ -222,9 +222,9 @@ define(['angular','angularResource','routingConfig'], function (angular,angularR
 				},
 				addProductNewBrand:function(newproducerDecision,categoryID){
 					var queryCondition = {
-						seminar : $rootScope.rootSeminar,
-						period : $rootScope.rootPeriod,
-						producerID :$rootScope.rootProducerID,
+						producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),
+						period:$rootScope.currentPeriod,
+						seminar:$rootScope.user.seminar,
 						behaviour : 'addProductNewBrand', 
 						categoryID : categoryID,
 						value : newproducerDecision
@@ -239,9 +239,9 @@ define(['angular','angularResource','routingConfig'], function (angular,angularR
 				},
 				addProductExistedBrand:function(newproducerDecision,categoryID,brandName){
 					var queryCondition = {
-						seminar : $rootScope.rootSeminar,
-						period : $rootScope.rootPeriod,
-						producerID :$rootScope.rootProducerID,
+						producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),
+						period:$rootScope.currentPeriod,
+						seminar:$rootScope.user.seminar,
 						behaviour : 'addProductExistedBrand', 
 						categoryID : categoryID,
 						value : newproducerDecision,
@@ -256,9 +256,9 @@ define(['angular','angularResource','routingConfig'], function (angular,angularR
 				},
 				deleteProduct:function(categoryID,brandName,varName){
 					var queryCondition = {
-						seminar : $rootScope.rootSeminar,
-						period : $rootScope.rootPeriod,
-						producerID :$rootScope.rootProducerID,
+						producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),
+						period:$rootScope.currentPeriod,
+						seminar:$rootScope.user.seminar,
 						behaviour : 'deleteProduct', 
 
 						categoryID : categoryID,
@@ -349,9 +349,9 @@ define(['angular','angularResource','routingConfig'], function (angular,angularR
 				//step1
 				setRetailerDecisionBase:function(location,additionalIdx,value){
 					var queryCondition = {
-						seminar : $rootScope.rootSeminar,
-						period : $rootScope.rootPeriod,
-						retailerID :$rootScope.rootRetailerID,
+						retailerID :$rootScope.user.username.substring($rootScope.user.username.length-1),
+						period:$rootScope.currentPeriod,
+						seminar:$rootScope.user.seminar,
 						behaviour : 'updateGeneralDecision', 
 						location : location,
 						additionalIdx  : additionalIdx,
@@ -376,9 +376,9 @@ define(['angular','angularResource','routingConfig'], function (angular,angularR
 						}
 					}
 					var queryCondition = {
-						seminar : $rootScope.rootSeminar,
-						period : $rootScope.rootPeriod,
-						retailerID :$rootScope.rootRetailerID,
+						retailerID :$rootScope.user.username.substring($rootScope.user.username.length-1),
+						period:$rootScope.currentPeriod,
+						seminar:$rootScope.user.seminar,
 						behaviour : 'updateMarketDecision', 
 						marketID : marketID,
 						location : location,
@@ -402,9 +402,9 @@ define(['angular','angularResource','routingConfig'], function (angular,angularR
 						}
 					}
 					var queryCondition = {
-						seminar : $rootScope.rootSeminar,
-						period : $rootScope.rootPeriod,
-						retailerID :$rootScope.rootRetailerID,
+						retailerID :$rootScope.user.username.substring($rootScope.user.username.length-1),
+						period:$rootScope.currentPeriod,
+						seminar:$rootScope.user.seminar,
 						behaviour : 'updatePrivateLabel', 
 						categoryID : categoryID,
 						brandName : brandName,
@@ -424,9 +424,9 @@ define(['angular','angularResource','routingConfig'], function (angular,angularR
 				//step4
 				setRetailerDecision:function(categoryID,marketID,brandName,varName,location,additionalIdx,value){
 					var queryCondition = {
-						seminar : $rootScope.rootSeminar,
-						period : $rootScope.rootPeriod,
-						retailerID :$rootScope.rootRetailerID,
+						retailerID :$rootScope.user.username.substring($rootScope.user.username.length-1),
+						period:$rootScope.currentPeriod,
+						seminar:$rootScope.user.seminar,
 						behaviour : 'updateOrder', 
 						categoryID : categoryID,
 						marketID : marketID,
@@ -451,9 +451,9 @@ define(['angular','angularResource','routingConfig'], function (angular,angularR
 				},				
 				addProductNewBrand:function(newproducerDecision,categoryID){
 					var queryCondition = {
-						seminar : $rootScope.rootSeminar,
-						period : $rootScope.rootPeriod,
-						retailerID :$rootScope.rootRetailerID,
+						retailerID :$rootScope.user.username.substring($rootScope.user.username.length-1),
+						period:$rootScope.currentPeriod,
+						seminar:$rootScope.user.seminar,
 						behaviour : 'addProductNewBrand', 
 						categoryID : categoryID,
 						value : newproducerDecision
@@ -467,9 +467,9 @@ define(['angular','angularResource','routingConfig'], function (angular,angularR
 				},
 				addProductExistedBrand:function(newproducerDecision,categoryID,brandName){
 					var queryCondition = {
-						seminar : $rootScope.rootSeminar,
-						period : $rootScope.rootPeriod,
-						retailerID :$rootScope.rootRetailerID,
+						retailerID :$rootScope.user.username.substring($rootScope.user.username.length-1),
+						period:$rootScope.currentPeriod,
+						seminar:$rootScope.user.seminar,
 						behaviour : 'addProductExistedBrand', 
 						categoryID : categoryID,
 						brandName : brandName,
@@ -484,9 +484,9 @@ define(['angular','angularResource','routingConfig'], function (angular,angularR
 				},
 				deleteProduct:function(categoryID,brandName,varName){
 					var queryCondition = {
-						seminar : $rootScope.rootSeminar,
-						period : $rootScope.rootPeriod,
-						retailerID :$rootScope.rootRetailerID,
+						retailerID :$rootScope.user.username.substring($rootScope.user.username.length-1),
+						period:$rootScope.currentPeriod,
+						seminar:$rootScope.user.seminar,
 						behaviour : 'deleteProduct', 
 						categoryID : categoryID,
 						varName : varName,
@@ -501,9 +501,9 @@ define(['angular','angularResource','routingConfig'], function (angular,angularR
 				},
 				addOrder:function(marketID,product){
 					var queryCondition = {
-						seminar : $rootScope.rootSeminar,
-						period : $rootScope.rootPeriod,
-						retailerID :$rootScope.rootRetailerID,
+						retailerID :$rootScope.user.username.substring($rootScope.user.username.length-1),
+						period:$rootScope.currentPeriod,
+						seminar:$rootScope.user.seminar,
 						behaviour : 'addOrder', 
 						marketID:marketID,
 						value:product
@@ -517,9 +517,9 @@ define(['angular','angularResource','routingConfig'], function (angular,angularR
 				},
 				deleteOrder:function(marketID,categoryID,brandName,varName){
 					var queryCondition = {
-						seminar : $rootScope.rootSeminar,
-						period : $rootScope.rootPeriod,
-						retailerID :$rootScope.rootRetailerID,
+						retailerID :$rootScope.user.username.substring($rootScope.user.username.length-1),
+						period:$rootScope.currentPeriod,
+						seminar:$rootScope.user.seminar,
 						behaviour : 'deleteOrder', 
 						marketID:marketID,
 						categoryID:categoryID,

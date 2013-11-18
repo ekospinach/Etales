@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
     _ = require('underscore'),
     q = require('q');
 
-var privateLabelVarDecision = mongoose.Schema({
+var privateLabelVarDecisionSchema = mongoose.Schema({
     varName : String,
     varID : Number,
     parentBrandID : Number,
@@ -38,7 +38,7 @@ var privateLabelDecisionSchema = mongoose.Schema({
     */  
     dateOfBirth : Number, //which period this brand be created, if this brand is initialized in the beginning, this value should be -4
     dateOfDeath : Number, //which period this brand be discontinued, if this brand haven't been discontinued, this value should be 10
-    privateLabelVarDecision : [privateLabelVarDecision] //length: TOneBrandVars(1~3)
+    privateLabelVarDecision : [privateLabelVarDecisionSchema] //length: TOneBrandVars(1~3)
 })
 
 //date strute for private labels (step 3)
@@ -92,6 +92,8 @@ var retDecisionSchema = mongoose.Schema({
 })
 
 var retDecision = mongoose.model('retailerDecision', retDecisionSchema);
+var privateLabelVarDecision = mongoose.model('privateLabelVarDecision',privateLabelVarDecisionSchema);
+var retVariantDecision= mongoose.model('retVariantDecision',retVariantDecisionSchema);
 
 exports.exportToBinary = function(options){
     var deferred = q.defer();
@@ -175,315 +177,6 @@ exports.addRetailerDecisions = function(options){
 
     return deferred.promise;
     
-}
-
-exports.newDoc=function(req,res,next){
-    var newDoc=new retDecision({
-        seminar : 'MAY',
-        period : 0,
-        retailerID:1,
-        onlineAdvertising : {
-            PRICE : 10,
-            CONVENIENCE : 20,
-            ASSORTMENT : 30
-        },
-        tradtionalAdvertising : {
-            PRICE : 11,
-            CONVENIENCE : 21,
-            ASSORTMENT : 31        
-        },
-        nextBudgetExtension : 15,
-        approvedBudgetExtension : 16,
-        retCatDecision : [{
-            categoryID:1,
-            privateLabelDecision:[{
-                brandName : 'ELISA5',
-                brandID : 51,
-                parentCompanyID : 5,
-                dateOfBirth : -4, //which period this brand be created, if this brand is initialized in the beginning, this value should be -4
-                dateOfDeath : 10, //which period this brand be discontinued, if this brand haven't been discontinued, this value should be 10
-                
-                privateLabelVarDecision : [{
-                    varName : '_A',
-                    varID : 511,
-                    parentBrandID : 51,
-                    dateOfBirth : -4,
-                    dateOfDeath : 10,
-                    packFormat : 'STANDARD',
-                    composition : [4,4,4],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
-                    discontinue : false    
-                },{
-                    varName : '_B',
-                    varID : 512,
-                    parentBrandID : 51,
-                    dateOfBirth : -4,
-                    dateOfDeath : 10,
-                    packFormat : 'STANDARD',
-                    composition : [5,5,5],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
-                    discontinue : false                     
-                }] //length: TOneBrandVars(1~3)
-            },{
-                brandName : 'ELEEX5',
-                brandID : 52,
-                parentCompanyID : 5,
-                dateOfBirth : -4, //which period this brand be created, if this brand is initialized in the beginning, this value should be -4
-                dateOfDeath : 10, //which period this brand be discontinued, if this brand haven't been discontinued, this value should be 10
-                privateLabelVarDecision : [{
-                    varName : '_A',
-                    varID : 521,
-                    parentBrandID : 52,
-                    dateOfBirth : -4,
-                    dateOfDeath : 10,
-                    packFormat : 'PREMIUM',
-                    composition : [4,4,4],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
-                    discontinue : false    
-                }] //length: TOneBrandVars(1~3)
-            }]
-        },{
-            categoryID:2,
-            privateLabelDecision:[{
-                brandName : 'HARIS5',
-                brandID : 51,
-                parentCompanyID : 5,
-                dateOfBirth : -4, //which period this brand be created, if this brand is initialized in the beginning, this value should be -4
-                dateOfDeath : 10, //which period this brand be discontinued, if this brand haven't been discontinued, this value should be 10
-                privateLabelVarDecision : [{
-                    varName : '_A',
-                    varID : 511,
-                    parentBrandID : 51,
-                    dateOfBirth : -4,
-                    dateOfDeath : 10,
-                    packFormat : 'ECONOMY',
-                    composition : [3,3,3],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
-                    discontinue : false    
-                }] //length: TOneBrandVars(1~3)
-            },{
-                brandName : 'HICHY5',
-                brandID : 52,
-                parentCompanyID : 5,
-                dateOfBirth : -4, //which period this brand be created, if this brand is initialized in the beginning, this value should be -4
-                dateOfDeath : 10, //which period this brand be discontinued, if this brand haven't been discontinued, this value should be 10
-                privateLabelVarDecision : [{
-                    varName : '_A',
-                    varID : 521,
-                    parentBrandID : 52,
-                    dateOfBirth : -4,
-                    dateOfDeath : 10,
-                    packFormat : 'STANDARD',
-                    composition : [6,6,6],//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
-                    discontinue : false    
-                }] //length: TOneBrandVars(1~3)                
-            }]
-        }], //length: TCategories(1~2)
-        retMarketDecision: [{
-            marketID : 1, //1~2
-            categorySurfaceShare : [10,20], //[1]for Elecssories [2]for HealthBeauty
-            emptySpaceOptimised : false,
-            localAdvertising : {
-                PRICE : 11,
-                CONVENIENCE : 22,
-                ASSORTMENT : 33            
-            },
-            serviceLevel : 'MEDIUM', //SL_BASE, SL_FAIR, SL_MEDIUM, SL_ENHANCED, SL_PREMIUM
-            retMarketAssortmentDecision : [{
-                categoryID : 1, //1~2
-                retVariantDecision : [{
-                    brandID : 51,
-                    variantID : 511,
-                    brandName : 'Etales15', //need Dariusz to add this in dataStruture
-                    varName : '_A', //need Dariusz to add this in dataStruture
-                    dateOfBirth : -4,
-                    dateOfDeath : 10,
-                    order : 90,
-                    pricePromotions : {
-                        promo_Frequency : 39, //range: 0~52
-                        promo_Rate : 1 //0~1
-                    },
-                    retailerPrice : 33,
-                    shelfSpace : 90 //saved as a %
-                },{
-                    brandID : 52,
-                    variantID : 512,
-                    brandName : 'Etales25', //need Dariusz to add this in dataStruture
-                    varName : '_A', //need Dariusz to add this in dataStruture
-                    dateOfBirth : -4,
-                    dateOfDeath : 10,
-                    order : 80,
-                    pricePromotions : {
-                        promo_Frequency : 48, //range: 0~52
-                        promo_Rate : 0 //0~1
-                    },
-                    retailerPrice : 23,
-                    shelfSpace : 80 //saved as a %
-                },{
-                    brandID : 53,
-                    variantID : 513,
-                    brandName : 'Etales35', //need Dariusz to add this in dataStruture
-                    varName : '_A', //need Dariusz to add this in dataStruture
-                    dateOfBirth : -4,
-                    dateOfDeath : 10,
-                    order : 70,
-                    pricePromotions : {
-                        promo_Frequency : 28, //range: 0~52
-                        promo_Rate : 0 //0~1
-                    },
-                    retailerPrice : 13,
-                    shelfSpace : 60 //saved as a %
-                }]
-            },{
-                categoryID:2,
-                retVariantDecision : [{
-                    brandID : 51,
-                    variantID : 511,
-                    brandName : 'Health15', //need Dariusz to add this in dataStruture
-                    varName : '_A', //need Dariusz to add this in dataStruture
-                    dateOfBirth : -4,
-                    dateOfDeath : 10,
-                    order : 90,
-                    pricePromotions : {
-                        promo_Frequency : 39, //range: 0~52
-                        promo_Rate : 1 //0~1
-                    },
-                    retailerPrice : 33,
-                    shelfSpace : 90 //saved as a %
-                },{
-                    brandID : 52,
-                    variantID : 512,
-                    brandName : 'Health25', //need Dariusz to add this in dataStruture
-                    varName : '_A', //need Dariusz to add this in dataStruture
-                    dateOfBirth : -4,
-                    dateOfDeath : 10,
-                    order : 80,
-                    pricePromotions : {
-                        promo_Frequency : 48, //range: 0~52
-                        promo_Rate : 0 //0~1
-                    },
-                    retailerPrice : 23,
-                    shelfSpace : 80 //saved as a %
-                },{
-                    brandID : 53,
-                    variantID : 513,
-                    brandName : 'Health35', //need Dariusz to add this in dataStruture
-                    varName : '_A', //need Dariusz to add this in dataStruture
-                    dateOfBirth : -4,
-                    dateOfDeath : 10,
-                    order : 70,
-                    pricePromotions : {
-                        promo_Frequency : 28, //range: 0~52
-                        promo_Rate : 0 //0~1
-                    },
-                    retailerPrice : 13,
-                    shelfSpace : 60 //saved as a %
-                }]
-            }] //length : TCategories(1~2)
-        },{
-            marketID : 2, //1~2
-            categorySurfaceShare : [20,30], //[1]for Elecssories [2]for HealthBeauty
-            emptySpaceOptimised : false,
-            localAdvertising : {
-                PRICE : 22,
-                CONVENIENCE : 33,
-                ASSORTMENT : 44            
-            },
-            serviceLevel : 'BASE', //SL_BASE, SL_FAIR, SL_MEDIUM, SL_ENHANCED, SL_PREMIUM
-            retMarketAssortmentDecision : [{
-                categoryID : 1, //1~2
-                retVariantDecision : [{
-                    brandID : 51,
-                    variantID : 511,
-                    brandName : 'Etales1', //need Dariusz to add this in dataStruture
-                    varName : '_A', //need Dariusz to add this in dataStruture
-                    dateOfBirth : -4,
-                    dateOfDeath : 20,
-                    order : 90,
-                    pricePromotions : {
-                        promo_Frequency : 39, //range: 0~52
-                        promo_Rate : 1 //0~1
-                    },
-                    retailerPrice : 33,
-                    shelfSpace : 90 //saved as a %
-                },{
-                    brandID : 52,
-                    variantID : 512,
-                    brandName : 'Etales2', //need Dariusz to add this in dataStruture
-                    varName : '_A', //need Dariusz to add this in dataStruture
-                    dateOfBirth : -4,
-                    dateOfDeath : 10,
-                    order : 80,
-                    pricePromotions : {
-                        promo_Frequency : 48, //range: 0~52
-                        promo_Rate : 0 //0~1
-                    },
-                    retailerPrice : 23,
-                    shelfSpace : 80 //saved as a %
-                },{
-                    brandID : 53,
-                    variantID : 513,
-                    brandName : 'Etales3', //need Dariusz to add this in dataStruture
-                    varName : '_A', //need Dariusz to add this in dataStruture
-                    dateOfBirth : -4,
-                    dateOfDeath : 10,
-                    order : 70,
-                    pricePromotions : {
-                        promo_Frequency : 28, //range: 0~52
-                        promo_Rate : 0 //0~1
-                    },
-                    retailerPrice : 13,
-                    shelfSpace : 60 //saved as a %
-                }]
-            },{
-                categoryID:2,
-                retVariantDecision : [{
-                    brandID : 51,
-                    variantID : 511,
-                    brandName : 'Health1', //need Dariusz to add this in dataStruture
-                    varName : '_A', //need Dariusz to add this in dataStruture
-                    dateOfBirth : -4,
-                    dateOfDeath : 20,
-                    order : 90,
-                    pricePromotions : {
-                        promo_Frequency : 39, //range: 0~52
-                        promo_Rate : 1 //0~1
-                    },
-                    retailerPrice : 33,
-                    shelfSpace : 90 //saved as a %
-                },{
-                    brandID : 52,
-                    variantID : 512,
-                    brandName : 'Health2', //need Dariusz to add this in dataStruture
-                    varName : '_A', //need Dariusz to add this in dataStruture
-                    dateOfBirth : -4,
-                    dateOfDeath : 10,
-                    order : 80,
-                    pricePromotions : {
-                        promo_Frequency : 48, //range: 0~52
-                        promo_Rate : 0 //0~1
-                    },
-                    retailerPrice : 23,
-                    shelfSpace : 80 //saved as a %
-                },{
-                    brandID : 53,
-                    variantID : 513,
-                    brandName : 'Health3', //need Dariusz to add this in dataStruture
-                    varName : '_A', //need Dariusz to add this in dataStruture
-                    dateOfBirth : -4,
-                    dateOfDeath : 10,
-                    order : 70,
-                    pricePromotions : {
-                        promo_Frequency : 28, //range: 0~52
-                        promo_Rate : 0 //0~1
-                    },
-                    retailerPrice : 13,
-                    shelfSpace : 60 //saved as a %
-                }]
-            }] //length : TCategories(1~2)
-        }] 
-    });
-    newDoc.save(function(err){
-        if (err) next(new Error(err));
-        console.log('retailer insert successfully');
-        res.end('insert successfully');
-    });
 }
 
 exports.updateRetailerDecision = function(io){
@@ -583,17 +276,36 @@ exports.updateRetailerDecision = function(io){
                                                     for(j=0;j<doc.retCatDecision[i].privateLabelDecision.length;j++){
                                                         if(doc.retCatDecision[i].privateLabelDecision[j]!=undefined&&doc.retCatDecision[i].privateLabelDecision[j].brandName==queryCondition.brandName){
                                                             for(var k=0;k<doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision.length;k++){
-                                                                if(doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k]!=undefined&&doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k].varID!=0&&doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k].varName==""){
+                                                                if(doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k]!=undefined&&doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k].varID==0&&doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k].varName==""){
+                                                                    //console.log("find");
                                                                     doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision.splice(k,1,queryCondition.value);
+                                                                    break;
                                                                 }
                                                             }
+                                                            break;
                                                             //doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision.push(queryCondition.value);
                                                         }
                                                     }
+                                                    break;
                                                 }
                                             }
                                         break;
                                         case 'deleteProduct':
+                                            var nullVarDecision=new privateLabelVarDecision();
+                                            nullVarDecision.varName="";
+                                            //nullVarDecision.varID=0;
+                                            nullVarDecision.parentBrandID=0;
+                                            nullVarDecision.dateOfDeath=0;
+                                            nullVarDecision.dateOfBirth=0;
+                                            nullVarDecision.packFormat="";
+                                            nullVarDecision.composition=[0,0,0];
+                                            nullVarDecision.discontinue=false;
+
+                                            var nullBrandDecision=new retVariantDecision();
+                                            nullBrandDecision.brandName="";
+                                            //nullBrandDecision.brandID=0;
+                                            nullBrandDecision.parentCompanyID=0;
+
                                             for(var i=0;i<doc.retCatDecision.length;i++){
                                                 if(doc.retCatDecision[i].categoryID==queryCondition.categoryID){
                                                     for(var j=0;j<doc.retCatDecision[i].privateLabelDecision.length;j++){

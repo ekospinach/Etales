@@ -32,6 +32,24 @@ var retailerViewSchema = mongoose.Schema({
 
 var companyHistory=mongoose.model('companyHistory',companyHistoryInfoSchema);
 
+exports.getCompanyHistory=function(req,res,next){
+	companyHistory.findOne({
+		seminar:req.params.seminar,
+		period:req.params.period
+	},function(err,doc){
+        if(err){
+            next(new Error(err));
+        }
+        if(!doc){
+            res.send(404,'cannot find the doc');
+        }else{
+            res.header("Content-Type", "application/json; charset=UTF-8");                                
+            res.statusCode = 200;
+            res.send(doc);
+        }
+	})
+}
+
 exports.addInfos = function(options){
     var deferred = q.defer();
     var startFrom = options.startFrom,
@@ -88,60 +106,6 @@ exports.addInfos = function(options){
     return deferred.promise;
 }
 
-
-exports.newDoc=function(req,res,next){
-	var newDoc=new companyHistory({
-		period:0,
-		seminar:"MAY",
-		companyID:1,
-		producerView:[{
-			producerID:1,
-			budgetAvailable:1,
-			budgetOverspent:2,
-			budgetSpentToDate:3,
-			productionCapacity:[4,5],
-			acquiredTechnologyLevel:[6,7],
-			acquiredProductionFlexibility:[8,9],
-			acquiredDesignLevel:[10,11],
-		},{
-			producerID:2,
-			budgetAvailable:1,
-			budgetOverspent:2,
-			budgetSpentToDate:3,
-			productionCapacity:[4,5],
-			acquiredTechnologyLevel:[6,7],
-			acquiredProductionFlexibility:[8,9],
-			acquiredDesignLevel:[10,11],
-		},{
-			producerID:3,
-			budgetAvailable:1,
-			budgetOverspent:2,
-			budgetSpentToDate:3,
-			productionCapacity:[4,5],
-			acquiredTechnologyLevel:[6,7],
-			acquiredProductionFlexibility:[8,9],
-			acquiredDesignLevel:[10,11],
-		}],
-		retailerView:[{
-			retailerID : 1,
-			budgetAvailable : 11,
-			budgetOverspent : 12,
-			budgetSpentToDate : 13
-		},{
-			retailerID : 2,
-			budgetAvailable : 11,
-			budgetOverspent : 12,
-			budgetSpentToDate : 13
-		}]
-	});
-	newDoc.save(function(err){
-		if(err){
-			next(new Error(err));
-		}
-		console.log("companyHistory insert success");
-		res.send(200,'insert companyHistory success');
-	})
-}
 
 // 	retailerCategoryView : [retailerCategoryViewSchema] //TCategories(1~2)
 // })

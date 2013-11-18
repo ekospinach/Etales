@@ -3,7 +3,7 @@ define(['app'], function(app) {
 		['$scope','$q','$rootScope','$http','$filter', function($scope,$q,$rootScope,$http,$filter) {
 
 			var showView=function(contractUserID){
-				var url="/contracts/"+$rootScope.rootSeminar+'/'+contractUserID;
+				var url="/contracts/"+$rootScope.user.seminar+'/'+contractUserID;
 				$http.get(url).success(function(data){
 					$scope.allContracts=data;
 					$scope.contractList=$scope.allContracts;
@@ -27,7 +27,7 @@ define(['app'], function(app) {
 				$scope.detailModal=true;
 				$scope.Detail=contract;
 				var category="Elecssories";
-				if(contract.producerID==contract.draftedByCompanyID){
+				if(contract.producerID==contract.draftedByCompanyID&&$rootScope.user.username.substring($rootScope.user.username.length-3,$rootScope.user.username.length-2)==2&&contract.producerID==$rootScope.user.username.substring($rootScope.user.username.length-1)){
 					$scope.shouldBeEdit="inline";
 					$scope.shouldBeView="none";
 				}else{
@@ -256,7 +256,7 @@ define(['app'], function(app) {
 			}
 
 			$scope.openInsertModal=function(){
-				$scope.contractCodeLastName="_"+$rootScope.rootSeminar+'_'+$rootScope.rootPeriod;
+				$scope.contractCodeLastName="_"+$rootScope.user.seminar+'_'+$rootScope.rootPeriod;
 				$scope.insertModal=true;
 				//console.log($scope.contractCodeLastName);
 			}
@@ -268,10 +268,10 @@ define(['app'], function(app) {
 			$scope.addNewContract=function(){
 				var data={
 					'contractCode':$scope.newContractCode+$scope.contractCodeLastName,
-					'seminar':$rootScope.rootSeminar,
-					'period':$rootScope.rootPeriod,
-					'draftedByCompanyID':$rootScope.rootProducerID,
-					'producerID':$rootScope.rootProducerID,
+					'seminar':$rootScope.user.seminar,
+					'period':$rootScope.currentPeriod,
+					'draftedByCompanyID':$rootScope.user.username.substring($rootScope.user.username.length-1),
+					'producerID':$rootScope.user.username.substring($rootScope.user.username.length-1),
 					'retailerID':$scope.newRetailerID
 				}
 				$http({method: 'POST', url: '/addContract',data:data}).success(function(data){
@@ -390,8 +390,15 @@ define(['app'], function(app) {
 			};
 
 			$scope.contractUserID=$rootScope.rootContractUserID;
-			$scope.producerID=1;
-			$scope.retailerID=1;
+			if($rootScope.user.username.substring($rootScope.user.username.length-3,$rootScope.user.username.length-2)==2){
+				$scope.contractUserID=$rootScope.user.username.substring($rootScope.user.username.length-1);
+			}else if($rootScope.user.username.substring($rootScope.user.username.length-3,$rootScope.user.username.length-2)==4){
+				$scope.contractUserID=parseInt($rootScope.user.username.substring($rootScope.user.username.length-1))+4;
+			}
+			//admin need to test
+			//$rootScope.user.username.substring($rootScope.user.username.length-1)
+			//$scope.producerID=1;
+			//$scope.retailerID=1;
 			$scope.showView=showView;
 			$scope.showDetailModal=showDetailModal;
 			$scope.loadModalDate=loadModalDate;
