@@ -433,6 +433,48 @@ exports.getProducerProductList=function(req,res,next){
                             }); 
 }
 
+//brandHistory
+
+exports.getBrandHistoryByName=function(req,res,next){
+    console.log("!!!!!!!!!!!");
+    proDecision.findOne({
+        seminar:req.params.seminar,
+        period:req.params.period,
+        producerID:req.params.producerID
+    },function(err,doc){
+        if(err){
+            next(new Error(err));
+        }
+        if(!doc){
+           res.send(404,{err:'cannot find the doc'}); 
+        }else{
+            var categoryID="";
+            if(req.params.brandName.substring(0,1)=="E"){
+                categoryID=1;
+            }else{
+                categoryID=2;
+            }
+            var allProCatDecisions=_.filter(doc.proCatDecision,function(obj){
+                return (obj.categoryID==categoryID);
+            });
+            var result=new Array();
+            for(var i=0;i<allProCatDecisions.length;i++){
+                for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
+                    if(allProCatDecisions[i].proBrandsDecision[j]!=undefined&&allProCatDecisions[i].proBrandsDecision[j].brandName==req.params.brandName){
+                        result=allProCatDecisions[i].proBrandsDecision[j];
+                        break;
+                    }
+                }
+            }
+            if(!result){
+                res.send(404,'cannot find the doc');
+            }else{
+                res.send(200,result);
+            }
+        }
+    })
+}
+
 exports.getProducerBrandList=function(req,res,next){
     proDecision.findOne({seminar:req.params.seminar,
                         period:req.params.period,

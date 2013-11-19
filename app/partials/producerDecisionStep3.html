@@ -43,18 +43,38 @@
             <div class="well well-large">
               <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button>
               <table class="table table-striped">
+                <tr style="backgroud-color:gray">
+                  <th></th>
+                  <th style="text-align:center">Previous period({{currentPeriod}})</th>
+                  <th></th>
+                </tr>
                 <tr>
-                  <td>brandID:{{moreInfo.brandID}}</td>
-                  <td>brandName:{{moreInfo.brandName}}</td>
-                  <td>brandID:{{moreInfo.brandID}}</td>
-                  <td>brandName:{{moreInfo.brandName}}</td>
-                </tr>  
+                  <!--<td>Unit Production cost:</td>-->
+                  <td>Tier 1 Brand Awareness:{{brandHistory.supplierView[0].awareness[0]}}</td>
+                  <td>Tier 1 Brand visibility share,Traditional trade:{{brandHistory.channelView[0].visibilityShare[0]}}</td>
+                  <td>Web trawler brand strength index:{{brandHistory.supplierView[0].socialNetworksScore[1].strength}}</td>
+                </tr>
                 <tr>
-                  <td>brandID:{{moreInfo.brandID}}</td>
-                  <td>brandName:{{moreInfo.brandName}}</td>
-                  <td>brandID:{{moreInfo.brandID}}</td>
-                  <td>brandName:{{moreInfo.brandName}}</td>
-                </tr>            
+                  <!--<td>Unit Production cost:</td>-->
+                  <td>Tier 2 Brand Awareness:{{brandHistory.supplierView[0].awareness[1]}}</td>
+                  <td>Tier 2 Brand visibility share,Traditional trade:{{brandHistory.channelView[0].visibilityShare[1]}}</td>
+                  <td>Web trawler brand sentiment index:{{brandHistory.supplierView[0].socialNetworksScore[1].sentiment}}</td>
+                </tr>
+                <tr style="margin-top:20px;backgroud-color:gray">
+                  <th></th>
+                  <th style="text-align:center">Previous period({{(currentPeriod-1)}})</th>
+                  <th></th>
+                </tr>
+                <tr>
+                  <td>Tier 1 Advertising Off-Line:{{brandDecisionHistory.advertisingOffLine[0]}}</td>
+                  <td>Tier 1 Traditional Trade-support:{{brandDecisionHistory.supportTraditionalTrade[0]}}</td>
+                  <td>National advertising online:{{brandDecisionHistory.advertisingOnLine}}</td>
+                </tr>
+                <tr>
+                  <td>Tier 2 Advertising Off-Line:{{brandDecisionHistory.advertisingOffLine[1]}}</td>
+                  <td>Tier 2 Traditional Trade-support:{{brandDecisionHistory.supportTraditionalTrade[1]}}</td>
+                  <td>E-Mall visibility investment:{{brandDecisionHistory.supportEmall}}</td>
+                </tr>      
               </table>
             </div>
           </div>

@@ -249,9 +249,24 @@ define(['app'], function(app) {
 				$scope.isCollapsed=true;
 			}
 
-			var getMoreInfo=function(brandID,varName){
-				$scope.moreInfo={'parentBrandID':brandID,'varName':varName};
+			var getMoreInfo=function(brandName,varName){
 				$scope.isCollapsed=false;
+				var url='/variantHistoryInfo/'+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+brandName+'/'+varName;
+				$http({method: 'GET', url: url})
+				.success(function(data, status, headers, config) {
+					$scope.variantHistory=data;
+					url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+					$http({method:'GET',url:url})
+					.success(function(data,status,headers,config){
+						$scope.companyHistory=data;
+					})
+					.error(function(data,status,headers,config){
+						console.log('read companyHistoryInfo fail');
+					});
+				})
+				.error(function(data, status, headers, config) {
+					console.log('read variantHistoryInfo fail');
+				});
 			}
 
 			var loadNameNum=function(){//load the sort

@@ -34,18 +34,31 @@
             <div class="well well-large">
               <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button>
               <table class="table table-striped">
+                <tr style="backgroud-color:gray">
+                  <th style="text-align:right">Previous</th>
+                  <th style="text-align:left">period:({{currentPeriod}})</th>
+                </tr>
                 <tr>
-                  <td>category:{{moreInfo.categoryID}}</td>
-                  <td>category:{{moreInfo.categoryID}}</td>
-                  <td>category:{{moreInfo.categoryID}}</td>
-                  <td>category:{{moreInfo.categoryID}}</td>
+                  <td>Production Capacity:</td>
+                  <td>Acquired Technology Level:</td>
+                </tr>
+                <tr>
+                  <td>Acquired Production Flexibility:</td>
+                  <td>Acquired Design Level</td>
+                </tr>
+
+                <tr style="margin-top:20px;backgroud-color:gray">
+                  <th style="text-align:right">Previous</th>
+                  <th style="text-align:left">period:({{(currentPeriod-1)}})</th>
+                </tr>
+                <tr>
+                  <td>Investment in capacity change:</td>
+                  <td>Investment to improve avaliable Technology:</td>
+                </tr>
+                <tr>
+                  <td>Investment to improve flexibility:</td>
+                  <td>Investemnt to improve design know-how:</td>
                 </tr>  
-                <tr>
-                  <td>category:{{moreInfo.categoryID}}</td>
-                  <td>category:{{moreInfo.categoryID}}</td>
-                  <td>category:{{moreInfo.categoryID}}</td>
-                  <td>category:{{moreInfo.categoryID}}</td>
-                </tr>            
               </table>
             </div>
           </div>

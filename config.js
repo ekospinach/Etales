@@ -54,7 +54,7 @@ module.exports = function(){
 				  path_lineChart : '/cgi-bin/lineChart.exe',
 				  path_perceptionMap : '/cgi-bin/perceptionMap.exe',		
 				  path_finReport : '/cgi-bin/finReport.exe',		
-				  path_volReport : '/cgiexe-bin/volReport.exe',
+				  path_volReport : '/cgi-bin/volReport.exe',
 				  path_producerDecision : '/cgi-bin/producerDecision.exe',
 				  path_retailerDecision : '/cgi-bin/retailerDecision.exe',				  
 				  path_negotiationDecision : '/cgi-bin/negotiationDecision.exe',				  

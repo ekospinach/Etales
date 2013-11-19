@@ -45,7 +45,13 @@ exports.getCompanyHistory=function(req,res,next){
         }else{
             res.header("Content-Type", "application/json; charset=UTF-8");                                
             res.statusCode = 200;
-            res.send(doc);
+           	//res.send(doc);
+
+            if(req.params.userType=="P"){
+            	res.send(doc["producerView"][req.params.userID-1]);
+            }else{
+            	res.send(doc['retailerView'][req.params.userID-1]);
+            }
         }
 	})
 }
