@@ -330,7 +330,7 @@ define(['app'], function(app) {
 					category="HealthBeauty";
 					$scope.brandFirstName="H";
 				}
-				$scope.brandLastName=$rootScope.user.username.substring($rootScope.user.username.length-1)+4;/*need check*/
+				$scope.brandLastName=parseInt($rootScope.user.username.substring($rootScope.user.username.length-1))+4;/*need check*/
 			}
 			/*LoadAllBrand by category*/
 			var loadAllBrand=function(category){
