@@ -435,8 +435,7 @@ exports.getProducerProductList=function(req,res,next){
 
 //brandHistory
 
-exports.getBrandHistoryByName=function(req,res,next){
-    console.log("!!!!!!!!!!!");
+exports.getBrandHistory=function(req,res,next){
     proDecision.findOne({
         seminar:req.params.seminar,
         period:req.params.period,
@@ -466,6 +465,34 @@ exports.getBrandHistoryByName=function(req,res,next){
                     }
                 }
             }
+            if(!result){
+                res.send(404,'cannot find the doc');
+            }else{
+                res.send(200,result);
+            }
+        }
+    })
+}
+
+//companyHistory
+exports.getCompanyHistory=function(req,res,next){
+    console.log("start!!!!!!");
+    console.log(req.params);
+    proDecision.findOne({
+        seminar:req.params.seminar,
+        period:req.params.period,
+        producerID:req.params.producerID
+    },function(err,doc){
+        if(err){
+            next(new Error(err));
+        }
+        if(!doc){
+           res.send(404,{err:'cannot find the doc'}); 
+        }else{
+            var result=_.filter(doc.proCatDecision,function(obj){
+                return (obj.categoryID==req.params.categoryID);
+            });
+            console
             if(!result){
                 res.send(404,'cannot find the doc');
             }else{

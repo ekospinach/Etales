@@ -39,12 +39,12 @@
                   <th style="text-align:left">period:({{currentPeriod}})</th>
                 </tr>
                 <tr>
-                  <td>Production Capacity:</td>
-                  <td>Acquired Technology Level:</td>
+                  <td>Production Capacity:{{categoryID==1?companyHistory.productionCapacity[0]:companyHistory.productionCapacity[1]}}</td>
+                  <td>Acquired Technology Level:{{categoryID==1?companyHistory.acquiredTechnologyLevel[0]:companyHistory.acquiredTechnologyLevel[1]}}</td>
                 </tr>
                 <tr>
-                  <td>Acquired Production Flexibility:</td>
-                  <td>Acquired Design Level</td>
+                  <td>Acquired Production Flexibility:{{categoryID==1?companyHistory.acquiredProductionFlexibility[0]:companyHistory.acquiredProductionFlexibility[1]}}</td>
+                  <td>Acquired Design Level:{{categoryID==1?companyHistory.acquiredDesignLevel[0]:companyHistory.acquiredDesignLevel[1]}}</td>
                 </tr>
 
                 <tr style="margin-top:20px;backgroud-color:gray">
@@ -52,12 +52,12 @@
                   <th style="text-align:left">period:({{(currentPeriod-1)}})</th>
                 </tr>
                 <tr>
-                  <td>Investment in capacity change:</td>
-                  <td>Investment to improve avaliable Technology:</td>
+                  <td>Investment in capacity change:{{companyDecisionHistory[0].capacityChange}}</td>
+                  <td>Investment to improve avaliable Technology:{{companyDecisionHistory[0].investInTechnology}}</td>
                 </tr>
                 <tr>
-                  <td>Investment to improve flexibility:</td>
-                  <td>Investemnt to improve design know-how:</td>
+                  <td>Investment to improve flexibility:{{companyDecisionHistory[0].investInProductionFlexibility}}</td>
+                  <td>Investemnt to improve design know-how:{{companyDecisionHistory[0].investInDesign}}</td>
                 </tr>  
               </table>
             </div>

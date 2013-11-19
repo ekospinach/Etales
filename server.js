@@ -77,8 +77,10 @@ app.post('/addContract',require('./api/models/contract.js').addContract(io));
 app.get('/variantHistoryInfo/:seminar/:period/:parentBrandName/:varName',require('./api/models/variantHistoryInfo').getVariantHistory);
 app.get('/brandHistoryInfo/:seminar/:period/:brandName',require('./api/models/brandHistoryInfo.js').getBrandHistory);
 //get brandHistory
-app.get('/producerDecision/:producerID/:period/:seminar/:brandName',require('./api/models/producerDecision.js').getBrandHistoryByName);
+app.get('/producerBrandDecision/:producerID/:period/:seminar/:brandName',require('./api/models/producerDecision.js').getBrandHistory);
 app.get('/companyHistoryInfo/:seminar/:period/:userType/:userID',require('./api/models/companyHistoryInfo.js').getCompanyHistory);
+//get companyHistory
+app.get('/producerCompanyDecision/:producerID/:period/:seminar/:categoryID',require('./api/models/producerDecision.js').getCompanyHistory)
 app.get('/quarterHistoryInfo/:seminar/:period',require('./api/models/quarterHistoryInfo.js').getQuarterHistory);
 
 app.get('/marketReport', require('./api/models/marketReport.js').getMarketReport);

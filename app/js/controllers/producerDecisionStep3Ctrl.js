@@ -195,7 +195,7 @@ define(['app'], function(app) {
 				.success(function(data, status, headers, config) {
 					$scope.brandHistory=data;
 					console.log($scope.brandHistory);
-					url="/producerDecision/"+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+($rootScope.currentPeriod-1)+'/'+$rootScope.user.seminar+'/'+brandName;
+					url="/producerBrandDecision/"+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+($rootScope.currentPeriod-1)+'/'+$rootScope.user.seminar+'/'+brandName;
 					 $http({method:'GET',url:url})
 					 .success(function(data,status,headers,config){
 					 	$scope.brandDecisionHistory=data;
