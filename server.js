@@ -16,6 +16,7 @@ userRoles = require('./app/js/routingConfig').userRoles,
 accessLevels = require('./app/js/routingConfig').accessLevels;
 
 
+//process.env.NODE_ENV = 'production';
 conf = new Config();
 app.use(express.cookieParser());
 app.use(express.favicon());
