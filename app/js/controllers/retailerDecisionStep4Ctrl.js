@@ -219,8 +219,10 @@ define(['app'], function(app) {
 	      		var products=new Array();
 	      		for(var i=0;i<allRetCatDecisions.length;i++){
 	      			for(var j=1;j<allRetCatDecisions[i].retVariantDecision.length;j++){
-	      				products.push(allRetCatDecisions[i].retVariantDecision[j]);
-	      				count++;
+	      				if(allRetCatDecisions[i].retVariantDecision[j].brandID!=0&&allRetCatDecisions[i].retVariantDecision[j].varID!=0){
+	      					products.push(allRetCatDecisions[i].retVariantDecision[j]);
+	      					count++;
+	      				}
 	      			}
 	      		}
 	      		if(count!=0){
@@ -237,20 +239,26 @@ define(['app'], function(app) {
 				}
 				var orderProducts=new Array();
 				//添加retailer load
-				var url='/retailerProducts/'+$rootScope.rootRetailerID+'/'+$rootScope.rootPeriod+'/'+$rootScope.rootSeminar+'/'+category;
+				var url='/retailerProducts/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.seminar+'/'+category;
 				$http.get(url).success(function(data){
 					for(var i=0;i<data.length;i++){
-						orderProducts.push(data[i]);
+						if(data[i].brandID!=0&&data[i].varID!=0){
+							data[i].variantID=data[i].varID;
+							orderProducts.push(data[i]);
+						}
 					}
 					for(var i=1;i<=3;i++){
 						url='/producerProducts/'+i+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.seminar+'/'+category;
 						$http.get(url).success(function(data){
 							for(var j=0;j<data.length;j++){
-								orderProducts.push(data[j]);
+								if(data[j].brandID!=0&&data[j].varID!=0){
+									data[j].variantID=data[j].varID;
+									orderProducts.push(data[j]);
+								}
 							}
-							$scope.orderProducts=orderProducts;
 						});
-					}					
+					}		
+					$scope.orderProducts=orderProducts;			
 				});
 				return result;
 			}
@@ -290,12 +298,16 @@ define(['app'], function(app) {
 			}		
 
 			var addOrder=function(market,product){
-				product.dateOfBirth=$rootScope.rootPeriod;
+				product.dateOfBirth=$rootScope.currentPeriod;
 				product.dateOfDeath=10;
-				product.Order=null;
-				product.retailerPrice=null;
-				product.shelfSpace=null;
-				product.pricePromotions=new Array(null,null);
+				product.order=0;
+				product.retailerPrice=0;
+				product.shelfSpace=0;
+				product.pricePromotions={
+					promo_Frequency:0,
+					promo_Rate:0
+				};
+				console.log(product);
 				if(market=="Urban"){
 					RetailerDecisionBase.addOrder(1,product);
 				}
