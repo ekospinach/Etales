@@ -80,7 +80,7 @@ exports.addMarketReports = function(options){
                                           seminar : reportGroup[idx].Seminar},
                                           {upsert: true},
                                           function(err, numberAffected, raw){
-                                            if(err) next(new Error(err));
+                                            if(err) deferred.reject({msg:err, options: options});
                                             console.log('MarketReport generated: The number of updated documents was %d', numberAffected);
                                             idx--;  
                                             if (idx >= 0){
