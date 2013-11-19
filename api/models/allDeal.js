@@ -7,48 +7,100 @@ var mongoose  = require('mongoose'),
 var allDealSchema = mongoose.Schema({
     period : Number,
     seminar : String,
-    producerDeal : [producerDealSchema]
+    producerDeal : [producerDealSchema] //length: TAllProducers(1~4)
 })
 
 var producerDealSchema = mongoose.Schema({
     producerID : Number,
-    retailerDealSchema : [retailerDealSchema]
+    retailerDealSchema : [retailerDealSchema]//length: TAllRetailers(1~4)
 })
 
 var retailerDealSchema = mongoose.Schema({
     retailerID : Number,
-    categoryDeal : [categoryDealSchema]
+    categoryDeal : [categoryDealSchema] //length: TCategories(1~3)
 })
 
 var categoryDealSchema = mongoose.Schema({
     categoryID : Number,
-    consignementVolume     : categoryDetailsSchema,
-    inStoreActivitiesFee   : categoryDetailsSchema,
-    minimumOrder           : categoryDetailsSchema,
-    otherCompensation      : categoryDetailsSchema,
-    paymentDays            : categoryDetailsSchema,
-    performanceBonusAmount : categoryDetailsSchema,
-    performanceBonusRate   : categoryDetailsSchema,
-    promotionalSupport     : categoryDetailsSchema,
-    salesTargetVolume      : categoryDetailsSchema,
-    volumeDiscountRate     : categoryDetailsSchema,
-})
+    consignementVolume     : {
+        marketsDetails : [Number], //Length: TMarketTotal(1~3)
+        useBrandsDetails : Boolean,
+        useMarketsDetails : Boolean,
+        brandsDetails : [brandDetailsSchema], //Length: TProBrands(1~5)
 
-var categoryDetailsSchema = mongoose.Schema({
-    marketsDetails : [Number], //Length: TMarketTotal
-    useBrandsDetails : Boolean,
-    useMarketsDetails : Boolean,
-    brandsDetails : [brandDetailsSchema], //Length: TProBrands
+    },
+    inStoreActivitiesFee   : {
+        marketsDetails : [Number], //Length: TMarketTotal(1~3)
+        useBrandsDetails : Boolean,
+        useMarketsDetails : Boolean,
+        brandsDetails : [brandDetailsSchema], //Length: TProBrands(1~5)
+
+    },
+    minimumOrder           : {
+        marketsDetails : [Number], //Length: TMarketTotal(1~3)
+        useBrandsDetails : Boolean,
+        useMarketsDetails : Boolean,
+        brandsDetails : [brandDetailsSchema], //Length: TProBrands(1~5)
+
+    },
+    otherCompensation      : {
+        marketsDetails : [Number], //Length: TMarketTotal(1~3)
+        useBrandsDetails : Boolean,
+        useMarketsDetails : Boolean,
+        brandsDetails : [brandDetailsSchema], //Length: TProBrands(1~5)
+
+    },
+    paymentDays            : {
+        marketsDetails : [Number], //Length: TMarketTotal(1~3)
+        useBrandsDetails : Boolean,
+        useMarketsDetails : Boolean,
+        brandsDetails : [brandDetailsSchema], //Length: TProBrands(1~5)
+
+    },
+    performanceBonusAmount : {
+        marketsDetails : [Number], //Length: TMarketTotal(1~3)
+        useBrandsDetails : Boolean,
+        useMarketsDetails : Boolean,
+        brandsDetails : [brandDetailsSchema], //Length: TProBrands(1~5)
+
+    },
+    performanceBonusRate   : {
+        marketsDetails : [Number], //Length: TMarketTotal(1~3)
+        useBrandsDetails : Boolean,
+        useMarketsDetails : Boolean,
+        brandsDetails : [brandDetailsSchema], //Length: TProBrands(1~5)
+
+    },
+    promotionalSupport     : {
+        marketsDetails : [Number], //Length: TMarketTotal(1~3)
+        useBrandsDetails : Boolean,
+        useMarketsDetails : Boolean,
+        brandsDetails : [brandDetailsSchema], //Length: TProBrands(1~5)
+
+    },
+    salesTargetVolume      : {
+        marketsDetails : [Number], //Length: TMarketTotal(1~3)
+        useBrandsDetails : Boolean,
+        useMarketsDetails : Boolean,
+        brandsDetails : [brandDetailsSchema], //Length: TProBrands(1~5)
+
+    },
+    volumeDiscountRate     : {
+        marketsDetails : [Number], //Length: TMarketTotal(1~3)
+        useBrandsDetails : Boolean,
+        useMarketsDetails : Boolean,
+        brandsDetails : [brandDetailsSchema], //Length: TProBrands(1~5)
+    }
 })
 
 var brandDetailsSchema = mongoose.Schema({
     brandID : Number,
     dateOfBirth : Number,
     dateOfDeath : Number,
-    marketsDetails : [Number],
+    marketsDetails : [Number],//Length: TMarketTotal(1~3)
     useVariantsDetails : Boolean,
     useMarketsDetails : Boolean,
-    variantsDetails : [variantsDetailsSchema] //length: TOneBrandVars
+    variantsDetails : [variantsDetailsSchema] //length: TOneBrandVars(1~3)
 })
 
 var variantsDetailsSchema = mongoose.Schema({
@@ -56,7 +108,7 @@ var variantsDetailsSchema = mongoose.Schema({
     dateOfBirth : Number,
     dateOfDeath : Number,
     useMarketsDetails : Boolean,
-    marketsDetails : [Number]
+    marketsDetails : [Number]//Length: TMarketTotal(1~3)
 })
 
 var allDeal = mongoose.model('allDeal', allDealSchema);
@@ -85,14 +137,14 @@ exports.exportToBinary = function(options){
                            });
     return deferred.promise;
 }
+exports.test = function(options){
+    console.log('damn');
+}
 
-exports.addDecisionss = function(options){
+exports.addDecisions = function(options){
     var deferred = q.defer();
     var startFrom = options.startFrom,
     endWith = options.endWith;
-
-    console.log('inside options:' + util.inspect(options, {depth : null}));
-
 
    (function sendRequest(currentPeriod){        
       var reqOptions = {

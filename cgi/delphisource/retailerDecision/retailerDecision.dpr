@@ -350,8 +350,8 @@ var
 
       jo.I['brandID'] := pVar.drv_BrandID;
       jo.I['variantID'] := pVar.drv_VariantID;
-//      jo.S['brandName'] := pVar.drv_BrandName;
-//      jo.S['varName'] := pVar.drv_VariantName;
+      jo.S['brandName'] := pVar.drv_BrandName;
+      jo.S['varName'] := pVar.drv_VariantName;
       jo.I['dateOfBirth'] := pVar.drv_DateofBirth;
       jo.I['dateOfDeath'] := pVar.drv_DateOfDeath;
       jo.D['order'] := pVar.drv_Order;

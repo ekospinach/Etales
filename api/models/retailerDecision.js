@@ -149,7 +149,7 @@ exports.addRetailerDecisions = function(options){
             }
           }      
           if (!singleDecision) return; 
-//          console.log(singleDecision);
+         // console.log(singleDecision);
           retDecision.update({seminar: singleDecision.seminar, 
                               period: singleDecision.period,
                               retailerID: singleDecision.retailerID},
@@ -161,7 +161,7 @@ exports.addRetailerDecisions = function(options){
                                retMarketDecision: singleDecision.retMarketDecision},
                                 {upsert: true},
                                 function(err, numberAffected, raw){
-                                  if(err) next(new Error(err));
+                                  if(err) deferred.reject({msg:err, options: options});
                                   currentPeriod--;
                                   if (currentPeriod >= startFrom) {
                                      sendRequest(currentPeriod);

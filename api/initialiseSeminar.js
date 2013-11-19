@@ -43,10 +43,11 @@ exports.initialiseSeminar = function(io){
             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
 			options.retailerID = '4';			
 			return require('./models/retailerDecision.js').addRetailerDecisions(options);	
-		// }).then(function(result){
-  //           io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
-  //           options.cgiPath = conf.cgi.path_negotiationDecision;
-		// 	return require('./models/allDeal.js').addDecisions(options);	
+		}).then(function(result){
+            io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
+            options.cgiPath = conf.cgi.path_negotiationDecision;
+            console.log('outside:' + util.inspect(options));
+			return require('./models/allDeal.js').addDecisions(options);	
 
 		//import historyInformation		
 		}).then(function(result){
