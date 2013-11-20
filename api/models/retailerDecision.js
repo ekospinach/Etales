@@ -93,7 +93,7 @@ var retDecisionSchema = mongoose.Schema({
 
 var retDecision = mongoose.model('retailerDecision', retDecisionSchema);
 var privateLabelVarDecision = mongoose.model('privateLabelVarDecision',privateLabelVarDecisionSchema);
-var retVariantDecision= mongoose.model('retVariantDecision',retVariantDecisionSchema);
+var privateLabelDecision= mongoose.model('privateLabelDecision',privateLabelDecisionSchema);
 
 exports.exportToBinary = function(options){
     var deferred = q.defer();
@@ -261,7 +261,7 @@ exports.updateRetailerDecision = function(io){
                                                 if(doc.retCatDecision[i].categoryID==queryCondition.categoryID){
                                                     for(var j=0;j<doc.retCatDecision[i].privateLabelDecision.length;j++){
                                                         //if varName is null ,var is null
-                                                        if(doc.retCatDecision[i].privateLabelDecision[j]!=undefined&&doc.retCatDecision[i].privateLabelDecision[j].brandID!=0&&doc.retCatDecision[i].privateLabelDecision[j].brandName==""){
+                                                        if(doc.retCatDecision[i].privateLabelDecision[j]!=undefined&&doc.retCatDecision[i].privateLabelDecision[j].brandID==0&&doc.retCatDecision[i].privateLabelDecision[j].brandName==""){
                                                             doc.retCatDecision[i].privateLabelDecision.splice(j,1,queryCondition.value);
                                                             break;
                                                         }
@@ -293,31 +293,34 @@ exports.updateRetailerDecision = function(io){
                                         case 'deleteProduct':
                                             var nullVarDecision=new privateLabelVarDecision();
                                             nullVarDecision.varName="";
-                                            //nullVarDecision.varID=0;
+                                            nullVarDecision.varID=0;
                                             nullVarDecision.parentBrandID=0;
                                             nullVarDecision.dateOfDeath=0;
                                             nullVarDecision.dateOfBirth=0;
                                             nullVarDecision.packFormat="";
                                             nullVarDecision.composition=[0,0,0];
                                             nullVarDecision.discontinue=false;
-
-                                            var nullBrandDecision=new retVariantDecision();
+                                            var nullBrandDecision=new privateLabelDecision();
                                             nullBrandDecision.brandName="";
-                                            //nullBrandDecision.brandID=0;
+                                            nullBrandDecision.brandID=0;
                                             nullBrandDecision.parentCompanyID=0;
-
+                                            nullBrandDecision.dateOfBirth=0;
+                                            nullBrandDecision.dateOfDeath=0;
+                                            nullBrandDecision.privateLabelVarDecision.push(nullVarDecision,nullVarDecision,nullVarDecision);
                                             for(var i=0;i<doc.retCatDecision.length;i++){
                                                 if(doc.retCatDecision[i].categoryID==queryCondition.categoryID){
                                                     for(var j=0;j<doc.retCatDecision[i].privateLabelDecision.length;j++){
                                                         if(doc.retCatDecision[i].privateLabelDecision[j]!=undefined&&doc.retCatDecision[i].privateLabelDecision[j].brandName==queryCondition.brandName){
-                                                            //delete doc.retCatDecision[i].privateLabelDecision[j]
                                                             for(k=0;k<doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision.length;k++){
                                                                 if(doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k]!=undefined&&doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k].varName==queryCondition.varName){
-                                                                    delete doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k];
+                                                                    doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision.splice(k,1,nullVarDecision);
+                                                                    break;
                                                                 }
                                                             }
+                                                            break;
                                                         }
                                                     }
+                                                    break;
                                                 }
                                             }
                                             var count=0;
@@ -325,18 +328,19 @@ exports.updateRetailerDecision = function(io){
                                                 if(doc.retCatDecision[i].categoryID==queryCondition.categoryID){
                                                     for(var j=0;j<doc.retCatDecision[i].privateLabelDecision.length;j++){
                                                         if(doc.retCatDecision[i].privateLabelDecision[j]!=undefined&&doc.retCatDecision[i].privateLabelDecision[j].brandName==queryCondition.brandName){
-                                                            //delete doc.retCatDecision[i].privateLabelDecision[j]
                                                             for(k=0;k<doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision.length;k++){
-                                                                if(doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k]!=undefined&&doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k].varName!=undefined){
+                                                                if(doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k]!=undefined&&doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k].varName!=""&&doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k].varID!=0){
                                                                     count++;
-                                                                    //delete doc.retCatDecision[i].privateLabelDecision[j].privateLabelVarDecision[k];
                                                                 }
                                                             }
                                                             if(count==0){
-                                                                delete doc.retCatDecision[i].privateLabelDecision[j];
+                                                                doc.retCatDecision[i].privateLabelDecision.splice(j,1,nullBrandDecision);
+                                                                console.log("double delete!!!!!");
+                                                                break;
                                                             }   
                                                         }
                                                     }
+                                                    break;
                                                 }
                                             }
                                         break;

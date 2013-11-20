@@ -189,8 +189,25 @@ define(['app'], function(app) {
 			}
 
 			var getBrandMoreInfo=function(brandID,brandName){
-				$scope.moreInfo={'brandID':brandID,'brandName':brandName};
 				$scope.isCollapsed=false;
+				var url='/brandHistoryInfo/'+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+brandName;
+				$http({method: 'GET', url: url})
+				.success(function(data, status, headers, config) {
+					$scope.brandHistory=data;
+					console.log($scope.brandHistory);
+					url="/producerBrandDecision/"+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+($rootScope.currentPeriod-1)+'/'+$rootScope.user.seminar+'/'+brandName;
+					 $http({method:'GET',url:url})
+					 .success(function(data,status,headers,config){
+					 	$scope.brandDecisionHistory=data;
+					 	console.log($scope.brandDecisionHistory);
+					 })
+					 .error(function(data,status,headers,config){
+					 	console.log('read brandDecisionHistory fail');
+					 });
+				})
+				.error(function(data, status, headers, config) {
+					console.log('read producer BrandHistory fail');
+				});
 			}
 
 			var loadNameNum=function(){//load the sort

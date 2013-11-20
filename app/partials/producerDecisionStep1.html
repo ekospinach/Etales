@@ -46,27 +46,36 @@
           <div class="well well-large">
             <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button>
             <table class="table table-striped">
-              <tr style="backgroud-color:gray">Current Period({{currentPeriod}})</tr>
-              <tr>
-                <td>Unit Production cost:</td>
-                <td>Acquired design technology level:</td>
-                <td>Acquired design level:</td>
-              </tr>
-              <tr style="margin-top:20px;backgroud-color:gray">Previous period({{(currentPeriod-1)}})</tr>
-              <tr>
-                <th>Sales Volume:</th>
-                <td>unit production cost:</td>
-                <td>production Volume:</td>
+              <tr style="backgroud-color:gray">
+                <th></th>
+                <th style="text-align:center">Previous period({{currentPeriod}})</th>
+                <th></th>
               </tr>
               <tr>
-                <td>initial inventory:</td>
-                <td>Current price BM:</td>
-                <td>Current price emall:</td>
+                <!--<td>Unit Production cost:</td>-->
+                <td>Acquired design technology level:{{category=="Elecssories"?companyHistory.acquiredTechnologyLevel[0]:companyHistory.acquiredTechnologyLevel[1]}}</td>
+                <td>Acquired design level:{{category=="Elecssories"?companyHistory.acquiredTechnologyLevel[0]:companyHistory.acquiredTechnologyLevel[1]}}</td>
+                <td></td>
+              </tr>
+              <tr style="margin-top:20px;backgroud-color:gray">
+                <th></th>
+                <th style="text-align:center">Previous period({{(currentPeriod-1)}})</th>
+                <th></th>
+              </tr>
+              <tr>
+                <th>Sales Volume:{{variantHistory.supplierView[0].supplierChannelView[4].salesVolume[2]}}</th>
+                <td>unit production cost:{{variantHistory.supplierView[0].currentUnitAverageCost}}</td>
+                <td>production Volume:{{variantHistory.supplierView[0].productionVolume}}</td>
+              </tr>
+              <tr>
+                <td>initial inventory:{{variantHistory.supplierView[0].initialInventory[4].volume}}</td>
+                <td>Current price BM:{{variantHistory.supplierView[0].currentPriceBM}}</td>
+                <td>Current price emall:{{variantHistory.supplierView[0].currentPriceEmall}}</td>
               </tr>         
               <tr>
-                <td>Design Index:</td>
-                <td>Technology Level:</td>
-                <td>Raw Materials Quality:</td>
+                <td>Design Index:{{variantHistory.supplierView[0].composition[0]}}</td>
+                <td>Technology Level:{{variantHistory.supplierView[0].composition[1]}}</td>
+                <td>Raw Materials Quality:{{variantHistory.supplierView[0].composition[2]}}</td>
               </tr>
             </table>
           </div>

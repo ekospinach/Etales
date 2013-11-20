@@ -73,7 +73,7 @@ define(['app'], function(app) {
 
 					$scope.showView=showView;
 					$scope.updateProducerDecision=updateProducerDecision;
-					$scope.getCatagoryMoreInfo=getCatagoryMoreInfo;
+					$scope.getCategoryMoreInfo=getCategoryMoreInfo;
 					$scope.closeInfo=closeInfo;
 				var result=showView($scope.producerID,$scope.period,$scope.language);
 				delay.resolve(result);
@@ -128,9 +128,28 @@ define(['app'], function(app) {
 				$scope.isCollapsed=true;
 			}
 
-			var getCatagoryMoreInfo=function(categoryID){
-				$scope.moreInfo={'categoryID':categoryID};
+			var getCategoryMoreInfo=function(categoryID){
 				$scope.isCollapsed=false;
+				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+				$http({method: 'GET', url: url})
+				.success(function(data, status, headers, config) {
+					$scope.companyHistory=data;
+					console.log($scope.companyHistory);
+					url="/producerCompanyDecision/"+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+($rootScope.currentPeriod-1)+'/'+$rootScope.user.seminar+'/'+categoryID;
+					 $http({method:'GET',url:url})
+					 .success(function(data,status,headers,config){
+					 	$scope.companyDecisionHistory=data;
+					 	console.log($scope.companyDecisionHistory);
+					 })
+					 .error(function(data,status,headers,config){
+					 	console.log('read companyDecisionHistory fail');
+					 });
+				})
+				.error(function(data, status, headers, config) {
+					console.log('read companyHistory fail');
+				});
+				$scope.categoryID=categoryID;
+
 			}
 
 			var loadNameNum=function(){//load the sort
