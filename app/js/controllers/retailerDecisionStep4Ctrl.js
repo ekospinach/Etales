@@ -246,7 +246,7 @@ define(['app'], function(app) {
 					for(var i=0;i<data.length;i++){
 						if(data[i].brandID!=0&&data[i].varID!=0){
 							data[i].variantID=data[i].varID;
-							data[i].select=true;
+							data[i].select=false;
 							orderProducts.push(data[i]);
 						}
 					}
