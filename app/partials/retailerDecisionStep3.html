@@ -42,19 +42,47 @@
           <div collapse="isCollapsed">
             <div class="well well-large">
               <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button>
-              <table class="table table-striped">
+             <table class="table table-striped">
+                <tr style="backgroud-color:gray">
+                  <th></th>
+                  <th style="text-align:center">CurrentPeriod period({{currentPeriod}})</th>
+                  <th></th>
+                </tr>
                 <tr>
-                  <td>parentBrandID:{{moreInfo.parentBrandID}}</td>
-                  <td>varName:{{moreInfo.varName}}</td>
-                  <td>parentBrandID:{{moreInfo.parentBrandID}}</td>
-                  <td>varName:{{moreInfo.varName}}</td>
+                  <td>Unit production cost:</td>
+                  <td>Acquired design technology level:</td>
+                  <td>Acquired design level:</td>
+                </tr>
+                <tr>
+                  <td>Expected perception(x-axis):/</td>
+                  <td>Expected perception(y-axis):/</td>
+                  <th></th>
+                </tr>
+                <tr style="margin-top:20px;backgroud-color:gray">
+                  <th></th>
+                  <th style="text-align:center">Previous period({{(currentPeriod-1)}})</th>
+                  <th></th>
                 </tr>  
                 <tr>
-                  <td>parentBrandID:{{moreInfo.parentBrandID}}</td>
-                  <td>varName:{{moreInfo.varName}}</td>
-                  <td>parentBrandID:{{moreInfo.parentBrandID}}</td>
-                  <td>varName:{{moreInfo.varName}}</td>
-                </tr>            
+                  <td>Tier-1 Sales Volume:</td>
+                  <td>Tier-1 Unit production cost:</td>
+                  <td>Tier-1 Design Index:{{companyHistory.acquiredDesignLevel[0]}}</td>
+                </tr>
+                <tr>
+                  <td>Tier-2 Sales Volume:</td>
+                  <td>Tier-2 Unit production cost:</td>
+                  <td>Tier-2 Design Index:{{companyHistory.acquiredDesignLevel[1]}}</td>
+                </tr>
+                <tr>
+                  <td>Tier-1 Technolohgy level:{{companyHistory.acquiredTechnologyLevel[0]}}</td>
+                  <td>Tier-1 Raw Materials Quality:</td>
+                  <td></td>
+                </tr>  
+                <tr>
+                  <td>Tier-2 Technolohgy level:{{companyHistory.acquiredTechnologyLevel[1]}}</td>
+                  <td>Tier-2 Raw Materials Quality:</td>
+                  <td></td>
+                </tr>    
               </table>
             </div>
           </div>
@@ -72,7 +100,7 @@
             <tr>
               <th>{{fullLanguages.Variant}}</th>
               <th ng-repeat='product in products'>
-              {{product.varName}}<span><a ng-click="getMoreInfo(product.parentBrandID,product.varName)">more</a></span><button type="button" class="btn btn-danger btn-xs {{(product.dateOfBirth==-4)?'hide':'show'}}" ng-click="deleteProduct(category,product.parentBrandName,product.varName)">Delete</button>
+              {{product.varName}}<span><a ng-click="getMoreInfo(product.parentBrandName,product.varName)">more</a></span><button type="button" class="btn btn-danger btn-xs {{(product.dateOfBirth==-4)?'hide':'show'}}" ng-click="deleteProduct(category,product.parentBrandName,product.varName)">Delete</button>
             </th>
             </tr>
             <tr>

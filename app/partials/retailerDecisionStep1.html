@@ -34,18 +34,31 @@
             <div class="well well-large">
               <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button>
               <table class="table table-striped">
-                <tr>
-                  <td>retailerID:{{retailerID}}</td>
-                  <td>retailerID:{{retailerID}}</td>
-                  <td>retailerID:{{retailerID}}</td>
-                  <td>retailerID:{{retailerID}}</td>
+                <tr style="backgroud-color:gray">
+                  <th></th>
+                  <th style="text-align:center">Current period({{currentPeriod}})</th>
+                  <th></th>
+                </tr>
+                <tr style="backgroud-color:gray">
+                  <td>Web-trawler sentiment index:</td>
+                  <td>Web-trawler strength index:</td>
+                  <th></th>
+                </tr>
+                <tr style="margin-top:20px;backgroud-color:gray">
+                  <th></th>
+                  <th style="text-align:center">Previous period({{(currentPeriod-1)}})</th>
+                  <th></th>
                 </tr>  
                 <tr>
-                  <td>retailerID:{{retailerID}}</td>
-                  <td>retailerID:{{retailerID}}</td>
-                  <td>retailerID:{{retailerID}}</td>
-                  <td>retailerID:{{retailerID}}</td>
-                </tr>            
+                  <td>Convenience off-line:{{retailerDecisionHistory.tradtionalAdvertising[1]}}</td>
+                  <td>Assortment off-line:{{retailerDecisionHistory.tradtionalAdvertising[2]}}</td>
+                  <td>Price off-line:{{retailerDecisionHistory.tradtionalAdvertising[0]}}</td>
+                </tr>
+                <tr>
+                  <td>Convenience on-line:{{retailerDecisionHistory.onlineAdvertising[1]}}</td>
+                  <td>Assortment on-line:{{retailerDecisionHistory.onlineAdvertising[2]}}</td>
+                  <td>Price on-line:{{retailerDecisionHistory.onlineAdvertising[0]}}</td>
+                </tr>          
               </table>
             </div>
           </div>

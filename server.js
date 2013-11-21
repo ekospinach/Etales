@@ -78,6 +78,10 @@ app.get('/variantHistoryInfo/:seminar/:period/:parentBrandName/:varName',require
 app.get('/brandHistoryInfo/:seminar/:period/:brandName',require('./api/models/brandHistoryInfo.js').getBrandHistory);
 //get brandHistory
 app.get('/producerBrandDecision/:producerID/:period/:seminar/:brandName',require('./api/models/producerDecision.js').getBrandHistory);
+//retailer get producerDecision
+app.get('/getProducerDecisionByVar/:producerID/:period/:seminar/:brandName/:varName',require('./api/models/producerDecision.js').retailerGetProducerDecision);
+//retailer get retailerDecision
+app.get('/getRetailerDecisionByVar/:retailerID/:period/:seminar/:brandName/:varName',require('./api/models/retailerDecision.js').retailerGetRetailerDecision);
 app.get('/companyHistoryInfo/:seminar/:period/:userType/:userID',require('./api/models/companyHistoryInfo.js').getCompanyHistory);
 //get companyHistory
 app.get('/producerCompanyDecision/:producerID/:period/:seminar/:categoryID',require('./api/models/producerDecision.js').getCompanyHistory)

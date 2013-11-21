@@ -393,6 +393,49 @@ exports.getAllProducerDecision = function(req, res, next){
                         }); 
 }
 
+//retailer get producerDecision about var
+exports.retailerGetProducerDecision=function(req,res,next){
+    var result=new Array();
+    proDecision.findOne({
+        seminar:req.params.seminar,
+        period:req.params.period,
+        producerID:req.params.producerID
+    },function(err,doc){
+        if(err){
+            next (new Error(err));
+        }
+        if(!doc){
+            res.send(404,'cannot find the decision');
+        }else{
+            var categoryID=0;
+            if(req.params.brandName.substring(0,1)=="E"){
+                categoryID=1;
+            }else{
+                categoryID=2;
+            }
+            for(var i=0;i<doc.proCatDecision[categoryID-1].proBrandsDecision.length;i++){
+                if(doc.proCatDecision[categoryID-1].proBrandsDecision[i].brandID!=undefined&&doc.proCatDecision[categoryID-1].proBrandsDecision[i].brandID!=0&&doc.proCatDecision[categoryID-1].proBrandsDecision[i].brandName==req.params.brandName){
+                    for(var j=0;j<doc.proCatDecision[categoryID-1].proBrandsDecision[i].proVarDecision.length;j++){
+                        if(doc.proCatDecision[categoryID-1].proBrandsDecision[i].proVarDecision[j].varID!=undefined&&doc.proCatDecision[categoryID-1].proBrandsDecision[i].proVarDecision[j].varID!=0&&doc.proCatDecision[categoryID-1].proBrandsDecision[i].proVarDecision[j].varName==req.params.varName){
+                            result.push({
+                               'composition':doc.proCatDecision[categoryID-1].proBrandsDecision[i].proVarDecision[j].composition,
+                               'currentPriceBM':doc.proCatDecision[categoryID-1].proBrandsDecision[i].proVarDecision[j].currentPriceBM,
+                               'currentPriceEmall':doc.proCatDecision[categoryID-1].proBrandsDecision[i].proVarDecision[j].currentPriceEmall,
+                               'nextPriceBM':doc.proCatDecision[categoryID-1].proBrandsDecision[i].proVarDecision[j].nextPriceBM
+                            });
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+            res.header("Content-Type", "application/json; charset=UTF-8");                                
+            res.statusCode = 200;
+            res.send(result);  
+        }
+    })
+}
+
 exports.getProducerProductList=function(req,res,next){
     proDecision.findOne({seminar:req.params.seminar,
                         period:req.params.period,

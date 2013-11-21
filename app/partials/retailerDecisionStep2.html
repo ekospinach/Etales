@@ -35,18 +35,21 @@
             <div class="well well-large">
               <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button>
               <table class="table table-striped">
-                <tr>
-                  <td>market:{{moreInfo.marketID}}</td>
-                  <td>market:{{moreInfo.marketID}}</td>
-                  <td>market:{{moreInfo.marketID}}</td>
-                  <td>market:{{moreInfo.marketID}}</td>
+                <tr style="backgroud-color:gray">
+                  <th></th>
+                  <th style="text-align:center">Previous period({{(currentPeriod-1)}})</th>
+                  <th></th>
                 </tr>  
                 <tr>
-                  <td>market:{{moreInfo.marketID}}</td>
-                  <td>market:{{moreInfo.marketID}}</td>
-                  <td>market:{{moreInfo.marketID}}</td>
-                  <td>market:{{moreInfo.marketID}}</td>
-                </tr>            
+                  <td>In-store Service Level:{{retailerDecisionHistory[0].serviceLevel}}</td>
+                  <td>Elecssories Selling surface allocation:{{retailerDecisionHistory[0].categorySurfaceShare[0]}}</td>
+                  <td>HealthBeauty Selling surface allocation:{{retailerDecisionHistory[0].categorySurfaceShare[1]}}</td>
+                </tr>
+                <tr>
+                  <td>Local Convenience Advertising:{{retailerDecisionHistory[0].localAdvertising[1]}}</td>
+                  <td>Local Assortment Advertising:{{retailerDecisionHistory[0].localAdvertising[2]}}</td>
+                  <td>Local Price Advertising:{{retailerDecisionHistory[0].localAdvertising[0]}}</td>
+                </tr>           
               </table>
             </div>
           </div>

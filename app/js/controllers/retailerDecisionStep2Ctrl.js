@@ -182,8 +182,19 @@ define(['app'], function(app) {
 			}
 
 			var getMarketMoreInfo=function(marketID){
-				$scope.moreInfo={'marketID':marketID};
+				//$scope.moreInfo={'marketID':marketID};
 				$scope.isCollapsed=false;
+				var url="/retailerDecision/"+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+($rootScope.currentPeriod-1)+'/'+$rootScope.user.seminar;
+				$http({method:'GET',url:url})
+				.success(function(data){
+					$scope.retailerDecisionHistory=_.filter(data.retMarketDecision,function(obj){
+						return (obj.marketID==marketID);
+					});
+					console.log($scope.retailerDecisionHistory);
+				})
+				.error(function(data){
+					console.log('read retailerDecisionHistory fail');
+				});
 			}
 
 			var loadNameNum=function(){//load the sort

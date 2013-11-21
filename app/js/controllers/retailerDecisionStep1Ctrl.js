@@ -121,8 +121,25 @@ define(['app'], function(app) {
 			}
 
 			var getMoreInfo=function(){
-				$scope.moreInfo={'categoryID':$scope.retailerID};
+				//$scope.moreInfo={'categoryID':$scope.retailerID};
 				$scope.isCollapsed=false;
+				var url="/quarterHistoryInfo/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod;
+				$http({method:'GET',url:url})
+				.success(function(data,status,headers,config){
+					$scope.quarterHistory=data;
+					console.log($scope.quarterHistory);
+					url="/retailerDecision/"+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+($rootScope.currentPeriod-1)+'/'+$rootScope.user.seminar;
+					$http({method:'GET',url:url})
+					.success(function(data){
+						$scope.retailerDecisionHistory=data;
+					})
+					.error(function(data){
+						console.log('read retailerDecisionHistory fail');
+					})
+				})
+				.error(function(data,status,headers,config){
+					console.log('read quarterHistory fail');
+				});
 			}
 
 			var loadNameNum=function(){//load the sort
