@@ -393,6 +393,49 @@ exports.getAllProducerDecision = function(req, res, next){
                         }); 
 }
 
+//retailer get producerDecision about var
+exports.retailerGetProducerDecision=function(req,res,next){
+    var result=new Array();
+    proDecision.findOne({
+        seminar:req.params.seminar,
+        period:req.params.period,
+        producerID:req.params.producerID
+    },function(err,doc){
+        if(err){
+            next (new Error(err));
+        }
+        if(!doc){
+            res.send(404,'cannot find the decision');
+        }else{
+            var categoryID=0;
+            if(req.params.brandName.substring(0,1)=="E"){
+                categoryID=1;
+            }else{
+                categoryID=2;
+            }
+            for(var i=0;i<doc.proCatDecision[categoryID-1].proBrandsDecision.length;i++){
+                if(doc.proCatDecision[categoryID-1].proBrandsDecision[i].brandID!=undefined&&doc.proCatDecision[categoryID-1].proBrandsDecision[i].brandID!=0&&doc.proCatDecision[categoryID-1].proBrandsDecision[i].brandName==req.params.brandName){
+                    for(var j=0;j<doc.proCatDecision[categoryID-1].proBrandsDecision[i].proVarDecision.length;j++){
+                        if(doc.proCatDecision[categoryID-1].proBrandsDecision[i].proVarDecision[j].varID!=undefined&&doc.proCatDecision[categoryID-1].proBrandsDecision[i].proVarDecision[j].varID!=0&&doc.proCatDecision[categoryID-1].proBrandsDecision[i].proVarDecision[j].varName==req.params.varName){
+                            result.push({
+                               'composition':doc.proCatDecision[categoryID-1].proBrandsDecision[i].proVarDecision[j].composition,
+                               'currentPriceBM':doc.proCatDecision[categoryID-1].proBrandsDecision[i].proVarDecision[j].currentPriceBM,
+                               'currentPriceEmall':doc.proCatDecision[categoryID-1].proBrandsDecision[i].proVarDecision[j].currentPriceEmall,
+                               'nextPriceBM':doc.proCatDecision[categoryID-1].proBrandsDecision[i].proVarDecision[j].nextPriceBM
+                            });
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+            res.header("Content-Type", "application/json; charset=UTF-8");                                
+            res.statusCode = 200;
+            res.send(result);  
+        }
+    })
+}
+
 exports.getProducerProductList=function(req,res,next){
     proDecision.findOne({seminar:req.params.seminar,
                         period:req.params.period,
@@ -507,22 +550,38 @@ exports.getProducerBrandList=function(req,res,next){
                         period:req.params.period,
                         producerID:req.params.producerID},function(err,doc){
                             if(err) {next(new Error(err));}
-                            if(!doc) {
-                                console.log('cannot find matched doc...');
-                                res.send(404, {error:'Cannot find matched doc...'});
-                            } else {
-                                var allProCatDecisions=_.filter(doc.proCatDecision,function(obj){
-                                    return (obj.categoryID==req.params.categoryID);
-                                });
-                                var brands=new Array();
-                                var count=0;
-                                for(var i=0;i<doc.proCatDecision.length;i++){
-                                    for(var j=0;j<doc.proCatDecision[i].proBrandsDecision.length;j++){
-                                        if(doc.proCatDecision[i].proBrandsDecision[j]!=undefined&&doc.proCatDecision[i].proBrandsDecision[j].brandID!=undefined&&doc.proCatDecision[i].proBrandsDecision[j].brandID!=0){
-                                            brands.push({'category':doc.proCatDecision[i].categoryID,
-                                                    'brandName':doc.proCatDecision[i].proBrandsDecision[j].brandName,
-                                                    'brandID':doc.proCatDecision[i].proBrandsDecision[j].brandID});
-                                            count++;
+
+                                if(!doc) {
+                                    console.log('cannot find matched doc...');
+                                    res.send(404, {error:'Cannot find matched doc...'});
+                                } else {
+                                    var allProCatDecisions=_.filter(doc.proCatDecision,function(obj){
+                                        return (obj.categoryID==req.params.categoryID);
+                                    });
+                                    var brands=new Array();
+                                    //var vars=new Array();
+                                    var count=0;
+                                    for(var i=0;i<doc.proCatDecision.length;i++){
+                                        for(var j=0;j<doc.proCatDecision[i].proBrandsDecision.length;j++){
+                                            if(doc.proCatDecision[i].proBrandsDecision[j]!=undefined&&doc.proCatDecision[i].proBrandsDecision[j].brandID!=undefined&&doc.proCatDecision[i].proBrandsDecision[j].brandID!=0){
+                                                var vars=new Array();
+                                                for(var k=0;k<doc.proCatDecision[i].proBrandsDecision[j].proVarDecision.length;k++){
+                                                    if(doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].varName!=""&&doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].varID!=0){
+                                                        vars.push({
+                                                            'varID':doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].varID,
+                                                            'varName':doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].varName,
+                                                            'parentBrandID':doc.proCatDecision[i].proBrandsDecision[j].brandID,
+                                                            'parentName':doc.proCatDecision[i].proBrandsDecision[j].brandName
+                                                        });
+
+                                                    }
+                                                }
+                                                brands.push({'category':doc.proCatDecision[i].categoryID,
+                                                        'brandName':doc.proCatDecision[i].proBrandsDecision[j].brandName,
+                                                        'brandID':doc.proCatDecision[i].proBrandsDecision[j].brandID,
+                                                        'varList':vars});
+                                                count++;
+
                                         }
                                     }
                                 }

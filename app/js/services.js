@@ -515,7 +515,7 @@ define(['angular','angularResource','routingConfig'], function (angular,angularR
 						console.log('Failed:' + res);
 					});
 				},
-				addOrder:function(marketID,product){
+				addOrder:function(marketID,product,last){
 					var queryCondition = {
 						retailerID :$rootScope.user.username.substring($rootScope.user.username.length-1),
 						period:$rootScope.currentPeriod,
@@ -525,10 +525,15 @@ define(['angular','angularResource','routingConfig'], function (angular,angularR
 						value:product
 					}
 					$http({method:'POST', url:'/retailerDecision', data: queryCondition}).then(function(res){
-						$rootScope.$broadcast('retailerDecisionBaseChanged', base);
+						//$rootScope.$broadcast('retailerDecisionBaseChanged', base);
 					 	console.log('Success:' + res);
+					 	//return "done";
+					 	if(last=="last"){
+					 		$rootScope.$broadcast('retailerDecisionBaseChanged', base);
+					 	}
 					 },function(res){
 						console.log('Failed:' + res);
+						//return "done";
 					});
 				},
 				deleteOrder:function(marketID,categoryID,brandName,varName){

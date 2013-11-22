@@ -34,11 +34,137 @@ define(['app'], function(app) {
 					$scope.shouldBeEdit="none";
 					$scope.shouldBeView="inline";					
 				}
-				var url="/contractDetails/"+contract.contractCode;
-				$http.get(url).success(function(data){
-					$scope.contractDetailList=data;
-					showDetailModal(category);					
+				//获取数据->修改成读取producerDecision 列表
+				// var url="/contractDetails/"+contract.contractCode;
+				// $http.get(url).success(function(data){
+				// 	$scope.contractDetailList=data;
+				// 	showDetailModal(category);//显示数据			
+				// });
+				var url='/producerBrands/'+contract.producerID+'/'+contract.period+'/'+contract.seminar;
+				$http({method:'GET',url:url}).then(function(data){
+					$scope.brandList=data.data;
+					var details=new Array();
+					var negotiationItems=['nc_MinimumOrder','nc_VolumeDiscountRate','nc_PaymentDays','nc_SalesTargetVolume','nc_PerformanceBonusAmount','nc_PerformanceBonusRate','nc_OtherCompensation'];
+					var userTypes=['P','R'];
+					for(var i=0;i<$scope.brandList.length;i++){
+						for(var j=0;j<userTypes.length;j++){
+							for(var k=0;k<negotiationItems.length;k++){
+								details.push({
+											'contractCode':contract.contractCode,
+											'userType':userTypes[j],
+											'negotiationItem':negotiationItems[k],
+											'relatedBrandName':$scope.brandList[i].brandName,
+											'retailerID':$scope.brandList[i].brandID,
+											'useBrandDetails':true,
+											'useVariantDetails':false,
+											'displayValue':0,
+											'brand_urbanValue' : 0,
+											'brand_ruralValue' : 0,
+											'variant_A_urbanValue' : 0,
+											'variant_A_ruralValue' : 0,
+											'variant_B_urbanValue' : 0,
+											'variant_B_ruralValue' : 0,
+											'variant_C_urbanValue' : 0,
+											'variant_C_ruralValue' : 0,
+											'isVerified' : false,
+											'amount_or_rate' : true
+										});
+								// url="/contractDetail/"+contract.contractCode+'/'+userTypes[j]+'/'+negotiationItems[k]+'/'+$scope.brandList[i].brandName;
+								// $http({method:'GET',url:url}).then(function(data){
+								// 	if(data.data.length==0){
+								// 		details.push({
+								// 			'contractCode':contract.contractCode,
+								// 			'userType':userTypes[j],
+								// 			'negotiationItem':negotiationItems[k],
+								// 			'relatedBrandName':$scope.brandList[i].brandName,
+								// 			'retailerID':$scope.brandList[i].brandID,
+								// 			'useBrandDetails':true,
+								// 			'useVariantDetails':false,
+								// 			'displayValue':0,
+								// 			'brand_urbanValue' : 0,
+								// 			'brand_ruralValue' : 0,
+								// 			'variant_A_urbanValue' : 0,
+								// 			'variant_A_ruralValue' : 0,
+								// 			'variant_B_urbanValue' : 0,
+								// 			'variant_B_ruralValue' : 0,
+								// 			'variant_C_urbanValue' : 0,
+								// 			'variant_C_ruralValue' : 0,
+								// 			'isVerified' : false,
+								// 			'amount_or_rate' : true
+								// 		});
+								// 	}else{
+								// 		details.push(data.data);
+								// 	}
+								// 	$scope.details=details;
+								// },function(data){
+								// 	console.log('fail');
+								// })
+							}
+						}
+					}
+					$scope.contractDetailList=details;
+					showDetailModal(category);
+					//console.log(details);
+				},function(data){
+					console.log('fail');
 				});
+
+				// $http({method:'GET',url:url})
+				// .success(function(data){
+				// 	$scope.brandList=data;
+				// 	var details=new Array();
+				// 	var negotiationItems=['nc_MinimumOrder','nc_VolumeDiscountRate','nc_PaymentDays','nc_SalesTargetVolume','nc_PerformanceBonusAmount','nc_PerformanceBonusRate','nc_OtherCompensation'];
+				// 	var userTypes=['P','R'];
+				// 	console.log($scope.brandList);
+				// 	for(var i=0;i<$scope.brandList.length;i++){
+				// 	 	for(var j=0;j<negotiationItems.length;j++){
+				// 	 		for(var k=0;j<userTypes.length;k++){
+				// 	 		 	url="/contractDetail/"+contract.contractCode+'/'+userTypes[k]+'/'+negotiationItems[j]+'/'+$scope.brandList[i].brandName;
+				// 	 		 	$http({method:'GET',url:url})
+				// 	 		 	.then(function(data){
+				// 	 		 		console.log(data.data);
+				// 	 		 	},function(data){
+				// 	 		 		console.log('error');
+				// 	 		 	})
+				// 	 		// 	.success(function(data){
+				// 	 		// 		if(data.length==0){
+										// details.push({
+										// 	'contractCode':contract.contractCode,
+										// 	'userType':userTypes[k],
+										// 	'negotiationItem':negotiationItems[j],
+										// 	'relatedBrandName':$scope.brandList[i].brandName,
+										// 	'retailerID':$scope.brandList[i].brandID,
+										// 	'useBrandDetails':true,
+										// 	'useVariantDetails':false,
+										// 	'displayValue':0,
+										// 	'brand_urbanValue' : 0,
+										// 	'brand_ruralValue' : 0,
+										// 	'variant_A_urbanValue' : 0,
+										// 	'variant_A_ruralValue' : 0,
+										// 	'variant_B_urbanValue' : 0,
+										// 	'variant_B_ruralValue' : 0,
+										// 	'variant_C_urbanValue' : 0,
+										// 	'variant_C_ruralValue' : 0,
+										// 	'isVerified' : false,
+										// 	'amount_or_rate' : true
+										// });
+				// 	 		// 		}else{
+				// 	 		// 			details.push(data);
+				// 	 		// 		}
+				// 	 		// 		$scope.details=details;
+				// 	 		// 		console.log($scope.details);
+				// 	 		// 	})
+				// 				// .error(function(data){
+				// 				// 	console.log("fail");
+				// 				// })
+								
+				// 			}
+				// 	 	}
+				// 	}
+				// })
+				// .error(function(data){
+				// 	console.log('fail');
+				// })
 			}
 
 			var showDetailModal=function(category){

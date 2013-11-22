@@ -403,9 +403,37 @@ define(['app'], function(app) {
 				$scope.isCollapsed=true;
 			}
 
-			var getMoreInfo=function(brandID,varName){
-				$scope.moreInfo={'parentBrandID':brandID,'varName':varName};
+			var getMoreInfo=function(brandName,varName){
+				//$scope.moreInfo={'parentBrandID':brandID,'varName':varName};
 				$scope.isCollapsed=false;
+				//var url="/variantHistoryInfo/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+brandName+'/'+varName;
+				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/4';
+				$http({method:'GET',url:url})
+				.success(function(data){
+					$scope.companyHistory=data;
+					console.log($scope.companyHistory);
+					url="/retailerDecision/"+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.seminar;
+					$http({method:'GET',url:url})
+					.success(function(data){
+						$scope.variantDecisionHistory=data;
+						console.log($scope.variantDecisionHistory);
+						// url="/variantHistoryInfo/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+brandName+'/'+varName;
+						// $http({method:'GET',url:url})
+						// .success(function(data){
+						// 	$scope.variantHistory=data;
+						// 	console.log($scope.variantHistory);
+						// })
+						// .error(function(data){
+						// 	console.log("read variantHistory fail");
+						// })
+					})
+					.error(function(data){
+						console.log('read retailerDecision fail');
+					})
+				})
+				.error(function(data){
+					console.log('read companyHistory fail');
+				})
 			}
 
 			var loadNameNum=function(){//load the sort

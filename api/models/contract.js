@@ -2306,21 +2306,21 @@ exports.newDetail=function(req,res,next){
 }
 
 exports.getContractList = function(req, res, next){
-	var data="";
-	if(req.params.contractUserID==1||req.params.contractUserID==2||req.params.contractUserID==3){
-		data={'seminar':req.params.seminar,'producerID':req.params.contractUserID};
-	}else if(req.params.contractUserID==5||req.params.contractUserID==6){
-		data={'seminar':req.params.seminar,'retailerID':req.params.contractUserID-4};
-	}else{
-		data={'seminar':req.params.seminar};
-	}
-	contract.find(data,function(err,docs){
-		if(docs){
-			res.send(200,docs);
-		}else{
-			res.send(404,'there is no contract');
-		}
-	})
+        var data="";
+        if(req.params.contractUserID==1||req.params.contractUserID==2||req.params.contractUserID==3){
+                data={'seminar':req.params.seminar,'producerID':req.params.contractUserID};
+        }else if(req.params.contractUserID==5||req.params.contractUserID==6){
+                data={'seminar':req.params.seminar,'retailerID':req.params.contractUserID-4};
+        }else{
+                data={'seminar':req.params.seminar};
+        }
+        contract.find(data,function(err,docs){
+                if(docs){
+                        res.send(200,docs);
+                }else{
+                        res.send(404,'there is no contract');
+                }
+        })
 }
 
 exports.duplicateContract = function(req, res, next){
@@ -2346,6 +2346,7 @@ exports.updateContractDetails = function(io){
   			index:req.body.index,
   			value:req.body.value,
   		};
+
   		contractDetails.findOne({
   			contractCode:queryCondition.contractCode,
   			userType:queryCondition.userType,
@@ -2357,8 +2358,63 @@ exports.updateContractDetails = function(io){
   				next(new Error(err));
   			}
   			if(!doc){
-  				console.log('cannot find matched doc....');
-  				res.send(404,'cannot find matched detail ...');
+  				var newdoc=new contractDetails({
+  					contractCode:queryCondition.contractCode,
+  					userType:queryCondition.userType,
+  					negotiationItem:queryCondition.negotiationItem,
+  					relatedBrandName:queryCondition.relatedBrandName,
+  					relatedBrandID:queryCondition.relatedBrandID,
+  					useBrandDetails : true,
+					useVariantDetails : false,
+					displayValue : 0,
+					brand_urbanValue : 0,
+					brand_ruralValue : 0,
+					variant_A_urbanValue : 0,
+					variant_A_ruralValue : 0,
+					variant_B_urbanValue : 0,
+					variant_B_ruralValue : 0,
+					variant_C_urbanValue : 0,
+					variant_C_ruralValue : 0,
+					isVerified : false,
+					amount_or_rate : true		
+  				});
+  				if(queryCondition.type=="brand"){
+  					if(queryCondition.location=="rural"){
+	  					newdoc.brand_ruralValue=queryCondition.value;
+	  				}else{
+	  					newdoc.brand_urbanValue=queryCondition.value;
+	  				}
+	  				newdoc.useBrandDetails=true;
+	  				newdoc.useVariantDetails=false;
+  				}
+  				if(queryCondition.type=="variant"){
+					if(queryCondition.location=="rural"){
+	  					//newdoc.brand_ruralValue=queryCondition.value;
+	  					switch(queryCondition.index){
+	  						case 0:newdoc.variant_A_ruralValue=queryCondition.value;break;
+	  						case 1:newdoc.variant_B_ruralValue=queryCondition.value;break;
+	  						case 2:newdoc.variant_C_ruralValue=queryCondition.value;break;
+	  					}
+	  				}else{
+	  					switch(queryCondition.index){
+	  						case 0:newdoc.variant_A_urbanValue=queryCondition.value;break;
+	  						case 1:newdoc.variant_B_urbanValue=queryCondition.value;break;
+	  						case 2:newdoc.variant_C_urbanValue=queryCondition.value;break;
+	  					}
+	  				}
+	  				newdoc.useBrandDetails=false;
+	  				newdoc.useVariantDetails=true;
+  				}
+  				newdoc.save(function(err,newdoc,numberAffected){
+  					if(err){
+  						next(new Error(err));
+  					}
+  					console.log('save update,number affected:'+numberAffected);
+  					result=true;
+  					//res.send(200, 'mission complete!');
+  				});
+  				//console.log('cannot find matched doc....');
+  				//res.send(404,'cannot find matched detail ...');
   			}else{
   				if(queryCondition.type=="brand"){
   					if(queryCondition.location=="rural"){
@@ -2394,9 +2450,10 @@ exports.updateContractDetails = function(io){
   					console.log('save update,number affected:'+numberAffected);
   					result=true;
   					//res.send(200, 'mission complete!');
-  				})
+  				});
   			}
   		});
+		console.log(queryCondition.negotiationItem);
 		if(queryCondition.negotiationItem=="nc_VolumeDiscountRate"){
 			contractDetails.findOne({
 				contractCode:queryCondition.contractCode,
@@ -2466,10 +2523,9 @@ exports.updateContractDetails = function(io){
 	  				})
 	  			}
 			})
+		}else{
+    		res.send(200, 'mission complete!');
 		}
-    }
-    if(result){
-    	res.send(200, 'mission complete!');
     }
 		/*var query = {
 			contractCode : req.body.contractCode,
@@ -2533,6 +2589,7 @@ exports.getContractDetails = function(req, res, next){
 	})
 }
 
+
 exports.getContractsQuery = function(params){
 	contract.find({seminar:params.seminar, period:params.period, producerID:params.producerID, retailerID:params.retailerID},function(err, docs){
 		return docs;
@@ -2550,20 +2607,17 @@ exports.getVerifiedContractDetailsQuery = function(params){
 	})
 }
 
-exports.getContractList = function(req, res, next){
-	var data="";
-	if(req.params.contractUserID==1||req.params.contractUserID==2||req.params.contractUserID==3){
-		data={'seminar':req.params.seminar,'producerID':req.params.contractUserID};
-	}else if(req.params.contractUserID==5||req.params.contractUserID==6){
-		data={'seminar':req.params.seminar,'retailerID':req.params.contractUserID-4};
-	}else{
-		data={'seminar':req.params.seminar};
-	}
-	contract.find(data,function(err,docs){
-		if(docs){
-			res.send(200,docs);
+exports.getContractDetail=function(req,res,next){
+	contractDetails.find({
+		'contractCode':req.params.contractCode,
+		'userType':req.params.userType,
+		'negotiationItem':req.params.negotiationItem,
+		'brandName':req.params.brandName
+	},function(err,doc){
+		if(doc){
+			res.send(200,doc);
 		}else{
-			res.send(404,'there is no contract');
+			res.send(404,'no document');
 		}
 	})
 }

@@ -194,7 +194,6 @@ exports.updateRetailerDecision = function(io){
             additionalIdx : req.body.additionalIdx,
             value : req.body.value
         }
-        console.log(queryCondition);
         retDecision.findOne({seminar:queryCondition.seminar,
                             period:queryCondition.period,
                             retailerID:queryCondition.retailerID},function(err,doc){
@@ -460,6 +459,51 @@ exports.getRetailerProductList=function(req,res,next){
                                     }
                                 }
                         });
+}
+
+//retailer get retailer decision
+
+exports.retailerGetRetailerDecision=function(req,res,next){
+    retDecision.findOne({
+        seminar:req.params.seminar,
+        period:req.params.period,
+        retailerID:req.params.retailerID
+    },function(err,doc){
+        if(err){
+            next(new Error(err));
+        }
+        if(!doc){
+            console.log('cannot find the doc');
+        }else{
+            var categoryID=0;
+            var result=new Array();
+            if(req.params.brandName.substring(0,1)=="E"){
+                categoryID=1;
+            }else{
+                categoryID=2;
+            }
+            var allRetCatDecisions=_.filter(doc.retCatDecision,function(obj){
+                    return (obj.categoryID==categoryID);
+                });
+            for(var i=0;i<allRetCatDecisions.length;i++){
+                for(var j=0;j<allRetCatDecisions[i].privateLabelDecision.length;j++){
+                    if(allRetCatDecisions[i].privateLabelDecision[j]!=undefined){
+                        for(var k=0;k<allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision.length;k++){
+                            if(allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k]!=undefined&&allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k].varName==req.params.varName&&allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k].varID!=0){
+                                result.push({'composition':allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k].composition
+                                });
+                                break;
+                            }
+                        }
+                        break;
+                    } 
+                } 
+            }
+            res.header("Content-Type", "application/json; charset=UTF-8");                                
+            res.statusCode = 200;
+            res.send(result);  
+        }
+    })
 }
 
 exports.getAllRetailerDecision = function(req, res, next){
