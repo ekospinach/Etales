@@ -19,11 +19,11 @@ var contractSchema = mongoose.Schema({
     */
     producerID : Number,
     retailerID : Number,
-    isDraftFinished : Boolean
+    isDraftFinished : Boolean,
+    isLocked : Boolean, //if Admin lock this contract, none of user have ability to modify
 })
 
 contractSchema.plugin(uniqueValidator);
-
 
 var contractDetailsSchema = mongoose.Schema({
 	contractCode : String, 
@@ -2525,6 +2525,41 @@ exports.updateContractDetails = function(io){
 
 exports.getContractDetails = function(req, res, next){
 	contractDetails.find({'contractCode':req.params.contractCode},function(err,docs){
+		if(docs){
+			res.send(200,docs);
+		}else{
+			res.send(404,'there is no contract');
+		}
+	})
+}
+
+exports.getContractsQuery = function(params){
+	contract.find({seminar:params.seminar, period:params.period, producerID:params.producerID, retailerID:params.retailerID},function(err, docs){
+		return docs;
+	});
+}
+
+exports.getVerifiedContractDetailsQuery = function(params){
+	contractDetails.find({contractCode : params.contractCode,
+						  userType : params.userType,
+						  negotiationItem : params.negotiationItem,
+						  relatedBrandName : params.relatedBrandName,
+						  relatedBrandID : params.relatedBrandID,
+						  isVerified : true},function(err, docs){
+		return docs;
+	})
+}
+
+exports.getContractList = function(req, res, next){
+	var data="";
+	if(req.params.contractUserID==1||req.params.contractUserID==2||req.params.contractUserID==3){
+		data={'seminar':req.params.seminar,'producerID':req.params.contractUserID};
+	}else if(req.params.contractUserID==5||req.params.contractUserID==6){
+		data={'seminar':req.params.seminar,'retailerID':req.params.contractUserID-4};
+	}else{
+		data={'seminar':req.params.seminar};
+	}
+	contract.find(data,function(err,docs){
 		if(docs){
 			res.send(200,docs);
 		}else{
