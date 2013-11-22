@@ -558,13 +558,27 @@ exports.getProducerBrandList=function(req,res,next){
                                         return (obj.categoryID==req.params.categoryID);
                                     });
                                     var brands=new Array();
+                                    //var vars=new Array();
                                     var count=0;
                                     for(var i=0;i<doc.proCatDecision.length;i++){
                                         for(var j=0;j<doc.proCatDecision[i].proBrandsDecision.length;j++){
                                             if(doc.proCatDecision[i].proBrandsDecision[j]!=undefined&&doc.proCatDecision[i].proBrandsDecision[j].brandID!=undefined&&doc.proCatDecision[i].proBrandsDecision[j].brandID!=0){
+                                                var vars=new Array();
+                                                for(var k=0;k<doc.proCatDecision[i].proBrandsDecision[j].proVarDecision.length;k++){
+                                                    if(doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].varName!=""&&doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].varID!=0){
+                                                        vars.push({
+                                                            'varID':doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].varID,
+                                                            'varName':doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].varName,
+                                                            'parentBrandID':doc.proCatDecision[i].proBrandsDecision[j].brandID,
+                                                            'parentName':doc.proCatDecision[i].proBrandsDecision[j].brandName
+                                                        });
+
+                                                    }
+                                                }
                                                 brands.push({'category':doc.proCatDecision[i].categoryID,
                                                         'brandName':doc.proCatDecision[i].proBrandsDecision[j].brandName,
-                                                        'brandID':doc.proCatDecision[i].proBrandsDecision[j].brandID});
+                                                        'brandID':doc.proCatDecision[i].proBrandsDecision[j].brandID,
+                                                        'varList':vars});
                                                 count++;
                                             }
                                         }

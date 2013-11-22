@@ -441,16 +441,28 @@ define(['app'], function(app) {
 			}		
 
 			var addOrders=function(market){
+				var max=0;
 				for(var i=0;i<$scope.orderProducts.length;i++){
 					if($scope.orderProducts[i].select){
-						addOrder(market,$scope.orderProducts[i]);
+						max=i;
+					}
+				}
+				for(var i=0;i<$scope.orderProducts.length;i++){
+					if($scope.orderProducts[i].select){
+						if(i==max){
+							addOrder(market,$scope.orderProducts[i],"last");
+							//setTimeout(function(){addOrder(market,$scope.orderProducts[i],"last");},1000);
+						}else{
+							addOrder(market,$scope.orderProducts[i],"none");
+							//setTimeout(function(){addOrder(market,$scope.orderProducts[i],"none");},1000);
+						}
 					}
 				}
 				close();
 			}
 
 
-			var addOrder=function(market,product){
+			var addOrder=function(market,product,last){
 				product.dateOfBirth=$rootScope.currentPeriod;
 				product.dateOfDeath=10;
 				product.order=0;
@@ -462,10 +474,13 @@ define(['app'], function(app) {
 				};
 				console.log(product);
 				if(market=="Urban"){
-					RetailerDecisionBase.addOrder(1,product);
+					//setTimeout('RetailerDecisionBase.addOrder(1,product,last)',1000);
+					RetailerDecisionBase.addOrder(1,product,last);
 				}
 				else{
-					RetailerDecisionBase.addOrder(2,product);
+					//setTimeout('RetailerDecisionBase.addOrder(2,product,last)',1000);
+					RetailerDecisionBase.addOrder(2,product,last);
+					//setTimeout(function(){RetailerDecisionBase.addOrder(2,product,last);},1000);
 				}
 			}
 

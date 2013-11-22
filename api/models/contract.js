@@ -2533,3 +2533,18 @@ exports.getContractDetails = function(req, res, next){
 	})
 }
 
+exports.getContractDetail=function(req,res,next){
+	contractDetails.find({
+		'contractCode':req.params.contractCode,
+		'userType':req.params.userType,
+		'negotiationItem':req.params.negotiationItem,
+		'brandName':req.params.brandName
+	},function(err,doc){
+		if(doc){
+			res.send(200,doc);
+		}else{
+			res.send(404,'no document');
+		}
+	})
+}
+
