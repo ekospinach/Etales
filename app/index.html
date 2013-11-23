@@ -45,16 +45,9 @@
 		          		</li>
 		      		</ul>
 
-				    <ul class="nav pull-right">
+				    <ul class="nav navbar-nav pull-right">
 				        <li id="userInfo" data-access-level="{{ accessLevels.playerView }}" class="pull-right">
-				        	<div style="clear:both"></div>
-<!-- 					        <a class="pull-left">
- --><!-- 					          <label class="pull-left">Seminar</label>
-					          <strong class="pull-left">{{ user.seminar }}&nbsp;</strong> -->
-					          <span data-ng-class="{&quot;label-info&quot;: user.role == userRoles.producer, &quot;label-success&quot;: user.role == userRoles.retailer, &quot;label-default&quot;: user.role == userRoles.facilitator,&quot;label-danger&quot;: user.role == userRoles.info}" class="label pull-left">{{ getUserRoleText(user.role) }} </span>
-					        <!-- </a> -->
-					        <div style="clear:both"></div>
-					        <!--<a class="btn btn-xs btn-primary" ng-click="Auth.logout()">logout</a>-->
+				        	<span data-ng-class="{&quot;label-info&quot;: user.role == userRoles.producer, &quot;label-success&quot;: user.role == userRoles.retailer, &quot;label-default&quot;: user.role == userRoles.facilitator,&quot;label-danger&quot;: user.role == userRoles.info}" class="label pull-left" style="margin:15px 0;font-size:14px;">{{ getUserRoleText(user.role)}}</span>
 				        </li>      
 				    </ul>
 				</nav>
