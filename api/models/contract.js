@@ -2590,17 +2590,42 @@ exports.getContractDetails = function(req, res, next){
 }
 
 exports.getContractDetail=function(req,res,next){
+	var queryCondition={
+		contractCode:req.params.contractCode,
+		userType:req.params.userType,
+		negotiationItem:req.params.negotiationItem,
+		brandName:req.params.brandName
+	}
 	contractDetails.find({
 		'contractCode':req.params.contractCode,
 		'userType':req.params.userType,
 		'negotiationItem':req.params.negotiationItem,
-		'brandName':req.params.brandName
+		'relatedBrandName':req.params.brandName
 	},function(err,doc){
 		if(doc){
 			res.send(200,doc);
 		}else{
-			res.send(404,'no document');
+			res.send(404,'there is no contract');
 		}
 	})
+	// console.log(queryCondition);
+	// if(req.params.contractCode==undefined){
+	// 	res.send(200);
+	// }else{
+	// 	contractDetails.find({
+	// 		contractCode:req.params.contractCode,
+	// 		userType:req.params.userType,
+	// 		negotiationItem:req.params.negotiationItem,
+	// 		brandName:req.params.brandName
+	// 	},function(err,doc){
+	// 		if(doc){
+	// 			//console.log(doc);
+	// 			res.send(200,doc);
+	// 		}else{
+	// 			console.log('4');
+	// 			res.send(404);
+	// 		}
+	// 	})
+	// }
 }
 

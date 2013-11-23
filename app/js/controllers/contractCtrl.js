@@ -24,7 +24,6 @@ define(['app'], function(app) {
 			}
 
 			$scope.openDetailModal=function(contract){
-				$scope.detailModal=true;
 				$scope.Detail=contract;
 				var category="Elecssories";
 				if(contract.producerID==contract.draftedByCompanyID&&$rootScope.user.username.substring($rootScope.user.username.length-3,$rootScope.user.username.length-2)==2&&contract.producerID==$rootScope.user.username.substring($rootScope.user.username.length-1)){
@@ -40,39 +39,49 @@ define(['app'], function(app) {
 				// 	$scope.contractDetailList=data;
 				// 	showDetailModal(category);//显示数据			
 				// });
+				var count=0;
 				var url='/producerBrands/'+contract.producerID+'/'+contract.period+'/'+contract.seminar;
 				$http({method:'GET',url:url}).then(function(data){
 					$scope.brandList=data.data;
 					var details=new Array();
+					var count=0;
 					var negotiationItems=['nc_MinimumOrder','nc_VolumeDiscountRate','nc_PaymentDays','nc_SalesTargetVolume','nc_PerformanceBonusAmount','nc_PerformanceBonusRate','nc_OtherCompensation'];
 					var userTypes=['P','R'];
 					for(var i=0;i<$scope.brandList.length;i++){
 						for(var j=0;j<userTypes.length;j++){
 							for(var k=0;k<negotiationItems.length;k++){
-								details.push({
-											'contractCode':contract.contractCode,
-											'userType':userTypes[j],
-											'negotiationItem':negotiationItems[k],
-											'relatedBrandName':$scope.brandList[i].brandName,
-											'retailerID':$scope.brandList[i].brandID,
-											'useBrandDetails':true,
-											'useVariantDetails':false,
-											'displayValue':0,
-											'brand_urbanValue' : 0,
-											'brand_ruralValue' : 0,
-											'variant_A_urbanValue' : 0,
-											'variant_A_ruralValue' : 0,
-											'variant_B_urbanValue' : 0,
-											'variant_B_ruralValue' : 0,
-											'variant_C_urbanValue' : 0,
-											'variant_C_ruralValue' : 0,
-											'isVerified' : false,
-											'amount_or_rate' : true
-										});
-								// url="/contractDetail/"+contract.contractCode+'/'+userTypes[j]+'/'+negotiationItems[k]+'/'+$scope.brandList[i].brandName;
-								// $http({method:'GET',url:url}).then(function(data){
-								// 	if(data.data.length==0){
-								// 		details.push({
+								//$rootScope.rootContractCode=contract.contractCode;
+								//$rootScope.rootUserType=userTypes[j];
+								//$rootScope.rootNegotiationItem=negotiationItems[k];
+								//$rootScope.rootBrandName=$scope.brandList[i].brandName;
+								// console.log(detail);
+								// if(detail.length==0){
+								// 	details.push({
+								// 			'contractCode':contract.contractCode,
+								// 			'userType':userTypes[j],
+								// 			'negotiationItem':negotiationItems[k],
+								// 			'relatedBrandName':$scope.brandList[i].brandName,
+								// 			'retailerID':$scope.brandList[i].brandID,
+								// 			'useBrandDetails':true,
+								// 			'useVariantDetails':false,
+								// 			'displayValue':0,
+								// 			'brand_urbanValue' : 0,
+								// 			'brand_ruralValue' : 0,
+								// 			'variant_A_urbanValue' : 0,
+								// 			'variant_A_ruralValue' : 0,
+								// 			'variant_B_urbanValue' : 0,
+								// 			'variant_B_ruralValue' : 0,
+								// 			'variant_C_urbanValue' : 0,
+								// 			'variant_C_ruralValue' : 0,
+								// 			'isVerified' : false,
+								// 			'amount_or_rate' : true
+								// 	});									
+								// }else{
+								// 	details.push(data.data);
+								// }
+								// count++;
+								//count++;
+								// details.push({
 								// 			'contractCode':contract.contractCode,
 								// 			'userType':userTypes[j],
 								// 			'negotiationItem':negotiationItems[k],
@@ -92,23 +101,61 @@ define(['app'], function(app) {
 								// 			'isVerified' : false,
 								// 			'amount_or_rate' : true
 								// 		});
-								// 	}else{
-								// 		details.push(data.data);
-								// 	}
-								// 	$scope.details=details;
-								// },function(data){
-								// 	console.log('fail');
-								// })
+
+								url="/contractDetail/"+contract.contractCode+'/'+userTypes[j]+'/'+negotiationItems[k]+'/'+$scope.brandList[i].brandName;
+								$http({method:'GET',url:url}).then(function(data){
+									if(data.data.length!=0){
+										details.push(data.data[0]);
+									}else{
+										details.push(data.data);
+									}
+									$scope.details=details;
+								},function(data){
+									console.log('fail');
+								}).then(function(){
+									if($scope.details.length==$scope.brandList.length*14){
+										//console.log($scope.details);
+										count=0;
+										for(var i=0;i<$scope.brandList.length;i++){
+											for(var j=0;j<userTypes.length;j++){
+												for(var k=0;k<negotiationItems.length;k++){
+													if($scope.details[count].length==0){
+														$scope.details.splice(count,1,{
+															'contractCode':contract.contractCode,
+															'userType':userTypes[j],
+															'negotiationItem':negotiationItems[k],
+															'relatedBrandName':$scope.brandList[i].brandName,
+															'retailerID':$scope.brandList[i].brandID,
+															'useBrandDetails':true,
+															'useVariantDetails':false,
+															'displayValue':0,
+															'brand_urbanValue' : 0,
+															'brand_ruralValue' : 0,
+															'variant_A_urbanValue' : 0,
+															'variant_A_ruralValue' : 0,
+															'variant_B_urbanValue' : 0,
+															'variant_B_ruralValue' : 0,
+															'variant_C_urbanValue' : 0,
+															'variant_C_ruralValue' : 0,
+															'isVerified' : false,
+															'amount_or_rate' : true
+														})
+													}
+													count++;
+												}
+											}
+										}
+										$scope.contractDetailList=$scope.details;
+										$scope.detailModal=true;
+										showDetailModal(category);
+									}
+								})
 							}
 						}
 					}
-					$scope.contractDetailList=details;
-					showDetailModal(category);
-					//console.log(details);
 				},function(data){
 					console.log('fail');
 				});
-
 				// $http({method:'GET',url:url})
 				// .success(function(data){
 				// 	$scope.brandList=data;
