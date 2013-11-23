@@ -551,15 +551,12 @@ define(['angular','angularResource','routingConfig'], function (angular,angularR
 						value:product
 					}
 					$http({method:'POST', url:'/retailerDecision', data: queryCondition}).then(function(res){
-						//$rootScope.$broadcast('retailerDecisionBaseChanged', base);
 					 	console.log('Success:' + res);
-					 	//return "done";
-					 	if(last=="last"){
-					 		$rootScope.$broadcast('retailerDecisionBaseChanged', base);
-					 	}
-					 },function(res){
+					},function(res){
 						console.log('Failed:' + res);
 						//return "done";
+					}).then(function(){
+						$rootScope.$broadcast('retailerDecisionBaseChanged', base);
 					});
 				},
 				deleteOrder:function(marketID,categoryID,brandName,varName){
