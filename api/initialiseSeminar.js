@@ -8,7 +8,7 @@ exports.initialiseSeminar = function(io){
 			retailerID : '1',
 			seminar : req.body.seminar, 
 			startFrom: -3, 
-			endWith: 0, 
+			endWith: 1, 
 			cgiHost : conf.cgi.host, 
 			cgiPort : conf.cgi.port,			
 			cgiPath : conf.cgi.path_producerDecision, 
@@ -37,17 +37,18 @@ exports.initialiseSeminar = function(io){
 			return require('./models/retailerDecision.js').addRetailerDecisions(options);			
 		}).then(function(result){
             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
+            options.endWith = 0;
 			options.retailerID = '3';			
 			return require('./models/retailerDecision.js').addRetailerDecisions(options);			
 		}).then(function(result){
             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
 			options.retailerID = '4';			
 			return require('./models/retailerDecision.js').addRetailerDecisions(options);	
-		}).then(function(result){
-            io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
-            options.cgiPath = conf.cgi.path_negotiationDecision;
-            console.log('outside:' + util.inspect(options));
-			return require('./models/allDeal.js').addDecisions(options);	
+		// }).then(function(result){
+  //           io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
+  //           options.cgiPath = conf.cgi.path_negotiationDecision;
+  //           console.log('outside:' + util.inspect(options));
+		// 	return require('./models/allDeal.js').addDecisions(options);	
 
 		//import historyInformation		
 		}).then(function(result){

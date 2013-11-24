@@ -60,6 +60,8 @@ var contractDetailsSchema = mongoose.Schema({
 	amount_or_rate : Boolean
 })
 
+exports.contract = mongoose.model('contract', contractSchema);
+exports.contractDetails = mongoose.model('contractDetails', contractDetailsSchema);
 var contract = mongoose.model('contract', contractSchema);
 var contractDetails = mongoose.model('contractDetails', contractDetailsSchema);
 
@@ -2598,9 +2600,9 @@ exports.getContractsQuery = function(params){
 					period:params.period, 
 					producerID:params.producerID, 
 					retailerID:params.retailerID},function(err, docs){
-		console.log('is contarct');
 		if(err) deferred.reject({msg: err});
 		if(docs){
+			console.log('is contarct');
 			deferred.resolve({docs:docs, msg:'Find contracts between producer ' + producerID + ' and retailer ' + retailerID + ' in period ' + period});
 		} else {
 			console.log('no contarct');			
