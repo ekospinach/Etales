@@ -1964,6 +1964,22 @@ exports.getSeminarList=function(req,res,next){
 	});
 }
 
+exports.getCurrentPeriod=function(req,res,next){
+	console.log(req.params.seminar);
+	return seminar.findOne({
+		seminarCode:req.params.seminar
+	},function(err,doc){
+		if(err){
+			next(new Error(err));
+		}
+		if(!doc){
+			console.log('cannot find matched doc');
+		}else{
+			res.send(200,doc);
+		}
+	})
+}
+
 exports.addSeminar=function(req,res,next){
 	var Newseminar = new seminar({
 		seminarCode: req.body.seminarCode,

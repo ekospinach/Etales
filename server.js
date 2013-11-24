@@ -97,6 +97,7 @@ app.get('/volReport', require('./api/models/volReport.js').getVolReport);
 
 //special calculate API
 app.get('/productionCost');
+app.get('/currentPeriod/:seminar',require('./api/models/seminar.js').getCurrentPeriod);
 app.get('/seminarNewDoc',require('./api/models/seminar.js').newDoc);
 
 app.use(express.errorHandler());

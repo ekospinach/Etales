@@ -54,6 +54,12 @@ define(['app','socketIO'], function(app) {
 				rememberme:true
 			},function(res){
 				showbubleMsg('login success.',2);
+				var url="/currentPeriod/"+seminar;
+				$http.get(url).success(function(data){
+					//console.log(data);
+					$rootScope.currentPeriod=data.currentPeriod;
+					console.log($rootScope.currentPeriod);
+				});
 				closeLoginModal();
 
 			},function(res){

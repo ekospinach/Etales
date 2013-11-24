@@ -12,10 +12,15 @@ define(['app'], function(app) {
 					$scope.allContracts=data;
 					$scope.contractList=$scope.allContracts;
 					if(contractUserID==0){
-						$scope.shouldShow="block";
-						filterUser($scope.producerID,$scope.retailerID);
+						$scope.producerShow="block";
+						$scope.retailerShow="block";
+						//filterUser($scope.producerID,$scope.retailerID);
+					}else if(contractUserID<5){
+						$scope.producerShow="block";
+						$scope.retailerShow="none";
 					}else{
-						$scope.shouldShow="none";
+						$scope.producerShow="none";
+						$scope.retailerShow="block";
 					}
 				});
 			}
@@ -515,16 +520,16 @@ define(['app'], function(app) {
 			    dialogFade:true
 			};
 
-			$scope.contractUserID=$rootScope.rootContractUserID;
+			//$scope.contractUserID=$rootScope.rootContractUserID;
 			if($rootScope.user.username.substring($rootScope.user.username.length-3,$rootScope.user.username.length-2)==2){
 				$scope.contractUserID=$rootScope.user.username.substring($rootScope.user.username.length-1);
+				$scope.producerID=$scope.contractUserID;
 			}else if($rootScope.user.username.substring($rootScope.user.username.length-3,$rootScope.user.username.length-2)==4){
 				$scope.contractUserID=parseInt($rootScope.user.username.substring($rootScope.user.username.length-1))+4;
+				$scope.retailerID=parseInt($rootScope.user.username.substring($rootScope.user.username.length-1));
 			}
-			//admin need to test
-			//$rootScope.user.username.substring($rootScope.user.username.length-1)
-			//$scope.producerID=1;
-			//$scope.retailerID=1;
+			//console.log($scope.contractUserID);
+			
 			$scope.showView=showView;
 			$scope.showDetailModal=showDetailModal;
 			$scope.loadModalDate=loadModalDate;
