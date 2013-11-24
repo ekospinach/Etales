@@ -2,6 +2,10 @@ define(['app'], function(app) {
 		app.controller('producerDecisionStep2Ctrl',
 			['$scope','$q','$rootScope','$http','$filter','ProducerDecision','ProducerDecisionBase', function($scope,$q,$rootScope,$http,$filter,ProducerDecision,ProducerDecisionBase) {
 			$rootScope.decisionActive="active";
+			$rootScope.loginCss="";
+		    $rootScope.loginFooter="bs-footer";
+		    $rootScope.loginLink="footer-links";
+		    $rootScope.loginDiv="container";
 			var multilingual=[{
 						'shortName':'Products_Portfolio_Management',
 						'labelENG':'Products Portfolio Management',

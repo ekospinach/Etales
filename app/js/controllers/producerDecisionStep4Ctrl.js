@@ -1,6 +1,10 @@
 define(['app'], function(app) {
 		app.controller('producerDecisionStep4Ctrl',
 			['$scope','$q','$rootScope','$http','$filter','ProducerDecision','ProducerDecisionBase', function($scope,$q,$rootScope,$http,$filter,ProducerDecision,ProducerDecisionBase) {
+			$rootScope.loginCss="";
+		    $rootScope.loginFooter="bs-footer";
+		    $rootScope.loginLink="footer-links";
+		    $rootScope.loginDiv="container";
 			$rootScope.decisionActive="active";
 			var calculate='../js/controllers/untils/calculate.js';
 			//var calculate=require('');

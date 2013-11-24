@@ -10,38 +10,38 @@
 		<link rel="stylesheet" type="text/css" media="all" href="css/app.css" />
 		<link rel="stylesheet" type="text/css" media="all" href="css/docs.css" />
 	</head>
-	<body class="{{rootBodyClass}}" ng-controller="NavbarCtrl">
+	<body ng-controller="NavbarCtrl">
 		<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
 			<div class="container">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="#/home">E-tales</a>
+					<a class="navbar-brand" href="/#/home">E-tales</a>
 				</div>
 				<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">		
 					<ul class="nav navbar-nav">
 						<li class="active" access-level='{{accessLevels.public}}' active-nav>
-							<a href="#/home">Participant manual</a>
+							<a href="/#/home">Participant manual</a>
 						</li>
 
 						<li class="{{rootShow}}" access-level='{{accessLevels.playerView}}' artive-nav>
-							<a href="#/map">My company</a>
+							<a href="/#/map">My company</a>
 						</li>
 		          		<li class="{{rootShow}}" access-level='{{accessLevels.playerView}}' active-nav>
-		          			<a href="#/report">Financial reports</a>
+		          			<a href="/#/report">Financial reports</a>
 		          		</li>   
 		          		<li class="{{rootShow}}" access-level='{{accessLevels.playerView}}' active-nav>
-		          			<a href="#/lineChart">Trend charts</a>
+		          			<a href="/#/lineChart">Trend charts</a>
 		          		</li>     
 		          		<li class="" access-level='{{accessLevels.playerView}}' active-nav>
-		          			<a href="#/marketReport">Market studies</a>
+		          			<a href="/#/marketReport">Market studies</a>
 		          		</li> 
 		          		<li access-level='{{accessLevels.playerView}}' active-nav>
-		          			<a href="#/contract">Negotiation</a>
+		          			<a href="/#/contract">Negotiation</a>
 		          		</li>      
 		          		<li class="{{decisionActive}}" access-level='{{accessLevels.producerView}}' active-nav>
-		          			<a href="#/producerDecisionStep1">Make Decision</a>
+		          			<a href="/#/producerDecisionStep1">Make Decision</a>
 		          		</li>
 		          		<li access-level='{{accessLevels.retailerView}}' active-nav>
-		          			<a href="#/retailerDecisionStep1">Make Decision</a>
+		          			<a href="/#/retailerDecisionStep1">Make Decision</a>
 		          		</li>
 		      		</ul>
 
@@ -57,6 +57,31 @@
 		<div ng-view>
 	    	
 	    </div>
+	    <div class="{{loginCss}}">
+	    	<footer class="{{loginFooter}}" role="contentinfo">
+	    		<div class="{{loginDiv}}">
+		    		<ul class="{{loginLink}}" style="margin-left:0px">
+		    			<li class="current-version"> Currently v0.0.1 </li>
+		  		  		<li>
+		    				<a href="/#/test">Test Entrance</a>
+		    			</li>
+		    		</ul>
+		    	</div>
+	    	</footer>
+	    </div>
+	    <!--
+	    <footer class="bs-footer" role="contentinfo">
+			<div class="container">
+				<ul class="footer-links">
+				<li>Currently v0.0.1</li>
+				<li class="muted">·</li>
+				<li>
+					<a href="/#/test">Test Entrance</a>
+				</li>
+				</ul>
+			</div>
+		</footer>
+	-->
 	    <script data-main="js/main" src="/bower_components/requirejs/require.js"></script>
 	    <script type="text/javascript" src = "http://www.google.com/jsapi" charset="utf-8"></script>
 	    <script type="text/javascript">

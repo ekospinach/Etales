@@ -2,6 +2,11 @@ define(['app'], function(app) {
 	app.controller('contractCtrl',
 		['$scope','$q','$rootScope','$http','$filter', function($scope,$q,$rootScope,$http,$filter) {
 
+			$rootScope.loginCss="";
+		    $rootScope.loginFooter="bs-footer";
+		    $rootScope.loginLink="footer-links";
+		    $rootScope.loginDiv="container";
+
 			var showView=function(contractUserID){
 				var url="/contracts/"+$rootScope.user.seminar+'/'+contractUserID;
 				$http.get(url).success(function(data){
