@@ -422,7 +422,7 @@ var
       Result  := jo;
     end;
 
-    function retailerDealSchema(var curDeal: TOnePairDeal; retailer: Integer): ISuperObject;
+    function retailerDealSchema(producer, retailer: Integer): ISuperObject;
     var
       jo: ISuperObject;
       cat: Integer;
@@ -432,26 +432,28 @@ var
 //    retailerID : Number,
 //    categoryDeal : [categoryDealSchema]
 //})
-      jo.I['retailerID']  := curDeal.neg_RetailerID;
+      jo.I['retailerID']  := retailer;
       jo.O['categoryDeal']  :=  SA([]);
       for cat := Low(TCategories) to High(TCategories) do
-        jo.A['categoryDeal'].Add( categoryDealSchema(curDeal.neg_CategoriesDeals[cat]) );
+        jo.A['categoryDeal'].Add( categoryDealSchema(currentAllDeals[producer, retailer].neg_CategoriesDeals[cat]) );
 
       Result  := jo;
     end;
 
-    function producerDealSchema(var curDeal : TOnePairDeal; producer, retailer: Integer): ISuperObject;
+    function producerDealSchema(producer: Integer): ISuperObject;
     var
       jo: ISuperObject;
+      retailer  : TAllRetailers;
     begin
       jo  := SO;
 //var producerDealSchema = mongoose.Schema({
 //    producerID : Number,
 //    retailerDealSchema : [retailerDealSchema]
 //})
-      jo.I['producerID']  := curDeal.neg_ProducerID;
+      jo.I['producerID']  := producer;
       jo.O['retailerDeal']  := SA([]);
-      jo.A['retailerDeal'].Add(retailerDealSchema(curDeal, retailer) );
+      for retailer := Low(TAllRetailers) to High(TAllRetailers) do
+        jo.A['retailerDeal'].Add(retailerDealSchema(producer, retailer) );
 
       Result  := jo;
     end;
@@ -460,20 +462,18 @@ var
     var
       jo : ISuperObject;
       producer : TAllProducers;
-      retailer  : TAllRetailers;
     begin
       jo := SO;
 //var allDealSchema = mongoose.Schema({
 //    period : Number,
 //    seminar : String,
-//    producerDeal : [producerDealSchema]
+//    producerDeal : [producerDealSchema] //length: TAllProducers(1~4)
 //})
       jo.I['period']  := currentPeriod;
       jo.S['seminar'] := currentSeminar;
       jo.O['producerDeal']  := SA([]);
       for producer := Low(TAllProducers) to High(TAllProducers) do
-        for retailer := Low(TAllRetailers) to High(TAllRetailers) do
-          jo.A['producerDeal'].Add( producerDealSchema( currentAllDeals[producer, retailer], producer, retailer) );
+          jo.A['producerDeal'].Add( producerDealSchema( producer ) );
 
       result  := jo;
     end;

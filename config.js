@@ -34,7 +34,13 @@ module.exports = function(){
 				  path_perceptionMap : '/cgi-bin/perceptionMap.exe',				
 				  path_finReport : '/cgi-bin/finReport.exe',		
 				  path_volReport : '/cgi-bin/volReport.exe',
-				  uploadFileAbsDir : '&filepath=\\\\vmware-host\\Shared%20Folders\\ludwikOnMac\\Code\\Actived\\Etales-result-viewer\\upload\\'
+				  path_producerDecision : '/cgi-bin/producerDecision.exe',
+				  path_retailerDecision : '/cgi-bin/retailerDecision.exe',
+				  path_negotiationDecision : '/cgi-bin/negotiationDecision.exe',
+				  path_brandHistoryInfo : '/cgi-bin/brandHistoryInfo.exe',
+				  path_variantHistoryInfo : '/cgi-bin/variantHistoryInfo.exe',
+				  path_companyHistoryInfo : '/cgi-bin/companyHistoryInfo.exe',
+				  path_quarterHistoryInfo : '/cgi-bin/quarterHistoryInfo.exe',
 				},
 				server : {
 				  port : 80

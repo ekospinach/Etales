@@ -76,6 +76,7 @@ var proBrandsDecision=mongoose.model('proBrandsDecision',proBrandDecisionSchema)
 exports.exportToBinary = function(options){
     var deferred = q.defer();
     var period = options.period;
+
     proDecision.findOne({seminar : options.seminar,
                            period : options.period,
                            producerID : options.producerID},
@@ -550,6 +551,7 @@ exports.getProducerBrandList=function(req,res,next){
                         period:req.params.period,
                         producerID:req.params.producerID},function(err,doc){
                             if(err) {next(new Error(err));}
+
                                 if(!doc) {
                                     console.log('cannot find matched doc...');
                                     res.send(404, {error:'Cannot find matched doc...'});
@@ -580,14 +582,45 @@ exports.getProducerBrandList=function(req,res,next){
                                                         'brandID':doc.proCatDecision[i].proBrandsDecision[j].brandID,
                                                         'varList':vars});
                                                 count++;
-                                            }
+
                                         }
                                     }
-                                    if(count!=0){
-                                        res.header("Content-Type", "application/json; charset=UTF-8");                                
-                                        res.statusCode = 200;
-                                        res.send(brands);   
-                                    } 
                                 }
+                                if(count!=0){
+                                    res.header("Content-Type", "application/json; charset=UTF-8");                                
+                                    res.statusCode = 200;
+                                    res.send(brands);   
+                                } 
+                            }
                             }); 
+}
+
+exports.getBrand = function(categoryCount, brandCount, producerID, seminar, period){
+    var deferred = q.defer();
+    proDecision.findOne({seminar: seminar,
+                         period: period,
+                         producerID : producerID},function(err,doc){
+                            if(err) deferred.reject({msg:err});
+                            if(doc){
+                                deferred.resolve({doc:doc, msg:'Find Brand with producerID:'+ producerID + ', categoryCount:' + categoryCount + ', brandCount:' + brandCount});
+                            } else {
+                                deferred.reject({doc:doc, msg:'No Brand with producerID:'+ producerID + ', categoryCount:' + categoryCount + ', brandCount:' + brandCount});
+                            }
+                         })
+    return deferred.promise;
+}
+
+exports.getVariant = function(categoryCount, brandCount, varCount, producerID, seminar, period){
+    var deferred = q.defer();
+    proDecision.findOne({seminar: seminar,
+                         period: period,
+                         producerID : producerID},function(err,doc){
+                            if(err) deferred.reject({msg:err});
+                            if(doc){
+                                deferred.resolve({doc:doc, msg:'Find Variant with producerID:'+ producerID + ', categoryCount:' + categoryCount + ', brandCount:' + brandCount + ', varCount:' + varCount});
+                            } else {
+                                deferred.reject({doc:doc, msg:'No Variant with producerID:'+ producerID + ', categoryCount:' + categoryCount + ', brandCount:' + brandCount + ', varCount:' + varCount});
+                            }
+                         })
+    return deferred.promise;
 }
