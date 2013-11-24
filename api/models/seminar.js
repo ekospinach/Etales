@@ -1981,6 +1981,7 @@ exports.getCurrentPeriod=function(req,res,next){
 }
 
 exports.addSeminar=function(req,res,next){
+	
 	var Newseminar = new seminar({
 		seminarCode: req.body.seminarCode,
 		seminarDescription: req.body.seminarDescription,

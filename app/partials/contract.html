@@ -52,9 +52,9 @@
 			    	<tr ng-repeat="allContract in allContracts">
 			    		<td>{{allContract.contractCode}}</td>
 			    		<td>{{allContract.period}}</td>
-			    		<td>{{user.seminar}}_P_{{allContract.producerID}}</td>
-			    		<td>{{user.seminar}}_R_{{(allContract.retailerID)}}</td>
-			    		<td>{{user.seminar}}_{{(allContract.draftedByCompanyID>3)?'R':'P'}}_{{(allContract.draftedByCompanyID>3)?(allContract.draftedByCompanyID-4):allContract.draftedByCompanyID}}</td>
+			    		<td>Producer-{{allContract.producerID}}</td>
+			    		<td>Retailer-{{(allContract.retailerID)}}</td>
+			    		<td>{{(allContract.draftedByCompanyID>3)?'Retailer':'Producer'}}-{{(allContract.draftedByCompanyID>3)?(allContract.draftedByCompanyID-4):allContract.draftedByCompanyID}}</td>
 			    		<td>
 			    			<fieldset disabled>
 			    				<div class="checkbox">
@@ -92,7 +92,7 @@
 					<div style="clear:both"></div>
 					<div class="col-xs-5 input-group">
 						<input type="text" id="contractCode" placeholder="contractCode" class="form-control" ng-model="newContractCode" required>
-						<span class="input-group-addon">{{contractCodeLastName}}</span>
+						<!--<span class="input-group-addon">{{contractCodeLastName}}</span>-->
 					</div>
 					<div style="clear:both"></div>
 				</div>
@@ -107,6 +107,9 @@
 					</div>
 					<div style="clear:both"></div>
 				</div>
+				<div class="{{bubleClassName}}" ng-show='true'>
+        			<strong>{{bubleTitle}}</strong>{{bubleMsg}}
+        		</div>	
 			</div>
 			<div class="modal-footer">
 				<a class="btn btn-default">Cancel</a>

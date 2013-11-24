@@ -172,6 +172,28 @@ define(['app'], function(app) {
 				// })
 			}
 
+			var showbubleMsg = function(content, status){
+		 		$scope.bubleMsg = ' ' + content;
+		 		switch(status){
+		 			case 1: 
+		 				$scope.bubleClassName = 'alert alert-danger'; 
+		 				$scope.bubleTitle = 'Error!';
+		 				break;
+		 			case 2: 
+		 				$scope.bubleClassName = 'alert alert-success'; 
+		 				$scope.bubleTitle = 'Success!';
+		 				break;
+		 			case 3:
+		 				$scope.bubleClassName = 'alert alert-block'; 
+		 				$scope.bubleTitle = 'Warning!';
+		 				break;	 			
+		 			default:
+		 			 $scope.bubleClassName = 'alert'; 
+		 		}
+		 		console.log('infoBuble.show');
+		 		$scope.infoBuble = true;
+		 	};
+
 			var showDetailModal=function(category){
 				$scope.allDetails=_.filter($scope.contractDetailList,function(obj){
 					if(category=="Elecssories"){
@@ -398,7 +420,7 @@ define(['app'], function(app) {
 
 			$scope.addNewContract=function(){
 				var data={
-					'contractCode':$scope.newContractCode+$scope.contractCodeLastName,
+					'contractCode':$scope.newContractCode,
 					'seminar':$rootScope.user.seminar,
 					'period':$rootScope.currentPeriod,
 					'draftedByCompanyID':$rootScope.user.username.substring($rootScope.user.username.length-1),
@@ -406,10 +428,13 @@ define(['app'], function(app) {
 					'retailerID':$scope.newRetailerID
 				}
 				$http({method: 'POST', url: '/addContract',data:data}).success(function(data){
+					//console.log(data);
 					$scope.allContracts.push(data);
+					showbubleMsg('Insert success'+data,2);
 					closeInsertModal();
 				}).error(function(err){
-					console.log(err);
+					showbubleMsg('Insert failure, ' + err,1);
+					
 				})
 				//$http
 			}
@@ -529,12 +554,13 @@ define(['app'], function(app) {
 				$scope.retailerID=parseInt($rootScope.user.username.substring($rootScope.user.username.length-1));
 			}
 			//console.log($scope.contractUserID);
-			
+
 			$scope.showView=showView;
 			$scope.showDetailModal=showDetailModal;
 			$scope.loadModalDate=loadModalDate;
 			$scope.filterUser=filterUser;
 			$scope.closeInsertModal=closeInsertModal;
+			$scope.showbubleMsg=showbubleMsg;
 			showView($scope.contractUserID);
 		}]
 	)

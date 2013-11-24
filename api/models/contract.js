@@ -64,21 +64,46 @@ var contractDetails = mongoose.model('contractDetails', contractDetailsSchema);
 
 exports.addContract = function(io){
   return function(req, res, next){
-  	var newContract=new contract({
-  		contractCode : req.body.contractCode,
-		period : req.body.period,
-		seminar : req.body.seminar,
-		draftedByCompanyID : req.body.draftedByCompanyID,
-		producerID : req.body.producerID,
-		retailerID : req.body.retailerID,
-		isDraftFinished : false
-  	});
-  	/*need add Contract Detail*/
-  	newContract.save(function(err){
-		if(err) next(new Error(err));
-		io.sockets.emit('contarctListChanged', {producerID: req.body.producerID, retailerID: req.body.retailerID}); 
-		res.send(200,newContract);
-	});
+  	contract.count({seminar: req.body.seminar,period:req.body.period, producerID:req.body.producerID, retailerID:req.body.retailerID},function(err,count){
+  		if(count!=0){
+  			res.send(404,'already have a contract');
+	  	}else{
+		  	var newContract=new contract({
+		  		contractCode : req.body.contractCode,
+				period : req.body.period,
+				seminar : req.body.seminar,
+				draftedByCompanyID : req.body.draftedByCompanyID,
+				producerID : req.body.producerID,
+				retailerID : req.body.retailerID,
+				isDraftFinished : false
+		  	});
+		  	/*need add Contract Detail*/
+		  	newContract.save(function(err){
+				if(err) next(new Error(err));
+				io.sockets.emit('contarctListChanged', {producerID: req.body.producerID, retailerID: req.body.retailerID}); 
+				res.send(200,newContract);
+			});
+  		}
+  	})
+  // 	if(contract.count({seminar: req.body.seminar,period:req.body.period, producerID:req.body.producerID, retailerID:req.body.retailerID}).count!=0){
+  // 		res.send(404,'already have a contract');
+  // 	}else{
+	 //  	var newContract=new contract({
+	 //  		contractCode : req.body.contractCode,
+		// 	period : req.body.period,
+		// 	seminar : req.body.seminar,
+		// 	draftedByCompanyID : req.body.draftedByCompanyID,
+		// 	producerID : req.body.producerID,
+		// 	retailerID : req.body.retailerID,
+		// 	isDraftFinished : false
+	 //  	});
+	 //  	/*need add Contract Detail*/
+	 //  	newContract.save(function(err){
+		// 	if(err) next(new Error(err));
+		// 	io.sockets.emit('contarctListChanged', {producerID: req.body.producerID, retailerID: req.body.retailerID}); 
+		// 	res.send(200,newContract);
+		// });
+  // 	}
   }
 }
 
