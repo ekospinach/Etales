@@ -15,26 +15,29 @@ exports.passiveSeminar = function(io){
 		startFrom: -3, 
 		endWith: 0
 	}	
-			
+	console.log('start require...');
 	//export to binary, negotiations, P1/P2/P3, R1/R2
-	require('./models/producerDecision.js').exportToBinary(options).then(function(result){
-        io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
-		options.producerID = '2';
-		return require('./models/producerDecision.js').exportToBinary(options);
-	}).then(function(result){
-        io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
-		options.producerID = '3';
-		return require('./models/producerDecision.js').exportToBinary(options);
-	}).then(function(result){
-        io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
-		options.retailerID = '1';
-		options.cgiPath = conf.cgi.path_retailerDecision;
-		return require('./models/retailerDecision.js').exportToBinary(options);
-	}).then(function(result){
-        io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
-		options.retailerID = '2';
-		return require('./models/retailerDecision.js').exportToBinary(options);
-	}).then(function(result){
+	// require('./models/producerDecision.js').exportToBinary(options).then(function(result){
+ //        io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
+	// 	options.producerID = '2';
+	// 	return require('./models/producerDecision.js').exportToBinary(options);
+	// }).then(function(result){
+ //        io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
+	// 	options.producerID = '3';
+	// 	return require('./models/producerDecision.js').exportToBinary(options);
+	// }).then(function(result){
+ //        io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
+	// 	options.retailerID = '1';
+	// 	options.cgiPath = conf.cgi.path_retailerDecision;
+	// 	return require('./models/retailerDecision.js').exportToBinary(options);
+	// }).then(function(result){
+ //        io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
+	// 	options.retailerID = '2';
+	// 	return require('./models/retailerDecision.js').exportToBinary(options);
+	// }).then(function(result){
+ //        io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
+		//return 
+		require('./models/allDeal.js').exportToBinary(options).then(function(result){
         io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
 		res.send(200, 'complete');	
 	}, function(error){ //log the error

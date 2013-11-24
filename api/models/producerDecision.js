@@ -76,6 +76,7 @@ var proBrandsDecision=mongoose.model('proBrandsDecision',proBrandDecisionSchema)
 exports.exportToBinary = function(options){
     var deferred = q.defer();
     var period = options.period;
+
     proDecision.findOne({seminar : options.seminar,
                            period : options.period,
                            producerID : options.producerID},
@@ -605,4 +606,18 @@ exports.getBrand = function(categoryCount, brandCount, producerID, seminar, peri
                                 return null;
                             }
                          })
+}
+
+exports.getVariant = function(categoryCount, brandCount, varCount, producerID, seminar, period){
+    proDecision.findOne({seminar: seminar,
+                         period: period,
+                         producerID : producerID},function(err,doc){
+                            if(err) {return null};
+                            if(!doc){
+                                return doc.proCatDecision[categoryCount].proBrandsDecision[brandCount].proVarDecision[varCount];
+                            } else {
+                                return null;
+                            }
+                         })
+
 }

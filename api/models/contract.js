@@ -2592,6 +2592,7 @@ exports.getContractDetails = function(req, res, next){
 
 exports.getContractsQuery = function(params){
 	contract.find({seminar:params.seminar, period:params.period, producerID:params.producerID, retailerID:params.retailerID},function(err, docs){
+		console.log('getContractsQuery:' + docs);		
 		return docs;
 	});
 }
