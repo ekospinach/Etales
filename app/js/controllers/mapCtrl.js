@@ -3,6 +3,10 @@ define(['app','socketIO','routingConfig'], function(app) {
 	app.controller('mapCtrl',['$scope','$rootScope','$http','$location','$resource','map','Map','Auth', 
 		function($scope, $rootScope,$http,$location,$resource,map,Map,Auth) {
 		// You can access the scope of the controller from here
+			$rootScope.loginCss="";
+		    $rootScope.loginFooter="bs-footer";
+		    $rootScope.loginLink="footer-links";
+		    $rootScope.loginDiv="container";
 		$scope.map=map;
     	var getMap=function(seminar,period){
 	    	$scope.seminar=seminar;

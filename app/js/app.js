@@ -32,10 +32,12 @@ define([
 		    $rootScope.mapPeriod=0;
 		    $rootScope.rootStartFrom=-2;
 		    $rootScope.rootEndWith=0; 
-		    $rootScope.rootContractCode="PP1vsRR1_MAY_0";
-		    $rootScope.rootUserType="P";
-		    $rootScope.rootNegotiationItem="nc_MinimumOrder";
-		    $rootScope.rootBrandName="ELAND1";
+
+		    /*controller*/
+		    $rootScope.loginFooter="container";
+		    $rootScope.loginCss="bs-docs-home";
+		    $rootScope.loginLink="bs-masthead-links";
+		    $rootScope.loginDiv="";
 
 	        $rootScope.$on("$routeChangeStart", function (event, next, current) {
 	            console.log('handle rootscope...');

@@ -2,6 +2,12 @@ define(['app','socketIO'], function(app) {
 
 	app.controller('adminCtrl',['$scope', '$http','$rootScope', function($scope, $http,$rootScope) {
 		// You can access the scope of the controller from here
+
+			$rootScope.loginCss="";
+		    $rootScope.loginFooter="bs-footer";
+		    $rootScope.loginLink="footer-links";
+		    $rootScope.loginDiv="container";		
+
 		$scope.welcomeMessage = 'hey this is adminCtrl.js!';
 
 		var showView=function(){

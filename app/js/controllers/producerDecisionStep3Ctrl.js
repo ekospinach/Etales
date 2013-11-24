@@ -2,6 +2,11 @@ define(['app'], function(app) {
 		app.controller('producerDecisionStep3Ctrl',
 			['$scope','$q','$rootScope','$http','$filter','ProducerDecision','ProducerDecisionBase', function($scope,$q,$rootScope,$http,$filter,ProducerDecision,ProducerDecisionBase) {
 			$rootScope.decisionActive="active";
+			$rootScope.loginCss="";
+		    $rootScope.loginFooter="bs-footer";
+		    $rootScope.loginLink="footer-links";
+		    $rootScope.loginDiv="container";			
+			
 			var calculate='../js/controllers/untils/calculate.js';
 			//var calculate=require('');
 			var multilingual=[{

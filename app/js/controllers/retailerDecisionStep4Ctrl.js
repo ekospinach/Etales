@@ -2,6 +2,10 @@ define(['app'], function(app) {
 		app.controller('retailerDecisionStep4Ctrl',
 			['$scope','$q','$rootScope','$http','$filter','RetailerDecisionBase','ProducerDecisionBase', function($scope,$q,$rootScope,$http,$filter,RetailerDecisionBase,ProducerDecisionBase) {
 			$rootScope.decisionActive="active";
+			$rootScope.loginCss="";
+		    $rootScope.loginFooter="bs-footer";
+		    $rootScope.loginLink="footer-links";
+		    $rootScope.loginDiv="container";
 			//var calculate='../js/controllers/untils/calculate.js';
 			//var calculate=require('');
 			var multilingual=[{

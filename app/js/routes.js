@@ -17,6 +17,7 @@ define(['angular',
 		'controllers/marketReportCtrl',
 		'controllers/lineChartCtrl',
 		'controllers/reportCtrl',
+		'controllers/testCtrl',
 		'controllers/navbarCtrl'], function(angular, app) {
 	'use strict';
 	return app.config(['$routeProvider','$httpProvider', function($routeProvider, $httpProvider) {
@@ -24,7 +25,7 @@ define(['angular',
 		var access = routingConfig.accessLevels;
 		$routeProvider.when('/home',{
 			templateUrl:'partials/home.html',
-			controller:'HomeCtrl',
+			controller:'homeCtrl',
 			access : access.public
 		}).when('/producerDecisionStep1',{
 			templateUrl:'partials/producerDecisionStep1.html',
@@ -96,6 +97,10 @@ define(['angular',
 			controller:'reportCtrl',
 			templateUrl:'partials/report.html',
 			access:access.playerView
+		}).when('/test',{
+			controller:'testCtrl',
+			templateUrl:'partials/test.html',
+			access:access.public
 		});	
 
 		$routeProvider.otherwise({redirectTo: '/login'});
