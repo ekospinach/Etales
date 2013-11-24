@@ -73,6 +73,7 @@ app.get('/contracts/:seminar/:contractUserID',require('./api/models/contract.js'
 
 app.get('/contractDetails/:contractCode',require('./api/models/contract.js').getContractDetails);
 //get contractDetail
+app.get('/contractDetail',require('./api/models/contract.js').getContractDetail)
 app.get('/contractDetail/:contractCode/:userType/:negotiationItem/:brandName',require('./api/models/contract.js').getContractDetail);
 //add new contract
 app.post('/addContract',require('./api/models/contract.js').addContract(io));

@@ -61,7 +61,12 @@ define(['angular',
 		}).when('/contract',{
 			templateUrl:'partials/contract.html',
 			controller:'contractCtrl',
-			access : access.playerView		
+			access : access.playerView,
+			// resolve:{
+			// 	detail:function(ContractDetailLoader){
+			// 		return ContractDetailLoader();
+			// 	}
+			// }		
 		}).when('/login',{
 			templateUrl:'partials/login.html',
 			controller:'loginCtrl',

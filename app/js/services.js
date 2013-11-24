@@ -64,6 +64,32 @@ define(['angular','angularResource','routingConfig'], function (angular,angularR
   		};
 	}]);
 
+	services.factory('ContractDetail',['$resource',function($resource){
+		return $resource('/contractDetail/:contractCode/:userType/:negotiationItem/:brandName',{
+			contractCode:'@contractCode',
+			userType:'@userType',
+			negotiationItem:'@negotiationItem',
+			brandName:'@brandName'
+		});
+	}]);
+
+	services.factory('ContractDetailLoader', ['ContractDetail', '$route','$rootScope', '$q',function(ContractDetail, $route,$rootScope, $q) {
+    	return function() {
+    		var delay = $q.defer();
+    		ContractDetail.get({
+    			contractCode:$rootScope.rootContractCode,
+    			userType:$rootScope.rootUserType,
+    			negotiationItem:$rootScope.rootNegotiationItem,
+    			brandName:$rootScope.rootBrandName
+    		}, function(detail) {
+    			delay.resolve(detail);
+    		}, function() {
+    			delay.reject('Unable to fetch file ');
+    		});
+    		return delay.promise;
+  		};
+	}]);
+
 	services.factory('ProducerDecision',['$resource','$rootScope', function($resource,$rootScope){
 		return $resource('/producerDecision/:producerID/:period/:seminar',{},
 			{
@@ -525,15 +551,12 @@ define(['angular','angularResource','routingConfig'], function (angular,angularR
 						value:product
 					}
 					$http({method:'POST', url:'/retailerDecision', data: queryCondition}).then(function(res){
-						//$rootScope.$broadcast('retailerDecisionBaseChanged', base);
 					 	console.log('Success:' + res);
-					 	//return "done";
-					 	if(last=="last"){
-					 		$rootScope.$broadcast('retailerDecisionBaseChanged', base);
-					 	}
-					 },function(res){
+					},function(res){
 						console.log('Failed:' + res);
 						//return "done";
+					}).then(function(){
+						$rootScope.$broadcast('retailerDecisionBaseChanged', base);
 					});
 				},
 				deleteOrder:function(marketID,categoryID,brandName,varName){
