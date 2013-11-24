@@ -6,7 +6,7 @@ define(['app','socketIO'], function(app) {
 			$rootScope.loginCss="";
 		    $rootScope.loginFooter="bs-footer";
 		    $rootScope.loginLink="footer-links";
-		    $rootScope.loginDiv="container";		
+		    $rootScope.loginDiv="container";
 
 		$scope.welcomeMessage = 'hey this is adminCtrl.js!';
 
