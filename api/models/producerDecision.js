@@ -596,28 +596,31 @@ exports.getProducerBrandList=function(req,res,next){
 }
 
 exports.getBrand = function(categoryCount, brandCount, producerID, seminar, period){
+    var deferred = q.defer();
     proDecision.findOne({seminar: seminar,
                          period: period,
                          producerID : producerID},function(err,doc){
-                            if(err) {return null};
-                            if(!doc){
-                                return doc.proCatDecision[categoryCount].proBrandsDecision[brandCount];
+                            if(err) deferred.reject({msg:err});
+                            if(doc){
+                                deferred.resolve({doc:doc, msg:'Find Brand with producerID:'+ producerID + ', categoryCount:' + categoryCount + ', brandCount:' + brandCount});
                             } else {
-                                return null;
+                                deferred.reject({doc:doc, msg:'No Brand with producerID:'+ producerID + ', categoryCount:' + categoryCount + ', brandCount:' + brandCount});
                             }
                          })
+    return deferred.promise;
 }
 
 exports.getVariant = function(categoryCount, brandCount, varCount, producerID, seminar, period){
+    var deferred = q.defer();
     proDecision.findOne({seminar: seminar,
                          period: period,
                          producerID : producerID},function(err,doc){
-                            if(err) {return null};
-                            if(!doc){
-                                return doc.proCatDecision[categoryCount].proBrandsDecision[brandCount].proVarDecision[varCount];
+                            if(err) deferred.reject({msg:err});
+                            if(doc){
+                                deferred.resolve({doc:doc, msg:'Find Variant with producerID:'+ producerID + ', categoryCount:' + categoryCount + ', brandCount:' + brandCount + ', varCount:' + varCount});
                             } else {
-                                return null;
+                                deferred.reject({doc:doc, msg:'No Variant with producerID:'+ producerID + ', categoryCount:' + categoryCount + ', brandCount:' + brandCount + ', varCount:' + varCount});
                             }
                          })
-
+    return deferred.promise;
 }

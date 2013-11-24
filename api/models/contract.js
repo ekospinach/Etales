@@ -2,7 +2,8 @@ var mongoose  = require('mongoose'),
 	http = require('http'),
 	util = require('util'),
 	_ = require('underscore');
-	uniqueValidator = require('mongoose-unique-validator');
+	uniqueValidator = require('mongoose-unique-validator'),
+	q = require('q');
 
 var contractSchema = mongoose.Schema({
 	contractCode : {type: String, require: true, unique: true}, //sth + period + seminar, must be 
@@ -2591,21 +2592,42 @@ exports.getContractDetails = function(req, res, next){
 
 
 exports.getContractsQuery = function(params){
-	contract.find({seminar:params.seminar, period:params.period, producerID:params.producerID, retailerID:params.retailerID},function(err, docs){
-		console.log('getContractsQuery:' + docs);		
-		return docs;
+	var deferred = q.defer();
+	console.log('getContractsQuery');
+	contract.find({seminar:params.seminar, 
+					period:params.period, 
+					producerID:params.producerID, 
+					retailerID:params.retailerID},function(err, docs){
+		console.log('is contarct');
+		if(err) deferred.reject({msg: err});
+		if(docs){
+			deferred.resolve({docs:docs, msg:'Find contracts between producer ' + producerID + ' and retailer ' + retailerID + ' in period ' + period});
+		} else {
+			console.log('no contarct');			
+			deferred.reject({msg:'NO contract between producer ' + producerID + ' and retailer ' + retailerID + ' in period ' + period})
+		}
 	});
+	console.log('return promise');
+	return deferred.promise;
 }
 
 exports.getVerifiedContractDetailsQuery = function(params){
+	var deferred = q.defer();	
 	contractDetails.find({contractCode : params.contractCode,
 						  userType : params.userType,
 						  negotiationItem : params.negotiationItem,
 						  relatedBrandName : params.relatedBrandName,
 						  relatedBrandID : params.relatedBrandID,
-						  isVerified : true},function(err, docs){
-		return docs;
+						  isVerified : true},function(err, docs){	
+
+		if(err) deferred.reject({msg: err});
+		if(docs){
+			deferred.resolve({docs:docs, msg:'Find verified contract details with contractCode: ' + params.contractCode + ' and relatedBrandName: ' + params.relatedBrandName});
+		} else {
+			deferred.reject({msg:'NO contract details with contractCode: ' + params.contractCode + ' and relatedBrandName: ' + params.relatedBrandName});
+		}		
 	})
+	return deferred.promise;
 }
 
 exports.getContractDetail=function(req,res,next){
