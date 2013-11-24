@@ -6,7 +6,6 @@ define(['app'], function(app) {
 		    $rootScope.loginFooter="bs-footer";
 		    $rootScope.loginLink="footer-links";
 		    $rootScope.loginDiv="container";
-
 			var showView=function(contractUserID){
 				var url="/contracts/"+$rootScope.user.seminar+'/'+contractUserID;
 				$http.get(url).success(function(data){

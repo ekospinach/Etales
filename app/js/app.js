@@ -34,6 +34,7 @@ define([
 		    $rootScope.rootEndWith=0; 
 
 		    /*controller*/
+		    $rootScope.loginBody="bs-docs-home";
 		    $rootScope.loginFooter="container";
 		    $rootScope.loginCss="bs-docs-home";
 		    $rootScope.loginLink="bs-masthead-links";

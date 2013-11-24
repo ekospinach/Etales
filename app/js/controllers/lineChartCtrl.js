@@ -6,8 +6,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 			$rootScope.loginCss="";
 		    $rootScope.loginFooter="bs-footer";
 		    $rootScope.loginLink="footer-links";
-		    $rootScope.loginDiv="container";
-		    
+		    $rootScope.loginDiv="container";	    
 		var chartdata="";
 	  	$scope.chartdata=chartdata;
 	    	var chart1=chart2=chart3=chart4={};
