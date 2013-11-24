@@ -32,7 +32,7 @@ define(['app'], function(app) {
 				//console.log($scope.allContracts);
 			}
 
-			$scope.openDetailModal=function(contract){
+			var openDetailModal=function(contract){
 				$scope.Detail=contract;
 				var category="Elecssories";
 				if(contract.producerID==contract.draftedByCompanyID&&$rootScope.user.username.substring($rootScope.user.username.length-3,$rootScope.user.username.length-2)==2&&contract.producerID==$rootScope.user.username.substring($rootScope.user.username.length-1)){
@@ -283,6 +283,10 @@ define(['app'], function(app) {
 
 			$scope.closeDetailModal=function(){
 				$scope.detailModal=false;
+			}
+
+			var compare=function(Detail){
+				openDetailModal(Detail);
 			}
 
 			var loadModalDate=function(Detail){
@@ -561,6 +565,8 @@ define(['app'], function(app) {
 			$scope.filterUser=filterUser;
 			$scope.closeInsertModal=closeInsertModal;
 			$scope.showbubleMsg=showbubleMsg;
+			$scope.compare=compare;
+			$scope.openDetailModal=openDetailModal;
 			showView($scope.contractUserID);
 		}]
 	)
