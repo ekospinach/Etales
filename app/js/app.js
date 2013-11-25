@@ -13,7 +13,9 @@ define([
 	'angularCookies',
 	'jqplot',
 	'bubbleRenderer',
-	'tree'
+	'tree',
+	'producerPopInfo',
+	'retailerPopInfo'
 	], function (angular, filters, services, directives, controllers) {
 		'use strict';
 		return angular.module('myApp', [
