@@ -15,7 +15,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 
 		$scope.testPassive = function(){
 		  var postData = {
-		  	seminar : 'ROUND1',
+		  	seminar : 'MAY',
 		  	period : 0
 		  }
 		  $http({method:'POST', url:'/passiveSeminar', data: postData}).then(function(res){
