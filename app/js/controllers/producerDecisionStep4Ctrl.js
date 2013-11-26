@@ -8,49 +8,50 @@ define(['app'], function(app) {
 			$rootScope.decisionActive="active";
 			var calculate='../js/controllers/untils/calculate.js';
 			//var calculate=require('');
-			var multilingual=[{
-						'shortName':'Products_Portfolio_Management',
-						'labelENG':'Products Portfolio Management',
-						'labelRUS':'',
-						'labelCHN':'产品组合管理',
-						'label':''
-					},{
-						'shortName':'Next',
-						'labelENG':'Next',
-						'labelRUS':'',
-						'labelCHN':'下一步',
-						'label':''
-					},{
-						'shortName':'Category',
-						'labelENG':'Category',
-						'labelRUS':'',
-						'labelCHN':'品类',
-						'label':''
-					},{
-						'shortName':'IICC',
-						'labelENG':'Investment in Capacity Change',
-						'labelRUS':'',
-						'labelCHN':'包',
-						'label':''					
-					},{
-						'shortName':'ITIAT',
-						'labelENG':'Investment to imorove Available Technology',
-						'labelRUS':'',
-						'labelCHN':'技术水平',
-						'label':''
-					},{
-						'shortName':'ITIF',
-						'labelENG':'Investment to improve Flexibility',
-						'labelRUS':'',
-						'labelCHN':'活性剂',
-						'label':''
-					},{
-						'shortName':'ITIDK',
-						'labelENG':'Investment to improve Design Know-How',
-						'labelRUS':'',
-						'labelCHN':'增滑技术',
-						'label':''
-					}];
+			 var multilingual=getProducerStep4Info();
+			//[{
+			// 			'shortName':'Products_Portfolio_Management',
+			// 			'labelENG':'Products Portfolio Management',
+			// 			'labelRUS':'',
+			// 			'labelCHN':'产品组合管理',
+			// 			'label':''
+			// 		},{
+			// 			'shortName':'Next',
+			// 			'labelENG':'Next',
+			// 			'labelRUS':'',
+			// 			'labelCHN':'下一步',
+			// 			'label':''
+			// 		},{
+			// 			'shortName':'Category',
+			// 			'labelENG':'Category',
+			// 			'labelRUS':'',
+			// 			'labelCHN':'品类',
+			// 			'label':''
+			// 		},{
+			// 			'shortName':'IICC',
+			// 			'labelENG':'Investment in Capacity Change',
+			// 			'labelRUS':'',
+			// 			'labelCHN':'包',
+			// 			'label':''					
+			// 		},{
+			// 			'shortName':'ITIAT',
+			// 			'labelENG':'Investment to imorove Available Technology',
+			// 			'labelRUS':'',
+			// 			'labelCHN':'技术水平',
+			// 			'label':''
+			// 		},{
+			// 			'shortName':'ITIF',
+			// 			'labelENG':'Investment to improve Flexibility',
+			// 			'labelRUS':'',
+			// 			'labelCHN':'活性剂',
+			// 			'label':''
+			// 		},{
+			// 			'shortName':'ITIDK',
+			// 			'labelENG':'Investment to improve Design Know-How',
+			// 			'labelRUS':'',
+			// 			'labelCHN':'增滑技术',
+			// 			'label':''
+			// 		}];
 			var language='English',
 				producerID=$rootScope.user.username.substring($rootScope.user.username.length-1);
 				period=$rootScope.currentPeriod,
@@ -93,19 +94,23 @@ define(['app'], function(app) {
 			/*Load Page*/
 			var showView=function(producerID,period,language){
 				$scope.producerID=producerID,$scope.period=period,$scope.language=language;
-				var shortLanguages={},fullLanguages={};
+				var shortLanguages={},labelLanguages={},infoLanguages={};
 				if(language=="English"){
 					for(var i=0;i<$scope.multilingual.length;i++){
 						$scope.multilingual[i].label=$scope.multilingual[i].labelENG;
+						$scope.multilingual[i].info=$scope.multilingual[i].infoENG;
 						shortLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].shortName;
-						fullLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].label;
+						labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].label;
+						infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].info;
 					}
 				}
 				else if(language=="Chinese"){
 					for(var i=0;i<$scope.multilingual.length;i++){
 						$scope.multilingual[i].label=$scope.multilingual[i].labelCHN;
+						$scope.multilingual[i].info=$scope.multilingual[i].infoCHN;
 						shortLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].shortName;
-						fullLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].label;
+						labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].label;
+						infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].info;
 					}
 				}
 	      		var count=0,result=0;
@@ -119,7 +124,8 @@ define(['app'], function(app) {
 	      		}
 	      		$scope.categorys=categorys;
 				$scope.shortLanguages=shortLanguages;
-				$scope.fullLanguages=fullLanguages;
+				$scope.labelLanguages=labelLanguages;
+				$scope.infoLanguages=infoLanguages;
 				return result;
 			}
 

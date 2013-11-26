@@ -8,7 +8,7 @@ define(['app'], function(app) {
 		    $rootScope.loginDiv="container";
 		    //console.log(popInfo);
 
-			var multilingual=getProducerStep1Info();
+			var multilingual=getProducerStep12Info();
 
 			var language='English',
 				//producerID=1,
@@ -147,7 +147,7 @@ define(['app'], function(app) {
 			/*Load Page*/
 			var showView=function(producerID,period,category,language){
 				$scope.producerID=producerID,$scope.period=period,$scope.category=category,$scope.language=language;
-				var shortLanguages={},lableLanguages={},infoLanguages={};
+				var shortLanguages={},labelLanguages={},infoLanguages={};
 				if(language=="English"){
 					for(var i=0;i<$scope.multilingual.length;i++){
 						if(category=="Elecssories"){
@@ -161,7 +161,7 @@ define(['app'], function(app) {
 						$scope.multilingual[i].label=$scope.multilingual[i].labelENG;
 						$scope.multilingual[i].info=$scope.multilingual[i].infoENG;
 						shortLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].shortName;
-						lableLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].label;
+						labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].label;
 						infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].info;
 					}
 				}
@@ -178,7 +178,7 @@ define(['app'], function(app) {
 						$scope.multilingual[i].label=$scope.multilingual[i].labelCHN;
 						$scope.multilingual[i].info=$scope.multilingual[i].infoCHN;
 						shortLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].shortName;
-						lableLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].label;
+						labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].label;
 						infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].info;
 					}
 				}
@@ -213,9 +213,9 @@ define(['app'], function(app) {
 	      		}
 	      		$scope.products=products;
 				$scope.shortLanguages=shortLanguages;
-				$scope.lableLanguages=lableLanguages;
+				$scope.labelLanguages=labelLanguages;
 				$scope.infoLanguages=infoLanguages;
-				//console.log(lableLanguages);
+				//console.log(labelLanguages);
 				return result;
 			}
 

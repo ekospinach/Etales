@@ -1,4 +1,4 @@
-var getProducerStep1Info=function(){
+var getProducerStep12Info=function(){//step1&step2
 	return [{
 		shortName:'Brand',
 		labelENG:'Brand',
@@ -50,7 +50,7 @@ var getProducerStep1Info=function(){
 		infoCHN:'',
 		info:''
 	},{
-		shortName:'RMQ',
+		shortName:'QORM',
 		labelENG:'Quality-of-Raw-Materials ',
 		labelRUS:'',
 		labelCHN:'原始材料质量',
@@ -119,5 +119,163 @@ var getProducerStep1Info=function(){
 		infoRUS:'',
 		infoCHN:'',
 		info:''
+	},{//step2
+		shortName:'PV',
+		labelENG:'Production Volume',
+		labelRUS:'',
+		labelCHN:'',
+		label:'',
+		infoENG:'volume you order from your factory; check your production capacity for the limits of your order.',
+		infoRUS:'',
+		infoCHN:'',
+		info:''
+	},{
+		shortName:'NPB',
+		labelENG:'Next Price BM',
+		labelRUS:'',
+		labelCHN:'',
+		label:'',
+		infoENG:'list price for brick&mortar trade in next period. ',
+		infoRUS:'',
+		infoCHN:'',
+		info:''
+	},{
+		shortName:'NPE',
+		labelENG:'Next Price Emall',
+		labelRUS:'',
+		labelCHN:'',
+		label:'',
+		infoENG:'list and wholesale price for eMall in next period.',
+		infoRUS:'',
+		infoCHN:'',
+		info:''		
 	}];	
+}
+
+var getProducerStep3Info=function(){
+	return [{
+		shortName:'UAO',
+		labelENG:'Urban Advertising Off-Line ',
+		labelRUS:'',
+		labelCHN:'',
+		label:'',
+		infoENG:'budget you spend to advertise your brands in conventional media (printed and TV) in Urban market.',
+		infoRUS:'',
+		infoCHN:'',
+		info:''	
+	},{
+		shortName:'UTTS',
+		labelENG:'Urban Traditional Trade Support',
+		labelRUS:'',
+		labelCHN:'',
+		label:'',
+		infoENG:'budget you invest to support of Traditional Trade in Urban market; it increases visibility of your brands at Traditional Trade. ',
+		infoRUS:'',
+		infoCHN:'',
+		info:''			
+	},{
+		shortName:'RAO',
+		labelENG:'Rural Advertising Off-Line ',
+		labelRUS:'',
+		labelCHN:'',
+		label:'',
+		infoENG:'budget you spend to advertise your brands in conventional media (printed and TV) in Rural market. ',
+		infoRUS:'',
+		infoCHN:'',
+		info:''			
+	},{
+		shortName:'RTTS',
+		labelENG:'Rural Traditional Trade Support ',
+		labelRUS:'',
+		labelCHN:'',
+		label:'',
+		infoENG:'budget you invest to support of Traditional Trade in Rural market; it increases visibility of your brands at Traditional Trade. ',
+		infoRUS:'',
+		infoCHN:'',
+		info:''
+	},{
+		shortName:'OA',
+		labelENG:'On-line Advertising ',
+		labelRUS:'',
+		labelCHN:'',
+		label:'',
+		infoENG:'budget spent to advertise your brands on the Internet, including social media. ',
+		infoRUS:'',
+		infoCHN:'',
+		info:''
+	},{
+		shortName:'EVI',
+		labelENG:'E-mall visibility Investment ',
+		labelRUS:'',
+		labelCHN:'',
+		label:'',
+		infoENG:'budget invested in increasing visibility of your brands at eMall. ',
+		infoRUS:'',
+		infoCHN:'',
+		info:''		
+	}]
+}
+
+var getProducerStep4Info=function(){
+	return [{
+		shortName:'Category',
+		labelENG:'Category',
+		labelRUS:'',
+		labelCHN:'',
+		label:'',
+		infoENG:'',
+		infoCHN:'',
+		infoRUS:'',
+		info:''		
+	},{		
+		shortName:'Brand',
+		labelENG:'Brand',
+		labelRUS:'',
+		labelCHN:'品类',
+		label:'',
+		infoENG:'',
+		infoCHN:'',
+		infoRUS:'',
+		info:''
+	},{
+		shortName:'IICC',
+		labelENG:'Investment in Capacity Change ',
+		labelRUS:'',
+		labelCHN:'',
+		label:'',
+		infoENG:"to extend your capacity you have to invest a period before it gets ready; current period extension is also possible but at 50% higher charge; your capacity increases your fixed assets and labor cost; you can't sell out or lease your capacity to other players. ",
+		infoRUS:'',
+		infoCHN:'',
+		info:'',
+	},{
+		shortName:'ITIAT',
+		labelENG:'Investment to improve Available Technology ',
+		labelRUS:'',
+		labelCHN:'',
+		label:'',
+		infoENG:'applies to both categories; you start with level 7 and can increase it to 20 by the session end; increases your fixed assets. ',
+		infoRUS:'',
+		infoCHN:'',
+		info:'',
+	},{
+		shortName:'ITIF',
+		labelENG:'Investment to improve Flexibility ',
+		labelRUS:'',
+		labelCHN:'',
+		label:'',
+		infoENG:'applies to both categories; helps you to automatically adjust your production to correspond to orders placed by retailers; affects your fixed assets. ',
+		infoRUS:'',
+		infoCHN:'',
+		info:'',
+	},{
+		shortName:'ITIDK',
+		labelENG:'Investment to improve Design Know-How ',
+		labelRUS:'',
+		labelCHN:'',
+		label:'',
+		infoENG:'Health/Beauties; you start with level 7 and can increase it to 20 by the session end; increases your fixed assets.',
+		infoRUS:'',
+		infoCHN:'',
+		info:'',
+	}]
 }

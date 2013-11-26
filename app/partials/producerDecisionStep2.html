@@ -57,7 +57,7 @@
                 </tr>
                 <tr style="margin-top:20px;backgroud-color:gray">
                   <th></th>
-                  <th style="text-align:center">Current period({{(currentPeriod-1)}})</th>
+                  <th style="text-align:center">Curren period({{(currentPeriod-1)}})</th>
                   <th></th>
                 </tr>
                 <tr>
@@ -79,57 +79,58 @@
             </div>
           </div>
           <table class="table table-hover">
-            <!--<tr>
-              <th>{{fullLanguages.Category}}</th>
-              <th ng-repeat='product in products'>
-              {{product.category}}</th>
-            </tr>-->
             <tr>
-              <th>{{fullLanguages.Brand}}</th>
+              <th>{{labelLanguages.Brand}}</th>
               <th ng-repeat='product in products'>
               {{product.parentBrandName}}</th>
             </tr>
             <tr>
-              <th>{{fullLanguages.Variant}}</th>
+              <th>{{labelLanguages.Variant}}</th>
               <th ng-repeat='product in products'>
               {{product.varName}}<span><a ng-click="getMoreInfo(product.parentBrandName,product.varName)">more</a></span>
             </th>
             </tr>
             <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.PF}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.PF}}<span style="color:red">*</span></p>
+              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.PF}}" popover-title="{{labelLanguages.PF}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.PF}}<span style="color:red">*</span></p>
               </th>
               <th ng-repeat='product in products'>
                 {{product.packFormat}}
               </th>
             </tr>
             <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui." popover-title="{{fullLanguages.TL}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.TL}}<span style="color:red">*</span></p></th>
+              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.TL}}" popover-title="{{labelLanguages.TL}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.TL}}<span style="color:red">*</span></p></th>
               <th ng-repeat='product in products'>
                 {{product.composition[1]}}
               </th>
             </tr>
             <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.AA}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.AA}}<span style="color:red">*</span></p></th>
+              <th>
+                <p style="display:{{EleShow}}" class="text-primary" Popover-animation="true" popover="{{infoLanguages.AA}}" popover-title="{{labelLanguages.AA}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.AA}}<span style="color:red">*</span></p>
+                <p style="display:{{HeaShow}}" class="text-primary" Popover-animation="true" popover="{{infoLanguages.DL}}" popover-title="{{labelLanguages.DL}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.DL}}<span style="color:red">*</span></p>
+              </th>
               <th ng-repeat='product in products'>
                 {{product.composition[0]}}
               </th>
             </tr>
             <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.SL}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.SL}}<span style="color:red">*</span></p></th>
+              <th>
+                <p style="display:{{EleShow}}" class="text-primary" Popover-animation="true" popover="{{infoLanguages.SL}}" popover-title="{{labelLanguages.SL}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.SL}}<span style="color:red">*</span></p>
+                <p style="display:{{HeaShow}}" class="text-primary" Popover-animation="true" popover="{{infoLanguages.QORM}}" popover-title="{{labelLanguages.QORM}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.QORM}}<span style="color:red">*</span></p>
+              </th>
               <th ng-repeat='product in products'>
                 {{product.composition[2]}}
               </th>
             </tr>
             <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.PV}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.PV}}<span style="color:red">*</span></p></th>
+              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.PV}}" popover-title="{{labelLanguages.PV}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.PV}}<span style="color:red">*</span></p></th>
               <th ng-repeat='product in products'><a href="#" editable-text="product.production" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'production','0',$index)">{{ product.production || 0 }}</a></th>
             </tr>
             <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.NPB}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.NPB}}<span style="color:red">*</span></p></th>
+              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.NPB}}" popover-title="{{labelLanguages.NPB}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.NPB}}<span style="color:red">*</span></p></th>
               <th ng-repeat='product in products'><a href="#" editable-text="product.nextPriceBM" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'nextPriceBM','0',$index)">{{ product.nextPriceBM || 0 }}</a></th>
             </tr>
             <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.NPE}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.NPE}}<span style="color:red">*</span></p></th>
+              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.NPE}}" popover-title="{{labelLanguages.NPE}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.NPE}}<span style="color:red">*</span></p></th>
               <th ng-repeat='product in products'><a href="#" editable-text="product.nextPriceEmall" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'nextPriceEmall','0',$index)">{{ product.nextPriceEmall || 0 }}</a></th>
             </tr>   
           </table>

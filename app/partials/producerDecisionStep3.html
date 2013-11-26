@@ -81,33 +81,33 @@
           </div>
           <table class="table table-hover">
             <tr>
-              <th>{{fullLanguages.Brand}}</th>
+              <th>{{labelLanguages.Brand}}</th>
               <th ng-repeat='brand in brands'>
               {{brand.brandName}}<span><a ng-click="getBrandMoreInfo(brand.brandID,brand.brandName)">more</a></span></th>
             </tr>
             <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.UAO}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.UAO}}<span style="color:red">*</span></p>
+              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.UAO}}" popover-title="{{labelLanguages.UAO}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.UAO}}<span style="color:red">*</span></p>
               </th>
               <th ng-repeat='brand in brands'><a href="#" editable-text="brand.advertisingOffLine[0]" onaftersave="updateProducerDecision(category,brand.brandName,'advertisingOffLine','0',$index)">{{ brand.advertisingOffLine[0] || 0 }}</a></th>
             </tr>
             <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui." popover-title="{{fullLanguages.UTTS}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.UTTS}}<span style="color:red">*</span></p></th>
+              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.UTTS}}" popover-title="{{labelLanguages.UTTS}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.UTTS}}<span style="color:red">*</span></p></th>
               <th ng-repeat='brand in brands'><a href="#" editable-text="brand.supportTraditionalTrade[0]" onaftersave="updateProducerDecision(category,brand.brandName,'supportTraditionalTrade','0',$index)">{{ brand.supportTraditionalTrade[0] || 0 }}</a></th>
             </tr>
             <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.RAO}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.RAO}}<span style="color:red">*</span></p></th>
+              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.RAO}}" popover-title="{{labelLanguages.RAO}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.RAO}}<span style="color:red">*</span></p></th>
               <th ng-repeat='brand in brands'><a href="#" editable-text="brand.advertisingOffLine[1]" onaftersave="updateProducerDecision(category,brand.brandName,'advertisingOffLine','1',$index)">{{ brand.advertisingOffLine[1] || 0 }}</a></th>
             </tr>
             <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.RTTS}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.RTTS}}<span style="color:red">*</span></p></th>
-              <th ng-repeat='brand in brands'><a href="#" editable-text="brand.supportTraditionalTrade[1]" onaftersave="updateProducerDecision(category,brand.brandName,'supportTraditionalTrade','1',$index)">{{ brand.supportTraditionalTrade[1] || 'empty' }}</a></th>
+              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.RTTS}}" popover-title="{{labelLanguages.RTTS}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.RTTS}}<span style="color:red">*</span></p></th>
+              <th ng-repeat='brand in brands'><a href="#" editable-text="brand.supportTraditionalTrade[1]" onaftersave="updateProducerDecision(category,brand.brandName,'supportTraditionalTrade','1',$index)">{{ brand.supportTraditionalTrade[1] || 0 }}</a></th>
             </tr>
             <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.OA}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.OA}}<span style="color:red">*</span></p></th>
-              <th ng-repeat='brand in brands'><a href="#" editable-text="brand.advertisingOnLine" onaftersave="updateProducerDecision(category,brand.brandName,'advertisingOnLine','1',$index)">{{ brand.advertisingOnLine || 'empty' }}</a></th>
+              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.OA}}" popover-title="{{labelLanguages.OA}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.OA}}<span style="color:red">*</span></p></th>
+              <th ng-repeat='brand in brands'><a href="#" editable-text="brand.advertisingOnLine" onaftersave="updateProducerDecision(category,brand.brandName,'advertisingOnLine','1',$index)">{{ brand.advertisingOnLine || 0 }}</a></th>
             </tr> 
             <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.EVI}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.EVI}}<span style="color:red">*</span></p></th>
+              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.EVI}}" popover-title="{{labelLanguages.EVI}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.EVI}}<span style="color:red">*</span></p></th>
               <th ng-repeat='brand in brands'><a href="#" editable-text="brand.supportEmall" onaftersave="updateProducerDecision(category,brand.brandName,'supportEmall','1',$index)">{{ brand.supportEmall || 0 }}</a></th>
             </tr>    
           </table>
