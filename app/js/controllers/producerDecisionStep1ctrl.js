@@ -147,7 +147,7 @@ define(['app'], function(app) {
 			/*Load Page*/
 			var showView=function(producerID,period,category,language){
 				$scope.producerID=producerID,$scope.period=period,$scope.category=category,$scope.language=language;
-				var shortLanguages={},labelLanguages={},infoLanguages={};
+				var labelLanguages={},infoLanguages={};
 				if(language=="English"){
 					for(var i=0;i<$scope.multilingual.length;i++){
 						if(category=="Elecssories"){
@@ -158,11 +158,8 @@ define(['app'], function(app) {
 							$scope.EleShow="none";
 							$scope.HeaShow="inline";
 						}
-						$scope.multilingual[i].label=$scope.multilingual[i].labelENG;
-						$scope.multilingual[i].info=$scope.multilingual[i].infoENG;
-						shortLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].shortName;
-						labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].label;
-						infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].info;
+						labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
+						infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
 					}
 				}
 				else if(language=="Chinese"){
@@ -175,11 +172,8 @@ define(['app'], function(app) {
 							$scope.EleShow="none";
 							$scope.HeaShow="inline";
 						}
-						$scope.multilingual[i].label=$scope.multilingual[i].labelCHN;
-						$scope.multilingual[i].info=$scope.multilingual[i].infoCHN;
-						shortLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].shortName;
-						labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].label;
-						infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].info;
+						labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelCHN;
+						infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoCHN;
 					}
 				}
 				var allProCatDecisions=loadSelectCategroy(category);
@@ -212,7 +206,6 @@ define(['app'], function(app) {
 	      			result=1;
 	      		}
 	      		$scope.products=products;
-				$scope.shortLanguages=shortLanguages;
 				$scope.labelLanguages=labelLanguages;
 				$scope.infoLanguages=infoLanguages;
 				//console.log(labelLanguages);

@@ -7,70 +7,7 @@ define(['app'], function(app) {
 		    $rootScope.loginLink="footer-links";
 		    $rootScope.loginDiv="container";			
 
-			var calculate='../js/controllers/untils/calculate.js';
-			//var calculate=require('');
-			 var multilingual=getProducerStep3Info();
-			//[{
-			// 			'shortName':'Products_Portfolio_Management',
-			// 			'labelENG':'Products Portfolio Management',
-			// 			'labelRUS':'',
-			// 			'labelCHN':'产品组合管理',
-			// 			'label':''
-			// 		},{
-			// 			'shortName':'Next',
-			// 			'labelENG':'Next',
-			// 			'labelRUS':'',
-			// 			'labelCHN':'下一步',
-			// 			'label':''
-			// 		},{
-			// 			'shortName':'Category',
-			// 			'labelENG':'Category',
-			// 			'labelRUS':'',
-			// 			'labelCHN':'品类',
-			// 			'label':''
-			// 		},{
-			// 			'shortName':'Brand',
-			// 			'labelENG':'Brand',
-			// 			'labelRUS':'',
-			// 			'labelCHN':'品牌',
-			// 			'label':''
-			// 		},{
-			// 			'shortName':'UAO',
-			// 			'labelENG':'Urban Advertising Off-Line',
-			// 			'labelRUS':'',
-			// 			'labelCHN':'线下',
-			// 			'label':''					
-			// 		},{
-			// 			'shortName':'UTTS',
-			// 			'labelENG':'Urban Tranditional Trade Support',
-			// 			'labelRUS':'',
-			// 			'labelCHN':'包',
-			// 			'label':''					
-			// 		},{
-			// 			'shortName':'RAO',
-			// 			'labelENG':'Rural Advertising Off-Line',
-			// 			'labelRUS':'',
-			// 			'labelCHN':'技术水平',
-			// 			'label':''
-			// 		},{
-			// 			'shortName':'RTTS',
-			// 			'labelENG':'Rural Tranditional Trade Support',
-			// 			'labelRUS':'',
-			// 			'labelCHN':'活性剂',
-			// 			'label':''
-			// 		},{
-			// 			'shortName':'OA',
-			// 			'labelENG':'On-line Advertising',
-			// 			'labelRUS':'',
-			// 			'labelCHN':'估计产量',
-			// 			'label':''				
-			// 		},{
-			// 			'shortName':'EVI',
-			// 			'labelENG':'E-mall visibility Investment',
-			// 			'labelRUS':'',
-			// 			'labelCHN':'停止生产',
-			// 			'label':''						
-			// 		}];
+			var multilingual=getProducerStep3Info();
 
 			var language='English',
 				producerID=$rootScope.user.username.substring($rootScope.user.username.length-1);
@@ -118,28 +55,21 @@ define(['app'], function(app) {
 				return delay.promise;
 			}
 
-
 			/*Load Page*/
 			var showView=function(producerID,period,category,language){
 				$scope.producerID=producerID,$scope.period=period,$scope.category=category,$scope.language=language;
 				var shortLanguages={},labelLanguages={},infoLanguages={};
 				if(language=="English"){
 					for(var i=0;i<$scope.multilingual.length;i++){
-						$scope.multilingual[i].label=$scope.multilingual[i].labelENG;
-						$scope.multilingual[i].info=$scope.multilingual[i].infoENG;
-						shortLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].shortName;
-						labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].label;
-						infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].info;
+						labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
+						infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
 
 					}
 				}
 				else if(language=="Chinese"){
-					for(var i=0;i<$scope.multilingual.length;i++){
-						$scope.multilingual[i].label=$scope.multilingual[i].labelCHN;
-						$scope.multilingual[i].info=$scope.multilingual[i].infoCHN;						
-						shortLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].shortName;
-						labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].label;
-						infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].info;
+					for(var i=0;i<$scope.multilingual.length;i++){				
+						labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelCHN;
+						infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoCHN;
 					}
 				}
 				var allProCatDecisions=loadSelectCategroy(category);
@@ -215,10 +145,6 @@ define(['app'], function(app) {
 					console.log('read producer BrandHistory fail');
 				});
 			}
-
-			var loadNameNum=function(){//load the sort
-				/*importantt*/
-			}		
 
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
 				ProducerDecisionBase.reload({producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
