@@ -5,16 +5,16 @@ var getProducerStep12Info=function(){//step1&step2
 		labelRUS:'',
 		labelCHN:'品类',
 		infoENG:'',
-		infoCHN:'',
-		infoRUS:''
+		infoRUS:'',
+		infoCHN:''
 	},{
 		shortName:'Variant',
 		labelENG:'Variant',
 		labelRUS:'',
 		labelCHN:'单品',
 		infoENG:'',
-		infoCHN:'',
-		infoRUS:''
+		infoRUS:'',
+		infoCHN:''
 	},{
 		shortName:'PF',
 		labelENG:'Pack Format',
@@ -181,16 +181,16 @@ var getProducerStep4Info=function(){
 		labelRUS:'',
 		labelCHN:'',
 		infoENG:'',
-		infoCHN:'',
-		infoRUS:''		
+		infoRUS:'',
+		infoCHN:''	
 	},{		
 		shortName:'Brand',
 		labelENG:'Brand',
 		labelRUS:'',
 		labelCHN:'品类',
 		infoENG:'',
-		infoCHN:'',
-		infoRUS:''
+		infoRUS:'',
+		infoCHN:''
 	},{
 		shortName:'IICC',
 		labelENG:'Investment in Capacity Change ',

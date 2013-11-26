@@ -116,18 +116,18 @@
             </tr>
             <tr>
               <th>
-                <p style="display:{{EleShow}}" class="text-primary" Popover-animation="true" popover="{{infoLanguages.AA}}" popover-title="{{labelLanguages.AA}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.AA}}<span style="color:red">*</span>
+                <p style="display:{{HeaShow}}" class="text-primary" Popover-animation="true" popover="{{infoLanguages.AA}}" popover-title="{{labelLanguages.AA}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.AA}}<span style="color:red">*</span>
                 </p>
-                <p style="display:{{HeaShow}}" class="text-primary" Popover-animation="true" popover="{{infoLanguages.DL}}" popover-title="{{labelLanguages.DL}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.DL}}<span style="color:red">*</span>
+                <p style="display:{{EleShow}}" class="text-primary" Popover-animation="true" popover="{{infoLanguages.DL}}" popover-title="{{labelLanguages.DL}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.DL}}<span style="color:red">*</span>
                 </p>
               </th>
               <th ng-repeat='product in products'><a href="#" editable-text="product.composition[0]" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'composition','0',$index)">{{ product.composition[0] || 'empty' }}</a></th>
             </tr>
             <tr>
               <th>
-                <p style="display:{{EleShow}}" class="text-primary" Popover-animation="true" popover="{{infoLanguages.SL}}" popover-title="{{labelLanguages.SL}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.SL}}<span style="color:red">*</span>
+                <p style="display:{{HeaShow}}" class="text-primary" Popover-animation="true" popover="{{infoLanguages.SL}}" popover-title="{{labelLanguages.SL}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.SL}}<span style="color:red">*</span>
                 </p>
-                <p style="display:{{HeaShow}}" class="text-primary" Popover-animation="true" popover="{{infoLanguages.QORM}}" popover-title="{{labelLanguages.QORM}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.QORM}}<span style="color:red">*</span>
+                <p style="display:{{EleShow}}" class="text-primary" Popover-animation="true" popover="{{infoLanguages.QORM}}" popover-title="{{labelLanguages.QORM}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.QORM}}<span style="color:red">*</span>
                 </p>
               </th>
               <th ng-repeat='product in products'><a href="#" editable-text="product.composition[2]" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'composition','2',$index)">{{ product.composition[2] || 'empty' }}</a></th>
