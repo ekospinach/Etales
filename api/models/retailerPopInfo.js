@@ -1,1 +1,1 @@
-retailerPopInfo.js
+retailer

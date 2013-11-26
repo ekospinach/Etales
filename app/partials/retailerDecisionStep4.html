@@ -153,7 +153,7 @@
               <th>{{labelLanguages.Category}}</th>
               <th>{{labelLanguages.Brand}}</th>
               <th>{{labelLanguages.Variant}}</th>
-              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.OV}}" popover-title="{{labelLanguages.OV}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.OV}}<span style="color:red">*</span></p>
+              <th style="width:300px"><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.OV}}" popover-title="{{labelLanguages.OV}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.OV}}<span style="color:red">*</span></p>
               </th>
               <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.SS}}" popover-title="{{labelLanguages.SS}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.SS}}<span style="color:red">*</span></p></th>
               <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.RP}}" popover-title="{{labelLanguages.RP}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.RP}}<span style="color:red">*</span></p></th>
@@ -163,7 +163,15 @@
             <tr ng-repeat="product in products">
               <td>{{category}}</td>
               <td>{{product.brandName}}</td>
-              <td>{{product.varName}}<a ng-click="getMoreInfo(product)">MoreInfo</a><button type="button" class="btn btn-danger btn-xs" ng-click="deleteOrder(market,category,product.brandName,product.varName)">Delete</button></td>
+              <td>
+                <div style="clear:both"></div>
+                <p class="pull-left">
+                  {{product.varName}}
+                </p>
+                <button type="button" class="btn btn-primary btn-xs pull-left" style="margin-left:5px" ng-click="getMoreInfo(product)">More</button>
+                <button type="button" class="btn btn-danger btn-xs pull-left" ng-click="deleteOrder(market,category,product.brandName,product.varName)" style="margin-left:5px">Delete</button>
+                <div style="clear:both"></div>
+              </td>
               <td><a href="#" editable-text="product.order" onaftersave="updateRetailerDecision(category,market,product.brandName,product.varName,'order','postion',$index)">{{ product.order || 0 }}</a></td>
               <td><a href="#" editable-text="product.shelfSpace" onaftersave="updateRetailerDecision(category,market,product.brandName,product.varName,'shelfSpace','postion',$index)">{{ product.shelfSpace || 0 }}</a></td>
               <td><a href="#" editable-text="product.retailerPrice" onaftersave="updateRetailerDecision(category,market,product.brandName,product.varName,'retailerPrice','postion',$index)">{{ product.retailerPrice || 0 }}</a></td>
@@ -192,7 +200,7 @@
                                 <input type="checkbox" ng-model="orderProduct.select"></td>
                               <td>{{orderProduct.brandName}}</td>
                               <td>{{orderProduct.varName}}</td>
-                              <td>{{orderProduct.parentName}}<a ng-click="moreInfo(orderProduct)"</td>
+                              <td>{{orderProduct.parentName}}</td>
                             </tr>
                           </table>
                         </div>

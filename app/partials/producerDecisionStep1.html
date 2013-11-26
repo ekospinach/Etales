@@ -87,9 +87,14 @@
           </tr>
           <tr>
             <th>{{labelLanguages.Variant}}</th>
-            <th ng-repeat='product in products'>{{product.varName}}
-              <span><a ng-click="getMoreInfo(product.parentBrandName,product.varName)">more</a></span>
-              <button type="button" class="btn btn-danger btn-xs {{(product.dateOfBirth==-4)?'hide':'show'}}" ng-click="deleteProduct(category,product.parentBrandName,product.varName)">Delete</button>
+            <th ng-repeat='product in products'>
+              <div style="clear:both"></div>
+              <p class="pull-left">
+                {{product.varName}}
+              </p>
+              <button type="button" class="btn btn-primary btn-xs pull-left" style="margin-left:5px" ng-click="getMoreInfo(product.parentBrandName,product.varName)">More</button>
+              <button type="button" class="btn btn-danger btn-xs pull-left {{(product.dateOfBirth==-4)?'hide':'show'}}" ng-click="deleteProduct(category,product.parentBrandName,product.varName)" style="margin-left:5px">Delete</button>
+              <div style="clear:both"></div>
             </th>
           </tr>
           <tr>

@@ -56,7 +56,14 @@
           <table class="table table-hover">
             <tr>
               <th>{{labelLanguages.MN}}</th>
-              <th ng-repeat='market in markets'>{{market.marketName}}<span><a ng-click="getMarketMoreInfo(market.marketID)">more</a></span></th>
+              <th ng-repeat='market in markets'>
+                <div style="clear:both"></div>
+                <p class="pull-left">
+                  {{market.marketName}}
+                </p>
+                <button type="button" class="btn btn-primary btn-xs pull-left" style="margin-left:5px" ng-click="getMarketMoreInfo(market.marketID)">More</button>
+                <div style="clear:both"></div>
+              </th>
             </tr>
             <tr>
               <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.ISSL}}" popover-title="{{labelLanguages.ISSL}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.ISSL}}<span style="color:red">*</span></p>

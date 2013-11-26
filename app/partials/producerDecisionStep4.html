@@ -66,8 +66,18 @@
           <table class="table table-hover">
             <tr>
               <th>{{labelLanguages.Category}}</th>
-              <th>Elecssories<span><a ng-click="getCategoryMoreInfo(1)">more</a></span></th>
-              <th>HealthBeauty<span><a ng-click="getCategoryMoreInfo(2)">more</a></span></th>
+              <th>
+                <div style="clear:both"></div>
+                <p class="pull-left">Elecssories</p>
+                <button type="button" class="btn btn-primary btn-xs pull-left" style="margin-left:5px" ng-click="getCategoryMoreInfo(1)">More</button>
+                <div style="clear:both"></div>
+              </th>
+              <th>
+                <div style="clear:both"></div>
+                <p class="pull-left">HealthBeauty</p>
+                <button type="button" class="btn btn-primary btn-xs pull-left" style="margin-left:5px" ng-click="getCategoryMoreInfo(2)">More</button>
+                <div style="clear:both"></div>
+              </th>
             </tr>
             <tr>
               <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.IICC}}" popover-title="{{labelLanguages.IICC}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.IICC}}<span style="color:red">*</span></p>

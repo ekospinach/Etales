@@ -87,8 +87,13 @@
             <tr>
               <th>{{labelLanguages.Variant}}</th>
               <th ng-repeat='product in products'>
-              {{product.varName}}<span><a ng-click="getMoreInfo(product.parentBrandName,product.varName)">more</a></span>
-            </th>
+                <div style="clear:both"></div>
+                <p class="pull-left">
+                  {{product.varName}}
+                </p>
+                <button type="button" class="btn btn-primary btn-xs pull-left" style="margin-left:5px" ng-click="getMoreInfo(product.parentBrandName,product.varName)">More</button>
+                <div style="clear:both"></div>
+              </th>
             </tr>
             <tr>
               <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.PF}}" popover-title="{{labelLanguages.PF}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.PF}}<span style="color:red">*</span></p>

@@ -95,15 +95,6 @@ define(['app'], function(app) {
 		      						products.push(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]);
 			      					products[count].category=category;
 			      					products[count].parentBrandName=allProCatDecisions[i].proBrandsDecision[j].brandName;
-			      					if(products[count].packFormat=="ECONOMY"){
-			      						products[count].packFormat=1;
-			      					}
-			      					else if(products[count].packFormat=="STANDARD"){
-			      						products[count].packFormat=2;
-			      					}
-			      					else if(products[count].packFormat=="PREMIUM"){
-			      						products[count].packFormat=3;
-			      					}
 			      					count++;
 		      					}
 		      				}

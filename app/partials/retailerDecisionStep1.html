@@ -65,7 +65,9 @@
           <table class="table table-hover">
             <tr>
               <th></th>
-              <th><span><a ng-click="getMoreInfo()">MoreInfo</a></span></th>
+              <th>
+                <button type="button" class="btn btn-primary btn-xs" style="margin-left:5px" ng-click="getMoreInfo()">More</button>
+              </th>
             </tr>
             <tr>
               <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.COF}}" popover-title="{{labelLanguages.COF}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.COF}}<span style="color:red">*</span></p>

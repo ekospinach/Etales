@@ -83,7 +83,12 @@
             <tr>
               <th>{{labelLanguages.Brand}}</th>
               <th ng-repeat='brand in brands'>
-              {{brand.brandName}}<span><a ng-click="getBrandMoreInfo(brand.brandID,brand.brandName)">more</a></span></th>
+                <div style="clear:both"></div>
+                <p class="pull-left">
+                {{brand.brandName}}
+                </p>
+                <button type="button" class="btn btn-primary btn-xs pull-left" style="margin-left:5px" ng-click="getBrandMoreInfo(brand.brandID,brand.brandName)">More</button>
+              </th>
             </tr>
             <tr>
               <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.UAO}}" popover-title="{{labelLanguages.UAO}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.UAO}}<span style="color:red">*</span></p>
