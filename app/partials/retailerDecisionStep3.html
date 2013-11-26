@@ -88,42 +88,52 @@
           </div>
           <table class="table table-hover">
             <!--<tr>
-              <th>{{fullLanguages.Category}}</th>
+              <th>{{labelLanguages.Category}}</th>
               <th ng-repeat='product in products'>
               {{product.category}}</th>
             </tr>-->
             <tr>
-              <th>{{fullLanguages.Brand}}</th>
+              <th>{{labelLanguages.Brand}}</th>
               <th ng-repeat='product in products'>
               {{product.parentBrandName}}</th>
             </tr>
             <tr>
-              <th>{{fullLanguages.Variant}}</th>
+              <th>{{labelLanguages.Variant}}</th>
               <th ng-repeat='product in products'>
               {{product.varName}}<span><a ng-click="getMoreInfo(product.parentBrandName,product.varName)">more</a></span><button type="button" class="btn btn-danger btn-xs {{(product.dateOfBirth==-4)?'hide':'show'}}" ng-click="deleteProduct(category,product.parentBrandName,product.varName)">Delete</button>
             </th>
             </tr>
             <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.PF}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.PF}}<span style="color:red">*</span></p>
+              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.PF}}" popover-title="{{labelLanguages.PF}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.PF}}<span style="color:red">*</span></p>
               </th>
               <th ng-repeat='product in products'>
                 <a href="#" editable-select="product.packFormat" e-ng-options="p.value as p.text for p in packs" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'packFormat','0',$index)">{{ selectPacks(product.parentBrandName,product.varName) }}</a>
               </th>
             </tr>
             <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui." popover-title="{{fullLanguages.TL}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.TL}}<span style="color:red">*</span></p></th>
+              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.TL}}" popover-title="{{labelLanguages.TL}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.TL}}<span style="color:red">*</span></p></th>
               <th ng-repeat='product in products'><a href="#" editable-text="product.composition[1]" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'composition','1',$index)">{{ product.composition[1] || 'empty' }}</a></th>
             </tr>
             <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.AA}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.AA}}<span style="color:red">*</span></p></th>
+              <th>
+                <p style="display:{{EleShow}}" class="text-primary" Popover-animation="true" popover="{{infoLanguages.AA}}" popover-title="{{labelLanguages.AA}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.AA}}<span style="color:red">*</span>
+                </p>
+                <p style="display:{{HeaShow}}" class="text-primary" Popover-animation="true" popover="{{infoLanguages.DL}}" popover-title="{{labelLanguages.DL}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.DL}}<span style="color:red">*</span>
+                </p>
+              </th>
               <th ng-repeat='product in products'><a href="#" editable-text="product.composition[0]" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'composition','0',$index)">{{ product.composition[0] || 'empty' }}</a></th>
             </tr>
             <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.SL}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.SL}}<span style="color:red">*</span></p></th>
+              <th>
+                <p style="display:{{EleShow}}" class="text-primary" Popover-animation="true" popover="{{infoLanguages.SL}}" popover-title="{{labelLanguages.SL}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.SL}}<span style="color:red">*</span>
+                </p>
+                <p style="display:{{HeaShow}}" class="text-primary" Popover-animation="true" popover="{{infoLanguages.QORM}}" popover-title="{{labelLanguages.QORM}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.QORM}}<span style="color:red">*</span>
+                </p>
+              </th>
               <th ng-repeat='product in products'><a href="#" editable-text="product.composition[2]" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'composition','2',$index)">{{ product.composition[2] || 'empty' }}</a></th>
             </tr>
             <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.DTP}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.DTP}}<span style="color:red">*</span></p></th>
+              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.DTP}}" popover-title="{{labelLanguages.DTP}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.DTP}}<span style="color:red">*</span></p></th>
               <th ng-repeat='product in products'>
                 <a href="#" editable-checkbox="product.discontinue" e-title="DisContinue this product?" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'discontinue','0',$index)">{{ product.discontinue && "DisContinue" || "Continue!" }}</a>
               </th>

@@ -6,70 +6,8 @@ define(['app'], function(app) {
 		    $rootScope.loginFooter="bs-footer";
 		    $rootScope.loginLink="footer-links";
 		    $rootScope.loginDiv="container";			
-			
-			var calculate='../js/controllers/untils/calculate.js';
-			//var calculate=require('');
-			var multilingual=[{
-						'shortName':'Products_Portfolio_Management',
-						'labelENG':'Products Portfolio Management',
-						'labelRUS':'',
-						'labelCHN':'产品组合管理',
-						'label':''
-					},{
-						'shortName':'Next',
-						'labelENG':'Next',
-						'labelRUS':'',
-						'labelCHN':'下一步',
-						'label':''
-					},{
-						'shortName':'Category',
-						'labelENG':'Category',
-						'labelRUS':'',
-						'labelCHN':'品类',
-						'label':''
-					},{
-						'shortName':'Brand',
-						'labelENG':'Brand',
-						'labelRUS':'',
-						'labelCHN':'品牌',
-						'label':''
-					},{
-						'shortName':'UAO',
-						'labelENG':'Urban Advertising Off-Line',
-						'labelRUS':'',
-						'labelCHN':'线下',
-						'label':''					
-					},{
-						'shortName':'UTTS',
-						'labelENG':'Urban Tranditional Trade Support',
-						'labelRUS':'',
-						'labelCHN':'包',
-						'label':''					
-					},{
-						'shortName':'RAO',
-						'labelENG':'Rural Advertising Off-Line',
-						'labelRUS':'',
-						'labelCHN':'技术水平',
-						'label':''
-					},{
-						'shortName':'RTTS',
-						'labelENG':'Rural Tranditional Trade Support',
-						'labelRUS':'',
-						'labelCHN':'活性剂',
-						'label':''
-					},{
-						'shortName':'OA',
-						'labelENG':'On-line Advertising',
-						'labelRUS':'',
-						'labelCHN':'估计产量',
-						'label':''				
-					},{
-						'shortName':'EVI',
-						'labelENG':'E-mall visibility Investment',
-						'labelRUS':'',
-						'labelCHN':'停止生产',
-						'label':''						
-					}];
+
+			var multilingual=getProducerStep3Info();
 
 			var language='English',
 				producerID=$rootScope.user.username.substring($rootScope.user.username.length-1);
@@ -84,14 +22,8 @@ define(['app'], function(app) {
 			$scope.period=period;
 
 
-			//$scope.open=open;
-			//$scope.close=close;
 
-			$scope.parameter=1;/*default add new Brand*/
-
-			/*Angular-ui-bootstrap modal start*/
-
-			/*Angular-ui-bootstrap modal end*/		
+			$scope.parameter=1;/*default add new Brand*/	
 			ProducerDecisionBase.reload({producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 				$scope.pageBase = base;
 				//ProducerDecisionBase.setSomething('TEST');	
@@ -123,23 +55,21 @@ define(['app'], function(app) {
 				return delay.promise;
 			}
 
-
 			/*Load Page*/
 			var showView=function(producerID,period,category,language){
 				$scope.producerID=producerID,$scope.period=period,$scope.category=category,$scope.language=language;
-				var shortLanguages={},fullLanguages={};
+				var shortLanguages={},labelLanguages={},infoLanguages={};
 				if(language=="English"){
 					for(var i=0;i<$scope.multilingual.length;i++){
-						$scope.multilingual[i].label=$scope.multilingual[i].labelENG;
-						shortLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].shortName;
-						fullLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].label;
+						labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
+						infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
+
 					}
 				}
 				else if(language=="Chinese"){
-					for(var i=0;i<$scope.multilingual.length;i++){
-						$scope.multilingual[i].label=$scope.multilingual[i].labelCHN;
-						shortLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].shortName;
-						fullLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].label;
+					for(var i=0;i<$scope.multilingual.length;i++){				
+						labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelCHN;
+						infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoCHN;
 					}
 				}
 				var allProCatDecisions=loadSelectCategroy(category);
@@ -158,7 +88,8 @@ define(['app'], function(app) {
 	      		}
 	      		$scope.brands=brands;
 				$scope.shortLanguages=shortLanguages;
-				$scope.fullLanguages=fullLanguages;
+				$scope.labelLanguages=labelLanguages;
+				$scope.infoLanguages=infoLanguages;
 				return result;
 			}
 
@@ -214,10 +145,6 @@ define(['app'], function(app) {
 					console.log('read producer BrandHistory fail');
 				});
 			}
-
-			var loadNameNum=function(){//load the sort
-				/*importantt*/
-			}		
 
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
 				ProducerDecisionBase.reload({producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){

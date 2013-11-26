@@ -8,97 +8,98 @@ define(['app'], function(app) {
 		    $rootScope.loginDiv="container";
 			//var calculate='../js/controllers/untils/calculate.js';
 			//var calculate=require('');
-			var multilingual=[{
-						'shortName':'Products_Portfolio_Management',
-						'labelENG':'Products Portfolio Management',
-						'labelRUS':'',
-						'labelCHN':'产品组合管理',
-						'label':''
-					},{
-						'shortName':'Next',
-						'labelENG':'Next',
-						'labelRUS':'',
-						'labelCHN':'下一步',
-						'label':''
-					},{
-						'shortName':'Category',
-						'labelENG':'Category',
-						'labelRUS':'',
-						'labelCHN':'品类',
-						'label':''
-					},{
-						'shortName':'Brand',
-						'labelENG':'Brand',
-						'labelRUS':'',
-						'labelCHN':'品牌',
-						'label':''
-					},{
-						'shortName':'Variant',
-						'labelENG':'Variant',
-						'labelRUS':'',
-						'labelCHN':'单品',
-						'label':''					
-					},{
-						'shortName':'UOV',
-						'labelENG':'Urban Order Volume',
-						'labelRUS':'',
-						'labelCHN':'包',
-						'label':''					
-					},{
-						'shortName':'USS',
-						'labelENG':'Urban Shelf Space',
-						'labelRUS':'',
-						'labelCHN':'技术水平',
-						'label':''
-					},{
-						'shortName':'URP',
-						'labelENG':'Urban Retail Price',
-						'labelRUS':'',
-						'labelCHN':'活性剂',
-						'label':''
-					},{
-						'shortName':'UPF',
-						'labelENG':'Urban Promotions Frequency',
-						'labelRUS':'',
-						'labelCHN':'增滑技术',
-						'label':''
-					},{
-						'shortName':'URR',
-						'labelENG':'Urban Reduction Rate',
-						'labelRUS':'',
-						'labelCHN':'估计产量',
-						'label':''				
-					},{
-						'shortName':'ROV',
-						'labelENG':'Rrban Order Volume',
-						'labelRUS':'',
-						'labelCHN':'包',
-						'label':''					
-					},{
-						'shortName':'RSS',
-						'labelENG':'Rrban Shelf Space',
-						'labelRUS':'',
-						'labelCHN':'技术水平',
-						'label':''
-					},{
-						'shortName':'RRP',
-						'labelENG':'Rrban Retail Price',
-						'labelRUS':'',
-						'labelCHN':'活性剂',
-						'label':''
-					},{
-						'shortName':'RPF',
-						'labelENG':'Rrban Promotions Frequency',
-						'labelRUS':'',
-						'labelCHN':'增滑技术',
-						'label':''
-					},{
-						'shortName':'RRR',
-						'labelENG':'Rrban Reduction Rate',
-						'labelRUS':'',
-						'labelCHN':'估计产量',
-						'label':''				
-					}];
+			var multilingual=getRetailerStep4Info();
+			// [{
+			// 			'shortName':'Products_Portfolio_Management',
+			// 			'labelENG':'Products Portfolio Management',
+			// 			'labelRUS':'',
+			// 			'labelCHN':'产品组合管理',
+			// 			'label':''
+			// 		},{
+			// 			'shortName':'Next',
+			// 			'labelENG':'Next',
+			// 			'labelRUS':'',
+			// 			'labelCHN':'下一步',
+			// 			'label':''
+			// 		},{
+			// 			'shortName':'Category',
+			// 			'labelENG':'Category',
+			// 			'labelRUS':'',
+			// 			'labelCHN':'品类',
+			// 			'label':''
+			// 		},{
+			// 			'shortName':'Brand',
+			// 			'labelENG':'Brand',
+			// 			'labelRUS':'',
+			// 			'labelCHN':'品牌',
+			// 			'label':''
+			// 		},{
+			// 			'shortName':'Variant',
+			// 			'labelENG':'Variant',
+			// 			'labelRUS':'',
+			// 			'labelCHN':'单品',
+			// 			'label':''					
+			// 		},{
+			// 			'shortName':'UOV',
+			// 			'labelENG':'Urban Order Volume',
+			// 			'labelRUS':'',
+			// 			'labelCHN':'包',
+			// 			'label':''					
+			// 		},{
+			// 			'shortName':'USS',
+			// 			'labelENG':'Urban Shelf Space',
+			// 			'labelRUS':'',
+			// 			'labelCHN':'技术水平',
+			// 			'label':''
+			// 		},{
+			// 			'shortName':'URP',
+			// 			'labelENG':'Urban Retail Price',
+			// 			'labelRUS':'',
+			// 			'labelCHN':'活性剂',
+			// 			'label':''
+			// 		},{
+			// 			'shortName':'UPF',
+			// 			'labelENG':'Urban Promotions Frequency',
+			// 			'labelRUS':'',
+			// 			'labelCHN':'增滑技术',
+			// 			'label':''
+			// 		},{
+			// 			'shortName':'URR',
+			// 			'labelENG':'Urban Reduction Rate',
+			// 			'labelRUS':'',
+			// 			'labelCHN':'估计产量',
+			// 			'label':''				
+			// 		},{
+			// 			'shortName':'ROV',
+			// 			'labelENG':'Rrban Order Volume',
+			// 			'labelRUS':'',
+			// 			'labelCHN':'包',
+			// 			'label':''					
+			// 		},{
+			// 			'shortName':'RSS',
+			// 			'labelENG':'Rrban Shelf Space',
+			// 			'labelRUS':'',
+			// 			'labelCHN':'技术水平',
+			// 			'label':''
+			// 		},{
+			// 			'shortName':'RRP',
+			// 			'labelENG':'Rrban Retail Price',
+			// 			'labelRUS':'',
+			// 			'labelCHN':'活性剂',
+			// 			'label':''
+			// 		},{
+			// 			'shortName':'RPF',
+			// 			'labelENG':'Rrban Promotions Frequency',
+			// 			'labelRUS':'',
+			// 			'labelCHN':'增滑技术',
+			// 			'label':''
+			// 		},{
+			// 			'shortName':'RRR',
+			// 			'labelENG':'Rrban Reduction Rate',
+			// 			'labelRUS':'',
+			// 			'labelCHN':'估计产量',
+			// 			'label':''				
+			// 		}];
 			var language='English',
 				retailerID=$rootScope.user.username.substring($rootScope.user.username.length-1);
 				period=$rootScope.currentPeriod,
@@ -197,27 +198,17 @@ define(['app'], function(app) {
 			/*Load Page*/
 			var showView=function(retailerID,period,category,market,language){
 				$scope.retailerID=retailerID,$scope.period=period,$scope.category=category,$scope.market=market,$scope.language=language;
-				if(market=="Rural"){
-					$scope.shouldHide="";
-					$scope.shouldShow="none";
-				}
-				if(market=="Urban"){
-					$scope.shouldShow="";
-					$scope.shouldHide="none";
-				}
-				var shortLanguages={},fullLanguages={};
+				var infoLanguages={},labelLanguages={};
 				if(language=="English"){
 					for(var i=0;i<$scope.multilingual.length;i++){
-						$scope.multilingual[i].label=$scope.multilingual[i].labelENG;
-						shortLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].shortName;
-						fullLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].label;
+						labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
+						infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
 					}
 				}
 				else if(language=="Chinese"){
 					for(var i=0;i<$scope.multilingual.length;i++){
-						$scope.multilingual[i].label=$scope.multilingual[i].labelCHN;
-						shortLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].shortName;
-						fullLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].label;
+						labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelCHN;
+						infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoCHN;
 					}
 				}
 				var allRetCatDecisions=loadSelectCategroy(market,category);
@@ -235,8 +226,8 @@ define(['app'], function(app) {
 	      			result=1;
 	      		}
 	      		$scope.products=products;
-				$scope.shortLanguages=shortLanguages;
-				$scope.fullLanguages=fullLanguages;
+				$scope.infoLanguages=infoLanguages;
+				$scope.labelLanguages=labelLanguages;
 				if(category=="Elecssories"){
 					category=1;
 				}

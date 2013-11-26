@@ -6,73 +6,9 @@ define(['app'], function(app) {
 		    $rootScope.loginFooter="bs-footer";
 		    $rootScope.loginLink="footer-links";
 		    $rootScope.loginDiv="container";
-			var multilingual=[{
-						'shortName':'Products_Portfolio_Management',
-						'labelENG':'Products Portfolio Management',
-						'labelRUS':'',
-						'labelCHN':'产品组合管理',
-						'label':''
-					},{
-						'shortName':'Next',
-						'labelENG':'Next',
-						'labelRUS':'',
-						'labelCHN':'下一步',
-						'label':''
-					},{
-						'shortName':'Category',
-						'labelENG':'Category',
-						'labelRUS':'',
-						'labelCHN':'品类',
-						'label':''
-					},{
-						'shortName':'Brand',
-						'labelENG':'Brand',
-						'labelRUS':'',
-						'labelCHN':'品牌',
-						'label':''
-					},{
-						'shortName':'Variant',
-						'labelENG':'Variant',
-						'labelRUS':'',
-						'labelCHN':'单品',
-						'label':''					
-					},{
-						'shortName':'PF',
-						'labelENG':'Pack Format',
-						'labelRUS':'',
-						'labelCHN':'包',
-						'label':''					
-					},{
-						'shortName':'TL',
-						'labelENG':'Technology Level',
-						'labelRUS':'',
-						'labelCHN':'技术水平',
-						'label':''
-					},{
-						'shortName':'AA',
-						'labelENG':'Active agent',
-						'labelRUS':'',
-						'labelCHN':'活性剂',
-						'label':''
-					},{
-						'shortName':'SL',
-						'labelENG':'Smoothener Level',
-						'labelRUS':'',
-						'labelCHN':'增滑技术',
-						'label':''
-					},{
-						'shortName':'EPV',
-						'labelENG':'Estimated Production Volume',
-						'labelRUS':'',
-						'labelCHN':'估计产量',
-						'label':''				
-					},{
-						'shortName':'DTP',
-						'labelENG':'Discontinue this product',
-						'labelRUS':'',
-						'labelCHN':'停止生产',
-						'label':''						
-					}];
+		    //console.log(popInfo);
+
+			var multilingual=getProducerStep12Info();
 
 			var language='English',
 				//producerID=1,
@@ -81,6 +17,7 @@ define(['app'], function(app) {
 				category='Elecssories',
 				isCollapsed=true;
 				$scope.isCollapsed=isCollapsed;
+				console.log($rootScope.currentPeriod);
 			$scope.multilingual=multilingual;
 			$scope.category=category;
 			$scope.language=language;
@@ -129,8 +66,8 @@ define(['app'], function(app) {
 					$scope.loadSelectCategroy=loadSelectCategroy;
 					$scope.setBrandName=setBrandName;
 					$scope.loadAllBrand=loadAllBrand;
-					$scope.selected=selected;
-					$scope.loadNameNum=loadNameNum;
+					//$scope.selected=selected;
+					//$scope.loadNameNum=loadNameNum;
 					$scope.addNewProduct=addNewProduct;
 					$scope.updateProducerDecision=updateProducerDecision;
 					$scope.getMoreInfo=getMoreInfo;
@@ -210,59 +147,33 @@ define(['app'], function(app) {
 			/*Load Page*/
 			var showView=function(producerID,period,category,language){
 				$scope.producerID=producerID,$scope.period=period,$scope.category=category,$scope.language=language;
-				var shortLanguages={},fullLanguages={};
+				var labelLanguages={},infoLanguages={};
 				if(language=="English"){
 					for(var i=0;i<$scope.multilingual.length;i++){
 						if(category=="Elecssories"){
-							if($scope.multilingual[i].shortName=="Active"){
-								$scope.multilingual[i].labelENG="Design Index";
-								$scope.multilingual[i].labelCHN="设计指数";
-							}
-							if($scope.multilingual[i].shortName=="Smootener"){
-								$scope.multilingual[i].labelENG="Raw Materrials Quality";
-								$scope.multilingual[i].labelCHN="原始材料质量";
-							}
+							$scope.EleShow="inline";
+							$scope.HeaShow="none";
 						}
 						else if(category=="HealthBeauty"){
-							if($scope.multilingual[i].shortName=="Active"){
-								$scope.multilingual[i].labelENG="Active agent";
-								$scope.multilingual[i].labelCHN="活性剂";
-							}
-							if($scope.multilingual[i].shortName=="Smootener"){
-								$scope.multilingual[i].labelENG="Smoothener Level";
-								$scope.multilingual[i].labelCHN="增滑技术";
-							}
+							$scope.EleShow="none";
+							$scope.HeaShow="inline";
 						}
-						$scope.multilingual[i].label=$scope.multilingual[i].labelENG;
-						shortLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].shortName;
-						fullLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].label;
+						labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
+						infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
 					}
 				}
 				else if(language=="Chinese"){
 					for(var i=0;i<$scope.multilingual.length;i++){
 						if(category=="Elecssories"){
-							if($scope.multilingual[i].shortName=="Active"){
-								$scope.multilingual[i].labelENG="Design Index";
-								$scope.multilingual[i].labelCHN="设计指数";
-							}
-							if($scope.multilingual[i].shortName=="Smootener"){
-								$scope.multilingual[i].labelENG="Raw Materrials Quality";
-								$scope.multilingual[i].labelCHN="原始材料质量";
-							}
+							$scope.EleShow="inline";
+							$scope.HeaShow="none";
 						}
 						else if(category=="HealthBeauty"){
-							if($scope.multilingual[i].shortName=="Active"){
-								$scope.multilingual[i].labelENG="Active agent";
-								$scope.multilingual[i].labelCHN="活性剂";
-							}
-							if($scope.multilingual[i].shortName=="Smootener"){
-								$scope.multilingual[i].labelENG="Smoothener Level";
-								$scope.multilingual[i].labelCHN="增滑技术";
-							}
+							$scope.EleShow="none";
+							$scope.HeaShow="inline";
 						}
-						$scope.multilingual[i].label=$scope.multilingual[i].labelCHN;
-						shortLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].shortName;
-						fullLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].label;
+						labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelCHN;
+						infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoCHN;
 					}
 				}
 				var allProCatDecisions=loadSelectCategroy(category);
@@ -295,8 +206,9 @@ define(['app'], function(app) {
 	      			result=1;
 	      		}
 	      		$scope.products=products;
-				$scope.shortLanguages=shortLanguages;
-				$scope.fullLanguages=fullLanguages;
+				$scope.labelLanguages=labelLanguages;
+				$scope.infoLanguages=infoLanguages;
+				//console.log(labelLanguages);
 				return result;
 			}
 
@@ -351,10 +263,6 @@ define(['app'], function(app) {
 	      		}
 	      		$scope.allBrands=allBrands;
 	      		$scope.addChooseBrand=allBrands[0].BrandID;
-			}
-
-			var selected=function(category){
-				console.log(category);
 			}
 
 			var selectPacks = function(parentBrandName,varName) {
@@ -424,10 +332,6 @@ define(['app'], function(app) {
 				});
 			}
 
-			var loadNameNum=function(){//load the sort
-				/*importantt*/
-				return $rootScope.user.username.substring($rootScope.user.username.length-1);
-			}		
 			var addNewProduct=function(parameter){
 				var newBrand=new ProducerDecision();
 				var nullDecision=new ProducerDecision();

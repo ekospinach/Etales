@@ -65,25 +65,25 @@
           </div>
           <table class="table table-hover">
             <tr>
-              <th>{{fullLanguages.Category}}</th>
+              <th>{{labelLanguages.Category}}</th>
               <th>Elecssories<span><a ng-click="getCategoryMoreInfo(1)">more</a></span></th>
               <th>HealthBeauty<span><a ng-click="getCategoryMoreInfo(2)">more</a></span></th>
             </tr>
             <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.IICC}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.IICC}}<span style="color:red">*</span></p>
+              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.IICC}}" popover-title="{{labelLanguages.IICC}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.IICC}}<span style="color:red">*</span></p>
               </th>
               <th ng-repeat='category in categorys'><a href="#" editable-text="category.capacityChange" onaftersave="updateProducerDecision(category.categoryID,'capacityChange',$index)">{{ category.capacityChange || 0 }}</a></th>
             </tr>
             <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui." popover-title="{{fullLanguages.ITIAT}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.ITIAT}}<span style="color:red">*</span></p></th>
+              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.ITIAT}}" popover-title="{{labelLanguages.ITIAT}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.ITIAT}}<span style="color:red">*</span></p></th>
               <th ng-repeat='category in categorys'><a href="#" editable-text="category.investInTechnology" onaftersave="updateProducerDecision(category.categoryID,'investInTechnology',$index)">{{ category.investInTechnology || 0 }}</a></th>
             </tr>
             <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.ITIF}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.ITIF}}<span style="color:red">*</span></p></th>
+              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.ITIF}}" popover-title="{{labelLanguages.ITIF}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.ITIF}}<span style="color:red">*</span></p></th>
               <th ng-repeat='category in categorys'><a href="#" editable-text="category.investInProductionFlexibility" onaftersave="updateProducerDecision(category.categoryID,'investInProductionFlexibility',$index)">{{ category.investInProductionFlexibility || 0 }}</a></th>
             </tr>
             <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.ITIDK}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.ITIDK}}<span style="color:red">*</span></p></th>
+              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.ITIDK}}" popover-title="{{labelLanguages.ITIDK}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.ITIDK}}<span style="color:red">*</span></p></th>
               <th>
                 <a href="#" editable-text="categorys[0].investInDesign" onaftersave="updateProducerDecision(1,'investInDesign',0)">{{ categorys[0].investInDesign || 0 }}</a>
               </th>
