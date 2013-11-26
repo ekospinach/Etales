@@ -122,33 +122,27 @@ exports.exportToBinary = function(options){
     var deferred = q.defer();
     var period = options.period;
 
-    //first step, combine contractDetailsSchema and contractSchema with specificated seminar/period
-  
     fillAllDeal(options.seminar, options.period).then(function(result){
-      deferred.resolve({msg:result.mest});
+      allDeal.findOne({seminar: options.seminar, period : options.period},function(err, doc){
+        if(err) deferred.reject({msg:err});
+        if(!doc){
+          deferred.reject({msg: 'Export to binary, cannot find matched negotiation doc. seminar:' + options.seminar + '/period:' + options.period});          
+        }else{
+          console.log('export deal:' + doc);
+          request.post('http://' + options.cgiHost + ':' + options.cgiPort + options.cgiPath, {form: {jsonData: JSON.stringify(doc)}}, function(error, response){
+              console.log('status:' + response.status);
+              console.log('body:' + response.body);
+              if (response.status === (500 || 404)) {
+                  deferred.reject({msg: 'Failed to export binary, get 500 from CGI server(POST action):' + JSON.stringify(options)});
+              } else {
+                  deferred.resolve({msg: 'Export negotiation binary done, period' + options.period});
+              }
+          });                
+        }       
+      })
     }, function(error){
       deferred.reject({msg: 'error'});
     });
-
-    // //second step, try to post data to CGI
-    // allDeal.findOne({seminar : options.seminar,
-    //                        period : options.period},
-    //                        function(err, doc){
-    //                             if(err) deferred.reject({msg:err, options: options}); 
-    //                             if(!doc) {
-    //                                 deferred.reject({msg: 'Export to binary, cannot find matched doc. ' + 'producerID:' + options.producerID + '/seminar:' + options.seminar + '/period:' + options.period});
-    //                             } else {        
-    //                                 request.post('http://' + options.cgiHost + ':' + options.cgiPort + options.cgiPath, {form: {jsonData: JSON.stringify(doc)}}, function(error, response){
-    //                                     console.log('status:' + response.status);
-    //                                     console.log('body:' + response.body);
-    //                                     if (response.status === (500 || 404)) {
-    //                                         deferred.reject({msg: 'Failed to export binary, get 500 from CGI server(POST action):' + JSON.stringify(options)});
-    //                                     } else {
-    //                                         deferred.resolve({msg: 'Export binary done, producer:' + options.producerID +', period' + options.period});
-    //                                     }
-    //                                 });
-    //                             }
-    //                        });
     return deferred.promise;
 }
 
@@ -354,7 +348,7 @@ function fillAllDeal(seminar, period){
                       } else {
                         console.log('loop contract done');
                         tempDeal.save(function(err){
-                          if(!err){deferred.resolve({msg:'save doc complete.'})}
+                          if(!err){deferred.resolve({msg:'save doc complete.',result:tempDeal})}
                           else (console.log('save error:' + err));
                         });
                       }

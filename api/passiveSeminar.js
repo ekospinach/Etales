@@ -37,6 +37,7 @@ exports.passiveSeminar = function(io){
 	// }).then(function(result){
  //        io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
 		//return 
+		options.cgiPath = conf.cgi.path_negotiationDecision;
 		require('./models/allDeal.js').exportToBinary(options).then(function(result){
         io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
 		res.send(200, 'complete');	
