@@ -8,55 +8,56 @@ define(['app'], function(app) {
 		    $rootScope.loginDiv="container";
 			//var calculate='../js/controllers/untils/calculate.js';
 			//var calculate=require('');
-			var multilingual=[{
-						'shortName':'MN',
-						'labelENG':'MarketName',
-						'labelRUS':'',
-						'labelCHN':'产品组合管理',
-						'label':''
-					},{
-						'shortName':'ISL',
-						'labelENG':'In-Store service Level',
-						'labelRUS':'',
-						'labelCHN':'品类',
-						'label':''
-					},{
-						'shortName':'HSSA',
-						'labelENG':'HealthBeauty Selling surface allocation (%)',
-						'labelRUS':'',
-						'labelCHN':'包',
-						'label':''					
-					},{
-						'shortName':'ESSA',
-						'labelENG':'Elecssories Selling surface allocation (%)',
-						'labelRUS':'',
-						'labelCHN':'技术水平',
-						'label':''
-					},{
-						'shortName':'LCA',
-						'labelENG':'Local Convenience Advertising',
-						'labelRUS':'',
-						'labelCHN':'活性剂',
-						'label':''
-					},{
-						'shortName':'LAA',
-						'labelENG':'Local Assortment Advertising',
-						'labelRUS':'',
-						'labelCHN':'增滑技术',
-						'label':''
-					},{
-						'shortName':'LPA',
-						'labelENG':'Local Price Advertising',
-						'labelRUS':'',
-						'labelCHN':'下一步',
-						'label':''
-					},{
-						'shortName':'AEP',
-						'labelENG':'Allocate Empty Place',
-						'labelRUS':'',
-						'labelCHN':'下一步',
-						'label':''
-					}];
+			var multilingual=getRetailerStep2Info();
+			// [{
+			// 			'shortName':'MN',
+			// 			'labelENG':'MarketName',
+			// 			'labelRUS':'',
+			// 			'labelCHN':'产品组合管理',
+			// 			'label':''
+			// 		},{
+			// 			'shortName':'ISL',
+			// 			'labelENG':'In-Store service Level',
+			// 			'labelRUS':'',
+			// 			'labelCHN':'品类',
+			// 			'label':''
+			// 		},{
+			// 			'shortName':'HSSA',
+			// 			'labelENG':'HealthBeauty Selling surface allocation (%)',
+			// 			'labelRUS':'',
+			// 			'labelCHN':'包',
+			// 			'label':''					
+			// 		},{
+			// 			'shortName':'ESSA',
+			// 			'labelENG':'Elecssories Selling surface allocation (%)',
+			// 			'labelRUS':'',
+			// 			'labelCHN':'技术水平',
+			// 			'label':''
+			// 		},{
+			// 			'shortName':'LCA',
+			// 			'labelENG':'Local Convenience Advertising',
+			// 			'labelRUS':'',
+			// 			'labelCHN':'活性剂',
+			// 			'label':''
+			// 		},{
+			// 			'shortName':'LAA',
+			// 			'labelENG':'Local Assortment Advertising',
+			// 			'labelRUS':'',
+			// 			'labelCHN':'增滑技术',
+			// 			'label':''
+			// 		},{
+			// 			'shortName':'LPA',
+			// 			'labelENG':'Local Price Advertising',
+			// 			'labelRUS':'',
+			// 			'labelCHN':'下一步',
+			// 			'label':''
+			// 		},{
+			// 			'shortName':'AEP',
+			// 			'labelENG':'Allocate Empty Place',
+			// 			'labelRUS':'',
+			// 			'labelCHN':'下一步',
+			// 			'label':''
+			// 		}];
 			$scope.packs = [{
 				value: 1, text: 'SL_BASE'
 			},{
@@ -128,20 +129,18 @@ define(['app'], function(app) {
 			/*Load Page*/
 			var showView=function(retailerID,period,language){
 				$scope.retailerID=retailerID,$scope.period=period,$scope.language=language;
-				var shortLanguages={},fullLanguages={};
+				var labelLanguages={},infoLanguages={};
 				var markets=new Array();
 				if(language=="English"){
 					for(var i=0;i<$scope.multilingual.length;i++){
-						$scope.multilingual[i].label=$scope.multilingual[i].labelENG;
-						shortLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].shortName;
-						fullLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].label;
+						labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
+						infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
 					}
 				}
 				else if(language=="Chinese"){
 					for(var i=0;i<$scope.multilingual.length;i++){
-						$scope.multilingual[i].label=$scope.multilingual[i].labelCHN;
-						shortLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].shortName;
-						fullLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].label;
+						labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelCHN;
+						infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoCHN;						
 					}
 				}
 	      		var count=0,result=0;
@@ -166,9 +165,8 @@ define(['app'], function(app) {
 	      			markets.push($scope.pageBase.retMarketDecision[i]);
 	      		}
 	      		$scope.markets=markets;
-	      		console.log(markets);
-				$scope.shortLanguages=shortLanguages;
-				$scope.fullLanguages=fullLanguages;
+				$scope.labelLanguages=labelLanguages;
+				$scope.infoLanguages=infoLanguages;
 				return result;
 			}
 
@@ -199,11 +197,7 @@ define(['app'], function(app) {
 				.error(function(data){
 					console.log('read retailerDecisionHistory fail');
 				});
-			}
-
-			var loadNameNum=function(){//load the sort
-				/*importantt*/
-			}		
+			}	
 			
 			$scope.$on('retailerDecisionBaseChangedFromServer', function(event, newBase){
 				RetailerDecisionBase.reload({retailerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){

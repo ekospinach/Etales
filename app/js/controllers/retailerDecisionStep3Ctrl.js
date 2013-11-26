@@ -8,73 +8,7 @@ define(['app'], function(app) {
 		    $rootScope.loginDiv="container";
 			var calculate='../js/controllers/untils/calculate.js';
 			//var calculate=require('');
-			var multilingual=[{
-						'shortName':'Products_Portfolio_Management',
-						'labelENG':'Products Portfolio Management',
-						'labelRUS':'',
-						'labelCHN':'产品组合管理',
-						'label':''
-					},{
-						'shortName':'Next',
-						'labelENG':'Next',
-						'labelRUS':'',
-						'labelCHN':'下一步',
-						'label':''
-					},{
-						'shortName':'Category',
-						'labelENG':'Category',
-						'labelRUS':'',
-						'labelCHN':'品类',
-						'label':''
-					},{
-						'shortName':'Brand',
-						'labelENG':'Brand',
-						'labelRUS':'',
-						'labelCHN':'品牌',
-						'label':''
-					},{
-						'shortName':'Variant',
-						'labelENG':'Variant',
-						'labelRUS':'',
-						'labelCHN':'单品',
-						'label':''					
-					},{
-						'shortName':'PF',
-						'labelENG':'Pack Format',
-						'labelRUS':'',
-						'labelCHN':'包',
-						'label':''					
-					},{
-						'shortName':'TL',
-						'labelENG':'Technology Level',
-						'labelRUS':'',
-						'labelCHN':'技术水平',
-						'label':''
-					},{
-						'shortName':'AA',
-						'labelENG':'Active agent',
-						'labelRUS':'',
-						'labelCHN':'活性剂',
-						'label':''
-					},{
-						'shortName':'SL',
-						'labelENG':'Smoothener Level',
-						'labelRUS':'',
-						'labelCHN':'增滑技术',
-						'label':''
-					},{
-						'shortName':'EPV',
-						'labelENG':'Estimated Production Volume',
-						'labelRUS':'',
-						'labelCHN':'估计产量',
-						'label':''				
-					},{
-						'shortName':'DTP',
-						'labelENG':'Discontinue this product',
-						'labelRUS':'',
-						'labelCHN':'停止生产',
-						'label':''						
-					}];
+			var multilingual=getRetailerStep3Info();
 
 			var language='English',
 				retailerID=$rootScope.user.username.substring($rootScope.user.username.length-1);
@@ -210,59 +144,33 @@ define(['app'], function(app) {
 			/*Load Page*/
 			var showView=function(retailerID,period,category,language){
 				$scope.retailerID=retailerID,$scope.period=period,$scope.category=category,$scope.language=language;
-				var shortLanguages={},fullLanguages={};
+				var infoLanguages={},labelLanguages={};
 				if(language=="English"){
 					for(var i=0;i<$scope.multilingual.length;i++){
 						if(category=="Elecssories"){
-							if($scope.multilingual[i].shortName=="Active"){
-								$scope.multilingual[i].labelENG="Design Index";
-								$scope.multilingual[i].labelCHN="设计指数";
-							}
-							if($scope.multilingual[i].shortName=="Smootener"){
-								$scope.multilingual[i].labelENG="Raw Materrials Quality";
-								$scope.multilingual[i].labelCHN="原始材料质量";
-							}
+							$scope.EleShow="inline";
+							$scope.HeaShow="none";
 						}
 						else if(category=="HealthBeauty"){
-							if($scope.multilingual[i].shortName=="Active"){
-								$scope.multilingual[i].labelENG="Active agent";
-								$scope.multilingual[i].labelCHN="活性剂";
-							}
-							if($scope.multilingual[i].shortName=="Smootener"){
-								$scope.multilingual[i].labelENG="Smoothener Level";
-								$scope.multilingual[i].labelCHN="增滑技术";
-							}
+							$scope.EleShow="none";
+							$scope.HeaShow="inline";
 						}
-						$scope.multilingual[i].label=$scope.multilingual[i].labelENG;
-						shortLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].shortName;
-						fullLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].label;
+						labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
+						infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
 					}
 				}
 				else if(language=="Chinese"){
 					for(var i=0;i<$scope.multilingual.length;i++){
 						if(category=="Elecssories"){
-							if($scope.multilingual[i].shortName=="Active"){
-								$scope.multilingual[i].labelENG="Design Index";
-								$scope.multilingual[i].labelCHN="设计指数";
-							}
-							if($scope.multilingual[i].shortName=="Smootener"){
-								$scope.multilingual[i].labelENG="Raw Materrials Quality";
-								$scope.multilingual[i].labelCHN="原始材料质量";
-							}
+							$scope.EleShow="inline";
+							$scope.HeaShow="none";
 						}
 						else if(category=="HealthBeauty"){
-							if($scope.multilingual[i].shortName=="Active"){
-								$scope.multilingual[i].labelENG="Active agent";
-								$scope.multilingual[i].labelCHN="活性剂";
-							}
-							if($scope.multilingual[i].shortName=="Smootener"){
-								$scope.multilingual[i].labelENG="Smoothener Level";
-								$scope.multilingual[i].labelCHN="增滑技术";
-							}
+							$scope.EleShow="none";
+							$scope.HeaShow="inline";
 						}
-						$scope.multilingual[i].label=$scope.multilingual[i].labelCHN;
-						shortLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].shortName;
-						fullLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].label;
+						infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoCHN;
+						labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelCHN;
 					}
 				}
 				var allRetCatDecisions=loadSelectCategroy(category);
@@ -298,8 +206,8 @@ define(['app'], function(app) {
 	      			result=1;
 	      		}
 	      		$scope.products=products;
-				$scope.shortLanguages=shortLanguages;
-				$scope.fullLanguages=fullLanguages;
+				$scope.infoLanguages=infoLanguages;
+				$scope.labelLanguages=labelLanguages;
 				return result;
 			}
 

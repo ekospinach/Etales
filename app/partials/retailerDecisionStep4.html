@@ -149,27 +149,16 @@
             </div>
           </div>
           <table class="table table-hover">
-            <tr style="display:{{shouldShow}}">
-              <th>{{fullLanguages.Category}}</th>
-              <th>{{fullLanguages.Brand}}</th>
-              <th>{{fullLanguages.Variant}}</th>
-              <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.UOV}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.UOV}}<span style="color:red">*</span></p>
+            <tr>
+              <th>{{labelLanguages.Category}}</th>
+              <th>{{labelLanguages.Brand}}</th>
+              <th>{{labelLanguages.Variant}}</th>
+              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.OV}}" popover-title="{{labelLanguages.OV}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.OV}}<span style="color:red">*</span></p>
               </th>
-              <th><p class="text-primary" Popover-animation="true" popover="Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui." popover-title="{{fullLanguages.USS}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.USS}}<span style="color:red">*</span></p></th>
-              <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.URP}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.URP}}<span style="color:red">*</span></p></th>
-              <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.UPF}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.UPF}}<span style="color:red">*</span></p></th>
-              <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.URR}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.URR}}<span style="color:red">*</span></p></th>
-            </tr>
-            <tr style="display:{{shouldHide}}">
-              <th>{{fullLanguages.Category}}</th>
-              <th>{{fullLanguages.Brand}}</th>
-              <th>{{fullLanguages.Variant}}</th>
-              <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.ROV}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.ROV}}<span style="color:red">*</span></p>
-              </th>
-              <th><p class="text-primary" Popover-animation="true" popover="Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui." popover-title="{{fullLanguages.RSS}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.RSS}}<span style="color:red">*</span></p></th>
-              <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.RRP}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.RRP}}<span style="color:red">*</span></p></th>
-              <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.RPF}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.RPF}}<span style="color:red">*</span></p></th>
-              <th><p class="text-primary" Popover-animation="true" popover="hello" popover-title="{{fullLanguages.RRR}}" popover-trigger="mouseenter" popover-placement="bottom">{{fullLanguages.RRR}}<span style="color:red">*</span></p></th>
+              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.SS}}" popover-title="{{labelLanguages.SS}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.SS}}<span style="color:red">*</span></p></th>
+              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.RP}}" popover-title="{{labelLanguages.RP}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.RP}}<span style="color:red">*</span></p></th>
+              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.PF}}" popover-title="{{labelLanguages.PF}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.PF}}<span style="color:red">*</span></p></th>
+              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.RR}}" popover-title="{{labelLanguages.RR}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.RR}}<span style="color:red">*</span></p></th>
             </tr>
             <tr ng-repeat="product in products">
               <td>{{category}}</td>
