@@ -128,7 +128,7 @@ exports.exportToBinary = function(options){
         if(!doc){
           deferred.reject({msg: 'Export to binary, cannot find matched negotiation doc. seminar:' + options.seminar + '/period:' + options.period});          
         }else{
-          console.log('export deal:' + doc);
+          console.log('export deal:' + JSON.stringify(doc));
           request.post('http://' + options.cgiHost + ':' + options.cgiPort + options.cgiPath, {form: {jsonData: JSON.stringify(doc)}}, function(error, response){
               console.log('status:' + response.status);
               console.log('body:' + response.body);
