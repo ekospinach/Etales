@@ -589,7 +589,7 @@ var
       //group name
       case grpType of
         grpProfitAbs        : s_str := 'Profitability Absolute RMB';
-        grpProfitRel        : s_str := 'Profitability as % of Sales';
+        grpProfitRel        : s_str := 'Profitability as percentage of Sales';
         grpExpense          : s_str := 'Expenses';
         grpWholesale        : s_str := 'Wholesales Market Results';
         grpRetail           : s_str := 'Retail Market Results';
@@ -602,7 +602,7 @@ var
       //group name RUS
       case grpType of
         grpProfitAbs        : s_str := 'Прибыльность в абсолютных значениях';
-        grpProfitRel        : s_str := 'Прибальность как % от продаж';
+        grpProfitRel        : s_str := 'Прибальность как percentage от продаж';
         grpExpense          : s_str := 'Затраты';
         grpWholesale        : s_str := 'Оптовый рынок';
         grpRetail           : s_str := 'Розничный рынок';
