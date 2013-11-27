@@ -12,56 +12,8 @@ define(['app','socketIO','routingConfig'], function(app) {
 		$scope.myreport=myreport;
 		$scope.myfinreport=myfinreport;
 
-		var titles=[{
-				title:'',
-	        	titleENG:'Brand Awareness',
-	        	titleRUS:'Brand Awareness 暂未翻译',
-	        	titleCHN:'Brand Awareness 暂未翻译',
-	        	subTitleENG:'Extent to which consumers are aware of a particular product measured as percentage of total. Gives you an idea how your promotional expenses and investments into visibility paid off.',
-	        	subTitleRUS:'Brand Awareness RUS 暂未翻译',
-	        	subTitleCHN:'Brand Awareness CHN 暂未翻译',
-	        },{
-				title:'',
-	        	titleENG:'Market Share (Volume)',
-	        	titleRUS:'Market Share (Volume) 暂未翻译',
-	        	titleCHN:'Market Share (Volume) 暂未翻译',
-	        	subTitleENG:'Percentage of a total market, in terms of volume, accounted for by the sales of a specific brand.',
-	        	subTitleRUS:'Market Share (Volume) RUS 暂未翻译',
-	        	subTitleCHN:'Market Share (Volume) CHN 暂未翻译',
-	        },{
-				title:'',
-	        	titleENG:'Market Share (Value)',
-	        	titleRUS:'Market Share (Value) 暂未翻译',
-	        	titleCHN:'Market Share (Value) 暂未翻译',
-	        	subTitleENG:'Percentage of a total market, in terms of value, accounted for by the sales of a specific brand.',
-	        	subTitleRUS:'Market Share (Value) 暂未翻译',
-	        	subTitleCHN:'Market Share (Value) 暂未翻译',
-	        },{
-				title:'',
-	        	titleENG:'Average Net Market Price',
-	        	titleRUS:'Average Net Market Price 暂未翻译',
-	        	titleCHN:'Average Net Market Price 暂未翻译',
-	        	subTitleENG:'Price at which a product is selling in the open market. It is averaged across all channels. Promotional discounts off normal retail price are also accounted for.',
-	        	subTitleRUS:'Average Net Market Price 暂未翻译',
-	        	subTitleCHN:'verage Net Market Price 暂未翻译',
-	        },{
-				title:'',
-	        	titleENG:'Brand Visibility Share',
-	        	titleRUS:'Brand Visibility Share 暂未翻译',
-	        	titleCHN:'Brand Visibility Share 暂未翻译',
-	        	subTitleENG:'An integral measure that averages brand space share and marketing activities increasing brand visibility at a given channel.',
-	        	subTitleRUS:'Brand Visibility Share 暂未翻译',
-	        	subTitleCHN:'Brand Visibility Share 暂未翻译',
-	        },{
-				title:'',
-	        	titleENG:'Consumer off-take',
-	        	titleRUS:'Consumer off-take 暂未翻译',
-	        	titleCHN:'Consumer off-take 暂未翻译',
-	        	subTitleENG:'This measure indicates how many units of a product have been sold to the consumer.',
-	        	subTitleRUS:'Consumer off-take 暂未翻译',
-	        	subTitleCHN:'Consumer off-take 暂未翻译',
-	        }];
-	        $scope.titles=titles;
+		//languages
+	    $scope.titles=getMarketReport();
 
 		var getReport=function(seminar,titleENG,period,language){
 			$scope.seminar=seminar;
@@ -70,7 +22,6 @@ define(['app','socketIO','routingConfig'], function(app) {
 			var url='/marketReport?seminar='+seminar+'&titleENG='+titleENG+'&period='+period;
 			// $scope.showTitleENG=titleENG.replace('%2B','+');
 			// $scope.realTitleENG=titleENG.replace('+','%2B');
-
 
 			$http({method: 'GET', url: url}).
 			success(function(data, status, headers, config) {

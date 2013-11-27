@@ -15,7 +15,8 @@ define([
 	'bubbleRenderer',
 	'tree',
 	'producerPopInfo',
-	'retailerPopInfo'
+	'retailerPopInfo',
+	'reportTitle'
 	], function (angular, filters, services, directives, controllers) {
 		'use strict';
 		return angular.module('myApp', [

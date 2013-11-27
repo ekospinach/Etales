@@ -480,6 +480,59 @@ exports.getProducerProductList=function(req,res,next){
 
 //brandHistory
 
+
+exports.getProductionResult=function(req,res,next){
+        proDecision.findOne({
+        seminar:req.params.seminar,
+        period:req.params.period,
+        producerID:req.params.producerID
+    },function(err,doc){
+        if(err){
+            next(new Error(err));
+        }
+        if(!doc){
+           res.send(404,{err:'cannot find the doc'}); 
+        }else{
+            if(req.params.brandName.substring(0,1)=="E"){
+                categoryID=1;
+            }else{
+                categoryID=2;
+            }
+            var allProCatDecisions=_.filter(doc.proCatDecision,function(obj){
+                return (obj.categoryID==categoryID);
+            });
+            var result=0;
+            for(var i=0;i<allProCatDecisions.length;i++){
+                for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
+                    for(var k=0;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
+                        if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=0&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varName!=""){
+                            result+=allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].production;
+                        }
+                    }
+                }
+            }
+            console.log(result);
+            console.log(req.params.brandName);
+            console.log(req.params.varName);
+            for(var i=0;i<allProCatDecisions.length;i++){
+                for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
+                    if(allProCatDecisions[i].proBrandsDecision[j].brandID!=0&&allProCatDecisions[i].proBrandsDecision[j].brandName==req.params.brandName){
+                        for(var k=0;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
+                            if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=0&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varName==req.params.varName){
+                                result-=allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].production;
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+            console.log(result);
+            res.send(200,{result:result});
+        }
+    })
+}
+
 exports.getBrandHistory=function(req,res,next){
     proDecision.findOne({
         seminar:req.params.seminar,
