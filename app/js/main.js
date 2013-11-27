@@ -44,7 +44,8 @@ require.config({
 	},
 	priority: [
 		"angular"
-	]
+	],
+	waitSeconds : 40
 });
 
 // hey Angular, we're bootstrapping manually!
