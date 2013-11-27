@@ -57,8 +57,11 @@ define(['app','socketIO'], function(app) {
 				var url="/currentPeriod/"+seminar;
 				$http.get(url).success(function(data){
 					//console.log(data);
+					//startfrom --->endwith
 					$rootScope.currentPeriod=data.currentPeriod;
-					console.log($rootScope.currentPeriod);
+					$rootScope.rootStartFrom=-2;
+					$rootScope.rootEndWith=$rootScope.currentPeriod-1;
+					//console.log($rootScope.currentPeriod);
 				});
 				closeLoginModal();
 

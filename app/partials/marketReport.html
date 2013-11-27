@@ -1,8 +1,7 @@
 <div id="content" class="bs-header">
     <div class="container">
         <h1>Market studies</h1>
-        <p>Basic market facts collected here in numerical form. They will help you in your analysis of market characteristics and trends as well as
-consumer preferences, purchasing power by market, category and segment.</p>
+        <p>Basic market facts collected here in numerical form. They will help you in your analysis of market characteristics and trends as well as consumer preferences, purchasing power by market, category and segment.</p>
     </div>
 </div>
 
@@ -23,25 +22,29 @@ consumer preferences, purchasing power by market, category and segment.</p>
 				<ul class="nav bs-sidenav">	
 					<li class="active">
 						<a>Market Studies</a>
-						<ul class="nav second-sidenav">
-							<li class="active">
-								<a ng-click="getReport(seminar,'Brand Awareness',period)">Brand Awareness</a>
+						<ul class="nav second-sidenav" ng-repeat="title in titles">
+							<li>
+								<a ng-click="getReport(seminar,title.titleENG,period,language)">{{title.title}}</a>
+							</li>
+
+							<!-- <li class="active">
+								<a ng-click="getReport(seminar,'Brand Awareness',period,language)">Brand Awareness</a>
 							</li>
 							<li class="">
-								<a ng-click="getReport(seminar,'Market Share (Volume)',period)">Brand Market Share(Volume)</a>
+								<a ng-click="getReport(seminar,'Market Share (Volume)',period,language)">Brand Market Share(Volume)</a>
 							</li>
 							<li class="">
-								<a ng-click="getReport(seminar,'Market Share (Value)',period)">Brand Market Share(Value)</a>
+								<a ng-click="getReport(seminar,'Market Share (Value)',period,language)">Brand Market Share(Value)</a>
 							</li>
 							<li class="">
-								<a ng-click="getReport(seminar,'Average Net Market Price',period)">Average Net Market Price</a>
+								<a ng-click="getReport(seminar,'Average Net Market Price',period,language)">Average Net Market Price</a>
 							</li>
 							<li class="">
-								<a ng-click="getReport(seminar,'Brand Visibility Share (shelf space %2B in-store activity)',period)">Brand Visibility Share</a>
+								<a ng-click="getReport(seminar,'Brand Visibility Share',period,language)">Brand Visibility Share</a>
 							</li>
 							<li class="">
-								<a ng-click="getReport(seminar,'Consumer off-take',period)">Consumer off-take</a>
-							</li>
+								<a ng-click="getReport(seminar,'Consumer off-take',period,language)">Consumer off-take</a>
+							</li> -->
 						</ul>
 					</li>	
 				</ul>
@@ -52,7 +55,7 @@ consumer preferences, purchasing power by market, category and segment.</p>
 			<div style="padding:10px 0;clear:both"></div>
 			
 			<div class="page-header">
-				<h3>{{showTitleENG}} <small>Extent to which consumers are aware of a particular product measured as percentage of total. Gives you an idea how your promotional expenses and investments into visibility paid off.</small></h3>
+				<h3>{{showTitle}} <small>{{subTitle}}</small></h3>
 			</div>
 
 			<h4 class="pull-left"><span class="label label-warning">{{cat}}</span></h4>
@@ -85,7 +88,7 @@ consumer preferences, purchasing power by market, category and segment.</p>
 			    Period <span class="caret"></span>
 			  	</button>
 			  	<ul class="dropdown-menu">
-			    	<li ng-repeat="newperiod in periods"><a ng-click="getReport(seminar,realTitleENG,newperiod)">{{newperiod}}</a></li>
+			    	<li ng-repeat="newperiod in periods"><a ng-click="getReport(seminar,titleENG,newperiod,language)">{{newperiod}}</a></li>
 			  	</ul>
 			</div>
 			<div class="btn-group pull-right" data-toggle="buttons">

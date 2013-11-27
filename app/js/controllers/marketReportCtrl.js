@@ -11,12 +11,67 @@ define(['app','socketIO','routingConfig'], function(app) {
 		var myreport=myfinreport="";
 		$scope.myreport=myreport;
 		$scope.myfinreport=myfinreport;
-		var getReport=function(seminar,titleENG,period){
+
+		var titles=[{
+				title:'',
+	        	titleENG:'Brand Awareness',
+	        	titleRUS:'Brand Awareness 暂未翻译',
+	        	titleCHN:'Brand Awareness 暂未翻译',
+	        	subTitleENG:'Extent to which consumers are aware of a particular product measured as percentage of total. Gives you an idea how your promotional expenses and investments into visibility paid off.',
+	        	subTitleRUS:'Brand Awareness RUS 暂未翻译',
+	        	subTitleCHN:'Brand Awareness CHN 暂未翻译',
+	        },{
+				title:'',
+	        	titleENG:'Market Share (Volume)',
+	        	titleRUS:'Market Share (Volume) 暂未翻译',
+	        	titleCHN:'Market Share (Volume) 暂未翻译',
+	        	subTitleENG:'Percentage of a total market, in terms of volume, accounted for by the sales of a specific brand.',
+	        	subTitleRUS:'Market Share (Volume) RUS 暂未翻译',
+	        	subTitleCHN:'Market Share (Volume) CHN 暂未翻译',
+	        },{
+				title:'',
+	        	titleENG:'Market Share (Value)',
+	        	titleRUS:'Market Share (Value) 暂未翻译',
+	        	titleCHN:'Market Share (Value) 暂未翻译',
+	        	subTitleENG:'Percentage of a total market, in terms of value, accounted for by the sales of a specific brand.',
+	        	subTitleRUS:'Market Share (Value) 暂未翻译',
+	        	subTitleCHN:'Market Share (Value) 暂未翻译',
+	        },{
+				title:'',
+	        	titleENG:'Average Net Market Price',
+	        	titleRUS:'Average Net Market Price 暂未翻译',
+	        	titleCHN:'Average Net Market Price 暂未翻译',
+	        	subTitleENG:'Price at which a product is selling in the open market. It is averaged across all channels. Promotional discounts off normal retail price are also accounted for.',
+	        	subTitleRUS:'Average Net Market Price 暂未翻译',
+	        	subTitleCHN:'verage Net Market Price 暂未翻译',
+	        },{
+				title:'',
+	        	titleENG:'Brand Visibility Share',
+	        	titleRUS:'Brand Visibility Share 暂未翻译',
+	        	titleCHN:'Brand Visibility Share 暂未翻译',
+	        	subTitleENG:'An integral measure that averages brand space share and marketing activities increasing brand visibility at a given channel.',
+	        	subTitleRUS:'Brand Visibility Share 暂未翻译',
+	        	subTitleCHN:'Brand Visibility Share 暂未翻译',
+	        },{
+				title:'',
+	        	titleENG:'Consumer off-take',
+	        	titleRUS:'Consumer off-take 暂未翻译',
+	        	titleCHN:'Consumer off-take 暂未翻译',
+	        	subTitleENG:'This measure indicates how many units of a product have been sold to the consumer.',
+	        	subTitleRUS:'Consumer off-take 暂未翻译',
+	        	subTitleCHN:'Consumer off-take 暂未翻译',
+	        }];
+	        $scope.titles=titles;
+
+		var getReport=function(seminar,titleENG,period,language){
 			$scope.seminar=seminar;
 			$scope.period=period;
+			$scope.titleENG=titleENG;
 			var url='/marketReport?seminar='+seminar+'&titleENG='+titleENG+'&period='+period;
-			$scope.showTitleENG=titleENG.replace('%2B','+');
-			$scope.realTitleENG=titleENG.replace('+','%2B');
+			// $scope.showTitleENG=titleENG.replace('%2B','+');
+			// $scope.realTitleENG=titleENG.replace('+','%2B');
+
+
 			$http({method: 'GET', url: url}).
 			success(function(data, status, headers, config) {
 				myreport=data;
@@ -31,6 +86,28 @@ define(['app','socketIO','routingConfig'], function(app) {
 		  	$scope.cat=cat;
 		    $scope.market=market;
 		    $scope.language=language;
+
+			for(var i=0;i<$scope.titles.length;i++){
+				if(language=="English"){
+					$scope.titles[i].title=$scope.titles[i].titleENG;
+					if($scope.titleENG==$scope.titles[i].titleENG){
+						$scope.showTitle=$scope.titles[i].titleENG;
+						$scope.subTitle=$scope.titles[i].subTitleENG;					}
+				}else if(language=="Russian"){
+					$scope.titles[i].title=$scope.titles[i].titleRUS;
+					if($scope.titleENG==$scope.titles[i].titleENG){
+						$scope.showTitle=$scope.titles[i].titleRUS;
+						$scope.subTitle=$scope.titles[i].subTitleRUS;
+					}
+				}else{
+					$scope.titles[i].title=$scope.titles[i].titleCHN;
+					if($scope.titleENG==$scope.titles[i].titleENG){
+						$scope.showTitle=$scope.titles[i].titleCHN;
+						$scope.subTitle=$scope.titles[i].subTitleCHN;
+					}					
+				}
+			}
+
 		    $scope.reportCollection=_.find(myreport.reportCollection,function(obj){
 		      return (obj.market==market&&obj.category==cat)
 		    });
@@ -40,6 +117,8 @@ define(['app','socketIO','routingConfig'], function(app) {
 	        charttable.cssStyle = "height:400px; width:100%;";
 	        charttable.data=$scope.reportCollection.data;
 	        /*multilingual*/
+	        //test subTitles
+
 	        var title="";
 	        if(language=="Russian"){
 	          title=myreport.documentTitleRUS;
@@ -108,7 +187,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 		  $scope.getReport=getReport;
 		  $scope.showReport=showReport;
 
-		  getReport(seminar,titleENG,period);
+		  getReport(seminar,titleENG,period,language);
 
 	}]);
 
