@@ -174,6 +174,7 @@ define(['app'], function(app) {
 					}
 				}
 				var allRetCatDecisions=loadSelectCategroy(category);
+				console.log(allRetCatDecisions);
 	      		var count=0,result=0;
 	      		var products=new Array();
 	      		for(var i=0;i<allRetCatDecisions.length;i++){
@@ -206,6 +207,7 @@ define(['app'], function(app) {
 	      			result=1;
 	      		}
 	      		$scope.products=products;
+	      		console.log($scope.products);
 				$scope.infoLanguages=infoLanguages;
 				$scope.labelLanguages=labelLanguages;
 				return result;

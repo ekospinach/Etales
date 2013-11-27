@@ -335,10 +335,10 @@ define(['app'], function(app) {
 			var addNewProduct=function(parameter){
 				var newBrand=new ProducerDecision();
 				var nullDecision=new ProducerDecision();
-				nullDecision.packFormat="";
+				nullDecision.packFormat="ECONOMY";
 				nullDecision.dateOfBirth=0;
 				nullDecision.dateOfDeath=0;
-		        nullDecision.composition=new Array(0,0,0);
+		        nullDecision.composition=new Array(1,1,1);
 		        nullDecision.production=0;
 		        nullDecision.currentPriceBM=0;
 		        nullDecision.currentPriceEmall=0;
@@ -350,11 +350,11 @@ define(['app'], function(app) {
 				nullDecision.varID=0;/*need check*/
 
 				var newproducerDecision=new ProducerDecision();
-				newproducerDecision.packFormat="";
+				newproducerDecision.packFormat="ECONOMY";
 				newproducerDecision.dateOfBirth=$scope.period;
 				//newproducerDecision.parameter=parameter;
 				newproducerDecision.dateOfDeath=10;
-		        newproducerDecision.composition=new Array();
+		        newproducerDecision.composition=new Array(1,1,1);
 		        newproducerDecision.production="";
 		        newproducerDecision.currentPriceBM="";
 		        newproducerDecision.currentPriceEmall="";
