@@ -122,36 +122,27 @@ exports.exportToBinary = function(options){
     var deferred = q.defer();
     var period = options.period;
 
-    //first step, combine contractDetailsSchema and contractSchema with specificated seminar/period
-  
-
-    var newDeal = fillAllDeal(options.seminar, options.period);
-    if(newDeal){
-      //console.log(newDeal);
-      deferred.resolve({msg: 'ok'});
-    } else { 
+    fillAllDeal(options.seminar, options.period).then(function(result){
+      allDeal.findOne({seminar: options.seminar, period : options.period},function(err, doc){
+        if(err) deferred.reject({msg:err});
+        if(!doc){
+          deferred.reject({msg: 'Export to binary, cannot find matched negotiation doc. seminar:' + options.seminar + '/period:' + options.period});          
+        }else{
+          console.log('export deal:' + JSON.stringify(doc));
+          request.post('http://' + options.cgiHost + ':' + options.cgiPort + options.cgiPath, {form: {jsonData: JSON.stringify(doc)}}, function(error, response){
+              console.log('status:' + response.status);
+              console.log('body:' + response.body);
+              if (response.status === (500 || 404)) {
+                  deferred.reject({msg: 'Failed to export binary, get 500 from CGI server(POST action):' + JSON.stringify(options)});
+              } else {
+                  deferred.resolve({msg: 'Export negotiation binary done, period' + options.period});
+              }
+          });                
+        }       
+      })
+    }, function(error){
       deferred.reject({msg: 'error'});
-    }
-
-    // //second step, try to post data to CGI
-    // allDeal.findOne({seminar : options.seminar,
-    //                        period : options.period},
-    //                        function(err, doc){
-    //                             if(err) deferred.reject({msg:err, options: options}); 
-    //                             if(!doc) {
-    //                                 deferred.reject({msg: 'Export to binary, cannot find matched doc. ' + 'producerID:' + options.producerID + '/seminar:' + options.seminar + '/period:' + options.period});
-    //                             } else {        
-    //                                 request.post('http://' + options.cgiHost + ':' + options.cgiPort + options.cgiPath, {form: {jsonData: JSON.stringify(doc)}}, function(error, response){
-    //                                     console.log('status:' + response.status);
-    //                                     console.log('body:' + response.body);
-    //                                     if (response.status === (500 || 404)) {
-    //                                         deferred.reject({msg: 'Failed to export binary, get 500 from CGI server(POST action):' + JSON.stringify(options)});
-    //                                     } else {
-    //                                         deferred.resolve({msg: 'Export binary done, producer:' + options.producerID +', period' + options.period});
-    //                                     }
-    //                                 });
-    //                             }
-    //                        });
+    });
     return deferred.promise;
 }
 
@@ -239,7 +230,8 @@ function fillAllDeal(seminar, period){
        retailerID, 
        categoryID,
        contarcts,
-       contractCode;
+       contractCode,
+       deferred = q.defer();
 
   tempDeal = new allDeal({seminar:seminar, period:period});
 
@@ -271,140 +263,227 @@ function fillAllDeal(seminar, period){
      }; 
   };
 
-  console.log('end filltempDeal:');
-  console.log(tempDeal.producerDeal[0].retailerDeal[0].categoryDeal[0].minimumOrder.brandsDetails);
-
   var proCount = 0,retCount= 0;
-
-
+//  var pair = [{producerID:1,retailerID:1}]
   var pair = [{producerID:1,retailerID:1}, {producerID:2,retailerID:1},{producerID:3,retailerID:1},
-              {producerID:1,retailerID:2},{producerID:2,retailerID:2},{producerID:3,retailerID:2},]
+              {producerID:1,retailerID:2},{producerID:2,retailerID:2},{producerID:3,retailerID:2}]
   var period = 0;
   var idx = 0;
 
   (function loopContract(pair){
     require('./contract.js').contract.findOne({seminar:'MAY', period:period, producerID:pair[idx].producerID, retailerID:pair[idx].retailerID},function(err, doc){
       if(doc){
-        console.log('Find contracts between producer ' + pair[idx].producerID + ' and retailer ' + pair[idx].retailerID + ' in period ' + period + ', is:' + docs);
-        
-        for (var catCount = 0; catCount < 2; catCount++) {
-          tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].categoryID = categoryID;
-          tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].minimumOrder = fillNegotiationItemByContractDetail(tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].minimumOrder,
-                                                                                                      'minimumOrder',producerID,retailerID,catCount,period,seminar,doc.contractCode);
-          tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].volumeDiscountRate = fillNegotiationItemByContractDetail(tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].volumeDiscountRate,
-                                                                                                      'volumeDiscountRate',producerID,retailerID,catCount,period,seminar,doc.contractCode);
-          tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].salesTargetVolume = fillNegotiationItemByContractDetail(tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].salesTargetVolume,
-                                                                                                      'salesTargetVolume',producerID,retailerID,catCount,period,seminar,doc.contractCode);
-          tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].performanceBonusAmount = fillNegotiationItemByContractDetail(tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].performanceBonusAmount,
-                                                                                                      'performanceBonusAmount',producerID,retailerID,catCount,period,seminar,doc.contractCode);
-          tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].performanceBonusRate = fillNegotiationItemByContractDetail(tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].performanceBonusRate,
-                                                                                                      'performanceBonusRate',producerID,retailerID,catCount,period,seminar,doc.contractCode);
-          tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].paymentDays = fillNegotiationItemByContractDetail(tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].paymentDays,
-                                                                                                      'paymentDays',producerID,retailerID,catCount,period,seminar,doc.contractCode);
-          tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].otherCompensation = fillNegotiationItemByContractDetail(tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].otherCompensation,
-                                                                                                      'otherCompensation',producerID,retailerID,catCount,period,seminar,doc.contractCode);          
-        };
-    
+          console.log('Find contracts between producer ' + pair[idx].producerID + ' and retailer ' + pair[idx].retailerID + ' in period ' + period + ', is:');
+          var catCount = 0;
+          fillNegotiationItemByContractDetail(tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].minimumOrder,'nc_MinimumOrder',pair[idx].producerID,pair[idx].retailerID,catCount,period,seminar,doc.contractCode).then(function(result){
+                      tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].categoryID = catCount + 1;
+                      tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].minimumOrder = result.categoryDeal;
+                      catCount = 1;
+                      return fillNegotiationItemByContractDetail(tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].minimumOrder,'nc_MinimumOrder',pair[idx].producerID,pair[idx].retailerID,catCount,period,seminar,doc.contractCode);
+                    }).then(function(result){
+                      tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].categoryID = catCount + 1;
+                      tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].minimumOrder = result.categoryDeal;
+                      catCount = 0;
+                      return fillNegotiationItemByContractDetail(tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].volumeDiscountRate,'nc_VolumeDiscountRate',pair[idx].producerID,pair[idx].retailerID,catCount,period,seminar,doc.contractCode);
+                    }).then(function(result){
+                      tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].categoryID = catCount + 1;
+                      tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].volumeDiscountRate = result.categoryDeal;
+                      catCount = 1;
+                      return fillNegotiationItemByContractDetail(tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].volumeDiscountRate,'nc_VolumeDiscountRate',pair[idx].producerID,pair[idx].retailerID,catCount,period,seminar,doc.contractCode);
+                    }).then(function(result){
+                      tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].categoryID = catCount + 1;
+                      tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].volumeDiscountRate = result.categoryDeal;
+                      catCount = 0;
+                      return fillNegotiationItemByContractDetail(tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].salesTargetVolume,'nc_SalesTargetVolume',pair[idx].producerID,pair[idx].retailerID,catCount,period,seminar,doc.contractCode);
+                    }).then(function(result){
+                      tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].categoryID = catCount + 1;
+                      tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].salesTargetVolume = result.categoryDeal;
+                      catCount = 1;
+                      return fillNegotiationItemByContractDetail(tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].salesTargetVolume,'nc_SalesTargetVolume',pair[idx].producerID,pair[idx].retailerID,catCount,period,seminar,doc.contractCode);
+                    }).then(function(result){
+                      tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].categoryID = catCount + 1;
+                      tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].salesTargetVolume = result.categoryDeal;
+                      catCount = 0;
+                      return fillNegotiationItemByContractDetail(tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].performanceBonusAmount,'nc_PerformanceBonusAmount',pair[idx].producerID,pair[idx].retailerID,catCount,period,seminar,doc.contractCode);
+                    }).then(function(result){
+                      tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].categoryID = catCount + 1;
+                      tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].performanceBonusAmount = result.categoryDeal;
+                      catCount = 1;
+                      return fillNegotiationItemByContractDetail(tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].performanceBonusAmount,'nc_PerformanceBonusAmount',pair[idx].producerID,pair[idx].retailerID,catCount,period,seminar,doc.contractCode);
+                    }).then(function(result){
+                      tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].categoryID = catCount + 1;
+                      tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].performanceBonusAmount = result.categoryDeal;
+                      catCount = 0;
+                      return fillNegotiationItemByContractDetail(tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].performanceBonusRate,'nc_PerformanceBonusRate',pair[idx].producerID,pair[idx].retailerID,catCount,period,seminar,doc.contractCode);
+                    }).then(function(result){
+                      tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].categoryID = catCount + 1;
+                      tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].performanceBonusRate = result.categoryDeal;
+                      catCount = 1;
+                      return fillNegotiationItemByContractDetail(tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].performanceBonusRate,'nc_PerformanceBonusRate',pair[idx].producerID,pair[idx].retailerID,catCount,period,seminar,doc.contractCode);
+                    }).then(function(result){
+                      tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].categoryID = catCount + 1;
+                      tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].performanceBonusRate = result.categoryDeal;
+                      catCount = 0;
+                      return fillNegotiationItemByContractDetail(tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].paymentDays,'nc_PaymentDays',pair[idx].producerID,pair[idx].retailerID,catCount,period,seminar,doc.contractCode);
+                    }).then(function(result){
+                      tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].categoryID = catCount + 1;
+                      tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].paymentDays = result.categoryDeal;
+                      catCount = 1;
+                      return fillNegotiationItemByContractDetail(tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].paymentDays,'nc_PaymentDays',pair[idx].producerID,pair[idx].retailerID,catCount,period,seminar,doc.contractCode);
+                    }).then(function(result){
+                      tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].categoryID = catCount + 1;
+                      tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].paymentDays = result.categoryDeal;
+                      catCount = 0;
+                      return fillNegotiationItemByContractDetail(tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].otherCompensation,'nc_otherCompensation',pair[idx].producerID,pair[idx].retailerID,catCount,period,seminar,doc.contractCode);
+                    }).then(function(result){
+                      tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].categoryID = catCount + 1;
+                      tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].otherCompensation = result.categoryDeal;
+                      catCount = 1;
+                      return fillNegotiationItemByContractDetail(tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].otherCompensation,'nc_otherCompensation',pair[idx].producerID,pair[idx].retailerID,catCount,period,seminar,doc.contractCode);
+                    }).then(function(result){
+                      tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].otherCompensation = result.categoryDeal;
+                      if(idx < pair.length-1){
+                        idx++;
+                        loopContract(pair);                    
+                      } else {
+                        console.log('loop contract done');
+                        tempDeal.save(function(err){
+                          if(!err){deferred.resolve({msg:'save doc complete.',result:tempDeal})}
+                          else (console.log('save error:' + err));
+                        });
+                      }
+                    }, function(err){
+                      console.log('Error:' + err);
+                    }, function(log){
+                      console.log('Log:' + err);
+                    })
+      }else{
+        console.log('No contracts between producer ' + pair[idx].producerID + ' and retailer ' + pair[idx].retailerID + ' in period ' + period);        
         if(idx < pair.length-1){
           idx++;
           loopContract(pair);                    
         } else {
           console.log('done');
-        }
-      }else{
-        console.log('No contracts between producer ' + pair[idx].producerID + ' and retailer ' + pair[idx].retailerID + ' in period ' + period);        
+        }        
       }
+
     });
   })(pair);
 
-  return tempDeal;
+  return deferred.promise;
 }
 
 function fillNegotiationItemByContractDetail(categoryDeal, negotiationItem, producerID, retailerID, categoryCount, period, seminar, contractCode){
-  var brand,variant,contractDetails;
+  var brand,variant,
+      deferred = q.defer();
+
   categoryDeal.useMarketsDetails = false;
   categoryDeal.useBrandsDetails = true;
 
   (function loopBrand(brandCount, categoryCount, producerID, seminar, period){
-    require('./producerDecision').proDecision.findOne({seminar:seminar, period:period, producerID:producerID}, function(err, doc){
-      if(doc){
-        if(doc.proCatDecision[categoryCount].proBrandsDecision[brandCount].brandName != ''){
-          require('./contract').
+    require('./producerDecision.js').proDecision.findOne({seminar:seminar, period:period, producerID:producerID}, function(err, brandDoc){
+        console.log('producerDecision findOne inside: seminar ' + seminar + '/period ' + period + '/producerID ' + producerID + '/brandCount '  + brandCount);       
+        if(brandDoc && (brandDoc.proCatDecision[categoryCount].proBrandsDecision[brandCount].brandName != '')){
+          brand = brandDoc.proCatDecision[categoryCount].proBrandsDecision[brandCount];
+          console.log('>>> Find Brand : ' + brand.brandName );          
+          require('./contract').contractDetails.findOne({contractCode: contractCode,
+                                                userType: 'P',
+                                                negotiationItem: negotiationItem,
+                                                relatedBrandName : brand.brandName,
+                                               // relatedBrandID: brand.brandID, //need Monsoul to check BrandID is set properly in contractDetailsSchema
+                                                isVerified: false}, function(err, contractDetailsDoc){
+                                                  if(contractDetailsDoc){
+                                                    console.log('There is related verified contractDetails :' + brand.brandName );
+                                                    categoryDeal.brandsDetails[brandCount].brandID = brand.brandID;
+                                                    if(contractDetailsDoc.useBrandsDetails){
+                                                      console.log('User Brand Details, copy value...');
+                                                      categoryDeal.brandsDetails[brandCount].useVariantsDetails = false;
+                                                      categoryDeal.brandsDetails[brandCount].useMarketsDetails = true;
+                                                      categoryDeal.brandsDetails[brandCount].dateOfBirth = brand.dateOfBirth;
+                                                      categoryDeal.brandsDetails[brandCount].dateOfDeath = brand.dateOfDeath;
+                                                      categoryDeal.brandsDetails[brandCount].marketsDetails[0] = contractDetailsDoc.brand_urbanValue;
+                                                      categoryDeal.brandsDetails[brandCount].marketsDetails[1] = contractDetailsDoc.brand_ruralValue;
+                                                    }else{
+                                                      categoryDeal.brandsDetails[brandCount].useVariantsDetails = true;
+                                                      categoryDeal.brandsDetails[brandCount].useMarketsDetails = false;
+                                                      console.log('User Varinat Details, enter varinat loop...');
 
-          if(brandCount<5){
-            brandCount++;
-            loopBrand(brandCount, categoryCount, producerID, seminar, period);
-          } else {
-            console.log('brand loop done');
-          }
+                                                      (function loopVariant(brandCount, varCount, producerID, seminar, period){
+                                                          require('./producerDecision').proDecision.findOne({seminar:seminar, period:period, producerID:producerID}, function(err, variantDoc){
+                                                              if(err) { console.log('Error:' + err)};                                                         
+                                                            //  console.log(variantDoc);
+                                                              variant = variantDoc.proCatDecision[categoryCount].proBrandsDecision[brandCount].proVarDecision[varCount];
+                                                              if(variant.varName != ''){
+                                                                console.log('Find variant : ' + variant.varName);
+
+                                                                //console.log('Find Variant with producerID:'+ producerID + ', categoryCount:' + categoryCount + ', brandCount:' + brandCount + ', varCount:' + varCount + ', varName:' + varName);                                                                
+                                                                categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].useMarketsDetails = true;
+                                                                categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].varID = variant.varID;
+                                                                categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].dateOfBirth = variant.dateOfBirth;
+                                                                categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].dateOfDeath = variant.dateOfDeath;
+                                                                switch(varCount){
+                                                                  case 0:
+                                                                    categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[0] = contractDetailsDoc.variant_A_ruralValue;
+                                                                    categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[1] = contractDetailsDoc.variant_A_urbanValue;                  
+                                                                    break;
+                                                                  case 1:
+                                                                    categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[0] = contractDetailsDoc.variant_B_ruralValue;
+                                                                    categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[1] = contractDetailsDoc.variant_B_urbanValue;                  
+                                                                    break;
+                                                                  case 2:
+                                                                    categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[0] = contractDetailsDoc.variant_C_ruralValue;
+                                                                    categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[1] = contractDetailsDoc.variant_C_urbanValue;                  
+                                                                    break;   
+                                                                }
+
+                                                              } else {
+                                                                  console.log('No Variant with producerID:'+ producerID + ', categoryCount:' + categoryCount + ', brandCount:' + brandCount + ', varCount:' + varCount);
+                                                              }
+
+                                                              if(varCount<2){
+                                                                varCount++;
+                                                                console.log('---------------------------------- change Variant ++ >>>>')      
+              
+                                                                loopVariant(brandCount, varCount, producerID, seminar, period);
+                                                              }else{
+                                                                console.log('variant ' + variant.varName + ' loop done');
+                                                                if(brandCount<4){
+                                                                  brandCount++;
+                                                                  console.log('-------------------- change Brand ++ >>>>')        
+                                                                  loopBrand(brandCount, categoryCount, producerID, seminar, period);
+                                                                } else {      
+                                                                    console.log('brand ' + brand.brandName + ' loop done');
+                                                                    deferred.resolve({categoryDeal:categoryDeal, msg:'categoryDeal(catCount:' + categoryCount + '/negotiationItem:' + negotiationItem + ') generate done.'});
+                                                                }                                                                        
+                                                              }                                                                  
+                                                          })
+                                                      })(brandCount, 0, producerID, seminar,period)
+                                                    }
+                                                  }else{
+                                                    console.log('NO contract details with contractCode: ' + contractCode + '/relatedBrandName: ' + brand.brandName + '/negotiationItem:' + negotiationItem);
+                                                    if(brandCount<4){
+                                                      brandCount++;
+                                                      console.log('-------------------- change Brand ++ >>>>')        
+                                                      loopBrand(brandCount, categoryCount, producerID, seminar, period);
+                                                    } else {      
+                                                        console.log('brands loop done');
+                                                        deferred.resolve({categoryDeal:categoryDeal, msg:'categoryDeal(catCount:' + categoryCount + '/negotiationItem:' + negotiationItem + ') generate done.'});
+                                                    }                                                    
+                                                  }
+                                                })
         } else {
           console.log('No Brand with producerID:'+ producerID + ', categoryCount:' + categoryCount + ', brandCount:' + brandCount);
+          if(brandCount<4){
+            brandCount++;
+            console.log('-------------------- change Brand ++ >>>>')        
+            loopBrand(brandCount, categoryCount, producerID, seminar, period);
+          } else {      
+              console.log('brands loop done');
+              deferred.resolve({categoryDeal:categoryDeal, msg:'categoryDeal(catCount:' + categoryCount + '/negotiationItem:' + negotiationItem + ') generate done.'});
+          }             
         }
-      }else{
-          console.log('No Brand with producerID:'+ producerID + ', categoryCount:' + categoryCount + ', brandCount:' + brandCount);
-      }
-    })
+    });
   })(0,categoryCount,producerID,seminar,period);
 
-  for (var brandCount = 0; brandCount < 5; brandCount++) {
-    categoryDeal.brandsDetails.push(new brandDetails());
-    require('./producerDecision').getBrand(categoryCount,brandCount,producerID,seminar,period).then(function(brandDoc){
-      console.log(brandDoc.msg);
-      if(brandDoc.doc.brandName){
-        require('./contract').getVerifiedContractDetailsQuery({contractCode : contractCode, userType: 'P', negotiationItem: negotiationItem, relatedBrandName: brand.brandName, relatedBrandID: brand.brandID}).then(function(contractDetailsDoc){
-          console.log(contractDetailsDoc.msg);
-          for (var i = 0; i < contractDetailsDoc.docs.length; i++) {
-            categoryDeal.brandsDetails[brandCount].brandID = brandDoc.doc.brandID;
-            if(contractDetailsDoc.docs[i].useBrandDetails){ //useBrands
-              categoryDeal.brandsDetails[brandCount].useVariantsDetails = false;
-              categoryDeal.brandsDetails[brandCount].useMarketsDetails = true;
-              categoryDeal.brandsDetails[brandCount].dateOfBirth = brandDoc.doc.dateOfBirth;
-              categoryDeal.brandsDetails[brandCount].dateOfDeath = brandDoc.doc.dateOfDeath;
-              categoryDeal.brandsDetails[brandCount].marketsDetails[0] = contractDetailsDoc.docs[i].brand_urbanValue;
-              categoryDeal.brandsDetails[brandCount].marketsDetails[1] = contractDetailsDoc.docs[i].brand_ruralValue;
-            } else { //useVariantDetails
-              categoryDeal.brandsDetails[brandCount].useVariantsDetails = true;
-              categoryDeal.brandsDetails[brandCount].useMarketsDetails = false;
-              for (var varCount = 0; varCount < 3; varCount++) {
-                categoryDeal.brandsDetails[brandCount].variantDetails.push(new variantDetails());
-                require('./producpconterDecision').getVariant(categoryCount, brandCount, varCount, producerID, seminar, period).then(function(variantDoc){
-                  console.log(variantDoc);
-                  if(variantDoc.doc.varName){
-                    categoryDeal.brandsDetails[brandCount].variantsDetails.push(new variantDetails({varID : variantDoc.doc.varID}));
-                    categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].useMarketsDetails = true;
-                    categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].varID = variantDoc.doc.varID;
-                    categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].dateOfBirth = variantDoc.doc.dateOfBirth;
-                    categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].dateOfDeath = variantDoc.doc.dateOfDeath;
-                    switch(varCount){
-                      case 0:
-                        categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[0] = contractDetailsDoc.docs[i].variant_A_ruralValue;
-                        categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[1] = contractDetailsDoc.docs[i].variant_A_urbanValue;                  
-                        break;
-                      case 1:
-                        categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[0] = contractDetailsDoc.docs[i].variant_B_ruralValue;
-                        categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[1] = contractDetailsDoc.docs[i].variant_B_urbanValue;                  
-                        break;
-                      case 2:
-                        categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[0] = contractDetailsDoc.docs[i].variant_C_ruralValue;
-                        categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[1] = contractDetailsDoc.docs[i].variant_C_urbanValue;                  
-                        break;                
-                    }
-                  }
-                }, function(variantErr){
-                  console.log(variantErr.msg);
-                })                
-              };
-
-            }
-          };
-        }, function(contractDetailsErr){
-          console.log(contractDetailsErr.msg);
-        });
-      } 
-    }, function(brandErr){
-      console.log(brandErr.msg);
-    });
-
-  };
-  return categoryDeal;
+  return deferred.promise;
 }

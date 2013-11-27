@@ -206,6 +206,7 @@ define(['app'], function(app) {
 	      		if(count!=0){
 	      			result=1;
 	      		}
+	      		console.log('products:' + products);
 	      		$scope.products=products;
 	      		console.log($scope.products);
 				$scope.infoLanguages=infoLanguages;

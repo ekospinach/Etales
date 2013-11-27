@@ -69,6 +69,7 @@ var proDecisionSchema = mongoose.Schema({
     proCatDecision : [proCatDecisionSchema] //Length: TCategories(1~2)
 })
 
+exports.proDecision = proDecision = mongoose.model('proDecision', proDecisionSchema);
 var proDecision = mongoose.model('proDecision', proDecisionSchema);
 var proVarDecision=mongoose.model('proVarDecision',proVarDecisionSchema);
 var proBrandsDecision=mongoose.model('proBrandsDecision',proBrandDecisionSchema)
