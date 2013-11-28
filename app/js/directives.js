@@ -434,14 +434,17 @@ define(['angular', 'services'], function(angular, services) {
 	            link: function ($scope, $elm, $attr) {
 	                // Watches, to refresh the chart when its data, title or dimensions change
 	                $scope.$watch('chart', function () {
+	                	console.log('first');
 	                    draw();
 	                }, true); // true is for deep object equality checking
 
 	                // Redraw the chart if the window is resized 
 	                angular.element($window).bind('resize', function () {
+	                    console.log('second');
 	                    draw();
 	                });
 	                function draw() {
+	                	console.log($scope.chart);
 	                    if (!draw.triggered && ($scope.chart != undefined)) {
 	                        draw.triggered = true;
 	                        $timeout(function () {
