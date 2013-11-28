@@ -493,6 +493,7 @@ exports.getProductionResult=function(req,res,next){
         if(!doc){
            res.send(404,{err:'cannot find the doc'}); 
         }else{
+            var categoryID=0;
             if(req.params.brandName.substring(0,1)=="E"){
                 categoryID=1;
             }else{
@@ -511,9 +512,6 @@ exports.getProductionResult=function(req,res,next){
                     }
                 }
             }
-            console.log(result);
-            console.log(req.params.brandName);
-            console.log(req.params.varName);
             for(var i=0;i<allProCatDecisions.length;i++){
                 for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
                     if(allProCatDecisions[i].proBrandsDecision[j].brandID!=0&&allProCatDecisions[i].proBrandsDecision[j].brandName==req.params.brandName){
@@ -533,6 +531,50 @@ exports.getProductionResult=function(req,res,next){
     })
 }
 
+exports.getProducerCurrentDecision=function(req,res,next){
+    proDecision.findOne({
+        seminar:req.params.seminar,
+        period:req.params.period,
+        producerID:req.params.producerID
+    },function(err,doc){
+        if(err){
+            next(new Error(err));
+        }
+        if(!doc){
+            res.send(404,{err:'cannot find the doc'});
+        }else{
+            var categoryID=0,result=0;
+            if(req.params.brandName.substring(0,1)=="E"){
+                categoryID=1;
+            }else{
+                categoryID=2;
+            }
+            var allProCatDecisions=_.filter(doc.proCatDecision,function(obj){
+                return (obj.categoryID==categoryID);
+            });
+            for(var i=0;i<allProCatDecisions.length;i++){
+                for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
+                    if(allProCatDecisions[i].proBrandsDecision[j].brandID!=0&&allProCatDecisions[i].proBrandsDecision[j].brandName==req.params.brandName){
+                        for(k=0;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
+                            if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=0&&allProCatDecisions[i].proBrandsDecision[j].varName==req.params.varName){
+                                result=1;
+                                res.send(200,allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]);
+                                break;
+                            }else{
+                                result=0;
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+            if(result==0){
+                res.send(404,'cannot find the variant');
+            }
+        }
+    })
+}
+
 exports.getBrandHistory=function(req,res,next){
     proDecision.findOne({
         seminar:req.params.seminar,
@@ -545,7 +587,7 @@ exports.getBrandHistory=function(req,res,next){
         if(!doc){
            res.send(404,{err:'cannot find the doc'}); 
         }else{
-            var categoryID="";
+            var categoryID=0;
             if(req.params.brandName.substring(0,1)=="E"){
                 categoryID=1;
             }else{
@@ -574,8 +616,6 @@ exports.getBrandHistory=function(req,res,next){
 
 //companyHistory
 exports.getCompanyHistory=function(req,res,next){
-    console.log("start!!!!!!");
-    console.log(req.params);
     proDecision.findOne({
         seminar:req.params.seminar,
         period:req.params.period,

@@ -70,6 +70,9 @@ define(['app'], function(app) {
 					//$scope.loadNameNum=loadNameNum;
 					//Validate
 					$scope.checkProduction=checkProduction;
+					$scope.checkDesign=checkDesign;
+					$scope.checkTechnology=checkTechnology;
+					$scope.checkRMQ=checkRMQ;
 
 					$scope.addNewProduct=addNewProduct;
 					$scope.updateProducerDecision=updateProducerDecision;
@@ -326,6 +329,29 @@ define(['app'], function(app) {
 						d.resolve('fail');
 					});
 				});
+				return d.promise;
+			}
+
+			var checkDesign=function(category,brandName,varName,location,additionalIdx,index,value){
+				var d = $q.defer();	
+				var categoryID=0,max=0;
+				if(category=="Elecssories"){
+					categoryID=1;
+					var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+					$http({
+						method:'GET',
+						url:url
+					}).then(function(data){
+						max=data.data.acquiredDesignLevel[categoryID-1];
+						if(value<1||value>max){
+							d.resolve('must between 1 and '+max);
+						}
+					},function(data){
+						d.resolve('fail');
+					})
+				}else{
+					categoryID=2;
+				}
 				return d.promise;
 			}
 
