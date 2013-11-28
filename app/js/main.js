@@ -55,7 +55,7 @@
 		priority: [
 			"angular"
 		],
-		waitSeconds : has('prod') ? 2000 : 2, //2000 seconds for prod mode on bootstrap and 2 seconds for dev mode
+		waitSeconds : 2000, //2000 seconds for prod mode on bootstrap and 2 seconds for dev mode
 
 	});
 
