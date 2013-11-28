@@ -493,7 +493,7 @@ define(['app'], function(app) {
 							url:url
 						}).then(function(data){
 							//Q>=D-2 Q<=T+2
-							if(value<(data.data.composition[0]-2)||value>(data.data.composition[1]+2){
+							if(value<(data.data.composition[0]-2)||value>(data.data.composition[1]+2)){
 								d.resolve('Input range:'+(data.data.composition[0]-2)+'~'+(data.data.composition[1]+2));
 							}else{
 								d.resolve();
