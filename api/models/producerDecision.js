@@ -553,7 +553,7 @@ exports.getProducerCurrentDecision=function(req,res,next){
                 for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
                     if(allProCatDecisions[i].proBrandsDecision[j].brandID!=0&&allProCatDecisions[i].proBrandsDecision[j].brandName==req.params.brandName){
                         for(k=0;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
-                            if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=0&&allProCatDecisions[i].proBrandsDecision[j].varName==req.params.varName){
+                            if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=0&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varName==req.params.varName){
                                 result=1;
                                 res.send(200,allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]);
                                 break;

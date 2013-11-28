@@ -311,7 +311,6 @@ define(['app'], function(app) {
 					url:url
 				}).then(function(data){
 					max=data.data.productionCapacity[categoryID-1];
-					console.log(max);
 				},function(data){
 					d.resolve('fail');
 				}).then(function(){
@@ -321,7 +320,7 @@ define(['app'], function(app) {
 						url:url
 					}).then(function(data){
 						if(parseInt(data.data.result)+parseInt(value)>max){
-							d.resolve('too high num');
+							d.resolve('Input range:1~'+(max-parseInt(data.data.result)));
 						}else{
 							d.resolve();
 						}
@@ -344,7 +343,7 @@ define(['app'], function(app) {
 					}).then(function(data){
 						max=data.data.acquiredDesignLevel[categoryID-1];
 						if(value<1||value>max){
-							d.resolve('must between 1 and '+max);
+							d.resolve('Input range:1~'+max);
 						}
 					},function(data){
 						d.resolve('fail');
@@ -354,19 +353,117 @@ define(['app'], function(app) {
 							method:'GET',
 							url:url
 						}).then(function(data){
-							console.log(data.data);
+							if(value>data.data.composition[2]+2||value>data.data.composition[1]+4){
+								if(data.data.composition[2]+2>=data.data.composition[1]+4){
+									d.resolve('Input range:1~'+(data.data.composition[1]+4));
+								}else{
+									d.resolve('Input range:1~'+(data.data.composition[2]+2));
+								}
+							}else{
+								d.resolve();
+							}
 						},function(data){
 							d.resolve('fail');
 						})
 					})
 				}else{
 					categoryID=2;
+					url="/producerCurrentDecision/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+brandName+'/'+varName;
+					$http({
+						method:'GET',
+						url:url
+					}).then(function(data){
+						if(value>data.data.composition[1]+2||value<1||value>data.data.composition[2]+2){
+							if(data.data.composition[1]>=data.data.composition[2]){
+								d.resolve('Input range:1~'+(data.data.composition[2]+2));
+							}else{
+								d.resolve('Input range:1~'+(data.data.composition[1]+2));
+							}
+						}
+						else{
+							d.resolve();
+						}
+					},function(data){
+						d.resolve('fail');
+					})
 				}
 				return d.promise;
 			}
 
 			var checkTechnology=function(category,brandName,varName,location,additionalIdx,index,value){
 				var d=$q.defer();
+				var categoryID=0,max=0;
+				if(category=="Elecssories"){
+					categoryID=1;
+					var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+					$http({
+						method:'GET',
+						url:url
+					}).then(function(data){
+						max=data.data.acquiredTechnologyLevel[categoryID-1];
+						if(value<1||value>max){
+							d.resolve('Input range:1~'+max);
+						}
+					},function(data){
+						d.resolve('fail');
+					}).then(function(){
+						url="/producerCurrentDecision/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+brandName+'/'+varName;
+						$http({
+							method:'GET',
+							url:url
+						}).then(function(data){
+							//T>=Q-2 T>=D-2 T<=Q
+							//if D>=Q--> D-2<=T<=Q 
+							if(data.data.composition[0]>=data.data.composition[2]){
+								if(value>data.data.composition[2]||(value<data.data.composition[0]-2)){
+									d.resolve('Input range:'+(data.data.composition[0]-2)+'~'+data.data.composition[2]);
+								}else{
+									d.resolve();
+								}
+							}else{// Q-2<=T<=Q
+								if(value>data.data.composition[2]||(value<data.data.composition[2]-2)){
+									d.resolve('Input range:'+(data.data.composition[2]-2)+'~'+data.data.composition[2]);
+								}else{
+									d.resolve();
+								}
+							}
+						},function(data){
+							d.resolve('fail');
+						})
+					})
+				}else{
+					categoryID=2;
+					var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+					$http({
+						method:'GET',
+						url:url
+					}).then(function(data){
+						max=data.data.acquiredTechnologyLevel[categoryID-1];
+						if(value<1||value>max){
+							d.resolve('Input range:1~'+max);
+						}
+					},function(data){
+						d.resolve('fail');
+					}).then(function(){
+						url="/producerCurrentDecision/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+brandName+'/'+varName;
+						$http({
+							method:'GET',
+							url:url
+						}).then(function(data){
+							if(value<(data.data.composition[2]-2)||value<(data.data.composition[0]-4)){
+								if((data.data.composition[2]-2)>=(data.data.composition[0]-4)){
+									d.resolve('Input range:'+(data.data.composition[2]-2)+'~'+max);
+								}else{
+									d.resolve('Input range:'+(data.data.composition[0]-4)+'~'+max);
+								}
+							}else{
+								d.resolve();
+							}
+						},function(data){
+							d.resolve('fail');
+						})
+					})
+				}
 				return d.promise;
 			}
 
