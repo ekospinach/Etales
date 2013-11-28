@@ -469,6 +469,39 @@ define(['app'], function(app) {
 
 			var checkRMQ=function(category,brandName,varName,location,additionalIdx,index,value){
 				var d=$q.defer();
+				var categoryID=0,max=0;
+				if(category=="Elecssories"){
+					categoryID=1;
+				}else{
+					catagoryID=2;
+				}
+				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+					$http({
+						method:'GET',
+						url:url
+					}).then(function(data){
+						max=data.data.acquiredTechnologyLevel[categoryID-1]+2;
+						if(value<1||value>max){
+							d.resolve('Input range:1~'+max);
+						}
+					},function(data){
+						d.resolve('fail');
+					}).then(function(){
+						url="/producerCurrentDecision/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+brandName+'/'+varName;
+						$http({
+							method:'GET',
+							url:url
+						}).then(function(data){
+							//Q>=D-2 Q<=T+2
+							if(value<(data.data.composition[0]-2)||value>(data.data.composition[1]+2){
+								d.resolve('Input range:'+(data.data.composition[0]-2)+'~'+(data.data.composition[1]+2));
+							}else{
+								d.resolve();
+							}
+						},function(){
+							d.resolve('fail');
+						})
+					})
 				return d.promise;
 			}
 
