@@ -27,6 +27,7 @@
     "angular-resource": "~1.2.0-rc.3",
     "angular-loading-bar": "~0.0.4",
     "jqplot": "*",
-    "angular-google-chart": "~0.0.5"
+    "angular-google-chart": "~0.0.5",
+    "requirejs-domready": "~2.0.1"
   }
 }
