@@ -68,6 +68,12 @@ define(['app'], function(app) {
 					$scope.loadAllBrand=loadAllBrand;
 					//$scope.selected=selected;
 					//$scope.loadNameNum=loadNameNum;
+					//Validate
+					$scope.checkProduction=checkProduction;
+					$scope.checkDesign=checkDesign;
+					$scope.checkTechnology=checkTechnology;
+					$scope.checkRMQ=checkRMQ;
+
 					$scope.addNewProduct=addNewProduct;
 					$scope.updateProducerDecision=updateProducerDecision;
 					$scope.getMoreInfo=getMoreInfo;
@@ -290,6 +296,85 @@ define(['app'], function(app) {
 			    $scope.productModal = false;
 			};
 
+			var checkProduction=function(category,brandName,varName,location,additionalIdx,index,value){
+				var d = $q.defer();	
+				var categoryID,max,result;
+				if(category=="Elecssories"){
+					categoryID=1;
+				}
+				else{
+					categoryID=2;
+				}	
+				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+				$http({
+					method:'GET',
+					url:url
+				}).then(function(data){
+					max=data.data.productionCapacity[categoryID-1];
+					console.log(max);
+				},function(data){
+					d.resolve('fail');
+				}).then(function(){
+					url="/productionResult/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+brandName+'/'+varName;
+					$http({
+						method:'GET',
+						url:url
+					}).then(function(data){
+						if(parseInt(data.data.result)+parseInt(value)>max){
+							d.resolve('too high num');
+						}else{
+							d.resolve();
+						}
+					},function(data){
+						d.resolve('fail');
+					});
+				});
+				return d.promise;
+			}
+
+			var checkDesign=function(category,brandName,varName,location,additionalIdx,index,value){
+				var d = $q.defer();	
+				var categoryID=0,max=0;
+				if(category=="Elecssories"){
+					categoryID=1;
+					var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+					$http({
+						method:'GET',
+						url:url
+					}).then(function(data){
+						max=data.data.acquiredDesignLevel[categoryID-1];
+						if(value<1||value>max){
+							d.resolve('must between 1 and '+max);
+						}
+					},function(data){
+						d.resolve('fail');
+					}).then(function(){
+						url="/producerCurrentDecision/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+brandName+'/'+varName;
+						$http({
+							method:'GET',
+							url:url
+						}).then(function(data){
+							console.log(data.data);
+						},function(data){
+							d.resolve('fail');
+						})
+					})
+				}else{
+					categoryID=2;
+				}
+				return d.promise;
+			}
+
+			var checkTechnology=function(category,brandName,varName,location,additionalIdx,index,value){
+				var d=$q.defer();
+				return d.promise;
+			}
+
+			var checkRMQ=function(category,brandName,varName,location,additionalIdx,index,value){
+				var d=$q.defer();
+				return d.promise;
+			}
+
 			var updateProducerDecision=function(category,brandName,varName,location,additionalIdx,index){
 				var categoryID;
 				if(category=="Elecssories"){
@@ -312,12 +397,12 @@ define(['app'], function(app) {
 
 			var getMoreInfo=function(brandName,varName){
 				$scope.isCollapsed=false;
-				var url='/variantHistoryInfo/'+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+brandName+'/'+varName;
+				var url='/variantHistoryInfo/'+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/'+brandName+'/'+varName;
 				$http({method: 'GET', url: url})
 				.success(function(data, status, headers, config) {
 					$scope.variantHistory=data;
 					console.log($scope.variantHistory);
-					url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+					url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
 					$http({method:'GET',url:url})
 					.success(function(data,status,headers,config){
 						$scope.companyHistory=data;

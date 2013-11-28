@@ -48,6 +48,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 		      error(function(data, status, headers, config) {
 		        myfinreport=null;
 		      });
+		      console.log($scope.myfinreport);
 		  }
 
 		  var showFinReport=function(cat,market,language,detail,roleID){

@@ -97,6 +97,10 @@ app.get('/perceptionMaps/:seminar/:period',require('./api/models/perceptionMap.j
 app.get('/finReport', require('./api/models/finReport.js').getFinReport);
 app.get('/volReport', require('./api/models/volReport.js').getVolReport);
 
+//check
+app.get('/productionResult/:seminar/:period/:producerID/:brandName/:varName',require('./api/models/producerDecision.js').getProductionResult);
+app.get('/producerCurrentDecision/:seminar/:period/:producerID/:brandName/:varName',require('./api/models/producerDecision.js').getProducerCurrentDecision);
+
 //special calculate API
 app.get('/productionCost');
 app.get('/currentPeriod/:seminar',require('./api/models/seminar.js').getCurrentPeriod);

@@ -1,3 +1,41 @@
+// <<<<<<< HEAD
+// require.config({
+// 	paths: {
+// 		angular: '../bower_components/angular/angular',
+// 		angularCookies: '../bower_components/angular-cookies/angular-cookies',
+// 		angularRoute: '../bower_components/angular-route/angular-route',
+// 		angularResource: '../bower_components/angular-resource/angular-resource',
+// 		angularMocks: '../bower_components/angular-mocks/angular-mocks',
+// 		angularLoadingBar : '../bower_components/angular-loading-bar/src/loading-bar',
+// 		text: '../bower_components/requirejs-text/text',
+// 		angularXeditable: '../bower_components/angular-xeditable/dist/js/xeditable',
+// 		socketIO: '../bower_components/socket.io-client/dist/socket.io',
+// 		jquery:'../bower_components/jquery/jquery',
+// 		require:'../bower_components/requirejs/require',
+// 		underscore:'../bower_components/underscore/underscore',
+// 		bootstrap:'../bower_components/bootstrap/dist/js/bootstrap',
+// 		angularBootstrap:'../bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls',
+// 		routingConfig : './routingConfig',
+// 		//jquery-jqplot-->Map.html
+// 		jqplot:'../bower_components/jqplot/jquery.jqplot.min',
+// 		bubbleRenderer:'./map/jqplot.bubbleRenderer',
+// 		tree:'./map/bootstrap-tree',
+// 		chart:'../bower_components/angular-google-chart/ng-google-chart',
+// 		producerPopInfo:'./controllers/untils/producerPopInfo',
+// 		retailerPopInfo:'./controllers/untils/retailerPopInfo',
+// 		reportTitle:'./controllers/untils/reportTitle'
+// 		//addProduct:'../js/functions/addNewProduct'
+// 	},
+// 	baseUrl: 'js',
+// 	shim: {
+// 		'angular' : {'exports' : 'angular'},
+// 		'angularRoute': ['angular'],
+// 		'angularResource':['angular'],
+// 		'angularCookies': ['angular'],
+// 		'angularMocks': {
+// 			deps:['angular'],
+// 			'exports':'angular.mock'
+// =======
 (function(){
 	var root = this,
 		require = root.require;
@@ -31,6 +69,7 @@
 			chart:'../bower_components/angular-google-chart/ng-google-chart',
 			producerPopInfo:'./controllers/untils/producerPopInfo',
 			retailerPopInfo:'./controllers/untils/retailerPopInfo',
+			reportTitle:'./controllers/untils/reportTitle',
 			domReady: '../bower_components/requirejs-domready/domReady'
 			//addProduct:'../js/functions/addNewProduct'
 		},
@@ -82,18 +121,25 @@
 	      updateModuleProgress = function(context, map, depMaps) {
 	        var document = root.document;
 	        var loadingStatusEl = document.getElementById('loading-status'),
-	          loadingModuleNameEl = document.getElementById('loading-module-name');
+	        	loadingModuleNameEl = document.getElementById('loading-module-name'),
+	        	pageheader=document.getElementById('pageheader'),
+	        	pagefooter=document.getElementById('pagefooter'),
+	        	pageloader=document.getElementById('pageloader');
 
+	        pageheader.style.display="none";
+	        pagefooter.style.display="none";
 	        //first load
-	        if (loadingStatusEl && loadingModuleNameEl) {
+	        if (loadingStatusEl && loadingModuleNameEl) {  	
+	        	if(map.url=="js/routes.js"){
+	        		pageheader.style.display="block";
+	        		pagefooter.style.display="block";
+	        		pageloader.style.display="none";
+	          	}
 	          loadingStatusEl.innerHTML = loadingStatusEl.innerHTML += '.'; //add one more dot character
 	          loadingModuleNameEl.innerHTML = map.name + (map.url ? ' at ' + map.url : '') ;
 	        } else {
-
 	          //TODO later load, must have loading indicator for this then
 	        }
-
-
 	      };
 	    });
 	});
