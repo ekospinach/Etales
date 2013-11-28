@@ -11,7 +11,7 @@
 		<link rel="stylesheet" type="text/css" media="all" href="css/docs.css" />
 	</head>
 	<body class="{{loginCss}}"ng-controller="NavbarCtrl">
-		<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+		<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" id="pageheader" role="banner" style="display:none">
 			<div class="container">
 				<div class="navbar-header">
 					<a class="navbar-brand" href="/#/home">E-tales</a>
@@ -58,7 +58,7 @@
 	    	
 	    </div>
 	    <div>
-	    	<footer class="{{loginFooter}}" role="contentinfo">
+	    	<footer class="{{loginFooter}}" role="contentinfo" id="pagefooter" style="display:none">
 	    		<div class="{{loginDiv}}">
 		    		<ul class="{{loginLink}}" style="margin-left:0px">
 		    			<li class="current-version"> Currently v0.0.1 </li>
@@ -69,6 +69,20 @@
 		    	</div>
 	    	</footer>
 	    </div>
+  
+	  <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
+	       chromium.org/developers/how-tos/chrome-frame-getting-started -->
+	  <!--[if lt IE 7]><p class="chromeframe">Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+
+   	  <div class="watpl-container" id="pageloader">
+
+	    <div class="container-fluid">
+	      <h3 id="loading-status" class="loading-status">Loading</h3>
+	      <p id="loading-module-name" class="loading-module-name"></p>
+	    </div>
+
+	  </div>
+
 	    <script data-main="js/main" src="/bower_components/requirejs/require.js"></script>
 	    <script type="text/javascript" src="js/google/jsapi.js"></script>
 	    <script type="text/javascript" src="js/google/google.js"></script>

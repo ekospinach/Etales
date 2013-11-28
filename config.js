@@ -27,7 +27,7 @@ module.exports = function(){
 		case 'production':
 			return {
 				cgi : {
-				  port : 9090,
+				  port : 8080,
 				  host : 'localhost',
 				  path_marketReport : '/cgi-bin/marketReport.exe',
 				  path_lineChart : '/cgi-bin/lineChart.exe',

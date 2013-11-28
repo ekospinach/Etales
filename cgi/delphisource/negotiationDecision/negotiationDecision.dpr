@@ -526,10 +526,12 @@ var
       curBrandDetails.nib_DateOfDeath := jo.I['dateOfDeath'];
       curBrandDetails.nib_UseVariantsDetails  := jo.B['useVariantsDetails'];
       curBrandDetails.nib_UseMarketsDetails := jo.B['useMarketsDetails'];
-      for mkt := Low(TMarketsTotal) to High(TMarketsTotal) do
-        curBrandDetails.nib_MarketsDetails[mkt] := jo.A['marketsDetails'].D[mkt - 1];
-      for vnt := Low(TOneBrandVars) to High(TOneBrandVars) do
-        fromJSONvariantsDetailsSchema(curBrandDetails.nib_VariantsDetails[vnt], jo.A['variantsDetails'].O[vnt - 1] );
+      if curBrandDetails.nib_UseMarketsDetails then
+        for mkt := Low(TMarketsTotal) to High(TMarketsTotal) do
+          curBrandDetails.nib_MarketsDetails[mkt] := jo.A['marketsDetails'].D[mkt - 1];
+      if curBrandDetails.nib_UseVariantsDetails then
+        for vnt := Low(TOneBrandVars) to High(TOneBrandVars) do
+          fromJSONvariantsDetailsSchema(curBrandDetails.nib_VariantsDetails[vnt], jo.A['variantsDetails'].O[vnt - 1] );
     end;
 
     procedure fromJSONcategoryDetailsSchema(var curCatDetails: TCategoryDetails; jo: ISuperObject);
@@ -544,10 +546,12 @@ var
 //})
       curCatDetails.nic_UseBrandsDetails  := jo.B['useBrandsDetails'];
       curCatDetails.nic_UseMarketsDetails := jo.B['useMarketsDetails'];
-      for mkt := Low(TMarketsTotal) to High(TMarketsTotal) do
-        curCatDetails.nic_MarketsDetails[mkt] := jo.A['marketsDetails'].D[ mkt - 1 ];
-      for brn := Low(TProBrands) to High(TProBrands) do
-        fromJSONbrandDetailsSchema(curCatDetails.nic_BrandsDetails[brn], jo.A['brandsDetails'].O[brn - 1] );
+      if curCatDetails.nic_UseMarketsDetails then
+         for mkt := Low(TMarketsTotal) to High(TMarketsTotal) do
+          curCatDetails.nic_MarketsDetails[mkt] := jo.A['marketsDetails'].D[ mkt - 1 ];
+      if curCatDetails.nic_UseBrandsDetails then
+        for brn := Low(TProBrands) to High(TProBrands) do
+          fromJSONbrandDetailsSchema(curCatDetails.nic_BrandsDetails[brn], jo.A['brandsDetails'].O[brn - 1] );
     end;
 
     procedure fromJSONcategoryDealSchema(var curCatDeal: TCategoryDeal; jo: ISuperObject);
@@ -770,35 +774,35 @@ begin
 ////    // initialize globals
 //        currentSeminar := getSeminar;
 //        currentPeriod := getPeriod;
-////        currentRetailer := getRetailer;
-////          oJsonFile := SO;
-////          oJsonFile := tsuperobject.ParseString('{"test" : "yes"}', TRUE);
-////          Writeln(oJsonFile.AsString);
-////          sFile := 'C:\out.txt';
-////          Writeln(sFile);
-////          oJsonFile := TSuperObject.ParseFile(sFile,TRUE);
-////          Writeln(oJsonFile.AsString);
+//////        currentRetailer := getRetailer;
+//////          oJsonFile := SO;
+//////          oJsonFile := tsuperobject.ParseString('{"test" : "yes"}', TRUE);
+//////          Writeln(oJsonFile.AsString);
+//          sFile := 'negotiationExample2.json';
+//          Writeln(sFile);
+//          oJsonFile := TSuperObject.ParseFile(sFile,TRUE);
+//          Writeln(oJsonFile.AsString);
+//////
+////        vReadRes := ReadNegoRecordByProDecision(currentPeriod,currentAllDeals,
+////          DataDirectory,currentSeminar); // read Nego file
 ////
-//        vReadRes := ReadNegoRecordByProDecision(currentPeriod,currentAllDeals,
-//          DataDirectory,currentSeminar); // read Nego file
-//
-//    // Now let's make some JSON stuff here
-//        if vReadRes = 0 then
-//          makeJson;
-//
-//          currentSeminar := oJsonFile['seminar'].AsString;
-//          currentPeriod := oJsonFile['period'].AsInteger;
+////    // Now let's make some JSON stuff here
+////        if vReadRes = 0 then
+////          makeJson;
 ////
-//          Writeln('currentPeriod : ' + IntToStr(currentPeriod));
-//          Writeln('currentSeminar : ' + currentSeminar);
-////
-////      // now we have process JSON and convert it into binary stucture
+////          currentSeminar := oJsonFile['seminar'].AsString;
+////          currentPeriod := oJsonFile['period'].AsInteger;
+//////
+////          Writeln('currentPeriod : ' + IntToStr(currentPeriod));
+////          Writeln('currentSeminar : ' + currentSeminar);
+//////
+//////      // now we have process JSON and convert it into binary stucture
 //          fromJSONallDealSchema(currentAllDeals, oJsonFile);
+//////
+//////    {** Read results file **}
+////          vReadRes := WriteNegoRecordByProDecision(currentPeriod,
+////            currentAllDeals,DataDirectory,currentSeminar); // update Decision file
 ////
-////    {** Read results file **}
-//          vReadRes := WriteNegoRecordByProDecision(currentPeriod,
-//            currentAllDeals,DataDirectory,currentSeminar); // update Decision file
-//
 //    writeln(#10'press enter ...');
 //    readln;
 //    WriteLn('</BODY></HTML>');

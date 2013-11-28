@@ -478,9 +478,6 @@ exports.getProducerProductList=function(req,res,next){
                             }); 
 }
 
-//brandHistory
-
-
 exports.getProductionResult=function(req,res,next){
         proDecision.findOne({
         seminar:req.params.seminar,
@@ -575,6 +572,7 @@ exports.getProducerCurrentDecision=function(req,res,next){
     })
 }
 
+//brandHistory
 exports.getBrandHistory=function(req,res,next){
     proDecision.findOne({
         seminar:req.params.seminar,

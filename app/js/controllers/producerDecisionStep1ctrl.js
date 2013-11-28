@@ -348,10 +348,30 @@ define(['app'], function(app) {
 						}
 					},function(data){
 						d.resolve('fail');
+					}).then(function(){
+						url="/producerCurrentDecision/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+brandName+'/'+varName;
+						$http({
+							method:'GET',
+							url:url
+						}).then(function(data){
+							console.log(data.data);
+						},function(data){
+							d.resolve('fail');
+						})
 					})
 				}else{
 					categoryID=2;
 				}
+				return d.promise;
+			}
+
+			var checkTechnology=function(category,brandName,varName,location,additionalIdx,index,value){
+				var d=$q.defer();
+				return d.promise;
+			}
+
+			var checkRMQ=function(category,brandName,varName,location,additionalIdx,index,value){
+				var d=$q.defer();
 				return d.promise;
 			}
 

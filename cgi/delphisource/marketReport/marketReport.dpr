@@ -487,7 +487,7 @@ var
         msMarketShareVol    : s_str := 'Market Share (Volume)';
         msMarketShareVal    : s_str := 'Market Share (Value)';
         msAvgMarketPrice    : s_str := 'Average Net Market Price';
-        msBrandVisibility   : s_str := 'Brand Visibility Share (shelf space + in-store activity)';
+        msBrandVisibility   : s_str := 'Brand Visibility Share';
         msConsumerOfftake   : s_str := 'Consumer off-take';
       end;
       j_o.S['titleENG'] := s_str;
@@ -498,7 +498,7 @@ var
         msMarketShareVol    : s_str := 'Доля рынка (Объем)';
         msMarketShareVal    : s_str := 'Доля рынка (Стоимость)';
         msAvgMarketPrice    : s_str := 'Средневзвешенная рыночная цена';
-        msBrandVisibility   : s_str := 'Видимость марки (полка + акции)';
+        msBrandVisibility   : s_str := 'Видимость марки ';
         msConsumerOfftake   : s_str := 'Рыночные продажи';
       end;
       j_o.S['titleRUS'] := s_str;
@@ -509,7 +509,7 @@ var
         msMarketShareVol    : s_str := '市场份额（卷）';
         msMarketShareVal    : s_str := '市场份额（价值）';
         msAvgMarketPrice    : s_str := '平均净市场价格';
-        msBrandVisibility   : s_str := '品牌知名度股份（货架空间+店内活动）';
+        msBrandVisibility   : s_str := '品牌知名度股份';
         msConsumerOfftake   : s_str := '消费者承购';
       end;
       j_o.S['titleCHN'] := s_str;
