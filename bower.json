@@ -28,7 +28,6 @@
     "angular-loading-bar": "~0.0.4",
     "jqplot": "*",
     "angular-google-chart": "~0.0.5",
-    "requirejs-domready": "~2.0.1",
-    "bootstrap-validator": "*"
+    "requirejs-domready": "~2.0.1"
   }
 }
