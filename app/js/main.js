@@ -62,6 +62,8 @@
 			bootstrap:'../bower_components/bootstrap/dist/js/bootstrap',
 			angularBootstrap:'../bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls',
 			routingConfig : './routingConfig',
+			//bootsrtap validator
+			validator:'../bower_components/bootstrap-validator/dist/validator.min',
 			//jquery-jqplot-->Map.html
 			jqplot:'../bower_components/jqplot/jquery.jqplot.min',
 			bubbleRenderer:'./map/jqplot.bubbleRenderer',
@@ -89,7 +91,8 @@
 			'angularLoadingBar' : ['angular'],
 			'jqplot':['jquery'],
 			'bubbleRenderer':['jqplot','jquery'],
-			'tree':['jquery']
+			'tree':['jquery'],
+			'validator':['jquery','bootstrap']
 		},
 		priority: [
 			"angular"

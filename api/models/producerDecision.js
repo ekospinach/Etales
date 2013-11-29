@@ -572,6 +572,69 @@ exports.getProducerCurrentDecision=function(req,res,next){
     })
 }
 
+exports.checkProducerProduct=function(req,res,next){
+    proDecision.findOne({
+        seminar:req.params.seminar,
+        period:req.params.period,
+        producerID:req.params.producerID
+    },function(err,doc){
+        if(err){
+            next (new Error(err));
+        }
+        if(!doc){
+            res.send(404,{err:'cannot find the doc'});
+        }else{
+            var allProCatDecisions=_.filter(doc.proCatDecision,function(obj){
+                return (obj.categoryID==req.params.categoryID);
+            });
+            if(req.params.checkType=="brand"){
+                var count=0,result=0;
+                for(var i=0;i<allProCatDecisions.length;i++){
+                    for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
+                        if(allProCatDecisions[i].proBrandsDecision[j].brandName!=""&&allProCatDecisions[i].proBrandsDecision[j].brandID!=0){
+                            count++;
+                            if(allProCatDecisions[i].proBrandsDecision[j].brandName==req.params.brandName){
+                                result++;
+                            }
+                        }
+                    }
+                }
+                if(count>=5){
+                    res.send(404,{message:'The number of brand is more than 5 in a category'});
+                }else if(result!=0){
+                    res.send(404,{message:'There is another brand named '+req.params.brandName});
+                }else{
+                    res.send(200,{message:'OK'});
+                }
+            }else{
+                var count=0,result=0;
+                for(var i=0;i<allProCatDecisions.length;i++){
+                    for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
+                        if(allProCatDecisions[i].proBrandsDecision[j].brandID!=0&&allProCatDecisions[i].proBrandsDecision[j].brandName==req.params.brandName){
+                            for(var k=0;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
+                                if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=0&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varName!=""){
+                                    count++;
+                                    if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varName==req.params.varName){
+                                        result++;
+                                    }
+                                }
+                            }
+                            break;
+                        }
+                    }
+                }
+                if(count>=3){
+                    res.send(404,{message:'The number of var is more than 5 in brand '+req.params.brandName});
+                }else if(result!=0){
+                    res.send(404,{message:'There is another variant named '+req.params.varName});
+                }else{
+                    res.send(200,{message:'OK'});
+                }
+            }
+        }
+    })
+}
+
 //brandHistory
 exports.getBrandHistory=function(req,res,next){
     proDecision.findOne({
@@ -628,7 +691,6 @@ exports.getCompanyHistory=function(req,res,next){
             var result=_.filter(doc.proCatDecision,function(obj){
                 return (obj.categoryID==req.params.categoryID);
             });
-            console
             if(!result){
                 res.send(404,'cannot find the doc');
             }else{

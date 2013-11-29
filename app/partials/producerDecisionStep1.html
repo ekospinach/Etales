@@ -165,7 +165,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeProductModal()">&times;</button>
         <h4>New Product</h4>
       </div>
-      <form method="POST">
+      <form method="POST" name="myForm">
         <div class="modal-body">
           <div class="control-group">
             <tabset>
@@ -178,17 +178,20 @@
                       <option value="2">HealthBeauty</option>
                     </select>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group" ng-class="{'has-error': myForm.newBrandName.$invalid}">
                     <label for="lauchNewBrandName">Enter New Brand Name:</label>
                     <div class="input-group">
                       <span class="input-group-addon">{{brandFirstName}}</span>
-                      <input type="text" class="form-control" ng-model="lauchNewBrandName">
+                      <input type="text"  class="form-control" ng-model="lauchNewBrandName" name="newBrandName" ng-maxlength="4" required>
                       <span class="input-group-addon">{{brandLastName}}</span>
                     </div>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group" ng-class="{'has-error':myForm.lauchVarName.$invalid}">
                     <label for="lauchNewVarName">Enter New Variant Name</label>
-                    <input type="text" class="form-control" ng-model="lauchNewVarName">
+                    <div class="input-group">
+                      <span class="input-group-addon">_</span>
+                      <input type="text" name="lauchVarName" class="form-control" ng-model="lauchNewVarName" ng-maxlength="4" required>
+                    </div>
                   </div>
                 </div>
               </tab>
@@ -207,17 +210,24 @@
                       <option ng-repeat="allBrand in allBrands" value="{{allBrand.BrandID}}">{{allBrand.BrandName}}</option>
                     </select>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group" ng-class="{'has-error':myForm.addVarName.$invalid}">
                     <label for="addNewVarName">Enter New Variant Name</label>
-                    <input type="text" class="form-control" ng-model="addNewVarName">
+                    <div class="input-group">
+                      <span class="input-group-addon">_</span>
+                      <input type="text" name="addVarName" class="form-control" ng-model="addNewVarName" ng-maxlength="4" required>
+                    </div>
                   </div>
                 </div>
               </tab>
             </tabset>
           </div>
+          <div class="{{bubleClassName}}" ng-show='true'>
+            <strong>{{bubleTitle}}</strong>{{bubleMsg}}
+            </div>  
         </div>
         <div class="modal-footer">
-          <input type="button" ng-click="addNewProduct(parameter)" class="btn btn-success" value="Add"/>
+          <input type="button" ng-click="addNewProduct(parameter)" style="display:{{newBrand}}" class="btn btn-success" value="Add" ng-disabled="((myForm.lauchVarName.$invalid)||(myForm.newBrandName.$invalid))"/>
+          <input type="button" style="display:{{newVariant}}" ng-click="addNewProduct(parameter)" class="btn btn-success" value="Add2" ng-disabled="(myForm.addVarName.$invalid)">
           <input type="button" class="btn btn-warning cancel" ng-click="closeProductModal()" value="Cancel">
         </div>
       </form>
