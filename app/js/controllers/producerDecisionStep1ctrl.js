@@ -325,7 +325,7 @@ define(['app'], function(app) {
 						url:url
 					}).then(function(data){
 						if(parseInt(data.data.result)+parseInt(value)>max){
-							d.resolve('Input range:1~'+(max-parseInt(data.data.result)));
+							d.resolve('Input range:0~'+(max-parseInt(data.data.result)));
 						}else{
 							d.resolve();
 						}

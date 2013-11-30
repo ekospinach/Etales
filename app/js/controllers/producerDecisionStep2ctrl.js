@@ -34,10 +34,10 @@ define(['app'], function(app) {
 			var promiseStep1=function(){
 				var delay=$q.defer();
 				delay.notify('start to show view');
-					
+					//check
+					$scope.checkProduction=checkProduction;
 					$scope.showView=showView;
 					$scope.loadSelectCategroy=loadSelectCategroy;
-					$scope.loadNameNum=loadNameNum;
 					$scope.updateProducerDecision=updateProducerDecision;
 					$scope.getMoreInfo=getMoreInfo;
 					$scope.closeInfo=closeInfo;
@@ -159,10 +159,41 @@ define(['app'], function(app) {
 					console.log('read variantHistoryInfo fail');
 				});
 			}
-
-			var loadNameNum=function(){//load the sort
-				/*importantt*/
-			}		
+			var checkProduction=function(category,brandName,varName,location,additionalIdx,index,value){
+				var d = $q.defer();	
+				var categoryID,max,result;
+				if(category=="Elecssories"){
+					categoryID=1;
+				}
+				else{
+					categoryID=2;
+				}	
+				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+				$http({
+					method:'GET',
+					url:url
+				}).then(function(data){
+					max=data.data.productionCapacity[categoryID-1];
+				},function(data){
+					d.resolve('fail');
+				}).then(function(){
+					url="/productionResult/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+brandName+'/'+varName;
+					$http({
+						method:'GET',
+						url:url
+					}).then(function(data){
+						if(parseInt(data.data.result)+parseInt(value)>max){
+							d.resolve('Input range:0~'+(max-parseInt(data.data.result)));
+						}else{
+							d.resolve();
+						}
+					},function(data){
+						d.resolve('fail');
+					});
+				});
+				return d.promise;
+			}
+	
 
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
 				ProducerDecisionBase.reload({producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){

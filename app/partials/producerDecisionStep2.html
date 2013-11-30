@@ -128,7 +128,7 @@
             </tr>
             <tr>
               <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.PV}}" popover-title="{{labelLanguages.PV}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.PV}}<span style="color:red">*</span></p></th>
-              <th ng-repeat='product in products'><a href="#" editable-text="product.production" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'production','0',$index)">{{ product.production || 0 }}</a></th>
+              <th ng-repeat='product in products'><a href="#" editable-text="product.production" onbeforesave="checkProduction(category,product.parentBrandName,product.varName,'production','0',$index,$data)" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'production','0',$index)">{{ product.production || 0 }}</a></th>
             </tr>
             <tr>
               <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.NPB}}" popover-title="{{labelLanguages.NPB}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.NPB}}<span style="color:red">*</span></p></th>
