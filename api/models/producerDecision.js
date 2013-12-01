@@ -556,7 +556,31 @@ exports.getProducerExpend=function(req,res,next){
                     }
                 }
             }
-            res.send(200,{result:result})
+            if(req.params.brandName=="brandName"){
+               res.send(200,{result:result});                
+            }else{
+                if(req.params.brandName.substring(0,1)=="E"){
+                    categoryID=1;
+                }else{
+                    categoryID=2;
+                }
+                var allProCatDecisions=_.filter(doc.proCatDecision,function(obj){
+                    return (obj.categoryID==categoryID);
+                });
+                for(var i=0;i<allProCatDecisions.length;i++){
+                    for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
+                        if(allProCatDecisions[i].proBrandsDecision[j].brandID!=0&&allProCatDecisions[i].proBrandsDecision[j].brandName==req.params.brandName){
+                            if(req.params.location=="advertisingOffLine"||req.params.location=="supportTraditionalTrade"){
+                                result-=allProCatDecisions[i].proBrandsDecision[j][req.params.location][req.params.index];
+                            }else{
+                                result-=allProCatDecisions[i].proBrandsDecision[j][req.params.location];
+                            }
+                            break;
+                        }
+                    }
+                }
+                res.send(200,{result:result});
+            }
         }
     })
 }

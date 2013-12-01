@@ -78,7 +78,7 @@ define(['app'], function(app) {
 	      		},function(data){
 					console.log('read companyHistory fail');
 	      		}).then(function(){
-	      			url="/producerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1);;
+	      			url="/producerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/brandName/location/1';
 	      			$http({
 	      				method:'GET',
 	      				url:url,
