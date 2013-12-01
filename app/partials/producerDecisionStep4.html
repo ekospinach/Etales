@@ -21,13 +21,13 @@
           </div>
         </div>
         <div class="pull-right" style="width:33%">
-          <progress percent="88" class="progress active"></progress>
+          <progress percent="percentageExpend" class="progress active">{{surplusExpend}}</progress>
           <small>
             <em>Total Avaliable Budget for Remaing Period</em>
           </small>
-          <progress percent="70" class="progress progress-suceess active progress-striped"></progress>
+          <progress percent="percentageProduction" class="progress progress-suceess active progress-striped">{{surplusProduction}}</progress>
           <small>
-            <em>Elecssories Available Capacity</em>
+            <em>{{category}} Available Capacity</em>
           </small>
         </div>
           <div style="clear:both"></div>
@@ -82,20 +82,20 @@
             <tr>
               <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.IICC}}" popover-title="{{labelLanguages.IICC}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.IICC}}<span style="color:red">*</span></p>
               </th>
-              <th ng-repeat='category in categorys'><a href="#" editable-text="category.capacityChange" onaftersave="updateProducerDecision(category.categoryID,'capacityChange',$index)">{{ category.capacityChange || 0 }}</a></th>
+              <th ng-repeat='category in categorys'><a href="#" editable-text="category.capacityChange" onbeforesave="checkData($data)" onaftersave="updateProducerDecision(category.categoryID,'capacityChange',$index)">{{ category.capacityChange || 0 }}</a></th>
             </tr>
             <tr>
               <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.ITIAT}}" popover-title="{{labelLanguages.ITIAT}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.ITIAT}}<span style="color:red">*</span></p></th>
-              <th ng-repeat='category in categorys'><a href="#" editable-text="category.investInTechnology" onaftersave="updateProducerDecision(category.categoryID,'investInTechnology',$index)">{{ category.investInTechnology || 0 }}</a></th>
+              <th ng-repeat='category in categorys'><a href="#" editable-text="category.investInTechnology" onbeforesave="checkData($data)" onaftersave="updateProducerDecision(category.categoryID,'investInTechnology',$index)">{{ category.investInTechnology || 0 }}</a></th>
             </tr>
             <tr>
               <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.ITIF}}" popover-title="{{labelLanguages.ITIF}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.ITIF}}<span style="color:red">*</span></p></th>
-              <th ng-repeat='category in categorys'><a href="#" editable-text="category.investInProductionFlexibility" onaftersave="updateProducerDecision(category.categoryID,'investInProductionFlexibility',$index)">{{ category.investInProductionFlexibility || 0 }}</a></th>
+              <th ng-repeat='category in categorys'><a href="#" editable-text="category.investInProductionFlexibility" onbeforesave="checkData($data)" onaftersave="updateProducerDecision(category.categoryID,'investInProductionFlexibility',$index)">{{ category.investInProductionFlexibility || 0 }}</a></th>
             </tr>
             <tr>
               <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.ITIDK}}" popover-title="{{labelLanguages.ITIDK}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.ITIDK}}<span style="color:red">*</span></p></th>
               <th>
-                <a href="#" editable-text="categorys[0].investInDesign" onaftersave="updateProducerDecision(1,'investInDesign',0)">{{ categorys[0].investInDesign || 0 }}</a>
+                <a href="#" editable-text="categorys[0].investInDesign" onbeforesave="checkData($data)" onaftersave="updateProducerDecision(1,'investInDesign',0)">{{ categorys[0].investInDesign || 0 }}</a>
               </th>
               <th></th>
             </tr>
