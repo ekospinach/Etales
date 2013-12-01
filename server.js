@@ -101,6 +101,7 @@ app.get('/volReport', require('./api/models/volReport.js').getVolReport);
 app.get('/productionResult/:seminar/:period/:producerID/:brandName/:varName',require('./api/models/producerDecision.js').getProductionResult);
 app.get('/producerCurrentDecision/:seminar/:period/:producerID/:brandName/:varName',require('./api/models/producerDecision.js').getProducerCurrentDecision);
 app.get('/checkProducerProduct/:seminar/:period/:producerID/:categoryID/:checkType/:brandName/:varName',require('./api/models/producerDecision.js').checkProducerProduct);
+app.get('/producerExpend/:seminar/:period/:producerID',require('./api/models/producerDecision.js').getProducerExpend);
 
 //special calculate API
 app.get('/productionCost');

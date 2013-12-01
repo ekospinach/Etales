@@ -479,7 +479,7 @@ exports.getProducerProductList=function(req,res,next){
 }
 
 exports.getProductionResult=function(req,res,next){
-        proDecision.findOne({
+    proDecision.findOne({
         seminar:req.params.seminar,
         period:req.params.period,
         producerID:req.params.producerID
@@ -509,21 +509,54 @@ exports.getProductionResult=function(req,res,next){
                     }
                 }
             }
-            for(var i=0;i<allProCatDecisions.length;i++){
-                for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
-                    if(allProCatDecisions[i].proBrandsDecision[j].brandID!=0&&allProCatDecisions[i].proBrandsDecision[j].brandName==req.params.brandName){
-                        for(var k=0;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
-                            if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=0&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varName==req.params.varName){
-                                result-=allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].production;
-                                break;
+            if(req.params.brandName!="brandName"&&req.params.varName!="varName"){
+                for(var i=0;i<allProCatDecisions.length;i++){
+                    for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
+                        if(allProCatDecisions[i].proBrandsDecision[j].brandID!=0&&allProCatDecisions[i].proBrandsDecision[j].brandName==req.params.brandName){
+                            for(var k=0;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
+                                if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=0&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varName==req.params.varName){
+                                    result-=allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].production;
+                                    break;
+                                }
                             }
+                            break;
                         }
-                        break;
                     }
                 }
             }
-            console.log(result);
             res.send(200,{result:result});
+        }
+    })
+}
+
+exports.getProducerExpend=function(req,res,next){
+    proDecision.findOne({
+        seminar:req.params.seminar,
+        period:req.params.period,
+        producerID:req.params.producerID
+    },function(err,doc){
+        if(err){
+            next(new Error(err));
+        }
+        if(!doc){
+            res.send(404,{err:'cannot find the doc'});
+        }else{
+            var result=0;
+            for(var i=0;i<doc.proCatDecision.length;i++){
+                for(var j=0;j<doc.proCatDecision[i].proBrandsDecision.length;j++){
+                    if(doc.proCatDecision[i].proBrandsDecision[j].brandID!=0&&doc.proCatDecision[i].proBrandsDecision[j].brandName!=""){
+                        result+=(
+                                doc.proCatDecision[i].proBrandsDecision[j].advertisingOffLine[0]
+                                +doc.proCatDecision[i].proBrandsDecision[j].advertisingOffLine[1]
+                                +doc.proCatDecision[i].proBrandsDecision[j].advertisingOnLine
+                                +doc.proCatDecision[i].proBrandsDecision[j].supportEmall
+                                +doc.proCatDecision[i].proBrandsDecision[j].supportTraditionalTrade[0]
+                                +doc.proCatDecision[i].proBrandsDecision[j].supportTraditionalTrade[1]
+                        );
+                    }
+                }
+            }
+            res.send(200,{result:result})
         }
     })
 }

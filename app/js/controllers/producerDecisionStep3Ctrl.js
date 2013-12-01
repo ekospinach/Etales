@@ -36,10 +36,10 @@ define(['app'], function(app) {
 			var promiseStep1=function(){
 				var delay=$q.defer();
 				delay.notify('start to show view');
-
+					//check data
+					$scope.checkData=checkData;
 					$scope.showView=showView;
 					$scope.loadSelectCategroy=loadSelectCategroy;
-
 					$scope.updateProducerDecision=updateProducerDecision;
 					$scope.getBrandMoreInfo=getBrandMoreInfo;
 					$scope.closeInfo=closeInfo;
@@ -120,6 +120,10 @@ define(['app'], function(app) {
 
 			var closeInfo=function(){
 				$scope.isCollapsed=true;
+			}
+
+			var checkData=function(){
+
 			}
 
 			var getBrandMoreInfo=function(brandID,brandName){

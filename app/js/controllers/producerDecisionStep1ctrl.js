@@ -23,6 +23,8 @@ define(['app'], function(app) {
 			$scope.language=language;
 			$scope.producerID=producerID;
 			$scope.period=period;
+			//$scope.surplusProduction=0;
+			//$scope.percentageProduction=100;
 
 			$scope.packs = [{
 				value: 1, text: 'ECONOMY'
@@ -152,71 +154,212 @@ define(['app'], function(app) {
 		    	ProducerDecisionBase.deleteProduct(category,brandName,varName);	
 		    }
 			/*Load Page*/
+			// var showView=function(producerID,period,category,language){
+			// 	var d=$q.defer();
+			// 	$scope.producerID=producerID,$scope.period=period,$scope.category=category,$scope.language=language;
+			// 	var categoryID=0,count=0,result=0;
+			// 	if(category=="Elecssories"){
+			// 		categoryID=1;
+			// 	}
+			// 	else if(category=="HealthBeauty"){
+			// 		categoryID=2;
+			// 	}
+	  //     		var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+			// 	$http({
+			// 		method:'GET',
+			// 		url:url
+			// 	}).then(function(data){
+			// 		max=data.data.productionCapacity[categoryID-1];
+			// 	},function(data){
+			// 		console.log('read companyHistory fail');
+			// 	}).then(function(max){
+			// 		url="/productionResult/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/brandName/varName';
+			// 		$http({
+			// 			method:'GET',
+			// 			url:url
+			// 		}).then(function(data){
+			// 			$scope.surplusProduction=max-data.data.result;
+			// 			$scope.percentageProduction=data.data.result/max*100;
+			// 			//return result;
+			// 		},function(data){
+			// 			console.log('read currentProduction fail');
+			// 		}).then(function(){
+			// 			var labelLanguages={},infoLanguages={};
+			// 			if(language=="English"){
+			// 				for(var i=0;i<$scope.multilingual.length;i++){
+			// 					if(category=="Elecssories"){
+			// 						$scope.EleShow="inline";
+			// 						$scope.HeaShow="none";
+			// 					}
+			// 					else if(category=="HealthBeauty"){
+			// 						$scope.EleShow="none";
+			// 						$scope.HeaShow="inline";
+			// 					}
+			// 					labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
+			// 					infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
+			// 				}
+			// 			}
+			// 			else if(language=="Chinese"){
+			// 				for(var i=0;i<$scope.multilingual.length;i++){
+			// 					if(category=="Elecssories"){
+			// 						$scope.EleShow="inline";
+			// 						$scope.HeaShow="none";
+			// 					}
+			// 					else if(category=="HealthBeauty"){
+			// 						$scope.EleShow="none";
+			// 						$scope.HeaShow="inline";
+			// 					}
+			// 					labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelCHN;
+			// 					infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoCHN;
+			// 				}
+			// 			}
+			// 			var allProCatDecisions=loadSelectCategroy(category);
+			//       		var products=new Array();
+			//       		for(var i=0;i<allProCatDecisions.length;i++){
+			//       			for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
+			//       				if(allProCatDecisions[i].proBrandsDecision[j].brandID!=undefined&&allProCatDecisions[i].proBrandsDecision[j].brandID!=0){
+			// 	      				for(var k=0;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
+			// 	      					if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=0&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=undefined){
+			// 	      						products.push(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]);
+			// 		      					products[count].category=category;
+			// 		      					products[count].parentBrandName=allProCatDecisions[i].proBrandsDecision[j].brandName;
+			// 		      					if(products[count].packFormat=="ECONOMY"){
+			// 		      						products[count].packFormat=1;
+			// 		      					}
+			// 		      					else if(products[count].packFormat=="STANDARD"){
+			// 		      						products[count].packFormat=2;
+			// 		      					}
+			// 		      					else if(products[count].packFormat=="PREMIUM"){
+			// 		      						products[count].packFormat=3;
+			// 		      					}
+			// 		      					count++;
+			// 	      					}
+			// 	      				}
+			// 	      			}
+			//       			}
+			//       		}
+			//       		$scope.products=products;
+			// 			$scope.labelLanguages=labelLanguages;
+			// 			$scope.infoLanguages=infoLanguages;
+			//       		if(count!=0){
+			//       			result=1;
+			//       		}
+			//       		return result;
+			// 		});
+			// 	});
+			// 	return d.promise;
+			// }
+
+
 			var showView=function(producerID,period,category,language){
+				var d=$q.defer();
 				$scope.producerID=producerID,$scope.period=period,$scope.category=category,$scope.language=language;
+				var categoryID=0,count=0,result=0,acMax=0,abMax=0,expend=0;
+				var products=new Array();
 				var labelLanguages={},infoLanguages={};
-				if(language=="English"){
-					for(var i=0;i<$scope.multilingual.length;i++){
-						if(category=="Elecssories"){
-							$scope.EleShow="inline";
-							$scope.HeaShow="none";
-						}
-						else if(category=="HealthBeauty"){
-							$scope.EleShow="none";
-							$scope.HeaShow="inline";
-						}
-						labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
-						infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
-					}
+				var fakeName="";
+				if(category=="Elecssories"){
+					categoryID=1;
+					fakeName="EName";
 				}
-				else if(language=="Chinese"){
-					for(var i=0;i<$scope.multilingual.length;i++){
-						if(category=="Elecssories"){
-							$scope.EleShow="inline";
-							$scope.HeaShow="none";
-						}
-						else if(category=="HealthBeauty"){
-							$scope.EleShow="none";
-							$scope.HeaShow="inline";
-						}
-						labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelCHN;
-						infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoCHN;
-					}
+				else if(category=="HealthBeauty"){
+					categoryID=2;
+					fakeName="HName";
 				}
-				var allProCatDecisions=loadSelectCategroy(category);
-	      		var count=0,result=0;
-	      		var products=new Array();
-	      		for(var i=0;i<allProCatDecisions.length;i++){
-	      			for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
-	      				if(allProCatDecisions[i].proBrandsDecision[j].brandID!=undefined&&allProCatDecisions[i].proBrandsDecision[j].brandID!=0){
-		      				for(var k=0;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
-		      					if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=0&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=undefined){
-		      						products.push(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]);
-			      					products[count].category=category;
-			      					products[count].parentBrandName=allProCatDecisions[i].proBrandsDecision[j].brandName;
-			      					if(products[count].packFormat=="ECONOMY"){
-			      						products[count].packFormat=1;
-			      					}
-			      					else if(products[count].packFormat=="STANDARD"){
-			      						products[count].packFormat=2;
-			      					}
-			      					else if(products[count].packFormat=="PREMIUM"){
-			      						products[count].packFormat=3;
-			      					}
-			      					count++;
-		      					}
-		      				}
-		      			}
-	      			}
-	      		}
-	      		if(count!=0){
-	      			result=1;
-	      		}
-	      		$scope.products=products;
-				$scope.labelLanguages=labelLanguages;
-				$scope.infoLanguages=infoLanguages;
-				//console.log(labelLanguages);
-				return result;
+	      		var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+	      		$http({
+	      			method:'GET',
+	      			url:url
+	      		}).then(function(data){
+	      			abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
+					acMax=data.data.productionCapacity[categoryID-1];
+	      		},function(data){
+					console.log('read companyHistory fail');
+	      		}).then(function(){
+	      			url="/producerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1);;
+	      			$http({
+	      				method:'GET',
+	      				url:url,
+	      			}).then(function(data){
+	      				expend=data.data.result;
+	      				$scope.surplusExpend=abMax-expend;
+	      				$scope.percentageExpend=(abMax-expend)/abMax*100;
+	      			},function(data){
+	      				console.log('read producerExpend fail');
+	      			}).then(function(){
+	      				url="/productionResult/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+fakeName+'/varName';
+						$http({
+							method:'GET',
+							url:url
+						}).then(function(data){
+							$scope.surplusProduction=acMax-data.data.result;
+							$scope.percentageProduction=(acMax-data.data.result)/acMax*100;
+							$scope.producerID=producerID,$scope.period=period,$scope.category=category,$scope.language=language;
+							if(language=="English"){
+	                            for(var i=0;i<$scope.multilingual.length;i++){
+	                                if(category=="Elecssories"){
+	                                	$scope.EleShow="inline";
+	                                	$scope.HeaShow="none";
+	                                }
+	                                else if(category=="HealthBeauty"){
+	                                	$scope.EleShow="none";
+	                                	$scope.HeaShow="inline";
+	                                }
+	                                labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
+	                                infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
+	                            }
+	                        }
+	                        else if(language=="Chinese"){
+	                        	for(var i=0;i<$scope.multilingual.length;i++){
+	                        		if(category=="Elecssories"){
+	                        			$scope.EleShow="inline";
+	                        			$scope.HeaShow="none";
+	                        		}
+	                        		else if(category=="HealthBeauty"){
+	                        			$scope.EleShow="none";
+	                        			$scope.HeaShow="inline";
+	                        		}
+	                        		labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelCHN;
+	                        		infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoCHN;
+	                        	}
+	                        }
+	                        var allProCatDecisions=loadSelectCategroy(category);
+	                        for(var i=0;i<allProCatDecisions.length;i++){
+	                        	for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
+	                                if(allProCatDecisions[i].proBrandsDecision[j].brandID!=undefined&&allProCatDecisions[i].proBrandsDecision[j].brandID!=0){
+	                                	for(var k=0;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
+	                                        if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=0&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=undefined){
+	                                        	products.push(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]);
+	                                        	products[count].category=category;
+	                                        	products[count].parentBrandName=allProCatDecisions[i].proBrandsDecision[j].brandName;
+	                                        	if(products[count].packFormat=="ECONOMY"){
+	                                        		products[count].packFormat=1;
+	                                        	}
+	                                        	else if(products[count].packFormat=="STANDARD"){
+	                                        		products[count].packFormat=2;
+	                                        	}
+	                                        	else if(products[count].packFormat=="PREMIUM"){
+	                                        		products[count].packFormat=3;
+	                                        	}
+	                                        	count++;
+	                                        }
+	                                    }
+	                                }
+	                            }
+	                        }
+	                        if(count!=0){
+	                        	result=1;
+	                        }
+	                        $scope.products=products;
+	                        $scope.labelLanguages=labelLanguages;
+	                        $scope.infoLanguages=infoLanguages;
+	                        return result;
+						},function(data){
+							console.log('read currentProduction fail');
+						});
+	      			})
+	      		});		
+	      		return d.promise;		
 			}
 
 			/*set add function is lauch new Brand*/
@@ -591,10 +734,10 @@ define(['app'], function(app) {
 					newBrand.paranetCompanyID=$scope.producerID;
 					newBrand.dateOfDeath="";
 					newBrand.dateOfBirth=$scope.period;
-					newBrand.advertisingOffLine=new Array();
-					newBrand.advertisingOnLine="";
-					newBrand.supportEmall="";
-					newBrand.supportTraditionalTrade=new Array();
+					newBrand.advertisingOffLine=new Array(0,0);
+					newBrand.advertisingOnLine=0;
+					newBrand.supportEmall=0;
+					newBrand.supportTraditionalTrade=new Array(0,0);
 					newBrand.proVarDecision=new Array();
 					//newBrand.proVarDecision.push({});
 					newproducerDecision.parentBrandID=newBrand.brandID;
