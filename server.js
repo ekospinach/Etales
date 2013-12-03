@@ -107,7 +107,6 @@ app.get('/retailerShelfSpace/:seminar/:period/:retailerID/:marketID/:categoryID/
 //special calculate API
 app.get('/productionCost');
 app.get('/currentPeriod/:seminar',require('./api/models/seminar.js').getCurrentPeriod);
-app.get('/seminarNewDoc',require('./api/models/seminar.js').newDoc);
 
 app.use(express.errorHandler());
 

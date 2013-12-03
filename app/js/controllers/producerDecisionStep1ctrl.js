@@ -754,12 +754,6 @@ define(['app'], function(app) {
 						ProducerDecisionBase.addProductNewBrand(newBrand,$scope.lauchNewCategory);
 						showbubleMsg('add new brand successfully',2);
 						closeProductModal();
-						// if(ProducerDecisionBase.addProductNewBrand(newBrand,$scope.lauchNewCategory)){
-						// 	showbubleMsg('add new brand successfully',2);
-						// 	closeProductModal();
-						// }else{
-						// 	showbubleMsg('add new brand failure',1);
-						// }
 					},function(data){
 						showbubleMsg('add new brand failure, ' + data.data.message,1);
 					})
@@ -790,12 +784,6 @@ define(['app'], function(app) {
 						ProducerDecisionBase.addProductExistedBrand(newproducerDecision,$scope.addNewCategory,newBrandName);
 						 	showbubleMsg('add new variant successfully',2);
 						 	closeProductModal();
-						// if(ProducerDecisionBase.addProductExistedBrand(newproducerDecision,$scope.addNewCategory,newBrandName)){
-						// 	showbubleMsg('add new variant successfully',2);
-						// 	closeProductModal();
-						// }else{
-						// 	showbubleMsg('add new variant failure',1);
-						// }
 					},function(data){
 						showbubleMsg('add new variant failure, ' + data.data.message,1);
 					})

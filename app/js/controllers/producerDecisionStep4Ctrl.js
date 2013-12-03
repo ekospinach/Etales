@@ -130,36 +130,6 @@ define(['app'], function(app) {
 			}
 
 
-			// var showView=function(producerID,period,language){
-			// 	$scope.producerID=producerID,$scope.period=period,$scope.language=language;
-			// 	var labelLanguages={},infoLanguages={};
-			// 	if(language=="English"){
-			// 		for(var i=0;i<$scope.multilingual.length;i++){
-			// 			labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
-			// 			infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
-			// 		}
-			// 	}
-			// 	else if(language=="Chinese"){
-			// 		for(var i=0;i<$scope.multilingual.length;i++){
-			// 			labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelCHN;
-			// 			infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoCHN;
-			// 		}
-			// 	}
-	  //     		var count=0,result=0;
-	  //     		var categorys=new Array();
-	  //     		for(var i=0;i<$scope.pageBase.proCatDecision.length;i++){
-	  //     			categorys.push($scope.pageBase.proCatDecision[i]);
-	  //     			count++;
-	  //     		}
-	  //     		if(count!=0){
-	  //     			result=1;
-	  //     		}
-	  //     		$scope.categorys=categorys;
-			// 	$scope.labelLanguages=labelLanguages;
-			// 	$scope.infoLanguages=infoLanguages;
-			// 	return result;
-			// }
-
 			var updateProducerDecision=function(categoryID,location,index){
 				ProducerDecisionBase.setProducerDecisionCategory(categoryID,location,$scope.categorys[index][location]);
 				$scope.$broadcast('producerDecisionBaseChanged');

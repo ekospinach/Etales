@@ -156,63 +156,6 @@ define(['app'], function(app) {
 	      		return d.promise;		
 			}
 
-
-			// var showView=function(producerID,period,category,language){
-			// 	$scope.producerID=producerID,$scope.period=period,$scope.category=category,$scope.language=language;
-			// 	var labelLanguages={},infoLanguages={};
-			// 	if(language=="English"){
-			// 		for(var i=0;i<$scope.multilingual.length;i++){
-			// 			if(category=="Elecssories"){
-			// 				$scope.EleShow="inline";
-			// 				$scope.HeaShow="none";
-			// 			}
-			// 			else if(category=="HealthBeauty"){
-			// 				$scope.EleShow="none";
-			// 				$scope.HeaShow="inline";
-			// 			}
-			// 			labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
-			// 			infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
-			// 		}
-			// 	}
-			// 	else if(language=="Chinese"){
-			// 		for(var i=0;i<$scope.multilingual.length;i++){
-			// 			if(category=="Elecssories"){
-			// 				$scope.EleShow="inline";
-			// 				$scope.HeaShow="none";
-			// 			}
-			// 			else if(category=="HealthBeauty"){
-			// 				$scope.EleShow="none";
-			// 				$scope.HeaShow="inline";
-			// 			}
-			// 			labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
-			// 			infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
-			// 		}
-			// 	}
-			// 	var allProCatDecisions=loadSelectCategroy(category);
-	  //     		var count=0,result=0;
-	  //     		var products=new Array();
-	  //     		for(var i=0;i<allProCatDecisions.length;i++){
-	  //     			for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
-	  //     				if(allProCatDecisions[i].proBrandsDecision[j]!=undefined&&allProCatDecisions[i].proBrandsDecision[j].brandID!=undefined&&allProCatDecisions[i].proBrandsDecision[j].brandID!=0){
-		 //      				for(var k=0;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
-		 //      					if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]!=undefined&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=undefined&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=0){
-		 //      						products.push(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]);
-			//       					products[count].category=category;
-			//       					products[count].parentBrandName=allProCatDecisions[i].proBrandsDecision[j].brandName;
-			//       					count++;
-		 //      					}
-		 //      				}
-		 //      			}
-	  //     			}
-	  //     		}
-	  //     		if(count!=0){
-	  //     			result=1;
-	  //     		}
-	  //     		$scope.products=products;
-			// 	$scope.labelLanguages=labelLanguages;
-			// 	$scope.infoLanguages=infoLanguages;
-			// 	return result;
-			// }
 			/*LoadSelectCategroy*/
 			var loadSelectCategroy=function(category){
 				return _.filter($scope.pageBase.proCatDecision,function(obj){

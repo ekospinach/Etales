@@ -47,7 +47,8 @@ define(['app'], function(app) {
 				}
 				return delay.promise;
 			}
-
+			
+			/*Load Page*/
 			var showView=function(retailerID,period,language){
 				var d=$q.defer();
 				$scope.retailerID=retailerID,$scope.period=period,$scope.language=language;
@@ -118,29 +119,6 @@ define(['app'], function(app) {
 	      		});		
 	      		return d.promise;		
 			}
-
-			/*Load Page*/
-			// var showView=function(retailerID,period,language){
-			// 	$scope.retailerID=retailerID,$scope.period=period,$scope.language=language;
-			// 	var labelLanguages={},infoLanguages={};
-			// 	if(language=="English"){
-			// 		for(var i=0;i<$scope.multilingual.length;i++){
-			// 			labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
-			// 			infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
-			// 		}
-			// 	}
-			// 	else if(language=="Chinese"){
-			// 		for(var i=0;i<$scope.multilingual.length;i++){
-			// 			labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelCHN;
-			// 			infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoCHN;
-			// 		}
-			// 	}
-	  //     		var count=0,result=0;
-	  //     		result=1;
-			// 	$scope.infoLanguages=infoLanguages;
-			// 	$scope.labelLanguages=labelLanguages;
-			// 	return result;
-			// }
 
 			//check
 			var checkBudget=function(location,additionalIdx,value){

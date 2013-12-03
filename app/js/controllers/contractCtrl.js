@@ -114,62 +114,6 @@ define(['app'], function(app) {
 				},function(data){
 					console.log('fail');
 				});
-				// $http({method:'GET',url:url})
-				// .success(function(data){
-				// 	$scope.brandList=data;
-				// 	var details=new Array();
-				// 	var negotiationItems=['nc_MinimumOrder','nc_VolumeDiscountRate','nc_PaymentDays','nc_SalesTargetVolume','nc_PerformanceBonusAmount','nc_PerformanceBonusRate','nc_OtherCompensation'];
-				// 	var userTypes=['P','R'];
-				// 	console.log($scope.brandList);
-				// 	for(var i=0;i<$scope.brandList.length;i++){
-				// 	 	for(var j=0;j<negotiationItems.length;j++){
-				// 	 		for(var k=0;j<userTypes.length;k++){
-				// 	 		 	url="/contractDetail/"+contract.contractCode+'/'+userTypes[k]+'/'+negotiationItems[j]+'/'+$scope.brandList[i].brandName;
-				// 	 		 	$http({method:'GET',url:url})
-				// 	 		 	.then(function(data){
-				// 	 		 		console.log(data.data);
-				// 	 		 	},function(data){
-				// 	 		 		console.log('error');
-				// 	 		 	})
-				// 	 		// 	.success(function(data){
-				// 	 		// 		if(data.length==0){
-										// details.push({
-										// 	'contractCode':contract.contractCode,
-										// 	'userType':userTypes[k],
-										// 	'negotiationItem':negotiationItems[j],
-										// 	'relatedBrandName':$scope.brandList[i].brandName,
-										// 	'retailerID':$scope.brandList[i].brandID,
-										// 	'useBrandDetails':true,
-										// 	'useVariantDetails':false,
-										// 	'displayValue':0,
-										// 	'brand_urbanValue' : 0,
-										// 	'brand_ruralValue' : 0,
-										// 	'variant_A_urbanValue' : 0,
-										// 	'variant_A_ruralValue' : 0,
-										// 	'variant_B_urbanValue' : 0,
-										// 	'variant_B_ruralValue' : 0,
-										// 	'variant_C_urbanValue' : 0,
-										// 	'variant_C_ruralValue' : 0,
-										// 	'isVerified' : false,
-										// 	'amount_or_rate' : true
-										// });
-				// 	 		// 		}else{
-				// 	 		// 			details.push(data);
-				// 	 		// 		}
-				// 	 		// 		$scope.details=details;
-				// 	 		// 		console.log($scope.details);
-				// 	 		// 	})
-				// 				// .error(function(data){
-				// 				// 	console.log("fail");
-				// 				// })
-								
-				// 			}
-				// 	 	}
-				// 	}
-				// })
-				// .error(function(data){
-				// 	console.log('fail');
-				// })
 			}
 
 			var showbubleMsg = function(content, status){
