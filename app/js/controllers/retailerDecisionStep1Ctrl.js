@@ -6,8 +6,6 @@ define(['app'], function(app) {
 		    $rootScope.loginFooter="bs-footer";
 		    $rootScope.loginLink="footer-links";
 		    $rootScope.loginDiv="container";
-			//var calculate='../js/controllers/untils/calculate.js';
-			//var calculate=require('');
 			var multilingual=getRetailerStep1Info();
 			var language='English',
 				retailerID=$rootScope.user.username.substring($rootScope.user.username.length-1);
@@ -20,7 +18,6 @@ define(['app'], function(app) {
 			$scope.period=period;
 			RetailerDecisionBase.startListenChangeFromServer();
 			RetailerDecisionBase.reload({retailerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
-			//ProducerDecisionBase.reload({period:'0', seminar:'MAY', retailerID:1}).then(function(base){
 				$scope.pageBase = base;
 			}).then(function(){
 				return promiseStep1();
@@ -47,7 +44,7 @@ define(['app'], function(app) {
 				}
 				return delay.promise;
 			}
-			
+
 			/*Load Page*/
 			var showView=function(retailerID,period,language){
 				var d=$q.defer();

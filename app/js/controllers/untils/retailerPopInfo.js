@@ -99,6 +99,14 @@ var getRetailerStep2Info=function(){
 		infoENG:'budget you spend to advertise your store chain locally (outdoors advertising, leaflets); promotes price perception of your stores. ',
 		infoCHN:'',
 		infoRUS:''	
+	},{
+		shortName:'AEP',
+		labelENG:'Allocate Empty Place',
+		labelRUS:'',
+		labelCHN:'',
+		infoENG:'budget you spend to advertise your store chain locally (outdoors advertising, leaflets); promotes price perception of your stores. ',
+		infoCHN:'',
+		infoRUS:''	
 	}];
 }
 

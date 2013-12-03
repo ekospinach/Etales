@@ -286,8 +286,11 @@ exports.updateRetailerDecision = function(io){
                                         case 'updateMarketDecision':
                                             for(var i=0;i<doc.retMarketDecision.length;i++){
                                                 if(doc.retMarketDecision[i].marketID==queryCondition.marketID){
-                                                    if(queryCondition.location=="categorySurfaceShare"||queryCondition.location=="localAdvertising"){
+                                                    if(queryCondition.location=="localAdvertising"){
                                                         doc.retMarketDecision[i][queryCondition.location][queryCondition.additionalIdx]=queryCondition.value;
+                                                    }else if(queryCondition.location=="categorySurfaceShare"){
+                                                        doc.retMarketDecision[i][queryCondition.location][queryCondition.additionalIdx]=queryCondition.value;
+                                                        doc.retMarketDecision[i][queryCondition.location][1-queryCondition.additionalIdx]=1-queryCondition.value;
                                                     }else{
                                                         doc.retMarketDecision[i][queryCondition.location]=queryCondition.value;
                                                     }

@@ -54,42 +54,6 @@ define(['app'], function(app) {
 			}
 
 			/*Load Page*/
-			// var showView=function(producerID,period,category,language){
-			// 	$scope.producerID=producerID,$scope.period=period,$scope.category=category,$scope.language=language;
-			// 	var shortLanguages={},labelLanguages={},infoLanguages={};
-			// 	if(language=="English"){
-			// 		for(var i=0;i<$scope.multilingual.length;i++){
-			// 			labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
-			// 			infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
-
-			// 		}
-			// 	}
-			// 	else if(language=="Chinese"){
-			// 		for(var i=0;i<$scope.multilingual.length;i++){				
-			// 			labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelCHN;
-			// 			infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoCHN;
-			// 		}
-			// 	}
-			// 	var allProCatDecisions=loadSelectCategroy(category);
-	  //     		var count=0,result=0;
-	  //     		var brands=new Array();
-	  //     		for(var i=0;i<allProCatDecisions.length;i++){
-	  //     			for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
-	  //     				if(allProCatDecisions[i].proBrandsDecision[j]!=undefined&&allProCatDecisions[i].proBrandsDecision[j].brandID!=undefined&&allProCatDecisions[i].proBrandsDecision[j].brandID!=0){
-	  //     					brands.push(allProCatDecisions[i].proBrandsDecision[j]);
-	  //     					count++;
-	  //     				}
-	  //     			}
-	  //     		}
-	  //     		if(count!=0){
-	  //     			result=1;
-	  //     		}
-	  //     		$scope.brands=brands;
-			// 	$scope.shortLanguages=shortLanguages;
-			// 	$scope.labelLanguages=labelLanguages;
-			// 	$scope.infoLanguages=infoLanguages;
-			// 	return result;
-			// }
 			var showView=function(producerID,period,category,language){
 				var d=$q.defer();
 				$scope.producerID=producerID,$scope.period=period,$scope.category=category,$scope.language=language;

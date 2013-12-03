@@ -83,7 +83,7 @@ define(['app'], function(app) {
 															'userType':userTypes[j],
 															'negotiationItem':negotiationItems[k],
 															'relatedBrandName':$scope.brandList[i].brandName,
-															'retailerID':$scope.brandList[i].brandID,
+															'brandID':$scope.brandList[i].brandID,
 															'useBrandDetails':true,
 															'useVariantDetails':false,
 															'displayValue':0,

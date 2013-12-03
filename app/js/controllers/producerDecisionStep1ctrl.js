@@ -6,7 +6,6 @@ define(['app'], function(app) {
 		    $rootScope.loginFooter="bs-footer";
 		    $rootScope.loginLink="footer-links";
 		    $rootScope.loginDiv="container";
-		    //console.log(popInfo);
 
 			var multilingual=getProducerStep12Info();
 
@@ -23,8 +22,6 @@ define(['app'], function(app) {
 			$scope.language=language;
 			$scope.producerID=producerID;
 			$scope.period=period;
-			//$scope.surplusProduction=0;
-			//$scope.percentageProduction=100;
 
 			$scope.packs = [{
 				value: 1, text: 'ECONOMY'
