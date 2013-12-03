@@ -70,8 +70,6 @@ app.get('/seminarList',require('./api/models/seminar.js').getSeminarList);
 app.post('/updateSeminar',require('./api/models/seminar.js').updateSeminar);
 
 app.get('/contracts/:seminar/:contractUserID',require('./api/models/contract.js').getContractList);
-
-app.get('/contractDetails/:contractCode',require('./api/models/contract.js').getContractDetails);
 //get contractDetail
 app.get('/contractDetail/:contractCode/:userType/:negotiationItem/:brandName',require('./api/models/contract.js').getContractDetail);
 //add new contract
