@@ -20,14 +20,18 @@
           </div>
         </div>
         <div class="pull-right" style="width:33%">
-          <progress percent="88" class="progress active"></progress>
+          <progress percent="percentageExpend" class="progress active">{{surplusExpend}}</progress>
           <small>
             <em>Total Avaliable Budget for Remaing Period</em>
           </small>
-          <progress percent="70" class="progress progress-suceess active progress-striped"></progress>
+          <!--<progress percent="ePercentageProduction" class="progress progress-suceess active progress-striped">{{eSurplusProduction}}</progress>
           <small>
             <em>Elecssories Available Capacity</em>
           </small>
+            <progress percent="hPercentageProduction" class="progress progress-suceess active progress-striped">{{hSurplusProduction}}</progress>
+          <small>
+            <em>HealthBeauty Available Capacity</em>
+          </small>-->
         </div>
           <div style="clear:both"></div>
           <div collapse="isCollapsed">
@@ -72,30 +76,30 @@
             <tr>
               <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.COF}}" popover-title="{{labelLanguages.COF}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.COF}}<span style="color:red">*</span></p>
               </th>
-              <th><a href="#" editable-text="pageBase.tradtionalAdvertising[1]" onaftersave="updateRetailerDecision('tradtionalAdvertising','1')">{{ pageBase.tradtionalAdvertising[1] || 0 }}</a></th>
+              <th><a href="#" editable-text="pageBase.tradtionalAdvertising[1]" onbeforesave="checkBudget('tradtionalAdvertising','1',$data)" onaftersave="updateRetailerDecision('tradtionalAdvertising','1')">{{ pageBase.tradtionalAdvertising[1] || 0 }}</a></th>
             </tr>
             <tr>
               <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.CON}}" popover-title="{{labelLanguages.CON}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.CON}}<span style="color:red">*</span></p></th>
-              <th><a href="#" editable-text="pageBase.onlineAdvertising[1]" onaftersave="updateRetailerDecision('onlineAdvertising','1')">{{ pageBase.onlineAdvertising[1]|| 0 }}</a></th>
+              <th><a href="#" editable-text="pageBase.onlineAdvertising[1]" onbeforesave="checkBudget('onlineAdvertising','1',$data)" onaftersave="updateRetailerDecision('onlineAdvertising','1')">{{ pageBase.onlineAdvertising[1]|| 0 }}</a></th>
             </tr>
             <tr>
               <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.AOF}}" popover-title="{{labelLanguages.AOF}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.AOF}}<span style="color:red">*</span></p></th>
-              <th><a href="#" editable-text="pageBase.tradtionalAdvertising[2]" onaftersave="updateRetailerDecision('tradtionalAdvertising','2')">{{ pageBase.tradtionalAdvertising[2] || 0 }}</a></th>
+              <th><a href="#" editable-text="pageBase.tradtionalAdvertising[2]" onbeforesave="checkBudget('tradtionalAdvertising','2',$data)" onaftersave="updateRetailerDecision('tradtionalAdvertising','2')">{{ pageBase.tradtionalAdvertising[2] || 0 }}</a></th>
             </tr>
             <tr>
               <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.AON}}" popover-title="{{labelLanguages.AON}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.AON}}<span style="color:red">*</span></p></th>
               <th>
-                <a href="#" editable-text="pageBase.onlineAdvertising[2]" onaftersave="updateRetailerDecision('onlineAdvertising','2')">{{ pageBase.onlineAdvertising[2] || 0 }}</a>
+                <a href="#" editable-text="pageBase.onlineAdvertising[2]" onbeforesave="checkBudget('onlineAdvertising','2',$data)" onaftersave="updateRetailerDecision('onlineAdvertising','2')">{{ pageBase.onlineAdvertising[2] || 0 }}</a>
               </th>
             </tr>
             <tr>
               <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.POF}}" popover-title="{{labelLanguages.POF}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.POF}}<span style="color:red">*</span></p></th>
-              <th><a href="#" editable-text="pageBase.tradtionalAdvertising[0]" onaftersave="updateRetailerDecision('tradtionalAdvertising','0')">{{ pageBase.tradtionalAdvertising[0] || 0 }}</a></th>
+              <th><a href="#" editable-text="pageBase.tradtionalAdvertising[0]" onbeforesave="checkBudget('tradtionalAdvertising','0',$data)" onaftersave="updateRetailerDecision('tradtionalAdvertising','0')">{{ pageBase.tradtionalAdvertising[0] || 0 }}</a></th>
             </tr>
             <tr>
               <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.PON}}" popover-title="{{labelLanguages.PON}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.PON}}<span style="color:red">*</span></p></th>
               <th>
-                <a href="#" editable-text="pageBase.onlineAdvertising[0]" onaftersave="updateRetailerDecision('onlineAdvertising','0')">{{ pageBase.onlineAdvertising[0] || 0 }}</a>
+                <a href="#" editable-text="pageBase.onlineAdvertising[0]" onbeforesave="checkBudget('onlineAdvertising','0',$data)" onaftersave="updateRetailerDecision('onlineAdvertising','0')">{{ pageBase.onlineAdvertising[0] || 0 }}</a>
               </th>
             </tr>
           </table>

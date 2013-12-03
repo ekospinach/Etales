@@ -55,14 +55,6 @@ define(['app'], function(app) {
 				var categoryID=0,count=0,result=0,eAcMax=0,hAcMax,abMax=0,expend=0;
 				var labelLanguages={},infoLanguages={};
 				var fakeName="EName";
-				// if(category=="Elecssories"){
-				// 	categoryID=1;
-				// 	fakeName="EName";
-				// }
-				// else if(category=="HealthBeauty"){
-				// 	categoryID=2;
-				// 	fakeName="HName";
-				// }
 	      		var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
 	      		$http({
 	      			method:'GET',

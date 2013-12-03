@@ -110,7 +110,7 @@
               <p class="text-primary" Popover-animation="true" popover="{{infoLanguages.TL}}" popover-title="{{labelLanguages.TL}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.TL}}<span style="color:red">*</span></p>
             </th>
             <th ng-repeat='product in products'>
-              <a href="#" editable-text="product.composition[1]" onbeforesave="checkTechnology(category,product.parentBrandName,product.varName,'composition','1',$index,$data)" ononaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'composition','1',$index)">{{ product.composition[1] || 0 }}</a>
+              <a href="#" editable-text="product.composition[1]" onbeforesave="checkTechnology(category,product.parentBrandName,product.varName,'composition','1',$index,$data)" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'composition','1',$index)">{{ product.composition[1] || 0 }}</a>
             </th>
           </tr>
           <tr>

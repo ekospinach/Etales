@@ -316,7 +316,11 @@ exports.updateProducerDecision = function(io){
                                                                             case 3: queryCondition.value = "PREMIUM";break;
                                                                         }
                                                                     }
-                                                                    if(queryCondition.location=="composition"){ doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k][queryCondition.location][queryCondition.additionalIdx] = queryCondition.value;}
+                                                                    if(queryCondition.location=="composition"){
+                                                                        console.log(queryCondition.value);
+                                                                        doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k][queryCondition.location][queryCondition.additionalIdx] = queryCondition.value;
+                                                                        console.log(doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k][queryCondition.location][queryCondition.additionalIdx]);
+                                                                    }
                                                                     else{ 
                                                                         doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k][queryCondition.location] = queryCondition.value;
                                                                         
@@ -571,7 +575,7 @@ exports.getProducerExpend=function(req,res,next){
                     for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
                         if(allProCatDecisions[i].proBrandsDecision[j].brandID!=0&&allProCatDecisions[i].proBrandsDecision[j].brandName==req.params.brandName){
                             if(req.params.location=="advertisingOffLine"||req.params.location=="supportTraditionalTrade"){
-                                result-=allProCatDecisions[i].proBrandsDecision[j][req.params.location][req.params.index];
+                                result-=allProCatDecisions[i].proBrandsDecision[j][req.params.location][req.params.additionalIdx];
                             }else{
                                 result-=allProCatDecisions[i].proBrandsDecision[j][req.params.location];
                             }
