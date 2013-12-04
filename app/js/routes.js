@@ -10,6 +10,7 @@ define(['angular',
 		'controllers/retailerDecisionStep3Ctrl',
 		'controllers/retailerDecisionStep4Ctrl',
 		'controllers/contractCtrl',
+		'controllers/contractDetailsCtrl',
 		'controllers/loginCtrl',
 		'controllers/adminCtrl',
 		'controllers/homeCtrl',
@@ -62,12 +63,11 @@ define(['angular',
 		}).when('/contract',{
 			templateUrl:'partials/contract.html',
 			controller:'contractCtrl',
-			access : access.playerView,
-			// resolve:{
-			// 	detail:function(ContractDetailLoader){
-			// 		return ContractDetailLoader();
-			// 	}
-			// }		
+			access : access.playerView,	
+		}).when('/contractDetails',{
+			templateUrl:'partials/contractDetails.html',
+			controller:'contractDetailsCtrl',
+			access : access.playerView,		
 		}).when('/login',{
 			templateUrl:'partials/login.html',
 			controller:'loginCtrl',

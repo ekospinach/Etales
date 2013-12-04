@@ -1,41 +1,3 @@
-// <<<<<<< HEAD
-// require.config({
-// 	paths: {
-// 		angular: '../bower_components/angular/angular',
-// 		angularCookies: '../bower_components/angular-cookies/angular-cookies',
-// 		angularRoute: '../bower_components/angular-route/angular-route',
-// 		angularResource: '../bower_components/angular-resource/angular-resource',
-// 		angularMocks: '../bower_components/angular-mocks/angular-mocks',
-// 		angularLoadingBar : '../bower_components/angular-loading-bar/src/loading-bar',
-// 		text: '../bower_components/requirejs-text/text',
-// 		angularXeditable: '../bower_components/angular-xeditable/dist/js/xeditable',
-// 		socketIO: '../bower_components/socket.io-client/dist/socket.io',
-// 		jquery:'../bower_components/jquery/jquery',
-// 		require:'../bower_components/requirejs/require',
-// 		underscore:'../bower_components/underscore/underscore',
-// 		bootstrap:'../bower_components/bootstrap/dist/js/bootstrap',
-// 		angularBootstrap:'../bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls',
-// 		routingConfig : './routingConfig',
-// 		//jquery-jqplot-->Map.html
-// 		jqplot:'../bower_components/jqplot/jquery.jqplot.min',
-// 		bubbleRenderer:'./map/jqplot.bubbleRenderer',
-// 		tree:'./map/bootstrap-tree',
-// 		chart:'../bower_components/angular-google-chart/ng-google-chart',
-// 		producerPopInfo:'./controllers/untils/producerPopInfo',
-// 		retailerPopInfo:'./controllers/untils/retailerPopInfo',
-// 		reportTitle:'./controllers/untils/reportTitle'
-// 		//addProduct:'../js/functions/addNewProduct'
-// 	},
-// 	baseUrl: 'js',
-// 	shim: {
-// 		'angular' : {'exports' : 'angular'},
-// 		'angularRoute': ['angular'],
-// 		'angularResource':['angular'],
-// 		'angularCookies': ['angular'],
-// 		'angularMocks': {
-// 			deps:['angular'],
-// 			'exports':'angular.mock'
-// =======
 (function(){
 	var root = this,
 		require = root.require;
@@ -94,7 +56,7 @@
 		priority: [
 			"angular"
 		],
-		waitSeconds : has('prod') ? 2000 : 2, //2000 seconds for prod mode on bootstrap and 2 seconds for dev mode
+		waitSeconds : 2000, //2000 seconds for prod mode on bootstrap and 2 seconds for dev mode
 
 	});
 

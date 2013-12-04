@@ -332,68 +332,7 @@ exports.updateContractDetails = function(io){
     		res.send(200, 'mission complete!');
 		}
     }
-		/*var query = {
-			contractCode : req.body.contractCode,
-			userType : req.body.userType,
-			negotiationItem : req.body.negotiationItem,
-			relatedBrandName : req.body.relatedBrandName,
-			relatedBrandID : req.body.relatedBrandID,
-
-			useBrandDetails : req.body.useBrandDetails,
-			useVariantDetails : req.body.useVariantDetails,
-			displayValue : req.body.displayValue,
-			brand_urbanValue : req.body.brand_urbanValue,
-			brand_ruralValue : req.body.brand_ruralValue,
-			variant_A_urbanValue : req.body.variant_A_urbanValue,
-			variant_A_ruralValue : req.body.variant_A_ruralValue,
-			variant_B_urbanValue : req.body.variant_B_urbanValue,
-			variant_B_ruralValue : req.body.variant_B_ruralValue,
-			variant_C_urbanValue : req.body.variant_C_urbanValue,
-			variant_C_ruralValue : req.body.variant_C_ruralValue,
-			isVerified : req.body.isVerified,
-			amount_or_rate : req.body.amount_or_rate
-		}
-
-	//console.log(query);
-
-		contract.update({contractCode : query.contractCode,
-						 userType : query.userType,
-						 negotiationItem : query.negotiationItem,
-						 relatedBrandName : query.relatedBrandName,
-						 relatedBrandID : query.relatedBrandID},
-						 {useBrandDetails : query.useBrandDetails,
-						  useVariantDetails : query.useVariantDetails,
-						  displayValue : query.displayValue,
-						  brand_urbanValue : query.brand_urbanValue,
-						  brand_ruralValue : query.brand_ruralValue,
-						  variant_A_urbanValue : query.variant_A_urbanValue,				  
-				    	  variant_A_ruralValue : query.variant_A_ruralValue,
-						  variant_B_urbanValue : query.variant_B_urbanValue,
-						  variant_B_ruralValue : query.variant_B_ruralValue,
-						  variant_C_urbanValue : query.variant_C_urbanValue,
-						  variant_C_ruralValue : query.variant_C_ruralValue,
-						  isVerified : query.isVerified,
-						  amount_or_rate : query.amount_or_rate},
-						  {upsert : true},
-						  function(err, numberAffected, raw){
-						  	 if (err) return next(new Error(err));
-	 					  	 console.log('the number of updated documents was %d', numberAffected);
-	 					  	 io.sockets.emit('contarctDetailsChanged', {contractCode : query.contractCode}); 					  	 
-						  	 res.send(200, 'Contract details update done.')
-						  });
-	}*/
 }
-
-exports.getContractDetails = function(req, res, next){
-	contractDetails.find({'contractCode':req.params.contractCode},function(err,docs){
-		if(docs){
-			res.send(200,docs);
-		}else{
-			res.send(404,'there is no contract');
-		}
-	})
-}
-
 
 exports.getContractsQuery = function(params){
 	var deferred = q.defer();
@@ -441,36 +380,19 @@ exports.getContractDetail=function(req,res,next){
 		negotiationItem:req.params.negotiationItem,
 		brandName:req.params.brandName
 	}
+	console.log(queryCondition);
 	contractDetails.find({
 		'contractCode':req.params.contractCode,
 		'userType':req.params.userType,
 		'negotiationItem':req.params.negotiationItem,
 		'relatedBrandName':req.params.brandName
 	},function(err,doc){
+		if(err) {next(new Error(err))};
 		if(doc){
 			res.send(200,doc);
 		}else{
 			res.send(404,'there is no contract');
 		}
-	})
-	// console.log(queryCondition);
-	// if(req.params.contractCode==undefined){
-	// 	res.send(200);
-	// }else{
-	// 	contractDetails.find({
-	// 		contractCode:req.params.contractCode,
-	// 		userType:req.params.userType,
-	// 		negotiationItem:req.params.negotiationItem,
-	// 		brandName:req.params.brandName
-	// 	},function(err,doc){
-	// 		if(doc){
-	// 			//console.log(doc);
-	// 			res.send(200,doc);
-	// 		}else{
-	// 			console.log('4');
-	// 			res.send(404);
-	// 		}
-	// 	})
-	// }
+	});
 }
 

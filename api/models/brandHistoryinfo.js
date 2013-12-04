@@ -18,11 +18,20 @@ var brandHistoryInfoSchema = mongoose.Schema({
 
 var supplierViewSchema = mongoose.Schema({
     //b...
+    perception : [perceptionDataSchema], //length: TMarkets(1~2)
     awareness : [Number], //length: TMarketsDetails(1~2)
     socialNetworksScore : [{
         sentiment : Number,
         strength : Number
     }]    //length: TMarketsTotalDetails(1~3)
+})
+
+var perceptionDataSchema = mongoose.Schema({
+    perceptionData : [Number] //length: TVarPerceptions (1~VariantDimsMaxFull) 
+    //VariantDimsMaxFull = VariantDimsMax(3) + AllRetsMaxTotal(5);  { ... as above plus specific price perceptions at 
+    //1-Ease of Use perception(Performance perception)
+    //2-Quality perception(Gentleness perception)
+    //3-Price Perception
 })
 
 var channelViewSchema = mongoose.Schema({

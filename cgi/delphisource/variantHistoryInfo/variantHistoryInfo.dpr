@@ -38,9 +38,9 @@ uses
 
 const
   DecisionFileName = 'Negotiations.';
-  dummyNo = 0;
+  dummyNo = 1;
   DataDirectory = 'C:\E-project\ecgi\';
-  dummySeminar = 'MAY';
+  dummySeminar = 'ROUND1';
   aCategories : array[TCategories] of string = ('Elecsories', 'HealthBeauties');
   aMarkets : array[TMarketsTotal] of string = ('Urban', 'Rural', 'Total');
 
@@ -329,7 +329,7 @@ var
     jo: ISuperObject;
   begin
     jo  := SO;
-//Writeln('channelViewSchema');
+//Writeln('channelViewSchema ch ' + IntToStr(pChannel) + IntToStr(pCategory) + IntToStr(pBrand) + IntToStr(pVariant));
 //var channelViewSchema = mongoose.Schema({
 //    channelMarketView : [channelMarketViewSchema] //length: TMarketsTotal(1~3)
 //})
@@ -461,23 +461,85 @@ var
   begin
     jo  := SA([]);
 
-//    for prd := Low(TAllProducers) to High(TAllProducers) do
-//      for cat := Low(TCategories) to High(TCategories) do
-//        for brn := Low(TProBrands) to High(TProBrands) do
-//          for vnt := Low(TOneBrandVars) to High(TOneBrandVars) do
-//            jo[''] :=
-//             variantHistoryInfoSchema(
-//              currentResult.r_Producers[prd].pt_CategoriesResults[cat].pc_BrandsResults[brn].pb_VariantsResults[vnt],
-//              cat,prd,brn,
-//              currentResult.r_Producers[prd].pt_CategoriesResults[cat].pc_BrandsResults[brn].pb_BrandName,
-//              vnt);
-//    Writeln('collecting');
+    for prd := Low(TAllProducers) to High(TAllProducers) do
+      for cat := Low(TCategories) to High(TCategories) do
+        for brn := Low(TProBrands) to High(TProBrands) do
+          for vnt := Low(TOneBrandVars) to High(TOneBrandVars) do
             jo[''] :=
              variantHistoryInfoSchema(
-              currentResult.r_Producers[1].pt_CategoriesResults[1].pc_BrandsResults[1].pb_VariantsResults[1],
-              1,1,1,
-              currentResult.r_Producers[1].pt_CategoriesResults[1].pc_BrandsResults[1].pb_BrandName,
-              1);
+              currentResult.r_Producers[prd].pt_CategoriesResults[cat].pc_BrandsResults[brn].pb_VariantsResults[vnt],
+              cat,prd,brn,
+              currentResult.r_Producers[prd].pt_CategoriesResults[cat].pc_BrandsResults[brn].pb_BrandName,
+              vnt);
+
+    Result  := jo;
+  end;
+
+  function varHistInfoSchema(var curVar: TVariantResults; pCategoryID: TCategories): ISuperObject;
+  var
+    jo: ISuperObject;
+    vBrn: TProBrands;
+    vVnt: TOneBrandVars;
+  begin
+    jo  := SO;
+    vBrn := curVar.v_ParentBrandID - curVar.v_ParentCompanyID * 10;
+    vVnt := curVar.v_VariantID - curVar.v_ParentBrandID * 10;
+//var variantHistoryInfoSchema = mongoose.Schema({
+//    period : Number,
+//    seminar : String,
+//    varName : String,
+//    varID : Number,
+//    dateOfBirth : Number, //-4~10
+//    dateOfDeath : Number, //-4~10
+//    parentBrandID : Number,
+//    parentBrandName : String,
+//    parentCatID : Number,
+//    parentCompanyID : Number, //(1~9)
+//    supplierView : [supplierViewSchema],
+//    channelView : [channelViewSchema] //length:TRetailersTotal(1~4)
+//})
+//Writeln('variantHistoryInfoSchema curVar.v_VariantID ' + IntToStr(curVar.v_VariantID) +
+//  ' vVnt ' + IntToStr(vVnt) + ' curVar.v_ParentBrandID ' + IntToStr(curVar.v_ParentBrandID) +
+//  ' vBrn ' + IntToStr(vBrn) +
+//  ' curVar.v_ParentCompanyID ' + inttostr(curVar.v_ParentCompanyID));
+    jo.I['period']  := currentPeriod;
+    jo.S['seminar'] := currentSeminar;
+    jo.S['varName'] := curVar.v_VariantName;
+    jo.I['varID'] := curVar.v_VariantID;
+    jo.I['dateOfBirth'] := curVar.v_DateofBirth;
+    jo.I['dateOfDeath'] := curVar.v_DateOfDeath;
+    jo.I['parentBrandID'] := curVar.v_ParentBrandID;
+    jo.S['parentBrandName'] := currentResult.r_Brands[pCategoryID][curVar.v_ParentBrandIndex].b_BrandName;
+    jo.I['parentCatID'] := pCategoryID;
+    jo.I['parentCompanyID'] := curVar.v_ParentCompanyID;
+    jo.O['supplierView']  := SA([]);
+    if curVar.v_VariantID <> 0 then     // variant active
+      if curVar.v_ParentCompanyID <= High(TAllProducers) then // only for producers 1~4
+      begin
+//        writeln(curVar.v_VariantID);
+          jo.A['supplierView'].Add( supplierViewSchema(currentResult.r_Producers[curVar.v_ParentCompanyID].pt_CategoriesResults[pCategoryID].pc_BrandsResults[vBrn].pb_VariantsResults[vVnt]) );
+      end;
+    jo.O['channelView'] := SA([]);
+    if curVar.v_VariantID <> 0 then
+      for I := Low(TAllRetailers) to High(TAllRetailers) do
+        jo.A['channelView'].Add( channelViewSchema(I,pCategoryID,curVar.v_ParentBrandID,vVnt) );
+
+    result  := jo;
+
+  end;
+
+  function collectVariantsNoProducer(): ISuperObject;
+  var
+    jo: ISuperObject;
+    cat, vnt: Integer;
+  begin
+    jo  := SA([]);
+
+    for cat := Low(TCategories) to High(TCategories) do
+      for vnt := Low(TVariants) to High(TVariants) do
+        if currentResult.r_Variants[cat][vnt].v_VariantID <> 0 then
+          jo['']  :=
+          varHistInfoSchema( currentResult.r_Variants[cat][vnt], cat);
 
     Result  := jo;
   end;
@@ -487,7 +549,8 @@ var
       s_str : string;
     begin
       oJsonFile := SO;
-      oJsonFile := collectAllVariants;
+//      oJsonFile := collectAllVariants;
+      oJsonFile := collectVariantsNoProducer;
       s_str := 'out' + '.json';
       writeln( oJsonFile.AsJSon(False,False));
       oJsonFile.SaveTo(s_str, true, false);
@@ -547,12 +610,10 @@ begin
     // initialize globals
         currentSeminar := getSeminar;
         currentPeriod := getPeriod;
-//          Writeln('currentPeriod : ' + IntToStr(currentPeriod));
-//          Writeln('currentSeminar : ' + currentSeminar);
 
     {** Read results file **}
-//        vReadRes := ReadNegoRecordByProDecision(currentPeriod,currentAllDeals,
-//          DataDirectory,currentSeminar); // read Nego file
+        vReadRes := ReadResults(currentPeriod, currentSeminar, DataDirectory,
+          currentResult); // read Results file
 
     // Now let's make some JSON stuff here
         if vReadRes = 0 then
@@ -604,31 +665,31 @@ begin
 
 
 ////    // initialize globals
-        currentSeminar := getSeminar;
-        currentPeriod := getPeriod;
-
-        vReadRes := ReadResults(currentPeriod, currentSeminar, DataDirectory,
-          currentResult); // read Results file
+//        currentSeminar := getSeminar;
+//        currentPeriod := getPeriod;
+//
+//        vReadRes := ReadResults(currentPeriod, currentSeminar, DataDirectory,
+//          currentResult); // read Results file
 //
 //    // Now let's make some JSON stuff here
-        if vReadRes = 0 then
-          makeJson;
-//
-//          currentSeminar := oJsonFile['seminar'].AsString;
-//          currentPeriod := oJsonFile['period'].AsInteger;
+//        if vReadRes = 0 then
+//          makeJson;
 ////
-//          Writeln('currentPeriod : ' + IntToStr(currentPeriod));
-//          Writeln('currentSeminar : ' + currentSeminar);
+////          currentSeminar := oJsonFile['seminar'].AsString;
+////          currentPeriod := oJsonFile['period'].AsInteger;
+//////
+////          Writeln('currentPeriod : ' + IntToStr(currentPeriod));
+////          Writeln('currentSeminar : ' + currentSeminar);
+//////
+//////      // now we have process JSON and convert it into binary stucture
+////          fromJSONallDealSchema(currentAllDeals, oJsonFile);
+//////
+//////    {** Read results file **}
+////          vReadRes := WriteNegoRecordByProDecision(currentPeriod,
+////            currentAllDeals,DataDirectory,currentSeminar); // update Decision file
 ////
-////      // now we have process JSON and convert it into binary stucture
-//          fromJSONallDealSchema(currentAllDeals, oJsonFile);
-////
-////    {** Read results file **}
-//          vReadRes := WriteNegoRecordByProDecision(currentPeriod,
-//            currentAllDeals,DataDirectory,currentSeminar); // update Decision file
-//
-    writeln(#10'press enter ...');
-    readln;
+//    writeln(#10'press enter ...');
+//    readln;
 //    WriteLn('</BODY></HTML>');
   finally
     sListData.Free;
