@@ -43,13 +43,7 @@ define(['app'], function(app) {
 					$scope.updateProducerDecision=updateProducerDecision;
 					$scope.getBrandMoreInfo=getBrandMoreInfo;
 					$scope.closeInfo=closeInfo;
-				var result=showView($scope.producerID,$scope.period,$scope.category,$scope.language);
-				delay.resolve(result);
-				if (result==1) {
-					delay.resolve(result);
-				} else {
-					delay.reject('showView error,products is null');
-				}
+				showView($scope.producerID,$scope.period,$scope.category,$scope.language);
 				return delay.promise;
 			}
 
@@ -76,29 +70,24 @@ define(['app'], function(app) {
 	      		}).then(function(data){
 	      			abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
 					acMax=data.data.productionCapacity[categoryID-1];
-	      		},function(data){
-					console.log('read companyHistory fail');
-	      		}).then(function(){
-	      			url="/producerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/brandName/location/1';
-	      			$http({
+					url="/producerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/brandName/location/1';
+	      			return $http({
 	      				method:'GET',
 	      				url:url,
-	      			}).then(function(data){
-	      				expend=data.data.result;
-	      				$scope.surplusExpend=abMax-expend;
-	      				$scope.percentageExpend=(abMax-expend)/abMax*100;
-	      			},function(data){
-	      				console.log('read producerExpend fail');
-	      			}).then(function(){
-	      				url="/productionResult/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+fakeName+'/varName';
-						$http({
-							method:'GET',
-							url:url
-						}).then(function(data){
-							$scope.surplusProduction=acMax-data.data.result;
-							$scope.percentageProduction=(acMax-data.data.result)/acMax*100;
-							
-							$scope.producerID=producerID,$scope.period=period,$scope.category=category,$scope.language=language;
+	      			});
+	      		}).then(function(data){
+	      			expend=data.data.result;
+	      			$scope.surplusExpend=abMax-expend;
+	      			$scope.percentageExpend=(abMax-expend)/abMax*100;
+	      			url="/productionResult/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+fakeName+'/varName';
+					return $http({
+						method:'GET',
+						url:url
+					});
+				}).then(function(data){
+					$scope.surplusProduction=acMax-data.data.result;
+					$scope.percentageProduction=(acMax-data.data.result)/acMax*100;
+					$scope.producerID=producerID,$scope.period=period,$scope.category=category,$scope.language=language;
 							if(language=="English"){
 								for(var i=0;i<$scope.multilingual.length;i++){
 									labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
@@ -127,12 +116,9 @@ define(['app'], function(app) {
 				      		$scope.brands=brands;
 							$scope.labelLanguages=labelLanguages;
 							$scope.infoLanguages=infoLanguages;
-							return result;
-						},function(data){
-							console.log('read currentProduction fail');
-						});
-	      			})
-	      		});		
+				},function(){
+					console.log('showView fail');
+				});
 	      		return d.promise;		
 			}
 
@@ -176,46 +162,38 @@ define(['app'], function(app) {
 	      			url:url
 	      		}).then(function(data){
 	      			max=data.data.budgetAvailable+data.data.budgetSpentToDate;
-	      		},function(data){
-					console.log('read companyHistory fail');
-	      		}).then(function(){
 	      			url="/producerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+brandName+'/'+location+'/'+tep;
-	      			$http({
+	      			return $http({
 	      				method:'GET',
 	      				url:url
-	      			}).then(function(data){
-	      				if(parseInt(data.data.result)+parseInt(value)>max){
-	      					d.resolve('Input range 0~'+(max-data.data.result));
-	      				}else{
-	      					d.resolve();
-	      				}
-	      			},function(data){
-	      				d.resolve('fail');
 	      			});
-	      		})
+	      		}).then(function(data){
+	      			if(parseInt(data.data.result)+parseInt(value)>max){
+	      				d.resolve('Input range 0~'+(max-data.data.result));
+	      			}else{
+	      				d.resolve();
+	      			}
+	      		},function(data){
+	      			d.resolve('fail');
+	      		});
 	      		return d.promise;
 			}
 
 			var getBrandMoreInfo=function(brandID,brandName){
+				var d=$q.defer();
 				$scope.isCollapsed=false;
-				var url='/brandHistoryInfo/'+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+brandName;
+				var url='/brandHistoryInfo/'+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/'+brandName;
 				$http({method: 'GET', url: url})
-				.success(function(data, status, headers, config) {
-					$scope.brandHistory=data;
-					console.log($scope.brandHistory);
+				.then(function(data) {
+					$scope.brandHistory=data.data;
 					url="/producerBrandDecision/"+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+($rootScope.currentPeriod-1)+'/'+$rootScope.user.seminar+'/'+brandName;
-					 $http({method:'GET',url:url})
-					 .success(function(data,status,headers,config){
-					 	$scope.brandDecisionHistory=data;
-					 	console.log($scope.brandDecisionHistory);
-					 })
-					 .error(function(data,status,headers,config){
-					 	console.log('read brandDecisionHistory fail');
-					 });
-				})
-				.error(function(data, status, headers, config) {
-					console.log('read producer BrandHistory fail');
+					return $http({method:'GET',url:url});
+				}).then(function(data){
+					$scope.brandDecisionHistory=data.data;
+				},function(){
+					console.log('read historyInfo fail');
 				});
+				return d.promise;
 			}
 
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){

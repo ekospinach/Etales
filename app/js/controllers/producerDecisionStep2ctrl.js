@@ -41,13 +41,7 @@ define(['app'], function(app) {
 					$scope.updateProducerDecision=updateProducerDecision;
 					$scope.getMoreInfo=getMoreInfo;
 					$scope.closeInfo=closeInfo;
-				var result=showView($scope.producerID,$scope.period,$scope.category,$scope.language);
-				delay.resolve(result);
-				if (result==1) {
-					delay.resolve(result);
-				} else {
-					delay.reject('showView error,products is null');
-				}
+					showView($scope.producerID,$scope.period,$scope.category,$scope.language);
 				return delay.promise;
 			}
 
@@ -75,30 +69,26 @@ define(['app'], function(app) {
 	      		}).then(function(data){
 	      			abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
 					acMax=data.data.productionCapacity[categoryID-1];
-	      		},function(data){
-					console.log('read companyHistory fail');
-	      		}).then(function(){
-	      			url="/producerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/brandName/location/1';
-	      			$http({
+					url="/producerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/brandName/location/1';
+	      			return $http({
 	      				method:'GET',
 	      				url:url,
-	      			}).then(function(data){
-	      				expend=data.data.result;
-	      				$scope.surplusExpend=abMax-expend;
-	      				$scope.percentageExpend=(abMax-expend)/abMax*100;
-	      			},function(data){
-	      				console.log('read producerExpend fail');
-	      			}).then(function(){
-	      				url="/productionResult/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+fakeName+'/varName';
-						$http({
+	      			});
+	      		}).then(function(data){
+	      			expend=data.data.result;
+	      			$scope.surplusExpend=abMax-expend;
+	      			$scope.percentageExpend=(abMax-expend)/abMax*100;
+	      			url="/productionResult/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+fakeName+'/varName';
+					return $http({
 							method:'GET',
 							url:url
-						}).then(function(data){
-							$scope.surplusProduction=acMax-data.data.result;
-							$scope.percentageProduction=(acMax-data.data.result)/acMax*100;
-							$scope.producerID=producerID,$scope.period=period,$scope.category=category,$scope.language=language;
-							if(language=="English"){
-								for(var i=0;i<$scope.multilingual.length;i++){
+						});
+				}).then(function(data){
+					$scope.surplusProduction=acMax-data.data.result;
+					$scope.percentageProduction=(acMax-data.data.result)/acMax*100;
+					$scope.producerID=producerID,$scope.period=period,$scope.category=category,$scope.language=language;
+					if(language=="English"){
+							for(var i=0;i<$scope.multilingual.length;i++){
 									if(category=="Elecssories"){
 										$scope.EleShow="inline";
 										$scope.HeaShow="none";
@@ -147,12 +137,9 @@ define(['app'], function(app) {
 				      		$scope.products=products;
 							$scope.labelLanguages=labelLanguages;
 							$scope.infoLanguages=infoLanguages;
-							return result;
-						},function(data){
-							console.log('read currentProduction fail');
-						});
-	      			})
-	      		});		
+				},function(){
+					console.log('showView fail');
+				});
 	      		return d.promise;		
 			}
 
@@ -188,31 +175,27 @@ define(['app'], function(app) {
 			}
 
 			var getMoreInfo=function(brandName,varName){
+				var d=$q.defer();
 				$scope.isCollapsed=false;
-				var url='/variantHistoryInfo/'+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+brandName+'/'+varName;
+				var url='/variantHistoryInfo/'+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/'+brandName+'/'+varName;
 				$http({method: 'GET', url: url})
-				.success(function(data, status, headers, config) {
-					$scope.variantHistory=data;
-					url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
-					$http({method:'GET',url:url})
-					.success(function(data,status,headers,config){
-						$scope.companyHistory=data;
-					})
-					.error(function(data,status,headers,config){
-						console.log('read companyHistoryInfo fail');
-					});
-				})
-				.error(function(data, status, headers, config) {
-					console.log('read variantHistoryInfo fail');
+				.then(function(data) {
+					$scope.variantHistory=data.data;
+					url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+					return $http({method:'GET',url:url});
+				}).then(function(data){
+					$scope.companyHistory=data.data;
+				},function(){
+					console.log('read history info fail');
 				});
+				return d.promise;
 			}
 			var checkProduction=function(category,brandName,varName,location,additionalIdx,index,value){
 				var d = $q.defer();	
 				var categoryID,max,result;
 				if(category=="Elecssories"){
 					categoryID=1;
-				}
-				else{
+				}else{
 					categoryID=2;
 				}	
 				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
@@ -221,23 +204,20 @@ define(['app'], function(app) {
 					url:url
 				}).then(function(data){
 					max=data.data.productionCapacity[categoryID-1];
-				},function(data){
-					d.resolve('fail');
-				}).then(function(){
 					url="/productionResult/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+brandName+'/'+varName;
-					$http({
+					return $http({
 						method:'GET',
 						url:url
-					}).then(function(data){
-						if(parseInt(data.data.result)+parseInt(value)>max){
-							d.resolve('Input range:0~'+(max-parseInt(data.data.result)));
-						}else{
-							d.resolve();
-						}
-					},function(data){
-						d.resolve('fail');
 					});
-				});
+				}).then(function(data){
+					if(parseInt(data.data.result)+parseInt(value)>max){
+						d.resolve('Input range:0~'+(max-parseInt(data.data.result)));
+					}else{
+						d.resolve();
+					}
+				},function(){
+					d.resolve('fail');
+				})
 				return d.promise;
 			}
 	

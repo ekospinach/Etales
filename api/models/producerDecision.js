@@ -661,7 +661,7 @@ exports.checkProducerProduct=function(req,res,next){
                     }
                 }
                 if(count>=5){
-                    res.send(404,{message:'The number of brand is more than 5 in a category'});
+                    res.send(404,{message:'The count of brand is more than 5 in a category'});
                 }else if(result!=0){
                     res.send(404,{message:'There is another brand named '+req.params.brandName});
                 }else{
@@ -685,7 +685,7 @@ exports.checkProducerProduct=function(req,res,next){
                     }
                 }
                 if(count>=3){
-                    res.send(404,{message:'The number of var is more than 5 in brand '+req.params.brandName});
+                    res.send(404,{message:'The count of variant is more than 3 in brand '+req.params.brandName});
                 }else if(result!=0){
                     res.send(404,{message:'There is another variant named '+req.params.varName});
                 }else{

@@ -6,8 +6,6 @@ define(['app'], function(app) {
 		    $rootScope.loginFooter="bs-footer";
 		    $rootScope.loginLink="footer-links";
 		    $rootScope.loginDiv="container";
-			var calculate='../js/controllers/untils/calculate.js';
-			//var calculate=require('');
 			var multilingual=getRetailerStep3Info();
 
 			var language='English',
@@ -61,8 +59,12 @@ define(['app'], function(app) {
 					$scope.loadSelectCategroy=loadSelectCategroy;
 					$scope.setBrandName=setBrandName;
 					$scope.loadAllBrand=loadAllBrand;
-					$scope.selected=selected;
-					$scope.loadNameNum=loadNameNum;
+					$scope.showbubleMsg=showbubleMsg;
+					//check
+					$scope.checkDesign=checkDesign;
+					$scope.checkTechnology=checkTechnology;
+					$scope.checkRMQ=checkRMQ;
+
 					$scope.addNewProduct=addNewProduct;
 					$scope.updateRetailerDecision=updateRetailerDecision;
 					$scope.getMoreInfo=getMoreInfo;
@@ -70,13 +72,7 @@ define(['app'], function(app) {
 					$scope.calculateBrandID=calculateBrandID;
 					$scope.calculateVarID=calculateVarID;
 					$scope.deleteProduct=deleteProduct;
-				var result=showView($scope.retailerID,$scope.period,$scope.category,$scope.language);
-				delay.resolve(result);
-				if (result==1) {
-					delay.resolve(result);
-				} else {
-					delay.reject('showView error,products is null');
-				}
+				showView($scope.retailerID,$scope.period,$scope.category,$scope.language);
 				return delay.promise;
 			}
 
@@ -85,7 +81,6 @@ define(['app'], function(app) {
 				var nums=new Array();
 				for(var i=0;i<retVariantDecision.privateLabelDecision.length;i++){
 					if(retVariantDecision.privateLabelDecision[i]!=undefined&&retVariantDecision.privateLabelDecision[i].brandName!=undefined&&retVariantDecision.privateLabelDecision[i].brandName!=""){
-					//if(retVariantDecision.privateLabelDecision[i]!=undefined&&retVariantDecision.privateLabelDecision[i].brandID!=undefined&&retVariantDecision.privateLabelDecision[i].brandID!=0){
 						nums.push(retVariantDecision.privateLabelDecision[i].brandID);
 					}
 				}
@@ -114,7 +109,6 @@ define(['app'], function(app) {
 		    	var nums=new Array();
 		    	for(var i=0;i<privateLabelDecision.privateLabelVarDecision.length;i++){
 					if(privateLabelDecision.privateLabelVarDecision[i]!=undefined&&privateLabelDecision.privateLabelVarDecision[i].varName!=undefined&&privateLabelDecision.privateLabelVarDecision[i].varName!=""){
-					//if(privateLabelDecision.privateLabelVarDecision[i]!=undefined&&privateLabelDecision.privateLabelVarDecision[i].varID!=undefined&&privateLabelDecision.privateLabelVarDecision[i].varID!=0){
 						nums.push(privateLabelDecision.privateLabelVarDecision[i].varID);
 					}
 				}
@@ -143,86 +137,125 @@ define(['app'], function(app) {
 		    }
 			/*Load Page*/
 			var showView=function(retailerID,period,category,language){
+				var d=$q.defer();
 				$scope.retailerID=retailerID,$scope.period=period,$scope.category=category,$scope.language=language;
-				var infoLanguages={},labelLanguages={};
-				if(language=="English"){
-					for(var i=0;i<$scope.multilingual.length;i++){
-						if(category=="Elecssories"){
-							$scope.EleShow="inline";
-							$scope.HeaShow="none";
-						}
-						else if(category=="HealthBeauty"){
-							$scope.EleShow="none";
-							$scope.HeaShow="inline";
-						}
-						labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
-						infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
-					}
-				}
-				else if(language=="Chinese"){
-					for(var i=0;i<$scope.multilingual.length;i++){
-						if(category=="Elecssories"){
-							$scope.EleShow="inline";
-							$scope.HeaShow="none";
-						}
-						else if(category=="HealthBeauty"){
-							$scope.EleShow="none";
-							$scope.HeaShow="inline";
-						}
-						infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoCHN;
-						labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelCHN;
-					}
-				}
-				var allRetCatDecisions=loadSelectCategroy(category);
-				console.log(allRetCatDecisions);
-	      		var count=0,result=0;
-	      		var products=new Array();
-	      		for(var i=0;i<allRetCatDecisions.length;i++){
-	      			for(var j=0;j<allRetCatDecisions[i].privateLabelDecision.length;j++){
-						if(allRetCatDecisions[i].privateLabelDecision[j]!=undefined&&allRetCatDecisions[i].privateLabelDecision[j].brandID!=undefined&&allRetCatDecisions[i].privateLabelDecision[j].brandID!=0){      				
-		      				for(var k=0;k<allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision.length;k++){
-			      				//if varName is null -->var is null
-			      				if(allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k]!=undefined&&allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k].varID!=undefined&&allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k].varID!=0&&allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k].varName!=""){
-			      				//if varID is 0 -->var is null
-			      				//if(allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k]!=undefined&&allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k].varID!=undefined&&allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k].varID!=0){
-			      					products.push(allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k]);
-				      				products[count].category=category;
-				      				products[count].parentBrandName=allRetCatDecisions[i].privateLabelDecision[j].brandName;
-				      				if(products[count].packFormat=="ECONOMY"){
-				   						products[count].packFormat=1;
-				   					}
-				      				else if(products[count].packFormat=="STANDARD"){
-				      					products[count].packFormat=2;
-				      				}
-				      				else if(products[count].packFormat=="PREMIUM"){
-				      					products[count].packFormat=3;
-				   					}
-				   					count++;
-			  					}
-		      				}
-		      			}
-      				}
-	      		}
-	      		if(count!=0){
-	      			result=1;
-	      		}
-	      		console.log('products:' + products);
-	      		$scope.products=products;
-	      		console.log($scope.products);
-				$scope.infoLanguages=infoLanguages;
-				$scope.labelLanguages=labelLanguages;
-				return result;
+				var categoryID=0,count=0,result=0,expend=0;
+				var labelLanguages={},infoLanguages={};
+				var fakeName="EName",max=100;
+	      		var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/R/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+	      		$http({
+	      			method:'GET',
+	      			url:url
+	      		}).then(function(data){
+	      			abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
+	      			$scope.abMax=abMax;
+	      			url="/retailerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/-1/location/1';
+	      			return $http({
+	      				method:'GET',
+	      				url:url,
+	      			});
+	      		}).then(function(data){
+	      			expend=data.data.result;
+	      			$scope.surplusExpend=abMax-expend;
+	      			$scope.percentageExpend=(abMax-expend)/abMax*100;
+	      		// 	url="/retailerShelfSpace/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/-1/0/brandName/varName';
+	      		// 	return $http({
+	      		// 		method:'GET',
+	      		// 		url:url
+	      		// 	});
+	      		// }).then(function(data){
+	      		// 			$scope.surplusShelf=new Array();
+	      		// 			$scope.percentageShelf=new Array();
+	      		// 			$scope.surplusShelf[0]=new Array();
+	      		// 			$scope.surplusShelf[1]=new Array();
+	      		// 			$scope.percentageShelf[0]=new Array();
+	      		// 			$scope.percentageShelf[1]=new Array();
+	      		// 			$scope.surplusShelf[0][0]=data.data.result[0][0];
+	      		// 			$scope.surplusShelf[0][1]=data.data.result[0][1];
+	      		// 			$scope.surplusShelf[1][0]=data.data.result[1][0];
+	      		// 			$scope.surplusShelf[1][1]=data.data.result[1][1];
+	      		// 			$scope.percentageShelf[0][0]=(100-$scope.surplusShelf[0][0]);
+	      		// 			$scope.percentageShelf[0][1]=(100-$scope.surplusShelf[0][1]);
+	      		// 			$scope.percentageShelf[1][0]=(100-$scope.surplusShelf[1][0]);
+	      		// 			$scope.percentageShelf[1][1]=(100-$scope.surplusShelf[1][1]);	
+
+							if(language=="English"){
+								for(var i=0;i<$scope.multilingual.length;i++){
+									if(category=="Elecssories"){
+										$scope.EleShow="inline";
+										$scope.HeaShow="none";
+									}
+									else if(category=="HealthBeauty"){
+										$scope.EleShow="none";
+										$scope.HeaShow="inline";
+									}
+									labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
+									infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
+								}
+							}
+							else if(language=="Chinese"){
+								for(var i=0;i<$scope.multilingual.length;i++){
+									if(category=="Elecssories"){
+										$scope.EleShow="inline";
+										$scope.HeaShow="none";
+									}
+									else if(category=="HealthBeauty"){
+										$scope.EleShow="none";
+										$scope.HeaShow="inline";
+									}
+									infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoCHN;
+									labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelCHN;
+								}
+							}
+							var allRetCatDecisions=loadSelectCategroy(category);
+				      		var products=new Array();
+				      		for(var i=0;i<allRetCatDecisions.length;i++){
+				      			for(var j=0;j<allRetCatDecisions[i].privateLabelDecision.length;j++){
+									if(allRetCatDecisions[i].privateLabelDecision[j]!=undefined&&allRetCatDecisions[i].privateLabelDecision[j].brandID!=undefined&&allRetCatDecisions[i].privateLabelDecision[j].brandID!=0){      				
+					      				for(var k=0;k<allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision.length;k++){
+						      				//if varName is null -->var is null
+						      				if(allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k]!=undefined&&allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k].varID!=undefined&&allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k].varID!=0&&allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k].varName!=""){
+						      				//if varID is 0 -->var is null
+						      					products.push(allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k]);
+							      				products[count].category=category;
+							      				products[count].parentBrandName=allRetCatDecisions[i].privateLabelDecision[j].brandName;
+							      				if(products[count].packFormat=="ECONOMY"){
+							   						products[count].packFormat=1;
+							   					}
+							      				else if(products[count].packFormat=="STANDARD"){
+							      					products[count].packFormat=2;
+							      				}
+							      				else if(products[count].packFormat=="PREMIUM"){
+							      					products[count].packFormat=3;
+							   					}
+							   					count++;
+						  					}
+					      				}
+					      			}
+			      				}
+				      		}
+				      		$scope.products=products;
+							$scope.infoLanguages=infoLanguages;
+							$scope.labelLanguages=labelLanguages;
+						},function(){
+							console.log('showView fail');
+						})
+				return d.promise;
 			}
 
 			/*set add function is lauch new Brand*/
 			var setAddNewBrand=function(){
 				$scope.parameter="NewBrand";/*add new Brand*/
+				$scope.newBrand="";
+				$scope.newVariant="none";
 				$scope.lauchNewCategory=1;
 				setBrandName($scope.lauchNewCategory);
 			}	
 			/*set add function is add under a existed brand*/
 			var setAddNewProUnderBrand=function(){
 				$scope.parameter="ExistedBrand";/*add new product under existed Brand*/
+				$scope.newBrand="none";
+				$scope.newVariant="";
 				$scope.addNewCategory=1;
 				loadAllBrand($scope.addNewCategory);
 			}
@@ -267,12 +300,8 @@ define(['app'], function(app) {
 	      		$scope.addChooseBrand=allBrands[0].BrandID;
 			}
 
-			var selected=function(category){
-				console.log(category);
-			}
 
 			var selectPacks = function(parentBrandName,varName) {
-				console.log('testSelectPacks');
 				var selected,postion=-1;
 				for(var i=0;i<$scope.products.length;i++){
 					if($scope.products[i].parentBrandName==parentBrandName&&$scope.products[i].varName==varName){
@@ -297,6 +326,168 @@ define(['app'], function(app) {
 			    $scope.productModal = false;
 			};
 
+			//check
+			var checkDesign=function(category,brandName,varName,location,additionalIdx,index,value){
+				var d = $q.defer();	
+				var categoryID=0,max=0;
+				if(category=="Elecssories"){
+					categoryID=1;
+					var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/4';
+					$http({
+						method:'GET',
+						url:url
+					}).then(function(data){
+						max=data.data.acquiredDesignLevel[categoryID-1];
+						if(value<1||value>max){
+							d.resolve('Input range:1~'+max);
+						}
+						url="/retailerCurrentDecision/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+brandName+'/'+varName;
+						return $http({
+							method:'GET',
+							url:url
+						});
+					}).then(function(data){	
+						if(value>data.data.composition[2]+2||value>data.data.composition[1]+4){
+							if(data.data.composition[2]+2>=data.data.composition[1]+4){
+								d.resolve('Input range:1~'+(data.data.composition[1]+4));
+							}else{
+								d.resolve('Input range:1~'+(data.data.composition[2]+2));
+							}
+						}else{
+							d.resolve();
+						}
+					},function(data){
+						d.resolve('fail');
+					});
+				}else{
+					categoryID=2;
+					url="/retailerCurrentDecision/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+brandName+'/'+varName;
+					$http({
+						method:'GET',
+						url:url
+					}).then(function(data){
+						if(value>data.data.composition[1]+2||value<1||value>data.data.composition[2]+2){
+							if(data.data.composition[1]>=data.data.composition[2]){
+								d.resolve('Input range:1~'+(data.data.composition[2]+2));
+							}else{
+								d.resolve('Input range:1~'+(data.data.composition[1]+2));
+							}
+						}
+						else{
+							d.resolve();
+						}
+					},function(data){
+						d.resolve('fail');
+					})
+				}
+				return d.promise;
+			}
+
+			var checkTechnology=function(category,brandName,varName,location,additionalIdx,index,value){
+				var d=$q.defer();
+				var categoryID=0,max=0;
+				if(category=="Elecssories"){
+					categoryID=1;
+					var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+					$http({
+						method:'GET',
+						url:url
+					}).then(function(data){
+						max=data.data.acquiredTechnologyLevel[categoryID-1];
+						if(value<1||value>max){
+							d.resolve('Input range:1~'+max);
+						}
+						url="/retailerCurrentDecision/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+brandName+'/'+varName;
+						return $http({
+							method:'GET',
+							url:url
+						});
+					}).then(function(data){
+						//T>=Q-2 T>=D-2 T<=Q
+						//if D>=Q--> D-2<=T<=Q 
+						if(data.data.composition[0]>=data.data.composition[2]){
+							if(value>data.data.composition[2]||(value<data.data.composition[0]-2)){
+								d.resolve('Input range:'+(data.data.composition[0]-2)+'~'+data.data.composition[2]);
+							}else{
+								d.resolve();
+							}
+						}else{// Q-2<=T<=Q
+							if(value>data.data.composition[2]||(value<data.data.composition[2]-2)){
+								d.resolve('Input range:'+(data.data.composition[2]-2)+'~'+data.data.composition[2]);
+							}else{
+								d.resolve();
+							}
+						}
+					},function(){
+						d.resolve('fail');
+					});
+				}else{
+					categoryID=2;
+					var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+					$http({
+						method:'GET',
+						url:url
+					}).then(function(data){
+						max=data.data.acquiredTechnologyLevel[categoryID-1];
+						if(value<1||value>max){
+							d.resolve('Input range:1~'+max);
+						}
+						url="/retailerCurrentDecision/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+brandName+'/'+varName;
+						return $http({
+							method:'GET',
+							url:url
+						});
+					}).then(function(data){
+						if(value<(data.data.composition[2]-2)||value<(data.data.composition[0]-4)){
+							if((data.data.composition[2]-2)>=(data.data.composition[0]-4)){
+								d.resolve('Input range:'+(data.data.composition[2]-2)+'~'+max);
+							}else{
+								d.resolve('Input range:'+(data.data.composition[0]-4)+'~'+max);
+							}
+						}else{
+							d.resolve();
+						}
+					},function(data){
+						d.resolve('fail');
+					});
+				}
+				return d.promise;
+			}
+
+			var checkRMQ=function(category,brandName,varName,location,additionalIdx,index,value){
+				var d=$q.defer();
+				var categoryID=0,max=0;
+				if(category=="Elecssories"){
+					categoryID=1;
+				}else{
+					catagoryID=2;
+				}
+				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+					$http({
+						method:'GET',
+						url:url
+					}).then(function(data){
+						max=data.data.acquiredTechnologyLevel[categoryID-1]+2;
+						if(value<1||value>max){
+							d.resolve('Input range:1~'+max);
+						}
+						url="/retailerCurrentDecision/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+brandName+'/'+varName;
+						return $http({
+							method:'GET',
+							url:url
+						});
+					}).then(function(data){
+						if(value<(data.data.composition[0]-2)||value>(data.data.composition[1]+2)){
+							d.resolve('Input range:'+(data.data.composition[0]-2)+'~'+(data.data.composition[1]+2));
+						}else{
+							d.resolve();
+						}
+					},function(){
+						d.resolve('fail');
+					});
+				return d.promise;
+			}
+
 			var updateRetailerDecision=function(category,brandName,varName,location,addtionalIdx,index){
 				var categoryID;
 				if(category=="Elecssories"){
@@ -319,43 +510,23 @@ define(['app'], function(app) {
 			}
 
 			var getMoreInfo=function(brandName,varName){
-				//$scope.moreInfo={'parentBrandID':brandID,'varName':varName};
+				var d=$q.defer();
 				$scope.isCollapsed=false;
-				//var url="/variantHistoryInfo/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+brandName+'/'+varName;
 				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/4';
 				$http({method:'GET',url:url})
-				.success(function(data){
-					$scope.companyHistory=data;
-					console.log($scope.companyHistory);
+				.then(function(data){
+					$scope.companyHistory=data.data;
 					url="/retailerDecision/"+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.seminar;
-					$http({method:'GET',url:url})
-					.success(function(data){
-						$scope.variantDecisionHistory=data;
-						console.log($scope.variantDecisionHistory);
-						// url="/variantHistoryInfo/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+brandName+'/'+varName;
-						// $http({method:'GET',url:url})
-						// .success(function(data){
-						// 	$scope.variantHistory=data;
-						// 	console.log($scope.variantHistory);
-						// })
-						// .error(function(data){
-						// 	console.log("read variantHistory fail");
-						// })
-					})
-					.error(function(data){
-						console.log('read retailerDecision fail');
-					})
-				})
-				.error(function(data){
-					console.log('read companyHistory fail');
-				})
+					return $http({method:'GET',url:url});
+				}).then(function(data){
+					$scope.variantDecisionHistory=data;
+				},function(){
+					console.log('read historyInfo fail');
+				});
+				return d.promise;
 			}
-
-			var loadNameNum=function(){//load the sort
-				/*importantt*/
-			}		
+	
 			var addNewProduct=function(parameter){
-				//require(['../js/controllers/untils/calculate'], function (calculate){
 					var newBrand=new RetailerDecision();
 					var nullDecision=new RetailerDecision();
 					nullDecision.varName="";
@@ -363,16 +534,17 @@ define(['app'], function(app) {
 					nullDecision.parentBrandID=0;
 					nullDecision.dateOfBirth=0;
 					nullDecision.dateOfDeath=0;
-					nullDecision.packFormat="";
-					nullDecision.composition=[0,0,0];
+					nullDecision.packFormat="ECONOMY";
+					nullDecision.composition=new Array(1,1,1);
 					nullDecision.discontinue=false;
 
 					var newretailerDecision=new RetailerDecision();
-					newretailerDecision.packFormat="";
+					newretailerDecision.packFormat="ECONOMY";
 					newretailerDecision.dateOfBirth=$scope.period;
 					newretailerDecision.dateOfDeath=10;
-			        newretailerDecision.composition=new Array();
+			        newretailerDecision.composition=new Array(1,1,1);
 			        newretailerDecision.discontinue=false;
+			        var url="";
 					if(parameter=="NewBrand"){/*lauch new Brand*/
 						var retVariantDecision=_.find($scope.pageBase.retCatDecision,function(obj){
 							return (obj.categoryID==$scope.lauchNewCategory);
@@ -382,22 +554,29 @@ define(['app'], function(app) {
 						newBrand.paranetCompanyID=$scope.retailerID;
 						newBrand.dateOfDeath=10;
 						newBrand.dateOfBirth=$scope.period;
-						//newBrand.advertisingOffLine=new Array();
-						//newBrand.advertisingOnLine="";
-						//newBrand.supportEmall="";
-						//newBrand.supportTraditionalTrade=new Array();
 						newBrand.privateLabelVarDecision=new Array();
 						newretailerDecision.parentBrandID=newBrand.brandID;
-						newretailerDecision.varName=$scope.lauchNewVarName;/*need check*/
+						newretailerDecision.varName='_'+$scope.lauchNewVarName;/*need check*/
 						newretailerDecision.varID=10*newBrand.brandID+1;/*need check*/
 						newBrand.privateLabelVarDecision.push(newretailerDecision,nullDecision,nullDecision);
-						RetailerDecisionBase.addProductNewBrand(newBrand,$scope.lauchNewCategory);
+						
+						url="/checkRetailerProduct/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+$scope.lauchNewCategory+'/brand/'+newBrand.brandName+'/'+newretailerDecision.varName;
+						$http({
+							method:'GET',
+							url:url
+						}).then(function(data){
+							RetailerDecisionBase.addProductNewBrand(newBrand,$scope.lauchNewCategory);
+							showbubleMsg('add new brand successfully',2);
+							closeProductModal();
+						},function(data){
+							showbubleMsg('add new brand failure, ' + data.data.message,1);
+						})
 					}else{/*add new product under existed Brand*/
 						var retVariantDecision=_.find($scope.pageBase.retCatDecision,function(obj){
 							return (obj.categoryID==$scope.addNewCategory);
 						}); 
 						newretailerDecision.parentBrandID=$scope.addChooseBrand;
-						newretailerDecision.varName=$scope.addNewVarName;/*need check*/
+						newretailerDecision.varName='_'+$scope.addNewVarName;/*need check*/
 						var privateLabelDecision=_.find(retVariantDecision.privateLabelDecision,function(obj){
 							return (obj.brandID==newretailerDecision.parentBrandID);
 						});
@@ -409,10 +588,41 @@ define(['app'], function(app) {
 			        			break;
 			        		}
 			        	}
-			        	RetailerDecisionBase.addProductExistedBrand(newretailerDecision,$scope.addNewCategory,newBrandName);							
+			        	url="/checkRetailerProduct/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+$scope.lauchNewCategory+'/variant/'+newBrandName+'/'+newretailerDecision.varName;
+				       	$http({
+							method:'GET',
+							url:url
+						}).then(function(data){
+							RetailerDecisionBase.addProductExistedBrand(newretailerDecision,$scope.addNewCategory,newBrandName);
+							showbubleMsg('add new variant successfully',2);
+							closeProductModal();
+						},function(data){
+							showbubleMsg('add new variant failure, ' + data.data.message,1);
+						});						
 					}
-					closeProductModal();
 			}
+
+			var showbubleMsg = function(content, status){
+		 		$scope.bubleMsg = ' ' + content;
+		 		switch(status){
+		 			case 1: 
+		 				$scope.bubleClassName = 'alert alert-danger'; 
+		 				$scope.bubleTitle = 'Error!';
+		 				break;
+		 			case 2: 
+		 				$scope.bubleClassName = 'alert alert-success'; 
+		 				$scope.bubleTitle = 'Success!';
+		 				break;
+		 			case 3:
+		 				$scope.bubleClassName = 'alert alert-block'; 
+		 				$scope.bubleTitle = 'Warning!';
+		 				break;	 			
+		 			default:
+		 			 $scope.bubleClassName = 'alert'; 
+		 		}
+		 		console.log('infoBuble.show');
+		 		$scope.infoBuble = true;
+		 	};
 
 			$scope.$on('retailerDecisionBaseChangedFromServer', function(event, newBase){
 				RetailerDecisionBase.reload({retailerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){

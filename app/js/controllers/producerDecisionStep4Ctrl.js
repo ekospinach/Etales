@@ -37,13 +37,7 @@ define(['app'], function(app) {
 					$scope.closeInfo=closeInfo;
 					//check data
 					$scope.checkData=checkData;
-				var result=showView($scope.producerID,$scope.period,$scope.language);
-				delay.resolve(result);
-				if (result==1) {
-					delay.resolve(result);
-				} else {
-					delay.reject('showView error,products is null');
-				}
+				showView($scope.producerID,$scope.period,$scope.language);
 				return delay.promise;
 			}
 
@@ -63,39 +57,33 @@ define(['app'], function(app) {
 	      			abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
 					eAcMax=data.data.productionCapacity[0];
 					hAcMax=data.data.productionCapacity[1];
-	      		},function(data){
-					console.log('read companyHistory fail');
-	      		}).then(function(){
-	      			url="/producerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/brandName/location/1';
-	      			$http({
+					url="/producerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/brandName/location/1';
+	      			return $http({
 	      				method:'GET',
 	      				url:url,
-	      			}).then(function(data){
-	      				expend=data.data.result;
-	      				$scope.surplusExpend=abMax-expend;
-	      				$scope.percentageExpend=(abMax-expend)/abMax*100;
-	      			},function(data){
-	      				console.log('read producerExpend fail');
-	      			}).then(function(){
-	      				url="/productionResult/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+fakeName+'/varName';
-						$http({
-							method:'GET',
-							url:url
-						}).then(function(data){
-							$scope.eSurplusProduction=eAcMax-data.data.result;
-							$scope.ePercentageProduction=(eAcMax-data.data.result)/eAcMax*100;
-						},function(data){
-							console.log('read E-currentProduction fail');
-						}).then(function(){
-							fakeName="HName";
-	      					url="/productionResult/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+fakeName+'/varName';
-							$http({
-								method:'GET',
-								url:url
-							}).then(function(data){
-								$scope.hSurplusProduction=hAcMax-data.data.result;
-								$scope.hPercentageProduction=(hAcMax-data.data.result)/hAcMax*100;
-								$scope.producerID=producerID,$scope.period=period,$scope.category=category,$scope.language=language;
+	      			});
+	      		}).then(function(data){
+	      			expend=data.data.result;
+	      			$scope.surplusExpend=abMax-expend;
+	      			$scope.percentageExpend=(abMax-expend)/abMax*100;
+	      			url="/productionResult/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+fakeName+'/varName';
+					return $http({
+						method:'GET',
+						url:url
+					});
+				}).then(function(data){
+					$scope.eSurplusProduction=eAcMax-data.data.result;
+					$scope.ePercentageProduction=(eAcMax-data.data.result)/eAcMax*100;
+					fakeName="HName";
+	      			url="/productionResult/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+fakeName+'/varName';
+					return $http({
+						method:'GET',
+						url:url
+					});
+				}).then(function(data){
+					$scope.hSurplusProduction=hAcMax-data.data.result;
+					$scope.hPercentageProduction=(hAcMax-data.data.result)/hAcMax*100;
+					$scope.producerID=producerID,$scope.period=period,$scope.category=category,$scope.language=language;
 								if(language=="English"){
 									for(var i=0;i<$scope.multilingual.length;i++){
 										labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
@@ -119,13 +107,9 @@ define(['app'], function(app) {
 					      		$scope.categorys=categorys;
 								$scope.labelLanguages=labelLanguages;
 								$scope.infoLanguages=infoLanguages;
-								return result;
-							},function(data){
-								console.log('read H-currentProduction fail');
-							})
-						})
-	      			})
-	      		});		
+				},function(){
+					console.log('show view fail');
+				});	
 	      		return d.promise;		
 			}
 
@@ -144,33 +128,26 @@ define(['app'], function(app) {
 				if(value>=0){
 					d.resolve();
 				}else{
-					d.resolve('Input must large 0');
+					d.resolve('Input must large than 0');
 				}
 				return d.promise;
 			}
 
 			var getCategoryMoreInfo=function(categoryID){
+				var d=$q.defer();
 				$scope.isCollapsed=false;
-				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
 				$http({method: 'GET', url: url})
-				.success(function(data, status, headers, config) {
-					$scope.companyHistory=data;
-					console.log($scope.companyHistory);
+				.then(function(data){
+					$scope.companyHistory=data.data;
 					url="/producerCompanyDecision/"+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+($rootScope.currentPeriod-1)+'/'+$rootScope.user.seminar+'/'+categoryID;
-					 $http({method:'GET',url:url})
-					 .success(function(data,status,headers,config){
-					 	$scope.companyDecisionHistory=data;
-					 	console.log($scope.companyDecisionHistory);
-					 })
-					 .error(function(data,status,headers,config){
-					 	console.log('read companyDecisionHistory fail');
-					 });
-				})
-				.error(function(data, status, headers, config) {
-					console.log('read companyHistory fail');
+					return $http({method:'GET',url:url});
+				}).then(function(data){
+					$scope.companyDecisionHistory=data;
+				},function(){
+					console.log('read historyInfo fail');
 				});
-				$scope.categoryID=categoryID;
-
+				return d.promise;
 			}	
 
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
