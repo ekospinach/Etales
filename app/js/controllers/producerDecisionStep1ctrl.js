@@ -8,9 +8,7 @@ define(['app'], function(app) {
 		    $rootScope.loginDiv="container";
 
 			var multilingual=getProducerStep12Info();
-
 			var language='English',
-				//producerID=1,
 				producerID=$rootScope.user.username.substring($rootScope.user.username.length-1);
 				period=$rootScope.currentPeriod,
 				category='Elecssories',
@@ -43,8 +41,7 @@ define(['app'], function(app) {
 			/*Angular-ui-bootstrap modal end*/		
 			ProducerDecisionBase.startListenChangeFromServer();
 			ProducerDecisionBase.reload({producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
-				$scope.pageBase = base;
-				//ProducerDecisionBase.setSomething('TEST');	
+				$scope.pageBase = base;	
 			}).then(function(){
 				return promiseStep1();
 			}), function(reason){
@@ -66,9 +63,6 @@ define(['app'], function(app) {
 					$scope.setBrandName=setBrandName;
 					$scope.loadAllBrand=loadAllBrand;
 					$scope.showbubleMsg=showbubleMsg;
-					//$scope.selected=selected;
-					//$scope.loadNameNum=loadNameNum;
-					//Validate
 					$scope.checkProduction=checkProduction;
 					$scope.checkDesign=checkDesign;
 					$scope.checkTechnology=checkTechnology;
@@ -81,13 +75,7 @@ define(['app'], function(app) {
 					$scope.calculateBrandID=calculateBrandID;
 					$scope.calculateVarID=calculateVarID;
 					$scope.deleteProduct=deleteProduct;
-				var result=showView($scope.producerID,$scope.period,$scope.category,$scope.language);
-				delay.resolve(result);
-				if (result==1) {
-					delay.resolve(result);
-				} else {
-					delay.reject('showView error,products is null');
-				}
+					showView($scope.producerID,$scope.period,$scope.category,$scope.language);
 				return delay.promise;
 			}
 
@@ -174,92 +162,87 @@ define(['app'], function(app) {
 	      		}).then(function(data){
 	      			abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
 					acMax=data.data.productionCapacity[categoryID-1];
-	      		},function(data){
-					console.log('read companyHistory fail');
-	      		}).then(function(){
 	      			url="/producerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/brandName/location/1';
-	      			$http({
+	      			return  $http({
 	      				method:'GET',
 	      				url:url,
-	      			}).then(function(data){
-	      				expend=data.data.result;
-	      				$scope.surplusExpend=abMax-expend;
-	      				$scope.percentageExpend=(abMax-expend)/abMax*100;
-	      			},function(data){
-	      				console.log('read producerExpend fail');
-	      			}).then(function(){
-	      				url="/productionResult/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+fakeName+'/varName';
-						$http({
-							method:'GET',
-							url:url
-						}).then(function(data){
-							$scope.surplusProduction=acMax-data.data.result;
-							$scope.percentageProduction=(acMax-data.data.result)/acMax*100;
-							$scope.producerID=producerID,$scope.period=period,$scope.category=category,$scope.language=language;
-							if(language=="English"){
-	                            for(var i=0;i<$scope.multilingual.length;i++){
-	                                if(category=="Elecssories"){
-	                                	$scope.EleShow="inline";
-	                                	$scope.HeaShow="none";
-	                                }
-	                                else if(category=="HealthBeauty"){
-	                                	$scope.EleShow="none";
-	                                	$scope.HeaShow="inline";
-	                                }
-	                                labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
-	                                infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
-	                            }
+	      			});
+	      		}).then(function(data){
+	      			expend=data.data.result;
+	       			$scope.surplusExpend=abMax-expend;
+	       			$scope.percentageExpend=(abMax-expend)/abMax*100;
+	      			url="/productionResult/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+fakeName+'/varName';
+	      			return $http({
+	      				method:'GET',
+	      				url:url
+	      			});
+	      		}).then(function(data){
+	      			$scope.surplusProduction=acMax-data.data.result;
+					$scope.percentageProduction=(acMax-data.data.result)/acMax*100;
+
+					$scope.producerID=producerID,$scope.period=period,$scope.category=category,$scope.language=language;
+					if(language=="English"){
+						for(var i=0;i<$scope.multilingual.length;i++){
+							if(category=="Elecssories"){
+								$scope.EleShow="inline";
+								$scope.HeaShow="none";
+							}
+							else if(category=="HealthBeauty"){
+								$scope.EleShow="none";
+	                            $scope.HeaShow="inline";
 	                        }
-	                        else if(language=="Chinese"){
-	                        	for(var i=0;i<$scope.multilingual.length;i++){
-	                        		if(category=="Elecssories"){
-	                        			$scope.EleShow="inline";
-	                        			$scope.HeaShow="none";
-	                        		}
-	                        		else if(category=="HealthBeauty"){
-	                        			$scope.EleShow="none";
-	                        			$scope.HeaShow="inline";
-	                        		}
-	                        		labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelCHN;
-	                        		infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoCHN;
-	                        	}
-	                        }
-	                        var allProCatDecisions=loadSelectCategroy(category);
-	                        for(var i=0;i<allProCatDecisions.length;i++){
-	                        	for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
-	                                if(allProCatDecisions[i].proBrandsDecision[j].brandID!=undefined&&allProCatDecisions[i].proBrandsDecision[j].brandID!=0){
-	                                	for(var k=0;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
-	                                        if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=0&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=undefined){
-	                                        	products.push(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]);
-	                                        	products[count].category=category;
-	                                        	products[count].parentBrandName=allProCatDecisions[i].proBrandsDecision[j].brandName;
-	                                        	if(products[count].packFormat=="ECONOMY"){
-	                                        		products[count].packFormat=1;
-	                                        	}
-	                                        	else if(products[count].packFormat=="STANDARD"){
-	                                        		products[count].packFormat=2;
-	                                        	}
-	                                        	else if(products[count].packFormat=="PREMIUM"){
-	                                        		products[count].packFormat=3;
-	                                        	}
-	                                        	count++;
-	                                        }
-	                                    }
-	                                }
-	                            }
-	                        }
-	                        if(count!=0){
-	                        	result=1;
-	                        }
-	                        $scope.products=products;
-	                        $scope.labelLanguages=labelLanguages;
-	                        $scope.infoLanguages=infoLanguages;
-	                        return result;
-						},function(data){
-							console.log('read currentProduction fail');
-						});
-	      			})
-	      		});		
+	                        labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
+	                        infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
+	                    }
+	                }
+	                else if(language=="Chinese"){
+	                	for(var i=0;i<$scope.multilingual.length;i++){
+	                		if(category=="Elecssories"){
+	                			$scope.EleShow="inline";
+	                			$scope.HeaShow="none";
+	                		}
+	                		else if(category=="HealthBeauty"){
+	                			$scope.EleShow="none";
+	                			$scope.HeaShow="inline";
+	                		}
+	                		labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelCHN;
+	                		infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoCHN;
+	                	}
+	                }
+	                var allProCatDecisions=loadSelectCategroy(category);
+	                for(var i=0;i<allProCatDecisions.length;i++){
+	                	for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
+	                		if(allProCatDecisions[i].proBrandsDecision[j].brandID!=undefined&&allProCatDecisions[i].proBrandsDecision[j].brandID!=0){
+	                			for(var k=0;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
+	                				if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=0&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=undefined){
+	                					products.push(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]);
+	                					products[count].category=category;
+	                					products[count].parentBrandName=allProCatDecisions[i].proBrandsDecision[j].brandName;
+	                					if(products[count].packFormat=="ECONOMY"){
+	                						products[count].packFormat=1;
+	                					}
+	                					else if(products[count].packFormat=="STANDARD"){
+	                						products[count].packFormat=2;
+	                					}
+	                					else if(products[count].packFormat=="PREMIUM"){
+	                						products[count].packFormat=3;
+	                					}
+	                					count++;
+	                				}
+	                			}
+	                		}
+	                	}
+	                }
+	                if(count!=0){
+	                	result=1;
+	                }
+	                $scope.products=products;
+	                $scope.labelLanguages=labelLanguages;
+	                $scope.infoLanguages=infoLanguages;
+	                //return result;
+	      		},function(data){
+	      			console.log('show showView fail');
+	      		});	
 	      		return d.promise;		
 			}
 
@@ -360,25 +343,23 @@ define(['app'], function(app) {
 					url:url
 				}).then(function(data){
 					max=data.data.productionCapacity[categoryID-1];
-				},function(data){
-					d.resolve('fail');
-				}).then(function(){
 					url="/productionResult/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+brandName+'/'+varName;
-					$http({
+					return $http({
 						method:'GET',
 						url:url
-					}).then(function(data){
-						if(parseInt(data.data.result)+parseInt(value)>max){
-							d.resolve('Input range:0~'+(max-parseInt(data.data.result)));
-						}else{
-							d.resolve();
-						}
-					},function(data){
-						d.resolve('fail');
 					});
+				}).then(function(data){
+					if(parseInt(data.data.result)+parseInt(value)>max){
+						d.resolve('Input range:0~'+(max-parseInt(data.data.result)));
+					}else{
+						d.resolve();
+					}
+				},function(data){
+					d.resolve('fail');
 				});
 				return d.promise;
 			}
+
 
 			var checkDesign=function(category,brandName,varName,location,additionalIdx,index,value){
 				var d = $q.defer();	
@@ -394,27 +375,24 @@ define(['app'], function(app) {
 						if(value<1||value>max){
 							d.resolve('Input range:1~'+max);
 						}
-					},function(data){
-						d.resolve('fail');
-					}).then(function(){
 						url="/producerCurrentDecision/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+brandName+'/'+varName;
-						$http({
+						return $http({
 							method:'GET',
 							url:url
-						}).then(function(data){
-							if(value>data.data.composition[2]+2||value>data.data.composition[1]+4){
-								if(data.data.composition[2]+2>=data.data.composition[1]+4){
-									d.resolve('Input range:1~'+(data.data.composition[1]+4));
-								}else{
-									d.resolve('Input range:1~'+(data.data.composition[2]+2));
-								}
+						});
+					}).then(function(data){	
+						if(value>data.data.composition[2]+2||value>data.data.composition[1]+4){
+							if(data.data.composition[2]+2>=data.data.composition[1]+4){
+								d.resolve('Input range:1~'+(data.data.composition[1]+4));
 							}else{
-								d.resolve();
+								d.resolve('Input range:1~'+(data.data.composition[2]+2));
 							}
-						},function(data){
-							d.resolve('fail');
-						})
-					})
+						}else{
+							d.resolve();
+						}
+					},function(data){
+						d.resolve('fail');
+					});
 				}else{
 					categoryID=2;
 					url="/producerCurrentDecision/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+brandName+'/'+varName;
@@ -453,33 +431,30 @@ define(['app'], function(app) {
 						if(value<1||value>max){
 							d.resolve('Input range:1~'+max);
 						}
-					},function(data){
-						d.resolve('fail');
-					}).then(function(){
 						url="/producerCurrentDecision/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+brandName+'/'+varName;
-						$http({
+						return $http({
 							method:'GET',
 							url:url
-						}).then(function(data){
-							//T>=Q-2 T>=D-2 T<=Q
-							//if D>=Q--> D-2<=T<=Q 
-							if(data.data.composition[0]>=data.data.composition[2]){
-								if(value>data.data.composition[2]||(value<data.data.composition[0]-2)){
-									d.resolve('Input range:'+(data.data.composition[0]-2)+'~'+data.data.composition[2]);
-								}else{
-									d.resolve();
-								}
-							}else{// Q-2<=T<=Q
-								if(value>data.data.composition[2]||(value<data.data.composition[2]-2)){
-									d.resolve('Input range:'+(data.data.composition[2]-2)+'~'+data.data.composition[2]);
-								}else{
-									d.resolve();
-								}
+						});
+					}).then(function(data){
+						//T>=Q-2 T>=D-2 T<=Q
+						//if D>=Q--> D-2<=T<=Q 
+						if(data.data.composition[0]>=data.data.composition[2]){
+							if(value>data.data.composition[2]||(value<data.data.composition[0]-2)){
+								d.resolve('Input range:'+(data.data.composition[0]-2)+'~'+data.data.composition[2]);
+							}else{
+								d.resolve();
 							}
-						},function(data){
-							d.resolve('fail');
-						})
-					})
+						}else{// Q-2<=T<=Q
+							if(value>data.data.composition[2]||(value<data.data.composition[2]-2)){
+								d.resolve('Input range:'+(data.data.composition[2]-2)+'~'+data.data.composition[2]);
+							}else{
+								d.resolve();
+							}
+						}
+					},function(){
+						d.resolve('fail');
+					});
 				}else{
 					categoryID=2;
 					var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
@@ -491,27 +466,24 @@ define(['app'], function(app) {
 						if(value<1||value>max){
 							d.resolve('Input range:1~'+max);
 						}
-					},function(data){
-						d.resolve('fail');
-					}).then(function(){
 						url="/producerCurrentDecision/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+brandName+'/'+varName;
-						$http({
+						return $http({
 							method:'GET',
 							url:url
-						}).then(function(data){
-							if(value<(data.data.composition[2]-2)||value<(data.data.composition[0]-4)){
-								if((data.data.composition[2]-2)>=(data.data.composition[0]-4)){
-									d.resolve('Input range:'+(data.data.composition[2]-2)+'~'+max);
-								}else{
-									d.resolve('Input range:'+(data.data.composition[0]-4)+'~'+max);
-								}
+						});
+					}).then(function(data){
+						if(value<(data.data.composition[2]-2)||value<(data.data.composition[0]-4)){
+							if((data.data.composition[2]-2)>=(data.data.composition[0]-4)){
+								d.resolve('Input range:'+(data.data.composition[2]-2)+'~'+max);
 							}else{
-								d.resolve();
+								d.resolve('Input range:'+(data.data.composition[0]-4)+'~'+max);
 							}
-						},function(data){
-							d.resolve('fail');
-						})
-					})
+						}else{
+							d.resolve();
+						}
+					},function(data){
+						d.resolve('fail');
+					});
 				}
 				return d.promise;
 			}
@@ -533,24 +505,20 @@ define(['app'], function(app) {
 						if(value<1||value>max){
 							d.resolve('Input range:1~'+max);
 						}
-					},function(data){
-						d.resolve('fail');
-					}).then(function(){
 						url="/producerCurrentDecision/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+brandName+'/'+varName;
-						$http({
+						return $http({
 							method:'GET',
 							url:url
-						}).then(function(data){
-							//Q>=D-2 Q<=T+2
-							if(value<(data.data.composition[0]-2)||value>(data.data.composition[1]+2)){
-								d.resolve('Input range:'+(data.data.composition[0]-2)+'~'+(data.data.composition[1]+2));
-							}else{
-								d.resolve();
-							}
-						},function(){
-							d.resolve('fail');
-						})
-					})
+						});
+					}).then(function(data){
+						if(value<(data.data.composition[0]-2)||value>(data.data.composition[1]+2)){
+							d.resolve('Input range:'+(data.data.composition[0]-2)+'~'+(data.data.composition[1]+2));
+						}else{
+							d.resolve();
+						}
+					},function(){
+						d.resolve('fail');
+					});
 				return d.promise;
 			}
 
@@ -575,25 +543,21 @@ define(['app'], function(app) {
 			}
 
 			var getMoreInfo=function(brandName,varName){
+				var d=$q.defer();
 				$scope.isCollapsed=false;
 				var url='/variantHistoryInfo/'+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/'+brandName+'/'+varName;
 				$http({method: 'GET', url: url})
-				.success(function(data, status, headers, config) {
-					$scope.variantHistory=data;
-					console.log($scope.variantHistory);
+				.then(function(data) {
+					$scope.variantHistory=data.data;
+					//console.log($scope.variantHistory);
 					url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
-					$http({method:'GET',url:url})
-					.success(function(data,status,headers,config){
-						$scope.companyHistory=data;
-						console.log($scope.companyHistory);
-					})
-					.error(function(data,status,headers,config){
-						console.log('read companyHistoryInfo fail');
-					});
-				})
-				.error(function(data, status, headers, config) {
-					console.log('read variantHistoryInfo fail');
+					return $http({method:'GET',url:url})
+				}).then(function(data){
+					$scope.companyHistory=data.data;
+				},function(){
+					console.log('read history info fail');
 				});
+				return d.promise;
 			}
 
 			var addNewProduct=function(parameter){
