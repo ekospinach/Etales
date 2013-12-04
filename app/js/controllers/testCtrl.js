@@ -1,4 +1,4 @@
-define(['app','socketIO','routingConfig'], function(app) {
+define(['app','socketIO','routingConfig','bootstrap'], function(app) {
 
 	app.controller('testCtrl',['$scope', '$http', 'ProducerDecisionBase','$rootScope','Auth', function($scope, $http, ProducerDecisionBase,$rootScope,Auth) {
 		// You can access the scope of the controller from here

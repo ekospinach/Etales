@@ -1,4 +1,4 @@
-define(['angular', 'services'], function(angular, services) {
+define(['angular', 'services','bootstrap'], function(angular, services) {
 	'use strict';
 
 	angular.module('myApp.directives', ['myApp.services'])
@@ -7,6 +7,32 @@ define(['angular', 'services'], function(angular, services) {
 				elm.text(version);
 			};
 		}])
+		.directive('btnLoading',function () {	
+			return {
+		            link:function (scope, element, attrs) {
+		                scope.$watch(
+		                    function () {
+		                        return scope.$eval(attrs.btnLoading);
+		                    },
+		                    function (value) {
+		                    	console.log('directive, btnLoading:' + value);
+		                        if(value) {
+		                            if (!attrs.hasOwnProperty('ngDisabled')) {
+		                                element.addClass('disabled').attr('disabled', 'disabled');
+		                            }
+		                            element.data('resetText', element.html());
+		                            element.html(element.data('loading-text'));
+		                        } else {
+		                            if (!attrs.hasOwnProperty('ngDisabled')) {
+		                                element.removeClass('disabled').removeAttr('disabled');
+		                            }
+		                            element.html(element.data('resetText'));
+		                        }
+		                    }
+		                );
+		            }
+		        };
+		})
 		.directive('activeNav', ['$location', function(location) {
 		    return {
 		        restrict: 'A',
