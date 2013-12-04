@@ -4,6 +4,31 @@ define(['angular','angularResource','routingConfig'], function (angular,angularR
 	var services=angular.module('myApp.services', ['ngResource']);
 	services.value('version', '0.1');
 
+	services.factory('ContractInfo', function(){
+		var selectedContract;
+		return {
+			getSelectedContract : function(){
+				console.log('services get:' + selectedContract);
+				return selectedContract;
+			},
+			setSelectedContract : function(value){
+				selectedContract = value;
+				console.log('services set value: '+ selectedContract);
+
+			},
+			getActivedNegotiationItem : function(){
+				var negotiationItems=['nc_MinimumOrder',
+				'nc_SalesTargetVolume',
+				'nc_PaymentDays',
+				'nc_OtherCompensation',				
+				'nc_VolumeDiscountRate',
+				'nc_PerformanceBonusAmount',
+				'nc_PerformanceBonusRate'];
+				return negotiationItems;
+			}
+		}
+	})
+
 	services.factory('Auth', function($http, $rootScope, $cookieStore){
 	    var accessLevels = routingConfig.accessLevels
 	        , userRoles = routingConfig.userRoles;
@@ -19,7 +44,7 @@ define(['angular','angularResource','routingConfig'], function (angular,angularR
 	            if(role === undefined) {
 	                role = $rootScope.user.role;
 	            }
-	            console.log('start authorize, role:' + role + ', accessLevel:' + accessLevel);
+	           // console.log('start authorize, role:' + role + ', accessLevel:' + accessLevel);
 	            return accessLevel & role;
 	        },
 	        isLoggedIn: function(user) {

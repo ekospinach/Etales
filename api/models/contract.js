@@ -2671,7 +2671,9 @@ exports.getContractDetail=function(req,res,next){
 		'relatedBrandName':req.params.brandName
 	},function(err,doc){
 		if(doc){
+			console(doc);
 			res.send(200,doc);
+
 		}else{
 			res.send(404,'there is no contract');
 		}

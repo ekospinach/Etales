@@ -1,289 +1,162 @@
 <div id="content" class="bs-header">
     <div class="container">
-        <h1>Contract</h1>
+        <h1>Contract Details</h1>
         <p>We deliver a highly disruptive and transformational experiential learning model on a global scale !</p>
     </div>
 </div>
 
 <div class="container bs-docs-container">
-	<div class="row">
-		<div class="col-md-12">
-		    <div class="bs-docs-section">
-		    	<h3>ContractList</h3>
-		    	<div class="pull-left">
-		    		<div class="btn-group pull-left" data-toggle="buttons">
-			            <label class="btn btn-primary" ng-click="">
-			            	<input type="radio" name="options">English
-			            </label>
-			            <label class="btn btn-primary" ng-click="">
-			            	<input type="radio" name="options">Chinese
-			            </label>
-			        </div>
-			        <div class="btn-group pull-left" style="display:{{retailerShow}};margin-left:10px">
-			        	<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
-			              Producer <span class="caret"></span>
-			            </button>
-			            <ul class="dropdown-menu">
-			              <li class=""><a ng-click="filterUser(1,retailerID)">Producer 1</a></li>
-			              <li class=""><a ng-click="filterUser(2,retailerID)">Producer 2</a></li>
-			              <li class=""><a ng-click="filterUser(3,retailerID)">Producer 3</a></li>         
-			            </ul>
-			        </div>
-			        <div class="btn-group pull-left" style="display:{{producerShow}};margin-left:10px">
-			        	<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" style="margin-left:10px">
-			              Retailer <span class="caret"></span>
-			            </button>
-			            <ul class="dropdown-menu">
-			              <li class=""><a ng-click="filterUser(producerID,1)">Retailer 1</a></li>
-			              <li class=""><a ng-click="filterUser(producerID,2)">Retailer 2</a></li>      
-			            </ul>
-			        </div>
-			    </div>
-			    <div style="clear:both"></div>
-			    <table class="table table-hover">
-			    	<tr>
-			    		<th>Contract Name</th>
-			    		<th>Period</th>
-			    		<th>Producer</th>
-			    		<th>Retailer</th>
-			    		<th>Drafted By</th>
-			    		<th>Ready?</th>
-			    		<th>Choose</th>
-			    	</tr>
-			    	<tr ng-repeat="allContract in allContracts">
-			    		<td>{{allContract.contractCode}}</td>
-			    		<td>{{allContract.period}}</td>
-			    		<td>Producer-{{allContract.producerID}}</td>
-			    		<td>Retailer-{{(allContract.retailerID)}}</td>
-			    		<td>{{(allContract.draftedByCompanyID>3)?'Retailer':'Producer'}}-{{(allContract.draftedByCompanyID>3)?(allContract.draftedByCompanyID-4):allContract.draftedByCompanyID}}</td>
-			    		<td>
-			    			<fieldset disabled>
-			    				<div class="checkbox">
-			    					<label>
-			    						<input type="checkbox" checked style="display:{{(allContract.isDraftFinished)?'block':'none'}}">
-			    						<input type="checkbox" style="display:{{(allContract.isDraftFinished)?'none':'block'}}"></div>
-			    					</label>
-			    				</div>
-			    			</fieldset>
-			    		</td>
-			    		<td>
-			    			<a class="btn btn-primary" ng-click="openDetailModal(allContract)">
-			    				Details
-			    			</a>
-			    		</td>
-			    	</tr>
-			    </table>
-			    <a class="btn btn-primary" ng-click="openInsertModal()">
-			    	New Contract</a>
-		    </div>
+	
+	<div class="page-header">
+		<h3>Contract Name : {{contractInfo.contractCode}}
+		<small>
+			Producer {{contractInfo.producerID}} & Retailer {{contractInfo.retailerID}}, Period:{{contractInfo.period}}, Seminar:{{contractInfo.seminar}}
+		</small>	
+		</h3>
+
+	</div>
+	<div>
+		<div class="btn-group">
+			<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+				Category <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu">
+				<li class=""><a ng-click="renderContractDetailsByCategory('Elecssories')">Elecssories</a></li>
+				<li class=""><a ng-click="renderContractDetailsByCategory('HealthBeauty')">HealthBeauty</a></li>
+			</ul>
 		</div>
 	</div>
-</div>
 
-
-<!--dialogs-->
-<div modal="insertModal" class="hide" close="closeInsertModal()" options="insertOpts">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeInsertModal()">&times;</button>
-				<h4 class="modal-title">New Negotiation</h4>
-			</div>
-			<div class="modal-body">
-				<div class="form-group">
-					<label for="contractCode">ContractCode:</label>
-					<div style="clear:both"></div>
-					<div class="col-xs-5 input-group">
-						<input type="text" id="contractCode" placeholder="contractCode" class="form-control" ng-model="newContractCode" required>
-						<!--<span class="input-group-addon">{{contractCodeLastName}}</span>-->
-					</div>
-					<div style="clear:both"></div>
-				</div>
-				<div class="form-group">
-					<label for="retailerID">Contract To:</label>
-					<div style="clear:both"></div>
-					<div class="col-xs-5">
-						<select class="form-control" ng-model="newRetailerID">
-							<option value="1">Retailer 1</option>
-							<option value="2">Retailer 2</option>
-						</select>
-					</div>
-					<div style="clear:both"></div>
-				</div>
-				<div class="{{bubleClassName}}" ng-show='true'>
-        			<strong>{{bubleTitle}}</strong>{{bubleMsg}}
-        		</div>	
-			</div>
-			<div class="modal-footer">
-				<a class="btn btn-default">Cancel</a>
-				<a class="btn btn-primary" ng-click="addNewContract()">Add</a>
-			</div>
-		</div>
+	<div class="" style="display:{{isVisiableInputTable}}">
+		<table class="table table-hover">
+			<tr>
+				<th>Items(Producer Input)</th>
+				<th ng-repeat="proDetail in proDetailList[0]">
+					<span class="glyphicon" style="width:30px"></span>{{proDetail.relatedBrandName}}
+				</th>
+			</tr>
+			<tr>
+				<th>Minimum Order & Discount Rate</th>
+				<td ng-repeat="proDetail in proDetailList[0]">
+					<span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetails.isVerified"></span>
+					<span>{{(proDetail.useBrandDetails?(proDetail.brand_urbanValue+proDetail.brand_ruralValue):(proDetail.variant_A_urbanValue+proDetail.variant_A_ruralValue+proDetail.variant_B_urbanValue+proDetail.variant_B_ruralValue+proDetail.variant_C_urbanValue+proDetail.variant_C_ruralValue))}}({{proDetail.displayValue}}%)</span>
+					<span style="display:{{shouldBeEdit}}" class="pull-right">
+						<a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)">Edit</a>
+					</span>
+					<span style="display:{{shouldBeView}}" class="pull-right">
+						<a class="btn btn-primary btn-xs" ng-click="openViewModal(proDetail)">View</a>
+					</span>
+				</td>
+			</tr>
+			<tr>
+				<th>Sales Target Volume & Bonus</th>
+				<td ng-repeat="proDetail in proDetailList[1]">
+					<span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetails.isVerified"></span>
+					<span>{{(proDetail.useBrandDetails?(proDetail.brand_urbanValue+proDetail.brand_ruralValue):(proDetail.variant_A_urbanValue+proDetail.variant_A_ruralValue+proDetail.variant_B_urbanValue+proDetail.variant_B_ruralValue+proDetail.variant_C_urbanValue+proDetail.variant_C_ruralValue))}}({{proDetail.displayValue}})</span>
+					<span style="display:{{shouldBeEdit}}" class="pull-right">
+						<a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)">Edit</a>
+					</span>
+					<span style="display:{{shouldBeView}}" class="pull-right">
+						<a class="btn btn-primary btn-xs" ng-click="openViewModal(proDetail)">View</a>
+					</span>
+				</td>
+			</tr>
+			<tr>
+				<th>Payment Days</th>
+				<td ng-repeat="proDetail in proDetailList[2]">
+					<span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetails.isVerified"></span>
+					<span>{{(proDetail.useBrandDetails?(proDetail.brand_urbanValue+proDetail.brand_ruralValue):(proDetail.variant_A_urbanValue+proDetail.variant_A_ruralValue+proDetail.variant_B_urbanValue+proDetail.variant_B_ruralValue+proDetail.variant_C_urbanValue+proDetail.variant_C_ruralValue))}}</span>
+					<span style="display:{{shouldBeEdit}}" class="pull-right">
+		 				<a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)">Edit</a>
+		 			</span>
+					<span style="display:{{shouldBeView}}" class="pull-right">
+						<a class="btn btn-primary btn-xs" ng-click="openViewModal(proDetail)">View</a>
+					</span>		
+		 		</td>
+			</tr>
+			<tr>
+				<th>Other Compensation</th>
+				<td ng-repeat="proDetail in proDetailList[3]">
+					<span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetails.isVerified"></span>
+					<span>{{(proDetail.useBrandDetails?(proDetail.brand_urbanValue+proDetail.brand_ruralValue):(proDetail.variant_A_urbanValue+proDetail.variant_A_ruralValue+proDetail.variant_B_urbanValue+proDetail.variant_B_ruralValue+proDetail.variant_C_urbanValue+proDetail.variant_C_ruralValue))}}</span>
+					<span style="display:{{shouldBeEdit}}" class="pull-right">
+						<a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)">Edit</a>
+		 				</span>
+						<span style="display:{{shouldBeView}}" class="pull-right">
+						<a class="btn btn-primary btn-xs" ng-click="openViewModal(proDetail)">View</a>
+		 				</span>		
+				</td>
+			</tr>
+		</table>
+		<br>		
+		<table class="table table-hover">
+			<tr>
+				<th>Items(Retailer Input)</th>
+				<th ng-repeat="retDetail in retDetailList[0]">
+					<span class="glyphicon" style="width:30px"></span>{{retDetail.relatedBrandName}}
+				</th>
+			</tr>
+			<tr>
+				<th>Minimum Order & Discount Rate</th>
+				<td ng-repeat="retDetail in retDetailList[0]">
+					<span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetails.isVerified"></span>
+					<span>{{(retDetail.useBrandDetails?(retDetail.brand_urbanValue+retDetail.brand_ruralValue):(retDetail.variant_A_urbanValue+retDetail.variant_A_ruralValue+retDetail.variant_B_urbanValue+retDetail.variant_B_ruralValue+retDetail.variant_C_urbanValue+retDetail.variant_C_ruralValue))}}({{retDetail.displayValue}}%)</span>
+					<span style="display:{{shouldBeView}}" class="pull-right">
+						<a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)">Edit</a>
+					</span>
+					<span style="display:{{shouldBeEdit}}" class="pull-right">
+						<a class="btn btn-primary btn-xs" ng-click="openViewModal(retDetail)">View</a>
+					</span>		
+				</td>
+			</tr>
+			<tr>
+				<th>Sales Target Volume & Bonus</th>
+				<td ng-repeat="retDetail in retDetailList[1]">
+					<span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetails.isVerified"></span>
+					<span>{{(retDetail.useBrandDetails?(retDetail.brand_urbanValue+retDetail.brand_ruralValue):(retDetail.variant_A_urbanValue+retDetail.variant_A_ruralValue+retDetail.variant_B_urbanValue+retDetail.variant_B_ruralValue+retDetail.variant_C_urbanValue+retDetail.variant_C_ruralValue))}}({{retDetail.displayValue}})</span>
+					<span style="display:{{shouldBeView}}" class="pull-right">
+						<a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)">Edit</a>
+					</span>
+					<span style="display:{{shouldBeEdit}}" class="pull-right">
+						<a class="btn btn-primary btn-xs" ng-click="openViewModal(retDetail)">View</a>
+					</span>			
+				</td>
+			</tr>
+			<tr>
+				<th>Payment Days</th>
+				<td ng-repeat="retDetail in retDetailList[2]">
+					<span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetails.isVerified"></span>
+					<span>{{(retDetail.useBrandDetails?(retDetail.brand_urbanValue+retDetail.brand_ruralValue):(retDetail.variant_A_urbanValue+retDetail.variant_A_ruralValue+retDetail.variant_B_urbanValue+retDetail.variant_B_ruralValue+retDetail.variant_C_urbanValue+retDetail.variant_C_ruralValue))}}</span>
+					<span style="display:{{shouldBeView}}" class="pull-right">
+						<a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)">Edit</a>
+					</span>
+					<span style="display:{{shouldBeEdit}}" class="pull-right">
+						<a class="btn btn-primary btn-xs" ng-click="openViewModal(retDetail)">View</a>
+					</span>		
+				</td>
+			</tr>
+			<tr>
+				<th>Other Compensation</th>
+				<td ng-repeat="proDetail in proDetailList[3]">
+					<span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetails.isVerified"></span>
+					<span>{{(proDetail.useBrandDetails?(proDetail.brand_urbanValue+proDetail.brand_ruralValue):(proDetail.variant_A_urbanValue+proDetail.variant_A_ruralValue+proDetail.variant_B_urbanValue+proDetail.variant_B_ruralValue+proDetail.variant_C_urbanValue+proDetail.variant_C_ruralValue))}}</span>
+					<span style="display:{{shouldBeView}}" class="pull-right">
+						<a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)">Edit</a>
+					</span>
+					<span style="display:{{shouldBeEdit}}" class="pull-right">
+						<a class="btn btn-primary btn-xs" ng-click="openViewModal(retDetail)">View</a>
+					</span>		
+				</td>
+			</tr>
+		</table>
 	</div>
-</div>
 
-
-
-<div modal="detailModal" class="hide" close="closeDetailModal()" options="detailOpts">
-	<div class="modal-dialog" style="width:1000px">
-		<div class="modal-content">
-		    <div class="modal-header">
-		    	<div>
-		    		<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeDetailModal()">&times;</button>
-					<h4 class="modal-title">Contract:{{Detail.contractCode}}</h4>
-		    		<h5>
-		    			Producer {{Detail.producerID}} Retailer {{Detail.retailerID}},{{Detail.seminar}}
-		    		</h5>
-		    	</div>
-		    	<div class="pull-right">
-		    		<div class="btn-group">
-		    			<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-		    				Category <span class="caret"></span>
-		    			</button>
-		    			<ul class="dropdown-menu">
-		    				<li class=""><a ng-click="showDetailModal('Elecssories')">Elecssories</a></li>
-		    				<li class=""><a ng-click="showDetailModal('HealthBeauty')">HealthBeauty</a></li>
-		    			</ul>
-		    		</div>
-		    	</div>
-		    	<div style="clear:both"></div>
-		    </div>
-		    <div class="modal-body">
-		    	<div class="">
-		    		<table class="table table-hover">
-		    			<tr style="background-color:yellow">
-		    				<th>Items(Producer Input)</th>
-		    				<th ng-repeat="proDetail in proDetailList[0]">
-		    					<span class="glyphicon" style="width:30px"></span>{{proDetail.relatedBrandName}}
-		    				</th>
-		    			</tr>
-		    			<tr>
-		    				<th>Minimum Order & Discount Rate</th>
-		    				<td ng-repeat="proDetail in proDetailList[0]">
-		    					<span class="glyphicon glyphicon-ok" style="width:30px"></span>
-		    					<span>{{(proDetail.useBrandDetails?(proDetail.brand_urbanValue+proDetail.brand_ruralValue):(proDetail.variant_A_urbanValue+proDetail.variant_A_ruralValue+proDetail.variant_B_urbanValue+proDetail.variant_B_ruralValue+proDetail.variant_C_urbanValue+proDetail.variant_C_ruralValue))}}({{proDetail.displayValue}}%)</span>
-		    					<span style="display:{{shouldBeEdit}}" class="pull-right">
-		    						<a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)">Edit</a>
-		    					</span>
-		    					<span style="display:{{shouldBeView}}" class="pull-right">
-		    						<a class="btn btn-primary btn-xs" ng-click="openViewModal(proDetail)">View</a>
-		    					</span>
-		    				</td>
-		    			</tr>
-		    			<tr>
-		    				<th>Sales Target Volume & Bonus</th>
-		    				<td ng-repeat="proDetail in proDetailList[1]">
-		    					<span class="glyphicon glyphicon-ok" style="width:30px"></span>
-		    					<span>{{(proDetail.useBrandDetails?(proDetail.brand_urbanValue+proDetail.brand_ruralValue):(proDetail.variant_A_urbanValue+proDetail.variant_A_ruralValue+proDetail.variant_B_urbanValue+proDetail.variant_B_ruralValue+proDetail.variant_C_urbanValue+proDetail.variant_C_ruralValue))}}({{proDetail.displayValue}})</span>
-		    					<span style="display:{{shouldBeEdit}}" class="pull-right">
-		    						<a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)">Edit</a>
-		    					</span>
-		    					<span style="display:{{shouldBeView}}" class="pull-right">
-		    						<a class="btn btn-primary btn-xs" ng-click="openViewModal(proDetail)">View</a>
-		    					</span>
-		    				</td>
-		    			</tr>
-		    			<tr>
-		    				<th>Payment Days</th>
-		    				<td ng-repeat="proDetail in proDetailList[2]">
-		    					<span class="glyphicon glyphicon-ok" style="width:30px"></span>
-		    					<span>{{(proDetail.useBrandDetails?(proDetail.brand_urbanValue+proDetail.brand_ruralValue):(proDetail.variant_A_urbanValue+proDetail.variant_A_ruralValue+proDetail.variant_B_urbanValue+proDetail.variant_B_ruralValue+proDetail.variant_C_urbanValue+proDetail.variant_C_ruralValue))}}</span>
-		    					<span style="display:{{shouldBeEdit}}" class="pull-right">
-		    		 				<a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)">Edit</a>
-		    		 			</span>
-		    					<span style="display:{{shouldBeView}}" class="pull-right">
-		    						<a class="btn btn-primary btn-xs" ng-click="openViewModal(proDetail)">View</a>
-		    					</span>		
-		    		 		</td>
-		    			</tr>
-		    			<tr>
-		    				<th>Other Compensation</th>
-		    				<td ng-repeat="proDetail in proDetailList[3]">
-		    					<span class="glyphicon glyphicon-ok" style="width:30px"></span>
-		    					<span>{{(proDetail.useBrandDetails?(proDetail.brand_urbanValue+proDetail.brand_ruralValue):(proDetail.variant_A_urbanValue+proDetail.variant_A_ruralValue+proDetail.variant_B_urbanValue+proDetail.variant_B_ruralValue+proDetail.variant_C_urbanValue+proDetail.variant_C_ruralValue))}}</span>
-		    					<span style="display:{{shouldBeEdit}}" class="pull-right">
-		    						<a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)">Edit</a>
-		   		 				</span>
-		    	 				<span style="display:{{shouldBeView}}" class="pull-right">
-		    						<a class="btn btn-primary btn-xs" ng-click="openViewModal(proDetail)">View</a>
-		   		 				</span>		
-		    				</td>
-		    			</tr>
-		    		</table>
-		    	</div>
-		    	<div class="" style="margin-top:20px">
-		    		<table class="table table-hover">
-		    			<tr style="background-color:blue">
-		    				<th>Items(Retailer Input)</th>
-		    				<th ng-repeat="retDetail in retDetailList[0]">
-		    					<span class="glyphicon" style="width:30px"></span>{{retDetail.relatedBrandName}}
-		    				</th>
-		    			</tr>
-		    			<tr>
-		    				<th>Minimum Order & Discount Rate</th>
-		    				<td ng-repeat="retDetail in retDetailList[0]">
-		    					<span class="glyphicon glyphicon-ok" style="width:30px"></span>
-		    					<span>{{(retDetail.useBrandDetails?(retDetail.brand_urbanValue+retDetail.brand_ruralValue):(retDetail.variant_A_urbanValue+retDetail.variant_A_ruralValue+retDetail.variant_B_urbanValue+retDetail.variant_B_ruralValue+retDetail.variant_C_urbanValue+retDetail.variant_C_ruralValue))}}({{retDetail.displayValue}}%)</span>
-		    					<span style="display:{{shouldBeView}}" class="pull-right">
-		    						<a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)">Edit</a>
-		    					</span>
-		    					<span style="display:{{shouldBeEdit}}" class="pull-right">
-		    						<a class="btn btn-primary btn-xs" ng-click="openViewModal(retDetail)">View</a>
-		    					</span>		
-		    				</td>
-		    			</tr>
-		    			<tr>
-		    				<th>Sales Target Volume & Bonus</th>
-		    				<td ng-repeat="retDetail in retDetailList[1]">
-		    					<span class="glyphicon glyphicon-ok" style="width:30px"></span>
-		    					<span>{{(retDetail.useBrandDetails?(retDetail.brand_urbanValue+retDetail.brand_ruralValue):(retDetail.variant_A_urbanValue+retDetail.variant_A_ruralValue+retDetail.variant_B_urbanValue+retDetail.variant_B_ruralValue+retDetail.variant_C_urbanValue+retDetail.variant_C_ruralValue))}}({{retDetail.displayValue}})</span>
-		    					<span style="display:{{shouldBeView}}" class="pull-right">
-		    						<a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)">Edit</a>
-		    					</span>
-		    					<span style="display:{{shouldBeEdit}}" class="pull-right">
-		    						<a class="btn btn-primary btn-xs" ng-click="openViewModal(retDetail)">View</a>
-		    					</span>			
-		    				</td>
-		    			</tr>
-		    			<tr>
-		    				<th>Payment Days</th>
-		    				<td ng-repeat="retDetail in retDetailList[2]">
-		    					<span class="glyphicon glyphicon-ok" style="width:30px"></span>
-		    					<span>{{(retDetail.useBrandDetails?(retDetail.brand_urbanValue+retDetail.brand_ruralValue):(retDetail.variant_A_urbanValue+retDetail.variant_A_ruralValue+retDetail.variant_B_urbanValue+retDetail.variant_B_ruralValue+retDetail.variant_C_urbanValue+retDetail.variant_C_ruralValue))}}</span>
-		    					<span style="display:{{shouldBeView}}" class="pull-right">
-		    						<a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)">Edit</a>
-		    					</span>
-		    					<span style="display:{{shouldBeEdit}}" class="pull-right">
-		    						<a class="btn btn-primary btn-xs" ng-click="openViewModal(retDetail)">View</a>
-		    					</span>		
-		    				</td>
-		    			</tr>
-		    			<tr>
-		    				<th>Other Compensation</th>
-		    				<td ng-repeat="proDetail in proDetailList[3]">
-		    					<span class="glyphicon glyphicon-ok" style="width:30px"></span>
-		    					<span>{{(proDetail.useBrandDetails?(proDetail.brand_urbanValue+proDetail.brand_ruralValue):(proDetail.variant_A_urbanValue+proDetail.variant_A_ruralValue+proDetail.variant_B_urbanValue+proDetail.variant_B_ruralValue+proDetail.variant_C_urbanValue+proDetail.variant_C_ruralValue))}}</span>
-		    					<span style="display:{{shouldBeView}}" class="pull-right">
-		    						<a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)">Edit</a>
-		    					</span>
-		    					<span style="display:{{shouldBeEdit}}" class="pull-right">
-		    						<a class="btn btn-primary btn-xs" ng-click="openViewModal(retDetail)">View</a>
-		    					</span>		
-		    				</td>
-		    			</tr>
-		    		</table>
-		    	</div>
-		    </div>
-		    <div class="modal-footer">
-		    	<a class="btn btn-success">Commit</a>
-		    	<a class="btn btn-primary" ng-click="compare(Detail)">Compare and Refresh</a>
-		    </div>
-		</div>
+	<div>
+		<a class="btn btn-promary">Commit</a>
+		<a class="btn btn-deafult" ng-click="compare(contractInfo)">Compare and Refresh</a>	
 	</div>
+
 </div>
-
-
-
 
 <div modal="editModal" class="hide" close="closeEditModal()" options="eidtOpts">
 	<div class="modal-dialog">
@@ -312,12 +185,14 @@
 				<div style="clear:both"></div>
 			</div>
 			<div class="modal-body">
+
+
 				<div class="" style="display:{{shouldShowBrand}}">
 					<table class="table" style="display:{{shouldBeRate}}">
 						<tr>
 							<th style="width:10%"></th>
 							<th style="width:45%"></th>
-							<th style="width:45%">Discount rete</th>
+							<th style="width:45%">Discount Rate</th>
 						</tr>
 						<tr>
 							<td>Urban:</td>
@@ -409,6 +284,8 @@
 							</tr>
 						</table>
 					</div>
+
+
 					<table class="table" style="display:{{shouldBeNormal}}">
 						<tr>
 							<td style="width:40%">Urban:</td>
@@ -425,6 +302,7 @@
 						</tr>
 					</table>
 				</div>
+
 				<div class="" style="display:{{shouldShowVariant}}">
 					<!--Variant-->
 					<div style="display:{{shouldBeRate}}">
@@ -434,7 +312,7 @@
 									<tr>
 										<th style="width:10%"></th>
 										<th style="width:45%"></th>
-										<th style="width:45%">Discount rete</th>
+										<th style="width:45%">Discount Rate</th>
 									</tr>
 									<tr>
 										<td>Urban:</td>
@@ -458,7 +336,6 @@
 							</tab>
 						</tabset>
 					</div>
-				
 					<div style="display:{{shouldBeAmount}}">
 						<div style="display:{{shouldBeBonusAmount}}">
 							<tabset>
@@ -603,7 +480,7 @@
 						<tr>
 							<th style="width:10%"></th>
 							<th style="width:45%"></th>
-							<th style="width:45%">Discount rete</th>
+							<th style="width:45%">Discount Rate</th>
 						</tr>
 						<tr>
 							<td>Urban:</td>
@@ -723,7 +600,7 @@
 									<tr>
 										<th style="width:10%"></th>
 										<th style="width:45%"></th>
-										<th style="width:45%">Discount rete</th>
+										<th style="width:45%">Discount Rate</th>
 									</tr>
 									<tr>
 										<td>Urban:</td>
@@ -833,7 +710,7 @@
 						</div>
 					</div>
 					<div style="display:{{shouldBeNormal}}">
-						<tabset>
+						<t2abset>
 							<tab ng-repeat='product in editProductList' heading="{{product.varName}}">
 								<table class="table">
 									<tr>
@@ -855,7 +732,7 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<a class="btn btn-warning" ng-click="closeViewModal()">Close</a>
+				<a class="btn btn-default" ng-click="closeViewModal()">Close</a>
 			</div>
 		</div>
 	</div>

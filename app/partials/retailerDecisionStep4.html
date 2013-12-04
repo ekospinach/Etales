@@ -180,7 +180,8 @@
             </tr>  
           </table>
           <div>
-            <a ng-click="open()" class="btn btn-success">New Product</a>
+            <a href="/#/retailerDecisionStep3" class="btn btn-default">Back</a>            
+            <a ng-click="open()" class="btn btn-primary">Add order</a>
               <div modal="shouldBeOpen" class="hide" close="close()" options="opts">
                 <div class="modal-dialog" style="width:1000px">
                   <div class="modal-content">
@@ -304,13 +305,12 @@
                         <div style="clear:both"></div>
                       </div>
                     <div class="modal-footer">
-                      <input type="button" class="btn btn-success" ng-click="addOrders(market)" value="OK">
-                      <input type="button" class="btn btn-danger cancel" ng-click="close()" value="Cancel">
+                      <input type="button" class="btn btn-primary" ng-click="addOrders(market)" value="OK">
+                      <input type="button" class="btn btn-default" ng-click="close()" value="Cancel">
                     </div>
                   </div>
                 </div>
               </div>
-            <a href="/#/retailerDecisionStep3" class="btn btn-success">Back</a>
             <!--<a href="/#/producerDecisionStep4" class="btn btn-primary">Next</a>-->
           </div>
       </div>
