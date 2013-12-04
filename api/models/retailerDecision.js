@@ -226,6 +226,50 @@ exports.getRetailerShelfSpace=function(req,res,next){
     });
 }
 
+exports.getRetailerCurrentDecision=function(req,res,next){
+    retDecision.findOne({
+        seminar:req.params.seminar,
+        period:req.params.period,
+        retailerID:req.params.retailerID
+    },function(err,doc){
+        if(err){
+            next(new Error(err));
+        }
+        if(!doc){
+            res.send(404,{err:'cannot find the doc'});
+        }else{
+            var categoryID=0,result=0;
+            if(req.params.brandName.substring(0,1)=="E"){
+                categoryID=1;
+            }else{
+                categoryID=2;
+            }
+            var allRetCatDecisions=_.filter(doc.retCatDecision,function(obj){
+                return (obj.categoryID==categoryID);
+            });
+            for(var i=0;i<allRetCatDecisions.length;i++){
+                for(var j=0;j<allRetCatDecisions[i].privateLabelDecision.length;j++){
+                    if(allRetCatDecisions[i].privateLabelDecision[j].brandID!=0&&allRetCatDecisions[i].privateLabelDecision[j].brandName==req.params.brandName){
+                        for(k=0;k<allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision.length;k++){
+                            if(allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k].varID!=0&&allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k].varName==req.params.varName){
+                                result=1;
+                                res.send(200,allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k]);
+                                break;
+                            }else{
+                                result=0;
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+            if(result==0){
+                res.send(404,'cannot find the variant');
+            }
+        }
+    })
+}
+
 exports.checkRetailerProduct=function(req,res,next){
     retDecision.findOne({
         seminar:req.params.seminar,
@@ -239,7 +283,7 @@ exports.checkRetailerProduct=function(req,res,next){
             res.send(404,{err:'cannot find the doc'});
         }else{
             var allRetCatDecisions=_.filter(doc.retCatDecision,function(obj){
-                return (obj.categoryID==categoryID);
+                return (obj.categoryID==req.params.categoryID);
             });
             var count=0,result=0;
             if(req.params.checkType=="brand"){
@@ -254,10 +298,10 @@ exports.checkRetailerProduct=function(req,res,next){
                     }
                     //if(allRetCatDecisions[i].privateLabelDecision)
                 }
-                if(count>=5){
-                    res.send(404,{message:'The count of brand is more than 5 in a category'});
+                if(count>=4){
+                    res.send(404,{message:'The count of brand is more than 4 in a category'});
                 }else if(result!=0){
-                    res.send(404,{message:'There is another brand named'+req.params.brandName});
+                    res.send(404,{message:'There is another brand named '+req.params.brandName});
                 }else{
                     res.send(200,{message:'OK'});
                 }

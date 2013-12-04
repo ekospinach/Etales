@@ -63,6 +63,7 @@ define(['app'], function(app) {
 					$scope.setBrandName=setBrandName;
 					$scope.loadAllBrand=loadAllBrand;
 					$scope.showbubleMsg=showbubleMsg;
+					//check
 					$scope.checkProduction=checkProduction;
 					$scope.checkDesign=checkDesign;
 					$scope.checkTechnology=checkTechnology;
@@ -580,7 +581,6 @@ define(['app'], function(app) {
 				var newproducerDecision=new ProducerDecision();
 				newproducerDecision.packFormat="ECONOMY";
 				newproducerDecision.dateOfBirth=$scope.period;
-				//newproducerDecision.parameter=parameter;
 				newproducerDecision.dateOfDeath=10;
 		        newproducerDecision.composition=new Array(1,1,1);
 		        newproducerDecision.production=0;
@@ -604,14 +604,13 @@ define(['app'], function(app) {
 					newBrand.supportEmall=0;
 					newBrand.supportTraditionalTrade=new Array(0,0);
 					newBrand.proVarDecision=new Array();
-					//newBrand.proVarDecision.push({});
 					newproducerDecision.parentBrandID=newBrand.brandID;
 					newproducerDecision.varName='_'+$scope.lauchNewVarName;/*need check*/
 					newproducerDecision.varID=10*newBrand.brandID+1;/*need check*/
 					//need add 2 null vars
 					newBrand.proVarDecision.push(newproducerDecision,nullDecision,nullDecision);
 
-					url="/checkProducerProduct/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+$scope.lauchNewCategory+'/brand/'+$scope.brandFirstName+$scope.lauchNewBrandName+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+newproducerDecision.varName;
+					url="/checkProducerProduct/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+$scope.lauchNewCategory+'/brand/'+newBrand.brandName+'/'+newproducerDecision.varName;
 					$http({
 						method:'GET',
 						url:url
@@ -622,7 +621,6 @@ define(['app'], function(app) {
 					},function(data){
 						showbubleMsg('add new brand failure, ' + data.data.message,1);
 					})
-					//ProducerDecisionBase.addProductNewBrand(newBrand,$scope.lauchNewCategory);
 				}else{/*add new product under existed Brand*/
 					var proBrandsDecision=_.find($scope.pageBase.proCatDecision,function(obj){
 						return (obj.categoryID==$scope.addNewCategory);
@@ -652,7 +650,6 @@ define(['app'], function(app) {
 					},function(data){
 						showbubleMsg('add new variant failure, ' + data.data.message,1);
 					})
-			       	//ProducerDecisionBase.addProductExistedBrand(newproducerDecision,$scope.addNewCategory,newBrandName);	
 				}
 			}
  
@@ -677,7 +674,6 @@ define(['app'], function(app) {
 		 		console.log('infoBuble.show');
 		 		$scope.infoBuble = true;
 		 	};
-
 			
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
 				ProducerDecisionBase.reload({producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){

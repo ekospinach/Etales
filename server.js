@@ -104,6 +104,7 @@ app.get('/producerExpend/:seminar/:period/:producerID/:brandName/:location/:addi
 app.get('/retailerExpend/:seminar/:period/:retailerID/:marketID/:location/:additionalIdx',require('./api/models/retailerDecision.js').getRetailerExpend);
 app.get('/retailerShelfSpace/:seminar/:period/:retailerID/:marketID/:categoryID/:brandName/:varName',require('./api/models/retailerDecision.js').getRetailerShelfSpace);
 app.get('/checkRetailerProduct/:seminar/:period/:retailerID/:categoryID/:checkType/:brandName/:varName',require('./api/models/retailerDecision.js').checkRetailerProduct);
+app.get('/retailerCurrentDecision/:seminar/:period/:retailerID/:brandName/:varName',require('./api/models/retailerDecision.js').getRetailerCurrentDecision);
 
 //special calculate API
 app.get('/productionCost');

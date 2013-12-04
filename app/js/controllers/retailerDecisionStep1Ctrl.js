@@ -35,13 +35,7 @@ define(['app'], function(app) {
 					$scope.getMoreInfo=getMoreInfo;
 					$scope.closeInfo=closeInfo;
 					$scope.checkBudget=checkBudget;
-				var result=showView($scope.retailerID,$scope.period,$scope.language);
-				delay.resolve(result);
-				if (result==1) {
-					delay.resolve(result);
-				} else {
-					delay.reject('showView error,products is null');
-				}
+				showView($scope.retailerID,$scope.period,$scope.language);
 				return delay.promise;
 			}
 
@@ -59,39 +53,35 @@ define(['app'], function(app) {
 	      		}).then(function(data){
 	      			abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
 	      			$scope.abMax=abMax;
-	      		},function(data){
-					console.log('read companyHistory fail');
-	      		}).then(function(){
 	      			url="/retailerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/-1/location/1';
-	      			$http({
+	      			return $http({
 	      				method:'GET',
 	      				url:url,
-	      			}).then(function(data){
-	      				expend=data.data.result;
-	      				$scope.surplusExpend=abMax-expend;
-	      				$scope.percentageExpend=(abMax-expend)/abMax*100;
-	      			},function(data){
-	      				console.log('read retailerShelfSpace fail');
-	      			}).then(function(){
-	      				url="/retailerShelfSpace/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/-1/0/brandName/varName';
-	      				$http({
-	      					method:'GET',
-	      					url:url
-	      				}).then(function(data){
-	      					$scope.surplusShelf=new Array();
-	      					$scope.percentageShelf=new Array();
-	      					$scope.surplusShelf[0]=new Array();
-	      					$scope.surplusShelf[1]=new Array();
-	      					$scope.percentageShelf[0]=new Array();
-	      					$scope.percentageShelf[1]=new Array();
-	      					$scope.surplusShelf[0][0]=data.data.result[0][0];
-	      					$scope.surplusShelf[0][1]=data.data.result[0][1];
-	      					$scope.surplusShelf[1][0]=data.data.result[1][0];
-	      					$scope.surplusShelf[1][1]=data.data.result[1][1];
-	      					$scope.percentageShelf[0][0]=(100-$scope.surplusShelf[0][0]);
-	      					$scope.percentageShelf[0][1]=(100-$scope.surplusShelf[0][1]);
-	      					$scope.percentageShelf[1][0]=(100-$scope.surplusShelf[1][0]);
-	      					$scope.percentageShelf[1][1]=(100-$scope.surplusShelf[1][1]);	
+	      			});
+	      		}).then(function(data){
+	      			expend=data.data.result;
+	      			$scope.surplusExpend=abMax-expend;
+	      			$scope.percentageExpend=(abMax-expend)/abMax*100;
+	      		// 	url="/retailerShelfSpace/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/-1/0/brandName/varName';
+	      		// 	return $http({
+	      		// 		method:'GET',
+	      		// 		url:url
+	      		// 	});
+	      		// }).then(function(data){
+	      		// 		    $scope.surplusShelf=new Array();
+	      		// 			$scope.percentageShelf=new Array();
+	      		// 			$scope.surplusShelf[0]=new Array();
+	      		// 			$scope.surplusShelf[1]=new Array();
+	      		// 			$scope.percentageShelf[0]=new Array();
+	      		// 			$scope.percentageShelf[1]=new Array();
+	      		// 			$scope.surplusShelf[0][0]=data.data.result[0][0];
+	      		// 			$scope.surplusShelf[0][1]=data.data.result[0][1];
+	      		// 			$scope.surplusShelf[1][0]=data.data.result[1][0];
+	      		// 			$scope.surplusShelf[1][1]=data.data.result[1][1];
+	      		// 			$scope.percentageShelf[0][0]=(100-$scope.surplusShelf[0][0]);
+	      		// 			$scope.percentageShelf[0][1]=(100-$scope.surplusShelf[0][1]);
+	      		// 			$scope.percentageShelf[1][0]=(100-$scope.surplusShelf[1][0]);
+	      		// 			$scope.percentageShelf[1][1]=(100-$scope.surplusShelf[1][1]);	
 	      					$scope.retailerID=retailerID,$scope.period=period,$scope.language=language;
 							if(language=="English"){
 								for(var i=0;i<$scope.multilingual.length;i++){
@@ -108,12 +98,9 @@ define(['app'], function(app) {
 							result=1;
 							$scope.infoLanguages=infoLanguages;
 							$scope.labelLanguages=labelLanguages;
-							return result;      					
-	      				},function(data){
-	      					console.log('read retailerShelfSpace fail');
-	      				});
-	      			});
-	      		});		
+	      		},function(){
+	      			console.log('showView fail');
+	      		});	
 	      		return d.promise;		
 			}
 
@@ -148,22 +135,16 @@ define(['app'], function(app) {
 			var getMoreInfo=function(){
 				//$scope.moreInfo={'categoryID':$scope.retailerID};
 				$scope.isCollapsed=false;
-				var url="/quarterHistoryInfo/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod;
+				var url="/quarterHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1);
 				$http({method:'GET',url:url})
-				.success(function(data,status,headers,config){
-					$scope.quarterHistory=data;
-					console.log($scope.quarterHistory);
+				.then(function(data){
+					$scope.quarterHistory=data.data;
 					url="/retailerDecision/"+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+($rootScope.currentPeriod-1)+'/'+$rootScope.user.seminar;
-					$http({method:'GET',url:url})
-					.success(function(data){
-						$scope.retailerDecisionHistory=data;
-					})
-					.error(function(data){
-						console.log('read retailerDecisionHistory fail');
-					})
-				})
-				.error(function(data,status,headers,config){
-					console.log('read quarterHistory fail');
+					return $http({method:'GET',url:url})	
+				}).then(function(data){
+					$scope.retailerDecisionHistory=data.data;
+				},function(){
+					console.log('read historyInfo fail');
 				});
 			}
 

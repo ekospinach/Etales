@@ -144,7 +144,6 @@ define(['app'], function(app) {
 					return $http({method:'GET',url:url});
 				}).then(function(data){
 					$scope.companyDecisionHistory=data;
-					$scope.categoryID=categoryID;
 				},function(){
 					console.log('read historyInfo fail');
 				});
