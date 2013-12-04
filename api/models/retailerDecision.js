@@ -226,6 +226,69 @@ exports.getRetailerShelfSpace=function(req,res,next){
     });
 }
 
+exports.checkRetailerProduct=function(req,res,next){
+    retDecision.findOne({
+        seminar:req.params.seminar,
+        period:req.params.period,
+        retailerID:req.params.retailerID
+    },function(err,doc){
+        if(err){
+            next(new Error(err));
+        }
+        if(!doc){
+            res.send(404,{err:'cannot find the doc'});
+        }else{
+            var allRetCatDecisions=_.filter(doc.retCatDecision,function(obj){
+                return (obj.categoryID==categoryID);
+            });
+            var count=0,result=0;
+            if(req.params.checkType=="brand"){
+                for(var i=0;i<allRetCatDecisions.length;i++){
+                    for(var j=0;j<allRetCatDecisions[i].privateLabelDecision.length;j++){
+                        if(allRetCatDecisions[i].privateLabelDecision[j].brandName!=""&&allRetCatDecisions[i].privateLabelDecision[j].brandID!=0){
+                            count++;
+                            if(allRetCatDecisions[i].privateLabelDecision[j].brandName==req.params.brandName){
+                                result++;
+                            }
+                        }
+                    }
+                    //if(allRetCatDecisions[i].privateLabelDecision)
+                }
+                if(count>=5){
+                    res.send(404,{message:'The count of brand is more than 5 in a category'});
+                }else if(result!=0){
+                    res.send(404,{message:'There is another brand named'+req.params.brandName});
+                }else{
+                    res.send(200,{message:'OK'});
+                }
+            }else{
+                for(var i=0;i<allRetCatDecisions.length;i++){
+                    for(var j=0;j<allRetCatDecisions[i].privateLabelDecision.length;j++){
+                        if(allRetCatDecisions[i].privateLabelDecision[j].brandID!=0&&allRetCatDecisions[i].privateLabelDecision[j].brandName==req.params.brandName){
+                            for(var k=0;k<allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision.length;k++){
+                                if(allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k].varID!=0&&allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k].varName!=""){
+                                    count++;
+                                    if(allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k].varName==req.params.varName){
+                                        result++;
+                                    }
+                                }
+                            }
+                            break;
+                        }
+                    }
+                }
+                if(count>=3){
+                    res.send(404,{message:'The count of variant is more than 3 in brand'+req.params.brandName});
+                }else if(result!=0){
+                    res.send(404,{message:'There is another variant named '+req.params.varName});
+                }else{
+                    res.send(200,{message:'OK'});
+                }
+            }
+        }
+    })
+}
+
 exports.getRetailerExpend=function(req,res,next){
     retDecision.findOne({
         seminar:req.params.seminar,

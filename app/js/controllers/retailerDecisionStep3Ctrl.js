@@ -355,7 +355,6 @@ define(['app'], function(app) {
 				/*importantt*/
 			}		
 			var addNewProduct=function(parameter){
-				//require(['../js/controllers/untils/calculate'], function (calculate){
 					var newBrand=new RetailerDecision();
 					var nullDecision=new RetailerDecision();
 					nullDecision.varName="";
@@ -363,15 +362,15 @@ define(['app'], function(app) {
 					nullDecision.parentBrandID=0;
 					nullDecision.dateOfBirth=0;
 					nullDecision.dateOfDeath=0;
-					nullDecision.packFormat="";
-					nullDecision.composition=[0,0,0];
+					nullDecision.packFormat="ECONOMY";
+					nullDecision.composition=new Array(1,1,1);
 					nullDecision.discontinue=false;
 
 					var newretailerDecision=new RetailerDecision();
-					newretailerDecision.packFormat="";
+					newretailerDecision.packFormat="ECONOMY";
 					newretailerDecision.dateOfBirth=$scope.period;
 					newretailerDecision.dateOfDeath=10;
-			        newretailerDecision.composition=new Array();
+			        newretailerDecision.composition=new Array(1,1,1);
 			        newretailerDecision.discontinue=false;
 					if(parameter=="NewBrand"){/*lauch new Brand*/
 						var retVariantDecision=_.find($scope.pageBase.retCatDecision,function(obj){
@@ -382,10 +381,6 @@ define(['app'], function(app) {
 						newBrand.paranetCompanyID=$scope.retailerID;
 						newBrand.dateOfDeath=10;
 						newBrand.dateOfBirth=$scope.period;
-						//newBrand.advertisingOffLine=new Array();
-						//newBrand.advertisingOnLine="";
-						//newBrand.supportEmall="";
-						//newBrand.supportTraditionalTrade=new Array();
 						newBrand.privateLabelVarDecision=new Array();
 						newretailerDecision.parentBrandID=newBrand.brandID;
 						newretailerDecision.varName=$scope.lauchNewVarName;/*need check*/
