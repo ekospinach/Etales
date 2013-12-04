@@ -30,13 +30,13 @@
           </div>
         </div>
         <div class="pull-right" style="width:33%">
-          <progress percent="88" class="progress active"></progress>
+          <progress percent="percentageExpend" class="progress active">{{surplusExpend}}</progress>
           <small>
             <em>Total Avaliable Budget for Remaing Period</em>
           </small>
-          <progress percent="70" class="progress progress-suceess active progress-striped"></progress>
+          <progress percent="percentageProduction" class="progress progress-suceess active progress-striped">{{surplusProduction}}</progress>
           <small>
-            <em>Elecssories Available Capacity</em>
+            <em>{{category}} Available Capacity</em>
           </small>
         </div>
           <div style="clear:both"></div>
@@ -93,27 +93,27 @@
             <tr>
               <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.UAO}}" popover-title="{{labelLanguages.UAO}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.UAO}}<span style="color:red">*</span></p>
               </th>
-              <th ng-repeat='brand in brands'><a href="#" editable-text="brand.advertisingOffLine[0]" onaftersave="updateProducerDecision(category,brand.brandName,'advertisingOffLine','0',$index)">{{ brand.advertisingOffLine[0] || 0 }}</a></th>
+              <th ng-repeat='brand in brands'><a href="#" editable-text="brand.advertisingOffLine[0]" onbeforesave="checkData(category,brand.brandName,'advertisingOffLine','0',$index,$data)" onaftersave="updateProducerDecision(category,brand.brandName,'advertisingOffLine','0',$index)">{{ brand.advertisingOffLine[0] || 0 }}</a></th>
             </tr>
             <tr>
               <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.UTTS}}" popover-title="{{labelLanguages.UTTS}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.UTTS}}<span style="color:red">*</span></p></th>
-              <th ng-repeat='brand in brands'><a href="#" editable-text="brand.supportTraditionalTrade[0]" onaftersave="updateProducerDecision(category,brand.brandName,'supportTraditionalTrade','0',$index)">{{ brand.supportTraditionalTrade[0] || 0 }}</a></th>
+              <th ng-repeat='brand in brands'><a href="#" editable-text="brand.supportTraditionalTrade[0]" onbeforesave="checkData(category,brand.brandName,'supportTraditionalTrade','0',$index,$data)" onaftersave="updateProducerDecision(category,brand.brandName,'supportTraditionalTrade','0',$index)">{{ brand.supportTraditionalTrade[0] || 0 }}</a></th>
             </tr>
             <tr>
               <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.RAO}}" popover-title="{{labelLanguages.RAO}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.RAO}}<span style="color:red">*</span></p></th>
-              <th ng-repeat='brand in brands'><a href="#" editable-text="brand.advertisingOffLine[1]" onaftersave="updateProducerDecision(category,brand.brandName,'advertisingOffLine','1',$index)">{{ brand.advertisingOffLine[1] || 0 }}</a></th>
+              <th ng-repeat='brand in brands'><a href="#" editable-text="brand.advertisingOffLine[1]" onbeforesave="checkData(category,brand.brandName,'advertisingOffLine','1',$index,$data)" onaftersave="updateProducerDecision(category,brand.brandName,'advertisingOffLine','1',$index)">{{ brand.advertisingOffLine[1] || 0 }}</a></th>
             </tr>
             <tr>
               <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.RTTS}}" popover-title="{{labelLanguages.RTTS}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.RTTS}}<span style="color:red">*</span></p></th>
-              <th ng-repeat='brand in brands'><a href="#" editable-text="brand.supportTraditionalTrade[1]" onaftersave="updateProducerDecision(category,brand.brandName,'supportTraditionalTrade','1',$index)">{{ brand.supportTraditionalTrade[1] || 0 }}</a></th>
+              <th ng-repeat='brand in brands'><a href="#" editable-text="brand.supportTraditionalTrade[1]" onbeforesave="checkData(category,brand.brandName,'supportTraditionalTrade','1',$index,$data)" onaftersave="updateProducerDecision(category,brand.brandName,'supportTraditionalTrade','1',$index)">{{ brand.supportTraditionalTrade[1] || 0 }}</a></th>
             </tr>
             <tr>
               <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.OA}}" popover-title="{{labelLanguages.OA}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.OA}}<span style="color:red">*</span></p></th>
-              <th ng-repeat='brand in brands'><a href="#" editable-text="brand.advertisingOnLine" onaftersave="updateProducerDecision(category,brand.brandName,'advertisingOnLine','1',$index)">{{ brand.advertisingOnLine || 0 }}</a></th>
+              <th ng-repeat='brand in brands'><a href="#" editable-text="brand.advertisingOnLine" onbeforesave="checkData(category,brand.brandName,'advertisingOnLine','1',$index,$data)" onaftersave="updateProducerDecision(category,brand.brandName,'advertisingOnLine','1',$index)">{{ brand.advertisingOnLine || 0 }}</a></th>
             </tr> 
             <tr>
               <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.EVI}}" popover-title="{{labelLanguages.EVI}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.EVI}}<span style="color:red">*</span></p></th>
-              <th ng-repeat='brand in brands'><a href="#" editable-text="brand.supportEmall" onaftersave="updateProducerDecision(category,brand.brandName,'supportEmall','1',$index)">{{ brand.supportEmall || 0 }}</a></th>
+              <th ng-repeat='brand in brands'><a href="#" editable-text="brand.supportEmall" onbeforesave="checkData(category,brand.brandName,'supportEmall','1',$index,$data)" onaftersave="updateProducerDecision(category,brand.brandName,'supportEmall','1',$index)">{{ brand.supportEmall || 0 }}</a></th>
             </tr>    
           </table>
           <div>

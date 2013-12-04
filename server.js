@@ -70,8 +70,6 @@ app.get('/seminarList',require('./api/models/seminar.js').getSeminarList);
 app.post('/updateSeminar',require('./api/models/seminar.js').updateSeminar);
 
 app.get('/contracts/:seminar/:contractUserID',require('./api/models/contract.js').getContractList);
-
-app.get('/contractDetails/:contractCode',require('./api/models/contract.js').getContractDetails);
 //get contractDetail
 app.get('/contractDetail/:contractCode/:userType/:negotiationItem/:brandName',require('./api/models/contract.js').getContractDetail);
 //add new contract
@@ -96,14 +94,19 @@ app.get('/perceptionMaps/:seminar/:period',require('./api/models/perceptionMap.j
 app.get('/finReport', require('./api/models/finReport.js').getFinReport);
 app.get('/volReport', require('./api/models/volReport.js').getVolReport);
 
-//check
+//producer check
 app.get('/productionResult/:seminar/:period/:producerID/:brandName/:varName',require('./api/models/producerDecision.js').getProductionResult);
 app.get('/producerCurrentDecision/:seminar/:period/:producerID/:brandName/:varName',require('./api/models/producerDecision.js').getProducerCurrentDecision);
+app.get('/checkProducerProduct/:seminar/:period/:producerID/:categoryID/:checkType/:brandName/:varName',require('./api/models/producerDecision.js').checkProducerProduct);
+app.get('/producerExpend/:seminar/:period/:producerID/:brandName/:location/:additionalIdx',require('./api/models/producerDecision.js').getProducerExpend);
+
+//retailer check
+app.get('/retailerExpend/:seminar/:period/:retailerID/:marketID/:location/:additionalIdx',require('./api/models/retailerDecision.js').getRetailerExpend);
+app.get('/retailerShelfSpace/:seminar/:period/:retailerID/:marketID/:categoryID/:brandName/:varName',require('./api/models/retailerDecision.js').getRetailerShelfSpace);
 
 //special calculate API
 app.get('/productionCost');
 app.get('/currentPeriod/:seminar',require('./api/models/seminar.js').getCurrentPeriod);
-app.get('/seminarNewDoc',require('./api/models/seminar.js').newDoc);
 
 app.use(express.errorHandler());
 

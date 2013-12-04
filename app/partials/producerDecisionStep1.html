@@ -32,13 +32,13 @@
           </div>
         </div>
         <div class="pull-right" style="width:33%">
-          <progress percent="88" class="progress active"></progress>
+          <progress percent="percentageExpend" class="progress active">{{surplusExpend}}</progress>
           <small>
             <em>Total Avaliable Budget for Remaing Period</em>
           </small>
-          <progress percent="70" class="progress progress-suceess active progress-striped"></progress>
+          <progress percent="percentageProduction" class="progress progress-suceess active progress-striped">{{surplusProduction}}</progress>
           <small>
-            <em>Elecssories Available Capacity</em>
+            <em>{{category}} Available Capacity</em>
           </small>
         </div>
         <div style="clear:both"></div>
@@ -110,7 +110,7 @@
               <p class="text-primary" Popover-animation="true" popover="{{infoLanguages.TL}}" popover-title="{{labelLanguages.TL}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.TL}}<span style="color:red">*</span></p>
             </th>
             <th ng-repeat='product in products'>
-              <a href="#" editable-text="product.composition[1]" onbeforesave="checkTechnology(category,product.parentBrandName,product.varName,'composition','1',$index,$data)" ononaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'composition','1',$index)">{{ product.composition[1] || 0 }}</a>
+              <a href="#" editable-text="product.composition[1]" onbeforesave="checkTechnology(category,product.parentBrandName,product.varName,'composition','1',$index,$data)" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'composition','1',$index)">{{ product.composition[1] || 0 }}</a>
             </th>
           </tr>
           <tr>
@@ -144,7 +144,7 @@
               <p class="text-primary" Popover-animation="true" popover="{{infoLanguages.DTP}}" popover-title="{{labelLanguages.DTP}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.DTP}}<span style="color:red">*</span></p>
             </th>
             <th ng-repeat='product in products'>
-              <a href="#" editable-checkbox="product.discontinue" e-title="DisContinue this product?" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'discontinue','0',$index)">{{ product.discontinue && "DisContinue" || "Continue!" }}</a>
+              <a href="#" editable-checkbox="product.discontinue" e-title="{{labelLanguages.DTP}}?" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'discontinue','0',$index)">{{ product.discontinue && "DisContinue" || "Continue!" }}</a>
             </th>
           </tr>    
         </table>
@@ -165,7 +165,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeProductModal()">&times;</button>
         <h4>New Product</h4>
       </div>
-      <form method="POST">
+      <form method="POST" name="myForm">
         <div class="modal-body">
           <div class="control-group">
             <tabset>
@@ -178,17 +178,20 @@
                       <option value="2">HealthBeauty</option>
                     </select>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group" ng-class="{'has-error': myForm.newBrandName.$invalid}">
                     <label for="lauchNewBrandName">Enter New Brand Name:</label>
                     <div class="input-group">
                       <span class="input-group-addon">{{brandFirstName}}</span>
-                      <input type="text" class="form-control" ng-model="lauchNewBrandName">
+                      <input type="text"  class="form-control" ng-model="lauchNewBrandName" name="newBrandName" ng-maxlength="4" required>
                       <span class="input-group-addon">{{brandLastName}}</span>
                     </div>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group" ng-class="{'has-error':myForm.lauchVarName.$invalid}">
                     <label for="lauchNewVarName">Enter New Variant Name</label>
-                    <input type="text" class="form-control" ng-model="lauchNewVarName">
+                    <div class="input-group">
+                      <span class="input-group-addon">_</span>
+                      <input type="text" name="lauchVarName" class="form-control" ng-model="lauchNewVarName" ng-maxlength="4" required>
+                    </div>
                   </div>
                 </div>
               </tab>
@@ -207,18 +210,27 @@
                       <option ng-repeat="allBrand in allBrands" value="{{allBrand.BrandID}}">{{allBrand.BrandName}}</option>
                     </select>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group" ng-class="{'has-error':myForm.addVarName.$invalid}">
                     <label for="addNewVarName">Enter New Variant Name</label>
-                    <input type="text" class="form-control" ng-model="addNewVarName">
+                    <div class="input-group">
+                      <span class="input-group-addon">_</span>
+                      <input type="text" name="addVarName" class="form-control" ng-model="addNewVarName" ng-maxlength="4" required>
+                    </div>
                   </div>
                 </div>
               </tab>
             </tabset>
           </div>
+          <div class="{{bubleClassName}}" ng-show='true'>
+            <strong>{{bubleTitle}}</strong>{{bubleMsg}}
+            </div>  
         </div>
         <div class="modal-footer">
-          <input type="button" ng-click="addNewProduct(parameter)" class="btn btn-primary" value="Add"/>
+
+          <input type="button" ng-click="addNewProduct(parameter)" style="display:{{newBrand}}" class="btn btn-primary" value="Add" ng-disabled="((myForm.lauchVarName.$invalid)||(myForm.newBrandName.$invalid))"/>
+          <input type="button" style="display:{{newVariant}}" ng-click="addNewProduct(parameter)" class="btn btn-primary" value="Add2" ng-disabled="(myForm.addVarName.$invalid)">
           <input type="button" class="btn btn-default" ng-click="closeProductModal()" value="Cancel">
+
         </div>
       </form>
     </div>

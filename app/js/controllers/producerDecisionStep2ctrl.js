@@ -34,10 +34,10 @@ define(['app'], function(app) {
 			var promiseStep1=function(){
 				var delay=$q.defer();
 				delay.notify('start to show view');
-					
+					//check
+					$scope.checkProduction=checkProduction;
 					$scope.showView=showView;
 					$scope.loadSelectCategroy=loadSelectCategroy;
-					$scope.loadNameNum=loadNameNum;
 					$scope.updateProducerDecision=updateProducerDecision;
 					$scope.getMoreInfo=getMoreInfo;
 					$scope.closeInfo=closeInfo;
@@ -54,61 +54,108 @@ define(['app'], function(app) {
 
 			/*Load Page*/
 			var showView=function(producerID,period,category,language){
+				var d=$q.defer();
 				$scope.producerID=producerID,$scope.period=period,$scope.category=category,$scope.language=language;
+				var categoryID=0,count=0,result=0,acMax=0,abMax=0,expend=0;
+				var products=new Array();
 				var labelLanguages={},infoLanguages={};
-				if(language=="English"){
-					for(var i=0;i<$scope.multilingual.length;i++){
-						if(category=="Elecssories"){
-							$scope.EleShow="inline";
-							$scope.HeaShow="none";
-						}
-						else if(category=="HealthBeauty"){
-							$scope.EleShow="none";
-							$scope.HeaShow="inline";
-						}
-						labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
-						infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
-					}
+				var fakeName="";
+				if(category=="Elecssories"){
+					categoryID=1;
+					fakeName="EName";
 				}
-				else if(language=="Chinese"){
-					for(var i=0;i<$scope.multilingual.length;i++){
-						if(category=="Elecssories"){
-							$scope.EleShow="inline";
-							$scope.HeaShow="none";
-						}
-						else if(category=="HealthBeauty"){
-							$scope.EleShow="none";
-							$scope.HeaShow="inline";
-						}
-						labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
-						infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
-					}
+				else if(category=="HealthBeauty"){
+					categoryID=2;
+					fakeName="HName";
 				}
-				var allProCatDecisions=loadSelectCategroy(category);
-	      		var count=0,result=0;
-	      		var products=new Array();
-	      		for(var i=0;i<allProCatDecisions.length;i++){
-	      			for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
-	      				if(allProCatDecisions[i].proBrandsDecision[j]!=undefined&&allProCatDecisions[i].proBrandsDecision[j].brandID!=undefined&&allProCatDecisions[i].proBrandsDecision[j].brandID!=0){
-		      				for(var k=0;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
-		      					if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]!=undefined&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=undefined&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=0){
-		      						products.push(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]);
-			      					products[count].category=category;
-			      					products[count].parentBrandName=allProCatDecisions[i].proBrandsDecision[j].brandName;
-			      					count++;
-		      					}
-		      				}
-		      			}
-	      			}
-	      		}
-	      		if(count!=0){
-	      			result=1;
-	      		}
-	      		$scope.products=products;
-				$scope.labelLanguages=labelLanguages;
-				$scope.infoLanguages=infoLanguages;
-				return result;
+	      		var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+	      		$http({
+	      			method:'GET',
+	      			url:url
+	      		}).then(function(data){
+	      			abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
+					acMax=data.data.productionCapacity[categoryID-1];
+	      		},function(data){
+					console.log('read companyHistory fail');
+	      		}).then(function(){
+	      			url="/producerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/brandName/location/1';
+	      			$http({
+	      				method:'GET',
+	      				url:url,
+	      			}).then(function(data){
+	      				expend=data.data.result;
+	      				$scope.surplusExpend=abMax-expend;
+	      				$scope.percentageExpend=(abMax-expend)/abMax*100;
+	      			},function(data){
+	      				console.log('read producerExpend fail');
+	      			}).then(function(){
+	      				url="/productionResult/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+fakeName+'/varName';
+						$http({
+							method:'GET',
+							url:url
+						}).then(function(data){
+							$scope.surplusProduction=acMax-data.data.result;
+							$scope.percentageProduction=(acMax-data.data.result)/acMax*100;
+							$scope.producerID=producerID,$scope.period=period,$scope.category=category,$scope.language=language;
+							if(language=="English"){
+								for(var i=0;i<$scope.multilingual.length;i++){
+									if(category=="Elecssories"){
+										$scope.EleShow="inline";
+										$scope.HeaShow="none";
+									}
+									else if(category=="HealthBeauty"){
+										$scope.EleShow="none";
+										$scope.HeaShow="inline";
+									}
+									labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
+									infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
+								}
+							}
+							else if(language=="Chinese"){
+								for(var i=0;i<$scope.multilingual.length;i++){
+									if(category=="Elecssories"){
+										$scope.EleShow="inline";
+										$scope.HeaShow="none";
+									}
+									else if(category=="HealthBeauty"){
+										$scope.EleShow="none";
+										$scope.HeaShow="inline";
+									}
+									labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
+									infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
+								}
+							}
+
+							var allProCatDecisions=loadSelectCategroy(category);
+				      		for(var i=0;i<allProCatDecisions.length;i++){
+				      			for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
+				      				if(allProCatDecisions[i].proBrandsDecision[j]!=undefined&&allProCatDecisions[i].proBrandsDecision[j].brandID!=undefined&&allProCatDecisions[i].proBrandsDecision[j].brandID!=0){
+					      				for(var k=0;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
+					      					if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]!=undefined&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=undefined&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=0){
+					      						products.push(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]);
+						      					products[count].category=category;
+						      					products[count].parentBrandName=allProCatDecisions[i].proBrandsDecision[j].brandName;
+						      					count++;
+					      					}
+					      				}
+					      			}
+				      			}
+				      		}
+				      		if(count!=0){
+				      			result=1;
+				      		}
+				      		$scope.products=products;
+							$scope.labelLanguages=labelLanguages;
+							$scope.infoLanguages=infoLanguages;
+							return result;
+						},function(data){
+							console.log('read currentProduction fail');
+						});
+	      			})
+	      		});		
+	      		return d.promise;		
 			}
+
 			/*LoadSelectCategroy*/
 			var loadSelectCategroy=function(category){
 				return _.filter($scope.pageBase.proCatDecision,function(obj){
@@ -159,10 +206,41 @@ define(['app'], function(app) {
 					console.log('read variantHistoryInfo fail');
 				});
 			}
-
-			var loadNameNum=function(){//load the sort
-				/*importantt*/
-			}		
+			var checkProduction=function(category,brandName,varName,location,additionalIdx,index,value){
+				var d = $q.defer();	
+				var categoryID,max,result;
+				if(category=="Elecssories"){
+					categoryID=1;
+				}
+				else{
+					categoryID=2;
+				}	
+				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+				$http({
+					method:'GET',
+					url:url
+				}).then(function(data){
+					max=data.data.productionCapacity[categoryID-1];
+				},function(data){
+					d.resolve('fail');
+				}).then(function(){
+					url="/productionResult/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+brandName+'/'+varName;
+					$http({
+						method:'GET',
+						url:url
+					}).then(function(data){
+						if(parseInt(data.data.result)+parseInt(value)>max){
+							d.resolve('Input range:0~'+(max-parseInt(data.data.result)));
+						}else{
+							d.resolve();
+						}
+					},function(data){
+						d.resolve('fail');
+					});
+				});
+				return d.promise;
+			}
+	
 
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
 				ProducerDecisionBase.reload({producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){

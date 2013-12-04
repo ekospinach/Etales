@@ -179,6 +179,80 @@ exports.addRetailerDecisions = function(options){
     
 }
 
+//check
+exports.getRetailerShelfSpace=function(req,res,next){
+    retDecision.findOne({
+        seminar:req.params.seminar,
+        period:req.params.period,
+        retailerID:req.params.retailerID
+    },function(err,doc){
+        if(err){
+            next(new Error(err));
+        }
+        if(!doc){
+            res.send(404,{err:'cannot find the doc'});
+        }else{
+            var result=new Array(),exclude=0;
+            for(var i=0;i<doc.retMarketDecision.length;i++){
+                result[i]=new Array(0,0);
+                for(var j=0;j<doc.retMarketDecision[i].retMarketAssortmentDecision.length;j++){
+                    for(var k=0;k<doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision.length;k++){
+                        if(doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].brandID!=0&&doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].variantID!=0&&doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].brandName!=""&&doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].varName!=""){
+                            result[i][j]+=doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].shelfSpace;
+                        }
+                    }
+                }
+            }
+            if(req.params.marketID!=-1){
+                for(var i=0;i<doc.retMarketDecision.length;i++){
+                    if(doc.retMarketDecision[i].marketID==req.params.marketID){
+                        for(var j=0;j<doc.retMarketDecision[i].retMarketAssortmentDecision.length;j++){
+                            if(doc.retMarketDecision[i].retMarketAssortmentDecision[j].categoryID==req.params.categoryID){
+                                for(var k=0;k<doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision.length;k++){
+                                    if(doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].varName==req.params.varName&&doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].brandName==req.params.brandName){
+                                        exclude=result[i][j]-doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].shelfSpace;
+                                        break;
+                                    }
+                                }
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+            res.send(200,{result:result,exclude:exclude});
+        }
+    });
+}
+
+exports.getRetailerExpend=function(req,res,next){
+    retDecision.findOne({
+        seminar:req.params.seminar,
+        period:req.params.period,
+        retailerID:req.params.retailerID
+    },function(err,doc){
+        if(err){
+            next(new Error(err));
+        }
+        if(!doc){
+            res.send(404,{err:'cannot find the doc'});
+        }else{
+            var result=0;
+            result+=(doc.onlineAdvertising[0]+doc.onlineAdvertising[1]+doc.onlineAdvertising[2]+doc.tradtionalAdvertising[0]+doc.tradtionalAdvertising[1]+doc.tradtionalAdvertising[2]);
+            result+=(doc.retMarketDecision[0].localAdvertising[0]+doc.retMarketDecision[0].localAdvertising[1]+doc.retMarketDecision[0].localAdvertising[2]+doc.retMarketDecision[1].localAdvertising[0]+doc.retMarketDecision[1].localAdvertising[1]+doc.retMarketDecision[1].localAdvertising[2]);
+            if(req.params.marketID!=-1){
+                if(req.params.marketID==0){
+                    result-=(doc[req.params.location][req.params.additionalIdx]);
+                }else{
+                    result-=(doc.retMarketDecision[req.params.marketID-1][req.params.location][req.params.additionalIdx]);
+                }
+            }
+            res.send(200,{result:result});
+        }
+    })
+}
+
 exports.updateRetailerDecision = function(io){
     return function(req, res, next){
         var queryCondition = {
@@ -212,8 +286,11 @@ exports.updateRetailerDecision = function(io){
                                         case 'updateMarketDecision':
                                             for(var i=0;i<doc.retMarketDecision.length;i++){
                                                 if(doc.retMarketDecision[i].marketID==queryCondition.marketID){
-                                                    if(queryCondition.location=="categorySurfaceShare"||queryCondition.location=="localAdvertising"){
+                                                    if(queryCondition.location=="localAdvertising"){
                                                         doc.retMarketDecision[i][queryCondition.location][queryCondition.additionalIdx]=queryCondition.value;
+                                                    }else if(queryCondition.location=="categorySurfaceShare"){
+                                                        doc.retMarketDecision[i][queryCondition.location][queryCondition.additionalIdx]=queryCondition.value;
+                                                        doc.retMarketDecision[i][queryCondition.location][1-queryCondition.additionalIdx]=1-queryCondition.value;
                                                     }else{
                                                         doc.retMarketDecision[i][queryCondition.location]=queryCondition.value;
                                                     }

@@ -316,7 +316,11 @@ exports.updateProducerDecision = function(io){
                                                                             case 3: queryCondition.value = "PREMIUM";break;
                                                                         }
                                                                     }
-                                                                    if(queryCondition.location=="composition"){ doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k][queryCondition.location][queryCondition.additionalIdx] = queryCondition.value;}
+                                                                    if(queryCondition.location=="composition"){
+                                                                        console.log(queryCondition.value);
+                                                                        doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k][queryCondition.location][queryCondition.additionalIdx] = queryCondition.value;
+                                                                        console.log(doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k][queryCondition.location][queryCondition.additionalIdx]);
+                                                                    }
                                                                     else{ 
                                                                         doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k][queryCondition.location] = queryCondition.value;
                                                                         
@@ -479,7 +483,7 @@ exports.getProducerProductList=function(req,res,next){
 }
 
 exports.getProductionResult=function(req,res,next){
-        proDecision.findOne({
+    proDecision.findOne({
         seminar:req.params.seminar,
         period:req.params.period,
         producerID:req.params.producerID
@@ -509,21 +513,78 @@ exports.getProductionResult=function(req,res,next){
                     }
                 }
             }
-            for(var i=0;i<allProCatDecisions.length;i++){
-                for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
-                    if(allProCatDecisions[i].proBrandsDecision[j].brandID!=0&&allProCatDecisions[i].proBrandsDecision[j].brandName==req.params.brandName){
-                        for(var k=0;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
-                            if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=0&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varName==req.params.varName){
-                                result-=allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].production;
-                                break;
+            if(req.params.brandName!="brandName"&&req.params.varName!="varName"){
+                for(var i=0;i<allProCatDecisions.length;i++){
+                    for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
+                        if(allProCatDecisions[i].proBrandsDecision[j].brandID!=0&&allProCatDecisions[i].proBrandsDecision[j].brandName==req.params.brandName){
+                            for(var k=0;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
+                                if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=0&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varName==req.params.varName){
+                                    result-=allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].production;
+                                    break;
+                                }
                             }
+                            break;
                         }
-                        break;
                     }
                 }
             }
-            console.log(result);
             res.send(200,{result:result});
+        }
+    })
+}
+
+exports.getProducerExpend=function(req,res,next){
+    proDecision.findOne({
+        seminar:req.params.seminar,
+        period:req.params.period,
+        producerID:req.params.producerID
+    },function(err,doc){
+        if(err){
+            next(new Error(err));
+        }
+        if(!doc){
+            res.send(404,{err:'cannot find the doc'});
+        }else{
+            var result=0;
+            for(var i=0;i<doc.proCatDecision.length;i++){
+                for(var j=0;j<doc.proCatDecision[i].proBrandsDecision.length;j++){
+                    if(doc.proCatDecision[i].proBrandsDecision[j].brandID!=0&&doc.proCatDecision[i].proBrandsDecision[j].brandName!=""){
+                        result+=(
+                                doc.proCatDecision[i].proBrandsDecision[j].advertisingOffLine[0]
+                                +doc.proCatDecision[i].proBrandsDecision[j].advertisingOffLine[1]
+                                +doc.proCatDecision[i].proBrandsDecision[j].advertisingOnLine
+                                +doc.proCatDecision[i].proBrandsDecision[j].supportEmall
+                                +doc.proCatDecision[i].proBrandsDecision[j].supportTraditionalTrade[0]
+                                +doc.proCatDecision[i].proBrandsDecision[j].supportTraditionalTrade[1]
+                        );
+                    }
+                }
+            }
+            if(req.params.brandName=="brandName"){
+               res.send(200,{result:result});                
+            }else{
+                if(req.params.brandName.substring(0,1)=="E"){
+                    categoryID=1;
+                }else{
+                    categoryID=2;
+                }
+                var allProCatDecisions=_.filter(doc.proCatDecision,function(obj){
+                    return (obj.categoryID==categoryID);
+                });
+                for(var i=0;i<allProCatDecisions.length;i++){
+                    for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
+                        if(allProCatDecisions[i].proBrandsDecision[j].brandID!=0&&allProCatDecisions[i].proBrandsDecision[j].brandName==req.params.brandName){
+                            if(req.params.location=="advertisingOffLine"||req.params.location=="supportTraditionalTrade"){
+                                result-=allProCatDecisions[i].proBrandsDecision[j][req.params.location][req.params.additionalIdx];
+                            }else{
+                                result-=allProCatDecisions[i].proBrandsDecision[j][req.params.location];
+                            }
+                            break;
+                        }
+                    }
+                }
+                res.send(200,{result:result});
+            }
         }
     })
 }
@@ -567,6 +628,69 @@ exports.getProducerCurrentDecision=function(req,res,next){
             }
             if(result==0){
                 res.send(404,'cannot find the variant');
+            }
+        }
+    })
+}
+
+exports.checkProducerProduct=function(req,res,next){
+    proDecision.findOne({
+        seminar:req.params.seminar,
+        period:req.params.period,
+        producerID:req.params.producerID
+    },function(err,doc){
+        if(err){
+            next (new Error(err));
+        }
+        if(!doc){
+            res.send(404,{err:'cannot find the doc'});
+        }else{
+            var allProCatDecisions=_.filter(doc.proCatDecision,function(obj){
+                return (obj.categoryID==req.params.categoryID);
+            });
+            if(req.params.checkType=="brand"){
+                var count=0,result=0;
+                for(var i=0;i<allProCatDecisions.length;i++){
+                    for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
+                        if(allProCatDecisions[i].proBrandsDecision[j].brandName!=""&&allProCatDecisions[i].proBrandsDecision[j].brandID!=0){
+                            count++;
+                            if(allProCatDecisions[i].proBrandsDecision[j].brandName==req.params.brandName){
+                                result++;
+                            }
+                        }
+                    }
+                }
+                if(count>=5){
+                    res.send(404,{message:'The number of brand is more than 5 in a category'});
+                }else if(result!=0){
+                    res.send(404,{message:'There is another brand named '+req.params.brandName});
+                }else{
+                    res.send(200,{message:'OK'});
+                }
+            }else{
+                var count=0,result=0;
+                for(var i=0;i<allProCatDecisions.length;i++){
+                    for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
+                        if(allProCatDecisions[i].proBrandsDecision[j].brandID!=0&&allProCatDecisions[i].proBrandsDecision[j].brandName==req.params.brandName){
+                            for(var k=0;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
+                                if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=0&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varName!=""){
+                                    count++;
+                                    if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varName==req.params.varName){
+                                        result++;
+                                    }
+                                }
+                            }
+                            break;
+                        }
+                    }
+                }
+                if(count>=3){
+                    res.send(404,{message:'The number of var is more than 5 in brand '+req.params.brandName});
+                }else if(result!=0){
+                    res.send(404,{message:'There is another variant named '+req.params.varName});
+                }else{
+                    res.send(200,{message:'OK'});
+                }
             }
         }
     })
@@ -628,7 +752,6 @@ exports.getCompanyHistory=function(req,res,next){
             var result=_.filter(doc.proCatDecision,function(obj){
                 return (obj.categoryID==req.params.categoryID);
             });
-            console
             if(!result){
                 res.send(404,'cannot find the doc');
             }else{

@@ -52,7 +52,7 @@
 			'jqplot':['jquery'],
 			'bubbleRenderer':['jqplot','jquery'],
 			'tree':['jquery']
-		},
+			},
 		priority: [
 			"angular"
 		],

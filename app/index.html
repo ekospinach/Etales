@@ -46,9 +46,12 @@
 		      		</ul>
 
 				    <ul class="nav navbar-nav pull-right">
+				    	<!--<li data-access-level="{{ accessLevels.playerView }}" class="pull-right">
+				        	<a ng-click="logout">logout</a>
+				        </li>   -->   
 				        <li id="userInfo" data-access-level="{{ accessLevels.playerView }}" class="pull-right">
 				        	<span data-ng-class="{&quot;label-info&quot;: user.role == userRoles.producer, &quot;label-success&quot;: user.role == userRoles.retailer, &quot;label-default&quot;: user.role == userRoles.facilitator,&quot;label-danger&quot;: user.role == userRoles.info}" class="label pull-left" style="margin:15px 0;font-size:14px;">{{ getUserRoleText(user.role)}}</span>
-				        </li>      
+				        </li>   
 				    </ul>
 				</nav>
 			</div>

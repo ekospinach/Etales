@@ -48,16 +48,19 @@ define(['app'], function(app) {
 					//get contract details from server, fill into and deal with array "details" 
 					(function multipleRequestShooter(urls, idx){
 						$http({method:'GET', url:urls[idx]}).then(function(data){
+
+							console.log('get data:' + data.data[0]);
 							if(data.data.length!=0){ details.push(data.data[0]);}
 							else{ details.push(data.data); }
-
+						}, function(data){
+							//console.log('get contractDetails fail callback');
+						}).finally(function(){
 							if(idx!=urls.length-1) { 
 								idx++;
 								multipleRequestShooter(urls, idx);							
 							}else{
 								console.log('multipleRequestShooter end.');
 								$scope.details = details;
-
 								//deal with blank details document, fill some default value into it
 								var negotiationItems = ContractInfo.getActivedNegotiationItem();
 								var userTypes=['P','R'];					
@@ -96,13 +99,11 @@ define(['app'], function(app) {
 									renderContractDetailsByCategory('Elecssories');
 								}																									
 							}
-						}, function(data){
-							console.log('error callback');
-						})
+						});
 					})(generateRequestUrls($scope.brandList, $scope.contractInfo), 0);
 
 				},function(error){
-					console.log('fail callback...');
+					console.log('get brandList fail callback...');
 				});
 			}
 

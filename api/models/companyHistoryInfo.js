@@ -113,15 +113,3 @@ exports.addInfos = function(options){
 }
 
 
-// 	retailerCategoryView : [retailerCategoryViewSchema] //TCategories(1~2)
-// })
-
-// var retailerCategoryViewSchema = mongoose.Schema({
-// 	retailerCategoryMarketView = [retailerCategoryMarketViewSchema] //TMarketsTotal(1~3)
-// })
-
-// var retailerCategoryMarketViewSchema = mongoose.Schema({
-// 	//rq...
-// 	rq_socialNetworsScore : Number;
-// })
-

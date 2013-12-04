@@ -298,9 +298,11 @@ define(['angular','angularResource','routingConfig'], function (angular,angularR
 					}
 					$http({method:'POST', url:'/producerDecision', data: queryCondition}).then(function(res){
 						$rootScope.$broadcast('producerDecisionBaseChanged', base);
-					 	console.log('Success:' + res);
+					 	//console.log('Success:' + res);
+					 	return 1;
 					 },function(res){
-						console.log('Failed:' + res);
+						//console.log('Failed:' + res);
+						return 0;
 					});
 
 				},
@@ -316,9 +318,11 @@ define(['angular','angularResource','routingConfig'], function (angular,angularR
 					}
 					$http({method:'POST', url:'/producerDecision', data: queryCondition}).then(function(res){
 						$rootScope.$broadcast('producerDecisionBaseChanged', base);
-					 	console.log('Success:' + res);
+					 	//console.log('Success:' + res);
+					 	return 1;
 					 },function(res){
-						console.log('Failed:' + res);
+						//console.log('Failed:' + res);
+						return 0;
 					});
 				},
 				deleteProduct:function(categoryID,brandName,varName){
