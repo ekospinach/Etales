@@ -453,60 +453,110 @@ exports.compareContractDetailsAndUpdateIsVerified = function(req, res, next){
 					relatedBrandName : docs[idx].relatedBrandName}, function(err, doc){
 					if(doc){
 						console.log('find retailer input:' + doc);
-						if(doc.useBrandDetails == docs[idx].useBrandDetails 
-						&& doc.useVariantDetails == docs[idx].useVariantDetails
-						&& doc.displayValue == docs[idx].displayValue
-						&& doc.brand_urbanValue == docs[idx].brand_urbanValue
-						&& doc.brand_ruralValue == docs[idx].brand_ruralValue
-						&& doc.variant_A_urbanValue == docs[idx].variant_A_urbanValue
-						&& doc.variant_A_ruralValue == docs[idx].variant_A_ruralValue
-						&& doc.variant_B_urbanValue == docs[idx].variant_B_urbanValue
-						&& doc.variant_B_ruralValue == docs[idx].variant_B_ruralValue
-						&& doc.variant_C_urbanValue == docs[idx].variant_C_urbanValue
-						&& doc.variant_C_ruralValue == docs[idx].variant_C_ruralValue
-						&& doc.amount_or_rate == docs[idx].amount_or_rate){
-
-							console.log('pass verified!');
-							doc.isVerified = true;
-							doc.save(function(err){
-								if(!err){
-									console.log('set producer isVerified true');									
-									docs[idx].isVerified = true;
-									docs[idx].save(function(err){
-										if(!err){
-											console.log('set retailer isVerified true, next...');									
-											idx++;
-											if(idx<docs.length){
-												compareContractDetails(idx);
-											}else{
-												res.send(200, 'compare done');
-												console.log('compare done');
+						//if useBrandDetails, just compare brand Data
+						if(doc.userBrandDetails){
+							if(doc.useBrandDetails == docs[idx].useBrandDetails 
+							&& doc.useVariantDetails == docs[idx].useVariantDetails
+							&& doc.displayValue == docs[idx].displayValue
+							&& doc.brand_urbanValue == docs[idx].brand_urbanValue
+							&& doc.brand_ruralValue == docs[idx].brand_ruralValue
+							&& doc.amount_or_rate == docs[idx].amount_or_rate){
+								console.log('pass verified!');
+								doc.isVerified = true;
+								doc.save(function(err){
+									if(!err){
+										console.log('set producer isVerified true');									
+										docs[idx].isVerified = true;
+										docs[idx].save(function(err){
+											if(!err){
+												console.log('set retailer isVerified true, next...');									
+												idx++;
+												if(idx<docs.length){
+													compareContractDetails(idx);
+												}else{
+													res.send(200, 'compare done');
+													console.log('compare done');
+												}
 											}
-										}
-									})
-								}
-							})
-						}else{
-							console.log('cannot pass verified, next...');							
-							doc.isVerified = false;
-							doc.save(function(err){
-								if(!err){
-									console.log('set producer isVerified false');
-									docs[idx].isVerified = false;
-									docs[idx].save(function(err){
-										if(!err){
-											console.log('set retailer isVerified false,');
-											idx++;
-											if(idx<docs.length){
-												compareContractDetails(idx);
-											}else{
-												res.send(200, 'compare done');												
-												console.log('compare done');
+										})
+									}
+								})
+							}else{
+								console.log('cannot pass verified, next...');							
+								doc.isVerified = false;
+								doc.save(function(err){
+									if(!err){
+										console.log('set producer isVerified false');
+										docs[idx].isVerified = false;
+										docs[idx].save(function(err){
+											if(!err){
+												console.log('set retailer isVerified false,');
+												idx++;
+												if(idx<docs.length){
+													compareContractDetails(idx);
+												}else{
+													res.send(200, 'compare done');												
+													console.log('compare done');
+												}
 											}
-										}
-									})
-								}
-							})
+										})
+									}
+								})
+							}
+						//if useVariantDetails, just compare variantA/B/C input
+						} else {
+							if(doc.useBrandDetails == docs[idx].useBrandDetails 
+							&& doc.useVariantDetails == docs[idx].useVariantDetails
+							&& doc.displayValue == docs[idx].displayValue
+							&& doc.variant_A_urbanValue == docs[idx].variant_A_urbanValue
+							&& doc.variant_A_ruralValue == docs[idx].variant_A_ruralValue
+							&& doc.variant_B_urbanValue == docs[idx].variant_B_urbanValue
+							&& doc.variant_B_ruralValue == docs[idx].variant_B_ruralValue
+							&& doc.variant_C_urbanValue == docs[idx].variant_C_urbanValue
+							&& doc.variant_C_ruralValue == docs[idx].variant_C_ruralValue
+							&& doc.amount_or_rate == docs[idx].amount_or_rate){
+								console.log('pass verified!');
+								doc.isVerified = true;
+								doc.save(function(err){
+									if(!err){
+										console.log('set producer isVerified true');									
+										docs[idx].isVerified = true;
+										docs[idx].save(function(err){
+											if(!err){
+												console.log('set retailer isVerified true, next...');									
+												idx++;
+												if(idx<docs.length){
+													compareContractDetails(idx);
+												}else{
+													res.send(200, 'compare done');
+													console.log('compare done');
+												}
+											}
+										})
+									}
+								})
+							}else{
+								console.log('cannot pass verified, next...');							
+								doc.isVerified = false;
+								doc.save(function(err){
+									if(!err){
+										console.log('set producer isVerified false');
+										docs[idx].isVerified = false;
+										docs[idx].save(function(err){
+											if(!err){
+												console.log('set retailer isVerified false,');
+												idx++;
+												if(idx<docs.length){
+													compareContractDetails(idx);
+												}else{
+													res.send(200, 'compare done');												
+													console.log('compare done');
+												}
+											}
+										})
+									}
+								})
+							}	
 						}
 					}else{
 						console.log('no retailer inpt, next..');
@@ -527,3 +577,37 @@ exports.compareContractDetailsAndUpdateIsVerified = function(req, res, next){
 
 }
 
+
+exports.addContract = function(io){
+  return function(req, res, next){
+  	contract.count({seminar: req.body.seminar,period:req.body.period, producerID:req.body.producerID, retailerID:req.body.retailerID},function(err,count){
+  		if(count!=0){
+  			res.send(404,'already have a contract');
+	  	}else{
+		  	var newContract=new contract({
+		  		contractCode : req.body.contractCode,
+				period : req.body.period,
+				seminar : req.body.seminar,
+				draftedByCompanyID : req.body.draftedByCompanyID,
+				producerID : req.body.producerID,
+				retailerID : req.body.retailerID,
+				isDraftFinished : false
+		  	});
+		  	/*need add Contract Detail*/
+		  	newContract.save(function(err){
+				if(err) next(new Error(err));
+				io.sockets.emit('contarctListChanged', {producerID: req.body.producerID, retailerID: req.body.retailerID}); 
+				res.send(200,newContract);
+			});
+  		}
+  	})
+  }
+}
+
+
+exports.duplicateContract = function(req, res, next){
+	var contractCode = req.body.contractCode;
+	var newContractCode = req.body.contarct
+
+	
+}

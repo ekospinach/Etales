@@ -92,6 +92,9 @@ define(['app'], function(app) {
 				//$http
 			}
 
+			$scope.duplicate = function(contract){
+				
+			}
 
 			//$scope.contractUserID=$rootScope.rootContractUserID;
 			if($rootScope.user.username.substring($rootScope.user.username.length-3,$rootScope.user.username.length-2)==2){

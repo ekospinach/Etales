@@ -42,8 +42,7 @@
 				<tr>
 					<td>Minimum Order & Discount Rate</td>
 					<td ng-repeat="proDetail in proDetailList[0]">
-						<span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetails.isVerified"></span>
-
+						<span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetail.isVerified"></span>
 						<span>{{(proDetail.useBrandDetails?(proDetail.brand_urbanValue+proDetail.brand_ruralValue):(proDetail.variant_A_urbanValue+proDetail.variant_A_ruralValue+proDetail.variant_B_urbanValue+proDetail.variant_B_ruralValue+proDetail.variant_C_urbanValue+proDetail.variant_C_ruralValue))}}({{proDetail.displayValue}}%)</span>
 						<span class="pull-right" ng-show=producerEditable>
 							<a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)">Edit</a>
@@ -56,7 +55,7 @@
 				<tr>
 					<td>Sales Target Volume & Bonus</td>
 					<td ng-repeat="proDetail in proDetailList[1]">
-						<span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetails.isVerified"></span>
+						<span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetail.isVerified"></span>
 						<span>{{(proDetail.useBrandDetails?(proDetail.brand_urbanValue+proDetail.brand_ruralValue):(proDetail.variant_A_urbanValue+proDetail.variant_A_ruralValue+proDetail.variant_B_urbanValue+proDetail.variant_B_ruralValue+proDetail.variant_C_urbanValue+proDetail.variant_C_ruralValue))}}({{proDetail.displayValue}})</span>
 						<span class="pull-right" ng-show=producerEditable>
 							<a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)">Edit</a>
@@ -69,7 +68,7 @@
 				<tr>
 					<td>Payment Days</td>
 					<td ng-repeat="proDetail in proDetailList[2]">
-						<span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetails.isVerified"></span>
+						<span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetail.isVerified"></span>
 						<span>{{(proDetail.useBrandDetails?(proDetail.brand_urbanValue+proDetail.brand_ruralValue):(proDetail.variant_A_urbanValue+proDetail.variant_A_ruralValue+proDetail.variant_B_urbanValue+proDetail.variant_B_ruralValue+proDetail.variant_C_urbanValue+proDetail.variant_C_ruralValue))}}</span>
 						<span class="pull-right" ng-show=producerEditable>
 			 				<a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)">Edit</a>
@@ -82,7 +81,7 @@
 				<tr>
 					<td>Other Compensation</td>
 					<td ng-repeat="proDetail in proDetailList[3]">
-						<span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetails.isVerified"></span>
+						<span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetail.isVerified"></span>
 						<span>{{(proDetail.useBrandDetails?(proDetail.brand_urbanValue+proDetail.brand_ruralValue):(proDetail.variant_A_urbanValue+proDetail.variant_A_ruralValue+proDetail.variant_B_urbanValue+proDetail.variant_B_ruralValue+proDetail.variant_C_urbanValue+proDetail.variant_C_ruralValue))}}</span>
 						<span class="pull-right" ng-show=producerEditable>
 							<a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)">Edit</a>
@@ -110,7 +109,7 @@
 				<tr>
 					<td>Minimum Order & Discount Rate</td>
 					<td ng-repeat="retDetail in retDetailList[0]">
-						<span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetails.isVerified"></span>
+						<span class="glyphicon glyphicon-ok" style="width:30px" ng-show="retDetail.isVerified"></span>
 						<span>{{(retDetail.useBrandDetails?(retDetail.brand_urbanValue+retDetail.brand_ruralValue):(retDetail.variant_A_urbanValue+retDetail.variant_A_ruralValue+retDetail.variant_B_urbanValue+retDetail.variant_B_ruralValue+retDetail.variant_C_urbanValue+retDetail.variant_C_ruralValue))}}({{retDetail.displayValue}}%)</span>
 						<span class="pull-right" ng-show=retailerEditable>
 							<a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)">Edit</a>
@@ -123,7 +122,7 @@
 				<tr>
 					<td>Sales Target Volume & Bonus</td>
 					<td ng-repeat="retDetail in retDetailList[1]">
-						<span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetails.isVerified"></span>
+						<span class="glyphicon glyphicon-ok" style="width:30px" ng-show="retDetail.isVerified"></span>
 						<span>{{(retDetail.useBrandDetails?(retDetail.brand_urbanValue+retDetail.brand_ruralValue):(retDetail.variant_A_urbanValue+retDetail.variant_A_ruralValue+retDetail.variant_B_urbanValue+retDetail.variant_B_ruralValue+retDetail.variant_C_urbanValue+retDetail.variant_C_ruralValue))}}({{retDetail.displayValue}})</span>
 						<span class="pull-right" ng-show=retailerEditable>
 							<a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)">Edit</a>
@@ -136,7 +135,7 @@
 				<tr>
 					<td>Payment Days</td>
 					<td ng-repeat="retDetail in retDetailList[2]">
-						<span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetails.isVerified"></span>
+						<span class="glyphicon glyphicon-ok" style="width:30px" ng-show="retDetail.isVerified"></span>
 						<span>{{(retDetail.useBrandDetails?(retDetail.brand_urbanValue+retDetail.brand_ruralValue):(retDetail.variant_A_urbanValue+retDetail.variant_A_ruralValue+retDetail.variant_B_urbanValue+retDetail.variant_B_ruralValue+retDetail.variant_C_urbanValue+retDetail.variant_C_ruralValue))}}</span>
 						<span class="pull-right" ng-show=retailerEditable>
 							<a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)">Edit</a>
@@ -148,9 +147,9 @@
 				</tr>
 				<tr>
 					<td>Other Compensation</td>
-					<td ng-repeat="proDetail in proDetailList[3]">
-						<span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetails.isVerified"></span>
-						<span>{{(proDetail.useBrandDetails?(proDetail.brand_urbanValue+proDetail.brand_ruralValue):(proDetail.variant_A_urbanValue+proDetail.variant_A_ruralValue+proDetail.variant_B_urbanValue+proDetail.variant_B_ruralValue+proDetail.variant_C_urbanValue+proDetail.variant_C_ruralValue))}}</span>
+					<td ng-repeat="retDetail in retDetailList[3]">
+						<span class="glyphicon glyphicon-ok" style="width:30px" ng-show="retDetail.isVerified"></span>
+						<span>{{(retDetail.useBrandDetails?(retDetail.brand_urbanValue+retDetail.brand_ruralValue):(retDetail.variant_A_urbanValue+retDetail.variant_A_ruralValue+retDetail.variant_B_urbanValue+retDetail.variant_B_ruralValue+retDetail.variant_C_urbanValue+retDetail.variant_C_ruralValue))}}</span>
 						<span class="pull-right" ng-show=retailerEditable>
 							<a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)">Edit</a>
 						</span>

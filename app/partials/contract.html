@@ -41,16 +41,19 @@
 			    </div>
 			    <div style="clear:both"></div>
 			    <table class="table table-hover">
+			    	<thead>
 			    	<tr>
-			    		<th>Contract Name</th>
-			    		<th>Period</th>
-			    		<th>Producer</th>
-			    		<th>Retailer</th>
-			    		<th>Drafted By</th>
-			    		<th>Ready?</th>
-			    		<th>Choose</th>
-			    	</tr>
-			    	<tr ng-repeat="allContract in allContracts">
+				    		<th>Contract Name</th>
+				    		<th>Period</th>
+				    		<th>Producer</th>
+				    		<th>Retailer</th>
+				    		<th>Drafted By</th>
+				    		<th>isLock?</th>
+				    		<th></th>
+				    	</tr>
+			        </thead>
+			        <tbody>
+			     	<tr ng-repeat="allContract in allContracts">
 			    		<td>{{allContract.contractCode}}</td>
 			    		<td>{{allContract.period}}</td>
 			    		<td>Producer-{{allContract.producerID}}</td>
@@ -70,8 +73,12 @@
 			    			<a class="btn btn-primary" ng-click="openDetailModal(allContract)">
 			    				Details
 			    			</a>
-			    		</td>
+			    			<a class="btn btn-default" ng-click="openDuplicateModal(allContract)">
+			    				Duplicate
+			    			</a>			    				
+			    		</td>			    		
 			    	</tr>
+			    	</tbody>
 			    </table>
 			    <a class="btn btn-primary" ng-click="openInsertModal()">
 			    	New Contract</a>
