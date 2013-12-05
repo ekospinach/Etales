@@ -299,12 +299,12 @@ var
       jo := SO;
       //columns
         Result.O['cols'] := SA([]);
-        jf := SO('{id : "1", label : Item, labelENG : Item,' +
-              'labelRUS : Наименование, labelCHN : 事实, ' +
-							'type : string, color : 0}');
-        jr := SO('{id : "2", label : Company total, labelENG : Company total,' +
-              'labelRUS : Итого по компании, labelCHN : 公司总, ' +
-							'type : string, color : 0}');
+        jf := SO('{id: "1", label: Item, labelENG: Item,' +
+              'labelRUS: Наименование, labelCHN: 事实, ' +
+							'type: string, color: 0}');
+        jr := SO('{id: "2", label: Company total, labelENG: Company total,' +
+              'labelRUS: Итого по компании, labelCHN: 公司总, ' +
+							'type: string, color: 0}');
         Result.A['cols'].Add(jf);
         Result.A['cols'].Add(jr);
       // rows
@@ -383,17 +383,17 @@ var
       jo := SO;
       //columns
         Result.O['cols'] := SA([]);
-        jf := SO('{id : "1", label : Item, labelENG : Item,' +
-              'labelRUS : Наименование, labelCHN : 事实, ' +
-							'type : string, color : 0}');
+        jf := SO('{id: "1", label: Item, labelENG: Item,' +
+              'labelRUS: Наименование, labelCHN: 事实, ' +
+							'type: string, color: 0}');
         Result.A['cols'].Add(jf);
-        jr := SO('{id : "2", label : Elecsories, labelENG : Elecsories,' +
-              'labelRUS : "", labelCHN : "", ' +
-							'type : string, color : 0}');
+        jr := SO('{id: "2", label: Elecsories, labelENG: Elecsories,' +
+              'labelRUS: "", labelCHN: "", ' +
+							'type: string, color :0}');
         Result.A['cols'].Add(jr);
-        jr := SO('{id : "3", label : "Health&Beauty", labelENG : "Health&Beauty",' +
-              'labelRUS : "", labelCHN : "", ' +
-							'type : string, color : 0}');
+        jr := SO('{id: "3", label: "Health&Beauty", labelENG: "Health&Beauty",' +
+              'labelRUS:"", labelCHN:"", ' +
+							'type: string, color: 0}');
         Result.A['cols'].Add(jr);
       // rows
         result.O['rows'] := sa([]);
@@ -512,9 +512,9 @@ var
 
       //columns
         Result.O['cols'] := SA([]);
-        jf := SO('{id : "1", label : Item, labelENG : Item,' +
-              'labelRUS : Наименование, labelCHN : 事实, ' +
-							'type : string, color : 0}');
+        jf := SO('{id: "1", label: Item, labelENG: Item,' +
+              'labelRUS: Наименование, labelCHN: 事实, ' +
+							'type: string, color: 0}');
         Result.A['cols'].Add(jf);
         // brand names
         for I := Low(abrn) to High(abrn) do
@@ -522,11 +522,11 @@ var
           pp := currentResult.r_Retailers[pwho].rr_Quarters[pmark][pcat].rq_BrandsResults[abrn[I]];
           jr := SO('{id : "' +
                 IntToStr(I + 1) +
-                '", label : "' +
+                '", label: "' +
                 WideCharToString( pp.rb_BrandName ) +
-                '", labelENG : "",' +
-                'labelRUS : "", labelCHN : "", ' +
-                'type : string, color : 0}');
+                '", labelENG: "",' +
+                'labelRUS: "", labelCHN: "", ' +
+                'type: string, color: 0}');
           Result.A['cols'].Add(jr);
         end;
 
@@ -642,9 +642,9 @@ var
 
       //columns
         Result.O['cols'] := SA([]);
-        jf := SO('{id : "1", label : Item, labelENG : Item,' +
-              'labelRUS : Наименование, labelCHN : 事实, ' +
-							'type : string, color : 0}');
+        jf := SO('{id : "1", label: Item, labelENG: Item,' +
+              'labelRUS: Наименование, labelCHN: 事实, ' +
+							'type: string, color: 0}');
         Result.A['cols'].Add(jf);
 
         // variant names
@@ -659,12 +659,12 @@ var
                 begin
                   jr := SO('{id : "' +
                               IntToStr(I + 1) +
-                              '", label : "' +
+                              '", label: "' +
                               WideCharToString( pp.rb_BrandName ) +
                               WideCharToString( pv.rv_VariantName ) +
-                              '", labelENG : "",' +
-                              'labelRUS : "", labelCHN : "", ' +
-                              'type : string, color : 0}');
+                              '", labelENG: "",' +
+                              'labelRUS: "", labelCHN: "", ' +
+                              'type: string, color: 0}');
                    Result.A['cols'].Add(jr);
                 end;
             end;
@@ -805,17 +805,17 @@ var
       //columns
         Result := SO;
         Result.O['cols'] := SA([]);
-        jf := SO('{id : "1", label : Item, labelENG : Item,' +
-              'labelRUS : Наименование, labelCHN : 事实, ' +
-							'type : string, color : 0}');
+        jf := SO('{id: "1", label: Item, labelENG: Item,' +
+              'labelRUS: Наименование, labelCHN: 事实, ' +
+							'type: string, color: 0}');
         Result.A['cols'].Add(jf);
-        jr := SO('{id : "2", label : Elecsories, labelENG : Elecsories,' +
-              'labelRUS : "", labelCHN : "", ' +
-							'type : string, color : 0}');
+        jr := SO('{id: "2", label: Elecsories, labelENG: Elecsories,' +
+              'labelRUS: "", labelCHN: "", ' +
+							'type: string, color: 0}');
         Result.A['cols'].Add(jr);
-        jr := SO('{id : "3", label : "Health&Beauty", labelENG : "Health&Beauty",' +
-              'labelRUS : "", labelCHN : "", ' +
-							'type : string, color : 0}');
+        jr := SO('{id : "3", label: "Health&Beauty",labelENG : "Health&Beauty",' +
+              'labelRUS: "", labelCHN: "", ' +
+							'type: string, color: 0}');
         Result.A['cols'].Add(jr);
       // rows
         result.O['rows'] := sa([]);
@@ -931,9 +931,9 @@ var
      //columns
         Result := SO;
         Result.O['cols'] := SA([]);
-        jf := SO('{id : "1", label : Item, labelENG : Item,' +
-              'labelRUS : Наименование, labelCHN : 事实, ' +
-							'type : string, color : 0}');
+        jf := SO('{id : "1", label :Item, labelENG: Item,' +
+              'labelRUS: Наименование, labelCHN: 事实, ' +
+							'type: string, color: 0}');
         Result.A['cols'].Add(jf);
 
         // brand names
@@ -942,11 +942,11 @@ var
           pp := currentResult.r_Producers[pprod].pt_CategoriesResults[pcat].pc_BrandsResults[abrn[I]];
           jr := SO('{id : "' +
                 IntToStr(I + 1) +
-                '", label : "' +
+                '", label: "' +
                 WideCharToString( pp.pb_BrandName ) +
-                '", labelENG : "",' +
-                'labelRUS : "", labelCHN : "", ' +
-                'type : string, color : 0}');
+                '", labelENG: "",' +
+                'labelRUS: "", labelCHN: "", ' +
+                'type: string, color: 0}');
           Result.A['cols'].Add(jr);
         end;
 
@@ -1059,9 +1059,9 @@ var
      //columns
         Result := SO;
         Result.O['cols'] := SA([]);
-        jf := SO('{id : "1", label : Item, labelENG : Item,' +
-              'labelRUS : Наименование, labelCHN : 事实, ' +
-							'type : string, color : 0}');
+        jf := SO('{id : "1", label: Item, labelENG: Item,' +
+              'labelRUS: Наименование, labelCHN: 事实, ' +
+							'type: string, color : 0}');
         Result.A['cols'].Add(jf);
 
         // brand names
@@ -1076,11 +1076,11 @@ var
                 begin
                   jr := SO('{id : "' +
                         IntToStr(I + 1) +
-                        '", label : "' +
+                        '", label: "' +
                         WideCharToString( pp.pb_BrandName ) +
                         WideCharToString( pv.pv_VariantName ) +
-                        '", labelENG : "",' +
-                        'labelRUS : "", labelCHN : "", ' +
+                        '", labelENG: "",' +
+                        'labelRUS: "", labelCHN: "", ' +
                         'type : string, color : 0}');
                   Result.A['cols'].Add(jr);
                 end;
@@ -1358,8 +1358,8 @@ var
 
       //columns
         Result.O['cols'] := SA([]);
-        jf := SO('{id : "1", label : Item, labelENG : Item,' +
-              'labelRUS : Наименование, labelCHN : 事实, ' +
+        jf := SO('{id : "1", label: Item, labelENG: Item,' +
+              'labelRUS: Наименование, labelCHN: 事实, ' +
 							'type : string, color : 0}');
         Result.A['cols'].Add(jf);
 
@@ -1375,11 +1375,11 @@ var
                 begin
                   jr := SO('{id : "' +
                               IntToStr(I + 1) +
-                              '", label : "' +
+                              '", label: "' +
                               WideCharToString( pp.rb_BrandName ) +
                               WideCharToString( pv.rv_VariantName ) +
-                              '", labelENG : "",' +
-                              'labelRUS : "", labelCHN : "", ' +
+                              '", labelENG: "",' +
+                              'labelRUS: "", labelCHN: "", ' +
                               'type : string, color : 0}');
                    Result.A['cols'].Add(jr);
                 end;
@@ -1511,9 +1511,9 @@ var
      //columns
         Result := SO;
         Result.O['cols'] := SA([]);
-        jf := SO('{id : "1", label : Item, labelENG : Item,' +
-              'labelRUS : Наименование, labelCHN : 事实, ' +
-							'type : string, color : 0}');
+        jf := SO('{id : "1", label: Item, labelENG: Item,' +
+              'labelRUS: Наименование, labelCHN: 事实, ' +
+							'type: string, color : 0}');
         Result.A['cols'].Add(jf);
 
         // brand names
@@ -1528,11 +1528,11 @@ var
                 begin
                   jr := SO('{id : "' +
                         IntToStr(I + 1) +
-                        '", label : "' +
+                        '", label: "' +
                         WideCharToString( pp.pb_BrandName ) +
                         WideCharToString( pv.pv_VariantName ) +
-                        '", labelENG : "",' +
-                        'labelRUS : "", labelCHN : "", ' +
+                        '", labelENG: "",' +
+                        'labelRUS: "", labelCHN: "", ' +
                         'type : string, color : 0}');
                   Result.A['cols'].Add(jr);
                 end;
@@ -1718,12 +1718,12 @@ var
       jo := SO;
       //columns
         Result.O['cols'] := SA([]);
-        jf := SO('{id : "1", label : Item, labelENG : Item,' +
-              'labelRUS : Наименование, labelCHN : 事实, ' +
-							'type : string, color : 0}');
-        jr := SO('{id : "2", label : Company total, labelENG : Company total,' +
-              'labelRUS : Итого по компании, labelCHN : 公司总, ' +
-							'type : string, color : 0}');
+        jf := SO('{id : "1", label: Item, labelENG: Item,' +
+              'labelRUS: Наименование, labelCHN: 事实, ' +
+							'type: string, color: 0}');
+        jr := SO('{id : "2", label: Company total, labelENG: Company total,' +
+              'labelRUS: Итого по компании, labelCHN: 公司总, ' +
+							'type: string, color: 0}');
         Result.A['cols'].Add(jf);
         Result.A['cols'].Add(jr);
       // rows
@@ -1790,17 +1790,17 @@ var
       jo := SO;
       //columns
         Result.O['cols'] := SA([]);
-        jf := SO('{id : "1", label : Item, labelENG : Item,' +
-              'labelRUS : Наименование, labelCHN : 事实, ' +
+        jf := SO('{id : "1", label: Item, labelENG: Item,' +
+              'labelRUS: Наименование, labelCHN: 事实, ' +
 							'type : string, color : 0}');
         Result.A['cols'].Add(jf);
-        jr := SO('{id : "2", label : Elecsories, labelENG : Elecsories,' +
-              'labelRUS : "", labelCHN : "", ' +
-							'type : string, color : 0}');
+        jr := SO('{id : "2", label: Elecsories, labelENG: Elecsories,' +
+              'labelRUS: "", labelCHN: "", ' +
+							'type: string, color: 0}');
         Result.A['cols'].Add(jr);
-        jr := SO('{id : "3", label : "Health&Beauty", labelENG : "Health&Beauty",' +
-              'labelRUS : "", labelCHN : "", ' +
-							'type : string, color : 0}');
+        jr := SO('{id: "3", label: "Health&Beauty", labelENG: "Health&Beauty",' +
+              'labelRUS: "", labelCHN:"", ' +
+							'type :string, color :0}');
         Result.A['cols'].Add(jr);
       // rows
         result.O['rows'] := sa([]);
@@ -1902,9 +1902,9 @@ var
 
       //columns
         Result.O['cols'] := SA([]);
-        jf := SO('{id : "1", label : Item, labelENG : Item,' +
-              'labelRUS : Наименование, labelCHN : 事实, ' +
-							'type : string, color : 0}');
+        jf := SO('{id : "1", label: Item, labelENG: Item,' +
+              'labelRUS: Наименование, labelCHN: 事实, ' +
+							'type: string, color : 0}');
         Result.A['cols'].Add(jf);
         // brand names
         for I := Low(abrn) to High(abrn) do
@@ -1912,11 +1912,11 @@ var
           pp := currentResult.r_Retailers[pwho].rr_Quarters[pmark][pcat].rq_BrandsResults[abrn[I]];
           jr := SO('{id : "' +
                 IntToStr(I + 1) +
-                '", label : "' +
+                '", label: "' +
                 WideCharToString( pp.rb_BrandName ) +
-                '", labelENG : "",' +
-                'labelRUS : "", labelCHN : "", ' +
-                'type : string, color : 0}');
+                '", labelENG: "",' +
+                'labelRUS: "", labelCHN: "", ' +
+                'type: string, color: 0}');
           Result.A['cols'].Add(jr);
         end;
 
@@ -2016,9 +2016,9 @@ var
 
       //columns
         Result.O['cols'] := SA([]);
-        jf := SO('{id : "1", label : Item, labelENG : Item,' +
-              'labelRUS : Наименование, labelCHN : 事实, ' +
-							'type : string, color : 0}');
+        jf := SO('{id: "1", label: Item, labelENG: Item,' +
+              'labelRUS: Наименование, labelCHN: 事实, ' +
+							'type: string, color : 0}');
         Result.A['cols'].Add(jf);
 
         // variant names
@@ -2033,12 +2033,12 @@ var
                 begin
                   jr := SO('{id : "' +
                               IntToStr(I + 1) +
-                              '", label : "' +
+                              '", label: "' +
                               WideCharToString( pp.rb_BrandName ) +
                               WideCharToString( pv.rv_VariantName ) +
-                              '", labelENG : "",' +
-                              'labelRUS : "", labelCHN : "", ' +
-                              'type : string, color : 0}');
+                              '", labelENG: "",' +
+                              'labelRUS: "", labelCHN: "", ' +
+                              'type: string, color : 0}');
                    Result.A['cols'].Add(jr);
                 end;
             end;

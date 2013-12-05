@@ -59,50 +59,51 @@ define(['app','socketIO','routingConfig'], function(app) {
 				}
 			}
 
-		    $scope.reportCollection=_.find(myreport.reportCollection,function(obj){
+		    var reportCollection=_.find(myreport.reportCollection,function(obj){
 		      return (obj.market==market&&obj.category==cat)
 		    });
-		    var charttable = {};
-	        charttable.type = "Table";
-	        charttable.displayed = true;
-	        charttable.cssStyle = "height:400px; width:100%;";
-	        charttable.data=$scope.reportCollection.data;
-	        /*multilingual*/
-	        //test subTitles
-
 	        var title="";
 	        if(language=="Russian"){
 	          title=myreport.documentTitleRUS;
-	          for(var i=0;i<charttable.data.cols.length;i++){
-	            charttable.data.cols[i].label=charttable.data.cols[i].labelRUS;
+	          for(var i=0;i<reportCollection.data.cols.length;i++){
+	            reportCollection.data.cols[i].label=reportCollection.data.cols[i].labelRUS;
 	          }
 	        }
 	        else if(language=="English"){
 	          title=myreport.documentTitleENG;
-	          for(var i=0;i<charttable.data.cols.length;i++){
-	            charttable.data.cols[i].label=charttable.data.cols[i].labelENG;
+	          for(var i=0;i<reportCollection.data.cols.length;i++){
+	            reportCollection.data.cols[i].label=reportCollection.data.cols[i].labelENG;
 	          }
 	        }
 	        else if(language=="Chinese"){
 	          title=myreport.documentTitleCHN;
-	          for(var i=0;i<charttable.data.cols.length;i++){
-	            charttable.data.cols[i].label=charttable.data.cols[i].labelCHN;
+	          for(var i=0;i<reportCollection.data.cols.length;i++){
+	            reportCollection.data.cols[i].label=reportCollection.data.cols[i].labelCHN;
 	          }
 	        }
-	        charttable.options = {
-	          "title": title,
-	          "isStacked": "true",
-	          "fill": 20,
-	          "displayExactValues": true,
-	          "vAxis": {
-	              "title": "Sales unit", "gridlines": {"count": 10}
-	          },
-	          "hAxis": {
-	              "title": "Date"
-	          }
-	      	}
 	      	$scope.optitle=title;
-	      	$scope.charttable=charttable;
+	      	$scope.reportCollection = reportCollection;
+		    // var charttable = {};
+	     //    charttable.type = "Table";
+	     //    charttable.displayed = true;
+	     //    charttable.cssStyle = "height:400px; width:100%;";
+	     //    charttable.data=$scope.reportCollection.data;
+	        /*multilingual*/
+	        //test subTitles
+
+	       //  charttable.options = {
+	       //    "title": title,
+	       //    "isStacked": "true",
+	       //    "fill": 20,
+	       //    "displayExactValues": true,
+	       //    "vAxis": {
+	       //        "title": "Sales unit", "gridlines": {"count": 10}
+	       //    },
+	       //    "hAxis": {
+	       //        "title": "Date"
+	       //    }
+	      	// }
+	      	// $scope.charttable=charttable;
 	  	}
 
 
@@ -140,6 +141,26 @@ define(['app','socketIO','routingConfig'], function(app) {
 
 		  getReport(seminar,titleENG,period,language);
 
+
+		  $scope.sort = {
+		  	column : 1,
+		  	descending : false
+		  }
+
+		  $scope.changeSorting = function(column){
+		  	var sort = $scope.sort;
+		  	if(sort.column == column){
+		  		sort.descending = !sort.descending;
+		  	} else {
+		  		sort.column = column;
+		  		sort.descending = false;
+		  	}
+		  }
+
+		  $scope.mySorting = function(row){
+//		  	console.log('row:' + JSON.stringify(row.c));
+		  	return row.c[$scope.sort.column].v;
+		  }
 	}]);
 
 });
