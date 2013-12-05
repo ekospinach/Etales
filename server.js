@@ -100,6 +100,8 @@ app.get('/producerCurrentDecision/:seminar/:period/:producerID/:brandName/:varNa
 app.get('/checkProducerProduct/:seminar/:period/:producerID/:categoryID/:checkType/:brandName/:varName',require('./api/models/producerDecision.js').checkProducerProduct);
 app.get('/producerExpend/:seminar/:period/:producerID/:brandName/:location/:additionalIdx',require('./api/models/producerDecision.js').getProducerExpend);
 
+app.get('/producerVariantBM/:seminar/:period/:producerID/:categoryID/:brandName/:varName',require('./api/models/producerDecision.js').getProducerVariantBM);
+
 //retailer check
 app.get('/retailerExpend/:seminar/:period/:retailerID/:marketID/:location/:additionalIdx',require('./api/models/retailerDecision.js').getRetailerExpend);
 app.get('/retailerShelfSpace/:seminar/:period/:retailerID/:marketID/:categoryID/:brandName/:varName',require('./api/models/retailerDecision.js').getRetailerShelfSpace);
