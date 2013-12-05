@@ -170,7 +170,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 		  $scope.getFinReport=getFinReport;
 		  $scope.showFinReport=showFinReport;
 
-		  getFinReport($scope.seminar,$scope.finTitleENG,$scope.period,$scope.role,$scope.type);
+		  getFinReport($scope.seminar,$scope.realTitleENG,$scope.period,$scope.role,$scope.type);
 
 	}]);
 

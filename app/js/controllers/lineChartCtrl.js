@@ -109,7 +109,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 		$scope.cat="HealthBeauties";
 		$scope.market="Rural";
 		$scope.role="Producer";
-		$scope.language=="English";
+		$scope.language="English";
 
 	    $scope.showLineChart=showLineChart;//("HealthBeauties","Rural","Producer");
 	    $scope.getLineChart=getLineChart;

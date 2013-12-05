@@ -135,7 +135,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 				}
 			}
 			//console.log(selectdata);
-			Map.get({seminar: seminar,period:period}, function(newmap) {
+			Map.get({seminar: $scope.seminar,period:$scope.period}, function(newmap) {
 			   	$scope.map=newmap;
 			   	$scope.pageCollection=_.find($scope.map.pageCollection, function(obj) { 
 					return (obj.category == $scope.cat&&obj.market==$scope.market) 
