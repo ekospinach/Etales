@@ -135,7 +135,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 				}
 			}
 			//console.log(selectdata);
-			Map.get({seminar: seminar,period:period}, function(newmap) {
+			Map.get({seminar: $scope.seminar,period:$scope.period}, function(newmap) {
 			   	$scope.map=newmap;
 			   	$scope.pageCollection=_.find($scope.map.pageCollection, function(obj) { 
 					return (obj.category == $scope.cat&&obj.market==$scope.market) 
@@ -232,40 +232,24 @@ define(['app','socketIO','routingConfig'], function(app) {
 
 	//default report for Elecsorries
 
-		var cat="Elecsories";
-		var market="Rural";
-		var language="English";
-		var mapTitle="";
-		var params="";
-		$scope.params=params;
-		$scope.mapTitle=mapTitle;
-		$scope.cat=cat;
-		$scope.market=market;
-		$scope.language=language;
-		var seminar=$rootScope.user.seminar;
+		$scope.params="";
+		$scope.mapTitle="";
+		$scope.cat="Elecsories";
+		$scope.market="Rural";
+		$scope.language="English";
 		var startFrom=$rootScope.rootStartFrom;
-	  	var endWith=$rootScope.rootEndWith;
-		  var period=endWith;
-		  var periods=new Array();
-		  for(var i=startFrom;i<=endWith;i++){
-		    periods.push(i);
-		  }
-		  $scope.periods=periods;
-		  $scope.seminar=seminar;
-		  $scope.period=period;
-
-	  var startFrom=$rootScope.rootStartFrom;
-	  var endWith=$rootScope.rootEndWith;
-
-	  var period=endWith;
-	  var periods=new Array();
-	  for(var i=startFrom;i<=endWith;i++){
-	    periods.push(i);
-	  }
-	  $scope.periods=periods;
-	  $scope.getMap=getMap;
-	  $scope.showSelect=showSelect;
-	  $scope.showChart = showChart;
-	  showChart(cat,market,language);
+		var endWith=$rootScope.rootEndWith;
+		var period=endWith;
+		var periods=new Array();
+		for(var i=startFrom;i<=endWith;i++){
+			periods.push(i);
+		}
+		$scope.seminar=$rootScope.user.seminar;
+		$scope.periods=periods;
+		$scope.period=endWith;
+		$scope.getMap=getMap;
+		$scope.showSelect=showSelect;
+		$scope.showChart = showChart;
+		showChart($scope.cat,$scope.market,$scope.language);
 	}]);
 });

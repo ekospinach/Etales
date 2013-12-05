@@ -6,8 +6,6 @@ define(['app'], function(app) {
 		    $rootScope.loginFooter="bs-footer";
 		    $rootScope.loginLink="footer-links";
 		    $rootScope.loginDiv="container";
-			//var calculate='../js/controllers/untils/calculate.js';
-			//var calculate=require('');
 			var multilingual=getRetailerStep4Info();
 			var language='English',
 				retailerID=$rootScope.user.username.substring($rootScope.user.username.length-1);
@@ -27,10 +25,8 @@ define(['app'], function(app) {
 			$scope.shouldShow=shouldShow;
 			$scope.shouldHide=shouldHide;
 
-			
 			ProducerDecisionBase.startListenChangeFromServer();
 			RetailerDecisionBase.reload({retailerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
-			//ProducerDecisionBase.reload({period:'0', seminar:'MAY', retailerID:1}).then(function(base){
 				$scope.pageBase = base;
 			}).then(function(){
 				return promiseStep1();
@@ -45,6 +41,12 @@ define(['app'], function(app) {
 				delay.notify('start to show view');
 
 					$scope.showView=showView;
+					//check
+					$scope.checkOrderVolume=checkOrderVolume;
+					$scope.checkShelfSpace=checkShelfSpace;
+					$scope.checkRetailerPrice=checkRetailerPrice;
+					$scope.checkPromototionFrequency=checkPromototionFrequency;
+					$scope.checkReductionRate=checkReductionRate;
 					$scope.updateRetailerDecision=updateRetailerDecision;
 					$scope.getMoreInfo=getMoreInfo;
 					$scope.moreInfo=moreInfo;
@@ -54,13 +56,7 @@ define(['app'], function(app) {
 					$scope.addOrders=addOrders;
 					$scope.addOrder=addOrder;
 					$scope.deleteOrder=deleteOrder;
-				var result=showView($scope.retailerID,$scope.period,$scope.category,$scope.market,$scope.language);
-				delay.resolve(result);
-				if (result==1) {
-					delay.resolve(result);
-				} else {
-					delay.reject('showView error,products is null');
-				}
+				showView($scope.retailerID,$scope.period,$scope.category,$scope.market,$scope.language);
 				return delay.promise;
 			}
 
@@ -87,14 +83,12 @@ define(['app'], function(app) {
 			var loadSelectCategroy=function(market,category){
 				if(market=="Urban"){
 					market=1;
-				}
-				if(market=="Rural"){
+				}else if(market=="Rural"){
 					market=2;
 				}
 				if(category=="Elecssories"){
 					category=1;
-				}
-				if(category=="HealthBeauty"){
+				}else if(category=="HealthBeauty"){
 					category=2;
 				}
 				var retMarketDecisions=_.filter($scope.pageBase.retMarketDecision,function(obj){
@@ -106,82 +100,280 @@ define(['app'], function(app) {
 			}
 			/*Load Page*/
 			var showView=function(retailerID,period,category,market,language){
+				var d=$q.defer();
 				$scope.retailerID=retailerID,$scope.period=period,$scope.category=category,$scope.market=market,$scope.language=language;
-				var infoLanguages={},labelLanguages={};
-				if(language=="English"){
-					for(var i=0;i<$scope.multilingual.length;i++){
-						labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
-						infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
-					}
+				var categoryID=0,count=0,result=0,expend=0,categoryID=0,marketID=0;
+				var labelLanguages={},infoLanguages={};
+				var fakeName="EName",max=100;
+				var orderProducts=new Array();
+				if(market=="Urban"){
+					market=1;
+				}else if(market=="Rural"){
+					market=2;
 				}
-				else if(language=="Chinese"){
-					for(var i=0;i<$scope.multilingual.length;i++){
-						labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelCHN;
-						infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoCHN;
-					}
-				}
-				var allRetCatDecisions=loadSelectCategroy(market,category);
-	      		var count=0,result=0;
-	      		var products=new Array();
-	      		for(var i=0;i<allRetCatDecisions.length;i++){
-	      			for(var j=1;j<allRetCatDecisions[i].retVariantDecision.length;j++){
-	      				if(allRetCatDecisions[i].retVariantDecision[j].brandID!=0&&allRetCatDecisions[i].retVariantDecision[j].varID!=0){
-	      					products.push(allRetCatDecisions[i].retVariantDecision[j]);
-	      					count++;
-	      				}
-	      			}
-	      		}
-	      		if(count!=0){
-	      			result=1;
-	      		}
-	      		$scope.products=products;
-				$scope.infoLanguages=infoLanguages;
-				$scope.labelLanguages=labelLanguages;
 				if(category=="Elecssories"){
 					category=1;
-				}
-				if(category=="HealthBeauty"){
+				}else if(category=="HealthBeauty"){
 					category=2;
 				}
-				var orderProducts=new Array();
-				//添加retailer load
-				var url='/retailerProducts/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.seminar+'/'+category;
-				$http.get(url).success(function(data){
-					for(var i=0;i<data.length;i++){
-						if(data[i].brandID!=0&&data[i].varID!=0){
-							data[i].variantID=data[i].varID;
-							data[i].select=false;
-							orderProducts.push(data[i]);
-						}
-					}
-					for(var i=1;i<=3;i++){
-						url='/producerProducts/'+i+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.seminar+'/'+category;
-						$http.get(url).success(function(data){
-							for(var j=0;j<data.length;j++){
-								if(data[j].brandID!=0&&data[j].varID!=0){
-									data[j].variantID=data[j].varID;
-									data[j].select=false;
-									orderProducts.push(data[j]);
+	      		var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/R/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+	      		$http({
+	      			method:'GET',
+	      			url:url
+	      		}).then(function(data){
+	      			abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
+	      			$scope.abMax=abMax;
+	      			url="/retailerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/-1/location/1';
+	      			return $http({
+	      				method:'GET',
+	      				url:url,
+	      			});
+	      		}).then(function(data){
+	      			expend=data.data.result;
+	      			$scope.surplusExpend=abMax-expend;
+	      			$scope.percentageExpend=(abMax-expend)/abMax*100;
+	      		 	url="/retailerShelfSpace/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/-1/0/brandName/varName';
+	      			return $http({
+	      				method:'GET',
+	      				url:url
+	      			});
+	      		}).then(function(data){
+	      					$scope.surplusShelf=new Array();
+	      					$scope.percentageShelf=new Array();
+	      					$scope.surplusShelf[0]=new Array();
+	      					$scope.surplusShelf[1]=new Array();
+	      					$scope.percentageShelf[0]=new Array();
+	      					$scope.percentageShelf[1]=new Array();
+	      					$scope.surplusShelf[0][0]=data.data.result[0][0];
+	      					$scope.surplusShelf[0][1]=data.data.result[0][1];
+	      					$scope.surplusShelf[1][0]=data.data.result[1][0];
+	      					$scope.surplusShelf[1][1]=data.data.result[1][1];
+	      					$scope.percentageShelf[0][0]=(1-$scope.surplusShelf[0][0])*100;
+	      					$scope.percentageShelf[0][1]=(1-$scope.surplusShelf[0][1])*100;
+	      					$scope.percentageShelf[1][0]=(1-$scope.surplusShelf[1][0])*100;
+	      					$scope.percentageShelf[1][1]=(1-$scope.surplusShelf[1][1])*100;
+	      					$scope.showSurplusShelf=$scope.surplusShelf[market-1][category-1];
+	      					$scope.showPercentageShelf=$scope.percentageShelf[market-1][category-1];
+	      					if(language=="English"){
+								for(var i=0;i<$scope.multilingual.length;i++){
+									labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
+									infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
 								}
 							}
-						});
-					}		
-					$scope.orderProducts=orderProducts;			
+							else if(language=="Chinese"){
+								for(var i=0;i<$scope.multilingual.length;i++){
+									labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelCHN;
+									infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoCHN;
+								}
+							}
+							var allRetCatDecisions=loadSelectCategroy(market,category);
+							var products=new Array();
+				      		for(var i=0;i<allRetCatDecisions.length;i++){
+				      			for(var j=1;j<allRetCatDecisions[i].retVariantDecision.length;j++){
+				      				if(allRetCatDecisions[i].retVariantDecision[j].brandID!=0&&allRetCatDecisions[i].retVariantDecision[j].varID!=0){
+				      					products.push(allRetCatDecisions[i].retVariantDecision[j]);
+				      					count++;
+				      				}
+				      			}
+				      		}
+				      		$scope.products=products;
+							$scope.infoLanguages=infoLanguages;
+							$scope.labelLanguages=labelLanguages;
+							if(category=="Elecssories"){
+								category=1;
+							}
+							if(category=="HealthBeauty"){
+								category=2;
+							}
+							//添加retailer load
+							url='/retailerProducts/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.seminar+'/'+category;
+							return $http({
+								method:'GET',
+								url:url
+							});
+				}).then(function(data){
+					for(var i=0;i<data.data.length;i++){
+						if(data.data[i].brandID!=0&&data.data[i].varID!=0){
+							data.data[i].variantID=data.data[i].varID;
+							data.data[i].select=false;
+							orderProducts.push(data.data[i]);
+						}
+					}
+					var urls=new Array();
+					for(i=0;i<3;i++){
+						urls[i]='/producerProducts/'+(i+1)+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.seminar+'/'+category;
+					}
+					(function multipleRequestShooter(urls,idx){
+						$http({
+							method:'GET',
+							url:urls[idx]
+						}).then(function(data){
+							for(var j=0;j<data.data.length;j++){
+								if(data.data[j].brandID!=0&&data.data[j].varID!=0){
+									data.data[j].variantID=data.data[j].varID;
+									data.data[j].select=false;
+									orderProducts.push(data.data[j]);
+								}
+							}
+						},function(data){}).finally(function(){
+							if(idx!=2){
+								idx++;
+								multipleRequestShooter(urls,idx);
+							}else{
+								$scope.orderProducts=orderProducts;
+							}
+						})
+					})(urls,0);
+				},function(){
+					console.log('showView fail');
 				});
-				return result;
+				return d.promise;
+			}
+
+			/*
+			1. Order Volume：0~当前市场的Market Size(市场大小），
+			Market Size =  quarterHistoryInfoSchema({seminar, period}).categoryview[当前产品的category-1].categoryMarketView[当前market-1].segmentsVolumes[4] (4 = Total, 0,1,2,3分别为该市场的4个细分市场）
+			*/
+			var checkOrderVolume=function(category,market,brandName,varName,location,postion,addtionalIdx,value){
+				var d=$q.defer();
+				var max=0;
+					if(market=="Urban"){
+					market=1;
+				}else if(market=="Rural"){
+					market=2;
+				}
+				if(category=="Elecssories"){
+					category=1;
+				}else if(category=="HealthBeauty"){
+					category=2;
+				}
+				var url='/quarterHistoryInfo/'+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1);
+				$http({method:'GET',url:url}).then(function(data){
+					max=data.data.categoryView[category-1].categoryMarketView[market-1].segmentsVolumes[4];
+					if(value>max||value<0){
+						d.resolve('Input range 0~'+max);
+					}else{
+						d.resolve();
+					}
+				},function(){
+					d.resolve('fail');
+				})
+				return d.promise;
+			}
+			/*Shelf space : 0~剩余的货架份额。总货架份额（每个市场，每个阶段）= 100%，每次给某一个市场内的某个产品分配份额或者减少份额，右上角的该市场的货架进度条 Avaiable Shelf space必须进行进行相应的减少或者增加。该市场内所有产品的份额相加不能大于100%。
+			Retailer这里的两个进度条跟Producer有不同，Producer为Avaiable budeget和Avaiable capacity（根据不同category有两个不同的capacity进度条，label也要相应变化）分别是Avaiable budget和Avaiable Shelf space （根据不同市场显示两个不同的shelf space进度条，label也要相应变换）
+			*/
+			var checkShelfSpace=function(category,market,brandName,varName,location,postion,addtionalIdx,value){
+				var d=$q.defer(),max=0;
+				if(market=="Urban"){
+					market=1;
+				}else if(market=="Rural"){
+					market=2;
+				}
+				if(category=="Elecssories"){
+					category=1;
+				}else if(category=="HealthBeauty"){
+					category=2;
+				}
+				var url="/retailerShelfSpace/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+market+'/'+category+'/'+brandName+'/'+varName;
+	      		$http({
+	      			method:'GET',
+	      			url:url
+	      		}).then(function(data){
+	      			max=1-data.data.exclude;
+	      			if(value>max||value<0){
+	      				d.resolve('Input range 0~'+max);
+	      			}else{
+	      				d.resolve();
+	      			}
+	      		})
+				return d.promise;
+			}
+
+			/*
+			3.Retailer Price:  暂定为 0.5*listPrice ~ 3*listPrice。该产品listPrice获取方式（最后搞一个单独的函数）：
+			if 该产品为Producer生产的普通老产品，则listPrice=varianthistory 该产品最近历史数据里的pv_NextPriceBM
+			if 该产品为Producer当前阶段退出的新产品，则listPrice = 该产品生产商Step1中决定的Current BM Price
+			if 该产品为Retailer自己生产的private label，则listPrice= 该产品的UnitCost（当前产品的Unitcost计算方法请求路由app.get('/productionCost’)获取，该服务还没完成）
+			*/
+			var checkRetailerPrice=function(category,market,brandName,varName,location,postion,addtionalIdx,dateOfBirth,value){
+				var d=$q.defer();
+				var url="",max=0;
+				if(category=="Elecssories"){
+					category=1;
+				}else if(category=="HealthBeauty"){
+					category=2;
+				}
+				if(brandName.substring(brandName.length-1)<4){
+					//producer
+					if(dateOfBirth<$rootScope.currentPeriod){//old variant
+						url="/variantHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/'+brandName+'/'+varName;
+						$http({method:'GET',url:url}).then(function(data){
+							max=data.data.supplierView[0].nextPriceBM;
+							if(value>max*3||value<0.5*max){
+								d.resolve('Input range :'+0.5*max+'~'+3*max);
+							}else{
+								d.resolve();
+							}
+						},function(){
+							d.resolve('fail');
+						})
+					}else{//new variant
+						url='/producerVariantBM/'+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+brandName.substring(brandName.length-1)+'/'+category+'/'+brandName+'/'+varName;
+						$http({
+							method:'GET',
+							url:url
+						}).then(function(data){
+							max=data.data.result;
+							if(value>max*3||value<0.5*max){
+								d.resolve('Input range :'+0.5*max+'~'+3*max);
+							}else{
+								d.resolve();
+							}
+						});
+					}
+				}else{
+					//need a api
+					max=100;
+					if(value>max*3||value<0.5*max){
+						d.resolve('Input range :'+0.5*max+'~'+3*max);
+					}else{
+						d.resolve();
+					}
+				}
+				return d.promise;
+					
+			}
+			/*1-26*/
+			var checkPromototionFrequency=function(value){
+				var d=$q.defer();
+				if(value>26||value<1){
+					d.resolve('Input range:1~26');
+				}else{
+					d.resolve();
+				}
+				return d.promise;
+			}
+			/*1-100%*/
+			var checkReductionRate=function(value){
+				var d=$q.defer();
+				if(value>1||value<0){
+					d.resolve('Input range:0~1');
+				}else{
+					d.resolve();
+				}
+				return d.promise;				
 			}
 
 			var updateRetailerDecision=function(category,market,brandName,varName,location,postion,addtionalIdx){
 				if(market=="Urban"){
 					market=1;
-				}
-				if(market=="Rural"){
+				}else if(market=="Rural"){
 					market=2;
 				}
 				if(category=="Elecssories"){
 					category=1;
-				}
-				if(category=="HealthBeauty"){
+				}else if(category=="HealthBeauty"){
 					category=2;
 				}
 				if(location=="pricePromotions"){
@@ -198,6 +390,68 @@ define(['app'], function(app) {
 
 			var getMoreInfo=function(product){
 				//$scope.moreInfo={'categoryID':$scope.retailerID};
+				var d=$q.defer();
+				$scope.isCollapsed=false;
+				var url="";
+				if(product.dateOfBirth==$rootScope.currentPeriod){
+					//new product
+					$scope.currentVar="";
+					$scope.historyVar="none";
+				}else{
+					$scope.currentVar="none";
+					$scope.historyVar="";					
+				}
+				if(product.brandName.substring(0,1)=="E"){
+					$scope.ElecssoriesVar="";
+					$scope.HealthBeautyVar="none";
+				}else{
+					$scope.ElecssoriesVar="none";
+					$scope.HealthBeautyVar="";
+				}
+				if(product.brandName.substring(product.brandName.length-1)<=3){//producer variant
+					url='/getProducerDecisionByVar/'+product.brandName.substring(product.brandName.length-1)+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.seminar+'/'+product.brandName+'/'+product.varName;
+				}else{//retailer variant
+					url='/getRetailerDecisionByVar/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.seminar+'/'+product.brandName+'/'+product.varName;
+				}
+				//bug no retailer variant historyInfo
+				$http({
+					method:'GET',
+					url:url
+				}).then(function(data){
+					if(product.dateOfBirth==$rootScope.currentPeriod){//new product
+						data.data[0].NextPriceBM=data.data[0].CurrentPriceBM;
+					}
+					$scope.decisionCurrent=data.data;
+					if(product.brandName.substring(product.brandName.length-1)<=3){//producer variant
+						url='/getProducerDecisionByVar/'+product.brandName.substring(product.brandName.length-1)+'/'+($rootScope.currentPeriod-1)+'/'+$rootScope.user.seminar+'/'+product.brandName+'/'+product.varName;
+					}else{//retailer variant
+						url='/getRetailerDecisionByVar/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+($rootScope.currentPeriod-1)+'/'+$rootScope.user.seminar+'/'+product.brandName+'/'+product.varName;
+					}
+					return $http({
+						method:'GET',
+						url:url
+					});
+				}).then(function(data){
+					if(product.dateOfBirth==$rootScope.currentPeriod){
+							data.data[0].NextPriceBM=data.data[0].CurrentPriceBM;
+						}
+					$scope.decisionHistory=data.data;
+					url='/quarterHistoryInfo/'+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1);
+					return $http({method:'GET',url:url});
+				}).then(function(data){
+					$scope.quarterHistory=data.data;
+					url="/variantHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/'+product.brandName+'/'+product.varName;
+					return $http({method:'GET',url:url});
+				}).then(function(data){
+					$scope.variantHistory=data.data;
+				},function(){
+					console.log('read historyInfo fail');
+				});
+				return d.promise;
+			}
+
+			var moreInfo=function(product){
+				var d=$q.defer();
 				$scope.isCollapsed=false;
 				var url="";
 				if(product.dateOfBirth==$rootScope.currentPeriod){
@@ -221,128 +475,42 @@ define(['app'], function(app) {
 					url='/getRetailerDecisionByVar/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.seminar;
 				}
 				//bug no retailer variant historyInfo
-				$http({method:'GET',url:url})
-				.success(function(data){
+				$http({
+					method:'GET',
+					url:url
+				}).then(function(data){
 					if(product.dateOfBirth==$rootScope.currentPeriod){//new product
-						data[0].NextPriceBM=data[0].CurrentPriceBM;
+						data.data[0].NextPriceBM=data.data[0].CurrentPriceBM;
 					}
-					$scope.decisionCurrent=data;
-					console.log($scope.decisionCurrent);
-
+					$scope.modalDecisionCurrent=data.data;
 					if(product.brandName.substring(product.brandName.length-1)<=3){//producer variant
 						url='/getProducerDecisionByVar/'+product.brandName.substring(product.brandName.length-1)+'/'+($rootScope.currentPeriod-1)+'/'+$rootScope.user.seminar+'/'+product.brandName+'/'+product.varName;
 					}else{//retailer variant
 						url='/getRetailerDecisionByVar/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+($rootScope.currentPeriod-1)+'/'+$rootScope.user.seminar;
 					}
-					$http({method:'GET',url:url})
-					.success(function(data){
-						if(product.dateOfBirth==$rootScope.currentPeriod){
-							data[0].NextPriceBM=data[0].CurrentPriceBM;
+					return $http({
+						method:'GET',
+						url:url
+					});
+				}).then(function(data){
+					if(product.dateOfBirth==$rootScope.currentPeriod){
+							data.data[0].NextPriceBM=data.data[0].CurrentPriceBM;
 						}
-						$scope.decisionHistory=data;
-						console.log($scope.decisionHistory);
-						url='/quarterHistoryInfo/'+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1);
-						$http({method:'GET',url:url})
-						.success(function(data){
-							$scope.quarterHistory=data;
-							console.log($scope.quarterHistory);
-							url="/variantHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/'+product.brandName+'/'+product.varName;
-							$http({method:'GET',url:url})
-							.success(function(data){
-								$scope.variantHistory=data;
-								console.log($scope.variantHistory);
-							})
-							.error(function(data){
-								console.log("read variantHistory fail");
-							})
-						})
-						.error(function(data){
-							console.log('read quarterHistoryInfo fail');
-						})
-					})
-					.error(function(data){
-						console.log('read decisionHistory fail');
-					})
-				})
-				.error(function(data){
-					console.log('read decisionCurrent fail')
-				})
+					$scope.modalDecisionHistory=data.data;
+					url='/quarterHistoryInfo/'+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1);
+					return $http({method:'GET',url:url});
+				}).then(function(data){
+					$scope.modalQuarterHistory=data.data;
+					url="/variantHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/'+product.brandName+'/'+product.varName;
+					return $http({method:'GET',url:url});
+				}).then(function(data){
+					$scope.modalVariantHistory=data.data;
+				},function(){
+					console.log('read historyInfo fail');
+				});
+				return d.promise;
 			}
 
-			var moreInfo=function(product){
-				var url="";
-				if(product.dateOfBirth==$rootScope.currentPeriod){
-					//new product
-					$scope.modalCurrentVar="";
-					$scope.modalHistoryVar="none";
-				}else{
-					$scope.modalCurrentVar="none";
-					$scope.modalHistoryVar="";					
-				}
-				if(product.brandName.substring(0,1)=="E"){
-					$scope.modalElecssoriesVar="";
-					$scope.modalHealthBeautyVar="none";
-				}else{
-					$scope.modalElecssoriesVar="none";
-					$scope.modalHealthBeautyVar="";
-				}
-				if(product.brandName.substring(product.brandName.length-1)<=3){//producer variant
-					url='/getProducerDecisionByVar/'+product.brandName.substring(product.brandName.length-1)+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.seminar+'/'+product.brandName+'/'+product.varName;
-				}else{//retailer variant
-					url='/getRetailerDecisionByVar/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.seminar;
-				}
-				//bug no retailer variant historyInfo
-				$http({method:'GET',url:url})
-				.success(function(data){
-					if(product.dateOfBirth==$rootScope.currentPeriod){//new product
-						data[0].nextPriceBM=data[0].currentPriceBM;
-					}
-					$scope.modalDecisionCurrent=data;
-					console.log($scope.modelDecisionCurrent);
-
-					if(product.brandName.substring(product.brandName.length-1)<=3){//producer variant
-						url='/getProducerDecisionByVar/'+product.brandName.substring(product.brandName.length-1)+'/'+($rootScope.currentPeriod-1)+'/'+$rootScope.user.seminar+'/'+product.brandName+'/'+product.varName;
-					}else{//retailer variant
-						url='/getRetailerDecisionByVar/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+($rootScope.currentPeriod-1)+'/'+$rootScope.user.seminar;
-					}
-					$http({method:'GET',url:url})
-					.success(function(data){
-						if(product.dateOfBirth==$rootScope.currentPeriod){
-							data[0].nextPriceBM=data[0].currentPriceBM;
-						}
-						$scope.modalDecisionHistory=data;
-						console.log($scope.modalDecisionHistory);
-						url='/quarterHistoryInfo/'+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1);
-						$http({method:'GET',url:url})
-						.success(function(data){
-							$scope.modalQuarterHistory=data;
-							console.log($scope.modalQuarterHistory);
-							url="/variantHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/'+product.brandName+'/'+product.varName;
-							$http({method:'GET',url:url})
-							.success(function(data){
-								$scope.modalVariantHistory=data;
-								console.log($scope.modalVariantHistory);
-							})
-							.error(function(data){
-								console.log("read variantHistory fail");
-							})
-						})
-						.error(function(data){
-							console.log('read quarterHistoryInfo fail');
-						})
-					})
-					.error(function(data){
-						console.log('read decisionHistory fail');
-					})
-				})
-				.error(function(data){
-					console.log('read decisionCurrent fail')
-				})
-			}
-
-			var loadNameNum=function(){//load the sort
-				/*importantt*/
-			}		
 
 			var addOrders=function(market){
 				var max=0;
@@ -373,12 +541,11 @@ define(['app'], function(app) {
 				product.retailerPrice=0;
 				product.shelfSpace=0;
 				product.pricePromotions={
-					promo_Frequency:0,
-					promo_Rate:0
+					promo_Frequency:1,
+					promo_Rate:0.01
 				};
 				console.log(product);
 				if(market=="Urban"){
-					//setTimeout('RetailerDecisionBase.addOrder(1,product,last)',1000);
 					RetailerDecisionBase.addOrder(1,product,last);
 				}
 				else{
@@ -390,15 +557,13 @@ define(['app'], function(app) {
 
 			var deleteOrder=function(market,category,brandName,varName){
 				if(market=="Urban"){
-				market=1;
-				}
-				if(market=="Rural"){
+					market=1;
+				}else if(market=="Rural"){
 					market=2;
 				}
 				if(category=="Elecssories"){
 					category=1;
-				}
-				if(category=="HealthBeauty"){
+				}else if(category=="HealthBeauty"){
 					category=2;
 				}
 				RetailerDecisionBase.deleteOrder(market,category,brandName,varName);

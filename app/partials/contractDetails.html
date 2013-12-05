@@ -6,14 +6,12 @@
 </div>
 
 <div class="container bs-docs-container">
-	
 	<div class="page-header">
-		<h3>Contract Name : {{contractInfo.contractCode}}
+		<h3>Contract Name : {{contractInfo.contractCode.substring(0,contractInfo.contractCode.indexOf('_'))}}
 		<small>
 			Producer {{contractInfo.producerID}} & Retailer {{contractInfo.retailerID}}, Period:{{contractInfo.period}}, Seminar:{{contractInfo.seminar}}
 		</small>	
 		</h3>
-
 	</div>
 	<div ng-show="refreshingProcess">Loading...</div>
 	<div>
@@ -181,18 +179,18 @@
 					<h4>{{editDetail.negotiationItem}},{{user.seminar}}_{{editDetail.relatedBrandName}}</h4>
 				</div>
 				<div class="btn-group pull-right" data-toggle="buttons">
-					<label class="btn btn-primary" ng-click="setShowDetailType('Brand')">
+					<label class="btn btn-default" ng-click="setShowDetailType('Brand')">
 						<input type="radio" name="detailType">Brand
 					</label>
-					<label class="btn btn-primary" ng-click="setShowDetailType('Variant')">
+					<label class="btn btn-default" ng-click="setShowDetailType('Variant')">
 						<input type="radio" name="detailType">Variant
 					</label>
 				</div>
 				<div class="btn-group pull-right" style="margin-right:10px;display:{{shouldBeAmount}}" data-toggle="buttons">
-					<label class="btn btn-primary" ng-click="setShowBonusType('Amout')">
+					<label class="btn btn-default" ng-click="setShowBonusType('Amout')">
 						<input type="radio" name="amoutRate">Amout
 					</label>
-					<label class="btn btn-primary" ng-click="setShowBonusType('Rate')">
+					<label class="btn btn-default" ng-click="setShowBonusType('Rate')">
 						<input type="radio" name="amoutRate">Rate
 					</label>
 				</div>
@@ -471,18 +469,18 @@
 					<h4>{{editDetail.negotiationItem}},{{user.seminar}}_{{editDetail.relatedBrandName}}</h4>
 				</div>
 				<div class="btn-group pull-right" data-toggle="buttons">
-					<label class="btn btn-primary" ng-click="setShowDetailType('Brand')">
+					<label class="btn btn-default" ng-click="setShowDetailType('Brand')">
 						<input type="radio" name="detailType">Brand
 					</label>
-					<label class="btn btn-primary" ng-click="setShowDetailType('Variant')">
+					<label class="btn btn-default" ng-click="setShowDetailType('Variant')">
 						<input type="radio" name="detailType">Variant
 					</label>
 				</div>
 				<div class="btn-group pull-right" style="margin-right:10px;display:{{shouldBeAmount}}" data-toggle="buttons">
-					<label class="btn btn-primary" ng-click="setShowBonusType('Amout')">
+					<label class="btn btn-default" ng-click="setShowBonusType('Amout')">
 						<input type="radio" name="amoutRate">Amout
 					</label>
-					<label class="btn btn-primary" ng-click="setShowBonusType('Rate')">
+					<label class="btn btn-default" ng-click="setShowBonusType('Rate')">
 						<input type="radio" name="amoutRate">Rate
 					</label>
 				</div>

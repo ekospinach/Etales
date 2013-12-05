@@ -629,7 +629,8 @@ exports.getRetailerProductList=function(req,res,next){
                                                             'varName':allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k].varName,
                                                             'brandID':allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k].parentBrandID,
                                                             'varID':allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k].varID,
-                                                            'parentName':req.params.seminar+'_R_'+req.params.retailerID});
+                                                            'parentName':'Retailer '+req.params.retailerID
+                                                        });
                                                         count++;
                                                     }
                                                 }

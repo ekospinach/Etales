@@ -466,7 +466,8 @@ exports.getProducerProductList=function(req,res,next){
                                                             'varName':allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varName,
                                                             'brandID':allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].parentBrandID,
                                                             'varID':allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID,
-                                                            'parentName':req.params.seminar+'_P_'+req.params.producerID});
+                                                            'parentName':'Producer '+req.params.producerID
+                                                        });
                                                         count++;
                                                     }
                                                 }
@@ -628,6 +629,46 @@ exports.getProducerCurrentDecision=function(req,res,next){
             }
             if(result==0){
                 res.send(404,'cannot find the variant');
+            }
+        }
+    })
+}
+
+exports.getProducerVariantBM=function(req,res,next){
+    proDecision.findOne({
+        seminar:req.params.seminar,
+        period:req.params.period,
+        producerID:req.params.producerID
+    },function(err,doc){
+        if(err){
+            next (new Error(err));
+        }
+        if(!doc){
+            res.send(404,{err:'cannot find the doc'});
+        }else{
+            var result=0,count=0;
+            var allProCatDecisions=_.filter(doc.proCatDecision,function(obj){
+                return (obj.categoryID==req.params.categoryID);
+            });
+            for(var i=0;i<allProCatDecisions.length;i++){
+                for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
+                    if(allProCatDecisions[i].proBrandsDecision[j].brandID!=0&&allProCatDecisions[i].proBrandsDecision[j].brandName==req.params.brandName){
+                        for(var k=0;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
+                            if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=0&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varName==req.params.varName){
+                                result=allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].currentPriceBM;
+                                count++;
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+            if(count!=0){
+                res.send(200,{result:result});
+            }
+            else{
+                res.send(404,{result:'failed'});
             }
         }
     })
