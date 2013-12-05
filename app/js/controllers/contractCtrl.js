@@ -290,7 +290,7 @@ define(['app'], function(app) {
 
 			$scope.addNewContract=function(){
 				var data={
-					'contractCode':$scope.newContractCode,
+					'contractCode':$scope.newContractCode+'_'+$rootScope.user.seminar+'_'+$rootScope.currentPeriod,
 					'seminar':$rootScope.user.seminar,
 					'period':$rootScope.currentPeriod,
 					'draftedByCompanyID':$rootScope.user.username.substring($rootScope.user.username.length-1),

@@ -31,7 +31,6 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    error(function(data, status, headers, config) {
 		      $scope.chartdata=null;
 		    });
-
 		}
 
 	    var showLineChart=function(cat,market,role,language){
@@ -86,40 +85,31 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    		charts[i]=null;
 		    	}
 	    	}
-	    	chart1=charts[0];
-	     	chart2=charts[1];
-	     	chart3=charts[2];
-	     	chart4=charts[3];
-	    	$scope.chart1=chart1; 
-	        $scope.chart2=chart2;
-	        $scope.chart3=chart3;
-	        $scope.chart4=chart4;
+	    	$scope.chart1=charts[0]; 
+	        $scope.chart2=charts[1];
+	        $scope.chart3=charts[2];
+	        $scope.chart4=charts[3];
 	    }
 
-	 	var seminar=$rootScope.user.seminar;
 	  	var startFrom=$rootScope.rootStartFrom;
 	  	var endWith=$rootScope.rootEndWith;
-	  	var groupTitle="Profitability Absolute RMB";
-	  	var period=endWith;
+	  	
 	  	var periods=new Array();
 	  	for(var i=startFrom;i<=endWith;i++){
 	    	periods.push(i);
 	  	}
 	  	$scope.periods=periods;
 
-	 	$scope.seminar=seminar;
-	  	$scope.period=period;
+	 	$scope.seminar=$rootScope.user.seminar;;
+	  	$scope.groupTitle="Profitability Absolute RMB";
+	  	$scope.period=endWith;
 
-		getLineChart(seminar,groupTitle,period);
+		getLineChart($scope.seminar,$scope.groupTitle,$scope.period);
 
-		var cat="HealthBeauties";
-		var market="Rural";
-		var role="Producer";
-		var language="English";
-		$scope.cat=cat;
-		$scope.market=market;
-		$scope.role=role;
-		$scope.language=language;
+		$scope.cat="HealthBeauties";
+		$scope.market="Rural";
+		$scope.role="Producer";
+		$scope.language=="English";
 
 	    $scope.showLineChart=showLineChart;//("HealthBeauties","Rural","Producer");
 	    $scope.getLineChart=getLineChart;

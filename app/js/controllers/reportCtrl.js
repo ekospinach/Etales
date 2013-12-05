@@ -149,39 +149,28 @@ define(['app','socketIO','routingConfig'], function(app) {
 		  $scope.seminar=seminar;
 		  $scope.realTitleENG=finTitleENG;
 		  $scope.showTitleENG=finTitleENG;
-		  $scope.period=period;
 		  var startFrom=$rootScope.rootStartFrom;
 		  var endWith=$rootScope.rootEndWith;
-
-
-
 		  var period=endWith;
 		  var periods=new Array();
 		  for(var i=startFrom;i<=endWith;i++){
 		    periods.push(i);
 		  }
 		  $scope.periods=periods;
-
-		  var cat="HealthBeauties";
-		  var market="Urban";
-		  var language="English";
-		  var detail="Brand";
-		  var role="Producer";
-		  var type="Fin";
-		  var roleID=showRoleID="Producer 1";
-		  $scope.roleID=roleID;
-		  $scope.showRoleID=showRoleID;
-		  $scope.cat=cat;
-		  $scope.market=market;
-		  $scope.language=language;
-		  $scope.detail=detail;
-		  $scope.role=role;
-		  $scope.type=type;
+		  $scope.period=period;
+		  $scope.roleID="Producer 1";
+		  $scope.showRoleID="Producer 1";
+		  $scope.cat="HealthBeauties";
+		  $scope.market="Urban";
+		  $scope.language="English";
+		  $scope.detail="Brand";
+		  $scope.role="Producer";
+		  $scope.type="Fin";
 
 		  $scope.getFinReport=getFinReport;
 		  $scope.showFinReport=showFinReport;
 
-		  getFinReport(seminar,finTitleENG,period,role,type);
+		  getFinReport($scope.seminar,$scope.finTitleENG,$scope.period,$scope.role,$scope.type);
 
 	}]);
 

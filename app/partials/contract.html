@@ -51,7 +51,7 @@
 			    		<th>Choose</th>
 			    	</tr>
 			    	<tr ng-repeat="allContract in allContracts">
-			    		<td>{{allContract.contractCode}}</td>
+			    		<td>{{allContract.contractCode.substring(0,allContract.contractCode.indexOf('_'))}}</td>
 			    		<td>{{allContract.period}}</td>
 			    		<td>Producer-{{allContract.producerID}}</td>
 			    		<td>Retailer-{{(allContract.retailerID)}}</td>
