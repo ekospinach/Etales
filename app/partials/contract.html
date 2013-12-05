@@ -41,37 +41,41 @@
 			    </div>
 			    <div style="clear:both"></div>
 			    <table class="table table-hover">
-			    	<tr>
-			    		<th>Contract Name</th>
-			    		<th>Period</th>
-			    		<th>Producer</th>
-			    		<th>Retailer</th>
-			    		<th>Drafted By</th>
-			    		<th>Ready?</th>
-			    		<th>Choose</th>
-			    	</tr>
-			    	<tr ng-repeat="allContract in allContracts">
-			    		<td>{{allContract.contractCode.substring(0,allContract.contractCode.indexOf('_'))}}</td>
-			    		<td>{{allContract.period}}</td>
-			    		<td>Producer-{{allContract.producerID}}</td>
-			    		<td>Retailer-{{(allContract.retailerID)}}</td>
-			    		<td>{{(allContract.draftedByCompanyID>3)?'Retailer':'Producer'}}-{{(allContract.draftedByCompanyID>3)?(allContract.draftedByCompanyID-4):allContract.draftedByCompanyID}}</td>
-			    		<td>
-			    			<fieldset disabled>
-			    				<div class="checkbox">
-			    					<label>
-			    						<input type="checkbox" checked style="display:{{(allContract.isDraftFinished)?'block':'none'}}">
-			    						<input type="checkbox" style="display:{{(allContract.isDraftFinished)?'none':'block'}}"></div>
-			    					</label>
-			    				</div>
-			    			</fieldset>
-			    		</td>
-			    		<td>
-			    			<a class="btn btn-primary" ng-click="openDetailModal(allContract)">
-			    				Details
-			    			</a>
-			    		</td>
-			    	</tr>
+			    	<thead>
+			    		<tr>
+			    			<th>Contract Name</th>
+				    		<th>Period</th>
+				    		<th>Producer</th>
+				    		<th>Retailer</th>
+				    		<th>Drafted By</th>
+				    		<th>Ready?</th>
+				    		<th>Choose</th>
+			    		</tr>
+			    	</thead>
+			    	<tbody>
+			    		<tr ng-repeat="allContract in allContracts">
+				    		<td>{{allContract.contractCode.substring(0,allContract.contractCode.indexOf('_'))}}</td>
+				    		<td>{{allContract.period}}</td>
+				    		<td>Producer-{{allContract.producerID}}</td>
+				    		<td>Retailer-{{(allContract.retailerID)}}</td>
+				    		<td>{{(allContract.draftedByCompanyID>3)?'Retailer':'Producer'}}-{{(allContract.draftedByCompanyID>3)?(allContract.draftedByCompanyID-4):allContract.draftedByCompanyID}}</td>
+				    		<td>
+				    			<fieldset disabled>
+				    				<div class="checkbox">
+				    					<label>
+				    						<input type="checkbox" checked style="display:{{(allContract.isDraftFinished)?'block':'none'}}">
+				    						<input type="checkbox" style="display:{{(allContract.isDraftFinished)?'none':'block'}}"></div>
+				    					</label>
+				    				</div>
+				    			</fieldset>
+				    		</td>
+				    		<td>
+				    			<a class="btn btn-primary" ng-click="openDetailModal(allContract)">
+				    				Details
+				    			</a>
+				    		</td>
+				    	</tr>
+			    	</tbody>
 			    </table>
 			    <a class="btn btn-primary" ng-click="openInsertModal()">
 			    	New Contract</a>
