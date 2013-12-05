@@ -482,7 +482,7 @@ define(['app'], function(app) {
 					if(product.dateOfBirth==$rootScope.currentPeriod){//new product
 						data.data[0].NextPriceBM=data.data[0].CurrentPriceBM;
 					}
-					$scope.decisionCurrent=data.data;
+					$scope.modalDecisionCurrent=data.data;
 					if(product.brandName.substring(product.brandName.length-1)<=3){//producer variant
 						url='/getProducerDecisionByVar/'+product.brandName.substring(product.brandName.length-1)+'/'+($rootScope.currentPeriod-1)+'/'+$rootScope.user.seminar+'/'+product.brandName+'/'+product.varName;
 					}else{//retailer variant
@@ -496,15 +496,15 @@ define(['app'], function(app) {
 					if(product.dateOfBirth==$rootScope.currentPeriod){
 							data.data[0].NextPriceBM=data.data[0].CurrentPriceBM;
 						}
-					$scope.decisionHistory=data.data;
+					$scope.modalDecisionHistory=data.data;
 					url='/quarterHistoryInfo/'+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1);
 					return $http({method:'GET',url:url});
 				}).then(function(data){
-					$scope.quarterHistory=data.data;
+					$scope.modalQuarterHistory=data.data;
 					url="/variantHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/'+product.brandName+'/'+product.varName;
 					return $http({method:'GET',url:url});
 				}).then(function(data){
-					$scope.variantHistory=data.data;
+					$scope.modalVariantHistory=data.data;
 				},function(){
 					console.log('read historyInfo fail');
 				});
