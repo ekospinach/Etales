@@ -78,7 +78,7 @@ define(['app'], function(app) {
 														'userType':userTypes[j],
 														'negotiationItem':negotiationItems[k],
 														'relatedBrandName':$scope.brandList[i].brandName,
-														'retailerID':$scope.brandList[i].brandID,
+														'relatedBrandID':$scope.brandList[i].brandID,
 														'useBrandDetails':true,
 														'useVariantDetails':false,
 														'displayValue':0,
@@ -108,6 +108,12 @@ define(['app'], function(app) {
 				},function(error){
 					console.log('get brandList fail callback...');
 				});
+			}
+
+			var checkData=function(value){
+				var d=$q.defer();
+
+				return d.promise;
 			}
 
 			var renderContractDetailsByCategory = function(category){
@@ -264,7 +270,7 @@ define(['app'], function(app) {
 							break;
 						case 'R':
 							$scope.editDetailDisRate=_.find($scope.retDetailList[4],function(obj){return (obj.relatedBrandName==selectedDetail.relatedBrandName&&obj.relatedBrandID==selectedDetail.relatedBrandID);});
-							console.log($scope.editDetailDisRate);
+							
 							break;							
 					}
 				}
@@ -356,7 +362,13 @@ define(['app'], function(app) {
 							$scope.editProductList[i].amout_ruralValue=$scope.editDetailBonusAmount.variant_C_ruralValue;
 						}
 					}
+					if($scope.editProductList[i].varID!=0){
+						$scope.editProductList[i].show=1;
+					}else{
+						$scope.editProductList[i].show=0;
+					}
 				}
+				console.log($scope.editProductList);
 			}
 
 			$scope.openEditModal=function(Detail){

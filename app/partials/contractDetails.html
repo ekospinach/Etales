@@ -337,7 +337,7 @@
                     <!--Variant-->
                     <div style="display:{{shouldBeRate}}">
                         <tabset>
-                            <tab ng-repeat='product in editProductList' heading="{{product.varName}}">
+                            <tab ng-repeat='product in editProductList|filter:{show:1}' heading="{{product.varName}}">
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -350,19 +350,19 @@
                                         <tr>
                                             <th>Urban:</th>
                                             <td>
-                                                <a href="#" editable-text="product.urbanValue" onaftersave="updateContractDetails(product,product.negotiationItem,'urban',$index,'variant')">{{ product.urbanValue || 0 }}</a>
+                                                <a href="#" editable-text="product.urbanValue" onaftersave="updateContractDetails(product,product.negotiationItem,'urban',product.index,'variant')">{{ product.urbanValue || 0 }}</a>
                                             </td>
                                             <td>
-                                                <a href="#" editable-text="product.dis_urbanValue" onaftersave="updateContractDetails(product,'nc_VolumeDiscountRate','urban',$index,'variant')">{{ product.dis_urbanValue || 0 }}</a>
+                                                <a href="#" editable-text="product.dis_urbanValue" onaftersave="updateContractDetails(product,'nc_VolumeDiscountRate','urban',product.index,'variant')">{{ product.dis_urbanValue || 0 }}</a>
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>Rural:</th>
                                             <td>
-                                                <a href="#" editable-text="product.ruralValue" onaftersave="updateContractDetails(product,product.negotiationItem,'rural',$index,'variant')">{{ product.ruralValue || 0 }}</a>
+                                                <a href="#" editable-text="product.ruralValue" onaftersave="updateContractDetails(product,product.negotiationItem,'rural',product.index,'variant')">{{ product.ruralValue || 0 }}</a>
                                             </td>
                                             <td>
-                                                <a href="#" editable-text="product.dis_ruralValue" onaftersave="updateContractDetails(product,'nc_VolumeDiscountRate','rural',$index,'variant')">{{ product.dis_ruralValue || 0 }}</a>
+                                                <a href="#" editable-text="product.dis_ruralValue" onaftersave="updateContractDetails(product,'nc_VolumeDiscountRate','rural',product.index,'variant')">{{ product.dis_ruralValue || 0 }}</a>
                                             </td>                                                
                                         </tr>
                                     </tbody>
@@ -373,7 +373,7 @@
                     <div style="display:{{shouldBeAmount}}">
                         <div style="display:{{shouldBeBonusAmount}}">
                             <tabset>
-                                <tab ng-repeat='product in editProductList' heading="{{product.varName}}">
+                                <tab ng-repeat='product in editProductList|filter:{show:1}' heading="{{product.varName}}">
                                     <table class="table">
                                         <thead>
                                             <tr>
@@ -387,11 +387,11 @@
                                             <tr>
                                                 <th>Urban:</th>
                                                 <td>
-                                                    <a href="#" editable-text="product.urbanValue" onaftersave="updateContractDetails(product,product.negotiationItem,'urban',$index,'variant')">{{ product.urbanValue || 0 }}
+                                                    <a href="#" editable-text="product.urbanValue" onaftersave="updateContractDetails(product,product.negotiationItem,'urban',product.index,'variant')">{{ product.urbanValue || 0 }}
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <a href="#" editable-text="product.amout_urbanValue" onaftersave="updateContractDetails(product,'nc_PerformanceBonusAmount','urban',$index,'variant')">{{ product.amout_urbanValue || 0 }}</a>
+                                                    <a href="#" editable-text="product.amout_urbanValue" onaftersave="updateContractDetails(product,'nc_PerformanceBonusAmount','urban',product.index,'variant')">{{ product.amout_urbanValue || 0 }}</a>
                                                 </td>
                                                 <td>
                                                     {{product.rate_urbanValue}}
@@ -400,11 +400,11 @@
                                             <tr>
                                                 <th>Rural:</th>
                                                 <td>
-                                                    <a href="#" editable-text="product.ruralValue" onaftersave="updateContractDetails(product,product.negotiationItem,'rural',$index,'variant')">{{ product.ruralValue || 0 }}
+                                                    <a href="#" editable-text="product.ruralValue" onaftersave="updateContractDetails(product,product.negotiationItem,'rural',product.index,'variant')">{{ product.ruralValue || 0 }}
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <a href="#" editable-text="product.amout_ruralValue" onaftersave="updateContractDetails(product,'nc_PerformanceBonusAmount','rural',$index,'variant')">{{ product.amout_ruralValue || 0 }}</a>
+                                                    <a href="#" editable-text="product.amout_ruralValue" onaftersave="updateContractDetails(product,'nc_PerformanceBonusAmount','rural',product.index,'variant')">{{ product.amout_ruralValue || 0 }}</a>
                                                 </td>
                                                 <td>
                                                     {{product.rate_ruralValue}}
@@ -417,7 +417,7 @@
                         </div>
                         <div style="display:{{shouldBeBonusRate}}">
                             <tabset>
-                                <tab ng-repeat='product in editProductList' heading="{{product.varName}}">
+                                <tab ng-repeat='product in editProductList|filter:{show:1}' heading="{{product.varName}}">
                                     <table class="table">
                                         <thead>
                                             <tr>
@@ -431,27 +431,27 @@
                                             <tr>
                                                 <th>Urban:</th>
                                                 <td>
-                                                    <a href="#" editable-text="product.urbanValue" onaftersave="updateContractDetails(product,product.negotiationItem,'urban',$index,'variant')">{{ product.urbanValue || 0 }}
+                                                    <a href="#" editable-text="product.urbanValue" onaftersave="updateContractDetails(product,product.negotiationItem,'urban',product.index,'variant')">{{ product.urbanValue || 0 }}
                                                     </a>
                                                 </td>
                                                 <td>
                                                     {{ product.amout_urbanValue}}
                                                 </td>
                                                 <td>
-                                                    <a href="#" editable-text="product.rate_urbanValue " onaftersave="updateContractDetails(product,'nc_PerformanceBonusRate','urban',$index,'variant')">{{ product.rate_urbanValue  || 0 }}</a>
+                                                    <a href="#" editable-text="product.rate_urbanValue " onaftersave="updateContractDetails(product,'nc_PerformanceBonusRate','urban',product.index,'variant')">{{ product.rate_urbanValue  || 0 }}</a>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <th>Rural:</th>
                                                 <td>
-                                                    <a href="#" editable-text="product.ruralValue" onaftersave="updateContractDetails(product,product.negotiationItem,'rural',$index,'variant')">{{ product.ruralValue || 0 }}
+                                                    <a href="#" editable-text="product.ruralValue" onaftersave="updateContractDetails(product,product.negotiationItem,'rural',product.index,'variant')">{{ product.ruralValue || 0 }}
                                                     </a>
                                                 </td>
                                                 <td>
                                                     {{product.amout_ruralValue}}
                                                 </td>
                                                 <td>
-                                                    <a href="#" editable-text="product.rate_ruralValue" onaftersave="updateContractDetails(product,'nc_PerformanceBonusRate','rural',$index,'variant')">{{ product.rate_ruralValue || 0 }}</a>
+                                                    <a href="#" editable-text="product.rate_ruralValue" onaftersave="updateContractDetails(product,'nc_PerformanceBonusRate','rural',product.index,'variant')">{{ product.rate_ruralValue || 0 }}</a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -462,19 +462,19 @@
                     </div>
                     <div style="display:{{shouldBeNormal}}">
                         <tabset>
-                            <tab ng-repeat='product in editProductList' heading="{{product.varName}}">
+                            <tab ng-repeat='product in editProductList|filter:{show:1}' heading="{{product.varName}}">
                                 <table class="table">
                                     <tbody>
                                         <tr>
                                             <th style="width:40%">Urban {{showTitle}}:</th>
                                             <td style="width:60%">
-                                                <a href="#" editable-text="product.urbanValue" onaftersave="updateContractDetails(product,product.negotiationItem,'urban',$index,'variant')">{{ product.urbanValue || 0 }}</a>
+                                                <a href="#" editable-text="product.urbanValue" onaftersave="updateContractDetails(product,product.negotiationItem,'urban',product.index,'variant')">{{ product.urbanValue || 0 }}</a>
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>Rural {{showTitle}}:</th>
                                             <td>
-                                                <a href="#" editable-text="product.ruralValue" onaftersave="updateContractDetails(product,product.negotiationItem,'rural',$index,'variant')">{{ product.ruralValue || 0 }}</a>
+                                                <a href="#" editable-text="product.ruralValue" onaftersave="updateContractDetails(product,product.negotiationItem,'rural',product.index,'variant')">{{ product.ruralValue || 0 }}</a>
                                             </td>                                        
                                         </tr>
                                     </tbody>

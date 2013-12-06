@@ -136,6 +136,53 @@ exports.duplicateContract = function(req, res, next){
 	})
 }
 
+exports.deleteContractDetailData=function(io){
+	return function(req,res,next){
+		//console.log('hello this is right');
+		//res.send(200,'ok');
+		var result=false;
+		var queryCondition={
+			relatedBrandName:req.body.relatedBrandName,
+			deleteType:req.body.deleteType,
+			index:req.body.index
+		};
+			contractDetails.find({
+				relatedBrandName:queryCondition.relatedBrandName
+			},function(err,docs){
+				if(err){
+					next(new Error(err));
+				}
+				if((docs.length)==0){
+					res.send(200,'no contract,mission complete');
+				}else{
+					for(var i=0;i<docs.length;i++){
+						if(queryCondition.deleteType=="variant"){
+							//if(queryCondition.deleteType=="variant"){
+							if(queryCondition.index==0){
+								docs[i].variant_A_ruralValue=0;
+								docs[i].variant_A_urbanValue=0;
+							}else if(queryCondition.index==1){
+								docs[i].variant_B_ruralValue=0;
+								docs[i].variant_B_urbanValue=0;
+							}else if(queryCondition.index==2){
+								docs[i].variant_C_ruralValue=0;
+								docs[i].variant_C_urbanValue=0;
+							}
+							docs[i].save(function(err){
+								if(err) next(new Error(err));
+							});
+						}else{
+							docs[i].remove(function(err){
+								if(err) next(new Error(err));
+							});
+						}
+					}
+					res.send(200,'successfully!');
+				}
+			});
+	}
+}
+
 exports.updateContractDetails = function(io){
   	return function(req, res, next){
   		//console.log(req.body);

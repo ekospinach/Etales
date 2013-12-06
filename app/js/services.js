@@ -333,16 +333,37 @@ define(['angular','angularResource','routingConfig'], function (angular,angularR
 						period:$rootScope.currentPeriod,
 						seminar:$rootScope.user.seminar,
 						behaviour : 'deleteProduct', 
-
 						categoryID : categoryID,
 						varName : varName,
 						brandName:brandName
 					}
-					$http({method:'POST', url:'/producerDecision', data: queryCondition}).then(function(res){
+					$http({
+						method:'POST', 
+						url:'/producerDecision', 
+						data: queryCondition
+					}).then(function(data){
+						var deleteType="";
+						if(data.data.index==-1){
+							deleteType="brand";
+						}else{
+							//delete variant
+							deleteType="variant";
+						}
+						queryCondition={
+							relatedBrandName:brandName,
+							deleteType:deleteType,
+							index:data.data.index
+						}
+						return $http({
+							method:'POST',
+							url:'/deleteDetailData',
+							data:queryCondition
+						})
+					}).then(function(data){
+						console.log('success');
 						$rootScope.$broadcast('producerDecisionBaseChanged', base);
-					 	console.log('Success:' + res);
-					 },function(res){
-						console.log('Failed:' + res);
+					},function(){
+						$rootScope.$broadcast('producerDecisionBaseChanged', base);
 					});
 				},
 				getBase : function(){

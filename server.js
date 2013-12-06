@@ -116,6 +116,8 @@ app.get('/retailerCurrentDecision/:seminar/:period/:retailerID/:brandName/:varNa
 app.get('/productionCost');
 app.get('/currentPeriod/:seminar',require('./api/models/seminar.js').getCurrentPeriod);
 
+app.post('/deleteDetailData',require('./api/models/contract.js').deleteContractDetailData(io));
+
 app.use(express.errorHandler());
 
 
