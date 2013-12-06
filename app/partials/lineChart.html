@@ -28,10 +28,10 @@
 						<a ng-click="getLineChart(seminar,'Expenses',period)">Expenses</a>
 					</li>
 					<li class="">
-						<a ng-click="getLineChart(seminar,'Wholesales Market Results',period)">Wholesales Market Results</a>
+						<a ng-click="getLineChart(seminar,'Wholesales Market Results',period)" access-level='{{accessLevels.producerView}}'>Wholesales Market Results</a>
 					</li>
 					<li class="">
-						<a ng-click="getLineChart(seminar,'Retail Market Results',period)">Retail Market Results</a>
+						<a ng-click="getLineChart(seminar,'Retail Market Results',period)" access-level='{{accessLevels.retailerView}}'>Retail Market Results</a>
 					</li>
 				</ul>
 		    </div>
@@ -42,8 +42,8 @@
 			<h3>{{showGroupENG}}</h3>
 			<h4 class="pull-left"><span class="label label-warning">{{cat}}</span></h4>
 			<h4 class="pull-left" style="margin-left:10px"><span class="label label-success">{{market}}</span></h4>
-			<h4 class="pull-left" style="margin-left:10px"><span class="label label-danger">{{role}}</span></h4>
 			<h4 class="pull-left" style="margin-left:10px"><span class="label label-info">Period:{{period}}</span></h4>
+			<h4 class="pull-left" style="margin-left:10px"><span class="label label-danger" ng-show="isRoleChangeBtnShow">{{role}}</span></h4>
 			<div style="padding:1px 0;clear:both"></div>
 			<div class="btn-group">
 			  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
@@ -65,23 +65,14 @@
 			    <li><a ng-click="showLineChart(cat,'Total',role,language)">Total</a></li>
 			  </ul>
 			 </div>
-			 <div class="btn-group">
-			  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-			    Role <span class="caret"></span>
-			  </button>
-			  <ul class="dropdown-menu">
-			    <li><a ng-click="showLineChart(cat,market,'Producer',language)">Producer</a></li>
-			    <li><a ng-click="showLineChart(cat,market,'Retailer',language)">Retailer</a></li>
-			  </ul>
-			</div>
 			<div class="btn-group pull-right" data-toggle="buttons">
-				  <label class="btn btn-primary" ng-click="showLineChart(cat,market,role,'Chinese')">
-				    <input type="radio" name="options" > Chinese
-				  </label>
-				  <label class="btn btn-primary" ng-click="showLineChart(cat,market,role,'English')">
+				  <label class="btn btn-default" ng-click="showLineChart(cat,market,role,'English')">
 				    <input type="radio" name="options"> English
 				  </label>
-				  <label class="btn btn-primary" ng-click="showLineChart(cat,market,role,'Russian')">
+				  <label class="btn btn-default" ng-click="showLineChart(cat,market,role,'Chinese')">
+				    <input type="radio" name="options" > Chinese
+				  </label>
+				  <label class="btn btn-default" ng-click="showLineChart(cat,market,role,'Russian')">
 				    <input type="radio" name="options"> Russian
 				  </label>
 				</div>
@@ -93,6 +84,15 @@
 			    <li ng-repeat="newperiod in periods"><a ng-click="getLineChart(seminar,realGroupENG,newperiod)">{{newperiod}}</a></li>
 			  </ul>
 			 </div>
+			 <div class="btn-group"  ng-show="isRoleChangeBtnShow">
+			  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+			    Role <span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu">
+			    <li><a ng-click="showLineChart(cat,market,'Producer',language)">Producer</a></li>
+			    <li><a ng-click="showLineChart(cat,market,'Retailer',language)">Retailer</a></li>
+			  </ul>
+			</div>
 		</div>
 	</div>
 	 <div style="clear:both"></div>

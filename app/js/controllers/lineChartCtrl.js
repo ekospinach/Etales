@@ -16,6 +16,9 @@ define(['app','socketIO','routingConfig'], function(app) {
 	        $scope.chart4=chart4;
 
 		var getLineChart=function(seminar,groupTitle,period){
+			if(groupTitle == 'Wholesales Market Results') $scope.role = 'Producer';
+			if(groupTitle == 'Retail Market Results') $scope.role = 'Retailer';
+
 			$scope.seminar=seminar;
 			$scope.period=period;
 
@@ -72,13 +75,20 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    	{
 			    	charts[i].type="LineChart";
 			    	charts[i].displayed=true;
-			    	charts[i].cssStyle="height:400px; width:100%;";
+			    	charts[i].cssStyle="height:100%; width:800;";
 			    	charts[i].options = {
 				        "title": title,
 				        "isStacked": "true",
 				        "fill": 20,
 				        "displayExactValues": true,
-				        "colors":colors
+				        "colors":colors,
+				        "titleTextStyle" : { 
+			        	  color: "black",
+						  fontName: "",
+						  fontSize: 15,
+						  bold: false,
+						  italic: false 
+						},
 			    	}
 		    	}
 		    	else{
@@ -91,28 +101,51 @@ define(['app','socketIO','routingConfig'], function(app) {
 	        $scope.chart4=charts[3];
 	    }
 
-	  	var startFrom=$rootScope.rootStartFrom;
-	  	var endWith=$rootScope.rootEndWith;
-	  	
-	  	var periods=new Array();
-	  	for(var i=startFrom;i<=endWith;i++){
-	    	periods.push(i);
-	  	}
-	  	$scope.periods=periods;
+	    var initialisePage = function(){
+		  	var startFrom=$rootScope.rootStartFrom;
+		  	var endWith=$rootScope.rootEndWith;
+		  	
+		  	var periods=new Array();
+		  	for(var i=startFrom;i<=endWith;i++){
+		    	periods.push(i);
+		  	}
+		  	$scope.periods=periods;
 
-	 	$scope.seminar=$rootScope.user.seminar;;
-	  	$scope.groupTitle="Profitability Absolute RMB";
-	  	$scope.period=endWith;
+		 	$scope.seminar=$rootScope.user.seminar;;
+		  	$scope.groupTitle="Profitability Absolute RMB";
+		  	$scope.period=endWith;
 
-		getLineChart($scope.seminar,$scope.groupTitle,$scope.period);
 
-		$scope.cat="HealthBeauties";
-		$scope.market="Rural";
-		$scope.role="Producer";
-		$scope.language="English";
+			$scope.cat="HealthBeauties";
+			$scope.market="Rural";
+			$scope.language="English";
 
-	    $scope.showLineChart=showLineChart;//("HealthBeauties","Rural","Producer");
-	    $scope.getLineChart=getLineChart;
+		    $scope.showLineChart=showLineChart;//("HealthBeauties","Rural","Producer");
+		    $scope.getLineChart=getLineChart;	    	
+
+		    switch(parseInt($rootScope.user.role)){
+		    	case Auth.userRoles.producer:
+					$scope.role="Producer";
+					$scope.isRoleChangeBtnShow = false;
+					break;
+		    	case Auth.userRoles.retailer:
+					$scope.role="Retailer";
+					$scope.isRoleChangeBtnShow = false;
+					break;		    	
+		    	case Auth.userRoles.facilitator:
+					$scope.role="Producer";
+					$scope.isRoleChangeBtnShow = true;
+					break;
+		    	default:
+					$scope.role="Producer";
+					$scope.isRoleChangeBtnShow = false;
+		    }
+
+			getLineChart($scope.seminar,$scope.groupTitle,$scope.period);
+	    }
+
+	    initialisePage();
+
 
 	}]);
 

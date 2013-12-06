@@ -30,7 +30,8 @@ define([
 			'ngCookies'
 		]).run(function(editableOptions){
 			editableOptions.theme = 'bs3';
-		}).run(['$rootScope', '$location','Auth', function ($rootScope, $location, Auth) {
+		}).run(['$rootScope', '$location','Auth','$http', function ($rootScope, $location, Auth, $http) {
+		    
 		    $rootScope.currentPeriod = 0;
 		    $rootScope.mapPeriod=0;
 		    $rootScope.rootStartFrom=-2;
@@ -47,6 +48,16 @@ define([
 	            if (!Auth.authorize(next.access)) {
 	                if(!Auth.isLoggedIn()) $location.path('/login');
 	                //else                  $location.path('/login');
+	            } else {
+	            	if(Auth.isLoggedIn()){
+						var url="/currentPeriod/"+$rootScope.user.seminar;
+						$http.get(url).success(function(data){
+							$rootScope.currentPeriod=data.currentPeriod;
+							$rootScope.rootStartFrom=-2;
+							$rootScope.rootEndWith=$rootScope.currentPeriod-1;
+							console.log('set currentPeriod:' + $rootScope.currentPeriod);
+						});	   	            		
+	            	}
 	            }
 	        });
 		}]);

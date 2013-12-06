@@ -276,7 +276,7 @@ var
 
     end;
 
-  function channelViewSchema(var curBrand: TBrandResults): ISuperObject;
+  function channelViewSchema(pRetailer, pCategory, pBrand: Integer): ISuperObject;
   var
     jo: ISuperObject;
     I: Integer;
@@ -287,9 +287,29 @@ var
 //})
     jo.O['visibilityShare'] := SA([]);
     for I := Low(TMarketsTotal) to High(TMarketsTotal) do
-      jo.A['visibilityShare'].D[I - 1] := curBrand.b_VisibilityShare[I];
+      jo.A['visibilityShare'].D[I - 1] :=
+        currentResult.r_Retailers[pRetailer].rr_Quarters[I,pCategory].rq_BrandsResults[pBrand].rb_VisibilityShare;
 
     result  := jo;
+  end;
+
+  function perceptionDataSchema(var curBrandPerception: TVariantPerceptionsData): ISuperObject;
+  var
+    jo: ISuperObject;
+    I: Integer;
+  begin
+    jo  := SA([]);
+//var perceptionDataSchema = mongoose.Schema){
+//    perceptionData : [Number] //length: TVarPerceptions (1~VariantDimsMaxFull)
+//    //VariantDimsMaxFull = VariantDimsMax(3) + AllRetsMaxTotal(5);  { ... as above plus specific price perceptions at
+//    //1-Ease of Use perception(Performance perception)
+//    //2-Quality perception(Gentleness perception)
+//    //3-Price Perception
+//}
+    for I := Low(TVarPerceptions) to High(TVarPerceptions) do
+      jo.D['']  := curBrandPerception[I];
+
+    Result  := jo;
   end;
 
   function supplierViewSchema(var curBrand: TBrandResults): ISuperObject;
@@ -300,15 +320,20 @@ var
     jo  := SO;
 //var supplierViewSchema = mongoose.Schema({
 //    //b...
+//    perception : [perceptionDataSchema] //length: TMarkets(1~2)
 //    awareness : [Number], //length: TMarketsDetails(1~2)
 //    socialNetworksScore : [{
 //        sentiment : Number,
 //        strength : Number
 //    }]    //length: TMarketsTotalDetails(1~3)
 //})
+    jo.O['perception']  := SA([]);
     jo.O['awareness'] := SA([]);
     for I := Low(TMarkets) to High(TMarkets) do
-      jo.A['awareness'].D[I - 1] := curBrand.b_Awareness[I];
+      begin
+        jo.A['perception'].Add(perceptionDataSchema(curBrand.b_Perception[I]));
+        jo.A['awareness'].D[I - 1] := curBrand.b_Awareness[I];
+      end;
     jo.O['socialNetworksScore'] := SA([]);
     for I := Low(TMarketsTotal) to High(TMarketsTotal) do
       begin
@@ -322,9 +347,10 @@ var
   end;
 
   function brandHistoryInfoSchema(var curBrand: TBrandResults;
-    pCategory: TCategories): ISuperObject;
+    pCategory: TCategories; pBrand: TBrands): ISuperObject;
   var
     jo: ISuperObject;
+    I: Integer;
   begin
     jo  := SO;
 //var brandHistoryInfoSchema = mongoose.Schema({
@@ -351,7 +377,8 @@ var
     jo.O['supplierView']  := SA([]);
     jo.A['supplierView'].Add( supplierViewSchema(curBrand) );
     jo.O['channelView'] := SA([]);
-    jo.A['channelView'].Add( channelViewSchema(curBrand) );
+    for I := Low(TAllRetailers) to High(TAllRetailers) do
+      jo.A['channelView'].Add( channelViewSchema(I, pCategory, pBrand) );
 
     result  := jo;
   end;
@@ -364,7 +391,7 @@ var
     jo  := SA([]);
     for cat := Low(TCategories) to High(TCategories) do
       for I := Low(TBrands) to High(TBrands) do
-        jo['']  := brandHistoryInfoSchema(currentResult.r_Brands[cat][I], cat);
+        jo['']  := brandHistoryInfoSchema(currentResult.r_Brands[cat][I], cat, I);
 
     Result  := jo;
   end;

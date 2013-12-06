@@ -50,10 +50,10 @@ define(['angular','angularResource','routingConfig'], function (angular,angularR
 	        isLoggedIn: function(user) {
 	            if(user === undefined)
 	                user = $rootScope.user;
-	            return user.role === userRoles.producer 
-	            	|| user.role === userRoles.retailer
-	            	|| user.role === userRoles.facilitator 
-	            	|| user.role === userRoles.admin;
+	            return parseInt(user.role) === userRoles.producer 
+	            	|| parseInt(user.role) === userRoles.retailer
+	            	|| parseInt(user.role) === userRoles.facilitator 
+	            	|| parseInt(user.role) === userRoles.admin;
 	        },
 	        login: function(user, success, error) {
 	            $http.post('/login', user).success(function(user){

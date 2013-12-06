@@ -1,20 +1,17 @@
 define(['app','socketIO','routingConfig'], function(app) {
 
 	app.controller('reportCtrl',['$scope', '$http', 'ProducerDecisionBase','$rootScope','Auth', function($scope, $http, ProducerDecisionBase,$rootScope,Auth) {
-		// You can access the scope of the controller from here
-			$rootScope.loginCss="";
-		    $rootScope.loginFooter="bs-footer";
-		    $rootScope.loginLink="footer-links";
-		    $rootScope.loginDiv="container";
 		var myfinreport="";
 		$scope.myfinreport=myfinreport;
 
+		//send request to server to get data
 		var getFinReport=function(seminar,finTitleENG,period,role,type){
 		    $scope.finTitleENG=finTitleENG;
 		    $scope.period=period;
 		    $scope.seminar=seminar;
 		    $scope.role=role;
 		    $scope.type=type;
+
 		    if(role=="Producer"){
 		      if($scope.roleID=="Retailer 1"||$scope.roleID=="Retailer 2"||$scope.roleID=="Retailer 3"||$scope.roleID=="Retailer 4"){
 		        $scope.roleID="Producer 1";
@@ -28,6 +25,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 		      $rootScope.finProShow="hide";
 		      $rootScope.finRetShow="";
 		    }
+
 		    var url="";
 		    if(finTitleENG=="Prices per unit"){
 		      $scope.detail="Variant";
@@ -40,6 +38,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    }else if(type=="Vol"){
 		      url='/volReport?period='+period+'&seminar='+seminar+'&titleENG='+finTitleENG+'&role='+role;
 		    }
+
 		    $http({method: 'GET', url: url}).
 		      success(function(data, status, headers, config) {
 		        myfinreport=data;
@@ -49,9 +48,9 @@ define(['app','socketIO','routingConfig'], function(app) {
 		      error(function(data, status, headers, config) {
 		        myfinreport=null;
 		      });
-		      console.log($scope.myfinreport);
 		  }
 
+		  //filter data from server, show result
 		  var showFinReport=function(cat,market,language,detail,roleID){
 		    $scope.cat=cat;
 		    $scope.market=market;
@@ -59,11 +58,8 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    $scope.detail=detail;
 		    $scope.roleID=roleID;
 		    $scope.showRoleID=roleID;
-		    $scope.optitle=title;
-		    var charttable = {};
-		    var title="";
+		    
 		    var reportCollection;
-
 		    if(roleID=="Retailer 3"){
 		      $scope.showRoleID="Traditional Trade";
 		    }else if(roleID=="Retailer 4"){
@@ -84,10 +80,8 @@ define(['app','socketIO','routingConfig'], function(app) {
 		      $rootScope.finCatCss="margin-left:10px";    
 		    }
 
-		    if(reportCollection==undefined){
-		      charttable=null;
-		      title="";
-		    }else if(reportCollection!=undefined){
+		    if(reportCollection){
+		      //deal with multiple language 
 		      for(var i=0;i<reportCollection.data.rows.length;i++){
 			    for(var j=0;j<reportCollection.data.rows[i].c.length;j++){
 			        if(j==0){
@@ -104,10 +98,11 @@ define(['app','socketIO','routingConfig'], function(app) {
 			        }
 			    }
 		      }
+
 		    }
 		    $scope.reportCollection = reportCollection;
-		    console.log('test');		     
-		   }		      
+
+		  }		      
 		    // for(var i=0;i<reportCollection.data.cols.length;i++){
 		    //   /*多语言数据不全*/
 		    //   if(language=="Russian"){
@@ -123,37 +118,61 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    //   reportCollection.data.cols[i].label=reportCollection.data.cols[i]["label "];
 		    // }
 
-		  var seminar=$rootScope.user.seminar;
-		  var finTitleENG="Profit and Loss Statement";
-		  $scope.seminar=seminar;
-		  $scope.realTitleENG=finTitleENG;
-		  $scope.showTitleENG=finTitleENG;
-		  var startFrom=$rootScope.rootStartFrom;
-		  var endWith=$rootScope.rootEndWith;
+		  //set default value, show report depends on login user's role
+		  var initialisePage = function(){
+			  var seminar=$rootScope.user.seminar;
+			  var finTitleENG="Profit and Loss Statement";
+			  $scope.seminar=seminar;
+			  $scope.realTitleENG=finTitleENG;
+			  $scope.showTitleENG=finTitleENG;
+			  var startFrom=$rootScope.rootStartFrom;
+			  var endWith=$rootScope.rootEndWith;
 
-		  var period=endWith;
-		  var periods=new Array();
-		  for(var i=startFrom;i<=endWith;i++){
-		    periods.push(i);
-		  }
-		  $scope.periods=periods;
-		  $scope.period=period;
-		  $scope.roleID="Producer 1";
-		  $scope.showRoleID="Producer 1";
-		  $scope.cat="HealthBeauties";
-		  $scope.market="Urban";
-		  $scope.language="English";
-		  $scope.detail="Brand";
-		  $scope.role="Producer";
-		  $scope.type="Fin";
+			  var period=endWith;
+			  var periods=new Array();
+			  for(var i=startFrom;i<=endWith;i++){
+			    periods.push(i);
+			  }
+			  $scope.periods=periods;
+			  $scope.period=period;
+			  $scope.cat="HealthBeauties";
+			  $scope.market="Urban";
+			  $scope.language="English";
+			  $scope.detail="Brand";
+			  $scope.type="Fin";
+			  $scope.getFinReport=getFinReport;
+			  $scope.showFinReport=showFinReport;
+			  
+			  switch(parseInt($rootScope.user.role)){
+				case Auth.userRoles.producer:
+				    $scope.role="Producer";
+				    $scope.roleID="Producer " + $rootScope.user.roleID;
+				    $scope.showRoleID="Producer " + $rootScope.user.roleID;
+				    $scope.isRoleIDChangeBtnShow = false;
+					break;
+				case Auth.userRoles.retailer:
+				    $scope.role="Retailer";
+				    $scope.roleID="Retailer " + $rootScope.user.roleID;
+				    $scope.showRoleID="Retailer " + $rootScope.user.roleID;
+				    $scope.isRoleIDChangeBtnShow = false;
+					break;
+				case Auth.userRoles.facilitator:
+				    $scope.role="Producer";
+				    $scope.roleID="Producer 1";
+				    $scope.showRoleID="Producer 1";
+				    $scope.isRoleIDChangeBtnShow = true;
+					break;				
+				default:
+				    $scope.role="Producer";
+				    $scope.roleID="Producer 1";
+				    $scope.showRoleID="Producer 1";	
+				    $scope.isRoleIDChangeBtnShow = true;  	
+			  } 
 
-		  $scope.getFinReport=getFinReport;
-		  $scope.showFinReport=showFinReport;
+			  getFinReport($scope.seminar,$scope.realTitleENG,$scope.period,$scope.role,$scope.type);	  	
+		  };
 
-//		  getFinReport(seminar,finTitleENG,period,role,type);
-		  
-		  getFinReport($scope.seminar,$scope.realTitleENG,$scope.period,$scope.role,$scope.type);
-
+		  initialisePage();
 
 	}]);
 

@@ -4,7 +4,7 @@ define(['app'], function(app) {
 	    $scope.getUserRoleText = function(role) {
 
 	//        console.log('trying to get user role text:' + _.invert(Auth.userRoles)[role]);
-	        return _.invert(Auth.userRoles)[role] + ' ' + $rootScope.user.roleID;
+	        return _.invert(Auth.userRoles)[role].toUpperCase() + ' ' + $rootScope.user.roleID;
 	    };		
 	    $scope.logout = function(){
 	        console.log('trying to logout...');
@@ -15,7 +15,9 @@ define(['app'], function(app) {
 	        });	    	
 	    }
 	    $location.path('/login');
-
+	    $scope.$on("$routeChangeSuccess", function(next, current){
+			$scope.currentPeriod = $rootScope.currentPeriod;	    
+		})
 	}]);
 
 });

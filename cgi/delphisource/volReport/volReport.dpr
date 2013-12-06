@@ -54,28 +54,33 @@ const
     '{v: Initial Inventory, f: "", vRUS: Начальный остаток , vCHN: 初始库存 }',
     '{v: Purchases, f: "", vRUS: Закупки , vCHN: 购买品 }',
     '{v: Sales, f: "", vRUS: Продажи , vCHN: 销售 }',
-    '{v: Discontinued Goods, f: "", vRUS: Товары, снятые с производства , vCHN: 停产商品 }',
+    '{v: Discontinued Goods, f: "", vRUS: Снятые с производства товары , vCHN: 停产商品 }',
     '{v: Closing Inventory, f: "", vRUS: Остатки на конец периода , vCHN: 期末库存 }');
 
   aVolProducer : array[1..5] of string = (
     '{v: Initial Inventory, f: "", vRUS: Начальный остаток , vCHN: 初始库存 }',
     '{v: Production, f: "", vRUS: Произведено , vCHN: 生产 }',
     '{v: Sales, f: "", vRUS: Продажи , vCHN: 销售 }',
-    '{v: Discontinued Goods, f: "", vRUS: Товары, снятые с производства , vCHN: 停产商品 }',
+    '{v: Discontinued Goods, f: "", vRUS: Снятые с производства товары , vCHN: 停产商品 }',
     '{v: Closing Inventory, f: "", vRUS: Остатки на конец периода , vCHN: 期末库存 }');
 
-  aPriceRetail : array[1..4] of string = (
+  aPriceRetail : array[1..5] of string = (
+    '{v: Market Price, f: "", vRUS: Рыночная цена , vCHN: 市场价格 }',
     '{v: Purchase Price, f: "", vRUS: Цена закупки , vCHN: 购买价格 }',
     '{v: Effective Net Purchase Price, f: "", vRUS: Эффективная чистая цена закупки , vCHN: 有效净购买价格 }',
     '{v: Supplier Current List price, f: "", vRUS: Текущая прейскурантная цена  , vCHN: 供应商的当前定价 }',
     '{v: Supplier Next List Price, f: "", vRUS: Прейскурантная цена в следующем периоде , vCHN: 供应商的下一个价格表 }');
 
-  aPriceProducer : array[1..3] of string = (
+  aPriceProducer : array[1..5] of string = (
     '{v: Production Cost, f: "", vRUS: Цена производства , vCHN: 生产成本 }',
-    '{v: Current List price, f: "", vRUS: Текущая прейскурантная цена  , vCHN: 供应商的当前定价 }',
-    '{v: Next List Price, f: "", vRUS: Прейскурантная цена в следующем периоде , vCHN: 供应商的下一个价格表 }');
+    '{v: Current List price BM, f: "", vRUS: Текущая прейскурантная цена  , vCHN: 供应商的当前定价 }',
+    '{v: Next List Price BM, f: "", vRUS: Прейскурантная цена в следующем периоде , vCHN: 供应商的下一个价格表 }',
+    '{v: Current List Price eMall, f: "", vRUS: Текущая прейскурантная цена в Интернете , vCHN: 供应商的当前定价eMall }',
+    '{v: Next List Price eMall, f: "", vRUS: Прейскурантная цена в следующем периоде в Интернете , vCHN: 供应商的下一个价格表eMall }');
 
   aIndicesRetail : array[1..4] of string = (
+//    '{v: Shelf Space, f: "", vRUS: Полочное пространство, vCHN: 货架空间}',
+//    '{v: Promotions Intensity, f: "", vRUS:Иинтенсивность промо, vCHN: 促销强度}',
     '{v: Value Rotation Index  Sales value per 1% of shelf space, f: "", vRUS: Индекс оборачиваемости по стоимости Выручка на 1% полочного пространства, vCHN: 价值轮换指标 销售产值每1％的货架空间}',
     '{v: Volume Rotation Index  Sales volume per 1% of shelf space, f: "", vRUS: Индекс оборачиваемости по объему Товарооборот на 1% полочного пространства, vCHN: 卷轮换指标 每1％的货架空间的销售量}',
     '{v: Profitability Index  Gross Profit per 1% of shelf space, f: "", vRUS: Индекс прибыльности Валовая прибыль на 1% полочного пространства, vCHN: 盈利指数 毛利每1％的货架空间}',
@@ -389,10 +394,10 @@ var
         Result.A['cols'].Add(jf);
         jr := SO('{id: "2", label: Elecsories, labelENG: Elecsories,' +
               'labelRUS: "", labelCHN: "", ' +
-							'type: string, color :0}');
+							'type: string, color: 0}');
         Result.A['cols'].Add(jr);
         jr := SO('{id: "3", label: "Health&Beauty", labelENG: "Health&Beauty",' +
-              'labelRUS:"", labelCHN:"", ' +
+              'labelRUS: "", labelCHN: "", ' +
 							'type: string, color: 0}');
         Result.A['cols'].Add(jr);
       // rows
@@ -520,7 +525,7 @@ var
         for I := Low(abrn) to High(abrn) do
         begin
           pp := currentResult.r_Retailers[pwho].rr_Quarters[pmark][pcat].rq_BrandsResults[abrn[I]];
-          jr := SO('{id : "' +
+          jr := SO('{id: "' +
                 IntToStr(I + 1) +
                 '", label: "' +
                 WideCharToString( pp.rb_BrandName ) +
@@ -642,7 +647,7 @@ var
 
       //columns
         Result.O['cols'] := SA([]);
-        jf := SO('{id : "1", label: Item, labelENG: Item,' +
+        jf := SO('{id: "1", label: Item, labelENG: Item,' +
               'labelRUS: Наименование, labelCHN: 事实, ' +
 							'type: string, color: 0}');
         Result.A['cols'].Add(jf);
@@ -657,7 +662,7 @@ var
               //check variant exists :: could be not the best
               if pv.rv_VariantID <> 0 then
                 begin
-                  jr := SO('{id : "' +
+                  jr := SO('{id: "' +
                               IntToStr(I + 1) +
                               '", label: "' +
                               WideCharToString( pp.rb_BrandName ) +
@@ -813,7 +818,7 @@ var
               'labelRUS: "", labelCHN: "", ' +
 							'type: string, color: 0}');
         Result.A['cols'].Add(jr);
-        jr := SO('{id : "3", label: "Health&Beauty",labelENG : "Health&Beauty",' +
+        jr := SO('{id: "3", label: "Health&Beauty", labelENG: "Health&Beauty",' +
               'labelRUS: "", labelCHN: "", ' +
 							'type: string, color: 0}');
         Result.A['cols'].Add(jr);
@@ -931,7 +936,7 @@ var
      //columns
         Result := SO;
         Result.O['cols'] := SA([]);
-        jf := SO('{id : "1", label :Item, labelENG: Item,' +
+        jf := SO('{id: "1", label: Item, labelENG: Item,' +
               'labelRUS: Наименование, labelCHN: 事实, ' +
 							'type: string, color: 0}');
         Result.A['cols'].Add(jf);
@@ -940,7 +945,7 @@ var
         for I := Low(abrn) to High(abrn) do
         begin
           pp := currentResult.r_Producers[pprod].pt_CategoriesResults[pcat].pc_BrandsResults[abrn[I]];
-          jr := SO('{id : "' +
+          jr := SO('{id: "' +
                 IntToStr(I + 1) +
                 '", label: "' +
                 WideCharToString( pp.pb_BrandName ) +
@@ -1059,9 +1064,9 @@ var
      //columns
         Result := SO;
         Result.O['cols'] := SA([]);
-        jf := SO('{id : "1", label: Item, labelENG: Item,' +
+        jf := SO('{id: "1", label: Item, labelENG: Item,' +
               'labelRUS: Наименование, labelCHN: 事实, ' +
-							'type: string, color : 0}');
+							'type: string, color: 0}');
         Result.A['cols'].Add(jf);
 
         // brand names
@@ -1074,14 +1079,14 @@ var
               //check variant exists :: could be not the best
               if pv.pv_VariantID <> 0 then
                 begin
-                  jr := SO('{id : "' +
+                  jr := SO('{id: "' +
                         IntToStr(I + 1) +
                         '", label: "' +
                         WideCharToString( pp.pb_BrandName ) +
                         WideCharToString( pv.pv_VariantName ) +
                         '", labelENG: "",' +
                         'labelRUS: "", labelCHN: "", ' +
-                        'type : string, color : 0}');
+                        'type: string, color: 0}');
                   Result.A['cols'].Add(jr);
                 end;
             end;
@@ -1335,8 +1340,9 @@ var
       jo, jf, jr : ISuperObject;
       pp : TRetailerBrandResults;
       pv : TRetailerVariantResults;
+      sv: TProducerVariantResults;
       abrn : array of Integer;
-      I, brn, vr : Integer;
+      I, brn, vr, prd : Integer;
     begin
       //initialize
       Result := SO();
@@ -1358,9 +1364,9 @@ var
 
       //columns
         Result.O['cols'] := SA([]);
-        jf := SO('{id : "1", label: Item, labelENG: Item,' +
+        jf := SO('{id: "1", label: Item, labelENG: Item,' +
               'labelRUS: Наименование, labelCHN: 事实, ' +
-							'type : string, color : 0}');
+							'type: string, color: 0}');
         Result.A['cols'].Add(jf);
 
         // variant names
@@ -1373,14 +1379,14 @@ var
               //check variant exists :: could be not the best
               if pv.rv_VariantID <> 0 then
                 begin
-                  jr := SO('{id : "' +
+                  jr := SO('{id: "' +
                               IntToStr(I + 1) +
                               '", label: "' +
                               WideCharToString( pp.rb_BrandName ) +
                               WideCharToString( pv.rv_VariantName ) +
                               '", labelENG: "",' +
                               'labelRUS: "", labelCHN: "", ' +
-                              'type : string, color : 0}');
+                              'type: string, color: 0}');
                    Result.A['cols'].Add(jr);
                 end;
             end;
@@ -1389,10 +1395,34 @@ var
       // rows
         result.O['rows'] := sa([]);
 
-      //1 rv_AcquisitionCost
+      //1 rv_MarketPrice
         jo := SO;
         jo.O['c'] := SA([]);
         jf := SO(aPriceRetail[1]);
+        jo.A['c'].Add(jf);
+        for I := Low(abrn) to High(abrn) do
+          begin
+            pp := currentResult.r_Retailers[pwho].rr_Quarters[pmark][pcat].rq_BrandsResults[abrn[I]];
+            for vr := Low(TOneBrandVars) to High(TOneBrandVars) do
+              begin
+                pv := pp.rb_VariantsResults[vr];
+                //check variant exists :: could be not the best
+                if pv.rv_VariantID <> 0 then
+                  begin
+                    jr := SO('{f: "", v: "' +
+                      FormatFloat('0.00',
+                        pv.rv_MarketPrice ) +
+                      '"}');
+                    jo.A['c'].Add(jr);
+                  end;
+              end;
+          end;
+        result.A['rows'].Add(jo);
+
+				//2 rv_AcquisitionCost
+        jo := SO;
+        jo.O['c'] := SA([]);
+        jf := SO(aPriceRetail[2]);
         jo.A['c'].Add(jf);
         for I := Low(abrn) to High(abrn) do
           begin
@@ -1413,10 +1443,10 @@ var
           end;
         result.A['rows'].Add(jo);
 
-      //2 rv_CurrentUnitAcquisitionAverageCost
+      //3 rv_CurrentUnitAcquisitionAverageCost
         jo := SO;
         jo.O['c'] := SA([]);
-        jf := SO(aPriceRetail[2]);
+        jf := SO(aPriceRetail[3]);
         jo.A['c'].Add(jf);
         for I := Low(abrn) to High(abrn) do
           begin
@@ -1437,53 +1467,73 @@ var
           end;
         result.A['rows'].Add(jo);
 
-//      //3 pv_CurrentPriceBM :: need to take this price from Producer!!!
-//        jo := SO;
-//        jo.O['c'] := SA([]);
-//        jf := SO(aPriceRetail[3]);
-//        jo.A['c'].Add(jf);
-//        for I := Low(abrn) to High(abrn) do
-//          begin
-//            pp := currentResult.r_Retailers[pwho].rr_Quarters[pmark][pcat].rq_BrandsResults[abrn[I]];
-//            for vr := Low(TOneBrandVars) to High(TOneBrandVars) do
-//              begin
-//                pv := pp.rb_VariantsResults[vr];
-//                //check variant exists :: could be not the best
-//                if pv.rv_VariantID <> 0 then
-//                  begin
-//                    jr := SO('{f: "", v: "' +
-//                      FormatFloat('0.00',
-//                        pv.rv_SalesVolume ) +
-//                      '"}');
-//                    jo.A['c'].Add(jr);
-//                  end;
-//              end;
-//          end;
-//        result.A['rows'].Add(jo);
-//
-//      //4 pv_NextPriceBM  :: need to take this price from Prodcuer
-//        jo := SO;
-//        jo.O['c'] := SA([]);
-//        jf := SO(aPriceRetail[4]);
-//        jo.A['c'].Add(jf);
-//        for I := Low(abrn) to High(abrn) do
-//          begin
-//            pp := currentResult.r_Retailers[pwho].rr_Quarters[pmark][pcat].rq_BrandsResults[abrn[I]];
-//            for vr := Low(TOneBrandVars) to High(TOneBrandVars) do
-//              begin
-//                pv := pp.rb_VariantsResults[vr];
-//                //check variant exists :: could be not the best
-//                if pv.rv_VariantID <> 0 then
-//                  begin
-//                    jr := SO('{f: "", v: "' +
-//                      FormatFloat('0.00',
-//                        pv.rv_DiscontinuedGoodsVolume ) +
-//                      '"}');
-//                    jo.A['c'].Add(jr);
-//                  end;
-//              end;
-//          end;
-//        result.A['rows'].Add(jo);
+      //4 pv_CurrentPriceBM :: need to take this price from Producer!!!
+        jo := SO;
+        jo.O['c'] := SA([]);
+        jf := SO(aPriceRetail[4]);
+        jo.A['c'].Add(jf);
+        for I := Low(abrn) to High(abrn) do
+          begin
+            pp := currentResult.r_Retailers[pwho].rr_Quarters[pmark][pcat].rq_BrandsResults[abrn[I]];
+            for vr := Low(TOneBrandVars) to High(TOneBrandVars) do
+              begin
+                pv := pp.rb_VariantsResults[vr];
+                //check variant exists :: could be not the best
+                if pv.rv_VariantID <> 0 then
+                  begin
+                    //find variant in Producer results
+                    prd := pv.rv_VariantID div 100;
+                    brn := (pv.rv_VariantID - 100 * prd) div 10;
+                    //should be a fork for 1~4 VS 5-6 (retail)
+                    if prd <= 4 then
+                      begin
+                        sv := currentResult.r_Producers[prd].pt_CategoriesResults[pcat].pc_BrandsResults[brn].pb_VariantsResults[vr];
+                        jr := SO('{f: "", v: "' +
+                          FormatFloat('0.00',
+                            sv.pv_CurrentPriceBM ) +
+                          '"}');
+                      end;
+                    if prd > 4 then
+                        jr := SO('{f: "", v: ""}');
+                    jo.A['c'].Add(jr);
+                  end;
+              end;
+          end;
+        result.A['rows'].Add(jo);
+
+      //5 pv_NextPriceBM  :: need to take this price from Prodcuer
+        jo := SO;
+        jo.O['c'] := SA([]);
+        jf := SO(aPriceRetail[5]);
+        jo.A['c'].Add(jf);
+        for I := Low(abrn) to High(abrn) do
+          begin
+            pp := currentResult.r_Retailers[pwho].rr_Quarters[pmark][pcat].rq_BrandsResults[abrn[I]];
+            for vr := Low(TOneBrandVars) to High(TOneBrandVars) do
+              begin
+                pv := pp.rb_VariantsResults[vr];
+                //check variant exists :: could be not the best
+                if pv.rv_VariantID <> 0 then
+                  begin
+                    //find variant in Producer results
+                    prd := pv.rv_VariantID div 100;
+                    brn := (pv.rv_VariantID - 100 * prd) div 10;
+                    //should be a fork for 1~4 VS 5-6 (retail)
+                    if prd <= 4 then
+                      begin
+                        sv := currentResult.r_Producers[prd].pt_CategoriesResults[pcat].pc_BrandsResults[brn].pb_VariantsResults[vr];
+                        jr := SO('{f: "", v: "' +
+                          FormatFloat('0.00',
+                            sv.pv_NextPriceBM ) +
+                          '"}');
+                      end;
+                    if prd > 4 then
+                        jr := SO('{f: "", v: ""}');
+                    jo.A['c'].Add(jr);
+                  end;
+              end;
+          end;
+        result.A['rows'].Add(jo);
       end;
 
     function buildPriceProducerVariant(pprod,pmark,pcat: Integer): ISuperObject;
@@ -1511,9 +1561,9 @@ var
      //columns
         Result := SO;
         Result.O['cols'] := SA([]);
-        jf := SO('{id : "1", label: Item, labelENG: Item,' +
+        jf := SO('{id: "1", label: Item, labelENG: Item,' +
               'labelRUS: Наименование, labelCHN: 事实, ' +
-							'type: string, color : 0}');
+							'type: string, color: 0}');
         Result.A['cols'].Add(jf);
 
         // brand names
@@ -1526,14 +1576,14 @@ var
               //check variant exists :: could be not the best
               if pv.pv_VariantID <> 0 then
                 begin
-                  jr := SO('{id : "' +
+                  jr := SO('{id: "' +
                         IntToStr(I + 1) +
                         '", label: "' +
                         WideCharToString( pp.pb_BrandName ) +
                         WideCharToString( pv.pv_VariantName ) +
                         '", labelENG: "",' +
                         'labelRUS: "", labelCHN: "", ' +
-                        'type : string, color : 0}');
+                        'type: string, color: 0}');
                   Result.A['cols'].Add(jr);
                 end;
             end;
@@ -1613,7 +1663,55 @@ var
               end;
           end;
         result.A['rows'].Add(jo);
-      end;
+
+      //4 pv_CurrentPriceEmall
+        jo := SO;
+        jo.O['c'] := SA([]);
+        jf := SO(aPriceProducer[4]);
+        jo.A['c'].Add(jf);
+        for I := Low(abrn) to High(abrn) do
+          begin
+            pp := currentResult.r_Producers[pprod].pt_CategoriesResults[pcat].pc_BrandsResults[abrn[I]];
+            for vr := Low(TOneBrandVars) to High(TOneBrandVars) do
+              begin
+                pv := pp.pb_VariantsResults[vr];
+                //check variant exists :: could be not the best
+                if pv.pv_VariantID <> 0 then
+                  begin
+                    jr := SO('{f: "", v: "' +
+                      FormatFloat('0.00',
+                        pv.pv_CurrentPriceEmall) +
+                      '"}');
+                    jo.A['c'].Add(jr);
+                  end;
+              end;
+          end;
+        result.A['rows'].Add(jo);
+
+      //5 pv_NextPriceEmall 
+        jo := SO;
+        jo.O['c'] := SA([]);
+        jf := SO(aPriceProducer[5]);
+        jo.A['c'].Add(jf);
+        for I := Low(abrn) to High(abrn) do
+          begin
+            pp := currentResult.r_Producers[pprod].pt_CategoriesResults[pcat].pc_BrandsResults[abrn[I]];
+            for vr := Low(TOneBrandVars) to High(TOneBrandVars) do
+              begin
+                pv := pp.pb_VariantsResults[vr];
+                //check variant exists :: could be not the best
+                if pv.pv_VariantID <> 0 then
+                  begin
+                    jr := SO('{f: "", v: "' +
+                      FormatFloat('0.00',
+                        pv.pv_NextPriceEmall ) +
+                      '"}');
+                    jo.A['c'].Add(jr);
+                  end;
+              end;
+          end;
+        result.A['rows'].Add(jo);				
+				end;
 
     function collectPriceDataProducer(pwho,pmkt,pdet,pcat: Integer): ISuperObject;
     begin
@@ -1718,10 +1816,10 @@ var
       jo := SO;
       //columns
         Result.O['cols'] := SA([]);
-        jf := SO('{id : "1", label: Item, labelENG: Item,' +
+        jf := SO('{id: "1", label: Item, labelENG: Item,' +
               'labelRUS: Наименование, labelCHN: 事实, ' +
 							'type: string, color: 0}');
-        jr := SO('{id : "2", label: Company total, labelENG: Company total,' +
+        jr := SO('{id: "2", label: Company total, labelENG: Company total,' +
               'labelRUS: Итого по компании, labelCHN: 公司总, ' +
 							'type: string, color: 0}');
         Result.A['cols'].Add(jf);
@@ -1790,17 +1888,17 @@ var
       jo := SO;
       //columns
         Result.O['cols'] := SA([]);
-        jf := SO('{id : "1", label: Item, labelENG: Item,' +
+        jf := SO('{id: "1", label: Item, labelENG: Item,' +
               'labelRUS: Наименование, labelCHN: 事实, ' +
-							'type : string, color : 0}');
+							'type: string, color: 0}');
         Result.A['cols'].Add(jf);
-        jr := SO('{id : "2", label: Elecsories, labelENG: Elecsories,' +
+        jr := SO('{id: "2", label: Elecsories, labelENG: Elecsories,' +
               'labelRUS: "", labelCHN: "", ' +
 							'type: string, color: 0}');
         Result.A['cols'].Add(jr);
         jr := SO('{id: "3", label: "Health&Beauty", labelENG: "Health&Beauty",' +
-              'labelRUS: "", labelCHN:"", ' +
-							'type :string, color :0}');
+              'labelRUS: "", labelCHN: "", ' +
+							'type: string, color: 0}');
         Result.A['cols'].Add(jr);
       // rows
         result.O['rows'] := sa([]);
@@ -1902,15 +2000,15 @@ var
 
       //columns
         Result.O['cols'] := SA([]);
-        jf := SO('{id : "1", label: Item, labelENG: Item,' +
+        jf := SO('{id: "1", label: Item, labelENG: Item,' +
               'labelRUS: Наименование, labelCHN: 事实, ' +
-							'type: string, color : 0}');
+							'type: string, color: 0}');
         Result.A['cols'].Add(jf);
         // brand names
         for I := Low(abrn) to High(abrn) do
         begin
           pp := currentResult.r_Retailers[pwho].rr_Quarters[pmark][pcat].rq_BrandsResults[abrn[I]];
-          jr := SO('{id : "' +
+          jr := SO('{id: "' +
                 IntToStr(I + 1) +
                 '", label: "' +
                 WideCharToString( pp.rb_BrandName ) +
@@ -2018,7 +2116,7 @@ var
         Result.O['cols'] := SA([]);
         jf := SO('{id: "1", label: Item, labelENG: Item,' +
               'labelRUS: Наименование, labelCHN: 事实, ' +
-							'type: string, color : 0}');
+							'type: string, color: 0}');
         Result.A['cols'].Add(jf);
 
         // variant names
@@ -2031,14 +2129,14 @@ var
               //check variant exists :: could be not the best
               if pv.rv_VariantID <> 0 then
                 begin
-                  jr := SO('{id : "' +
+                  jr := SO('{id: "' +
                               IntToStr(I + 1) +
                               '", label: "' +
                               WideCharToString( pp.rb_BrandName ) +
                               WideCharToString( pv.rv_VariantName ) +
                               '", labelENG: "",' +
                               'labelRUS: "", labelCHN: "", ' +
-                              'type: string, color : 0}');
+                              'type: string, color: 0}');
                    Result.A['cols'].Add(jr);
                 end;
             end;
