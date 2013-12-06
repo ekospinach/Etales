@@ -216,20 +216,20 @@
                             <tr>
                                 <th>Urban:</th>
                                 <td>
-                                    <a href="#" editable-text="editDetail.brand_urbanValue" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'urban','index','brand')">{{ editDetail.brand_urbanValue || 0 }}
+                                    <a href="#" editable-text="editDetail.brand_urbanValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'urban','index','brand')">{{ editDetail.brand_urbanValue || 0 }}
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="#" editable-text="editDetailDisRate.brand_urbanValue" onaftersave="updateContractDetails(editDetailDisRate,editDetailDisRate.negotiationItem,'urban','index','brand')">{{ editDetailDisRate.brand_urbanValue || 0 }}</a>
+                                    <a href="#" editable-text="editDetailDisRate.brand_urbanValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(editDetailDisRate,editDetailDisRate.negotiationItem,'urban','index','brand')">{{ editDetailDisRate.brand_urbanValue || 0 }}</a>
                                 </td>
                             </tr>
                             <tr>
                                 <th>Rural:</th>
                                 <td>
-                                    <a href="#" editable-text="editDetail.brand_ruralValue" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'rural','index','brand')">{{ editDetail.brand_ruralValue || 0 }}</a>
+                                    <a href="#" editable-text="editDetail.brand_ruralValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'rural','index','brand')">{{ editDetail.brand_ruralValue || 0 }}</a>
                                 </td>
                                 <td>
-                                    <a href="#" editable-text="editDetailDisRate.brand_ruralValue" onaftersave="updateContractDetails(editDetailDisRate,editDetailDisRate.negotiationItem,'rural','index','brand')">{{ editDetailDisRate.brand_ruralValue || 0 }}</a>
+                                    <a href="#" editable-text="editDetailDisRate.brand_ruralValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(editDetailDisRate,editDetailDisRate.negotiationItem,'rural','index','brand')">{{ editDetailDisRate.brand_ruralValue || 0 }}</a>
                                 </td>                                                
                             </tr>
                         </tbody>
@@ -248,11 +248,11 @@
                                 <tr>
                                     <th>Urban:</th>
                                     <td>
-                                        <a href="#" editable-text="editDetail.brand_urbanValue" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'urban','index','brand')">{{ editDetail.brand_urbanValue || 0 }}
+                                        <a href="#" editable-text="editDetail.brand_urbanValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'urban','index','brand')">{{ editDetail.brand_urbanValue || 0 }}
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="#" editable-text="editDetailBonusAmount.brand_urbanValue" onaftersave="updateContractDetails(editDetailBonusAmount,'nc_PerformanceBonusAmount','urban','index','brand')">{{ editDetailBonusAmount.brand_urbanValue || 0 }}</a>
+                                        <a href="#" editable-text="editDetailBonusAmount.brand_urbanValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(editDetailBonusAmount,'nc_PerformanceBonusAmount','urban','index','brand')">{{ editDetailBonusAmount.brand_urbanValue || 0 }}</a>
                                     </td>
                                     <td>
                                         {{editDetailBonusRate.brand_urbanValue}}
@@ -261,11 +261,11 @@
                                 <tr>
                                     <th>Rural:</th>
                                     <td>
-                                        <a href="#" editable-text="editDetail.brand_ruralValue" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'rural','index','brand')">{{ editDetail.brand_ruralValue || 0 }}
+                                        <a href="#" editable-text="editDetail.brand_ruralValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'rural','index','brand')">{{ editDetail.brand_ruralValue || 0 }}
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="#" editable-text="editDetailBonusAmount.brand_ruralValue" onaftersave="updateContractDetails(editDetailBonusAmount,'nc_PerformanceBonusAmount','rural','index','brand')">{{ editDetailBonusAmount.brand_ruralValue || 0 }}</a>
+                                        <a href="#" editable-text="editDetailBonusAmount.brand_ruralValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(editDetailBonusAmount,'nc_PerformanceBonusAmount','rural','index','brand')">{{ editDetailBonusAmount.brand_ruralValue || 0 }}</a>
                                     </td>
                                     <td>
                                         {{editDetailBonusRate.brand_ruralValue}}
@@ -286,27 +286,27 @@
                                 <tr>
                                     <th>Urban:</th>
                                     <td>
-                                        <a href="#" editable-text="editDetail.brand_urbanValue" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'urban','index','brand')">{{ editDetail.brand_urbanValue || 0 }}
+                                        <a href="#" editable-text="editDetail.brand_urbanValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'urban','index','brand')">{{ editDetail.brand_urbanValue || 0 }}
                                         </a>
                                     </td>
                                     <td>
                                         {{editDetailBonusAmount.brand_urbanValue}}
                                     </td>
                                     <td>
-                                        <a href="#" editable-text="editDetailBonusRate.brand_urbanValue" onaftersave="updateContractDetails(editDetailBonusRate,'nc_PerformanceBonusRate','urban','index','brand')">{{ editDetailBonusRate.brand_urbanValue || 0 }}</a>
+                                        <a href="#" editable-text="editDetailBonusRate.brand_urbanValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(editDetailBonusRate,'nc_PerformanceBonusRate','urban','index','brand')">{{ editDetailBonusRate.brand_urbanValue || 0 }}</a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>Rural:</th>
                                     <td>
-                                        <a href="#" editable-text="editDetail.brand_ruralValue" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'rural','index','brand')">{{ editDetail.brand_ruralValue || 0 }}
+                                        <a href="#" editable-text="editDetail.brand_ruralValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'rural','index','brand')">{{ editDetail.brand_ruralValue || 0 }}
                                         </a>
                                     </td>
                                     <td>
                                         {{editDetailBonusAmount.brand_ruralValue}}
                                     </td>
                                     <td>
-                                        <a href="#" editable-text="editDetailBonusRate.brand_ruralValue" onaftersave="updateContractDetails(editDetailBonusRate,'nc_PerformanceBonusRate','rural','index','brand')">{{ editDetailBonusRate.brand_ruralValue || 0 }}</a>
+                                        <a href="#" editable-text="editDetailBonusRate.brand_ruralValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(editDetailBonusRate,'nc_PerformanceBonusRate','rural','index','brand')">{{ editDetailBonusRate.brand_ruralValue || 0 }}</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -319,14 +319,14 @@
                             <tr>
                                 <th style="width:40%">Urban {{showTitle}}:</th>
                                 <td style="width:60%">
-                                    <a href="#" editable-text="editDetail.brand_urbanValue" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'urban','index','brand')">{{ editDetail.brand_urbanValue || 0 }}
+                                    <a href="#" editable-text="editDetail.brand_urbanValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'urban','index','brand')">{{ editDetail.brand_urbanValue || 0 }}
                                     </a>
                                 </td>
                             </tr>
                             <tr>
                                 <th>Rural {{showTitle}}:</th>
                                 <td>
-                                    <a href="#" editable-text="editDetail.brand_ruralValue" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'rural','index','brand')">{{ editDetail.brand_ruralValue || 0 }}</a>
+                                    <a href="#" editable-text="editDetail.brand_ruralValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'rural','index','brand')">{{ editDetail.brand_ruralValue || 0 }}</a>
                                 </td>                                        
                             </tr>
                         </tbody>
@@ -350,19 +350,19 @@
                                         <tr>
                                             <th>Urban:</th>
                                             <td>
-                                                <a href="#" editable-text="product.urbanValue" onaftersave="updateContractDetails(product,product.negotiationItem,'urban',product.index,'variant')">{{ product.urbanValue || 0 }}</a>
+                                                <a href="#" editable-text="product.urbanValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(product,product.negotiationItem,'urban',product.index,'variant')">{{ product.urbanValue || 0 }}</a>
                                             </td>
                                             <td>
-                                                <a href="#" editable-text="product.dis_urbanValue" onaftersave="updateContractDetails(product,'nc_VolumeDiscountRate','urban',product.index,'variant')">{{ product.dis_urbanValue || 0 }}</a>
+                                                <a href="#" editable-text="product.dis_urbanValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(product,'nc_VolumeDiscountRate','urban',product.index,'variant')">{{ product.dis_urbanValue || 0 }}</a>
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>Rural:</th>
                                             <td>
-                                                <a href="#" editable-text="product.ruralValue" onaftersave="updateContractDetails(product,product.negotiationItem,'rural',product.index,'variant')">{{ product.ruralValue || 0 }}</a>
+                                                <a href="#" editable-text="product.ruralValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(product,product.negotiationItem,'rural',product.index,'variant')">{{ product.ruralValue || 0 }}</a>
                                             </td>
                                             <td>
-                                                <a href="#" editable-text="product.dis_ruralValue" onaftersave="updateContractDetails(product,'nc_VolumeDiscountRate','rural',product.index,'variant')">{{ product.dis_ruralValue || 0 }}</a>
+                                                <a href="#" editable-text="product.dis_ruralValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(product,'nc_VolumeDiscountRate','rural',product.index,'variant')">{{ product.dis_ruralValue || 0 }}</a>
                                             </td>                                                
                                         </tr>
                                     </tbody>
@@ -387,11 +387,11 @@
                                             <tr>
                                                 <th>Urban:</th>
                                                 <td>
-                                                    <a href="#" editable-text="product.urbanValue" onaftersave="updateContractDetails(product,product.negotiationItem,'urban',product.index,'variant')">{{ product.urbanValue || 0 }}
+                                                    <a href="#" editable-text="product.urbanValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(product,product.negotiationItem,'urban',product.index,'variant')">{{ product.urbanValue || 0 }}
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <a href="#" editable-text="product.amout_urbanValue" onaftersave="updateContractDetails(product,'nc_PerformanceBonusAmount','urban',product.index,'variant')">{{ product.amout_urbanValue || 0 }}</a>
+                                                    <a href="#" editable-text="product.amout_urbanValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(product,'nc_PerformanceBonusAmount','urban',product.index,'variant')">{{ product.amout_urbanValue || 0 }}</a>
                                                 </td>
                                                 <td>
                                                     {{product.rate_urbanValue}}
@@ -400,11 +400,11 @@
                                             <tr>
                                                 <th>Rural:</th>
                                                 <td>
-                                                    <a href="#" editable-text="product.ruralValue" onaftersave="updateContractDetails(product,product.negotiationItem,'rural',product.index,'variant')">{{ product.ruralValue || 0 }}
+                                                    <a href="#" editable-text="product.ruralValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(product,product.negotiationItem,'rural',product.index,'variant')">{{ product.ruralValue || 0 }}
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <a href="#" editable-text="product.amout_ruralValue" onaftersave="updateContractDetails(product,'nc_PerformanceBonusAmount','rural',product.index,'variant')">{{ product.amout_ruralValue || 0 }}</a>
+                                                    <a href="#" editable-text="product.amout_ruralValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(product,'nc_PerformanceBonusAmount','rural',product.index,'variant')">{{ product.amout_ruralValue || 0 }}</a>
                                                 </td>
                                                 <td>
                                                     {{product.rate_ruralValue}}
@@ -431,27 +431,27 @@
                                             <tr>
                                                 <th>Urban:</th>
                                                 <td>
-                                                    <a href="#" editable-text="product.urbanValue" onaftersave="updateContractDetails(product,product.negotiationItem,'urban',product.index,'variant')">{{ product.urbanValue || 0 }}
+                                                    <a href="#" editable-text="product.urbanValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(product,product.negotiationItem,'urban',product.index,'variant')">{{ product.urbanValue || 0 }}
                                                     </a>
                                                 </td>
                                                 <td>
                                                     {{ product.amout_urbanValue}}
                                                 </td>
                                                 <td>
-                                                    <a href="#" editable-text="product.rate_urbanValue " onaftersave="updateContractDetails(product,'nc_PerformanceBonusRate','urban',product.index,'variant')">{{ product.rate_urbanValue  || 0 }}</a>
+                                                    <a href="#" editable-text="product.rate_urbanValue " onbeforesave="checkData($data)" onaftersave="updateContractDetails(product,'nc_PerformanceBonusRate','urban',product.index,'variant')">{{ product.rate_urbanValue  || 0 }}</a>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <th>Rural:</th>
                                                 <td>
-                                                    <a href="#" editable-text="product.ruralValue" onaftersave="updateContractDetails(product,product.negotiationItem,'rural',product.index,'variant')">{{ product.ruralValue || 0 }}
+                                                    <a href="#" editable-text="product.ruralValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(product,product.negotiationItem,'rural',product.index,'variant')">{{ product.ruralValue || 0 }}
                                                     </a>
                                                 </td>
                                                 <td>
                                                     {{product.amout_ruralValue}}
                                                 </td>
                                                 <td>
-                                                    <a href="#" editable-text="product.rate_ruralValue" onaftersave="updateContractDetails(product,'nc_PerformanceBonusRate','rural',product.index,'variant')">{{ product.rate_ruralValue || 0 }}</a>
+                                                    <a href="#" editable-text="product.rate_ruralValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(product,'nc_PerformanceBonusRate','rural',product.index,'variant')">{{ product.rate_ruralValue || 0 }}</a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -468,13 +468,13 @@
                                         <tr>
                                             <th style="width:40%">Urban {{showTitle}}:</th>
                                             <td style="width:60%">
-                                                <a href="#" editable-text="product.urbanValue" onaftersave="updateContractDetails(product,product.negotiationItem,'urban',product.index,'variant')">{{ product.urbanValue || 0 }}</a>
+                                                <a href="#" editable-text="product.urbanValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(product,product.negotiationItem,'urban',product.index,'variant')">{{ product.urbanValue || 0 }}</a>
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>Rural {{showTitle}}:</th>
                                             <td>
-                                                <a href="#" editable-text="product.ruralValue" onaftersave="updateContractDetails(product,product.negotiationItem,'rural',product.index,'variant')">{{ product.ruralValue || 0 }}</a>
+                                                <a href="#" editable-text="product.ruralValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(product,product.negotiationItem,'rural',product.index,'variant')">{{ product.ruralValue || 0 }}</a>
                                             </td>                                        
                                         </tr>
                                     </tbody>

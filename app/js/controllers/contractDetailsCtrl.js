@@ -110,12 +110,6 @@ define(['app'], function(app) {
 				});
 			}
 
-			var checkData=function(value){
-				var d=$q.defer();
-
-				return d.promise;
-			}
-
 			var renderContractDetailsByCategory = function(category){
 				console.log('renderContractDetailsByCategory:' + category);
 				var singleCategoryDetails =_.filter($scope.details,function(obj){
@@ -371,6 +365,17 @@ define(['app'], function(app) {
 				console.log($scope.editProductList);
 			}
 
+			var checkData=function(value){
+				var d = $q.defer();	
+				var filter=/^[0-9]*[1-9][0-9]*$/;
+				if(!filter.test(value)){
+					d.resolve('Input a Integer');
+				}else{
+					d.resolve();
+				}
+				return d.promise;
+			}
+
 			$scope.openEditModal=function(Detail){
 				$scope.editModal=true;
 				loadModalDate(Detail);
@@ -503,6 +508,7 @@ define(['app'], function(app) {
 			$scope.showbubleMsg=showbubleMsg;
 			$scope.compare=compare;
 			$scope.copyProposal = copyProposal;
+			$scope.checkData=checkData;
 			refreshBrandAndContractDetails();
 		}]
 	)
