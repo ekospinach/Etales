@@ -44,7 +44,7 @@ define(['app'], function(app) {
 
 				//get current brand name list of this $scope.contractInfo, depends on producerID/seminar/period
 				var url='/producerBrands/'+$scope.contractInfo.producerID+'/'+$scope.contractInfo.period+'/'+$scope.contractInfo.seminar;
-				console.log('url:' + url);
+				//console.log('url:' + url);
 				$http({method:'GET',url:url}).then(function(data){
 					$scope.brandList=data.data;
 
@@ -53,7 +53,7 @@ define(['app'], function(app) {
 					(function multipleRequestShooter(urls, idx){
 						$http({method:'GET', url:urls[idx]}).then(function(data){
 
-							console.log('get data:' + data.data[0]);
+							//console.log('get data:' + data.data[0]);
 							if(data.data.length!=0){ details.push(data.data[0]);}
 							else{ details.push(data.data); }
 						}, function(data){
@@ -63,7 +63,6 @@ define(['app'], function(app) {
 								idx++;
 								multipleRequestShooter(urls, idx);							
 							}else{
-								console.log('multipleRequestShooter end.');
 								$scope.details = details;
 								//deal with blank details document, fill some default value into it
 								var negotiationItems = ContractInfo.getActivedNegotiationItem();
@@ -99,7 +98,7 @@ define(['app'], function(app) {
 											}
 										}
 									};
-									console.log('load details:' + $scope.details);									
+									//console.log('load details:' + $scope.details);									
 									renderContractDetailsByCategory('Elecssories');
 								}																									
 							}
@@ -124,11 +123,37 @@ define(['app'], function(app) {
 				var proDetailList = new Array();
 				for (var i = 0; i < negotiationItems.length; i++) {
 					proDetailList[i]=_.filter(singleCategoryDetails ,function(obj){ return (obj.userType=="P"&&obj.negotiationItem==negotiationItems[i]); });
+					//if rate value*100;
+					if(negotiationItems[i]=="nc_VolumeDiscountRate"||negotiationItems[i]=="nc_PerformanceBonusRate"){
+						for(var j=0;j<proDetailList[i].length;j++){
+							proDetailList[i][j].brand_ruralValue*=100;
+							proDetailList[i][j].brand_urbanValue*=100;
+							proDetailList[i][j].variant_A_ruralValue*=100;
+							proDetailList[i][j].variant_A_urbanValue*=100;
+							proDetailList[i][j].variant_B_ruralValue*=100;
+							proDetailList[i][j].variant_B_urbanValue*=100;
+							proDetailList[i][j].variant_C_ruralValue*=100;
+							proDetailList[i][j].variant_C_urbanValue*=100;
+						}
+					}
 				};
 				$scope.proDetailList=proDetailList;
 				var retDetailList=new Array();
 				for (var i = 0; i < negotiationItems.length; i++) {
 					retDetailList[i] =_.filter(singleCategoryDetails ,function(obj){ return (obj.userType=="R"&&obj.negotiationItem==negotiationItems[i]);});
+					if(negotiationItems[i]=="nc_VolumeDiscountRate"||negotiationItems[i]=="nc_PerformanceBonusRate"){
+						//if rate value*100;
+						for(var j=0;j<retDetailList[i].length;j++){
+							retDetailList[i][j].brand_ruralValue*=100;
+							retDetailList[i][j].brand_urbanValue*=100;
+							retDetailList[i][j].variant_A_ruralValue*=100;
+							retDetailList[i][j].variant_A_urbanValue*=100;
+							retDetailList[i][j].variant_B_ruralValue*=100;
+							retDetailList[i][j].variant_B_urbanValue*=100;
+							retDetailList[i][j].variant_C_ruralValue*=100;
+							retDetailList[i][j].variant_C_urbanValue*=100;
+						}
+					}
 				};
 				$scope.retDetailList=retDetailList;
 
@@ -206,6 +231,25 @@ define(['app'], function(app) {
 				$scope.shouldBeAmount="none";
 				$scope.shouldBeNormal="";
 
+				switch(selectedDetail.negotiationItem){
+					case 'nc_MinimumOrder':
+						$scope.showNegotiationItem="Minimum Order & Discount Rate";
+						$scope.showTitle="Minimum Order";
+						break;
+					case 'nc_SalesTargetVolume':
+						$scope.showNegotiationItem="Sales Target Volume & Performance Bonus";
+						$scope.showTitle="Sales Target";
+						break;
+					case 'nc_PaymentDays':
+						$scope.showNegotiationItem="Payment Days";
+						$scope.showTitle="Payment Days";
+						break;
+					case 'nc_OtherCompensation':
+						$scope.showNegotiationItem="Other Compensation";
+						$scope.showTitle="Other Compensation";
+						break;
+				}
+
 				//deal with special details combination : MinimumOrder&DiscountRate / SaleTarget/PerformanceBonus
 				if(selectedDetail.negotiationItem=="nc_MinimumOrder"){
 					//set default value
@@ -219,7 +263,9 @@ define(['app'], function(app) {
 							$scope.editDetailDisRate=_.find($scope.proDetailList[4],function(obj){ return (obj.relatedBrandName==selectedDetail.relatedBrandName&&obj.relatedBrandID==selectedDetail.relatedBrandID);});
 							break;
 						case 'R':
-							$scope.editDetailDisRate=_.find($scope.retDetailList[4],function(obj){return (obj.relatedBrandName==selectedDetail.relatedBrandName&&obj.relatedBrandID==selectedDetail.relatedBrandID);});							
+							$scope.editDetailDisRate=_.find($scope.retDetailList[4],function(obj){return (obj.relatedBrandName==selectedDetail.relatedBrandName&&obj.relatedBrandID==selectedDetail.relatedBrandID);});
+							console.log($scope.editDetailDisRate);
+							break;							
 					}
 				}
 				else if(selectedDetail.negotiationItem=="nc_SalesTargetVolume"){
@@ -342,6 +388,7 @@ define(['app'], function(app) {
 
 			$scope.closeEditModal=function(){
 				$scope.editModal=false;
+				//refreshBrandAndContractDetails();
 				//$scope.detailModal=true;
 			}
 
@@ -360,16 +407,22 @@ define(['app'], function(app) {
 				if(type=="brand"){
 					if(location=="rural"){
 						value=detail.brand_ruralValue;
+						if(item=="nc_VolumeDiscountRate"||item=="nc_PerformanceBonusRate"){
+							value=detail.brand_ruralValue/100;
+						}
 					}else{
 						value=detail.brand_urbanValue;
+						if(item=="nc_VolumeDiscountRate"||item=="nc_PerformanceBonusRate"){
+							value=detail.brand_urbanValue/100;
+						}
 					}
 				}
 				else{
 					if(location=="rural"){
 						if(item=="nc_VolumeDiscountRate"){
-							value=detail.dis_ruralValue;
+							value=detail.dis_ruralValue/100;
 						}else if(item=="nc_PerformanceBonusRate"){
-							value=detail.rate_ruralValue;
+							value=detail.rate_ruralValue/100;
 						}else if(item=="nc_PerformanceBonusAmount"){
 							value=detail.amout_ruralValue;
 						}else{
@@ -377,9 +430,9 @@ define(['app'], function(app) {
 						}
 					}else{
 						if(item=="nc_VolumeDiscountRate"){
-							value=detail.dis_urbanValue;
+							value=detail.dis_urbanValue/100;
 						}else if(item=="nc_PerformanceBonusRate"){
-							value=detail.rate_urbanValue;
+							value=detail.rate_urbanValue/100;
 						}else if(item=="nc_PerformanceBonusAmount"){
 							value=detail.amout_urbanValue;
 						}else{
@@ -400,10 +453,20 @@ define(['app'], function(app) {
 					index:index,
 					value:value
 				};
-				$http.post('/updateContractDetails',queryCondition).success(function(data){
-					//console.log(data);
+				// $http.post('/updateContractDetails',queryCondition).success(function(data){
+				// 	//console.log(data);
+				// 	refreshBrandAndContractDetails();
+				// });
+				$http({
+					method:'POST',
+					url:'/updateContractDetails',
+					data:queryCondition
+				}).success(function(data){
 					refreshBrandAndContractDetails();
-				});
+				}).error(function(data){
+					console.log('err');
+					refreshBrandAndContractDetails();
+				})
 			}
 
 			$scope.detailOpts = {
