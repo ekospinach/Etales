@@ -13,8 +13,6 @@
     </div>
 </div>
 <div class="container bs-docs-container">
-
-
 	<div class="row">
 		<div class="col-lg-3" angular-bootstrap>
 			<div class="bs-sidebar hidden-print" role="complementary">
@@ -56,7 +54,7 @@
 
 		<div class="col-lg-9">
 			<div style="padding:10px 0;clear:both"></div>
-			<h3>{{showTitleENG}}</h3>
+			<h3>{{showTitleENG}}<small> Extent to which consumers are aware of a particular product measured as percentage of total. Gives you an idea how your promotional expenses and investments into visibility paid off.</small></h3>
 			<h4 class="pull-left {{finCatShow}}"><span class="label label-warning">{{cat}}</span></h4>
 			<h4 class="pull-left" style="{{finCatCss}}"><span class="label label-success">{{market}}</span></h4>
 			<h4 class="pull-left" style="margin-left:10px"><span class="label label-info">Period:{{period}}</span></h4>
@@ -133,9 +131,23 @@
 
 			 <div style="clear:both"></div>
 			 <h3>{{optitle}}</h3>
-			 <div google-table charttable="charttable" style="{{charttable.cssStyle}}" id="charttable"></div>		
+
 		</div>
 	</div>
+
+<!-- 	TEST:{{reportCollection.data.cols}}
+ -->	 <table class="table table-bordered table-striped table-condensed">
+	 	<thead>
+	 		<tr>
+	 			<th ng-repeat="col in reportCollection.data.cols">{{col.label}}</th>
+	 		</tr>		
+	 	</thead>
+	 	<tbody>
+	 		<tr ng-repeat="row in reportCollection.data.rows">
+				<td ng-repeat = "value in row.c"> {{value.v}}</td>
+	 		</tr>
+	 	</tbody>
+	 </table>	
 </div>
 
 

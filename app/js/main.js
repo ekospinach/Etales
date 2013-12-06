@@ -28,7 +28,7 @@
 			jqplot:'../bower_components/jqplot/jquery.jqplot.min',
 			bubbleRenderer:'./map/jqplot.bubbleRenderer',
 			tree:'./map/bootstrap-tree',
-			chart:'../bower_components/angular-google-chart/ng-google-chart',
+			nggooglechart:'../bower_components/angular-google-chart/ng-google-chart',
 			producerPopInfo:'./controllers/untils/producerPopInfo',
 			retailerPopInfo:'./controllers/untils/retailerPopInfo',
 			reportTitle:'./controllers/untils/reportTitle',

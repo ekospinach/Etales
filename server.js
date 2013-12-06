@@ -72,6 +72,10 @@ app.post('/updateSeminar',require('./api/models/seminar.js').updateSeminar);
 app.get('/contracts/:seminar/:contractUserID',require('./api/models/contract.js').getContractList);
 //get contractDetail
 app.get('/contractDetail/:contractCode/:userType/:negotiationItem/:brandName',require('./api/models/contract.js').getContractDetail);
+app.post('/compareContractDetailsAndUpdateIsVerified', require('./api/models/contract.js').compareContractDetailsAndUpdateIsVerified);
+app.post('/copyProposal', require('./api/models/contract.js').copyProposal);
+app.post('/duplicateContract', require('./api/models/contract.js').duplicateContract);
+
 //add new contract
 app.post('/addContract',require('./api/models/contract.js').addContract(io));
 

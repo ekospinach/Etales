@@ -22,7 +22,7 @@ define(['app'], function(app) {
 			}
 
 			var refreshBrandAndContractDetails=function(){
-				$scope.isVisiableInputTable = false;
+				$scope.refreshingProcess = true;
 				$scope.contractInfo = ContractInfo.getSelectedContract();
 				if(!$scope.contractInfo){
 					console.log('there is no contract selected');
@@ -30,12 +30,16 @@ define(['app'], function(app) {
 				}
 
 				//decide Edit mode depends on contract's drafterd user
-				if($scope.contractInfo.producerID==$scope.contractInfo.draftedByCompanyID&&$rootScope.user.username.substring($rootScope.user.username.length-3,$rootScope.user.username.length-2)==2&&$scope.contractInfo.producerID==$rootScope.user.username.substring($rootScope.user.username.length-1)){
-					$scope.shouldBeEdit="inline";
-					$scope.shouldBeView="none";
+				if($scope.contractInfo.producerID==$scope.contractInfo.draftedByCompanyID
+					&&$rootScope.user.username.substring($rootScope.user.username.length-3,$rootScope.user.username.length-2)==2
+					&&$scope.contractInfo.producerID==$rootScope.user.username.substring($rootScope.user.username.length-1)){
+					//current user role is producer, drafter, active producer editable mode
+					$scope.producerEditable=true;
+					$scope.retailerEditable=false;
 				}else{
-					$scope.shouldBeEdit="none";
-					$scope.shouldBeView="inline";					
+					//current user role is retailer, active retailer editable
+					$scope.producerEditable=false;
+					$scope.retailerEditable=true;					
 				}
 
 				//get current brand name list of this $scope.contractInfo, depends on producerID/seminar/period
@@ -135,6 +139,7 @@ define(['app'], function(app) {
 				}else{
 					url+='2';
 				}
+				$scope.isVisiableInputTable = true;
 				$http.get(url).success(function(data){
 					for(var j=0;j<data.length;j++){
 						variantListByCategory.push(data[j]);
@@ -142,7 +147,8 @@ define(['app'], function(app) {
 					//list all product by categoryID
 					$scope.variantListByCategory=variantListByCategory;
 					console.log('load variantListByCategory:' + $scope.variantListByCategory);
-					$scope.isVisiableInputTable = true;
+
+					$scope.refreshingProcess = false;
 				});									
 			}
 
@@ -168,9 +174,31 @@ define(['app'], function(app) {
 		 		$scope.infoBuble = true;
 		 	};
 
-			var compare=function(Detail){
-				openDetailModal(Detail);
+			var compare=function(contract){
+			  $scope.refreshingProcess = true;
+			  var postData = {
+			  	contractCode : contract.contractCode
+			  }
+			  $http({method:'POST', url:'/compareContractDetailsAndUpdateIsVerified', data: postData}).then(function(res){
+			  	console.log('Compare Success:' + res);
+				refreshBrandAndContractDetails();
+			  },function(res){
+			  	console.log('Compare Failed:' + res);
+			  })			
 			}
+
+			var copyProposal = function(contract){
+			  $scope.refreshingProcess = true;
+			  var postData = {
+			  	contractCode : contract.contractCode
+			  }
+			  $http({method:'POST', url:'/copyProposal', data: postData}).then(function(res){
+			  	console.log('Compare Success:' + res);
+			  	compare(contract);
+			  },function(res){
+			  	console.log('Compare Failed:' + res);
+			  })			
+			}				
 
 			var loadModalDate=function(selectedDetail){
 				$scope.editDetail=selectedDetail;
@@ -373,7 +401,8 @@ define(['app'], function(app) {
 					value:value
 				};
 				$http.post('/updateContractDetails',queryCondition).success(function(data){
-					console.log(data);
+					//console.log(data);
+					refreshBrandAndContractDetails();
 				});
 			}
 
@@ -398,6 +427,7 @@ define(['app'], function(app) {
 			$scope.loadModalDate=loadModalDate;
 			$scope.showbubleMsg=showbubleMsg;
 			$scope.compare=compare;
+			$scope.copyProposal = copyProposal;
 			refreshBrandAndContractDetails();
 		}]
 	)

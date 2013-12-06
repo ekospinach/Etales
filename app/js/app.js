@@ -35,7 +35,6 @@ define([
 		    $rootScope.mapPeriod=0;
 		    $rootScope.rootStartFrom=-2;
 		    $rootScope.rootEndWith=0; 
-
 		    /*controller*/
 		    $rootScope.loginBody="bs-docs-home";
 		    $rootScope.loginFooter="container";
@@ -44,7 +43,7 @@ define([
 		    $rootScope.loginDiv="";
 
 	        $rootScope.$on("$routeChangeStart", function (event, next, current) {
-	            console.log('handle rootscope...');
+	            //console.log('handle rootscope...');
 	            if (!Auth.authorize(next.access)) {
 	                if(!Auth.isLoggedIn()) $location.path('/login');
 	                //else                  $location.path('/login');

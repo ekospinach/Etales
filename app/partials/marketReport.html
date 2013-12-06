@@ -105,7 +105,21 @@
 
 			<div style="clear:both"></div>
 			<h3>{{optitle}}</h3>
-			<div google-table charttable="charttable" style={{charttable.cssStyle}} id="charttable"/></div>		
+<!-- 			<div google-table charttable="charttable" style={{charttable.cssStyle}} id="charttable"/></div>		
+			<div google-chart chart="charttable" style={{charttable.cssStyle}} id="charttable"/></div>	 --> 	 
+		<table class="table table-bordered table-striped table-condensed">
+		 	<thead>
+		 		<tr>
+		 			<th ng-repeat="(i,col) in reportCollection.data.cols"><a ng-click="changeSorting(i)">{{col.label}}</a></th>
+		 		</tr>		
+		 	</thead>
+		 	<tbody>
+		 		<tr ng-repeat="row in reportCollection.data.rows | orderBy:mySorting:sort.descending" >
+					<td ng-repeat = "value in row.c"> {{value.v}}</td>
+		 		</tr>
+		 	</tbody>
+	 	</table>	
+
 		</div>
 	</div>
 </div>

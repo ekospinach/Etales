@@ -115,6 +115,8 @@ define(['angular','angularResource','routingConfig'], function (angular,angularR
   		};
 	}]);
 
+	//services.factory('ContractListen')
+
 	services.factory('ProducerDecision',['$resource','$rootScope', function($resource,$rootScope){
 		return $resource('/producerDecision/:producerID/:period/:seminar',{},
 			{
