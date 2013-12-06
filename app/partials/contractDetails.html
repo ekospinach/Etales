@@ -1,0 +1,749 @@
+<div id="content" class="bs-header">
+    <div class="container">
+        <h1>Contract Details</h1>
+        <p>We deliver a highly disruptive and transformational experiential learning model on a global scale !</p>
+    </div>
+</div>
+
+<div class="container bs-docs-container">
+    <div class="page-header">
+        <h3>Contract Name : {{contractInfo.contractCode.substring(0,contractInfo.contractCode.indexOf('_'))}}
+            <small>
+                Producer {{contractInfo.producerID}} & Retailer {{contractInfo.retailerID}}, Period:{{contractInfo.period}}, Seminar:{{contractInfo.seminar}}
+            </small>        
+        </h3>
+    </div>
+    <div ng-show="refreshingProcess">Loading...</div>
+    <div>
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                Category <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li class=""><a ng-click="renderContractDetailsByCategory('Elecssories')">Elecssories</a></li>
+                <li class=""><a ng-click="renderContractDetailsByCategory('HealthBeauty')">HealthBeauty</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="" ng-show="true">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Items (Producer Input)</th>
+                    <th ng-repeat="proDetail in proDetailList[0]">
+                        {{proDetail.relatedBrandName}}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Minimum Order & Discount Rate</td>
+                    <td ng-repeat="proDetail in proDetailList[0]">
+                        <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetail.isVerified"></span>
+                        <span>{{(proDetail.useBrandDetails?(proDetail.brand_urbanValue+proDetail.brand_ruralValue):(proDetail.variant_A_urbanValue+proDetail.variant_A_ruralValue+proDetail.variant_B_urbanValue+proDetail.variant_B_ruralValue+proDetail.variant_C_urbanValue+proDetail.variant_C_ruralValue))}}({{proDetail.displayValue}}%)</span>
+                        <span class="pull-right" ng-show=producerEditable>
+                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)">Edit</a>
+                        </span>
+                        <span class="pull-right" ng-show=retailerEditable>
+                            <a class="btn btn-primary btn-xs" ng-click="openViewModal(proDetail)">View</a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Sales Target Volume & Bonus</td>
+                    <td ng-repeat="proDetail in proDetailList[1]">
+                        <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetail.isVerified"></span>
+                        <span>{{(proDetail.useBrandDetails?(proDetail.brand_urbanValue+proDetail.brand_ruralValue):(proDetail.variant_A_urbanValue+proDetail.variant_A_ruralValue+proDetail.variant_B_urbanValue+proDetail.variant_B_ruralValue+proDetail.variant_C_urbanValue+proDetail.variant_C_ruralValue))}}({{proDetail.displayValue}})</span>
+                        <span class="pull-right" ng-show=producerEditable>
+                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)">Edit</a>
+                        </span>
+                        <span class="pull-right" ng-show=retailerEditable>
+                            <a class="btn btn-primary btn-xs" ng-click="openViewModal(proDetail)">View</a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Payment Days</td>
+                    <td ng-repeat="proDetail in proDetailList[2]">
+                        <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetail.isVerified"></span>
+                        <span>{{(proDetail.useBrandDetails?(proDetail.brand_urbanValue+proDetail.brand_ruralValue):(proDetail.variant_A_urbanValue+proDetail.variant_A_ruralValue+proDetail.variant_B_urbanValue+proDetail.variant_B_ruralValue+proDetail.variant_C_urbanValue+proDetail.variant_C_ruralValue))}}</span>
+                        <span class="pull-right" ng-show=producerEditable>
+                           <a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)">Edit</a>
+                       </span>
+                       <span class="pull-right" ng-show=retailerEditable>
+                        <a class="btn btn-primary btn-xs" ng-click="openViewModal(proDetail)">View</a>
+                    </span>                
+                </td>
+            </tr>
+            <tr>
+                <td>Other Compensation</td>
+                <td ng-repeat="proDetail in proDetailList[3]">
+                    <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetail.isVerified"></span>
+                    <span>{{(proDetail.useBrandDetails?(proDetail.brand_urbanValue+proDetail.brand_ruralValue):(proDetail.variant_A_urbanValue+proDetail.variant_A_ruralValue+proDetail.variant_B_urbanValue+proDetail.variant_B_ruralValue+proDetail.variant_C_urbanValue+proDetail.variant_C_ruralValue))}}</span>
+                    <span class="pull-right" ng-show=producerEditable>
+                        <a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)">Edit</a>
+                    </span>
+                    <span class="pull-right" ng-show=retailerEditable>
+                        <a class="btn btn-primary btn-xs" ng-click="openViewModal(proDetail)">View</a>
+                    </span>                
+                </td>
+            </tr>
+        </tbody>        
+    </table>
+    <br>                
+    <table class="table table-hover">
+        <thead>                        
+            <tr>
+                <th>Items (Retailer Input)</th>
+                <th ng-repeat="retDetail in retDetailList[0]">
+                    {{retDetail.relatedBrandName}}
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Minimum Order & Discount Rate</td>
+                <td ng-repeat="retDetail in retDetailList[0]">
+                    <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="retDetail.isVerified"></span>
+                    <span>{{(retDetail.useBrandDetails?(retDetail.brand_urbanValue+retDetail.brand_ruralValue):(retDetail.variant_A_urbanValue+retDetail.variant_A_ruralValue+retDetail.variant_B_urbanValue+retDetail.variant_B_ruralValue+retDetail.variant_C_urbanValue+retDetail.variant_C_ruralValue))}}({{retDetail.displayValue}}%)</span>
+                    <span class="pull-right" ng-show=retailerEditable>
+                        <a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)">Edit</a>
+                    </span>
+                    <span class="pull-right" ng-show=producerEditable>
+                        <a class="btn btn-primary btn-xs" ng-click="openViewModal(retDetail)">View</a>
+                    </span>                
+                </td>
+            </tr>
+            <tr>
+                <td>Sales Target Volume & Bonus</td>
+                <td ng-repeat="retDetail in retDetailList[1]">
+                    <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="retDetail.isVerified"></span>
+                    <span>{{(retDetail.useBrandDetails?(retDetail.brand_urbanValue+retDetail.brand_ruralValue):(retDetail.variant_A_urbanValue+retDetail.variant_A_ruralValue+retDetail.variant_B_urbanValue+retDetail.variant_B_ruralValue+retDetail.variant_C_urbanValue+retDetail.variant_C_ruralValue))}}({{retDetail.displayValue}})</span>
+                    <span class="pull-right" ng-show=retailerEditable>
+                        <a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)">Edit</a>
+                    </span>
+                    <span class="pull-right" ng-show=producerEditable>
+                        <a class="btn btn-primary btn-xs" ng-click="openViewModal(retDetail)">View</a>
+                    </span>                        
+                </td>
+            </tr>
+            <tr>
+                <td>Payment Days</td>
+                <td ng-repeat="retDetail in retDetailList[2]">
+                    <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="retDetail.isVerified"></span>
+                    <span>{{(retDetail.useBrandDetails?(retDetail.brand_urbanValue+retDetail.brand_ruralValue):(retDetail.variant_A_urbanValue+retDetail.variant_A_ruralValue+retDetail.variant_B_urbanValue+retDetail.variant_B_ruralValue+retDetail.variant_C_urbanValue+retDetail.variant_C_ruralValue))}}</span>
+                    <span class="pull-right" ng-show=retailerEditable>
+                        <a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)">Edit</a>
+                    </span>
+                    <span class="pull-right" ng-show=producerEditable>
+                        <a class="btn btn-primary btn-xs" ng-click="openViewModal(retDetail)">View</a>
+                    </span>                
+                </td>
+            </tr>
+            <tr>
+                <td>Other Compensation</td>
+                <td ng-repeat="retDetail in retDetailList[3]">
+                    <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="retDetail.isVerified"></span>
+                    <span>{{(retDetail.useBrandDetails?(retDetail.brand_urbanValue+retDetail.brand_ruralValue):(retDetail.variant_A_urbanValue+retDetail.variant_A_ruralValue+retDetail.variant_B_urbanValue+retDetail.variant_B_ruralValue+retDetail.variant_C_urbanValue+retDetail.variant_C_ruralValue))}}</span>
+                    <span class="pull-right" ng-show=retailerEditable>
+                        <a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)">Edit</a>
+                    </span>
+                    <span class="pull-right" ng-show=producerEditable>
+                        <a class="btn btn-primary btn-xs" ng-click="openViewModal(retDetail)">View</a>
+                    </span>                
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <a class="btn btn-primary" ng-click="compare(contractInfo)">Compare and Refresh</a>
+    <a class="btn btn-primary" ng-click="copyProposal(contractInfo)" ng-show=retailerEditable>Copy from peer proposal</a>        
+<!--                 <a class="btn btn-default">Commit and lock contract</a>
+-->
+
+</div>
+
+</div>
+
+<div modal="editModal" class="hide" close="closeEditModal()" options="eidtOpts">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div style="background-color:yellow">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeEditModal()">&times;</button>
+                    <h4>{{editDetail.negotiationItem}},{{user.seminar}}_{{editDetail.relatedBrandName}}</h4>
+                </div>
+                <div class="btn-group pull-right" data-toggle="buttons">
+                    <label class="btn btn-default" ng-click="setShowDetailType('Brand')">
+                        <input type="radio" name="detailType">Brand
+                    </label>
+                    <label class="btn btn-default" ng-click="setShowDetailType('Variant')">
+                        <input type="radio" name="detailType">Variant
+                    </label>
+                </div>
+                <div class="btn-group pull-right" style="margin-right:10px;display:{{shouldBeAmount}}" data-toggle="buttons">
+                    <label class="btn btn-default" ng-click="setShowBonusType('Amout')">
+                        <input type="radio" name="amoutRate">Amout
+                    </label>
+                    <label class="btn btn-default" ng-click="setShowBonusType('Rate')">
+                        <input type="radio" name="amoutRate">Rate
+                    </label>
+                </div>
+                <div style="clear:both"></div>
+            </div>
+            <div class="modal-body">
+
+
+                <div class="" style="display:{{shouldShowBrand}}">
+                    <table class="table" style="display:{{shouldBeRate}}">
+                        <tr>
+                            <th style="width:10%"></th>
+                            <th style="width:45%"></th>
+                            <th style="width:45%">Discount Rate</th>
+                        </tr>
+                        <tr>
+                            <td>Urban:</td>
+                            <td>
+                                <a href="#" editable-text="editDetail.brand_urbanValue" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'urban','index','brand')">{{ editDetail.brand_urbanValue || 'empty' }}
+                                </a>
+                            </td>
+                            <td>
+                                <a href="#" editable-text="editDetailDisRate.brand_urbanValue" onaftersave="updateContractDetails(editDetailDisRate,editDetailDisRate.negotiationItem,'urban','index','brand')">{{ editDetailDisRate.brand_urbanValue || 'empty' }}</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Rural:</td>
+                            <td>
+                                <a href="#" editable-text="editDetail.brand_ruralValue" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'rural','index','brand')">{{ editDetail.brand_ruralValue || 'empty' }}</a>
+                            </td>
+                            <td>
+                                <a href="#" editable-text="editDetailDisRate.brand_ruralValue" onaftersave="updateContractDetails(editDetailDisRate,editDetailDisRate.negotiationItem,'rural','index','brand')">{{ editDetailDisRate.brand_ruralValue || 'empty' }}</a>
+                            </td>                                                
+                        </tr>
+                    </table>
+                    <div class="" style="display:{{shouldBeAmount}}">
+                        <table class="table" style="display:{{shouldBeBonusAmount}}">
+                            <tr>
+                                <th style="width:10%"></th>
+                                <th style="width:40%"></th>
+                                <th style="width:40%">Amount</th>
+                                <th style="width:10%">Rate</th>
+                            </tr>
+                            <tr>
+                                <td>Urban:</td>
+                                <td>
+                                    <a href="#" editable-text="editDetail.brand_urbanValue" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'urban','index','brand')">{{ editDetail.brand_urbanValue || 'empty' }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#" editable-text="editDetailBonusAmount.brand_urbanValue" onaftersave="updateContractDetails(editDetailBonusAmount,'nc_PerformanceBonusAmount','urban','index','brand')">{{ editDetailBonusAmount.brand_urbanValue || 'empty' }}</a>
+                                </td>
+                                <td>
+                                    {{editDetailBonusRate.brand_urbanValue}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Rural:</td>
+                                <td>
+                                    <a href="#" editable-text="editDetail.brand_ruralValue" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'rural','index','brand')">{{ editDetail.brand_ruralValue || 'empty' }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#" editable-text="editDetailBonusAmount.brand_ruralValue" onaftersave="updateContractDetails(editDetailBonusAmount,'nc_PerformanceBonusAmount','rural','index','brand')">{{ editDetailBonusAmount.brand_ruralValue || 'empty' }}</a>
+                                </td>
+                                <td>
+                                    {{editDetailBonusRate.brand_ruralValue}}
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="table" style="display:{{shouldBeBonusRate}}">
+                            <tr>
+                                <th style="width:10%"></th>
+                                <th style="width:40%"></th>
+                                <th style="width:10%">Amount</th>
+                                <th style="width:40%">Rate</th>
+                            </tr>
+                            <tr>
+                                <td>Urban:</td>
+                                <td>
+                                    <a href="#" editable-text="editDetail.brand_urbanValue" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'urban','index','brand')">{{ editDetail.brand_urbanValue || 'empty' }}
+                                    </a>
+                                </td>
+                                <td>
+                                    {{editDetailBonusAmount.brand_urbanValue}}
+                                </td>
+                                <td>
+                                    <a href="#" editable-text="editDetailBonusRate.brand_urbanValue" onaftersave="updateContractDetails(editDetailBonusRate,'nc_PerformanceBonusRate','urban','index','brand')">{{ editDetailBonusRate.brand_urbanValue || 'empty' }}</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Rural:</td>
+                                <td>
+                                    <a href="#" editable-text="editDetail.brand_ruralValue" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'rural','index','brand')">{{ editDetail.brand_ruralValue || 'empty' }}
+                                    </a>
+                                </td>
+                                <td>
+                                    {{editDetailBonusAmount.brand_ruralValue}}
+                                </td>
+                                <td>
+                                    <a href="#" editable-text="editDetailBonusRate.brand_ruralValue" onaftersave="updateContractDetails(editDetailBonusRate,'nc_PerformanceBonusRate','rural','index','brand')">{{ editDetailBonusRate.brand_ruralValue || 'empty' }}</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                    <table class="table" style="display:{{shouldBeNormal}}">
+                        <tr>
+                            <td style="width:40%">Urban:</td>
+                            <td style="width:60%">
+                                <a href="#" editable-text="editDetail.brand_urbanValue" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'urban','index','brand')">{{ editDetail.brand_urbanValue || 'empty' }}
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Rural:</td>
+                            <td>
+                                <a href="#" editable-text="editDetail.brand_ruralValue" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'rural','index','brand')">{{ editDetail.brand_ruralValue || 'empty' }}</a>
+                            </td>                                        
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="" style="display:{{shouldShowVariant}}">
+                    <!--Variant-->
+                    <div style="display:{{shouldBeRate}}">
+                        <tabset>
+                            <tab ng-repeat='product in editProductList' heading="{{product.varName}}">
+                                <table class="table">
+                                    <tr>
+                                        <th style="width:10%"></th>
+                                        <th style="width:45%"></th>
+                                        <th style="width:45%">Discount Rate</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Urban:</td>
+                                        <td>
+                                            <a href="#" editable-text="product.urbanValue" onaftersave="updateContractDetails(product,product.negotiationItem,'urban',$index,'variant')">{{ product.urbanValue || 'empty' }}</a>
+                                        </td>
+                                        <td>
+                                            <a href="#" editable-text="product.dis_urbanValue" onaftersave="updateContractDetails(product,'nc_VolumeDiscountRate','urban',$index,'variant')">{{ product.dis_urbanValue || 'empty' }}</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Rural:</td>
+                                        <td>
+                                            <a href="#" editable-text="product.ruralValue" onaftersave="updateContractDetails(product,product.negotiationItem,'rural',$index,'variant')">{{ product.ruralValue || 'empty' }}</a>
+                                        </td>
+                                        <td>
+                                            <a href="#" editable-text="product.dis_ruralValue" onaftersave="updateContractDetails(product,'nc_VolumeDiscountRate','rural',$index,'variant')">{{ product.dis_ruralValue || 'empty' }}</a>
+                                        </td>                                                
+                                    </tr>
+                                </table>
+                            </tab>
+                        </tabset>
+                    </div>
+                    <div style="display:{{shouldBeAmount}}">
+                        <div style="display:{{shouldBeBonusAmount}}">
+                            <tabset>
+                                <tab ng-repeat='product in editProductList' heading="{{product.varName}}">
+                                    <table class="table">
+                                        <tr>
+                                            <th style="width:10%"></th>
+                                            <th style="width:40%"></th>
+                                            <th style="width:40%">Amount</th>
+                                            <th style="width:10%">Rate</th>
+                                        </tr>
+                                        <tr>
+                                            <td>Urban:</td>
+                                            <td>
+                                                <a href="#" editable-text="product.urbanValue" onaftersave="updateContractDetails(product,product.negotiationItem,'urban',$index,'variant')">{{ product.urbanValue || 'empty' }}
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="#" editable-text="product.amout_urbanValue" onaftersave="updateContractDetails(product,'nc_PerformanceBonusAmount','urban',$index,'variant')">{{ product.amout_urbanValue || 'empty' }}</a>
+                                            </td>
+                                            <td>
+                                                {{product.rate_urbanValue}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Rural:</td>
+                                            <td>
+                                                <a href="#" editable-text="product.ruralValue" onaftersave="updateContractDetails(product,product.negotiationItem,'rural',$index,'variant')">{{ product.ruralValue || 'empty' }}
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="#" editable-text="product.amout_ruralValue" onaftersave="updateContractDetails(product,'nc_PerformanceBonusAmount','rural',$index,'variant')">{{ product.amout_ruralValue || 'empty' }}</a>
+                                            </td>
+                                            <td>
+                                                {{product.rate_ruralValue}}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </tab>
+                            </tabset>
+                        </div>
+                        <div style="display:{{shouldBeBonusRate}}">
+                            <tabset>
+                                <tab ng-repeat='product in editProductList' heading="{{product.varName}}">
+                                    <table class="table">
+                                        <tr>
+                                            <th style="width:10%"></th>
+                                            <th style="width:40%"></th>
+                                            <th style="width:10%">Amount</th>
+                                            <th style="width:40%">Rate</th>
+                                        </tr>
+                                        <tr>
+                                            <td>Urban:</td>
+                                            <td>
+                                                <a href="#" editable-text="product.urbanValue" onaftersave="updateContractDetails(product,product.negotiationItem,'urban',$index,'variant')">{{ product.urbanValue || 'empty' }}
+                                                </a>
+                                            </td>
+                                            <td>
+                                                {{ product.amout_urbanValue}}
+                                            </td>
+                                            <td>
+                                                <a href="#" editable-text="product.rate_urbanValue " onaftersave="updateContractDetails(product,'nc_PerformanceBonusRate','urban',$index,'variant')">{{ product.rate_urbanValue  || 'empty' }}</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Rural:</td>
+                                            <td>
+                                                <a href="#" editable-text="product.ruralValue" onaftersave="updateContractDetails(product,product.negotiationItem,'rural',$index,'variant')">{{ product.ruralValue || 'empty' }}
+                                                </a>
+                                            </td>
+                                            <td>
+                                                {{product.amout_ruralValue}}
+                                            </td>
+                                            <td>
+                                                <a href="#" editable-text="product.rate_ruralValue" onaftersave="updateContractDetails(product,'nc_PerformanceBonusRate','rural',$index,'variant')">{{ product.rate_ruralValue || 'empty' }}</a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </tab>
+                            </tabset>
+                        </div>
+                    </div>
+                    <div style="display:{{shouldBeNormal}}">
+                        <tabset>
+                            <tab ng-repeat='product in editProductList' heading="{{product.varName}}">
+                                <table class="table">
+                                    <tr>
+                                        <td style="width:40%">Urban:</td>
+                                        <td style="width:60%">
+                                            <a href="#" editable-text="product.urbanValue" onaftersave="updateContractDetails(product,product.negotiationItem,'urban',$index,'variant')">{{ product.urbanValue || 'empty' }}</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Rural:</td>
+                                        <td>
+                                            <a href="#" editable-text="product.ruralValue" onaftersave="updateContractDetails(product,product.negotiationItem,'rural',$index,'variant')">{{ product.ruralValue || 'empty' }}</a>
+                                        </td>                                        
+                                    </tr>
+                                </table>
+                            </tab>
+                        </tabset>
+                    </div>                                
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-default" ng-click="closeEditModal()">Close</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div modal="viewModal" class="hide" close="closeViewModal()" options="viewOpts">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div style="background-color:yellow">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeViewModal()">&times;</button>
+                    <h4>{{editDetail.negotiationItem}},{{user.seminar}}_{{editDetail.relatedBrandName}}</h4>
+                </div>
+                <div class="btn-group pull-right" data-toggle="buttons">
+                    <label class="btn btn-default" ng-click="setShowDetailType('Brand')">
+                        <input type="radio" name="detailType">Brand
+                    </label>
+                    <label class="btn btn-default" ng-click="setShowDetailType('Variant')">
+                        <input type="radio" name="detailType">Variant
+                    </label>
+                </div>
+                <div class="btn-group pull-right" style="margin-right:10px;display:{{shouldBeAmount}}" data-toggle="buttons">
+                    <label class="btn btn-default" ng-click="setShowBonusType('Amout')">
+                        <input type="radio" name="amoutRate">Amout
+                    </label>
+                    <label class="btn btn-default" ng-click="setShowBonusType('Rate')">
+                        <input type="radio" name="amoutRate">Rate
+                    </label>
+                </div>
+                <div style="clear:both"></div>
+            </div>
+            <div class="modal-body">
+                <div class="" style="display:{{shouldShowBrand}}">
+                    <table class="table" style="display:{{shouldBeRate}}">
+                        <tr>
+                            <th style="width:10%"></th>
+                            <th style="width:45%"></th>
+                            <th style="width:45%">Discount Rate</th>
+                        </tr>
+                        <tr>
+                            <td>Urban:</td>
+                            <td>
+                                {{ editDetail.brand_urbanValue }}
+                            </td>
+                            <td>
+                                {{ editDetailDisRate.brand_urbanValue }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Rural:</td>
+                            <td>
+                                {{editDetail.brand_ruralValue}}
+                            </td>
+                            <td>
+                                {{editDetailDisRate.brand_ruralValue}}
+                            </td>                                                
+                        </tr>
+                    </table>
+                    <div class="" style="display:{{shouldBeAmount}}">
+                        <table class="table" style="display:{{shouldBeBonusAmount}}">
+                            <tr>
+                                <th style="width:10%"></th>
+                                <th style="width:40%"></th>
+                                <th style="width:40%">Amount</th>
+                                <th style="width:10%">Rate</th>
+                            </tr>
+                            <tr>
+                                <td>Urban:</td>
+                                <td>
+                                    {{editDetail.brand_urbanValue}}
+                                </a>
+                            </td>
+                            <td>
+                                {{editDetailBonusAmount.brand_urbanValue}}
+                            </td>
+                            <td>
+                                <p style="color:gray">
+                                    {{editDetailBonusRate.brand_urbanValue}}
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Rural:</td>
+                            <td>
+                                {{editDetail.brand_ruralValue}}
+                            </td>
+                            <td>
+                                {{editDetailBonusAmount.brand_ruralValue}}
+                            </td>
+                            <td>
+                                <p style="color:gray">
+                                    {{editDetailBonusRate.brand_ruralValue}}
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="table" style="display:{{shouldBeBonusRate}}">
+                        <tr>
+                            <th style="width:10%"></th>
+                            <th style="width:40%"></th>
+                            <th style="width:10%">Amount</th>
+                            <th style="width:40%">Rate</th>
+                        </tr>
+                        <tr>
+                            <td>Urban:</td>
+                            <td>
+                                {{editDetail.brand_urbanValue}}
+                            </td>
+                            <td>
+                                <p style="color:gray">
+                                    {{editDetailBonusAmount.brand_urbanValue}}
+                                </p>
+                            </td>
+                            <td>
+                                {{editDetailBonusRate.brand_urbanValue}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Rural:</td>
+                            <td>
+                                {{editDetail.brand_ruralValue}}
+                            </td>
+                            <td>
+                                <p style="color:gray">
+                                    {{editDetailBonusAmount.brand_ruralValue}}
+                                </p>
+                            </td>
+                            <td>
+                                {{editDetailBonusRate.brand_ruralValue}}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <table class="table" style="display:{{shouldBeNormal}}">
+                    <tr>
+                        <td style="width:40%">Urban:</td>
+                        <td style="width:60%">
+                            {{editDetail.brand_urbanValue}}
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Rural:</td>
+                    <td>
+                        {{editDetail.brand_ruralValue}}
+                    </td>                                        
+                </tr>
+            </table>
+        </div>
+        <div class="" style="display:{{shouldShowVariant}}">
+            <div style="display:{{shouldBeRate}}">
+                <tabset>
+                    <tab ng-repeat='product in editProductList' heading="{{product.varName}}">
+                        <table class="table">
+                            <tr>
+                                <th style="width:10%"></th>
+                                <th style="width:45%"></th>
+                                <th style="width:45%">Discount Rate</th>
+                            </tr>
+                            <tr>
+                                <td>Urban:</td>
+                                <td>
+                                    {{product.urbanValue}}
+                                </td>
+                                <td>
+                                    {{product.dis_urbanValue}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Rural:</td>
+                                <td>
+                                    {{product.ruralValue}}
+                                </td>
+                                <td>
+                                    {{product.dis_ruralValue}}
+                                </td>                                                
+                            </tr>
+                        </table>
+                    </tab>
+                </tabset>
+            </div>
+
+            <div style="display:{{shouldBeAmount}}">
+                <div style="display:{{shouldBeBonusAmount}}">
+                    <tabset>
+                        <tab ng-repeat='product in editProductList' heading="{{product.varName}}">
+                            <table class="table">
+                                <tr>
+                                    <th style="width:10%"></th>
+                                    <th style="width:40%"></th>
+                                    <th style="width:40%">Amount</th>
+                                    <th style="width:10%">Rate</th>
+                                </tr>
+                                <tr>
+                                    <td>Urban:</td>
+                                    <td>
+                                        {{ product.urbanValue}}
+                                    </td>
+                                    <td>{{product.amout_urbanValue}}
+                                    </td>
+                                    <td>
+                                        <p style="color:gray">
+                                            {{product.rate_urbanValue}}
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Rural:</td>
+                                    <td>
+                                        {{product.ruralValue}}
+                                    </td>
+                                    <td>
+                                        {{product.amout_ruralValue }}
+                                    </td>
+                                    <td>
+                                        <p style="color:gray">{{product.rate_ruralValue}}
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab>
+                    </tabset>
+                </div>
+                <div style="display:{{shouldBeBonusRate}}">
+                    <tabset>
+                        <tab ng-repeat='product in editProductList' heading="{{product.varName}}">
+                            <table class="table">
+                                <tr>
+                                    <th style="width:10%"></th>
+                                    <th style="width:40%"></th>
+                                    <th style="width:10%">Amount</th>
+                                    <th style="width:40%">Rate</th>
+                                </tr>
+                                <tr>
+                                    <td>Urban:</td>
+                                    <td>
+                                        {{product.urbanValue}}
+                                    </td>
+                                    <td>
+                                        <p style="color:gray">
+                                            {{ product.amout_urbanValue}}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        {{product.rate_urbanValue}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Rural:</td>
+                                    <td>
+                                        {{product.ruralValue}}
+                                    </td>
+                                    <td>
+                                        <p style="color:gray">
+                                            {{product.amout_ruralValue}}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        {{product.rate_ruralValue}}
+                                    </td>
+                                </tr>
+                            </table>
+                        </tab>
+                    </tabset>
+                </div>
+            </div>
+            <div style="display:{{shouldBeNormal}}">
+                <t2abset>
+                    <tab ng-repeat='product in editProductList' heading="{{product.varName}}">
+                        <table class="table">
+                            <tr>
+                                <td style="width:40%">Urban:</td>
+                                <td style="width:60%">
+                                    {{product.urbanValue}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Rural:</td>
+                                <td>
+                                    {{product.ruralValue}}
+                                </td>                                        
+                            </tr>
+                        </table>
+                    </tab>
+                </tabset>
+            </div>                                
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a class="btn btn-default" ng-click="closeViewModal()">Close</a>
+    </div>
+</div>
+</div>
+</div>
