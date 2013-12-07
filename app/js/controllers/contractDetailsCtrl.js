@@ -138,14 +138,21 @@ define(['app'], function(app) {
 					}
 				};
 				//load display value
-				for(var j=0;j<proDetailList[i].length;j++){
-					proDetailList[0][j].displayValue=proDetailList[0][j].displayValue+'('+proDetailList[4][j].displayValue+')';
-					if(proDetailList[1][j].amount_or_rate){
-						proDetailList[1][j].displayValue=proDetailList[1][j].displayValue+'('+proDetailList[5][j].displayValue+')';
-					}else{
-						proDetailList[1][j].displayValue=proDetailList[1][j].displayValue+'('+proDetailList[6][j].displayValue+')';
+				for (var i = 0; i < 4; i++) {
+					for(var j=0;j<proDetailList[i].length;j++){
+						if(i==0){
+							proDetailList[i][j].displayValue=proDetailList[i][j].displayValue+'('+proDetailList[4][j].displayValue+')';
+						}
+						if(i==1){
+							if(proDetailList[i][j].amount_or_rate){
+								proDetailList[i][j].displayValue=proDetailList[i][j].displayValue+'('+proDetailList[5][j].displayValue+')';
+							}else{
+								proDetailList[i][j].displayValue=proDetailList[i][j].displayValue+'('+proDetailList[6][j].displayValue+')';
+							}
+						}
 					}
 				}
+				
 
 				$scope.proDetailList=proDetailList;
 				console.log($scope.proDetailList);
@@ -166,12 +173,18 @@ define(['app'], function(app) {
 						}
 					}
 				};
-				for(var j=0;j<retDetailList[i].length;j++){
-					retDetailList[0][j].displayValue=retDetailList[0][j].displayValue+'('+retDetailList[4][j].displayValue+')';
-					if(retDetailList[1][j].amount_or_rate){
-						retDetailList[1][j].displayValue=retDetailList[1][j].displayValue+'('+retDetailList[5][j].displayValue+')';
-					}else{
-						retDetailList[1][j].displayValue=retDetailList[1][j].displayValue+'('+retDetailList[6][j].displayValue+')';
+				for (var i = 0; i < 4; i++) {
+					for(var j=0;j<retDetailList[i].length;j++){
+						if(i==0){
+							retDetailList[i][j].displayValue=retDetailList[i][j].displayValue+'('+retDetailList[4][j].displayValue+')';
+						}
+						if(i==1){
+							if(retDetailList[i][j].amount_or_rate){
+								retDetailList[i][j].displayValue=retDetailList[i][j].displayValue+'('+retDetailList[5][j].displayValue+')';
+							}else{
+								retDetailList[i][j].displayValue=retDetailList[i][j].displayValue+'('+retDetailList[6][j].displayValue+')';
+							}
+						}
 					}
 				}
 				$scope.retDetailList=retDetailList;
