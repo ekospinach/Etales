@@ -6,18 +6,22 @@
 </div>
 
 <div class="bs-old-docs">
+
     <div class="container">
+
         <strong>
            Looking at the reports, try to change perspective or detail level from global (company) or category to brand or even variant (SKU).
         </strong>
     </div>
 </div>
+
 <div class="container bs-docs-container">
-	<div class="row">
+	<div class="row">				 
+
 		<div class="col-lg-3" angular-bootstrap>
 			<div class="bs-sidebar hidden-print" role="complementary">
 				<ul class="nav bs-sidenav">
-					<li class="active">
+					<li class="active" access-level='{{accessLevels.producerView}}'>
 						<a>Producer</a>
 						<ul class="nav second-sidenav">
 							<li class="active">
@@ -31,10 +35,10 @@
 							</li>
 						</ul>
 					</li>
-					<li class="">
+					<li class="active" access-level='{{accessLevels.retailerView}}'>
 						<a>Retailer</a>
 						<ul class="nav second-sidenav">
-							<li class="">
+							<li class="" >
 								<a ng-click="getFinReport(seminar,'Profit and Loss Statement',period,'Retailer','Fin')">Profit and Loss Statement</a>
 							</li>
 							<li class="">
@@ -50,16 +54,19 @@
 					</li>
 				</ul>
 		    </div>
+
 		</div>
 
 		<div class="col-lg-9">
 			<div style="padding:10px 0;clear:both"></div>
-			<h3>{{showTitleENG}}<small> Extent to which consumers are aware of a particular product measured as percentage of total. Gives you an idea how your promotional expenses and investments into visibility paid off.</small></h3>
+			<div class="">
+				<h3>{{showTitleENG}}<small>  </small></h3>				
+			</div>
 			<h4 class="pull-left {{finCatShow}}"><span class="label label-warning">{{cat}}</span></h4>
 			<h4 class="pull-left" style="{{finCatCss}}"><span class="label label-success">{{market}}</span></h4>
-			<h4 class="pull-left" style="margin-left:10px"><span class="label label-info">Period:{{period}}</span></h4>
 			<h4 class="pull-left" style="margin-left:10px"><span class="label label-danger">{{detail}}</span></h4>
-			<h4 class="pull-left" style="margin-left:10px"><span class="label label-default">{{showRoleID}}</span></h4>
+			<h4 class="pull-left" style="margin-left:10px"><span class="label label-info">Period:{{period}}</span></h4>
+			<h4 class="pull-left" style="margin-left:10px"><span class="label label-default" ng-show="isRoleIDChangeBtnShow">{{showRoleID}}</span></h4>
 			<div style="padding:1px 0;clear:both"></div>
 			<div class="btn-group {{finCatShow}}">
 			  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
@@ -82,6 +89,17 @@
 			  </ul>
 			 </div>
 
+		    <div class="btn-group">
+			  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+			    Detail <span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu {{finDetailShow}}">
+			    <li><a ng-click="showFinReport(cat,market,language,'Global',roleID)">Global</a></li>
+			    <li><a ng-click="showFinReport(cat,market,language,'Category',roleID)">Category</a></li>
+			    <li><a ng-click="showFinReport(cat,market,language,'Brand',roleID)">Brand</a></li>
+			    <li><a ng-click="showFinReport(cat,market,language,'Variant',roleID)">Variant</a></li>
+			  </ul>
+			</div>
 			<div class="btn-group">
 			  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
 			    Period <span class="caret"></span>
@@ -90,42 +108,31 @@
 			    <li ng-repeat="newperiod in periods"><a ng-click="getFinReport(seminar,realTitleENG,newperiod,role,type)">{{newperiod}}</a></li>
 			  </ul>
 			</div>
-			  <div class="btn-group">
-				  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-				    Detail <span class="caret"></span>
-				  </button>
-				  <ul class="dropdown-menu {{finDetailShow}}">
-				    <li><a ng-click="showFinReport(cat,market,language,'Global',roleID)">Global</a></li>
-				    <li><a ng-click="showFinReport(cat,market,language,'Category',roleID)">Category</a></li>
-				    <li><a ng-click="showFinReport(cat,market,language,'Brand',roleID)">Brand</a></li>
-				    <li><a ng-click="showFinReport(cat,market,language,'Variant',roleID)">Variant</a></li>
-				  </ul>
-				</div>
-				<div class="btn-group">
-				  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-				    RoleID <span class="caret"></span>
-				  </button>
-				  <ul class="dropdown-menu">
-				    <li class="{{finProShow}}"><a ng-click="showFinReport(cat,market,language,detail,'Producer 1')">Producer 1</a></li>
-				    <li class="{{finProShow}}"><a ng-click="showFinReport(cat,market,language,detail,'Producer 2')">Producer 2</a></li>
-				    <li class="{{finProShow}}"><a ng-click="showFinReport(cat,market,language,detail,'Producer 3')">Producer 3</a></li>
-				    <li class="{{finProShow}}"><a ng-click="showFinReport(cat,market,language,detail,'Producer 4')">Producer 4</a></li>
-				    <li class="{{finRetShow}}"><a ng-click="showFinReport(cat,market,language,detail,'Retailer 1')">Retailer 1</a></li>
-				    <li class="{{finRetShow}}"><a ng-click="showFinReport(cat,market,language,detail,'Retailer 2')">Retailer 2</a></li>
-				    <li class="{{finRetShow}}"><a ng-click="showFinReport(cat,market,language,detail,'Retailer 3')">Traditional Trade</a></li>
-				    <li class="{{finRetShow}}"><a ng-click="showFinReport(cat,market,language,detail,'Retailer 4')">E-Mall</a></li>			    
-				  </ul>
-				</div>
+			<div class="btn-group" ng-show="isRoleIDChangeBtnShow">
+			  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+			    RoleID <span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu">
+			    <li class="{{finProShow}}"><a ng-click="showFinReport(cat,market,language,detail,'Producer 1')">Producer 1</a></li>
+			    <li class="{{finProShow}}"><a ng-click="showFinReport(cat,market,language,detail,'Producer 2')">Producer 2</a></li>
+			    <li class="{{finProShow}}"><a ng-click="showFinReport(cat,market,language,detail,'Producer 3')">Producer 3</a></li>
+			    <li class="{{finProShow}}"><a ng-click="showFinReport(cat,market,language,detail,'Producer 4')">Producer 4</a></li>
+			    <li class="{{finRetShow}}"><a ng-click="showFinReport(cat,market,language,detail,'Retailer 1')">Retailer 1</a></li>
+			    <li class="{{finRetShow}}"><a ng-click="showFinReport(cat,market,language,detail,'Retailer 2')">Retailer 2</a></li>
+			    <li class="{{finRetShow}}"><a ng-click="showFinReport(cat,market,language,detail,'Retailer 3')">Traditional Trade</a></li>
+			    <li class="{{finRetShow}}"><a ng-click="showFinReport(cat,market,language,detail,'Retailer 4')">E-Mall</a></li>			    
+			  </ul>
+			</div>
 
 				<div class="btn-group pull-right" data-toggle="buttons">
-				  <label class="btn btn-primary" ng-click="showFinReport(cat,market,'Russian',detail,roleID)">
-				    <input type="radio" name="options"> Russian
-				  </label>
-				  <label class="btn btn-primary" ng-click="showFinReport(cat,market,'English',detail,roleID)">
+				  <label class="btn btn-default" ng-click="showFinReport(cat,market,'English',detail,roleID)">
 				    <input type="radio" name="options"> English
 				  </label>
-				  <label class="btn btn-primary" ng-click="showFinReport(cat,market,'Chinese',detail,roleID)">
+				  <label class="btn btn-default" ng-click="showFinReport(cat,market,'Chinese',detail,roleID)">
 				    <input type="radio" name="options"> Chinese
+				  </label>
+				  <label class="btn btn-default" ng-click="showFinReport(cat,market,'Russian',detail,roleID)">
+				    <input type="radio" name="options"> Russian
 				  </label>
 				</div>
 
@@ -136,7 +143,8 @@
 	</div>
 
 <!-- 	TEST:{{reportCollection.data.cols}}
- -->	 <table class="table table-bordered table-striped table-condensed">
+ -->	 
+ 	 <table class="table table-bordered table-striped table-condensed">
 	 	<thead>
 	 		<tr>
 	 			<th ng-repeat="col in reportCollection.data.cols">{{col.label}}</th>

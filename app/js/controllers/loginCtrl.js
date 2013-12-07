@@ -62,8 +62,9 @@ define(['app','socketIO'], function(app) {
 					$rootScope.rootStartFrom=-2;
 					$rootScope.rootEndWith=$rootScope.currentPeriod-1;
 					//console.log($rootScope.currentPeriod);
+					closeLoginModal();
 				});
-				closeLoginModal();
+				
 
 			},function(res){
 				showbubleMsg('login failure.',1);

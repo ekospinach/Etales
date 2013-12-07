@@ -45,14 +45,28 @@
 		          		</li>
 		      		</ul>
 
-				    <ul class="nav navbar-nav pull-right">
+				    <ul class="nav navbar-nav navbar-right" data-access-level="{{ accessLevels.playerView }}">
 				    	<!--<li data-access-level="{{ accessLevels.playerView }}" class="pull-right">
 				        	<a ng-click="logout">logout</a>
 				        </li>   -->   
-				        <li id="userInfo" data-access-level="{{ accessLevels.playerView }}" class="pull-right">
-				        	<span data-ng-class="{&quot;label-info&quot;: user.role == userRoles.producer, &quot;label-success&quot;: user.role == userRoles.retailer, &quot;label-default&quot;: user.role == userRoles.facilitator,&quot;label-danger&quot;: user.role == userRoles.info}" class="label pull-left" style="margin:15px 0;font-size:14px;">{{ getUserRoleText(user.role)}}</span>
+				        <li id="userInfo"  class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
+<!-- 						        	<span data-ng-class="{&quot;label-info&quot;: user.role == userRoles.producer, &quot;label-success&quot;: user.role == userRoles.retailer, &quot;label-default&quot;: user.role == userRoles.facilitator,&quot;label-danger&quot;: user.role == userRoles.info}" class="label pull-left" style="margin:15px 0;font-size:14px;">
+									 
+						        	</span>
+-->
+								<strong>{{getUserRoleText(user.role)}}</strong>		 				        	
+								<b class="caret"></b>
+								</a>
+					        <ul class="dropdown-menu">
+					          <li role="presentation" class="dropdown-header">Period {{currentPeriod}} of 3</li>
+					          <li><a>Get result of lastest period</a></li>
+					          <li class="divider"></li>
+					          <li><a ng-click="logout()">Log out</a></li>
+					        </ul>				        	
 				        </li>   
 				    </ul>
+
 				</nav>
 			</div>
 		</header>
@@ -60,6 +74,7 @@
 		<div ng-view>
 	    	
 	    </div>
+
 	    <div>
 	    	<footer class="{{loginFooter}}" role="contentinfo" id="pagefooter" style="display:none">
 	    		<div class="{{loginDiv}}">
