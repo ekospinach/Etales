@@ -53,6 +53,22 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
 	            });			
 		}
 
+		$scope.testAuthRetailer = function(){
+			console.log(userRoles);
+			console.log(routingConfig.accessLevels);
+	        Auth.login({
+	                username: 'MAY^' + userRoles.retailer + '^1',
+	                password: '210',
+	                rememberme: true
+	            },
+	            function(res) {
+	                console.log('login successfully, currentUser:' + $rootScope.user);
+	            },
+	            function(err) {
+	            	console.log(err);
+	            });			
+		}		
+
 		$scope.logOut = function(){
 			Auth.logout(function(res){
 				console.log('just log out.');

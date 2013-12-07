@@ -48,106 +48,114 @@
           </small>
         </div>
           <div style="clear:both"></div>
-          <div collapse="isCollapsed">
-            <div class="well well-large">
-              <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button>
-              <table class="table">
-                <tr style="backgroud-color:gray">
-                  <th></th>
-                  <th style="text-align:center">CurrentPeriod period({{currentPeriod}})</th>
-                  <th></th>
-                </tr>
-                <tr style="display:{{currentVar}}">
-                  <td>Unit Cost:</td>
-                  <td>Tailer 1:Closing Inventory:</td>
-                  <td>Tailer 2:Closing Inventory:</td>
-                </tr>
-                <tr style="display:{{historyVar}}">
-                  <td>BM Price:{{decisionCurrent[0].nextPriceBM}}</td>
-                  <td>Tailer 1:Closing Inventory:{{variantHistory.channelView[0].channelMarketView[0].closingInventory[3].volume}}</td>
-                  <td>Tailer 2:Closing Inventory:{{variantHistory.channelView[1].channelMarketView[0].closingInventory[3].volume}}</td>
-                </tr>
-                <tr style="display:{{ElecssoriesVar}}">
-                  <td>Design Index:{{decisionCurrent[0].composition[0]}}</td>
-                  <td>Technology Level:{{decisionCurrent[0].composition[1]}}</td>
-                  <td>Raw Materials Quaity:{{decisionCurrent[0].composition[2]}}</td>
-                </tr>
-                <tr style="display:{{HealthBeautyVar}}">
-                  <td>Active-agant:{{decisionCurrent[0].composition[0]}}</td>
-                  <td>Technology Level:{{decisionCurrent[0].composition[1]}}</td>
-                  <td>Smootherner Level:{{decisionCurrent[0].composition[2]}}</td>
-                </tr>
-                <tr style="backgroud-color:gray;margin-top:20px">
-                  <th></th>
-                  <th style="text-align:center">Previous period({{(currentPeriod-1)}})</th>
-                  <th></th>
-                </tr>          
+
+          <div collapse="isCollapsed" class="panel panel-info">
+              <div class="panel-heading">                
+                {{variantHistory.parentBrandName}}{{variantHistory.varName}}                
+                <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button>
+              </div>
+              <table class="table table-condensed table-bordered">
+                <thead>
+                    <td colspan="2" class="col-md-6">Current period ({{currentPeriod}})</td>
+                    <td colspan="3" class="col-md-6">Previous period ({{currentPeriod-1}})</td>               
+                </thead>
+                <tbody>                  
+                  <tr>
+                    <!-- New Private label, show UnitCost  -->
+                    <td ng-show="isPrivateLabel">Unit Cost (Private label)</td>
+                    <td ng-show="isPrivateLabel"> ??? </td>
+                    <!-- New Product from Producer, show decision producer made  -->
+                    <td ng-show="isNewProducerProduct">List Price (New product)</td>
+                    <td ng-show="isNewProducerProduct">{{decisionCurrent.currentPriceBM}}</td>
+                    <!-- History Product, show pv_nextPriceBM-->                  
+                    <td ng-show="isHistoryProduct">List Price</td>
+                    <td ng-show="isHistoryProduct">{{variantHistory.supplierView[0].nextPriceBM}}</td>
+                    <td> </td>
+                    <td>Urban</td>                    
+                    <td>Rural</td>                                        
+                  </tr>
+                  <tr>
+                    <!-- Current period -->
+                    <td>Urban closing inventory</td>                    
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].volume}}</td>
+                    <!-- Previous period-->                   
+                    <td style="display:{{ElecssoriesVar}}">Design index</td>                    
+                    <td style="display:{{HealthBeautyVar}}">Active-agent</td>                    
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[0]}}</td>                    
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[0]}}</td>                                        
+                  </tr>
+                  <tr>
+                    <!-- Current period -->
+                    <td>Rural closing inventory</td>                    
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[3].volume}}</td>           
+                    <!-- Previous period-->
+                    <td>Technology level</td>    
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[1]}}</td>
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[1]}}</td>                    
+                  </tr>
+                  <tr>
+                    <!-- Current period -->                    
+                    <td style="display:{{ElecssoriesVar}}">Design index</td>                    
+                    <td style="display:{{HealthBeautyVar}}">Active-agent</td>                    
+                    <td>{{decisionCurrent.composition[0]}}</td>   
+                    <!-- Previous period-->
+                    <td style="display:{{ElecssoriesVar}}">Raw materials quality</td>  
+                    <td style="display:{{HealthBeautyVar}}">Smootherner Level</td>  
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[2]}}</td>                    
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[2]}}</td>                                        
+                  </tr>
+                  <tr>
+                    <!-- Current period -->                    
+                    <td>Technology level</td>                    
+                    <td>{{decisionCurrent.composition[1]}}</td>    
+                    <!-- Previous period-->
+                    <td>Sales Volume at your store</td>                    
+                    <td>{{variantHistory.channelView[4].channelMarketView[0].salesVolume}}</td>        
+                    <td>{{variantHistory.channelView[4].channelMarketView[1].salesVolume}}</td>                                   
+                  </tr>
+                  <tr>
+                    <!-- Current period -->                    
+                    <td style="display:{{ElecssoriesVar}}">Raw materials quality</td>  
+                    <td style="display:{{HealthBeautyVar}}">Smootherner Level</td>                  
+                    <td>{{decisionCurrent.composition[2]}}</td> 
+                    <!-- Previous period-->
+                    <td>Shelf space at your store</td>                    
+                    <td>{{variantHistory.channelView[4].channelMarketView[0].shelfSpace}}</td>                    
+                    <td>{{variantHistory.channelView[4].channelMarketView[1].shelfSpace}}</td>                                        
+                  </tr>
+                  <tr>
+                    <td></td>                    
+                    <td></td>                    
+                    <td>Market price at your store</td>                    
+                    <td>{{variantHistory.channelView[4].channelMarketView[0].marketPrice}}</td>                    
+                    <td>{{variantHistory.channelView[4].channelMarketView[1].marketPrice}}</td>                                        
+                  </tr>
+                  <tr>
+                    <td></td>                    
+                    <td></td>                                        
+                    <td>Net price at your store</td>
+                    <td>{{variantHistory.channelView[4].channelMarketView[0].netMarketPrice}}</td>
+                    <td>{{variantHistory.channelView[4].channelMarketView[1].netMarketPrice}}</td>
+                  </tr>
+                  <tr>
+                    <td></td>                    
+                    <td></td>                                        
+                    <td>Promotion frequency(weeks)</td>
+                    <td>{{variantHistory.channelView[4].channelMarketView[0].promotionsDetails.promo_Frequency}}</td>
+                    <td>{{variantHistory.channelView[4].channelMarketView[1].promotionsDetails.promo_Frequency}}</td>
+                  </tr>
+                  <tr>
+                    <td></td>                    
+                    <td></td>                    
+                    <td>Promotion rate(%)</td>
+                    <td>{{variantHistory.channelView[4].channelMarketView[0].promotionsDetails.promo_Rate}}</td>
+                    <td>{{variantHistory.channelView[4].channelMarketView[1].promotionsDetails.promo_Rate}}</td>
+                  </tr>
+                </tbody>  
               </table>
-              <table class="table">
-                <tr>
-                  <td style="width:70%"></td>
-                  <td style="width:15%">Tier-1</td>
-                  <td style="width:15%">Tier-2</td>
-                </tr>
-                <tr style="display:{{ElecssoriesVar}}">
-                  <td>Design Index:</td>
-                  <td>{{variantHistory.channelView[4].channelMarketView[0].closingInventory[4].composition[0]}}</td>
-                  <td>{{variantHistory.channelView[4].channelMarketView[1].closingInventory[4].composition[0]}}</td>
-                </tr>
-                <tr style="display:{{HealthBeautyVar}}">
-                  <td>Active-agant:</td>
-                  <td>{{variantHistory.channelView[4].channelMarketView[0].closingInventory[4].composition[0]}}</td>
-                  <td>{{variantHistory.channelView[4].channelMarketView[1].closingInventory[4].composition[0]}}</td>
-                </tr>
-                <tr>
-                  <td>Technology Level:</td>
-                  <td>{{variantHistory.channelView[4].channelMarketView[0].closingInventory[4].composition[1]}}</td>
-                  <td>{{variantHistory.channelView[4].channelMarketView[1].closingInventory[4].composition[1]}}</td>
-                </tr>
-                <tr style="display:{{ElecssoriesVar}}">
-                  <td>Raw Materials Quaity:</td>
-                  <td>{{variantHistory.channelView[4].channelMarketView[0].closingInventory[4].composition[2]}}</td>
-                  <td>{{variantHistory.channelView[4].channelMarketView[1].closingInventory[4].composition[2]}}</td>
-                </tr>
-                <tr style="display:{{HealthBeautyVar}}">
-                <tr/>                
-                  <td>Smootherner Level:</td>
-                  <td>{{variantHistory.channelView[4].channelMarketView[0].closingInventory[4].composition[2]}}</td>
-                  <td>{{variantHistory.channelView[4].channelMarketView[1].closingInventory[4].composition[2]}}</td>
-                </tr>
-                <tr>
-                  <td>Sales Volume at your stone:</td>
-                  <td>{{variantHistory.channelView[4].channelMarketView[0].salesVolume}}</td>
-                  <td>{{variantHistory.channelView[4].channelMarketView[1].salesVolume}}</td>
-                </tr>
-                <tr>
-                  <td>shelf space at your stone:</td>
-                  <td>{{variantHistory.channelView[4].channelMarketView[0].shelfSpace}}</td>
-                  <td>{{variantHistory.channelView[4].channelMarketView[1].shelfSpace}}</td>
-                </tr>
-                <tr>
-                  <td>shelf price at your stone:</td>
-                  <td>{{variantHistory.channelView[4].channelMarketView[0].marketPrice}}</td>
-                  <td>{{variantHistory.channelView[4].channelMarketView[1].marketPrice}}</td>
-                </tr>
-                <tr>
-                  <td>Net price at your stone:</td>
-                   <td>{{variantHistory.channelView[4].channelMarketView[0].netMarketPrice}}</td>
-                  <td>{{variantHistory.channelView[4].channelMarketView[1].netMarketPrice}}</td>
-                </tr>
-                <tr>
-                  <td>Promotion frequency:</td>
-                  <td>{{variantHistory.channelView[4].channelMarketView[0].promotionsDetails.promo_Frequency}}</td>
-                  <td>{{variantHistory.channelView[4].channelMarketView[1].promotionsDetails.promo_Frequency}}</td>
-                </tr>
-                <tr>
-                  <td>Promotion rate:</td>
-                  <td>{{variantHistory.channelView[4].channelMarketView[0].promotionsDetails.promo_Rate}}</td>
-                  <td>{{variantHistory.channelView[4].channelMarketView[1].promotionsDetails.promo_Rate}}</td>
-                </tr>
-              </table>
-            </div>
           </div>
+
+
           <table class="table table-hover">
             <tr>
               <th>{{labelLanguages.Category}}</th>
@@ -181,137 +189,40 @@
           </table>
           <div>
             <a href="/#/retailerDecisionStep3" class="btn btn-default">Back</a>            
+
             <a ng-click="open()" class="btn btn-primary">Add order</a>
               <div modal="shouldBeOpen" class="hide" close="close()" options="opts">
-                <div class="modal-dialog" style="width:1000px">
+                <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">Order Product</div>
                       <div class="modal-body">
-                        <div style="clear:both"></div>
-                        <div class="pull-left" style="width:31%">
-                          <table class="table table-hover">
-                            <tr>
-                              <td>#</td>
-                              <th>Brand</th>
-                              <th>Var</th>
-                              <th>Produced by..</th>
-                            </tr>
-                            <tr ng-repeat="orderProduct in orderProducts" ng-dblclick="moreInfo(orderProduct)">
-                              <td>
-                                <input type="checkbox" ng-model="orderProduct.select"></td>
-                              <td>{{orderProduct.brandName}}</td>
-                              <td>{{orderProduct.varName}}</td>
-                              <td>{{orderProduct.parentName}}</td>
-                            </tr>
+                          <table class="table table-condensed table-bordered">
+                            <thead>
+                              <tr>
+                                <td></td>
+                                <th>Brand</th>
+                                <th>Variant</th>
+                                <th>Produced by..</th>
+                              </tr>                              
+                            </thead>
+                            <tbody>
+                              <tr ng-repeat="orderProduct in orderProducts">
+                                <td>
+                                  <input type="checkbox" ng-model="orderProduct.select"></td>
+                                <td>{{orderProduct.brandName}}</td>
+                                <td>{{orderProduct.varName}}</td>
+                                <td>{{orderProduct.parentName}}</td>
+                              </tr>                              
+                            </tbody>
                           </table>
-                        </div>
-                        <div class="pull-left" style="width:67%;margin-left:15px;">
-                          <table class="table">
-                            <tr style="backgroud-color:gray">
-                              <th></th>
-                              <th style="text-align:center">CurrentPeriod period({{currentPeriod}})</th>
-                              <th></th>
-                            </tr>
-                            <tr style="display:{{modalCurrentVar}}">
-                              <td>Unit Cost:</td>
-                              <td>Tailer 1:Closing Inventory:</td>
-                              <td>Tailer 2:Closing Inventory:</td>
-                            </tr>
-                            <tr style="display:{{modalHistoryVar}}">
-                              <td>BM Price:{{modalDecisionCurrent[0].nextPriceBM}}</td>
-                              <td>Tailer 1:Closing Inventory:{{modalVariantHistory.channelView[0].channelMarketView[0].closingInventory[3].volume}}</td>
-                              <td>Tailer 2:Closing Inventory:{{modalVariantHistory.channelView[1].channelMarketView[0].closingInventory[3].volume}}</td>
-                            </tr>
-                            <tr style="display:{{modalElecssoriesVar}}">
-                              <td>Design Index:{{modalDecisionCurrent[0].composition[0]}}</td>
-                              <td>Technology Level:{{modalDecisionCurrent[0].composition[1]}}</td>
-                              <td>Raw Materials Quaity:{{modalDecisionCurrent[0].composition[2]}}</td>
-                            </tr>
-                            <tr style="display:{{modalHealthBeautyVar}}">
-                              <td>Active-agant:{{modalDecisionCurrent[0].composition[0]}}</td>
-                              <td>Technology Level:{{modalDecisionCurrent[0].composition[1]}}</td>
-                              <td>Smootherner Level:{{modalDecisionCurrent[0].composition[2]}}</td>
-                            </tr>
-                            <tr style="backgroud-color:gray;margin-top:20px">
-                              <th></th>
-                              <th style="text-align:center">Previous period({{(currentPeriod-1)}})</th>
-                              <th></th>
-                            </tr>          
-                          </table>
-                          <table class="table">
-                            <tr>
-                              <td style="width:70%"></td>
-                              <td style="width:15%">Tier-1</td>
-                              <td style="width:15%">Tier-2</td>
-                            </tr>
-                            <tr style="display:{{modalElecssoriesVar}}">
-                              <td>Design Index:</td>
-                              <td>{{modalVariantHistory.channelView[4].channelMarketView[0].closingInventory[4].composition[0]}}</td>
-                              <td>{{modalVariantHistory.channelView[4].channelMarketView[1].closingInventory[4].composition[0]}}</td>
-                            </tr>
-                            <tr style="display:{{modalHealthBeautyVar}}">
-                              <td>Active-agant:</td>
-                              <td>{{modalVariantHistory.channelView[4].channelMarketView[0].closingInventory[4].composition[0]}}</td>
-                              <td>{{modalVariantHistory.channelView[4].channelMarketView[1].closingInventory[4].composition[0]}}</td>
-                            </tr>
-                            <tr>
-                              <td>Technology Level:</td>
-                              <td>{{modalVariantHistory.channelView[4].channelMarketView[0].closingInventory[4].composition[1]}}</td>
-                              <td>{{modalVariantHistory.channelView[4].channelMarketView[1].closingInventory[4].composition[1]}}</td>
-                            </tr>
-                            <tr style="display:{{modalElecssoriesVar}}">
-                              <td>Raw Materials Quaity:</td>
-                              <td>{{modalVariantHistory.channelView[4].channelMarketView[0].closingInventory[4].composition[2]}}</td>
-                              <td>{{modalVariantHistory.channelView[4].channelMarketView[1].closingInventory[4].composition[2]}}</td>
-                            </tr>
-                            <tr style="display:{{modalHealthBeautyVar}}">
-                            <tr/>                
-                              <td>Smootherner Level:</td>
-                              <td>{{modalVariantHistory.channelView[4].channelMarketView[0].closingInventory[4].composition[2]}}</td>
-                              <td>{{modalVariantHistory.channelView[4].channelMarketView[1].closingInventory[4].composition[2]}}</td>
-                            </tr>
-                            <tr>
-                              <td>Sales Volume at your stone:</td>
-                              <td>{{modalVariantHistory.channelView[4].channelMarketView[0].salesVolume}}</td>
-                              <td>{{modalVariantHistory.channelView[4].channelMarketView[1].salesVolume}}</td>
-                            </tr>
-                            <tr>
-                              <td>shelf space at your stone:</td>
-                              <td>{{modalVariantHistory.channelView[4].channelMarketView[0].shelfSpace}}</td>
-                              <td>{{modalVariantHistory.channelView[4].channelMarketView[1].shelfSpace}}</td>
-                            </tr>
-                            <tr>
-                              <td>shelf price at your stone:</td>
-                              <td>{{modalVariantHistory.channelView[4].channelMarketView[0].marketPrice}}</td>
-                              <td>{{modalVariantHistory.channelView[4].channelMarketView[1].marketPrice}}</td>
-                            </tr>
-                            <tr>
-                              <td>Net price at your stone:</td>
-                               <td>{{modalVariantHistory.channelView[4].channelMarketView[0].netMarketPrice}}</td>
-                              <td>{{modalVariantHistory.channelView[4].channelMarketView[1].netMarketPrice}}</td>
-                            </tr>
-                            <tr>
-                              <td>Promotion frequency:</td>
-                              <td>{{modalVariantHistory.channelView[4].channelMarketView[0].promotionsDetails.promo_Frequency}}</td>
-                              <td>{{modalVariantHistory.channelView[4].channelMarketView[1].promotionsDetails.promo_Frequency}}</td>
-                            </tr>
-                            <tr>
-                              <td>Promotion rate:</td>
-                              <td>{{modalVariantHistory.channelView[4].channelMarketView[0].promotionsDetails.promo_Rate}}</td>
-                              <td>{{modalVariantHistory.channelView[4].channelMarketView[1].promotionsDetails.promo_Rate}}</td>
-                            </tr>
-                          </table>
-                        </div>
-                        <div style="clear:both"></div>
                       </div>
                     <div class="modal-footer">
-                      <input type="button" class="btn btn-primary" ng-click="addOrders(market)" value="OK">
                       <input type="button" class="btn btn-default" ng-click="close()" value="Cancel">
+                      <input type="button" class="btn btn-primary" ng-click="addOrders(market)" value="Add">
                     </div>
                   </div>
                 </div>
               </div>
-            <!--<a href="/#/producerDecisionStep4" class="btn btn-primary">Next</a>-->
           </div>
       </div>
     </div>
