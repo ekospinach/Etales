@@ -614,9 +614,67 @@ exports.addContract = function(io){
 }
 
 
-exports.duplicateContract = function(req, res, next){
-	var contractCode = req.body.contractCode;
-	var newContractCode = req.body.contarct
-
+exports.duplicateContract = function(io){
+	return function(req, res, next){
+  	contract.count({seminar: req.body.seminar,period:req.body.period, producerID:req.body.producerID, retailerID:req.body.retailerID},function(err,count){
+  		if(count!=0){
+  			res.send(404,'already have a contract');
+	  	}else{
+	  		console.log(count);
+		  	var newContract=new contract({
+		  		contractCode : req.body.contractCode,
+				period : req.body.period,
+				seminar : req.body.seminar,
+				draftedByCompanyID : req.body.draftedByCompanyID,
+				producerID : req.body.producerID,
+				retailerID : req.body.retailerID,
+				isDraftFinished : false
+		  	});
+		  	console.log(req.body.duplicateCode);
+		  	contractDetails.find({contractCode : req.body.duplicateCode, userType:'P'}, function(err, docs){
+		  		if(err) {next(new Error(err))};
+		  		contractCount = 0;
+		  		if(docs.length != 0){
+		  			console.log('start copyContractDetails...');
+		  			(function copyContractDetails(idx){
+		  				contractDetails.update({contractCode : req.body.contractCode, 
+										userType : 'P', 
+										negotiationItem : docs[idx].negotiationItem, 
+										relatedBrandName : docs[idx].relatedBrandName,
+										relatedBrandID : docs[idx].relatedBrandID},
+										{useBrandDetails : docs[idx].useBrandDetails, 
+										useVariantDetails : docs[idx].useVariantDetails,
+										displayValue : docs[idx].displayValue,
+										brand_urbanValue : docs[idx].brand_urbanValue,
+										brand_ruralValue : docs[idx].brand_ruralValue,
+										variant_A_urbanValue : docs[idx].variant_A_urbanValue,
+										variant_A_ruralValue : docs[idx].variant_A_ruralValue,
+										variant_B_urbanValue : docs[idx].variant_B_urbanValue,
+										variant_B_ruralValue : docs[idx].variant_B_ruralValue,
+										variant_C_urbanValue : docs[idx].variant_C_urbanValue,
+										variant_C_ruralValue : docs[idx].variant_C_ruralValue,
+										amount_or_rate : docs[idx].amount_or_rate,
+										isVerified : false},
+										{upsert:true},
+										function(err, numberAffected, raw){
+											if(!err){
+												idx++;
+												if(idx<docs.length){
+													copyContractDetails(idx);
+												}		
+											}
+										})
+					})(0);
+				}
+			})
+		  	/*need add Contract Detail*/
+		  	newContract.save(function(err){
+				if(err) next(new Error(err));
+				io.sockets.emit('contarctListChanged', {producerID: req.body.producerID, retailerID: req.body.retailerID}); 
+				res.send(200,newContract);
+			});
+  		}
+  	})
+  }
 	
 }
