@@ -41,7 +41,7 @@
                     <td>Minimum Order & Discount Rate</td>
                     <td ng-repeat="proDetail in proDetailList[0]">
                         <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetail.isVerified"></span>
-                        <span>{{(proDetail.useBrandDetails?(proDetail.brand_urbanValue+proDetail.brand_ruralValue):(proDetail.variant_A_urbanValue+proDetail.variant_A_ruralValue+proDetail.variant_B_urbanValue+proDetail.variant_B_ruralValue+proDetail.variant_C_urbanValue+proDetail.variant_C_ruralValue))}}({{proDetail.displayValue}}%)</span>
+                        <span>{{proDetail.displayValue}}</span>
                         <span class="pull-right" ng-show=producerEditable>
                             <a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)">Edit</a>
                         </span>
@@ -54,7 +54,7 @@
                     <td>Sales Target Volume & Bonus</td>
                     <td ng-repeat="proDetail in proDetailList[1]">
                         <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetail.isVerified"></span>
-                        <span>{{(proDetail.useBrandDetails?(proDetail.brand_urbanValue+proDetail.brand_ruralValue):(proDetail.variant_A_urbanValue+proDetail.variant_A_ruralValue+proDetail.variant_B_urbanValue+proDetail.variant_B_ruralValue+proDetail.variant_C_urbanValue+proDetail.variant_C_ruralValue))}}({{proDetail.displayValue}})</span>
+                        <span>{{proDetail.displayValue}}</span>
                         <span class="pull-right" ng-show=producerEditable>
                             <a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)">Edit</a>
                         </span>
@@ -67,7 +67,7 @@
                     <td>Payment Days</td>
                     <td ng-repeat="proDetail in proDetailList[2]">
                         <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetail.isVerified"></span>
-                        <span>{{(proDetail.useBrandDetails?(proDetail.brand_urbanValue+proDetail.brand_ruralValue):(proDetail.variant_A_urbanValue+proDetail.variant_A_ruralValue+proDetail.variant_B_urbanValue+proDetail.variant_B_ruralValue+proDetail.variant_C_urbanValue+proDetail.variant_C_ruralValue))}}</span>
+                        <span>{{proDetail.displayValue}}</span>
                         <span class="pull-right" ng-show=producerEditable>
                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)">Edit</a>
                        </span>
@@ -80,7 +80,7 @@
                     <td>Other Compensation</td>
                     <td ng-repeat="proDetail in proDetailList[3]">
                         <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetail.isVerified"></span>
-                        <span>{{(proDetail.useBrandDetails?(proDetail.brand_urbanValue+proDetail.brand_ruralValue):(proDetail.variant_A_urbanValue+proDetail.variant_A_ruralValue+proDetail.variant_B_urbanValue+proDetail.variant_B_ruralValue+proDetail.variant_C_urbanValue+proDetail.variant_C_ruralValue))}}</span>
+                        <span>{{proDetail.displayValue}}</span>
                         <span class="pull-right" ng-show=producerEditable>
                             <a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)">Edit</a>
                         </span>
@@ -106,7 +106,7 @@
                     <td>Minimum Order & Discount Rate</td>
                     <td ng-repeat="retDetail in retDetailList[0]">
                         <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="retDetail.isVerified"></span>
-                        <span>{{(retDetail.useBrandDetails?(retDetail.brand_urbanValue+retDetail.brand_ruralValue):(retDetail.variant_A_urbanValue+retDetail.variant_A_ruralValue+retDetail.variant_B_urbanValue+retDetail.variant_B_ruralValue+retDetail.variant_C_urbanValue+retDetail.variant_C_ruralValue))}}({{retDetail.displayValue}}%)</span>
+                        <span>{{retDetail.displayValue}}</span>
                         <span class="pull-right" ng-show=retailerEditable>
                             <a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)">Edit</a>
                         </span>
@@ -119,7 +119,7 @@
                     <td>Sales Target Volume & Bonus</td>
                     <td ng-repeat="retDetail in retDetailList[1]">
                         <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="retDetail.isVerified"></span>
-                        <span>{{(retDetail.useBrandDetails?(retDetail.brand_urbanValue+retDetail.brand_ruralValue):(retDetail.variant_A_urbanValue+retDetail.variant_A_ruralValue+retDetail.variant_B_urbanValue+retDetail.variant_B_ruralValue+retDetail.variant_C_urbanValue+retDetail.variant_C_ruralValue))}}({{retDetail.displayValue}})</span>
+                        <span>{{retDetail.displayValue}}</span>
                         <span class="pull-right" ng-show=retailerEditable>
                             <a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)">Edit</a>
                         </span>
@@ -132,7 +132,7 @@
                     <td>Payment Days</td>
                     <td ng-repeat="retDetail in retDetailList[2]">
                         <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="retDetail.isVerified"></span>
-                        <span>{{(retDetail.useBrandDetails?(retDetail.brand_urbanValue+retDetail.brand_ruralValue):(retDetail.variant_A_urbanValue+retDetail.variant_A_ruralValue+retDetail.variant_B_urbanValue+retDetail.variant_B_ruralValue+retDetail.variant_C_urbanValue+retDetail.variant_C_ruralValue))}}</span>
+                        <span>{{retDetail.displayValue}}</span>
                         <span class="pull-right" ng-show=retailerEditable>
                             <a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)">Edit</a>
                         </span>
@@ -145,7 +145,7 @@
                     <td>Other Compensation</td>
                     <td ng-repeat="retDetail in retDetailList[3]">
                         <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="retDetail.isVerified"></span>
-                        <span>{{(retDetail.useBrandDetails?(retDetail.brand_urbanValue+retDetail.brand_ruralValue):(retDetail.variant_A_urbanValue+retDetail.variant_A_ruralValue+retDetail.variant_B_urbanValue+retDetail.variant_B_ruralValue+retDetail.variant_C_urbanValue+retDetail.variant_C_ruralValue))}}</span>
+                        <span>{{retDetail.displayValue}}</span>
                         <span class="pull-right" ng-show=retailerEditable>
                             <a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)">Edit</a>
                         </span>
@@ -179,10 +179,10 @@
                             <th style="width:60%">Please choose decision level:</th>
                             <td style="width:35%">
                                 <div class="btn-group" data-toggle="buttons">
-                                    <label class="btn btn-default" ng-click="setShowDetailType('Brand')">
+                                    <label class="btn btn-default" ng-click="setShowDetailType('brand',editDetail)">
                                         <input type="radio" name="detailType">Brand
                                     </label>
-                                    <label class="btn btn-default" ng-click="setShowDetailType('Variant')">
+                                    <label class="btn btn-default" ng-click="setShowDetailType('variant',editDetail)">
                                         <input type="radio" name="detailType">Variant
                                     </label>
                                 </div>
@@ -192,10 +192,10 @@
                             <th>Please choose bonus way:</th>
                             <td>
                                 <div class="btn-group" data-toggle="buttons">
-                                    <label class="btn btn-default" ng-click="setShowBonusType('Amout')">
+                                    <label class="btn btn-default" ng-click="setShowBonusType('Amout',editDetail)">
                                         <input type="radio" name="amoutRate">Amout(min$)
                                     </label>
-                                    <label class="btn btn-default" ng-click="setShowBonusType('Rate')">
+                                    <label class="btn btn-default" ng-click="setShowBonusType('Rate',editDetail)">
                                         <input type="radio" name="amoutRate">Rate(%)
                                     </label>
                                 </div>
@@ -491,8 +491,303 @@
     </div>
 </div>
 
-
 <div modal="viewModal" class="hide" close="closeViewModal()" options="viewOpts">
+     <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeViewModal()">&times;</button>
+                <div>
+                    <h4>{{showNegotiationItem}} , {{editDetail.relatedBrandName}}</h4>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="" style="display:{{shouldShowBrand}}">
+                    <table class="table" style="display:{{shouldBeRate}}">
+                        <thead>
+                            <tr>
+                                <th style="width:10%"></th>
+                                <th style="width:45%">{{showTitle}}</th>
+                                <th style="width:45%">Discount Rate(%)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Urban:</th>
+                                <td>
+                                    {{ editDetail.brand_urbanValue || 0 }}
+
+                                </td>
+                                <td>
+                                    {{ editDetailDisRate.brand_urbanValue || 0 }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Rural:</th>
+                                <td>
+                                    {{ editDetail.brand_ruralValue || 0 }}
+                                </td>
+                                <td>
+                                    {{ editDetailDisRate.brand_ruralValue || 0 }}
+                                </td>                                                
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="" style="display:{{shouldBeAmount}}">
+                        <table class="table" style="display:{{shouldBeBonusAmount}}">
+                            <thead>
+                                <tr>
+                                    <th style="width:10%"></th>
+                                    <th style="width:40%">{{showTitle}}</th>
+                                    <th style="width:40%">Amount(min$)</th>
+                                    <th style="width:10%">Rate(%)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>Urban:</th>
+                                    <td>
+                                        {{ editDetail.brand_urbanValue || 0 }}
+                                    </td>
+                                    <td>
+                                        {{ editDetailBonusAmount.brand_urbanValue || 0 }}
+                                    </td>
+                                    <!--<td>
+                                        {{editDetailBonusRate.brand_urbanValue}}
+                                    </td>-->
+                                    <td>---</td>
+                                </tr>
+                                <tr>
+                                    <th>Rural:</th>
+                                    <td>
+                                        {{ editDetail.brand_ruralValue || 0 }}
+                                    </td>
+                                    <td>
+                                        {{ editDetailBonusAmount.brand_ruralValue || 0 }}
+                                    </td>
+                                    <!--<td>
+                                        {{editDetailBonusRate.brand_ruralValue}}
+                                    </td>-->
+                                    <td>---</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table" style="display:{{shouldBeBonusRate}}">
+                            <thead>
+                                <tr>
+                                    <th style="width:10%"></th>
+                                    <th style="width:40%">{{showTitle}}</th>
+                                    <th style="width:10%">Amount(min$)</th>
+                                    <th style="width:40%">Rate(%)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>Urban:</th>
+                                    <td>
+                                        {{ editDetail.brand_urbanValue || 0 }}
+                                    </td>
+                                    <!--<td>
+                                        {{editDetailBonusAmount.brand_urbanValue}}
+                                    </td>-->
+                                    <td>---</td>
+                                    <td>
+                                        {{ editDetailBonusRate.brand_urbanValue || 0 }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Rural:</th>
+                                    <td>
+                                        {{ editDetail.brand_ruralValue || 0 }}
+                                    </td>
+                                    <!--<td>
+                                        {{editDetailBonusAmount.brand_ruralValue}}
+                                    </td>-->
+                                    <td>
+                                        {{ editDetailBonusRate.brand_ruralValue || 0 }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    <table class="table" style="display:{{shouldBeNormal}}">
+                        <tbody>
+                            <tr>
+                                <th style="width:40%">Urban {{showTitle}}:</th>
+                                <td style="width:60%">
+                                    {{ editDetail.brand_urbanValue || 0 }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Rural {{showTitle}}:</th>
+                                <td>
+                                    {{ editDetail.brand_ruralValue || 0 }}
+                                </td>                                        
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="" style="display:{{shouldShowVariant}}">
+                    <!--Variant-->
+                    <div style="display:{{shouldBeRate}}">
+                        <tabset>
+                            <tab ng-repeat='product in editProductList|filter:{show:1}' heading="{{product.varName}}">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:10%"></th>
+                                            <th style="width:45%">{{showTitle}}</th>
+                                            <th style="width:45%">Discount Rate(%)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th>Urban:</th>
+                                            <td>
+                                                {{ product.urbanValue || 0 }}
+                                            </td>
+                                            <td>
+                                                {{ product.dis_urbanValue || 0 }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Rural:</th>
+                                            <td>
+                                                {{ product.ruralValue || 0 }}
+                                            </td>
+                                            <td>
+                                                {{ product.dis_ruralValue || 0 }}
+                                            </td>                                                
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </tab>
+                        </tabset>
+                    </div>
+                    <div style="display:{{shouldBeAmount}}">
+                        <div style="display:{{shouldBeBonusAmount}}">
+                            <tabset>
+                                <tab ng-repeat='product in editProductList|filter:{show:1}' heading="{{product.varName}}">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th style="width:10%"></th>
+                                                <th style="width:40%">{{showTitle}}</th>
+                                                <th style="width:40%">Amount(min$)</th>
+                                                <th style="width:10%">Rate(%)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th>Urban:</th>
+                                                <td>
+                                                    {{ product.urbanValue || 0 }}
+                                                </td>
+                                                <td>
+                                                    {{ product.amout_urbanValue || 0 }}
+                                                </td>
+                                                <!--<td>
+                                                    {{product.rate_urbanValue}}
+                                                </td>-->
+                                                <td>---</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Rural:</th>
+                                                <td>
+                                                    {{ product.ruralValue || 0 }}
+                                                </td>
+                                                <td>
+                                                    {{ product.amout_ruralValue || 0 }}
+                                                </td>
+                                                <!--<td>
+                                                    {{product.rate_ruralValue}}
+                                                </td>-->
+                                                <td>---</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </tab>
+                            </tabset>
+                        </div>
+                        <div style="display:{{shouldBeBonusRate}}">
+                            <tabset>
+                                <tab ng-repeat='product in editProductList|filter:{show:1}' heading="{{product.varName}}">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th style="width:10%"></th>
+                                                <th style="width:40%">{{showTitle}}</th>
+                                                <th style="width:10%">Amount(min$)</th>
+                                                <th style="width:40%">Rate(%)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th>Urban:</th>
+                                                <td>
+                                                    {{ product.urbanValue || 0 }}
+                                                </td>
+                                                <!--<td>
+                                                    {{ product.amout_urbanValue}}
+                                                </td>-->
+                                                <td>---</td>
+                                                <td>
+                                                    {{ product.rate_urbanValue  || 0 }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Rural:</th>
+                                                <td>
+                                                    {{ product.ruralValue || 0 }}
+                                                </td>
+                                                <!--<td>
+                                                    {{product.amout_ruralValue}}
+                                                </td>-->
+                                                <td>---</td>
+                                                <td>
+                                                    {{ product.rate_ruralValue || 0 }}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </tab>
+                            </tabset>
+                        </div>
+                    </div>
+                    <div style="display:{{shouldBeNormal}}">
+                        <tabset>
+                            <tab ng-repeat='product in editProductList|filter:{show:1}' heading="{{product.varName}}">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <th style="width:40%">Urban {{showTitle}}:</th>
+                                            <td style="width:60%">
+                                                {{ product.urbanValue || 0 }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Rural {{showTitle}}:</th>
+                                            <td>
+                                                {{ product.ruralValue || 0 }}
+                                            </td>                                        
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </tab>
+                        </tabset>
+                    </div>                                
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-default" ng-click="closeViewModal()">Close</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div modal="viewModal" class="hide" close="closeViewModal()" options="viewOpts">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -806,4 +1101,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
