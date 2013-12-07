@@ -49,7 +49,6 @@ define(['app'], function(app) {
 					$scope.checkReductionRate=checkReductionRate;
 					$scope.updateRetailerDecision=updateRetailerDecision;
 					$scope.getMoreInfo=getMoreInfo;
-					$scope.moreInfo=moreInfo;
 					$scope.closeInfo=closeInfo;
 					$scope.open=open;
 					$scope.close=close;
