@@ -203,6 +203,10 @@ define(['app'], function(app) {
 			}
 
 			var getMarketMoreInfo=function(marketID){
+				switch(marketID){
+					case 1: $scope.marketName = 'Urban'; break;
+					case 2: $scope.marketName = 'Rural'; break;				
+				}
 				$scope.isCollapsed=false;
 				var url="/retailerDecision/"+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+($rootScope.currentPeriod-1)+'/'+$rootScope.user.seminar;
 				$http({method:'GET',url:url})

@@ -34,74 +34,99 @@
           </small>-->
         </div>
           <div style="clear:both"></div>
-          <div collapse="isCollapsed">
-            <div class="well well-large">
-              <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button>
-              <table class="table table-striped">
-                <tr style="backgroud-color:gray">
-                  <th></th>
-                  <th style="text-align:center">Current period({{currentPeriod}})</th>
-                  <th></th>
-                </tr>
-                <tr style="backgroud-color:gray">
-                  <td>Web-trawler sentiment index:</td>
-                  <td>Web-trawler strength index:</td>
-                  <th></th>
-                </tr>
-                <tr style="margin-top:20px;backgroud-color:gray">
-                  <th></th>
-                  <th style="text-align:center">Previous period({{(currentPeriod-1)}})</th>
-                  <th></th>
-                </tr>  
+
+          <div collapse="isCollapsed" class="panel panel-info">
+            <div class="panel-heading">More information <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button></div>
+              <table class="table table-condensed table-bordered">
+                <thead>
+                  <tr>
+                    <td colspan="2" class="col-md-6">Current period ({{currentPeriod}})</td>
+                    <td colspan="2" class="col-md-6">Previous period ({{currentPeriod-1}})</td>               
+                  </tr>                  
+                </thead>
+                <tbody>
                 <tr>
-                  <td>Convenience off-line:{{retailerDecisionHistory.tradtionalAdvertising[1]}}</td>
-                  <td>Assortment off-line:{{retailerDecisionHistory.tradtionalAdvertising[2]}}</td>
-                  <td>Price off-line:{{retailerDecisionHistory.tradtionalAdvertising[0]}}</td>
+                  <td ng-show="false">Web-trawler strength index</td>
+                  <td></td>
+                  <td></td>
+                  <td>Convenience off-line</td>
+                  <td>{{retailerDecisionHistory.tradtionalAdvertising[1]}}</td>
                 </tr>
                 <tr>
-                  <td>Convenience on-line:{{retailerDecisionHistory.onlineAdvertising[1]}}</td>
-                  <td>Assortment on-line:{{retailerDecisionHistory.onlineAdvertising[2]}}</td>
-                  <td>Price on-line:{{retailerDecisionHistory.onlineAdvertising[0]}}</td>
-                </tr>          
+                  <td ng-show="false">Web-trawler sentiment index</td>
+                  <td></td>                  
+                  <td></td>
+                  <td>Assortment off-line</td>
+                  <td>{{retailerDecisionHistory.tradtionalAdvertising[2]}}</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>Price off-line</td>
+                  <td>{{retailerDecisionHistory.tradtionalAdvertising[0]}}</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>Convenience on-line</td>
+                  <td>{{retailerDecisionHistory.onlineAdvertising[1]}}</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>Assortment on-line</td>
+                  <td>{{retailerDecisionHistory.onlineAdvertising[2]}}</td>
+                </tr>                
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>Price on-line</td>
+                  <td>{{retailerDecisionHistory.onlineAdvertising[0]}}</td>
+                </tr>        
+                </tbody>
               </table>
-            </div>
           </div>
+
           <table class="table table-hover">
+            <thead>
             <tr>
               <th></th>
               <th>
                 <button type="button" class="btn btn-primary btn-xs" style="margin-left:5px" ng-click="getMoreInfo()">More</button>
               </th>
-            </tr>
-            <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.COF}}" popover-title="{{labelLanguages.COF}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.COF}}<span style="color:red">*</span></p>
-              </th>
-              <th><a href="#" editable-text="pageBase.tradtionalAdvertising[1]" onbeforesave="checkBudget('tradtionalAdvertising','1',$data)" onaftersave="updateRetailerDecision('tradtionalAdvertising','1')">{{ pageBase.tradtionalAdvertising[1] || 0 }}</a></th>
-            </tr>
-            <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.CON}}" popover-title="{{labelLanguages.CON}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.CON}}<span style="color:red">*</span></p></th>
-              <th><a href="#" editable-text="pageBase.onlineAdvertising[1]" onbeforesave="checkBudget('onlineAdvertising','1',$data)" onaftersave="updateRetailerDecision('onlineAdvertising','1')">{{ pageBase.onlineAdvertising[1]|| 0 }}</a></th>
-            </tr>
-            <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.AOF}}" popover-title="{{labelLanguages.AOF}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.AOF}}<span style="color:red">*</span></p></th>
-              <th><a href="#" editable-text="pageBase.tradtionalAdvertising[2]" onbeforesave="checkBudget('tradtionalAdvertising','2',$data)" onaftersave="updateRetailerDecision('tradtionalAdvertising','2')">{{ pageBase.tradtionalAdvertising[2] || 0 }}</a></th>
-            </tr>
-            <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.AON}}" popover-title="{{labelLanguages.AON}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.AON}}<span style="color:red">*</span></p></th>
-              <th>
-                <a href="#" editable-text="pageBase.onlineAdvertising[2]" onbeforesave="checkBudget('onlineAdvertising','2',$data)" onaftersave="updateRetailerDecision('onlineAdvertising','2')">{{ pageBase.onlineAdvertising[2] || 0 }}</a>
-              </th>
-            </tr>
-            <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.POF}}" popover-title="{{labelLanguages.POF}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.POF}}<span style="color:red">*</span></p></th>
-              <th><a href="#" editable-text="pageBase.tradtionalAdvertising[0]" onbeforesave="checkBudget('tradtionalAdvertising','0',$data)" onaftersave="updateRetailerDecision('tradtionalAdvertising','0')">{{ pageBase.tradtionalAdvertising[0] || 0 }}</a></th>
-            </tr>
-            <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.PON}}" popover-title="{{labelLanguages.PON}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.PON}}<span style="color:red">*</span></p></th>
-              <th>
-                <a href="#" editable-text="pageBase.onlineAdvertising[0]" onbeforesave="checkBudget('onlineAdvertising','0',$data)" onaftersave="updateRetailerDecision('onlineAdvertising','0')">{{ pageBase.onlineAdvertising[0] || 0 }}</a>
-              </th>
-            </tr>
+            </tr>              
+            </thead>
+            <tbody>              
+              <tr>
+                <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.COF}}" popover-title="{{labelLanguages.COF}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.COF}}<span style="color:red">*</span></p>
+                </th>
+                <th><a href="#" editable-text="pageBase.tradtionalAdvertising[1]" onbeforesave="checkBudget('tradtionalAdvertising','1',$data)" onaftersave="updateRetailerDecision('tradtionalAdvertising','1')">{{ pageBase.tradtionalAdvertising[1] || 0 }}</a></th>
+              </tr>
+              <tr>
+                <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.CON}}" popover-title="{{labelLanguages.CON}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.CON}}<span style="color:red">*</span></p></th>
+                <th><a href="#" editable-text="pageBase.onlineAdvertising[1]" onbeforesave="checkBudget('onlineAdvertising','1',$data)" onaftersave="updateRetailerDecision('onlineAdvertising','1')">{{ pageBase.onlineAdvertising[1]|| 0 }}</a></th>
+              </tr>
+              <tr>
+                <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.AOF}}" popover-title="{{labelLanguages.AOF}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.AOF}}<span style="color:red">*</span></p></th>
+                <th><a href="#" editable-text="pageBase.tradtionalAdvertising[2]" onbeforesave="checkBudget('tradtionalAdvertising','2',$data)" onaftersave="updateRetailerDecision('tradtionalAdvertising','2')">{{ pageBase.tradtionalAdvertising[2] || 0 }}</a></th>
+              </tr>
+              <tr>
+                <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.AON}}" popover-title="{{labelLanguages.AON}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.AON}}<span style="color:red">*</span></p></th>
+                <th>
+                  <a href="#" editable-text="pageBase.onlineAdvertising[2]" onbeforesave="checkBudget('onlineAdvertising','2',$data)" onaftersave="updateRetailerDecision('onlineAdvertising','2')">{{ pageBase.onlineAdvertising[2] || 0 }}</a>
+                </th>
+              </tr>
+              <tr>
+                <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.POF}}" popover-title="{{labelLanguages.POF}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.POF}}<span style="color:red">*</span></p></th>
+                <th><a href="#" editable-text="pageBase.tradtionalAdvertising[0]" onbeforesave="checkBudget('tradtionalAdvertising','0',$data)" onaftersave="updateRetailerDecision('tradtionalAdvertising','0')">{{ pageBase.tradtionalAdvertising[0] || 0 }}</a></th>
+              </tr>
+              <tr>
+                <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.PON}}" popover-title="{{labelLanguages.PON}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.PON}}<span style="color:red">*</span></p></th>
+                <th>
+                  <a href="#" editable-text="pageBase.onlineAdvertising[0]" onbeforesave="checkBudget('onlineAdvertising','0',$data)" onaftersave="updateRetailerDecision('onlineAdvertising','0')">{{ pageBase.onlineAdvertising[0] || 0 }}</a>
+                </th>
+              </tr>
+            </tbody>
           </table>
           <div>
             <a href="/#/retailerDecisionStep2" class="btn btn-primary">Next</a>

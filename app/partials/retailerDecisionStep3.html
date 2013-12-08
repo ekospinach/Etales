@@ -43,52 +43,54 @@
           </small>-->
         </div>
           <div style="clear:both"></div>
-          <div collapse="isCollapsed">
-            <div class="well well-large">
-              <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button>
-             <table class="table table-striped">
-                <tr style="backgroud-color:gray">
-                  <th></th>
-                  <th style="text-align:center">CurrentPeriod period({{currentPeriod}})</th>
-                  <th></th>
-                </tr>
-                <tr>
-                  <td>Unit production cost:</td>
-                  <td>Acquired design technology level:</td>
-                  <td>Acquired design level:</td>
-                </tr>
-                <tr>
-                  <td>Expected perception(x-axis):/</td>
-                  <td>Expected perception(y-axis):/</td>
-                  <th></th>
-                </tr>
-                <tr style="margin-top:20px;backgroud-color:gray">
-                  <th></th>
-                  <th style="text-align:center">Previous period({{(currentPeriod-1)}})</th>
-                  <th></th>
-                </tr>  
-                <tr>
-                  <td>Tier-1 Sales Volume:</td>
-                  <td>Tier-1 Unit production cost:</td>
-                  <td>Tier-1 Design Index:{{companyHistory.acquiredDesignLevel[0]}}</td>
-                </tr>
-                <tr>
-                  <td>Tier-2 Sales Volume:</td>
-                  <td>Tier-2 Unit production cost:</td>
-                  <td>Tier-2 Design Index:{{companyHistory.acquiredDesignLevel[1]}}</td>
-                </tr>
-                <tr>
-                  <td>Tier-1 Technolohgy level:{{companyHistory.acquiredTechnologyLevel[0]}}</td>
-                  <td>Tier-1 Raw Materials Quality:</td>
-                  <td></td>
-                </tr>  
-                <tr>
-                  <td>Tier-2 Technolohgy level:{{companyHistory.acquiredTechnologyLevel[1]}}</td>
-                  <td>Tier-2 Raw Materials Quality:</td>
-                  <td></td>
-                </tr>    
+          <div collapse="isCollapsed" class="panel panel-info">
+            <div class="panel-heading">{{marketName}} <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button></div>
+              <table class="table table-condensed table-bordered">
+                <thead>
+
+                  <tr>
+                    <td colspan="2" class="col-md-6">Current period ({{currentPeriod}})</td>
+                    <td colspan="2" class="col-md-6">Previous period ({{currentPeriod-1}})</td>               
+                  </tr>                  
+                </thead>
+                <tbody>                
+                  <tr>
+                    <td>Unit production cost:</td>
+                    <td>Acquired design technology level:</td>
+                    <td>Acquired design level:</td>
+                  </tr>
+                  <tr>
+                    <td>Expected perception(x-axis):/</td>
+                    <td>Expected perception(y-axis):/</td>
+                    <th></th>
+                  </tr>
+                  <tr style="margin-top:20px;backgroud-color:gray">
+                    <th></th>
+                    <th style="text-align:center">Previous period({{(currentPeriod-1)}})</th>
+                    <th></th>
+                  </tr>  
+                  <tr>
+                    <td>Tier-1 Sales Volume:</td>
+                    <td>Tier-1 Unit production cost:</td>
+                    <td>Tier-1 Design Index:{{companyHistory.acquiredDesignLevel[0]}}</td>
+                  </tr>
+                  <tr>
+                    <td>Tier-2 Sales Volume:</td>
+                    <td>Tier-2 Unit production cost:</td>
+                    <td>Tier-2 Design Index:{{companyHistory.acquiredDesignLevel[1]}}</td>
+                  </tr>
+                  <tr>
+                    <td>Tier-1 Technolohgy level:{{companyHistory.acquiredTechnologyLevel[0]}}</td>
+                    <td>Tier-1 Raw Materials Quality:</td>
+                    <td></td>
+                  </tr>  
+                  <tr>
+                    <td>Tier-2 Technolohgy level:{{companyHistory.acquiredTechnologyLevel[1]}}</td>
+                    <td>Tier-2 Raw Materials Quality:</td>
+                    <td></td>
+                  </tr> 
+                </tbody>   
               </table>
-            </div>
           </div>
           <table class="table table-hover">
             <!--<tr>

@@ -175,8 +175,14 @@ define(['app'], function(app) {
 			}
 
 			var getMoreInfo=function(brandName,varName){
-				var d=$q.defer();
-				$scope.isCollapsed=false;
+				if($scope.category=="Elecssories"){
+					$scope.isElecssories = true;
+					$scope.isHealthBeauty = false;
+				}
+				else{
+					$scope.isElecssories = false;
+					$scope.isHealthBeauty = true
+				}					$scope.isCollapsed=false;
 				var url='/variantHistoryInfo/'+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/'+brandName+'/'+varName;
 				$http({method: 'GET', url: url})
 				.then(function(data) {
@@ -188,7 +194,6 @@ define(['app'], function(app) {
 				},function(){
 					console.log('read history info fail');
 				});
-				return d.promise;
 			}
 			var checkProduction=function(category,brandName,varName,location,additionalIdx,index,value){
 				var d = $q.defer();	
