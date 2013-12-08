@@ -634,7 +634,7 @@ define(['angular','angularResource','routingConfig'], function (angular,angularR
 								multipleRequestShooter(myProducts,idx);
 							}else{
 								console.log('finish');
-								$rootScope.$broadcast('retailerDecisionBaseChanged', base);
+								//$rootScope.$broadcast('retailerDecisionBaseChanged', base);
 								console.log('broadcast finish');
 							}
 						})
