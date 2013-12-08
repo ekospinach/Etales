@@ -12,21 +12,50 @@ define(['app','socketIO','routingConfig'], function(app) {
 	    	$scope.seminar=seminar;
 	    	$scope.period=period;
 	    	$rootScope.mapPeriod=period;
-	    	Map.get({seminar: seminar,period:period}, function(newmap) {
-			   	$scope.map=newmap;
-			   	showChart($scope.cat,$scope.market,$scope.language);
-			});
+	    	$scope.brandHistorys=new Array();
+	    	var url="/brandHistoryInfo/"+seminar+'/'+(period-1);
+	    	$http({
+	    		method:'GET',
+	    		url:url
+	    	}).then(function(data){
+	    		console.log(data);
+	    		for(var i=0;i<data.data.length;i++){
+	    			$scope.brandHistorys.push(data.data[i]);
+	    		}
+	    		Map.get({seminar: seminar,period:period}, function(newmap) {
+			   		$scope.map=newmap;
+			   		console.log($scope.map);
+			   		showChart($scope.cat,$scope.market,$scope.language);
+				});
+	    	},function(){
+	    		console.log('get map fail');
+	    	})
 		}
 		//showall
 		var showChart = function(cat,market,language){
 			$scope.cat=cat;
 			$scope.market=market;
 			$scope.language=language;
+			var marketID=0;
+			if(market=="Urban"){
+				marketID=1;
+			}else{
+				marketID=2;
+			}
 			$scope.pageCollection=_.find($scope.map.pageCollection, function(obj) { 
 				return (obj.category == cat&&obj.market==market) 
 			});
 
+			$scope.filterBrands=_.filter($scope.brandHistorys,function(obj){
+				if(cat=="Elecsories"){
+					return (obj.parentCatID==1);
+				}else{
+					return (obj.parentCatID==2);
+				}
+			});
+
 			var colors=new Array("#000000");
+			var costColors=new Array("#000000");
 			var tree = [{
 	            "key": "P-1",
 	            "values": []
@@ -43,9 +72,36 @@ define(['app','socketIO','routingConfig'], function(app) {
 	            "key": "R-2",
 	            "values": []
 	        }];
-			var length=$scope.pageCollection.brandCollection.length;
+			//var length=$scope.pageCollection.brandCollection.length;
 			var brandname="";
 			var datas=new Array([0,0,0,""]);
+			var costData=new Array([-1,-1,0,'']);
+			for (var i=1;i<=$scope.filterBrands.length;i++){
+				costData[i]=new Array();
+				costData[i][0]=0;
+				costData[i][1]=parseInt($scope.filterBrands[i-1].supplierView[0].perception[marketID-1][2]);
+				costData[i][2]=1;
+				costData[i][3]=$scope.filterBrands[i-1].brandName;
+				switch(costData[i][3].substr(costData[i][3].length-1)){
+					case "1":
+							costColors[i]="#004CE5";
+							break;
+					case "2":
+							costColors[i]="#BB0000"
+							break;
+					case "3":
+							costColors[i]="#FFBC01";
+							break;
+					case "5":
+							costColors[i]="#339933";
+							break;
+					case "6":
+							costColors[i]="#990099";
+							break;
+				}
+			}
+			$scope.costColors=costColors;
+			$scope.costData=costData;
 			if(language=="English"){
 					mapTitle=datas[0][4]=$scope.pageCollection.titleENG;
 				}
@@ -55,7 +111,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 				else if(language=="Russian"){
 					mapTitle=datas[0][4]=$scope.pageCollection.titleRUS;
 				}
-			for (var i=1;i<=length;i++){
+			for (var i=1;i<=$scope.pageCollection.brandCollection.length;i++){
 				datas[i]=new Array();
 				datas[i][0]=parseInt($scope.pageCollection.brandCollection[i-1].easeOfUsePerception.Value);
 				datas[i][1]=parseInt($scope.pageCollection.brandCollection[i-1].qualityPerception.Value);
@@ -137,13 +193,27 @@ define(['app','socketIO','routingConfig'], function(app) {
 			//console.log(selectdata);
 			Map.get({seminar: $scope.seminar,period:$scope.period}, function(newmap) {
 			   	$scope.map=newmap;
+			   	var marketID=0;
+				if($scope.market=="Urban"){
+					marketID=1;
+				}else{
+					marketID=2;
+				}
 			   	$scope.pageCollection=_.find($scope.map.pageCollection, function(obj) { 
 					return (obj.category == $scope.cat&&obj.market==$scope.market) 
 				});
-				var length=$scope.pageCollection.brandCollection.length;
+				$scope.filterBrands=_.filter($scope.brandHistorys,function(obj){
+					if($scope.cat=="Elecsories"){
+						return (obj.parentCatID==1);
+					}else{
+						return (obj.parentCatID==2);
+					}
+				});
 				var brandname="";
 				var datas=new Array([0,0,0,""]);
 				var colors=new Array("#000000");
+				var costData=new Array([-1,-1,0,'']);
+				var costColors=new Array("#000000");
 				if($scope.language=="English"){
 						mapTitle=datas[0][4]=$scope.pageCollection.titleENG;
 					}
@@ -153,7 +223,31 @@ define(['app','socketIO','routingConfig'], function(app) {
 					else if($scope.language=="Russian"){
 						mapTitle=datas[0][4]=$scope.pageCollection.titleRUS;
 					}
-				for (var i=1;i<=length;i++){
+				for (var i=1;i<=$scope.filterBrands.length;i++){
+					costData[i]=new Array();
+					costData[i][0]=0;
+					costData[i][1]=parseInt($scope.filterBrands[i-1].supplierView[0].perception[marketID-1][2]);
+					costData[i][2]=1;
+					costData[i][3]=$scope.filterBrands[i-1].brandName;
+					switch(costData[i][3].substr(costData[i][3].length-1)){
+						case "1":
+								costColors[i]="#004CE5";
+								break;
+						case "2":
+								costColors[i]="#BB0000"
+								break;
+						case "3":
+								costColors[i]="#FFBC01";
+								break;
+						case "5":
+								costColors[i]="#339933";
+								break;
+						case "6":
+								costColors[i]="#990099";
+								break;
+					}
+				}
+				for (var i=1;i<=$scope.pageCollection.brandCollection.length;i++){
 					datas[i]=new Array();
 					datas[i][0]=parseInt($scope.pageCollection.brandCollection[i-1].easeOfUsePerception.Value);
 					datas[i][1]=parseInt($scope.pageCollection.brandCollection[i-1].qualityPerception.Value);
@@ -223,9 +317,28 @@ define(['app','socketIO','routingConfig'], function(app) {
 					datas.splice(deletedata[i],1);
 					colors.splice(deletedata[i],1);
 				}
+				deletedata=new Array();
+				for(var i=1;i<costData.length;i++){
+					count=0;
+					for(var j=0;j<selectdata.length;j++)
+					{
+						if(costData[i][3]==selectdata[j].key){
+							count++;
+						}
+					}
+					if(count==0){
+						deletedata.push(i);
+					}
+				}
+				for(var i=deletedata.length-1;i>=0;i--){
+					costData.splice(deletedata[i],1);
+					costColors.splice(deletedata[i],1);
+				}
 				//console.log(datas);
 				$scope.data=datas;
+				$scope.costData=costData;
 				$scope.colors=colors;
+				$scope.costColors=costColors;
 				$scope.mapTitle=mapTitle;
 			});
 		}
@@ -250,6 +363,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 		$scope.getMap=getMap;
 		$scope.showSelect=showSelect;
 		$scope.showChart = showChart;
-		showChart($scope.cat,$scope.market,$scope.language);
+		getMap($scope.seminar,$scope.period);
+		//showChart($scope.cat,$scope.market,$scope.language);
 	}]);
 });

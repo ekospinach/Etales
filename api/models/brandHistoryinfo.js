@@ -59,6 +59,22 @@ exports.getBrandHistory=function(req,res,next){
     })
 }
 
+exports.getPeriodBrandHistory=function(req,res,next){
+  brandHistory.find({
+    seminar:req.params.seminar,
+    period:req.params.period
+  },function(err,docs){
+    if(err){
+      next(new Error(err));
+    }
+    if(!docs){
+      res.send(404,'cannot find the doc');
+    }else{
+      res.send(200,docs);
+    }
+  })
+}
+
 exports.addInfos = function(options){
     var deferred = q.defer();
     var startFrom = options.startFrom,

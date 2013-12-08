@@ -100,7 +100,6 @@ define(['angular', 'services','bootstrap'], function(angular, services) {
 		    return function(scope,elem, attrs){
 		            scope.$watch(attrs.ngModel, function(v){
 		            $("#chart1b").empty();
-		            console.log(scope.colors);
 		            var plot1b=$.jqplot('chart1b',[scope.data],{
 		            grid:{
 		                backgroundColor: "transparent",
@@ -175,6 +174,31 @@ define(['angular', 'services','bootstrap'], function(angular, services) {
 		       });
 		    }
 		})
+
+		.directive('jqueryPlot2',function(){
+		    return function(scope,elem, attrs){
+		            scope.$watch(attrs.ngModel, function(v){
+			            $("#chart2b").empty();
+			            var plot2b=$.jqplot('chart2b',[scope.costData],{
+			            grid:{
+			                backgroundColor: "transparent",
+			            },
+			            seriesColors:scope.costColors,   
+			            seriesDefaults:{
+			                renderer: $.jqplot.BubbleRenderer,
+			                rendererOptions: {
+			                    bubbleAlpha: 0.6,
+			                    highlightAlpha: 0.8,
+			                    showLabels: true
+			                },
+			                shadow: true,
+			                shadowAlpha: 0.05
+			            }
+			        });
+		       });
+		    }
+		})
+
 		.directive('googleChart', ['$timeout','$window', function ($timeout, $window) {
 	        return {
 	            restrict: 'A',

@@ -79,8 +79,10 @@ app.post('/addContract',require('./api/models/contract.js').addContract(io));
 //duplicate
 app.post('/duplicateContract',require('./api/models/contract.js').duplicateContract(io));
 app.get('/variantHistoryInfo/:seminar/:period/:parentBrandName/:varName',require('./api/models/variantHistoryInfo').getVariantHistory);
+//get brandHistory getPeriodBrandHistory
 app.get('/brandHistoryInfo/:seminar/:period/:brandName',require('./api/models/brandHistoryInfo.js').getBrandHistory);
-//get brandHistory
+app.get('/brandHistoryInfo/:seminar/:period',require('./api/models/brandHistoryInfo.js').getPeriodBrandHistory);
+
 app.get('/producerBrandDecision/:producerID/:period/:seminar/:brandName',require('./api/models/producerDecision.js').getBrandHistory);
 //retailer get producerDecision
 app.get('/getProducerDecisionByVar/:producerID/:period/:seminar/:brandName/:varName',require('./api/models/producerDecision.js').retailerGetProducerDecision);
