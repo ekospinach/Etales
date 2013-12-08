@@ -1,7 +1,14 @@
 <div id="content" class="bs-header">
     <div class="container">
-        <h1>Contract</h1>
-        <p>We deliver a highly disruptive and transformational experiential learning model on a global scale !</p>
+        <h1>Negotiation</h1>
+        <p>Oleg, we need some description here...</p>
+    </div>
+</div>
+
+<div class="bs-old-docs">
+    <div class="container">
+        <strong>
+        </strong>
     </div>
 </div>
 
@@ -9,13 +16,15 @@
 	<div class="row">
 		<div class="col-md-12">
 		    <div class="bs-docs-section">
-		    	<h3>ContractList</h3>
+		    	<div class="page-header">
+			    	<h3>Contract List<small> Oleg, we need some description here...</small></h3>	    		
+		    	</div>
 		    	<div class="pull-left">
-		    		<div class="btn-group pull-left" data-toggle="buttons">
-			            <label class="btn btn-primary" ng-click="">
+		    		<div class="btn-group pull-left" data-toggle="buttons" ng-show="false">
+			            <label class="btn btn-default" ng-click="">
 			            	<input type="radio" name="options">English
 			            </label>
-			            <label class="btn btn-primary" ng-click="">
+			            <label class="btn btn-default" ng-click="">
 			            	<input type="radio" name="options">Chinese
 			            </label>
 			        </div>
@@ -48,7 +57,7 @@
                             <th>Producer</th>
                             <th>Retailer</th>
                             <th>Drafted By</th>
-                            <th>isLock?</th>
+                            <th ng-show="false">isLock?</th>
                             <th></th>
 			    		</tr>
 			    	</thead>
@@ -59,7 +68,7 @@
 				    		<td>Producer-{{allContract.producerID}}</td>
 				    		<td>Retailer-{{(allContract.retailerID)}}</td>
 				    		<td>{{(allContract.draftedByCompanyID>3)?'Retailer':'Producer'}}-{{(allContract.draftedByCompanyID>3)?(allContract.draftedByCompanyID-4):allContract.draftedByCompanyID}}</td>
-				    		<td>
+				    		<td ng-show="false">
 				    			<fieldset disabled>
 				    				<div class="checkbox">
 				    					<label>
@@ -98,7 +107,7 @@
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
-					<label for="contractCode">ContractCode:</label>
+					<label for="contractCode">New contract name</label>
 					<div style="clear:both"></div>
 					<div class="col-xs-5 input-group">
 						<input type="text" id="contractCode" placeholder="contractCode" class="form-control" ng-model="newContractCode" required>
@@ -106,7 +115,7 @@
 					<div style="clear:both"></div>
 				</div>
 				<div class="form-group">
-					<label for="retailerID">Contract To:</label>
+					<label for="retailerID">Contract with</label>
 					<div style="clear:both"></div>
 					<div class="col-xs-5">
 						<select class="form-control" ng-model="newRetailerID">
@@ -137,7 +146,7 @@
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
-					<label for="contractCode">ContractCode:</label>
+					<label for="contractCode">New contract name</label>
 					<div style="clear:both"></div>
 					<div class="col-xs-5 input-group">
 						<input type="text" id="contractCode" placeholder="contractCode" class="form-control" ng-model="duplicateContractCode" required>
