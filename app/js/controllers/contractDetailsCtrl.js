@@ -44,7 +44,7 @@ define(['app'], function(app) {
 
 				//get current brand name list of this $scope.contractInfo, depends on producerID/seminar/period
 				var url='/producerBrands/'+$scope.contractInfo.producerID+'/'+$scope.contractInfo.period+'/'+$scope.contractInfo.seminar;
-				console.log('url:' + url);
+				//console.log('url:' + url);
 				$http({method:'GET',url:url}).then(function(data){
 					$scope.brandList=data.data;
 
@@ -53,7 +53,7 @@ define(['app'], function(app) {
 					(function multipleRequestShooter(urls, idx){
 						$http({method:'GET', url:urls[idx]}).then(function(data){
 
-							console.log('get data:' + data.data[0]);
+							//console.log('get data:' + data.data[0]);
 							if(data.data.length!=0){ details.push(data.data[0]);}
 							else{ details.push(data.data); }
 						}, function(data){
@@ -63,7 +63,6 @@ define(['app'], function(app) {
 								idx++;
 								multipleRequestShooter(urls, idx);							
 							}else{
-								console.log('multipleRequestShooter end.');
 								$scope.details = details;
 								//deal with blank details document, fill some default value into it
 								var negotiationItems = ContractInfo.getActivedNegotiationItem();
@@ -79,7 +78,7 @@ define(['app'], function(app) {
 														'userType':userTypes[j],
 														'negotiationItem':negotiationItems[k],
 														'relatedBrandName':$scope.brandList[i].brandName,
-														'retailerID':$scope.brandList[i].brandID,
+														'relatedBrandID':$scope.brandList[i].brandID,
 														'useBrandDetails':true,
 														'useVariantDetails':false,
 														'displayValue':0,
@@ -99,7 +98,7 @@ define(['app'], function(app) {
 											}
 										}
 									};
-									console.log('load details:' + $scope.details);									
+									//console.log('load details:' + $scope.details);									
 									renderContractDetailsByCategory('Elecssories');
 								}																									
 							}
@@ -124,12 +123,70 @@ define(['app'], function(app) {
 				var proDetailList = new Array();
 				for (var i = 0; i < negotiationItems.length; i++) {
 					proDetailList[i]=_.filter(singleCategoryDetails ,function(obj){ return (obj.userType=="P"&&obj.negotiationItem==negotiationItems[i]); });
+					//if rate value*100;
+					if(negotiationItems[i]=="nc_VolumeDiscountRate"||negotiationItems[i]=="nc_PerformanceBonusRate"){
+						for(var j=0;j<proDetailList[i].length;j++){
+							proDetailList[i][j].brand_ruralValue*=100;
+							proDetailList[i][j].brand_urbanValue*=100;
+							proDetailList[i][j].variant_A_ruralValue*=100;
+							proDetailList[i][j].variant_A_urbanValue*=100;
+							proDetailList[i][j].variant_B_ruralValue*=100;
+							proDetailList[i][j].variant_B_urbanValue*=100;
+							proDetailList[i][j].variant_C_ruralValue*=100;
+							proDetailList[i][j].variant_C_urbanValue*=100;
+						}
+					}
 				};
+				//load display value
+				for (var i = 0; i < 4; i++) {
+					for(var j=0;j<proDetailList[i].length;j++){
+						if(i==0){
+							proDetailList[i][j].displayValue=proDetailList[i][j].displayValue+'('+proDetailList[4][j].displayValue+')';
+						}
+						if(i==1){
+							if(proDetailList[i][j].amount_or_rate){
+								proDetailList[i][j].displayValue=proDetailList[i][j].displayValue+'('+proDetailList[5][j].displayValue+')';
+							}else{
+								proDetailList[i][j].displayValue=proDetailList[i][j].displayValue+'('+proDetailList[6][j].displayValue+')';
+							}
+						}
+					}
+				}
+				
+
 				$scope.proDetailList=proDetailList;
+				console.log($scope.proDetailList);
 				var retDetailList=new Array();
 				for (var i = 0; i < negotiationItems.length; i++) {
 					retDetailList[i] =_.filter(singleCategoryDetails ,function(obj){ return (obj.userType=="R"&&obj.negotiationItem==negotiationItems[i]);});
+					if(negotiationItems[i]=="nc_VolumeDiscountRate"||negotiationItems[i]=="nc_PerformanceBonusRate"){
+						//if rate value*100;
+						for(var j=0;j<retDetailList[i].length;j++){
+							retDetailList[i][j].brand_ruralValue*=100;
+							retDetailList[i][j].brand_urbanValue*=100;
+							retDetailList[i][j].variant_A_ruralValue*=100;
+							retDetailList[i][j].variant_A_urbanValue*=100;
+							retDetailList[i][j].variant_B_ruralValue*=100;
+							retDetailList[i][j].variant_B_urbanValue*=100;
+							retDetailList[i][j].variant_C_ruralValue*=100;
+							retDetailList[i][j].variant_C_urbanValue*=100;
+						}
+					}
 				};
+				for (var i = 0; i < 4; i++) {
+					for(var j=0;j<retDetailList[i].length;j++){
+						if(i==0){
+							retDetailList[i][j].displayValue=retDetailList[i][j].displayValue+'('+retDetailList[4][j].displayValue+')';
+						}
+						if(i==1){
+							if(retDetailList[i][j].amount_or_rate){
+								retDetailList[i][j].displayValue=retDetailList[i][j].displayValue+'('+retDetailList[5][j].displayValue+')';
+							}else{
+								retDetailList[i][j].displayValue=retDetailList[i][j].displayValue+'('+retDetailList[6][j].displayValue+')';
+							}
+						}
+					}
+				}
 				$scope.retDetailList=retDetailList;
 
 				var variantListByCategory=new Array();
@@ -205,6 +262,25 @@ define(['app'], function(app) {
 				$scope.shouldBeRate="none";
 				$scope.shouldBeAmount="none";
 				$scope.shouldBeNormal="";
+				var count=0;
+				switch(selectedDetail.negotiationItem){
+					case 'nc_MinimumOrder':
+						$scope.showNegotiationItem="Minimum Order & Discount Rate";
+						$scope.showTitle="Minimum Order";
+						break;
+					case 'nc_SalesTargetVolume':
+						$scope.showNegotiationItem="Sales Target Volume & Performance Bonus";
+						$scope.showTitle="Sales Target";
+						break;
+					case 'nc_PaymentDays':
+						$scope.showNegotiationItem="Payment Days";
+						$scope.showTitle="Payment Days";
+						break;
+					case 'nc_OtherCompensation':
+						$scope.showNegotiationItem="Other Compensation";
+						$scope.showTitle="Other Compensation";
+						break;
+				}
 
 				//deal with special details combination : MinimumOrder&DiscountRate / SaleTarget/PerformanceBonus
 				if(selectedDetail.negotiationItem=="nc_MinimumOrder"){
@@ -219,7 +295,8 @@ define(['app'], function(app) {
 							$scope.editDetailDisRate=_.find($scope.proDetailList[4],function(obj){ return (obj.relatedBrandName==selectedDetail.relatedBrandName&&obj.relatedBrandID==selectedDetail.relatedBrandID);});
 							break;
 						case 'R':
-							$scope.editDetailDisRate=_.find($scope.retDetailList[4],function(obj){return (obj.relatedBrandName==selectedDetail.relatedBrandName&&obj.relatedBrandID==selectedDetail.relatedBrandID);});							
+							$scope.editDetailDisRate=_.find($scope.retDetailList[4],function(obj){return (obj.relatedBrandName==selectedDetail.relatedBrandName&&obj.relatedBrandID==selectedDetail.relatedBrandID);});	
+							break;							
 					}
 				}
 				else if(selectedDetail.negotiationItem=="nc_SalesTargetVolume"){
@@ -310,7 +387,25 @@ define(['app'], function(app) {
 							$scope.editProductList[i].amout_ruralValue=$scope.editDetailBonusAmount.variant_C_ruralValue;
 						}
 					}
+					if($scope.editProductList[i].varID!=0){
+						$scope.editProductList[i].show=1;
+						count++;
+					}else{
+						$scope.editProductList[i].show=0;
+					}
+					$scope.count=count;
 				}
+			}
+
+			var checkData=function(value){
+				var d = $q.defer();	
+				var filter=/^[0-9]*[1-9][0-9]*$/;
+				if(!filter.test(value)){
+					d.resolve('Input a Integer');
+				}else{
+					d.resolve();
+				}
+				return d.promise;
 			}
 
 			$scope.openEditModal=function(Detail){
@@ -318,31 +413,132 @@ define(['app'], function(app) {
 				loadModalDate(Detail);
 			}
 
-			$scope.setShowDetailType=function(type,style){
-				if(type=="Brand"){
+			$scope.setShowDetailType=function(type,detail){
+				var value=true;
+				if(type=="brand"){
 					$scope.shouldShowBrand="";
 					$scope.shouldShowVariant="none";
+					value=true;
 				}
-				if(type=="Variant"){
+				else if(type=="variant"){
 					$scope.shouldShowBrand="none";
 					$scope.shouldShowVariant="";
+					value=false;
+				}
+				var queryCondition={
+					contractCode:detail.contractCode,
+					negotiationItem:detail.negotiationItem,
+					userType:detail.userType,
+					relatedBrandName:detail.relatedBrandName,
+					relatedBrandID:detail.relatedBrandID,
+					type:type,
+					location:"useBrandDetails",
+					value:value,
+					count:$scope.count
+				}
+				if(detail.negotiationItem=="nc_MinimumOrder"){
+					$http({
+						method:'POST',
+						url:'/updateContractDetails',
+						data:queryCondition
+					}).then(function(data){
+						queryCondition.negotiationItem="nc_VolumeDiscountRate";
+						return $http({
+							method:'POST',
+							url:'/updateContractDetails',
+							data:queryCondition
+						});
+					}).then(function(data){
+						refreshBrandAndContractDetails();
+					},function(data){
+						refreshBrandAndContractDetails();
+					})
+				}else if(detail.negotiationItem=="nc_SalesTargetVolume"){
+					$http({
+						method:'POST',
+						url:'/updateContractDetails',
+						data:queryCondition
+					}).then(function(data){
+						queryCondition.negotiationItem="nc_PerformanceBonusRate";
+						return $http({
+							method:'POST',
+							url:'/updateContractDetails',
+							data:queryCondition
+						});
+					}).then(function(data){
+						queryCondition.negotiationItem="nc_PerformanceBonusAmount";
+						return $http({
+							method:'POST',
+							url:'/updateContractDetails',
+							data:queryCondition
+						});
+					}).then(function(data){
+						refreshBrandAndContractDetails();
+					},function(data){
+						refreshBrandAndContractDetails();
+					})
+				}else{
+					$http({
+						method:'POST',
+						url:'/updateContractDetails',
+						data:queryCondition
+					}).then(function(data){
+						refreshBrandAndContractDetails();
+					},function(data){
+						refreshBrandAndContractDetails();
+					})
 				}
 			}
 
-			$scope.setShowBonusType=function(type){
+			$scope.setShowBonusType=function(type,detail){
+				var value=true;
 				if(type=="Amout"){
 					$scope.shouldBeBonusAmount="";
 					$scope.shouldBeBonusRate="none";
-				}
-				else{
+					value=true;
+				}else if(type=="Rate"){
 					$scope.shouldBeBonusAmount="none";
-					$scope.shouldBeBonusRate="";				
+					$scope.shouldBeBonusRate="";	
+					value=false;			
 				}
+				var queryCondition={
+					contractCode:detail.contractCode,
+					negotiationItem:detail.negotiationItem,
+					userType:detail.userType,
+					relatedBrandName:detail.relatedBrandName,
+					relatedBrandID:detail.relatedBrandID,
+					type:type,
+					location:"amount_or_rate",
+					value:value,
+					count:$scope.count
+				}
+				$http({
+					method:'POST',
+					url:'/updateContractDetails',
+					data:queryCondition
+				}).then(function(data){
+					queryCondition.negotiationItem="nc_PerformanceBonusRate";
+					return $http({
+						method:'POST',
+						url:'/updateContractDetails',
+						data:queryCondition
+					});
+				}).then(function(data){
+					queryCondition.negotiationItem="nc_PerformanceBonusAmount";
+					return $http({
+						method:'POST',
+						url:'/updateContractDetails',
+						data:queryCondition
+					});
+				}).then(function(data){
+					refreshBrandAndContractDetails();
+				},function(data){
+					refreshBrandAndContractDetails();
+				});
 			}
 
 			$scope.closeEditModal=function(){
 				$scope.editModal=false;
-				//$scope.detailModal=true;
 			}
 
 			$scope.openViewModal=function(Detail){
@@ -355,21 +551,26 @@ define(['app'], function(app) {
 			}
 
 			$scope.updateContractDetails=function(detail,item,location,index,type){
-				console.log(detail);
 				var value;
 				if(type=="brand"){
 					if(location=="rural"){
 						value=detail.brand_ruralValue;
+						if(item=="nc_VolumeDiscountRate"||item=="nc_PerformanceBonusRate"){
+							value=detail.brand_ruralValue/100;
+						}
 					}else{
 						value=detail.brand_urbanValue;
+						if(item=="nc_VolumeDiscountRate"||item=="nc_PerformanceBonusRate"){
+							value=detail.brand_urbanValue/100;
+						}
 					}
 				}
 				else{
 					if(location=="rural"){
 						if(item=="nc_VolumeDiscountRate"){
-							value=detail.dis_ruralValue;
+							value=detail.dis_ruralValue/100;
 						}else if(item=="nc_PerformanceBonusRate"){
-							value=detail.rate_ruralValue;
+							value=detail.rate_ruralValue/100;
 						}else if(item=="nc_PerformanceBonusAmount"){
 							value=detail.amout_ruralValue;
 						}else{
@@ -377,16 +578,15 @@ define(['app'], function(app) {
 						}
 					}else{
 						if(item=="nc_VolumeDiscountRate"){
-							value=detail.dis_urbanValue;
+							value=detail.dis_urbanValue/100;
 						}else if(item=="nc_PerformanceBonusRate"){
-							value=detail.rate_urbanValue;
+							value=detail.rate_urbanValue/100;
 						}else if(item=="nc_PerformanceBonusAmount"){
 							value=detail.amout_urbanValue;
 						}else{
 							value=detail.urbanValue;
 						}
 					}
-					//value=detail.brand_ruralValue;
 				}
 
 				var queryCondition={
@@ -398,11 +598,19 @@ define(['app'], function(app) {
 					type:type,
 					location:location,
 					index:index,
-					value:value
+					value:value,
+					count:$scope.count
 				};
-				$http.post('/updateContractDetails',queryCondition).success(function(data){
-					console.log(data);
-				});
+				$http({
+					method:'POST',
+					url:'/updateContractDetails',
+					data:queryCondition
+				}).success(function(data){
+					refreshBrandAndContractDetails();
+				}).error(function(data){
+					console.log('err');
+					refreshBrandAndContractDetails();
+				})
 			}
 
 			$scope.detailOpts = {
@@ -419,14 +627,12 @@ define(['app'], function(app) {
 			    backdropFade: true,
 			    dialogFade:true
 			};
-
-
-			//console.log($scope.contractUserID);
 			$scope.renderContractDetailsByCategory = renderContractDetailsByCategory;
 			$scope.loadModalDate=loadModalDate;
 			$scope.showbubleMsg=showbubleMsg;
 			$scope.compare=compare;
 			$scope.copyProposal = copyProposal;
+			$scope.checkData=checkData;
 			refreshBrandAndContractDetails();
 		}]
 	)

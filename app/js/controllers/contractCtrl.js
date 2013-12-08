@@ -12,15 +12,16 @@ define(['app'], function(app) {
 					$scope.allContracts=data;
 					$scope.contractList=$scope.allContracts;
 					if(contractUserID==0){
-						$scope.producerShow="block";
-						$scope.retailerShow="block";
+						//$scope.producerShow="block";
+						//$scope.retailerShow="block";
 						//filterUser($scope.producerID,$scope.retailerID);
 					}else if(contractUserID<5){
-						$scope.producerShow="block";
-						$scope.retailerShow="none";
+						$scope.producerShow=true;
+						$scope.retailerShow=false;
+
 					}else{
-						$scope.producerShow="none";
-						$scope.retailerShow="block";
+						$scope.producerShow=false;
+						$scope.retailerShow=true;
 					}
 				});
 			}
@@ -42,19 +43,38 @@ define(['app'], function(app) {
 		 		$scope.bubleMsg = ' ' + content;
 		 		switch(status){
 		 			case 1: 
-		 				$scope.bubleClassName = 'alert alert-danger'; 
-		 				$scope.bubleTitle = 'Error!';
+		 				$scope.insertBubleClassName = 'alert alert-danger'; 
+		 				$scope.insertBubleTitle = 'Error!';
+		 				$scope.insertMessage=content;
 		 				break;
 		 			case 2: 
-		 				$scope.bubleClassName = 'alert alert-success'; 
-		 				$scope.bubleTitle = 'Success!';
+		 				$scope.insertBubleClassName = 'alert alert-success'; 
+		 				$scope.insertBubleTitle = 'Success!';
+		 				$scope.insertMessage=content;
 		 				break;
 		 			case 3:
-		 				$scope.bubleClassName = 'alert alert-block'; 
-		 				$scope.bubleTitle = 'Warning!';
+		 				$scope.insertBubleClassName = 'alert alert-block'; 
+		 				$scope.insertBubleTitle = 'Warning!';
+		 				$scope.insertMessage=content;
+		 				break;
+		 			case 4: 
+		 				$scope.duplicateBubleClassName = 'alert alert-danger'; 
+		 				$scope.duplicateBubleTitle = 'Error!';
+		 				$scope.duplicateMessage=content;
+		 				break;
+		 			case 5: 
+		 				$scope.duplicateBubleClassName = 'alert alert-success'; 
+		 				$scope.duplicateBubleTitle = 'Success!';
+		 				$scope.duplicateMessage=content;
+		 				break;
+		 			case 6:
+		 				$scope.duplicateBubleClassName = 'alert alert-block'; 
+		 				$scope.duplicateBubleTitle = 'Warning!';
+		 				$scope.duplicateMessage=content;
 		 				break;	 			
 		 			default:
-		 			 $scope.bubleClassName = 'alert'; 
+		 			 $scope.insertBubleClassName = 'alert'; 
+		 			 $scope.insertBubleClassName = 'alert';
 		 		}
 		 		console.log('infoBuble.show');
 		 		$scope.infoBuble = true;
@@ -83,17 +103,46 @@ define(['app'], function(app) {
 				$http({method: 'POST', url: '/addContract',data:data}).success(function(data){
 					//console.log(data);
 					$scope.allContracts.push(data);
-					showbubleMsg('Insert success'+data,2);
+					showbubleMsg('Insert success',2);
 					closeInsertModal();
 				}).error(function(err){
 					showbubleMsg('Insert failure, ' + err,1);
-					
 				})
 				//$http
 			}
 
+			$scope.openDuplicateModal=function(contract){
+				$scope.contract=contract;
+				$scope.duplicateModal=true;
+			}
+
+			var closeDuplicateModal=function(){
+				$scope.duplicateModal=false;
+			}
+
 			$scope.duplicate = function(contract){
-				
+				var retailerID=0;
+				if(contract.retailerID==1){
+					retailerID=2;
+				}else{
+					retailerID=1;
+				}
+				var data={
+					'contractCode':$scope.duplicateContractCode+'_'+$rootScope.user.seminar+'_'+$rootScope.currentPeriod,
+					'seminar':$rootScope.user.seminar,
+					'period':$rootScope.currentPeriod,
+					'draftedByCompanyID':$rootScope.user.username.substring($rootScope.user.username.length-1),
+					'producerID':$rootScope.user.username.substring($rootScope.user.username.length-1),
+					'retailerID':retailerID,
+					'duplicateCode':contract.contractCode
+				}
+				$http({method: 'POST', url: '/duplicateContract',data:data}).success(function(data){
+					$scope.allContracts.push(data);
+					showbubleMsg('Insert success',5);
+					closeDuplicateModal();
+				}).error(function(err){
+					showbubleMsg('Insert failure, ' + err,4);
+				})
 			}
 
 			//$scope.contractUserID=$rootScope.rootContractUserID;
@@ -110,6 +159,7 @@ define(['app'], function(app) {
 			$scope.closeInsertModal=closeInsertModal;
 			$scope.showbubleMsg=showbubleMsg;
 			$scope.openDetailModal=openDetailModal;
+			$scope.closeDuplicateModal=closeDuplicateModal;
 			showView($scope.contractUserID);
 		}]
 	)

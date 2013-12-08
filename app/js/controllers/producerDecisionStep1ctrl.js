@@ -331,6 +331,10 @@ define(['app'], function(app) {
 
 			var checkProduction=function(category,brandName,varName,location,additionalIdx,index,value){
 				var d = $q.defer();	
+				var filter=/^[0-9]*[1-9][0-9]*$/;
+				if(!filter.test(value)){
+					d.resolve('Input a Integer');
+				}
 				var categoryID,max,result;
 				if(category=="Elecssories"){
 					categoryID=1;

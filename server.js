@@ -74,11 +74,10 @@ app.get('/contracts/:seminar/:contractUserID',require('./api/models/contract.js'
 app.get('/contractDetail/:contractCode/:userType/:negotiationItem/:brandName',require('./api/models/contract.js').getContractDetail);
 app.post('/compareContractDetailsAndUpdateIsVerified', require('./api/models/contract.js').compareContractDetailsAndUpdateIsVerified);
 app.post('/copyProposal', require('./api/models/contract.js').copyProposal);
-app.post('/duplicateContract', require('./api/models/contract.js').duplicateContract);
-
 //add new contract
 app.post('/addContract',require('./api/models/contract.js').addContract(io));
-
+//duplicate
+app.post('/duplicateContract',require('./api/models/contract.js').duplicateContract(io));
 app.get('/variantHistoryInfo/:seminar/:period/:parentBrandName/:varName',require('./api/models/variantHistoryInfo').getVariantHistory);
 app.get('/brandHistoryInfo/:seminar/:period/:brandName',require('./api/models/brandHistoryInfo.js').getBrandHistory);
 //get brandHistory
@@ -115,6 +114,8 @@ app.get('/retailerCurrentDecision/:seminar/:period/:retailerID/:brandName/:varNa
 //special calculate API
 app.get('/productionCost');
 app.get('/currentPeriod/:seminar',require('./api/models/seminar.js').getCurrentPeriod);
+
+app.post('/deleteDetailData',require('./api/models/contract.js').deleteContractDetailData(io));
 
 app.use(express.errorHandler());
 

@@ -136,6 +136,53 @@ exports.duplicateContract = function(req, res, next){
 	})
 }
 
+exports.deleteContractDetailData=function(io){
+	return function(req,res,next){
+		//console.log('hello this is right');
+		//res.send(200,'ok');
+		var result=false;
+		var queryCondition={
+			relatedBrandName:req.body.relatedBrandName,
+			deleteType:req.body.deleteType,
+			index:req.body.index
+		};
+			contractDetails.find({
+				relatedBrandName:queryCondition.relatedBrandName
+			},function(err,docs){
+				if(err){
+					next(new Error(err));
+				}
+				if((docs.length)==0){
+					res.send(200,'no contract,mission complete');
+				}else{
+					for(var i=0;i<docs.length;i++){
+						if(queryCondition.deleteType=="variant"){
+							//if(queryCondition.deleteType=="variant"){
+							if(queryCondition.index==0){
+								docs[i].variant_A_ruralValue=0;
+								docs[i].variant_A_urbanValue=0;
+							}else if(queryCondition.index==1){
+								docs[i].variant_B_ruralValue=0;
+								docs[i].variant_B_urbanValue=0;
+							}else if(queryCondition.index==2){
+								docs[i].variant_C_ruralValue=0;
+								docs[i].variant_C_urbanValue=0;
+							}
+							docs[i].save(function(err){
+								if(err) next(new Error(err));
+							});
+						}else{
+							docs[i].remove(function(err){
+								if(err) next(new Error(err));
+							});
+						}
+					}
+					res.send(200,'successfully!');
+				}
+			});
+	}
+}
+
 exports.updateContractDetails = function(io){
   	return function(req, res, next){
   		//console.log(req.body);
@@ -150,8 +197,9 @@ exports.updateContractDetails = function(io){
   			location:req.body.location,
   			index:req.body.index,
   			value:req.body.value,
+  			count:req.body.count
   		};
-
+  		console.log(queryCondition);
   		contractDetails.findOne({
   			contractCode:queryCondition.contractCode,
   			userType:queryCondition.userType,
@@ -163,7 +211,7 @@ exports.updateContractDetails = function(io){
   				next(new Error(err));
   			}
   			if(!doc){
-  				var newdoc=new contractDetails({
+  				var doc=new contractDetails({
   					contractCode:queryCondition.contractCode,
   					userType:queryCondition.userType,
   					negotiationItem:queryCondition.negotiationItem,
@@ -183,154 +231,115 @@ exports.updateContractDetails = function(io){
 					isVerified : false,
 					amount_or_rate : true		
   				});
-  				if(queryCondition.type=="brand"){
-  					if(queryCondition.location=="rural"){
-	  					newdoc.brand_ruralValue=queryCondition.value;
-	  				}else{
-	  					newdoc.brand_urbanValue=queryCondition.value;
-	  				}
-	  				newdoc.useBrandDetails=true;
-	  				newdoc.useVariantDetails=false;
-  				}
-  				if(queryCondition.type=="variant"){
-					if(queryCondition.location=="rural"){
-	  					//newdoc.brand_ruralValue=queryCondition.value;
-	  					switch(queryCondition.index){
-	  						case 0:newdoc.variant_A_ruralValue=queryCondition.value;break;
-	  						case 1:newdoc.variant_B_ruralValue=queryCondition.value;break;
-	  						case 2:newdoc.variant_C_ruralValue=queryCondition.value;break;
-	  					}
-	  				}else{
-	  					switch(queryCondition.index){
-	  						case 0:newdoc.variant_A_urbanValue=queryCondition.value;break;
-	  						case 1:newdoc.variant_B_urbanValue=queryCondition.value;break;
-	  						case 2:newdoc.variant_C_urbanValue=queryCondition.value;break;
-	  					}
-	  				}
-	  				newdoc.useBrandDetails=false;
-	  				newdoc.useVariantDetails=true;
-  				}
-  				newdoc.save(function(err,newdoc,numberAffected){
-  					if(err){
-  						next(new Error(err));
-  					}
-  					console.log('save update,number affected:'+numberAffected);
-  					result=true;
-  					//res.send(200, 'mission complete!');
-  				});
-  				//console.log('cannot find matched doc....');
-  				//res.send(404,'cannot find matched detail ...');
-  			}else{
-  				if(queryCondition.type=="brand"){
-  					if(queryCondition.location=="rural"){
-	  					doc.brand_ruralValue=queryCondition.value;
-	  				}else{
-	  					doc.brand_urbanValue=queryCondition.value;
-	  				}
-	  				doc.useBrandDetails=true;
-	  				doc.useVariantDetails=false;
-  				}
-  				if(queryCondition.type=="variant"){
-					if(queryCondition.location=="rural"){
-	  					//doc.brand_ruralValue=queryCondition.value;
-	  					switch(queryCondition.index){
-	  						case 0:doc.variant_A_ruralValue=queryCondition.value;break;
-	  						case 1:doc.variant_B_ruralValue=queryCondition.value;break;
-	  						case 2:doc.variant_C_ruralValue=queryCondition.value;break;
-	  					}
-	  				}else{
-	  					switch(queryCondition.index){
-	  						case 0:doc.variant_A_urbanValue=queryCondition.value;break;
-	  						case 1:doc.variant_B_urbanValue=queryCondition.value;break;
-	  						case 2:doc.variant_C_urbanValue=queryCondition.value;break;
-	  					}
-	  				}
-	  				doc.useBrandDetails=false;
-	  				doc.useVariantDetails=true;
-  				}
-  				doc.save(function(err,doc,numberAffected){
-  					if(err){
-  						next(new Error(err));
-  					}
-  					console.log('save update,number affected:'+numberAffected);
-  					result=true;
-  					//res.send(200, 'mission complete!');
-  				});
   			}
-  		});
-		console.log(queryCondition.negotiationItem);
-		if(queryCondition.negotiationItem=="nc_VolumeDiscountRate"){
-			contractDetails.findOne({
-				contractCode:queryCondition.contractCode,
-				negotiationItem:"nc_MinimumOrder",
-	  			userType:queryCondition.userType,
-	  			relatedBrandName:queryCondition.relatedBrandName,
-  				relatedBrandID:queryCondition.relatedBrandID
-			},function(err,doc){
-				if(err){
-	  				next(new Error(err));
+  			if(queryCondition.type=="brand"){
+  				if(queryCondition.location=="rural"){
+	  				doc.brand_ruralValue=queryCondition.value;
+	  			}else if(queryCondition.location=="urban"){
+	  				doc.brand_urbanValue=queryCondition.value;
 	  			}
-	  			if(!doc){
-	  				console.log('cannot find matched doc....');
-	  				res.send(404,'cannot find matched detail ...');
-	  			}else{
-	  				if(queryCondition.type=="brand"){
-	  					doc.useBrandDetails=true;
-	  					doc.useVariantDetails=false;
+	  			doc.useBrandDetails=true;
+	  			doc.useVariantDetails=false;
+  			}else if(queryCondition.type=="variant"){
+				if(queryCondition.location=="rural"){
+	  				switch(queryCondition.index){
+	  					case 0:doc.variant_A_ruralValue=queryCondition.value;break;
+	  					case 1:doc.variant_B_ruralValue=queryCondition.value;break;
+	  					case 2:doc.variant_C_ruralValue=queryCondition.value;break;
+	  				}
+	  			}else if(queryCondition.location=="urban"){
+	  				switch(queryCondition.index){
+	  					case 0:doc.variant_A_urbanValue=queryCondition.value;break;
+	  					case 1:doc.variant_B_urbanValue=queryCondition.value;break;
+	  					case 2:doc.variant_C_urbanValue=queryCondition.value;break;
+	  				}
+	  			}
+	  			doc.useBrandDetails=false;
+	  			doc.useVariantDetails=true;
+  			}else{
+  				doc.amount_or_rate=queryCondition.value;
+  			}
+  			//edit display value
+  			/*
+			1.MinimuOrder Display Value计算方式（求总和）：
+			     a) if useBrandDetails: Display value = Rural input + Urban input
+			     b) if useVariantDetails: Display value = VariantA.RuralInput+ VariantA.UrbanInput + VariantB.RuralInput+VariantB.UrbanInput ……
+			2.DiscountRate Display Value计算 (求平均):
+			     a) if useBrandDetails: Display value = (Rural input + Urban input) / 2
+			     b) if useVariantDetails: Display value = (VariantA.RuralInput+ VariantA.UrbanInput + VariantB.RuralInput+VariantB.UrbanInput…)/ (VariantNumber * 2)
+
+			（综上，第一栏MinimumOrder & Discount Rate界面上显示的综合值为 MinimOrder.DisplayValue ( DiscountRate.DisplayValue)。
+
+			3. SalesTargetVolume Display Value计算方式：求总和
+			4. PerformanceBonusRate Display Value计算方式：求平均
+			5. PerformanceBonusAmount Display Value 计算方式：求总和
+			     （综上，第二栏SalesTargetVolume&Bonus界面上显示的综合值为SalesTargetVolume.Displayvalue（BonusRate.DisplayValue or BonusAmount.DisplayValue））
+
+			6. Payment Days Display Value计算方式：求平均
+			7. Other Compensation Display Value计算方式：求总和
+  			*/
+  			switch(doc.negotiationItem){
+  				case 'nc_MinimumOrder':
+  					if(doc.useBrandDetails){
+	  					doc.displayValue=doc.brand_urbanValue+doc.brand_ruralValue;
 	  				}else{
-	  					doc.useVariantDetails=true;
-	  					doc.useBrandDetails=false;
+	  					doc.displayValue=doc.variant_A_urbanValue+doc.variant_A_ruralValue+doc.variant_B_urbanValue+doc.variant_B_ruralValue+doc.variant_C_urbanValue+doc.variant_C_ruralValue;
 	  				}
-	  				doc.save(function(err,doc,numberAffected){
-	  					if(err){
-	  						next(new Error(err));
-	  					}
-	  					console.log('save useBrandDetails/useVariantDetails successfully,numberAffected:'+numberAffected);
-	  					res.send(200, 'mission complete!');
-	  				})
-	  			}
-			})
-		}
-		else if(queryCondition.negotiationItem=="nc_PerformanceBonusAmount"||queryCondition.negotiationItem=="nc_PerformanceBonusRate"){
-			contractDetails.findOne({
-				contractCode:queryCondition.contractCode,
-				negotiationItem:"nc_SalesTargetVolume",
-	  			userType:queryCondition.userType,
-	  			relatedBrandName:queryCondition.relatedBrandName,
-  				relatedBrandID:queryCondition.relatedBrandID
-			},function(err,doc){
-				if(err){
-	  				next(new Error(err));
-	  			}
-	  			if(!doc){
-	  				console.log('cannot find matched doc....');
-	  				res.send(404,'cannot find matched detail ...');
-	  			}else{
-	  				if(queryCondition.type=="brand"){
-	  					doc.useBrandDetails=true;
-	  					doc.useVariantDetails=false;
+	  				break;
+	  			case 'nc_VolumeDiscountRate':
+	  				if(doc.useBrandDetails){
+	  					doc.displayValue=(doc.brand_urbanValue+doc.brand_ruralValue)/2;
+	  				}else{
+	  					doc.displayValue=Math.round((doc.variant_A_urbanValue+doc.variant_A_ruralValue+doc.variant_B_urbanValue+doc.variant_B_ruralValue+doc.variant_C_urbanValue+doc.variant_C_ruralValue)/(queryCondition.count*2));
 	  				}
-	  				else if(queryCondition.type=="variant"){
-	  					doc.useVariantDetails=true;
-	  					doc.useBrandDetails=false;
+	  				doc.displayValue=doc.displayValue*100+"%";
+	  				break;
+	  			case 'nc_SalesTargetVolume':
+	  			  	if(doc.useBrandDetails){
+	  					doc.displayValue=doc.brand_urbanValue+doc.brand_ruralValue;
+	  				}else{
+	  					doc.displayValue=doc.variant_A_urbanValue+doc.variant_A_ruralValue+doc.variant_B_urbanValue+doc.variant_B_ruralValue+doc.variant_C_urbanValue+doc.variant_C_ruralValue;
 	  				}
-	  				if(queryCondition.negotiationItem=="nc_PerformanceBonusAmount"){
-	  					doc.amount_or_rate=true;
-	  				}else if(queryCondition.negotiationItem=="nc_PerformanceBonusRate"){
-	  					doc.amount_or_rate=false;
+	  				break;
+	  			case 'nc_PerformanceBonusAmount':
+	  			  	if(doc.useBrandDetails){
+	  					doc.displayValue=doc.brand_urbanValue+doc.brand_ruralValue;
+	  				}else{
+	  					doc.displayValue=doc.variant_A_urbanValue+doc.variant_A_ruralValue+doc.variant_B_urbanValue+doc.variant_B_ruralValue+doc.variant_C_urbanValue+doc.variant_C_ruralValue;
 	  				}
-	  				doc.save(function(err,doc,numberAffected){
-	  					if(err){
-	  						next(new Error(err));
-	  					}
-	  					console.log('save useBrandDetails/useVariantDetails successfully,numberAffected:'+numberAffected);
-	  					res.send(200, 'mission complete!');
-	  				})
-	  			}
-			})
-		}else{
-    		res.send(200, 'mission complete!');
-		}
+	  				break;
+	  			case 'nc_PerformanceBonusRate':
+	  				if(doc.useBrandDetails){
+	  					doc.displayValue=(doc.brand_urbanValue+doc.brand_ruralValue)/2;
+	  				}else{
+	  					doc.displayValue=Math.round((doc.variant_A_urbanValue+doc.variant_A_ruralValue+doc.variant_B_urbanValue+doc.variant_B_ruralValue+doc.variant_C_urbanValue+doc.variant_C_ruralValue)/(queryCondition.count*2));
+	  				}
+	  				doc.displayValue=doc.displayValue*100+"%";
+	  				break;
+	  			case 'nc_PaymentDays':
+	  				if(doc.useBrandDetails){
+	  					doc.displayValue=(doc.brand_urbanValue+doc.brand_ruralValue)/2;
+	  				}else{
+	  					doc.displayValue=Math.round((doc.variant_A_urbanValue+doc.variant_A_ruralValue+doc.variant_B_urbanValue+doc.variant_B_ruralValue+doc.variant_C_urbanValue+doc.variant_C_ruralValue)/(queryCondition.count*2));
+	  				}
+	  				break;
+	  			case 'nc_OtherCompensation':
+	  			  	if(doc.useBrandDetails){
+	  					doc.displayValue=doc.brand_urbanValue+doc.brand_ruralValue;
+	  				}else{
+	  					doc.displayValue=doc.variant_A_urbanValue+doc.variant_A_ruralValue+doc.variant_B_urbanValue+doc.variant_B_ruralValue+doc.variant_C_urbanValue+doc.variant_C_ruralValue;
+	  				}
+	  				break;
+  			}
+
+  			doc.save(function(err,doc,numberAffected){
+  				if(err){
+  					next(new Error(err));
+  				}
+  				console.log('save update,number affected:'+numberAffected);
+  				res.send(200, {result:0});
+  			});	
+  		});
     }
 }
 
@@ -605,9 +614,67 @@ exports.addContract = function(io){
 }
 
 
-exports.duplicateContract = function(req, res, next){
-	var contractCode = req.body.contractCode;
-	var newContractCode = req.body.contarct
-
+exports.duplicateContract = function(io){
+	return function(req, res, next){
+  	contract.count({seminar: req.body.seminar,period:req.body.period, producerID:req.body.producerID, retailerID:req.body.retailerID},function(err,count){
+  		if(count!=0){
+  			res.send(404,'already have a contract');
+	  	}else{
+	  		console.log(count);
+		  	var newContract=new contract({
+		  		contractCode : req.body.contractCode,
+				period : req.body.period,
+				seminar : req.body.seminar,
+				draftedByCompanyID : req.body.draftedByCompanyID,
+				producerID : req.body.producerID,
+				retailerID : req.body.retailerID,
+				isDraftFinished : false
+		  	});
+		  	console.log(req.body.duplicateCode);
+		  	contractDetails.find({contractCode : req.body.duplicateCode, userType:'P'}, function(err, docs){
+		  		if(err) {next(new Error(err))};
+		  		contractCount = 0;
+		  		if(docs.length != 0){
+		  			console.log('start copyContractDetails...');
+		  			(function copyContractDetails(idx){
+		  				contractDetails.update({contractCode : req.body.contractCode, 
+										userType : 'P', 
+										negotiationItem : docs[idx].negotiationItem, 
+										relatedBrandName : docs[idx].relatedBrandName,
+										relatedBrandID : docs[idx].relatedBrandID},
+										{useBrandDetails : docs[idx].useBrandDetails, 
+										useVariantDetails : docs[idx].useVariantDetails,
+										displayValue : docs[idx].displayValue,
+										brand_urbanValue : docs[idx].brand_urbanValue,
+										brand_ruralValue : docs[idx].brand_ruralValue,
+										variant_A_urbanValue : docs[idx].variant_A_urbanValue,
+										variant_A_ruralValue : docs[idx].variant_A_ruralValue,
+										variant_B_urbanValue : docs[idx].variant_B_urbanValue,
+										variant_B_ruralValue : docs[idx].variant_B_ruralValue,
+										variant_C_urbanValue : docs[idx].variant_C_urbanValue,
+										variant_C_ruralValue : docs[idx].variant_C_ruralValue,
+										amount_or_rate : docs[idx].amount_or_rate,
+										isVerified : false},
+										{upsert:true},
+										function(err, numberAffected, raw){
+											if(!err){
+												idx++;
+												if(idx<docs.length){
+													copyContractDetails(idx);
+												}		
+											}
+										})
+					})(0);
+				}
+			})
+		  	/*need add Contract Detail*/
+		  	newContract.save(function(err){
+				if(err) next(new Error(err));
+				io.sockets.emit('contarctListChanged', {producerID: req.body.producerID, retailerID: req.body.retailerID}); 
+				res.send(200,newContract);
+			});
+  		}
+  	})
+  }
 	
 }

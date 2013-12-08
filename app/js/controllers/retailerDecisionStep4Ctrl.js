@@ -53,7 +53,6 @@ define(['app'], function(app) {
 					$scope.open=open;
 					$scope.close=close;
 					$scope.addOrders=addOrders;
-					$scope.addOrder=addOrder;
 					$scope.deleteOrder=deleteOrder;
 				showView($scope.retailerID,$scope.period,$scope.category,$scope.market,$scope.language);
 				return delay.promise;
@@ -176,6 +175,7 @@ define(['app'], function(app) {
 				      			}
 				      		}
 				      		$scope.products=products;
+				      		console.log(products);
 							$scope.infoLanguages=infoLanguages;
 							$scope.labelLanguages=labelLanguages;
 							if(category=="Elecssories"){
@@ -220,6 +220,17 @@ define(['app'], function(app) {
 								multipleRequestShooter(urls,idx);
 							}else{
 								$scope.orderProducts=orderProducts;
+								var indexs=new Array();
+								for(i=0;i<$scope.orderProducts.length;i++){
+									for(j=0;j<$scope.products.length;j++){
+										if($scope.orderProducts[i].brandName==$scope.products[j].brandName&&$scope.orderProducts[i].varName==$scope.products[j].varName){
+											indexs.push(i);
+										}
+									}
+								}
+								for(i=indexs.length-1;i>=0;i--){
+									$scope.orderProducts.splice(indexs[i],1);
+								}
 							}
 						})
 					})(urls,0);
@@ -450,47 +461,49 @@ define(['app'], function(app) {
 			}
 
 			var addOrders=function(market){
-				var max=0;
+				var ordersProducts=new Array();
 				for(var i=0;i<$scope.orderProducts.length;i++){
 					if($scope.orderProducts[i].select){
-						max=i;
+						ordersProducts.push($scope.orderProducts[i]);
 					}
 				}
-				for(var i=0;i<$scope.orderProducts.length;i++){
-					if($scope.orderProducts[i].select){
-						if(i==max){
-							addOrder(market,$scope.orderProducts[i],"last");
-							//setTimeout(function(){addOrder(market,$scope.orderProducts[i],"last");},1000);
-						}else{
-							addOrder(market,$scope.orderProducts[i],"none");
-							//setTimeout(function(){addOrder(market,$scope.orderProducts[i],"none");},1000);
-						}
+				console.log(ordersProducts);
+				for(i=0;i<ordersProducts.length;i++){
+					ordersProducts[i].order=0,
+					ordersProducts[i].retailerPrice=0,
+					ordersProducts[i].shelfSpace=0,
+					ordersProducts[i].pricePromotions={
+						promo_Frequency:1,
+						promo_Rate:0.01
 					}
+				}
+				if(market=="Urban"){
+					RetailerDecisionBase.addOrders(1,ordersProducts);
+				}
+				else{
+					RetailerDecisionBase.addOrders(2,ordersProducts);
 				}
 				close();
 			}
 
 
-			var addOrder=function(market,product,last){
-				product.dateOfBirth=$rootScope.currentPeriod;
-				product.dateOfDeath=10;
-				product.order=0;
-				product.retailerPrice=0;
-				product.shelfSpace=0;
-				product.pricePromotions={
-					promo_Frequency:1,
-					promo_Rate:0.01
-				};
-				console.log(product);
-				if(market=="Urban"){
-					RetailerDecisionBase.addOrder(1,product,last);
-				}
-				else{
-					//setTimeout('RetailerDecisionBase.addOrder(2,product,last)',1000);
-					RetailerDecisionBase.addOrder(2,product,last);
-					//setTimeout(function(){RetailerDecisionBase.addOrder(2,product,last);},1000);
-				}
-			}
+			// var addOrder=function(market,product){
+			// 	product.dateOfBirth=$rootScope.currentPeriod;
+			// 	product.dateOfDeath=10;
+			// 	product.order=0;
+			// 	product.retailerPrice=0;
+			// 	product.shelfSpace=0;
+			// 	product.pricePromotions={
+			// 		promo_Frequency:1,
+			// 		promo_Rate:0.01
+			// 	};
+			// 	if(market=="Urban"){
+			// 		RetailerDecisionBase.addOrder(1,product);
+			// 	}
+			// 	else{
+			// 		RetailerDecisionBase.addOrder(2,product);
+			// 	}
+			// }
 
 			var deleteOrder=function(market,category,brandName,varName){
 				if(market=="Urban"){
