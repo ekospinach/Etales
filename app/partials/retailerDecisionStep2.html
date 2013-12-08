@@ -35,71 +35,103 @@
           </small>-->
         </div>
           <div style="clear:both"></div>
-          <div collapse="isCollapsed">
-            <div class="well well-large">
-              <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button>
-              <table class="table table-striped">
-                <tr style="backgroud-color:gray">
-                  <th></th>
-                  <th style="text-align:center">Previous period({{(currentPeriod-1)}})</th>
-                  <th></th>
-                </tr>  
+          <div collapse="isCollapsed" class="panel panel-info">
+            <div class="panel-heading">{{marketName}} <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button></div>
+              <table class="table table-condensed table-bordered">
+                <thead>
+                  <tr>
+                    <td colspan="2" class="col-md-6">Current period ({{currentPeriod}})</td>
+                    <td colspan="2" class="col-md-6">Previous period ({{currentPeriod-1}})</td>               
+                  </tr>                  
+                </thead>
+                <tbody>
                 <tr>
-                  <td>In-store Service Level:{{retailerDecisionHistory[0].serviceLevel}}</td>
-                  <td>Elecssories Selling surface allocation:{{retailerDecisionHistory[0].categorySurfaceShare[0]}}</td>
-                  <td>HealthBeauty Selling surface allocation:{{retailerDecisionHistory[0].categorySurfaceShare[1]}}</td>
-                </tr>
+                  <td></td>
+                  <td></td>
+                  <td>In-store Service Level</td>
+                  <td>{{retailerDecisionHistory[0].serviceLevel}}</td>
+                </tr>                  
                 <tr>
-                  <td>Local Convenience Advertising:{{retailerDecisionHistory[0].localAdvertising[1]}}</td>
-                  <td>Local Assortment Advertising:{{retailerDecisionHistory[0].localAdvertising[2]}}</td>
-                  <td>Local Price Advertising:{{retailerDecisionHistory[0].localAdvertising[0]}}</td>
-                </tr>           
+                  <td></td>
+                  <td></td>
+                  <td>Elecssories Selling surface allocation</td>
+                  <td>{{retailerDecisionHistory[0].categorySurfaceShare[0]}}</td>
+                </tr>                  
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>HealthBeauty Selling surface allocation</td>
+                  <td>{{retailerDecisionHistory[0].categorySurfaceShare[1]}}</td>
+                </tr>                  
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>Local Convenience Advertising</td>
+                  <td>{{retailerDecisionHistory[0].localAdvertising[1]}}</td>
+                </tr>                  
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>Local Assortment Advertising</td>
+                  <td>{{retailerDecisionHistory[0].localAdvertising[2]}}</td>
+                </tr>                  
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>Local Price Advertising</td>
+                  <td>{{retailerDecisionHistory[0].localAdvertising[0]}}</td>
+                </tr>                  
+                </tbody>        
               </table>
-            </div>
           </div>
           <table class="table table-hover">
-            <tr>
-              <th>{{labelLanguages.MN}}</th>
-              <th ng-repeat='market in markets'>
-                <div style="clear:both"></div>
-                <p class="pull-left">
-                  {{market.marketName}}
-                </p>
-                <button type="button" class="btn btn-primary btn-xs pull-left" style="margin-left:5px" ng-click="getMarketMoreInfo(market.marketID)">More</button>
-                <div style="clear:both"></div>
-              </th>
-            </tr>
-            <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.ISSL}}" popover-title="{{labelLanguages.ISSL}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.ISSL}}<span style="color:red">*</span></p>
-              </th>
-              <th ng-repeat='market in markets'>
-              	<a href="#" editable-select="market.serviceLevel" e-ng-options="p.value as p.text for p in packs" onaftersave="updateMarketDecision(market.marketID,'serviceLevel','postion','addtionalIdx',$index)">{{ selectPacks(market.marketID) }}</a></th>
-            </tr>
-            <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.HSSA}}" popover-title="{{labelLanguages.HSSA}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.HSSA}}<span style="color:red">*</span></p></th>
-              <th ng-repeat='market in markets'><a href="#" editable-text="market.categorySurfaceShare[1]" onbeforesave="checkSurface($data)" onaftersave="updateMarketDecision(market.marketID,'categorySurfaceShare','postion','1',$index)">{{ market.categorySurfaceShare[1] || 0 }}</a></th>
-            </tr>
-            <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.ESSA}}" popover-title="{{labelLanguages.ESSA}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.ESSA}}<span style="color:red">*</span></p></th>
-              <th ng-repeat='market in markets'><a href="#" editable-text="market.categorySurfaceShare[0]" onbeforesave="checkSurface($data)" onaftersave="updateMarketDecision(market.marketID,'categorySurfaceShare','postion','0',$index)">{{ market.categorySurfaceShare[0] || 0 }}</a></th>
-            </tr>
-            <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.LCA}}" popover-title="{{labelLanguages.LCA}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.LCA}}<span style="color:red">*</span></p></th>
-              <th ng-repeat='market in markets'><a href="#" editable-text="market.localAdvertising[1]" onbeforesave="checkBudget(market.marketID,'localAdvertising','postion','1',$index,$data)" onaftersave="updateMarketDecision(market.marketID,'localAdvertising','postion','1',$index)">{{ market.localAdvertising[1]
-               || 0 }}</a></th>
-            </tr>
-            <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.LAA}}" popover-title="{{labelLanguages.LAA}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.LAA}}<span style="color:red">*</span></p></th>
-              <th ng-repeat='market in markets'><a href="#" editable-text="market.localAdvertising[2]" onbeforesave="checkBudget(market.marketID,'localAdvertising','postion','2',$index,$data)" onaftersave="updateMarketDecision(market.marketID,'localAdvertising','postion','2',$index)">{{ market.localAdvertising[2] || 0 }}</a></th>
-            </tr>
-            <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.LPA}}" popover-title="{{labelLanguages.LPA}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.LPA}}<span style="color:red">*</span></p></th>
-              <th ng-repeat='market in markets'><a href="#" editable-text="market.localAdvertising[0]" onbeforesave="checkBudget(market.marketID,'localAdvertising','postion','0',$index,$data)" onaftersave="updateMarketDecision(market.marketID,'localAdvertising','postion','0',$index)">{{ market.localAdvertising[0] || 0 }}</a></th>
-            </tr>
-            <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.AEP}}" popover-title="{{labelLanguages.AEP}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.AEP}}<span style="color:red">*</span></p></th>
-              <th ng-repeat='market in markets'><a href="#" editable-checkbox="market.emptySpaceOptimised" e-title="{{labelLanguages.AEP}}?" onaftersave="updateMarketDecision(market.marketID,'emptySpaceOptimised','postion','0',$index)">{{ market.emptySpaceOptimised && "Allocate Empty place" || "No Empty place" }}</a></th>              
-            </tr>
+            <thead>
+              <tr>
+                <th>{{labelLanguages.MN}}</th>
+                <th ng-repeat='market in markets'>
+                  <div style="clear:both"></div>
+                  <p class="pull-left">
+                    {{market.marketName}}
+                  </p>
+                  <button type="button" class="btn btn-primary btn-xs pull-left" style="margin-left:5px" ng-click="getMarketMoreInfo(market.marketID)">More</button>
+                  <div style="clear:both"></div>
+                </th>
+              </tr>              
+            </thead>
+            <tbody>
+              
+              <tr>
+                <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.ISSL}}" popover-title="{{labelLanguages.ISSL}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.ISSL}}<span style="color:red">*</span></p>
+                </th>
+                <th ng-repeat='market in markets'>
+                	<a href="#" editable-select="market.serviceLevel" e-ng-options="p.value as p.text for p in packs" onaftersave="updateMarketDecision(market.marketID,'serviceLevel','postion','addtionalIdx',$index)">{{ selectPacks(market.marketID) }}</a></th>
+              </tr>
+              <tr>
+                <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.HSSA}}" popover-title="{{labelLanguages.HSSA}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.HSSA}}<span style="color:red">*</span></p></th>
+                <th ng-repeat='market in markets'><a href="#" editable-text="market.categorySurfaceShare[1]" onbeforesave="checkSurface($data)" onaftersave="updateMarketDecision(market.marketID,'categorySurfaceShare','postion','1',$index)">{{ market.categorySurfaceShare[1] || 0 }}</a></th>
+              </tr>
+              <tr>
+                <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.ESSA}}" popover-title="{{labelLanguages.ESSA}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.ESSA}}<span style="color:red">*</span></p></th>
+                <th ng-repeat='market in markets'><a href="#" editable-text="market.categorySurfaceShare[0]" onbeforesave="checkSurface($data)" onaftersave="updateMarketDecision(market.marketID,'categorySurfaceShare','postion','0',$index)">{{ market.categorySurfaceShare[0] || 0 }}</a></th>
+              </tr>
+              <tr>
+                <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.LCA}}" popover-title="{{labelLanguages.LCA}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.LCA}}<span style="color:red">*</span></p></th>
+                <th ng-repeat='market in markets'><a href="#" editable-text="market.localAdvertising[1]" onbeforesave="checkBudget(market.marketID,'localAdvertising','postion','1',$index,$data)" onaftersave="updateMarketDecision(market.marketID,'localAdvertising','postion','1',$index)">{{ market.localAdvertising[1]
+                 || 0 }}</a></th>
+              </tr>
+              <tr>
+                <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.LAA}}" popover-title="{{labelLanguages.LAA}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.LAA}}<span style="color:red">*</span></p></th>
+                <th ng-repeat='market in markets'><a href="#" editable-text="market.localAdvertising[2]" onbeforesave="checkBudget(market.marketID,'localAdvertising','postion','2',$index,$data)" onaftersave="updateMarketDecision(market.marketID,'localAdvertising','postion','2',$index)">{{ market.localAdvertising[2] || 0 }}</a></th>
+              </tr>
+              <tr>
+                <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.LPA}}" popover-title="{{labelLanguages.LPA}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.LPA}}<span style="color:red">*</span></p></th>
+                <th ng-repeat='market in markets'><a href="#" editable-text="market.localAdvertising[0]" onbeforesave="checkBudget(market.marketID,'localAdvertising','postion','0',$index,$data)" onaftersave="updateMarketDecision(market.marketID,'localAdvertising','postion','0',$index)">{{ market.localAdvertising[0] || 0 }}</a></th>
+              </tr>
+              <tr>
+                <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.AEP}}" popover-title="{{labelLanguages.AEP}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.AEP}}<span style="color:red">*</span></p></th>
+                <th ng-repeat='market in markets'><a href="#" editable-checkbox="market.emptySpaceOptimised" e-title="{{labelLanguages.AEP}}?" onaftersave="updateMarketDecision(market.marketID,'emptySpaceOptimised','postion','0',$index)">{{ market.emptySpaceOptimised && "Allocate Empty place" || "No Empty place" }}</a></th>              
+              </tr>
+            </tbody>
           </table>
           <div>
             <a href="/#/retailerDecisionStep1" class="btn btn-default">Back</a>

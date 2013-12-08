@@ -134,7 +134,11 @@ define(['app'], function(app) {
 			}
 
 			var getCategoryMoreInfo=function(categoryID){
-				var d=$q.defer();
+				$scope.categoryID = categoryID;
+				switch(categoryID){
+					case 1: $scope.category = 'Elecssories';break;
+					case 2: $scope.category = 'Health & Beauty';break;
+				}
 				$scope.isCollapsed=false;
 				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
 				$http({method: 'GET', url: url})
@@ -143,11 +147,10 @@ define(['app'], function(app) {
 					url="/producerCompanyDecision/"+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+($rootScope.currentPeriod-1)+'/'+$rootScope.user.seminar+'/'+categoryID;
 					return $http({method:'GET',url:url});
 				}).then(function(data){
-					$scope.companyDecisionHistory=data;
+					$scope.companyDecisionHistory=data.data[0];
 				},function(){
 					console.log('read historyInfo fail');
 				});
-				return d.promise;
 			}	
 
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){

@@ -510,7 +510,15 @@ define(['app'], function(app) {
 			}
 
 			var getMoreInfo=function(brandName,varName){
-				var d=$q.defer();
+				//deal with composition label show/hide mechanism
+				if(brandName.substring(0,1)=="E"){
+					$scope.isElecssories=true;
+					$scope.isHealthBeauty=false;
+				}else{
+					$scope.isElecssories=true;
+					$scope.isHealthBeauty=false;
+				}
+
 				$scope.isCollapsed=false;
 				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/4';
 				$http({method:'GET',url:url})
@@ -520,10 +528,13 @@ define(['app'], function(app) {
 					return $http({method:'GET',url:url});
 				}).then(function(data){
 					$scope.variantDecisionHistory=data;
-				},function(){
-					console.log('read historyInfo fail');
+					url="/variantHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/'+brandName+'/'+varName;
+					return $http({method:'GET',url:url});
+				}).then(function(data){
+				    $scope.variantHistory=data.data;
+				},function(err){
+					console.log('read historyInfo fail:' + err);
 				});
-				return d.promise;
 			}
 	
 			var addNewProduct=function(parameter){

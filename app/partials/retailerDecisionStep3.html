@@ -43,52 +43,66 @@
           </small>-->
         </div>
           <div style="clear:both"></div>
-          <div collapse="isCollapsed">
-            <div class="well well-large">
-              <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button>
-             <table class="table table-striped">
-                <tr style="backgroud-color:gray">
-                  <th></th>
-                  <th style="text-align:center">CurrentPeriod period({{currentPeriod}})</th>
-                  <th></th>
-                </tr>
-                <tr>
-                  <td>Unit production cost:</td>
-                  <td>Acquired design technology level:</td>
-                  <td>Acquired design level:</td>
-                </tr>
-                <tr>
-                  <td>Expected perception(x-axis):/</td>
-                  <td>Expected perception(y-axis):/</td>
-                  <th></th>
-                </tr>
-                <tr style="margin-top:20px;backgroud-color:gray">
-                  <th></th>
-                  <th style="text-align:center">Previous period({{(currentPeriod-1)}})</th>
-                  <th></th>
-                </tr>  
-                <tr>
-                  <td>Tier-1 Sales Volume:</td>
-                  <td>Tier-1 Unit production cost:</td>
-                  <td>Tier-1 Design Index:{{companyHistory.acquiredDesignLevel[0]}}</td>
-                </tr>
-                <tr>
-                  <td>Tier-2 Sales Volume:</td>
-                  <td>Tier-2 Unit production cost:</td>
-                  <td>Tier-2 Design Index:{{companyHistory.acquiredDesignLevel[1]}}</td>
-                </tr>
-                <tr>
-                  <td>Tier-1 Technolohgy level:{{companyHistory.acquiredTechnologyLevel[0]}}</td>
-                  <td>Tier-1 Raw Materials Quality:</td>
-                  <td></td>
-                </tr>  
-                <tr>
-                  <td>Tier-2 Technolohgy level:{{companyHistory.acquiredTechnologyLevel[1]}}</td>
-                  <td>Tier-2 Raw Materials Quality:</td>
-                  <td></td>
-                </tr>    
+          <div collapse="isCollapsed" class="panel panel-info">
+            <div class="panel-heading">{{variantHistory.parentBrandName}}{{variantHistory.varName}} <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button></div>
+              <table class="table table-condensed table-bordered">
+                <thead>
+                  <tr>
+                    <td colspan="2" class="col-md-6">Current period ({{currentPeriod}})</td>
+                    <td colspan="3" class="col-md-6">Previous period ({{currentPeriod-1}})</td>               
+                  </tr>                  
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Unit production cost</td>
+                    <td>???</td>
+                    <td></td>
+                    <td>Urban</td>                    
+                    <td>Rural</td>                                        
+                  </tr>                
+                  <tr>
+                    <td>Acquired technology level</td>
+                    <td ng-show="isElecssories">{{companyHistory.acquiredTechnologyLevel[0]}}</td>
+                    <td ng-show="isHealthBeauty">{{companyHistory.acquiredTechnologyLevel[1]}}</td>                    
+                    <td>Sales volume</td>
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].salesVolume}}</td>                    
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].salesVolume}}</td>                    
+                  </tr>                
+                  <tr>
+                    <td>Acquired design level</td>
+                    <td ng-show="isElecssories">{{companyHistory.acquiredDesignLevel[0]}}</td>
+                    <td ng-show="isHealthBeauty">/</td>             
+                    <td>Unit production cost</td>
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].currentUnitAcquisitionCost}}</td>                    
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].currentUnitAcquisitionCost}}</td>   
+                  </tr>                
+                  <tr>
+                    <td ng-show="false">Expected perception(x-axis)</td>
+                    <td></td>
+                    <td></td>
+                    <td ng-show="isElecssories">Design index</td>                    
+                    <td ng-show="isHealthBeauty">Active-agent</td>                    
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[0]}}</td>                    
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[0]}}</td>                    
+                  </tr>                
+                  <tr>
+                    <td ng-show="false">Expected perception(y-axis)</td>
+                    <td></td>
+                    <td></td>
+                    <td>Technology level</td>
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[1]}}</td>                    
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[1]}}</td>                    
+                  </tr>                
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td ng-show="isElecssories">Raw materials quality</td>  
+                    <td ng-show="isHealthBeauty">Smootherner Level</td>                  
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[2]}}</td>                    
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[2]}}</td>                                        
+                  </tr>                                  
+                </tbody>   
               </table>
-            </div>
           </div>
           <table class="table table-hover">
             <!--<tr>
@@ -96,58 +110,63 @@
               <th ng-repeat='product in products'>
               {{product.category}}</th>
             </tr>-->
-            <tr>
-              <th>{{labelLanguages.Brand}}</th>
-              <th ng-repeat='product in products'>
-              {{product.parentBrandName}}</th>
-            </tr>
-            <tr>
-              <th>{{labelLanguages.Variant}}</th>
-              <th ng-repeat='product in products'>
-                <div style="clear:both"></div>
-                <p class="pull-left">
-                  {{product.varName}}
-                </p>
-                <button type="button" class="btn btn-primary btn-xs pull-left" style="margin-left:5px" ng-click="getMoreInfo(product.parentBrandName,product.varName)">More</button>
-                <button type="button" class="btn btn-danger btn-xs pull-left {{(product.dateOfBirth==-4)?'hide':'show'}}" ng-click="deleteProduct(category,product.parentBrandName,product.varName)" style="margin-left:5px">Delete</button>
-                <div style="clear:both"></div>
-              </th>
-            </tr>
-            <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.PF}}" popover-title="{{labelLanguages.PF}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.PF}}<span style="color:red">*</span></p>
-              </th>
-              <th ng-repeat='product in products'>
-                <a href="#" editable-select="product.packFormat" e-ng-options="p.value as p.text for p in packs" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'packFormat','0',$index)">{{ selectPacks(product.parentBrandName,product.varName) }}</a>
-              </th>
-            </tr>
-            <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.TL}}" popover-title="{{labelLanguages.TL}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.TL}}<span style="color:red">*</span></p></th>
-              <th ng-repeat='product in products'><a href="#" editable-text="product.composition[1]" onbeforesave="checkTechnology(category,product.parentBrandName,product.varName,'composition','1',$index,$data)" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'composition','1',$index)">{{ product.composition[1] || 'empty' }}</a></th>
-            </tr>
-            <tr>
-              <th>
-                <p style="display:{{HeaShow}}" class="text-primary" Popover-animation="true" popover="{{infoLanguages.AA}}" popover-title="{{labelLanguages.AA}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.AA}}<span style="color:red">*</span>
-                </p>
-                <p style="display:{{EleShow}}" class="text-primary" Popover-animation="true" popover="{{infoLanguages.DL}}" popover-title="{{labelLanguages.DL}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.DL}}<span style="color:red">*</span>
-                </p>
-              </th>
-              <th ng-repeat='product in products'><a href="#" editable-text="product.composition[0]" onbeforesave="checkDesign(category,product.parentBrandName,product.varName,'composition','0',$index,$data)" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'composition','0',$index)">{{ product.composition[0] || 'empty' }}</a></th>
-            </tr>
-            <tr>
-              <th>
-                <p style="display:{{HeaShow}}" class="text-primary" Popover-animation="true" popover="{{infoLanguages.SL}}" popover-title="{{labelLanguages.SL}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.SL}}<span style="color:red">*</span>
-                </p>
-                <p style="display:{{EleShow}}" class="text-primary" Popover-animation="true" popover="{{infoLanguages.QORM}}" popover-title="{{labelLanguages.QORM}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.QORM}}<span style="color:red">*</span>
-                </p>
-              </th>
-              <th ng-repeat='product in products'><a href="#" editable-text="product.composition[2]" onbeforesave="checkRMQ(category,product.parentBrandName,product.varName,'composition','2',$index,$data)" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'composition','2',$index)">{{ product.composition[2] || 'empty' }}</a></th>
-            </tr>
-            <tr>
-              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.DTP}}" popover-title="{{labelLanguages.DTP}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.DTP}}<span style="color:red">*</span></p></th>
-              <th ng-repeat='product in products'>
-                <a href="#" editable-checkbox="product.discontinue" e-title="DisContinue this product?" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'discontinue','0',$index)">{{ product.discontinue && "DisContinue" || "Continue!" }}</a>
-              </th>
-            </tr>    
+            <thead>
+              <tr>
+                <th>{{labelLanguages.Brand}}</th>
+                <th ng-repeat='product in products'>
+                {{product.parentBrandName}}</th>
+              </tr>
+              <tr>
+                <th>{{labelLanguages.Variant}}</th>
+                <th ng-repeat='product in products'>
+                  <div style="clear:both"></div>
+                  <p class="pull-left">
+                    {{product.varName}}
+                  </p>
+                  <button type="button" class="btn btn-primary btn-xs pull-left" style="margin-left:5px" ng-click="getMoreInfo(product.parentBrandName,product.varName)">More</button>
+                  <button type="button" class="btn btn-danger btn-xs pull-left {{(product.dateOfBirth==-4)?'hide':'show'}}" ng-click="deleteProduct(category,product.parentBrandName,product.varName)" style="margin-left:5px">Delete</button>
+                  <div style="clear:both"></div>
+                </th>
+              </tr>              
+            </thead>
+            <tbody>
+              
+              <tr>
+                <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.PF}}" popover-title="{{labelLanguages.PF}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.PF}}<span style="color:red">*</span></p>
+                </th>
+                <th ng-repeat='product in products'>
+                  <a href="#" editable-select="product.packFormat" e-ng-options="p.value as p.text for p in packs" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'packFormat','0',$index)">{{ selectPacks(product.parentBrandName,product.varName) }}</a>
+                </th>
+              </tr>
+              <tr>
+                <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.TL}}" popover-title="{{labelLanguages.TL}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.TL}}<span style="color:red">*</span></p></th>
+                <th ng-repeat='product in products'><a href="#" editable-text="product.composition[1]" onbeforesave="checkTechnology(category,product.parentBrandName,product.varName,'composition','1',$index,$data)" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'composition','1',$index)">{{ product.composition[1] || 'empty' }}</a></th>
+              </tr>
+              <tr>
+                <th>
+                  <p style="display:{{HeaShow}}" class="text-primary" Popover-animation="true" popover="{{infoLanguages.AA}}" popover-title="{{labelLanguages.AA}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.AA}}<span style="color:red">*</span>
+                  </p>
+                  <p style="display:{{EleShow}}" class="text-primary" Popover-animation="true" popover="{{infoLanguages.DL}}" popover-title="{{labelLanguages.DL}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.DL}}<span style="color:red">*</span>
+                  </p>
+                </th>
+                <th ng-repeat='product in products'><a href="#" editable-text="product.composition[0]" onbeforesave="checkDesign(category,product.parentBrandName,product.varName,'composition','0',$index,$data)" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'composition','0',$index)">{{ product.composition[0] || 'empty' }}</a></th>
+              </tr>
+              <tr>
+                <th>
+                  <p style="display:{{HeaShow}}" class="text-primary" Popover-animation="true" popover="{{infoLanguages.SL}}" popover-title="{{labelLanguages.SL}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.SL}}<span style="color:red">*</span>
+                  </p>
+                  <p style="display:{{EleShow}}" class="text-primary" Popover-animation="true" popover="{{infoLanguages.QORM}}" popover-title="{{labelLanguages.QORM}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.QORM}}<span style="color:red">*</span>
+                  </p>
+                </th>
+                <th ng-repeat='product in products'><a href="#" editable-text="product.composition[2]" onbeforesave="checkRMQ(category,product.parentBrandName,product.varName,'composition','2',$index,$data)" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'composition','2',$index)">{{ product.composition[2] || 'empty' }}</a></th>
+              </tr>
+              <tr>
+                <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.DTP}}" popover-title="{{labelLanguages.DTP}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.DTP}}<span style="color:red">*</span></p></th>
+                <th ng-repeat='product in products'>
+                  <a href="#" editable-checkbox="product.discontinue" e-title="DisContinue this product?" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'discontinue','0',$index)">{{ product.discontinue && "DisContinue" || "Continue!" }}</a>
+                </th>
+              </tr>    
+            </tbody>
           </table>
           <div>
             <a ng-click="openProductModal()" class="btn btn-default">New Product</a>
