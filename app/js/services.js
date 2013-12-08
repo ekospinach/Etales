@@ -593,23 +593,52 @@ define(['angular','angularResource','routingConfig'], function (angular,angularR
 						console.log('Failed:' + res);
 					});
 				},
-				addOrder:function(marketID,product,last){
-					var queryCondition = {
-						retailerID :$rootScope.user.username.substring($rootScope.user.username.length-1),
-						period:$rootScope.currentPeriod,
-						seminar:$rootScope.user.seminar,
-						behaviour : 'addOrder', 
-						marketID:marketID,
-						value:product
-					}
-					$http({method:'POST', url:'/retailerDecision', data: queryCondition}).then(function(res){
-					 	console.log('Success:' + res);
-					},function(res){
-						console.log('Failed:' + res);
-						//return "done";
-					}).then(function(){
-						$rootScope.$broadcast('retailerDecisionBaseChanged', base);
-					});
+				// addOrder:function(marketID,product){
+				// 	var queryCondition = {
+				// 		retailerID :$rootScope.user.username.substring($rootScope.user.username.length-1),
+				// 		period:$rootScope.currentPeriod,
+				// 		seminar:$rootScope.user.seminar,
+				// 		behaviour : 'addOrder', 
+				// 		marketID:marketID,
+				// 		value:product
+				// 	}
+				// 	$http({method:'POST', url:'/retailerDecision', data: queryCondition}).then(function(res){
+				// 	 	console.log('Success:' + res);
+				// 	 	$rootScope.$broadcast('retailerDecisionBaseChanged', base);
+				// 	},function(res){
+				// 		console.log('Failed:' + res);
+				// 	});
+				// },
+				addOrders:function(marketID,products){
+					var queryCondition = {};
+					(function multipleRequestShooter(myProducts,idx){
+						queryCondition = {
+							retailerID :$rootScope.user.username.substring($rootScope.user.username.length-1),
+							period:$rootScope.currentPeriod,
+							seminar:$rootScope.user.seminar,
+							behaviour : 'addOrder', 
+							marketID:marketID,
+							value:myProducts[idx]
+						}
+						$http({
+							method:'POST',
+							url:'/retailerDecision',
+							data:queryCondition
+						}).then(function(data){
+							console.log("success");
+						},function(data){
+							console.log('fail');
+						}).finally(function(){
+							if(idx!=myProducts.length-1){
+								idx++;
+								multipleRequestShooter(myProducts,idx);
+							}else{
+								console.log('finish');
+								$rootScope.$broadcast('retailerDecisionBaseChanged', base);
+								console.log('broadcast finish');
+							}
+						})
+					})(products, 0);
 				},
 				deleteOrder:function(marketID,categoryID,brandName,varName){
 					var queryCondition = {

@@ -474,7 +474,9 @@ exports.getProducerProductList=function(req,res,next){
                                                             'varName':allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varName,
                                                             'brandID':allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].parentBrandID,
                                                             'varID':allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID,
-                                                            'parentName':'Producer '+req.params.producerID
+                                                            'parentName':'Producer '+req.params.producerID,
+                                                            'dateOfBirth':allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].dateOfBirth,
+                                                            'dateOfDeath':allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].dateOfDeath
                                                         });
                                                         count++;
                                                     }
