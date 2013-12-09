@@ -144,7 +144,7 @@ define(['app'], function(app) {
 			var showView=function(producerID,period,category,language){
 				var d=$q.defer();
 				$scope.producerID=producerID,$scope.period=period,$scope.category=category,$scope.language=language;
-				var categoryID=0,count=0,result=0,acMax=0,abMax=0,expend=0;
+				var categoryID=0,count=0,result=0,acMax=0,abMax=0,expend=0,avaiableMax=0;
 				var products=new Array();
 				var labelLanguages={},infoLanguages={};
 				var fakeName="";
@@ -161,7 +161,12 @@ define(['app'], function(app) {
 	      			method:'GET',
 	      			url:url
 	      		}).then(function(data){
-	      			abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
+	      			avaiableMax=data.data.budgetAvailable;
+	      			if($rootScope.currentPeriod<=1){
+	      				abMax=data.data.budgetAvailable;
+	      			}else{
+	      				abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
+	      			}
 					acMax=data.data.productionCapacity[categoryID-1];
 	      			url="/producerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/brandName/location/1';
 	      			return  $http({
