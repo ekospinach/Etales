@@ -129,7 +129,7 @@ define(['angular', 'services','bootstrap'], function(angular, services) {
 		                chart_top = $('#chart1b').offset().top,
 		                x = plot1b.axes.xaxis.u2p(data[0]),  // convert x axis unita to pixels
 		                y = plot1b.axes.yaxis.u2p(data[1]);  // convert y axis units to pixels
-		                var color = 'rgb(50%,50%,100%)';
+		                var color = 'rgb(86%,61%,124%)';
 		                $('#tooltip1b').addClass("highlight the-icons");
 		                var htmls=new Array();
 		                htmls[0]=data[4].easeOfUsePerception.Value;//+"(+3)UP";
