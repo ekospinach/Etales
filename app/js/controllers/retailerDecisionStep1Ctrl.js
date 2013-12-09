@@ -107,6 +107,10 @@ define(['app'], function(app) {
 			//check
 			var checkBudget=function(location,additionalIdx,value){
 				var d=$q.defer();
+				var filter=/^\d+(\.{0,1}\d+){0,1}$/;
+				if(!filter.test(value)){
+					d.resolve('Input a Num');
+				}
 				var url="/retailerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/0/'+location+'/'+additionalIdx;
 	      		$http({
 	      			method:'GET',
