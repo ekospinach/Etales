@@ -30,19 +30,21 @@
           </div>
         </div>
         <div class="pull-right" style="width:33%">
-          <progress percent="percentageExpend" class="progress active">{{surplusExpend}}</progress>
+          <progress percent="percentageExpend" class="progress active"></progress>
           <small>
-            <em>Total Avaliable Budget for Remaing Period</em>
+            <em>Total Avaliable Budget for Remaing Period:{{surplusExpend}}</em>
           </small>
-          <progress percent="percentageProduction" class="progress progress-suceess active progress-striped">{{surplusProduction}}</progress>
+          <progress percent="percentageProduction" class="progress progress-suceess active progress-striped"></progress>
           <small>
-            <em>{{category}} Available Capacity</em>
+            <em>{{category}} Available Capacity:{{surplusProduction}}</em>
           </small>
         </div>
         <div style="clear:both"></div>
         
         <div collapse="isCollapsed" class="panel panel-info">
-          <div class="panel-heading">{{variantHistory.parentBrandName}}{{variantHistory.varName}} <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button></div>
+          <div class="panel-heading">
+            {{variantHistory.parentBrandName||showNewHistory.brandName}}{{variantHistory.varName||showNewHistory.varName}}
+            <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button></div>
 
               <table class="table table-condensed table-bordered">
                 <thead>
@@ -56,45 +58,45 @@
                     <th>Unit cost</th>
                     <th>???</th>
                     <td>Sales Volume</td>
-                    <td>{{variantHistory.supplierView[0].supplierChannelView[4].salesVolume[2]}}</td>
+                    <td>{{variantHistory.supplierView[0].supplierChannelView[4].salesVolume[2]||'/'}}</td>
                   </tr>
                   <tr>
                     <td>Acquired technology level</td>                  
-                    <td ng-show="isElecssories">{{companyHistory.acquiredTechnologyLevel[0]}}</td>
-                    <td ng-show="isHealthBeauty">{{companyHistory.acquiredTechnologyLevel[1]}}</td>
+                    <td ng-show="isElecssories">{{companyHistory.acquiredTechnologyLevel[0]||'/'}}</td>
+                    <td ng-show="isHealthBeauty">{{companyHistory.acquiredTechnologyLevel[1]||'/'}}</td>
                     <td>Unit production cost</td>
-                    <td>{{variantHistory.supplierView[0].currentUnitAverageCost}}</td>
+                    <td>{{variantHistory.supplierView[0].currentUnitAverageCost||'/'}}</td>
                   </tr>
                   <tr>
                     <td>Acquired design level</td>
-                    <td ng-show="isElecssories">{{companyHistory.acquiredDesignLevel[0]}}</td>
+                    <td ng-show="isElecssories">{{companyHistory.acquiredDesignLevel[0]||'/'}}</td>
                     <td ng-show="isHealthBeauty">/</td>
                     <td>Production Volume</td>
-                    <td>{{variantHistory.supplierView[0].productionVolume}}</td>
+                    <td>{{variantHistory.supplierView[0].productionVolume||'/'}}</td>
                   </tr>
                   <tr>
                     <td>Current price BM</td>
-                    <td>{{variantHistory.supplierView[0].currentPriceBM}}</td>
+                    <td>{{variantHistory.supplierView[0].currentPriceBM||'/'}}</td>
                     <td>initial inventory</td>
-                    <td>{{variantHistory.supplierView[0].initialInventory[4].volume}}</td>
+                    <td>{{variantHistory.supplierView[0].initialInventory[4].volume||'/'}}</td>
                   </tr>
                   <tr>
                     <td>Current price emall</td>
-                    <td>{{variantHistory.supplierView[0].currentPriceEmall}}</td>
+                    <td>{{variantHistory.supplierView[0].currentPriceEmall||'/'}}</td>
                     <td>Design Index</td>
-                    <td>{{variantHistory.supplierView[0].composition[0]}}</td>
+                    <td>{{variantHistory.supplierView[0].composition[0]||'/'}}</td>
                   </tr>
                   <tr>
                     <td></td>
                     <td></td>
                     <td>Technology Level:</td>
-                    <td>{{variantHistory.supplierView[0].composition[1]}}</td>
+                    <td>{{variantHistory.supplierView[0].composition[1]||'/'}}</td>
                   </tr>
                   <tr>
                     <td></td>
                     <td></td>
                     <td>Raw Materials Quality</td>
-                    <td>{{variantHistory.supplierView[0].composition[2]}}</td>
+                    <td>{{variantHistory.supplierView[0].composition[2]||'/'}}</td>
                   </tr>                 
                 </tbody>
               </table>                     
@@ -159,11 +161,11 @@
               </tr>
               <tr>
                 <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.NPB}}" popover-title="{{labelLanguages.NPB}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.NPB}}<span style="color:red">*</span></p></th>
-                <th ng-repeat='product in products'><a href="#" editable-text="product.nextPriceBM" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'nextPriceBM','0',$index)">{{ product.nextPriceBM || 0 }}</a></th>
+                <th ng-repeat='product in products'><a href="#" editable-text="product.nextPriceBM" onbeforesave="checkNextPriceBM(category,product.parentBrandName,product.varName,'nextPriceBM','0',$index,$data)" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'nextPriceBM','0',$index)">{{ product.nextPriceBM || 0 }}</a></th>
               </tr>
               <tr>
                 <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.NPE}}" popover-title="{{labelLanguages.NPE}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.NPE}}<span style="color:red">*</span></p></th>
-                <th ng-repeat='product in products'><a href="#" editable-text="product.nextPriceEmall" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'nextPriceEmall','0',$index)">{{ product.nextPriceEmall || 0 }}</a></th>
+                <th ng-repeat='product in products'><a href="#" editable-text="product.nextPriceEmall" onbeforesave="checknextPriceEmall(category,product.parentBrandName,product.varName,'nextPriceEmall','0',$index,$data)" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'nextPriceEmall','0',$index)">{{ product.nextPriceEmall || 0 }}</a></th>
               </tr>   
             </tbody>
           </table>

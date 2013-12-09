@@ -18,13 +18,12 @@ define(['app','socketIO','routingConfig'], function(app) {
 	    		method:'GET',
 	    		url:url
 	    	}).then(function(data){
-	    		console.log(data);
+
 	    		for(var i=0;i<data.data.length;i++){
 	    			$scope.brandHistorys.push(data.data[i]);
 	    		}
 	    		Map.get({seminar: seminar,period:period}, function(newmap) {
 			   		$scope.map=newmap;
-			   		console.log($scope.map);
 			   		showChart($scope.cat,$scope.market,$scope.language);
 				});
 	    	},function(){

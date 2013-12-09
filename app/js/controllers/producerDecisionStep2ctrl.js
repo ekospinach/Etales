@@ -36,6 +36,9 @@ define(['app'], function(app) {
 				delay.notify('start to show view');
 					//check
 					$scope.checkProduction=checkProduction;
+					$scope.checkNextPriceBM=checkNextPriceBM;
+					$scope.checknextPriceEmall=checknextPriceEmall;
+
 					$scope.showView=showView;
 					$scope.loadSelectCategroy=loadSelectCategroy;
 					$scope.updateProducerDecision=updateProducerDecision;
@@ -50,7 +53,7 @@ define(['app'], function(app) {
 			var showView=function(producerID,period,category,language){
 				var d=$q.defer();
 				$scope.producerID=producerID,$scope.period=period,$scope.category=category,$scope.language=language;
-				var categoryID=0,count=0,result=0,acMax=0,abMax=0,expend=0;
+				var categoryID=0,count=0,result=0,acMax=0,abMax=0,expend=0,avaiableMax=0;
 				var products=new Array();
 				var labelLanguages={},infoLanguages={};
 				var fakeName="";
@@ -67,7 +70,12 @@ define(['app'], function(app) {
 	      			method:'GET',
 	      			url:url
 	      		}).then(function(data){
-	      			abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
+	      			avaiableMax=data.data.budgetAvailable;
+	      			if($rootScope.currentPeriod<=1){
+	      				abMax=data.data.budgetAvailable;
+	      			}else{
+	      				abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
+	      			}
 					acMax=data.data.productionCapacity[categoryID-1];
 					url="/producerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/brandName/location/1';
 	      			return $http({
@@ -182,7 +190,8 @@ define(['app'], function(app) {
 				else{
 					$scope.isElecssories = false;
 					$scope.isHealthBeauty = true
-				}					$scope.isCollapsed=false;
+				}
+				$scope.isCollapsed=false;
 				var url='/variantHistoryInfo/'+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/'+brandName+'/'+varName;
 				$http({method: 'GET', url: url})
 				.then(function(data) {
@@ -192,12 +201,47 @@ define(['app'], function(app) {
 				}).then(function(data){
 					$scope.companyHistory=data.data;
 				},function(){
+					$scope.variantHistory=new Array();
+					$scope.companyHistory=new Array();
+					$scope.showNewHistory={
+						brandName:brandName,
+						varName:varName
+					}
 					console.log('read history info fail');
 				});
 			}
+
+			var checkNextPriceBM=function(category,brandName,varName,location,additionalIdx,index,value){
+				var d = $q.defer();	
+				var categoryID,max,result;
+				var filter=/^\d+$/;
+				if(!filter.test(value)){
+					d.resolve('Input a Integer');
+				}else{
+					d.resolve();
+				}
+				return d.promise;
+			}
+
+			var checknextPriceEmall=function(category,brandName,varName,location,additionalIdx,index,value){
+				var d = $q.defer();	
+				var categoryID,max,result;
+				var filter=/^\d+$/;
+				if(!filter.test(value)){
+					d.resolve('Input a Integer');
+				}else{
+					d.resolve();
+				}
+				return d.promise;
+			}
+
 			var checkProduction=function(category,brandName,varName,location,additionalIdx,index,value){
 				var d = $q.defer();	
 				var categoryID,max,result;
+				var filter=/^\d+$/;
+				if(!filter.test(value)){
+					d.resolve('Input a Integer');
+				}
 				if(category=="Elecssories"){
 					categoryID=1;
 				}else{

@@ -24,7 +24,7 @@ define(['app'], function(app) {
 			$scope.parameter=1;/*default add new Brand*/	
 			ProducerDecisionBase.reload({producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 				$scope.pageBase = base;
-				//ProducerDecisionBase.setSomething('TEST');	
+				//ProducerDecisionBase.setSomething('TprodEST');	
 			}).then(function(){
 				return promiseStep1();
 			}), function(reason){
@@ -51,7 +51,7 @@ define(['app'], function(app) {
 			var showView=function(producerID,period,category,language){
 				var d=$q.defer();
 				$scope.producerID=producerID,$scope.period=period,$scope.category=category,$scope.language=language;
-				var categoryID=0,count=0,result=0,acMax=0,abMax=0,expend=0;
+				var categoryID=0,count=0,result=0,acMax=0,abMax=0,expend=0,avaiableMax=0;
 				var brands=new Array();
 				var labelLanguages={},infoLanguages={};
 				var fakeName="";
@@ -68,7 +68,12 @@ define(['app'], function(app) {
 	      			method:'GET',
 	      			url:url
 	      		}).then(function(data){
-	      			abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
+	      			avaiableMax=data.data.budgetAvailable;
+	      			if($rootScope.currentPeriod<=1){
+	      				abMax=data.data.budgetAvailable;
+	      			}else{
+	      				abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
+	      			}
 					acMax=data.data.productionCapacity[categoryID-1];
 					url="/producerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/brandName/location/1';
 	      			return $http({
@@ -156,12 +161,16 @@ define(['app'], function(app) {
 			var checkData=function(category,brandName,location,tep,index,value){
 				var d=$q.defer();
 				var categoryID,max,result;
+				var filter=/^\d+(\.{0,1}\d+){0,1}$/;
+				if(!filter.test(value)){
+					d.resolve('Input a Num');
+				}
 				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
 	      		$http({
 	      			method:'GET',
 	      			url:url
 	      		}).then(function(data){
-	      			max=data.data.budgetAvailable+data.data.budgetSpentToDate;
+	      			max=data.data.budgetAvailable;
 	      			url="/producerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+brandName+'/'+location+'/'+tep;
 	      			return $http({
 	      				method:'GET',
@@ -191,6 +200,11 @@ define(['app'], function(app) {
 				}).then(function(data){
 					$scope.brandDecisionHistory=data.data;
 				},function(){
+					$scope.brandHistory=new Array();
+					$scope.brandDecisionHistory=new Array();
+					$scope.showNewHistory={
+						brandName:brandName,
+					}
 					console.log('read historyInfo fail');
 				});
 				return d.promise;
