@@ -24,7 +24,7 @@ define(['app'], function(app) {
 			$scope.parameter=1;/*default add new Brand*/	
 			ProducerDecisionBase.reload({producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 				$scope.pageBase = base;
-				//ProducerDecisionBase.setSomething('TEST');	
+				//ProducerDecisionBase.setSomething('TprodEST');	
 			}).then(function(){
 				return promiseStep1();
 			}), function(reason){
@@ -156,6 +156,11 @@ define(['app'], function(app) {
 			var checkData=function(category,brandName,location,tep,index,value){
 				var d=$q.defer();
 				var categoryID,max,result;
+				var filter=/^\d+(\.{0,1}\d+){0,1}$/;
+				if(!filter.test(value)){
+					d.resolve('Input a Num');
+				}
+
 				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
 	      		$http({
 	      			method:'GET',
@@ -191,6 +196,11 @@ define(['app'], function(app) {
 				}).then(function(data){
 					$scope.brandDecisionHistory=data.data;
 				},function(){
+					$scope.brandHistory=new Array();
+					$scope.brandDecisionHistory=new Array();
+					$scope.showNewHistory={
+						brandName:brandName,
+					}
 					console.log('read historyInfo fail');
 				});
 				return d.promise;

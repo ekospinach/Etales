@@ -30,19 +30,19 @@
           </div>
         </div>
         <div class="pull-right" style="width:33%">
-          <progress percent="percentageExpend" class="progress active">{{surplusExpend}}</progress>
+          <progress percent="percentageExpend" class="progress active"></progress>
           <small>
-            <em>Total Avaliable Budget for Remaing Period</em>
+            <em>Total Avaliable Budget for Remaing Period:{{surplusExpend}}</em>
           </small>
-          <progress percent="percentageProduction" class="progress progress-suceess active progress-striped">{{surplusProduction}}</progress>
+          <progress percent="percentageProduction" class="progress progress-suceess active progress-striped"></progress>
           <small>
-            <em>{{category}} Available Capacity</em>
+            <em>{{category}} Available Capacity:{{surplusProduction}}</em>
           </small>
         </div>
           <div style="clear:both"></div>
 
           <div collapse="isCollapsed" class="panel panel-info">
-            <div class="panel-heading">{{brandHistory.brandName}}<button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button></div>
+            <div class="panel-heading">{{brandHistory.brandName||showNewHistory.brandName}}<button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button></div>
 
               <table class="table table-condensed table-bordered">
                 <thead>

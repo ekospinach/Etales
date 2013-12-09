@@ -331,7 +331,7 @@ define(['app'], function(app) {
 
 			var checkProduction=function(category,brandName,varName,location,additionalIdx,index,value){
 				var d = $q.defer();	
-				var filter=/^[0-9]*[1-9][0-9]*$/;
+				var filter=/^\d+$/;
 				if(!filter.test(value)){
 					d.resolve('Input a Integer');
 				}
@@ -369,6 +369,10 @@ define(['app'], function(app) {
 			var checkDesign=function(category,brandName,varName,location,additionalIdx,index,value){
 				var d = $q.defer();	
 				var categoryID=0,max=0;
+				var filter=/^[0-9]*[1-9][0-9]*$/;
+				if(!filter.test(value)){
+					d.resolve('Input a Integer');
+				}
 				if(category=="Elecssories"){
 					categoryID=1;
 					var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
@@ -388,9 +392,9 @@ define(['app'], function(app) {
 					}).then(function(data){	
 						if(value>data.data.composition[2]+2||value>data.data.composition[1]+4){
 							if(data.data.composition[2]+2>=data.data.composition[1]+4){
-								d.resolve('Input range:1~'+(data.data.composition[1]+4));
+								d.resolve('Input range:1~'+(data.data.composition[1]+4)+'(Technology Level+4)');
 							}else{
-								d.resolve('Input range:1~'+(data.data.composition[2]+2));
+								d.resolve('Input range:1~'+(data.data.composition[2]+2)+'(Raw Materials Quality+2)');
 							}
 						}else{
 							d.resolve();
@@ -407,9 +411,9 @@ define(['app'], function(app) {
 					}).then(function(data){
 						if(value>data.data.composition[1]+2||value<1||value>data.data.composition[2]+2){
 							if(data.data.composition[1]>=data.data.composition[2]){
-								d.resolve('Input range:1~'+(data.data.composition[2]+2));
+								d.resolve('Input range:1~'+(data.data.composition[2]+2)+'(Smoothener Level+2)');
 							}else{
-								d.resolve('Input range:1~'+(data.data.composition[1]+2));
+								d.resolve('Input range:1~'+(data.data.composition[1]+2)+'(Technology Level+2)');
 							}
 						}
 						else{
@@ -425,6 +429,10 @@ define(['app'], function(app) {
 			var checkTechnology=function(category,brandName,varName,location,additionalIdx,index,value){
 				var d=$q.defer();
 				var categoryID=0,max=0;
+				var filter=/^[0-9]*[1-9][0-9]*$/;
+				if(!filter.test(value)){
+					d.resolve('Input a Integer');
+				}
 				if(category=="Elecssories"){
 					categoryID=1;
 					var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
@@ -446,13 +454,13 @@ define(['app'], function(app) {
 						//if D>=Q--> D-2<=T<=Q 
 						if(data.data.composition[0]>=data.data.composition[2]){
 							if(value>data.data.composition[2]||(value<data.data.composition[0]-2)){
-								d.resolve('Input range:'+(data.data.composition[0]-2)+'~'+data.data.composition[2]);
+								d.resolve('Input range:'+(data.data.composition[0]-2)+'(Design Level-2)'+'~'+data.data.composition[2]+'(Raw Materials Quality)');
 							}else{
 								d.resolve();
 							}
 						}else{// Q-2<=T<=Q
 							if(value>data.data.composition[2]||(value<data.data.composition[2]-2)){
-								d.resolve('Input range:'+(data.data.composition[2]-2)+'~'+data.data.composition[2]);
+								d.resolve('Input range:'+(data.data.composition[2]-2)+'(Raw Materials Quality-2)'+'~'+data.data.composition[2]+'(Raw Materials Quality)');
 							}else{
 								d.resolve();
 							}
@@ -479,9 +487,9 @@ define(['app'], function(app) {
 					}).then(function(data){
 						if(value<(data.data.composition[2]-2)||value<(data.data.composition[0]-4)){
 							if((data.data.composition[2]-2)>=(data.data.composition[0]-4)){
-								d.resolve('Input range:'+(data.data.composition[2]-2)+'~'+max);
+								d.resolve('Input range:'+(data.data.composition[2]-2)+'(Smoothener Level-2)'+'~'+max);
 							}else{
-								d.resolve('Input range:'+(data.data.composition[0]-4)+'~'+max);
+								d.resolve('Input range:'+(data.data.composition[0]-4)+'(Active agent-4)'+'~'+max);
 							}
 						}else{
 							d.resolve();
@@ -496,6 +504,10 @@ define(['app'], function(app) {
 			var checkRMQ=function(category,brandName,varName,location,additionalIdx,index,value){
 				var d=$q.defer();
 				var categoryID=0,max=0;
+				var filter=/^[0-9]*[1-9][0-9]*$/;
+				if(!filter.test(value)){
+					d.resolve('Input a Integer');
+				}
 				if(category=="Elecssories"){
 					categoryID=1;
 				}else{
@@ -517,7 +529,11 @@ define(['app'], function(app) {
 						});
 					}).then(function(data){
 						if(value<(data.data.composition[0]-2)||value>(data.data.composition[1]+2)){
-							d.resolve('Input range:'+(data.data.composition[0]-2)+'~'+(data.data.composition[1]+2));
+							if(category=="Elecssories"){
+								d.resolve('Input range:'+(data.data.composition[0]-2)+'(Design Level-2)'+'~'+(data.data.composition[1]+2)+'(Technology Level+2)');
+							}else{
+								d.resolve('Input range:'+(data.data.composition[0]-2)+'(Active agent-2)'+'~'+(data.data.composition[1]+2)+'(Technology Level+2)');
+							}
 						}else{
 							d.resolve();
 						}
@@ -567,6 +583,12 @@ define(['app'], function(app) {
 				}).then(function(data){
 					$scope.companyHistory=data.data;
 				},function(){
+					$scope.variantHistory=new Array();
+					$scope.companyHistory=new Array();
+					$scope.showNewHistory={
+						brandName:brandName,
+						varName:varName
+					}
 					console.log('read history info fail');
 				});
 			}

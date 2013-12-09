@@ -125,11 +125,17 @@ define(['app'], function(app) {
 
 			var checkData=function(value){
 				var d=$q.defer();
-				if(value>=0){
-					d.resolve();
+				var filter=/^[0-9]*[1-9][0-9]*$/;
+				if(!filter.test(value)){
+					d.resolve('Input a Integer from 0~MAX');
 				}else{
-					d.resolve('Input must large than 0');
+					d.resolve();
 				}
+				// if(value>=0){
+				// 	d.resolve();
+				// }else{
+				// 	d.resolve('Input must large than 0');
+				// }
 				return d.promise;
 			}
 
