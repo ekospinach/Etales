@@ -42,6 +42,14 @@ define(['app','socketIO','routingConfig'], function(app) {
 			}else{
 				marketID=2;
 			}
+			if(cat=="Elecsories"){
+				$scope.xTitle="Ease of Use perception";
+				$scope.yTitle="Quality perception";
+			}else{
+				$scope.xTitle="Performance perception";
+				$scope.yTitle="Gentleness perception";
+			}
+			$scope.zTitle="PricePerception";
 			$scope.pageCollection=_.find($scope.map.pageCollection, function(obj) { 
 				return (obj.category == cat&&obj.market==market) 
 			});
@@ -75,7 +83,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 			//var length=$scope.pageCollection.brandCollection.length;
 			var brandname="";
 			var datas=new Array([0,0,0,""]);
-			var costData=new Array([-1,-1,0,'']);
+			var costData=new Array([-0.5,-0.5,'']);
 			for (var i=1;i<=$scope.filterBrands.length;i++){
 				costData[i]=new Array();
 				costData[i][0]=0;
@@ -190,6 +198,14 @@ define(['app','socketIO','routingConfig'], function(app) {
 					selectdata.push(select[i].values[j]);
 				}
 			}
+			if($scope.cat=="Elecsories"){
+				$scope.xTitle="Ease of Use perception";
+				$scope.yTitle="Quality perception";
+			}else{
+				$scope.xTitle="Performance perception";
+				$scope.yTitle="Gentleness perception";
+			}
+			$scope.zTitle="PricePerception";
 			//console.log(selectdata);
 			Map.get({seminar: $scope.seminar,period:$scope.period}, function(newmap) {
 			   	$scope.map=newmap;

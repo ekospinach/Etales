@@ -27,6 +27,8 @@
 			//jquery-jqplot-->Map.html
 			jqplot:'../bower_components/jqplot/jquery.jqplot.min',
 			bubbleRenderer:'./map/jqplot.bubbleRenderer',
+			labelRenderer:'./map/jqplot.canvasAxisLabelRenderer.min',
+			textRenderer:'./map/jqplot.canvasTextRenderer.min',
 			tree:'./map/bootstrap-tree',
 			nggooglechart:'../bower_components/angular-google-chart/ng-google-chart',
 			producerPopInfo:'./controllers/untils/producerPopInfo',
@@ -51,6 +53,8 @@
 			'angularLoadingBar' : ['angular'],
 			'jqplot':['jquery'],
 			'bubbleRenderer':['jqplot','jquery'],
+			'labelRenderer':['jqplot','jquery'],
+			'textRenderer':['jqplot','jquery'],
 			'tree':['jquery']
 			},
 		priority: [

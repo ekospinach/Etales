@@ -73,9 +73,6 @@ define(['angular', 'services','bootstrap'], function(angular, services) {
 		                    element.css('display', 'none');
 		                else
 		                    element.css('display', prevDisp);
-
-		                //console.log('function Auth.authorize result:' + Auth.authorize(attrs.accessLevel));
-		                //console.log('-----------------------');
 		            });
 		        }
 		    };
@@ -103,6 +100,16 @@ define(['angular', 'services','bootstrap'], function(angular, services) {
 		            var plot1b=$.jqplot('chart1b',[scope.data],{
 		            grid:{
 		                backgroundColor: "transparent",
+		            },
+		            axes: {
+		               	xaxis: {
+		                	label: scope.xTitle,
+		                	labelRenderer: $.jqplot.CanvasAxisLabelRenderer
+		               	},
+		               	yaxis:{
+		               		label: scope.yTitle,
+		               		labelRenderer: $.jqplot.CanvasAxisLabelRenderer
+		               	}
 		            },
 		            seriesColors:scope.colors,   
 		            seriesDefaults:{
@@ -143,22 +150,22 @@ define(['angular', 'services','bootstrap'], function(angular, services) {
 		                    }
 		                    else if(htmls[i].substring(htmls[i].length-4,htmls[i].length)=="SAME"){
 		                        htmls[i]=htmls[i].substring(0,htmls[i].length-4);
-		                        icons[i]='<span class="glyphicon glyphicon-arrow-right"></span>';
+		                        icons[i]='<span class="glyphicon glyphicon-arrow-right" style="width:20px"></span>';
 		                    }
 		                }
 		                $('#tooltip1b').html('<p style="font-size:14px;font-weight:bold;color:' + 
 		                    color + ';">' + data[3] + '</p>' + 
-		                    '<p class="text-muted p-one"><label style="width:160px">'+data[4].easeOfUsePerception.Selectlabel+'</label><label style="width:85px">'+ htmls[0]+'</label>'+icons[0]+'</p>'+
-		                    '<p class="text-muted p-double"><label style="width:160px">'+data[4].qualityPerception.Selectlabel+'</label><label style="width:85px">'+ htmls[1]+'</label>'+icons[1]+'</p>'+
-		                    '<p class="text-muted p-one"><label style="width:160px">'+data[4].pricePerception.Selectlabel+'</label><label style="width:85px">'+ htmls[2]+'</label>'+icons[2]+'</p>'+
-		                    '<p class="text-muted p-double"><label style="width:160px">'+data[4].marketShare.Selectlabel+'</label><label style="width:85px">'+ htmls[3]+'</label>'+icons[3]+'</p>'+
-		                    '<p class="text-muted p-one"><label style="width:160px">'+data[4].brandAwareness.Selectlabel+'</label><label style="width:85px">'+ htmls[4]+'</label>'+icons[4]+'</p>'+
-		                    '<p class="text-muted p-double"><label style="width:160px">'+data[4].visibilityShare.Selectlabel+'</label><label style="width:85px">'+ htmls[5]+'</label>'+icons[5]+'</p>'
+		                    '<p class="text-muted p-one"><label style="width:200px">'+data[4].easeOfUsePerception.Selectlabel+'</label><label style="width:100px">'+ htmls[0]+'</label>'+icons[0]+'</p>'+
+		                    '<p class="text-muted p-double"><label style="width:200px">'+data[4].qualityPerception.Selectlabel+'</label><label style="width:100px">'+ htmls[1]+'</label>'+icons[1]+'</p>'+
+		                    '<p class="text-muted p-one"><label style="width:200px">'+data[4].pricePerception.Selectlabel+'</label><label style="width:100px">'+ htmls[2]+'</label>'+icons[2]+'</p>'+
+		                    '<p class="text-muted p-double"><label style="width:200px">'+data[4].marketShare.Selectlabel+'</label><label style="width:100px">'+ htmls[3]+'</label>'+icons[3]+'</p>'+
+		                    '<p class="text-muted p-one"><label style="width:200px">'+data[4].brandAwareness.Selectlabel+'</label><label style="width:100px">'+ htmls[4]+'</label>'+icons[4]+'</p>'+
+		                    '<p class="text-muted p-double"><label style="width:200px">'+data[4].visibilityShare.Selectlabel+'</label><label style="width:100px">'+ htmls[5]+'</label>'+icons[5]+'</p>'
 		                    );
-		                if(x+radius+265>=$("#chart1b").width()){
-		                    $('#tooltip1b').css({left:x-radius-250, top:y+radius-10 });
+		                if(x+radius+350>=$("#chart1b").width()){
+		                    $('#tooltip1b').css({left:x-radius-320, top:y+radius-10 });
 		                }
-		                else if(x+radius+265<$("#chart1b").width()){
+		                else if(x+radius+350<$("#chart1b").width()){
 		                    $('#tooltip1b').css({left:x+radius+15, top:y+radius-10 });
 		                }
 		                $('#tooltip1b').show();
@@ -183,6 +190,19 @@ define(['angular', 'services','bootstrap'], function(angular, services) {
 			            grid:{
 			                backgroundColor: "transparent",
 			            },
+			            axes:{
+			            	xaxis:{
+			            		label:"No data",
+			            		labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
+			            		tickOptions:{
+			            			show:false
+			            		}
+			            	},
+			            	yaxis:{
+		               			label: scope.zTitle,
+		               			labelRenderer: $.jqplot.CanvasAxisLabelRenderer
+		               		}
+		               	},
 			            seriesColors:scope.costColors,   
 			            seriesDefaults:{
 			                renderer: $.jqplot.BubbleRenderer,

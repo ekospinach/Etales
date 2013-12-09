@@ -13,6 +13,8 @@ define([
 	'angularCookies',
 	'jqplot',
 	'bubbleRenderer',
+	'labelRenderer',
+	'textRenderer',
 	'tree',
 	'producerPopInfo',
 	'retailerPopInfo',
