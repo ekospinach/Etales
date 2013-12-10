@@ -480,6 +480,7 @@ var
     jo: ISuperObject;
     vBrn: TProBrands;
     vVnt: TOneBrandVars;
+    I: Integer;
   begin
     jo  := SO;
     vBrn := curVar.v_ParentBrandID - curVar.v_ParentCompanyID * 10;
@@ -522,7 +523,8 @@ var
     jo.O['channelView'] := SA([]);
     if curVar.v_VariantID <> 0 then
       for I := Low(TAllRetailers) to High(TAllRetailers) do
-        jo.A['channelView'].Add( channelViewSchema(I,pCategoryID,curVar.v_ParentBrandID,vVnt) );
+//          writeln( inttostr(I) + inttostr(Low(TAllRetailers)) + inttostr(High(TAllRetailers)));
+          jo.A['channelView'].Add( channelViewSchema(I,pCategoryID,curVar.v_ParentBrandID,vVnt) );
 
     result  := jo;
 

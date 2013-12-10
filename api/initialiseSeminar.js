@@ -17,7 +17,7 @@ exports.initialiseSeminar = function(io){
 
 		//call Initialize on the server, callback		
 		//...		
-		//import Decisions and Negotiation
+		//import Decisions and Negotiation(import function haven't ready now, by Hao 20131210)
 		require('./models/producerDecision.js').addProducerDecisions(options).then(function(result){
             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
 			options.producerID = '2';			
