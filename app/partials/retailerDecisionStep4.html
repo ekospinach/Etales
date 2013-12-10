@@ -110,8 +110,8 @@
                     <td>{{decisionCurrent.composition[1]}}</td>    
                     <!-- Previous period-->
                     <td>Sales Volume at your store</td>                    
-                    <td>{{variantHistory.channelView[4].channelMarketView[0].salesVolume}}</td>        
-                    <td>{{variantHistory.channelView[4].channelMarketView[1].salesVolume}}</td>                                   
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].salesVolume}}</td>        
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].salesVolume}}</td>                                   
                   </tr>
                   <tr>
                     <!-- Current period -->                    
@@ -120,36 +120,36 @@
                     <td>{{decisionCurrent.composition[2]}}</td> 
                     <!-- Previous period-->
                     <td>Shelf space at your store</td>                    
-                    <td>{{variantHistory.channelView[4].channelMarketView[0].shelfSpace}}</td>                    
-                    <td>{{variantHistory.channelView[4].channelMarketView[1].shelfSpace}}</td>                                        
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].shelfSpace}}</td>                    
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].shelfSpace}}</td>                                        
                   </tr>
                   <tr>
                     <td></td>                    
                     <td></td>                    
                     <td>Market price at your store</td>                    
-                    <td>{{variantHistory.channelView[4].channelMarketView[0].marketPrice}}</td>                    
-                    <td>{{variantHistory.channelView[4].channelMarketView[1].marketPrice}}</td>                                        
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].marketPrice}}</td>                    
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].marketPrice}}</td>                                        
                   </tr>
                   <tr>
                     <td></td>                    
                     <td></td>                                        
                     <td>Net price at your store</td>
-                    <td>{{variantHistory.channelView[4].channelMarketView[0].netMarketPrice}}</td>
-                    <td>{{variantHistory.channelView[4].channelMarketView[1].netMarketPrice}}</td>
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].netMarketPrice}}</td>
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].netMarketPrice}}</td>
                   </tr>
                   <tr>
                     <td></td>                    
                     <td></td>                                        
                     <td>Promotion frequency(weeks)</td>
-                    <td>{{variantHistory.channelView[4].channelMarketView[0].promotionsDetails.promo_Frequency}}</td>
-                    <td>{{variantHistory.channelView[4].channelMarketView[1].promotionsDetails.promo_Frequency}}</td>
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].promotionsDetails.promo_Frequency}}</td>
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].promotionsDetails.promo_Frequency}}</td>
                   </tr>
                   <tr>
                     <td></td>                    
                     <td></td>                    
                     <td>Promotion rate(%)</td>
-                    <td>{{variantHistory.channelView[4].channelMarketView[0].promotionsDetails.promo_Rate}}</td>
-                    <td>{{variantHistory.channelView[4].channelMarketView[1].promotionsDetails.promo_Rate}}</td>
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].promotionsDetails.promo_Rate}}</td>
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].promotionsDetails.promo_Rate}}</td>
                   </tr>
                 </tbody>  
               </table>

@@ -13,10 +13,10 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
 			console.log('Log:' + data.msg + ', isError:' + data.isError);
 		});
 
-		$scope.testPassive = function(){
+		$scope.testPassive = function(period){
 		  var postData = {
 		  	seminar : 'MAY',
-		  	period : 0
+		  	period : period
 		  }
 		  $http({method:'POST', url:'/passiveSeminar', data: postData}).then(function(res){
 		  	console.log('testPassive Success:' + res);
@@ -47,6 +47,17 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
 			},function(res){
 			  	console.log('testInitialise Failed:' + res.data);
 			})	
+		$scope.testRun = function(period) {
+			console.log('run:' + period);
+		  var postData = {
+		  	seminar : 'MAY',
+		  	period : period
+		  }
+		  $http({method:'POST', url:'/runSeminar', data: postData}).then(function(res){
+		  	console.log('testInitialise Success:' + res.data);
+		  },function(res){
+		  	console.log('testInitialise Failed:' + res.data);
+		  })				
 		}
 
 		$scope.testAuth = function(){

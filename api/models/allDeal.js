@@ -268,7 +268,6 @@ function fillAllDeal(seminar, period){
 //  var pair = [{producerID:1,retailerID:1}]
   var pair = [{producerID:1,retailerID:1}, {producerID:2,retailerID:1},{producerID:3,retailerID:1},
               {producerID:1,retailerID:2},{producerID:2,retailerID:2},{producerID:3,retailerID:2}]
-  var period = 0;
   var idx = 0;
 
   (function loopContract(pair){
@@ -364,7 +363,11 @@ function fillAllDeal(seminar, period){
           idx++;
           loopContract(pair);                    
         } else {
-          console.log('done');
+          console.log('loop contract done');
+          tempDeal.save(function(err){
+            if(!err){deferred.resolve({msg:'save doc complete.',result:tempDeal})}
+            else (console.log('save error:' + err));
+          });          
         }        
       }
 

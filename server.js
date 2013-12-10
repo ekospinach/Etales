@@ -45,7 +45,7 @@ app.post('/logout', require('./api/auth').logout);
 app.post('/initialiseSeminar', require('./api/initialiseSeminar.js').initialiseSeminar(io));
 app.post('/initialiseSeminarRetailer',require('./api/initialiseSeminar.js').initialiseSeminarRetailer(io));
 app.post('/passiveSeminar', require('./api/passiveSeminar.js').passiveSeminar(io));
-//app.post('/kernelResult')
+app.post('/runSeminar', require('./api/kernelSeminar.js').runSeminar(io));
 
 app.post('/contract');
 app.post('/contractDetails');
