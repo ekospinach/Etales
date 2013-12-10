@@ -12,7 +12,7 @@
         <h4>Step 2 of 4</h4>
         <div class="pull-left" style="width:33%">
           <h3 style="margin-top:0px">Market</h3>
-          <div class="btn-group pull-left" data-toggle="buttons" style="margin-left:10px">
+          <div class="btn-group pull-left" data-toggle="buttons">
               <label class="btn btn-default" ng-click="showView(user,period,'English')">
               <input type="radio" name="options"> English</label>
               <label class="btn btn-default" ng-click="showView(user,period,'Chinese')">
@@ -21,9 +21,9 @@
           </div>
         </div>
         <div class="pull-right" style="width:33%">
-          <progress percent="percentageExpend" class="progress active">{{surplusExpend}}</progress>
+          <progress percent="percentageExpend" class="progress active"></progress>
           <small>
-            <em>Total Avaliable Budget for Remaing Period</em>
+            <em>Total Avaliable Budget for Remaing Period:{{surplusExpend}}</em>
           </small>
           <!--<progress percent="ePercentageProduction" class="progress progress-suceess active progress-striped">{{eSurplusProduction}}</progress>
           <small>
@@ -62,7 +62,7 @@
                   <td></td>
                   <td>HealthBeauty Selling surface allocation</td>
                   <td>{{retailerDecisionHistory[0].categorySurfaceShare[1]}}</td>
-                </tr>                  
+                </tr>    
                 <tr>
                   <td></td>
                   <td></td>
@@ -99,7 +99,6 @@
               </tr>              
             </thead>
             <tbody>
-              
               <tr>
                 <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.ISSL}}" popover-title="{{labelLanguages.ISSL}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.ISSL}}<span style="color:red">*</span></p>
                 </th>
@@ -116,8 +115,7 @@
               </tr>
               <tr>
                 <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.LCA}}" popover-title="{{labelLanguages.LCA}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.LCA}}<span style="color:red">*</span></p></th>
-                <th ng-repeat='market in markets'><a href="#" editable-text="market.localAdvertising[1]" onbeforesave="checkBudget(market.marketID,'localAdvertising','postion','1',$index,$data)" onaftersave="updateMarketDecision(market.marketID,'localAdvertising','postion','1',$index)">{{ market.localAdvertising[1]
-                 || 0 }}</a></th>
+                <th ng-repeat='market in markets'><a href="#" editable-text="market.localAdvertising[1]" onbeforesave="checkBudget(market.marketID,'localAdvertising','postion','1',$index,$data)" onaftersave="updateMarketDecision(market.marketID,'localAdvertising','postion','1',$index)">{{ market.localAdvertising[1]|| 0 }}</a></th>
               </tr>
               <tr>
                 <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.LAA}}" popover-title="{{labelLanguages.LAA}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.LAA}}<span style="color:red">*</span></p></th>

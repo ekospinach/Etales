@@ -146,6 +146,8 @@ define(['app'], function(app) {
 				      			}else if($scope.pageBase.retMarketDecision[i].serviceLevel=="SL_PREMIUM"){
 				      				$scope.pageBase.retMarketDecision[i].serviceLevel=5;
 				      			}
+				      			$scope.pageBase.retMarketDecision[i].categorySurfaceShare[0]*=100;
+				      			$scope.pageBase.retMarketDecision[i].categorySurfaceShare[1]*=100;
 				      			markets.push($scope.pageBase.retMarketDecision[i]);
 				      		}
 				      		result=1;
@@ -162,8 +164,12 @@ define(['app'], function(app) {
 
 			var checkSurface=function(value){
 				var d=$q.defer();
-				if(parseInt(value)>1||parseInt(value)<0){
-					d.resolve('Input range:0~1');
+				var filter=/^\d+$/;
+				if(!filter.test(value)){
+					d.resolve('Input a Integer');
+				}
+				if(parseInt(value)>65||parseInt(value)<35){
+					d.resolve('Input range:35~65');
 				}else{
 					d.resolve();
 				}
@@ -172,6 +178,10 @@ define(['app'], function(app) {
 
 			var checkBudget=function(marketID,location,postion,additionalIdx,index,value){
 				var d=$q.defer();
+				var filter=/^\d+(\.{0,1}\d+){0,1}$/;
+				if(!filter.test(value)){
+					d.resolve('Input a Num');
+				}
 				var url="/retailerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+marketID+'/'+location+'/'+additionalIdx;
 	      		$http({
 	      			method:'GET',
@@ -190,10 +200,11 @@ define(['app'], function(app) {
 			}
 
 			var updateMarketDecision=function(marketID,location,postion,additionalIdx,index){
-				if(location=="categorySurfaceShare"||location=="localAdvertising"){
+				if(location=="localAdvertising"){
 					RetailerDecisionBase.setMarketDecisionBase(marketID,location,additionalIdx,$scope.markets[index][location][additionalIdx]);					
-				}
-				else{
+				}else if(location=="categorySurfaceShare"){
+					RetailerDecisionBase.setMarketDecisionBase(marketID,location,additionalIdx,($scope.markets[index][location][additionalIdx])/100);					
+				}else{
 					RetailerDecisionBase.setMarketDecisionBase(marketID,location,postion,$scope.markets[index][location]);										
 				}
 			}

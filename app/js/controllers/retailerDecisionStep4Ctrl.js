@@ -169,13 +169,14 @@ define(['app'], function(app) {
 				      		for(var i=0;i<allRetCatDecisions.length;i++){
 				      			for(var j=1;j<allRetCatDecisions[i].retVariantDecision.length;j++){
 				      				if(allRetCatDecisions[i].retVariantDecision[j].brandID!=0&&allRetCatDecisions[i].retVariantDecision[j].varID!=0){
+				      					allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate*=100;
+				      					allRetCatDecisions[i].retVariantDecision[j].shelfSpace*=100;
 				      					products.push(allRetCatDecisions[i].retVariantDecision[j]);
 				      					count++;
 				      				}
 				      			}
 				      		}
 				      		$scope.products=products;
-				      		console.log(products);
 							$scope.infoLanguages=infoLanguages;
 							$scope.labelLanguages=labelLanguages;
 							if(category=="Elecssories"){
@@ -246,6 +247,10 @@ define(['app'], function(app) {
 			*/
 			var checkOrderVolume=function(category,market,brandName,varName,location,postion,addtionalIdx,value){
 				var d=$q.defer();
+				var filter=/^\d+$/;
+				if(!filter.test(value)){
+					d.resolve('Input a Integer');
+				}
 				var max=0;
 					if(market=="Urban"){
 					market=1;
@@ -275,6 +280,10 @@ define(['app'], function(app) {
 			*/
 			var checkShelfSpace=function(category,market,brandName,varName,location,postion,addtionalIdx,value){
 				var d=$q.defer(),max=0;
+				var filter=/^\d+$/;
+				if(!filter.test(value)){
+					d.resolve('Input a Integer');
+				}
 				if(market=="Urban"){
 					market=1;
 				}else if(market=="Rural"){
@@ -290,7 +299,7 @@ define(['app'], function(app) {
 	      			method:'GET',
 	      			url:url
 	      		}).then(function(data){
-	      			max=1-data.data.exclude;
+	      			max=100-data.data.exclude*100;
 	      			if(value>max||value<0){
 	      				d.resolve('Input range 0~'+max);
 	      			}else{
@@ -357,6 +366,10 @@ define(['app'], function(app) {
 			/*1-26*/
 			var checkPromototionFrequency=function(value){
 				var d=$q.defer();
+				var filter=/^\d+$/;
+				if(!filter.test(value)){
+					d.resolve('Input a Integer');
+				}
 				if(value>26||value<1){
 					d.resolve('Input range:1~26');
 				}else{
@@ -367,8 +380,12 @@ define(['app'], function(app) {
 			/*1-100%*/
 			var checkReductionRate=function(value){
 				var d=$q.defer();
-				if(value>1||value<0){
-					d.resolve('Input range:0~1');
+				var filter=/^\d+$/;
+				if(!filter.test(value)){
+					d.resolve('Input a Integer');
+				}
+				if(value>100||value<0){
+					d.resolve('Input range:0~100');
 				}else{
 					d.resolve();
 				}
@@ -386,8 +403,12 @@ define(['app'], function(app) {
 				}else if(category=="HealthBeauty"){
 					category=2;
 				}
-				if(location=="pricePromotions"){
+				if(location=="pricePromotions"&&postion=="promo_Frequency"){
 					RetailerDecisionBase.setRetailerDecision(category,market,brandName,varName,location,postion,$scope.products[addtionalIdx][location][postion]);					
+				}else if(location=="pricePromotions"&&postion=="promo_Rate"){
+					RetailerDecisionBase.setRetailerDecision(category,market,brandName,varName,location,postion,($scope.products[addtionalIdx][location][postion])/100);
+				}else if(location=="shelfSpace"){
+					RetailerDecisionBase.setRetailerDecision(category,market,brandName,varName,location,postion,($scope.products[addtionalIdx][location])/100);					
 				}else{
 					RetailerDecisionBase.setRetailerDecision(category,market,brandName,varName,location,postion,$scope.products[addtionalIdx][location]);					
 				}

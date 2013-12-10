@@ -387,7 +387,7 @@ exports.updateRetailerDecision = function(io){
                                     var decision="retMarketDecision";
                                     switch(queryCondition.behaviour){
                                         case 'updateGeneralDecision':
-                                                doc[queryCondition.location][queryCondition.additionalIdx]=parseInt(queryCondition.value);
+                                                doc[queryCondition.location][queryCondition.additionalIdx]=queryCondition.value;
                                                 //console.log(doc[queryCondition.location][queryCondition.additionalIdx]);
                                         break;
                                         case 'updateMarketDecision':

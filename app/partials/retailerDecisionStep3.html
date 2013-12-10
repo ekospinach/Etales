@@ -44,7 +44,7 @@
         </div>
           <div style="clear:both"></div>
           <div collapse="isCollapsed" class="panel panel-info">
-            <div class="panel-heading">{{variantHistory.parentBrandName}}{{variantHistory.varName}} <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button></div>
+            <div class="panel-heading">{{variantHistory.parentBrandName||showNewHistory.brandName}}{{variantHistory.varName||showNewHistory.varName}} <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button></div>
               <table class="table table-condensed table-bordered">
                 <thead>
                   <tr>
@@ -62,19 +62,19 @@
                   </tr>                
                   <tr>
                     <td>Acquired technology level</td>
-                    <td ng-show="isElecssories">{{companyHistory.acquiredTechnologyLevel[0]}}</td>
-                    <td ng-show="isHealthBeauty">{{companyHistory.acquiredTechnologyLevel[1]}}</td>                    
+                    <td ng-show="isElecssories">{{companyHistory.acquiredTechnologyLevel[0]||'/'}}</td>
+                    <td ng-show="isHealthBeauty">{{companyHistory.acquiredTechnologyLevel[1]||'/'}}</td>                    
                     <td>Sales volume</td>
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].salesVolume}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].salesVolume}}</td>                    
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].salesVolume||'/'}}</td>                    
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].salesVolume||'/'}}</td>                    
                   </tr>                
                   <tr>
                     <td>Acquired design level</td>
-                    <td ng-show="isElecssories">{{companyHistory.acquiredDesignLevel[0]}}</td>
+                    <td ng-show="isElecssories">{{companyHistory.acquiredDesignLevel[0]||'/'}}</td>
                     <td ng-show="isHealthBeauty">/</td>             
                     <td>Unit production cost</td>
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].currentUnitAcquisitionCost}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].currentUnitAcquisitionCost}}</td>   
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].currentUnitAcquisitionCost||'/'}}</td>                    
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].currentUnitAcquisitionCost||'/'}}</td>   
                   </tr>                
                   <tr>
                     <td ng-show="false">Expected perception(x-axis)</td>
@@ -82,24 +82,24 @@
                     <td></td>
                     <td ng-show="isElecssories">Design index</td>                    
                     <td ng-show="isHealthBeauty">Active-agent</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[0]}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[0]}}</td>                    
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[0]||'/'}}</td>                    
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[0]||'/'}}</td>                    
                   </tr>                
                   <tr>
                     <td ng-show="false">Expected perception(y-axis)</td>
                     <td></td>
                     <td></td>
                     <td>Technology level</td>
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[1]}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[1]}}</td>                    
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[1]||'/'}}</td>                    
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[1]||'/'}}</td>                    
                   </tr>                
                   <tr>
                     <td></td>
                     <td></td>
                     <td ng-show="isElecssories">Raw materials quality</td>  
                     <td ng-show="isHealthBeauty">Smootherner Level</td>                  
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[2]}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[2]}}</td>                                        
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[2]||'/'}}</td>                    
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[2]||'/'}}</td>                                        
                   </tr>                                  
                 </tbody>   
               </table>
