@@ -6,7 +6,7 @@ var getLabelBase = function(){
 	{id:'PricePerception',  ENG:'PricePerception',  CHN:'价格感知',  RUS:''},
 	{id:'Producer',  ENG:'Producer ',  CHN:'生产商 ',  RUS:''},
 	{id:'Retailer',  ENG:'Retailer ',  CHN:'零售商 ',  RUS:''},
-	{id:'switchLanguage',  ENG:'Switch Language',  CHN:'切换界语言',  RUS:''},
+	{id:'switchLanguage',  ENG:'Switch Language',  CHN:'切换语言',  RUS:''},
 	{id:'',  ENG:'',  CHN:'',  RUS:''},
 	{id:'',  ENG:'',  CHN:'',  RUS:''},
 	{id:'',  ENG:'',  CHN:'',  RUS:''},
