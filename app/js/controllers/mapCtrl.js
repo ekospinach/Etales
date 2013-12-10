@@ -1,7 +1,7 @@
 define(['app','socketIO','routingConfig'], function(app) {
 
-	app.controller('mapCtrl',['$scope','$rootScope','$http','$location','$resource','map','Map','Auth', 
-		function($scope, $rootScope,$http,$location,$resource,map,Map,Auth) {
+	app.controller('mapCtrl', ['$scope','$rootScope','$http','$location','$resource','map','Map','Auth','Label', 
+		function($scope, $rootScope,$http,$location,$resource,map,Map,Auth,Label) {
 		// You can access the scope of the controller from here
 			$rootScope.loginCss="";
 		    $rootScope.loginFooter="bs-footer";
@@ -42,13 +42,13 @@ define(['app','socketIO','routingConfig'], function(app) {
 				marketID=2;
 			}
 			if(cat=="Elecsories"){
-				$scope.xTitle="Ease of Use perception";
-				$scope.yTitle="Quality perception";
+				$scope.xTitle=Label.getContent("Ease of Use perception");
+				$scope.yTitle=Label.getContent("Quality perception");
 			}else{
-				$scope.xTitle="Performance perception";
-				$scope.yTitle="Gentleness perception";
+				$scope.xTitle=Label.getContent("Performance perception");
+				$scope.yTitle=Label.getContent("Gentleness perception");
 			}
-			$scope.zTitle="PricePerception";
+			$scope.zTitle=Label.getContent("PricePerception");
 			$scope.pageCollection=_.find($scope.map.pageCollection, function(obj) { 
 				return (obj.category == cat&&obj.market==market) 
 			});
@@ -64,19 +64,19 @@ define(['app','socketIO','routingConfig'], function(app) {
 			var colors=new Array("#000000");
 			var costColors=new Array("#000000");
 			var tree = [{
-	            "key": "P-1",
+	            "key": Label.getContent("Producer") +1,
 	            "values": []
 	        },{
-	            "key": "P-2",
+	            "key": Label.getContent("Producer") + 2,
 	            "values": []
 	        },{
-	            "key": "P-3",
+	            "key": Label.getContent("Producer") + 3,
 	            "values": []
 	        },{
-	            "key": "R-1",
+	            "key": Label.getContent("Retailer") + 1,
 	            "values": []
 	        },{
-	            "key": "R-2",
+	            "key": Label.getContent("Retailer") + 2,
 	            "values": []
 	        }];
 			//var length=$scope.pageCollection.brandCollection.length;

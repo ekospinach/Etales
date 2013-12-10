@@ -1,6 +1,6 @@
 define(['app','socketIO','routingConfig','bootstrap'], function(app) {
 
-	app.controller('testCtrl',['$scope', '$http', 'ProducerDecisionBase','$rootScope','Auth', function($scope, $http, ProducerDecisionBase,$rootScope,Auth) {
+	app.controller('testCtrl',['$scope', '$http', 'ProducerDecisionBase','$rootScope','Auth','Label', function($scope, $http, ProducerDecisionBase,$rootScope,Auth,Label) {
 		// You can access the scope of the controller from here
 			$rootScope.loginCss="";
 		    $rootScope.loginFooter="bs-footer";
@@ -149,6 +149,17 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
 				console.log('from ctr: ' + update);
 			})	
 		});
+
+		$scope.testLabel = function(){
+			console.log(Label.getLabel('test'));
+		}
+
+		$scope.setLanguage = function(value){
+			Label.changeLanguage(value);
+			console.log('current:' + Label.getCurrentLanguage());
+		}
+
+		$scope.Label = Label;
 	}]);
 
 });

@@ -34,7 +34,8 @@
 			producerPopInfo:'./controllers/untils/producerPopInfo',
 			retailerPopInfo:'./controllers/untils/retailerPopInfo',
 			reportTitle:'./controllers/untils/reportTitle',
-			domReady: '../bower_components/requirejs-domready/domReady'
+			domReady: '../bower_components/requirejs-domready/domReady',
+			labelBase: './utils/labelBase'
 			//addProduct:'../js/functions/addNewProduct'
 		},
 		baseUrl: 'js',

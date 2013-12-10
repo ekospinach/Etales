@@ -32,8 +32,7 @@ define([
 			'ngCookies'
 		]).run(function(editableOptions){
 			editableOptions.theme = 'bs3';
-		}).run(['$rootScope', '$location','Auth','$http', function ($rootScope, $location, Auth, $http) {
-		    
+		}).run(['$rootScope', '$location','Auth','$http', function ($rootScope, $location, Auth, $http) {		    
 		    $rootScope.currentPeriod = 0;
 		    $rootScope.mapPeriod=0;
 		    $rootScope.rootStartFrom=-2;
@@ -62,5 +61,8 @@ define([
 	            	}
 	            }
 	        });
-		}]);
+		}]).config(function(LabelProvider){
+			//config default language
+			LabelProvider.initialiseLanguage('ENG');
+		});
 });

@@ -1,6 +1,6 @@
 define(['app'], function(app) {
 
-	app.controller('NavbarCtrl',['$scope', '$http', '$location','$rootScope','Auth', function($scope, $http, $location,$rootScope,Auth) {
+	app.controller('NavbarCtrl', ['$scope', '$http', '$location','$rootScope','Auth','Label', function($scope, $http, $location,$rootScope,Auth,Label) {
 	    $scope.getUserRoleText = function(role) {
 
 	//        console.log('trying to get user role text:' + _.invert(Auth.userRoles)[role]);
@@ -18,6 +18,8 @@ define(['app'], function(app) {
 	    $scope.$on("$routeChangeSuccess", function(next, current){
 			$scope.currentPeriod = $rootScope.currentPeriod;	    
 		})
+
+		$scope.Label = Label;
 	}]);
 
 });

@@ -61,6 +61,11 @@
 					        <ul class="dropdown-menu">
 					          <li role="presentation" class="dropdown-header">Period {{currentPeriod}} of 3</li>
 					          <li><a>Get result of lastest period</a></li>
+					          <li class="divider"></li>					          
+					          <li role="presentation" class="dropdown-header">{{Label.getContent('switchLanguage')}}</li>
+					          <li><a ng-click="Label.changeLanguage('ENG')">English</a></li>					          
+					          <li><a ng-click="Label.changeLanguage('CHN')">简体中文</a></li>					          
+
 					          <li class="divider"></li>
 					          <li><a ng-click="logout()">Log out</a></li>
 					        </ul>				        	

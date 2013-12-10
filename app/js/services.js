@@ -1,8 +1,58 @@
-define(['angular','angularResource','routingConfig'], function (angular,angularResource) {
+define(['angular',
+	'angularResource',
+	'routingConfig',
+	'labelBase'], function (angular,angularResource) {
 	'use strict';
 
 	var services=angular.module('myApp.services', ['ngResource']);
+
 	services.value('version', '0.1');
+	//multiple language translate, you should use the Provider recipe only when you want to 
+	//expose an API for application-wide configuration that must be made before the application starts. 
+	//This is usually interesting only for reusable services whose behavior might need to vary slightly between applications.
+	services.provider('Label', function(){
+		var currentLanguage,
+			labelBase; 
+
+		//configure default languge during angular bootstraping
+		this.initialiseLanguage = function(value){
+			this.currentLanguage = value;
+			this.labelBase = getLabelBase();
+		};
+
+		this.$get = function(){
+			var self = this, item;
+			return {
+				getContent : function(value){
+					switch(self.currentLanguage){
+						case 'ENG': 
+						    item = _.find(self.labelBase, function(singleItem){ return singleItem.id == value})
+						    if(item){ return item.ENG;}
+						    else return '**NotFound**';
+						    break;
+						case 'CHN':
+						    item = _.find(self.labelBase, function(singleItem){ return singleItem.id == value})
+						    if(item){ return item.CHN;}
+						    else return '**NotFound**';
+						    break;
+						case 'RUS':
+						    item = _.find(self.labelBase, function(singleItem){ return singleItem.id == value})
+						    if(item){ return item.RUS;}					    
+						    else return '**NotFound**';		
+						    break;
+						default:
+							return '**NotFound**'		
+					}
+				},
+				changeLanguage : function(value){
+					self.currentLanguage = value;
+				},
+				getCurrentLanguage : function() {
+					return self.currentLanguage;
+				}			
+			}
+		}
+	})	
 
 	services.factory('ContractInfo', function(){
 		var selectedContract;
