@@ -169,8 +169,13 @@ define(['app'], function(app) {
 				      		for(var i=0;i<allRetCatDecisions.length;i++){
 				      			for(var j=1;j<allRetCatDecisions[i].retVariantDecision.length;j++){
 				      				if(allRetCatDecisions[i].retVariantDecision[j].brandID!=0&&allRetCatDecisions[i].retVariantDecision[j].varID!=0){
-				      					allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate*=100;
+				      					if(allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate>=0&&allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate<=1){
+				      						allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate*=100;
+				      					}
+				      					if(allRetCatDecisions[i].retVariantDecision[j].shelfSpace>=0&&allRetCatDecisions[i].retVariantDecision[j].shelfSpace<=1)
+				      					
 				      					allRetCatDecisions[i].retVariantDecision[j].shelfSpace*=100;
+				      					
 				      					products.push(allRetCatDecisions[i].retVariantDecision[j]);
 				      					count++;
 				      				}
@@ -495,7 +500,7 @@ define(['app'], function(app) {
 					ordersProducts[i].shelfSpace=0,
 					ordersProducts[i].pricePromotions={
 						promo_Frequency:1,
-						promo_Rate:0.01
+						promo_Rate:0
 					}
 				}
 				if(market=="Urban"){

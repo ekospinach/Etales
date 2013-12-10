@@ -146,8 +146,12 @@ define(['app'], function(app) {
 				      			}else if($scope.pageBase.retMarketDecision[i].serviceLevel=="SL_PREMIUM"){
 				      				$scope.pageBase.retMarketDecision[i].serviceLevel=5;
 				      			}
-				      			$scope.pageBase.retMarketDecision[i].categorySurfaceShare[0]*=100;
-				      			$scope.pageBase.retMarketDecision[i].categorySurfaceShare[1]*=100;
+				      			if($scope.pageBase.retMarketDecision[i].categorySurfaceShare[0]>=0&&$scope.pageBase.retMarketDecision[i].categorySurfaceShare[0]<=1){
+				      				$scope.pageBase.retMarketDecision[i].categorySurfaceShare[0]*=100;
+				      			}
+				      			if($scope.pageBase.retMarketDecision[i].categorySurfaceShare[1]>=0&&$scope.pageBase.retMarketDecision[i].categorySurfaceShare[1]<=1){
+				      				$scope.pageBase.retMarketDecision[i].categorySurfaceShare[1]*=100;
+				      			}				      			
 				      			markets.push($scope.pageBase.retMarketDecision[i]);
 				      		}
 				      		result=1;

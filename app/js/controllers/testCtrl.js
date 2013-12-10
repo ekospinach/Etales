@@ -37,6 +37,18 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
 		  })			
 		}
 
+		$scope.testInitialiseRetailer=function(){
+			console.log('retailer1');
+			var postData = {
+			  	seminar : 'MAY',
+			}
+			$http({method:'POST', url:'/initialiseSeminarRetailer', data: postData}).then(function(res){
+				console.log('testInitialise Success:' + res.data);
+			},function(res){
+			  	console.log('testInitialise Failed:' + res.data);
+			})	
+		}
+
 		$scope.testAuth = function(){
 			console.log(userRoles);
 			console.log(routingConfig.accessLevels);

@@ -117,8 +117,27 @@ exports.initialiseSeminar = function(io){
 
 
 	}
+
 }
 
+exports.initialiseSeminarRetailer=function(io){
+	return function(req, res, next){
+		var options = {
+			producerID : '1', 
+			retailerID : '1',
+			seminar : req.body.seminar, 
+			startFrom: -3, 
+			endWith: 1, 
+			cgiHost : conf.cgi.host, 
+			cgiPort : conf.cgi.port,			
+			cgiPath : conf.cgi.path_retailerDecision, 
+		}	
+		console.log('ini on the server');
+		require('./models/retailerDecision.js').addRetailerDecisions(options).then(function(result){
+            io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
+		});
+	}
+}
 
 
 
