@@ -28,7 +28,6 @@ define(['angular',
 						case 'ENG': 
 						    item = _.find(self.labelBase, function(singleItem){ return singleItem.id == value})
 						    if(item){ return item.ENG;}
-						    else return '**NotFound**';
 						    break;
 						case 'CHN':
 						    item = _.find(self.labelBase, function(singleItem){ return singleItem.id == value})

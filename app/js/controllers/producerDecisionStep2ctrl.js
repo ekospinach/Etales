@@ -1,25 +1,18 @@
 define(['app'], function(app) {
 		app.controller('producerDecisionStep2Ctrl',
-			['$scope','$q','$rootScope','$http','$filter','ProducerDecision','ProducerDecisionBase', function($scope,$q,$rootScope,$http,$filter,ProducerDecision,ProducerDecisionBase) {
+			['$scope','$q','$rootScope','$http','$filter','ProducerDecision','ProducerDecisionBase','Label', function($scope,$q,$rootScope,$http,$filter,ProducerDecision,ProducerDecisionBase,Label) {
 			$rootScope.decisionActive="active";
 			$rootScope.loginCss="";
 		    $rootScope.loginFooter="bs-footer";
 		    $rootScope.loginLink="footer-links";
 		    $rootScope.loginDiv="container";
-			var multilingual=getProducerStep12Info();
-			var language='English',
-				producerID=$rootScope.user.username.substring($rootScope.user.username.length-1);
-				period=$rootScope.currentPeriod,
-				category='Elecssories',
-				isCollapsed=true;
-				$scope.isCollapsed=isCollapsed;
-			$scope.multilingual=multilingual;
-			$scope.category=category;
-			$scope.language=language;
-			$scope.producerID=producerID;
-			$scope.period=period;
 
-			$scope.parameter=1;/*default add new Brand*/
+			$scope.language=Label.getCurrentLanguage(),
+			$scope.producerID=$rootScope.user.username.substring($rootScope.user.username.length-1);
+			$scope.period=$rootScope.currentPeriod,
+			$scope.category='Elecssories',
+			$scope.isCollapsed=true;
+
 	
 			ProducerDecisionBase.reload({producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 				$scope.pageBase = base;
@@ -95,56 +88,33 @@ define(['app'], function(app) {
 					$scope.surplusProduction=acMax-data.data.result;
 					$scope.percentageProduction=(acMax-data.data.result)/acMax*100;
 					$scope.producerID=producerID,$scope.period=period,$scope.category=category,$scope.language=language;
-					if(language=="English"){
-							for(var i=0;i<$scope.multilingual.length;i++){
-									if(category=="Elecssories"){
-										$scope.EleShow="inline";
-										$scope.HeaShow="none";
-									}
-									else if(category=="HealthBeauty"){
-										$scope.EleShow="none";
-										$scope.HeaShow="inline";
-									}
-									labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
-									infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
-								}
-							}
-							else if(language=="Chinese"){
-								for(var i=0;i<$scope.multilingual.length;i++){
-									if(category=="Elecssories"){
-										$scope.EleShow="inline";
-										$scope.HeaShow="none";
-									}
-									else if(category=="HealthBeauty"){
-										$scope.EleShow="none";
-										$scope.HeaShow="inline";
-									}
-									labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
-									infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
-								}
-							}
+					if(category=="Elecssories"){
+						$scope.EleShow="inline";
+						$scope.HeaShow="none";
+					}
+					else if(category=="HealthBeauty"){
+						$scope.EleShow="none";
+						$scope.HeaShow="inline";
+					}
 
-							var allProCatDecisions=loadSelectCategroy(category);
-				      		for(var i=0;i<allProCatDecisions.length;i++){
-				      			for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
-				      				if(allProCatDecisions[i].proBrandsDecision[j]!=undefined&&allProCatDecisions[i].proBrandsDecision[j].brandID!=undefined&&allProCatDecisions[i].proBrandsDecision[j].brandID!=0){
-					      				for(var k=0;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
-					      					if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]!=undefined&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=undefined&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=0){
-					      						products.push(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]);
-						      					products[count].category=category;
-						      					products[count].parentBrandName=allProCatDecisions[i].proBrandsDecision[j].brandName;
-						      					count++;
-					      					}
+					var allProCatDecisions=loadSelectCategroy(category);
+				    	for(var i=0;i<allProCatDecisions.length;i++){
+				     		for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
+				      			if(allProCatDecisions[i].proBrandsDecision[j]!=undefined&&allProCatDecisions[i].proBrandsDecision[j].brandID!=undefined&&allProCatDecisions[i].proBrandsDecision[j].brandID!=0){
+									for(var k=0;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
+					      				if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]!=undefined&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=undefined&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=0){
+					      					products.push(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]);
+						      				products[count].category=category;
+						      				products[count].parentBrandName=allProCatDecisions[i].proBrandsDecision[j].brandName;
+						      				count++;
 					      				}
 					      			}
-				      			}
+					      		}
 				      		}
-				      		if(count!=0){
-				      			result=1;
-				      		}
-				      		$scope.products=products;
-							$scope.labelLanguages=labelLanguages;
-							$scope.infoLanguages=infoLanguages;
+				   		}
+				    $scope.products=products;
+					$scope.labelLanguages=labelLanguages;
+					$scope.infoLanguages=infoLanguages;
 				},function(){
 					console.log('showView fail');
 				});

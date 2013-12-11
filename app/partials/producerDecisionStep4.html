@@ -1,7 +1,7 @@
 <div id="content" class="bs-header">
     <div class="container">
-        <h1>Category Decision</h1>
-        <p>Step 4 of 4, At last you have to make decisions influencing whole category. These decisions are long-term investments, that is why they are not taken from your limited operational budget, you borrow these investments from capital market at a cost. Keep in mind that your long-term investments increase your fixed assets and consequently costs of running business. </p>
+        <h1>{{Label.getContent('Category Decision')}}</h1>
+        <p>{{Label.getContent('Category Decision Info')}}</p>
     </div>
 </div>
 
@@ -9,118 +9,109 @@
   <div class="row">
     <div class="col-md-12">
       <div class="bs-docs-section">
-        <h4>Step 4 of 4</h4>
+        <h4>{{Label.getContent('Producer Step 4 of 4')}}</h4>
         <div class="pull-left" style="width:33%">
-          <h3 style="margin-top:0px">Category Decision</h3>
-          <div class="btn-group pull-left" data-toggle="buttons">
-              <label class="btn btn-default" ng-click="showView(user,period,'English')">
-              <input type="radio" name="options"> English</label>
-              <label class="btn btn-default" ng-click="showView(user,period,'Chinese')">
-              <input type="radio" name="options"> Chinese
-              </label>
-          </div>
+          <h3 style="margin-top:0px">{{Label.getContent('Category Decision')}}</h3>
         </div>
+      </div>
+      <div style="clear:both"></div>
 
-<!--         <div class="pull-right" style="width:33%">
-          <progress percent="percentageExpend" class="progress active">{{surplusExpend}}</progress>
-          <small>
-            <em>Total Avaliable Budget for Remaing Period</em>
-          </small>
-          <progress percent="ePercentageProduction" class="progress progress-suceess active progress-striped">{{eSurplusProduction}}</progress>
-          <small>
-            <em>Elecssories Available Capacity</em>
-          </small>
-            <progress percent="hPercentageProduction" class="progress progress-suceess active progress-striped">{{hSurplusProduction}}</progress>
-          <small>
-            <em>HealthBeauty Available Capacity</em>
-          </small>
-        </div> -->
-
-          <div style="clear:both"></div>
-
-          <div collapse="isCollapsed" class="panel panel-info">
-            <div class="panel-heading">{{category}}<button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button></div>
-              <table class="table table-condensed table-bordered">
-                <thead>
-                  <tr>
-                    <td colspan="2" class="col-md-6">Current period ({{currentPeriod}})</td>
-                    <td colspan="2" class="col-md-6">Previous period ({{currentPeriod-1}})</td>               
-                  </tr>                  
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Production capacity</td>
-                    <td>{{categoryID==1?companyHistory.productionCapacity[0]:companyHistory.productionCapacity[1]}}</td>
-                    <td>Investment in capacity change</td>
-                    <td>{{companyDecisionHistory.capacityChange}}</td>
-                  </tr>
-                  <tr>
-                    <td>Acquired technology Level</td>
-                    <td>{{categoryID==1?companyHistory.acquiredTechnologyLevel[0]:companyHistory.acquiredTechnologyLevel[1]}}</td>
-                    <td>Investment to improve avaliable Technology</td>
-                    <td>{{companyDecisionHistory.investInTechnology}}</td>
-                  </tr>
-                  <tr>
-                    <td>Acquired production flexibility</td>
-                    <td>{{categoryID==1?companyHistory.acquiredProductionFlexibility[0]:companyHistory.acquiredProductionFlexibility[1]}}</td>
-                    <td>Investment to improve flexibility</td>
-                    <td>{{companyDecisionHistory.investInProductionFlexibility}}</td>
-                  </tr>
-                  <tr>
-                    <td>Acquired Design Level</td>
-                    <td>{{categoryID==1?companyHistory.acquiredDesignLevel[0]:companyHistory.acquiredDesignLevel[1]}}</td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
-          </div>
-          <table class="table table-hover">
+      <div collapse="isCollapsed" class="panel panel-info">
+        <div class="panel-heading">{{category}}
+          <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button>
+        </div>
+        <table class="table table-condensed table-bordered">
             <thead>
               <tr>
-                <th>{{labelLanguages.Category}}</th>
-                <th>
-                  <div style="clear:both"></div>
-                  <p class="pull-left">Elecssories</p>
-                  <button type="button" class="btn btn-primary btn-xs pull-left" style="margin-left:5px" ng-click="getCategoryMoreInfo(1)">More</button>
-                  <div style="clear:both"></div>
-                </th>
-                <th>
-                  <div style="clear:both"></div>
-                  <p class="pull-left">Health & Beauty</p>
-                  <button type="button" class="btn btn-primary btn-xs pull-left" style="margin-left:5px" ng-click="getCategoryMoreInfo(2)">More</button>
-                  <div style="clear:both"></div>
-                </th>
-              </tr>              
+                <td colspan="2" class="col-md-6">{{Label.getContent('Current period')}} ({{currentPeriod}})</td>
+                <td colspan="2" class="col-md-6">{{Label.getContent('Previous period')}} ({{currentPeriod-1}})</td>               
+              </tr>                  
             </thead>
             <tbody>
               <tr>
-                <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.IICC}}" popover-title="{{labelLanguages.IICC}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.IICC}}<span style="color:red">*</span></p>
-                </th>
-                <th ng-repeat='category in categorys'><a href="#" editable-text="category.capacityChange" onbeforesave="checkData($data)" onaftersave="updateProducerDecision(category.categoryID,'capacityChange',$index)">{{ category.capacityChange || 0 }}</a></th>
+                <td>{{Label.getContent('Production capacity')}}</td>
+                <td>{{categoryID==1?companyHistory.productionCapacity[0]:companyHistory.productionCapacity[1]}}</td>
+                <td>{{Label.getContent('in capacity change')}}</td>
+                <td>{{companyDecisionHistory.capacityChange}}</td>
               </tr>
               <tr>
-                <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.ITIAT}}" popover-title="{{labelLanguages.ITIAT}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.ITIAT}}<span style="color:red">*</span></p></th>
-                <th ng-repeat='category in categorys'><a href="#" editable-text="category.investInTechnology" onbeforesave="checkData($data)" onaftersave="updateProducerDecision(category.categoryID,'investInTechnology',$index)">{{ category.investInTechnology || 0 }}</a></th>
+                <td>{{Label.getContent('Acquired Technology Level')}}</td>
+                <td>{{categoryID==1?companyHistory.acquiredTechnologyLevel[0]:companyHistory.acquiredTechnologyLevel[1]}}</td>
+                <td>{{Label.getContent('improve Available Technology')}}</td>
+                <td>{{companyDecisionHistory.investInTechnology}}</td>
               </tr>
               <tr>
-                <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.ITIF}}" popover-title="{{labelLanguages.ITIF}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.ITIF}}<span style="color:red">*</span></p></th>
-                <th ng-repeat='category in categorys'><a href="#" editable-text="category.investInProductionFlexibility" onbeforesave="checkData($data)" onaftersave="updateProducerDecision(category.categoryID,'investInProductionFlexibility',$index)">{{ category.investInProductionFlexibility || 0 }}</a></th>
+                <td>{{Label.getContent('Acquired production flexibility')}}</td>
+                <td>{{categoryID==1?companyHistory.acquiredProductionFlexibility[0]:companyHistory.acquiredProductionFlexibility[1]}}</td>
+                <td>{{Label.getContent('improve Flexibility')}}</td>
+                <td>{{companyDecisionHistory.investInProductionFlexibility}}</td>
               </tr>
               <tr>
-                <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.ITIDK}}" popover-title="{{labelLanguages.ITIDK}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.ITIDK}}<span style="color:red">*</span></p></th>
-                <th>
-                  <a href="#" editable-text="categorys[0].investInDesign" onbeforesave="checkData($data)" onaftersave="updateProducerDecision(1,'investInDesign',0)">{{ categorys[0].investInDesign || 0 }}</a>
-                </th>
-                <th></th>
-              </tr>              
+                <td>{{Label.getContent('Acquired Design Level')}}</td>
+                <td>{{categoryID==1?companyHistory.acquiredDesignLevel[0]:companyHistory.acquiredDesignLevel[1]}}</td>
+                <td></td>
+                <td></td>
+              </tr>
             </tbody>
-          </table>
-          <div>
-            <a href="/#/producerDecisionStep3" class="btn btn-default">Back</a>
-            <!--<a href="/#/producerDecisionStep4" class="btn btn-primary">Next</a>-->
-          </div>
-        </div>
+        </table>
+      </div>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+              <th>{{Label.getContent('Category')}}</th>
+              <th>
+                <div style="clear:both"></div>
+                <p class="pull-left">Elecssories</p>
+                <button type="button" class="btn btn-primary btn-xs pull-left" style="margin-left:5px" ng-click="getCategoryMoreInfo(1)">{{Label.getContent('More')}}</button>
+                <div style="clear:both"></div>
+              </th>
+              <th>
+                <div style="clear:both"></div>
+                <p class="pull-left">HealthBeauty</p>
+                <button type="button" class="btn btn-primary btn-xs pull-left" style="margin-left:5px" ng-click="getCategoryMoreInfo(2)">{{Label.getContent('More')}}</button>
+                <div style="clear:both"></div>
+              </th>
+          </tr>              
+        </thead>
+        <tbody>
+            <tr>
+              <th>
+                <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('in capacity change Info')}}" popover-title="{{Label.getContent('in capacity change')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('in capacity change')}}<span style="color:red">*</span></p>
+              </th>
+              <th ng-repeat='category in categorys'>
+                <a href="#" editable-text="category.capacityChange" onbeforesave="checkData($data)" onaftersave="updateProducerDecision(category.categoryID,'capacityChange',$index)">{{ category.capacityChange || 0 }}</a>
+              </th>
+            </tr>
+            <tr>
+              <th>
+                <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('improve Available Technology Info')}}" popover-title="{{Label.getContent('improve Available Technology')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('improve Available Technology')}}<span style="color:red">*</span></p>
+              </th>
+              <th ng-repeat='category in categorys'>
+                <a href="#" editable-text="category.investInTechnology" onbeforesave="checkData($data)" onaftersave="updateProducerDecision(category.categoryID,'investInTechnology',$index)">{{ category.investInTechnology || 0 }}</a>
+              </th>
+            </tr>
+            <tr>
+              <th>
+                <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('improve Flexibility Info')}}" popover-title="{{Label.getContent('improve Flexibility')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('improve Flexibility')}}<span style="color:red">*</span></p>
+                </p>
+              </th>
+              <th ng-repeat='category in categorys'>
+                <a href="#" editable-text="category.investInProductionFlexibility" onbeforesave="checkData($data)" onaftersave="updateProducerDecision(category.categoryID,'investInProductionFlexibility',$index)">{{ category.investInProductionFlexibility || 0 }}</a>
+              </th>
+            </tr>
+            <tr>
+              <th>
+                <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('improve Design Know-How Info')}}" popover-title="{{Label.getContent('improve Design Know-How')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('improve Design Know-How')}}<span style="color:red">*</span></p>
+              </th>
+              <th>
+                <a href="#" editable-text="categorys[0].investInDesign" onbeforesave="checkData($data)" onaftersave="updateProducerDecision(1,'investInDesign',0)">{{ categorys[0].investInDesign || 0 }}</a>
+              </th>
+              <th></th>
+            </tr>              
+        </tbody>
+      </table>
+      <div>
+        <a href="/#/producerDecisionStep3" class="btn btn-default">{{Label.getContent('Back')}}</a>  
       </div>
     </div>
   </div>
