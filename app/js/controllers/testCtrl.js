@@ -47,6 +47,7 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
 			},function(res){
 			  	console.log('testInitialise Failed:' + res.data);
 			})	
+		}
 		$scope.testRun = function(period) {
 			console.log('run:' + period);
 		  var postData = {

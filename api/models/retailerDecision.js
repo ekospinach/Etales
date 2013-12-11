@@ -360,6 +360,45 @@ exports.getRetailerExpend=function(req,res,next){
     })
 }
 
+exports.checkOrder=function(req,res,next){
+    retDecision.findOne({
+        seminar:req.params.seminar,
+        period:req.params.period,
+        retailerID:req.params.retailerID
+    },function(err,doc){
+        if(!doc){
+            res.send(404,{err:'cannot find the doc'});
+        }else{
+            var count=0,result=0;
+            for(var i=0;i<doc.retMarketDecision.length;i++){
+                if(doc.retMarketDecision[i].marketID==req.params.marketID){
+                    for(var j=0;j<doc.retMarketDecision[i].retMarketAssortmentDecision.length;j++){
+                        if(doc.retMarketDecision[i].retMarketAssortmentDecision[j].categoryID==req.params.categoryID){
+                            for(var k=0;k<doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision.length;k++){
+                                if(doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision.varName!=""&&doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].brandName!=""){
+                                    count++;
+                                    if(doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].varName==req.params.varName&&doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].brandName==req.params.brandName){
+                                        result++;
+                                    }
+                                }
+                            }
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+            if(count>21){
+                res.send(404,{err:'here is already 21 orders '});
+            }else if(result!=0){
+                res.send(200,{err:'here is already a order about brandName:'+req.params.brandName+' and varName:'+req.params.varName});
+            }else{
+                res.send(200,{message:'OK'});
+            }
+        }
+    })
+}
+
 exports.updateRetailerDecision = function(io){
     return function(req, res, next){
         var queryCondition = {
@@ -551,11 +590,28 @@ exports.updateRetailerDecision = function(io){
                                             }
                                         break;
                                         case 'addOrder':
+                                            var count=0,result=0;
                                             for(var i=0;i<doc.retMarketDecision.length;i++){
                                                 if(doc.retMarketDecision[i].marketID==queryCondition.marketID){
                                                     for(var j=0;j<doc.retMarketDecision[i].retMarketAssortmentDecision.length;j++){
                                                         if(doc.retMarketDecision[i].retMarketAssortmentDecision[j].categoryID==queryCondition.value.categoryID){
-                                                            doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision.push(queryCondition.value);
+                                                            for(var k=0;k<doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision.length;k++){
+                                                                if(doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].varName!=""&&doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].brandName!=""){
+                                                                    count++;
+                                                                    if(doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].varName==queryCondition.value.varName&&doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].brandName==queryCondition.value.brandName){
+                                                                        result++;
+                                                                    }
+                                                                }
+                                                            }
+                                                            console.log('count:'+count+',result:'+result);
+                                                            if(count<=20&&result==0){
+                                                                for(var k=0;k<doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision.length;k++){
+                                                                    if(doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].varName==""&&doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].brandName==""){
+                                                                        doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision.splice(k,1,queryCondition.value);
+                                                                        break;
+                                                                    }
+                                                                }
+                                                            }
                                                             break;
                                                         }
                                                     }
@@ -564,6 +620,17 @@ exports.updateRetailerDecision = function(io){
                                             }
                                         break;
                                         case 'deleteOrder':
+                                            var nullOrder={
+                                                brandName:"",
+                                                brandID:0,
+                                                varName:"",
+                                                variantID:0,
+                                                dateOfDeath:0,
+                                                dateOfBirth:0,
+                                                order:0,
+                                                retailerPrice:0,
+                                                shelfSpace:0
+                                            };
                                             for(var i=0;i<doc.retMarketDecision.length;i++){
                                                 if(doc.retMarketDecision[i].marketID==queryCondition.marketID){           
                                                     for(var j=0;j<doc.retMarketDecision[i].retMarketAssortmentDecision.length;j++){
@@ -572,7 +639,7 @@ exports.updateRetailerDecision = function(io){
                                                             for(var k=0;k<doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision.length;k++){
                                                                 console.log(doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k]);
                                                                 if(doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k]!=undefined&&doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].brandName==queryCondition.brandName&&doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].varName==queryCondition.varName){
-                                                                    doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision.splice(k,1);
+                                                                    doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision.splice(k,1,nullOrder);
                                                                     break;
                                                                 }
                                                             }
@@ -593,7 +660,6 @@ exports.updateRetailerDecision = function(io){
                                         doc.markModified('retCatDecision');
                                         doc.save(function(err, doc, numberAffected){
                                             if(err) next(new Error(err));
-                                            console.log(doc);
                                             console.log('save updated hhq, number affected:'+numberAffected);
                                             io.sockets.emit('retailerBaseChanged', 'this is a baseChanged');
                                             res.send(200, 'mission complete!');

@@ -167,8 +167,8 @@ define(['app'], function(app) {
 							var allRetCatDecisions=loadSelectCategroy(market,category);
 							var products=new Array();
 				      		for(var i=0;i<allRetCatDecisions.length;i++){
-				      			for(var j=1;j<allRetCatDecisions[i].retVariantDecision.length;j++){
-				      				if(allRetCatDecisions[i].retVariantDecision[j].brandID!=0&&allRetCatDecisions[i].retVariantDecision[j].varID!=0){
+				      			for(var j=0;j<allRetCatDecisions[i].retVariantDecision.length;j++){
+				      				if(allRetCatDecisions[i].retVariantDecision[j].brandID!=0&&allRetCatDecisions[i].retVariantDecision[j].variantID!=0){
 				      					if(allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate>=0&&allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate<=1){
 				      						allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate*=100;
 				      					}
@@ -237,6 +237,7 @@ define(['app'], function(app) {
 								for(i=indexs.length-1;i>=0;i--){
 									$scope.orderProducts.splice(indexs[i],1);
 								}
+								console.log($scope.orderProducts);
 							}
 						})
 					})(urls,0);

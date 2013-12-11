@@ -685,7 +685,6 @@ define(['angular',
 							}else{
 								console.log('finish');
 								//$rootScope.$broadcast('retailerDecisionBaseChanged', base);
-								console.log('broadcast finish');
 							}
 						})
 					})(products, 0);
