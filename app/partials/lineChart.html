@@ -42,7 +42,7 @@
 			<h3>{{showGroupENG}}</h3>
 			<h4 class="pull-left"><span class="label label-warning">{{cat}}</span></h4>
 			<h4 class="pull-left" style="margin-left:10px"><span class="label label-success">{{market}}</span></h4>
-			<h4 class="pull-left" style="margin-left:10px"><span class="label label-info">Period:{{period}}</span></h4>
+			<h4 class="pull-left" style="margin-left:10px"><span class="label label-info" ng-show="false">Period:{{period}}</span></h4>
 			<h4 class="pull-left" style="margin-left:10px"><span class="label label-danger" ng-show="isRoleChangeBtnShow">{{role}}</span></h4>
 			<div style="padding:1px 0;clear:both"></div>
 			<div class="btn-group">
@@ -76,7 +76,7 @@
 				    <input type="radio" name="options"> Russian
 				  </label>
 				</div>
-			<div class="btn-group">
+			<div class="btn-group" ng-show="false">
 			  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
 			    Period <span class="caret"></span>
 			  </button>

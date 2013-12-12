@@ -403,6 +403,7 @@ define(['app'], function(app) {
 			}
 
 			var getMoreInfo=function(product){
+				var catID;
 				$scope.isCollapsed=false;
 				$scope.currentRetailerIdx = parseInt($rootScope.user.roleID) - 1;			
 				//deal with List price show/hide mechanism
@@ -428,9 +429,11 @@ define(['app'], function(app) {
 				if(product.brandName.substring(0,1)=="E"){
 					$scope.ElecssoriesVar="";
 					$scope.HealthBeautyVar="none";
+					catID = 1;
 				}else{
 					$scope.ElecssoriesVar="none";
 					$scope.HealthBeautyVar="";
+					catID = 2;
 				}
 
 				var url="";
@@ -462,6 +465,24 @@ define(['app'], function(app) {
 				},function(err){
 					console.log(err);
 				});
+
+				if($scope.isPrivateLabel){
+					var postData = {
+					    period : $rootScope.currentPeriod,
+					    seminar : $rootScope.user.seminar,
+					    brandName : product.brandName,
+					    varName : product.varName,
+					    catID : catID,
+					    userRole :  $rootScope.userRoles.retailer,
+					   	//this part need to be remake later to adjust Ficiltator View.								
+					    userID : $rootScope.user.roleID,
+					}					
+					$http({method:'POST', url:'/getCurrentUnitCost', data:postData}).then(function(data){
+						$scope.currentUnitCost = data.data.result;
+					}, function(err){
+						$scope.currentUnitCost = '/';
+					})
+				}
 			}
 
 			var addOrders=function(market){

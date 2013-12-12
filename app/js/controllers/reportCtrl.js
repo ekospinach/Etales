@@ -30,14 +30,20 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    if(finTitleENG=="Prices per unit"){
 		      $scope.detail="Variant";
 		      $rootScope.finDetailShow="hide";
-		    }else if(finTitleENG!="Prices per unit"){
+		    }else if(finTitleENG=="Profitability by Supplier" || finTitleENG=="Profitability by Channel"){
+		      $scope.detail="Category";
+		      $rootScope.finDetailShow="hide";
+		    }else {
 		      $rootScope.finDetailShow="";
 		    }
+
 		    if(type=="Fin"){
 		      url='/finReport?period='+period+'&seminar='+seminar+'&titleENG='+finTitleENG+'&role='+role;
 		    }else if(type=="Vol"){
 		      url='/volReport?period='+period+'&seminar='+seminar+'&titleENG='+finTitleENG+'&role='+role;
 		    }
+
+		    console.log(url);
 
 		    $http({method: 'GET', url: url}).
 		      success(function(data, status, headers, config) {

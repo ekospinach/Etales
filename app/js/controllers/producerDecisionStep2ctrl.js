@@ -153,31 +153,47 @@ define(['app'], function(app) {
 			}
 
 			var getMoreInfo=function(brandName,varName){
+				var catID;
 				if($scope.category=="Elecssories"){
 					$scope.isElecssories = true;
 					$scope.isHealthBeauty = false;
+					catID = 1;
 				}
 				else{
 					$scope.isElecssories = false;
-					$scope.isHealthBeauty = true
-				}
+					$scope.isHealthBeauty = true;
+					catID = 2;
+				}				
 				$scope.isCollapsed=false;
-				var url='/variantHistoryInfo/'+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/'+brandName+'/'+varName;
+				url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
 				$http({method: 'GET', url: url})
 				.then(function(data) {
-					$scope.variantHistory=data.data;
-					url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
-					return $http({method:'GET',url:url});
-				}).then(function(data){
+					//console.log($scope.variantHistory);
 					$scope.companyHistory=data.data;
-				},function(){
+					var postData = {
+					    period : $rootScope.currentPeriod,
+					    seminar : $rootScope.user.seminar,
+					    brandName : brandName,
+					    varName : varName,
+					    catID : catID,
+					    userRole :  $rootScope.userRoles.producer,
+					    userID : $rootScope.user.roleID,								
+					}
+					return $http({method:'POST', url:'/getCurrentUnitCost', data:postData});
+				}).then(function(data){
+				   $scope.currentUnitCost = data.data.result;
+				   var url='/variantHistoryInfo/'+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/'+brandName+'/'+varName;
+				   return $http({method: 'GET', url: url});
+				}).then(function(data){
+					$scope.variantHistory=data.data;
+
+				},function(err){
 					$scope.variantHistory=new Array();
-					$scope.companyHistory=new Array();
 					$scope.showNewHistory={
 						brandName:brandName,
 						varName:varName
 					}
-					console.log('read history info fail');
+					console.log('read history info fail:' + err.data);
 				});
 			}
 

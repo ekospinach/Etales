@@ -28,7 +28,7 @@ exports.getCurrentUnitCost = function(req, res, next){
                              variant.result.cumVolumes,
                              variant.result.catNow);
     console.log('done:' + value);
-    res.send(200, {result: value});
+    res.send(200, {result: value.toFixed(2)});
   }, function(err){
     console.log('err, ' + err.msg);
     res.send(404, err.msg);
@@ -74,7 +74,8 @@ function getProduct(query){
               } else { deferred.reject({msg:'UnitCost, cannot find variant by query: ' + query}); }
             } else { deferred.reject({msg:'UnitCost, cannot find brand by query: ' + query}); }           
           } else { deferred.reject({msg:'UnitCost, cannot find retailerDecision doc by query: ' + query}); }
-        })
+        });
+        break;
     default:
        deferred.reject({msg:'UnitCost, userRole error:' + query});
   }

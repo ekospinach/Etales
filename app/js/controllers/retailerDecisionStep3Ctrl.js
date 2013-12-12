@@ -496,20 +496,36 @@ define(['app'], function(app) {
 			}
 
 			var getMoreInfo=function(brandName,varName){
+				var catID;
 				//deal with composition label show/hide mechanism
 				if(brandName.substring(0,1)=="E"){
 					$scope.isElecssories=true;
 					$scope.isHealthBeauty=false;
+					catID = 1;
 				}else{
 					$scope.isElecssories=true;
 					$scope.isHealthBeauty=false;
+					catID = 2;
 				}
-
+				$scope.currentRetailerIdx = parseInt($rootScope.user.roleID) - 1;			
 				$scope.isCollapsed=false;
 				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/4';
 				$http({method:'GET',url:url})
-				.then(function(data){
+				.then(function(data){					
 					$scope.companyHistory=data.data;
+					var postData = {
+					    period : $rootScope.currentPeriod,
+					    seminar : $rootScope.user.seminar,
+					    brandName : brandName,
+					    varName : varName,
+					    catID : catID,
+					    userRole :  $rootScope.userRoles.retailer,
+					    userID : $rootScope.user.roleID,								
+					}
+					return $http({method:'POST', url:'/getCurrentUnitCost', data:postData});
+				}).then(function(data){
+					console.log(data.data);
+				   $scope.currentUnitCost = data.data.result;					
 					url="/retailerDecision/"+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.seminar;
 					return $http({method:'GET',url:url});
 				}).then(function(data){
@@ -520,7 +536,6 @@ define(['app'], function(app) {
 				    $scope.variantHistory=data.data;
 				},function(err){
 					$scope.variantHistory=new Array();
-					$scope.variantDecisionHistory=new Array();
 					$scope.showNewHistory={
 						brandName:brandName,
 						varName:varName

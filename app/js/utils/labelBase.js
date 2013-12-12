@@ -8,7 +8,7 @@ var getLabelBase = function(){
 		{id:'PricePerception',  ENG:'PricePerception',  CHN:'价格感知',  RUS:''},
 		{id:'Producer',  ENG:'Producer ',  CHN:'生产商 ',  RUS:''},
 		{id:'Retailer',  ENG:'Retailer ',  CHN:'零售商 ',  RUS:''},
-		{id:'switchLanguage',  ENG:'Switch Language',  CHN:'切换界语言',  RUS:''},
+		{id:'switchLanguage',  ENG:'Switch Language',  CHN:'切换语言',  RUS:''},
 		/*producerstep1*/
 		{id:'Products portfolio',  ENG:'Products portfolio',  CHN:'',  RUS:''},
 		{id:'Products portfolio Info',  ENG:'Step 1 of 4, determine your products portfolio, i.e. brand names, variant(s) of each brand with their respective name(s) and product composition or product specification, including packaging format.',  CHN:'',  RUS:''},
