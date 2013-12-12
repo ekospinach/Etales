@@ -44,6 +44,7 @@ var getLabelBase = function(){
 		{id:'Brand Visibility Share Info',  ENG:'An integral measure that averages brand space share and marketing activities increasing brand visibility at a given channel.',  CHN:'',  RUS:''},
 		{id:'Consumer off-take',  ENG:'Consumer off-take',  CHN:'',  RUS:''},
 		{id:'Consumer off-take Info',  ENG:'This measure indicates how many units of a product have been sold to the consumer.',  CHN:'',  RUS:''},
+		/*fin report*/
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
