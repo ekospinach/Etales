@@ -1,25 +1,17 @@
 define(['app'], function(app) {
 		app.controller('producerDecisionStep1Ctrl',
-			['$scope','$q','$rootScope','$http','$filter','ProducerDecision','ProducerDecisionBase', function($scope,$q,$rootScope,$http,$filter,ProducerDecision,ProducerDecisionBase) {
+			['$scope','$q','$rootScope','$http','$filter','ProducerDecision','ProducerDecisionBase','Label', function($scope,$q,$rootScope,$http,$filter,ProducerDecision,ProducerDecisionBase,Label) {
 			$rootScope.decisionActive="active";
 			$rootScope.loginCss="";
 		    $rootScope.loginFooter="bs-footer";
 		    $rootScope.loginLink="footer-links";
 		    $rootScope.loginDiv="container";
 
-			var multilingual=getProducerStep12Info();
-			var language='English',
-				producerID=$rootScope.user.username.substring($rootScope.user.username.length-1);
-				period=$rootScope.currentPeriod,
-				category='Elecssories',
-				isCollapsed=true;
-				$scope.isCollapsed=isCollapsed;
-				console.log($rootScope.currentPeriod);
-			$scope.multilingual=multilingual;
-			$scope.category=category;
-			$scope.language=language;
-			$scope.producerID=producerID;
-			$scope.period=period;
+			$scope.language=Label.getCurrentLanguage(),
+			$scope.producerID=$rootScope.user.username.substring($rootScope.user.username.length-1);
+			$scope.period=$rootScope.currentPeriod,
+			$scope.category='Elecssories',
+			$scope.isCollapsed=true;
 
 			$scope.packs = [{
 				value: 1, text: 'ECONOMY'
@@ -146,7 +138,7 @@ define(['app'], function(app) {
 				$scope.producerID=producerID,$scope.period=period,$scope.category=category,$scope.language=language;
 				var categoryID=0,count=0,result=0,acMax=0,abMax=0,expend=0,avaiableMax=0;
 				var products=new Array();
-				var labelLanguages={},infoLanguages={};
+				//var labelLanguages={},infoLanguages={};
 				var fakeName="";
 				if(category=="Elecssories"){
 					categoryID=1;
@@ -187,33 +179,14 @@ define(['app'], function(app) {
 					$scope.percentageProduction=(acMax-data.data.result)/acMax*100;
 
 					$scope.producerID=producerID,$scope.period=period,$scope.category=category,$scope.language=language;
-					if(language=="English"){
-						for(var i=0;i<$scope.multilingual.length;i++){
-							if(category=="Elecssories"){
-								$scope.EleShow="inline";
-								$scope.HeaShow="none";
-							}
-							else if(category=="HealthBeauty"){
-								$scope.EleShow="none";
-	                            $scope.HeaShow="inline";
-	                        }
-	                        labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
-	                        infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
-	                    }
-	                }
-	                else if(language=="Chinese"){
-	                	for(var i=0;i<$scope.multilingual.length;i++){
-	                		if(category=="Elecssories"){
-	                			$scope.EleShow="inline";
-	                			$scope.HeaShow="none";
-	                		}
-	                		else if(category=="HealthBeauty"){
-	                			$scope.EleShow="none";
-	                			$scope.HeaShow="inline";
-	                		}
-	                		labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelCHN;
-	                		infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoCHN;
-	                	}
+					
+					if(category=="Elecssories"){
+						$scope.EleShow="inline";
+						$scope.HeaShow="none";
+					}
+					else if(category=="HealthBeauty"){
+						$scope.EleShow="none";
+	                    $scope.HeaShow="inline";
 	                }
 	                var allProCatDecisions=loadSelectCategroy(category);
 	                for(var i=0;i<allProCatDecisions.length;i++){
@@ -243,9 +216,6 @@ define(['app'], function(app) {
 	                	result=1;
 	                }
 	                $scope.products=products;
-	                $scope.labelLanguages=labelLanguages;
-	                $scope.infoLanguages=infoLanguages;
-	                //return result;
 	      		},function(data){
 	      			console.log('show showView fail');
 	      		});	

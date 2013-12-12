@@ -1,21 +1,16 @@
 define(['app'], function(app) {
 		app.controller('producerDecisionStep4Ctrl',
-			['$scope','$q','$rootScope','$http','$filter','ProducerDecision','ProducerDecisionBase', function($scope,$q,$rootScope,$http,$filter,ProducerDecision,ProducerDecisionBase) {
+			['$scope','$q','$rootScope','$http','$filter','ProducerDecision','ProducerDecisionBase','Label', function($scope,$q,$rootScope,$http,$filter,ProducerDecision,ProducerDecisionBase,Label) {
 			$rootScope.loginCss="";
 		    $rootScope.loginFooter="bs-footer";
 		    $rootScope.loginLink="footer-links";
 		    $rootScope.loginDiv="container";
 			$rootScope.decisionActive="active";
-			var multilingual=getProducerStep4Info();
-			var language='English',
-				producerID=$rootScope.user.username.substring($rootScope.user.username.length-1);
-				period=$rootScope.currentPeriod,
-				isCollapsed=true;
-				$scope.isCollapsed=isCollapsed;
-			$scope.multilingual=multilingual;
-			$scope.language=language;
-			$scope.producerID=producerID;
-			$scope.period=period;
+			$scope.language=Label.getCurrentLanguage(),
+			$scope.producerID=$rootScope.user.username.substring($rootScope.user.username.length-1);
+			$scope.period=$rootScope.currentPeriod,
+			$scope.category='Elecssories',
+			$scope.isCollapsed=true;
 
 			ProducerDecisionBase.reload({producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 				$scope.pageBase = base;
@@ -37,7 +32,7 @@ define(['app'], function(app) {
 					$scope.closeInfo=closeInfo;
 					//check data
 					$scope.checkData=checkData;
-				showView($scope.producerID,$scope.period,$scope.language);
+					showView($scope.producerID,$scope.period,$scope.language);
 				return delay.promise;
 			}
 
@@ -47,7 +42,7 @@ define(['app'], function(app) {
 				var d=$q.defer();
 				$scope.producerID=producerID,$scope.period=period,$scope.language=language;
 				var categoryID=0,count=0,result=0,eAcMax=0,hAcMax,abMax=0,expend=0,avaiableMax=0;
-				var labelLanguages={},infoLanguages={};
+				//var labelLanguages={},infoLanguages={};
 				var fakeName="EName";
 	      		var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
 	      		$http({
@@ -90,19 +85,19 @@ define(['app'], function(app) {
 				}).then(function(data){
 					$scope.hSurplusProduction=hAcMax-data.data.result;
 					$scope.hPercentageProduction=(hAcMax-data.data.result)/hAcMax*100;
-					$scope.producerID=producerID,$scope.period=period,$scope.category=category,$scope.language=language;
-								if(language=="English"){
-									for(var i=0;i<$scope.multilingual.length;i++){
-										labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
-										infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
-									}
-								}
-								else if(language=="Chinese"){
-									for(var i=0;i<$scope.multilingual.length;i++){
-										labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelCHN;
-										infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoCHN;
-									}
-								}
+					$scope.producerID=producerID,$scope.period=period,$scope.language=language;
+								// if(language=="English"){
+								// 	for(var i=0;i<$scope.multilingual.length;i++){
+								// 		labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
+								// 		infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
+								// 	}
+								// }
+								// else if(language=="Chinese"){
+								// 	for(var i=0;i<$scope.multilingual.length;i++){
+								// 		labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelCHN;
+								// 		infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoCHN;
+								// 	}
+								// }
 		                        var categorys=new Array();
 					      		for(var i=0;i<$scope.pageBase.proCatDecision.length;i++){
 					      			categorys.push($scope.pageBase.proCatDecision[i]);
@@ -112,8 +107,6 @@ define(['app'], function(app) {
 					      			result=1;
 					      		}
 					      		$scope.categorys=categorys;
-								$scope.labelLanguages=labelLanguages;
-								$scope.infoLanguages=infoLanguages;
 				},function(){
 					console.log('show view fail');
 				});	

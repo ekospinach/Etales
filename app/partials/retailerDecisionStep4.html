@@ -1,34 +1,35 @@
 <div id="content" class="bs-header">
     <div class="container">
-        <h1>Order, Pricing and Shelf Allocation</h1>
-        <p>Step 4 of 4, placing orders with suppliers, allocating shelf space, setting retail price and defining promotions for each brand (both supplier and private label) at each market.</p>
+        <h1>{{Label.getContent('Order Pricing Shelf')}}</h1>
+        <p>{{Label.getContent('Order Pricing Shelf Info')}}</p>
     </div>
 </div>
 <div class="container bs-docs-container">
   <div class="row">
     <div class="col-md-12">
       <div class="bs-docs-section">
-        <h4>Step 4 of 4</h4>
+        <h4>{{Label.getContent('Step 4 of 4')}}</h4>
         <div class="pull-left" style="width:33%">
-          <h3 style="margin-top:0px">Order,Pricing and Shelf Allocation </h3>
+          <h3 style="margin-top:0px">{{Label.getContent('Order Pricing Shelf')}}</h3>
           <div class="btn-group pull-left">
               <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
-                Category <span class="caret"></span>
+                {{Label.getContent('Category')}} <span class="caret"></span>
               </button>
               <ul class="dropdown-menu">
-                <li class=""><a ng-click="showView(retailerID,period,'Elecssories',market,language)">Elecssories</a></li>
-                <li class=""><a ng-click="showView(retailerID,period,'HealthBeauty',market,language)">HealthBeauty</a></li>       
+                <li class=""><a ng-click="showView(retailerID,period,'Elecssories',market,language)">{{Label.getContent('Elecssories')}}</a></li>
+                <li class=""><a ng-click="showView(retailerID,period,'HealthBeauty',market,language)">{{Label.getContent('HealthBeauty')}}</a></li>       
               </ul>
           </div>
           <div class="btn-group pull-left" style="margin-left:10px">
               <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
-                Market <span class="caret"></span>
+                {{Label.getContent('Market')}}<span class="caret"></span>
               </button>
               <ul class="dropdown-menu">
-                <li class=""><a ng-click="showView(retailerID,period,category,'Urban',language)">Urban</a></li>
-                <li class=""><a ng-click="showView(retailerID,period,category,'Rural',language)">Rural</a></li>       
+                <li class=""><a ng-click="showView(retailerID,period,category,'Urban',language)">{{Label.getContent('Urban')}}</a></li>
+                <li class=""><a ng-click="showView(retailerID,period,category,'Rural',language)">{{Label.getContent('Rural')}}</a></li>       
               </ul>
-          </div>        
+          </div>  
+          <!--      
           <div class="btn-group pull-left" data-toggle="buttons" style="margin-left:10px">
               <label class="btn btn-default" ng-click="showView(retailerID,period,category,market,'English')">
               <input type="radio" name="options"> English</label>
@@ -36,15 +37,16 @@
               <input type="radio" name="options"> Chinese
               </label>
           </div>
+        -->
         </div>
         <div class="pull-right" style="width:33%">
           <progress percent="percentageExpend" class="progress active"></progress>
           <small>
-            <em>Total Avaliable Budget for Remaing Period:{{surplusExpend}}</em>
+            <em>{{Label.getContent('Avaliable Budget')}}:{{surplusExpend}}</em>
           </small>
           <progress percent="showPercentageShelf" class="progress progress-suceess active progress-striped"></progress>
           <small>
-            <em>{{market}}-{{category}} Available ShelfSpace:{{showSurplusShelf}}</em>
+            <em>{{Label.getContent(market)}}-{{Label.getContent(category)}} {{Label.getContent('Available ShelfSpace')}}:{{showSurplusShelf}}</em>
           </small>
         </div>
           <div style="clear:both"></div>
@@ -56,98 +58,98 @@
               </div>
               <table class="table table-condensed table-bordered">
                 <thead>
-                    <td colspan="2" class="col-md-6">Current period ({{currentPeriod}})</td>
-                    <td colspan="3" class="col-md-6">Previous period ({{currentPeriod-1}})</td>               
+                    <td colspan="2" class="col-md-6">{{Label.getContent('Current period')}} ({{currentPeriod}})</td>
+                    <td colspan="3" class="col-md-6">{{Label.getContent('Previous period')}} ({{currentPeriod-1}})</td>               
                 </thead>
                 <tbody>                  
                   <tr>
                     <!-- New Private label, show UnitCost  -->
-                    <td ng-show="isPrivateLabel">Unit Cost (Private label)</td>
+                    <td ng-show="isPrivateLabel">{{Label.getContent('Unit Cost')}} ({{Label.getContent('Private Label')}})</td>
                     <td ng-show="isPrivateLabel"> ??? </td>
                     <!-- New Product from Producer, show decision producer made  -->
-                    <td ng-show="isNewProducerProduct">List Price (New product)</td>
+                    <td ng-show="isNewProducerProduct">{{Label.getContent('List Price')}}({{Label.getContent('New Product')})</td>
                     <td ng-show="isNewProducerProduct">{{decisionCurrent.currentPriceBM}}</td>
                     <!-- History Product, show pv_nextPriceBM-->                  
-                    <td ng-show="isHistoryProduct">List Price</td>
+                    <td ng-show="isHistoryProduct">{{Label.getContent('List Price')}}</td>
                     <td ng-show="isHistoryProduct">{{variantHistory.supplierView[0].nextPriceBM}}</td>
-                    <td> </td>
-                    <td>Urban</td>                    
-                    <td>Rural</td>                                        
+                    <td></td>
+                    <td>{{Label.getContent('Urban')}}</td>
+                    <td>{{Label.getContent('Rural')}}</td>      
                   </tr>
                   <tr>
                     <!-- Current period -->
-                    <td>Urban closing inventory</td>                    
+                    <td>{{Label.getContent('Urban')}} {{Label.getContent('Closing Inventory')}}</td>                    
                     <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].volume}}</td>
                     <!-- Previous period-->                   
-                    <td style="display:{{ElecssoriesVar}}">Design index</td>                    
-                    <td style="display:{{HealthBeautyVar}}">Active-agent</td>                    
+                    <td style="display:{{ElecssoriesVar}}">{{Label.getContent('Design Level')}}</td>                    
+                    <td style="display:{{HealthBeautyVar}}">{{Label.getContent('Active agent')}}</td>                    
                     <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[0]}}</td>                    
                     <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[0]}}</td>                                        
                   </tr>
                   <tr>
                     <!-- Current period -->
-                    <td>Rural closing inventory</td>                    
+                    <td>{{Label.getContent('Rural')}} {{Label.getContent('Closing Inventory')}}</td>                    
                     <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[3].volume}}</td>           
                     <!-- Previous period-->
-                    <td>Technology level</td>    
+                    <td>{{Label.getContent('Technology Level')}}</td>    
                     <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[1]}}</td>
                     <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[1]}}</td>                    
                   </tr>
                   <tr>
                     <!-- Current period -->                    
-                    <td style="display:{{ElecssoriesVar}}">Design index</td>                    
-                    <td style="display:{{HealthBeautyVar}}">Active-agent</td>                    
+                    <td style="display:{{ElecssoriesVar}}">{{Label.getContent('Design Level')}}</td>                    
+                    <td style="display:{{HealthBeautyVar}}">{{Label.getContent('Active agent')}}</td>                    
                     <td>{{decisionCurrent.composition[0]}}</td>   
                     <!-- Previous period-->
-                    <td style="display:{{ElecssoriesVar}}">Raw materials quality</td>  
-                    <td style="display:{{HealthBeautyVar}}">Smootherner Level</td>  
+                    <td style="display:{{ElecssoriesVar}}">{{Label.getContent('Quality-of-Raw-Materials')}}</td>
+                    <td style="display:{{HealthBeautyVar}}">{{Label.getContent('Smootherner Level')}}</td>  
                     <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[2]}}</td>                    
                     <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[2]}}</td>                                        
                   </tr>
                   <tr>
                     <!-- Current period -->                    
-                    <td>Technology level</td>                    
+                    <td>{{Label.getContent('Technology Level')}}</td>                    
                     <td>{{decisionCurrent.composition[1]}}</td>    
                     <!-- Previous period-->
-                    <td>Sales Volume at your store</td>                    
+                    <td>{{Label.getContent('Sales Volume at your store')}}</td>                    
                     <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].salesVolume}}</td>        
                     <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].salesVolume}}</td>                                   
                   </tr>
                   <tr>
                     <!-- Current period -->                    
-                    <td style="display:{{ElecssoriesVar}}">Raw materials quality</td>  
-                    <td style="display:{{HealthBeautyVar}}">Smootherner Level</td>                  
+                    <td style="display:{{ElecssoriesVar}}">{{Label.getContent('Quality-of-Raw-Materials')}}</td>  
+                    <td style="display:{{HealthBeautyVar}}">{{Label.getContent('Smootherner Level')}}</td>                  
                     <td>{{decisionCurrent.composition[2]}}</td> 
                     <!-- Previous period-->
-                    <td>Shelf space at your store</td>                    
+                    <td>{{Label.getContent('Shelf Space at your store')}}</td>                    
                     <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].shelfSpace}}</td>                    
                     <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].shelfSpace}}</td>                                        
                   </tr>
                   <tr>
                     <td></td>                    
                     <td></td>                    
-                    <td>Market price at your store</td>                    
+                    <td>{{Label.getContent('Market Price at your store')}}</td>                    
                     <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].marketPrice}}</td>                    
                     <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].marketPrice}}</td>                                        
                   </tr>
                   <tr>
                     <td></td>                    
                     <td></td>                                        
-                    <td>Net price at your store</td>
+                    <td>{{Label.getContent('Net Price at your store')}}</td>
                     <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].netMarketPrice}}</td>
                     <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].netMarketPrice}}</td>
                   </tr>
                   <tr>
                     <td></td>                    
                     <td></td>                                        
-                    <td>Promotion frequency(weeks)</td>
+                    <td>{{Label.getContent('Promotions Frequency')}}({{Label.getContent('weeks')}})</td>
                     <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].promotionsDetails.promo_Frequency}}</td>
                     <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].promotionsDetails.promo_Frequency}}</td>
                   </tr>
                   <tr>
                     <td></td>                    
                     <td></td>                    
-                    <td>Promotion rate(%)</td>
+                    <td>{{Label.getContent('Reduction Rate')}}(%)</td>
                     <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].promotionsDetails.promo_Rate}}</td>
                     <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].promotionsDetails.promo_Rate}}</td>
                   </tr>
@@ -159,55 +161,74 @@
           <table class="table table-hover">
             <thead>
             <tr>
-              <th>{{labelLanguages.Category}}</th>
-              <th>{{labelLanguages.Brand}}</th>
-              <th>{{labelLanguages.Variant}}</th>
-              <th style="width:300px"><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.OV}}" popover-title="{{labelLanguages.OV}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.OV}}<span style="color:red">*</span></p>
+              <th>{{Label.getContent('Category')}}</th>
+              <th>{{Label.getContent('Brand')}}</th>
+              <th>{{Label.getContent('Variant')}}</th>
+              <th style="width:300px">
+                <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Order Volume Info')}}" popover-title="{{Label.getContent('Order Volume')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Order Volume')}}<span style="color:red">*</span></p>
               </th>
-              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.SS}}" popover-title="{{labelLanguages.SS}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.SS}}<span style="color:red">*</span></p></th>
-              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.RP}}" popover-title="{{labelLanguages.RP}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.RP}}<span style="color:red">*</span></p></th>
-              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.PF}}" popover-title="{{labelLanguages.PF}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.PF}}<span style="color:red">*</span></p></th>
-              <th><p class="text-primary" Popover-animation="true" popover="{{infoLanguages.RR}}" popover-title="{{labelLanguages.RR}}" popover-trigger="mouseenter" popover-placement="bottom">{{labelLanguages.RR}}<span style="color:red">*</span></p></th>
+              <th>
+                <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Shelf Space Info')}}" popover-title="{{Label.getContent('Shelf Space')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Shelf Space')}}<span style="color:red">*</span></p>  
+              </th>
+              <th>
+                <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Retail Price Info')}}" popover-title="{{Label.getContent('Retail Price')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Retail Price')}}<span style="color:red">*</span></p>
+              </th>
+              <th>
+                <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Promotions Frequency Info')}}" popover-title="{{Label.getContent('Promotions Frequency')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Promotions Frequency')}}<span style="color:red">*</span></p>
+              </th>
+              <th>
+                <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Reduction Rate Info')}}" popover-title="{{Label.getContent('Reduction Rate')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Reduction Rate')}}<span style="color:red">*</span></p>
+              </th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="product in products">
-              <td>{{category}}</td>
+              <td>{{Label.getContent(category)}}</td>
               <td>{{product.brandName}}</td>
               <td style="width:300px">
                 <div style="clear:both"></div>
                 <p class="pull-left">
                   {{product.varName}}
                 </p>
-                <button type="button" class="btn btn-primary btn-xs pull-left" style="margin-left:5px" ng-click="getMoreInfo(product)">More</button>
-                <button type="button" class="btn btn-danger btn-xs pull-left" ng-click="deleteOrder(market,category,product.brandName,product.varName)" style="margin-left:5px">Delete</button>
+                <button type="button" class="btn btn-primary btn-xs pull-left" style="margin-left:5px" ng-click="getMoreInfo(product)">{{Label.getContent('More')}}</button>
+                <button type="button" class="btn btn-danger btn-xs pull-left" ng-click="deleteOrder(market,category,product.brandName,product.varName)" style="margin-left:5px">{{Label.getContent('Delete')}}</button>
                 <div style="clear:both"></div>
               </td>
-              <td><a href="#" editable-text="product.order" onbeforesave="checkOrderVolume(category,market,product.brandName,product.varName,'order','postion',$index,$data)" onaftersave="updateRetailerDecision(category,market,product.brandName,product.varName,'order','postion',$index)">{{ product.order || 0 }}</a></td>
-              <td><a href="#" editable-text="product.shelfSpace" onbeforesave="checkShelfSpace(category,market,product.brandName,product.varName,'shelfSpace','postion',$index,$data)" onaftersave="updateRetailerDecision(category,market,product.brandName,product.varName,'shelfSpace','postion',$index)">{{ product.shelfSpace || 0 }}</a></td>
-              <td><a href="#" editable-text="product.retailerPrice" onbeforesave="checkRetailerPrice(category,market,product.brandName,product.varName,'retailerPrice','postion',$index,product.dateOfBirth,$data)" onaftersave="updateRetailerDecision(category,market,product.brandName,product.varName,'retailerPrice','postion',$index)">{{ product.retailerPrice || 0 }}</a></td>
-              <td><a href="#" editable-text="product.pricePromotions.promo_Frequency" onbeforesave="checkPromototionFrequency($data)" onaftersave="updateRetailerDecision(category,market,product.brandName,product.varName,'pricePromotions','promo_Frequency',$index)">{{ product.pricePromotions.promo_Frequency || 0 }}</a></td>
-              <td><a href="#" editable-text="product.pricePromotions.promo_Rate" onbeforesave="checkReductionRate($data)" onaftersave="updateRetailerDecision(category,market,product.brandName,product.varName,'pricePromotions','promo_Rate',$index)">{{ product.pricePromotions.promo_Rate || 0 }}</a></td>
+              <td>
+                <a href="#" editable-text="product.order" onbeforesave="checkOrderVolume(category,market,product.brandName,product.varName,'order','postion',$index,$data)" onaftersave="updateRetailerDecision(category,market,product.brandName,product.varName,'order','postion',$index)">{{ product.order || 0 }}</a>
+              </td>
+              <td>
+                <a href="#" editable-text="product.shelfSpace" onbeforesave="checkShelfSpace(category,market,product.brandName,product.varName,'shelfSpace','postion',$index,$data)" onaftersave="updateRetailerDecision(category,market,product.brandName,product.varName,'shelfSpace','postion',$index)">{{ product.shelfSpace || 0 }}</a>
+              </td>
+              <td>
+                <a href="#" editable-text="product.retailerPrice" onbeforesave="checkRetailerPrice(category,market,product.brandName,product.varName,'retailerPrice','postion',$index,product.dateOfBirth,$data)" onaftersave="updateRetailerDecision(category,market,product.brandName,product.varName,'retailerPrice','postion',$index)">{{ product.retailerPrice || 0 }}</a>
+              </td>
+              <td>
+                <a href="#" editable-text="product.pricePromotions.promo_Frequency" onbeforesave="checkPromototionFrequency($data)" onaftersave="updateRetailerDecision(category,market,product.brandName,product.varName,'pricePromotions','promo_Frequency',$index)">{{ product.pricePromotions.promo_Frequency || 0 }}</a>
+              </td>
+              <td>
+                <a href="#" editable-text="product.pricePromotions.promo_Rate" onbeforesave="checkReductionRate($data)" onaftersave="updateRetailerDecision(category,market,product.brandName,product.varName,'pricePromotions','promo_Rate',$index)">{{ product.pricePromotions.promo_Rate || 0 }}</a>
+              </td>
             </tr>  
           </tbody>
           </table>
           <div>
-            <a href="/#/retailerDecisionStep3" class="btn btn-default">Back</a>            
+            <a href="/#/retailerDecisionStep3" class="btn btn-default">{{Label.getContent('Back')}}</a>            
 
-            <a ng-click="open()" class="btn btn-primary">Add order</a>
+            <a ng-click="open()" class="btn btn-primary">{{Label.getContent('Add Order')}}</a>
               <div modal="shouldBeOpen" class="hide" close="close()" options="opts">
                 <div class="modal-dialog">
                   <div class="modal-content">
-                    <div class="modal-header">Order Product</div>
+                    <div class="modal-header">{{Label.getContent('Order Product')}}</div>
                       <div class="modal-body">
                           <table class="table table-condensed table-bordered">
                             <thead>
                               <tr>
                                 <td></td>
-                                <th>Brand</th>
-                                <th>Variant</th>
-                                <th>Produced by..</th>
-                              </tr>                              
+                                <th>{{Label.getContent('Brand')}}</th>
+                                <th>{{Label.getContent('Variant')}}</th>
+                                <th>{{Label.getContent('Produced by')}}</th>
+                              </tr>  
                             </thead>
                             <tbody>
                               <tr ng-repeat="orderProduct in orderProducts">
@@ -221,8 +242,8 @@
                           </table>
                       </div>
                     <div class="modal-footer">
-                      <input type="button" class="btn btn-default" ng-click="close()" value="Cancel">
-                      <input type="button" class="btn btn-primary" ng-click="addOrders(market)" value="Add">
+                      <input type="button" class="btn btn-default" ng-click="close()" value="{{Label.getContent('Cancel')}}">
+                      <input type="button" class="btn btn-primary" ng-click="addOrders(market)" value="{{Label.getContent('Add')}}">
                     </div>
                   </div>
                 </div>
