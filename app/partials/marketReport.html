@@ -1,14 +1,14 @@
 <div id="content" class="bs-header">
     <div class="container">
-        <h1>Market studies</h1>
-        <p>Basic market facts collected here in numerical form. They will help you in your analysis of market characteristics and trends as well as consumer preferences, purchasing power by market, category and segment.</p>
+        <h1>{{Label.getContent('Market studies')}}</h1>
+        <p>{{Label.getContent('Market studies Info')}}</p>
     </div>
 </div>
 
 <div class="bs-old-docs">
     <div class="container">
         <strong>
-            Click on column header to sort the table.
+            {{Label.getContent('Market popInfo')}}
         </strong>
     </div>
 </div>
@@ -21,30 +21,30 @@
 			<div class="bs-sidebar hidden-print" role="complementary">
 				<ul class="nav bs-sidenav">	
 					<li class="active">
-						<a>Market Studies</a>
-						<ul class="nav second-sidenav" ng-repeat="title in titles">
-							<li>
+						<a>{{Label.getContent('Market studies')}}</a>
+						<ul class="nav second-sidenav">
+							<!--<li>
 								<a ng-click="getReport(seminar,title.titleENG,period,language)">{{title.title}}</a>
-							</li>
+							</li>-->
 
-							<!-- <li class="active">
-								<a ng-click="getReport(seminar,'Brand Awareness',period,language)">Brand Awareness</a>
+							<li class="active">
+								<a ng-click="getReport(seminar,'Brand Awareness',period,language)">{{Label.getContent('Brand Awareness')}}</a>
 							</li>
 							<li class="">
-								<a ng-click="getReport(seminar,'Market Share (Volume)',period,language)">Brand Market Share(Volume)</a>
+								<a ng-click="getReport(seminar,'Market Share (Volume)',period,language)">{{Label.getContent('Market Share (Volume)')}}</a>
 							</li>
 							<li class="">
-								<a ng-click="getReport(seminar,'Market Share (Value)',period,language)">Brand Market Share(Value)</a>
+								<a ng-click="getReport(seminar,'Market Share (Value)',period,language)">{{Label.getContent('Market Share (Value)')}}</a>
 							</li>
 							<li class="">
-								<a ng-click="getReport(seminar,'Average Net Market Price',period,language)">Average Net Market Price</a>
+								<a ng-click="getReport(seminar,'Average Net Market Price',period,language)">{{Label.getContent('Average Net Market Price')}}</a>
 							</li>
 							<li class="">
-								<a ng-click="getReport(seminar,'Brand Visibility Share',period,language)">Brand Visibility Share</a>
+								<a ng-click="getReport(seminar,'Brand Visibility Share',period,language)">{{Label.getContent('Brand Visibility Share')}}</a>
 							</li>
 							<li class="">
-								<a ng-click="getReport(seminar,'Consumer off-take',period,language)">Consumer off-take</a>
-							</li> -->
+								<a ng-click="getReport(seminar,'Consumer off-take',period,language)">{{Label.getContent('Consumer off-take')}}</a>
+							</li>
 						</ul>
 					</li>	
 				</ul>
@@ -55,42 +55,43 @@
 			<div style="padding:10px 0;clear:both"></div>
 			
 			<div class="page-header">
-				<h3>{{showTitle}} <small>{{subTitle}}</small></h3>
+				<h3>{{Label.getContent(titleENG)}} <small>{{Label.getContent((titleENG+' Info'))}} </small></h3>
 			</div>
 
-			<h4 class="pull-left"><span class="label label-warning">{{cat}}</span></h4>
-			<h4 class="pull-left" style="margin-left:10px"><span class="label label-success">{{market}}</span></h4>
-			<h4 class="pull-left" style="margin-left:10px"><span class="label label-info">Period:{{period}}</span></h4>
+			<h4 class="pull-left"><span class="label label-warning">{{Label.getContent(cat)}}</span></h4>
+			<h4 class="pull-left" style="margin-left:10px"><span class="label label-success">{{Label.getContent(market)}}</span></h4>
+			<h4 class="pull-left" style="margin-left:10px"><span class="label label-info">{{Label.getContent('Period')}}:{{period}}</span></h4>
 			<div style="padding:1px 0;clear:both"></div>
 			<div class="btn-group">
 				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-			    Category <span class="caret"></span>
+			    {{Label.getContent('Category')}}<span class="caret"></span>
 			 	</button>
 			  	<ul class="dropdown-menu">
-			    	<li><a ng-click="showReport('Elecsories',market,language)">Elecsories</a></li>
-			    	<li><a ng-click="showReport('HealthBeauties',market,language)">HealthBeauties</a></li>
+			    	<li><a ng-click="showReport('Elecsories',market,language)">{{Label.getContent('Elecssories')}}</a></li>
+			    	<li><a ng-click="showReport('HealthBeauties',market,language)">{{Label.getContent('HealthBeauty')}}</a></li>
 			  	</ul>
 			</div>
 
 			<div class="btn-group">
 			  	<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-			    Market <span class="caret"></span>
+			    {{Label.getContent('Market')}}<span class="caret"></span>
 			  	</button>
 			  	<ul class="dropdown-menu">
-			    	<li><a ng-click="showReport(cat,'Urban',language)">Urban</a></li>
-			    	<li><a ng-click="showReport(cat,'Rural',language)">Rural</a></li>
-			    	<li><a ng-click="showReport(cat,'Total',language)">Total</a></li>
+			    	<li><a ng-click="showReport(cat,'Urban',language)">{{Label.getContent('Urban')}}</a></li>
+			    	<li><a ng-click="showReport(cat,'Rural',language)">{{Label.getContent('Rural')}}</a></li>
+			    	<li><a ng-click="showReport(cat,'Total',language)">{{Label.getContent('Total')}}</a></li>
 			  	</ul>
 			</div>
 
 			<div class="btn-group">
 			  	<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-			    Period <span class="caret"></span>
+			    {{Label.getContent('Period')}}<span class="caret"></span>
 			  	</button>
 			  	<ul class="dropdown-menu">
 			    	<li ng-repeat="newperiod in periods"><a ng-click="getReport(seminar,titleENG,newperiod,language)">{{newperiod}}</a></li>
 			  	</ul>
 			</div>
+			<!--
 			<div class="btn-group pull-right" data-toggle="buttons">
 			  	<label class="btn btn-default" ng-click="showReport(cat,market,'English')">
 			    	<input type="radio" name="options"> English
@@ -99,9 +100,10 @@
 			    	<input type="radio" name="options"> Chinese
 			  	</label>
 			</div>
+		-->
 
 			<div style="clear:both"></div>
-			<h3>{{optitle}}</h3>
+			<!--<h3>{{optitle}}</h3>-->
 <!-- 			<div google-table charttable="charttable" style={{charttable.cssStyle}} id="charttable"/></div>		
 			<div google-chart chart="charttable" style={{charttable.cssStyle}} id="charttable"/></div>	 --> 	 
 		<table class="table table-bordered table-striped table-condensed">
