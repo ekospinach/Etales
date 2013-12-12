@@ -49,7 +49,7 @@
                 <tbody>
                   <tr>
                     <th>{{Label.getContent('Unit Cost')}}</th>
-                    <th>???</th>
+                    <th>{{currentUnitCost}}</th>
                     <td>{{Label.getContent('Sales Volume')}}</td>
                     <td>{{variantHistory.supplierView[0].supplierChannelView[4].salesVolume[2]||'/'}}</td>
                   </tr>
@@ -69,13 +69,13 @@
                   </tr>
                   <tr>
                     <td>{{Label.getContent('Current Price BM')}}</td>
-                    <td>{{variantHistory.supplierView[0].currentPriceBM||'/'}}</td>
+                    <td>{{variantHistory.supplierView[0].currentPriceBM.toFixed(2)||'/'}}</td>
                     <td>{{Label.getContent('Initial Inventory')}}</td>
                     <td>{{variantHistory.supplierView[0].initialInventory[4].volume||'/'}}</td>
                   </tr>
                   <tr>
                     <td>{{Label.getContent('Current Price Emall')}}</td>
-                    <td>{{variantHistory.supplierView[0].currentPriceEmall||'/'}}</td>
+                    <td>{{variantHistory.supplierView[0].currentPriceEmall.toFixed(2)||'/'}}</td>
                     <td>{{Label.getContent('Design Level')}}</td>
                     <td>{{variantHistory.supplierView[0].composition[0]||'/'}}</td>
                   </tr>

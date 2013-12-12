@@ -115,7 +115,7 @@ app.get('/checkRetailerProduct/:seminar/:period/:retailerID/:categoryID/:checkTy
 app.get('/retailerCurrentDecision/:seminar/:period/:retailerID/:brandName/:varName',require('./api/models/retailerDecision.js').getRetailerCurrentDecision);
 
 //special calculate API
-app.get('/productionCost');
+app.post('/getCurrentUnitCost', require('./api/utils/unitCost').getCurrentUnitCost);
 app.get('/currentPeriod/:seminar',require('./api/models/seminar.js').getCurrentPeriod);
 
 app.post('/deleteDetailData',require('./api/models/contract.js').deleteContractDetailData(io));

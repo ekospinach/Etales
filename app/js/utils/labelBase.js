@@ -5,7 +5,7 @@ var getLabelBase = function(){
 		{id:'Company summary Info',  ENG:'',  CHN:'',  RUS:''},
 		{id:'Check All',  ENG:'Check All',  CHN:'',  RUS:''},
 		{id:'Un-Check All',  ENG:'Un-Check All',  CHN:'',  RUS:''},
-		{id:'Show',  ENG:'Show',  CHN:'',  RUS:''},
+		{id:'Generate Map',  ENG:'Generate Map',  CHN:'',  RUS:''},
 		{id:'Period',  ENG:'Period',  CHN:'',  RUS:''},
 		{id:'Reason',  ENG:"For some reason,something in this page cann't translat immediately",  CHN:'出于部分原因，本页部分内容不能及时翻译。',  RUS:''},
 		{id:'Perceptions Map',  ENG:'Perceptions Map',  CHN:'认知地图',  RUS:''},
@@ -16,7 +16,7 @@ var getLabelBase = function(){
 		{id:'PricePerception',  ENG:'PricePerception',  CHN:'价格感知',  RUS:''},
 		{id:'Producer',  ENG:'Producer ',  CHN:'生产商 ',  RUS:''},
 		{id:'Retailer',  ENG:'Retailer ',  CHN:'零售商 ',  RUS:''},
-		{id:'switchLanguage',  ENG:'Switch Language',  CHN:'切换界语言',  RUS:''},
+		{id:'switchLanguage',  ENG:'Switch Language',  CHN:'切换语言',  RUS:''},
 		/*chart*/
 		{id:'Chart',  ENG:'Chart',  CHN:'',  RUS:''},
 		{id:'Chart Info',  ENG:'Charts show you visually where your business stands in comparison to your competitors.',  CHN:'',  RUS:''},

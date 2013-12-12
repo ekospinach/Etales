@@ -91,6 +91,7 @@ var retDecisionSchema = mongoose.Schema({
     retMarketDecision: [retMarketDecisionSchema] //length: TMarkets(1~2)
 })
 
+exports.retDecision = mongoose.model('retailerDecision', retDecisionSchema);
 var retDecision = mongoose.model('retailerDecision', retDecisionSchema);
 var privateLabelVarDecision = mongoose.model('privateLabelVarDecision',privateLabelVarDecisionSchema);
 var privateLabelDecision= mongoose.model('privateLabelDecision',privateLabelDecisionSchema);

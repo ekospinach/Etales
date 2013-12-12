@@ -86,6 +86,37 @@ const
     '{v: Profitability Index  Gross Profit per 1% of shelf space, f: "", vRUS: Индекс прибыльности Валовая прибыль на 1% полочного пространства, vCHN: 盈利指数 毛利每1％的货架空间}',
     '{v: Stock Cover  Closing Inventory Volume / weekly Sales volume , f: "", vRUS: Покрытие запасами Остатки на конец периода / недельный оборот, vCHN: 股票封面 期末库存量/周销量}');
 
+  aProfitabilityRetail  : array[1..10] of string = (
+    '{v: Total shelf space (%), f: "",  vRUS: Полочное пространство (%), vCHN: 总货架空间(%)}',
+    '{v: Net sales (RMB 000), f: "",  vRUS: Чистая выручка (RMB 000), vCHN: 净销售额(RMB 000)}',
+    '{v: share in total (%), f: "",  vRUS: доля в общем (%), vCHN: 份额在总(%)}',
+    '{v: Gross contribution (RMB 000), f: "",  vRUS: Валовая прибыль (RMB 000), vCHN: 总值的贡献(RMB 000)}',
+    '{v: Financial revenue (RMB 000), f: "",  vRUS: Финансовый доход (RMB 000), vCHN: 财政收入(RMB 000)}',
+    '{v: Adjusted gross contribution (RMB 000), f: "",  vRUS: Скорректированная валовая прибыль (RMB 000), vCHN: 调整后总贡献(RMB 000)}',
+    '{v: as % of net sales (%), f: "",  vRUS: как % от чистой выручки (%), vCHN: 占净销售额的(%)}',
+    '{v: share in total (%), f: "",  vRUS: доля в общем (%), vCHN: 份额在总(%)}',
+    '{v: per 1% of shelf space (RMB 000), f: "",  vRUS: на 1% полочного пространства (RMB 000), vCHN: 每个货架空间1％(RMB 000)}',
+    '{v: Terms of payment (days), f: "",  vRUS: Отсрочка платежа (дней), vCHN: 付款方式(天)}');
+
+  aProfitabilityProducer  : array[1..17] of string = (
+    '{v: Order volume (mln. Units), f: "",  vRUS: Объем заказа (mln. Units), vCHN: 订货量(mln. Units)}',
+    '{v: Sales volume (mln. Units), f: "",  vRUS: Объем продаж (mln. Units), vCHN: 销量(mln. Units)}',
+    '{v: Share in sales volume (%), f: "",  vRUS: Доля в объеме продаж (%), vCHN: 分享销售量(%)}',
+    '{v: Applied quantity discount rate (%), f: "",  vRUS: Примененная скидка от объема (%), vCHN: 应用数量折扣率(%)}',
+    '{v: Sales value (RMB 000), f: "",  vRUS: Объем продаж (RMB 000), vCHN: 销售产值(RMB 000)}',
+    '{v: Share in gross sales value (%), f: "",  vRUS: Доля в валовой стоимости продаж (%), vCHN: 分享在总销售价值(%)}',
+    '{v: Cost of goods sold (RMB 000), f: "",  vRUS: Себестоимость реализованной продукции (RMB 000), vCHN: 销货成本(RMB 000)}',
+    '{v: Quantity discounts costs (RMB 000), f: "",  vRUS: Количественные скидки расходы (RMB 000), vCHN: 数量折扣成本(RMB 000)}',
+    '{v: Performance bonus cost (RMB 000), f: "",  vRUS: Бонус Производительность стоимость (RMB 000), vCHN: 绩效奖金费用(RMB 000)}',
+    '{v: In store activities fees (RMB 000), f: "",  vRUS: В сборов магазин деятельность (RMB 000), vCHN: 在店内活动费(RMB 000)}',
+    '{v: Inventory holding cost compensation (RMB 000), f: "",  vRUS: Компенсации Инвентаризация холдинг стоимость (RMB 000), vCHN: 库存持有成本补偿(RMB 000)}',
+    '{v: Promotional support (RMB 000), f: "",  vRUS: Рекламные поддержка (RMB 000), vCHN: 促销支持(RMB 000)}',
+    '{v: Financial Cost (delay of payment) (RMB 000), f: "",  vRUS: Финансовая стоимость (отсрочка платежа) (RMB 000), vCHN: 财务费用（支付延迟）(RMB 000)}',
+    '{v: Other compensation (RMB 000), f: "",  vRUS: Другие компенсации (RMB 000), vCHN: 其他补偿(RMB 000)}',
+    '{v: Total trade support (RMB 000), f: "",  vRUS: Всего поддержка торговли (RMB 000), vCHN: 总贸易支持(RMB 000)}',
+    '{v: Gross profit after PUSH (RMB 000), f: "",  vRUS: Валовая прибыль после PUSH (RMB 000), vCHN: 推后毛利(RMB 000)}',
+    '{v: Share in gross profit (%), f: "",  vRUS: Доля в валовой прибыли (%), vCHN: 分享毛利(%)}');
+
 var
    i: integer;
    sDati : string;
@@ -221,6 +252,32 @@ var
       Result := DatDir + 'Results' +'.' + dummySeminar;
       if sListData.IndexOfName('filepath') <> -1 then
         Result := DecodeUrl(sListData.Values['filepath']);
+      if sListData.IndexOfName('seminar') <> -1 then
+        Result  := DatDir + 'Results.' + sListData.Values['seminar'];
+    end;
+
+    function getSeminar(const filePath : string): string; overload;
+    var
+      i_tmp : Integer;
+    begin
+      i_tmp := LastDelimiter('.',filePath) + 1;
+      Result := Copy(filePath, i_tmp, 10);
+    end;
+
+    function getSeminar(): string; overload;
+    begin
+      Result := dummySeminar;
+	  if sListData.IndexOfName('filepath') <> -1 then
+		  Result := getSeminar(getFileName);
+    if sListData.IndexOfName('seminar') <> -1 then
+      Result  := sListData.Values['seminar'];
+    end;
+
+    function getPeriod(): Integer;
+    begin
+      Result := PerNo;
+      if sListData.IndexOfName('period') <> -1 then
+         Result := StrToInt(sListData.Values['period']);
     end;
 
    Function ReadResultsTwo
@@ -249,7 +306,7 @@ var
             Seek( ResultsFile, PeriodNumber - HistoryStart );
             Read( ResultsFile, OnePeriodResults );
             Seek( ResultsFile, PeriodNumber - HistoryStart - 1);
-            Read( ResultsFile, PrevPeriodResults );						
+            Read( ResultsFile, PrevPeriodResults );
             TempResult := 0;
           except
             on E: EInOutError do
@@ -265,30 +322,6 @@ var
 
       Result := TempResult;
 
-    end;
-
-    function getSeminar(const filePath : string): string; overload;
-    var
-      i_tmp : Integer;
-    begin
-      i_tmp := LastDelimiter('.',filePath) + 1;
-      Result := Copy(filePath, i_tmp, 10);
-    end;
-
-    function getSeminar(): string; overload;
-    begin
-      Result := dummySeminar;
-	  if sListData.IndexOfName('filepath') <> -1 then
-		  Result := getSeminar(getFileName);
-    if sListData.IndexOfName('seminar') <> -1 then
-      Result  := sListData.Values['seminar'];
-    end;
-
-    function getPeriod(): Integer;
-    begin
-      Result := PerNo;
-      if sListData.IndexOfName('period') <> -1 then
-         Result := StrToInt(sListData.Values['period']);
     end;
 
 {** Volume reports **}
@@ -2335,6 +2368,623 @@ var
      Result := j_o;
     end;
 
+    function buildProfitProducerCategory(pprod,pmark,pcat: Integer): ISuperObject;
+    var
+      jo, jf, jr: ISuperObject;
+      pp : TProducerCategoryResults;
+      I: Integer;
+    begin
+      pp := currentResult.r_Producers[pprod].pt_CategoriesResults[pcat];
+      //columns
+        Result := SO;
+        Result.O['cols'] := SA([]);
+        jf := SO('{id: "1", label: Item, labelENG: Item,' +
+              'labelRUS: Наименование, labelCHN: 事实, ' +
+							'type: string, color: 0}');
+        Result.A['cols'].Add(jf);
+        jr := SO('{id: "2", label: Retailer 1, labelENG: Retailer 1,' +
+              'labelRUS: "", labelCHN: "", ' +
+							'type: string, color: 0}');
+        Result.A['cols'].Add(jr);
+        jr := SO('{id: "3", label: Retailer 2, labelENG: Retailer 2,' +
+              'labelRUS: "", labelCHN: "", ' +
+							'type: string, color: 0}');
+        Result.A['cols'].Add(jr);
+        jr := SO('{id: "4", label: Traditional Trade, labelENG: Traditional Trade,' +
+              'labelRUS: "", labelCHN: "", ' +
+							'type: string, color: 0}');
+        Result.A['cols'].Add(jr);
+        jr := SO('{id: "5", label: eMall, labelENG: eMall,' +
+              'labelRUS: "", labelCHN: "", ' +
+							'type: string, color: 0}');
+        Result.A['cols'].Add(jr);
+      // rows
+        result.O['rows'] := sa([]);
+
+      //1 pv_OrderVolume
+        jo := SO;
+        jo.O['c'] := SA([]);
+        jf := SO(aProfitabilityProducer[1]);
+        jo.A['c'].Add(jf);
+        for I := Low(TAllRetailers) to High(TAllRetailers) do
+          begin
+            jr := SO('{f: "", v: "' +
+              FormatFloat('0.00',
+                pp.pc_OrderVolume[I, pmark]) +
+              '"}');
+            jo.A['c'].Add(jr);
+          end;
+        result.A['rows'].Add(jo);
+
+      //2  pv_SalesVolume
+        jo := SO;
+        jo.O['c'] := SA([]);
+        jf := SO(aProfitabilityProducer[2]);
+        jo.A['c'].Add(jf);
+        for I := Low(TAllRetailers) to High(TAllRetailers) do
+          begin
+            jr := SO('{f: "", v: "' +
+              FormatFloat('0.00',
+                pp.pc_SalesVolume[I, pmark]) +
+              '"}');
+            jo.A['c'].Add(jr);
+          end;
+        result.A['rows'].Add(jo);
+
+      //3 pv_ShareInBrandSalesVolume
+        jo := SO;
+        jo.O['c'] := SA([]);
+        jf := SO(aProfitabilityProducer[3]);
+        jo.A['c'].Add(jf);
+        for I := Low(TAllRetailers) to High(TAllRetailers) do
+          begin
+            jr := SO('{f: "", v: "' +
+              FormatFloat('0.00',
+                pp.pc_ShareInCompanyGrossSalesValue[I, pmark] * 100) +
+              '"}');
+            jo.A['c'].Add(jr);
+          end;
+        result.A['rows'].Add(jo);
+
+//      //4  pv_AppliedDiscountRate   NO such field in this view
+//        jo := SO;
+//        jo.O['c'] := SA([]);
+//        jf := SO(aProfitabilityProducer[4]);
+//        jo.A['c'].Add(jf);
+//        for I := Low(TAllRetailers) to High(TAllRetailers) do
+//          begin
+//            jr := SO('{f: "", v: "' +
+//              FormatFloat('0.00',
+//                pp.[I, pmark]) +
+//              '"}');
+//            jo.A['c'].Add(jr);
+//          end;
+//        result.A['rows'].Add(jo);
+
+      //5  pv_GrossSalesValue
+        jo := SO;
+        jo.O['c'] := SA([]);
+        jf := SO(aProfitabilityProducer[5]);
+        jo.A['c'].Add(jf);
+        for I := Low(TAllRetailers) to High(TAllRetailers) do
+          begin
+            jr := SO('{f: "", v: "' +
+              FormatFloat('0.00',
+                pp.pc_GrossSalesValue[I, pmark]) +
+              '"}');
+            jo.A['c'].Add(jr);
+          end;
+        result.A['rows'].Add(jo);
+
+      //6  pv_ShareInBrandGrossSalesValue
+        jo := SO;
+        jo.O['c'] := SA([]);
+        jf := SO(aProfitabilityProducer[6]);
+        jo.A['c'].Add(jf);
+        for I := Low(TAllRetailers) to High(TAllRetailers) do
+          begin
+            jr := SO('{f: "", v: "' +
+              FormatFloat('0.00',
+                pp.pc_ShareInCompanyGrossSalesValue[I, pmark] * 100) +
+              '"}');
+            jo.A['c'].Add(jr);
+          end;
+        result.A['rows'].Add(jo);
+
+      //7 pv_CostOfGoodsSold
+        jo := SO;
+        jo.O['c'] := SA([]);
+        jf := SO(aProfitabilityProducer[7]);
+        jo.A['c'].Add(jf);
+        for I := Low(TAllRetailers) to High(TAllRetailers) do
+          begin
+            jr := SO('{f: "", v: "' +
+              FormatFloat('0.00',
+                pp.pc_CostOfGoodsSold[I, pmark]) +
+              '"}');
+            jo.A['c'].Add(jr);
+          end;
+        result.A['rows'].Add(jo);
+
+      //8 pv_VolumeDiscountCost
+        jo := SO;
+        jo.O['c'] := SA([]);
+        jf := SO(aProfitabilityProducer[8]);
+        jo.A['c'].Add(jf);
+        for I := Low(TAllRetailers) to High(TAllRetailers) do
+          begin
+            jr := SO('{f: "", v: "' +
+              FormatFloat('0.00',
+                pp.pc_VolumeDiscountCost[I, pmark]) +
+              '"}');
+            jo.A['c'].Add(jr);
+          end;
+        result.A['rows'].Add(jo);
+
+      //9 pv_PerformanceBonusCost
+        jo := SO;
+        jo.O['c'] := SA([]);
+        jf := SO(aProfitabilityProducer[9]);
+        jo.A['c'].Add(jf);
+        for I := Low(TAllRetailers) to High(TAllRetailers) do
+          begin
+            jr := SO('{f: "", v: "' +
+              FormatFloat('0.00',
+                pp.pc_PerformanceBonusCost[I, pmark]) +
+              '"}');
+            jo.A['c'].Add(jr);
+          end;
+        result.A['rows'].Add(jo);
+
+      //10 pv_InStoreActivitiesFee
+        jo := SO;
+        jo.O['c'] := SA([]);
+        jf := SO(aProfitabilityProducer[10]);
+        jo.A['c'].Add(jf);
+        for I := Low(TAllRetailers) to High(TAllRetailers) do
+          begin
+            jr := SO('{f: "", v: "' +
+              FormatFloat('0.00',
+                pp.pc_InStoreActivitiesFee[I, pmark]) +
+              '"}');
+            jo.A['c'].Add(jr);
+          end;
+        result.A['rows'].Add(jo);
+
+      //11  pv_InventoryHoldingCost
+        jo := SO;
+        jo.O['c'] := SA([]);
+        jf := SO(aProfitabilityProducer[11]);
+        jo.A['c'].Add(jf);
+        for I := Low(TAllRetailers) to High(TAllRetailers) do
+          begin
+            jr := SO('{f: "", v: "' +
+              FormatFloat('0.00',
+                pp.pc_InventoryHoldingCost[I, pmark]) +
+              '"}');
+            jo.A['c'].Add(jr);
+          end;
+        result.A['rows'].Add(jo);
+
+      //12 pv_PromotionalSupport
+        jo := SO;
+        jo.O['c'] := SA([]);
+        jf := SO(aProfitabilityProducer[12]);
+        jo.A['c'].Add(jf);
+        for I := Low(TAllRetailers) to High(TAllRetailers) do
+          begin
+            jr := SO('{f: "", v: "' +
+              FormatFloat('0.00',
+                pp.pc_PromotionalSupport[I, pmark]) +
+              '"}');
+            jo.A['c'].Add(jr);
+          end;
+        result.A['rows'].Add(jo);
+
+      //13 pv_NetFinancialCost
+        jo := SO;
+        jo.O['c'] := SA([]);
+        jf := SO(aProfitabilityProducer[13]);
+        jo.A['c'].Add(jf);
+        for I := Low(TAllRetailers) to High(TAllRetailers) do
+          begin
+            jr := SO('{f: "", v: "' +
+              FormatFloat('0.00',
+                pp.pc_NetFinancialCost[I, pmark]) +
+              '"}');
+            jo.A['c'].Add(jr);
+          end;
+        result.A['rows'].Add(jo);
+
+      //14 pv_OtherCompensation
+        jo := SO;
+        jo.O['c'] := SA([]);
+        jf := SO(aProfitabilityProducer[14]);
+        jo.A['c'].Add(jf);
+        for I := Low(TAllRetailers) to High(TAllRetailers) do
+          begin
+            jr := SO('{f: "", v: "' +
+              FormatFloat('0.00',
+                pp.pc_OtherCompensation[I, pmark]) +
+              '"}');
+            jo.A['c'].Add(jr);
+          end;
+        result.A['rows'].Add(jo);
+
+      //15 pv_TotalTradeSupport
+        jo := SO;
+        jo.O['c'] := SA([]);
+        jf := SO(aProfitabilityProducer[15]);
+        jo.A['c'].Add(jf);
+        for I := Low(TAllRetailers) to High(TAllRetailers) do
+          begin
+            jr := SO('{f: "", v: "' +
+              FormatFloat('0.00',
+                pp.pc_TotalTradeSupport[I, pmark]) +
+              '"}');
+            jo.A['c'].Add(jr);
+          end;
+        result.A['rows'].Add(jo);
+
+      //16 pv_GrossProfitAfterPush
+        jo := SO;
+        jo.O['c'] := SA([]);
+        jf := SO(aProfitabilityProducer[16]);
+        jo.A['c'].Add(jf);
+        for I := Low(TAllRetailers) to High(TAllRetailers) do
+          begin
+            jr := SO('{f: "", v: "' +
+              FormatFloat('0.00',
+                pp.pc_GrossProfitAfterPush[I, pmark]) +
+              '"}');
+            jo.A['c'].Add(jr);
+          end;
+        result.A['rows'].Add(jo);
+
+      //17 pv_ShareInBrandGrossProfit
+        jo := SO;
+        jo.O['c'] := SA([]);
+        jf := SO(aProfitabilityProducer[17]);
+        jo.A['c'].Add(jf);
+        for I := Low(TAllRetailers) to High(TAllRetailers) do
+          begin
+            jr := SO('{f: "", v: "' +
+              FormatFloat('0.00',
+                pp.pc_ShareInCompanyGrossProfit[I, pmark] * 100) +
+              '"}');
+            jo.A['c'].Add(jr);
+          end;
+        result.A['rows'].Add(jo);
+      end;
+
+    function collectProfitProducer(pwho,pmkt,pdet,pcat: Integer): ISuperObject;
+    begin
+      Result := SO;
+      Result.S['market'] := aMarkets[pmkt];
+      Result.S['category'] := aCategories[pcat];
+      Result.S['detail'] := aDetails[pdet];
+      Result.S['roleID'] := aRoles[pwho];
+      Result.O['data'] := SO;
+// there is no global view in producer profit by channel report
+//      if (pwho < Prod_4_ID) and (pdet = 1) then
+//        Result['data'] := buildPNLProducerGlobal(pwho,pmkt);
+      if (pwho < Prod_4_ID) and (pdet = 2) then
+        Result['data'] := buildProfitProducerCategory(pwho,pmkt,pcat);
+// OA:: I doubt we need this at least now
+//      if (pwho < Prod_4_ID) and (pdet = 3)  then
+//        Result['data'] := buildProfitProducerBrand(pwho,pmkt,pcat);
+//      if (pwho < Prod_4_ID) and (pdet = 4)  then
+//        Result['data'] := buildVolumeProducerVariant(pwho,pmkt,pcat);
+    end;
+
+    function serveRequestProfitByChannel(): ISuperObject;
+    var
+      jo, j_pl: ISuperObject;
+      rrole, det, pl, mkt, cat: Integer;
+      s_str: string;
+    begin
+      jo := SO; //initialise JSON object
+
+      {** Header **}
+      //seminar ***
+      jo.S['Seminar'] := currentSeminar;
+
+      //filename ***
+      jo.S['fileName'] := getFileName;
+
+      //period OR latestHistoryPeriod
+      jo.I['latestHistoryPeriod'] := currentPeriod;
+
+      // report titleENG is very important, we gotta use it
+      // to recognise different report in database.
+      jo.S['titleENG'] := 'Profitability by Channel';
+      jo.S['titleCHN'] := '盈利能力通过分销渠道';
+      jo.S['titleRUS'] := 'Рентабельность по каналам дистрибуции';
+
+      {** Data Collection **}
+      jo.O['reportCollection'] := SA([]);
+
+      //build report collection
+      //change role and dataCollection once per all Producers/Retailers
+      for rrole :=1 to 1 do   //this one works for Producers only
+        begin
+          if rrole = 1 then
+            s_str := 'Producer'
+          else
+            s_str := 'Retailer';
+          j_pl := SO('{role: ' + s_str + '}');
+          j_pl.O['dataCollection'] := SA([]);
+          // collect Producer reports
+          if rrole = 1 then
+            for det := 2 to 2 do      //OA we build this report on category level only
+              for pl := Prod_1_ID to Prod_3_ID do
+                for mkt := Low(TMarketsTotal) to High(TMarketsTotal) do
+                  for cat := Low(TCategories) to High(TCategories) do
+                    j_pl.A['dataCollection'].Add( collectProfitProducer(pl,mkt,det,cat) );
+          jo.A['reportCollection'].Add( j_pl );
+        end;
+
+     Result := jo;
+     end;
+
+    function buildProfitBySupplier(pwho,pmark,pcat: Integer): ISuperObject;
+    var
+      jo, jf, jr : ISuperObject;
+      pp: TRetailerQuarterResults;
+      vmnft: Integer;
+    begin
+      //initialize
+      pp := currentResult.r_Retailers[pwho].rr_Quarters[pmark][pcat];
+      Result := SO();
+      jo := SO;
+      //columns
+        Result.O['cols'] := SA([]);
+        jf := SO('{id: "1", label: Item, labelENG: Item,' +
+              'labelRUS: Наименование, labelCHN: 事实, ' +
+							'type: string, color: 0}');
+        Result.A['cols'].Add(jf);
+        jr := SO('{id: "2", label: Manufacturer 1, labelENG: Manufacturer 1,' +
+              'labelRUS: "", labelCHN: "", ' +
+							'type: string, color: 0}');
+        Result.A['cols'].Add(jr);
+        jr := SO('{id: "3", label: Manufacturer 2, labelENG: Manufacturer 2,' +
+              'labelRUS: "", labelCHN: "", ' +
+							'type: string, color: 0}');
+        Result.A['cols'].Add(jr);
+        jr := SO('{id: "4", label: Manufacturer 3, labelENG: Manufacturer 3,' +
+              'labelRUS: "", labelCHN: "", ' +
+							'type: string, color: 0}');
+        Result.A['cols'].Add(jr);
+        jr := SO('{id: "5", label: Private label, labelENG: Private label,' +
+              'labelRUS: "", labelCHN: "", ' +
+							'type: string, color: 0}');
+        Result.A['cols'].Add(jr);
+
+      // rows
+        result.O['rows'] := sa([]);
+
+      //1     rq_ShelfSpacePerSupplier
+        jo := SO;
+        jo.O['c'] := SA([]);
+        jf := SO(aProfitabilityRetail[1]);
+        jo.A['c'].Add(jf);
+        for vmnft := Low(TAllProducers) to High(TAllProducers) do
+          begin
+            jr := SO('{f: "", v: "' +
+              FormatFloat('0.00',
+                pp.rq_ShelfSpacePerSupplier[vmnft] * 100 ) +
+              '"}');
+            jo.A['c'].Add(jr);
+          end;
+        result.A['rows'].Add(jo);
+
+      //2         rq_NetSalesRevenue
+        jo := SO;
+        jo.O['c'] := SA([]);
+        jf := SO(aProfitabilityRetail[2]);
+        jo.A['c'].Add(jf);
+        for vmnft := Low(TAllProducers) to High(TAllProducers) do
+          begin
+            jr := SO('{f: "", v: "' +
+              FormatFloat('0.00',
+                pp.rq_NetSalesRevenue[vmnft] ) +
+              '"}');
+            jo.A['c'].Add(jr);
+          end;
+        result.A['rows'].Add(jo);
+
+      //3         rq_SuppliersShareInNetSalesRevenue
+        jo := SO;
+        jo.O['c'] := SA([]);
+        jf := SO(aProfitabilityRetail[3]);
+        jo.A['c'].Add(jf);
+        for vmnft := Low(TAllProducers) to High(TAllProducers) do
+          begin
+            jr := SO('{f: "", v: "' +
+              FormatFloat('0.00',
+                pp.rq_SuppliersShareInNetSalesRevenue[vmnft] * 100 ) +
+              '"}');
+            jo.A['c'].Add(jr);
+          end;
+        result.A['rows'].Add(jo);
+
+      //4         rq_GrossProfit
+        jo := SO;
+        jo.O['c'] := SA([]);
+        jf := SO(aProfitabilityRetail[4]);
+        jo.A['c'].Add(jf);
+        for vmnft := Low(TAllProducers) to High(TAllProducers) do
+          begin
+            jr := SO('{f: "", v: "' +
+              FormatFloat('0.00',
+                pp.rq_GrossProfit[vmnft] ) +
+              '"}');
+            jo.A['c'].Add(jr);
+          end;
+        result.A['rows'].Add(jo);
+
+      //5      rq_NetFinancialBenefit
+        jo := SO;
+        jo.O['c'] := SA([]);
+        jf := SO(aProfitabilityRetail[5]);
+        jo.A['c'].Add(jf);
+        for vmnft := Low(TAllProducers) to High(TAllProducers) do
+          begin
+            jr := SO('{f: "", v: "' +
+              FormatFloat('0.00',
+                pp.rq_NetFinancialBenefit[vmnft] ) +
+              '"}');
+            jo.A['c'].Add(jr);
+          end;
+        result.A['rows'].Add(jo);
+
+      //6      rq_AdjustedGrossProfit
+        jo := SO;
+        jo.O['c'] := SA([]);
+        jf := SO(aProfitabilityRetail[6]);
+        jo.A['c'].Add(jf);
+        for vmnft := Low(TAllProducers) to High(TAllProducers) do
+          begin
+            jr := SO('{f: "", v: "' +
+              FormatFloat('0.00',
+                pp.rq_AdjustedGrossProfit[vmnft] ) +
+              '"}');
+            jo.A['c'].Add(jr);
+          end;
+        result.A['rows'].Add(jo);
+
+      //7     rq_AdjustedGrossProfitMargin
+        jo := SO;
+        jo.O['c'] := SA([]);
+        jf := SO(aProfitabilityRetail[1]);
+        jo.A['c'].Add(jf);
+        for vmnft := Low(TAllProducers) to High(TAllProducers) do
+          begin
+            jr := SO('{f: "", v: "' +
+              FormatFloat('0.00',
+                pp.rq_AdjustedGrossProfitMargin[vmnft] * 100 ) +
+              '"}');
+            jo.A['c'].Add(jr);
+          end;
+        result.A['rows'].Add(jo);
+
+      //8      rq_SuppliersShareInAdjustedGrossProfit
+        jo := SO;
+        jo.O['c'] := SA([]);
+        jf := SO(aProfitabilityRetail[8]);
+        jo.A['c'].Add(jf);
+        for vmnft := Low(TAllProducers) to High(TAllProducers) do
+          begin
+            jr := SO('{f: "", v: "' +
+              FormatFloat('0.00',
+                pp.rq_SuppliersShareInAdjustedGrossProfit[vmnft] * 100 ) +
+              '"}');
+            jo.A['c'].Add(jr);
+          end;
+        result.A['rows'].Add(jo);
+
+      //9      rq_AdjustedGrossProfitPerShelfSpace
+        jo := SO;
+        jo.O['c'] := SA([]);
+        jf := SO(aProfitabilityRetail[1]);
+        jo.A['c'].Add(jf);
+        for vmnft := Low(TAllProducers) to High(TAllProducers) do
+          begin
+            jr := SO('{f: "", v: "' +
+              FormatFloat('0.00',
+                pp.rq_AdjustedGrossProfitPerShelfSpace[vmnft] ) +
+              '"}');
+            jo.A['c'].Add(jr);
+          end;
+        result.A['rows'].Add(jo);
+
+      //10         rq_TermsOfPayment
+        jo := SO;
+        jo.O['c'] := SA([]);
+        jf := SO(aProfitabilityRetail[10]);
+        jo.A['c'].Add(jf);
+        for vmnft := Low(TAllProducers) to High(TAllProducers) do
+          begin
+            jr := SO('{f: "", v: "' +
+              FormatFloat('0.00',
+                pp.rq_TermsOfPayment[vmnft] ) +
+              '"}');
+            jo.A['c'].Add(jr);
+          end;
+        result.A['rows'].Add(jo);
+      end;
+
+    function collectProfitDataRetailer(pwho,pmkt,pdet,pcat: Integer): ISuperObject;
+    begin
+      Result := SO;
+      Result.S['market'] := aMarkets[pmkt];
+      Result.S['detail'] := aDetails[pdet];
+      Result.S['roleID'] := aRoles[pwho];
+      Result.O['data'] := SO();
+      if (pwho > Prod_4_ID) and (pwho < TradTrade_ID) and (pdet = 2)  then
+        begin
+          Result.S['category'] := aCategories[pcat];
+          Result['data'] := buildProfitBySupplier(pwho - Prod_4_ID,pmkt,pcat);
+        end;
+    end;
+
+    function serveRequestProfitBySupplier(): ISuperObject;
+    var
+      jo, j_pl: ISuperObject;
+      rrole, det, pl, mkt, cat: Integer;
+      s_str: string;
+    begin
+      jo := SO; //initialise JSON object
+
+      {** Header **}
+      //seminar ***
+      jo.S['Seminar'] := currentSeminar;
+
+      //filename ***
+      jo.S['fileName'] := getFileName;
+
+      //period OR latestHistoryPeriod
+      jo.I['latestHistoryPeriod'] := currentPeriod;
+
+      // report titleENG is very important, we gotta use it
+      // to recognise different report in database.
+      jo.S['titleENG'] := 'Profitability by Supplier';
+      jo.S['titleCHN'] := '盈利能力由供应商';
+      jo.S['titleRUS'] := 'Рентабельность по поставщикам';
+
+      {** Data Collection **}
+      jo.O['reportCollection'] := SA([]);
+
+      //build report collection
+      //change role and dataCollection once per all Producers/Retailers
+      for rrole :=2 to 2 do
+      { This report works only for Retailers }
+        begin
+          if rrole = 1 then
+            s_str := 'Producer'
+          else
+            s_str := 'Retailer';
+          j_pl := SO('{role: ' + s_str + '}');
+          j_pl.O['dataCollection'] := SA([]);
+          // collect Producer reports
+          if rrole = 1 then
+            Writeln('Something wrong it should be a dead end');
+          // collect Retailer reports
+          if rrole = 2 then
+            for det := 2 to 2 do   //only quarter details are available
+              for pl := Ret_1_ID to Ret_2_ID do
+                for mkt := Low(TMarketsTotal) to High(TMarketsTotal) do
+                  begin
+                    if det = 2 then
+                      for cat := Low(TCategories) to High(TCategories) do
+                        j_pl.A['dataCollection'].Add( collectProfitDataRetailer(pl,mkt,det,cat) );
+                  end;
+          jo.A['reportCollection'].Add( j_pl );
+        end;
+
+     Result := jo;
+    end;
+
     procedure makeJson();
     var
       s_str : string;
@@ -2343,6 +2993,8 @@ var
       oJsonFile[''] := serveRequestVolume;
       oJsonFile[''] := serveRequestPrice;
       oJsonFile[''] := serveRequestIndices;
+      oJsonFile[''] := serveRequestProfitBySupplier;
+      oJsonFile[''] := serveRequestProfitByChannel;
       s_str := 'out' + '.json';
       oJsonFile.SaveTo(s_str, true, false);
       kk := oJsonFile.AsString;

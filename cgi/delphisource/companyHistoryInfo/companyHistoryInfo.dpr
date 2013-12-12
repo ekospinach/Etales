@@ -305,13 +305,13 @@ var
       jo.A['productionCapacity'].D[I - 1]  := vProd.pt_CategoriesResults[I].pc_ProductionCapacity;
     jo.O['acquiredTechnologyLevel']  := SA([]);
     for I := Low(TCategories) to High(TCategories) do       
-      jo.A['acquiredTechnologyLevel'].D[I - 1]  := vProd.pt_CategoriesResults[I].pc_ProductionCapacity;
+      jo.A['acquiredTechnologyLevel'].D[I - 1]  := vProd.pt_CategoriesResults[I].pc_AcquiredTechnologyLevel;
     jo.O['acquiredProductionFlexibility']  := SA([]);
     for I := Low(TCategories) to High(TCategories) do       
-      jo.A['acquiredProductionFlexibility'].D[I - 1]  := vProd.pt_CategoriesResults[I].pc_ProductionCapacity;
+      jo.A['acquiredProductionFlexibility'].D[I - 1]  := vProd.pt_CategoriesResults[I].pc_AcquiredProductionFlexibility;
     jo.O['acquiredDesignLevel']  := SA([]);
     for I := Low(TCategories) to High(TCategories) do       
-      jo.A['acquiredDesignLevel'].D[I - 1]  := vProd.pt_CategoriesResults[I].pc_ProductionCapacity;    
+      jo.A['acquiredDesignLevel'].D[I - 1]  := vProd.pt_CategoriesResults[I].pc_AcquiredDesignLevel;
 
     result  := jo;
   end;
