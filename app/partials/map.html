@@ -1,14 +1,14 @@
 <div id="content" class="bs-header">
     <div class="container">
-        <h1>Company summary</h1>
-        <p>Oleg, We need some description here...</p>
+        <h1>{{Label.getContent('Company summary')}}</h1>
+        <p>{{Label.getContent('Company summary Info')}}</p>
     </div>
 </div>
 
 <div class="bs-old-docs">
     <div class="container">
         <strong>
-           
+           {{Label.getContent('Reason')}}
         </strong>
     </div>
 </div>
@@ -22,44 +22,45 @@
         </div>
         <div class="col-lg-9">
             <div class="bs-docs-section">
-                <h3>{{mapTitle}}</h3>
-                <button class="btn btn-success jqx-btn-success btn-sm">Check All</button>
-                <button class="btn btn-danger jqx-btn-danger btn-sm">Un-Check All</button>
-                <button class="btn btn-primary jqx-btn-primary btn-sm" ng-click="showSelect()">Show</button>
+                <h3>{{Label.getContent('Perceptions Map')}}</h3>
+                <button class="btn btn-success jqx-btn-success btn-sm">{{Label.getContent('Check All')}}</button>
+                <button class="btn btn-danger jqx-btn-danger btn-sm">{{Label.getContent('Un-Check All')}}</button>
+                <button class="btn btn-primary jqx-btn-primary btn-sm" ng-click="showSelect()">{{Label.getContent('Show')}}</button>
                 <div style="padding:1px 0;clear:both"></div>
-                <h4 class="pull-left"><span class="label label-warning">{{cat}}</span></h4>
-                <h4 class="pull-left" style="margin-left:10px"><span class="label label-success">{{market}}</span></h4>
-                <h4 class="pull-left" style="margin-left:10px"><span class="label label-info">Period:{{period}}</span></h4>
+                <h4 class="pull-left"><span class="label label-warning">{{Label.getContent(cat)}}</span></h4>
+                <h4 class="pull-left" style="margin-left:10px"><span class="label label-success">{{Label.getContent(market)}}</span></h4>
+                <h4 class="pull-left" style="margin-left:10px"><span class="label label-info">{{Label.getContent('Period')}}:{{period}}</span></h4>
                 <div style="padding:1px 0;clear:both"></div>
                 <div>
                     <div class="btn-group">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                        Category<input type="hidden" value='1'>
+                        {{Label.getContent('Category')}}<input type="hidden" value='1'>
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a ng-click="showChart('Elecsories',market,language)">Elecsories</a></li>
-                            <li><a ng-click="showChart('HealthBeauties',market,language)">HealthBeauties</a></li>
+                            <li><a ng-click="showChart('Elecsories',market,language)">{{Label.getContent('Elecssories')}}</a></li>
+                            <li><a ng-click="showChart('HealthBeauties',market,language)">{{Label.getContent('HealthBeauty')}}</a></li>
                         </ul>
                     </div>
                     <div class="btn-group">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                        Market <input type="hidden" value='1'><span class="caret"></span>
+                        {{Label.getContent('Market')}}<input type="hidden" value='1'><span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a ng-click="showChart(cat,'Urban',language)">Urban</a></li>
-                            <li><a ng-click="showChart(cat,'Rural',language)">Rural</a></li>
+                            <li><a ng-click="showChart(cat,'Urban',language)">{{Label.getContent('Urban')}}</a></li>
+                            <li><a ng-click="showChart(cat,'Rural',language)">{{Label.getContent('Rural')}}</a></li>
                         </ul>
                     </div>
 
                     <div class="btn-group">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                        Period <span class="caret"></span>
+                        {{Label.getContent('Period')}}<span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
                             <li ng-repeat="newperiod in periods"><a ng-click="getMap(seminar,newperiod)">{{newperiod}}</a></li>
                         </ul>
                     </div>
+                    <!--
                     <div class="btn-group pull-right" data-toggle="buttons">
                         <label class="btn btn-default" ng-click="showChart(cat,market,'Chinese')">
                             <input type="radio" name="options" > Chinese
@@ -71,6 +72,7 @@
                             <input type="radio" name="options"> Russian
                         </label>
                     </div>
+                    -->
                 </div>
             </div>
         </div>

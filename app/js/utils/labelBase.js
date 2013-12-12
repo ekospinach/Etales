@@ -1,6 +1,16 @@
 var getLabelBase = function(){
 	return [
 		/*map*/
+		{id:'Company summary',  ENG:'Company summary',  CHN:'',  RUS:''},
+		{id:'Company summary Info',  ENG:'',  CHN:'',  RUS:''},
+		{id:'Check All',  ENG:'Check All',  CHN:'',  RUS:''},
+		{id:'Un-Check All',  ENG:'Un-Check All',  CHN:'',  RUS:''},
+		{id:'Show',  ENG:'Show',  CHN:'',  RUS:''},
+		{id:'Period',  ENG:'Period',  CHN:'',  RUS:''},
+		{id:'Reason',  ENG:"For some reason,something in this page cann't translat immediately",  CHN:'出于部分原因，本页部分内容不能及时翻译。',  RUS:''},
+		{id:'Perceptions Map',  ENG:'Perceptions Map',  CHN:'认知地图',  RUS:''},
+		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'',  ENG:'',  CHN:'',  RUS:''},
 		{id:'Ease of Use perception',  ENG:'Ease of Use perception',  CHN:'易用度感知',  RUS:''},
 		{id:'Quality perception',  ENG:'Quality perception',  CHN:'品质感知',  RUS:''},
 		{id:'Performance perception',  ENG:'Performance perception',  CHN:'使用效果感知',  RUS:''},
@@ -17,6 +27,9 @@ var getLabelBase = function(){
 		{id:'Category',  ENG:'Category',  CHN:'品类',  RUS:''},
 		{id:'Elecssories',  ENG:'Elecssories',  CHN:'消耗品',  RUS:''},
 		{id:'HealthBeauty',  ENG:'HealthBeauty',  CHN:'护肤品',  RUS:''},
+		/*a little bug*/
+		{id:'Elecsories',  ENG:'Elecsories',  CHN:'消耗品',  RUS:''},
+		{id:'HealthBeauties',  ENG:'HealthBeauties',  CHN:'护肤品',  RUS:''},
 		{id:'Avaliable Budget',  ENG:'Total Avaliable Budget for Remaing Period',  CHN:'',  RUS:''},
 		{id:'Producer Available Capacity',  ENG:'Available Capacity',  CHN:'',  RUS:''},
 		{id:'Brand',  ENG:'Brand',  CHN:'品牌',  RUS:''},
