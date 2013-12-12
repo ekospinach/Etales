@@ -13,6 +13,23 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
 			console.log('Log:' + data.msg + ', isError:' + data.isError);
 		});
 
+		$scope.testUnitCost = function(){
+			var postData = {
+			    period : 1,
+			    seminar : 'MAY',
+			    brandName : 'EGEND1',
+			    varName : '_A',
+			    catID : 1,
+			    userRole :  userRoles.producer,
+			    userID : 1,				
+			}
+		  $http({method:'POST', url:'/getCurrentUnitCost', data: postData}).then(function(res){
+		  	console.log('testUnitCost Success:' + res.data);
+		  },function(res){
+		  	console.log('testUnitCost Failed:' + res.data);
+		  })				
+		}
+
 		$scope.testPassive = function(period){
 		  var postData = {
 		  	seminar : 'MAY',
