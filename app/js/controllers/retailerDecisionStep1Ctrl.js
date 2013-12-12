@@ -1,21 +1,18 @@
 define(['app'], function(app) {
 		app.controller('retailerDecisionStep1Ctrl',
-			['$scope','$q','$rootScope','$http','$filter','RetailerDecisionBase', function($scope,$q,$rootScope,$http,$filter,RetailerDecisionBase) {
+			['$scope','$q','$rootScope','$http','$filter','RetailerDecisionBase','Label', function($scope,$q,$rootScope,$http,$filter,RetailerDecisionBase,Label) {
 			$rootScope.decisionActive="active";
 			$rootScope.loginCss="";
 		    $rootScope.loginFooter="bs-footer";
 		    $rootScope.loginLink="footer-links";
 		    $rootScope.loginDiv="container";
-			var multilingual=getRetailerStep1Info();
-			var language='English',
-				retailerID=$rootScope.user.username.substring($rootScope.user.username.length-1);
-				period=$rootScope.currentPeriod,
-				isCollapsed=true;
-				$scope.isCollapsed=isCollapsed;
-			$scope.multilingual=multilingual;
-			$scope.language=language;
-			$scope.retailerID=retailerID;
-			$scope.period=period;
+			//var multilingual=getRetailerStep1Info();
+			$scope.language=Label.getCurrentLanguage(),
+			$scope.retailerID=$rootScope.user.username.substring($rootScope.user.username.length-1);
+			$scope.period=$rootScope.currentPeriod,
+			$scope.category='Elecssories',
+			$scope.isCollapsed=true;
+		
 			RetailerDecisionBase.startListenChangeFromServer();
 			RetailerDecisionBase.reload({retailerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 				$scope.pageBase = base;
@@ -83,21 +80,21 @@ define(['app'], function(app) {
 	      		// 			$scope.percentageShelf[1][0]=(100-$scope.surplusShelf[1][0]);
 	      		// 			$scope.percentageShelf[1][1]=(100-$scope.surplusShelf[1][1]);	
 	      					$scope.retailerID=retailerID,$scope.period=period,$scope.language=language;
-							if(language=="English"){
-								for(var i=0;i<$scope.multilingual.length;i++){
-									labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
-									infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
-								}
-							}
-							else if(language=="Chinese"){
-								for(var i=0;i<$scope.multilingual.length;i++){
-									labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelCHN;
-									infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoCHN;
-								}
-							}
-							result=1;
-							$scope.infoLanguages=infoLanguages;
-							$scope.labelLanguages=labelLanguages;
+							// if(language=="English"){
+							// 	for(var i=0;i<$scope.multilingual.length;i++){
+							// 		labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
+							// 		infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
+							// 	}
+							// }
+							// else if(language=="Chinese"){
+							// 	for(var i=0;i<$scope.multilingual.length;i++){
+							// 		labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelCHN;
+							// 		infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoCHN;
+							// 	}
+							// }
+							// result=1;
+							// $scope.infoLanguages=infoLanguages;
+							// $scope.labelLanguages=labelLanguages;
 	      		},function(){
 	      			console.log('showView fail');
 	      		});	
