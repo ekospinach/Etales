@@ -1,24 +1,17 @@
 define(['app'], function(app) {
 		app.controller('retailerDecisionStep3Ctrl',
-			['$scope','$q','$rootScope','$http','$filter','RetailerDecision','RetailerDecisionBase', function($scope,$q,$rootScope,$http,$filter,RetailerDecision,RetailerDecisionBase) {
+			['$scope','$q','$rootScope','$http','$filter','RetailerDecision','RetailerDecisionBase','Label', function($scope,$q,$rootScope,$http,$filter,RetailerDecision,RetailerDecisionBase,Label) {
 			$rootScope.decisionActive="active";
 			$rootScope.loginCss="";
 		    $rootScope.loginFooter="bs-footer";
 		    $rootScope.loginLink="footer-links";
 		    $rootScope.loginDiv="container";
-			var multilingual=getRetailerStep3Info();
 
-			var language='English',
-				retailerID=$rootScope.user.username.substring($rootScope.user.username.length-1);
-				period=$rootScope.currentPeriod,
-				category='Elecssories',
-				isCollapsed=true;
-				$scope.isCollapsed=isCollapsed;
-			$scope.multilingual=multilingual;
-			$scope.category=category;
-			$scope.language=language;
-			$scope.retailerID=retailerID;
-			$scope.period=period;
+			$scope.language=Label.getCurrentLanguage(),
+			$scope.retailerID=$rootScope.user.username.substring($rootScope.user.username.length-1);
+			$scope.period=$rootScope.currentPeriod,
+			$scope.category='Elecssories',
+			$scope.isCollapsed=true;
 
 			$scope.packs = [{
 				value: 1, text: 'ECONOMY'
@@ -140,7 +133,6 @@ define(['app'], function(app) {
 				var d=$q.defer();
 				$scope.retailerID=retailerID,$scope.period=period,$scope.category=category,$scope.language=language;
 				var categoryID=0,count=0,result=0,expend=0;
-				var labelLanguages={},infoLanguages={};
 				var fakeName="EName",max=100;
 	      		var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/R/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
 	      		$http({
@@ -179,33 +171,13 @@ define(['app'], function(app) {
 	      		// 			$scope.percentageShelf[1][0]=(100-$scope.surplusShelf[1][0]);
 	      		// 			$scope.percentageShelf[1][1]=(100-$scope.surplusShelf[1][1]);	
 
-							if(language=="English"){
-								for(var i=0;i<$scope.multilingual.length;i++){
-									if(category=="Elecssories"){
-										$scope.EleShow="inline";
-										$scope.HeaShow="none";
-									}
-									else if(category=="HealthBeauty"){
-										$scope.EleShow="none";
-										$scope.HeaShow="inline";
-									}
-									labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
-									infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
-								}
+							if(category=="Elecssories"){
+								$scope.EleShow="inline";
+								$scope.HeaShow="none";
 							}
-							else if(language=="Chinese"){
-								for(var i=0;i<$scope.multilingual.length;i++){
-									if(category=="Elecssories"){
-										$scope.EleShow="inline";
-										$scope.HeaShow="none";
-									}
-									else if(category=="HealthBeauty"){
-										$scope.EleShow="none";
-										$scope.HeaShow="inline";
-									}
-									infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoCHN;
-									labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelCHN;
-								}
+							else if(category=="HealthBeauty"){
+								$scope.EleShow="none";
+								$scope.HeaShow="inline";
 							}
 							var allRetCatDecisions=loadSelectCategroy(category);
 				      		var products=new Array();
@@ -235,8 +207,6 @@ define(['app'], function(app) {
 			      				}
 				      		}
 				      		$scope.products=products;
-							$scope.infoLanguages=infoLanguages;
-							$scope.labelLanguages=labelLanguages;
 						},function(){
 							console.log('showView fail');
 						})

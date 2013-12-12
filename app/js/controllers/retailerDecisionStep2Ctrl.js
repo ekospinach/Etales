@@ -1,12 +1,12 @@
 define(['app'], function(app) {
 		app.controller('retailerDecisionStep2Ctrl',
-			['$scope','$q','$rootScope','$http','$filter','RetailerDecisionBase', function($scope,$q,$rootScope,$http,$filter,RetailerDecisionBase) {
+			['$scope','$q','$rootScope','$http','$filter','RetailerDecisionBase','Label', function($scope,$q,$rootScope,$http,$filter,RetailerDecisionBase,Label) {
 			$rootScope.decisionActive="active";
 			$rootScope.loginCss="";
 		    $rootScope.loginFooter="bs-footer";
 		    $rootScope.loginLink="footer-links";
 		    $rootScope.loginDiv="container";
-			var multilingual=getRetailerStep2Info();
+
 			$scope.packs = [{
 				value: 1, text: 'SL_BASE'
 			},{
@@ -18,15 +18,11 @@ define(['app'], function(app) {
 			},{
 				value: 5, text: 'SL_PREMIUM'
 			}]; 
-			var language='English',
-				retailerID=$rootScope.user.username.substring($rootScope.user.username.length-1),
-				period=$rootScope.currentPeriod,
-				isCollapsed=true;
-				$scope.isCollapsed=isCollapsed;
-			$scope.multilingual=multilingual;
-			$scope.language=language;
-			$scope.retailerID=retailerID;
-			$scope.period=period;
+			$scope.language=Label.getCurrentLanguage(),
+			$scope.retailerID=$rootScope.user.username.substring($rootScope.user.username.length-1);
+			$scope.period=$rootScope.currentPeriod,
+			$scope.category='Elecssories',
+			$scope.isCollapsed=true;
 
 			RetailerDecisionBase.reload({retailerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 				$scope.pageBase = base;
@@ -77,7 +73,6 @@ define(['app'], function(app) {
 				var d=$q.defer();
 				$scope.retailerID=retailerID,$scope.period=period,$scope.language=language;
 				var categoryID=0,count=0,result=0,expend=0;
-				var labelLanguages={},infoLanguages={};
 				var fakeName="EName",max=100;
 	      		var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/R/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
 	      		$http({
@@ -117,18 +112,18 @@ define(['app'], function(app) {
 	      		// 			$scope.percentageShelf[1][1]=(100-$scope.surplusShelf[1][1]);	
 	      					$scope.retailerID=retailerID,$scope.period=period,$scope.language=language;
 							var markets=new Array();
-							if(language=="English"){
-								for(var i=0;i<$scope.multilingual.length;i++){
-									labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
-									infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
-								}
-							}
-							else if(language=="Chinese"){
-								for(var i=0;i<$scope.multilingual.length;i++){
-									labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelCHN;
-									infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoCHN;						
-								}
-							}
+							// if(language=="English"){
+							// 	for(var i=0;i<$scope.multilingual.length;i++){
+							// 		labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
+							// 		infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
+							// 	}
+							// }
+							// else if(language=="Chinese"){
+							// 	for(var i=0;i<$scope.multilingual.length;i++){
+							// 		labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelCHN;
+							// 		infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoCHN;						
+							// 	}
+							// }
 							for(var i=0;i<$scope.pageBase.retMarketDecision.length;i++){
 				      			if($scope.pageBase.retMarketDecision[i].marketID==1){
 				      				$scope.pageBase.retMarketDecision[i].marketName="Urban";			
@@ -156,8 +151,6 @@ define(['app'], function(app) {
 				      		}
 				      		result=1;
 				      		$scope.markets=markets;
-							$scope.labelLanguages=labelLanguages;
-							$scope.infoLanguages=infoLanguages;
 	      		},function(){
 	      			console.log('showView fail');
 	      		});	
