@@ -125,9 +125,9 @@ define(['app'], function(app) {
 
 			var checkData=function(value){
 				var d=$q.defer();
-				var filter=/^[0-9]*[1-9][0-9]*$/;
+				var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
 				if(!filter.test(value)){
-					d.resolve('Input a Integer from 0~MAX');
+					d.resolve('Input a number');
 				}else{
 					d.resolve();
 				}

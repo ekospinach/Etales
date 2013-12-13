@@ -230,9 +230,9 @@ define(['app'], function(app) {
 			*/
 			var checkOrderVolume=function(category,market,brandName,varName,location,postion,addtionalIdx,value){
 				var d=$q.defer();
-				var filter=/^\d+$/;
+				var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
 				if(!filter.test(value)){
-					d.resolve('Input a Integer');
+					d.resolve('Input a number');
 				}
 				var max=0;
 					if(market=="Urban"){
@@ -263,9 +263,9 @@ define(['app'], function(app) {
 			*/
 			var checkShelfSpace=function(category,market,brandName,varName,location,postion,addtionalIdx,value){
 				var d=$q.defer(),max=0;
-				var filter=/^\d+$/;
+				var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
 				if(!filter.test(value)){
-					d.resolve('Input a Integer');
+					d.resolve('Input a number');
 				}
 				if(market=="Urban"){
 					market=1;

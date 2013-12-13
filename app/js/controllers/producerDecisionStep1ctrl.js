@@ -521,7 +521,21 @@ define(['app'], function(app) {
 			var checkCurrentBM=function(category,brandName,varName,location,additionalIdx,index,value){
 				var d=$q.defer;
 				var categoryID=0,max=0;
-				var filter
+				var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
+				if(!filter.test(value)){
+					d.resolve('Input a number');
+				}
+				return d.promise;
+			}
+
+			var checkCurrentEMall=function(category,brandName,varName,location,additionalIdx,index,value){
+				var d=$q.defer;
+				var categoryID=0,max=0;
+				var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
+				if(!filter.test(value)){
+					d.resolve('Input a number');
+				}
+				return d.promise;
 			}
 
 			var updateProducerDecision=function(category,brandName,varName,location,additionalIdx,index){

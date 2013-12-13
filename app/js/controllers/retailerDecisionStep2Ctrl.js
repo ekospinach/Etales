@@ -161,9 +161,9 @@ define(['app'], function(app) {
 
 			var checkSurface=function(value){
 				var d=$q.defer();
-				var filter=/^\d+$/;
+				var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
 				if(!filter.test(value)){
-					d.resolve('Input a Integer');
+					d.resolve('Input a number');
 				}
 				if(parseInt(value)>65||parseInt(value)<35){
 					d.resolve('Input range:35~65');
@@ -175,9 +175,9 @@ define(['app'], function(app) {
 
 			var checkBudget=function(marketID,location,postion,additionalIdx,index,value){
 				var d=$q.defer();
-				var filter=/^\d+(\.{0,1}\d+){0,1}$/;
+				var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
 				if(!filter.test(value)){
-					d.resolve('Input a Num');
+					d.resolve('Input a number');
 				}
 				var url="/retailerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+marketID+'/'+location+'/'+additionalIdx;
 	      		$http({

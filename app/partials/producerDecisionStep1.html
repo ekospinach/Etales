@@ -163,7 +163,7 @@
                 <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Current Price BM Info')}}" popover-title="{{Label.getContent('Current Price BM')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Current Price BM')}}<span style="color:red">*</span></p>
               </th>
               <th ng-repeat='product in products'>
-                <a href="#" editable-text="product.currentPriceBM" onbeforesave="checkPriceBM(category,product.parentBrandName,product.varName,'currentPriceBM','0',$index,$data)" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'currentPriceBM','0',$index)" ng-show="product.dateOfBirth==currentPeriod">{{ product.currentPriceBM || 0 }}</a>
+                <a href="#" editable-text="product.currentPriceBM" onbeforesave="checkCurrentBM(category,product.parentBrandName,product.varName,'currentPriceBM','0',$index,$data)" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'currentPriceBM','0',$index)" ng-show="product.dateOfBirth==currentPeriod">{{ product.currentPriceBM || 0 }}</a>
                 <p ng-show='product.dateOfBirth!=currentPeriod'>{{ product.currentPriceEmall }}</p>
 
               </th>
@@ -173,7 +173,7 @@
                 <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Current Price Emall Info')}}" popover-title="{{Label.getContent('Current Price Emall')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Current Price Emall')}}<span style="color:red">*</span></p>
               </th>
               <th ng-repeat='product in products'>
-                <a href="#" editable-text="product.currentPriceEmall" onbeforesave="checkPriceEmall(category,product.parentBrandName,product.varName,'currentPriceEmall','0',$index,$data)" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'currentPriceEmall','0',$index)" ng-show="product.dateOfBirth==currentPeriod">{{ product.currentPriceEmall || 0 }}</a>
+                <a href="#" editable-text="product.currentPriceEmall" onbeforesave="checkCurrentEMall(category,product.parentBrandName,product.varName,'currentPriceEmall','0',$index,$data)" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'currentPriceEmall','0',$index)" ng-show="product.dateOfBirth==currentPeriod">{{ product.currentPriceEmall || 0 }}</a>
                 <p ng-show='product.dateOfBirth!=currentPeriod'>{{ product.currentPriceEmall }}</p>
               </th>
             </tr>

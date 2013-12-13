@@ -149,9 +149,9 @@ define(['app'], function(app) {
 			var checkData=function(category,brandName,location,tep,index,value){
 				var d=$q.defer();
 				var categoryID,max,result;
-				var filter=/^\d+(\.{0,1}\d+){0,1}$/;
+				var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
 				if(!filter.test(value)){
-					d.resolve('Input a Num');
+					d.resolve('Input a number');
 				}
 				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
 	      		$http({
