@@ -34,51 +34,9 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    $scope.market=market;
 		    $scope.language=language;
 
-		    var reportCollection=_.find(myreport.reportCollection,function(obj){
+		    $scope.reportCollection=_.find(myreport.reportCollection,function(obj){
 		      return (obj.market==market&&obj.category==cat)
 		    });
-	        var title="";
-	        if(language=="RUS"){
-	          title=myreport.documentTitleRUS;
-	          for(var i=0;i<reportCollection.data.cols.length;i++){
-	            reportCollection.data.cols[i].label=reportCollection.data.cols[i].labelRUS;
-	          }
-	        }
-	        else if(language=="ENG"){
-	          title=myreport.documentTitleENG;
-	          for(var i=0;i<reportCollection.data.cols.length;i++){
-	            reportCollection.data.cols[i].label=reportCollection.data.cols[i].labelENG;
-	          }
-	        }
-	        else if(language=="CHN"){
-	          title=myreport.documentTitleCHN;
-	          for(var i=0;i<reportCollection.data.cols.length;i++){
-	            reportCollection.data.cols[i].label=reportCollection.data.cols[i].labelCHN;
-	          }
-	        }
-	      	$scope.optitle=title;
-	      	$scope.reportCollection = reportCollection;
-		    // var charttable = {};
-	     //    charttable.type = "Table";
-	     //    charttable.displayed = true;
-	     //    charttable.cssStyle = "height:400px; width:100%;";
-	     //    charttable.data=$scope.reportCollection.data;
-	        /*multilingual*/
-	        //test subTitles
-
-	       //  charttable.options = {
-	       //    "title": title,
-	       //    "isStacked": "true",
-	       //    "fill": 20,
-	       //    "displayExactValues": true,
-	       //    "vAxis": {
-	       //        "title": "Sales unit", "gridlines": {"count": 10}
-	       //    },
-	       //    "hAxis": {
-	       //        "title": "Date"
-	       //    }
-	      	// }
-	      	// $scope.charttable=charttable;
 	  	}
 
 
