@@ -1,7 +1,7 @@
 <div id="content" class="bs-header">
     <div class="container">
-        <h1>Negotiation</h1>
-        <p>Oleg, we need some description here...</p>
+        <h1>{{Label.getContent('Negotiation')}}</h1>
+        <p>{{Label.getContent('Negotiation Info')}}</p>
     </div>
 </div>
 
@@ -17,9 +17,10 @@
 		<div class="col-md-12">
 		    <div class="bs-docs-section">
 		    	<div class="page-header">
-			    	<h3>Contract List<small> Oleg, we need some description here...</small></h3>	    		
+			    	<h3>{{Label.getContent('Contract List')}}<small>{{Label.getContent('Contract List Info')}}</small></h3>	    		
 		    	</div>
 		    	<div class="pull-left">
+		    		<!--
 		    		<div class="btn-group pull-left" data-toggle="buttons" ng-show="false">
 			            <label class="btn btn-default" ng-click="">
 			            	<input type="radio" name="options">English
@@ -28,23 +29,24 @@
 			            	<input type="radio" name="options">Chinese
 			            </label>
 			        </div>
-			        <div class="btn-group pull-left" ng-show=retailerShow style="margin-left:10px">
+			    -->
+			        <div class="btn-group pull-left" ng-show=retailerShow>
 			        	<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
-			              Producer <span class="caret"></span>
+			        		{{Label.getContent('Producer')}}<span class="caret"></span>
 			            </button>
 			            <ul class="dropdown-menu">
-			              <li class=""><a ng-click="filterUser(1,retailerID)">Producer 1</a></li>
-			              <li class=""><a ng-click="filterUser(2,retailerID)">Producer 2</a></li>
-			              <li class=""><a ng-click="filterUser(3,retailerID)">Producer 3</a></li>         
+			              <li class=""><a ng-click="filterUser(1,retailerID)">{{Label.getContent('Producer')}} 1</a></li>
+			              <li class=""><a ng-click="filterUser(2,retailerID)">{{Label.getContent('Producer')}} 2</a></li>
+			              <li class=""><a ng-click="filterUser(3,retailerID)">{{Label.getContent('Producer')}} 3</a></li>         
 			            </ul>
 			        </div>
-			        <div class="btn-group pull-left" ng-show=producerShow style="margin-left:10px">
+			        <div class="btn-group pull-left" ng-show=producerShow>
 			        	<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" style="margin-left:10px">
-			              Retailer <span class="caret"></span>
+			        		{{Label.getContent('Retailer')}} <span class="caret"></span>
 			            </button>
 			            <ul class="dropdown-menu">
-			              <li class=""><a ng-click="filterUser(producerID,1)">Retailer 1</a></li>
-			              <li class=""><a ng-click="filterUser(producerID,2)">Retailer 2</a></li>      
+			              <li class=""><a ng-click="filterUser(producerID,1)">{{Label.getContent('Retailer')}} 1</a></li>
+			              <li class=""><a ng-click="filterUser(producerID,2)">{{Label.getContent('Retailer')}} 2</a></li>      
 			            </ul>
 			        </div>
 			    </div>
@@ -52,12 +54,12 @@
 			    <table class="table table-hover table-condensed">
 			    	<thead>
 			    		<tr>
-			    			<th>Contract Name</th>
-                            <th>Period</th>
-                            <th>Producer</th>
-                            <th>Retailer</th>
-                            <th>Drafted By</th>
-                            <th ng-show="false">isLock?</th>
+			    			<th>{{Label.getContent('Contract Name')}}</th>
+                            <th>{{Label.getContent('Period')}}</th>
+                            <th>{{Label.getContent('Producer')}}</th>
+                            <th>{{Label.getContent('Retailer')}}</th>
+                            <th>{{Label.getContent('Drafted By')}}</th>
+                            <th ng-show="false">{{Label.getContent('isLock')}}?</th>
                             <th></th>
 			    		</tr>
 			    	</thead>
@@ -80,17 +82,17 @@
 				    		</td>
 				    		<td>
 				    			<a class="btn btn-primary" ng-click="openDetailModal(allContract)">
-				    				Details
+				    				{{Label.getContent('Details')}}
 				    			</a>
 				    			<a class="btn btn-default" ng-show=(producerShow&&(allContract.period==currentPeriod)) ng-click="openDuplicateModal(allContract)">
-				    				Duplicate
+				    				{{Label.getContent('Duplicate')}}
 				    			</a>			    				
 				    		</td>			    		
 				    	</tr>
 			    	</tbody>
 			    </table>
 			    <a class="btn btn-primary" ng-click="openInsertModal()" ng-show=producerShow>
-			    	New Contract</a>
+			    	{{Label.getContent('New Contract')}}</a>
 		    </div>
 		</div>
 	</div>
@@ -103,11 +105,11 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeInsertModal()">&times;</button>
-				<h4 class="modal-title">New Negotiation</h4>
+				<h4 class="modal-title">{{Label.getContent('New Negotiation')}}</h4>
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
-					<label for="contractCode">New contract name</label>
+					<label for="contractCode">{{Label.getContent('New contract name')}}</label>
 					<div style="clear:both"></div>
 					<div class="col-xs-5 input-group">
 						<input type="text" id="contractCode" placeholder="contractCode" class="form-control" ng-model="newContractCode" required>
@@ -115,12 +117,12 @@
 					<div style="clear:both"></div>
 				</div>
 				<div class="form-group">
-					<label for="retailerID">Contract with</label>
+					<label for="retailerID">{{Label.getContent('Contract with')}}</label>
 					<div style="clear:both"></div>
 					<div class="col-xs-5">
 						<select class="form-control" ng-model="newRetailerID">
-							<option value="1">Retailer 1</option>
-							<option value="2">Retailer 2</option>
+							<option value="1">{{Label.getContent('Retailer')}} 1</option>
+							<option value="2">{{Label.getContent('Retailer')}} 2</option>
 						</select>
 					</div>
 					<div style="clear:both"></div>
@@ -130,8 +132,8 @@
         		</div>	
 			</div>
 			<div class="modal-footer">
-				<a class="btn btn-default" ng-click="closeInsertModal()">Cancel</a>
-				<a class="btn btn-primary" ng-click="addNewContract()">Add</a>
+				<a class="btn btn-default" ng-click="closeInsertModal()">{{Label.getContent('Cancel')}}</a>
+				<a class="btn btn-primary" ng-click="addNewContract()">{{Label.getContent('Add')}}</a>
 			</div>
 		</div>
 	</div>
@@ -142,11 +144,11 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeDuplicateModal()">&times;</button>
-				<h4 class="modal-title">Duplicate Negotiation</h4>
+				<h4 class="modal-title">{{Label.getContent('Duplicate Negotiation')}}</h4>
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
-					<label for="contractCode">New contract name</label>
+					<label for="contractCode">{{Label.getContent('New contract name')}}</label>
 					<div style="clear:both"></div>
 					<div class="col-xs-5 input-group">
 						<input type="text" id="contractCode" placeholder="contractCode" class="form-control" ng-model="duplicateContractCode" required>
@@ -158,8 +160,8 @@
         		</div>	
 			</div>
 			<div class="modal-footer">
-				<a class="btn btn-default" ng-click="closeDuplicateModal()">Cancel</a>
-				<a class="btn btn-primary" ng-click="duplicate(contract)">Duplicate</a>
+				<a class="btn btn-default" ng-click="closeDuplicateModal()">{{Label.getContent('Cancel')}}</a>
+				<a class="btn btn-primary" ng-click="duplicate(contract)">{{Label.getContent('Duplicate')}}</a>
 			</div>
 		</div>
 	</div>

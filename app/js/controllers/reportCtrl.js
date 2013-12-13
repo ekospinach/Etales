@@ -1,6 +1,6 @@
 define(['app','socketIO','routingConfig'], function(app) {
 
-	app.controller('reportCtrl',['$scope', '$http', 'ProducerDecisionBase','$rootScope','Auth', function($scope, $http, ProducerDecisionBase,$rootScope,Auth) {
+	app.controller('reportCtrl',['$scope', '$http', 'ProducerDecisionBase','$rootScope','Auth','Label', function($scope, $http, ProducerDecisionBase,$rootScope,Auth,Label) {
 		var myfinreport="";
 		$scope.myfinreport=myfinreport;
 
@@ -43,7 +43,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 		      url='/volReport?period='+period+'&seminar='+seminar+'&titleENG='+finTitleENG+'&role='+role;
 		    }
 
-		    console.log(url);
+		    //console.log(url);
 
 		    $http({method: 'GET', url: url}).
 		      success(function(data, status, headers, config) {
@@ -67,23 +67,29 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    
 		    var reportCollection;
 		    if(roleID=="Retailer 3"){
-		      $scope.showRoleID="Traditional Trade";
+		    	$scope.showRoleID="Traditional Trade";
 		    }else if(roleID=="Retailer 4"){
-		      $scope.showRoleID="E-Mall";  
+		      	$scope.showRoleID="E-Mall";  
 		    }
 
-		    if(detail=="Global"||detail=="Category"){//"Global","Category","Brand","Variant"
-		      reportCollection=_.find(myfinreport.dataCollection,function(obj){
-		        return (obj.market==market&&obj.detail==detail&&obj.roleID==roleID)
-		      });
-		      $rootScope.finCatShow="hide";
-		      $rootScope.finCatCss="";
+		    if(detail=="Global"){//||detail=="Category"){//"Global","Category","Brand","Variant"
+				reportCollection=_.find(myfinreport.dataCollection,function(obj){
+		        	return (obj.market==market&&obj.detail==detail&&obj.roleID==roleID)
+		      	});
+		      	$rootScope.finCatShow="hide";
+		     	$rootScope.finCatCss="";
+		    }else if(detail=="Category"){
+		    	reportCollection=_.find(myfinreport.dataCollection,function(obj){
+		        	return (obj.market==market&&obj.detail==detail&&obj.roleID==roleID)
+		      	});
+		      	$rootScope.finCatShow="";
+		      	$rootScope.finCatCss="margin-left:10px";
 		    }else{
-		      reportCollection=_.find(myfinreport.dataCollection,function(obj){
-		        return (obj.market==market&&obj.category==cat&&obj.detail==detail&&obj.roleID==roleID)
-		      });
-		      $rootScope.finCatShow="";
-		      $rootScope.finCatCss="margin-left:10px";    
+				reportCollection=_.find(myfinreport.dataCollection,function(obj){
+		        	return (obj.market==market&&obj.category==cat&&obj.detail==detail&&obj.roleID==roleID)
+		      	});
+		      	$rootScope.finCatShow="";
+		      	$rootScope.finCatCss="margin-left:10px";    
 		    }
 
 		    if(reportCollection){
@@ -91,23 +97,23 @@ define(['app','socketIO','routingConfig'], function(app) {
 		      for(var i=0;i<reportCollection.data.rows.length;i++){
 			    for(var j=0;j<reportCollection.data.rows[i].c.length;j++){
 			        if(j==0){
-			          if(language=="Russian"){
+			          if(language=="RUS"){
 			            reportCollection.data.rows[i].c[j].f=reportCollection.data.rows[i].c[j].vRUS;
-			          }else if(language=="Chinese"){
+			          }else if(language=="CHN"){
 			            reportCollection.data.rows[i].c[j].f=reportCollection.data.rows[i].c[j].vCHN;
 			          }else{
 			            reportCollection.data.rows[i].c[j].f=reportCollection.data.rows[i].c[j].v;
 			          }
 			        }
 			        else{
-			          reportCollection.data.rows[i].c[j].f=reportCollection.data.rows[i].c[j].v;
+			          reportCollection.data.rows[i].c[j].v=reportCollection.data.rows[i].c[j].v;
 			        }
 			    }
 		      }
 
 		    }
 		    $scope.reportCollection = reportCollection;
-
+		    console.log($scope.reportCollection);
 		  }		      
 		    // for(var i=0;i<reportCollection.data.cols.length;i++){
 		    //   /*多语言数据不全*/
@@ -143,7 +149,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 			  $scope.period=period;
 			  $scope.cat="HealthBeauties";
 			  $scope.market="Urban";
-			  $scope.language="English";
+			  $scope.language=Label.getCurrentLanguage();
 			  $scope.detail="Brand";
 			  $scope.type="Fin";
 			  $scope.getFinReport=getFinReport;
@@ -174,7 +180,6 @@ define(['app','socketIO','routingConfig'], function(app) {
 				    $scope.showRoleID="Producer 1";	
 				    $scope.isRoleIDChangeBtnShow = true;  	
 			  } 
-
 			  getFinReport($scope.seminar,$scope.realTitleENG,$scope.period,$scope.role,$scope.type);	  	
 		  };
 

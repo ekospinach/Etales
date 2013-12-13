@@ -19,29 +19,29 @@
 				<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">		
 					<ul class="nav navbar-nav">
 						<li class="active" access-level='{{accessLevels.public}}' active-nav>
-							<a href="/#/home">Participant manual</a>
+							<a href="/#/home">{{Label.getContent('Participant manual')}}</a>
 						</li>
 
 						<li class="{{rootShow}}" access-level='{{accessLevels.playerView}}' artive-nav>
-							<a href="/#/map">My company</a>
+							<a href="/#/map">{{Label.getContent('My company')}}</a>
 						</li>
 		          		<li class="{{rootShow}}" access-level='{{accessLevels.playerView}}' active-nav>
-		          			<a href="/#/report">Reports</a>
+		          			<a href="/#/report">{{Label.getContent('Reports')}}</a>
 		          		</li>   
 		          		<li class="{{rootShow}}" access-level='{{accessLevels.playerView}}' active-nav>
-		          			<a href="/#/lineChart">Charts</a>
+		          			<a href="/#/lineChart">{{Label.getContent('Charts')}}</a>
 		          		</li>     
 		          		<li class="" access-level='{{accessLevels.playerView}}' active-nav>
-		          			<a href="/#/marketReport">Market studies</a>
+		          			<a href="/#/marketReport">{{Label.getContent('Market studies')}}</a>
 		          		</li> 
 		          		<li access-level='{{accessLevels.playerView}}' active-nav>
-		          			<a href="/#/contract">Negotiation</a>
+		          			<a href="/#/contract">{{Label.getContent('Negotiation')}}</a>
 		          		</li>      
 		          		<li class="{{decisionActive}}" access-level='{{accessLevels.producerView}}' active-nav>
-		          			<a href="/#/producerDecisionStep1">Make Decision</a>
+		          			<a href="/#/producerDecisionStep1">{{Label.getContent('Make Decision')}}</a>
 		          		</li>
 		          		<li access-level='{{accessLevels.retailerView}}' active-nav>
-		          			<a href="/#/retailerDecisionStep1">Make Decision</a>
+		          			<a href="/#/retailerDecisionStep1">{{Label.getContent('Make Decision')}}</a>
 		          		</li>
 		      		</ul>
 
@@ -59,15 +59,15 @@
 								<b class="caret"></b>
 								</a>
 					        <ul class="dropdown-menu">
-					          <li role="presentation" class="dropdown-header">Period {{currentPeriod}} of 3</li>
-					          <li><a>Get result of lastest period</a></li>
+					          <li role="presentation" class="dropdown-header">{{Label.getContent('Period')}} {{currentPeriod}} of 3</li>
+					          <li><a>{{Label.getContent('Get result of lastest period')}}</a></li>
 					          <li class="divider"></li>					          
 					          <li role="presentation" class="dropdown-header">{{Label.getContent('switchLanguage')}}</li>
 					          <li><a ng-click="Label.changeLanguage('ENG')">English</a></li>					          
 					          <li><a ng-click="Label.changeLanguage('CHN')">简体中文</a></li>					          
 
 					          <li class="divider"></li>
-					          <li><a ng-click="logout()">Log out</a></li>
+					          <li><a ng-click="logout()">{{Label.getContent('Log out')}}</a></li>
 					        </ul>				        	
 				        </li>   
 				    </ul>
@@ -100,7 +100,7 @@
    	  <div class="watpl-container" id="pageloader">
 
 	    <div class="container-fluid">
-	      <h3 id="loading-status" class="loading-status">Loading</h3>
+	      <h3 id="loading-status" class="loading-status">{{Label.getContent('Loading')}}</h3>
 	      <p id="loading-module-name" class="loading-module-name"></p>
 	    </div>
 
