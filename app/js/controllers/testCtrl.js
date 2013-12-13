@@ -192,7 +192,8 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
 		});
 
 		$scope.testLabel = function(){
-			console.log(Label.getLabel('test'));
+			//console.log(Label.getLabel('test'));
+			console.log(Label.getContent('Value Rotation Index Sales value per 1% of shelf space'));
 		}
 
 		$scope.setLanguage = function(value){

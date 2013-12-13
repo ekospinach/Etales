@@ -49,6 +49,9 @@
 								<a ng-click="getFinReport(seminar,'Prices per unit',period,'Retailer','Vol')">{{Label.getContent('Prices per unit')}}</a>
 							</li>
 							<li class="">
+								<a ng-click="getFinReport(seminar,'Volumes Report',period,'Retailer','Vol')">{{Label.getContent('Volumes Report')}}</a>
+							</li>
+							<li class="">
 								<a ng-click="getFinReport(seminar,'Profitability by Supplier',period,'Retailer','Vol')">{{Label.getContent('Profitability by Supplier')}}</a>
 							</li>
 						</ul>
@@ -69,7 +72,7 @@
 			</div>
 			<h4 class="pull-left {{finCatShow}}"><span class="label label-warning">{{Label.getContent(cat)}}</span></h4>
 			<h4 class="pull-left" style="{{finCatCss}}"><span class="label label-success">{{Label.getContent(market)}}</span></h4>
-			<h4 class="pull-left" style="margin-left:10px"><span class="label label-danger">{{Label.getContent(detail)}}</span></h4>
+			<h4 class="pull-left {{finDetailShow}}" style="margin-left:10px"><span class="label label-danger">{{Label.getContent(detail)}}</span></h4>
 			<h4 class="pull-left" style="margin-left:10px"><span class="label label-info">{{Label.getContent('Period')}}:{{period}}</span></h4>
 			<h4 class="pull-left" style="margin-left:10px"><span class="label label-default" ng-show="isRoleIDChangeBtnShow">{{showRoleID}}</span></h4>
 			<div style="padding:1px 0;clear:both"></div>
@@ -95,7 +98,7 @@
 			 </div>
 
 		    <div class="btn-group">
-			  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+			  <button type="button" class="btn btn-primary dropdown-toggle {{finDetailShow}}" data-toggle="dropdown">
 			    {{Label.getContent('Detail')}}<span class="caret"></span>
 			  </button>
 			  <ul class="dropdown-menu {{finDetailShow}}">
@@ -152,13 +155,13 @@
  	 <table class="table table-bordered table-striped table-condensed">
 	 	<thead>
 	 		<tr>
-	 			<th ng-repeat="col in reportCollection.data.cols">{{col.label}}</th>
+	 			<th ng-repeat="col in reportCollection.data.cols">{{($index==0)?Label.getContent(col.label):col.label}}</th>
 	 		</tr>		
 	 	</thead>
 	 	<tbody>
 	 		<tr ng-repeat="row in reportCollection.data.rows">
 				<td ng-repeat = "value in row.c">
-					{{($index==0)?value.f:value.v}}</td>
+					{{($index==0)?Label.getContent(value.v):value.v}}</td>
 	 		</tr>
 	 	</tbody>
 	 </table>	
