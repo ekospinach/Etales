@@ -259,7 +259,7 @@ var getLabelBase = function(){
 		/*a little bug*/
 		{id:'Elecsories',  ENG:'Elecsories',  CHN:'消耗品',  RUS:''},
 		{id:'HealthBeauties',  ENG:'HealthBeauties',  CHN:'护肤品',  RUS:''},
-		{id:'Avaliable Budget',  ENG:'Total Avaliable Budget for Remaing Period',  CHN:'',  RUS:''},
+		{id:'Available Budget',  ENG:'Total Available Budget for Remaing Period',  CHN:'',  RUS:''},
 		{id:'Producer Available Capacity',  ENG:'Available Capacity',  CHN:'',  RUS:''},
 		{id:'Brand',  ENG:'Brand',  CHN:'品牌',  RUS:''},
 		{id:'Variant',  ENG:'Variant',  CHN:'单品',  RUS:''},
