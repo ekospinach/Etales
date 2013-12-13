@@ -1,16 +1,14 @@
 <div id="content" class="bs-header">
     <div class="container">
-        <h1>Reports</h1>
-        <p>Here you will find financial statements and other reports giving operating results of your company and its departments.</p>
+        <h1>{{Label.getContent('Reports')}}</h1>
+        <p>{{Label.getContent('Reports Info')}}</p>
     </div>
 </div>
 
 <div class="bs-old-docs">
-
     <div class="container">
-
         <strong>
-           Looking at the reports, try to change perspective or detail level from global (company) or category to brand or even variant (SKU).
+        	{{Label.getContent('Reports popInfo')}}
         </strong>
     </div>
 </div>
@@ -22,37 +20,36 @@
 			<div class="bs-sidebar hidden-print" role="complementary">
 				<ul class="nav bs-sidenav">
 					<li class="active" access-level='{{accessLevels.producerView}}'>
-						<a>Producer</a>
+						<a>{{Label.getContent('Producer')}}</a>
 						<ul class="nav second-sidenav">
 							<li class="active">
-								<a ng-click="getFinReport(seminar,'Profit and Loss Statement',period,'Producer','Fin')">Profit and Loss Statement</a>
+								<a ng-click="getFinReport(seminar,'Profit and Loss Statement',period,'Producer','Fin')">{{Label.getContent('Profit and Loss Statement')}}</a>
 							</li>
 							<li class="">
-								<a ng-click="getFinReport(seminar,'Prices per unit',period,'Producer','Vol')">Prices per unit</a>
+								<a ng-click="getFinReport(seminar,'Prices per unit',period,'Producer','Vol')">{{Label.getContent('Prices per unit')}}</a>
 							</li>
 							<li class="">
-								<a ng-click="getFinReport(seminar,'Volumes Report',period,'Producer','Vol')">Volumes Report</a>
+								<a ng-click="getFinReport(seminar,'Volumes Report',period,'Producer','Vol')">{{Label.getContent('Volumes Report')}}</a>
 							</li>
 							<li class="">
-								<a ng-click="getFinReport(seminar,'Profitability by Channel',period,'Producer','Vol')">Profitability by Channel</a>
-							</li>							
-
+								<a ng-click="getFinReport(seminar,'Profitability by Channel',period,'Producer','Vol')">{{Label.getContent('Profitability by Channel')}}</a>
+							</li>						
 						</ul>
 					</li>
 					<li class="active" access-level='{{accessLevels.retailerView}}'>
-						<a>Retailer</a>
+						<a>{{Label.getContent('Retailer')}}</a>
 						<ul class="nav second-sidenav">
 							<li class="" >
-								<a ng-click="getFinReport(seminar,'Profit and Loss Statement',period,'Retailer','Fin')">Profit and Loss Statement</a>
+								<a ng-click="getFinReport(seminar,'Profit and Loss Statement',period,'Retailer','Fin')">{{Label.getContent('Profit and Loss Statement')}}</a>
 							</li>
 							<li class="">
-								<a ng-click="getFinReport(seminar,'Performance Indices',period,'Retailer','Vol')">Performance Indices</a>
+								<a ng-click="getFinReport(seminar,'Performance Indices',period,'Retailer','Vol')">{{Label.getContent('Performance Indices')}}</a>
 							</li>
 							<li class="">
-								<a ng-click="getFinReport(seminar,'Prices per unit',period,'Retailer','Vol')">Prices per unit</a>
+								<a ng-click="getFinReport(seminar,'Prices per unit',period,'Retailer','Vol')">{{Label.getContent('Prices per unit')}}</a>
 							</li>
 							<li class="">
-								<a ng-click="getFinReport(seminar,'Profitability by Supplier',period,'Retailer','Vol')">Profitability by Supplier</a>
+								<a ng-click="getFinReport(seminar,'Profitability by Supplier',period,'Retailer','Vol')">{{Label.getContent('Profitability by Supplier')}}</a>
 							</li>
 						</ul>
 					</li>
@@ -64,49 +61,53 @@
 		<div class="col-lg-9">
 			<div style="padding:10px 0;clear:both"></div>
 			<div class="">
-				<h3>{{showTitleENG}}<small>  </small></h3>				
+				<h3>{{Label.getContent(showTitleENG)}}
+					<small>
+						{{Label.getContent((showTitleENG+' Info'))}}
+					</small>
+				</h3>				
 			</div>
-			<h4 class="pull-left {{finCatShow}}"><span class="label label-warning">{{cat}}</span></h4>
-			<h4 class="pull-left" style="{{finCatCss}}"><span class="label label-success">{{market}}</span></h4>
-			<h4 class="pull-left" style="margin-left:10px"><span class="label label-danger">{{detail}}</span></h4>
-			<h4 class="pull-left" style="margin-left:10px"><span class="label label-info">Period:{{period}}</span></h4>
+			<h4 class="pull-left {{finCatShow}}"><span class="label label-warning">{{Label.getContent(cat)}}</span></h4>
+			<h4 class="pull-left" style="{{finCatCss}}"><span class="label label-success">{{Label.getContent(market)}}</span></h4>
+			<h4 class="pull-left" style="margin-left:10px"><span class="label label-danger">{{Label.getContent(detail)}}</span></h4>
+			<h4 class="pull-left" style="margin-left:10px"><span class="label label-info">{{Label.getContent('Period')}}:{{period}}</span></h4>
 			<h4 class="pull-left" style="margin-left:10px"><span class="label label-default" ng-show="isRoleIDChangeBtnShow">{{showRoleID}}</span></h4>
 			<div style="padding:1px 0;clear:both"></div>
 			<div class="btn-group {{finCatShow}}">
 			  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-			    Category <span class="caret"></span>
+			    {{Label.getContent('Category')}}<span class="caret"></span>
 			  </button>
 			  <ul class="dropdown-menu">
-			    <li><a ng-click="showFinReport('Elecsories',market,language,detail,roleID)">Elecsories</a></li>
-			    <li><a ng-click="showFinReport('HealthBeauties',market,language,detail,roleID)">HealthBeauties</a></li>
+			    <li><a ng-click="showFinReport('Elecsories',market,language,detail,roleID)">{{Label.getContent('Elecssories')}}</a></li>
+			    <li><a ng-click="showFinReport('HealthBeauties',market,language,detail,roleID)">{{Label.getContent('HealthBeauty')}}</a></li>
 			  </ul>
 			</div>
 
 			<div class="btn-group">
 			  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-			    Market <span class="caret"></span>
+			    {{Label.getContent('Market')}}<span class="caret"></span>
 			  </button>
 			  <ul class="dropdown-menu">
-			    <li><a ng-click="showFinReport(cat,'Urban',language,detail,roleID)">Urban</a></li>
-			    <li><a ng-click="showFinReport(cat,'Rural',language,detail,roleID)">Rural</a></li>
-			    <li><a ng-click="showFinReport(cat,'Total',language,detail,roleID)">Total</a></li>
+			    <li><a ng-click="showFinReport(cat,'Urban',language,detail,roleID)">{{Label.getContent('Urban')}}</a></li>
+			    <li><a ng-click="showFinReport(cat,'Rural',language,detail,roleID)">{{Label.getContent('Rural')}}</a></li>
+			    <li><a ng-click="showFinReport(cat,'Total',language,detail,roleID)">{{Label.getContent('Total')}}</a></li>
 			  </ul>
 			 </div>
 
 		    <div class="btn-group">
 			  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-			    Detail <span class="caret"></span>
+			    {{Label.getContent('Detail')}}<span class="caret"></span>
 			  </button>
 			  <ul class="dropdown-menu {{finDetailShow}}">
-			    <li><a ng-click="showFinReport(cat,market,language,'Global',roleID)">Global</a></li>
-			    <li><a ng-click="showFinReport(cat,market,language,'Category',roleID)">Category</a></li>
-			    <li><a ng-click="showFinReport(cat,market,language,'Brand',roleID)">Brand</a></li>
-			    <li><a ng-click="showFinReport(cat,market,language,'Variant',roleID)">Variant</a></li>
+			    <li><a ng-click="showFinReport(cat,market,language,'Global',roleID)">{{Label.getContent('Global')}}</a></li>
+			    <li><a ng-click="showFinReport(cat,market,language,'Category',roleID)">{{Label.getContent('Category')}}</a></li>
+			    <li><a ng-click="showFinReport(cat,market,language,'Brand',roleID)">{{Label.getContent('Brand')}}</a></li>
+			    <li><a ng-click="showFinReport(cat,market,language,'Variant',roleID)">{{Label.getContent('Variant')}}</a></li>
 			  </ul>
 			</div>
 			<div class="btn-group">
 			  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-			    Period <span class="caret"></span>
+			    {{Label.getContent('Period')}}<span class="caret"></span>
 			  </button>
 			  <ul class="dropdown-menu">
 			    <li ng-repeat="newperiod in periods"><a ng-click="getFinReport(seminar,realTitleENG,newperiod,role,type)">{{newperiod}}</a></li>
@@ -117,17 +118,17 @@
 			    RoleID <span class="caret"></span>
 			  </button>
 			  <ul class="dropdown-menu">
-			    <li class="{{finProShow}}"><a ng-click="showFinReport(cat,market,language,detail,'Producer 1')">Producer 1</a></li>
-			    <li class="{{finProShow}}"><a ng-click="showFinReport(cat,market,language,detail,'Producer 2')">Producer 2</a></li>
-			    <li class="{{finProShow}}"><a ng-click="showFinReport(cat,market,language,detail,'Producer 3')">Producer 3</a></li>
-			    <li class="{{finProShow}}"><a ng-click="showFinReport(cat,market,language,detail,'Producer 4')">Producer 4</a></li>
-			    <li class="{{finRetShow}}"><a ng-click="showFinReport(cat,market,language,detail,'Retailer 1')">Retailer 1</a></li>
-			    <li class="{{finRetShow}}"><a ng-click="showFinReport(cat,market,language,detail,'Retailer 2')">Retailer 2</a></li>
-			    <li class="{{finRetShow}}"><a ng-click="showFinReport(cat,market,language,detail,'Retailer 3')">Traditional Trade</a></li>
-			    <li class="{{finRetShow}}"><a ng-click="showFinReport(cat,market,language,detail,'Retailer 4')">E-Mall</a></li>			    
+			    <li class="{{finProShow}}"><a ng-click="showFinReport(cat,market,language,detail,'Producer 1')">{{Label.getContent('Producer')}} 1</a></li>
+			    <li class="{{finProShow}}"><a ng-click="showFinReport(cat,market,language,detail,'Producer 2')">{{Label.getContent('Producer')}} 2</a></li>
+			    <li class="{{finProShow}}"><a ng-click="showFinReport(cat,market,language,detail,'Producer 3')">{{Label.getContent('Producer')}} 3</a></li>
+			    <li class="{{finProShow}}"><a ng-click="showFinReport(cat,market,language,detail,'Producer 4')">{{Label.getContent('Producer')}} 4</a></li>
+			    <li class="{{finRetShow}}"><a ng-click="showFinReport(cat,market,language,detail,'Retailer 1')">{{Label.getContent('Retailer')}} 1</a></li>
+			    <li class="{{finRetShow}}"><a ng-click="showFinReport(cat,market,language,detail,'Retailer 2')">{{Label.getContent('Retailer')}} 2</a></li>
+			    <li class="{{finRetShow}}"><a ng-click="showFinReport(cat,market,language,detail,'Retailer 3')">{{Label.getContent('Traditional Trade')}}</a></li>
+			    <li class="{{finRetShow}}"><a ng-click="showFinReport(cat,market,language,detail,'Retailer 4')">{{Label.getContent('E-Mall')}}</a></li>			    
 			  </ul>
 			</div>
-
+			<!--
 				<div class="btn-group pull-right" data-toggle="buttons">
 				  <label class="btn btn-default" ng-click="showFinReport(cat,market,'English',detail,roleID)">
 				    <input type="radio" name="options"> English
@@ -139,9 +140,9 @@
 				    <input type="radio" name="options"> Russian
 				  </label>
 				</div>
-
+			-->
 			 <div style="clear:both"></div>
-			 <h3>{{optitle}}</h3>
+			 <!--<h3>{{optitle}}</h3>-->
 
 		</div>
 	</div>
@@ -156,7 +157,8 @@
 	 	</thead>
 	 	<tbody>
 	 		<tr ng-repeat="row in reportCollection.data.rows">
-				<td ng-repeat = "value in row.c"> {{value.v}}</td>
+				<td ng-repeat = "value in row.c">
+					{{($index==0)?value.f:value.v}}</td>
 	 		</tr>
 	 	</tbody>
 	 </table>	

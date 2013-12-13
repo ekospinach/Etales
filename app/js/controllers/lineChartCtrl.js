@@ -1,6 +1,6 @@
 define(['app','socketIO','routingConfig'], function(app) {
 
-	app.controller('lineChartCtrl',['$scope', '$http', 'ProducerDecisionBase','$rootScope','Auth', function($scope, $http, ProducerDecisionBase,$rootScope,Auth) {
+	app.controller('lineChartCtrl',['$scope', '$http', 'ProducerDecisionBase','$rootScope','Auth','Label', function($scope, $http, ProducerDecisionBase,$rootScope,Auth,Label) {
 		// You can access the scope of the controller from here
 
 			$rootScope.loginCss="";
@@ -51,13 +51,13 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    		return (obj.market==market&&obj.category==cat&&obj.seriesRole==role)
 		    	});
 		    	charts[i].data=$scope.chartCollection.data;
-		    	if(language=="English"){
+		    	if(language=="ENG"){
 		    		title=$scope.chartdata.chartSetCollection[i].titleENG;
 		    	}
-		    	else if(language=="Chinese"){
+		    	else if(language=="CHN"){
 		    		title=$scope.chartdata.chartSetCollection[i].titleCHN;
 		    	}
-		    	else if(language=="Russian"){
+		    	else if(language=="RUS"){
 		    		title=$scope.chartdata.chartSetCollection[i].titleRUS;
 		    	}
 
@@ -104,21 +104,17 @@ define(['app','socketIO','routingConfig'], function(app) {
 	    var initialisePage = function(){
 		  	var startFrom=$rootScope.rootStartFrom;
 		  	var endWith=$rootScope.rootEndWith;
-		  	
-		  	var periods=new Array();
+		  	$scope.periods=new Array();
 		  	for(var i=startFrom;i<=endWith;i++){
-		    	periods.push(i);
+		    	$scope.periods.push(i);
 		  	}
-		  	$scope.periods=periods;
-
 		 	$scope.seminar=$rootScope.user.seminar;;
 		  	$scope.groupTitle="Profitability Absolute RMB";
 		  	$scope.period=endWith;
 
-
 			$scope.cat="HealthBeauties";
 			$scope.market="Rural";
-			$scope.language="English";
+			$scope.language=Label.getCurrentLanguage();
 
 		    $scope.showLineChart=showLineChart;//("HealthBeauties","Rural","Producer");
 		    $scope.getLineChart=getLineChart;	    	

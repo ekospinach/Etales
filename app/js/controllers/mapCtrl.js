@@ -7,7 +7,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    $rootScope.loginFooter="bs-footer";
 		    $rootScope.loginLink="footer-links";
 		    $rootScope.loginDiv="container";
-		$scope.map=map;
+			$scope.map=map;
     	var getMap=function(seminar,period){
 	    	$scope.seminar=seminar;
 	    	$scope.period=period;
@@ -18,7 +18,6 @@ define(['app','socketIO','routingConfig'], function(app) {
 	    		method:'GET',
 	    		url:url
 	    	}).then(function(data){
-
 	    		for(var i=0;i<data.data.length;i++){
 	    			$scope.brandHistorys.push(data.data[i]);
 	    		}
@@ -60,7 +59,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 					return (obj.parentCatID==2);
 				}
 			});
-
+			//var mapTitle="";
 			var colors=new Array("#000000");
 			var costColors=new Array("#000000");
 			var tree = [{
@@ -109,15 +108,15 @@ define(['app','socketIO','routingConfig'], function(app) {
 			}
 			$scope.costColors=costColors;
 			$scope.costData=costData;
-			if(language=="English"){
-					mapTitle=datas[0][4]=$scope.pageCollection.titleENG;
-				}
-				else if(language=="Chinese"){
-					mapTitle=datas[0][4]=$scope.pageCollection.titleCHN;
-				}
-				else if(language=="Russian"){
-					mapTitle=datas[0][4]=$scope.pageCollection.titleRUS;
-				}
+			// if(language=="ENG"){
+			// 		mapTitle=datas[0][4]=$scope.pageCollection.titleENG;
+			// 	}
+			// 	else if(language=="CHN"){
+			// 		mapTitle=datas[0][4]=$scope.pageCollection.titleCHN;
+			// 	}
+			// 	else if(language=="RUS"){
+			// 		mapTitle=datas[0][4]=$scope.pageCollection.titleRUS;
+			// 	}
 			for (var i=1;i<=$scope.pageCollection.brandCollection.length;i++){
 				datas[i]=new Array();
 				datas[i][0]=parseInt($scope.pageCollection.brandCollection[i-1].easeOfUsePerception.Value);
@@ -149,7 +148,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 				datas[i][4]=new Array();
 				datas[i][4]=$scope.pageCollection.brandCollection[i-1];
 
-				if(language=="English"){
+				if(language=="ENG"){
 					datas[i][4].easeOfUsePerception.Selectlabel=datas[i][4].easeOfUsePerception.labelENG;
 					datas[i][4].qualityPerception.Selectlabel=datas[i][4].qualityPerception.labelENG;
 					datas[i][4].pricePerception.Selectlabel=datas[i][4].pricePerception.labelENG;
@@ -157,7 +156,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 					datas[i][4].brandAwareness.Selectlabel=datas[i][4].brandAwareness.labelENG;
 					datas[i][4].visibilityShare.Selectlabel=datas[i][4].visibilityShare.labelENG;
 				}
-				else if(language=="Chinese"){
+				else if(language=="CHN"){
 					datas[i][4].easeOfUsePerception.Selectlabel=datas[i][4].easeOfUsePerception.labelCHN;
 					datas[i][4].qualityPerception.Selectlabel=datas[i][4].qualityPerception.labelCHN;
 					datas[i][4].pricePerception.Selectlabel=datas[i][4].pricePerception.labelCHN;
@@ -165,7 +164,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 					datas[i][4].brandAwareness.Selectlabel=datas[i][4].brandAwareness.labelCHN;
 					datas[i][4].visibilityShare.Selectlabel=datas[i][4].visibilityShare.labelCHN;
 				}
-				else if(language=="Russian"){
+				else if(language=="RUS"){
 					datas[i][4].easeOfUsePerception.Selectlabel=datas[i][4].easeOfUsePerception.labelRUS;
 					datas[i][4].qualityPerception.Selectlabel=datas[i][4].qualityPerception.labelRUS;
 					datas[i][4].pricePerception.Selectlabel=datas[i][4].pricePerception.labelRUS;
@@ -175,7 +174,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 				}
 			}
 			$scope.data=datas;
-			$scope.mapTitle=mapTitle;
+			//$scope.mapTitle=mapTitle;
 			for(var i=0;i<tree.length;i++){
 				if(tree[i].values.length==0){
 					tree.splice(i,1);
@@ -229,15 +228,15 @@ define(['app','socketIO','routingConfig'], function(app) {
 				var colors=new Array("#000000");
 				var costData=new Array([-1,-1,0,'']);
 				var costColors=new Array("#000000");
-				if($scope.language=="English"){
-						mapTitle=datas[0][4]=$scope.pageCollection.titleENG;
-					}
-					else if($scope.language=="Chinese"){
-						mapTitle=datas[0][4]=$scope.pageCollection.titleCHN;
-					}
-					else if($scope.language=="Russian"){
-						mapTitle=datas[0][4]=$scope.pageCollection.titleRUS;
-					}
+				// if($scope.language=="ENG"){
+				// 		mapTitle=datas[0][4]=$scope.pageCollection.titleENG;
+				// 	}
+				// 	else if($scope.language=="CHN"){
+				// 		mapTitle=datas[0][4]=$scope.pageCollection.titleCHN;
+				// 	}
+				// 	else if($scope.language=="RUS"){
+				// 		mapTitle=datas[0][4]=$scope.pageCollection.titleRUS;
+				// 	}
 				for (var i=1;i<=$scope.filterBrands.length;i++){
 					costData[i]=new Array();
 					costData[i][0]=0;
@@ -289,7 +288,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 					datas[i][4]=new Array();
 					datas[i][4]=$scope.pageCollection.brandCollection[i-1];
 
-					if($scope.language=="English"){
+					if($scope.language=="ENG"){
 						datas[i][4].easeOfUsePerception.Selectlabel=datas[i][4].easeOfUsePerception.labelENG;
 						datas[i][4].qualityPerception.Selectlabel=datas[i][4].qualityPerception.labelENG;
 						datas[i][4].pricePerception.Selectlabel=datas[i][4].pricePerception.labelENG;
@@ -297,7 +296,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 						datas[i][4].brandAwareness.Selectlabel=datas[i][4].brandAwareness.labelENG;
 						datas[i][4].visibilityShare.Selectlabel=datas[i][4].visibilityShare.labelENG;
 					}
-					else if($scope.language=="Chinese"){
+					else if($scope.language=="CHN"){
 						datas[i][4].easeOfUsePerception.Selectlabel=datas[i][4].easeOfUsePerception.labelCHN;
 						datas[i][4].qualityPerception.Selectlabel=datas[i][4].qualityPerception.labelCHN;
 						datas[i][4].pricePerception.Selectlabel=datas[i][4].pricePerception.labelCHN;
@@ -305,7 +304,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 						datas[i][4].brandAwareness.Selectlabel=datas[i][4].brandAwareness.labelCHN;
 						datas[i][4].visibilityShare.Selectlabel=datas[i][4].visibilityShare.labelCHN;
 					}
-					else if($scope.language=="Russian"){
+					else if($scope.language=="RUS"){
 						datas[i][4].easeOfUsePerception.Selectlabel=datas[i][4].easeOfUsePerception.labelRUS;
 						datas[i][4].qualityPerception.Selectlabel=datas[i][4].qualityPerception.labelRUS;
 						datas[i][4].pricePerception.Selectlabel=datas[i][4].pricePerception.labelRUS;
@@ -354,31 +353,29 @@ define(['app','socketIO','routingConfig'], function(app) {
 				$scope.costData=costData;
 				$scope.colors=colors;
 				$scope.costColors=costColors;
-				$scope.mapTitle=mapTitle;
+				//$scope.mapTitle=mapTitle;
 			});
 		}
 
 	//default report for Elecsorries
 
 		$scope.params="";
-		$scope.mapTitle="";
-		$scope.cat="Elecsories";
-		$scope.market="Rural";
-		$scope.language="English";
-		var startFrom=$rootScope.rootStartFrom;
-		var endWith=$rootScope.rootEndWith;
-		var period=endWith;
-		var periods=new Array();
-		for(var i=startFrom;i<=endWith;i++){
-			periods.push(i);
-		}
-		$scope.seminar=$rootScope.user.seminar;
-		$scope.periods=periods;
-		$scope.period=endWith;
-		$scope.getMap=getMap;
-		$scope.showSelect=showSelect;
-		$scope.showChart = showChart;
-		getMap($scope.seminar,$scope.period);
+        //$scope.mapTitle="Perceptions Map";
+       	$scope.cat="Elecsories";
+        $scope.market="Rural";
+        $scope.language=Label.getCurrentLanguage();
+        var startFrom=$rootScope.rootStartFrom;
+        var endWith=$rootScope.rootEndWith;
+        $scope.period=endWith;
+        $scope.periods=new Array();
+        for(var i=startFrom;i<=endWith;i++){
+        	$scope.periods.push(i);
+        }
+        $scope.seminar=$rootScope.user.seminar;
+        $scope.getMap=getMap;
+        $scope.showSelect=showSelect;
+        $scope.showChart = showChart;
+        getMap($scope.seminar,$scope.period);
 		//showChart($scope.cat,$scope.market,$scope.language);
 	}]);
 });

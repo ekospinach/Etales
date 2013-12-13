@@ -1,6 +1,6 @@
 define(['app'], function(app) {
 	app.controller('contractCtrl',
-		['$scope','$q','$rootScope','$http','$filter','$location','ContractInfo', function($scope,$q,$rootScope,$http,$filter,$location,ContractInfo) {
+		['$scope','$q','$rootScope','$http','$filter','$location','ContractInfo','Label', function($scope,$q,$rootScope,$http,$filter,$location,ContractInfo,Label) {
 
 			$rootScope.loginCss="";
 		    $rootScope.loginFooter="bs-footer";
@@ -154,7 +154,7 @@ define(['app'], function(app) {
 				$scope.retailerID=parseInt($rootScope.user.username.substring($rootScope.user.username.length-1));
 			}
 			//console.log($scope.contractUserID);
-
+			$scope.language=Label.getCurrentLanguage();
 			$scope.filterUser=filterUser;
 			$scope.closeInsertModal=closeInsertModal;
 			$scope.showbubleMsg=showbubleMsg;

@@ -1,6 +1,6 @@
 define(['app'], function(app) {
 	app.controller('contractDetailsCtrl',
-		['$scope','$q','$rootScope','$http','$filter','ContractInfo', function($scope,$q,$rootScope,$http,$filter, ContractInfo) {
+		['$scope','$q','$rootScope','$http','$filter','ContractInfo','Label', function($scope,$q,$rootScope,$http,$filter, ContractInfo,Label) {
 			$rootScope.loginCss="";
 		    $rootScope.loginFooter="bs-footer";
 		    $rootScope.loginLink="footer-links";
@@ -269,7 +269,7 @@ define(['app'], function(app) {
 						$scope.showTitle="Minimum Order";
 						break;
 					case 'nc_SalesTargetVolume':
-						$scope.showNegotiationItem="Sales Target Volume & Performance Bonus";
+						$scope.showNegotiationItem="Sales Target Volume & Bonus";
 						$scope.showTitle="Sales Target";
 						break;
 					case 'nc_PaymentDays':
@@ -627,6 +627,7 @@ define(['app'], function(app) {
 			    backdropFade: true,
 			    dialogFade:true
 			};
+			$scope.language=Label.getCurrentLanguage();
 			$scope.renderContractDetailsByCategory = renderContractDetailsByCategory;
 			$scope.loadModalDate=loadModalDate;
 			$scope.showbubleMsg=showbubleMsg;

@@ -1,7 +1,7 @@
 <div id="content" class="bs-header">
     <div class="container">
-        <h1>Contract Details</h1>
-        <p>Oleg, we need some description here...</p>
+        <h1>{{Label.getContent('Contract Details')}}</h1>
+        <p>{{Label.getContent('Contract Details Info')}}</p>
     </div>
 </div>
 
@@ -14,21 +14,23 @@
 
 <div class="container bs-docs-container">
     <div class="page-header">
-        <h3>Contract Name : {{contractInfo.contractCode.substring(0,contractInfo.contractCode.indexOf('_'))}}
+        <h3>{{Label.getContent('Contract Name')}} : {{contractInfo.contractCode.substring(0,contractInfo.contractCode.indexOf('_'))}}
             <small>
-                Producer {{contractInfo.producerID}} & Retailer {{contractInfo.retailerID}}, Period:{{contractInfo.period}}, Seminar:{{contractInfo.seminar}}
+                {{Label.getContent('Producer')}} {{contractInfo.producerID}} & {{Label.getContent('Retailer')}} {{contractInfo.retailerID}}, {{Label.getContent('Period')}}:{{contractInfo.period}}, {{Label.getContent('Seminar')}}:{{contractInfo.seminar}}
             </small>        
         </h3>
     </div>
-    <div ng-show="refreshingProcess">Loading...</div>
+    <div ng-show="refreshingProcess">
+        {{Label.getContent('Loading')}}...
+    </div>
     <div>
         <div class="btn-group">
             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                Category <span class="caret"></span>
+                {{Label.getContent('Category')}}<span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
-                <li class=""><a ng-click="renderContractDetailsByCategory('Elecssories')">Elecssories</a></li>
-                <li class=""><a ng-click="renderContractDetailsByCategory('HealthBeauty')">HealthBeauty</a></li>
+                <li class=""><a ng-click="renderContractDetailsByCategory('Elecssories')">{{Label.getContent('Elecssories')}}</a></li>
+                <li class=""><a ng-click="renderContractDetailsByCategory('HealthBeauty')">{{Label.getContent('HealthBeauty')}}</a></li>
             </ul>
         </div>
     </div>
@@ -37,7 +39,7 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Items (Producer Input)</td>
+                    <th>{{Label.getContent('Items (Producer Input)')}}</td>
                     <th ng-repeat="proDetail in proDetailList[0]">
                         {{proDetail.relatedBrandName}}
                     </td>
@@ -45,54 +47,54 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Minimum Order & Discount Rate</td>
+                    <td>{{Label.getContent('Minimum Order & Discount Rate')}}</td>
                     <td ng-repeat="proDetail in proDetailList[0]">
                         <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetail.isVerified"></span>
                         <span>{{proDetail.displayValue}}</span>
                         <span class="pull-right" ng-show=producerEditable>
-                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)">Edit</a>
+                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)">{{Label.getContent('Edit')}}</a>
                         </span>
                         <span class="pull-right" ng-show=retailerEditable>
-                            <a class="btn btn-primary btn-xs" ng-click="openViewModal(proDetail)">View</a>
+                            <a class="btn btn-primary btn-xs" ng-click="openViewModal(proDetail)">{{Label.getContent('View')}}</a>
                         </span>
                     </td>
                 </tr>
                 <tr>
-                    <td>Sales Target Volume & Bonus</td>
+                    <td>{{Label.getContent('Sales Target Volume & Bonus')}}</td>
                     <td ng-repeat="proDetail in proDetailList[1]">
                         <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetail.isVerified"></span>
                         <span>{{proDetail.displayValue}}</span>
                         <span class="pull-right" ng-show=producerEditable>
-                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)">Edit</a>
+                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)">{{Label.getContent('Edit')}}</a>
                         </span>
                         <span class="pull-right" ng-show=retailerEditable>
-                            <a class="btn btn-primary btn-xs" ng-click="openViewModal(proDetail)">View</a>
+                            <a class="btn btn-primary btn-xs" ng-click="openViewModal(proDetail)">{{Label.getContent('View')}}</a>
                         </span>
                     </td>
                 </tr>
                 <tr>
-                    <td>Payment Days</td>
+                    <td>{{Label.getContent('Payment Days')}}</td>
                     <td ng-repeat="proDetail in proDetailList[2]">
                         <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetail.isVerified"></span>
                         <span>{{proDetail.displayValue}}</span>
                         <span class="pull-right" ng-show=producerEditable>
-                           <a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)">Edit</a>
+                           <a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)">{{Label.getContent('Edit')}}</a>
                        </span>
                        <span class="pull-right" ng-show=retailerEditable>
-                        <a class="btn btn-primary btn-xs" ng-click="openViewModal(proDetail)">View</a>
+                        <a class="btn btn-primary btn-xs" ng-click="openViewModal(proDetail)">{{Label.getContent('View')}}</a>
                         </span>                
                     </td>
                 </tr>
                 <tr>
-                    <td>Other Compensation</td>
+                    <td>{{Label.getContent('Other Compensation')}}</td>
                     <td ng-repeat="proDetail in proDetailList[3]">
                         <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetail.isVerified"></span>
                         <span>{{proDetail.displayValue}}</span>
                         <span class="pull-right" ng-show=producerEditable>
-                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)">Edit</a>
+                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)">{{Label.getContent('Edit')}}</a>
                         </span>
                         <span class="pull-right" ng-show=retailerEditable>
-                            <a class="btn btn-primary btn-xs" ng-click="openViewModal(proDetail)">View</a>
+                            <a class="btn btn-primary btn-xs" ng-click="openViewModal(proDetail)">{{Label.getContent('View')}}</a>
                         </span>                
                     </td>
                 </tr>
@@ -102,7 +104,7 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Items (Retailer Input)</td>
+                    <th>{{Label.getContent('Items (Retailer Input)')}}</td>
                     <th ng-repeat="retDetail in retDetailList[0]">
                         {{retDetail.relatedBrandName}}
                     </td>
@@ -110,54 +112,54 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Minimum Order & Discount Rate</td>
+                    <td>{{Label.getContent('Minimum Order & Discount Rate')}}</td>
                     <td ng-repeat="retDetail in retDetailList[0]">
                         <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="retDetail.isVerified"></span>
                         <span>{{retDetail.displayValue}}</span>
                         <span class="pull-right" ng-show=retailerEditable>
-                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)">Edit</a>
+                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)">{{Label.getContent('Edit')}}</a>
                         </span>
                         <span class="pull-right" ng-show=producerEditable>
-                            <a class="btn btn-primary btn-xs" ng-click="openViewModal(retDetail)">View</a>
+                            <a class="btn btn-primary btn-xs" ng-click="openViewModal(retDetail)">{{Label.getContent('View')}}</a>
                         </span>                
                     </td>
                 </tr>
                 <tr>
-                    <td>Sales Target Volume & Bonus</td>
+                    <td>{{Label.getContent('Sales Target Volume & Bonus')}}</td>
                     <td ng-repeat="retDetail in retDetailList[1]">
                         <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="retDetail.isVerified"></span>
                         <span>{{retDetail.displayValue}}</span>
                         <span class="pull-right" ng-show=retailerEditable>
-                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)">Edit</a>
+                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)">{{Label.getContent('Edit')}}</a>
                         </span>
                         <span class="pull-right" ng-show=producerEditable>
-                            <a class="btn btn-primary btn-xs" ng-click="openViewModal(retDetail)">View</a>
+                            <a class="btn btn-primary btn-xs" ng-click="openViewModal(retDetail)">{{Label.getContent('View')}}</a>
                         </span>                        
                     </td>
                 </tr>
                 <tr>
-                    <td>Payment Days</td>
+                    <td>{{Label.getContent('Payment Days')}}</td>
                     <td ng-repeat="retDetail in retDetailList[2]">
                         <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="retDetail.isVerified"></span>
                         <span>{{retDetail.displayValue}}</span>
                         <span class="pull-right" ng-show=retailerEditable>
-                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)">Edit</a>
+                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)">{{Label.getContent('Edit')}}</a>
                         </span>
                         <span class="pull-right" ng-show=producerEditable>
-                            <a class="btn btn-primary btn-xs" ng-click="openViewModal(retDetail)">View</a>
+                            <a class="btn btn-primary btn-xs" ng-click="openViewModal(retDetail)">{{Label.getContent('View')}}</a>
                         </span>                
                     </td>
                 </tr>
                 <tr>
-                    <td>Other Compensation</td>
+                    <td>{{Label.getContent('Other Compensation')}}</td>
                     <td ng-repeat="retDetail in retDetailList[3]">
                         <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="retDetail.isVerified"></span>
                         <span>{{retDetail.displayValue}}</span>
                         <span class="pull-right" ng-show=retailerEditable>
-                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)">Edit</a>
+                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)">{{Label.getContent('Edit')}}</a>
                         </span>
                         <span class="pull-right" ng-show=producerEditable>
-                            <a class="btn btn-primary btn-xs" ng-click="openViewModal(retDetail)">View</a>
+                            <a class="btn btn-primary btn-xs" ng-click="openViewModal(retDetail)">{{Label.getContent('View')}}</a>
                         </span>                
                     </td>
                 </tr>
@@ -165,8 +167,8 @@
         </table>
     </div>
     <div>
-        <a class="btn btn-primary" ng-click="compare(contractInfo)">Compare and Refresh</a>
-        <a class="btn btn-primary" ng-click="copyProposal(contractInfo)" ng-show=retailerEditable>Copy from peer proposal</a>        
+        <a class="btn btn-primary" ng-click="compare(contractInfo)">{{Label.getContent('Compare and Refresh')}}</a>
+        <a class="btn btn-primary" ng-click="copyProposal(contractInfo)" ng-show=retailerEditable>{{Label.getContent('Copy from peer proposal')}}</a>        
     </div>
 </div>
 
@@ -176,34 +178,34 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeEditModal()">&times;</button>
                 <div>
-                    <h4>{{showNegotiationItem}} , {{editDetail.relatedBrandName}}</h4>
+                    <h4>{{Label.getContent(showNegotiationItem)}} , {{editDetail.relatedBrandName}}</h4>
                 </div>
             </div>
             <div class="modal-body">
                 <table>
                     <tbody>
                         <tr>
-                            <td style="width:60%">Please choose decision level:</td>
+                            <td style="width:60%">{{Label.getContent('Please choose decision level')}}:</td>
                             <td style="width:35%">
                                 <div class="btn-group" data-toggle="buttons">
                                     <label class="btn btn-default" ng-click="setShowDetailType('brand',editDetail)">
-                                        <input type="radio" name="detailType">Brand
+                                        <input type="radio" name="detailType">{{Label.getContent('Brand')}}
                                     </label>
                                     <label class="btn btn-default" ng-click="setShowDetailType('variant',editDetail)">
-                                        <input type="radio" name="detailType">Variant
+                                        <input type="radio" name="detailType">{{Label.getContent('Variant')}}
                                     </label>
                                 </div>
                             </td>
                         </tr>
                         <tr style="display:{{shouldBeAmount}}">
-                            <td>Please choose bonus way:</td>
+                            <td>{{Label.getContent('Please choose bonus way')}}:</td>
                             <td>
                                 <div class="btn-group" data-toggle="buttons">
                                     <label class="btn btn-default" ng-click="setShowBonusType('Amout',editDetail)">
-                                        <input type="radio" name="amoutRate">Amount
+                                        <input type="radio" name="amoutRate">{{Label.getContent('Amount')}}
                                     </label>
                                     <label class="btn btn-default" ng-click="setShowBonusType('Rate',editDetail)">
-                                        <input type="radio" name="amoutRate">Rate
+                                        <input type="radio" name="amoutRate">{{Label.getContent('Rate')}}
                                     </label>
                                 </div>
                             </td>
@@ -215,13 +217,13 @@
                         <thead>
                             <tr>
                                 <td style="width:10%"></td>
-                                <td style="width:45%">{{showTitle}}</td>
-                                <td style="width:45%">Discount Rate(%)</td>
+                                <td style="width:45%">{{Label.getContent(showTitle)}}</td>
+                                <td style="width:45%">{{Label.getContent('Discount Rate')}}(%)</td>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Urban:</td>
+                                <td>{{Label.getContent('Urban')}}:</td>
                                 <td>
                                     <a href="#" editable-text="editDetail.brand_urbanValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'urban','index','brand')">{{ editDetail.brand_urbanValue || 0 }}
                                     </a>
@@ -231,7 +233,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Rural:</td>
+                                <td>{{Label.getContent('Rural')}}:</td>
                                 <td>
                                     <a href="#" editable-text="editDetail.brand_ruralValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'rural','index','brand')">{{ editDetail.brand_ruralValue || 0 }}</a>
                                 </td>
@@ -246,14 +248,14 @@
                             <thead>
                                 <tr>
                                     <td style="width:10%"></td>
-                                    <td style="width:40%">{{showTitle}}</td>
-                                    <td style="width:40%">Amount(mln$)</td>
-                                    <td style="width:10%">Rate(%)</td>
+                                    <td style="width:40%">{{Label.getContent(showTitle)}}</td>
+                                    <td style="width:40%">{{Label.getContent('Amount')}}(mln$)</td>
+                                    <td style="width:10%">{{Label.getContent('Rate')}}(%)</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Urban:</td>
+                                    <td>{{Label.getContent('Urban')}}:</td>
                                     <td>
                                         <a href="#" editable-text="editDetail.brand_urbanValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'urban','index','brand')">{{ editDetail.brand_urbanValue || 0 }}
                                         </a>
@@ -266,7 +268,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Rural:</td>
+                                    <td>{{Label.getContent('Rural')}}:</td>
                                     <td>
                                         <a href="#" editable-text="editDetail.brand_ruralValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'rural','index','brand')">{{ editDetail.brand_ruralValue || 0 }}
                                         </a>
@@ -284,14 +286,14 @@
                             <thead>
                                 <tr>
                                     <td style="width:10%"></td>
-                                    <td style="width:40%">{{showTitle}}</td>
-                                    <td style="width:10%">Amount(mln$)</td>
-                                    <td style="width:40%">Rate(%)</td>
+                                    <td style="width:40%">{{Label.getContent(showTitle)}}</td>
+                                    <td style="width:10%">{{Label.getContent('Amount')}}(mln$)</td>
+                                    <td style="width:40%">{{Label.getContent('Rate')}}(%)</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Urban:</td>
+                                    <td>{{Label.getContent('Urban')}}:</td>
                                     <td>
                                         <a href="#" editable-text="editDetail.brand_urbanValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'urban','index','brand')">{{ editDetail.brand_urbanValue || 0 }}
                                         </a>
@@ -304,7 +306,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Rural:</td>
+                                    <td>{{Label.getContent('Rural')}}:</td>
                                     <td>
                                         <a href="#" editable-text="editDetail.brand_ruralValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'rural','index','brand')">{{ editDetail.brand_ruralValue || 0 }}
                                         </a>
@@ -324,14 +326,14 @@
                     <table class="table" style="display:{{shouldBeNormal}}">
                         <tbody>
                             <tr>
-                                <td style="width:40%">Urban {{showTitle}}:</td>
+                                <td style="width:40%">{{Label.getContent('Urban')}} {{Label.getContent(showTitle)}}:</td>
                                 <td style="width:60%">
                                     <a href="#" editable-text="editDetail.brand_urbanValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'urban','index','brand')">{{ editDetail.brand_urbanValue || 0 }}
                                     </a>
                                 </td>
                             </tr>
                             <tr>
-                                <td>Rural {{showTitle}}:</td>
+                                <td>{{Label.getContent('Rural')}} {{Label.getContent(showTitle)}}:</td>
                                 <td>
                                     <a href="#" editable-text="editDetail.brand_ruralValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'rural','index','brand')">{{ editDetail.brand_ruralValue || 0 }}</a>
                                 </td>                                        
@@ -349,13 +351,13 @@
                                     <thead>
                                         <tr>
                                             <td style="width:10%"></td>
-                                            <td style="width:45%">{{showTitle}}</td>
-                                            <td style="width:45%">Discount Rate(%)</td>
+                                            <td style="width:45%">{{Label.getContent(showTitle)}}</td>
+                                            <td style="width:45%">{{Label.getContent('Discount Rate')}}(%)</td>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Urban:</td>
+                                            <td>{{Label.getContent('Urban')}}:</td>
                                             <td>
                                                 <a href="#" editable-text="product.urbanValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(product,product.negotiationItem,'urban',product.index,'variant')">{{ product.urbanValue || 0 }}</a>
                                             </td>
@@ -364,7 +366,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Rural:</td>
+                                            <td>{{Label.getContent('Rural')}}:</td>
                                             <td>
                                                 <a href="#" editable-text="product.ruralValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(product,product.negotiationItem,'rural',product.index,'variant')">{{ product.ruralValue || 0 }}</a>
                                             </td>
@@ -385,14 +387,14 @@
                                         <thead>
                                             <tr>
                                                 <td style="width:10%"></td>
-                                                <td style="width:40%">{{showTitle}}</td>
-                                                <td style="width:40%">Amount(mln$)</td>
-                                                <td style="width:10%">Rate(%)</td>
+                                                <td style="width:40%">{{Label.getContent(showTitle)}}</td>
+                                                <td style="width:40%">{{Label.getContent('Amount')}}(mln$)</td>
+                                                <td style="width:10%">{{Label.getContent('Rate')}}(%)</td>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>Urban:</td>
+                                                <td>{{Label.getContent('Urban')}}:</td>
                                                 <td>
                                                     <a href="#" editable-text="product.urbanValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(product,product.negotiationItem,'urban',product.index,'variant')">{{ product.urbanValue || 0 }}
                                                     </a>
@@ -405,7 +407,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>Rural:</td>
+                                                <td>{{Label.getContent('Rural')}}:</td>
                                                 <td>
                                                     <a href="#" editable-text="product.ruralValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(product,product.negotiationItem,'rural',product.index,'variant')">{{ product.ruralValue || 0 }}
                                                     </a>
@@ -429,14 +431,14 @@
                                         <thead>
                                             <tr>
                                                 <td style="width:10%"></td>
-                                                <td style="width:40%">{{showTitle}}</td>
-                                                <td style="width:10%">Amount(mln$)</td>
-                                                <td style="width:40%">Rate(%)</td>
+                                                <td style="width:40%">{{Label.getContent(showTitle)}}</td>
+                                                <td style="width:10%">{{Label.getContent('Amount')}}(mln$)</td>
+                                                <td style="width:40%">{{Label.getContent('Rate')}}(%)</td>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>Urban:</td>
+                                                <td>{{Label.getContent('Urban')}}:</td>
                                                 <td>
                                                     <a href="#" editable-text="product.urbanValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(product,product.negotiationItem,'urban',product.index,'variant')">{{ product.urbanValue || 0 }}
                                                     </a>
@@ -449,7 +451,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>Rural:</td>
+                                                <td>{{Label.getContent('Rural')}}:</td>
                                                 <td>
                                                     <a href="#" editable-text="product.ruralValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(product,product.negotiationItem,'rural',product.index,'variant')">{{ product.ruralValue || 0 }}
                                                     </a>
@@ -473,13 +475,13 @@
                                 <table class="table">
                                     <tbody>
                                         <tr>
-                                            <td style="width:40%">Urban {{showTitle}}:</td>
+                                            <td style="width:40%">{{Label.getContent('Urban')}} {{Label.getContent(showTitle)}}:</td>
                                             <td style="width:60%">
                                                 <a href="#" editable-text="product.urbanValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(product,product.negotiationItem,'urban',product.index,'variant')">{{ product.urbanValue || 0 }}</a>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Rural {{showTitle}}:</td>
+                                            <td>{{Label.getContent('Rural')}} {{Label.getContent(showTitle)}}:</td>
                                             <td>
                                                 <a href="#" editable-text="product.ruralValue" onbeforesave="checkData($data)" onaftersave="updateContractDetails(product,product.negotiationItem,'rural',product.index,'variant')">{{ product.ruralValue || 0 }}</a>
                                             </td>                                        
@@ -492,7 +494,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <a class="btn btn-default" ng-click="closeEditModal()">Close</a>
+                <a class="btn btn-default" ng-click="closeEditModal()">{{Label.getContent('Close')}}</a>
             </div>
         </div>
     </div>
@@ -513,13 +515,13 @@
                         <thead>
                             <tr>
                                 <td style="width:10%"></td>
-                                <td style="width:45%">{{showTitle}}</td>
-                                <td style="width:45%">Discount Rate(%)</td>
+                                <td style="width:45%">{{Label.getContent(showTitle)}}</td>
+                                <td style="width:45%">{{Label.getContent('Discount Rate')}}(%)</td>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Urban:</td>
+                                <td>{{Label.getContent('Urban')}}:</td>
                                 <td>
                                     {{ editDetail.brand_urbanValue || 0 }}
 
@@ -529,7 +531,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Rural:</td>
+                                <td>{{Label.getContent('Rural')}}:</td>
                                 <td>
                                     {{ editDetail.brand_ruralValue || 0 }}
                                 </td>
@@ -544,14 +546,14 @@
                             <thead>
                                 <tr>
                                     <td style="width:10%"></td>
-                                    <td style="width:40%">{{showTitle}}</td>
-                                    <td style="width:40%">Amount(mln$)</td>
-                                    <td style="width:10%">Rate(%)</td>
+                                    <td style="width:40%">{{Label.getContent(showTitle)}}</td>
+                                    <td style="width:40%">{{Label.getContent('Amount')}}(mln$)</td>
+                                    <td style="width:10%">{{Label.getContent('Rate')}}(%)</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Urban:</td>
+                                    <td>{{Label.getContent('Urban')}}:</td>
                                     <td>
                                         {{ editDetail.brand_urbanValue || 0 }}
                                     </td>
@@ -564,7 +566,7 @@
                                     <td>---</td>
                                 </tr>
                                 <tr>
-                                    <td>Rural:</td>
+                                    <td>{{Label.getContent('Rural')}}:</td>
                                     <td>
                                         {{ editDetail.brand_ruralValue || 0 }}
                                     </td>
@@ -582,14 +584,14 @@
                             <thead>
                                 <tr>
                                     <td style="width:10%"></td>
-                                    <td style="width:40%">{{showTitle}}</td>
-                                    <td style="width:10%">Amount(mln$)</td>
-                                    <td style="width:40%">Rate(%)</td>
+                                    <td style="width:40%">{{Label.getContent(showTitle)}}</td>
+                                    <td style="width:10%">{{Label.getContent('Amount')}}(mln$)</td>
+                                    <td style="width:40%">{{Label.getContent('Rate')}}(%)</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Urban:</td>
+                                    <td>{{Label.getContent('Urban')}}:</td>
                                     <td>
                                         {{ editDetail.brand_urbanValue || 0 }}
                                     </td>
@@ -602,7 +604,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Rural:</td>
+                                    <td>{{Label.getContent('Rural')}}:</td>
                                     <td>
                                         {{ editDetail.brand_ruralValue || 0 }}
                                     </td>
@@ -621,13 +623,13 @@
                     <table class="table" style="display:{{shouldBeNormal}}">
                         <tbody>
                             <tr>
-                                <td style="width:40%">Urban {{showTitle}}:</td>
+                                <td style="width:40%">{{Label.getContent('Urban')}} {{Label.getContent(showTitle)}}:</td>
                                 <td style="width:60%">
                                     {{ editDetail.brand_urbanValue || 0 }}
                                 </td>
                             </tr>
                             <tr>
-                                <td>Rural {{showTitle}}:</td>
+                                <td>{{Label.getContent('Rural')}} {{Label.getContent(showTitle)}}:</td>
                                 <td>
                                     {{ editDetail.brand_ruralValue || 0 }}
                                 </td>                                        
@@ -645,13 +647,13 @@
                                     <thead>
                                         <tr>
                                             <td style="width:10%"></td>
-                                            <td style="width:45%">{{showTitle}}</td>
-                                            <td style="width:45%">Discount Rate(%)</td>
+                                            <td style="width:45%">{{Label.getContent(showTitle)}}</td>
+                                            <td style="width:45%">{{Label.getContent('Discount Rate')}}(%)</td>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>Urban:</td>
+                                            <td>{{Label.getContent('Urban')}}:</td>
                                             <td>
                                                 {{ product.urbanValue || 0 }}
                                             </td>
@@ -660,7 +662,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Rural:</td>
+                                            <td>{{Label.getContent('Rural')}}:</td>
                                             <td>
                                                 {{ product.ruralValue || 0 }}
                                             </td>
@@ -681,14 +683,14 @@
                                         <thead>
                                             <tr>
                                                 <td style="width:10%"></td>
-                                                <td style="width:40%">{{showTitle}}</td>
-                                                <td style="width:40%">Amount(mln$)</td>
-                                                <td style="width:10%">Rate(%)</td>
+                                                <td style="width:40%">{{Label.getContent(showTitle)}}</td>
+                                                <td style="width:40%">{{Label.getContent('Amount')}}(mln$)</td>
+                                                <td style="width:10%">{{Label.getContent('Rate')}}(%)</td>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>Urban:</td>
+                                                <td>{{Label.getContent('Urban')}}:</td>
                                                 <td>
                                                     {{ product.urbanValue || 0 }}
                                                 </td>
@@ -701,7 +703,7 @@
                                                 <td>---</td>
                                             </tr>
                                             <tr>
-                                                <td>Rural:</td>
+                                                <td>{{Label.getContent('Rural')}}:</td>
                                                 <td>
                                                     {{ product.ruralValue || 0 }}
                                                 </td>
@@ -725,14 +727,14 @@
                                         <thead>
                                             <tr>
                                                 <td style="width:10%"></td>
-                                                <td style="width:40%">{{showTitle}}</td>
-                                                <td style="width:10%">Amount(mln$)</td>
-                                                <td style="width:40%">Rate(%)</td>
+                                                <td style="width:40%">{{Label.getContent(showTitle)}}</td>
+                                                <td style="width:10%">{{Label.getContent('Amount')}}(mln$)</td>
+                                                <td style="width:40%">{{Label.getContent('Rate')}}(%)</td>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>Urban:</td>
+                                                <td>{{Label.getContent('Urban')}}:</td>
                                                 <td>
                                                     {{ product.urbanValue || 0 }}
                                                 </td>
@@ -745,7 +747,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>Rural:</td>
+                                                <td>{{Label.getContent('Rural')}}:</td>
                                                 <td>
                                                     {{ product.ruralValue || 0 }}
                                                 </td>
@@ -769,16 +771,16 @@
                                 <table class="table">
                                     <tbody>
                                         <tr>
-                                            <td style="width:40%">Urban {{showTitle}}:</td>
+                                            <td style="width:40%">{{Label.getContent('Urban')}} {{Label.getContent(showTitle)}}:</td>
                                             <td style="width:60%">
                                                 {{ product.urbanValue || 0 }}
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Rural {{showTitle}}:</td>
+                                            <td>{{Label.getContent('Rural')}} {{Label.getContent(showTitle)}}:</td>
                                             <td>
                                                 {{ product.ruralValue || 0 }}
-                                            </td>                                        
+                                            </td>         
                                         </tr>
                                     </tbody>
                                 </table>
@@ -788,324 +790,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <a class="btn btn-default" ng-click="closeViewModal()">Close</a>
+                <a class="btn btn-default" ng-click="closeViewModal()">{{Label.getContent('Close')}}</a>
             </div>
         </div>
     </div>
 </div>
-
-<!-- <div modal="viewModal" class="hide" close="closeViewModal()" options="viewOpts">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div style="background-color:yellow">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeViewModal()">&times;</button>
-                    <h4>{{editDetail.negotiationItem}},{{user.seminar}}_{{editDetail.relatedBrandName}}</h4>
-                </div>
-                <div class="btn-group pull-right" data-toggle="buttons">
-                    <label class="btn btn-default" ng-click="setShowDetailType('Brand')">
-                        <input type="radio" name="detailType">Brand
-                    </label>
-                    <label class="btn btn-default" ng-click="setShowDetailType('Variant')">
-                        <input type="radio" name="detailType">Variant
-                    </label>
-                </div>
-                <div class="btn-group pull-right" style="margin-right:10px;display:{{shouldBeAmount}}" data-toggle="buttons">
-                    <label class="btn btn-default" ng-click="setShowBonusType('Amout')">
-                        <input type="radio" name="amoutRate">Amout
-                    </label>
-                    <label class="btn btn-default" ng-click="setShowBonusType('Rate')">
-                        <input type="radio" name="amoutRate">Rate
-                    </label>
-                </div>
-                <div style="clear:both"></div>
-            </div>
-            <div class="modal-body">
-                <div class="" style="display:{{shouldShowBrand}}">
-                    <table class="table" style="display:{{shouldBeRate}}">
-                        <thead>
-                            <tr>
-                                <td style="width:10%"></td>
-                                <td style="width:45%"></td>
-                                <td style="width:45%">Discount Rate</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Urban:</td>
-                                <td>
-                                    {{ editDetail.brand_urbanValue }}
-                                </td>
-                                <td>
-                                    {{ editDetailDisRate.brand_urbanValue }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Rural:</td>
-                                <td>
-                                    {{editDetail.brand_ruralValue}}
-                                </td>
-                                <td>
-                                    {{editDetailDisRate.brand_ruralValue}}
-                                </td>                                                
-                            </tr>
-                        </tbody>  
-                    </table>
-                    <div class="" style="display:{{shouldBeAmount}}">
-                        <table class="table" style="display:{{shouldBeBonusAmount}}">
-                            <thead>
-                                <tr>
-                                    <td style="width:10%"></td>
-                                    <td style="width:40%"></td>
-                                    <td style="width:40%">Amount</td>
-                                    <td style="width:10%">Rate</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Urban:</td>
-                                    <td>
-                                        {{editDetail.brand_urbanValue}}
-                                    </td>
-                                    <td>
-                                        {{editDetailBonusAmount.brand_urbanValue}}
-                                    </td>
-                                    <td>
-                                        <p style="color:gray">
-                                            {{editDetailBonusRate.brand_urbanValue}}
-                                        </p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Rural:</td>
-                                    <td>
-                                        {{editDetail.brand_ruralValue}}
-                                    </td>
-                                    <td>
-                                        {{editDetailBonusAmount.brand_ruralValue}}
-                                    </td>
-                                    <td>
-                                        <p style="color:gray">
-                                            {{editDetailBonusRate.brand_ruralValue}}
-                                        </p>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table class="table" style="display:{{shouldBeBonusRate}}">
-                            <thead>
-                                <tr>
-                                    <td style="width:10%"></td>
-                                    <td style="width:40%"></td>
-                                    <td style="width:10%">Amount</td>
-                                    <td style="width:40%">Rate</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Urban:</td>
-                                    <td>
-                                        {{editDetail.brand_urbanValue}}
-                                    </td>
-                                    <td>
-                                        <p style="color:gray">
-                                            {{editDetailBonusAmount.brand_urbanValue}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        {{editDetailBonusRate.brand_urbanValue}}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Rural:</td>
-                                    <td>
-                                        {{editDetail.brand_ruralValue}}
-                                    </td>
-                                    <td>
-                                        <p style="color:gray">
-                                            {{editDetailBonusAmount.brand_ruralValue}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        {{editDetailBonusRate.brand_ruralValue}}
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <table class="table" style="display:{{shouldBeNormal}}">
-                        <tbody>
-                            <tr>
-                                <td style="width:40%">Urban:</td>
-                                <td style="width:60%">
-                                    {{editDetail.brand_urbanValue}}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Rural:</td>
-                                <td>
-                                    {{editDetail.brand_ruralValue}}
-                                </td>                                        
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="" style="display:{{shouldShowVariant}}">
-                    <div style="display:{{shouldBeRate}}">
-                        <tabset>
-                            <tab ng-repeat='product in editProductList' heading="{{product.varName}}">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th style="width:10%"></td>
-                                            <th style="width:45%"></td>
-                                            <th style="width:45%">Discount Rate</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Urban:</td>
-                                            <td>
-                                                {{product.urbanValue}}
-                                            </td>
-                                            <td>
-                                                {{product.dis_urbanValue}}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Rural:</td>
-                                            <td>
-                                                {{product.ruralValue}}
-                                            </td>
-                                            <td>
-                                                {{product.dis_ruralValue}}
-                                            </td>                                                
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </tab>
-                        </tabset>
-                    </div>
-
-                    <div style="display:{{shouldBeAmount}}">
-                        <div style="display:{{shouldBeBonusAmount}}">
-                            <tabset>
-                                <tab ng-repeat='product in editProductList' heading="{{product.varName}}">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th style="width:10%"></td>
-                                                <th style="width:40%"></td>
-                                                <th style="width:40%">Amount</td>
-                                                <th style="width:10%">Rate</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Urban:</td>
-                                                <td>
-                                                    {{ product.urbanValue}}
-                                                </td>
-                                                <td>{{product.amout_urbanValue}}
-                                                </td>
-                                                <td>
-                                                    <p style="color:gray">
-                                                        {{product.rate_urbanValue}}
-                                                    </p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Rural:</td>
-                                                <td>
-                                                    {{product.ruralValue}}
-                                                </td>
-                                                <td>
-                                                    {{product.amout_ruralValue }}
-                                                </td>
-                                                <td>
-                                                    <p style="color:gray">{{product.rate_ruralValue}}
-                                                    </p>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </tab>
-                            </tabset>
-                        </div>
-                        <div style="display:{{shouldBeBonusRate}}">
-                            <tabset>
-                                <tab ng-repeat='product in editProductList' heading="{{product.varName}}">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th style="width:10%"></td>
-                                                <th style="width:40%"></td>
-                                                <th style="width:10%">Amount</td>
-                                                <th style="width:40%">Rate</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Urban:</td>
-                                                <td>
-                                                    {{product.urbanValue}}
-                                                </td>
-                                                <td>
-                                                    <p style="color:gray">
-                                                        {{ product.amout_urbanValue}}
-                                                    </p>
-                                                </td>
-                                                <td>
-                                                    {{product.rate_urbanValue}}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Rural:</td>
-                                                <td>
-                                                    {{product.ruralValue}}
-                                                </td>
-                                                <td>
-                                                    <p style="color:gray">
-                                                        {{product.amout_ruralValue}}
-                                                    </p>
-                                                </td>
-                                                <td>
-                                                    {{product.rate_ruralValue}}
-                                                </td>
-                                            </tr>
-                                        </tbody>          
-                                    </table>
-                                </tab>
-                            </tabset>
-                        </div>
-                    </div>
-                    <div style="display:{{shouldBeNormal}}">
-                        <tabset>
-                            <tab ng-repeat='product in editProductList' heading="{{product.varName}}">
-                                <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <td style="width:40%">Urban:</td>
-                                            <td style="width:60%">
-                                                {{product.urbanValue}}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Rural:</td>
-                                            <td>
-                                                {{product.ruralValue}}
-                                            </td>                                        
-                                        </tr>
-                                    </tbody> 
-                                </table>
-                            </tab>
-                        </tabset>
-                    </div>                                
-                </div>
-            </div>
-            <div class="modal-footer">
-                <a class="btn btn-default" ng-click="closeViewModal()">Close</a>
-            </div>
-        </div>
-    </div>
-</div> -->
