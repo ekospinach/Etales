@@ -113,7 +113,7 @@
 			    {{Label.getContent('Period')}}<span class="caret"></span>
 			  </button>
 			  <ul class="dropdown-menu">
-			    <li ng-repeat="newperiod in periods"><a ng-click="getFinReport(seminar,realTitleENG,newperiod,role,type)">{{newperiod}}</a></li>
+			    <li ng-repeat="newperiod in periods"><a ng-click="getFinReport(seminar,showTitleENG,newperiod,role,type)">{{newperiod}}</a></li>
 			  </ul>
 			</div>
 			<div class="btn-group" ng-show="isRoleIDChangeBtnShow">
@@ -160,7 +160,7 @@
 	 	</thead>
 	 	<tbody>
 	 		<tr ng-repeat="row in reportCollection.data.rows">
-				<td ng-repeat = "value in row.c">
+				<td ng-repeat = "value in row.c" ng-style="{'text-align':($index==0)?'left':'right'}">
 					{{($index==0)?Label.getContent(value.v):value.v}}</td>
 	 		</tr>
 	 	</tbody>

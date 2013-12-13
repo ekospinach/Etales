@@ -118,7 +118,7 @@
 		 	</thead>
 		 	<tbody>
 		 		<tr ng-repeat="row in reportCollection.data.rows | orderBy:mySorting:sort.descending" >
-					<td ng-repeat = "value in row.c"> {{value.v}}</td>
+					<td ng-repeat = "value in row.c" ng-style="{'text-align':($index==0)?'left':'right'}"> {{value.v}}</td>
 		 		</tr>
 		 	</tbody>
 	 	</table>	

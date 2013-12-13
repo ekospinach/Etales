@@ -113,6 +113,11 @@ define(['app'], function(app) {
 
 			$scope.openDuplicateModal=function(contract){
 				$scope.contract=contract;
+				if(contract.retailerID==1){
+					$scope.dupRetailerID=2;
+				}else{
+					$scope.dupRetailerID=1;
+				}
 				$scope.duplicateModal=true;
 			}
 

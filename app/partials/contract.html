@@ -81,7 +81,7 @@
 				    			</fieldset>
 				    		</td>
 				    		<td>
-				    			<a class="btn btn-primary" ng-click="openDetailModal(allContract)">
+				    			<a class="btn btn-primary" ng-click="openDetailModal(allContract)" ng-show="allContract.period==currentPeriod">
 				    				{{Label.getContent('Details')}}
 				    			</a>
 				    			<a class="btn btn-default" ng-show=(producerShow&&(allContract.period==currentPeriod)) ng-click="openDuplicateModal(allContract)">
@@ -152,6 +152,9 @@
 					<div style="clear:both"></div>
 					<div class="col-xs-5 input-group">
 						<input type="text" id="contractCode" placeholder="contractCode" class="form-control" ng-model="duplicateContractCode" required>
+					</div>
+					<div class="input-group">
+						<label for="retailerID">{{Label.getContent('Contract with')}}:{{Label.getContent('Retailer')}} {{dupRetailerID}}</label>
 					</div>
 					<div style="clear:both"></div>
 				</div>

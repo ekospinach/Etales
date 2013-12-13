@@ -449,9 +449,11 @@ define(['app'], function(app) {
 							data:queryCondition
 						});
 					}).then(function(data){
-						refreshBrandAndContractDetails();
+						console.log('success');
+						//refreshBrandAndContractDetails();
 					},function(data){
-						refreshBrandAndContractDetails();
+						console.log('err');
+						//refreshBrandAndContractDetails();
 					})
 				}else if(detail.negotiationItem=="nc_SalesTargetVolume"){
 					$http({
@@ -473,9 +475,11 @@ define(['app'], function(app) {
 							data:queryCondition
 						});
 					}).then(function(data){
-						refreshBrandAndContractDetails();
+						console.log('success');
+						//refreshBrandAndContractDetails();
 					},function(data){
-						refreshBrandAndContractDetails();
+						console.log('err');
+						//refreshBrandAndContractDetails();
 					})
 				}else{
 					$http({
@@ -483,9 +487,11 @@ define(['app'], function(app) {
 						url:'/updateContractDetails',
 						data:queryCondition
 					}).then(function(data){
-						refreshBrandAndContractDetails();
+						console.log('success');
+						//refreshBrandAndContractDetails();
 					},function(data){
-						refreshBrandAndContractDetails();
+						console.log('err');
+						//refreshBrandAndContractDetails();
 					})
 				}
 			}
@@ -531,14 +537,17 @@ define(['app'], function(app) {
 						data:queryCondition
 					});
 				}).then(function(data){
-					refreshBrandAndContractDetails();
+					console.log('success');
+					//refreshBrandAndContractDetails();
 				},function(data){
-					refreshBrandAndContractDetails();
+					console.log('err');
+					//refreshBrandAndContractDetails();
 				});
 			}
 
 			$scope.closeEditModal=function(){
 				$scope.editModal=false;
+				refreshBrandAndContractDetails();
 			}
 
 			$scope.openViewModal=function(Detail){
@@ -606,10 +615,11 @@ define(['app'], function(app) {
 					url:'/updateContractDetails',
 					data:queryCondition
 				}).success(function(data){
-					refreshBrandAndContractDetails();
+					console.log('success');
+					//refreshBrandAndContractDetails();
 				}).error(function(data){
 					console.log('err');
-					refreshBrandAndContractDetails();
+					
 				})
 			}
 
