@@ -92,26 +92,26 @@ define(['app','socketIO','routingConfig'], function(app) {
 		      	$rootScope.finCatCss="margin-left:10px";    
 		    }
 
-		    if(reportCollection){
-		      //deal with multiple language 
-		      for(var i=0;i<reportCollection.data.rows.length;i++){
-			    for(var j=0;j<reportCollection.data.rows[i].c.length;j++){
-			        if(j==0){
-			          if(language=="RUS"){
-			            reportCollection.data.rows[i].c[j].f=reportCollection.data.rows[i].c[j].vRUS;
-			          }else if(language=="CHN"){
-			            reportCollection.data.rows[i].c[j].f=reportCollection.data.rows[i].c[j].vCHN;
-			          }else{
-			            reportCollection.data.rows[i].c[j].f=reportCollection.data.rows[i].c[j].v;
-			          }
-			        }
-			        else{
-			          reportCollection.data.rows[i].c[j].v=reportCollection.data.rows[i].c[j].v;
-			        }
-			    }
-		      }
+		    // if(reportCollection){
+		    //   //deal with multiple language 
+		    //   for(var i=0;i<reportCollection.data.rows.length;i++){
+			   //  for(var j=0;j<reportCollection.data.rows[i].c.length;j++){
+			   //      if(j==0){
+			   //        // if(language=="RUS"){
+			   //        //   reportCollection.data.rows[i].c[j].f=reportCollection.data.rows[i].c[j].vRUS;
+			   //        // }else if(language=="CHN"){
+			   //        //   reportCollection.data.rows[i].c[j].f=reportCollection.data.rows[i].c[j].vCHN;
+			   //        // }else{
+			   //        //   reportCollection.data.rows[i].c[j].f=reportCollection.data.rows[i].c[j].v;
+			   //        // }
+			   //      }
+			   //      else{
+			   //        reportCollection.data.rows[i].c[j].v=reportCollection.data.rows[i].c[j].v;
+			   //      }
+			   //  }
+		    //   }
 
-		    }
+		    // }
 		    $scope.reportCollection = reportCollection;
 		    console.log($scope.reportCollection);
 		  }		      

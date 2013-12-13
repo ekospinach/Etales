@@ -55,7 +55,11 @@
 			<div style="padding:10px 0;clear:both"></div>
 			
 			<div class="page-header">
-				<h3>{{Label.getContent(titleENG)}} <small>{{Label.getContent((titleENG+' Info'))}} </small></h3>
+				<h3>{{Label.getContent(titleENG)}}
+					<small>
+						{{Label.getContent((titleENG+' Info'))}}
+					</small>
+				</h3>
 			</div>
 
 			<h4 class="pull-left"><span class="label label-warning">{{Label.getContent(cat)}}</span></h4>
@@ -109,7 +113,7 @@
 		<table class="table table-bordered table-striped table-condensed">
 		 	<thead>
 		 		<tr>
-		 			<th ng-repeat="(i,col) in reportCollection.data.cols"><a ng-click="changeSorting(i)">{{col.label}}</a></th>
+		 			<th ng-repeat="(i,col) in reportCollection.data.cols"><a ng-click="changeSorting(i)">{{Label.getContent(col.label)}}</a></th>
 		 		</tr>		
 		 	</thead>
 		 	<tbody>

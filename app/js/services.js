@@ -22,12 +22,18 @@ define(['angular',
 
 		this.$get = function(){
 			var self = this, item;
+			var items=new Array();
 			return {
 				getContent : function(value){
 					switch(self.currentLanguage){
 						case 'ENG': 
-						    item = _.find(self.labelBase, function(singleItem){ return singleItem.id == value})
-						    if(item){ return item.ENG;}else console.log(item);
+						    item = _.find(self.labelBase, function(singleItem){ return singleItem.id == value});
+						    if(item){ return item.ENG;}
+						    else{
+						    	items.push(value);
+						    	console.log(items);
+						    	return '**NotFound**';
+						    }
 						    break;
 						case 'CHN':
 						    item = _.find(self.labelBase, function(singleItem){ return singleItem.id == value})
