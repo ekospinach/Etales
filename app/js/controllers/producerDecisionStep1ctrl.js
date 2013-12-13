@@ -306,9 +306,9 @@ define(['app'], function(app) {
 
 			var checkProduction=function(category,brandName,varName,location,additionalIdx,index,value){
 				var d = $q.defer();	
-				var filter=/^\d+$/;
+				var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
 				if(!filter.test(value)){
-					d.resolve('Input a Integer');
+					d.resolve('Input a number');
 				}
 				var categoryID,max,result;
 				if(category=="Elecssories"){
@@ -516,6 +516,12 @@ define(['app'], function(app) {
 						d.resolve('fail');
 					});
 				return d.promise;
+			}
+
+			var checkCurrentBM=function(category,brandName,varName,location,additionalIdx,index,value){
+				var d=$q.defer;
+				var categoryID=0,max=0;
+				var filter
 			}
 
 			var updateProducerDecision=function(category,brandName,varName,location,additionalIdx,index){

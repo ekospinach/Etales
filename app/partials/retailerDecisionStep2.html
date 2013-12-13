@@ -135,7 +135,7 @@
                 </th>
                 <th ng-repeat='market in markets'><a href="#" editable-text="market.localAdvertising[0]" onbeforesave="checkBudget(market.marketID,'localAdvertising','postion','0',$index,$data)" onaftersave="updateMarketDecision(market.marketID,'localAdvertising','postion','0',$index)">{{ market.localAdvertising[0] || 0 }}</a></th>
               </tr>
-              <tr>
+              <tr ng-show="false">
                 <th>
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Allocate Empty Place Info')}}" popover-title="{{Label.getContent('Allocate Empty Place')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Allocate Empty Place')}}<span style="color:red">*</span></p>
                 </th>
