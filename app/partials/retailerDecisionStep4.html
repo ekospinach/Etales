@@ -122,8 +122,8 @@
                     <td>{{decisionCurrent.composition[2]}}</td> 
                     <!-- Previous period-->
                     <td>{{Label.getContent('Shelf Space at your store')}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].shelfSpace}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].shelfSpace}}</td>                                        
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].shelfSpace*100}}%</td>                    
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].shelfSpace*100}}%</td>                                        
                   </tr>
                   <tr>
                     <td></td>                    
@@ -143,15 +143,15 @@
                     <td></td>                    
                     <td></td>                                        
                     <td>{{Label.getContent('Promotions Frequency')}}({{Label.getContent('weeks')}})</td>
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].promotionsDetails.promo_Frequency}}</td>
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].promotionsDetails.promo_Frequency}}</td>
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].promotionsDetails.promo_Frequency}} weeks</td>
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].promotionsDetails.promo_Frequency}} weeks</td>
                   </tr>
                   <tr>
                     <td></td>                    
                     <td></td>                    
-                    <td>{{Label.getContent('Reduction Rate')}}(%)</td>
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].promotionsDetails.promo_Rate}}</td>
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].promotionsDetails.promo_Rate}}</td>
+                    <td>{{Label.getContent('Reduction Rate')}}</td>
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].promotionsDetails.promo_Rate*100}}%</td>
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].promotionsDetails.promo_Rate*100}}%</td>
                   </tr>
                 </tbody>  
               </table>
