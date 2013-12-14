@@ -63,6 +63,6 @@ define([
 	        });
 		}]).config(function(LabelProvider){
 			//config default language
-			LabelProvider.initialiseLanguage('ENG');
+			LabelProvider.initialiseLanguage('CHN');
 		});
 });

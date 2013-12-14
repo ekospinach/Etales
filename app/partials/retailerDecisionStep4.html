@@ -68,10 +68,10 @@
                     <th ng-show="isPrivateLabel"> {{currentUnitCost}} </th>
                     <!-- New Product from Producer, show decision producer made  -->
                     <th ng-show="isNewProducerProduct">{{Label.getContent('List Price')}}({{Label.getContent('New Product')})</th>
-                    <th ng-show="isNewProducerProduct">{{decisionCurrent.currentPriceBM}}</th>
+                    <th ng-show="isNewProducerProduct">{{decisionCurrent.currentPriceBM.toFixed(2)}}</th>
                     <!-- History Product, show pv_nextPriceBM-->                  
                     <th ng-show="isHistoryProduct">{{Label.getContent('List Price')}}</th>
-                    <th ng-show="isHistoryProduct">{{variantHistory.supplierView[0].nextPriceBM}}</th>
+                    <th ng-show="isHistoryProduct">{{variantHistory.supplierView[0].nextPriceBM.toFixed(2)}}</th>
                     <td></td>
                     <td>{{Label.getContent('Urban')}}</td>
                     <td>{{Label.getContent('Rural')}}</td>      
@@ -79,7 +79,7 @@
                   <tr>
                     <!-- Current period -->
                     <td>{{Label.getContent('Urban')}} {{Label.getContent('Closing Inventory')}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].volume}}</td>
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].volume.toFixed(2)}}</td>
                     <!-- Previous period-->                   
                     <td style="display:{{ElecssoriesVar}}">{{Label.getContent('Design Level')}}</td>                    
                     <td style="display:{{HealthBeautyVar}}">{{Label.getContent('Active agent')}}</td>                    
@@ -89,7 +89,7 @@
                   <tr>
                     <!-- Current period -->
                     <td>{{Label.getContent('Rural')}} {{Label.getContent('Closing Inventory')}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[3].volume}}</td>           
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[3].volume.toFixed(2)}}</td>           
                     <!-- Previous period-->
                     <td>{{Label.getContent('Technology Level')}}</td>    
                     <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[1]}}</td>
@@ -112,8 +112,8 @@
                     <td>{{decisionCurrent.composition[1]}}</td>    
                     <!-- Previous period-->
                     <td>{{Label.getContent('Sales Volume at your store')}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].salesVolume}}</td>        
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].salesVolume}}</td>                                   
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].salesVolume.toFixed(2)}}</td>        
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].salesVolume.toFixed(2)}}</td>                                   
                   </tr>
                   <tr>
                     <!-- Current period -->                    
@@ -122,22 +122,22 @@
                     <td>{{decisionCurrent.composition[2]}}</td> 
                     <!-- Previous period-->
                     <td>{{Label.getContent('Shelf Space at your store')}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].shelfSpace*100}}%</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].shelfSpace*100}}%</td>                                        
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].shelfSpace.toFixed(2)*100}}%</td>                    
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].shelfSpace.toFixed(2)*100}}%</td>                                        
                   </tr>
                   <tr>
                     <td></td>                    
                     <td></td>                    
                     <td>{{Label.getContent('Market Price at your store')}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].marketPrice}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].marketPrice}}</td>                                        
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].marketPrice.toFixed(2)}}</td>                    
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].marketPrice.toFixed(2)}}</td>                                        
                   </tr>
                   <tr>
                     <td></td>                    
                     <td></td>                                        
                     <td>{{Label.getContent('Net Price at your store')}}</td>
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].netMarketPrice}}</td>
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].netMarketPrice}}</td>
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].netMarketPrice.toFixed(2)}}</td>
+                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].netMarketPrice.toFixed(2)}}</td>
                   </tr>
                   <tr>
                     <td></td>                    

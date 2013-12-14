@@ -24,7 +24,7 @@
     develop: {
       server: {
         file: './server.js',
-        env: { NODE_ENV: 'monsoul' }
+        env: { NODE_ENV: 'development' }
       }
     },
   });
