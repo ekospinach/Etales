@@ -20,31 +20,31 @@
 				</div>
 				<div class="modal-body">
 					<form class="form-horizontal" role="form">
-					  <div class="form-group">
-					    <label for="userRole" class="col-sm-2 control-label">Your Role</label>
-					    <div class="col-sm-10">
-					    	<select class="form-control" id="userRole" ng-model="userRole">
+						<div class="form-group">
+					    	<label for="userRole" class="col-sm-2 control-label">Your Role</label>
+					    	<div class="col-sm-10">
+					    		<select class="form-control" id="userRole" ng-model="userRole">
 									<option value="1">Producer 1</option>
 									<option value="2">Producer 2</option>
 									<option value="3">Producer 3</option>
 									<option value="4">Retailer 1</option>
 									<option value="5">Retailer 2</option>
 									<option value="6">Facilitator</option>
-							</select>
-					    </div>
-					  </div>
-					  <div class="form-group">
-					    <label for="Seminar" class="col-sm-2 control-label">Seminar</label>
-					    <div class="col-sm-10">
-					      <input type="text" id="Seminar" class="form-control" placeholder="Seminar Code" ng-model="userSeminar">
-					    </div>
-					  </div>
-					  <div class="form-group">
-					    <label for="password" class="col-sm-2 control-label">Password</label>
-					    <div class="col-sm-10">
-					      <input type="password" id="password" class="form-control" ng-model="userPassword">
-					    </div>
-					  </div>
+								</select>
+					    	</div>
+					  	</div>
+					  	<div class="form-group">
+					    	<label for="userSeminar" class="col-sm-2 control-label">Seminar</label>
+					    	<div class="col-sm-10">
+					      		<input type="text" id="userSeminar" class="form-control" placeholder="Seminar Code" ng-model="userSeminar">
+					    	</div>
+					  	</div>
+					  	<div class="form-group">
+					    	<label for="userPassword" class="col-sm-2 control-label">Password</label>
+					    	<div class="col-sm-10">
+					      		<input type="password" id="userPassword" class="form-control" ng-model="userPassword">
+					    	</div>
+					  	</div>
 					</form>
 					<div class="{{userBubleClassName}}" ng-show='true'>
 	        			<strong>{{userBubleTitle}}</strong> {{userBubleMsg}}
@@ -67,18 +67,24 @@
 					<h4 class="modal-title">Admin Login</h4>
 				</div>
 				<div class="modal-body">
-		       		<div class="form-group">
-		      			<label for="seminar">Seminar</label>
-			         	<input type="text" id="seminar" placeholder="Seminar Code"class="form-control" ng-model="adminSeminar" required>
-			       	</div>
-			       	<div class="form-group">
-			         	<label for="password">Password</label>
-			         	<input type="password" id="password" placeholder="your password" class="form-control" ng-model="adminPassword" required>
-			   		</div>
-				</div>
-	         		<div class="{{adminBubleClassName}}" ng-show='true'>
+					<form class="form-horizontal" role="form">
+						<div class="form-group">
+					    	<label for="adminSeminar" class="col-sm-2 control-label">Seminar</label>
+					    	<div class="col-sm-10">
+					      		<input type="text" id="adminSeminar" class="form-control" placeholder="Seminar Code" ng-model="adminSeminar">
+					    	</div>
+					  	</div>
+					  	<div class="form-group">
+					    	<label for="adminPassword" class="col-sm-2 control-label">Password</label>
+					    	<div class="col-sm-10">
+					      		<input type="password" id="adminPassword" class="form-control" ng-model="adminPassword">
+					    	</div>
+					  	</div>
+					</form>
+					<div class="{{adminBubleClassName}}" ng-show='true'>
         				<strong>{{adminBubleTitle}}</strong>{{adminBubleMsg}}
-        			</div>			
+        			</div>
+				</div>			
 				<div class="modal-footer">
 					<a class="btn btn-default" ng-click="closeAdminLoginModal()">Cancel</a>
 					<a class="btn btn-primary" ng-click="adminLogin()">Login</a>

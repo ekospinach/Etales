@@ -6,7 +6,7 @@
 		<link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="/bower_components/angular-xeditable/dist/css/xeditable.css">
 		<link rel="stylesheet" type="text/css" href="/bower_components/jqplot/jquery.jqplot.min.css">
-		<link rel="stylesheet" type="text/css" href="/bower_components/angular-loading-bar/src/loading-bar.css">		
+		<link rel="stylesheet" type="text/css" href="/bower_components/angular-loading-bar/src/loading-bar.css">
 		<link rel="stylesheet" type="text/css" media="all" href="css/app.css" />
 		<link rel="stylesheet" type="text/css" media="all" href="css/docs.css" />
 	</head>
@@ -45,18 +45,11 @@
 		          		</li>
 		      		</ul>
 
-				    <ul class="nav navbar-nav navbar-right" data-access-level="{{ accessLevels.playerView }}">
-				    	<!--<li data-access-level="{{ accessLevels.playerView }}" class="pull-right">
-				        	<a ng-click="logout">logout</a>
-				        </li>   -->   
+				    <ul class="nav navbar-nav navbar-right" data-access-level="{{ accessLevels.playerView }}">  
 				        <li id="userInfo"  class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
-<!-- 						        	<span data-ng-class="{&quot;label-info&quot;: user.role == userRoles.producer, &quot;label-success&quot;: user.role == userRoles.retailer, &quot;label-default&quot;: user.role == userRoles.facilitator,&quot;label-danger&quot;: user.role == userRoles.info}" class="label pull-left" style="margin:15px 0;font-size:14px;">
-									 
-						        	</span>
--->
-								<strong>{{getUserRoleText(user.role)}}</strong>		 				        	
-								<b class="caret"></b>
+									<strong>{{getUserRoleText(user.role)}}</strong>
+									<b class="caret"></b>
 								</a>
 					        <ul class="dropdown-menu">
 					          <li role="presentation" class="dropdown-header">{{Label.getContent('Period')}} {{currentPeriod}} of 3</li>
@@ -71,44 +64,37 @@
 					        </ul>				        	
 				        </li>   
 				    </ul>
-
 				</nav>
 			</div>
 		</header>
-
-		<div ng-view>
-	    	
+		<div ng-view>	    	
 	    </div>
-
-	    <div>
-	    	<footer class="{{loginFooter}}" role="contentinfo" id="pagefooter" style="display:none">
-	    		<div class="{{loginDiv}}">
-		    		<ul class="{{loginLink}}" style="margin-left:0px">
-		    			<li class="current-version"> Currently v0.0.1 </li>
-		  		  		<li>
-		    				<a href="/#/test">Test Entrance</a>
-		    			</li>
-		    		</ul>
-		    	</div>
-	    	</footer>
+	    <footer class="{{loginFooter}}" role="contentinfo" id="pagefooter" style="display:none">
+	    	<div class="{{loginDiv}}">
+		    	<ul class="{{loginLink}}" style="margin-left:0px">
+		    		<li class="current-version"> Currently v0.0.1 </li>
+		  		  	<li>
+		    			<a href="/#/test">Test Entrance</a>
+		    		</li>
+		    	</ul>
+		    </div>
+	    </footer>
+	    <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.chromium.org/developers/how-tos/chrome-frame-getting-started -->
+	    <!--[if lt IE 7]>
+	    	<p class="chromeframe">Your browser is <em>ancient!</em>
+	    		<a href="http://browsehappy.com/">Upgrade to a different browser</a> or 
+	    		<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a>
+	    		to experience this site.
+	    	</p>
+	    <![endif]-->
+	    <div class="watpl-container" id="pageloader">
+	    	<div class="container-fluid">
+	    		<h3 id="loading-status" class="loading-status">Loading</h3>
+	    		<p id="loading-module-name" class="loading-module-name"></p>
+	    	</div>
 	    </div>
-  
-	  <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
-	       chromium.org/developers/how-tos/chrome-frame-getting-started -->
-	  <!--[if lt IE 7]><p class="chromeframe">Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
-
-   	  <div class="watpl-container" id="pageloader">
-
-	    <div class="container-fluid">
-	      <h3 id="loading-status" class="loading-status">{{Label.getContent('Loading')}}</h3>
-	      <p id="loading-module-name" class="loading-module-name"></p>
-	    </div>
-
-	  </div>
-
 	    <script data-main="js/main" src="/bower_components/requirejs/require.js"></script>
 	    <script type="text/javascript" src="js/google/jsapi.js"></script>
-	    <script type="text/javascript" src="js/google/google.js"></script>  
+	    <script type="text/javascript" src="js/google/google.js"></script>
 	</body>
-
 </html>
