@@ -9,7 +9,7 @@
     <div class="col-md-12">
       <div class="bs-docs-section">
         <h4>{{Label.getContent('Step 4 of 4')}}</h4>
-        <div class="pull-left" style="width:33%">
+        <div class="pull-left" style="width:40%">
           <h3 style="margin-top:0px">{{Label.getContent('Order Pricing Shelf')}}</h3>
           <div class="btn-group pull-left">
               <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
@@ -39,14 +39,14 @@
           </div>
         -->
         </div>
-        <div class="pull-right" style="width:33%">
+        <div class="pull-right" style="width:40%">
           <progress percent="percentageExpend" class="progress active"></progress>
           <small>
             <em>{{Label.getContent('Available Budget')}}:{{surplusExpend}}</em>
           </small>
           <progress percent="showPercentageShelf" class="progress progress-suceess active progress-striped"></progress>
           <small>
-            <em>{{Label.getContent(market)}}-{{Label.getContent(category)}} {{Label.getContent('Available ShelfSpace')}}:{{showSurplusShelf}}</em>
+            <em>{{Label.getContent(market)}}-{{Label.getContent(category)}} {{Label.getContent('Available ShelfSpace')}}:{{showSurplusShelf}}%</em>
           </small>
         </div>
           <div style="clear:both"></div>
