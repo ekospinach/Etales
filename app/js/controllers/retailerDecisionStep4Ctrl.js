@@ -148,7 +148,7 @@ define(['app'], function(app) {
 				      		for(var i=0;i<allRetCatDecisions.length;i++){
 				      			for(var j=0;j<allRetCatDecisions[i].retVariantDecision.length;j++){
 				      				if(allRetCatDecisions[i].retVariantDecision[j].brandID!=0&&allRetCatDecisions[i].retVariantDecision[j].variantID!=0){
-				      					if(allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate>=0&&allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate<=1){
+				      					if(allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate>=0&&allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate<1){
 				      						allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate*=100;
 				      					}
 				      					if(allRetCatDecisions[i].retVariantDecision[j].shelfSpace>=0&&allRetCatDecisions[i].retVariantDecision[j].shelfSpace<=1)
@@ -343,8 +343,8 @@ define(['app'], function(app) {
 					var postData = {
 					    period : $rootScope.currentPeriod,
 					    seminar : $rootScope.user.seminar,
-					    brandName : product.brandName,
-					    varName : product.varName,
+					    brandName : brandName,
+					    varName : varName,
 					    catID : category,
 					    userRole :  $rootScope.userRoles.retailer,						
 					    userID : $rootScope.user.roleID,
