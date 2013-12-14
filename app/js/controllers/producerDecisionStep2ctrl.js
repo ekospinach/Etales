@@ -198,35 +198,87 @@ define(['app'], function(app) {
 			}
 
 			var checkNextPriceBM=function(category,brandName,varName,location,additionalIdx,index,value){
-				var d = $q.defer();	
-				var categoryID,max,result;
-				var filter=/^\d+$/;
+				var d=$q.defer();
+				var categoryID=0,max=0,currentUnitCost=0;
+				var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
 				if(!filter.test(value)){
-					d.resolve('Input a Integer');
-				}else{
-					d.resolve();
+					d.resolve('Input a number');
 				}
+				if(category=="Elecssories"){
+					categoryID=1;
+				}else{
+					categoryID=2;
+				}
+				var postData = {
+					period : $rootScope.currentPeriod,
+					seminar : $rootScope.user.seminar,
+					brandName : brandName,
+					varName : varName,
+					catID : categoryID,
+					userRole :  $rootScope.userRoles.producer,
+					userID : $rootScope.user.roleID,								
+				}
+				$http({
+					method:'POST',
+					url:'/getCurrentUnitCost',
+					data:postData
+				}).then(function(data){
+					currentUnitCost=data.data.result;
+					if(value>4*currentUnitCost||value<0.5*currentUnitCost){
+						d.resolve('Input range:'+0.5*currentUnitCost+'~'+4*currentUnitCost);
+					}else{
+						d.resolve();
+					}
+				},function(){
+					d.resolve('fail');
+				})
 				return d.promise;
 			}
 
 			var checknextPriceEmall=function(category,brandName,varName,location,additionalIdx,index,value){
-				var d = $q.defer();	
-				var categoryID,max,result;
-				var filter=/^\d+$/;
+				var d=$q.defer();
+				var categoryID=0,max=0,currentUnitCost=0;
+				var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
 				if(!filter.test(value)){
-					d.resolve('Input a Integer');
-				}else{
-					d.resolve();
+					d.resolve('Input a number');
 				}
+				if(category=="Elecssories"){
+					categoryID=1;
+				}else{
+					categoryID=2;
+				}
+				var postData = {
+					period : $rootScope.currentPeriod,
+					seminar : $rootScope.user.seminar,
+					brandName : brandName,
+					varName : varName,
+					catID : categoryID,
+					userRole :  $rootScope.userRoles.producer,
+					userID : $rootScope.user.roleID,								
+				}
+				$http({
+					method:'POST',
+					url:'/getCurrentUnitCost',
+					data:postData
+				}).then(function(data){
+					currentUnitCost=data.data.result;
+					if(value>6*currentUnitCost||value<0.5*currentUnitCost){
+						d.resolve('Input range:'+0.5*currentUnitCost+'~'+6*currentUnitCost);
+					}else{
+						d.resolve();
+					}
+				},function(){
+					d.resolve('fail');
+				})
 				return d.promise;
 			}
 
 			var checkProduction=function(category,brandName,varName,location,additionalIdx,index,value){
 				var d = $q.defer();	
 				var categoryID,max,result;
-				var filter=/^\d+$/;
+				var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
 				if(!filter.test(value)){
-					d.resolve('Input a Integer');
+					d.resolve('Input a number');
 				}
 				if(category=="Elecssories"){
 					categoryID=1;

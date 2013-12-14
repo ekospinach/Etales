@@ -9,7 +9,7 @@
     <div class="col-md-12">
       <div class="bs-docs-section">
         <h4>{{Label.getContent('Step 3 of 4')}}</h4>
-        <div class="pull-left" style="width:33%">
+        <div class="pull-left" style="width:40%">
           <h3 style="margin-top:0px">{{Label.getContent('Private Labels Composition')}}</h3>
           <div class="btn-group pull-left">
               <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
@@ -21,7 +21,7 @@
               </ul>
           </div>
         </div>
-        <div class="pull-right" style="width:33%">
+        <div class="pull-right" style="width:40%">
           <progress percent="percentageExpend" class="progress active"></progress>
           <small>
             <em>{{Label.getContent('Available Budget')}}:{{surplusExpend}}</em>
@@ -140,8 +140,8 @@
               </tr>
               <tr>
                 <th>
-                  <p style="display:{{HeaShow}}" class="text-primary" Popover-animation="true" popover="{{Label.getContent('Active agent Info')}}" popover-title="{{Label.getContent('Active agent')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Active agent')}}<span style="color:red">*</span></p>
-                  <p style="display:{{EleShow}}" class="text-primary" Popover-animation="true" popover="{{Label.getContent('Design Level Info')}}" popover-title="{{Label.getContent('Design Level')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Design Level')}}<span style="color:red">*</span></p>
+                  <p style="display:{{HeaShow}}" class="text-primary" Popover-animation="true" popover="{{Label.getContent('Active agent Info')}}" popover-title="{{Label.getContent('Active agent')}}" popover-trigger="mouseenter" popover-placement="right">{{Label.getContent('Active agent')}}<span style="color:red">*</span></p>
+                  <p style="display:{{EleShow}}" class="text-primary" Popover-animation="true" popover="{{Label.getContent('Design Level Info')}}" popover-title="{{Label.getContent('Design Level')}}" popover-trigger="mouseenter" popover-placement="right">{{Label.getContent('Design Level')}}<span style="color:red">*</span></p>
                 </th>
                 <th ng-repeat='product in products'>
                   <a href="#" editable-text="product.composition[0]" onbeforesave="checkDesign(category,product.parentBrandName,product.varName,'composition','0',$index,$data)" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'composition','0',$index)">{{ product.composition[0] || 0 }}</a>
@@ -149,8 +149,8 @@
               </tr>
               <tr>
                 <th>
-                  <p style="display:{{HeaShow}}" class="text-primary" Popover-animation="true" popover="{{Label.getContent('Smoothener Level Info')}}" popover-title="{{Label.getContent('Smoothener Level')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Smoothener Level')}}<span style="color:red">*</span></p>
-                  <p style="display:{{EleShow}}" class="text-primary" Popover-animation="true" popover="{{Label.getContent('Quality-of-Raw-Materials Info')}}" popover-title="{{Label.getContent('Quality-of-Raw-Materials')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Quality-of-Raw-Materials')}}<span style="color:red">*</span></p>
+                  <p style="display:{{HeaShow}}" class="text-primary" Popover-animation="true" popover="{{Label.getContent('Smoothener Level Info')}}" popover-title="{{Label.getContent('Smoothener Level')}}" popover-trigger="mouseenter" popover-placement="right">{{Label.getContent('Smoothener Level')}}<span style="color:red">*</span></p>
+                  <p style="display:{{EleShow}}" class="text-primary" Popover-animation="true" popover="{{Label.getContent('Quality-of-Raw-Materials Info')}}" popover-title="{{Label.getContent('Quality-of-Raw-Materials')}}" popover-trigger="mouseenter" popover-placement="right">{{Label.getContent('Quality-of-Raw-Materials')}}<span style="color:red">*</span></p>
                   </p>
                 </th>
                 <th ng-repeat='product in products'><a href="#" editable-text="product.composition[2]" onbeforesave="checkRMQ(category,product.parentBrandName,product.varName,'composition','2',$index,$data)" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'composition','2',$index)">{{ product.composition[2] || 0 }}</a></th>

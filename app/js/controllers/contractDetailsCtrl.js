@@ -155,7 +155,6 @@ define(['app'], function(app) {
 				
 
 				$scope.proDetailList=proDetailList;
-				console.log($scope.proDetailList);
 				var retDetailList=new Array();
 				for (var i = 0; i < negotiationItems.length; i++) {
 					retDetailList[i] =_.filter(singleCategoryDetails ,function(obj){ return (obj.userType=="R"&&obj.negotiationItem==negotiationItems[i]);});

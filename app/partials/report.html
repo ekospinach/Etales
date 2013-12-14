@@ -155,7 +155,7 @@
  	 <table class="table table-bordered table-striped table-condensed">
 	 	<thead>
 	 		<tr>
-	 			<th ng-repeat="col in reportCollection.data.cols">{{($index==0)?Label.getContent(col.label):col.label}}</th>
+	 			<th ng-repeat="col in reportCollection.data.cols" ng-style="{'text-align':($index==0)?'left':'right'}">{{($index==0)?Label.getContent(col.label):col.label}}</th>
 	 		</tr>		
 	 	</thead>
 	 	<tbody>

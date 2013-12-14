@@ -140,7 +140,7 @@ define(['app'], function(app) {
 	      					$scope.percentageShelf[0][1]=(1-$scope.surplusShelf[0][1])*100;
 	      					$scope.percentageShelf[1][0]=(1-$scope.surplusShelf[1][0])*100;
 	      					$scope.percentageShelf[1][1]=(1-$scope.surplusShelf[1][1])*100;
-	      					$scope.showSurplusShelf=$scope.surplusShelf[market-1][category-1];
+	      					$scope.showSurplusShelf=$scope.surplusShelf[market-1][category-1]*100;
 	      					$scope.showPercentageShelf=$scope.percentageShelf[market-1][category-1];
 
 							var allRetCatDecisions=loadSelectCategroy(market,category);
@@ -301,6 +301,10 @@ define(['app'], function(app) {
 			var checkRetailerPrice=function(category,market,brandName,varName,location,postion,addtionalIdx,dateOfBirth,value){
 				var d=$q.defer();
 				var url="",max=0;
+				var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
+				if(!filter.test(value)){
+					d.resolve('Input a number');
+				}
 				if(category=="Elecssories"){
 					category=1;
 				}else if(category=="HealthBeauty"){
@@ -335,13 +339,30 @@ define(['app'], function(app) {
 						});
 					}
 				}else{
-					//need a api
-					max=100;
-					if(value>max*3||value<0.5*max){
-						d.resolve('Input range :'+0.5*max+'~'+3*max);
-					}else{
-						d.resolve();
-					}
+					//retailer variant
+					var postData = {
+					    period : $rootScope.currentPeriod,
+					    seminar : $rootScope.user.seminar,
+					    brandName : product.brandName,
+					    varName : product.varName,
+					    catID : category,
+					    userRole :  $rootScope.userRoles.retailer,						
+					    userID : $rootScope.user.roleID,
+					}	
+					$http({
+						method:'POST',
+						url:'/getCurrentUnitCost',
+						data:postData
+					}).then(function(data){
+						currentUnitCost=data.data.result;
+						if(value>3*currentUnitCost||value<0.5*currentUnitCost){
+							d.resolve('Input range:'+0.5*currentUnitCost+'~'+3*currentUnitCost);
+						}else{
+							d.resolve();
+						}
+					},function(){
+						d.resolve('fail');
+					})
 				}
 				return d.promise;
 					
@@ -363,9 +384,9 @@ define(['app'], function(app) {
 			/*1-100%*/
 			var checkReductionRate=function(value){
 				var d=$q.defer();
-				var filter=/^\d+$/;
+				var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
 				if(!filter.test(value)){
-					d.resolve('Input a Integer');
+					d.resolve('Input a number');
 				}
 				if(value>100||value<0){
 					d.resolve('Input range:0~100');

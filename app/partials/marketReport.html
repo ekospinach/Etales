@@ -95,36 +95,23 @@
 			    	<li ng-repeat="newperiod in periods"><a ng-click="getReport(seminar,titleENG,newperiod,language)">{{newperiod}}</a></li>
 			  	</ul>
 			</div>
-			<!--
-			<div class="btn-group pull-right" data-toggle="buttons">
-			  	<label class="btn btn-default" ng-click="showReport(cat,market,'English')">
-			    	<input type="radio" name="options"> English
-			  	</label>
-			  	<label class="btn btn-default" ng-click="showReport(cat,market,'Chinese')">
-			    	<input type="radio" name="options"> Chinese
-			  	</label>
-			</div>
-		-->
-
-			<div style="clear:both"></div>
-			<!--<h3>{{optitle}}</h3>-->
-<!-- 			<div google-table charttable="charttable" style={{charttable.cssStyle}} id="charttable"/></div>		
-			<div google-chart chart="charttable" style={{charttable.cssStyle}} id="charttable"/></div>	 --> 	 
-		<table class="table table-bordered table-striped table-condensed">
-		 	<thead>
-		 		<tr>
-		 			<th ng-repeat="(i,col) in reportCollection.data.cols"><a ng-click="changeSorting(i)">{{Label.getContent(col.labelENG)}}</a></th>
-		 		</tr>		
-		 	</thead>
-		 	<tbody>
-		 		<tr ng-repeat="row in reportCollection.data.rows | orderBy:mySorting:sort.descending" >
-					<td ng-repeat = "value in row.c" ng-style="{'text-align':($index==0)?'left':'right'}"> {{value.v}}</td>
-		 		</tr>
-		 	</tbody>
-	 	</table>	
-
+			<div style="clear:both"></div> 
 		</div>
 	</div>
+	<table class="table table-bordered table-striped table-condensed">
+		<thead>
+			<tr>
+			 	<th ng-repeat="(i,col) in reportCollection.data.cols" ng-style="{'text-align':($index==0)?'left':'right'}">
+			 		<a ng-click="changeSorting(i)">{{Label.getContent(col.labelENG)}}</a>
+			 	</th>
+			</tr>		
+		</thead>
+		<tbody>
+			<tr ng-repeat="row in reportCollection.data.rows | orderBy:mySorting:sort.descending" >
+				<td ng-repeat = "value in row.c" ng-style="{'text-align':($index==0)?'left':'right'}"> {{value.v}}</td>
+			</tr>
+		</tbody>
+	</table>
 </div>
 
 
