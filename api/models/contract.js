@@ -290,7 +290,7 @@ exports.updateContractDetails = function(io){
 	  				if(doc.useBrandDetails){
 	  					doc.displayValue=(doc.brand_urbanValue+doc.brand_ruralValue)/2;
 	  				}else{
-	  					doc.displayValue=Math.round((doc.variant_A_urbanValue+doc.variant_A_ruralValue+doc.variant_B_urbanValue+doc.variant_B_ruralValue+doc.variant_C_urbanValue+doc.variant_C_ruralValue)/(queryCondition.count*2));
+	  					doc.displayValue=(doc.variant_A_urbanValue+doc.variant_A_ruralValue+doc.variant_B_urbanValue+doc.variant_B_ruralValue+doc.variant_C_urbanValue+doc.variant_C_ruralValue)/(queryCondition.count*2);
 	  				}
 	  				doc.displayValue=doc.displayValue*100+"%";
 	  				break;
@@ -312,7 +312,7 @@ exports.updateContractDetails = function(io){
 	  				if(doc.useBrandDetails){
 	  					doc.displayValue=(doc.brand_urbanValue+doc.brand_ruralValue)/2;
 	  				}else{
-	  					doc.displayValue=Math.round((doc.variant_A_urbanValue+doc.variant_A_ruralValue+doc.variant_B_urbanValue+doc.variant_B_ruralValue+doc.variant_C_urbanValue+doc.variant_C_ruralValue)/(queryCondition.count*2));
+	  					doc.displayValue=(doc.variant_A_urbanValue+doc.variant_A_ruralValue+doc.variant_B_urbanValue+doc.variant_B_ruralValue+doc.variant_C_urbanValue+doc.variant_C_ruralValue)/(queryCondition.count*2);
 	  				}
 	  				doc.displayValue=doc.displayValue*100+"%";
 	  				break;
@@ -320,7 +320,7 @@ exports.updateContractDetails = function(io){
 	  				if(doc.useBrandDetails){
 	  					doc.displayValue=(doc.brand_urbanValue+doc.brand_ruralValue)/2;
 	  				}else{
-	  					doc.displayValue=Math.round((doc.variant_A_urbanValue+doc.variant_A_ruralValue+doc.variant_B_urbanValue+doc.variant_B_ruralValue+doc.variant_C_urbanValue+doc.variant_C_ruralValue)/(queryCondition.count*2));
+	  					doc.displayValue=(doc.variant_A_urbanValue+doc.variant_A_ruralValue+doc.variant_B_urbanValue+doc.variant_B_ruralValue+doc.variant_C_urbanValue+doc.variant_C_ruralValue)/(queryCondition.count*2);
 	  				}
 	  				break;
 	  			case 'nc_OtherCompensation':

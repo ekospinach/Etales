@@ -49,7 +49,7 @@
                 <tr>
                     <td>{{Label.getContent('Minimum Order & Discount Rate')}}</td>
                     <td ng-repeat="proDetail in proDetailList[0]">
-                        <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetail.isVerified"></span>
+                        <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetail.isVerified&&proDetailList[4][$index].isVerified"></span>
                         <span>{{proDetail.displayValue}}</span>
                         <span class="pull-right" ng-show=producerEditable>
                             <a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)">{{Label.getContent('Edit')}}</a>
@@ -62,7 +62,7 @@
                 <tr>
                     <td>{{Label.getContent('Sales Target Volume & Bonus')}}</td>
                     <td ng-repeat="proDetail in proDetailList[1]">
-                        <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetail.isVerified"></span>
+                        <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="(proDetail.amount_or_rate?(proDetail.isVerified&&proDetailList[5][$index].isVerified):(proDetail.isVerified&&proDetailList[6][$index].isVerified))"></span>
                         <span>{{proDetail.displayValue}}</span>
                         <span class="pull-right" ng-show=producerEditable>
                             <a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)">{{Label.getContent('Edit')}}</a>
@@ -114,7 +114,7 @@
                 <tr>
                     <td>{{Label.getContent('Minimum Order & Discount Rate')}}</td>
                     <td ng-repeat="retDetail in retDetailList[0]">
-                        <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="retDetail.isVerified"></span>
+                        <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="retDetail.isVerified&&retDetailList[4][$index].isVerified"></span>
                         <span>{{retDetail.displayValue}}</span>
                         <span class="pull-right" ng-show=retailerEditable>
                             <a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)">{{Label.getContent('Edit')}}</a>
@@ -127,7 +127,7 @@
                 <tr>
                     <td>{{Label.getContent('Sales Target Volume & Bonus')}}</td>
                     <td ng-repeat="retDetail in retDetailList[1]">
-                        <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="retDetail.isVerified"></span>
+                        <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="(retDetail.amount_or_rate?(retDetail.isVerified&&retDetailList[5][$index].isVerified):(retDetail.isVerified&&retDetailList[6][$index].isVerified))"></span>
                         <span>{{retDetail.displayValue}}</span>
                         <span class="pull-right" ng-show=retailerEditable>
                             <a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)">{{Label.getContent('Edit')}}</a>
@@ -595,9 +595,6 @@
                                     <td>
                                         {{ editDetail.brand_urbanValue || 0 }}
                                     </td>
-                                    <!--<td>
-                                        {{editDetailBonusAmount.brand_urbanValue}}
-                                    </td>-->
                                     <td>---</td>
                                     <td>
                                         {{ editDetailBonusRate.brand_urbanValue || 0 }}
@@ -611,6 +608,7 @@
                                     <!--<td>
                                         {{editDetailBonusAmount.brand_ruralValue}}
                                     </td>-->
+                                    <td>---</td>
                                     <td>
                                         {{ editDetailBonusRate.brand_ruralValue || 0 }}
                                     </td>
