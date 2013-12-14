@@ -53,45 +53,37 @@
                 <tbody>
                   <tr>
                     <td>{{Label.getContent('Urban')}}{{Label.getContent('brand awareness')}}</td>
-                    <td>{{brandHistory.supplierView[0].awareness[0] * 100||'/'}}</td>
+                    <td>{{brandHistory.supplierView[0].awareness[0].toFixed(2) * 100||'/'}}</td>
                     <td>{{Label.getContent('Urban Advertising Off-Line')}}</td>
-                    <td>{{brandDecisionHistory.advertisingOffLine[0]||'/'}}</td>
+                    <td>{{brandDecisionHistory.advertisingOffLine[0].toFixed(2)||'/'}}</td>
                   </tr>     
                   <tr>
-                    <td>{{Label.getContent('Urban')}} {{Label.getContent('brand visibility share')}}
-                    </td>
-                    <td>{{brandHistory.channelView[3].visibilityShare[0]||'/'}}
-                    </td>                    
-                    <td>{{Label.getContent('Urban Traditional Trade Support')}}</td> 
-                    <td>{{brandDecisionHistory.supportTraditionalTrade[0]||'/'}}</td>
-                  </tr>           
-                  <tr>
                     <td>{{Label.getContent('Rural')}} {{Label.getContent('brand awareness')}}</td>                    
-                    <td>{{brandHistory.supplierView[0].awareness[1] * 100||'/'}}</td>                  
-                    <td>{{Label.getContent('Rural Advertising Off-Line')}}</td>                    
-                    <td>{{brandDecisionHistory.advertisingOffLine[1]||'/'}}</td>                                        
+                    <td>{{brandHistory.supplierView[0].awareness[1].toFixed(2) * 100||'/'}}</td>                  
+                    <td>{{Label.getContent('Urban Traditional Trade Support')}}</td> 
+                    <td>{{brandDecisionHistory.supportTraditionalTrade[0].toFixed(2)||'/'}}</td>
                   </tr>           
                   <tr>
-                    <td>{{Label.getContent('Rural')}} {{Label.getContent('brand visibility share')}}</td>                    
-                    <td>{{brandHistory.channelView[3].visibilityShare[1]||'/'}}</td>                    
+                    <td></td>
+                    <td></td>                    
+                    <td>{{Label.getContent('Rural Advertising Off-Line')}}</td>                    
+                    <td>{{brandDecisionHistory.advertisingOffLine[1].toFixed(2)||'/'}}</td>                                        
+                  </tr>           
+                  <tr>
+                    <td></td>
+                    <td></td>                    
                     <td>{{Label.getContent('Rural Traditional Trade Support')}}</td>                    
-                    <td>{{brandDecisionHistory.supportTraditionalTrade[1]||'/'}}</td>                                        
+                    <td>{{brandDecisionHistory.supportTraditionalTrade[1].toFixed(2)||'/'}}</td>                                        
                   </tr>           
                   <tr>
                     <td ng-show="false">Web trawler brand strength index</td>                    
                     <td ng-show="false">{{brandHistory.supplierView[0].socialNetworksScore[2].strength||'/'}}</td>                    
+                    <td ng-show="false">Web trawler brand sentiment index</td>                    
+                    <td ng-show="false">{{brandHistory.supplierView[0].socialNetworksScore[2].sentiment||'/'}}</td>                                  
                     <td></td>                    
                     <td></td>                                        
                     <td>{{Label.getContent('National advertising online')}}</td>                    
-                    <td>{{brandDecisionHistory.advertisingOnLine||'/'}}</td>                                        
-                  </tr>           
-                  <tr>
-                    <td ng-show="false">Web trawler brand sentiment index</td>                    
-                    <td ng-show="false">{{brandHistory.supplierView[0].socialNetworksScore[2].sentiment||'/'}}</td>                    
-                    <td></td>                    
-                    <td></td>                    
-                    <td>{{Label.getContent('E-Mall visibility investment')}}</td>                                        
-                    <td>{{brandDecisionHistory.supportEmall||'/'}}</td>                    
+                    <td>{{brandDecisionHistory.advertisingOnLine.toFixed(2)||'/'}}</td>                                        
                   </tr>           
                 </tbody>
               </table>
