@@ -25,7 +25,7 @@
     </div>
     <div>
         <div class="btn-group">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" ng-disabled="refreshingProcess">
                 {{Label.getContent('Category')}}<span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
@@ -52,10 +52,10 @@
                         <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetail.isVerified&&proDetailList[4][$index].isVerified"></span>
                         <span>{{proDetail.displayValue}}</span>
                         <span class="pull-right" ng-show=producerEditable>
-                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)">{{Label.getContent('Edit')}}</a>
+                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)" ng-disabled="refreshingProcess">{{Label.getContent('Edit')}}</a>
                         </span>
                         <span class="pull-right" ng-show=retailerEditable>
-                            <a class="btn btn-primary btn-xs" ng-click="openViewModal(proDetail)">{{Label.getContent('View')}}</a>
+                            <a class="btn btn-primary btn-xs" ng-click="openViewModal(proDetail)" ng-disabled="refreshingProcess">{{Label.getContent('View')}}</a>
                         </span>
                     </td>
                 </tr>
@@ -65,10 +65,10 @@
                         <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="(proDetail.amount_or_rate?(proDetail.isVerified&&proDetailList[5][$index].isVerified):(proDetail.isVerified&&proDetailList[6][$index].isVerified))"></span>
                         <span>{{proDetail.displayValue}}</span>
                         <span class="pull-right" ng-show=producerEditable>
-                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)">{{Label.getContent('Edit')}}</a>
+                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)" ng-disabled="refreshingProcess">{{Label.getContent('Edit')}}</a>
                         </span>
                         <span class="pull-right" ng-show=retailerEditable>
-                            <a class="btn btn-primary btn-xs" ng-click="openViewModal(proDetail)">{{Label.getContent('View')}}</a>
+                            <a class="btn btn-primary btn-xs" ng-click="openViewModal(proDetail)" ng-disabled="refreshingProcess">{{Label.getContent('View')}}</a>
                         </span>
                     </td>
                 </tr>
@@ -78,10 +78,10 @@
                         <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetail.isVerified"></span>
                         <span>{{proDetail.displayValue}}</span>
                         <span class="pull-right" ng-show=producerEditable>
-                           <a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)">{{Label.getContent('Edit')}}</a>
+                           <a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)" ng-disabled="refreshingProcess">{{Label.getContent('Edit')}}</a>
                        </span>
                        <span class="pull-right" ng-show=retailerEditable>
-                        <a class="btn btn-primary btn-xs" ng-click="openViewModal(proDetail)">{{Label.getContent('View')}}</a>
+                        <a class="btn btn-primary btn-xs" ng-click="openViewModal(proDetail)" ng-disabled="refreshingProcess">{{Label.getContent('View')}}</a>
                         </span>                
                     </td>
                 </tr>
@@ -91,16 +91,15 @@
                         <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetail.isVerified"></span>
                         <span>{{proDetail.displayValue}}</span>
                         <span class="pull-right" ng-show=producerEditable>
-                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)">{{Label.getContent('Edit')}}</a>
+                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)" ng-disabled="refreshingProcess">{{Label.getContent('Edit')}}</a>
                         </span>
                         <span class="pull-right" ng-show=retailerEditable>
-                            <a class="btn btn-primary btn-xs" ng-click="openViewModal(proDetail)">{{Label.getContent('View')}}</a>
+                            <a class="btn btn-primary btn-xs" ng-click="openViewModal(proDetail)" ng-disabled="refreshingProcess">{{Label.getContent('View')}}</a>
                         </span>                
                     </td>
                 </tr>
             </tbody>        
-        </table>
-    <br>                
+        </table>             
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -117,10 +116,10 @@
                         <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="retDetail.isVerified&&retDetailList[4][$index].isVerified"></span>
                         <span>{{retDetail.displayValue}}</span>
                         <span class="pull-right" ng-show=retailerEditable>
-                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)">{{Label.getContent('Edit')}}</a>
+                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)" ng-disabled="refreshingProcess">{{Label.getContent('Edit')}}</a>
                         </span>
                         <span class="pull-right" ng-show=producerEditable>
-                            <a class="btn btn-primary btn-xs" ng-click="openViewModal(retDetail)">{{Label.getContent('View')}}</a>
+                            <a class="btn btn-primary btn-xs" ng-click="openViewModal(retDetail)" ng-disabled="refreshingProcess">{{Label.getContent('View')}}</a>
                         </span>                
                     </td>
                 </tr>
@@ -130,10 +129,10 @@
                         <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="(retDetail.amount_or_rate?(retDetail.isVerified&&retDetailList[5][$index].isVerified):(retDetail.isVerified&&retDetailList[6][$index].isVerified))"></span>
                         <span>{{retDetail.displayValue}}</span>
                         <span class="pull-right" ng-show=retailerEditable>
-                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)">{{Label.getContent('Edit')}}</a>
+                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)" ng-disabled="refreshingProcess">{{Label.getContent('Edit')}}</a>
                         </span>
                         <span class="pull-right" ng-show=producerEditable>
-                            <a class="btn btn-primary btn-xs" ng-click="openViewModal(retDetail)">{{Label.getContent('View')}}</a>
+                            <a class="btn btn-primary btn-xs" ng-click="openViewModal(retDetail)" ng-disabled="refreshingProcess">{{Label.getContent('View')}}</a>
                         </span>                        
                     </td>
                 </tr>
@@ -143,10 +142,10 @@
                         <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="retDetail.isVerified"></span>
                         <span>{{retDetail.displayValue}}</span>
                         <span class="pull-right" ng-show=retailerEditable>
-                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)">{{Label.getContent('Edit')}}</a>
+                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)" ng-disabled="refreshingProcess">{{Label.getContent('Edit')}}</a>
                         </span>
                         <span class="pull-right" ng-show=producerEditable>
-                            <a class="btn btn-primary btn-xs" ng-click="openViewModal(retDetail)">{{Label.getContent('View')}}</a>
+                            <a class="btn btn-primary btn-xs" ng-click="openViewModal(retDetail)" ng-disabled="refreshingProcess">{{Label.getContent('View')}}</a>
                         </span>                
                     </td>
                 </tr>
@@ -156,10 +155,10 @@
                         <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="retDetail.isVerified"></span>
                         <span>{{retDetail.displayValue}}</span>
                         <span class="pull-right" ng-show=retailerEditable>
-                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)">{{Label.getContent('Edit')}}</a>
+                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)" ng-disabled="refreshingProcess">{{Label.getContent('Edit')}}</a>
                         </span>
                         <span class="pull-right" ng-show=producerEditable>
-                            <a class="btn btn-primary btn-xs" ng-click="openViewModal(retDetail)">{{Label.getContent('View')}}</a>
+                            <a class="btn btn-primary btn-xs" ng-click="openViewModal(retDetail)" ng-disabled="refreshingProcess">{{Label.getContent('View')}}</a>
                         </span>                
                     </td>
                 </tr>
@@ -167,8 +166,8 @@
         </table>
     </div>
     <div>
-        <a class="btn btn-primary" ng-click="compare(contractInfo)">{{Label.getContent('Compare and Refresh')}}</a>
-        <a class="btn btn-primary" ng-click="copyProposal(contractInfo)" ng-show=retailerEditable>{{Label.getContent('Copy from peer proposal')}}</a>        
+        <a class="btn btn-primary" ng-click="compare(contractInfo)" ng-disabled="refreshingProcess">{{Label.getContent('Compare and Refresh')}}</a>
+        <a class="btn btn-primary" ng-click="copyProposal(contractInfo)" ng-show=retailerEditable ng-disabled="refreshingProcess">{{Label.getContent('Copy from peer proposal')}}</a>        
     </div>
 </div>
 
@@ -188,10 +187,10 @@
                             <td style="width:60%">{{Label.getContent('Please choose decision level')}}:</td>
                             <td style="width:35%">
                                 <div class="btn-group" data-toggle="buttons">
-                                    <label class="btn btn-default" ng-click="setShowDetailType('brand',editDetail)">
+                                    <label class="btn btn-default" ng-click="setShowDetailType('brand',editDetail)" ng-class="((editDetail.useBrandDetails)?'active':'')">
                                         <input type="radio" name="detailType">{{Label.getContent('Brand')}}
                                     </label>
-                                    <label class="btn btn-default" ng-click="setShowDetailType('variant',editDetail)">
+                                    <label class="btn btn-default" ng-click="setShowDetailType('variant',editDetail)" ng-class="((editDetail.useVariantDetails)?'active':'')">
                                         <input type="radio" name="detailType">{{Label.getContent('Variant')}}
                                     </label>
                                 </div>
@@ -201,10 +200,10 @@
                             <td>{{Label.getContent('Please choose bonus way')}}:</td>
                             <td>
                                 <div class="btn-group" data-toggle="buttons">
-                                    <label class="btn btn-default" ng-click="setShowBonusType('Amout',editDetail)">
+                                    <label class="btn btn-default" ng-click="setShowBonusType('Amout',editDetail)" ng-class="((editDetail.amount_or_rate)?'active':'')">
                                         <input type="radio" name="amoutRate">{{Label.getContent('Amount')}}
                                     </label>
-                                    <label class="btn btn-default" ng-click="setShowBonusType('Rate',editDetail)">
+                                    <label class="btn btn-default" ng-click="setShowBonusType('Rate',editDetail)" ng-class="((editDetail.amount_or_rate)?'':'active')">
                                         <input type="radio" name="amoutRate">{{Label.getContent('Rate')}}
                                     </label>
                                 </div>
