@@ -143,9 +143,11 @@ define(['app'], function(app) {
 				      			}
 				      			if($scope.pageBase.retMarketDecision[i].categorySurfaceShare[0]>=0&&$scope.pageBase.retMarketDecision[i].categorySurfaceShare[0]<=1){
 				      				$scope.pageBase.retMarketDecision[i].categorySurfaceShare[0]*=100;
+				      				$scope.pageBase.retMarketDecision[i].categorySurfaceShare[0]=$scope.pageBase.retMarketDecision[i].categorySurfaceShare[0].toFixed(2);
 				      			}
 				      			if($scope.pageBase.retMarketDecision[i].categorySurfaceShare[1]>=0&&$scope.pageBase.retMarketDecision[i].categorySurfaceShare[1]<=1){
 				      				$scope.pageBase.retMarketDecision[i].categorySurfaceShare[1]*=100;
+				      				$scope.pageBase.retMarketDecision[i].categorySurfaceShare[1]=$scope.pageBase.retMarketDecision[i].categorySurfaceShare[1].toFixed(2);
 				      			}				      			
 				      			markets.push($scope.pageBase.retMarketDecision[i]);
 				      		}
