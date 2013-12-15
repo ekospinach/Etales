@@ -24,7 +24,7 @@
         <div class="pull-right" style="width:40%">
           <progress percent="percentageExpend" class="progress active"></progress>
           <small>
-            <em>{{Label.getContent('Available Budget')}}:{{surplusExpend.toFixed(2)}}</em>
+            <em>{{Label.getContent('Available Budget')}}:{{surplusExpend}}</em>
           </small>
           <!--<progress percent="ePercentageProduction" class="progress progress-suceess active progress-striped">{{eSurplusProduction}}</progress>
           <small>
@@ -90,7 +90,7 @@
                     <td></td>
                     <td></td>
                     <td ng-show="isElecssories">{{Label.getContent('Quality-of-Raw-Materials')}}</td>  
-                    <td ng-show="isHealthBeauty">{{Label.getContent('Smootherner Level')}}</td>                  
+                    <td ng-show="isHealthBeauty">{{Label.getContent('Smoothener Level')}}</td>                  
                     <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[2]||'/'}}</td>                    
                     <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[2]||'/'}}</td>                                        
                   </tr>                                  
