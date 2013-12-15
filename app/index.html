@@ -48,7 +48,7 @@
 				    <ul class="nav navbar-nav navbar-right" data-access-level="{{ accessLevels.playerView }}">  
 				        <li id="userInfo"  class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
-									<strong>{{getUserRoleText(user.role)}}</strong>
+									<strong>{{Label.getContent(getRoleNormal(user.role))}}  {{user.roleID}}</strong>
 									<b class="caret"></b>
 								</a>
 					        <ul class="dropdown-menu">
@@ -72,7 +72,7 @@
 	    <footer class="{{loginFooter}}" role="contentinfo" id="pagefooter" style="display:none">
 	    	<div class="{{loginDiv}}">
 		    	<ul class="{{loginLink}}" style="margin-left:0px">
-		    		<li class="current-version"> Currently v0.0.1 </li>
+		    		<li class="current-version"> {{Label.getContent('Currently')}} v0.0.1 </li>
 		  		  	<li>
 		    			<a href="/#/test">Test Entrance</a>
 		    		</li>
