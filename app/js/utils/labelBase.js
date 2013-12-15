@@ -303,7 +303,7 @@ var getLabelBase = function(){
 		{id:'HealthBeauties',  ENG:'HealthBeauties',  CHN:'美容健康品类',  RUS:''},
 		{id:'Health&Beauty',  ENG:'HealthBeauties',  CHN:'美容健康品类',  RUS:''},		
 		{id:'Available Budget',  ENG:'Total Available Budget for Remaing Period',  CHN:'剩余阶段可用的总预算',  RUS:''},
-		{id:'Producer Available Capacity',  ENG:'Available Capacity',  CHN:'可用的产能',  RUS:''},
+		{id:'Producer Available Capacity',  ENG:'Current Period Available Capacity',  CHN:'当前阶段可用的产能',  RUS:''},
 		{id:'Brand',  ENG:'Brand',  CHN:'品牌',  RUS:''},
 		{id:'Variant',  ENG:'Variant',  CHN:'单品',  RUS:''},
 		{id:'More',  ENG:'More',  CHN:'更多',  RUS:''},

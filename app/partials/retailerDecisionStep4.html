@@ -30,9 +30,9 @@
               </ul>
           </div>  
         </div>
-        <div class="pull-right" style="width:40%">
-          <progress percent="percentageExpend" class="progress active"></progress>
-          <small>
+        <div class="pull-right" style="width:40%" >
+          <progress percent="percentageExpend" class="progress active" ng-show="false"></progress>
+          <small ng-show="false">
             <em>{{Label.getContent('Available Budget')}}:{{surplusExpend.toFixed(2)}}</em>
           </small>
           <progress percent="showPercentageShelf" class="progress progress-suceess active progress-striped"></progress>
