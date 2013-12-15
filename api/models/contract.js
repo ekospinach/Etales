@@ -88,25 +88,6 @@ exports.addContract = function(io){
 			});
   		}
   	})
-  // 	if(contract.count({seminar: req.body.seminar,period:req.body.period, producerID:req.body.producerID, retailerID:req.body.retailerID}).count!=0){
-  // 		res.send(404,'already have a contract');
-  // 	}else{
-	 //  	var newContract=new contract({
-	 //  		contractCode : req.body.contractCode,
-		// 	period : req.body.period,
-		// 	seminar : req.body.seminar,
-		// 	draftedByCompanyID : req.body.draftedByCompanyID,
-		// 	producerID : req.body.producerID,
-		// 	retailerID : req.body.retailerID,
-		// 	isDraftFinished : false
-	 //  	});
-	 //  	/*need add Contract Detail*/
-	 //  	newContract.save(function(err){
-		// 	if(err) next(new Error(err));
-		// 	io.sockets.emit('contarctListChanged', {producerID: req.body.producerID, retailerID: req.body.retailerID}); 
-		// 	res.send(200,newContract);
-		// });
-  // 	}
   }
 }
 
@@ -292,7 +273,7 @@ exports.updateContractDetails = function(io){
 	  				}else{
 	  					doc.displayValue=(doc.variant_A_urbanValue+doc.variant_A_ruralValue+doc.variant_B_urbanValue+doc.variant_B_ruralValue+doc.variant_C_urbanValue+doc.variant_C_ruralValue)/(queryCondition.count*2);
 	  				}
-	  				doc.displayValue=doc.displayValue*100+"%";
+	  				doc.displayValue=(doc.displayValue*100).toFixed(2)+"%";
 	  				break;
 	  			case 'nc_SalesTargetVolume':
 	  			  	if(doc.useBrandDetails){
@@ -314,7 +295,7 @@ exports.updateContractDetails = function(io){
 	  				}else{
 	  					doc.displayValue=(doc.variant_A_urbanValue+doc.variant_A_ruralValue+doc.variant_B_urbanValue+doc.variant_B_ruralValue+doc.variant_C_urbanValue+doc.variant_C_ruralValue)/(queryCondition.count*2);
 	  				}
-	  				doc.displayValue=doc.displayValue*100+"%";
+	  				doc.displayValue=(doc.displayValue*100).toFixed(2)+"%";
 	  				break;
 	  			case 'nc_PaymentDays':
 	  				if(doc.useBrandDetails){
