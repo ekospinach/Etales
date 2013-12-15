@@ -8,15 +8,15 @@ define(['app'], function(app) {
 		    $rootScope.loginDiv="container";
 
 			$scope.packs = [{
-				value: 1, text: 'SL_BASE'
+				value: 1, text: Label.getContent('SL_BASE')
 			},{
-				value: 2, text: 'SL_FAIR'
+				value: 2, text: Label.getContent('SL_FAIR')
 			},{
-				value: 3, text: 'SL_MEDIUM'
+				value: 3, text: Label.getContent('SL_MEDIUM')
 			},{
-				value: 4, text: 'SL_ENHANCED'
+				value: 4, text: Label.getContent('SL_ENHANCED')
 			},{
-				value: 5, text: 'SL_PREMIUM'
+				value: 5, text: Label.getContent('SL_PREMIUM')
 			}]; 
 			$scope.language=Label.getCurrentLanguage(),
 			$scope.retailerID=$rootScope.user.username.substring($rootScope.user.username.length-1);

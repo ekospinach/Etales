@@ -93,9 +93,9 @@
                 <th ng-repeat='market in markets'>
                   <div style="clear:both"></div>
                   <p class="pull-left">
-                    {{Label.getContent(marketName)}}
+                    {{Label.getContent(market.marketName)}}
                   </p>
-                  <button type="button" class="btn btn-primary btn-xs pull-left" style="margin-left:5px" ng-click="getMarketMoreInfo(market.marketID)">More</button>
+                  <button type="button" class="btn btn-primary btn-xs pull-left" style="margin-left:5px" ng-click="getMarketMoreInfo(market.marketID)">{{Label.getContent('More')}}</button>
                   <div style="clear:both"></div>
                 </th>
               </tr>              

@@ -14,11 +14,11 @@ define(['app'], function(app) {
 			$scope.isCollapsed=true;
 
 			$scope.packs = [{
-				value: 1, text: 'ECONOMY'
+				value: 1, text: Label.getContent('ECONOMY')
 			},{
-				value: 2, text: 'STANDARD'
+				value: 2, text: Label.getContent('STANDARD')
 			},{
-				value: 3, text: 'PREMIUM'
+				value: 3, text: Label.getContent('PREMIUM')
 			}]; 
 
 			$scope.parameter="NewBrand";/*default add new Brand*/

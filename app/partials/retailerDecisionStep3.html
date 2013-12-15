@@ -157,10 +157,10 @@
               </tr>
               <tr>
                 <th>
-                  <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Discontinue this product Info')}}" popover-title="{{Label.getContent('Discontinue this product')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Discontinue this product')}}<span style="color:red">*</span></p>
+                  <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Retailer Discontinue this product Info')}}" popover-title="{{Label.getContent('Retailer Discontinue this product')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Retailer Discontinue this product')}}<span style="color:red">*</span></p>
                 </th>
                 <th ng-repeat='product in products'>
-                  <a href="#" editable-checkbox="product.discontinue" e-title="DisContinue this product?" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'discontinue','0',$index)">{{ product.discontinue && Label.getContent('DisContinue') || Label.getContent('Continue') }}</a>
+                  <a href="#" editable-checkbox="product.discontinue" e-title="{{Label.getContent('Retailer Discontinue this product')}}?" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'discontinue','0',$index)">{{ product.discontinue && Label.getContent('Retailer DisContinue') || Label.getContent('Retailer Continue') }}</a>
                 </th>
               </tr>    
             </tbody>
@@ -187,7 +187,7 @@
         <div class="modal-body">
           <div class="control-group">
             <tabset>
-              <tab heading="Launch New Brand" select="setAddNewBrand()">
+              <tab heading="{{Label.getContent('Launch New Brand')}}" select="setAddNewBrand()">
                 <div class="form">
                   <div class="form-group">
                     <label for="lauchNewCategory">{{Label.getContent('Choose Catagory')}}:</label>
@@ -213,7 +213,7 @@
                   </div>
                 </div>
               </tab>
-              <tab heading="Add new product under existed Brand" select="setAddNewProUnderBrand()">
+              <tab heading="{{Label.getContent('Under Existed Brand')}}" select="setAddNewProUnderBrand()">
                 <div class="form">
                   <div class="form-group">
                     <label for="addNewCategory">{{Label.getContent('Choose Catagory')}}:</label>

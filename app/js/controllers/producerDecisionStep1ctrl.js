@@ -14,11 +14,11 @@ define(['app'], function(app) {
 			$scope.isCollapsed=true;
 
 			$scope.packs = [{
-				value: 1, text: 'ECONOMY'
+				value: 1, text: Label.getContent('ECONOMY')
 			},{
-				value: 2, text: 'STANDARD'
+				value: 2, text: Label.getContent('STANDARD')
 			},{
-				value: 3, text: 'PREMIUM'
+				value: 3, text: Label.getContent('PREMIUM')
 			}]; 
 
 
@@ -208,8 +208,8 @@ define(['app'], function(app) {
 	                					else if(products[count].packFormat=="PREMIUM"){
 	                						products[count].packFormat=3;
 	                					}
-	                					products[count].currentPriceBM=products[count].currentPriceBM.toFixed(2);
-	                					products[count].currentPriceEmall=products[count].currentPriceEmall.toFixed(2);
+	                					products[count].currentPriceBM=parseFloat(products[count].currentPriceBM).toFixed(2);
+	                					products[count].currentPriceEmall=parseFloat(products[count].currentPriceEmall).toFixed(2);
 	                					count++;
 	                				}
 	                			}
