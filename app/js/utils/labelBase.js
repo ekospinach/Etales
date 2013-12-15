@@ -8,7 +8,7 @@ var getLabelBase = function(){
 		{id:'-Stores Operating Costs ($mln)',  ENG:'-Stores Operating Costs ($mln)',  CHN:'',  RUS:''},
 		{id:'-Amortisation ($mln)',  ENG:'-Amortisation ($mln)',  CHN:'',  RUS:''},
 		/*homepage*/
-		{id:'eTales Info',  ENG:'Best-in-class professional development tool among the world’s most respected companies and leading business schools',  CHN:'Best-in-class professional development tool among the world’s most respected companies and leading business schools',  RUS:''},
+		{id:'eTales Info',  ENG:'Best-in-class professional development tool among the world’s most respected companies and leading business schools',  CHN:'首次呈现和探索零售商、供应商、电商和消费者在社交媒体盛行时代的生存和胜出之道。',  RUS:''},
 		{id:'Get started',  ENG:'Get started',  CHN:'现在开始',  RUS:''},
 		{id:'Admin entrance',  ENG:'Admin entrance',  CHN:'管理员入口',  RUS:''},
 		{id:'Currently',  ENG:'Currently',  CHN:'当前版本',  RUS:''},
