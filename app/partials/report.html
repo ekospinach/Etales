@@ -155,7 +155,7 @@
  	 <table class="table table-bordered table-striped table-condensed">
 	 	<thead>
 	 		<tr>
-	 			<th ng-repeat="col in reportCollection.data.cols" ng-style="{'text-align':($index==0)?'left':'right'}">{{($index==0)?Label.getContent(col.label):col.label}}</th>
+	 			<th ng-repeat="col in reportCollection.data.cols" ng-style="{'text-align':($index==0)?'left':'right'}">{{($index==0||col.label=="Company total"||col.label=="Elecsories"||col.label=="Health&Beauty"||col.label=="Retailer 1"||col.label=="Retailer 2"||col.label=="eMall"||col.label=="Traditional Trade"||col.label=="Manufacturer 1"||col.label=="Manufacturer 2"||col.label=="Manufacturer 3"||col.label=="Private label")?Label.getContent(col.label):col.label}}</th>
 	 		</tr>		
 	 	</thead>
 	 	<tbody>
