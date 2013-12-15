@@ -699,7 +699,7 @@ define(['app'], function(app) {
 					newBrand.brandID=calculateBrandID(proBrandsDecision,$scope.producerID);
 					newBrand.brandName=$scope.brandFirstName+$scope.lauchNewBrandName+$rootScope.user.username.substring($rootScope.user.username.length-1);
 					newBrand.paranetCompanyID=$scope.producerID;
-					newBrand.dateOfDeath="";
+					newBrand.dateOfDeath=0;
 					newBrand.dateOfBirth=$scope.period;
 					newBrand.advertisingOffLine=new Array(0,0);
 					newBrand.advertisingOnLine=0;

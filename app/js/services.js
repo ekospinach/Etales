@@ -414,12 +414,22 @@ define(['angular',
 							url:'/deleteDetailData',
 							data:queryCondition
 						})
-					}).then(function(data){
-						console.log('success');
-						$rootScope.$broadcast('producerDecisionBaseChanged', base);
-					},function(){
-						$rootScope.$broadcast('producerDecisionBaseChanged', base);
-					});
+					 }).then(function(data){
+					 	queryCondition={
+					 		brandName:brandName,
+					 		varName:varName,
+					 		categoryID:categoryID
+					 	}
+					 }).then(function(data){
+					 	$rootScope.$broadcast('producerDecisionBaseChanged', base);
+					 },function(){
+					 	$rootScope.$broadcast('producerDecisionBaseChanged', base);
+					 })
+					// 	console.log('success');
+					// 	$rootScope.$broadcast('producerDecisionBaseChanged', base);
+					// },function(){
+					// 	$rootScope.$broadcast('producerDecisionBaseChanged', base);
+					// });
 				},
 				getBase : function(){
 					return base;

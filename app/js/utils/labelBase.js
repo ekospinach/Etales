@@ -25,6 +25,7 @@ var getLabelBase = function(){
 		{id:'Admin Login',  ENG:'Admin Login',  CHN:'管理员登陆',  RUS:''},	
 		{id:'Facilitator',  ENG:'Facilitator',  CHN:'讲师',  RUS:''},	
 		{id:'Guest',  ENG:'Guest',  CHN:'',  RUS:''},	
+		/*error info*/
 		{id:'',  ENG:'',  CHN:'',  RUS:''},	
 		{id:'',  ENG:'',  CHN:'',  RUS:''},	
 		{id:'',  ENG:'',  CHN:'',  RUS:''},	
