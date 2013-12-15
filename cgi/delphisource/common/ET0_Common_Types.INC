@@ -30,11 +30,15 @@ Type
   TPrivateLabels      = 1..PLsMax;
   TProBrands          = 1..ProBrandsMax;
   TProducers          = 1..ProsMax;
+  TProducersPlus      = 1..ProsMaxPlus;
   TRetVariants        = 1..RetVariantsMax;
   TSegments           = 1..SegmentsMax;
   TSegmentsTotal      = 1..SegmentsMaxTotal;
+  THouseholds         = 1..HouseholdsGroupsMax;
+  THouseholdsTotal    = 1..HouseholdsGroupsMaxTotal;
   TSeminarCode        = array[0..SeminarCodeLength] of widechar;
   TServiceLevel       = ( SL_BASE, SL_FAIR, SL_MEDIUM, SL_ENHANCED, SL_PREMIUM );
+  TShoppersKind       = ( NETIZENS, MIXED, BMS, ALLSHOPPERS );
   TSimulationSpan     = 1..FutureEnd;
   TSpecsIndices       = 1..MaxSpecsIndex;
   TSpecs              = 1..SpecsMax;
@@ -50,6 +54,8 @@ Type
   TVarPriority        = ( NO_PREFERENCE, BM_PREFERENCE, EMALL_PREFERENCE );
   TVariants           = 1..AllVariantsMax;
   TWeeksInPeriod      = 0..PeriodLastWeek;
+  
+  TStoreDimensions    = 1..StoresDimsMax;
 
   TMarketsDetails = array[TMarkets] of single;
   TMarketsTotalDetails = array[TMarketsTotal] of single;
@@ -74,7 +80,12 @@ Type
   
   TSegmentsData              = array[TSegments] of single;
   TSegmentsTotalData         = array[TSegmentsTotal] of single;
+  TCategoriesSegmentsTotalData = array[TCategories] of TSegmentsTotalData;
 
+  THouseholdsData            = array[THouseholds] of single;
+  THouseholdsTotalData       = array[THouseholdsTotal] of single;
+
+  TShoppersData              = array[TShoppersKind] of single;
 
   TMarketsBytes              = array[TMarkets] of byte;       { identifies current markets, ID taken from TMarketsUniverse }
   TCategoriesBytes           = array[TCategories] of byte;    { identifies current categories, ID taken from TCategoriesUniverse }
@@ -99,8 +110,9 @@ Type
 	
   TWebTrawlerIndices        = array[TWebTrawlerDimensions] of single; 
 
-  TPackFormatDetails         = array[TVarPackFormat] of single;
-	
+  TPackFormatDetails        = array[TVarPackFormat] of single;
+
+
 	
   
 
@@ -332,19 +344,20 @@ Type
 
 TConfigurationRecord
     = record
-        cr_AdministratorFilesLocation : THCD_PathCharArray;
-        cr_ProgramsFilesLocation      : THCD_PathCharArray;
-        cr_SimulationSpan             : TSimulationSpan;
-        cr_TraceActive                : boolean;
-        cr_SeminarCode                : TSeminarCode;
-        cr_Market_1_ID                : byte;
-        cr_Market_2_ID                : byte;
-        cr_Category_1_ID              : byte;
-        cr_Category_2_ID              : byte;
-        cr_TraditionalTradeActive     : boolean;
-        cr_E_MallActive               : boolean;
-        cr_VirtualSupplierActive      : boolean;
-        cr_IndependentMarkets         : boolean;   
+        cr_AdministratorFilesLocation   : THCD_PathCharArray;
+        cr_ProgramsFilesLocation        : THCD_PathCharArray;
+        cr_SimulationSpan               : TSimulationSpan;
+        cr_TraceActive                  : boolean;
+        cr_SeminarCode                  : TSeminarCode;
+        cr_Market_1_ID                  : byte;
+        cr_Market_2_ID                  : byte;
+        cr_Category_1_ID                : byte;
+        cr_Category_2_ID                : byte;
+        cr_TraditionalTradeActive       : boolean;
+        cr_E_MallActive                 : boolean;
+        cr_VirtualSupplierActive        : boolean;
+        cr_IndependentMarkets           : boolean; 
+        cr_ForceNextDecisionsOverwrite  : boolean;
 {
         cr_OperatingMode              : TOperatingMode;
         cr_Language                   : THCD_Language;
@@ -386,12 +399,14 @@ TOneQuarterExogenous =
       ProdCost_LogisticsCost          : single;
       ProdCost_IngredientPrices       : TAllIngredientsDetails;
       RequiredNominalPricesIndex      : TSegmentsData;    { Used instead of inflation to gauge prices evolution. Ratios above RNPI result in reducing Consumption Rate growth } 
+      RetailerAverageBudgetPerPeriod  : single;
       RetAmortisationRate             : single;  
       RetEquipmentRunningRate         : single;
       RetRealEstateRentRate           : single;
       ShelfSpaceMinimum               : single; 
       ShelfOptimisationCostPerSqMeter : single;    
       StaffCostPerSqMeter             : TServiceLevelsData;
+      SupplierAverageBudgetPerPeriod  : single;
       TaxRate                         : single;
       TraditionalTradeMarkup          : single;
       TraditionalTradePriceCorrection : single;

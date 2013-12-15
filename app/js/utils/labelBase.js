@@ -13,7 +13,7 @@ var getLabelBase = function(){
 		{id:'Private label',  ENG:'Private label',  CHN:'自有品牌',  RUS:''},	
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
 		/*homepage*/
-		{id:'eTales Info',  ENG:'Best-in-class professional development tool among the world’s most respected companies and leading business schools',  CHN:'Best-in-class professional development tool among the world’s most respected companies and leading business schools',  RUS:''},
+		{id:'eTales Info',  ENG:'Best-in-class professional development tool among the world’s most respected companies and leading business schools',  CHN:'首次呈现和探索零售商、供应商、电商和消费者在社交媒体盛行时代的生存和胜出之道。',  RUS:''},
 		{id:'Get started',  ENG:'Get started',  CHN:'现在开始',  RUS:''},
 		{id:'Admin entrance',  ENG:'Admin entrance',  CHN:'管理员入口',  RUS:''},
 		{id:'Currently',  ENG:'Currently',  CHN:'当前版本',  RUS:''},
@@ -179,6 +179,9 @@ var getLabelBase = function(){
 		/*map*/
 		{id:'Company summary',  ENG:'Company summary',  CHN:'公司信息汇总',  RUS:''},
 		{id:'Company summary Info',  ENG:'',  CHN:'公司信息汇总',  RUS:''},
+		{id:'Perception Map',  ENG:'Perception Map',  CHN:'感知图',  RUS:''},
+		{id:'Perception Map Info',  ENG:'A type of chart widely used in marketing to graphically show how consumers perceive brands. In some cases brand positioning is compared with consumer segments\' ideal points. In eTales however vector positioning model is used. It means that having no ideal point as such, all segments will prefer brands with higher (or lower) perception if this perception dimension is of relative importance to consumers of this segment.',  CHN:'A type of chart widely used in marketing to graphically show how consumers perceive brands. In some cases brand positioning is compared with consumer segments\' ideal points. In eTales however vector positioning model is used. It means that having no ideal point as such, all segments will prefer brands with higher (or lower) perception if this perception dimension is of relative importance to consumers of this segment.',  RUS:''},		
+		{id:'Perception Map popInfo',  ENG:'Position your mouse over brand name to see change dinamics and additional market information.',  CHN:'Position your mouse over brand name to see change dinamics and additional market information.',  RUS:''},		
 		{id:'Check All',  ENG:'Check All',  CHN:'选择全部',  RUS:''},
 		{id:'Un-Check All',  ENG:'Un-Check All',  CHN:'取消全部',  RUS:''},
 		{id:'Generate Map',  ENG:'Generate Map',  CHN:'生成图表',  RUS:''},
