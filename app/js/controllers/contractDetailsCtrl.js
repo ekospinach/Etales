@@ -54,6 +54,7 @@ define(['app'], function(app) {
 						$http({method:'GET', url:urls[idx]}).then(function(data){
 
 							//console.log('get data:' + data.data[0]);
+							$scope.refreshingProcessLabel = (idx/urls.length)*100;
 							if(data.data.length!=0){ details.push(data.data[0]);}
 							else{ details.push(data.data); }
 						}, function(data){
@@ -98,6 +99,7 @@ define(['app'], function(app) {
 											}
 										}
 									};
+
 									//console.log('load details:' + $scope.details);									
 									renderContractDetailsByCategory('Elecssories');
 								}																									
