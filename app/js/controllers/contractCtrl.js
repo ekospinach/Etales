@@ -82,7 +82,8 @@ define(['app'], function(app) {
 
 
 			$scope.openInsertModal=function(){
-				$scope.contractCodeLastName="_"+$rootScope.user.seminar+'_'+$rootScope.rootPeriod;
+				$scope.newRetailerID=1;
+				//$scope.contractCodeLastName="_"+$rootScope.user.seminar+'_'+$rootScope.rootPeriod;
 				$scope.insertModal=true;
 				//console.log($scope.contractCodeLastName);
 			}
@@ -92,22 +93,27 @@ define(['app'], function(app) {
 			}
 
 			$scope.addNewContract=function(){
-				var data={
-					'contractCode':$scope.newContractCode+'_'+$rootScope.user.seminar+'_'+$rootScope.currentPeriod,
-					'seminar':$rootScope.user.seminar,
-					'period':$rootScope.currentPeriod,
-					'draftedByCompanyID':$rootScope.user.username.substring($rootScope.user.username.length-1),
-					'producerID':$rootScope.user.username.substring($rootScope.user.username.length-1),
-					'retailerID':$scope.newRetailerID
+				if($scope.newContractCode.length>0&&$scope.newContractCode.length<10){
+					var data={
+						'contractCode':$scope.newContractCode+'_'+$rootScope.user.seminar+'_'+$rootScope.currentPeriod,
+						'seminar':$rootScope.user.seminar,
+						'period':$rootScope.currentPeriod,
+						'draftedByCompanyID':$rootScope.user.username.substring($rootScope.user.username.length-1),
+						'producerID':$rootScope.user.username.substring($rootScope.user.username.length-1),
+						'retailerID':$scope.newRetailerID
+					}
+					$http({method: 'POST', url: '/addContract',data:data}).success(function(data){
+						//console.log(data);
+						$scope.allContracts.push(data);
+						showbubleMsg('Insert success',2);
+						closeInsertModal();
+					}).error(function(err){
+						showbubleMsg('Insert fail, ' + err,1);
+					})
+				}else{
+					showbubleMsg('Insert fail',1);
 				}
-				$http({method: 'POST', url: '/addContract',data:data}).success(function(data){
-					//console.log(data);
-					$scope.allContracts.push(data);
-					showbubleMsg('Insert success',2);
-					closeInsertModal();
-				}).error(function(err){
-					showbubleMsg('Insert failure, ' + err,1);
-				})
+				
 				//$http
 			}
 
@@ -132,22 +138,27 @@ define(['app'], function(app) {
 				}else{
 					retailerID=1;
 				}
-				var data={
-					'contractCode':$scope.duplicateContractCode+'_'+$rootScope.user.seminar+'_'+$rootScope.currentPeriod,
-					'seminar':$rootScope.user.seminar,
-					'period':$rootScope.currentPeriod,
-					'draftedByCompanyID':$rootScope.user.username.substring($rootScope.user.username.length-1),
-					'producerID':$rootScope.user.username.substring($rootScope.user.username.length-1),
-					'retailerID':retailerID,
-					'duplicateCode':contract.contractCode
+				if($scope.duplicateContractCode.length>0&&$scope.duplicateContractCode.length<10){
+					var data={
+						'contractCode':$scope.duplicateContractCode+'_'+$rootScope.user.seminar+'_'+$rootScope.currentPeriod,
+						'seminar':$rootScope.user.seminar,
+						'period':$rootScope.currentPeriod,
+						'draftedByCompanyID':$rootScope.user.username.substring($rootScope.user.username.length-1),
+						'producerID':$rootScope.user.username.substring($rootScope.user.username.length-1),
+						'retailerID':retailerID,
+						'duplicateCode':contract.contractCode
+					}
+					$http({method: 'POST', url: '/duplicateContract',data:data}).success(function(data){
+						$scope.allContracts.push(data);
+						showbubleMsg('Insert success',5);
+						closeDuplicateModal();
+					}).error(function(err){
+						showbubleMsg('Insert fail, ' + err,4);
+					})
+				}else{
+					showbubleMsg('Inser fail',4);
 				}
-				$http({method: 'POST', url: '/duplicateContract',data:data}).success(function(data){
-					$scope.allContracts.push(data);
-					showbubleMsg('Insert success',5);
-					closeDuplicateModal();
-				}).error(function(err){
-					showbubleMsg('Insert failure, ' + err,4);
-				})
+
 			}
 
 			//$scope.contractUserID=$rootScope.rootContractUserID;
