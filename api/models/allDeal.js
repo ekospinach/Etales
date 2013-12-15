@@ -130,6 +130,7 @@ exports.exportToBinary = function(options){
         }else{
           console.log('start send post to cgi:' + util.inspect(options));
           //console.log('export deal:' + JSON.stringify(doc));
+          console.log(JSON.stringify(doc));
           request.post('http://' + options.cgiHost + ':' + options.cgiPort + options.cgiPath, {form: {jsonData: JSON.stringify(doc)}}, function(error, response){
               console.log('status:' + response.status);
               console.log('body:' + response.body);
@@ -394,19 +395,29 @@ function fillNegotiationItemByContractDetail(categoryDeal, negotiationItem, prod
                                                 userType: 'P',
                                                 negotiationItem: negotiationItem,
                                                 relatedBrandName : brand.brandName,
-                                               // relatedBrandID: brand.brandID, //need Monsoul to check BrandID is set properly in contractDetailsSchema
-                                                isVerified: false}, function(err, contractDetailsDoc){
+                                                relatedBrandID: brand.brandID, //need Monsoul to check BrandID is set properly in contractDetailsSchema
+                                                isVerified: true}, function(err, contractDetailsDoc){
                                                   if(contractDetailsDoc){
                                                     console.log('There is related verified contractDetails :' + brand.brandName );
                                                     categoryDeal.brandsDetails[brandCount].brandID = brand.brandID;
-                                                    if(contractDetailsDoc.useBrandsDetails){
-                                                      console.log('User Brand Details, copy value...');
+                                                    if(contractDetailsDoc.useBrandDetails){
+                                                      console.log('Use Brand Details, copy value...');
+
                                                       categoryDeal.brandsDetails[brandCount].useVariantsDetails = false;
                                                       categoryDeal.brandsDetails[brandCount].useMarketsDetails = true;
                                                       categoryDeal.brandsDetails[brandCount].dateOfBirth = brand.dateOfBirth;
                                                       categoryDeal.brandsDetails[brandCount].dateOfDeath = brand.dateOfDeath;
                                                       categoryDeal.brandsDetails[brandCount].marketsDetails[0] = contractDetailsDoc.brand_urbanValue;
                                                       categoryDeal.brandsDetails[brandCount].marketsDetails[1] = contractDetailsDoc.brand_ruralValue;
+                                                      console.log('test');
+                                                      if(brandCount<4){
+                                                        brandCount++;
+                                                        console.log('-------------------- change Brand ++ >>>>')        
+                                                        loopBrand(brandCount, categoryCount, producerID, seminar, period);
+                                                      } else {      
+                                                          console.log('brand ' + brand.brandName + ' loop done');
+                                                          deferred.resolve({categoryDeal:categoryDeal, msg:'categoryDeal(catCount:' + categoryCount + '/negotiationItem:' + negotiationItem + ') generate done.'});
+                                                      }                                                        
                                                     }else{
                                                       categoryDeal.brandsDetails[brandCount].useVariantsDetails = true;
                                                       categoryDeal.brandsDetails[brandCount].useMarketsDetails = false;
@@ -418,7 +429,7 @@ function fillNegotiationItemByContractDetail(categoryDeal, negotiationItem, prod
                                                             //  console.log(variantDoc);
                                                               variant = variantDoc.proCatDecision[categoryCount].proBrandsDecision[brandCount].proVarDecision[varCount];
                                                               if(variant.varName != ''){
-                                                                console.log('Find variant : ' + variant.varName);
+                                                                console.log('Find variant : ' + variant.varName + ', copy value...');
 
                                                                 //console.log('Find Variant with producerID:'+ producerID + ', categoryCount:' + categoryCount + ', brandCount:' + brandCount + ', varCount:' + varCount + ', varName:' + varName);                                                                
                                                                 categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].useMarketsDetails = true;
