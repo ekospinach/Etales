@@ -20,6 +20,7 @@ define(['app','socketIO'], function(app) {
 			dialogFade:true
 		};
 		$scope.openLoginModal=function(){
+			$scope.userRole=1;
 			$scope.loginModal=true;
 		}
 		var closeLoginModal=function(){

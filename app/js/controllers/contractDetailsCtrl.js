@@ -515,7 +515,7 @@ define(['app'], function(app) {
 				});
 			}
 
-			var closeEditModal=function(){
+			$scope.closeEditModal=function(){
 				$scope.editModal=false;
 				refreshBrandAndContractDetails();
 			}
@@ -614,7 +614,6 @@ define(['app'], function(app) {
 			$scope.compare=compare;
 			$scope.copyProposal = copyProposal;
 			$scope.checkData=checkData;
-			$scope.closeEditModal=closeEditModal;
 			refreshBrandAndContractDetails();
 		}]
 	)
