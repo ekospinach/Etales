@@ -86,27 +86,15 @@ define(['app'], function(app) {
 					$scope.hSurplusProduction=hAcMax-data.data.result;
 					$scope.hPercentageProduction=(hAcMax-data.data.result)/hAcMax*100;
 					$scope.producerID=producerID,$scope.period=period,$scope.language=language;
-								// if(language=="English"){
-								// 	for(var i=0;i<$scope.multilingual.length;i++){
-								// 		labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
-								// 		infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
-								// 	}
-								// }
-								// else if(language=="Chinese"){
-								// 	for(var i=0;i<$scope.multilingual.length;i++){
-								// 		labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelCHN;
-								// 		infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoCHN;
-								// 	}
-								// }
-		                        var categorys=new Array();
-					      		for(var i=0;i<$scope.pageBase.proCatDecision.length;i++){
-					      			categorys.push($scope.pageBase.proCatDecision[i]);
-					      			count++;
-					      		}
-					      		if(count!=0){
-					      			result=1;
-					      		}
-					      		$scope.categorys=categorys;
+		            var categorys=new Array();
+		            for(var i=0;i<$scope.pageBase.proCatDecision.length;i++){
+		            	categorys.push($scope.pageBase.proCatDecision[i]);
+		            	count++;
+		            }
+		            if(count!=0){
+		            	result=1;
+		            }
+		            $scope.categorys=categorys;
 				},function(){
 					console.log('show view fail');
 				});	

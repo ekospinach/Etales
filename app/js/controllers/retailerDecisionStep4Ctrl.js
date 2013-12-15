@@ -140,7 +140,8 @@ define(['app'], function(app) {
 	      					$scope.percentageShelf[0][1]=(1-$scope.surplusShelf[0][1])*100;
 	      					$scope.percentageShelf[1][0]=(1-$scope.surplusShelf[1][0])*100;
 	      					$scope.percentageShelf[1][1]=(1-$scope.surplusShelf[1][1])*100;
-	      					$scope.showSurplusShelf=$scope.surplusShelf[market-1][category-1]*100;
+	      					console.log($scope.surplusShelf[market-1][category-1]);
+	      					$scope.showSurplusShelf=$scope.percentageShelf[market-1][category-1];
 	      					$scope.showPercentageShelf=$scope.percentageShelf[market-1][category-1];
 
 							var allRetCatDecisions=loadSelectCategroy(market,category);
