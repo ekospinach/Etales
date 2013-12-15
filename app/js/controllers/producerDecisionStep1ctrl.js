@@ -208,6 +208,8 @@ define(['app'], function(app) {
 	                					else if(products[count].packFormat=="PREMIUM"){
 	                						products[count].packFormat=3;
 	                					}
+	                					products[count].currentPriceBM=products[count].currentPriceBM.toFixed(2);
+	                					products[count].currentPriceEmall=products[count].currentPriceEmall.toFixed(2);
 	                					count++;
 	                				}
 	                			}

@@ -32,11 +32,11 @@
         <div class="pull-right" style="width:40%">
           <progress percent="percentageExpend" class="progress active"></progress>
           <small>
-            <em>{{Label.getContent('Available Budget')}}:{{surplusExpend}}</em>
+            <em>{{Label.getContent('Available Budget')}}:{{surplusExpend.toFixed(2)}}</em>
           </small>
           <progress percent="percentageProduction" class="progress progress-suceess active progress-striped"></progress>
           <small>
-            <em>{{Label.getContent(category)}} {{Label.getContent('Producer Available Capacity')}}:{{surplusProduction}}</em>
+            <em>{{Label.getContent(category)}} {{Label.getContent('Producer Available Capacity')}}:{{surplusProduction.toFixed(2)}}</em>
           </small>
         </div>
           <div style="clear:both"></div>
@@ -53,13 +53,13 @@
                 <tbody>
                   <tr>
                     <td>{{Label.getContent('Urban')}}{{Label.getContent('brand awareness')}}</td>
-                    <td>{{brandHistory.supplierView[0].awareness[0].toFixed(2) * 100||'/'}}</td>
+                    <td>{{brandHistory.supplierView[0].awareness[0].toFixed(2) * 100||'/'}}%</td>
                     <td>{{Label.getContent('Urban Advertising Off-Line')}}</td>
                     <td>{{brandDecisionHistory.advertisingOffLine[0].toFixed(2)||'/'}}</td>
                   </tr>     
                   <tr>
                     <td>{{Label.getContent('Rural')}} {{Label.getContent('brand awareness')}}</td>                    
-                    <td>{{brandHistory.supplierView[0].awareness[1].toFixed(2) * 100||'/'}}</td>                  
+                    <td>{{brandHistory.supplierView[0].awareness[1].toFixed(2) * 100||'/'}}%</td>                  
                     <td>{{Label.getContent('Urban Traditional Trade Support')}}</td> 
                     <td>{{brandDecisionHistory.supportTraditionalTrade[0].toFixed(2)||'/'}}</td>
                   </tr>           

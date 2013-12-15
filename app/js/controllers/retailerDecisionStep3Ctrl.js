@@ -503,8 +503,8 @@ define(['app'], function(app) {
 					$scope.isHealthBeauty=false;
 					catID = 1;
 				}else{
-					$scope.isElecssories=true;
-					$scope.isHealthBeauty=false;
+					$scope.isElecssories=false;
+					$scope.isHealthBeauty=true;
 					catID = 2;
 				}
 				$scope.currentRetailerIdx = parseInt($rootScope.user.roleID) - 1;			

@@ -436,8 +436,8 @@ exports.updateRetailerDecision = function(io){
                                                     if(queryCondition.location=="localAdvertising"){
                                                         doc.retMarketDecision[i][queryCondition.location][queryCondition.additionalIdx]=queryCondition.value;
                                                     }else if(queryCondition.location=="categorySurfaceShare"){
-                                                        doc.retMarketDecision[i][queryCondition.location][queryCondition.additionalIdx]=queryCondition.value;
-                                                        doc.retMarketDecision[i][queryCondition.location][1-queryCondition.additionalIdx]=1-queryCondition.value;
+                                                        doc.retMarketDecision[i][queryCondition.location][queryCondition.additionalIdx]=queryCondition.value;//.toFixed(4);
+                                                        doc.retMarketDecision[i][queryCondition.location][1-queryCondition.additionalIdx]=(1-queryCondition.value);
                                                     }else{
                                                         doc.retMarketDecision[i][queryCondition.location]=queryCondition.value;
                                                     }

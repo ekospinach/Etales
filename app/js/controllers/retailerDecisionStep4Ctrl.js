@@ -140,7 +140,7 @@ define(['app'], function(app) {
 	      					$scope.percentageShelf[0][1]=(1-$scope.surplusShelf[0][1])*100;
 	      					$scope.percentageShelf[1][0]=(1-$scope.surplusShelf[1][0])*100;
 	      					$scope.percentageShelf[1][1]=(1-$scope.surplusShelf[1][1])*100;
-	      					$scope.showSurplusShelf=$scope.surplusShelf[market-1][category-1]*100;
+	      					$scope.showSurplusShelf=$scope.percentageShelf[market-1][category-1];
 	      					$scope.showPercentageShelf=$scope.percentageShelf[market-1][category-1];
 
 							var allRetCatDecisions=loadSelectCategroy(market,category);
@@ -150,11 +150,13 @@ define(['app'], function(app) {
 				      				if(allRetCatDecisions[i].retVariantDecision[j].brandID!=0&&allRetCatDecisions[i].retVariantDecision[j].variantID!=0){
 				      					if(allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate>=0&&allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate<1){
 				      						allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate*=100;
+				      						allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate=allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate.toFixed(2);
 				      					}
-				      					if(allRetCatDecisions[i].retVariantDecision[j].shelfSpace>=0&&allRetCatDecisions[i].retVariantDecision[j].shelfSpace<=1)
-				      					
-				      					allRetCatDecisions[i].retVariantDecision[j].shelfSpace*=100;
-				      					
+				      					if(allRetCatDecisions[i].retVariantDecision[j].shelfSpace>=0&&allRetCatDecisions[i].retVariantDecision[j].shelfSpace<1){
+				      						allRetCatDecisions[i].retVariantDecision[j].shelfSpace*=100;
+				      						allRetCatDecisions[i].retVariantDecision[j].shelfSpace=allRetCatDecisions[i].retVariantDecision[j].shelfSpace.toFixed(2);
+				      					}
+				      					allRetCatDecisions[i].retVariantDecision[j].retailerPrice=allRetCatDecisions[i].retVariantDecision[j].retailerPrice.toFixed(2);
 				      					products.push(allRetCatDecisions[i].retVariantDecision[j]);
 				      					count++;
 				      				}

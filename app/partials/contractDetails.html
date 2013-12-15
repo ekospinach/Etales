@@ -20,9 +20,11 @@
             </small>        
         </h3>
     </div>
+
     <div ng-show="refreshingProcess">
-        {{Label.getContent('Loading')}}...
+        <strong>{{Label.getContent('Loading')}}({{refreshingProcessLabel.toFixed(0)}}%)...</strong>
     </div>
+    
     <div>
         <div class="btn-group">
             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" ng-disabled="refreshingProcess">
