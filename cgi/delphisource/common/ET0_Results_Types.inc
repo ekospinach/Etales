@@ -578,11 +578,16 @@ TRetailerQuarterResults =
     rq_TraditionalTradeSupport                  : single;
     rq_ValueRotationIndex                       : single;
     rq_VolumeRotationIndex                      : single;
+    
+    rq_Buyers                                   : TCategoriesSegmentsTotalData;     { +++ ADDED 13/12/2013 }
+    
+    
   end;
 
 TRetailerMarketResults =
   record
-    rm_ServiceLevel  : TServiceLevel;
+    rm_ServiceLevel     : TServiceLevel;
+    rm_StorePerceptions : TStorePerceptionsData;       { +++ ADDED 13/12/2013 }
   end;    
   
 TRetailerTotalResults = 

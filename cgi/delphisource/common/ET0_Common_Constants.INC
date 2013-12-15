@@ -75,12 +75,17 @@ Const
   SpecsMax           = 3;                  { # of product technological specification details }
   VariantDimsMax     = 3;                  { Variant perception dimensions }
   VariantDimsMaxFull = VariantDimsMax + AllRetsMaxTotal;  { ... as above plus specific price perceptions at each retailer, plus average }
+  
+  StoresDimsMax      = 3;
 
   PeriodLastWeek     = 52;                 { last week number in period }
   DaysInPeriod       = 365;
 
-  SegmentsMax        = 4;                  { max # of segments both consumer and shopper }
+  SegmentsMax        = 4;                  { max # of consumer segments }
   SegmentsMaxTotal   = SegmentsMax + 1;    { plus total }
+  
+  HouseholdsGroupsMax  = 4;                           { overdeclared for the time being; only total used in the initial version }
+  HouseholdsGroupsMaxTotal = HouseholdsGroupsMax + 1;
 
   InventoryAgesMax   = 3;                  { Inventory is tracked 3 years backward, any older inventory will be considered also 3 years old }
   InventoryAgesMaxTotal = InventoryAgesMax + 1;  { Used to calculate total volume /regardless of age/ and average cost }
@@ -104,8 +109,6 @@ Const
 
   MarketsUniverse    =  9;
 	
-
-
   PARExtension       = '.PAR';
   EXOExtension       = '.EXO';
 	
