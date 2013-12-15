@@ -35,15 +35,18 @@
         </div>
           <div style="clear:both"></div>
           <div collapse="isCollapsed" class="panel panel-info">
-            <div class="panel-heading">{{marketName}} <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button></div>
-              <table class="table table-condensed table-bordered">
-                <thead>
-                  <tr>
-                    <td colspan="2" class="col-md-6">{{Label.getContent('Current period')}} ({{currentPeriod}})</td>
-                    <td colspan="2" class="col-md-6">{{Label.getContent('Previous period')}} ({{currentPeriod-1}})</td>               
-                  </tr>                  
-                </thead>
-                <tbody>
+            <div class="panel-heading">
+              {{Label.getContent(marketName)}}
+              <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button>
+            </div>
+            <table class="table table-condensed table-bordered">
+              <thead>
+                <tr>
+                  <td colspan="2" class="col-md-6">{{Label.getContent('Current period')}} ({{currentPeriod}})</td>
+                  <td colspan="2" class="col-md-6">{{Label.getContent('Previous period')}} ({{currentPeriod-1}})</td>
+                </tr>                  
+              </thead>
+              <tbody>
                 <tr>
                   <td></td>
                   <td></td>
@@ -80,8 +83,8 @@
                   <td>{{Label.getContent('Local Price Advertising')}}</td>
                   <td>{{retailerDecisionHistory[0].localAdvertising[0].toFixed(2)}}</td>
                 </tr>                  
-                </tbody>        
-              </table>
+              </tbody>        
+            </table>
           </div>
           <table class="table table-hover">
             <thead>
@@ -90,7 +93,7 @@
                 <th ng-repeat='market in markets'>
                   <div style="clear:both"></div>
                   <p class="pull-left">
-                    {{market.marketName}}
+                    {{Label.getContent(marketName)}}
                   </p>
                   <button type="button" class="btn btn-primary btn-xs pull-left" style="margin-left:5px" ng-click="getMarketMoreInfo(market.marketID)">More</button>
                   <div style="clear:both"></div>
