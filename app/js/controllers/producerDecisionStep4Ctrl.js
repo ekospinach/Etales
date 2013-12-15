@@ -126,7 +126,7 @@ define(['app'], function(app) {
 				$scope.categoryID = categoryID;
 				switch(categoryID){
 					case 1: $scope.category = 'Elecssories';break;
-					case 2: $scope.category = 'Health & Beauty';break;
+					case 2: $scope.category = 'HealthBeauty';break;
 				}
 				$scope.isCollapsed=false;
 				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);

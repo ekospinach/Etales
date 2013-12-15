@@ -21,8 +21,9 @@
         </h3>
     </div>
 
-    <div ng-show="refreshingProcess">
-        <strong>{{Label.getContent('Loading')}}({{refreshingProcessLabel.toFixed(0)}}%)...</strong>
+    <div ng-show="refreshingProcess" style="margin-bottom:5px">
+        <!--<strong>{{Label.getContent('Loading')}}({{refreshingProcessLabel.toFixed(0)}}%)...</strong>-->
+        <progress percent="refreshingProcessLabel.toFixed(0)" class="progress progress-suceess active progress-striped"></progress>
     </div>
     
     <div>
@@ -52,7 +53,7 @@
                     <td>{{Label.getContent('Minimum Order & Discount Rate')}}</td>
                     <td ng-repeat="proDetail in proDetailList[0]">
                         <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetail.isVerified&&proDetailList[4][$index].isVerified"></span>
-                        <span>{{proDetail.displayValue}}</span>
+                        <span>{{proDetail.displayValue}}({{proDetailList[4][$index].displayValue}})</span>
                         <span class="pull-right" ng-show=producerEditable>
                             <a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)" ng-disabled="refreshingProcess">{{Label.getContent('Edit')}}</a>
                         </span>
@@ -65,7 +66,7 @@
                     <td>{{Label.getContent('Sales Target Volume & Bonus')}}</td>
                     <td ng-repeat="proDetail in proDetailList[1]">
                         <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="(proDetail.amount_or_rate?(proDetail.isVerified&&proDetailList[5][$index].isVerified):(proDetail.isVerified&&proDetailList[6][$index].isVerified))"></span>
-                        <span>{{proDetail.displayValue}}</span>
+                        <span>{{proDetail.displayValue}}({{(proDetail.amount_or_rate?(proDetailList[5][$index].displayValue):(proDetailList[6][$index].displayValue))}})</span>
                         <span class="pull-right" ng-show=producerEditable>
                             <a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)" ng-disabled="refreshingProcess">{{Label.getContent('Edit')}}</a>
                         </span>
@@ -116,7 +117,7 @@
                     <td>{{Label.getContent('Minimum Order & Discount Rate')}}</td>
                     <td ng-repeat="retDetail in retDetailList[0]">
                         <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="retDetail.isVerified&&retDetailList[4][$index].isVerified"></span>
-                        <span>{{retDetail.displayValue}}</span>
+                        <span>{{retDetail.displayValue}}({{retDetailList[4][$index].displayValue}})</span>
                         <span class="pull-right" ng-show=retailerEditable>
                             <a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)" ng-disabled="refreshingProcess">{{Label.getContent('Edit')}}</a>
                         </span>
@@ -129,7 +130,7 @@
                     <td>{{Label.getContent('Sales Target Volume & Bonus')}}</td>
                     <td ng-repeat="retDetail in retDetailList[1]">
                         <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="(retDetail.amount_or_rate?(retDetail.isVerified&&retDetailList[5][$index].isVerified):(retDetail.isVerified&&retDetailList[6][$index].isVerified))"></span>
-                        <span>{{retDetail.displayValue}}</span>
+                        <span>{{retDetail.displayValue}}({{(retDetail.amount_or_rate?(retDetailList[5][$index].displayValue):(retDetailList[6][$index].displayValue))}})</span>
                         <span class="pull-right" ng-show=retailerEditable>
                             <a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)" ng-disabled="refreshingProcess">{{Label.getContent('Edit')}}</a>
                         </span>
@@ -173,7 +174,7 @@
     </div>
 </div>
 
-<div modal="editModal" class="hide" close="closeEditModal()" options="eidtOpts">
+<div modal="editModal" class="hide" options="eidtOpts">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -501,7 +502,7 @@
     </div>
 </div>
 
-<div modal="viewModal" class="hide" close="closeViewModal()" options="viewOpts">
+<div modal="viewModal" class="hide" options="viewOpts">
      <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

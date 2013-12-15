@@ -17,7 +17,7 @@
       <div style="clear:both"></div>
 
       <div collapse="isCollapsed" class="panel panel-info">
-        <div class="panel-heading">{{category}}
+        <div class="panel-heading">{{Label.getContent(category)}}
           <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button>
         </div>
         <table class="table table-condensed table-bordered">
@@ -61,13 +61,13 @@
               <th>{{Label.getContent('Category')}}</th>
               <th>
                 <div style="clear:both"></div>
-                <p class="pull-left">Elecssories</p>
+                <p class="pull-left">{{Label.getContent('Elecssories')}}</p>
                 <button type="button" class="btn btn-primary btn-xs pull-left" style="margin-left:5px" ng-click="getCategoryMoreInfo(1)">{{Label.getContent('More')}}</button>
                 <div style="clear:both"></div>
               </th>
               <th>
                 <div style="clear:both"></div>
-                <p class="pull-left">HealthBeauty</p>
+                <p class="pull-left">{{Label.getContent('HealthBeauty')}}</p>
                 <button type="button" class="btn btn-primary btn-xs pull-left" style="margin-left:5px" ng-click="getCategoryMoreInfo(2)">{{Label.getContent('More')}}</button>
                 <div style="clear:both"></div>
               </th>

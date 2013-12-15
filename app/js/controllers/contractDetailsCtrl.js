@@ -138,23 +138,7 @@ define(['app'], function(app) {
 							proDetailList[i][j].variant_C_urbanValue*=100;
 						}
 					}
-				};
-				//load display value
-				for (var i = 0; i < 4; i++) {
-					for(var j=0;j<proDetailList[i].length;j++){
-						if(i==0){
-							proDetailList[i][j].displayValue=proDetailList[i][j].displayValue+'('+proDetailList[4][j].displayValue+')';
-						}
-						if(i==1){
-							if(proDetailList[i][j].amount_or_rate){
-								proDetailList[i][j].displayValue=proDetailList[i][j].displayValue+'('+proDetailList[5][j].displayValue+')';
-							}else{
-								proDetailList[i][j].displayValue=proDetailList[i][j].displayValue+'('+proDetailList[6][j].displayValue+')';
-							}
-						}
-					}
-				}
-				
+				};				
 
 				$scope.proDetailList=proDetailList;
 				var retDetailList=new Array();
@@ -174,22 +158,7 @@ define(['app'], function(app) {
 						}
 					}
 				};
-				for (var i = 0; i < 4; i++) {
-					for(var j=0;j<retDetailList[i].length;j++){
-						if(i==0){
-							retDetailList[i][j].displayValue=retDetailList[i][j].displayValue+'('+retDetailList[4][j].displayValue+')';
-						}
-						if(i==1){
-							if(retDetailList[i][j].amount_or_rate){
-								retDetailList[i][j].displayValue=retDetailList[i][j].displayValue+'('+retDetailList[5][j].displayValue+')';
-							}else{
-								retDetailList[i][j].displayValue=retDetailList[i][j].displayValue+'('+retDetailList[6][j].displayValue+')';
-							}
-						}
-					}
-				}
 				$scope.retDetailList=retDetailList;
-
 				var variantListByCategory=new Array();
 				var url='/producerProducts/'+$scope.contractInfo.producerID+'/'+$scope.contractInfo.period+'/'+$scope.contractInfo.seminar+'/';
 				if(category=="Elecssories"){
@@ -546,7 +515,7 @@ define(['app'], function(app) {
 				});
 			}
 
-			$scope.closeEditModal=function(){
+			var closeEditModal=function(){
 				$scope.editModal=false;
 				refreshBrandAndContractDetails();
 			}
@@ -645,6 +614,7 @@ define(['app'], function(app) {
 			$scope.compare=compare;
 			$scope.copyProposal = copyProposal;
 			$scope.checkData=checkData;
+			$scope.closeEditModal=closeEditModal;
 			refreshBrandAndContractDetails();
 		}]
 	)
