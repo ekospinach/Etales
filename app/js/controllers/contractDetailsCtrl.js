@@ -375,10 +375,14 @@ define(['app'], function(app) {
 				}else if(item=="nc_VolumeDiscountRate"||item=="nc_PerformanceBonusRate"){
 					if(value>100){
 						d.resolve('Input range:0~100');
+					}else{
+						d.resolve();
 					}
 				}else if(item=="nc_PaymentDays"){
 					if(value>180){
 						d.resolve('Input range:0~180');
+					}else{
+						d.resolve();
 					}
 				}else{
 					d.resolve();

@@ -51,19 +51,20 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    		return (obj.market==market&&obj.category==cat&&obj.seriesRole==role)
 		    	});
 		    	charts[i].data=$scope.chartCollection.data;
-		    	if(language=="ENG"){
-		    		title=$scope.chartdata.chartSetCollection[i].titleENG;
-		    	}
-		    	else if(language=="CHN"){
-		    		title=$scope.chartdata.chartSetCollection[i].titleCHN;
-		    	}
-		    	else if(language=="RUS"){
-		    		title=$scope.chartdata.chartSetCollection[i].titleRUS;
-		    	}
+		    	title=Label.getContent($scope.chartdata.chartSetCollection[i].titleENG);
+		    	// if(language=="ENG"){
+		    	// 	title=$scope.chartdata.chartSetCollection[i].titleENG;
+		    	// }
+		    	// else if(language=="CHN"){
+		    	// 	title=$scope.chartdata.chartSetCollection[i].titleCHN;
+		    	// }
+		    	// else if(language=="RUS"){
+		    	// 	title=$scope.chartdata.chartSetCollection[i].titleRUS;
+		    	// }
 
 		    	for(var j=0;j<$scope.chartCollection.data.cols.length;j++)
 		    	{
-		    		$scope.chartCollection.data.cols[j].label=$scope.chartCollection.data.cols[j].labelENG;
+		    		$scope.chartCollection.data.cols[j].label=Label.getContent($scope.chartCollection.data.cols[j].labelENG);
 		    	}
 		    	if(role=="Producer"){
 		    		colors=pColors;
