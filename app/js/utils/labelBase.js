@@ -1,7 +1,6 @@
 var getLabelBase = function(){
 	return [
 		/*retail report new label */
-		/*report*/
 		{id:'- Advertising Total ($mln)',  ENG:'- Advertising Total ($mln)',  CHN:'-广告总投入(￥百万元)',  RUS:''},
 		{id:'-National Off-line ($mln)',  ENG:'-National Off-line ($mln)',  CHN:'-全国性传统广告(￥百万元)',  RUS:''},
 		{id:'-National On-line ($mln)',  ENG:'-National On-line ($mln)',  CHN:'-全国性网络广告(￥百万元)',  RUS:''},
@@ -13,7 +12,8 @@ var getLabelBase = function(){
 		{id:'Manufacturer 3',  ENG:'Manufacturer 3',  CHN:'生产商 3',  RUS:''},	
 		{id:'Private label',  ENG:'Private label',  CHN:'自有品牌',  RUS:''},	
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		/*line chart title */
+
+		/*line chart page */
 		{id:'Retailer Market Sales (Value)',  ENG:'Retailer Market Sales (Value)',  CHN:'',  RUS:''},	
 		{id:'Retailer Market Share (Value)',  ENG:'Retailer Market Share (Value)',  CHN:'',  RUS:''},	
 		{id:'Retailer Market Sales (Volume)',  ENG:'Retailer Market Sales (Volume)',  CHN:'',  RUS:''},	
@@ -22,26 +22,6 @@ var getLabelBase = function(){
 		{id:'Wholesale Market Share (Value)',  ENG:'Wholesale Market Share (Value)',  CHN:'',  RUS:''},	
 		{id:'Wholesale Sales Volume',  ENG:'Wholesale Sales Volume',  CHN:'',  RUS:''},	
 		{id:'Wholesale Market Share (Volume)',  ENG:'Wholesale Market Share (Volume)',  CHN:'',  RUS:''},	
-		/*homepage*/
-		{id:'eTales Info',  ENG:'Best-in-class professional development tool among the world’s most respected companies and leading business schools',  CHN:'首次呈现和探索零售商、供应商、电商和消费者在社交媒体盛行时代的生存和胜出之道。',  RUS:''},
-		{id:'Get started',  ENG:'Get started',  CHN:'现在开始',  RUS:''},
-		{id:'Admin entrance',  ENG:'Admin entrance',  CHN:'管理员入口',  RUS:''},
-		{id:'Currently',  ENG:'Currently',  CHN:'当前版本',  RUS:''},
-		{id:'User Login',  ENG:'User Login',  CHN:'用户登陆',  RUS:''},	
-		{id:'Role',  ENG:'Role',  CHN:'角色',  RUS:''},	
-		{id:'Password',  ENG:'Password',  CHN:'密码',  RUS:''},	
-		{id:'Seminar Code',  ENG:'Seminar Code',  CHN:'课程ID',  RUS:''},	
-		{id:'Login',  ENG:'Login',  CHN:'登陆',  RUS:''},	
-		{id:'Admin Login',  ENG:'Admin Login',  CHN:'管理员登陆',  RUS:''},	
-		{id:'Facilitator',  ENG:'Facilitator',  CHN:'讲师',  RUS:''},	
-		{id:'Guest',  ENG:'Guest',  CHN:'',  RUS:''},	
-		/*error info*/
-		{id:'Ease of use',  ENG:'Ease of use',  CHN:'易用性',  RUS:''},	
-		{id:'Quality',  ENG:'Quality',  CHN:'质量',  RUS:''},	
-		{id:'Price',  ENG:'Price',  CHN:'价格',  RUS:''},	
-		{id:'Market Share',  ENG:'Market Share',  CHN:'市场份额',  RUS:''},	
-		{id:'Visibility Share',  ENG:'Visibility Share',  CHN:'可见度份额',  RUS:''},	
-		
 		{id:'Net Sales Value',  ENG:'Net Sales Value',  CHN:'净销售额',  RUS:''},	
 		{id:'Team',  ENG:'Team',  CHN:'团队',  RUS:''},	
 		{id:'Producer 1',  ENG:'Producer 1',  CHN:'生厂商 1',  RUS:''},	
@@ -57,7 +37,69 @@ var getLabelBase = function(){
 		{id:'Total Material Cost',  ENG:'Total Material Cost',  CHN:'总材料成本',  RUS:''},	
 		{id:'Total Advertising',  ENG:'Total Advertising',  CHN:'广告总投入',  RUS:''},	
 		{id:'Total Trade (Producer) Support',  ENG:'Total Trade (Producer) Support',  CHN:'(生产商)总投入费用',  RUS:''},	
-		{id:'Total General Expenses',  ENG:'Total General Expenses',  CHN:'一般开支总额',  RUS:''},	
+		{id:'Total General Expenses',  ENG:'Total General Expenses',  CHN:'一般开支总额',  RUS:''},
+		{id:'Chart',  ENG:'Chart',  CHN:'图表',  RUS:''},
+		{id:'Chart Info',  ENG:'Charts show you visually where your business stands in comparison to your competitors.',  CHN:'图表帮助你一目了然地比较自己和竞争对手的情况',  RUS:''},
+		{id:'Chart popInfo',  ENG:'You may look at other industry (retail or manufacturing) for benchmarking if you change role selector. You may change details level using category and market selectors. To see numbers behind the trends use your mouse over the lines.',  CHN:'可以选择 \"品类\" 或 \"市场\"，从不同层级查看信息. 把鼠标放在趋势线上, 可以看到相应的数字。',  RUS:''},
+		{id:'Profitability Absolute RMB',  ENG:'Profitability Absolute RMB',  CHN:'利润额',  RUS:''},
+		{id:'Profitability Absolute RMB Info',  ENG:'Profitability Absolute RMB Info',  CHN:'利润额信息',  RUS:''},
+		{id:'Profitability as percentage of Sales',  ENG:'Profitability as percentage of Sales',  CHN:'利润占销售额的比例',  RUS:''},
+		{id:'Profitability as percentage of Sales Info',  ENG:'Profitability as percentage of Sales Info',  CHN:'利润率信息',  RUS:''},
+		{id:'Expenses',  ENG:'Expenses',  CHN:'费用',  RUS:''},
+		{id:'Expenses Info',  ENG:'Expenses Info',  CHN:'费用信息',  RUS:''},
+		{id:'Wholesales Market Results',  ENG:'Wholesales Market Results',  CHN:'经销商市场结果',  RUS:''},
+		{id:'Wholesales Market Results Info',  ENG:'Wholesales Market Results Info',  CHN:'经销商市场信息',  RUS:''},
+		{id:'Retail Market Results',  ENG:'Retail Market Results',  CHN:'零售市场结果',  RUS:''},
+		{id:'Retail Market Results Info',  ENG:'Retail Market Results Info',  CHN:'零售市场结果信息',  RUS:''},
+		{id:'Total',  ENG:'Total',  CHN:'总计',  RUS:''},
+		{id:'',  ENG:'',  CHN:'',  RUS:''},
+
+		/*Login page*/
+		{id:'eTales Info',  ENG:'Best-in-class professional development tool among the world’s most respected companies and leading business schools',  CHN:'首次呈现和探索零售商、供应商、电商和消费者在社交媒体盛行时代的生存和胜出之道。',  RUS:''},
+		{id:'Get started',  ENG:'Get started',  CHN:'现在开始',  RUS:''},
+		{id:'Admin entrance',  ENG:'Admin entrance',  CHN:'管理员入口',  RUS:''},
+		{id:'Currently',  ENG:'Currently',  CHN:'当前版本',  RUS:''},
+		{id:'User Login',  ENG:'User Login',  CHN:'用户登陆',  RUS:''},	
+		{id:'Role',  ENG:'Role',  CHN:'角色',  RUS:''},	
+		{id:'Password',  ENG:'Password',  CHN:'密码',  RUS:''},	
+		{id:'Seminar Code',  ENG:'Seminar Code',  CHN:'课程ID',  RUS:''},	
+		{id:'Login',  ENG:'Login',  CHN:'登陆',  RUS:''},	
+		{id:'Admin Login',  ENG:'Admin Login',  CHN:'管理员登陆',  RUS:''},	
+		{id:'Facilitator',  ENG:'Facilitator',  CHN:'讲师',  RUS:''},	
+		{id:'Guest',  ENG:'Guest',  CHN:'',  RUS:''},	
+
+		/*Perception map page*/
+		{id:'Ease of use',  ENG:'Ease of use',  CHN:'易用性',  RUS:''},	
+		{id:'Quality',  ENG:'Quality',  CHN:'质量',  RUS:''},	
+		{id:'Price',  ENG:'Price',  CHN:'价格',  RUS:''},	
+		{id:'Market Share',  ENG:'Market Share',  CHN:'市场份额',  RUS:''},	
+		{id:'Visibility Share',  ENG:'Visibility Share',  CHN:'可见度份额',  RUS:''},	
+		{id:'Company summary',  ENG:'Company summary',  CHN:'公司信息汇总',  RUS:''},
+		{id:'Company summary Info',  ENG:'',  CHN:'公司信息汇总',  RUS:''},
+		{id:'Perception Map',  ENG:'Perception Map',  CHN:'感知图',  RUS:''},
+		{id:'Perception Map Info',  ENG:'A type of chart widely used in marketing to graphically show how consumers perceive brands. In some cases brand positioning is compared with consumer segments\' ideal points. In eTales however vector positioning model is used. It means that having no ideal point as such, all segments will prefer brands with higher (or lower) perception if this perception dimension is of relative importance to consumers of this segment.',  CHN:'市场营销中广泛使用的一种图表, 显示消费者如何感知你的品牌。 在有些情况下， 会把品牌定位和消费者细分的理想感知点进行对比。 但是在\“零售风暴\”中， 没有所谓的\“理想感知点\”， 所有细分市场在相关的感知维度上希望更高或更低的感知。',  RUS:''},		
+		{id:'Perception Map popInfo',  ENG:'Position your mouse over brand name to see change dinamics and additional market information.',  CHN:'把鼠标放在品牌名称上， 你会看到该品牌的变化和额外的市场信息。 ',  RUS:''},		
+		{id:'Check All',  ENG:'Check All',  CHN:'选择全部',  RUS:''},
+		{id:'Un-Check All',  ENG:'Un-Check All',  CHN:'取消全部',  RUS:''},
+		{id:'Generate Map',  ENG:'Generate Map',  CHN:'生成图表',  RUS:''},
+		{id:'Period',  ENG:'Period',  CHN:'阶段',  RUS:''},
+		{id:'Reason',  ENG:"For some reason,something in this page can't translate immediately",  CHN:'For some reason,something in this page cannot translate immediately。',  RUS:''},
+		{id:'Perceptions Map',  ENG:'Perceptions Map',  CHN:'感知图',  RUS:''},
+		{id:'Ease of Use perception',  ENG:'Ease of Use perception',  CHN:'易用性感知',  RUS:''},
+		{id:'Quality perception',  ENG:'Quality perception',  CHN:'质量感知',  RUS:''},
+		{id:'Performance perception',  ENG:'Performance perception',  CHN:'效果感知',  RUS:''},
+		{id:'Gentleness perception',  ENG:'Gentleness perception',  CHN:'亲柔度感知',  RUS:''},
+		{id:'PricePerception',  ENG:'PricePerception',  CHN:'价格感知',  RUS:''},
+		{id:'Price Sensitive',  ENG:'Price Sensitive',  CHN:'价格敏感型',  RUS:''},
+		{id:'Value for Money',  ENG:'Value for Money',  CHN:'物有所值型',  RUS:''},
+		{id:'Health Conscious',  ENG:'Health Conscious',  CHN:'注重健康型',  RUS:''},
+		{id:'Impatient',  ENG:'Impatient',  CHN:'急躁型',  RUS:''},
+		{id:'Retailer 1',  ENG:'Retailer 1',  CHN:'零售商1',  RUS:''},
+		{id:'Retailer 2',  ENG:'Retailer 2',  CHN:'零售商2',  RUS:''},
+		{id:'eMall',  ENG:'eMall',  CHN:'网上商城',  RUS:''},
+		{id:'Producer',  ENG:'Producer ',  CHN:'生产商 ',  RUS:''},
+		{id:'Retailer',  ENG:'Retailer ',  CHN:'零售商 ',  RUS:''},
+		{id:'switchLanguage',  ENG:'Switch Language',  CHN:'切换语言',  RUS:''},
 
 		/*navbar*/
 		{id:'Participant manual',  ENG:'Participant manual',  CHN:'学员手册',  RUS:''},
@@ -66,7 +108,30 @@ var getLabelBase = function(){
 		{id:'Make Decision',  ENG:'Make Decision',  CHN:'制订决策',  RUS:''},
 		{id:'Get result of lastest period',  ENG:'Get result of lastest perio',  CHN:'更新决策',  RUS:''},
 		{id:'Log out',  ENG:'Log out',  CHN:'退出',  RUS:''},
-		/*report-table*/ /*producer*/
+
+		/*fin report*/
+		{id:'Reports',  ENG:'Reports',  CHN:'报告',  RUS:''},
+		{id:'Reports Info',  ENG:'Here you will find financial statements and other reports giving operating results of your company and its departments.',  CHN:'这里你可以查看公司各方面的财务信息。',  RUS:''},
+		{id:'Reports popInfo',  ENG:' Looking at the reports, try to change perspective or detail level from global (company) or category to brand or even variant (SKU).',  CHN:'可以从整个市场(公司）、分市场、分品类、分品牌甚至单品查看信息。',  RUS:''},
+		{id:'Profit and Loss Statement',  ENG:'Profit and Loss Statement',  CHN:'损益表',  RUS:''},
+		{id:'Profit and Loss Statement Info',  ENG:'Profit and Loss Statement Info',  CHN:'损益表信息',  RUS:''},
+		{id:'Prices per unit',  ENG:'Prices per unit',  CHN:'单价',  RUS:''},
+		{id:'Prices per unit Info',  ENG:'Prices per unit Info',  CHN:'单价信息',  RUS:''},
+		{id:'Volumes Report',  ENG:'Volumes Report',  CHN:'销量报告',  RUS:''},
+		{id:'Volumes Report Info',  ENG:'Volumes Report Info',  CHN:'销量报告信息',  RUS:''},
+		{id:'Profitability by Channel',  ENG:'Profitability by Channel',  CHN:'渠道盈利分析',  RUS:''},
+		{id:'Profitability by Channel Info',  ENG:'Profitability by Channel Info',  CHN:'渠道盈利分析信息',  RUS:''},
+		{id:'Performance Indices',  ENG:'Performance Indices',  CHN:'绩效指标',  RUS:''},
+		{id:'Performance Indices Info',  ENG:'Performance Indices Info',  CHN:'绩效指标信息',  RUS:''},
+		{id:'Profitability by Supplier',  ENG:'Profitability by Supplier',  CHN:'供应商盈利',  RUS:''},
+		{id:'Profitability by Supplier Info',  ENG:'Profitability by Supplier Info',  CHN:'供应商盈利信息',  RUS:''},
+		{id:'Detail',  ENG:'Detail',  CHN:'细节信息',  RUS:''},
+		{id:'Global',  ENG:'Global',  CHN:'整个市场',  RUS:''},
+		{id:'Traditional Trade',  ENG:'Traditional Trade',  CHN:'传统渠道',  RUS:''},
+		{id:'E-Mall',  ENG:'E-Mall',  CHN:'网上商城',  RUS:''},
+		{id:'Item',  ENG:'Item',  CHN:'条款',  RUS:''},
+
+		/*Producer Reports*/
 		{id:'Sales value($mln)',  ENG:'Sales value($mln)',  CHN:'销售额(￥百万元)',  RUS:''},
 		{id:'(%) change versus previous period',  ENG:'(%) change versus previous period',  CHN:'(%)相对于上阶段的改变',  RUS:''},
 		{id:'Share In Category Total Sales Value (%)',  ENG:'Share In Category Total Sales Value (%)',  CHN:'占品类总销售额比例(%)',  RUS:''},
@@ -128,8 +193,7 @@ var getLabelBase = function(){
 		{id:'Financial Cost (delay of payment) (RMB 000)',  ENG:'Financial Cost (delay of payment) (RMB 000)',  CHN:'财务成本(延期支付,￥百万元)',  RUS:''},
 		{id:'Company total',  ENG:'Company total',  CHN:'公司总计',  RUS:''},	
 		
-		/*report retailer*///add some label--
-		/*new label end*/	
+		/*Retailer Reports */
 		{id:'Sales value ($mln)',  ENG:'Sales value ($mln)',  CHN:'销售额(￥百万元)',  RUS:''},
 		{id:'- Cost of Price Promotions ($mln)',  ENG:'- Cost of Price Promotions ($mln)',  CHN:'-价格促销成本(￥百万元)',  RUS:''},
 		{id:'Promotional Support from Supplier ($mln)',  ENG:'Promotional Support from Supplier ($mln)',  CHN:'生产商提供的促销支持(￥百万元)',  RUS:''},
@@ -143,12 +207,10 @@ var getLabelBase = function(){
 		{id:'-Inventory Holding Cost($mln)',  ENG:'-Inventory Holding Cost($mln)',  CHN:'-库存持有成本(￥百万元)',  RUS:''},
 		{id:'-General Expenses($mln)',  ENG:'-General Expenses($mln)',  CHN:'－　一般性开支(￥百万元)',  RUS:''},
 		{id:'-Taxes($mln)',  ENG:'-Taxes($mln)',  CHN:'－税(￥百万元)',  RUS:''},
-		/*a little bug */
 		{id:'Value Rotation Index  Sales value per 1% of shelf space',  ENG:'Value Rotation Index Sales value per 1% of shelf space',  CHN:'每1%货架的销售额',  RUS:''},
 		{id:'Volume Rotation Index  Sales volume per 1% of shelf space',  ENG:'Volume Rotation Index Sales volume per 1% of shelf space',  CHN:'每1%货架的销量',  RUS:''},
 		{id:'Profitability Index  Gross Profit per 1% of shelf space',  ENG:'Profitability Index Gross Profit per 1% of shelf space',  CHN:'每1%货架的毛利额',  RUS:''},
 		{id:'Stock Cover  Closing Inventory Volume / weekly Sales volume',  ENG:'Stock Cover Closing Inventory Volume / weekly Sales volume',  CHN:'期末库存数量/每周销量',  RUS:''},
-		/*--end*/
 		{id:'Market Price',  ENG:'Market Price',  CHN:'零售价',  RUS:''},
 		{id:'Purchase Price',  ENG:'Purchase Price',  CHN:'采购价',  RUS:''},
 		{id:'Effective Net Purchase Price',  ENG:'Effective Net Purchase Price',  CHN:'实际净采购价',  RUS:''},
@@ -162,80 +224,7 @@ var getLabelBase = function(){
 		{id:'Adjusted gross contribution (RMB 000)',  ENG:'Adjusted gross contribution (RMB 000)',  CHN:'调整后的毛利贡献额(￥百万元)',  RUS:''},
 		{id:'Terms of payment (days)',  ENG:'Terms of payment (days)',  CHN:'帐期(天数)',  RUS:''},
 		{id:'Purchases',  ENG:'Purchases',  CHN:'本阶段采购量',  RUS:''},
-		/*market report-table*/
 
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
-
-
-		/*map*/
-		{id:'Company summary',  ENG:'Company summary',  CHN:'公司信息汇总',  RUS:''},
-		{id:'Company summary Info',  ENG:'',  CHN:'公司信息汇总',  RUS:''},
-		{id:'Perception Map',  ENG:'Perception Map',  CHN:'感知图',  RUS:''},
-		{id:'Perception Map Info',  ENG:'A type of chart widely used in marketing to graphically show how consumers perceive brands. In some cases brand positioning is compared with consumer segments\' ideal points. In eTales however vector positioning model is used. It means that having no ideal point as such, all segments will prefer brands with higher (or lower) perception if this perception dimension is of relative importance to consumers of this segment.',  CHN:'市场营销中广泛使用的一种图表, 显示消费者如何感知你的品牌。 在有些情况下， 会把品牌定位和消费者细分的理想感知点进行对比。 但是在\“零售风暴\”中， 没有所谓的\“理想感知点\”， 所有细分市场在相关的感知维度上希望更高或更低的感知。',  RUS:''},		
-		{id:'Perception Map popInfo',  ENG:'Position your mouse over brand name to see change dinamics and additional market information.',  CHN:'把鼠标放在品牌名称上， 你会看到该品牌的变化和额外的市场信息。 ',  RUS:''},		
-		{id:'Check All',  ENG:'Check All',  CHN:'选择全部',  RUS:''},
-		{id:'Un-Check All',  ENG:'Un-Check All',  CHN:'取消全部',  RUS:''},
-		{id:'Generate Map',  ENG:'Generate Map',  CHN:'生成图表',  RUS:''},
-		{id:'Period',  ENG:'Period',  CHN:'阶段',  RUS:''},
-		{id:'Reason',  ENG:"For some reason,something in this page can't translate immediately",  CHN:'For some reason,something in this page cannot translate immediately。',  RUS:''},
-		{id:'Perceptions Map',  ENG:'Perceptions Map',  CHN:'感知图',  RUS:''},
-		{id:'Ease of Use perception',  ENG:'Ease of Use perception',  CHN:'易用性感知',  RUS:''},
-		{id:'Quality perception',  ENG:'Quality perception',  CHN:'质量感知',  RUS:''},
-		{id:'Performance perception',  ENG:'Performance perception',  CHN:'效果感知',  RUS:''},
-		{id:'Gentleness perception',  ENG:'Gentleness perception',  CHN:'亲柔度感知',  RUS:''},
-		{id:'PricePerception',  ENG:'PricePerception',  CHN:'价格感知',  RUS:''},
-		{id:'Price Sensitive',  ENG:'Price Sensitive',  CHN:'价格敏感型',  RUS:''},
-		{id:'Value for Money',  ENG:'Value for Money',  CHN:'物有所值型',  RUS:''},
-		{id:'Health Conscious',  ENG:'Health Conscious',  CHN:'注重健康型',  RUS:''},
-		{id:'Impatient',  ENG:'Impatient',  CHN:'急躁型',  RUS:''},
-		{id:'Retailer 1',  ENG:'Retailer 1',  CHN:'零售商1',  RUS:''},
-		{id:'Retailer 2',  ENG:'Retailer 2',  CHN:'零售商2',  RUS:''},
-		{id:'eMall',  ENG:'eMall',  CHN:'网上商城',  RUS:''},
-		{id:'Producer',  ENG:'Producer ',  CHN:'生产商 ',  RUS:''},
-		{id:'Retailer',  ENG:'Retailer ',  CHN:'零售商 ',  RUS:''},
-		{id:'switchLanguage',  ENG:'Switch Language',  CHN:'切换语言',  RUS:''},
-		
-		/*chart*/
-		{id:'Chart',  ENG:'Chart',  CHN:'图表',  RUS:''},
-		{id:'Chart Info',  ENG:'Charts show you visually where your business stands in comparison to your competitors.',  CHN:'图表帮助你一目了然地比较自己和竞争对手的情况',  RUS:''},
-		{id:'Chart popInfo',  ENG:'You may look at other industry (retail or manufacturing) for benchmarking if you change role selector. You may change details level using category and market selectors. To see numbers behind the trends use your mouse over the lines.',  CHN:'可以选择 \"品类\" 或 \"市场\"，从不同层级查看信息. 把鼠标放在趋势线上, 可以看到相应的数字。',  RUS:''},
-		{id:'Profitability Absolute RMB',  ENG:'Profitability Absolute RMB',  CHN:'利润额',  RUS:''},
-		{id:'Profitability Absolute RMB Info',  ENG:'Profitability Absolute RMB Info',  CHN:'利润额信息',  RUS:''},
-		{id:'Profitability as percentage of Sales',  ENG:'Profitability as percentage of Sales',  CHN:'利润占销售额的比例',  RUS:''},
-		{id:'Profitability as percentage of Sales Info',  ENG:'Profitability as percentage of Sales Info',  CHN:'利润率信息',  RUS:''},
-		{id:'Expenses',  ENG:'Expenses',  CHN:'费用',  RUS:''},
-		{id:'Expenses Info',  ENG:'Expenses Info',  CHN:'费用信息',  RUS:''},
-		{id:'Wholesales Market Results',  ENG:'Wholesales Market Results',  CHN:'经销商市场结果',  RUS:''},
-		{id:'Wholesales Market Results Info',  ENG:'Wholesales Market Results Info',  CHN:'经销商市场信息',  RUS:''},
-		{id:'Retail Market Results',  ENG:'Retail Market Results',  CHN:'零售市场结果',  RUS:''},
-		{id:'Retail Market Results Info',  ENG:'Retail Market Results Info',  CHN:'零售市场结果信息',  RUS:''},
-		{id:'Total',  ENG:'Total',  CHN:'总计',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
 		/*market report*/
 		{id:'Market popInfo',  ENG:'Click on column header to sort the table.',  CHN:'点顶部的标题栏, 可以对数据进行排序',  RUS:''},
 		{id:'Market studies',  ENG:'Market studies',  CHN:'市场研究',  RUS:''},
@@ -252,27 +241,7 @@ var getLabelBase = function(){
 		{id:'Brand Visibility Share Info',  ENG:'An integral measure that averages brand space share and marketing activities increasing brand visibility at a given channel.',  CHN:'一个综合性指标，平衡考虑了品牌份额和特定渠道可见度活动',  RUS:''},
 		{id:'Consumer off-take',  ENG:'Consumer off-take',  CHN:'市场销量',  RUS:''},
 		{id:'Consumer off-take Info',  ENG:'This measure indicates how many units of a product have been sold to the consumer.',  CHN:'衡量消费者实际购买数量的指标',  RUS:''},
-		/*fin report*/
-		{id:'Reports',  ENG:'Reports',  CHN:'报告',  RUS:''},
-		{id:'Reports Info',  ENG:'Here you will find financial statements and other reports giving operating results of your company and its departments.',  CHN:'这里你可以查看公司各方面的财务信息。',  RUS:''},
-		{id:'Reports popInfo',  ENG:' Looking at the reports, try to change perspective or detail level from global (company) or category to brand or even variant (SKU).',  CHN:'可以从整个市场(公司）、分市场、分品类、分品牌甚至单品查看信息。',  RUS:''},
-		{id:'Profit and Loss Statement',  ENG:'Profit and Loss Statement',  CHN:'损益表',  RUS:''},
-		{id:'Profit and Loss Statement Info',  ENG:'Profit and Loss Statement Info',  CHN:'损益表信息',  RUS:''},
-		{id:'Prices per unit',  ENG:'Prices per unit',  CHN:'单价',  RUS:''},
-		{id:'Prices per unit Info',  ENG:'Prices per unit Info',  CHN:'单价信息',  RUS:''},
-		{id:'Volumes Report',  ENG:'Volumes Report',  CHN:'销量报告',  RUS:''},
-		{id:'Volumes Report Info',  ENG:'Volumes Report Info',  CHN:'销量报告信息',  RUS:''},
-		{id:'Profitability by Channel',  ENG:'Profitability by Channel',  CHN:'渠道盈利分析',  RUS:''},
-		{id:'Profitability by Channel Info',  ENG:'Profitability by Channel Info',  CHN:'渠道盈利分析信息',  RUS:''},
-		{id:'Performance Indices',  ENG:'Performance Indices',  CHN:'绩效指标',  RUS:''},
-		{id:'Performance Indices Info',  ENG:'Performance Indices Info',  CHN:'绩效指标信息',  RUS:''},
-		{id:'Profitability by Supplier',  ENG:'Profitability by Supplier',  CHN:'供应商盈利',  RUS:''},
-		{id:'Profitability by Supplier Info',  ENG:'Profitability by Supplier Info',  CHN:'供应商盈利信息',  RUS:''},
-		{id:'Detail',  ENG:'Detail',  CHN:'细节信息',  RUS:''},
-		{id:'Global',  ENG:'Global',  CHN:'整个市场',  RUS:''},
-		{id:'Traditional Trade',  ENG:'Traditional Trade',  CHN:'传统渠道',  RUS:''},
-		{id:'E-Mall',  ENG:'E-Mall',  CHN:'网上商城',  RUS:''},
-		{id:'Item',  ENG:'Item',  CHN:'条款',  RUS:''},
+
 		/*Negotiation*/
 		{id:'Negotiation',  ENG:'Negotiation',  CHN:'谈判',  RUS:''},
 		{id:'Negotiation Info',  ENG:'Oleg, we need some description here...',  CHN:'你可以在这里和生产商（零售商）基于常见的商业条款进行持续沟通。',  RUS:''},
@@ -288,6 +257,7 @@ var getLabelBase = function(){
 		{id:'Contract with',  ENG:'Contract with',  CHN:'乙方（接受协议的一方)',  RUS:''},
 		{id:'Duplicate Negotiation',  ENG:'Duplicate Negotiation',  CHN:'复制谈判',  RUS:''},
 		{id:'isLock',  ENG:'isLock',  CHN:'冻结',  RUS:''},
+
 		/*Contract Details*/
 		{id:'Contract Details',  ENG:'Contract Details',  CHN:'合同细节',  RUS:''},
 		{id:'Contract Details Info',  ENG:'Oleg, we need some description here...',  CHN:'这里显示你和生产商（零售商）达成协议或正在谈判的条款细节',  RUS:''},
@@ -313,6 +283,7 @@ var getLabelBase = function(){
 		{id:'Amount',  ENG:'Amount',  CHN:'金额',  RUS:''},
 		{id:'Rate',  ENG:'Rate',  CHN:'折扣比例',  RUS:''},
 		{id:'Close',  ENG:'Close',  CHN:'关闭',  RUS:''},
+
 		/*producerstep1*/
 		{id:'Products portfolio',  ENG:'Products portfolio',  CHN:'产品组合',  RUS:''},
 		{id:'Products portfolio Info',  ENG:'determine your products portfolio, i.e. brand names, variant(s) of each brand with their respective name(s) and product composition or product specification, including packaging format.',  CHN:'决定你的产品组合，如品牌名称、配方、包装等',  RUS:''},
@@ -321,7 +292,6 @@ var getLabelBase = function(){
 		{id:'Category',  ENG:'Category',  CHN:'品类',  RUS:''},
 		{id:'Elecssories',  ENG:'Elecssories',  CHN:'电子配件品类',  RUS:''},
 		{id:'HealthBeauty',  ENG:'HealthBeauty',  CHN:'美容健康品类',  RUS:''},
-		/*a little bug*/
 		{id:'Elecsories',  ENG:'Elecsories',  CHN:'电子配件品类',  RUS:''},
 		{id:'HealthBeauties',  ENG:'HealthBeauties',  CHN:'美容健康品类',  RUS:''},
 		{id:'Health&Beauty',  ENG:'HealthBeauties',  CHN:'美容健康品类',  RUS:''},		
@@ -363,8 +333,7 @@ var getLabelBase = function(){
 		{id:'Enter New Variant Name',  ENG:'Enter New Variant Name',  CHN:'输入新单品名称',  RUS:''},
 		{id:'Enter New Brand Name',  ENG:'Enter New Brand Name',  CHN:'输入新品牌名称',  RUS:''},
 		{id:'Add',  ENG:'Add',  CHN:'增加',  RUS:''},
-		{id:'Cancel',  ENG:'Cancel',  CHN:'取消',  RUS:''},
-		/*history*/		
+		{id:'Cancel',  ENG:'Cancel',  CHN:'取消',  RUS:''},	
 		{id:'Current period',  ENG:'Current period',  CHN:'当前阶段',  RUS:''},
 		{id:'Previous period',  ENG:'Previous period',  CHN:'上一阶段',  RUS:''},
 		{id:'Unit Cost',  ENG:'Unit Cost',  CHN:'单位生产成本',  RUS:''},
@@ -383,6 +352,7 @@ var getLabelBase = function(){
 		{id:'SL_ENHANCED',  ENG:'ENHANCED',  CHN:'好',  RUS:''},
 		{id:'SL_PREMIUM',  ENG:'PREMIUM',  CHN:'优质',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
+
 		/*producerstep2*/
 		{id:'Production and pricing',  ENG:'Production and pricing',  CHN:'生产和定价',  RUS:''},
 		{id:'Production and pricing Info',  ENG:'after you have finalized you product portfolio for coming period, you should tell the system volumes to be produced this period and wholesale prices for next period',  CHN:'确定完产品组合后,你需要确定本阶段的产量，并为下阶段制订价格',  RUS:''},
@@ -393,6 +363,7 @@ var getLabelBase = function(){
 		{id:'Step 2 of 4',  ENG:'Step 2 of 4',  CHN:'步骤 2 / 4',  RUS:''},
 		{id:'Production Volume Info',  ENG:'volume you order from your factory; check your production capacity for the limits of your order.',  CHN:'你要求工厂生产的数量。注意查看你的产能信息,这是你生产订单的上限',  RUS:''},
 		{id:'Back',  ENG:'Back',  CHN:'上一步',  RUS:''},
+
 		/*producer step 3*/
 		{id:'Advertising',  ENG:'Advertising',  CHN:'广告',  RUS:''},
 		{id:'Producer Advertising Info',  ENG:'After setting production volumes and future wholesale prices you need to take some marketing decisions both market related and national.',  CHN:'现在你需要制订广告决策,　包括全国市场和本地市场',  RUS:''},
@@ -414,6 +385,7 @@ var getLabelBase = function(){
 		{id:'E-Mall visibility investment Info',  ENG:'budget invested in increasing visibility of your brands at eMall.',  CHN:'用于提高品牌在网上商城可见度的投资',  RUS:''},
 		{id:'On-line Advertising',  ENG:'On-line Advertising',  CHN:'网络广告',  RUS:''},
 		{id:'On-line Advertising Info',  ENG:'budget spent to advertise your brands on the Internet, including social media.',  CHN:'你在网络包括社交媒体上用于提高品牌知名度的投资',  RUS:''},
+
 		/*producer step 4*/
 		{id:'Category Decision',  ENG:'Category Decision',  CHN:'品类决策',  RUS:''},
 		{id:'Category Decision Info',  ENG:'At last you have to make decisions influencing whole category. These decisions are long-term investments, that is why they are not taken from your limited operational budget, you borrow these investments from capital market at a cost. Keep in mind that your long-term investments increase your fixed assets and consequently costs of running business. ',  CHN:'制订品类层面的决策，这属于公司长期决策，这部分投资不占用你有限的运营预算,而是以一定成本从资本市场获得,请注意长期投资会增加你的固定资产,　最终会增加你的运营资本.',  RUS:''},
@@ -428,6 +400,7 @@ var getLabelBase = function(){
 		{id:'improve Design Know-How Info',  ENG:'Health/Beauties; you start with level 7 and can increase it to 20 by the session end; increases your fixed assets.',  CHN:'适用于美容健康品类,每家公司的最高水平在开始阶段都为７，到模拟结束时最高可以增加到20,　提高know how水平,会增加你的固定资产。',  RUS:''},
 		{id:'Production capacity',  ENG:'Production capacity',  CHN:'产能',  RUS:''},
 		{id:'Acquired production flexibility',  ENG:'Acquired production flexibility',  CHN:'所拥有的生产灵活性',  RUS:''},
+
 		/*retailer step 1*/
 		{id:'Rteailer Advertising Info',  ENG:'define your marketing investments. These investments are given to online and offline agencies that carry out marketing campaigns for you. You can also define what slogan your agency promotes for you, you just need to allocate your budget between three shopper perceptions (convenience, assortment and price) in such a way that dimension you promote most gets more money.',  CHN:'制订你的市场决策。第三方网络和传统广告机构会根据你的要求完成市场活动.你只需确定在三个感知维度（便利性,　产品组合和价格)上的预算分配.',  RUS:''},
 		{id:'More information',  ENG:'More information',  CHN:'更多信息',  RUS:''},
@@ -443,6 +416,7 @@ var getLabelBase = function(){
 		{id:'Assortment On-line Info',  ENG:'budget you give online advertising agencies to promote assortment of your store chain.',  CHN:'给网络广告机构的预算,用于提高你门店的产品组合感知',  RUS:''},
 		{id:'Price On-line',  ENG:'Price On-line',  CHN:'价格网络广告',  RUS:''},
 		{id:'Price On-line Info',  ENG:'budget you give online advertising agencies to promote price level of your store chain. ',  CHN:'给网络广告机构的预算,用于提高你门店的价格感知',  RUS:''},
+
 		/*retailer step 2*/
 		{id:'Market',  ENG:'Market',  CHN:'市场',  RUS:''},
 		{id:'Market Info',  ENG:'After completing national set of decisions, it would be logical to work on the decisions specific for each of the markets. They will be of a strategic essence and influence your store chain positioning on the market. ',  CHN:'制订本地市场的决策，这将影响门店在当地市场的定位。',  RUS:''},
@@ -462,6 +436,7 @@ var getLabelBase = function(){
 		{id:'Allocate Empty Place Info',  ENG:'Allocate Empty Place Info',  CHN:'分配空的货架',  RUS:''},
 		{id:'Allocate',  ENG:'Allocate',  CHN:'分配',  RUS:''},
 		{id:'No',  ENG:'No',  CHN:'不分配',  RUS:''},
+
 		/*retailer step 3*/
 		{id:'Private Labels Composition',  ENG:'Private Labels Composition',  CHN:'自有品牌决策',  RUS:''},
 		{id:'Private Labels Composition Info',  ENG:'At this step you have to think about and take your decision on the portfolio of your private labels. You start with one PL per category per market. You may have three PLs per category per market.',  CHN:'制订你的自有品牌组合决策.你在开始阶段每个市场每个品类各有一个自有品牌,　最多可以在每个市场每个品类各拥有三个自有品牌.',  RUS:''},
@@ -470,12 +445,12 @@ var getLabelBase = function(){
 		{id:'Retailer Discontinue this product Info',  ENG:'take this decision with caution: all unsold stocks of this product will be automatically returned to your warehouse and scrapped at a cost to your business.',  CHN:'请注意:　所有期末未销售完的库存将退回到你的仓库进行销毁，成为你的成本',  RUS:''},
 		{id:'Retailer DisContinue',  ENG:'DisContinue',  CHN:'停止销售',  RUS:''},
 		{id:'Retailer Continue',  ENG:'Continue',  CHN:'继续销售',  RUS:''},
+
 		/*retailer step 4*/
 		{id:'Order Pricing Shelf',  ENG:'Order, Pricing and Shelf Allocation',  CHN:'订货、定价和货架分配',  RUS:''},
 		{id:'Order Pricing Shelf Info',  ENG:'placing orders with suppliers, allocating shelf space, setting retail price and defining promotions for each brand (both supplier and private label) at each market.',  CHN:'确定向生产商的定货量,制订零售价，分市场、按品类为每个单品（包括生产商和你的自有品牌)分配货架空间,制订促销计划',  RUS:''},
 		{id:'Available ShelfSpace',  ENG:'Available ShelfSpace',  CHN:'可分配的货架空间',  RUS:''},
-		{id:'Private Label',  ENG:'Private Label',  CHN:'自有品牌',  RUS:''},
-		
+		{id:'Private Label',  ENG:'Private Label',  CHN:'自有品牌',  RUS:''},		
 		{id:'List Price',  ENG:'List Price',  CHN:'进货价',  RUS:''},
 		{id:'Closing Inventory',  ENG:'Closing Inventory',  CHN:'期末库存',  RUS:''},
 		{id:'Sales Volume at your store',  ENG:'Sales Volume at your store',  CHN:'在你门店的销量',  RUS:''},
