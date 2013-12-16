@@ -495,7 +495,7 @@ var
 
     procedure translateVariant(jo : ISuperObject; var pVar : TProVarDecision);
     begin
-      StringToWideChar(jo.S['varName'],pVar.dpv_VarName,VarNameLength);
+      StringToWideChar(jo.S['varName'],pVar.dpv_VarName,VarNameLength + 1);
       //pVar.dpv_VarName := jo.S['varName'];
       pVar.dpv_VarID := jo.I['varID'];
       pVar.dpv_ParentBrandID := jo.I['parentBrandID'];
@@ -517,7 +517,7 @@ var
     var
       ivar : TOneBrandVars;
     begin
-      StringToWideChar(jo.S['brandName'],pBrand.dpb_BrandName,BrandNameLength);
+      StringToWideChar(jo.S['brandName'],pBrand.dpb_BrandName,BrandNameLength + 1);
       //pBrand.dpb_BrandName := jo.S['brandName'];
       pBrand.dpb_BrandID := jo.I['brandID'];
       pBrand.dpb_ParentCompanyID  := jo.I['paranetCompanyID'];

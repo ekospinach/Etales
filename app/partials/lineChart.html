@@ -65,19 +65,6 @@
 			    <li><a ng-click="showLineChart(cat,'Total',role,language)">{{Label.getContent('Total')}}</a></li>
 			  </ul>
 			</div>
-			 <!--
-				<div class="btn-group pull-right" data-toggle="buttons">
-				  <label class="btn btn-default" ng-click="showLineChart(cat,market,role,'English')">
-				    <input type="radio" name="options"> English
-				  </label>
-				  <label class="btn btn-default" ng-click="showLineChart(cat,market,role,'Chinese')">
-				    <input type="radio" name="options" > Chinese
-				  </label>
-				  <label class="btn btn-default" ng-click="showLineChart(cat,market,role,'Russian')">
-				    <input type="radio" name="options"> Russian
-				  </label>
-				</div>
-			-->
 			<div class="btn-group">
 				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
 			    {{Label.getContent('Period')}}<span class="caret"></span>
@@ -89,28 +76,6 @@
 					</li>
 			  	</ul>
 			</div>
-			<!--
-			<div class="btn-group"  ng-show="isRoleChangeBtnShow">
-=======
-			<div class="btn-group" ng-show="false">
-			  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-			    Period <span class="caret"></span>
-			  </button>
-			  <ul class="dropdown-menu">
-			    <li ng-repeat="newperiod in periods"><a ng-click="getLineChart(seminar,realGroupENG,newperiod)">{{newperiod}}</a></li>
-			  </ul>
-			 </div>
-			 <div class="btn-group"  ng-show="isRoleChangeBtnShow">
->>>>>>> c5b4ce2c22d96c64fd856a8ecf584779cfc2e9e5
-			  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-			    Role <span class="caret"></span>
-			  </button>
-			  <ul class="dropdown-menu">
-			    <li><a ng-click="showLineChart(cat,market,'Producer',language)">Producer</a></li>
-			    <li><a ng-click="showLineChart(cat,market,'Retailer',language)">Retailer</a></li>
-			  </ul>
-			</div>
-			-->
 		</div>
 	</div>
 	 <div style="clear:both"></div>

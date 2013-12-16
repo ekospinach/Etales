@@ -52,6 +52,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    	});
 		    	charts[i].data=$scope.chartCollection.data;
 		    	title=Label.getContent($scope.chartdata.chartSetCollection[i].titleENG);
+		    	console.log($scope.chartdata.chartSetCollection[i].titleENG);
 		    	// if(language=="ENG"){
 		    	// 	title=$scope.chartdata.chartSetCollection[i].titleENG;
 		    	// }
