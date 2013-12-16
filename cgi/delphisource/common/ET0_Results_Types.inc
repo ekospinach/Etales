@@ -579,7 +579,7 @@ TRetailerQuarterResults =
     rq_ValueRotationIndex                       : single;
     rq_VolumeRotationIndex                      : single;
     
-    rq_Buyers                                   : TCategoriesSegmentsTotalData;     { +++ ADDED 13/12/2013 }
+    rq_Buyers                                   : TSegmentsTotalData;     { +++ ADDED 13/12/2013 }
     
     
   end;

@@ -26,78 +26,6 @@ Const
 
   {--- Limits ----------------------------------------------------------------------------------------------------------------}
 
-  BrandNameLength    = 6;                 { brand name length }
-  VarNameLength      = 6;                 { variant name length }
-
-  CatsMax            = 2;                 { # of categories }
-  CatsMaxTotal       = CatsMax + 1;       { for totals }
-  MrktsMax           = 2;
-  MrktsMaxTotal      = MrktsMax + 1;
-
-  ProsMax            = 3;                 { # of supplier teams }
-  ProsMaxTotal       = ProsMax + 1;       { for totals of regular Producers }
-  ProsMaxPlus        = ProsMax + 1;       { 3 Producer teams Plus one virtual }
-  ProsMaxPlusTotal   = ProsMaxPlus + 1;   { for overall totals}
-
-  ProBrandsMax       = 5;                 { max # of brands per supplier per category, there will be 4 active }
-                                          { we leave space for a swap an old for a new one }
-  ActiveProBrandsMax = ProBrandsMax - 1;
-  ProBrandsMaxTotal  = ProBrandsMax + 1;  { for one producer totals }
-
-  VarsMax            = 3;                 { max # of variants per brand }
-  VarsMaxTotal       = VarsMax + 1;       { for one brand totals }
-
-  ModernRetsMax      = 2;                 { max of active retailers representing modern trade }
-  ModernRetsMaxTotal = ModernRetsMax + 1; { Total of Modern Trade }
-  BMRetsMax          = ModernRetsMax + 1; { all B&M retailers }
-  BMRetsMaxTotal     = BMRetsMax + 1;     { Total of B&M }
-  AllRetsMax         = BMRetsMax + 1;     { all B&M and E-mall }
-  AllRetsMaxTotal    = AllRetsMax + 1;    { Grand total of all retailers }
-
-
-  PLsMax             = 4;  { max # of Private Labels at one retailer - effective number is 3 }
-  ActivePLsMax       = PLsMax - 1;
-  PLsMaxTotal        = PLsMax + 1;         { for totals }
-
-  AllProBrandsMax    = ProsMaxPlus * ProBrandsMax;
-  AllBrandsMax       = AllProBrandsMax + ModernRetsMax * PLsMax;
-                       { no private labels at Ret.3; no private labels at E-mall, but E-mall will carry exclusive items from Pro.4 }
-
-  AllVariantsMax     = AllBrandsMax * VarsMax;
-  ProsVariantsMax    = ProBrandsMax * ProsMax * VarsMax;
-
-  RetBrandsMax       = 21;  { it should be different, i.e. maximum number of variants listed by a retailer in one "Quarter" - 3 * 4 active producers brands + 3 active PLs }
-  RetVariantsMax     = RetBrandsMax;  
-
-  LastBrand_ID       = ( IDM * TradTrade_ID + PLsMax );
-  LastVar_ID         = IDM * LastBrand_ID + VarsMax;
-
-  SpecsMax           = 3;                  { # of product technological specification details }
-  VariantDimsMax     = 3;                  { Variant perception dimensions }
-  VariantDimsMaxFull = VariantDimsMax + AllRetsMaxTotal;  { ... as above plus specific price perceptions at each retailer, plus average }
-  
-  StoresDimsMax      = 3;
-
-  PeriodLastWeek     = 52;                 { last week number in period }
-  DaysInPeriod       = 365;
-
-  SegmentsMax        = 4;                  { max # of consumer segments }
-  SegmentsMaxTotal   = SegmentsMax + 1;    { plus total }
-  
-  HouseholdsGroupsMax  = 4;                           { overdeclared for the time being; only total used in the initial version }
-  HouseholdsGroupsMaxTotal = HouseholdsGroupsMax + 1;
-
-  InventoryAgesMax   = 3;                  { Inventory is tracked 3 years backward, any older inventory will be considered also 3 years old }
-  InventoryAgesMaxTotal = InventoryAgesMax + 1;  { Used to calculate total volume /regardless of age/ and average cost }
-
-  MaxTechnologyLevel   = 20;
-  MaxDesignLevel       = 20;
-  TechnologyDelta      =  2;
-  MaxSpecsIndex        = MaxTechnologyLevel + TechnologyDelta;
-  MaxIngredientsInput  = MaxSpecsIndex;
-
-  SeminarCodeLength  = 15;
-
   TimeStart          = -4;
   HistoryStart       =  TimeStart + 1;
   HistoryEnd         =  0;
@@ -105,26 +33,93 @@ Const
   FutureEnd          =  9;
   TimeEnd            =  FutureEnd + 1;
 
-  CategoriesUniverse =  9;
+  VarsMax                  = 3;                 { max # of variants per brand }
+  VarsMaxTotal             = VarsMax + 1;       { for one brand totals }
 
-  MarketsUniverse    =  9;
-	
-  PARExtension       = '.PAR';
-  EXOExtension       = '.EXO';
-	
-  DefaultTOP         = 60;
+  PLsMax                   = 4;           { max # of Private Labels at one retailer - effective number is 3 }
+  PLsMaxTotal              = PLsMax + 1;  { for totals }
+  ActivePLsMax             = PLsMax - 1;
+
+  ProBrandsMax             = 5;                 { max # of brands per supplier per category, there will be 4 active }
+  ProBrandsMaxTotal        = ProBrandsMax + 1;  { for one producer totals }
+  ActiveProBrandsMax       = ProBrandsMax - 1;  { we leave space for a swap an old for a new one }
+
+  ProsMax                  = 3;                 { # of supplier teams }
+  ProsMaxPlus              = ProsMax + 1;       { 3 Producer teams Plus one virtual }
+  ProsMaxPlusTotal         = ProsMaxPlus + 1;   { for overall totals}
+  ProsMaxTotal             = ProsMax + 1;       { for totals of regular Producers }
+  ProsVariantsMax          = ProBrandsMax * ProsMax * VarsMax;
+
+  ModernRetsMax            = 2;                 { max of active retailers representing modern trade }
+  ModernRetsMaxTotal       = ModernRetsMax + 1; { Total of Modern Trade }
+  BMRetsMax                = ModernRetsMax + 1; { all B&M retailers }
+  BMRetsMaxTotal           = BMRetsMax + 1;     { Total of B&M }
+  AllRetsMax               = BMRetsMax + 1;     { all B&M and E-mall }
+  AllRetsMaxTotal          = AllRetsMax + 1;    { Grand total of all retailers }
+
+  AllProBrandsMax          = ProsMaxPlus * ProBrandsMax;
+  AllBrandsMax             = AllProBrandsMax + ModernRetsMax * PLsMax;  { no private labels at Ret.3; no private labels at E-mall, but E-mall will carry exclusive items from Pro.4 }
+  AllVariantsMax           = AllBrandsMax * VarsMax;
+
+  BrandNameLength          = 6;                 { brand name length }
+  
+  CategoriesUniverse       = 9;
+  CatsMax                  = 2;                 { # of categories }
+  CatsMaxTotal             = CatsMax + 1;       { for totals }
+  DaysInPeriod             = 183;
+
+  HouseholdsGroupsMax      = 4;                           { overdeclared for the time being; only total used in the initial version }
+  HouseholdsGroupsMaxTotal = HouseholdsGroupsMax + 1;
+  
+  InventoryAgesMax         = 3;                  { Inventory is tracked 3 years backward, any older inventory will be considered also 3 years old }
+  InventoryAgesMaxTotal    = InventoryAgesMax + 1;  { Used to calculate total volume /regardless of age/ and average cost }
+
+  LastBrand_ID             = ( IDM * TradTrade_ID + PLsMax );
+  LastVar_ID               = IDM * LastBrand_ID + VarsMax;
+
+  MarketsUniverse          =  9;                                     
+  MaxDesignLevel           = 20;
+
+  TechnologyDelta          =  2;
+  MaxTechnologyLevel       = 20;
+  MaxSpecsIndex            = MaxTechnologyLevel + TechnologyDelta;
+  MaxIngredientsInput      = MaxSpecsIndex;
+
+  MrktsMax                 =  2;
+  MrktsMaxTotal            = MrktsMax + 1;
+  PeriodLastWeek           = 26;                 { last week number in period }
+  RetBrandsMax             = 21;  { it should be different, i.e. maximum number of variants listed by a retailer in one "Quarter" - 3 * 4 active producers brands + 3 active PLs }
+  RetVariantsMax           = RetBrandsMax;  
+
+  SegmentsMax              =  4;                 { max # of consumer segments }
+  SegmentsMaxTotal         = SegmentsMax + 1;    { plus total }
+
+  SeminarCodeLength        = 15;
+  
+  SpecsMax                 =  3;                 { # of product technological specification details }
+  
+  StoresDimsMax            =  3;
+
+  VariantDimsMax           = 3;                  { Variant perception dimensions }
+  VariantDimsMaxFull       = VariantDimsMax + AllRetsMaxTotal;  { ... as above plus specific price perceptions at each retailer, plus average }
+
+  VarNameLength            = 6;                 { variant name length }
+
+  
+  PARExtension             = '.PAR';
+  EXOExtension             = '.EXO';
+
+  DefaultTOP               = 60;
+
+
 
   //Added by hao-----------------
-  DB_Location        =  'C:\E-Project\databasefile\ETALE.FDB'; {'Q:\ET\databasefile\ETALE.FDB'; }
-  DB_PW              =  'sh871030';
-  DB_UN              =  'sysdba';
+  DB_Location              =  'C:\E-Project\databasefile\ETALE.FDB'; {'Q:\ET\databasefile\ETALE.FDB'; }
+  DB_PW                    =  'sh871030';
+  DB_UN                    =  'sysdba';
 
-  CONTRACT_Draft    = 0;
-  CONTRACT_Locked   = 1;
-  CONTRACT_Draftedbyothers     = 2;
-  CONTRACT_DEAL   = 3;
-  CONTRACT_Lockedbyothers   = 4;
-
-
-
-
+  CONTRACT_Draft           = 0;
+  CONTRACT_Locked          = 1;
+  CONTRACT_Draftedbyothers = 2;
+  CONTRACT_DEAL            = 3;
+  CONTRACT_Lockedbyothers  = 4;

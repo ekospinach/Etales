@@ -1,119 +1,99 @@
 {===============     E-Tales Simulation Global Types     =====================================================================}
 
 Type
-  TActors             = 1..E_Mall_ID;
-  TAllProducers       = 1..ProsMaxPlus;
-  TAllProducersTotal  = 1..ProsMaxPlusTotal;
-  TAllRetailers       = 1..AllRetsMax;
-  TAllRetailersTotal  = 1..AllRetsMaxTotal;
-  TBMRetailers        = 1..BMRetsMax;
-  TBrandID            = 0..LastBrand_ID;    { we keep 0 for non-active brands }
-  TBrandName          = array[0..BrandNameLength] of WideChar;
-  TBrandOwners        = Prod_1_ID..Ret_2_ID;
-  TBrandsFromPros     = 1..AllProBrandsMax;
-  TBrands             = 1..AllBrandsMax;
-  TCategories         = 1..CatsMax;
-  TCategoriesTotal    = 1..CatsMaxTotal;
-  TCompanies          = Prod_1_ID..E_Mall_ID;
-  TDelayOfPayment     = 0..DaysInPeriod;
-  TDesign             = 1..MaxDesignLevel;
-  THistory            = HistoryStart..HistoryEnd;
-  TIngredientsInput   = 1..MaxIngredientsInput;
-  TInventoryAgesTotal = 0..InventoryAgesMaxTotal;
-  TMarkets            = 1..MrktsMax;
-  TMarketsTotal       = 1..MrktsMaxTotal;
-  TModernRetailers    = 1..ModernRetsMax;
-  TOneBrandVars       = 1..VarsMax;
-  TOperatingMode      = ( LOCAL, ONLINE );
-  TPeriodNumber       = HistoryStart..FutureEnd;
-  TTimeSpan           = TimeStart..TimeEnd;
-  TPrivateLabels      = 1..PLsMax;
-  TProBrands          = 1..ProBrandsMax;
-  TProducers          = 1..ProsMax;
-  TProducersPlus      = 1..ProsMaxPlus;
-  TRetVariants        = 1..RetVariantsMax;
-  TSegments           = 1..SegmentsMax;
-  TSegmentsTotal      = 1..SegmentsMaxTotal;
-  THouseholds         = 1..HouseholdsGroupsMax;
-  THouseholdsTotal    = 1..HouseholdsGroupsMaxTotal;
-  TSeminarCode        = array[0..SeminarCodeLength] of widechar;
-  TServiceLevel       = ( SL_BASE, SL_FAIR, SL_MEDIUM, SL_ENHANCED, SL_PREMIUM );
-  TShoppersKind       = ( NETIZENS, MIXED, BMS, ALLSHOPPERS );
-  TSimulationSpan     = 1..FutureEnd;
-  TSpecsIndices       = 1..MaxSpecsIndex;
-  TSpecs              = 1..SpecsMax;
-  TSpecsExtended      = 1..SpecsMax + 3;  { Composition + Perceived Price + alpha + beta }
-  TStorePerceptions   = ( PRICE, CONVENIENCE, ASSORTMENT );
-  TTechnology         = 1..MaxTechnologyLevel;  
-  TVarComposition     = array[TSpecs] of TSpecsIndices;
-  TVarID              = 0..LastVar_ID;      { we keep 0 for non-active variants }
-  TVarName            = array[0..VarNameLength] of WideChar;
-  TVarPackFormat      = ( ECONOMY, STANDARD, PREMIUM );
-  TVarBasePerceptions = 1..VariantDimsMax - 1;
-  TVarPerceptions     = 1..VariantDimsMaxFull;
-  TVarPriority        = ( NO_PREFERENCE, BM_PREFERENCE, EMALL_PREFERENCE );
-  TVariants           = 1..AllVariantsMax;
-  TWeeksInPeriod      = 0..PeriodLastWeek;
-  
-  TStoreDimensions    = 1..StoresDimsMax;
+  TActors               = 1..E_Mall_ID;
+  TAllProducers         = 1..ProsMaxPlus;
+  TAllProducersTotal    = 1..ProsMaxPlusTotal;
+  TAllRetailers         = 1..AllRetsMax;
+  TAllRetailersTotal    = 1..AllRetsMaxTotal;
+  TBMRetailers          = 1..BMRetsMax;
+  TBrandID              = 0..LastBrand_ID;    { we keep 0 for non-active brands }
+  TBrandName            = array[0..BrandNameLength] of WideChar;
+  TBrandOwners          = Prod_1_ID..Ret_2_ID;
+  TBrands               = 1..AllBrandsMax;
+  TBrandsFromPros       = 1..AllProBrandsMax;
+  TCategories           = 1..CatsMax;
+  TCategoriesSet        = set of TCategories;            { defines # of current categories }
+  TCategoriesTotal      = 1..CatsMaxTotal;
+  TCategoriesUniverse   = 1..CategoriesUniverse;
+  TCompanies            = Prod_1_ID..E_Mall_ID;
+  TDelayOfPayment       = 0..DaysInPeriod;
+  TDesign               = 1..MaxDesignLevel;
+  THistory              = HistoryStart..HistoryEnd;
+  THouseholds           = 1..HouseholdsGroupsMax;
+  THouseholdsTotal      = 1..HouseholdsGroupsMaxTotal;
+  TIngredientsInput     = 1..MaxIngredientsInput;
+  TInventoryAgesTotal   = 0..InventoryAgesMaxTotal;
+  TMarkets              = 1..MrktsMax;
+  TMarketsSet           = set of TMarkets;               { defines # of current markets }
+  TMarketsTotal         = 1..MrktsMaxTotal;
+  TMarketsUniverse      = 1..MarketsUniverse;
+  TModernRetailers      = 1..ModernRetsMax;
+  TOneBrandVars         = 1..VarsMax;
+  TOperatingMode        = ( LOCAL, ONLINE );
+  TPeriodNumber         = HistoryStart..FutureEnd;
+  TPrivateLabels        = 1..PLsMax;
+  TProBrands            = 1..ProBrandsMax;
+  TProducers            = 1..ProsMax;
+  TProducersPlus        = 1..ProsMaxPlus;
+  TRetVariants          = 1..RetVariantsMax;
+  TSegments             = 1..SegmentsMax;
+  TSegmentsTotal        = 1..SegmentsMaxTotal;
+  TSeminarCode          = array[0..SeminarCodeLength] of widechar;
+  TServiceLevel         = ( SL_BASE, SL_FAIR, SL_MEDIUM, SL_ENHANCED, SL_PREMIUM );
+  TShoppersKind         = ( NETIZENS, MIXED, BMS, ALLSHOPPERS );
+  TSimulationSpan       = 1..FutureEnd;
+  TSpecs                = 1..SpecsMax;
+  TSpecsExtended        = 1..SpecsMax + 3;  { Composition + Perceived Price + alpha + beta }
+  TSpecsIndices         = 1..MaxSpecsIndex;
+  TStoreDimensions      = 1..StoresDimsMax;
+  TStorePerceptions     = ( PRICE, CONVENIENCE, ASSORTMENT );
+  TTechnology           = 1..MaxTechnologyLevel;  
+  TTimeSpan             = TimeStart..TimeEnd;
+  TVarBasePerceptions   = 1..VariantDimsMax - 1;
+  TVariants             = 1..AllVariantsMax;
+  TVarID                = 0..LastVar_ID;      { we keep 0 for non-active variants }
+  TVarName              = array[0..VarNameLength] of WideChar;
+  TVarPackFormat        = ( ECONOMY, STANDARD, PREMIUM );
+  TVarPerceptions       = 1..VariantDimsMaxFull;
+  TVarPriority          = ( NO_PREFERENCE, BM_PREFERENCE, EMALL_PREFERENCE );
+  TWebTrawlerDimensions = ( SENTIMENT, STRENGTH );  
+  TWeeksInPeriod        = 0..PeriodLastWeek;
 
-  TMarketsDetails = array[TMarkets] of single;
-  TMarketsTotalDetails = array[TMarketsTotal] of single;
+  TIngredientsDetails                = array[TIngredientsInput] of single;
+  TAllIngredientsDetails             = array[TSpecs] of TIngredientsDetails;
+  TCategoriesBytes                   = array[TCategories] of byte;    { identifies current categories, ID taken from TCategoriesUniverse }
+  TSegmentsData                      = array[TSegments] of single;
+  TSegmentsTotalData                 = array[TSegmentsTotal] of single;
+  TCategoriesSegmentsTotalData       = array[TCategories] of TSegmentsTotalData;
+  TCategoriesShares                  = array[TCategories] of single;
+  TCumulatedVolumesDetails           = array[TSpecs, TSpecsIndices] of single;
+  TDesignsDetails                    = array[TDesign] of single;
+  THouseholdsData                    = array[THouseholds] of single;
+  THouseholdsTotalData               = array[THouseholdsTotal] of single;
+  TMarketsBytes                      = array[TMarkets] of byte;       { identifies current markets, ID taken from TMarketsUniverse }
+  TMarketsDetails                    = array[TMarkets] of single;
+  TMarketsTotalDetails               = array[TMarketsTotal] of single;
+  TPackFormatDetails                 = array[TVarPackFormat] of single;
+  TPromotionsDetails                 = record
+                                         promo_Frequency : TWeeksInPeriod;  { saved as # of weks }
+                                         promo_Rate      : single;   { saved as a % }
+                                       end;
   TRetailersTotalMarketsTotalDetails = array[TAllRetailersTotal, TMarketsTotal] of single;
-
-  TPromotionsDetails  = record
-                          promo_Frequency : TWeeksInPeriod;  { saved as # of weks }
-                          promo_Rate      : single;   { saved as a % }
-                        end;
-
-  TCategoriesShares       = array[TCategories] of single;
-  TStorePerceptionsData   = array[TStorePerceptions] of single;
-  TVariantPerceptionsData = array[TVarPerceptions] of single;
-
-  TVariantInventoryDetails = record
-                               invd_Volume      : single;
-                               invd_UnitCost    : single;
-                               invd_Composition : TVarComposition;
-                             end;
-
-  TVariantInventoriesDetails = array[TInventoryAgesTotal] of TVariantInventoryDetails;
-  
-  TSegmentsData              = array[TSegments] of single;
-  TSegmentsTotalData         = array[TSegmentsTotal] of single;
-  TCategoriesSegmentsTotalData = array[TCategories] of TSegmentsTotalData;
-
-  THouseholdsData            = array[THouseholds] of single;
-  THouseholdsTotalData       = array[THouseholdsTotal] of single;
-
-  TShoppersData              = array[TShoppersKind] of single;
-
-  TMarketsBytes              = array[TMarkets] of byte;       { identifies current markets, ID taken from TMarketsUniverse }
-  TCategoriesBytes           = array[TCategories] of byte;    { identifies current categories, ID taken from TCategoriesUniverse }
-  TMarketsSet                = set of TMarkets;               { defines # of current markets }
-  TCategoriesSet             = set of TCategories;            { defines # of current categories }
-
-  TMarketsUniverse           = 1..MarketsUniverse;
-  TCategoriesUniverse        = 1..CategoriesUniverse;
-  
-  TTechnologiesDetails      = array[TTechnology] of single;
-  TDesignsDetails           = array[TDesign] of single;
-  TIngredientsDetails       = array[TIngredientsInput] of single;
-  TAllIngredientsDetails    = array[TSpecs] of TIngredientsDetails;
-  
-  TServiceLevelsData        = array[TServiceLevel] of single;
- 
-  TSpecsToBasePerceptionDetails = array[TVarBasePerceptions, TSpecsExtended] of single;
-
-  TCumulatedVolumesDetails  = array[TSpecs, TSpecsIndices] of single;
-	
-  TWebTrawlerDimensions     = ( SENTIMENT, STRENGTH );  
-	
-  TWebTrawlerIndices        = array[TWebTrawlerDimensions] of single; 
-
-  TPackFormatDetails        = array[TVarPackFormat] of single;
-
-
-	
+  TServiceLevelsData                 = array[TServiceLevel] of single;
+  TShoppersData                      = array[TShoppersKind] of single;
+  TSpecsToBasePerceptionDetails      = array[TVarBasePerceptions, TSpecsExtended] of single;
+  TStorePerceptionsData              = array[TStorePerceptions] of single;
+  TTechnologiesDetails               = array[TTechnology] of single;
+  TVarComposition                    = array[TSpecs] of TSpecsIndices;
+  TVariantInventoryDetails           = record
+                                         invd_Volume      : single;
+                                         invd_UnitCost    : single;
+                                         invd_Composition : TVarComposition;
+                                       end;
+  TVariantInventoriesDetails         = array[TInventoryAgesTotal] of TVariantInventoryDetails;
+  TVariantPerceptionsData            = array[TVarPerceptions] of single;
+  TWebTrawlerIndices                 = array[TWebTrawlerDimensions] of single; 
   
 
 {=========================   Producer Decisions   ===========================================================================}
