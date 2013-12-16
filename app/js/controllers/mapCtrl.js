@@ -147,31 +147,12 @@ define(['app','socketIO','routingConfig'], function(app) {
 				}
 				datas[i][4]=new Array();
 				datas[i][4]=$scope.pageCollection.brandCollection[i-1];
-
-				if(language=="ENG"){
-					datas[i][4].easeOfUsePerception.Selectlabel=datas[i][4].easeOfUsePerception.labelENG;
-					datas[i][4].qualityPerception.Selectlabel=datas[i][4].qualityPerception.labelENG;
-					datas[i][4].pricePerception.Selectlabel=datas[i][4].pricePerception.labelENG;
-					datas[i][4].marketShare.Selectlabel=datas[i][4].marketShare.labelENG;
-					datas[i][4].brandAwareness.Selectlabel=datas[i][4].brandAwareness.labelENG;
-					datas[i][4].visibilityShare.Selectlabel=datas[i][4].visibilityShare.labelENG;
-				}
-				else if(language=="CHN"){
-					datas[i][4].easeOfUsePerception.Selectlabel=datas[i][4].easeOfUsePerception.labelCHN;
-					datas[i][4].qualityPerception.Selectlabel=datas[i][4].qualityPerception.labelCHN;
-					datas[i][4].pricePerception.Selectlabel=datas[i][4].pricePerception.labelCHN;
-					datas[i][4].marketShare.Selectlabel=datas[i][4].marketShare.labelCHN;
-					datas[i][4].brandAwareness.Selectlabel=datas[i][4].brandAwareness.labelCHN;
-					datas[i][4].visibilityShare.Selectlabel=datas[i][4].visibilityShare.labelCHN;
-				}
-				else if(language=="RUS"){
-					datas[i][4].easeOfUsePerception.Selectlabel=datas[i][4].easeOfUsePerception.labelRUS;
-					datas[i][4].qualityPerception.Selectlabel=datas[i][4].qualityPerception.labelRUS;
-					datas[i][4].pricePerception.Selectlabel=datas[i][4].pricePerception.labelRUS;
-					datas[i][4].marketShare.Selectlabel=datas[i][4].marketShare.labelRUS;
-					datas[i][4].brandAwareness.Selectlabel=datas[i][4].brandAwareness.labelRUS;
-					datas[i][4].visibilityShare.Selectlabel=datas[i][4].visibilityShare.labelRUS;
-				}
+				datas[i][4].easeOfUsePerception.Selectlabel=Label.getContent(datas[i][4].easeOfUsePerception.labelENG);
+				datas[i][4].qualityPerception.Selectlabel=Label.getContent(datas[i][4].qualityPerception.labelENG);
+				datas[i][4].pricePerception.Selectlabel=Label.getContent(datas[i][4].pricePerception.labelENG);
+				datas[i][4].marketShare.Selectlabel=Label.getContent(datas[i][4].marketShare.labelENG);
+				datas[i][4].brandAwareness.Selectlabel=Label.getContent(datas[i][4].brandAwareness.labelENG);
+				datas[i][4].visibilityShare.Selectlabel=Label.getContent(datas[i][4].visibilityShare.labelENG);
 			}
 			$scope.data=datas;
 			//$scope.mapTitle=mapTitle;

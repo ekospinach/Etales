@@ -352,56 +352,31 @@ define(['app'], function(app) {
 				if(!filter.test(value)){
 					d.resolve('Input a Integer');
 				}
-				if(category=="Elecssories"){
-					categoryID=1;
-					var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
-					$http({
-						method:'GET',
-						url:url
-					}).then(function(data){
+				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+				$http({
+					method:'GET',
+					url:url
+				}).then(function(data){
+					if(category=="Elecssories"){
+						categoryID=1;
 						max=data.data.acquiredDesignLevel[categoryID-1];
 						if(value<1||value>max){
 							d.resolve('Input range:1~'+max);
-						}
-						url="/producerCurrentDecision/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+brandName+'/'+varName;
-						return $http({
-							method:'GET',
-							url:url
-						});
-					}).then(function(data){	
-						if(value>data.data.composition[2]+2||value>data.data.composition[1]+4){
-							if(data.data.composition[2]+2>=data.data.composition[1]+4){
-								d.resolve('Input range:1~'+(data.data.composition[1]+4)+'(Technology Level+4)');
-							}else{
-								d.resolve('Input range:1~'+(data.data.composition[2]+2)+'(Raw Materials Quality+2)');
-							}
 						}else{
 							d.resolve();
 						}
-					},function(data){
-						d.resolve('fail');
-					});
-				}else{
-					categoryID=2;
-					url="/producerCurrentDecision/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+brandName+'/'+varName;
-					$http({
-						method:'GET',
-						url:url
-					}).then(function(data){
-						if(value>data.data.composition[1]+2||value<1||value>data.data.composition[2]+2){
-							if(data.data.composition[1]>=data.data.composition[2]){
-								d.resolve('Input range:1~'+(data.data.composition[2]+2)+'(Smoothener Level+2)');
-							}else{
-								d.resolve('Input range:1~'+(data.data.composition[1]+2)+'(Technology Level+2)');
-							}
-						}
-						else{
+					}else{
+						categoryID=2;
+						max=data.data.acquiredTechnologyLevel[categoryID-1]+2;
+						if(value<1||value>max){
+							d.resolve('Input range:1~'+max);
+						}else{
 							d.resolve();
 						}
-					},function(data){
-						d.resolve('fail');
-					})
-				}
+					}
+				},function(){
+					d.resolve('fail');
+				});
 				return d.promise;
 			}
 
@@ -412,71 +387,40 @@ define(['app'], function(app) {
 				if(!filter.test(value)){
 					d.resolve('Input a Integer');
 				}
-				if(category=="Elecssories"){
-					categoryID=1;
-					var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
-					$http({
-						method:'GET',
-						url:url
-					}).then(function(data){
+				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+				$http({
+					method:'GET',
+					url:url
+				}).then(function(data){
+					if(category=="Elecssories"){
+						categoryID=1;
 						max=data.data.acquiredTechnologyLevel[categoryID-1];
 						if(value<1||value>max){
 							d.resolve('Input range:1~'+max);
 						}
-						url="/producerCurrentDecision/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+brandName+'/'+varName;
-						return $http({
-							method:'GET',
-							url:url
-						});
-					}).then(function(data){
-						//T>=Q-2 T>=D-2 T<=Q
-						//if D>=Q--> D-2<=T<=Q 
-						if(data.data.composition[0]>=data.data.composition[2]){
-							if(value>data.data.composition[2]||(value<data.data.composition[0]-2)){
-								d.resolve('Input range:'+(data.data.composition[0]-2)+'(Design Level-2)'+'~'+data.data.composition[2]+'(Raw Materials Quality)');
-							}else{
-								d.resolve();
-							}
-						}else{// Q-2<=T<=Q
-							if(value>data.data.composition[2]||(value<data.data.composition[2]-2)){
-								d.resolve('Input range:'+(data.data.composition[2]-2)+'(Raw Materials Quality-2)'+'~'+data.data.composition[2]+'(Raw Materials Quality)');
-							}else{
-								d.resolve();
-							}
-						}
-					},function(){
-						d.resolve('fail');
-					});
-				}else{
-					categoryID=2;
-					var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
-					$http({
-						method:'GET',
-						url:url
-					}).then(function(data){
+					}else{
+						categoryID=2;
 						max=data.data.acquiredTechnologyLevel[categoryID-1];
 						if(value<1||value>max){
 							d.resolve('Input range:1~'+max);
-						}
-						url="/producerCurrentDecision/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+brandName+'/'+varName;
-						return $http({
-							method:'GET',
-							url:url
-						});
-					}).then(function(data){
-						if(value<(data.data.composition[2]-2)||value<(data.data.composition[0]-4)){
-							if((data.data.composition[2]-2)>=(data.data.composition[0]-4)){
-								d.resolve('Input range:'+(data.data.composition[2]-2)+'(Smoothener Level-2)'+'~'+max);
-							}else{
-								d.resolve('Input range:'+(data.data.composition[0]-4)+'(Active agent-4)'+'~'+max);
-							}
 						}else{
 							d.resolve();
 						}
-					},function(data){
-						d.resolve('fail');
+					}
+					url="/producerCurrentDecision/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+brandName+'/'+varName;
+					return $http({
+							method:'GET',
+							url:url
 					});
-				}
+				}).then(function(data){
+					if(value>data.data.composition[2]||(value<data.data.composition[0]-2)){
+						d.resolve('Input range:'+(data.data.composition[0]-2)+'(Design Level-2)'+'~'+data.data.composition[2]+'(Raw Materials Quality)');
+					}else{
+						d.resolve();
+					}
+				},function(){
+					d.resolve('fail');
+				});
 				return d.promise;
 			}
 
@@ -493,32 +437,19 @@ define(['app'], function(app) {
 					catagoryID=2;
 				}
 				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
-					$http({
-						method:'GET',
-						url:url
-					}).then(function(data){
-						max=data.data.acquiredTechnologyLevel[categoryID-1]+2;
-						if(value<1||value>max){
-							d.resolve('Input range:1~'+max);
-						}
-						url="/producerCurrentDecision/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+brandName+'/'+varName;
-						return $http({
-							method:'GET',
-							url:url
-						});
-					}).then(function(data){
-						if(value<(data.data.composition[0]-2)||value>(data.data.composition[1]+2)){
-							if(category=="Elecssories"){
-								d.resolve('Input range:'+(data.data.composition[0]-2)+'(Design Level-2)'+'~'+(data.data.composition[1]+2)+'(Technology Level+2)');
-							}else{
-								d.resolve('Input range:'+(data.data.composition[0]-2)+'(Active agent-2)'+'~'+(data.data.composition[1]+2)+'(Technology Level+2)');
-							}
-						}else{
-							d.resolve();
-						}
-					},function(){
-						d.resolve('fail');
-					});
+				$http({
+					method:'GET',
+					url:url
+				}).then(function(data){
+					max=data.data.acquiredTechnologyLevel[categoryID-1]+2;
+					if(value<1||value>max){
+						d.resolve('Input range:1~'+max);
+					}else{
+						d.resolve();
+					}
+				},function(){
+					d.resolve('fail');
+				});
 				return d.promise;
 			}
 
@@ -699,7 +630,7 @@ define(['app'], function(app) {
 					newBrand.brandID=calculateBrandID(proBrandsDecision,$scope.producerID);
 					newBrand.brandName=$scope.brandFirstName+$scope.lauchNewBrandName+$rootScope.user.username.substring($rootScope.user.username.length-1);
 					newBrand.paranetCompanyID=$scope.producerID;
-					newBrand.dateOfDeath="";
+					newBrand.dateOfDeath=0;
 					newBrand.dateOfBirth=$scope.period;
 					newBrand.advertisingOffLine=new Array(0,0);
 					newBrand.advertisingOnLine=0;

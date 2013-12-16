@@ -367,19 +367,32 @@ define(['app'], function(app) {
 				}
 			}
 
-			var checkData=function(value){
+			var checkData=function(item,value){
 				var d = $q.defer();	
 				var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
 				if(!filter.test(value)){
 					d.resolve('Input a number');
+				}else if(item=="nc_VolumeDiscountRate"||item=="nc_PerformanceBonusRate"){
+					if(value>100){
+						d.resolve('Input range:0~100');
+					}else{
+						d.resolve();
+					}
+				}else if(item=="nc_PaymentDays"){
+					if(value>180){
+						d.resolve('Input range:0~180');
+					}else{
+						d.resolve();
+					}
 				}else{
 					d.resolve();
 				}
 				return d.promise;
 			}
 
-			$scope.openEditModal=function(Detail){
+			$scope.openEditModal=function(Detail,index){
 				$scope.editModal=true;
+				$scope.index=index;
 				loadModalDate(Detail);
 			}
 
@@ -515,9 +528,115 @@ define(['app'], function(app) {
 				});
 			}
 
-			$scope.closeEditModal=function(){
+			$scope.closeEditModal=function(Detail,index){
 				$scope.editModal=false;
-				refreshBrandAndContractDetails();
+				var newDetail=new Array();
+				var url='/contractDetail/'+Detail.contractCode+'/'+Detail.userType+'/'+Detail.negotiationItem+'/'+Detail.relatedBrandName;
+				if(Detail.negotiationItem=="nc_MinimumOrder"){
+					//load 2 item
+					$http({
+						method:'GET',
+						url:url
+					}).then(function(data){
+						newDetail=data.data[0];
+						if(newDetail!=undefined){
+							if(Detail.userType=="P"){
+								$scope.proDetailList[0].splice(index,1,newDetail);
+							}else{
+								$scope.retDetailList[0].splice(index,1,newDetail);
+							}
+						}
+						url='/contractDetail/'+Detail.contractCode+'/'+Detail.userType+'/nc_VolumeDiscountRate/'+Detail.relatedBrandName;
+						return $http({
+							method:'GET',
+							url:url
+						})
+					}).then(function(data){
+						newDetail=data.data[0];
+						if(newDetail!=undefined){
+							if(Detail.userType=="P"){
+								$scope.proDetailList[4].splice(index,1,newDetail);
+							}else{
+								$scope.retDetailList[4].splice(index,1,newDetail);
+							}
+						}
+					},function(){
+						console.log('refreshing fail');
+					})
+				}else if(Detail.negotiationItem=="nc_SalesTargetVolume"){
+					//load 3 item
+					$http({
+						method:'GET',
+						url:url
+					}).then(function(data){
+						newDetail=data.data[0];
+						if(newDetail!=undefined){
+							if(Detail.userType=="P"){
+								$scope.proDetailList[1].splice(index,1,newDetail);
+							}else{
+								$scope.retDetailList[1].splice(index,1,newDetail);
+							}
+						}
+						url='/contractDetail/'+Detail.contractCode+'/'+Detail.userType+'/nc_PerformanceBonusAmount/'+Detail.relatedBrandName;
+						return $http({
+							method:'GET',
+							url:url
+						})
+					}).then(function(data){
+						newDetail=data.data[0];
+						if(newDetail!=undefined){
+							if(Detail.userType=="P"){
+								$scope.proDetailList[5].splice(index,1,newDetail);
+							}else{
+								$scope.retDetailList[5].splice(index,1,newDetail);
+							}
+						}
+						url='/contractDetail/'+Detail.contractCode+'/'+Detail.userType+'/nc_PerformanceBonusRate/'+Detail.relatedBrandName;
+						return $http({
+							method:'GET',
+							url:url
+						})
+					}).then(function(data){
+						newDetail=data.data[0];
+						if(newDetail!=undefined){
+							if(Detail.userType=="P"){
+								$scope.proDetailList[6].splice(index,1,newDetail);
+							}else{
+								$scope.retDetailList[6].splice(index,1,newDetail);
+							}
+						}
+					},function(){
+						console.log('refreshing fail');
+					});
+				}else{
+					//load 1 item
+					$http({
+						method:'GET',
+						url:url
+					}).then(function(data){
+						newDetail=data.data[0];
+						if(Detail.negotiationItem=="nc_PaymentDays"){
+							if(newDetail!=undefined){
+								if(Detail.userType=="P"){
+									$scope.proDetailList[2].splice(index,1,newDetail);
+								}else{
+									$scope.retDetailList[2].splice(index,1,newDetail);
+								}
+							}
+						}else{
+							if(newDetail!=undefined){
+								if(Detail.userType=="P"){
+									$scope.proDetailList[3].splice(index,1,newDetail);
+								}else{
+									$scope.retDetailList[3].splice(index,1,newDetail);
+								}
+							}
+						}
+					},function(){
+						console.log('refreshing fail');
+					})
+				}
+				//refreshBrandAndContractDetails();
 			}
 
 			$scope.openViewModal=function(Detail){

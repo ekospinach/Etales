@@ -109,7 +109,11 @@ define(['app'], function(app) {
 	      			method:'GET',
 	      			url:url
 	      		}).then(function(data){
-	      			abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
+	      			if($rootScope.currentPeriod>=1){
+	      				abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
+	      			}else{
+	      				abMax=data.data.budgetAvailable;
+	      			}
 	      			$scope.abMax=abMax;
 	      			url="/retailerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/-1/location/1';
 	      			return $http({
@@ -150,13 +154,13 @@ define(['app'], function(app) {
 				      				if(allRetCatDecisions[i].retVariantDecision[j].brandID!=0&&allRetCatDecisions[i].retVariantDecision[j].variantID!=0){
 				      					if(allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate>=0&&allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate<1){
 				      						allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate*=100;
-				      						allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate=allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate.toFixed(2);
+				      						//allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate=parseFloat(allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate).toFixed(2);
 				      					}
 				      					if(allRetCatDecisions[i].retVariantDecision[j].shelfSpace>=0&&allRetCatDecisions[i].retVariantDecision[j].shelfSpace<1){
 				      						allRetCatDecisions[i].retVariantDecision[j].shelfSpace*=100;
-				      						allRetCatDecisions[i].retVariantDecision[j].shelfSpace=allRetCatDecisions[i].retVariantDecision[j].shelfSpace.toFixed(2);
+				      						allRetCatDecisions[i].retVariantDecision[j].shelfSpace=parseFloat(allRetCatDecisions[i].retVariantDecision[j].shelfSpace).toFixed(2);
 				      					}
-				      					allRetCatDecisions[i].retVariantDecision[j].retailerPrice=allRetCatDecisions[i].retVariantDecision[j].retailerPrice.toFixed(2);
+				      					allRetCatDecisions[i].retVariantDecision[j].retailerPrice=parseFloat(allRetCatDecisions[i].retVariantDecision[j].retailerPrice).toFixed(2);
 				      					products.push(allRetCatDecisions[i].retVariantDecision[j]);
 				      					count++;
 				      				}

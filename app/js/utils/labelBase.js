@@ -1,6 +1,7 @@
 var getLabelBase = function(){
 	return [
 		/*retail report new label */
+		/*report*/
 		{id:'- Advertising Total ($mln)',  ENG:'- Advertising Total ($mln)',  CHN:'',  RUS:''},
 		{id:'-National Off-line ($mln)',  ENG:'-National Off-line ($mln)',  CHN:'',  RUS:''},
 		{id:'-National On-line ($mln)',  ENG:'-National On-line ($mln)',  CHN:'',  RUS:''},
@@ -12,6 +13,11 @@ var getLabelBase = function(){
 		{id:'Manufacturer 3',  ENG:'Manufacturer 3',  CHN:'生产商 3',  RUS:''},	
 		{id:'Private label',  ENG:'Private label',  CHN:'自有品牌',  RUS:''},	
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		/*chart new*/
+		{id:'Wholesale Sales Value',  ENG:'Wholesale Sales Value',  CHN:'',  RUS:''},	
+		{id:'Wholesale Market Share (Value)',  ENG:'Wholesale Market Share (Value)',  CHN:'',  RUS:''},	
+		{id:'Wholesale Sales Volume',  ENG:'Wholesale Sales Volume',  CHN:'',  RUS:''},	
+		{id:'Wholesale Market Share (Volume)',  ENG:'Wholesale Market Share (Volume)',  CHN:'',  RUS:''},	
 		/*homepage*/
 		{id:'eTales Info',  ENG:'Best-in-class professional development tool among the world’s most respected companies and leading business schools',  CHN:'首次呈现和探索零售商、供应商、电商和消费者在社交媒体盛行时代的生存和胜出之道。',  RUS:''},
 		{id:'Get started',  ENG:'Get started',  CHN:'现在开始',  RUS:''},
@@ -25,18 +31,30 @@ var getLabelBase = function(){
 		{id:'Admin Login',  ENG:'Admin Login',  CHN:'管理员登陆',  RUS:''},	
 		{id:'Facilitator',  ENG:'Facilitator',  CHN:'讲师',  RUS:''},	
 		{id:'Guest',  ENG:'Guest',  CHN:'',  RUS:''},	
-		{id:'',  ENG:'',  CHN:'',  RUS:''},	
-		{id:'',  ENG:'',  CHN:'',  RUS:''},	
-		{id:'',  ENG:'',  CHN:'',  RUS:''},	
-		{id:'',  ENG:'',  CHN:'',  RUS:''},	
-		{id:'',  ENG:'',  CHN:'',  RUS:''},	
-		{id:'',  ENG:'',  CHN:'',  RUS:''},	
-		{id:'',  ENG:'',  CHN:'',  RUS:''},	
-		{id:'',  ENG:'',  CHN:'',  RUS:''},	
-		{id:'',  ENG:'',  CHN:'',  RUS:''},	
-		{id:'',  ENG:'',  CHN:'',  RUS:''},	
-		{id:'',  ENG:'',  CHN:'',  RUS:''},	
-		{id:'',  ENG:'',  CHN:'',  RUS:''},	
+		/*error info*/
+		{id:'Ease of use',  ENG:'Ease of use',  CHN:'易用性',  RUS:''},	
+		{id:'Quality',  ENG:'Quality',  CHN:'质量',  RUS:''},	
+		{id:'Price',  ENG:'Price',  CHN:'价格',  RUS:''},	
+		{id:'Market Share',  ENG:'Market Share',  CHN:'市场份额',  RUS:''},	
+		{id:'Visibility Share',  ENG:'Visibility Share',  CHN:'可见度份额',  RUS:''},	
+		
+		{id:'Net Sales Value',  ENG:'Net Sales Value',  CHN:'净销售额',  RUS:''},	
+		{id:'Team',  ENG:'Team',  CHN:'团队',  RUS:''},	
+		{id:'Producer 1',  ENG:'Producer 1',  CHN:'生厂商 1',  RUS:''},	
+		{id:'Producer 2',  ENG:'Producer 2',  CHN:'生厂商 2',  RUS:''},	
+		{id:'Producer 3',  ENG:'Producer 3',  CHN:'生厂商 3',  RUS:''},	
+		{id:'Producer 4',  ENG:'Producer 4',  CHN:'生厂商 4',  RUS:''},	
+		{id:'Gross Profit',  ENG:'Gross Profit',  CHN:'毛利润',  RUS:''},	
+		{id:'Operating Profit',  ENG:'Operating Profit',  CHN:'运营利润',  RUS:''},	
+		{id:'Net Profit',  ENG:'Net Profit',  CHN:'净利润',  RUS:''},	
+		{id:'Gross Profit Margin',  ENG:'Gross Profit Margin',  CHN:'毛利率',  RUS:''},	
+		{id:'Operating Profit Margin',  ENG:'Operating Profit Margin',  CHN:'营运利润率',  RUS:''},	
+		{id:'Net Profit Margin',  ENG:'Net Profit Margin',  CHN:'净利润率',  RUS:''},	
+		{id:'Total Material Cost',  ENG:'Total Material Cost',  CHN:'总材料成本',  RUS:''},	
+		{id:'Total Advertising',  ENG:'Total Advertising',  CHN:'广告总投入',  RUS:''},	
+		{id:'Total Trade (Producer) Support',  ENG:'Total Trade (Producer) Support',  CHN:'(生产商)总投入费用',  RUS:''},	
+		{id:'Total General Expenses',  ENG:'Total General Expenses',  CHN:'一般开支总额',  RUS:''},	
+
 		/*navbar*/
 		{id:'Participant manual',  ENG:'Participant manual',  CHN:'学员手册',  RUS:''},
 		{id:'My company',  ENG:'My company',  CHN:'我的公司',  RUS:''},
@@ -141,13 +159,7 @@ var getLabelBase = function(){
 		{id:'Terms of payment (days)',  ENG:'Terms of payment (days)',  CHN:'帐期(天数)',  RUS:''},
 		{id:'Purchases',  ENG:'Purchases',  CHN:'本阶段采购量',  RUS:''},
 		/*market report-table*/
-		{id:'Price Sensitive',  ENG:'Price Sensitive',  CHN:'价格敏感型',  RUS:''},
-		{id:'Value for Money',  ENG:'Value for Money',  CHN:'物有所值型',  RUS:''},
-		{id:'Health Conscious',  ENG:'Health Conscious',  CHN:'注重健康型',  RUS:''},
-		{id:'Impatient',  ENG:'Impatient',  CHN:'急躁型',  RUS:''},
-		{id:'Retailer 1',  ENG:'Retailer 1',  CHN:'零售商1',  RUS:''},
-		{id:'Retailer 2',  ENG:'Retailer 2',  CHN:'零售商2',  RUS:''},
-		{id:'eMall',  ENG:'eMall',  CHN:'网上商城',  RUS:''},
+
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
@@ -193,9 +205,17 @@ var getLabelBase = function(){
 		{id:'Performance perception',  ENG:'Performance perception',  CHN:'效果感知',  RUS:''},
 		{id:'Gentleness perception',  ENG:'Gentleness perception',  CHN:'亲柔度感知',  RUS:''},
 		{id:'PricePerception',  ENG:'PricePerception',  CHN:'价格感知',  RUS:''},
+		{id:'Price Sensitive',  ENG:'Price Sensitive',  CHN:'价格敏感型',  RUS:''},
+		{id:'Value for Money',  ENG:'Value for Money',  CHN:'物有所值型',  RUS:''},
+		{id:'Health Conscious',  ENG:'Health Conscious',  CHN:'注重健康型',  RUS:''},
+		{id:'Impatient',  ENG:'Impatient',  CHN:'急躁型',  RUS:''},
+		{id:'Retailer 1',  ENG:'Retailer 1',  CHN:'零售商1',  RUS:''},
+		{id:'Retailer 2',  ENG:'Retailer 2',  CHN:'零售商2',  RUS:''},
+		{id:'eMall',  ENG:'eMall',  CHN:'网上商城',  RUS:''},
 		{id:'Producer',  ENG:'Producer ',  CHN:'生产商 ',  RUS:''},
 		{id:'Retailer',  ENG:'Retailer ',  CHN:'零售商 ',  RUS:''},
 		{id:'switchLanguage',  ENG:'Switch Language',  CHN:'切换语言',  RUS:''},
+		
 		/*chart*/
 		{id:'Chart',  ENG:'Chart',  CHN:'图表',  RUS:''},
 		{id:'Chart Info',  ENG:'Charts show you visually where your business stands in comparison to your competitors.',  CHN:'图表帮助你一目了然地比较自己和竞争对手的情况',  RUS:''},

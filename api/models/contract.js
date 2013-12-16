@@ -119,48 +119,90 @@ exports.duplicateContract = function(req, res, next){
 
 exports.deleteContractDetailData=function(io){
 	return function(req,res,next){
-		//console.log('hello this is right');
-		//res.send(200,'ok');
 		var result=false;
 		var queryCondition={
 			relatedBrandName:req.body.relatedBrandName,
 			deleteType:req.body.deleteType,
-			index:req.body.index
+			index:req.body.index,
+			seminar:req.body.seminar,
+			period:req.body.period,
+			producerID:req.body.producerID
 		};
-			contractDetails.find({
+		contract.find({
+			seminar:queryCondition.seminar,
+			period:queryCondition.period,
+			producerID:queryCondition.producerID
+		},function(err,docs){
+			var doc=new Array();
+			if(docs.length!=0){
+				for(var i=0;i<docs.length;i++){
+					contractDetails.find({
+						contractCode:docs[i].contractCode,
+						relatedBrandName:queryCondition.relatedBrandName
+					},function(err,newdocs){
+						if(err){
+							next(new Error(err));
+						}
+						if(newdocs.length!=0){
+							for(var j=0;j<newdocs.length;j++){
+								if(queryCondition.deleteType=="variant"){
+                                    if(queryCondition.index==0){
+                                    	newdocs[j].variant_A_ruralValue=0;
+                                    	newdocs[j].variant_A_urbanValue=0;
+                                    }else if(queryCondition.index==1){
+                                   		newdocs[j].variant_B_ruralValue=0;
+                                    	newdocs[j].variant_B_urbanValue=0;
+                                   	}else if(queryCondition.index==2){
+                                   		newdocs[j].variant_C_ruralValue=0;
+                                   		newdocs[j].variant_C_urbanValue=0;
+                                   	}
+                                   	newdocs[j].save();
+                                }else{
+                                    newdocs[j].remove();
+                                }
+                                continue;
+							}
+						}
+					});
+				}
+				res.send(200,'successfully');
+			}else{
+				res.send(200,'successfully');
+			}
+		})
+			/*contractDetails.findOne({
+				contractCode:queryCondition.contractCode,
 				relatedBrandName:queryCondition.relatedBrandName
-			},function(err,docs){
+			},function(err,doc){
 				if(err){
 					next(new Error(err));
 				}
-				if((docs.length)==0){
+				if(!doc){
 					res.send(200,'no contract,mission complete');
 				}else{
-					for(var i=0;i<docs.length;i++){
-						if(queryCondition.deleteType=="variant"){
-							//if(queryCondition.deleteType=="variant"){
-							if(queryCondition.index==0){
-								docs[i].variant_A_ruralValue=0;
-								docs[i].variant_A_urbanValue=0;
-							}else if(queryCondition.index==1){
-								docs[i].variant_B_ruralValue=0;
-								docs[i].variant_B_urbanValue=0;
-							}else if(queryCondition.index==2){
-								docs[i].variant_C_ruralValue=0;
-								docs[i].variant_C_urbanValue=0;
-							}
-							docs[i].save(function(err){
-								if(err) next(new Error(err));
-							});
-						}else{
-							docs[i].remove(function(err){
-								if(err) next(new Error(err));
-							});
+					if(queryCondition.deleteType=="variant"){
+						//if(queryCondition.deleteType=="variant"){
+						if(queryCondition.index==0){
+							doc.variant_A_ruralValue=0;
+							doc.variant_A_urbanValue=0;
+						}else if(queryCondition.index==1){
+							doc.variant_B_ruralValue=0;
+							doc.variant_B_urbanValue=0;
+						}else if(queryCondition.index==2){
+							doc.variant_C_ruralValue=0;
+							doc.variant_C_urbanValue=0;
 						}
+						doc.save(function(err){
+							if(err) next(new Error(err));
+						});
+					}else{
+						doc.remove(function(err){
+							if(err) next(new Error(err));
+						});
 					}
 					res.send(200,'successfully!');
 				}
-			});
+			});*/
 	}
 }
 
