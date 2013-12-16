@@ -436,11 +436,6 @@ define(['angular',
 					 	console.log('fail'+err);
 					 	$rootScope.$broadcast('producerDecisionBaseChanged', base);
 					 })
-					// 	console.log('success');
-					// 	$rootScope.$broadcast('producerDecisionBaseChanged', base);
-					// },function(){
-					// 	$rootScope.$broadcast('producerDecisionBaseChanged', base);
-					// });
 				},
 				getBase : function(){
 					return base;

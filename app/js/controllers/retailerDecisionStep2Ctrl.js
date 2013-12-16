@@ -79,7 +79,11 @@ define(['app'], function(app) {
 	      			method:'GET',
 	      			url:url
 	      		}).then(function(data){
-	      			abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
+	      			if($rootScope.currentPeriod>=1){
+	      				abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
+	      			}else{
+	      				abMax=data.data.budgetAvailable;
+	      			}
 	      			$scope.abMax=abMax;
 	      			url="/retailerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/-1/location/1';
 	      			return $http({
@@ -89,41 +93,9 @@ define(['app'], function(app) {
 	      		}).then(function(data){
 	      			expend=data.data.result;
 	      			$scope.surplusExpend=abMax-expend;
-	      			$scope.percentageExpend=(abMax-expend)/abMax*100;
-	      		// 	url="/retailerShelfSpace/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/-1/0/brandName/varName';
-	      		// 	return $http({
-	      		// 		method:'GET',
-	      		// 		url:url
-	      		// 	});
-	      		// }).then(function(data){
-	      		// 			$scope.surplusShelf=new Array();
-	      		// 			$scope.percentageShelf=new Array();
-	      		// 			$scope.surplusShelf[0]=new Array();
-	      		// 			$scope.surplusShelf[1]=new Array();
-	      		// 			$scope.percentageShelf[0]=new Array();
-	      		// 			$scope.percentageShelf[1]=new Array();
-	      		// 			$scope.surplusShelf[0][0]=data.data.result[0][0];
-	      		// 			$scope.surplusShelf[0][1]=data.data.result[0][1];
-	      		// 			$scope.surplusShelf[1][0]=data.data.result[1][0];
-	      		// 			$scope.surplusShelf[1][1]=data.data.result[1][1];
-	      		// 			$scope.percentageShelf[0][0]=(100-$scope.surplusShelf[0][0]);
-	      		// 			$scope.percentageShelf[0][1]=(100-$scope.surplusShelf[0][1]);
-	      		// 			$scope.percentageShelf[1][0]=(100-$scope.surplusShelf[1][0]);
-	      		// 			$scope.percentageShelf[1][1]=(100-$scope.surplusShelf[1][1]);	
+	      			$scope.percentageExpend=(abMax-expend)/abMax*100;	
 	      					$scope.retailerID=retailerID,$scope.period=period,$scope.language=language;
 							var markets=new Array();
-							// if(language=="English"){
-							// 	for(var i=0;i<$scope.multilingual.length;i++){
-							// 		labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
-							// 		infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
-							// 	}
-							// }
-							// else if(language=="Chinese"){
-							// 	for(var i=0;i<$scope.multilingual.length;i++){
-							// 		labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelCHN;
-							// 		infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoCHN;						
-							// 	}
-							// }
 							for(var i=0;i<$scope.pageBase.retMarketDecision.length;i++){
 				      			if($scope.pageBase.retMarketDecision[i].marketID==1){
 				      				$scope.pageBase.retMarketDecision[i].marketName="Urban";			
@@ -181,19 +153,26 @@ define(['app'], function(app) {
 				if(!filter.test(value)){
 					d.resolve('Input a number');
 				}
-				var url="/retailerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+marketID+'/'+location+'/'+additionalIdx;
+				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/R/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
 	      		$http({
 	      			method:'GET',
-	      			url:url,
-	     		}).then(function(data){
+	      			url:url
+	      		}).then(function(data){
+	      			max=data.data.budgetAvailable;
+	      			url="/retailerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+marketID+'/'+location+'/'+additionalIdx;
+		      		return $http({
+		      			method:'GET',
+		      			url:url,
+		     		});
+	      		}).then(function(data){
 	      			expend=data.data.result;
-	      			if(expend+parseInt(value)>$scope.abMax||parseInt(value)<0){
-	      				d.resolve('Input range:0~'+($scope.abMax-expend));
+	      			if(value>max-expend){
+	      				d.resolve('Input range:0~'+(max-expend));
 	      			}else{
 	      				d.resolve();
 	    			}
-	      		},function(data){
-	      			console.log('read retailerShelfSpace fail');
+	      		},function(){
+	      			d.resolve('fail');
 	      		});
 	      		return d.promise;
 			}

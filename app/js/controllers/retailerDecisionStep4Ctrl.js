@@ -109,7 +109,11 @@ define(['app'], function(app) {
 	      			method:'GET',
 	      			url:url
 	      		}).then(function(data){
-	      			abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
+	      			if($rootScope.currentPeriod>=1){
+	      				abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
+	      			}else{
+	      				abMax=data.data.budgetAvailable;
+	      			}
 	      			$scope.abMax=abMax;
 	      			url="/retailerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/-1/location/1';
 	      			return $http({

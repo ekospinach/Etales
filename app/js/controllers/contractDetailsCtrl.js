@@ -367,11 +367,19 @@ define(['app'], function(app) {
 				}
 			}
 
-			var checkData=function(value){
+			var checkData=function(item,value){
 				var d = $q.defer();	
 				var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
 				if(!filter.test(value)){
 					d.resolve('Input a number');
+				}else if(item=="nc_VolumeDiscountRate"||item=="nc_PerformanceBonusRate"){
+					if(value>100){
+						d.resolve('Input range:0~100');
+					}
+				}else if(item=="nc_PaymentDays"){
+					if(value>180){
+						d.resolve('Input range:0~180');
+					}
 				}else{
 					d.resolve();
 				}
@@ -517,7 +525,7 @@ define(['app'], function(app) {
 
 			$scope.closeEditModal=function(){
 				$scope.editModal=false;
-				refreshBrandAndContractDetails();
+				//refreshBrandAndContractDetails();
 			}
 
 			$scope.openViewModal=function(Detail){
