@@ -72,6 +72,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 		      	$scope.showRoleID="E-Mall";  
 		    }
 
+
 		    if(detail=="Global"){//||detail=="Category"){//"Global","Category","Brand","Variant"
 				reportCollection=_.find(myfinreport.dataCollection,function(obj){
 		        	return (obj.market==market&&obj.detail==detail&&obj.roleID==roleID)
@@ -80,7 +81,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 		     	$rootScope.finCatCss="";
 		    }else if(detail=="Category"){
 		    	reportCollection=_.find(myfinreport.dataCollection,function(obj){
-		        	return (obj.market==market&&obj.detail==detail&&obj.roleID==roleID)
+		        	return (obj.market==market&&obj.detail==detail&&obj.roleID==roleID&&obj.category==cat)
 		      	});
 		      	$rootScope.finCatShow="";
 		      	$rootScope.finCatCss="margin-left:10px";
@@ -91,6 +92,8 @@ define(['app','socketIO','routingConfig'], function(app) {
 		      	$rootScope.finCatShow="";
 		      	$rootScope.finCatCss="margin-left:10px";    
 		    }
+
+		    console.log($scope.reportCollection);
 
 		    // if(reportCollection){
 		    //   //deal with multiple language 

@@ -55,7 +55,7 @@
                         <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetail.isVerified&&proDetailList[4][$index].isVerified"></span>
                         <span>{{proDetail.displayValue}}({{proDetailList[4][$index].displayValue}})</span>
                         <span class="pull-right" ng-show=producerEditable>
-                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)" ng-disabled="refreshingProcess">{{Label.getContent('Edit')}}</a>
+                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail,$index)" ng-disabled="refreshingProcess">{{Label.getContent('Edit')}}</a>
                         </span>
                         <span class="pull-right" ng-show=retailerEditable>
                             <a class="btn btn-primary btn-xs" ng-click="openViewModal(proDetail)" ng-disabled="refreshingProcess">{{Label.getContent('View')}}</a>
@@ -68,7 +68,7 @@
                         <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="(proDetail.amount_or_rate?(proDetail.isVerified&&proDetailList[5][$index].isVerified):(proDetail.isVerified&&proDetailList[6][$index].isVerified))"></span>
                         <span>{{proDetail.displayValue}}({{(proDetail.amount_or_rate?(proDetailList[5][$index].displayValue):(proDetailList[6][$index].displayValue))}})</span>
                         <span class="pull-right" ng-show=producerEditable>
-                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)" ng-disabled="refreshingProcess">{{Label.getContent('Edit')}}</a>
+                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail,$index)" ng-disabled="refreshingProcess">{{Label.getContent('Edit')}}</a>
                         </span>
                         <span class="pull-right" ng-show=retailerEditable>
                             <a class="btn btn-primary btn-xs" ng-click="openViewModal(proDetail)" ng-disabled="refreshingProcess">{{Label.getContent('View')}}</a>
@@ -81,7 +81,7 @@
                         <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetail.isVerified"></span>
                         <span>{{proDetail.displayValue}}</span>
                         <span class="pull-right" ng-show=producerEditable>
-                           <a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)" ng-disabled="refreshingProcess">{{Label.getContent('Edit')}}</a>
+                           <a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail,$index)" ng-disabled="refreshingProcess">{{Label.getContent('Edit')}}</a>
                        </span>
                        <span class="pull-right" ng-show=retailerEditable>
                         <a class="btn btn-primary btn-xs" ng-click="openViewModal(proDetail)" ng-disabled="refreshingProcess">{{Label.getContent('View')}}</a>
@@ -94,7 +94,7 @@
                         <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="proDetail.isVerified"></span>
                         <span>{{proDetail.displayValue}}</span>
                         <span class="pull-right" ng-show=producerEditable>
-                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail)" ng-disabled="refreshingProcess">{{Label.getContent('Edit')}}</a>
+                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(proDetail,$index)" ng-disabled="refreshingProcess">{{Label.getContent('Edit')}}</a>
                         </span>
                         <span class="pull-right" ng-show=retailerEditable>
                             <a class="btn btn-primary btn-xs" ng-click="openViewModal(proDetail)" ng-disabled="refreshingProcess">{{Label.getContent('View')}}</a>
@@ -119,7 +119,7 @@
                         <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="retDetail.isVerified&&retDetailList[4][$index].isVerified"></span>
                         <span>{{retDetail.displayValue}}({{retDetailList[4][$index].displayValue}})</span>
                         <span class="pull-right" ng-show=retailerEditable>
-                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)" ng-disabled="refreshingProcess">{{Label.getContent('Edit')}}</a>
+                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail,$index)" ng-disabled="refreshingProcess">{{Label.getContent('Edit')}}</a>
                         </span>
                         <span class="pull-right" ng-show=producerEditable>
                             <a class="btn btn-primary btn-xs" ng-click="openViewModal(retDetail)" ng-disabled="refreshingProcess">{{Label.getContent('View')}}</a>
@@ -132,7 +132,7 @@
                         <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="(retDetail.amount_or_rate?(retDetail.isVerified&&retDetailList[5][$index].isVerified):(retDetail.isVerified&&retDetailList[6][$index].isVerified))"></span>
                         <span>{{retDetail.displayValue}}({{(retDetail.amount_or_rate?(retDetailList[5][$index].displayValue):(retDetailList[6][$index].displayValue))}})</span>
                         <span class="pull-right" ng-show=retailerEditable>
-                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)" ng-disabled="refreshingProcess">{{Label.getContent('Edit')}}</a>
+                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail,$index)" ng-disabled="refreshingProcess">{{Label.getContent('Edit')}}</a>
                         </span>
                         <span class="pull-right" ng-show=producerEditable>
                             <a class="btn btn-primary btn-xs" ng-click="openViewModal(retDetail)" ng-disabled="refreshingProcess">{{Label.getContent('View')}}</a>
@@ -145,7 +145,7 @@
                         <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="retDetail.isVerified"></span>
                         <span>{{retDetail.displayValue}}</span>
                         <span class="pull-right" ng-show=retailerEditable>
-                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)" ng-disabled="refreshingProcess">{{Label.getContent('Edit')}}</a>
+                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail,$index)" ng-disabled="refreshingProcess">{{Label.getContent('Edit')}}</a>
                         </span>
                         <span class="pull-right" ng-show=producerEditable>
                             <a class="btn btn-primary btn-xs" ng-click="openViewModal(retDetail)" ng-disabled="refreshingProcess">{{Label.getContent('View')}}</a>
@@ -158,7 +158,7 @@
                         <span class="glyphicon glyphicon-ok" style="width:30px" ng-show="retDetail.isVerified"></span>
                         <span>{{retDetail.displayValue}}</span>
                         <span class="pull-right" ng-show=retailerEditable>
-                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail)" ng-disabled="refreshingProcess">{{Label.getContent('Edit')}}</a>
+                            <a class="btn btn-primary btn-xs" ng-click="openEditModal(retDetail,$index)" ng-disabled="refreshingProcess">{{Label.getContent('Edit')}}</a>
                         </span>
                         <span class="pull-right" ng-show=producerEditable>
                             <a class="btn btn-primary btn-xs" ng-click="openViewModal(retDetail)" ng-disabled="refreshingProcess">{{Label.getContent('View')}}</a>
@@ -178,7 +178,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeEditModal()">&times;</button>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeEditModal(editDetail,index)">&times;</button>
                 <div>
                     <h4>{{Label.getContent(showNegotiationItem)}} : {{editDetail.relatedBrandName}}</h4>
                 </div>
@@ -496,7 +496,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <a class="btn btn-default" ng-click="closeEditModal()">{{Label.getContent('Close')}}</a>
+                <a class="btn btn-default" ng-click="closeEditModal(editDetail,index)">{{Label.getContent('Close')}}</a>
             </div>
         </div>
     </div>
