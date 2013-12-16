@@ -401,13 +401,15 @@ define(['angular',
 						if(data.data.index==-1){
 							deleteType="brand";
 						}else{
-							//delete variant
 							deleteType="variant";
 						}
 						queryCondition={
 							relatedBrandName:brandName,
 							deleteType:deleteType,
-							index:data.data.index
+							index:data.data.index,
+							producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),
+							period:$rootScope.currentPeriod,
+							seminar:$rootScope.user.seminar
 						}
 						return $http({
 							method:'POST',
@@ -416,13 +418,22 @@ define(['angular',
 						})
 					 }).then(function(data){
 					 	queryCondition={
+					 		period:$rootScope.currentPeriod,
+							seminar:$rootScope.user.seminar,
 					 		brandName:brandName,
 					 		varName:varName,
-					 		categoryID:categoryID
+					 		categoryID:categoryID,
 					 	}
+					 	return $http({
+					 		method:'POST',
+					 		url:'/deleteOrderData',
+					 		data:queryCondition
+					 	})
 					 }).then(function(data){
+					 	console.log('success');
 					 	$rootScope.$broadcast('producerDecisionBaseChanged', base);
-					 },function(){
+					 },function(err){
+					 	console.log('fail'+err);
 					 	$rootScope.$broadcast('producerDecisionBaseChanged', base);
 					 })
 					// 	console.log('success');

@@ -630,7 +630,11 @@ exports.updateRetailerDecision = function(io){
                                                 dateOfBirth:0,
                                                 order:0,
                                                 retailerPrice:0,
-                                                shelfSpace:0
+                                                shelfSpace:0,
+                                                pricePromotions:{
+                                                    'promo_Frequency':0,
+                                                    'promo_Rate':0
+                                                }
                                             };
                                             for(var i=0;i<doc.retMarketDecision.length;i++){
                                                 if(doc.retMarketDecision[i].marketID==queryCondition.marketID){           
@@ -713,6 +717,64 @@ exports.getRetailerProductList=function(req,res,next){
                                     }
                                 }
                         });
+}
+
+exports.deleteOrderData=function(io){
+    return function(req,res,next){
+        var queryCondition={
+            seminar:req.body.seminar,
+            period:req.body.period,
+            brandName:req.body.brandName,
+            varName:req.body.varName,
+            categoryID:req.body.categoryID
+        }
+        console.log(queryCondition);
+        retDecision.find({
+            seminar:queryCondition.seminar,
+            period:queryCondition.period
+        },function(err,docs){
+            if(err){
+                next(new Error)
+            }
+            if(docs.length!=0){
+                var nullOrder={
+                    brandName:"",
+                    brandID:0,
+                    varName:"",
+                    variantID:0,
+                    dateOfDeath:0,
+                    dateOfBirth:0,
+                    order:0,
+                    retailerPrice:0,
+                    shelfSpace:0,
+                    pricePromotions:{
+                        'promo_Frequency':0,
+                        'promo_Rate':0
+                    }
+                };
+                for(var i=0;i<docs.length;i++){
+                    for(var j=0;j<docs[i].retMarketDecision.length;j++){
+                        for(k=0;k<docs[i].retMarketDecision[j].retMarketAssortmentDecision.length;k++){
+                            if(docs[i].retMarketDecision[j].retMarketAssortmentDecision[k].categoryID==queryCondition.categoryID){
+                                for(var l=0;l<docs[i].retMarketDecision[j].retMarketAssortmentDecision[k].retVariantDecision.length;l++){
+                                    if(docs[i].retMarketDecision[j].retMarketAssortmentDecision[k].retVariantDecision[l].varName==queryCondition.varName&&docs[i].retMarketDecision[j].retMarketAssortmentDecision[k].retVariantDecision[l].brandName==queryCondition.brandName){
+                                        console.log(i+''+j+''+k+''+l);
+                                        docs[i].retMarketDecision[j].retMarketAssortmentDecision[k].retVariantDecision.splice(l,1,nullOrder);
+                                        //docs[i].save();
+                                        break;
+                                    }
+                                }
+                                break;
+                            }
+                        }
+                    }
+                    docs[i].save();
+                }
+                res.send(200,'mission complete');
+            }
+            result.send(200,'no order');
+        })
+    }
 }
 
 //retailer get retailer decision

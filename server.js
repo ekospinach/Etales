@@ -52,7 +52,6 @@ app.post('/contractDetails');
 app.post('/producerDecision',require('./api/models/producerDecision.js').updateProducerDecision(io));
 app.post('/retailerDecision',require('./api/models/retailerDecision.js').updateRetailerDecision(io));
 
-app.get('/negotiationDecision');
 app.post('/updateContractDetails',require('./api/models/contract.js').updateContractDetails(io));
 
 //add Seminar
@@ -118,6 +117,7 @@ app.get('/retailerCurrentDecision/:seminar/:period/:retailerID/:brandName/:varNa
 app.post('/getCurrentUnitCost', require('./api/utils/unitCost').getCurrentUnitCost);
 app.get('/currentPeriod/:seminar',require('./api/models/seminar.js').getCurrentPeriod);
 
+app.post('/deleteOrderData',require('./api/models/retailerDecision.js').deleteOrderData(io));
 app.post('/deleteDetailData',require('./api/models/contract.js').deleteContractDetailData(io));
 
 app.use(express.errorHandler());

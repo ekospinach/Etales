@@ -20,7 +20,7 @@ define(['app','socketIO'], function(app) {
 			dialogFade:true
 		};
 		$scope.openLoginModal=function(){
-			$scope.userRole=1;
+			$scope.userRole='1';
 			$scope.loginModal=true;
 		}
 		var closeLoginModal=function(){
@@ -42,12 +42,12 @@ define(['app','socketIO'], function(app) {
 			var seminar=$scope.userSeminar;
 			var password=$scope.userPassword;
 			switch($scope.userRole){
-				case 1:username=seminar+'^'+userRoles.producer+'^'+$scope.userRole;break;
-				case 2:username=seminar+'^'+userRoles.producer+'^'+$scope.userRole;break;
-				case 3:username=seminar+'^'+userRoles.producer+'^'+$scope.userRole;break;
-				case 4:username=seminar+'^'+userRoles.retailer+'^'+($scope.userRole-3);break;
-				case 5:username=seminar+'^'+userRoles.retailer+'^'+($scope.userRole-3);break;
-				case 6:username=seminar+'^'+userRoles.facilitator+'^'+($scope.userRole-5);break;
+				case '1':username=seminar+'^'+userRoles.producer+'^'+$scope.userRole;break;
+				case '2':username=seminar+'^'+userRoles.producer+'^'+$scope.userRole;break;
+				case '3':username=seminar+'^'+userRoles.producer+'^'+$scope.userRole;break;
+				case '4':username=seminar+'^'+userRoles.retailer+'^'+($scope.userRole-3);break;
+				case '5':username=seminar+'^'+userRoles.retailer+'^'+($scope.userRole-3);break;
+				case '6':username=seminar+'^'+userRoles.facilitator+'^'+($scope.userRole-5);break;
 			}
 			Auth.login({
 				username:username,
