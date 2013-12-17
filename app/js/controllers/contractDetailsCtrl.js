@@ -126,37 +126,37 @@ define(['app'], function(app) {
 				for (var i = 0; i < negotiationItems.length; i++) {
 					proDetailList[i]=_.filter(singleCategoryDetails ,function(obj){ return (obj.userType=="P"&&obj.negotiationItem==negotiationItems[i]); });
 					//if rate value*100;
-					if(negotiationItems[i]=="nc_VolumeDiscountRate"||negotiationItems[i]=="nc_PerformanceBonusRate"){
-						for(var j=0;j<proDetailList[i].length;j++){
-							proDetailList[i][j].brand_ruralValue*=100;
-							proDetailList[i][j].brand_urbanValue*=100;
-							proDetailList[i][j].variant_A_ruralValue*=100;
-							proDetailList[i][j].variant_A_urbanValue*=100;
-							proDetailList[i][j].variant_B_ruralValue*=100;
-							proDetailList[i][j].variant_B_urbanValue*=100;
-							proDetailList[i][j].variant_C_ruralValue*=100;
-							proDetailList[i][j].variant_C_urbanValue*=100;
-						}
-					}
+					// if(negotiationItems[i]=="nc_VolumeDiscountRate"||negotiationItems[i]=="nc_PerformanceBonusRate"){
+					// 	for(var j=0;j<proDetailList[i].length;j++){
+					// 		proDetailList[i][j].brand_ruralValue*=100;
+					// 		proDetailList[i][j].brand_urbanValue*=100;
+					// 		proDetailList[i][j].variant_A_ruralValue*=100;
+					// 		proDetailList[i][j].variant_A_urbanValue*=100;
+					// 		proDetailList[i][j].variant_B_ruralValue*=100;
+					// 		proDetailList[i][j].variant_B_urbanValue*=100;
+					// 		proDetailList[i][j].variant_C_ruralValue*=100;
+					// 		proDetailList[i][j].variant_C_urbanValue*=100;
+					// 	}
+					// }
 				};				
 
 				$scope.proDetailList=proDetailList;
 				var retDetailList=new Array();
 				for (var i = 0; i < negotiationItems.length; i++) {
 					retDetailList[i] =_.filter(singleCategoryDetails ,function(obj){ return (obj.userType=="R"&&obj.negotiationItem==negotiationItems[i]);});
-					if(negotiationItems[i]=="nc_VolumeDiscountRate"||negotiationItems[i]=="nc_PerformanceBonusRate"){
-						//if rate value*100;
-						for(var j=0;j<retDetailList[i].length;j++){
-							retDetailList[i][j].brand_ruralValue*=100;
-							retDetailList[i][j].brand_urbanValue*=100;
-							retDetailList[i][j].variant_A_ruralValue*=100;
-							retDetailList[i][j].variant_A_urbanValue*=100;
-							retDetailList[i][j].variant_B_ruralValue*=100;
-							retDetailList[i][j].variant_B_urbanValue*=100;
-							retDetailList[i][j].variant_C_ruralValue*=100;
-							retDetailList[i][j].variant_C_urbanValue*=100;
-						}
-					}
+					// if(negotiationItems[i]=="nc_VolumeDiscountRate"||negotiationItems[i]=="nc_PerformanceBonusRate"){
+					// 	//if rate value*100;
+					// 	for(var j=0;j<retDetailList[i].length;j++){
+					// 		retDetailList[i][j].brand_ruralValue*=100;
+					// 		retDetailList[i][j].brand_urbanValue*=100;
+					// 		retDetailList[i][j].variant_A_ruralValue*=100;
+					// 		retDetailList[i][j].variant_A_urbanValue*=100;
+					// 		retDetailList[i][j].variant_B_ruralValue*=100;
+					// 		retDetailList[i][j].variant_B_urbanValue*=100;
+					// 		retDetailList[i][j].variant_C_ruralValue*=100;
+					// 		retDetailList[i][j].variant_C_urbanValue*=100;
+					// 	}
+					// }
 				};
 				$scope.retDetailList=retDetailList;
 				var variantListByCategory=new Array();
@@ -268,6 +268,30 @@ define(['app'], function(app) {
 							$scope.editDetailDisRate=_.find($scope.retDetailList[4],function(obj){return (obj.relatedBrandName==selectedDetail.relatedBrandName&&obj.relatedBrandID==selectedDetail.relatedBrandID);});	
 							break;							
 					}
+					if($scope.editDetailDisRate.brand_ruralValue>0&&$scope.editDetailDisRate.brand_ruralValue<1){
+						$scope.editDetailDisRate.brand_ruralValue*=100;
+					}
+					if($scope.editDetailDisRate.brand_urbanValue>0&&$scope.editDetailDisRate.brand_urbanValue<1){
+						$scope.editDetailDisRate.brand_urbanValue*=100;
+					}
+					if($scope.editDetailDisRate.variant_A_ruralValue>0&&$scope.editDetailDisRate.variant_A_ruralValue<1){
+						$scope.editDetailDisRate.variant_A_ruralValue*=100;
+					}
+					if($scope.editDetailDisRate.variant_A_urbanValue>0&&$scope.editDetailDisRate.variant_A_urbanValue<1){
+						$scope.editDetailDisRate.variant_A_urbanValue*=100;
+					}
+					if($scope.editDetailDisRate.variant_B_ruralValue>0&&$scope.editDetailDisRate.variant_B_ruralValue<1){
+						$scope.editDetailDisRate.variant_B_ruralValue*=100;
+					}
+					if($scope.editDetailDisRate.variant_B_urbanValue>0&&$scope.editDetailDisRate.variant_B_urbanValue<1){
+						$scope.editDetailDisRate.variant_B_urbanValue*=100;
+					}
+					if($scope.editDetailDisRate.variant_C_ruralValue>0&&$scope.editDetailDisRate.variant_C_ruralValue<1){
+						$scope.editDetailDisRate.variant_C_ruralValue*=100;
+					}
+					if($scope.editDetailDisRate.variant_C_urbanValue>0&&$scope.editDetailDisRate.variant_C_urbanValue<1){
+						$scope.editDetailDisRate.variant_C_urbanValue*=100;
+					}
 				}
 				else if(selectedDetail.negotiationItem=="nc_SalesTargetVolume"){
 					//set default value
@@ -292,6 +316,30 @@ define(['app'], function(app) {
 					}else{
 						$scope.shouldBeBonusAmount="none";
 						$scope.shouldBeBonusRate="";							
+					}
+					if($scope.editDetailBonusRate.brand_ruralValue>0&&$scope.editDetailBonusRate.brand_ruralValue<1){
+						$scope.editDetailBonusRate.brand_ruralValue*=100;
+					}
+					if($scope.editDetailBonusRate.brand_urbanValue>0&&$scope.editDetailBonusRate.brand_urbanValue<1){
+						$scope.editDetailBonusRate.brand_urbanValue*=100;
+					}
+					if($scope.editDetailBonusRate.variant_A_ruralValue>0&&$scope.editDetailBonusRate.variant_A_ruralValue<1){
+						$scope.editDetailBonusRate.variant_A_ruralValue*=100;
+					}
+					if($scope.editDetailBonusRate.variant_A_urbanValue>0&&$scope.editDetailBonusRate.variant_A_urbanValue<1){
+						$scope.editDetailBonusRate.variant_A_urbanValue*=100;
+					}
+					if($scope.editDetailBonusRate.variant_B_ruralValue>0&&$scope.editDetailBonusRate.variant_B_ruralValue<1){
+						$scope.editDetailBonusRate.variant_B_ruralValue*=100;
+					}
+					if($scope.editDetailBonusRate.variant_B_urbanValue>0&&$scope.editDetailBonusRate.variant_B_urbanValue<1){
+						$scope.editDetailBonusRate.variant_B_urbanValue*=100;
+					}
+					if($scope.editDetailBonusRate.variant_C_ruralValue>0&&$scope.editDetailBonusRate.variant_C_ruralValue<1){
+						$scope.editDetailBonusRate.variant_C_ruralValue*=100;
+					}
+					if($scope.editDetailBonusRate.variant_C_urbanValue>0&&$scope.editDetailBonusRate.variant_C_urbanValue<1){
+						$scope.editDetailBonusRate.variant_C_urbanValue*=100;
 					}
 				}
 
@@ -385,7 +433,7 @@ define(['app'], function(app) {
 						d.resolve();
 					}
 				}else{
-					d.resolve(Label.getContent('fail'));
+					d.resolve();
 				}
 				return d.promise;
 			}
