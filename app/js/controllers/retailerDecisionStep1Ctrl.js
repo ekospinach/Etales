@@ -48,7 +48,7 @@ define(['app'], function(app) {
 	      			method:'GET',
 	      			url:url
 	      		}).then(function(data){
-	      			if($rootScope.currentPeriod>=1){
+	      			if($rootScope.currentPeriod>=2){
 	      				abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
 	      			}else{
 	      				abMax=data.data.budgetAvailable;
