@@ -504,8 +504,9 @@ var getLabelBase = function(){
 		{id:'Duplicate contratct successful',  ENG:'Duplicate contratct successful',  CHN:'复制合同成功',  RUS:''},	
 		{id:'Duplicate contratct fail',  ENG:'Duplicate contratct fail',  CHN:'复制合同失败',  RUS:''},	
 		{id:'another contractCode',  ENG:'There is another contractCode in this game',  CHN:'此游戏中已存在同名合同',  RUS:''},	
-		{id:'',  ENG:'',  CHN:'',  RUS:''},	
-		{id:'',  ENG:'',  CHN:'',  RUS:''},	
+		/*login*/
+		{id:'Login successful',  ENG:'Login successful',  CHN:'登陆成功',  RUS:''},	
+		{id:'Login fail',  ENG:'Login fail',  CHN:'登陆失败',  RUS:''},	
 		{id:'',  ENG:'',  CHN:'',  RUS:''},	
 		{id:'',  ENG:'',  CHN:'',  RUS:''},	
 		{id:'',  ENG:'',  CHN:'',  RUS:''},	
