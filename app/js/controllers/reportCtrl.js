@@ -80,11 +80,29 @@ define(['app','socketIO','routingConfig'], function(app) {
 		      	$rootScope.finCatShow="hide";
 		     	$rootScope.finCatCss="";
 		    }else if(detail=="Category"){
-		    	reportCollection=_.find(myfinreport.dataCollection,function(obj){
-		        	return (obj.market==market&&obj.detail==detail&&obj.roleID==roleID&&obj.category==cat)
-		      	});
-		      	$rootScope.finCatShow="";
-		      	$rootScope.finCatCss="margin-left:10px";
+		    	if($scope.showTitleENG=="Profitability by Channel"||$scope.showTitleENG=="Profitability by Supplier"){
+		    		$rootScope.finCatShow="";
+		      		$rootScope.finCatCss="margin-left:10px";
+		      		if(cat==""){
+		      			cat="Elecssories";
+		      		}
+		      		reportCollection=_.find(myfinreport.dataCollection,function(obj){
+		        		return (obj.market==market&&obj.detail==detail&&obj.roleID==roleID&&obj.category==cat);
+		      		});
+		    	}else{
+		    		$rootScope.finCatShow="hide";
+		     		$rootScope.finCatCss="";
+		     		reportCollection=_.find(myfinreport.dataCollection,function(obj){
+		        		return (obj.market==market&&obj.detail==detail&&obj.roleID==roleID);
+		      		});
+
+		    	}
+
+		      	//reportCollection=_.find(myfinreport.dataCollection,function(obj){
+		        //	return (obj.market==market&&obj.detail==detail&&obj.roleID==roleID&&obj.category==cat)
+		      	//});
+		      	//$rootScope.finCatShow="";
+		      	//$rootScope.finCatCss="margin-left:10px";
 		    }else{
 				reportCollection=_.find(myfinreport.dataCollection,function(obj){
 		        	return (obj.market==market&&obj.category==cat&&obj.detail==detail&&obj.roleID==roleID)
@@ -93,45 +111,8 @@ define(['app','socketIO','routingConfig'], function(app) {
 		      	$rootScope.finCatCss="margin-left:10px";    
 		    }
 
-		    console.log($scope.reportCollection);
-
-		    // if(reportCollection){
-		    //   //deal with multiple language 
-		    //   for(var i=0;i<reportCollection.data.rows.length;i++){
-			   //  for(var j=0;j<reportCollection.data.rows[i].c.length;j++){
-			   //      if(j==0){
-			   //        // if(language=="RUS"){
-			   //        //   reportCollection.data.rows[i].c[j].f=reportCollection.data.rows[i].c[j].vRUS;
-			   //        // }else if(language=="CHN"){
-			   //        //   reportCollection.data.rows[i].c[j].f=reportCollection.data.rows[i].c[j].vCHN;
-			   //        // }else{
-			   //        //   reportCollection.data.rows[i].c[j].f=reportCollection.data.rows[i].c[j].v;
-			   //        // }
-			   //      }
-			   //      else{
-			   //        reportCollection.data.rows[i].c[j].v=reportCollection.data.rows[i].c[j].v;
-			   //      }
-			   //  }
-		    //   }
-
-		    // }
 		    $scope.reportCollection = reportCollection;
-		    console.log($scope.reportCollection);
 		  }		      
-		    // for(var i=0;i<reportCollection.data.cols.length;i++){
-		    //   /*多语言数据不全*/
-		    //   if(language=="Russian"){
-		    //     reportCollection.data.cols[i].label=reportCollection.data.cols[i].labelRUS;
-		    //     console.log(charttable.data.cols[i].labelCHN);
-		    //   }else if(language=="Chinese"){
-		    //     reportCollection.data.cols[i].label=reportCollection.data.cols[i].labelCHN;
-		    //     console.log(charttable.data.cols[i].labelCHN);
-		    //   }else{
-		    //     reportCollection.data.cols[i].label=reportCollection.data.cols[i].labelENG;
-		    //     console.log(charttable.data.cols[i].labelCHN);
-		    //   }
-		    //   reportCollection.data.cols[i].label=reportCollection.data.cols[i]["label "];
-		    // }
 
 		  //set default value, show report depends on login user's role
 		  var initialisePage = function(){
