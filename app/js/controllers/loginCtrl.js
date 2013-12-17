@@ -10,7 +10,6 @@ define(['app','socketIO'], function(app) {
 
 		var userRoles = routingConfig.userRoles;
 
-		$scope.welcomeMessage = 'hey this is loginCtrl.js!';
 		$scope.loginOpts = {
 			backdropFade: true,
 			dialogFade:true
@@ -54,31 +53,26 @@ define(['app','socketIO'], function(app) {
 				password:password,
 				rememberme:true
 			},function(res){
-				showbubleMsg('login success.',2);
+				showbubleMsg(Label.getContent('Login successful'),2);
 				var url="/currentPeriod/"+seminar;
 				$http.get(url).success(function(data){
-					//console.log(data);
-					//startfrom --->endwith
 					$rootScope.currentPeriod=data.currentPeriod;
 					$rootScope.rootStartFrom=-2;
 					$rootScope.rootEndWith=$rootScope.currentPeriod-1;
-					//console.log($rootScope.currentPeriod);
 					closeLoginModal();
 				});
-				
-
 			},function(res){
-				showbubleMsg('login failure.',1);
+				showbubleMsg(Label.getContent('Login fail'),1);
 			})			
 		}
 
 		$scope.adminLogin=function(){
 			if($scope.adminSeminar=="MAY"&&$scope.adminPassword=="123"){
-				showbubleMsg('login success',5);
+				showbubleMsg(Label.getContent('Login successful'),5);
 				closeAdminLoginModal();
 				$location.path('/admin');
 			}else{
-                showbubleMsg('Failed to login',4);
+                showbubleMsg(Label.getContent('Login fail'),4);
 			}
 		}
 
@@ -87,32 +81,32 @@ define(['app','socketIO'], function(app) {
 	 		switch(status){
 	 			case 1: 
 	 				$scope.userBubleClassName = 'alert alert-danger'; 
-	 				$scope.userBubleTitle = 'Error!';
+	 				$scope.userBubleTitle = Label.getContent('Error')+'!';
 	 				$scope.userBubleMsg=content;
 	 				break;
 	 			case 2: 
 	 				$scope.userBubleClassName = 'alert alert-success'; 
-	 				$scope.userBubleTitle = 'Success!';
+	 				$scope.userBubleTitle = Label.getContent('Success')+'!';
 	 				$scope.userBubleMsg=content;
 	 				break;
 	 			case 3:
 	 				$scope.userBubleClassName = 'alert alert-block'; 
-	 				$scope.userBubleTitle = 'Warning!';
+	 				$scope.userBubleTitle = Label.getContent('Warning')+'!';
 	 				$scope.userBubleMsg=content;
 	 				break;	
 	 			case 4: 
 	 				$scope.adminBubleClassName = 'alert alert-danger'; 
-	 				$scope.adminBubleTitle = 'Error!';
+	 				$scope.adminBubleTitle = Label.getContent('Error')+'!';
 	 				$scope.adminBubleMsg=content;
 	 				break;
 	 			case 5: 
 	 				$scope.adminBubleClassName = 'alert alert-success'; 
-	 				$scope.adminBubleTitle = 'Success!';
+	 				$scope.adminBubleTitle = Label.getContent('Success')+'!';
 	 				$scope.adminBubleMsg=content;
 	 				break;
 	 			case 6:
 	 				$scope.adminBubleClassName = 'alert alert-block'; 
-	 				$scope.adminBubleTitle = 'Warning!';
+	 				$scope.adminBubleTitle = Label.getContent('Warning')+'!';
 	 				$scope.adminBubleMsg=content;
 	 				break;	  			
 	 			default:

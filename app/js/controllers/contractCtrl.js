@@ -12,9 +12,6 @@ define(['app'], function(app) {
 					$scope.allContracts=data;
 					$scope.contractList=$scope.allContracts;
 					if(contractUserID==0){
-						//$scope.producerShow="block";
-						//$scope.retailerShow="block";
-						//filterUser($scope.producerID,$scope.retailerID);
 					}else if(contractUserID<5){
 						$scope.producerShow=true;
 						$scope.retailerShow=false;
@@ -29,12 +26,10 @@ define(['app'], function(app) {
 			var filterUser=function(producerID,retailerID){
 				$scope.allContracts=_.filter($scope.contractList,function(obj){
 					return (obj.producerID==producerID&&obj.retailerID==retailerID);
-				})
-				//console.log($scope.allContracts);
+				});
 			}
 
 			var openDetailModal=function(contract){
-				//ContractInfo.setSelectedContract(JSON.stringify(contract));
 				ContractInfo.setSelectedContract(contract);
 				$location.path('/contractDetails');
 			}
@@ -44,32 +39,32 @@ define(['app'], function(app) {
 		 		switch(status){
 		 			case 1: 
 		 				$scope.insertBubleClassName = 'alert alert-danger'; 
-		 				$scope.insertBubleTitle = 'Error!';
+		 				$scope.insertBubleTitle = Label.getContent('Error')+'!';
 		 				$scope.insertMessage=content;
 		 				break;
 		 			case 2: 
 		 				$scope.insertBubleClassName = 'alert alert-success'; 
-		 				$scope.insertBubleTitle = 'Success!';
+		 				$scope.insertBubleTitle = Label.getContent('Success')+'!';
 		 				$scope.insertMessage=content;
 		 				break;
 		 			case 3:
 		 				$scope.insertBubleClassName = 'alert alert-block'; 
-		 				$scope.insertBubleTitle = 'Warning!';
+		 				$scope.insertBubleTitle = Label.getContent('Warning')+'!';
 		 				$scope.insertMessage=content;
 		 				break;
 		 			case 4: 
 		 				$scope.duplicateBubleClassName = 'alert alert-danger'; 
-		 				$scope.duplicateBubleTitle = 'Error!';
+		 				$scope.duplicateBubleTitle = Label.getContent('Error')+'!';
 		 				$scope.duplicateMessage=content;
 		 				break;
 		 			case 5: 
 		 				$scope.duplicateBubleClassName = 'alert alert-success'; 
-		 				$scope.duplicateBubleTitle = 'Success!';
+		 				$scope.duplicateBubleTitle = Label.getContent('Success')+'!';
 		 				$scope.duplicateMessage=content;
 		 				break;
 		 			case 6:
 		 				$scope.duplicateBubleClassName = 'alert alert-block'; 
-		 				$scope.duplicateBubleTitle = 'Warning!';
+		 				$scope.duplicateBubleTitle = Label.getContent('Warning')+'!';
 		 				$scope.duplicateMessage=content;
 		 				break;	 			
 		 			default:
@@ -83,9 +78,7 @@ define(['app'], function(app) {
 
 			$scope.openInsertModal=function(){
 				$scope.newRetailerID=1;
-				//$scope.contractCodeLastName="_"+$rootScope.user.seminar+'_'+$rootScope.rootPeriod;
 				$scope.insertModal=true;
-				//console.log($scope.contractCodeLastName);
 			}
 
 			var closeInsertModal=function(){
@@ -93,7 +86,7 @@ define(['app'], function(app) {
 			}
 
 			$scope.addNewContract=function(){
-				if($scope.newContractCode.length>0&&$scope.newContractCode.length<10){
+				if($scope.newContractCode.length>0){
 					var data={
 						'contractCode':$scope.newContractCode+'_'+$rootScope.user.seminar+'_'+$rootScope.currentPeriod,
 						'seminar':$rootScope.user.seminar,
@@ -103,18 +96,15 @@ define(['app'], function(app) {
 						'retailerID':$scope.newRetailerID
 					}
 					$http({method: 'POST', url: '/addContract',data:data}).success(function(data){
-						//console.log(data);
 						$scope.allContracts.push(data);
-						showbubleMsg('Insert success',2);
+						showbubleMsg(Label.getContent('Add contratct successful'),2);
 						closeInsertModal();
 					}).error(function(err){
-						showbubleMsg('Insert fail, ' + err,1);
+						showbubleMsg(Label.getContent('Add contratct fail')+','+Label.getContent(err),1);
 					})
 				}else{
-					showbubleMsg('Insert fail',1);
+					showbubleMsg(Label.getContent('Add contratct fail'),1);
 				}
-				
-				//$http
 			}
 
 			$scope.openDuplicateModal=function(contract){
@@ -150,13 +140,13 @@ define(['app'], function(app) {
 					}
 					$http({method: 'POST', url: '/duplicateContract',data:data}).success(function(data){
 						$scope.allContracts.push(data);
-						showbubleMsg('Insert success',5);
+						showbubleMsg(Label.getContent('Duplicate contratct successful'),5);
 						closeDuplicateModal();
 					}).error(function(err){
-						showbubleMsg('Insert fail, ' + err,4);
+						showbubleMsg(Label.getContent('Duplicate contratct fail')+','+Label.getContent(err),4);
 					})
 				}else{
-					showbubleMsg('Inser fail',4);
+					showbubleMsg(Label.getContent('Duplicate contratct fail'),4);
 				}
 
 			}

@@ -76,7 +76,7 @@ define(['app'], function(app) {
 				var max=0;
 				var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
 				if(!filter.test(value)){
-					d.resolve('Input a number');
+					d.resolve(Label.getContent('Input a number'));
 				}
 				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/R/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
 	      		$http({
@@ -92,12 +92,12 @@ define(['app'], function(app) {
 	      		}).then(function(data){
 	      			expend=data.data.result;
 	      			if(value>max-expend){
-	      				d.resolve('Input range:0~'+(max-expend));
+	      				d.resolve(Label.getContent('Input range')+':0~'+(max-expend));
 	      			}else{
 	      				d.resolve();
 	    			}
 	      		},function(){
-	      			d.resolve('fail');
+	      			d.resolve(Label.getContent('fail'));
 	      		});
 	      		return d.promise;
 			}

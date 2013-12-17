@@ -202,7 +202,7 @@ define(['app'], function(app) {
 				var categoryID=0,max=0,currentUnitCost=0;
 				var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
 				if(!filter.test(value)){
-					d.resolve('Input a number');
+					d.resolve(Label.getContent('Input a number'));
 				}
 				if(category=="Elecssories"){
 					categoryID=1;
@@ -225,12 +225,12 @@ define(['app'], function(app) {
 				}).then(function(data){
 					currentUnitCost=data.data.result;
 					if(value>4*currentUnitCost||value<0.5*currentUnitCost){
-						d.resolve('Input range:'+0.5*currentUnitCost+'~'+4*currentUnitCost);
+						d.resolve(Label.getContent('Input range')+':'+0.5*currentUnitCost+'~'+4*currentUnitCost);
 					}else{
 						d.resolve();
 					}
 				},function(){
-					d.resolve('fail');
+					d.resolve(Label.getContent('fail'));
 				})
 				return d.promise;
 			}
@@ -240,7 +240,7 @@ define(['app'], function(app) {
 				var categoryID=0,max=0,currentUnitCost=0;
 				var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
 				if(!filter.test(value)){
-					d.resolve('Input a number');
+					d.resolve(Label.getContent('Input a number'));
 				}
 				if(category=="Elecssories"){
 					categoryID=1;
@@ -263,12 +263,12 @@ define(['app'], function(app) {
 				}).then(function(data){
 					currentUnitCost=data.data.result;
 					if(value>6*currentUnitCost||value<0.5*currentUnitCost){
-						d.resolve('Input range:'+0.5*currentUnitCost+'~'+6*currentUnitCost);
+						d.resolve(Label.getContent('Input range')+':'+0.5*currentUnitCost+'~'+6*currentUnitCost);
 					}else{
 						d.resolve();
 					}
 				},function(){
-					d.resolve('fail');
+					d.resolve(Label.getContent('fail'));
 				})
 				return d.promise;
 			}
@@ -278,7 +278,7 @@ define(['app'], function(app) {
 				var categoryID,max,result;
 				var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
 				if(!filter.test(value)){
-					d.resolve('Input a number');
+					d.resolve(Label.getContent('Input a number'));
 				}
 				if(category=="Elecssories"){
 					categoryID=1;
@@ -298,12 +298,12 @@ define(['app'], function(app) {
 					});
 				}).then(function(data){
 					if(parseInt(data.data.result)+parseInt(value)>max){
-						d.resolve('Input range:0~'+(max-parseInt(data.data.result)));
+						d.resolve(Label.getContent('Input range')+':0~'+(max-parseInt(data.data.result)));
 					}else{
 						d.resolve();
 					}
 				},function(){
-					d.resolve('fail');
+					d.resolve(Label.getContent('fail'));
 				})
 				return d.promise;
 			}

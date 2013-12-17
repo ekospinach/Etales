@@ -179,27 +179,27 @@ define(['app'], function(app) {
 				});									
 			}
 
-			var showbubleMsg = function(content, status){
-		 		$scope.bubleMsg = ' ' + content;
-		 		switch(status){
-		 			case 1: 
-		 				$scope.bubleClassName = 'alert alert-danger'; 
-		 				$scope.bubleTitle = 'Error!';
-		 				break;
-		 			case 2: 
-		 				$scope.bubleClassName = 'alert alert-success'; 
-		 				$scope.bubleTitle = 'Success!';
-		 				break;
-		 			case 3:
-		 				$scope.bubleClassName = 'alert alert-block'; 
-		 				$scope.bubleTitle = 'Warning!';
-		 				break;	 			
-		 			default:
-		 			 $scope.bubleClassName = 'alert'; 
-		 		}
-		 		console.log('infoBuble.show');
-		 		$scope.infoBuble = true;
-		 	};
+			// var showbubleMsg = function(content, status){
+		 // 		$scope.bubleMsg = ' ' + content;
+		 // 		switch(status){
+		 // 			case 1: 
+		 // 				$scope.bubleClassName = 'alert alert-danger'; 
+		 // 				$scope.bubleTitle = 'Error!';
+		 // 				break;
+		 // 			case 2: 
+		 // 				$scope.bubleClassName = 'alert alert-success'; 
+		 // 				$scope.bubleTitle = 'Success!';
+		 // 				break;
+		 // 			case 3:
+		 // 				$scope.bubleClassName = 'alert alert-block'; 
+		 // 				$scope.bubleTitle = 'Warning!';
+		 // 				break;	 			
+		 // 			default:
+		 // 			 $scope.bubleClassName = 'alert'; 
+		 // 		}
+		 // 		console.log('infoBuble.show');
+		 // 		$scope.infoBuble = true;
+		 // 	};
 
 			var compare=function(contract){
 			  $scope.refreshingProcess = true;
@@ -371,21 +371,21 @@ define(['app'], function(app) {
 				var d = $q.defer();	
 				var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
 				if(!filter.test(value)){
-					d.resolve('Input a number');
+					d.resolve(Label.getContent('Input a number'));
 				}else if(item=="nc_VolumeDiscountRate"||item=="nc_PerformanceBonusRate"){
 					if(value>100){
-						d.resolve('Input range:0~100');
+						d.resolve(Label.getContent('Input range')+':0~100');
 					}else{
 						d.resolve();
 					}
 				}else if(item=="nc_PaymentDays"){
 					if(value>180){
-						d.resolve('Input range:0~180');
+						d.resolve(Label.getContent('Input range')+':0~180');
 					}else{
 						d.resolve();
 					}
 				}else{
-					d.resolve();
+					d.resolve(Label.getContent('fail'));
 				}
 				return d.promise;
 			}
@@ -433,10 +433,8 @@ define(['app'], function(app) {
 						});
 					}).then(function(data){
 						console.log('success');
-						//refreshBrandAndContractDetails();
 					},function(data){
 						console.log('err');
-						//refreshBrandAndContractDetails();
 					})
 				}else if(detail.negotiationItem=="nc_SalesTargetVolume"){
 					$http({
@@ -459,10 +457,8 @@ define(['app'], function(app) {
 						});
 					}).then(function(data){
 						console.log('success');
-						//refreshBrandAndContractDetails();
 					},function(data){
 						console.log('err');
-						//refreshBrandAndContractDetails();
 					})
 				}else{
 					$http({
@@ -471,10 +467,8 @@ define(['app'], function(app) {
 						data:queryCondition
 					}).then(function(data){
 						console.log('success');
-						//refreshBrandAndContractDetails();
 					},function(data){
 						console.log('err');
-						//refreshBrandAndContractDetails();
 					})
 				}
 			}
@@ -521,10 +515,8 @@ define(['app'], function(app) {
 					});
 				}).then(function(data){
 					console.log('success');
-					//refreshBrandAndContractDetails();
 				},function(data){
 					console.log('err');
-					//refreshBrandAndContractDetails();
 				});
 			}
 
@@ -636,7 +628,6 @@ define(['app'], function(app) {
 						console.log('refreshing fail');
 					})
 				}
-				//refreshBrandAndContractDetails();
 			}
 
 			$scope.openViewModal=function(Detail){
@@ -705,10 +696,8 @@ define(['app'], function(app) {
 					data:queryCondition
 				}).success(function(data){
 					console.log('success');
-					//refreshBrandAndContractDetails();
 				}).error(function(data){
 					console.log('err');
-					
 				})
 			}
 
@@ -729,7 +718,7 @@ define(['app'], function(app) {
 			$scope.language=Label.getCurrentLanguage();
 			$scope.renderContractDetailsByCategory = renderContractDetailsByCategory;
 			$scope.loadModalDate=loadModalDate;
-			$scope.showbubleMsg=showbubleMsg;
+			//$scope.showbubleMsg=showbubleMsg;
 			$scope.compare=compare;
 			$scope.copyProposal = copyProposal;
 			$scope.checkData=checkData;

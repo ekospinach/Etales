@@ -286,7 +286,7 @@ define(['app'], function(app) {
 				var categoryID=0,max=0;
 				var filter=/^[0-9]*[1-9][0-9]*$/;
 				if(!filter.test(value)){
-					d.resolve('Input a Integer');
+					d.resolve(Label.getContent('Input a Integer'));
 				}
 				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/4';
 				$http({
@@ -297,7 +297,7 @@ define(['app'], function(app) {
 						categoryID=1;
 						max=data.data.acquiredDesignLevel[categoryID-1];
 						if(value<1||value>max){
-							d.resolve('Input range:1~'+max);
+							d.resolve(Label.getContent('Input range')+':1~'+max);
 						}else{
 							d.resolve();
 						}
@@ -305,13 +305,13 @@ define(['app'], function(app) {
 						categoryID=2;
 						max=data.data.acquiredTechnologyLevel[categoryID-1]+2;
 						if(value<1||value>max){
-							d.resolve('Input range:1~'+max);
+							d.resolve(Label.getContent('Input range')+':1~'+max);
 						}else{
 							d.resolve();
 						}
 					}	
 				},function(){
-					d.resolve('fail');
+					d.resolve(Label.getContent('fail'));
 				});
 				return d.promise;
 			}
@@ -321,7 +321,7 @@ define(['app'], function(app) {
 				var categoryID=0,max=0;
 				var filter=/^[0-9]*[1-9][0-9]*$/;
 				if(!filter.test(value)){
-					d.resolve('Input a Integer');
+					d.resolve(Label.getContent('Input a Integer'));
 				}
 				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
 				$http({
@@ -332,13 +332,13 @@ define(['app'], function(app) {
 						categoryID=1;
 						max=data.data.acquiredTechnologyLevel[categoryID-1];
 						if(value<1||value>max){
-							d.resolve('Input range:1~'+max);
+							d.resolve(Label.getContent('Input range')+':1~'+max);
 						}
 					}else{
 						categoryID=2;
 						max=data.data.acquiredTechnologyLevel[categoryID-1];
 						if(value<1||value>max){
-							d.resolve('Input range:1~'+max);
+							d.resolve(Label.getContent('Input range')+':1~'+max);
 						}else{
 							d.resolve();
 						}
@@ -350,12 +350,12 @@ define(['app'], function(app) {
 					});
 				}).then(function(data){
 					if(value>data.data.composition[2]||(value<data.data.composition[0]-2)){
-						d.resolve('Input range:'+(data.data.composition[0]-2)+'(Design Level-2)'+'~'+data.data.composition[2]+'(Raw Materials Quality)');
+						d.resolve(Label.getContent('Input range')+(data.data.composition[0]-2)+'('+Label.getContent('Design Level')+'-2)'+'~'+data.data.composition[2]+'('+Label.getContent('Quality-of-Raw-Materials')+')');
 					}else{
 						d.resolve();
 					}
 				},function(){
-					d.resolve('fail');
+					d.resolve(Label.getContent('fail'));
 				});
 				return d.promise;
 			}
@@ -365,7 +365,7 @@ define(['app'], function(app) {
 				var categoryID=0,max=0;
 				var filter=/^[0-9]*[1-9][0-9]*$/;
 				if(!filter.test(value)){
-					d.resolve('Input a Integer');
+					d.resolve(Label.getContent('Input a Integer'));
 				}
 				if(category=="Elecssories"){
 					categoryID=1;
@@ -379,12 +379,12 @@ define(['app'], function(app) {
 				}).then(function(data){
 					max=data.data.acquiredTechnologyLevel[categoryID-1]+2;
 					if(value<1||value>max){
-						d.resolve('Input range:1~'+max);
+						d.resolve(Label.getContent('Input range')+':1~'+max);
 					}else{
 						d.resolve();
 					}
 				},function(){
-					d.resolve();
+					d.resolve(Label.getContent('fail'));
 				});
 				return d.promise;
 			}
@@ -499,10 +499,10 @@ define(['app'], function(app) {
 							url:url
 						}).then(function(data){
 							RetailerDecisionBase.addProductNewBrand(newBrand,$scope.lauchNewCategory);
-							showbubleMsg('add new brand successfully',2);
+							showbubleMsg(Label.getContent('Add new brand successful'),2);
 							closeProductModal();
 						},function(data){
-							showbubleMsg('add new brand failure, ' + data.data.message,1);
+							showbubleMsg(Label.getContent('Add new brand fail')+','+Label.getContent(data.data.message),1);
 						})
 					}else{/*add new product under existed Brand*/
 						var retVariantDecision=_.find($scope.pageBase.retCatDecision,function(obj){
@@ -527,10 +527,10 @@ define(['app'], function(app) {
 							url:url
 						}).then(function(data){
 							RetailerDecisionBase.addProductExistedBrand(newretailerDecision,$scope.addNewCategory,newBrandName);
-							showbubleMsg('add new variant successfully',2);
+							showbubleMsg(Label.getContent('Add new variant successful'),2);
 							closeProductModal();
 						},function(data){
-							showbubleMsg('add new variant failure, ' + data.data.message,1);
+							showbubleMsg(Label.getContent('Add new variant fail')+','+Label.getContent(data.data.message),1);
 						});						
 					}
 			}
@@ -540,15 +540,15 @@ define(['app'], function(app) {
 		 		switch(status){
 		 			case 1: 
 		 				$scope.bubleClassName = 'alert alert-danger'; 
-		 				$scope.bubleTitle = 'Error!';
+		 				$scope.bubleTitle = Label.getContent('Error')+'!';
 		 				break;
 		 			case 2: 
 		 				$scope.bubleClassName = 'alert alert-success'; 
-		 				$scope.bubleTitle = 'Success!';
+		 				$scope.bubleTitle = Label.getContent('Success')+'!';
 		 				break;
 		 			case 3:
 		 				$scope.bubleClassName = 'alert alert-block'; 
-		 				$scope.bubleTitle = 'Warning!';
+		 				$scope.bubleTitle = Label.getContent('Warning')+'!';
 		 				break;	 			
 		 			default:
 		 			 $scope.bubleClassName = 'alert'; 

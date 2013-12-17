@@ -83,19 +83,6 @@ define(['app'], function(app) {
 					$scope.surplusProduction=acMax-data.data.result;
 					$scope.percentageProduction=(acMax-data.data.result)/acMax*100;
 					$scope.producerID=producerID,$scope.period=period,$scope.category=category,$scope.language=language;
-							// if(language=="English"){
-							// 	for(var i=0;i<$scope.multilingual.length;i++){
-							// 		labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelENG;
-							// 		infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoENG;
-
-							// 	}
-							// }
-							// else if(language=="Chinese"){
-							// 	for(var i=0;i<$scope.multilingual.length;i++){				
-							// 		labelLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].labelCHN;
-							// 		infoLanguages[$scope.multilingual[i].shortName]=$scope.multilingual[i].infoCHN;
-							// 	}
-							// }
 							var allProCatDecisions=loadSelectCategroy(category);
 							for(var i=0;i<allProCatDecisions.length;i++){
 				      			for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
@@ -151,7 +138,7 @@ define(['app'], function(app) {
 				var categoryID,max,result;
 				var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
 				if(!filter.test(value)){
-					d.resolve('Input a number');
+					d.resolve(Label.getContent('Input a number'));
 				}
 				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
 	      		$http({
@@ -166,12 +153,12 @@ define(['app'], function(app) {
 	      			});
 	      		}).then(function(data){
 	      			if(parseInt(data.data.result)+parseInt(value)>max){
-	      				d.resolve('Input range 0~'+(max-data.data.result));
+	      				d.resolve(Label.getContent('Input range')+':0~'+(max-data.data.result));
 	      			}else{
 	      				d.resolve();
 	      			}
 	      		},function(data){
-	      			d.resolve('fail');
+	      			d.resolve(Label.getContent('fail'));
 	      		});
 	      		return d.promise;
 			}
