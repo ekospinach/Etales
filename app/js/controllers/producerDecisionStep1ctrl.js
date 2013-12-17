@@ -293,10 +293,10 @@ define(['app'], function(app) {
 					}
 				}
 				if(postion!=-1){
-					return ($scope.products[postion].packFormat && selected.length) ? selected[0].text : 'Not set'; 
+					return ($scope.products[postion].packFormat && selected.length) ? selected[0].text : Label.getContent('Not set'); 
 				}
 				else{
-					return 'Not set';	
+					return Label.getContent('Not set');	
 				}
 			};
 
@@ -312,7 +312,7 @@ define(['app'], function(app) {
 				var d = $q.defer();	
 				var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
 				if(!filter.test(value)){
-					d.resolve('Input a number');
+					d.resolve(Label.getContent('Input a number'));
 				}
 				var categoryID,max,result;
 				if(category=="Elecssories"){
@@ -334,7 +334,7 @@ define(['app'], function(app) {
 					});
 				}).then(function(data){
 					if(parseInt(data.data.result)+parseInt(value)>max){
-						d.resolve('Input range:0~'+(max-parseInt(data.data.result)));
+						d.resolve(Label.getContent('Input range')+':0~'+(max-parseInt(data.data.result)));
 					}else{
 						d.resolve();
 					}
