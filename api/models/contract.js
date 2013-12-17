@@ -672,13 +672,6 @@ exports.duplicateContract = function(io){
 					
 	  			}
 	  		})
-		  	
-		  	/*need add Contract Detail*/
-		  	newContract.save(function(err){
-				if(err) next(new Error(err));
-				io.sockets.emit('contarctListChanged', {producerID: req.body.producerID, retailerID: req.body.retailerID}); 
-				res.send(200,newContract);
-			});
   		}
   	})
   }
