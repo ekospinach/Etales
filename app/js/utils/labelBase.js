@@ -52,8 +52,8 @@ var getLabelBase = function(){
 		{id:'Producer 3',  ENG:'Producer 3',  CHN:'生厂商 3',  RUS:''},	
 		{id:'Producer 4',  ENG:'Producer 4',  CHN:'生厂商 4',  RUS:''},	
 		{id:'Chart',  ENG:'Chart',  CHN:'图表',  RUS:''},
-		{id:'Chart Info',  ENG:'Charts show you visually where your business stands in comparison to your competitors.',  CHN:'图表帮助你一目了然地比较自己和竞争对手的情况',  RUS:''},
-		{id:'Chart popInfo',  ENG:'You may look at other industry (retail or manufacturing) for benchmarking if you change role selector. You may change details level using category and market selectors. To see numbers behind the trends use your mouse over the lines.',  CHN:'可以选择 \"品类\" 或 \"市场\"，从不同层级查看信息. 把鼠标放在趋势线上, 可以看到相应的数字。',  RUS:''},
+		{id:'Chart Info',  ENG:'Charts show you visually where your business stands in comparison to your competitors.',  CHN:'图表帮助你一目了然地比较自己和竞争对手的情况。',  RUS:''},
+		{id:'Chart popInfo',  ENG:'You may look at other industry (retail or manufacturing) for benchmarking if you change role selector. You may change details level using category and market selectors. To see numbers behind the trends use your mouse over the lines.',  CHN:'可以选择 \"品类\" 或 \"市场\"，从不同层级查看信息。把鼠标放在趋势线上，可以看到相应的数字。',  RUS:''},
 		{id:'Total',  ENG:'Total',  CHN:'总计',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
 
@@ -80,7 +80,7 @@ var getLabelBase = function(){
 		{id:'Company summary',  ENG:'Company summary',  CHN:'公司信息汇总',  RUS:''},
 		{id:'Company summary Info',  ENG:'',  CHN:'公司信息汇总',  RUS:''},
 		{id:'Perception Map',  ENG:'Perception Map',  CHN:'感知图',  RUS:''},
-		{id:'Perception Map Info',  ENG:'A type of chart widely used in marketing to graphically show how consumers perceive brands. In some cases brand positioning is compared with consumer segments\' ideal points. In eTales however vector positioning model is used. It means that having no ideal point as such, all segments will prefer brands with higher (or lower) perception if this perception dimension is of relative importance to consumers of this segment.',  CHN:'市场营销中广泛使用的一种图表, 显示消费者如何感知你的品牌。 在有些情况下， 会把品牌定位和消费者细分的理想感知点进行对比。 但是在\“零售风暴\”中， 没有所谓的\“理想感知点\”， 所有细分市场在相关的感知维度上希望更高或更低的感知。',  RUS:''},		
+		{id:'Perception Map Info',  ENG:'A type of chart widely used in marketing to graphically show how consumers perceive brands. In some cases brand positioning is compared with consumer segments\' ideal points. In eTales however vector positioning model is used. It means that having no ideal point as such, all segments will prefer brands with higher (or lower) perception if this perception dimension is of relative importance to consumers of this segment.',  CHN:'市场营销中广泛使用的一种图表，显示消费者如何感知你的品牌。 在有些情况下， 会把品牌定位和消费者细分的理想感知点进行对比。 但是在\“零售风暴\”中， 没有所谓的\“理想感知点\”， 所有细分市场在相关的感知维度上希望更高或更低的感知。',  RUS:''},		
 		{id:'Perception Map popInfo',  ENG:'Position your mouse over brand name to see change dinamics and additional market information.',  CHN:'把鼠标放在品牌名称上， 你会看到该品牌的变化和额外的市场信息。 ',  RUS:''},		
 		{id:'Check All',  ENG:'Check All',  CHN:'选择全部',  RUS:''},
 		{id:'Un-Check All',  ENG:'Un-Check All',  CHN:'取消全部',  RUS:''},
@@ -115,7 +115,7 @@ var getLabelBase = function(){
 		/*fin report*/
 		{id:'Reports',  ENG:'Reports',  CHN:'报告',  RUS:''},
 		{id:'Reports Info',  ENG:'Here you will find financial statements and other reports giving operating results of your company and its departments.',  CHN:'这里你可以查看公司各方面的财务信息。',  RUS:''},
-		{id:'Reports popInfo',  ENG:' Looking at the reports, try to change perspective or detail level from global (company) or category to brand or even variant (SKU).',  CHN:'可以从整个市场(公司）、分市场、分品类、分品牌甚至单品查看信息。',  RUS:''},
+		{id:'Reports popInfo',  ENG:' Looking at the reports, try to change perspective or detail level from global (company) or category to brand or even variant (SKU).',  CHN:'可以从整个市场（公司）、分市场、分品类、分品牌甚至单品查看信息。',  RUS:''},
 		{id:'Profit and Loss Statement',  ENG:'Profit and Loss Statement',  CHN:'损益表',  RUS:''},
 		{id:'Profit and Loss Statement Info',  ENG:'Profit and Loss Statement Info',  CHN:'损益表信息',  RUS:''},
 		{id:'Prices per unit',  ENG:'Prices per unit',  CHN:'单价',  RUS:''},
@@ -229,11 +229,11 @@ var getLabelBase = function(){
 		{id:'Purchases',  ENG:'Purchases',  CHN:'本阶段采购量',  RUS:''},
 
 		/*market report*/
-		{id:'Market popInfo',  ENG:'Click on column header to sort the table.',  CHN:'点顶部的标题栏, 可以对数据进行排序',  RUS:''},
+		{id:'Market popInfo',  ENG:'Click on column header to sort the table.',  CHN:'点击顶部的标题栏，可以对数据进行排序。',  RUS:''},
 		{id:'Market studies',  ENG:'Market studies',  CHN:'市场研究',  RUS:''},
-		{id:'Market studies Info',  ENG:'Basic market facts collected here in numerical form. They will help you in your analysis of market characteristics and trends as well as consumer preferences, purchasing power by market, category and segment.',  CHN:'这里提供基本的市场数据, 支持你分析市场特征和趋势, 消费者偏好,不同市场、不同品类和不同细分的的购买力。',  RUS:''},	
+		{id:'Market studies Info',  ENG:'Basic market facts collected here in numerical form. They will help you in your analysis of market characteristics and trends as well as consumer preferences, purchasing power by market, category and segment.',  CHN:'这里提供基本的市场数据，支持你分析市场特征和趋势，消费者偏好，不同市场、不同品类和不同细分的的购买力。',  RUS:''},	
 		{id:'Brand Awareness',  ENG:'Brand Awareness',  CHN:'品牌认知度',  RUS:''},
-		{id:'Brand Awareness Info',  ENG:'Extent to which consumers are aware of a particular product measured as percentage of total. Gives you an idea how your promotional expenses and investments into visibility paid off.',  CHN:'品牌认知度指该产品在消费者所有认知的品牌中所占的份额, 反映你在促销和渠道可见度方面投资的回报。',  RUS:''},
+		{id:'Brand Awareness Info',  ENG:'Extent to which consumers are aware of a particular product measured as percentage of total. Gives you an idea how your promotional expenses and investments into visibility paid off.',  CHN:'品牌认知度指该产品在消费者所有认知的品牌中所占的份额，反映你在促销和渠道可见度方面投资的回报。',  RUS:''},
 		{id:'Market Share (Volume)',  ENG:'Market Share (Volume)',  CHN:'市场份额（以销量计）',  RUS:''},
 		{id:'Market Share (Volume) Info',  ENG:'Percentage of a total market, in terms of volume, accounted for by the sales of a specific brand.',  CHN:'该品牌占总市场销量的份额。',  RUS:''},
 		{id:'Market Share (Value)',  ENG:'Market Share (Value)',  CHN:'市场份额（以销售额计）',  RUS:''},
@@ -405,7 +405,7 @@ var getLabelBase = function(){
 		{id:'Acquired production flexibility',  ENG:'Acquired production flexibility',  CHN:'所拥有的生产灵活性',  RUS:''},
 
 		/*retailer step 1*/
-		{id:'Rteailer Advertising Info',  ENG:'define your marketing investments. These investments are given to online and offline agencies that carry out marketing campaigns for you. You can also define what slogan your agency promotes for you, you just need to allocate your budget between three shopper perceptions (convenience, assortment and price) in such a way that dimension you promote most gets more money.',  CHN:'制订你的市场决策。第三方网络和传统广告机构会根据你的要求完成市场活动.你只需确定在三个感知维度（便利性,　产品组合和价格)上的预算分配.',  RUS:''},
+		{id:'Rteailer Advertising Info',  ENG:'define your marketing investments. These investments are given to online and offline agencies that carry out marketing campaigns for you. You can also define what slogan your agency promotes for you, you just need to allocate your budget between three shopper perceptions (convenience, assortment and price) in such a way that dimension you promote most gets more money.',  CHN:'制订你的市场决策。第三方网络和传统广告机构会根据你的要求完成市场活动。你只需确定在三个感知维度（便利性，产品组合和价格）上的预算分配。',  RUS:''},
 		{id:'More information',  ENG:'More information',  CHN:'更多信息',  RUS:''},
 		{id:'Convenience Off-line',  ENG:'Convenience Off-line',  CHN:'便利性传统广告',  RUS:''},
 		{id:'Convenience Off-line Info',  ENG:'budget you give offline advertising agencies to promote convenience of your store chain. ',  CHN:'给传统广告机构的预算,用于提高你门店的便利性感知',  RUS:''},
