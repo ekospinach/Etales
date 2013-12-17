@@ -190,7 +190,7 @@
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Pack Format Info')}}" popover-title="{{Label.getContent('Pack Format')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Pack Format')}}<span style="color:red">*</span></p>
                 </th>
                 <th ng-repeat='product in products'>
-                  {{product.packFormat}}
+                  {{Label.getContent(product.packFormat)}}
                 </th>
               </tr>
               <tr>

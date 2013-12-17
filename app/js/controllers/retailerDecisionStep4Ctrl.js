@@ -238,7 +238,7 @@ define(['app'], function(app) {
 				var d=$q.defer();
 				var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
 				if(!filter.test(value)){
-					d.resolve('Input a number');
+					d.resolve(Label.getContent('Input a number'));
 				}
 				var max=0;
 					if(market=="Urban"){
@@ -255,12 +255,12 @@ define(['app'], function(app) {
 				$http({method:'GET',url:url}).then(function(data){
 					max=data.data.categoryView[category-1].categoryMarketView[market-1].segmentsVolumes[4];
 					if(value>max||value<0){
-						d.resolve('Input range 0~'+max);
+						d.resolve(Label.getContent('Input range')+':0~'+max);
 					}else{
 						d.resolve();
 					}
 				},function(){
-					d.resolve('fail');
+					d.resolve(Label.getContent('fail'));
 				})
 				return d.promise;
 			}
@@ -271,7 +271,7 @@ define(['app'], function(app) {
 				var d=$q.defer(),max=0;
 				var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
 				if(!filter.test(value)){
-					d.resolve('Input a number');
+					d.resolve(Label.getContent('Input a number'));
 				}
 				if(market=="Urban"){
 					market=1;
@@ -290,7 +290,7 @@ define(['app'], function(app) {
 	      		}).then(function(data){
 	      			max=100-data.data.exclude*100;
 	      			if(value>max||value<0){
-	      				d.resolve('Input range 0~'+max);
+	      				d.resolve(Label.getContent('Input range')+':0~'+max);
 	      			}else{
 	      				d.resolve();
 	      			}
@@ -309,7 +309,7 @@ define(['app'], function(app) {
 				var url="",max=0;
 				var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
 				if(!filter.test(value)){
-					d.resolve('Input a number');
+					d.resolve(Label.getContent('Input a number'));
 				}
 				if(category=="Elecssories"){
 					category=1;
@@ -323,12 +323,12 @@ define(['app'], function(app) {
 						$http({method:'GET',url:url}).then(function(data){
 							max=data.data.supplierView[0].nextPriceBM;
 							if(value>max*3||value<0.5*max){
-								d.resolve('Input range :'+0.5*max+'~'+3*max);
+								d.resolve(Label.getContent('Input range')+':'+0.5*max+'~'+3*max);
 							}else{
 								d.resolve();
 							}
 						},function(){
-							d.resolve('fail');
+							d.resolve(Label.getContent('fail'));
 						})
 					}else{//new variant
 						url='/producerVariantBM/'+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+brandName.substring(brandName.length-1)+'/'+category+'/'+brandName+'/'+varName;
@@ -338,7 +338,7 @@ define(['app'], function(app) {
 						}).then(function(data){
 							max=data.data.result;
 							if(value>max*3||value<0.5*max){
-								d.resolve('Input range :'+0.5*max+'~'+3*max);
+								d.resolve(Label.getContent('Input range')+':'+0.5*max+'~'+3*max);
 							}else{
 								d.resolve();
 							}
@@ -362,12 +362,12 @@ define(['app'], function(app) {
 					}).then(function(data){
 						currentUnitCost=data.data.result;
 						if(value>3*currentUnitCost||value<0.5*currentUnitCost){
-							d.resolve('Input range:'+0.5*currentUnitCost+'~'+3*currentUnitCost);
+							d.resolve(Label.getContent('Input range')+':'+0.5*currentUnitCost+'~'+3*currentUnitCost);
 						}else{
 							d.resolve();
 						}
 					},function(){
-						d.resolve('fail');
+						d.resolve(Label.getContent('fail'));
 					})
 				}
 				return d.promise;
@@ -378,10 +378,10 @@ define(['app'], function(app) {
 				var d=$q.defer();
 				var filter=/^\d+$/;
 				if(!filter.test(value)){
-					d.resolve('Input a Integer');
+					d.resolve(Label.getContent('Input a Integer'));
 				}
 				if(value>26||value<1){
-					d.resolve('Input range:1~26');
+					d.resolve(Label.getContent('Input range')+':1~26');
 				}else{
 					d.resolve();
 				}
@@ -392,10 +392,10 @@ define(['app'], function(app) {
 				var d=$q.defer();
 				var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
 				if(!filter.test(value)){
-					d.resolve('Input a number');
+					d.resolve(Label.getContent('Input a number'));
 				}
 				if(value>100||value<0){
-					d.resolve('Input range:0~100');
+					d.resolve(Label.getContent('Input range')+':0~100');
 				}else{
 					d.resolve();
 				}

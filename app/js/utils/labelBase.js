@@ -479,6 +479,7 @@ var getLabelBase = function(){
 		{id:'Order Product',  ENG:'Order Product',  CHN:'选择商品',  RUS:''},
 		{id:'Produced by',  ENG:'Produced by',  CHN:'生产厂家',  RUS:''},
 		/*error message need some time to clear up*/
+		/*prodcuer*/
 		{id:'Not set',  ENG:'Not set',  CHN:'请选择',  RUS:''},
 		{id:'Input a number',  ENG:'Enter a negative number(Allow two decimal places)',  CHN:'请输入非负数(可保留两位小数)',  RUS:''},
 		{id:'fail',  ENG:'check fail,please call the admin',  CHN:'验证失败,请联系管理员',  RUS:''},
@@ -495,6 +496,8 @@ var getLabelBase = function(){
 		{id:'Add new variant fail',  ENG:'Add new variant fail',  CHN:'添加新单品失败',  RUS:''},
 		{id:'more than 3',  ENG:'There is more than 3 in this brand',  CHN:'此品牌下已有3个单品',  RUS:''},	
 		{id:'another variant',  ENG:'There is another variant in this brand',  CHN:'此品牌下已有同名单品',  RUS:''},	
+		/*retailer*/
+		{id:'more than 4',  ENG:'There is more than 4 in this category',  CHN:'此品类下已有4个品牌',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},	
 		{id:'',  ENG:'',  CHN:'',  RUS:''},	
 		{id:'',  ENG:'',  CHN:'',  RUS:''},	

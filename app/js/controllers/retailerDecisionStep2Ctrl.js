@@ -61,10 +61,10 @@ define(['app'], function(app) {
 					}
 				}
 				if(postion!=-1){
-					return ($scope.markets[postion].serviceLevel && selected.length) ? selected[0].text : 'Not set'; 
+					return ($scope.markets[postion].serviceLevel && selected.length) ? selected[0].text : Label.getContent('Not set'); 
 				}
 				else{
-					return 'Not set';	
+					return Label.getContent('Not set');	
 				}
 			};
 
@@ -137,10 +137,10 @@ define(['app'], function(app) {
 				var d=$q.defer();
 				var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
 				if(!filter.test(value)){
-					d.resolve('Input a number');
+					d.resolve(Label.getContent('Input a number'));
 				}
 				if(parseInt(value)>65||parseInt(value)<35){
-					d.resolve('Input range:35~65');
+					d.resolve(Label.getContent('Input range')+':35~65');
 				}else{
 					d.resolve();
 				}
@@ -151,7 +151,7 @@ define(['app'], function(app) {
 				var d=$q.defer();
 				var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
 				if(!filter.test(value)){
-					d.resolve('Input a number');
+					d.resolve(Label.getContent('Input a number'));
 				}
 				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/R/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
 	      		$http({
@@ -167,12 +167,12 @@ define(['app'], function(app) {
 	      		}).then(function(data){
 	      			expend=data.data.result;
 	      			if(value>max-expend){
-	      				d.resolve('Input range:0~'+(max-expend));
+	      				d.resolve(Label.getContent('Input range'+':0~')+(max-expend));
 	      			}else{
 	      				d.resolve();
 	    			}
 	      		},function(){
-	      			d.resolve('fail');
+	      			d.resolve(Label.getContent('fail'));
 	      		});
 	      		return d.promise;
 			}
