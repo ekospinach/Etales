@@ -713,9 +713,9 @@ exports.checkProducerProduct=function(req,res,next){
                     }
                 }
                 if(count>=5){
-                    res.send(404,{message:'The count of brand is more than 5 in a category'});
+                    res.send(404,{message:'more than 5'});
                 }else if(result!=0){
-                    res.send(404,{message:'There is another brand named '+req.params.brandName});
+                    res.send(404,{message:'another brand'});
                 }else{
                     res.send(200,{message:'OK'});
                 }
@@ -737,9 +737,9 @@ exports.checkProducerProduct=function(req,res,next){
                     }
                 }
                 if(count>=3){
-                    res.send(404,{message:'The count of variant is more than 3 in brand '+req.params.brandName});
+                    res.send(404,{message:'more than 3'});
                 }else if(result!=0){
-                    res.send(404,{message:'There is another variant named '+req.params.varName});
+                    res.send(404,{message:'another variant'});
                 }else{
                     res.send(200,{message:'OK'});
                 }
