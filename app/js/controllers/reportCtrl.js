@@ -83,9 +83,6 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    	if($scope.showTitleENG=="Profitability by Channel"||$scope.showTitleENG=="Profitability by Supplier"){
 		    		$rootScope.finCatShow="";
 		      		$rootScope.finCatCss="margin-left:10px";
-		      		if(cat==""){
-		      			cat="Elecssories";
-		      		}
 		      		reportCollection=_.find(myfinreport.dataCollection,function(obj){
 		        		return (obj.market==market&&obj.detail==detail&&obj.roleID==roleID&&obj.category==cat);
 		      		});
@@ -97,12 +94,6 @@ define(['app','socketIO','routingConfig'], function(app) {
 		      		});
 
 		    	}
-
-		      	//reportCollection=_.find(myfinreport.dataCollection,function(obj){
-		        //	return (obj.market==market&&obj.detail==detail&&obj.roleID==roleID&&obj.category==cat)
-		      	//});
-		      	//$rootScope.finCatShow="";
-		      	//$rootScope.finCatCss="margin-left:10px";
 		    }else{
 				reportCollection=_.find(myfinreport.dataCollection,function(obj){
 		        	return (obj.market==market&&obj.category==cat&&obj.detail==detail&&obj.roleID==roleID)

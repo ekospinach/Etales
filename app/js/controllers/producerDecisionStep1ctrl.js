@@ -481,7 +481,7 @@ define(['app'], function(app) {
 				}).then(function(data){
 					currentUnitCost=data.data.result;
 					if(value>4*currentUnitCost||value<0.5*currentUnitCost){
-						d.resolve(Label.getContent('Input range')+':'+0.5*currentUnitCost+'~'+4*currentUnitCost);
+						d.resolve(L.getContent('Input range')+':'+0.5*currentUnitCost+'~'+4*currentUnitCost);
 					}else{
 						d.resolve();
 					}

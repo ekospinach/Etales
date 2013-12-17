@@ -385,7 +385,7 @@ define(['app'], function(app) {
 						d.resolve();
 					}
 				}else{
-					d.resolve(Label.getContent('fail'));
+					d.resolve();
 				}
 				return d.promise;
 			}
