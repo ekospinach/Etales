@@ -14,6 +14,14 @@ var getLabelBase = function(){
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
 
 		/*line chart page */
+		{id:'e-Mall',  ENG:'E-Mall',  CHN:'网上商城',  RUS:''},
+		{id:'',  ENG:'',  CHN:'',  RUS:''},
+
+		{id:'Retail Market Sales (Value)',  ENG:'Retail Market Sales (Value)',  CHN:'',  RUS:''},	
+		{id:'Retail Market Share (Value)',  ENG:'Retail Market Share (Value)',  CHN:'',  RUS:''},	
+		{id:'Retail Market Sales (Volume)',  ENG:'Retail Market Sales (Volume)',  CHN:'',  RUS:''},	
+		{id:'Retail Market Share (Volume)',  ENG:'Retail Market Share (Volume)',  CHN:'',  RUS:''},	
+
 		{id:'Retailer Market Sales (Value)',  ENG:'Retailer Market Sales (Value)',  CHN:'',  RUS:''},	
 		{id:'Retailer Market Share (Value)',  ENG:'Retailer Market Share (Value)',  CHN:'',  RUS:''},	
 		{id:'Retailer Market Sales (Volume)',  ENG:'Retailer Market Sales (Volume)',  CHN:'',  RUS:''},	

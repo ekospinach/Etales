@@ -39,7 +39,7 @@
 					<li class="active" access-level='{{accessLevels.retailerView}}'>
 						<a>{{Label.getContent('Retailer')}}</a>
 						<ul class="nav second-sidenav">
-							<li class="" >
+							<li class="active" >
 								<a ng-click="getFinReport(seminar,'Profit and Loss Statement',period,'Retailer','Fin')">{{Label.getContent('Profit and Loss Statement')}}</a>
 							</li>
 							<li class="">
@@ -131,21 +131,7 @@
 			    <li class="{{finRetShow}}"><a ng-click="showFinReport(cat,market,language,detail,'Retailer 4')">{{Label.getContent('E-Mall')}}</a></li>			    
 			  </ul>
 			</div>
-			<!--
-				<div class="btn-group pull-right" data-toggle="buttons">
-				  <label class="btn btn-default" ng-click="showFinReport(cat,market,'English',detail,roleID)">
-				    <input type="radio" name="options"> English
-				  </label>
-				  <label class="btn btn-default" ng-click="showFinReport(cat,market,'Chinese',detail,roleID)">
-				    <input type="radio" name="options"> Chinese
-				  </label>
-				  <label class="btn btn-default" ng-click="showFinReport(cat,market,'Russian',detail,roleID)">
-				    <input type="radio" name="options"> Russian
-				  </label>
-				</div>
-			-->
-			 <div style="clear:both"></div>
-			 <!--<h3>{{optitle}}</h3>-->
+			<div style="clear:both"></div>
 
 		</div>
 	</div>
