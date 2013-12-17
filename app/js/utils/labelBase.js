@@ -233,7 +233,7 @@ var getLabelBase = function(){
 		{id:'Brand Awareness Info',  ENG:'Extent to which consumers are aware of a particular product measured as percentage of total. Gives you an idea how your promotional expenses and investments into visibility paid off.',  CHN:'品牌认知度指该产品在消费者所有认知的品牌中所占的份额, 反映你在促销和渠道可见度方面投资的回报。',  RUS:''},
 		{id:'Market Share (Volume)',  ENG:'Market Share (Volume)',  CHN:'市场份额（以销量计）',  RUS:''},
 		{id:'Market Share (Volume) Info',  ENG:'Percentage of a total market, in terms of volume, accounted for by the sales of a specific brand.',  CHN:'该品牌占总市场销量的份额。',  RUS:''},
-		{id:'Market Share (Value)',  ENG:'Market Share (Value)',  CHN:'市场份额(以销售额计）',  RUS:''},
+		{id:'Market Share (Value)',  ENG:'Market Share (Value)',  CHN:'市场份额（以销售额计）',  RUS:''},
 		{id:'Market Share (Value) Info',  ENG:'Percentage of a total market, in terms of value, accounted for by the sales of a specific brand.',  CHN:'该品牌占市场总销售额的份额',  RUS:''},
 		{id:'Average Net Market Price',  ENG:'Average Net Market Price',  CHN:'平均净市场价',  RUS:''},
 		{id:'Average Net Market Price Info',  ENG:'Price at which a product is selling in the open market. It is averaged across all channels. Promotional discounts off normal retail price are also accounted for.',  CHN:'该产品在市场中的公开零售价格,　平均了它在各个渠道的价格,包括扣除了促销折扣的因素。',  RUS:''},
