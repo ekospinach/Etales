@@ -479,7 +479,7 @@ var getLabelBase = function(){
 		{id:'Order Product',  ENG:'Order Product',  CHN:'选择商品',  RUS:''},
 		{id:'Produced by',  ENG:'Produced by',  CHN:'生产厂家',  RUS:''},
 		/*error message need some time to clear up*/
-		/*prodcuer*/
+		/*decision*/
 		{id:'Not set',  ENG:'Not set',  CHN:'请选择',  RUS:''},
 		{id:'Input a number',  ENG:'Enter a negative number(Allow two decimal places)',  CHN:'请输入非负数(可保留两位小数)',  RUS:''},
 		{id:'fail',  ENG:'check fail,please call the admin',  CHN:'验证失败,请联系管理员',  RUS:''},
@@ -496,12 +496,14 @@ var getLabelBase = function(){
 		{id:'Add new variant fail',  ENG:'Add new variant fail',  CHN:'添加新单品失败',  RUS:''},
 		{id:'more than 3',  ENG:'There is more than 3 in this brand',  CHN:'此品牌下已有3个单品',  RUS:''},	
 		{id:'another variant',  ENG:'There is another variant in this brand',  CHN:'此品牌下已有同名单品',  RUS:''},	
-		/*retailer*/
 		{id:'more than 4',  ENG:'There is more than 4 in this category',  CHN:'此品类下已有4个品牌',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},	
-		{id:'',  ENG:'',  CHN:'',  RUS:''},	
-		{id:'',  ENG:'',  CHN:'',  RUS:''},	
-		{id:'',  ENG:'',  CHN:'',  RUS:''},	
+		/*contract*/
+		{id:'Add contratct successful',  ENG:'Add contratct successful',  CHN:'添加合同成功',  RUS:''},	
+		{id:'Add contratct fail',  ENG:'Add contratct fail',  CHN:'添加合同失败',  RUS:''},	
+		{id:'another contract',  ENG:'There is another contract with this retailer this period',  CHN:'本轮已有一张和此供应商的合同',  RUS:''},	
+		{id:'Duplicate contratct successful',  ENG:'Duplicate contratct successful',  CHN:'复制合同成功',  RUS:''},	
+		{id:'Duplicate contratct fail',  ENG:'Duplicate contratct fail',  CHN:'复制合同失败',  RUS:''},	
+		{id:'another contractCode',  ENG:'There is another contractCode in this game',  CHN:'此游戏中已存在同名合同',  RUS:''},	
 		{id:'',  ENG:'',  CHN:'',  RUS:''},	
 		{id:'',  ENG:'',  CHN:'',  RUS:''},	
 		{id:'',  ENG:'',  CHN:'',  RUS:''},	

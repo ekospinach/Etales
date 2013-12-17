@@ -65,32 +65,6 @@ exports.contractDetails = mongoose.model('contractDetails', contractDetailsSchem
 var contract = mongoose.model('contract', contractSchema);
 var contractDetails = mongoose.model('contractDetails', contractDetailsSchema);
 
-exports.addContract = function(io){
-  return function(req, res, next){
-  	contract.count({seminar: req.body.seminar,period:req.body.period, producerID:req.body.producerID, retailerID:req.body.retailerID},function(err,count){
-  		if(count!=0){
-  			res.send(404,'already have a contract');
-	  	}else{
-		  	var newContract=new contract({
-		  		contractCode : req.body.contractCode,
-				period : req.body.period,
-				seminar : req.body.seminar,
-				draftedByCompanyID : req.body.draftedByCompanyID,
-				producerID : req.body.producerID,
-				retailerID : req.body.retailerID,
-				isDraftFinished : false
-		  	});
-		  	/*need add Contract Detail*/
-		  	newContract.save(function(err){
-				if(err) next(new Error(err));
-				io.sockets.emit('contarctListChanged', {producerID: req.body.producerID, retailerID: req.body.retailerID}); 
-				res.send(200,newContract);
-			});
-  		}
-  	})
-  }
-}
-
 exports.getContractList = function(req, res, next){
         var data="";
         if(req.params.contractUserID==1||req.params.contractUserID==2||req.params.contractUserID==3){
@@ -107,14 +81,6 @@ exports.getContractList = function(req, res, next){
                         res.send(404,'there is no contract');
                 }
         })
-}
-
-exports.duplicateContract = function(req, res, next){
-	contract.findOne({contractCode : req.body.contractCode},function(err, doc){
-		if(doc){
-			//....
-		}
-	})
 }
 
 exports.deleteContractDetailData=function(io){
@@ -614,23 +580,29 @@ exports.addContract = function(io){
   return function(req, res, next){
   	contract.count({seminar: req.body.seminar,period:req.body.period, producerID:req.body.producerID, retailerID:req.body.retailerID},function(err,count){
   		if(count!=0){
-  			res.send(404,'already have a contract');
+  			res.send(404,'another contract');
 	  	}else{
-		  	var newContract=new contract({
-		  		contractCode : req.body.contractCode,
-				period : req.body.period,
-				seminar : req.body.seminar,
-				draftedByCompanyID : req.body.draftedByCompanyID,
-				producerID : req.body.producerID,
-				retailerID : req.body.retailerID,
-				isDraftFinished : false
-		  	});
-		  	/*need add Contract Detail*/
-		  	newContract.save(function(err){
-				if(err) next(new Error(err));
-				io.sockets.emit('contarctListChanged', {producerID: req.body.producerID, retailerID: req.body.retailerID}); 
-				res.send(200,newContract);
-			});
+	  		contract.count({contractCode: req.body.contractCode},function(err,count){
+	  			if(count!=0){
+	  				res.send(404,'another contractCode');
+	  			}else{
+	  				var newContract=new contract({
+				  		contractCode : req.body.contractCode,
+						period : req.body.period,
+						seminar : req.body.seminar,
+						draftedByCompanyID : req.body.draftedByCompanyID,
+						producerID : req.body.producerID,
+						retailerID : req.body.retailerID,
+						isDraftFinished : false
+				  	});
+				  	/*need add Contract Detail*/
+				  	newContract.save(function(err){
+						if(err) next(new Error(err));
+						io.sockets.emit('contarctListChanged', {producerID: req.body.producerID, retailerID: req.body.retailerID}); 
+						res.send(200,newContract);
+					});
+	  			}
+	  		})
   		}
   	})
   }
@@ -641,55 +613,66 @@ exports.duplicateContract = function(io){
 	return function(req, res, next){
   	contract.count({seminar: req.body.seminar,period:req.body.period, producerID:req.body.producerID, retailerID:req.body.retailerID},function(err,count){
   		if(count!=0){
-  			res.send(404,'already have a contract');
+  			res.send(404,'another contract');
 	  	}else{
-	  		console.log(count);
-		  	var newContract=new contract({
-		  		contractCode : req.body.contractCode,
-				period : req.body.period,
-				seminar : req.body.seminar,
-				draftedByCompanyID : req.body.draftedByCompanyID,
-				producerID : req.body.producerID,
-				retailerID : req.body.retailerID,
-				isDraftFinished : false
-		  	});
-		  	console.log(req.body.duplicateCode);
-		  	contractDetails.find({contractCode : req.body.duplicateCode, userType:'P'}, function(err, docs){
-		  		if(err) {next(new Error(err))};
-		  		contractCount = 0;
-		  		if(docs.length != 0){
-		  			console.log('start copyContractDetails...');
-		  			(function copyContractDetails(idx){
-		  				contractDetails.update({contractCode : req.body.contractCode, 
-										userType : 'P', 
-										negotiationItem : docs[idx].negotiationItem, 
-										relatedBrandName : docs[idx].relatedBrandName,
-										relatedBrandID : docs[idx].relatedBrandID},
-										{useBrandDetails : docs[idx].useBrandDetails, 
-										useVariantDetails : docs[idx].useVariantDetails,
-										displayValue : docs[idx].displayValue,
-										brand_urbanValue : docs[idx].brand_urbanValue,
-										brand_ruralValue : docs[idx].brand_ruralValue,
-										variant_A_urbanValue : docs[idx].variant_A_urbanValue,
-										variant_A_ruralValue : docs[idx].variant_A_ruralValue,
-										variant_B_urbanValue : docs[idx].variant_B_urbanValue,
-										variant_B_ruralValue : docs[idx].variant_B_ruralValue,
-										variant_C_urbanValue : docs[idx].variant_C_urbanValue,
-										variant_C_ruralValue : docs[idx].variant_C_ruralValue,
-										amount_or_rate : docs[idx].amount_or_rate,
-										isVerified : false},
-										{upsert:true},
-										function(err, numberAffected, raw){
-											if(!err){
-												idx++;
-												if(idx<docs.length){
-													copyContractDetails(idx);
-												}		
-											}
-										})
-					})(0);
-				}
-			})
+	  		contract.count({contractCode: req.body.contractCode},function(err,count){
+	  			if(count!=0){
+	  				res.send(404,'another contractCode');
+	  			}else{
+	  				var newContract=new contract({
+				  		contractCode : req.body.contractCode,
+						period : req.body.period,
+						seminar : req.body.seminar,
+						draftedByCompanyID : req.body.draftedByCompanyID,
+						producerID : req.body.producerID,
+						retailerID : req.body.retailerID,
+						isDraftFinished : false
+				  	});
+				  	contractDetails.find({contractCode : req.body.duplicateCode, userType:'P'}, function(err, docs){
+				  		if(err) {next(new Error(err))};
+				  		contractCount = 0;
+				  		if(docs.length != 0){
+				  			console.log('start copyContractDetails...');
+				  			(function copyContractDetails(idx){
+				  				contractDetails.update({contractCode : req.body.contractCode, 
+												userType : 'P', 
+												negotiationItem : docs[idx].negotiationItem, 
+												relatedBrandName : docs[idx].relatedBrandName,
+												relatedBrandID : docs[idx].relatedBrandID},
+												{useBrandDetails : docs[idx].useBrandDetails, 
+												useVariantDetails : docs[idx].useVariantDetails,
+												displayValue : docs[idx].displayValue,
+												brand_urbanValue : docs[idx].brand_urbanValue,
+												brand_ruralValue : docs[idx].brand_ruralValue,
+												variant_A_urbanValue : docs[idx].variant_A_urbanValue,
+												variant_A_ruralValue : docs[idx].variant_A_ruralValue,
+												variant_B_urbanValue : docs[idx].variant_B_urbanValue,
+												variant_B_ruralValue : docs[idx].variant_B_ruralValue,
+												variant_C_urbanValue : docs[idx].variant_C_urbanValue,
+												variant_C_ruralValue : docs[idx].variant_C_ruralValue,
+												amount_or_rate : docs[idx].amount_or_rate,
+												isVerified : false},
+												{upsert:true},
+												function(err, numberAffected, raw){
+													if(!err){
+														idx++;
+														if(idx<docs.length){
+															copyContractDetails(idx);
+														}else{
+															newContract.save(function(err){
+																if(err) next(new Error(err));
+																io.sockets.emit('contarctListChanged', {producerID: req.body.producerID, retailerID: req.body.retailerID}); 
+																res.send(200,newContract);
+															});														}		
+													}
+												})
+							})(0);
+						}
+					})
+					
+	  			}
+	  		})
+		  	
 		  	/*need add Contract Detail*/
 		  	newContract.save(function(err){
 				if(err) next(new Error(err));
