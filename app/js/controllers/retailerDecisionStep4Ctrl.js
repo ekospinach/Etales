@@ -538,25 +538,6 @@ define(['app'], function(app) {
 				close();
 			}
 
-
-			// var addOrder=function(market,product){
-			// 	product.dateOfBirth=$rootScope.currentPeriod;
-			// 	product.dateOfDeath=10;
-			// 	product.order=0;
-			// 	product.retailerPrice=0;
-			// 	product.shelfSpace=0;
-			// 	product.pricePromotions={
-			// 		promo_Frequency:1,
-			// 		promo_Rate:0.01
-			// 	};
-			// 	if(market=="Urban"){
-			// 		RetailerDecisionBase.addOrder(1,product);
-			// 	}
-			// 	else{
-			// 		RetailerDecisionBase.addOrder(2,product);
-			// 	}
-			// }
-
 			var deleteOrder=function(market,category,brandName,varName){
 				if(market=="Urban"){
 					market=1;
