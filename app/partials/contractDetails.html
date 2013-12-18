@@ -200,21 +200,9 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr style="display:{{shouldBeAmount}}">
-                            <td>{{Label.getContent('Please choose bonus way')}}:</td>
-                            <td>
-                                <div class="btn-group" data-toggle="buttons">
-                                    <label class="btn btn-default" ng-click="setShowBonusType('Amout',editDetail)" ng-class="((editDetail.amount_or_rate)?'active':'')">
-                                        <input type="radio" name="amoutRate">{{Label.getContent('Amount')}}
-                                    </label>
-                                    <label class="btn btn-default" ng-click="setShowBonusType('Rate',editDetail)" ng-class="((editDetail.amount_or_rate)?'':'active')">
-                                        <input type="radio" name="amoutRate">{{Label.getContent('Rate')}}
-                                    </label>
-                                </div>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
+                <p style="display:{{shouldBeAmount}}">{{Label.getContent('Amount Info')}}</p>
                 <div class="" style="display:{{shouldShowBrand}}">
                     <table class="table" style="display:{{shouldBeRate}}">
                         <thead>
@@ -247,7 +235,8 @@
                         </tbody>
                     </table>
                     <div class="" style="display:{{shouldBeAmount}}">
-                        <table class="table" style="display:{{shouldBeBonusAmount}}">
+                        
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <td style="width:10%"></td>
@@ -264,48 +253,12 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="#" editable-text="editDetailBonusAmount.brand_urbanValue" onbeforesave="checkData(editDetailBonusAmount.negotiationItem,$data)" onaftersave="updateContractDetails(editDetailBonusAmount,'nc_PerformanceBonusAmount','urban','index','brand')">{{ editDetailBonusAmount.brand_urbanValue || 0 }}</a>
+                                        <a href="#" editable-text="editDetailBonusAmount.brand_urbanValue" ng-show="editDetail.brand_urbanValue!=0" onbeforesave="checkAmount(editDetailBonusAmount,'nc_PerformanceBonusAmount','urban','index','brand',$data)" onaftersave="updateContractDetails(editDetailBonusAmount,'nc_PerformanceBonusAmount','urban','index','brand')">{{ editDetailBonusAmount.brand_urbanValue || 0 }}</a>
+                                        <span ng-show="editDetail.brand_urbanValue==0">{{ editDetailBonusAmount.brand_urbanValue || 0 }}</span>
                                     </td>
                                     <td>
-                                        {{editDetailBonusRate.brand_urbanValue}}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>{{Label.getContent('Rural')}}:</td>
-                                    <td>
-                                        <a href="#" editable-text="editDetail.brand_ruralValue" onbeforesave="checkData(editDetail.negotiationItem,$data)" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'rural','index','brand')">{{ editDetail.brand_ruralValue || 0 }}
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="#" editable-text="editDetailBonusAmount.brand_ruralValue" onbeforesave="checkData(editDetailBonusAmount.negotiationItem,$data)" onaftersave="updateContractDetails(editDetailBonusAmount,'nc_PerformanceBonusAmount','rural','index','brand')">{{ editDetailBonusAmount.brand_ruralValue || 0 }}</a>
-                                    </td>
-                                    <td>
-                                        {{editDetailBonusRate.brand_ruralValue}}
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table class="table" style="display:{{shouldBeBonusRate}}">
-                            <thead>
-                                <tr>
-                                    <td style="width:10%"></td>
-                                    <td style="width:30%">{{Label.getContent(showTitle)}}</td>
-                                    <td style="width:30%">{{Label.getContent('Amount')}}(mln$)</td>
-                                    <td style="width:30%">{{Label.getContent('Rate')}}(%)</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>{{Label.getContent('Urban')}}:</td>
-                                    <td>
-                                        <a href="#" editable-text="editDetail.brand_urbanValue" onbeforesave="checkData(editDetail.negotiationItem,$data)" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'urban','index','brand')">{{ editDetail.brand_urbanValue || 0 }}
-                                        </a>
-                                    </td>
-                                    <td>
-                                        {{editDetailBonusAmount.brand_urbanValue}}
-                                    </td>
-                                    <td>
-                                        <a href="#" editable-text="editDetailBonusRate.brand_urbanValue" onbeforesave="checkData(editDetailBonusRate.negotiationItem,$data)" onaftersave="updateContractDetails(editDetailBonusRate,'nc_PerformanceBonusRate','urban','index','brand')">{{ editDetailBonusRate.brand_urbanValue || 0 }}</a>
+                                        <a href="#" editable-text="editDetailBonusRate.brand_urbanValue" ng-show="editDetail.brand_urbanValue!=0" onbeforesave="checkData(editDetailBonusRate.negotiationItem,$data)" onaftersave="updateContractDetails(editDetailBonusRate,'nc_PerformanceBonusRate','urban','index','brand')">{{ editDetailBonusRate.brand_urbanValue || 0 }}</a>
+                                        <span ng-show="editDetail.brand_urbanValue==0">{{ editDetailBonusRate.brand_urbanValue || 0 }}</span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -315,17 +268,17 @@
                                         </a>
                                     </td>
                                     <td>
-                                        {{editDetailBonusAmount.brand_ruralValue}}
+                                        <a href="#" editable-text="editDetailBonusAmount.brand_ruralValue" ng-show="editDetail.brand_ruralValue!=0"  onbeforesave="checkAmount(editDetailBonusAmount,'nc_PerformanceBonusAmount','rural','index','brand',$data)" onaftersave="updateContractDetails(editDetailBonusAmount,'nc_PerformanceBonusAmount','rural','index','brand')">{{ editDetailBonusAmount.brand_ruralValue || 0 }}</a>
+                                        <span ng-show="editDetail.brand_ruralValue==0">{{ editDetailBonusAmount.brand_ruralValue || 0 }}</span>
                                     </td>
                                     <td>
-                                        <a href="#" editable-text="editDetailBonusRate.brand_ruralValue" onbeforesave="checkData(editDetailBonusRate.negotiationItem,$data)" onaftersave="updateContractDetails(editDetailBonusRate,'nc_PerformanceBonusRate','rural','index','brand')">{{ editDetailBonusRate.brand_ruralValue || 0 }}</a>
+                                        <a href="#" editable-text="editDetailBonusRate.brand_ruralValue" ng-show="editDetail.brand_ruralValue!=0" onbeforesave="checkData(editDetailBonusRate.negotiationItem,$data)" onaftersave="updateContractDetails(editDetailBonusRate,'nc_PerformanceBonusRate','rural','index','brand')">{{ editDetailBonusRate.brand_ruralValue || 0 }}</a>
+                                        <span ng-show="editDetail.brand_ruralValue==0">{{ editDetailBonusRate.brand_ruralValue || 0 }}</span>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-
-
                     <table class="table" style="display:{{shouldBeNormal}}">
                         <tbody>
                             <tr>
@@ -383,7 +336,7 @@
                         </tabset>
                     </div>
                     <div style="display:{{shouldBeAmount}}">
-                        <div style="display:{{shouldBeBonusAmount}}">
+                        <div>
                             <tabset>
                                 <tab ng-repeat='product in editProductList|filter:{show:1}' heading="{{product.varName}}">
                                     <table class="table">
@@ -403,54 +356,12 @@
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <a href="#" editable-text="product.amout_urbanValue" onbeforesave="checkData('nc_PerformanceBonusAmount',$data)" onaftersave="updateContractDetails(product,'nc_PerformanceBonusAmount','urban',product.index,'variant')">{{ product.amout_urbanValue || 0 }}</a>
+                                                    <a href="#" editable-text="product.amout_urbanValue" ng-show="product.urbanValue!=0" onbeforesave="checkAmount(product,'nc_PerformanceBonusAmount','urban',product.index,'variant',$data)" onaftersave="updateContractDetails(product,'nc_PerformanceBonusAmount','urban',product.index,'variant')">{{ product.amout_urbanValue || 0 }}</a>
+                                                    <span ng-show="product.urbanValue==0">{{ product.amout_urbanValue || 0 }}</span>
                                                 </td>
                                                 <td>
-                                                    {{product.rate_urbanValue}}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>{{Label.getContent('Rural')}}:</td>
-                                                <td>
-                                                    <a href="#" editable-text="product.ruralValue" onbeforesave="checkData(product.negotiationItem,$data)" onaftersave="updateContractDetails(product,product.negotiationItem,'rural',product.index,'variant')">{{ product.ruralValue || 0 }}
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <a href="#" editable-text="product.amout_ruralValue" onbeforesave="checkData('nc_PerformanceBonusAmount',$data)" onaftersave="updateContractDetails(product,'nc_PerformanceBonusAmount','rural',product.index,'variant')">{{ product.amout_ruralValue || 0 }}</a>
-                                                </td>
-                                                <td>
-                                                    {{product.rate_ruralValue}}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </tab>
-                            </tabset>
-                        </div>
-                        <div style="display:{{shouldBeBonusRate}}">
-                            <tabset>
-                                <tab ng-repeat='product in editProductList|filter:{show:1}' heading="{{product.varName}}">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <td style="width:10%"></td>
-                                                <td style="width:40%">{{Label.getContent(showTitle)}}</td>
-                                                <td style="width:10%">{{Label.getContent('Amount')}}(mln$)</td>
-                                                <td style="width:40%">{{Label.getContent('Rate')}}(%)</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>{{Label.getContent('Urban')}}:</td>
-                                                <td>
-                                                    <a href="#" editable-text="product.urbanValue" onbeforesave="checkData(product.negotiationItem,$data)" onaftersave="updateContractDetails(product,product.negotiationItem,'urban',product.index,'variant')">{{ product.urbanValue || 0 }}
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    {{ product.amout_urbanValue}}
-                                                </td>
-                                                <td>
-                                                    <a href="#" editable-text="product.rate_urbanValue " onbeforesave="checkData('nc_PerformanceBonusRate',$data)" onaftersave="updateContractDetails(product,'nc_PerformanceBonusRate','urban',product.index,'variant')">{{ product.rate_urbanValue  || 0 }}</a>
+                                                    <a href="#" editable-text="product.rate_urbanValue " ng-show="product.urbanValue!=0" onbeforesave="checkData('nc_PerformanceBonusRate',$data)" onaftersave="updateContractDetails(product,'nc_PerformanceBonusRate','urban',product.index,'variant')">{{ product.rate_urbanValue  || 0 }}</a>
+                                                    <span ng-show="product.urbanValue==0">{{ product.rate_urbanValue  || 0 }}</span>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -460,10 +371,12 @@
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    {{product.amout_ruralValue}}
+                                                    <a href="#" editable-text="product.amout_ruralValue" ng-show="product.ruralValue!=0"onbeforesave="checkAmount(product,'nc_PerformanceBonusAmount','rural',product.index,'variant',$data)" onaftersave="updateContractDetails(product,'nc_PerformanceBonusAmount','rural',product.index,'variant')">{{ product.amout_ruralValue || 0 }}</a>
+                                                    <span ng-show="product.ruralValue==0">{{ product.amout_ruralValue || 0 }}</span>
                                                 </td>
                                                 <td>
-                                                    <a href="#" editable-text="product.rate_ruralValue" onbeforesave="checkData('nc_PerformanceBonusRate',$data)" onaftersave="updateContractDetails(product,'nc_PerformanceBonusRate','rural',product.index,'variant')">{{ product.rate_ruralValue || 0 }}</a>
+                                                    <a href="#" editable-text="product.rate_ruralValue" ng-show="product.ruralValue!=0" onbeforesave="checkData('nc_PerformanceBonusRate',$data)" onaftersave="updateContractDetails(product,'nc_PerformanceBonusRate','rural',product.index,'variant')">{{ product.rate_ruralValue || 0 }}</a>
+                                                    <span ng-show="product.ruralValue==0">{{ product.rate_ruralValue || 0 }}</span>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -545,7 +458,7 @@
                         </tbody>
                     </table>
                     <div class="" style="display:{{shouldBeAmount}}">
-                        <table class="table" style="display:{{shouldBeBonusAmount}}">
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <td style="width:10%"></td>
@@ -563,42 +476,6 @@
                                     <td>
                                         {{ editDetailBonusAmount.brand_urbanValue || 0 }}
                                     </td>
-                                    <!--<td>
-                                        {{editDetailBonusRate.brand_urbanValue}}
-                                    </td>-->
-                                    <td>---</td>
-                                </tr>
-                                <tr>
-                                    <td>{{Label.getContent('Rural')}}:</td>
-                                    <td>
-                                        {{ editDetail.brand_ruralValue || 0 }}
-                                    </td>
-                                    <td>
-                                        {{ editDetailBonusAmount.brand_ruralValue || 0 }}
-                                    </td>
-                                    <!--<td>
-                                        {{editDetailBonusRate.brand_ruralValue}}
-                                    </td>-->
-                                    <td>---</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table class="table" style="display:{{shouldBeBonusRate}}">
-                            <thead>
-                                <tr>
-                                    <td style="width:10%"></td>
-                                    <td style="width:30%">{{Label.getContent(showTitle)}}</td>
-                                    <td style="width:30%">{{Label.getContent('Amount')}}(mln$)</td>
-                                    <td style="width:30%">{{Label.getContent('Rate')}}(%)</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>{{Label.getContent('Urban')}}:</td>
-                                    <td>
-                                        {{ editDetail.brand_urbanValue || 0 }}
-                                    </td>
-                                    <td>---</td>
                                     <td>
                                         {{ editDetailBonusRate.brand_urbanValue || 0 }}
                                     </td>
@@ -608,10 +485,9 @@
                                     <td>
                                         {{ editDetail.brand_ruralValue || 0 }}
                                     </td>
-                                    <!--<td>
-                                        {{editDetailBonusAmount.brand_ruralValue}}
-                                    </td>-->
-                                    <td>---</td>
+                                    <td>
+                                        {{ editDetailBonusAmount.brand_ruralValue || 0 }}
+                                    </td>
                                     <td>
                                         {{ editDetailBonusRate.brand_ruralValue || 0 }}
                                     </td>
@@ -619,8 +495,6 @@
                             </tbody>
                         </table>
                     </div>
-
-
                     <table class="table" style="display:{{shouldBeNormal}}">
                         <tbody>
                             <tr>
@@ -698,51 +572,6 @@
                                                 <td>
                                                     {{ product.amout_urbanValue || 0 }}
                                                 </td>
-                                                <!--<td>
-                                                    {{product.rate_urbanValue}}
-                                                </td>-->
-                                                <td>---</td>
-                                            </tr>
-                                            <tr>
-                                                <td>{{Label.getContent('Rural')}}:</td>
-                                                <td>
-                                                    {{ product.ruralValue || 0 }}
-                                                </td>
-                                                <td>
-                                                    {{ product.amout_ruralValue || 0 }}
-                                                </td>
-                                                <!--<td>
-                                                    {{product.rate_ruralValue}}
-                                                </td>-->
-                                                <td>---</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </tab>
-                            </tabset>
-                        </div>
-                        <div style="display:{{shouldBeBonusRate}}">
-                            <tabset>
-                                <tab ng-repeat='product in editProductList|filter:{show:1}' heading="{{product.varName}}">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <td style="width:10%"></td>
-                                                <td style="width:40%">{{Label.getContent(showTitle)}}</td>
-                                                <td style="width:10%">{{Label.getContent('Amount')}}(mln$)</td>
-                                                <td style="width:40%">{{Label.getContent('Rate')}}(%)</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>{{Label.getContent('Urban')}}:</td>
-                                                <td>
-                                                    {{ product.urbanValue || 0 }}
-                                                </td>
-                                                <!--<td>
-                                                    {{ product.amout_urbanValue}}
-                                                </td>-->
-                                                <td>---</td>
                                                 <td>
                                                     {{ product.rate_urbanValue  || 0 }}
                                                 </td>
@@ -752,10 +581,9 @@
                                                 <td>
                                                     {{ product.ruralValue || 0 }}
                                                 </td>
-                                                <!--<td>
-                                                    {{product.amout_ruralValue}}
-                                                </td>-->
-                                                <td>---</td>
+                                                <td>
+                                                    {{ product.amout_ruralValue || 0 }}
+                                                </td>
                                                 <td>
                                                     {{ product.rate_ruralValue || 0 }}
                                                 </td>

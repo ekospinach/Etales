@@ -56,7 +56,7 @@ var getLabelBase = function(){
 		{id:'Chart Info',  ENG:'Charts show you visually where your business stands in comparison to your competitors.',  CHN:'图表帮助你一目了然地比较自己和竞争对手的情况。',  RUS:''},
 		{id:'Chart popInfo',  ENG:'You may look at other industry (retail or manufacturing) for benchmarking if you change role selector. You may change details level using category and market selectors. To see numbers behind the trends use your mouse over the lines.',  CHN:'可以选择 \"品类\" 或 \"市场\"，从不同层级查看信息。把鼠标放在趋势线上，可以看到相应的数字。',  RUS:''},
 		{id:'Total',  ENG:'Total',  CHN:'总计',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'Amount Info',  ENG:'Amount Info',  CHN:'Amount输入提示',  RUS:''},
 
 		/*Login page*/
 		{id:'eTales Info',  ENG:'Best-in-class professional development tool among the world’s most respected companies and leading business schools',  CHN:'首次呈现和探索零售商、供应商、电商和消费者在社交媒体盛行时代的生存和胜出之道。',  RUS:''},
@@ -481,9 +481,9 @@ var getLabelBase = function(){
 
 		/*decision*/
 		{id:'Not set',  ENG:'Not set',  CHN:'请选择',  RUS:''},
-		{id:'Input a number',  ENG:'Enter a none-negative number(Allow two decimal places)',  CHN:'请输入非负数(可保留两位小数)',  RUS:''},
-		{id:'fail',  ENG:'check fail,please call the admin',  CHN:'验证失败，请联系管理员。',  RUS:''},
-		{id:'Input a Integer',  ENG:'请输入正整数',  CHN:'',  RUS:''},
+		{id:'Input a number',  ENG:'Enter a negative number(Allow two decimal places)',  CHN:'请输入非负数(可保留两位小数)',  RUS:''},
+		{id:'fail',  ENG:'check fail,please call the admin',  CHN:'验证失败,请联系管理员',  RUS:''},
+		{id:'Input a Integer',  ENG:'Input a nonnegative integer',  CHN:'请输入非负整数',  RUS:''},
 		{id:'Input range',  ENG:'Input range',  CHN:'输入范围',  RUS:''},
 		{id:'Error',  ENG:'Error',  CHN:'错误',  RUS:''},
 		{id:'Success',  ENG:'Success',  CHN:'成功',  RUS:''},

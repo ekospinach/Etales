@@ -685,6 +685,44 @@ exports.getProducerVariantBM=function(req,res,next){
     })
 }
 
+exports.getProductInfo=function(req,res,next){
+    proDecision.findOne({
+        seminar:req.params.seminar,
+        period:req.params.period,
+        producerID:req.params.producerID
+    },function(err,doc){
+        if(err){
+            next(new Error(err));
+        }
+        if(!doc){
+            res.send(404,{err:'cannot find the doc'});
+        }else{
+            var categoryID=0;
+            if(req.params.brandName.substring(0,1)=="E"){
+                categoryID=1;
+            }else{
+                categoryID=2;
+            }
+            var allProCatDecisions=_.filter(doc.proCatDecision,function(obj){
+                return (obj.categoryID==categoryID);
+            });
+            var count=0;
+            for(i=0;i<allProCatDecisions.length;i++){
+                for(j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
+                    if(allProCatDecisions[i].proBrandsDecision[j].brandID!=0&&allProCatDecisions[i].proBrandsDecision[j].brandName==req.params.brandName){
+                        count++;
+                        res.send(200,allProCatDecisions[i].proBrandsDecision[j].proVarDecision);
+                        break;
+                    }
+                }
+            }
+            if(count==0){
+                res.send(404,{err:'cannot find the brand'});
+            }
+        }
+    })
+}
+
 exports.checkProducerProduct=function(req,res,next){
     proDecision.findOne({
         seminar:req.params.seminar,
