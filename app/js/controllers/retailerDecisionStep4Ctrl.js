@@ -373,15 +373,15 @@ define(['app'], function(app) {
 				return d.promise;
 					
 			}
-			/*1-26*/
+			/*0-26*/
 			var checkPromototionFrequency=function(value){
 				var d=$q.defer();
 				var filter=/^\d+$/;
 				if(!filter.test(value)){
 					d.resolve(Label.getContent('Input a Integer'));
 				}
-				if(value>26||value<1){
-					d.resolve(Label.getContent('Input range')+':1~26');
+				if(value>26||value<0){
+					d.resolve(Label.getContent('Input range')+':0~26');
 				}else{
 					d.resolve();
 				}

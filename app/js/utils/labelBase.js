@@ -483,7 +483,7 @@ var getLabelBase = function(){
 		{id:'Not set',  ENG:'Not set',  CHN:'请选择',  RUS:''},
 		{id:'Input a number',  ENG:'Enter a negative number(Allow two decimal places)',  CHN:'请输入非负数(可保留两位小数)',  RUS:''},
 		{id:'fail',  ENG:'check fail,please call the admin',  CHN:'验证失败,请联系管理员',  RUS:''},
-		{id:'Input a Integer',  ENG:'请输入正整数',  CHN:'',  RUS:''},
+		{id:'Input a Integer',  ENG:'Input a nonnegative integer',  CHN:'请输入非负整数',  RUS:''},
 		{id:'Input range',  ENG:'Input range',  CHN:'输入范围',  RUS:''},
 		{id:'Error',  ENG:'Error',  CHN:'错误',  RUS:''},
 		{id:'Success',  ENG:'Success',  CHN:'成功',  RUS:''},
