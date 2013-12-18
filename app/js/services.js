@@ -655,11 +655,30 @@ define(['angular',
 						varName : varName,
 						brandName:brandName
 					}
-					$http({method:'POST', url:'/retailerDecision', data: queryCondition}).then(function(res){
-						$rootScope.$broadcast('retailerDecisionBaseChanged', base);
+					$http({
+						method:'POST', url:'/retailerDecision', data: queryCondition
+					}).then(function(res){
+						//$rootScope.$broadcast('retailerDecisionBaseChanged', base);
 					 	console.log('Success:' + res);
-					 },function(res){
-						console.log('Failed:' + res);
+					 	queryCondition={
+					 		//retailerID :$rootScope.user.username.substring($rootScope.user.username.length-1),
+							period:$rootScope.currentPeriod,
+							seminar:$rootScope.user.seminar,
+							categoryID : categoryID,
+							varName : varName,
+							brandName:brandName
+					 	}
+					 	return $http({
+					 		method:'POST',
+					 		url:'/deleteOrderData',
+					 		data:queryCondition
+					 	})
+					}).then(function(data){
+						console.log('success');
+					 	$rootScope.$broadcast('producerDecisionBaseChanged', base);
+					},function(err){
+					 	console.log('fail'+err);
+					 	$rootScope.$broadcast('producerDecisionBaseChanged', base);
 					});
 				},
 				// addOrder:function(marketID,product){

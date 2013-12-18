@@ -583,7 +583,6 @@ define(['app'], function(app) {
 				   return $http({method: 'GET', url: url});
 				}).then(function(data){
 					$scope.variantHistory=data.data;
-
 				},function(err){
 					$scope.variantHistory=new Array();
 					$scope.showNewHistory={
