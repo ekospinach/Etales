@@ -51,6 +51,7 @@ Type
   TTechnology           = 1..MaxTechnologyLevel;  
   TTimeSpan             = TimeStart..TimeEnd;
   TVarBasePerceptions   = 1..VariantDimsMax - 1;
+  TVarThreePerceptions  = 1..VariantDimsMax;
   TVariants             = 1..AllVariantsMax;
   TVarID                = 0..LastVar_ID;      { we keep 0 for non-active variants }
   TVarName              = array[0..VarNameLength] of WideChar;
@@ -63,6 +64,7 @@ Type
   TIngredientsDetails                = array[TIngredientsInput] of single;
   TAllIngredientsDetails             = array[TSpecs] of TIngredientsDetails;
   TCategoriesBytes                   = array[TCategories] of byte;    { identifies current categories, ID taken from TCategoriesUniverse }
+  TAxisImportance                    = array[TSegments, TVarThreePerceptions] of single;
   TSegmentsData                      = array[TSegments] of single;
   TSegmentsTotalData                 = array[TSegmentsTotal] of single;
   TCategoriesSegmentsTotalData       = array[TCategories] of TSegmentsTotalData;
@@ -401,6 +403,7 @@ TOneQuarterParameters =
     record
       Market_ID                       : TMarketsUniverse;
       Category_ID                     : TCategoriesUniverse;
+      AxisImportance                  : TAxisImportance;
       HandlingFunction_Alpha          : single;
       HandlingFunction_Beta           : single;
       HandlingFunction_Gamma          : single;

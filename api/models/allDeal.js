@@ -411,7 +411,7 @@ function fillNegotiationItemByContractDetail(categoryDeal, negotiationItem, prod
                                                       categoryDeal.brandsDetails[brandCount].marketsDetails[1] = contractDetailsDoc.brand_ruralValue;
                                                       console.log('test');
                                                       if(brandCount<4){
-                                                        brandCount++;`
+                                                        brandCount++;
                                                         console.log('-------------------- change Brand ++ >>>>')        
                                                         loopBrand(brandCount, categoryCount, producerID, seminar, period);
                                                       } else {      

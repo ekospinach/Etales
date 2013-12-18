@@ -261,15 +261,58 @@ var
     function getFileName(): AnsiString;
     begin
       Result := DatDir + 'Results' +'.' + dummySeminar;
+      if sListData.IndexOfName('seminar') <> -1 then
+        Result  := DatDir + 'Results' + '.' + sListData.Values['seminar'];
       if sListData.IndexOfName('filepath') <> -1 then
         Result := DecodeUrl(sListData.Values['filepath']);
+    end;
+
+    Function ReadResults(PeriodNumber : TPeriodNumber; var OnePeriodResults : TAllResults ) : Integer;
+    var
+      ResultsFile : file of TAllResults;
+      FileName    :  String;
+      TempResult  : Integer;
+
+    begin
+      FileName := getFileName;
+
+      if FileExists(FileName) = false then
+      begin
+          Writeln('result file does not exist:' + FileName);
+          Result := -1;
+          exit;
+      end;
+
+      try
+          try
+            AssignFile( ResultsFile, FileName);
+            Reset( ResultsFile);
+            //if ( PeriodNumber < HistoryEnd ) then PeriodNumber := HistoryEnd;
+            //ShowMessage('start position:' + IntToStr(PeriodNumber - HistoryStart));
+            Seek( ResultsFile, PeriodNumber - HistoryStart );
+            Read( ResultsFile, OnePeriodResults );
+            TempResult := 0;
+          except
+            on E: EInOutError do
+            begin
+              Writeln( 'Error: ' + IntToStr( E.ErrorCode ) + #13 + #10 + FileName + #13 + #10 + E.Message );
+              TempResult := E.ErrorCode;
+            end;
+          end;  { try }
+
+      finally
+          CloseFile( ResultsFile);
+      end;
+
+      Result := TempResult;
+
     end;
 
    Function ReadResultsTwo
    (PeriodNumber : TPeriodNumber; var OnePeriodResults, PrevPeriodResults : TAllResults ) : Integer;
     var
       ResultsFile : file of TAllResults;
-      FileName    :  String;
+      FileName    : String;
       TempResult  : Integer;
 
     begin
@@ -286,7 +329,7 @@ var
           try
             AssignFile( ResultsFile, FileName);
             Reset( ResultsFile);
-            //if ( PeriodNumber < HistoryEnd ) then PeriodNumber := HistoryEnd;
+            if ( PeriodNumber < HistoryEnd ) then PeriodNumber := HistoryEnd;
             //ShowMessage('start position:' + IntToStr(PeriodNumber - HistoryStart));
             Seek( ResultsFile, PeriodNumber - HistoryStart );
             Read( ResultsFile, OnePeriodResults );
@@ -379,17 +422,17 @@ var
         jo.A['c'].Add(jr);
         result.A['rows'].Add(jo);
 
-      //3 rq_PromotionalSupport
-        jo := SO;
-        jo.O['c'] := SA([]);
-        jf := SO(aPNLRetailer[3]);
-        jo.A['c'].Add(jf);
-        jr := SO('{f: "", v: "' +
-          FormatFloat('0.00',
-            pp.rq_PromotionalSupport ) +
-          '"}');
-        jo.A['c'].Add(jr);
-        result.A['rows'].Add(jo);
+//      //3 rq_PromotionalSupport
+//        jo := SO;
+//        jo.O['c'] := SA([]);
+//        jf := SO(aPNLRetailer[3]);
+//        jo.A['c'].Add(jf);
+//        jr := SO('{f: "", v: "' +
+//          FormatFloat('0.00',
+//            pp.rq_PromotionalSupport ) +
+//          '"}');
+//        jo.A['c'].Add(jr);
+//        result.A['rows'].Add(jo);
 
       //4 rq_OtherCompensation
         jo := SO;
@@ -838,22 +881,22 @@ var
         jo.A['c'].Add(jr);
         result.A['rows'].Add(jo);
 
-      //3 rq_PromotionalSupport
-        jo := SO;
-        jo.O['c'] := SA([]);
-        jf := SO(aPNLRetailer[3]);
-        jo.A['c'].Add(jf);
-        jr := SO('{f: "", v: "' +
-          FormatFloat('0.00',
-            pp.rq_PromotionalSupport ) +
-          '"}');
-        jo.A['c'].Add(jr);
-        jr := SO('{f: "", v: "' +
-          FormatFloat('0.00',
-            ph.rq_PromotionalSupport ) +
-          '"}');
-        jo.A['c'].Add(jr);
-        result.A['rows'].Add(jo);
+//      //3 rq_PromotionalSupport
+//        jo := SO;
+//        jo.O['c'] := SA([]);
+//        jf := SO(aPNLRetailer[3]);
+//        jo.A['c'].Add(jf);
+//        jr := SO('{f: "", v: "' +
+//          FormatFloat('0.00',
+//            pp.rq_PromotionalSupport ) +
+//          '"}');
+//        jo.A['c'].Add(jr);
+//        jr := SO('{f: "", v: "' +
+//          FormatFloat('0.00',
+//            ph.rq_PromotionalSupport ) +
+//          '"}');
+//        jo.A['c'].Add(jr);
+//        result.A['rows'].Add(jo);
 
       //4 rq_OtherCompensation
         jo := SO;
@@ -1482,21 +1525,21 @@ var
           end;
         result.A['rows'].Add(jo);
 
-      //3 rq_PromotionalSupport
-        jo := SO;
-        jo.O['c'] := SA([]);
-        jf := SO(aPNLRetailer[3]);
-        jo.A['c'].Add(jf);
-        for I := Low(abrn) to High(abrn) do
-          begin
-            pp := currentResult.r_Retailers[pwho].rr_Quarters[pmark][pcat].rq_BrandsResults[abrn[I]];
-            jr := SO('{f: "", v: "' +
-              FormatFloat('0.00',
-                pp.rb_PromotionalSupport ) +
-              '"}');
-            jo.A['c'].Add(jr);
-          end;
-        result.A['rows'].Add(jo);
+//      //3 rq_PromotionalSupport
+//        jo := SO;
+//        jo.O['c'] := SA([]);
+//        jf := SO(aPNLRetailer[3]);
+//        jo.A['c'].Add(jf);
+//        for I := Low(abrn) to High(abrn) do
+//          begin
+//            pp := currentResult.r_Retailers[pwho].rr_Quarters[pmark][pcat].rq_BrandsResults[abrn[I]];
+//            jr := SO('{f: "", v: "' +
+//              FormatFloat('0.00',
+//                pp.rb_PromotionalSupport ) +
+//              '"}');
+//            jo.A['c'].Add(jr);
+//          end;
+//        result.A['rows'].Add(jo);
 
       //4 rq_OtherCompensation
         jo := SO;
@@ -2107,29 +2150,29 @@ var
           end;
         result.A['rows'].Add(jo);
 
-      //3 rq_PromotionalSupport
-        jo := SO;
-        jo.O['c'] := SA([]);
-        jf := SO(aPNLRetailer[3]);
-        jo.A['c'].Add(jf);
-        for I := Low(abrn) to High(abrn) do
-          begin
-            pp := currentResult.r_Retailers[pwho].rr_Quarters[pmark][pcat].rq_BrandsResults[abrn[I]];
-            for vr := Low(TOneBrandVars) to High(TOneBrandVars) do
-              begin
-                pv := pp.rb_VariantsResults[vr];
-                //check variant exists :: could be not the best
-                if pv.rv_VariantID <> 0 then
-                  begin
-                    jr := SO('{f: "", v: "' +
-                      FormatFloat('0.00',
-                        pv.rv_PromotionalSupport ) +
-                      '"}');
-                    jo.A['c'].Add(jr);
-                  end;
-              end;
-          end;
-        result.A['rows'].Add(jo);
+//      //3 rq_PromotionalSupport
+//        jo := SO;
+//        jo.O['c'] := SA([]);
+//        jf := SO(aPNLRetailer[3]);
+//        jo.A['c'].Add(jf);
+//        for I := Low(abrn) to High(abrn) do
+//          begin
+//            pp := currentResult.r_Retailers[pwho].rr_Quarters[pmark][pcat].rq_BrandsResults[abrn[I]];
+//            for vr := Low(TOneBrandVars) to High(TOneBrandVars) do
+//              begin
+//                pv := pp.rb_VariantsResults[vr];
+//                //check variant exists :: could be not the best
+//                if pv.rv_VariantID <> 0 then
+//                  begin
+//                    jr := SO('{f: "", v: "' +
+//                      FormatFloat('0.00',
+//                        pv.rv_PromotionalSupport ) +
+//                      '"}');
+//                    jo.A['c'].Add(jr);
+//                  end;
+//              end;
+//          end;
+//        result.A['rows'].Add(jo);
 
       //4 rq_OtherCompensation
         jo := SO;
@@ -3008,29 +3051,29 @@ var
         jo.A['c'].Add(jr);
         result.A['rows'].Add(jo);
 
-      //15	pt_AdvertisingLocal	[Tier_Urban_ID]
-        jo := SO;
-        jo.O['c'] := SA([]);
-        jf := SO(aPNLProducer[15]);
-        jr := SO('{f: "", v: "' +
-          FormatFloat('0.00',
-            pt_AdvertisingLocal[Tier_Urban_ID]) +
-          '"}');
-        jo.A['c'].Add(jf);
-        jo.A['c'].Add(jr);
-        result.A['rows'].Add(jo);
-
-      //16	pt_AdvertisingLocal	[Tier_Rural_ID]
-        jo := SO;
-        jo.O['c'] := SA([]);
-        jf := SO(aPNLProducer[16]);
-        jr := SO('{f: "", v: "' +
-          FormatFloat('0.00',
-            pt_AdvertisingLocal[Tier_Rural_ID]) +
-          '"}');
-        jo.A['c'].Add(jf);
-        jo.A['c'].Add(jr);
-        result.A['rows'].Add(jo);
+//      //15	pt_AdvertisingLocal	[Tier_Urban_ID]
+//        jo := SO;
+//        jo.O['c'] := SA([]);
+//        jf := SO(aPNLProducer[15]);
+//        jr := SO('{f: "", v: "' +
+//          FormatFloat('0.00',
+//            pt_AdvertisingLocal[Tier_Urban_ID]) +
+//          '"}');
+//        jo.A['c'].Add(jf);
+//        jo.A['c'].Add(jr);
+//        result.A['rows'].Add(jo);
+//
+//      //16	pt_AdvertisingLocal	[Tier_Rural_ID]
+//        jo := SO;
+//        jo.O['c'] := SA([]);
+//        jf := SO(aPNLProducer[16]);
+//        jr := SO('{f: "", v: "' +
+//          FormatFloat('0.00',
+//            pt_AdvertisingLocal[Tier_Rural_ID]) +
+//          '"}');
+//        jo.A['c'].Add(jf);
+//        jo.A['c'].Add(jr);
+//        result.A['rows'].Add(jo);
 
       //17	pt_TotalTradeSupport	[AllRetsMaxTotal, MrktsMaxTotal]
         jo := SO;
@@ -3044,17 +3087,17 @@ var
         jo.A['c'].Add(jr);
         result.A['rows'].Add(jo);
 
-      //18	pt_PromotionalSupport	[AllRetsMaxTotal, MrktsMaxTotal]
-        jo := SO;
-        jo.O['c'] := SA([]);
-        jf := SO(aPNLProducer[18]);
-        jr := SO('{f: "", v: "' +
-          FormatFloat('0.00',
-            pt_PromotionalSupport[AllRetsMaxTotal][pmark]) +
-          '"}');
-        jo.A['c'].Add(jf);
-        jo.A['c'].Add(jr);
-        result.A['rows'].Add(jo);
+//      //18	pt_PromotionalSupport	[AllRetsMaxTotal, MrktsMaxTotal]
+//        jo := SO;
+//        jo.O['c'] := SA([]);
+//        jf := SO(aPNLProducer[18]);
+//        jr := SO('{f: "", v: "' +
+//          FormatFloat('0.00',
+//            pt_PromotionalSupport[AllRetsMaxTotal][pmark]) +
+//          '"}');
+//        jo.A['c'].Add(jf);
+//        jo.A['c'].Add(jr);
+//        result.A['rows'].Add(jo);
 
       //19	pt_VolumeDiscountCost	[AllRetsMaxTotal, MrktsMaxTotal]
         jo := SO;
@@ -3229,7 +3272,7 @@ var
       //35	pt_DeltaNetProfit	[MrktsMaxTotal]
         jo := SO;
         jo.O['c'] := SA([]);
-        jf := SO(aPNLProducer[14]);
+        jf := SO(aPNLProducer[35]);
         jr := SO('{f: "", v: "' +
           FormatFloat('0.00',
             pt_DeltaNetProfit[pmark] * 100) +
@@ -3241,7 +3284,7 @@ var
       //36	pt_NetProfitMargin	[MrktsMaxTotal]
         jo := SO;
         jo.O['c'] := SA([]);
-        jf := SO(aPNLProducer[14]);
+        jf := SO(aPNLProducer[36]);
         jr := SO('{f: "", v: "' +
           FormatFloat('0.00',
             pt_NetProfitMargin[pmark] * 100) +
@@ -3520,39 +3563,39 @@ var
         jo.A['c'].Add(jr);
         result.A['rows'].Add(jo);
 
-      //15 pt_CategoriesResults[].pc_AdvertisingLocal   [Tier_Urban_ID]
-        jo := SO;
-        jo.O['c'] := SA([]);
-        jf := SO(aPNLProducer[15]);
-        jo.A['c'].Add(jf);
-        jr := SO('{f: "", v: "' +
-          FormatFloat('0.00',
-            pt_CategoriesResults[ElecsoriesID].pc_AdvertisingLocal[Tier_Urban_ID]) +
-          '"}');
-        jo.A['c'].Add(jr);
-        jr := SO('{f: "", v: "' +
-          FormatFloat('0.00',
-            pt_CategoriesResults[HealthBeautiesID].pc_AdvertisingLocal[Tier_Urban_ID]) +
-          '"}');
-        jo.A['c'].Add(jr);
-        result.A['rows'].Add(jo);
-
-      //16 pt_CategoriesResults[].pc_AdvertisingLocal   [Tier_Rural_ID]
-        jo := SO;
-        jo.O['c'] := SA([]);
-        jf := SO(aPNLProducer[16]);
-        jo.A['c'].Add(jf);
-        jr := SO('{f: "", v: "' +
-          FormatFloat('0.00',
-            pt_CategoriesResults[ElecsoriesID].pc_AdvertisingLocal[Tier_Rural_ID]) +
-          '"}');
-        jo.A['c'].Add(jr);
-        jr := SO('{f: "", v: "' +
-          FormatFloat('0.00',
-            pt_CategoriesResults[HealthBeautiesID].pc_AdvertisingLocal[Tier_Rural_ID]) +
-          '"}');
-        jo.A['c'].Add(jr);
-        result.A['rows'].Add(jo);
+//      //15 pt_CategoriesResults[].pc_AdvertisingLocal   [Tier_Urban_ID]
+//        jo := SO;
+//        jo.O['c'] := SA([]);
+//        jf := SO(aPNLProducer[15]);
+//        jo.A['c'].Add(jf);
+//        jr := SO('{f: "", v: "' +
+//          FormatFloat('0.00',
+//            pt_CategoriesResults[ElecsoriesID].pc_AdvertisingLocal[Tier_Urban_ID]) +
+//          '"}');
+//        jo.A['c'].Add(jr);
+//        jr := SO('{f: "", v: "' +
+//          FormatFloat('0.00',
+//            pt_CategoriesResults[HealthBeautiesID].pc_AdvertisingLocal[Tier_Urban_ID]) +
+//          '"}');
+//        jo.A['c'].Add(jr);
+//        result.A['rows'].Add(jo);
+//
+//      //16 pt_CategoriesResults[].pc_AdvertisingLocal   [Tier_Rural_ID]
+//        jo := SO;
+//        jo.O['c'] := SA([]);
+//        jf := SO(aPNLProducer[16]);
+//        jo.A['c'].Add(jf);
+//        jr := SO('{f: "", v: "' +
+//          FormatFloat('0.00',
+//            pt_CategoriesResults[ElecsoriesID].pc_AdvertisingLocal[Tier_Rural_ID]) +
+//          '"}');
+//        jo.A['c'].Add(jr);
+//        jr := SO('{f: "", v: "' +
+//          FormatFloat('0.00',
+//            pt_CategoriesResults[HealthBeautiesID].pc_AdvertisingLocal[Tier_Rural_ID]) +
+//          '"}');
+//        jo.A['c'].Add(jr);
+//        result.A['rows'].Add(jo);
 
       //17 pt_CategoriesResults[].pc_TotalTradeSupport   [AllRetsMaxTotal, MrktsMaxTotal]
         jo := SO;
@@ -3571,22 +3614,22 @@ var
         jo.A['c'].Add(jr);
         result.A['rows'].Add(jo);
 
-      //18 pt_CategoriesResults[].pc_PromotionalSupport   [AllRetsMaxTotal, MrktsMaxTotal]
-        jo := SO;
-        jo.O['c'] := SA([]);
-        jf := SO(aPNLProducer[18]);
-        jo.A['c'].Add(jf);
-        jr := SO('{f: "", v: "' +
-          FormatFloat('0.00',
-            pt_CategoriesResults[ElecsoriesID].pc_PromotionalSupport[AllRetsMaxTotal][pmark]) +
-          '"}');
-        jo.A['c'].Add(jr);
-        jr := SO('{f: "", v: "' +
-          FormatFloat('0.00',
-            pt_CategoriesResults[HealthBeautiesID].pc_PromotionalSupport[AllRetsMaxTotal][pmark]) +
-          '"}');
-        jo.A['c'].Add(jr);
-        result.A['rows'].Add(jo);
+//      //18 pt_CategoriesResults[].pc_PromotionalSupport   [AllRetsMaxTotal, MrktsMaxTotal]
+//        jo := SO;
+//        jo.O['c'] := SA([]);
+//        jf := SO(aPNLProducer[18]);
+//        jo.A['c'].Add(jf);
+//        jr := SO('{f: "", v: "' +
+//          FormatFloat('0.00',
+//            pt_CategoriesResults[ElecsoriesID].pc_PromotionalSupport[AllRetsMaxTotal][pmark]) +
+//          '"}');
+//        jo.A['c'].Add(jr);
+//        jr := SO('{f: "", v: "' +
+//          FormatFloat('0.00',
+//            pt_CategoriesResults[HealthBeautiesID].pc_PromotionalSupport[AllRetsMaxTotal][pmark]) +
+//          '"}');
+//        jo.A['c'].Add(jr);
+//        result.A['rows'].Add(jo);
 
       //19 pt_CategoriesResults[].pc_VolumeDiscountCost   [AllRetsMaxTotal, MrktsMaxTotal]
         jo := SO;
@@ -4184,37 +4227,37 @@ var
           end;
         result.A['rows'].Add(jo);
 
-      //15 pt_CategoriesResults[].pc_AdvertisingLocal   [Tier_Urban_ID]
-        jo := SO;
-        jo.O['c'] := SA([]);
-        jf := SO(aPNLProducer[15]);
-        jo.A['c'].Add(jf);
-        for I := Low(abrn) to High(abrn) do
-          begin
-            pp := currentResult.r_Producers[pprod].pt_CategoriesResults[pcat].pc_BrandsResults[abrn[I]];
-            jr := SO('{f: "", v: "' +
-              FormatFloat('0.00',
-                pp.pb_AdvertisingLocal[Tier_Urban_ID] ) +
-              '"}');
-            jo.A['c'].Add(jr);
-          end;
-        result.A['rows'].Add(jo);
-
-      //16 pt_CategoriesResults[].pc_AdvertisingLocal   [Tier_Rural_ID]
-        jo := SO;
-        jo.O['c'] := SA([]);
-        jf := SO(aPNLProducer[16]);
-        jo.A['c'].Add(jf);
-        for I := Low(abrn) to High(abrn) do
-          begin
-            pp := currentResult.r_Producers[pprod].pt_CategoriesResults[pcat].pc_BrandsResults[abrn[I]];
-            jr := SO('{f: "", v: "' +
-              FormatFloat('0.00',
-                pp.pb_AdvertisingLocal[Tier_Rural_ID] ) +
-              '"}');
-            jo.A['c'].Add(jr);
-          end;
-        result.A['rows'].Add(jo);
+//      //15 pt_CategoriesResults[].pc_AdvertisingLocal   [Tier_Urban_ID]
+//        jo := SO;
+//        jo.O['c'] := SA([]);
+//        jf := SO(aPNLProducer[15]);
+//        jo.A['c'].Add(jf);
+//        for I := Low(abrn) to High(abrn) do
+//          begin
+//            pp := currentResult.r_Producers[pprod].pt_CategoriesResults[pcat].pc_BrandsResults[abrn[I]];
+//            jr := SO('{f: "", v: "' +
+//              FormatFloat('0.00',
+//                pp.pb_AdvertisingLocal[Tier_Urban_ID] ) +
+//              '"}');
+//            jo.A['c'].Add(jr);
+//          end;
+//        result.A['rows'].Add(jo);
+//
+//      //16 pt_CategoriesResults[].pc_AdvertisingLocal   [Tier_Rural_ID]
+//        jo := SO;
+//        jo.O['c'] := SA([]);
+//        jf := SO(aPNLProducer[16]);
+//        jo.A['c'].Add(jf);
+//        for I := Low(abrn) to High(abrn) do
+//          begin
+//            pp := currentResult.r_Producers[pprod].pt_CategoriesResults[pcat].pc_BrandsResults[abrn[I]];
+//            jr := SO('{f: "", v: "' +
+//              FormatFloat('0.00',
+//                pp.pb_AdvertisingLocal[Tier_Rural_ID] ) +
+//              '"}');
+//            jo.A['c'].Add(jr);
+//          end;
+//        result.A['rows'].Add(jo);
 
       //17 pt_CategoriesResults[].pc_TotalTradeSupport   [AllRetsMaxTotal, MrktsMaxTotal]
         jo := SO;
@@ -4232,21 +4275,21 @@ var
           end;
         result.A['rows'].Add(jo);
 
-      //18 pt_CategoriesResults[].pc_PromotionalSupport   [AllRetsMaxTotal, MrktsMaxTotal]
-        jo := SO;
-        jo.O['c'] := SA([]);
-        jf := SO(aPNLProducer[18]);
-        jo.A['c'].Add(jf);
-        for I := Low(abrn) to High(abrn) do
-          begin
-            pp := currentResult.r_Producers[pprod].pt_CategoriesResults[pcat].pc_BrandsResults[abrn[I]];
-            jr := SO('{f: "", v: "' +
-              FormatFloat('0.00',
-                pp.pb_PromotionalSupport[AllRetsMaxTotal][pmark] ) +
-              '"}');
-            jo.A['c'].Add(jr);
-          end;
-        result.A['rows'].Add(jo);
+//      //18 pt_CategoriesResults[].pc_PromotionalSupport   [AllRetsMaxTotal, MrktsMaxTotal]
+//        jo := SO;
+//        jo.O['c'] := SA([]);
+//        jf := SO(aPNLProducer[18]);
+//        jo.A['c'].Add(jf);
+//        for I := Low(abrn) to High(abrn) do
+//          begin
+//            pp := currentResult.r_Producers[pprod].pt_CategoriesResults[pcat].pc_BrandsResults[abrn[I]];
+//            jr := SO('{f: "", v: "' +
+//              FormatFloat('0.00',
+//                pp.pb_PromotionalSupport[AllRetsMaxTotal][pmark] ) +
+//              '"}');
+//            jo.A['c'].Add(jr);
+//          end;
+//        result.A['rows'].Add(jo);
 
       //19 pt_CategoriesResults[].pc_VolumeDiscountCost   [AllRetsMaxTotal, MrktsMaxTotal]
         jo := SO;
@@ -4945,53 +4988,53 @@ var
           end;
         result.A['rows'].Add(jo);
 
-      //15 pt_CategoriesResults[].pc_AdvertisingLocal   [Tier_Urban_ID]
-        jo := SO;
-        jo.O['c'] := SA([]);
-        jf := SO(aPNLProducer[15]);
-        jo.A['c'].Add(jf);
-        for I := Low(abrn) to High(abrn) do
-          begin
-            pp := currentResult.r_Producers[pprod].pt_CategoriesResults[pcat].pc_BrandsResults[abrn[I]];
-            for vr := Low(TOneBrandVars) to High(TOneBrandVars) do
-              begin
-                pv := pp.pb_VariantsResults[vr];
-                //check variant exists :: could be not the best
-                if pv.pv_VariantID <> 0 then
-                  begin
-                    jr := SO('{f: "", v: "' +
-                      FormatFloat('0.00',
-                        pv.pv_AdvertisingLocal[Tier_Urban_ID] ) +
-                      '"}');
-                    jo.A['c'].Add(jr);
-                  end;
-              end;
-          end;
-        result.A['rows'].Add(jo);
-
-      //16 pt_CategoriesResults[].pc_AdvertisingLocal   [Tier_Rural_ID]
-        jo := SO;
-        jo.O['c'] := SA([]);
-        jf := SO(aPNLProducer[16]);
-        jo.A['c'].Add(jf);
-        for I := Low(abrn) to High(abrn) do
-          begin
-            pp := currentResult.r_Producers[pprod].pt_CategoriesResults[pcat].pc_BrandsResults[abrn[I]];
-            for vr := Low(TOneBrandVars) to High(TOneBrandVars) do
-              begin
-                pv := pp.pb_VariantsResults[vr];
-                //check variant exists :: could be not the best
-                if pv.pv_VariantID <> 0 then
-                  begin
-                    jr := SO('{f: "", v: "' +
-                      FormatFloat('0.00',
-                        pv.pv_AdvertisingLocal[Tier_Rural_ID] ) +
-                      '"}');
-                    jo.A['c'].Add(jr);
-                  end;
-              end;
-          end;
-        result.A['rows'].Add(jo);
+//      //15 pt_CategoriesResults[].pc_AdvertisingLocal   [Tier_Urban_ID]
+//        jo := SO;
+//        jo.O['c'] := SA([]);
+//        jf := SO(aPNLProducer[15]);
+//        jo.A['c'].Add(jf);
+//        for I := Low(abrn) to High(abrn) do
+//          begin
+//            pp := currentResult.r_Producers[pprod].pt_CategoriesResults[pcat].pc_BrandsResults[abrn[I]];
+//            for vr := Low(TOneBrandVars) to High(TOneBrandVars) do
+//              begin
+//                pv := pp.pb_VariantsResults[vr];
+//                //check variant exists :: could be not the best
+//                if pv.pv_VariantID <> 0 then
+//                  begin
+//                    jr := SO('{f: "", v: "' +
+//                      FormatFloat('0.00',
+//                        pv.pv_AdvertisingLocal[Tier_Urban_ID] ) +
+//                      '"}');
+//                    jo.A['c'].Add(jr);
+//                  end;
+//              end;
+//          end;
+//        result.A['rows'].Add(jo);
+//
+//      //16 pt_CategoriesResults[].pc_AdvertisingLocal   [Tier_Rural_ID]
+//        jo := SO;
+//        jo.O['c'] := SA([]);
+//        jf := SO(aPNLProducer[16]);
+//        jo.A['c'].Add(jf);
+//        for I := Low(abrn) to High(abrn) do
+//          begin
+//            pp := currentResult.r_Producers[pprod].pt_CategoriesResults[pcat].pc_BrandsResults[abrn[I]];
+//            for vr := Low(TOneBrandVars) to High(TOneBrandVars) do
+//              begin
+//                pv := pp.pb_VariantsResults[vr];
+//                //check variant exists :: could be not the best
+//                if pv.pv_VariantID <> 0 then
+//                  begin
+//                    jr := SO('{f: "", v: "' +
+//                      FormatFloat('0.00',
+//                        pv.pv_AdvertisingLocal[Tier_Rural_ID] ) +
+//                      '"}');
+//                    jo.A['c'].Add(jr);
+//                  end;
+//              end;
+//          end;
+//        result.A['rows'].Add(jo);
 
       //17 pt_CategoriesResults[].pc_TotalTradeSupport   [AllRetsMaxTotal, MrktsMaxTotal]
         jo := SO;
@@ -5017,29 +5060,29 @@ var
           end;
         result.A['rows'].Add(jo);
 
-      //18 pt_CategoriesResults[].pc_PromotionalSupport   [AllRetsMaxTotal, MrktsMaxTotal]
-        jo := SO;
-        jo.O['c'] := SA([]);
-        jf := SO(aPNLProducer[18]);
-        jo.A['c'].Add(jf);
-        for I := Low(abrn) to High(abrn) do
-          begin
-            pp := currentResult.r_Producers[pprod].pt_CategoriesResults[pcat].pc_BrandsResults[abrn[I]];
-            for vr := Low(TOneBrandVars) to High(TOneBrandVars) do
-              begin
-                pv := pp.pb_VariantsResults[vr];
-                //check variant exists :: could be not the best
-                if pv.pv_VariantID <> 0 then
-                  begin
-                    jr := SO('{f: "", v: "' +
-                      FormatFloat('0.00',
-                        pv.pv_PromotionalSupport[AllRetsMaxTotal][pmark] ) +
-                      '"}');
-                    jo.A['c'].Add(jr);
-                  end;
-              end;
-          end;
-        result.A['rows'].Add(jo);
+//      //18 pt_CategoriesResults[].pc_PromotionalSupport   [AllRetsMaxTotal, MrktsMaxTotal]
+//        jo := SO;
+//        jo.O['c'] := SA([]);
+//        jf := SO(aPNLProducer[18]);
+//        jo.A['c'].Add(jf);
+//        for I := Low(abrn) to High(abrn) do
+//          begin
+//            pp := currentResult.r_Producers[pprod].pt_CategoriesResults[pcat].pc_BrandsResults[abrn[I]];
+//            for vr := Low(TOneBrandVars) to High(TOneBrandVars) do
+//              begin
+//                pv := pp.pb_VariantsResults[vr];
+//                //check variant exists :: could be not the best
+//                if pv.pv_VariantID <> 0 then
+//                  begin
+//                    jr := SO('{f: "", v: "' +
+//                      FormatFloat('0.00',
+//                        pv.pv_PromotionalSupport[AllRetsMaxTotal][pmark] ) +
+//                      '"}');
+//                    jo.A['c'].Add(jr);
+//                  end;
+//              end;
+//          end;
+//        result.A['rows'].Add(jo);
 
       //19 pt_CategoriesResults[].pc_VolumeDiscountCost   [AllRetsMaxTotal, MrktsMaxTotal]
         jo := SO;
@@ -5530,7 +5573,8 @@ begin
         currentPeriod := getPeriod;
 
         {** Read results file **}
-          vReadRes := ReadResultsTwo(currentPeriod,currentResult,prevResult); // read results file
+          vReadRes := ReadResults(currentPeriod,currentResult);
+          //vReadRes := ReadResultsTwo(currentPeriod,currentResult,prevResult); // read results file
 
 
         // Now let's make some JSON stuff here

@@ -1,6 +1,6 @@
 <div id="content" class="bs-header">
     <div class="container">
-        <h1>Participant manual</h1>
+        <h1>TEST page</h1>
         <p>An overview of E-tales, basic rules and how to play, basic templates and examples, and more.</p>
     </div>
 </div>
@@ -18,17 +18,27 @@
             <div class="bs-docs-section">
                 <h1>Initialise module</h1>
                 <a class="btn btn-primary" ng-click="testInitialise()">
-                testInitialiseModule</a>
-                <a class="btn btn-primary" ng-click="testInitialiseRetailer()">testInitialiseRetailer</a>                
-                <h1>Test Authentication</h1>
+                testInitialiseModule (import period -2~0 of report/chart/period+1 decision of P1/P2/P3, R1/R2, Negotiation)</a>
+                
 
                 <h1>Passive/Run module</h1>                
                 <input type="number" class="form-control" ng-model="runPeriod" placeholder="input period...">
+                <P>
                 <a class="btn btn-primary" ng-click="testPassive(runPeriod)">
-                testPassiveModule</a>
+                testPassiveModule (export decision of P1/P2/P3, R1/R2, Negotiation)</a>                    
+                </P>
+                <P>
+                <a class="btn btn-primary" ng-click="importPassiveDecision(runPeriod)">
+                Import passive decision (P4, R3/R4)</a>                                    
+                </P>
+                <P>
                  <a class="btn btn-primary" ng-click="testRun(runPeriod)">
-                testRunModule</a>    
+                testRunModule (import single period of report/chart/period+1 decision of P1/P2/P3, R1/R2, Negotiation)</a>                        
+                </P>
 
+                <hr>
+
+                <h1>Test Authentication</h1>
                 <h1>Authentication</h1>
                 <a class="btn btn-primary" ng-click="testAuth()">
                 Producer-1 Login</a>      
@@ -51,7 +61,6 @@
                 <a class="btn btn-primary" ng-click="testLabel()">
                 testLabel</a>                
                 <a class="btn btn-primary" ng-click="setLanguage('CHN')">set language</a>
-
                 <h1>Test getCurrentUnitCost</h1>
                 <a class="btn btn-primary" ng-click="testUnitCost()">
                 getUnitCost</a>                
