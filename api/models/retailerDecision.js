@@ -772,7 +772,7 @@ exports.deleteOrderData=function(io){
                 }
                 res.send(200,'mission complete');
             }
-            result.send(200,'no order');
+            res.send(200,'no order');
         })
     }
 }
