@@ -45,7 +45,7 @@
 
           <div collapse="isCollapsed" class="panel panel-info">
               <div class="panel-heading">                
-                {{variantHistory.parentBrandName}}{{variantHistory.varName}}                
+                {{variantHistory.parentBrandName||showNewHistory.brandName}}{{variantHistory.varName||showNewHistory.varName}}             
                 <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button>
               </div>
               <table class="table table-condensed table-bordered">

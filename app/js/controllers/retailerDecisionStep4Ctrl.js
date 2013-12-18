@@ -490,7 +490,13 @@ define(['app'], function(app) {
 				}).then(function(data){
 					$scope.variantHistory=data.data;
 				},function(err){
-					console.log(err);
+					//console.log(err);
+					$scope.variantHistory=new Array();
+					$scope.showNewHistory={
+						brandName:product.brandName,
+						varName:product.varName
+					}
+					console.log('read history info fail:' + err.data);
 				});
 
 				if($scope.isPrivateLabel){
@@ -519,13 +525,12 @@ define(['app'], function(app) {
 						ordersProducts.push($scope.orderProducts[i]);
 					}
 				}
-				console.log(ordersProducts);
 				for(i=0;i<ordersProducts.length;i++){
 					ordersProducts[i].order=0,
 					ordersProducts[i].retailerPrice=0,
 					ordersProducts[i].shelfSpace=0,
 					ordersProducts[i].pricePromotions={
-						promo_Frequency:1,
+						promo_Frequency:0,
 						promo_Rate:0
 					}
 				}

@@ -120,6 +120,11 @@
 									{{ selectSeminar.producers[2].password || 'empty' }}
 								</a>
 							</p>
+							<p>Producer 4 Password:
+								<a href="#" editable-text="selectSeminar.producers[3].password" onaftersave="updatePassword(selectSeminar,'producers',3)">
+									{{ selectSeminar.producers[3].password || 'empty' }}
+								</a>
+							</p>
 							<p>Retailer 1 Password:
 								<a href="#" editable-text="selectSeminar.retailers[0].password" onaftersave="updatePassword(selectSeminar,'retailers',0)">
 									{{ selectSeminar.retailers[0].password || 'empty' }}
@@ -128,6 +133,16 @@
 							<p>Retailer 2 Password:
 								<a href="#" editable-text="selectSeminar.retailers[1].password" onaftersave="updatePassword(selectSeminar,'retailers',1)">
 									{{ selectSeminar.retailers[1].password || 'empty' }}
+								</a>
+							</p>
+							<p>Retailer 3 Password:
+								<a href="#" editable-text="selectSeminar.retailers[2].password" onaftersave="updatePassword(selectSeminar,'retailers',2)">
+									{{ selectSeminar.retailers[2].password || 'empty' }}
+								</a>
+							</p>
+							<p>Retailer 4 Password:
+								<a href="#" editable-text="selectSeminar.retailers[3].password" onaftersave="updatePassword(selectSeminar,'retailers',3)">
+									{{ selectSeminar.retailers[3].password || 'empty' }}
 								</a>
 							</p>
 							<p>Facilitator Password:
