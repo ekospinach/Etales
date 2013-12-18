@@ -803,7 +803,7 @@ exports.retailerGetRetailerDecision=function(req,res,next){
                 });
             for(var i=0;i<allRetCatDecisions.length;i++){
                 for(var j=0;j<allRetCatDecisions[i].privateLabelDecision.length;j++){
-                    if(allRetCatDecisions[i].privateLabelDecision[j]!=undefined){
+                    if(allRetCatDecisions[i].privateLabelDecision[j].brandName==req.params.brandName){
                         for(var k=0;k<allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision.length;k++){
                             if(allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k]!=undefined&&allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k].varName==req.params.varName&&allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k].varID!=0){
                                 result.push({'composition':allRetCatDecisions[i].privateLabelDecision[j].privateLabelVarDecision[k].composition
