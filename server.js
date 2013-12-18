@@ -60,6 +60,8 @@ app.post('/addSeminar',require('./api/models/seminar.js').addSeminar);
 app.get('/producerDecision/:producerID/:period/:seminar',require('./api/models/producerDecision.js').getAllProducerDecision);
 app.get('/producerProducts/:producerID/:period/:seminar/:categoryID',require('./api/models/producerDecision.js').getProducerProductList);
 app.get('/producerBrands/:producerID/:period/:seminar',require('./api/models/producerDecision.js').getProducerBrandList);
+//getProducer variants Info by brandName
+app.get('/getProductInfo/:producerID/:period/:seminar/:brandName',require('./api/models/producerDecision.js').getProductInfo);
 
 app.get('/retailerDecision/:retailerID/:period/:seminar',require('./api/models/retailerDecision.js').getAllRetailerDecision); 
 

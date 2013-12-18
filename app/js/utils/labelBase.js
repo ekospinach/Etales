@@ -59,7 +59,7 @@ var getLabelBase = function(){
 		{id:'Retail Market Results',  ENG:'Retail Market Results',  CHN:'零售市场结果',  RUS:''},
 		{id:'Retail Market Results Info',  ENG:'Retail Market Results Info',  CHN:'零售市场结果信息',  RUS:''},
 		{id:'Total',  ENG:'Total',  CHN:'总计',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'Amount Info',  ENG:'Amount Info',  CHN:'Amount输入提示',  RUS:''},
 
 		/*Login page*/
 		{id:'eTales Info',  ENG:'Best-in-class professional development tool among the world’s most respected companies and leading business schools',  CHN:'首次呈现和探索零售商、供应商、电商和消费者在社交媒体盛行时代的生存和胜出之道。',  RUS:''},

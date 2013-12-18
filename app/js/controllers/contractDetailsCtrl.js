@@ -438,6 +438,87 @@ define(['app'], function(app) {
 				return d.promise;
 			}
 
+			var checkAmount=function(detail,item,location,index,type,value){
+				var d=$q.defer();
+				var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
+				if(!filter.test(value)){
+					d.resolve(Label.getContent('Input a number'));
+				}
+					var seminar=$rootScope.user.seminar,
+					period=$rootScope.currentPeriod,
+					producerID=detail.relatedBrandName.substring(detail.relatedBrandName.length-1);
+					//producerID=detail.producerID;
+					var url="/getProductInfo/"+producerID+'/'+period+'/'+seminar+'/'+detail.relatedBrandName;
+					$http({
+						method:'GET',
+						url:url
+					}).then(function(data){
+						var variants=data.data,urls=new Array(),results=new Array(),url="",categoryID;
+						for(i=0;i<variants.length;i++){
+							if(variants[i].varID!=0&&variants[i].varName!=""){
+								if(variants[i].dateOfBirth<$rootScope.currentPeriod){
+									url="/variantHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/'+detail.relatedBrandName+'/'+variants[i].varName;
+									urls.push(url);
+								}else{
+									if(detail.relatedBrandName.substring(0,1)=="E"){
+						                categoryID=1;
+						            }else{
+						                categoryID=2;
+						            }
+									url='/producerVariantBM/'+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+categoryID+'/'+detail.relatedBrandName+'/'+variants[i].varName;
+									urls.push(url);
+								}
+							}else{
+								urls.push("");
+							}
+						}
+						(function multipleRequestShooter(urls, idx){
+							$http({method:'GET', url:urls[idx]}).then(function(data){
+								if(data.data.supplierView!=undefined){
+									results.push(data.data.supplierView[0].nextPriceBM)
+								}else if(data.data.result!=undefined){
+									results.push(data.data.result);
+								}else{
+									results.push(0);
+								}
+							}, function(data){
+								//console.log('get contractDetails fail callback');
+							}).finally(function(){
+								if(idx!=urls.length-1) { 
+									idx++;
+									multipleRequestShooter(urls, idx);							
+								}else{
+									var max=0,saleTarget=0;
+									if(type=="brand"){
+										if(location=="urban"){
+											saleTarget=$scope.editDetail.brand_urbanValue;
+										}else{
+											saleTarget=$scope.editDetail.brand_ruralValue;
+										}
+										price=(results[0]+results[1]+results[2])/$scope.count;
+									}else{
+										price=results[index];
+										if(location=="urban"){
+											saleTarget=detail.urbanValue;
+										}else{
+											saleTarget=detail.ruralValue;
+										}
+									}
+									max=saleTarget*price;
+									if(value>max){
+										d.resolve(Label.getContent('Input range')+':0~'+max.toFixed(2));
+									}else{
+										d.resolve();
+									}										
+								}
+							});
+						})(urls, 0);
+					},function(){
+					});
+
+				return d.promise;
+			}
+
 			$scope.openEditModal=function(Detail,index){
 				$scope.editModal=true;
 				$scope.index=index;
@@ -688,7 +769,8 @@ define(['app'], function(app) {
 			}
 
 			$scope.updateContractDetails=function(detail,item,location,index,type){
-				var value;
+				var value,othervalue=0,price=0,otherItem="";
+				$scope.results=new Array(0,0,0);
 				if(type=="brand"){
 					if(location=="rural"){
 						value=detail.brand_ruralValue;
@@ -725,28 +807,176 @@ define(['app'], function(app) {
 						}
 					}
 				}
-
-				var queryCondition={
-					contractCode:detail.contractCode,
-					negotiationItem:item,
-					userType:detail.userType,
-					relatedBrandName:detail.relatedBrandName,
-					relatedBrandID:detail.relatedBrandID,
-					type:type,
-					location:location,
-					index:index,
-					value:value,
-					count:$scope.count
-				};
-				$http({
-					method:'POST',
-					url:'/updateContractDetails',
-					data:queryCondition
-				}).success(function(data){
-					console.log('success');
-				}).error(function(data){
-					console.log('err');
-				})
+				if(item!="nc_PerformanceBonusAmount"&&item!="nc_PerformanceBonusRate"){
+					var queryCondition={
+						contractCode:detail.contractCode,
+						negotiationItem:item,
+						userType:detail.userType,
+						relatedBrandName:detail.relatedBrandName,
+						relatedBrandID:detail.relatedBrandID,
+						type:type,
+						location:location,
+						index:index,
+						value:value,
+						count:$scope.count
+					};
+					$http({
+						method:'POST',
+						url:'/updateContractDetails',
+						data:queryCondition
+					}).success(function(data){
+						console.log('success');
+					}).error(function(data){
+						console.log('err');
+					})
+				}else{
+					//results=getPrice(detail);
+					//console.log(results);
+					var seminar=$rootScope.user.seminar,
+					period=$rootScope.currentPeriod,
+					//producerID=$rootScope.user.username.substring($rootScope.user.username.length-1);
+					producerID=detail.relatedBrandName.substring(detail.relatedBrandName.length-1);
+					var url="/getProductInfo/"+producerID+'/'+period+'/'+seminar+'/'+detail.relatedBrandName;
+					$http({
+						method:'GET',
+						url:url
+					}).then(function(data){
+						var variants=data.data,urls=new Array(),url="",categoryID,results=new Array();
+						console.log(variants);
+						for(i=0;i<variants.length;i++){
+							if(variants[i].varID!=0&&variants[i].varName!=""){
+								if(variants[i].dateOfBirth<$rootScope.currentPeriod){
+									url="/variantHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/'+detail.relatedBrandName+'/'+variants[i].varName;
+									urls.push(url);
+								}else{
+									if(detail.relatedBrandName.substring(0,1)=="E"){
+						                categoryID=1;
+						            }else{
+						                categoryID=2;
+						            }
+									url='/producerVariantBM/'+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+categoryID+'/'+detail.relatedBrandName+'/'+variants[i].varName;
+									urls.push(url);
+								}
+							}else{
+								urls.push("");
+							}
+						}
+						(function multipleRequestShooter(urls, idx){
+							$http({method:'GET', url:urls[idx]}).then(function(data){
+								if(data.data.supplierView!=undefined){
+									results.push(data.data.supplierView[0].nextPriceBM)
+								}else if(data.data.result!=undefined){
+									results.push(data.data.result);
+								}else{
+									results.push(0);
+								}
+							}, function(data){
+								//console.log('get contractDetails fail callback');
+							}).finally(function(){
+								if(idx!=urls.length-1) { 
+									idx++;
+									multipleRequestShooter(urls, idx);							
+								}else{
+									var saleTarget=0;
+									if(type=="brand"){
+										if(location=="urban"){
+											saleTarget=$scope.editDetail.brand_urbanValue;
+										}else{
+											saleTarget=$scope.editDetail.brand_ruralValue;
+										}
+										price=(results[0]+results[1]+results[2])/$scope.count;
+										if(item=="nc_PerformanceBonusRate"){
+											otherItem="nc_PerformanceBonusAmount";
+											othervalue=saleTarget*price*value;
+											othervalue=othervalue.toFixed(2);
+											if(location=="urban"){
+												$scope.editDetailBonusAmount.brand_urbanValue=othervalue;
+											}else{
+												$scope.editDetailBonusAmount.brand_ruralValue=othervalue;
+											}
+										}else{
+											otherItem="nc_PerformanceBonusRate";
+											othervalue=value/(saleTarget*price);
+											othervalue=othervalue.toFixed(4);
+											if(location=="urban"){
+												$scope.editDetailBonusRate.brand_urbanValue=othervalue*100;
+											}else{
+												$scope.editDetailBonusRate.brand_ruralValue=othervalue*100;
+											}
+										}
+									}else{
+										price=results[index];
+										if(location=="urban"){
+											saleTarget=detail.urbanValue;
+										}else{
+											saleTarget=detail.ruralValue;
+										}
+										if(item=="nc_PerformanceBonusRate"){
+											otherItem="nc_PerformanceBonusAmount";
+											othervalue=saleTarget*price*value;
+											othervalue=othervalue.toFixed(2);
+											if(location=="urban"){
+												$scope.editProductList[index].amout_urbanValue=othervalue;
+											}else{
+												$scope.editProductList[index].amout_ruralValue=othervalue;
+											}
+										}else{
+											otherItem="nc_PerformanceBonusRate";
+											othervalue=value/(saleTarget*price);
+											othervalue=othervalue.toFixed(4);
+											if(location=="urban"){
+												$scope.editProductList[index].rate_urbanValue=othervalue*100;
+											}else{
+												$scope.editProductList[index].rate_ruralValue=othervalue*100;
+											}
+										}
+									}	
+									var queryCondition={
+										contractCode:detail.contractCode,
+										negotiationItem:item,
+										userType:detail.userType,
+										relatedBrandName:detail.relatedBrandName,
+										relatedBrandID:detail.relatedBrandID,
+										type:type,
+										location:location,
+										index:index,
+										value:value,
+										count:$scope.count
+									};
+									$http({
+										method:'POST',
+										url:'/updateContractDetails',
+										data:queryCondition
+									}).then(function(data){
+										queryCondition={
+											contractCode:detail.contractCode,
+											negotiationItem:otherItem,
+											userType:detail.userType,
+											relatedBrandName:detail.relatedBrandName,
+											relatedBrandID:detail.relatedBrandID,
+											type:type,
+											location:location,
+											index:index,
+											value:othervalue,
+											count:$scope.count
+										};
+										return $http({
+											method:'POST',
+											url:'/updateContractDetails',
+											data:queryCondition
+										});
+									}).then(function(data){
+										console.log('update success');
+									},function(){
+										console.log('update fail');
+									})				
+								}
+							});
+						})(urls, 0);
+					},function(err){
+						console.log(err);
+					})
+				}
 			}
 
 			$scope.detailOpts = {
@@ -770,6 +1000,7 @@ define(['app'], function(app) {
 			$scope.compare=compare;
 			$scope.copyProposal = copyProposal;
 			$scope.checkData=checkData;
+			$scope.checkAmount=checkAmount;
 			refreshBrandAndContractDetails();
 		}]
 	)
