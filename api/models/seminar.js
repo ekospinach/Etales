@@ -172,6 +172,18 @@ exports.addSeminar=function(req,res,next){
 				name : "Jack",
 				description: "Tom and Jack"			
 			}]
+		},{
+			producerID : 4,
+			password : "140",
+			newProductDecisionReadyPeriod : 1,
+			decisionReadyPeriod : 0,
+			members : [{
+				name : "Tom",
+				description: "Tom and Jack"
+			},{
+				name : "Jack",
+				description: "Tom and Jack"			
+			}]
 		}],
 		retailers : [{
 			retailerID : 1,
@@ -198,6 +210,17 @@ exports.addSeminar=function(req,res,next){
 		},{
 			retailerID : 3,
 			password : "230",
+			decisionReadyPeriod : 0,
+			members : [{
+				name : "Tom",
+				description: "Tom and Jack"
+			},{
+				name : "Jack",
+				description: "Tom and Jack"			
+			}]
+		},{
+			retailerID : 4,
+			password : "240",
 			decisionReadyPeriod : 0,
 			members : [{
 				name : "Tom",

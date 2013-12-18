@@ -44,9 +44,12 @@ define(['app','socketIO'], function(app) {
 				case '1':username=seminar+'^'+userRoles.producer+'^'+$scope.userRole;break;
 				case '2':username=seminar+'^'+userRoles.producer+'^'+$scope.userRole;break;
 				case '3':username=seminar+'^'+userRoles.producer+'^'+$scope.userRole;break;
-				case '4':username=seminar+'^'+userRoles.retailer+'^'+($scope.userRole-3);break;
-				case '5':username=seminar+'^'+userRoles.retailer+'^'+($scope.userRole-3);break;
-				case '6':username=seminar+'^'+userRoles.facilitator+'^'+($scope.userRole-5);break;
+				case '4':username=seminar+'^'+userRoles.producer+'^'+$scope.userRole;break;
+				case '5':username=seminar+'^'+userRoles.retailer+'^'+($scope.userRole-4);break;
+				case '6':username=seminar+'^'+userRoles.retailer+'^'+($scope.userRole-4);break;
+				case '7':username=seminar+'^'+userRoles.retailer+'^'+($scope.userRole-4);break;
+				case '8':username=seminar+'^'+userRoles.retailer+'^'+($scope.userRole-4);break;
+				case '9':username=seminar+'^'+userRoles.facilitator+'^'+($scope.userRole-8);break;
 			}
 			Auth.login({
 				username:username,
