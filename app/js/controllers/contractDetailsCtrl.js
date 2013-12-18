@@ -807,7 +807,7 @@ define(['app'], function(app) {
 						}
 					}
 				}
-				if(item!="nc_PerformanceBonusAmount"&&item!="nc_PerformanceBonusRate"){
+				if(item!="nc_SalesTargetVolume"&&item!="nc_PerformanceBonusAmount"&&item!="nc_PerformanceBonusRate"){
 					var queryCondition={
 						contractCode:detail.contractCode,
 						negotiationItem:item,
@@ -830,8 +830,6 @@ define(['app'], function(app) {
 						console.log('err');
 					})
 				}else{
-					//results=getPrice(detail);
-					//console.log(results);
 					var seminar=$rootScope.user.seminar,
 					period=$rootScope.currentPeriod,
 					//producerID=$rootScope.user.username.substring($rootScope.user.username.length-1);
@@ -877,12 +875,14 @@ define(['app'], function(app) {
 									idx++;
 									multipleRequestShooter(urls, idx);							
 								}else{
-									var saleTarget=0;
+									var saleTarget=0,rate=0;
 									if(type=="brand"){
 										if(location=="urban"){
 											saleTarget=$scope.editDetail.brand_urbanValue;
+											rate=$scope.editDetailBonusRate.brand_urbanValue;
 										}else{
 											saleTarget=$scope.editDetail.brand_ruralValue;
+											rate=$scope.editDetailBonusRate.brand_ruralValue;
 										}
 										price=(results[0]+results[1]+results[2])/$scope.count;
 										if(item=="nc_PerformanceBonusRate"){
@@ -894,7 +894,7 @@ define(['app'], function(app) {
 											}else{
 												$scope.editDetailBonusAmount.brand_ruralValue=othervalue;
 											}
-										}else{
+										}else if(item=="nc_PerformanceBonusAmount"){
 											otherItem="nc_PerformanceBonusRate";
 											othervalue=value/(saleTarget*price);
 											othervalue=othervalue.toFixed(4);
@@ -903,13 +903,26 @@ define(['app'], function(app) {
 											}else{
 												$scope.editDetailBonusRate.brand_ruralValue=othervalue*100;
 											}
+										}else{
+											if(item=="nc_SalesTargetVolume"){
+												otherItem="nc_PerformanceBonusAmount";
+												othervalue=rate*value*price/100;
+												othervalue=othervalue.toFixed(2);
+												if(location=="urban"){
+													$scope.editDetailBonusAmount.brand_urbanValue=othervalue;
+												}else{
+													$scope.editDetailBonusAmount.brand_ruralValue=othervalue;
+												}
+											}
 										}
 									}else{
 										price=results[index];
 										if(location=="urban"){
 											saleTarget=detail.urbanValue;
+											rate=detail.rate_urbanValue;
 										}else{
 											saleTarget=detail.ruralValue;
+											rate=detail.rate_ruralValue;
 										}
 										if(item=="nc_PerformanceBonusRate"){
 											otherItem="nc_PerformanceBonusAmount";
@@ -920,7 +933,7 @@ define(['app'], function(app) {
 											}else{
 												$scope.editProductList[index].amout_ruralValue=othervalue;
 											}
-										}else{
+										}else if(item=="nc_PerformanceBonusAmount"){
 											otherItem="nc_PerformanceBonusRate";
 											othervalue=value/(saleTarget*price);
 											othervalue=othervalue.toFixed(4);
@@ -928,6 +941,15 @@ define(['app'], function(app) {
 												$scope.editProductList[index].rate_urbanValue=othervalue*100;
 											}else{
 												$scope.editProductList[index].rate_ruralValue=othervalue*100;
+											}
+										}else{
+											otherItem="nc_PerformanceBonusAmount";
+											othervalue=value*price*rate/100;
+											othervalue=othervalue.toFixed(2);
+											if(location=="urban"){
+												$scope.editProductList[index].amout_urbanValue=othervalue;
+											}else{
+												$scope.editProductList[index].amout_ruralValue=othervalue;
 											}
 										}
 									}	
