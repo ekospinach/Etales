@@ -198,7 +198,7 @@ define(['app'], function(app) {
 							method:'GET',
 							url:checkurls[idx]
 						}).then(function(data){
-							if(data.data=="isReady"){
+							if(data.data=="unReady"){
 								urls[idx]="/";
 							}
 							return $http({
