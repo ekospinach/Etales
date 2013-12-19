@@ -24,6 +24,7 @@
 			bootstrap:'../bower_components/bootstrap/dist/js/bootstrap',
 			angularBootstrap:'../bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls',
 			routingConfig : './routingConfig',
+			placeholder:'../bower_components/angular-placeholders/demo/assets/ui-bootstrap-tpls-0.1.0-SNAPSHOT.min',
 			//jquery-jqplot-->Map.html
 			jqplot:'../bower_components/jqplot/jquery.jqplot.min',
 			bubbleRenderer:'./map/jqplot.bubbleRenderer',
@@ -117,7 +118,7 @@
 	require([
 		'angular',
 		'app',
-		'routes'
+		'routes',
 	], function(angular, app, routes) {
 		'use strict';
 		var $html = angular.element(document.getElementsByTagName('html')[0]);

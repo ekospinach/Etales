@@ -1,6 +1,5 @@
-define(['angular', 'services','bootstrap'], function(angular, services) {
+define(['angular','services'], function(angular, services) {
         'use strict';
-
         angular.module('myApp.directives', ['myApp.services'])
                 .directive('appVersion', ['version', function(version) {
                         return function(scope, elm, attrs) {
@@ -93,6 +92,81 @@ define(['angular', 'services','bootstrap'], function(angular, services) {
                         })
                     }
                 })
+                .directive('scrollSpy', function($timeout){
+                    return {
+                        restrict: 'A',
+                        link: function(scope, elem, attr) {
+                            var offset = parseInt(attr.scrollOffset, 10)
+                            if(!offset) offset = 10;
+                            console.log("offset:  " + offset);
+                            elem.attr.scrollspy({ "offset" : offset});
+                            scope.$watch(attr.scrollSpy, function(value) {
+                                $timeout(function() { 
+                                  elem.scrollspy('refresh', { "offset" : offset})
+                                }, 1);
+                            }, true);
+                        }
+                    }
+                })
+                .directive('preventDefault',function(){
+                    return function(scope, element, attrs) {
+                        jQuery(element).click(function(event) {
+                            event.preventDefault();
+                        });
+                    }
+                })
+                .directive('scrollTo',["$window", function($window){
+                    return {
+                        restrict : "AC",
+                        compile : function(){
+
+                            function scrollInto(elementId) {
+                                if(!elementId) $window.scrollTo(0, 0);
+                                //check if an element can be found with id attribute
+                                var el = document.getElementById(elementId);
+                                if(el) el.scrollIntoView();
+                            }
+
+                            return function(scope, element, attr) {
+                                element.bind("click", function(event){
+                                    scrollInto(attr.scrollTo);
+                                });
+                            };
+                        }
+                    };
+                }])
+                .directive( 'affix', [ '$window', '$document', '$parse', function ( $window, $document, $parse ) {
+                  return {
+                    scope: { affix: '@' },
+                    link: function ( scope, element, attrs ) {
+                      var win = angular.element ( $window ),
+                        affixed;
+                                    
+                      // Obviously, whenever a scroll occurs, we need to check and possibly 
+                      // adjust the position of the affixed element.
+                      win.bind( 'scroll', checkPosition );
+                      
+                      // Less obviously, when a link is clicked (in theory changing the current
+                      // scroll position), we need to check and possibly adjsut the position. We,
+                      // however, can't do this instantly as the page may not be in the right
+                      // position yet.
+                      win.bind( 'click', function () {
+                        setTimeout( checkPosition, 1 );
+                      });
+                      
+                      function checkPosition() {
+                        var offset = $parse(scope.affix)(scope); 
+                        var affix = win.prop('pageYOffset') <= offset ? 'top' : false;
+                        
+                        if (affixed === affix) return;
+                          
+                        affixed = affix;
+                          
+                        element.removeClass('affix affix-top').addClass('affix' + (affix ? '-' + affix : ''));
+                      }
+                    }
+                  };
+                }])
                 .directive('jqueryPlot',function(){
                     return function(scope,elem, attrs){
                             scope.$watch(attrs.ngModel, function(v){
@@ -496,4 +570,5 @@ define(['angular', 'services','bootstrap'], function(angular, services) {
                 };
             }]);
         }
+
 );
