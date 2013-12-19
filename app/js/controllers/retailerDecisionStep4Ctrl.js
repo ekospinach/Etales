@@ -206,11 +206,13 @@ define(['app'], function(app) {
 								url:urls[idx]
 							});
 						}).then(function(data){
-							for(var j=0;j<data.data.length;j++){
-								if(data.data[j].brandID!=undefined&&data.data[j].brandID!=0&&data.data[j].varID!=0){
-									data.data[j].variantID=data.data[j].varID;
-									data.data[j].select=false;
-									orderProducts.push(data.data[j]);
+							if(data.data.length<100){
+								for(var j=0;j<data.data.length;j++){
+									if(data.data[j].brandID!=undefined&&data.data[j].brandID!=0&&data.data[j].varID!=0){
+										data.data[j].variantID=data.data[j].varID;
+										data.data[j].select=false;
+										orderProducts.push(data.data[j]);
+									}
 								}
 							}
 						},function(data){
