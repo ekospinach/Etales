@@ -249,6 +249,7 @@ exports.updateContractDetails = function(io){
 			6. Payment Days Display Value计算方式：求平均
 			7. Other Compensation Display Value计算方式：求总和
   			*/
+  			console.log(doc.negotiationItem);
   			switch(doc.negotiationItem){
   				case 'nc_MinimumOrder':
   					if(doc.useBrandDetails){
@@ -256,15 +257,14 @@ exports.updateContractDetails = function(io){
 	  				}else{
 	  					doc.displayValue=parseFloat(doc.variant_A_urbanValue)+parseFloat(doc.variant_A_ruralValue)+parseFloat(doc.variant_B_urbanValue)+parseFloat(doc.variant_B_ruralValue)+parseFloat(doc.variant_C_urbanValue)+parseFloat(doc.variant_C_ruralValue);
 	  				}
-	  				doc.displayValue=doc.displayValue.toFixed(2);
-	  				break;
+	  				doc.displayValue=parseFloat(doc.displayValue).toFixed(2);	  				break;
 	  			case 'nc_VolumeDiscountRate':
 	  				if(doc.useBrandDetails){
 	  					doc.displayValue=(parseFloat(doc.brand_urbanValue)+(doc.brand_ruralValue))/2;
 	  				}else{
 	  					doc.displayValue=(parseFloat(doc.variant_A_urbanValue)+parseFloat(doc.variant_A_ruralValue)+parseFloat(doc.variant_B_urbanValue)+parseFloat(doc.variant_B_ruralValue)+parseFloat(doc.variant_C_urbanValue)+parseFloat(doc.variant_C_ruralValue))/(queryCondition.count*2);
 	  				}
-	  				doc.displayValue=(doc.displayValue*100).toFixed(2)+"%";
+	  				doc.displayValue=parseFloat(doc.displayValue*100).toFixed(2)+"%";
 	  				break;
 	  			case 'nc_SalesTargetVolume':
 	  			  	if(doc.useBrandDetails){
@@ -272,7 +272,7 @@ exports.updateContractDetails = function(io){
 	  				}else{
 	  					doc.displayValue=parseFloat(doc.variant_A_urbanValue)+parseFloat(doc.variant_A_ruralValue)+parseFloat(doc.variant_B_urbanValue)+parseFloat(doc.variant_B_ruralValue)+parseFloat(doc.variant_C_urbanValue)+parseFloat(doc.variant_C_ruralValue);
 	  				}
-	  				doc.displayValue=doc.displayValue.toFixed(2);
+	  				doc.displayValue=parseFloat(doc.displayValue).toFixed(2);
 	  				break;
 	  			case 'nc_PerformanceBonusAmount':
 	  			  	if(doc.useBrandDetails){
@@ -280,7 +280,7 @@ exports.updateContractDetails = function(io){
 	  				}else{
 	  					doc.displayValue=parseFloat(doc.variant_A_urbanValue)+parseFloat(doc.variant_A_ruralValue)+parseFloat(doc.variant_B_urbanValue)+parseFloat(doc.variant_B_ruralValue)+parseFloat(doc.variant_C_urbanValue)+parseFloat(doc.variant_C_ruralValue);
 	  				}
-	  				doc.displayValue=doc.displayValue.toFixed(2);
+	  				doc.displayValue=parseFloat(doc.displayValue).toFixed(2);
 	  				break;
 	  			case 'nc_PerformanceBonusRate':
 	  				if(doc.useBrandDetails){
@@ -288,7 +288,7 @@ exports.updateContractDetails = function(io){
 	  				}else{
 	  					doc.displayValue=(parseFloat(doc.variant_A_urbanValue)+parseFloat(doc.variant_A_ruralValue)+parseFloat(doc.variant_B_urbanValue)+parseFloat(doc.variant_B_ruralValue)+parseFloat(doc.variant_C_urbanValue)+parseFloat(doc.variant_C_ruralValue))/(queryCondition.count*2);
 	  				}
-	  				doc.displayValue=(doc.displayValue*100).toFixed(2)+"%";
+	  				doc.displayValue=parseFloat(doc.displayValue*100).toFixed(2)+"%";
 	  				break;
 	  			case 'nc_PaymentDays':
 	  				if(doc.useBrandDetails){
@@ -296,7 +296,7 @@ exports.updateContractDetails = function(io){
 	  				}else{
 	  					doc.displayValue=(parseFloat(doc.variant_A_urbanValue)+parseFloat(doc.variant_A_ruralValue)+parseFloat(doc.variant_B_urbanValue)+parseFloat(doc.variant_B_ruralValue)+parseFloat(doc.variant_C_urbanValue)+parseFloat(doc.variant_C_ruralValue))/(queryCondition.count*2);
 	  				}
-	  				doc.displayValue=doc.displayValue.toFixed(2);
+	  				doc.displayValue=parseFloat(doc.displayValue).toFixed(2);
 	  				break;
 	  			case 'nc_OtherCompensation':
 	  			  	if(doc.useBrandDetails){
@@ -304,7 +304,7 @@ exports.updateContractDetails = function(io){
 	  				}else{
 	  					doc.displayValue=parseFloat(doc.variant_A_urbanValue)+parseFloat(doc.variant_A_ruralValue)+parseFloat(doc.variant_B_urbanValue)+parseFloat(doc.variant_B_ruralValue)+parseFloat(doc.variant_C_urbanValue)+parseFloat(doc.variant_C_ruralValue);
 	  				}
-	  				doc.displayValue=doc.displayValue.toFixed(2);
+	  				doc.displayValue=parseFloat(doc.displayValue).toFixed(2);
 	  				break;
   			}
 
