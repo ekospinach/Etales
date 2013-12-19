@@ -256,6 +256,7 @@ exports.updateContractDetails = function(io){
 	  				}else{
 	  					doc.displayValue=parseFloat(doc.variant_A_urbanValue)+parseFloat(doc.variant_A_ruralValue)+parseFloat(doc.variant_B_urbanValue)+parseFloat(doc.variant_B_ruralValue)+parseFloat(doc.variant_C_urbanValue)+parseFloat(doc.variant_C_ruralValue);
 	  				}
+	  				doc.displayValue=doc.displayValue.toFixed(2);
 	  				break;
 	  			case 'nc_VolumeDiscountRate':
 	  				if(doc.useBrandDetails){
@@ -271,6 +272,7 @@ exports.updateContractDetails = function(io){
 	  				}else{
 	  					doc.displayValue=parseFloat(doc.variant_A_urbanValue)+parseFloat(doc.variant_A_ruralValue)+parseFloat(doc.variant_B_urbanValue)+parseFloat(doc.variant_B_ruralValue)+parseFloat(doc.variant_C_urbanValue)+parseFloat(doc.variant_C_ruralValue);
 	  				}
+	  				doc.displayValue=doc.displayValue.toFixed(2);
 	  				break;
 	  			case 'nc_PerformanceBonusAmount':
 	  			  	if(doc.useBrandDetails){
@@ -278,6 +280,7 @@ exports.updateContractDetails = function(io){
 	  				}else{
 	  					doc.displayValue=parseFloat(doc.variant_A_urbanValue)+parseFloat(doc.variant_A_ruralValue)+parseFloat(doc.variant_B_urbanValue)+parseFloat(doc.variant_B_ruralValue)+parseFloat(doc.variant_C_urbanValue)+parseFloat(doc.variant_C_ruralValue);
 	  				}
+	  				doc.displayValue=doc.displayValue.toFixed(2);
 	  				break;
 	  			case 'nc_PerformanceBonusRate':
 	  				if(doc.useBrandDetails){
@@ -293,6 +296,7 @@ exports.updateContractDetails = function(io){
 	  				}else{
 	  					doc.displayValue=(parseFloat(doc.variant_A_urbanValue)+parseFloat(doc.variant_A_ruralValue)+parseFloat(doc.variant_B_urbanValue)+parseFloat(doc.variant_B_ruralValue)+parseFloat(doc.variant_C_urbanValue)+parseFloat(doc.variant_C_ruralValue))/(queryCondition.count*2);
 	  				}
+	  				doc.displayValue=doc.displayValue.toFixed(2);
 	  				break;
 	  			case 'nc_OtherCompensation':
 	  			  	if(doc.useBrandDetails){
@@ -300,6 +304,7 @@ exports.updateContractDetails = function(io){
 	  				}else{
 	  					doc.displayValue=parseFloat(doc.variant_A_urbanValue)+parseFloat(doc.variant_A_ruralValue)+parseFloat(doc.variant_B_urbanValue)+parseFloat(doc.variant_B_ruralValue)+parseFloat(doc.variant_C_urbanValue)+parseFloat(doc.variant_C_ruralValue);
 	  				}
+	  				doc.displayValue=doc.displayValue.toFixed(2);
 	  				break;
   			}
 
