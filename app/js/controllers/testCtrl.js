@@ -54,6 +54,19 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
 		  })			
 		}		
 
+		$scope.exportPassiveDecision = function(period){
+		  var postData = {
+		  	seminar : 'MAY',
+		  	period : period
+		  }
+		  $http({method:'POST', url:'/setPassiveDecision', data: postData}).then(function(res){
+		  	console.log('testPassive Success:' + res);
+		  },function(res){
+		  	console.log('testPassive Failed:' + res);
+		  })			
+		}		
+
+
 		$scope.testInitialise = function(){
 			console.log('testIni');
 		  var postData = {

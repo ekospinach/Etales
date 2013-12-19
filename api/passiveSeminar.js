@@ -69,6 +69,7 @@ exports.getPassiveDecision = function(io){
 			cgiPath : conf.cgi.path_producerDecision, 
 		}			
 
+	console.log(options);
 	require('./models/producerDecision.js').addProducerDecisions(options).then(function(result){
 				options.retailerID = '3';	
 				options.cgiPath = conf.cgi.path_retailerDecision;
@@ -87,8 +88,40 @@ exports.getPassiveDecision = function(io){
 			}, function(progress){ //log the progress
 	            io.sockets.emit('AdminProcessLog', { msg: progress.msg, isError: false });			
 			})
-	
-
 	}	
+}
 
+
+exports.setPassiveDecision = function(io){
+	return function(req, res, next){
+		var options = {
+			producerID : '4', 
+			retailerID : '3',
+			seminar : req.body.seminar, 
+			period : req.body.period, 
+			cgiHost : conf.cgi.host, 
+			cgiPort : conf.cgi.port,			
+			cgiPath : conf.cgi.path_producerDecision, 
+		}			
+
+		require('./models/producerDecision.js').exportToBinary(options).then(function(result){
+		        io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });					
+				options.retailerID = '3';
+				options.cgiPath = conf.cgi.path_retailerDecision;
+				return require('./models/retailerDecision.js').exportToBinary(options);
+			}).then(function(result){
+		        io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
+				options.retailerID = '4';
+				return require('./models/retailerDecision.js').exportToBinary(options);
+			}).then(function(result){
+	            io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	
+	            res.send(200, 'success');
+			}, function(error){ //log the error
+				console.log(error.msg);
+	            io.sockets.emit('AdminProcessLog', { msg: error.msg, isError: true });			
+	            res.send(300, 'error');            
+			}, function(progress){ //log the progress
+	            io.sockets.emit('AdminProcessLog', { msg: progress.msg, isError: false });			
+			})
+	}	
 }

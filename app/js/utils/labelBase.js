@@ -283,7 +283,7 @@ var getLabelBase = function(){
 		{id:'Payment Days',  ENG:'Payment Days',  CHN:'帐期',  RUS:''},
 		{id:'Other Compensation',  ENG:'Other Compensation',  CHN:'其他支持',  RUS:''},
 		{id:'Compare and Refresh',  ENG:'Compare and Refresh',  CHN:'比较和更新',  RUS:''},
-		{id:'Copy from peer proposal',  ENG:'Copy from peer proposal',  CHN:'复制其他产品的提案',  RUS:''},
+		{id:'Copy from peer proposal',  ENG:'Copy from peer proposal',  CHN:'复制生产商的提案（将覆盖已存在的零售商提案）',  RUS:''},
 		{id:'Please choose decision level',  ENG:'Please choose decision level',  CHN:'请选择决策层级',  RUS:''},
 		{id:'Please choose bonus way',  ENG:'Please choose bonus way',  CHN:'请选择激励方式',  RUS:''},
 		{id:'Amount',  ENG:'Amount',  CHN:'金额',  RUS:''},
