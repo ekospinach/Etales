@@ -245,6 +245,18 @@ var getLabelBase = function(){
 		{id:'Brand Visibility Share Info',  ENG:'An integral measure that averages brand space share and marketing activities increasing brand visibility at a given channel.',  CHN:'一个综合性指标，平衡考虑了品牌份额和特定渠道可见度活动。',  RUS:''},
 		{id:'Consumer off-take',  ENG:'Consumer off-take',  CHN:'市场销量',  RUS:''},
 		{id:'Consumer off-take Info',  ENG:'This measure indicates how many units of a product have been sold to the consumer.',  CHN:'衡量消费者实际购买数量的指标',  RUS:''},
+		
+		{id:'Retailer Perceptions',  ENG:'Retailer Perceptions',  CHN:'零售商感知',  RUS:''},
+		{id:'Retailer Perceptions Info',  ENG:'Retailer Perceptions',  CHN:'零售商感知',  RUS:''},
+		{id:'Shopper Behavior',  ENG:'Shopper Behavior',  CHN:'购物者行为',  RUS:''},
+		{id:'Shopper Behavior Info',  ENG:'Shopper Behavior',  CHN:'购物者行为',  RUS:''},
+
+		{id:'Channel',  ENG:'Channel',  CHN:'分销渠道',  RUS:''},
+		{id:'Assortment',  ENG:'Assortment',  CHN:'产品丰富性',  RUS:''},
+		{id:'Convenience',  ENG:'Convenience',  CHN:'便利性',  RUS:''},
+		{id:'Freaks',  ENG:'Freaks',  CHN:'狂热型',  RUS:''},
+		{id:'Fashion',  ENG:'Fashion',  CHN:'时尚型',  RUS:''},
+
 
 		/*Negotiation*/
 		{id:'Negotiation',  ENG:'Negotiation',  CHN:'谈判',  RUS:''},
