@@ -917,10 +917,20 @@ define(['app'], function(app) {
 												otherItem="nc_PerformanceBonusAmount";
 												othervalue=rate*value*price/100;
 												othervalue=othervalue.toFixed(2);
-												if(location=="urban"){
-													$scope.editDetailBonusAmount.brand_urbanValue=othervalue;
+												if(value==0){
+													if(location=="urban"){
+														$scope.editDetailBonusAmount.brand_urbanValue=0;
+														$scope.editDetailBonusRate.brand_urbanValue=0;
+													}else{
+														$scope.editDetailBonusAmount.brand_ruralValue=0;
+														$scope.editDetailBonusRate.brand_ruralValue=0;
+													}
 												}else{
-													$scope.editDetailBonusAmount.brand_ruralValue=othervalue;
+													if(location=="urban"){
+														$scope.editDetailBonusAmount.brand_urbanValue=othervalue;
+													}else{
+														$scope.editDetailBonusAmount.brand_ruralValue=othervalue;
+													}
 												}
 											}
 										}
@@ -955,55 +965,125 @@ define(['app'], function(app) {
 											otherItem="nc_PerformanceBonusAmount";
 											othervalue=value*price*rate/100;
 											othervalue=othervalue.toFixed(2);
-											if(location=="urban"){
-												$scope.editProductList[index].amout_urbanValue=othervalue;
+											if(value==0){
+												if(location=="urban"){
+													$scope.editProductList[index].amout_urbanValue=0;
+													$scope.editProductList[index].rate_urbanValue=0;
+												}else{
+													$scope.editProductList[index].amout_ruralValue=0;
+													$scope.editProductList[index].rate_ruralValue=0;
+												}
 											}else{
-												$scope.editProductList[index].amout_ruralValue=othervalue;
+												if(location=="urban"){
+													$scope.editProductList[index].amout_urbanValue=othervalue;
+												}else{
+													$scope.editProductList[index].amout_ruralValue=othervalue;
+												}
 											}
 										}
-									}	
-									var queryCondition={
-										contractCode:detail.contractCode,
-										negotiationItem:item,
-										userType:detail.userType,
-										relatedBrandName:detail.relatedBrandName,
-										relatedBrandID:detail.relatedBrandID,
-										type:type,
-										location:location,
-										index:index,
-										value:value,
-										count:$scope.count
-									};
-									$http({
-										method:'POST',
-										url:'/updateContractDetails',
-										data:queryCondition
-									}).then(function(data){
-										if(otherItem=="nc_PerformanceBonusRate"){
-											othervalue=othervalue/100;
-										}
-										queryCondition={
+									}
+									if(item=="nc_SalesTargetVolume"&&value==0){
+										var queryCondition={
 											contractCode:detail.contractCode,
-											negotiationItem:otherItem,
+											negotiationItem:'nc_SalesTargetVolume',
 											userType:detail.userType,
 											relatedBrandName:detail.relatedBrandName,
 											relatedBrandID:detail.relatedBrandID,
 											type:type,
 											location:location,
 											index:index,
-											value:othervalue,
+											value:0,
 											count:$scope.count
 										};
-										return $http({
+										$http({
 											method:'POST',
 											url:'/updateContractDetails',
 											data:queryCondition
-										});
-									}).then(function(data){
-										console.log('update success');
-									},function(){
-										console.log('update fail');
-									})				
+										}).then(function(data){
+											queryCondition={
+												contractCode:detail.contractCode,
+												negotiationItem:'nc_PerformanceBonusAmount',
+												userType:detail.userType,
+												relatedBrandName:detail.relatedBrandName,
+												relatedBrandID:detail.relatedBrandID,
+												type:type,
+												location:location,
+												index:index,
+												value:0,
+												count:$scope.count
+											};
+											return $http({
+												method:'POST',
+												url:'/updateContractDetails',
+												data:queryCondition
+											});
+										}).then(function(data){
+											queryCondition={
+												contractCode:detail.contractCode,
+												negotiationItem:'nc_PerformanceBonusRate',
+												userType:detail.userType,
+												relatedBrandName:detail.relatedBrandName,
+												relatedBrandID:detail.relatedBrandID,
+												type:type,
+												location:location,
+												index:index,
+												value:0,
+												count:$scope.count
+											};
+											return $http({
+												method:'POST',
+												url:'/updateContractDetails',
+												data:queryCondition
+											});
+										}).then(function(data){
+											console.log('success');
+										},function(){
+											console.log('fail');
+										})
+									}else{
+										var queryCondition={
+											contractCode:detail.contractCode,
+											negotiationItem:item,
+											userType:detail.userType,
+											relatedBrandName:detail.relatedBrandName,
+											relatedBrandID:detail.relatedBrandID,
+											type:type,
+											location:location,
+											index:index,
+											value:value,
+											count:$scope.count
+										};
+										$http({
+											method:'POST',
+											url:'/updateContractDetails',
+											data:queryCondition
+										}).then(function(data){
+											if(otherItem=="nc_PerformanceBonusRate"){
+												othervalue=othervalue/100;
+											}
+											queryCondition={
+												contractCode:detail.contractCode,
+												negotiationItem:otherItem,
+												userType:detail.userType,
+												relatedBrandName:detail.relatedBrandName,
+												relatedBrandID:detail.relatedBrandID,
+												type:type,
+												location:location,
+												index:index,
+												value:othervalue,
+												count:$scope.count
+											};
+											return $http({
+												method:'POST',
+												url:'/updateContractDetails',
+												data:queryCondition
+											});
+										}).then(function(data){
+											console.log('update success');
+										},function(){
+											console.log('update fail');
+										})		
+									}		
 								}
 							});
 						})(urls, 0);
