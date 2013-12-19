@@ -27,6 +27,10 @@
 					<li class="">
 						<a ng-click="getLineChart(seminar,'Expenses',period)">{{Label.getContent('Expenses')}}</a>
 					</li>
+
+					<li class="">
+						<a ng-click="getLineChart(seminar,'Wholesales Results',period)" access-level='{{accessLevels.producerView}}'>{{Label.getContent('Wholesales Results')}}</a>
+					</li>					
 					<li class="">
 						<a ng-click="getLineChart(seminar,'Wholesales Market Results',period)" access-level='{{accessLevels.producerView}}'>{{Label.getContent('Wholesales Market Results')}}</a>
 					</li>

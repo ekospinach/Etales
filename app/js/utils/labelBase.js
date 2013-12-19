@@ -231,6 +231,9 @@ var getLabelBase = function(){
 		{id:'Terms of payment (days)',  ENG:'Terms of payment (days)',  CHN:'帐期（天数）',  RUS:''},
 		{id:'Purchases',  ENG:'Purchases',  CHN:'本阶段采购量',  RUS:''},
 
+		{id:'per 1% of shelf space (RMB 000)',  ENG:'per 1% of shelf space',  CHN:'每1%货架的销量',  RUS:''},
+		{id:'as % of net sales (%)',  ENG:'as % of net sales (%)',  CHN:'调整后的毛利率（%）',  RUS:''},
+
 		/*market report*/
 		{id:'Market popInfo',  ENG:'Click on column header to sort the table.',  CHN:'点击顶部的标题栏，可以对数据进行排序。',  RUS:''},
 		{id:'Market studies',  ENG:'Market studies',  CHN:'市场研究',  RUS:''},
