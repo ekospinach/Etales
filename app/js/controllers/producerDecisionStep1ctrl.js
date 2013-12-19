@@ -452,10 +452,18 @@ define(['app'], function(app) {
 							url:url
 					});
 				}).then(function(data){
-					if(value>data.data.composition[2]||(value<data.data.composition[0]-2)){
-						d.resolve(Label.getContent('Input range')+(data.data.composition[0]-2)+'('+Label.getContent('Design Level')+'-2)'+'~'+data.data.composition[2]+'('+Label.getContent('Quality-of-Raw-Materials')+')');
+					if(data.data.composition[2]>data.data.composition[0]-2){
+						if(value>data.data.composition[2]||(value<data.data.composition[0]-2)){
+							d.resolve(Label.getContent('Input range')+(data.data.composition[0]-2)+'('+Label.getContent('Design Level')+'-2)'+'~'+data.data.composition[2]+'('+Label.getContent('Quality-of-Raw-Materials')+')');
+						}else{
+							d.resolve();
+						}
 					}else{
-						d.resolve();
+						if(value>data.data.composition[0]-2||(value<data.data.composition[2])){
+							d.resolve(Label.getContent('Input range')+data.data.composition[2]+'('+Label.getContent('Quality-of-Raw-Materials')+')'+'~'+(data.data.composition[0]-2)+'('+Label.getContent('Design Level')+'-2)');
+						}else{
+							d.resolve();
+						}
 					}
 				},function(){
 					d.resolve(Label.getContent('fail'));
