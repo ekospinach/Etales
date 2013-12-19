@@ -132,7 +132,7 @@ exports.checkProducerDecision=function(req,res,next){
 	seminar.findOne({seminarCode:req.params.seminar},function(err,doc){
 		if(err) {next(new Error(err))};
 		if(doc){
-			if(doc.producers[req.params.producerID-1].newProductDecisionReadyPeriod==doc.currentPeriod){
+			if(doc.producers[req.params.producerID-1].newProductDecisionReadyPeriod>=doc.currentPeriod){
 				res.send(200,'isReady');
 			}else{
 				res.send(200,'unReady');

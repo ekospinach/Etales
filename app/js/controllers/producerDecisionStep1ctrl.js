@@ -77,9 +77,9 @@ define(['app'], function(app) {
 						url:url
 					}).then(function(data){
 						if(data.data=="isReady"){
-							$scope.isReady=true;
-						}else{
 							$scope.isReady=false;
+						}else{
+							$scope.isReady=true;
 						}
 						showView($scope.producerID,$scope.period,$scope.category,$scope.language);
 					})
