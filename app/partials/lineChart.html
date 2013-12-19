@@ -21,15 +21,19 @@
 					<li class="active">
 						<a ng-click="getLineChart(seminar,'Profitability Absolute RMB',period)">{{Label.getContent('Profitability Absolute RMB')}}</a>
 					</li>
-					<li class="active">
+					<li>
 						<a ng-click="getLineChart(seminar,'Profitability as percentage of Sales',period)">{{Label.getContent('Profitability as percentage of Sales')}}</a>
 					</li>
 					<li class="">
 						<a ng-click="getLineChart(seminar,'Expenses',period)">{{Label.getContent('Expenses')}}</a>
 					</li>
+
 					<li class="">
 						<a ng-click="getLineChart(seminar,'Wholesales Market Results',period)" access-level='{{accessLevels.producerView}}'>{{Label.getContent('Wholesales Market Results')}}</a>
 					</li>
+					<li class="">
+						<a ng-click="getLineChart(seminar,'Consumer Market Results',period)" access-level='{{accessLevels.producerView}}'>{{Label.getContent('Consumer Market Results')}}</a>
+					</li>					
 					<li class="">
 						<a ng-click="getLineChart(seminar,'Retail Market Results',period)" access-level='{{accessLevels.retailerView}}'>{{Label.getContent('Retail Market Results')}}</a>
 					</li>

@@ -21,15 +21,22 @@ var getLabelBase = function(){
         {id:'Retail Market Share (Value)',  ENG:'Retail Market Share (Value)',  CHN:'各零售商的市场份额（按销售额计）',  RUS:''},        
         {id:'Retail Market Sales (Volume)',  ENG:'Retail Market Sales (Volume)',  CHN:'各零售商的市场销量',  RUS:''},        
         {id:'Retail Market Share (Volume)',  ENG:'Retail Market Share (Volume)',  CHN:'各零售商的市场份额（按销量计）',  RUS:''},        
-		{id:'Wholesale Sales Value',  ENG:'Wholesale Sales Value',  CHN:'各生产商的销售额',  RUS:''},        
-		{id:'Wholesale Market Share (Value)',  ENG:'Wholesale Market Share (Value)',  CHN:'各生产商的市场份额（按销售额计）',  RUS:''},        
-		{id:'Wholesale Sales Volume',  ENG:'Wholesale Sales Volume',  CHN:'各生产商的市场销量',  RUS:''},        
-		{id:'Wholesale Market Share (Volume)',  ENG:'Wholesale Market Share (Volume)',  CHN:'各生产商的市场份额（按销量计）',  RUS:''},        
+		{id:'Wholesales Market Results',  ENG:'Sales Value/Volume & Share',  CHN:'销售额/量和份额（到各渠道）',  RUS:''},
+		{id:'Wholesales Market Results Info',  ENG:'Wholesales Market Results Info',  CHN:'各生产商的销售情况信息（到各渠道）',  RUS:''},
+		{id:'Wholesale Sales Value',  ENG:'Wholesale Sales Value',  CHN:'各生产商的销售额（到各渠道）',  RUS:''},        
+		{id:'Wholesale Share (Value)',  ENG:'Wholesale Sales Share (Value)',  CHN:'各生产商的份额（按销售额计）',  RUS:''},        
+		{id:'Wholesale Sales Volume',  ENG:'Wholesale Sales Volume',  CHN:'各生产商的销量（到各渠道）',  RUS:''},        
+		{id:'Wholesale Share (Volume)',  ENG:'Wholesale Sales Share (Volume)',  CHN:'各生产商的份额（按销量计）',  RUS:''},        
+		{id:'Consumer Market Results',  ENG:'Market Sales Value/Volume & Share',  CHN:'市场销售额/量和份额（到消费者）',  RUS:''},
+		{id:'Consumer Market Result Info',  ENG:'Consumer Market Result Info',  CHN:'各生产商的销售情况信息（到消费者）',  RUS:''},
+		{id:'Consumer Sales (Value)',  ENG:'Consumer Sales (Value)',  CHN:'各生产商的市场销售额（到消费者）',  RUS:''},
+		{id:'Consumer Market Share (Value)',  ENG:'Consumer Market Share (Value)',  CHN:'各生产商的市场份额（按销售额计）',  RUS:''},
+		{id:'Consumer Sales (Volume)',  ENG:'Consumer Sales (Volume)',  CHN:'各生产商的市场销量（到消费者）',  RUS:''},
+		{id:'Consumer Market Sales (Volume)',  ENG:'Consumer Market Sales (Volume)',  CHN:'各生产商的市场份额（按销量计）',  RUS:''},
+
 		{id:'Net Sales Value',  ENG:'Net Sales Value',  CHN:'净销售额',  RUS:''},	
 		{id:'Expenses',  ENG:'Cost and Expenses',  CHN:'成本和费用',  RUS:''},
-		{id:'Expenses Info',  ENG:'Expenses Info',  CHN:'成本和费用信息',  RUS:''},
-		{id:'Wholesales Market Results',  ENG:'Sales Value/Volume & Share',  CHN:'销售额/量和市场份额',  RUS:''},
-		{id:'Wholesales Market Results Info',  ENG:'Wholesales Market Results Info',  CHN:'各生产商的销售情况信息',  RUS:''},
+
 		{id:'Retail Market Results',  ENG:'Sales Value/Volume & Share',  CHN:'各零售商的销售情况',  RUS:''},
 		{id:'Retail Market Results Info',  ENG:'Retail Market Results Info',  CHN:'各零售商的销售情况信息',  RUS:''},
 		{id:'Gross Profit',  ENG:'Gross Profit',  CHN:'毛利润额',  RUS:''},	
@@ -57,6 +64,7 @@ var getLabelBase = function(){
 		{id:'Chart popInfo',  ENG:'You may look at other industry (retail or manufacturing) for benchmarking if you change role selector. You may change details level using category and market selectors. To see numbers behind the trends use your mouse over the lines.',  CHN:'可以选择 \"品类\" 或 \"市场\"，从不同层级查看信息。把鼠标放在趋势线上，可以看到相应的数字。',  RUS:''},
 		{id:'Total',  ENG:'Total',  CHN:'总计',  RUS:''},
 		{id:'Amount Info',  ENG:'Amount Info',  CHN:'Amount输入提示',  RUS:''},
+
 
 		/*Login page*/
 		{id:'eTales Info',  ENG:'Best-in-class professional development tool among the world’s most respected companies and leading business schools',  CHN:'首次呈现和探索零售商、供应商、电商和消费者在社交媒体盛行时代的生存和胜出之道。',  RUS:''},
@@ -231,6 +239,9 @@ var getLabelBase = function(){
 		{id:'Terms of payment (days)',  ENG:'Terms of payment (days)',  CHN:'帐期（天数）',  RUS:''},
 		{id:'Purchases',  ENG:'Purchases',  CHN:'本阶段采购量',  RUS:''},
 
+		{id:'per 1% of shelf space (RMB 000)',  ENG:'per 1% of shelf space',  CHN:'每1%货架的销量',  RUS:''},
+		{id:'as % of net sales (%)',  ENG:'as % of net sales (%)',  CHN:'调整后的毛利率（%）',  RUS:''},
+
 		/*market report*/
 		{id:'Market popInfo',  ENG:'Click on column header to sort the table.',  CHN:'点击顶部的标题栏，可以对数据进行排序。',  RUS:''},
 		{id:'Market studies',  ENG:'Market studies',  CHN:'市场研究',  RUS:''},
@@ -249,9 +260,9 @@ var getLabelBase = function(){
 		{id:'Consumer off-take Info',  ENG:'This measure indicates how many units of a product have been sold to the consumer.',  CHN:'衡量消费者实际购买数量的指标',  RUS:''},
 		
 		{id:'Retailer Perceptions',  ENG:'Retailer Perceptions',  CHN:'零售商感知',  RUS:''},
-		{id:'Retailer Perceptions Info',  ENG:'Retailer Perceptions',  CHN:'零售商感知',  RUS:''},
+		{id:'Retailer Perceptions Info',  ENG:'Shows how shoppers perceive retail players in terms of price (lower cheaper, higher more expensive), convenience and assortment.',  CHN:'',  RUS:''},
 		{id:'Shopper Behavior',  ENG:'Shopper Behavior',  CHN:'购物者行为',  RUS:''},
-		{id:'Shopper Behavior Info',  ENG:'Shopper Behavior',  CHN:'购物者行为',  RUS:''},
+		{id:'Shopper Behavior Info',  ENG:'Registers where consumers from different segments prefer to go shopping',  CHN:'购物者行为',  RUS:''},
 
 		{id:'Channel',  ENG:'Channel',  CHN:'分销渠道',  RUS:''},
 		{id:'Assortment',  ENG:'Assortment',  CHN:'产品丰富性',  RUS:''},
@@ -305,7 +316,7 @@ var getLabelBase = function(){
 		{id:'Rate',  ENG:'Rate',  CHN:'折扣比例',  RUS:''},
 		{id:'Close',  ENG:'Close',  CHN:'关闭',  RUS:''},
 		{id:'Warning Info',  ENG:"Time's up, this contract has been locked",  CHN:'已超过截止时间，合同被锁定。',  RUS:''},
-		{id:'Check Warning',  ENG:"Check fail。Time's up, this contract has been locked",  CHN:'验证失败。已超过截止时间，合同被锁定。',  RUS:''},
+		{id:'Check Warning',  ENG:"Check fail. Time's up, this contract has been locked",  CHN:'验证失败。已超过截止时间，合同被锁定。',  RUS:''},
 		/*producerstep1*/
 		{id:'Products portfolio',  ENG:'Products portfolio',  CHN:'产品组合',  RUS:''},
 		{id:'Products portfolio Info',  ENG:'determine your products portfolio, i.e. brand names, variant(s) of each brand with their respective name(s) and product composition or product specification, including packaging format.',  CHN:'决定你的产品组合，如品牌名称、配方、包装等',  RUS:''},

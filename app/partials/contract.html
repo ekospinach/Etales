@@ -49,8 +49,8 @@
                             <th>{{Label.getContent('Period')}}</th>
                             <th>{{Label.getContent('Producer')}}</th>
                             <th>{{Label.getContent('Retailer')}}</th>
-                            <th>{{Label.getContent('Drafted By')}}</th>
-                            <th>{{Label.getContent('isDraftFinished')}}?</th>
+<!--                             <th>{{Label.getContent('Drafted By')}}</th>
+                            <th>{{Label.getContent('isDraftFinished')}}?</th> -->
                             <th>{{Label.getContent('isLock')}}?</th>
                             <th></th>
 			    		</tr>
@@ -59,9 +59,9 @@
 				     	<tr ng-repeat="allContract in allContracts">
 				    		<td>{{allContract.contractCode.substring(0,allContract.contractCode.indexOf('_'))}}</td>
 				    		<td>{{allContract.period}}</td>
-				    		<td>Producer-{{allContract.producerID}}</td>
-				    		<td>Retailer-{{(allContract.retailerID)}}</td>
-				    		<td>{{(allContract.draftedByCompanyID>3)?'Retailer':'Producer'}}-{{(allContract.draftedByCompanyID>3)?(allContract.draftedByCompanyID-4):allContract.draftedByCompanyID}}</td>
+				    		<td>{{Label.getContent('Producer')}}-{{allContract.producerID}}</td>
+				    		<td>{{Label.getContent('Retailer')}}-{{(allContract.retailerID)}}</td>
+<!-- 				    		<td>{{(allContract.draftedByCompanyID>3)?'Retailer':'Producer'}}-{{(allContract.draftedByCompanyID>3)?(allContract.draftedByCompanyID-4):allContract.draftedByCompanyID}}</td>
 				    		<td>
 				    			<fieldset disabled>
 				    				<div class="checkbox">
@@ -71,7 +71,7 @@
 				    					</label>
 				    				</div>
 				    			</fieldset>
-				    		</td>
+				    		</td> -->
 				    		<td>
 				    			<fieldset disabled>
 				    				<div class="checkbox">
