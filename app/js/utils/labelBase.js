@@ -384,6 +384,8 @@ var getLabelBase = function(){
 		{id:'SL_MEDIUM',  ENG:'MEDIUM',  CHN:'中等',  RUS:''},
 		{id:'SL_ENHANCED',  ENG:'ENHANCED',  CHN:'好',  RUS:''},
 		{id:'SL_PREMIUM',  ENG:'PREMIUM',  CHN:'优质',  RUS:''},
+		{id:'Check Error',  ENG:"Check fail. This decision has been locked",  CHN:'验证失败。决策已经被锁定。',  RUS:''},
+		{id:'',  ENG:'',  CHN:'',  RUS:''},
 		{id:'Warning! Commit confirmation',  ENG:'Warning! Commit confirmation',  CHN:'注意！提交确认',  RUS:''},
 		{id:'Producer portfolio confirm info',  ENG:'You and your team member will not be able to modify portfolio decision this period after submitting the decision.',  CHN:'选择提交之后，你和你所在小组的其他成员本阶段将无法再次修改产品组合决策。',  RUS:''},
 		{id:'Take this action',  ENG:'Take this action',  CHN:'确认提交',  RUS:''},

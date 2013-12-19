@@ -436,7 +436,7 @@ define(['angular',
 					 })
 				},
 				submitDecision:function(){
-					$rootScope.$broadcast('producerDecisionBaseChanged', base);
+					//$rootScope.$broadcast('producerDecisionBaseChanged', base);
 					var queryCondition={
 						producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),
 						seminar:$rootScope.user.seminar
