@@ -32,9 +32,6 @@
 			textRenderer:'./map/jqplot.canvasTextRenderer.min',
 			tree:'./map/bootstrap-tree',
 			nggooglechart:'../bower_components/angular-google-chart/ng-google-chart',
-			producerPopInfo:'./utils/producerPopInfo',
-			retailerPopInfo:'./utils/retailerPopInfo',
-			reportTitle:'./utils/reportTitle',
 			domReady: '../bower_components/requirejs-domready/domReady',
 			labelBase: './utils/labelBase'
 			//addProduct:'../js/functions/addNewProduct'

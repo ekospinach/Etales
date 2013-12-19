@@ -19,8 +19,7 @@ define(['angular',
 		'controllers/lineChartCtrl',
 		'controllers/reportCtrl',
 		'controllers/testCtrl',
-		'controllers/navbarCtrl',
-		'controllers/scrollspyCtrl'], function(angular, app) {
+		'controllers/navbarCtrl'], function(angular, app) {
 	'use strict';
 	return app.config(['$routeProvider','$httpProvider', function($routeProvider, $httpProvider) {
 

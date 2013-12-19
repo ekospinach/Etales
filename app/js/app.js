@@ -16,10 +16,7 @@ define([
 	'bubbleRenderer',
 	'labelRenderer',
 	'textRenderer',
-	'tree',
-	'producerPopInfo',
-	'retailerPopInfo',
-	'reportTitle',
+	'tree'
 	], function (angular, filters, services,directives,bootstrap, controllers) {
 		'use strict';
 		return angular.module('myApp', [
