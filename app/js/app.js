@@ -16,7 +16,8 @@ define([
 	'bubbleRenderer',
 	'labelRenderer',
 	'textRenderer',
-	'tree'
+	'tree',
+	'angularAnimate'
 	], function (angular, filters, services,directives,bootstrap, controllers) {
 		'use strict';
 		return angular.module('myApp', [
@@ -29,6 +30,7 @@ define([
 			'ui.bootstrap',
 			'chieffancypants.loadingBar',
 			'ngCookies',
+			'ngAnimate'
 		]).run(function(editableOptions){
 			editableOptions.theme = 'bs3';
 		}).run(['$rootScope', '$location','Auth','$http', function ($rootScope, $location, Auth, $http) {		    
@@ -64,6 +66,6 @@ define([
 			//config default language
 			LabelProvider.initialiseLanguage('CHN');
 		}).config(function(cfpLoadingBarProvider){
-			cfpLoadingBarProvider.includeSpinner = true;
+			 cfpLoadingBarProvider.includeSpinner = true;
 		});
 });
