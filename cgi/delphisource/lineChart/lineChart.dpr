@@ -287,7 +287,7 @@ var
       Result.O[''] := SO('{id : "0", labelENG: "Team", type: "string", color : 0}');
       // have to build it depending on # of periods we show
       //-3...lastHistoryPeriod
-      Result.O[''] := SO('{id : "1", labelENG: "P-3", type: "number", color : 0}');
+      //Result.O[''] := SO('{id : "1", labelENG: "P-3", type: "number", color : 0}');
       Result.O[''] := SO('{id : "2", labelENG: "P-2", type: "number", color : 0}');
       Result.O[''] := SO('{id : "3", labelENG: "P-1", type: "number", color : 0}');
       Result.O[''] := SO('{id : "4", labelENG: "P0", type: "number", color : 0}');
