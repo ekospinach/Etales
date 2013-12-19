@@ -129,7 +129,8 @@
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Pack Format Info')}}" popover-title="{{Label.getContent('Pack Format')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Pack Format')}}<span style="color:red">*</span></p>
                 </th>
                 <th ng-repeat='product in products'>
-                  <a href="#" editable-select="product.packFormat" e-ng-options="p.value as p.text for p in packs" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'packFormat','0',$index)">{{ selectPacks(product.parentBrandName,product.varName) }}</a>
+                  <a href="#" editable-select="product.packFormat" e-ng-options="p.value as p.text for p in packs" ng-show="product.dateOfBirth==currentPeriod" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'packFormat','0',$index)">{{ selectPacks(product.parentBrandName,product.varName) }}</a>
+                  <span ng-show="product.dateOfBirth<currentPeriod">{{ selectPacks(product.parentBrandName,product.varName) }}</span>
                 </th>
               </tr>
               <tr>
