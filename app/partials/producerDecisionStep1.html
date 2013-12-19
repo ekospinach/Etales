@@ -206,12 +206,24 @@
             </tr>    
           </tbody>
         </table>
+
+        <div class="alert alert-danger fade in" ng-show="isCommitConfirmInfoShown">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+          <h4>{{Label.getContent("Warning! Commit confirmation")}}</h4>
+          <p>{{Label.getContent("Producer portfolio confirm info")}}</p>
+          <p>
+            <button type="button" class="btn btn-danger">{{Label.getContent("Take this action")}}</button>
+            <button type="button" class="btn btn-default">{{Label.getContent("Cancel")}}</button>
+          </p>
+        </div>
+
         <div>
           <a ng-click="openProductModal()" ng-disabled="isReady" class="btn btn-default">{{Label.getContent('New Product')}}</a>
-          <a href="" class="btn btn-primary" ng-disabled="isReady" ng-click="submitDecision()" class="btn btn-primary">{{Label.getContent('Commit Portflio decision')}}</a>
+          <a href="" class="btn btn-primary" ng-disabled="isReady" ng-click="isCommitConfirmInfoShown=true" class="btn btn-primary">{{Label.getContent('Commit Portflio decision')}}</a>
           <a href="/#/producerDecisionStep2" ng-disabled="!isReady" class="btn btn-primary">{{Label.getContent('Next')}}</a>
         </div>
-      </div>
+
+
     </div>
   </div>
 </div>

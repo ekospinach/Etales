@@ -357,7 +357,7 @@ var getLabelBase = function(){
 		{id:'Current Price Emall',  ENG:'Current Price Emall',  CHN:'当前网上商城的零售价',  RUS:''},
 		{id:'Current Price Emall Info',  ENG:'list and wholesale price for eMall in current period; applicable for new launches only. ',  CHN:'当前阶段在网上商城的零售价，只适用于新推出的产品。',  RUS:''},
 		{id:'New Product',  ENG:'New Product',  CHN:'新产品',  RUS:''},
-		{id:'Commit Portflio decision',  ENG:'Commit Portflio decision',  CHN:'确认产品组合决策',  RUS:''},
+		{id:'Commit Portflio decision',  ENG:'Commit Portflio decision',  CHN:'提交产品组合决策',  RUS:''},
 		{id:'Next',  ENG:'Next',  CHN:'下一步',  RUS:''},
 		{id:'Launch New Brand',  ENG:'Launch New Brand',  CHN:'推出新品牌',  RUS:''},
 		{id:'Under Existed Brand',  ENG:'Add new product under existed Brand',  CHN:'在现有品牌下推出新单品',  RUS:''},
@@ -384,7 +384,10 @@ var getLabelBase = function(){
 		{id:'SL_MEDIUM',  ENG:'MEDIUM',  CHN:'中等',  RUS:''},
 		{id:'SL_ENHANCED',  ENG:'ENHANCED',  CHN:'好',  RUS:''},
 		{id:'SL_PREMIUM',  ENG:'PREMIUM',  CHN:'优质',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'Warning! Commit confirmation',  ENG:'Warning! Commit confirmation',  CHN:'注意！提交确认',  RUS:''},
+		{id:'Producer portfolio confirm info',  ENG:'You and your team member will not be able to modify portfolio decision this period after submitting the decision.',  CHN:'你和你所在的小组以及其他成员本阶段将无法再次修改产品组合决策。',  RUS:''},
+		{id:'Take this action',  ENG:'Take this action',  CHN:'确认提交',  RUS:''},
+		{id:'Cancel',  ENG:'Cancel',  CHN:'取消',  RUS:''},
 
 		/*producerstep2*/
 		{id:'Production and pricing',  ENG:'Production and pricing',  CHN:'生产和定价',  RUS:''},
