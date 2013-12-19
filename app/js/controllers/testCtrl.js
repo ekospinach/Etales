@@ -103,6 +103,20 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
 		  })				
 		}
 
+		$scope.testImportResult = function(period) {
+			console.log('run:' + period);
+		  var postData = {
+		  	seminar : 'MAY',
+		  	period : period
+		  }
+		  $http({method:'POST', url:'/importResult', data: postData}).then(function(res){
+		  	console.log('testInitialise Success:' + res.data);
+		  },function(res){
+		  	console.log('testInitialise Failed:' + res.data);
+		  })				
+		}
+
+
 		$scope.testAuth = function(){
 			console.log(userRoles);
 			console.log(routingConfig.accessLevels);

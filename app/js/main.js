@@ -24,6 +24,7 @@
 			bootstrap:'../bower_components/bootstrap/dist/js/bootstrap',
 			angularBootstrap:'../bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls',
 			routingConfig : './routingConfig',
+			placeholder:'../bower_components/angular-placeholders/demo/assets/ui-bootstrap-tpls-0.1.0-SNAPSHOT.min',
 			//jquery-jqplot-->Map.html
 			jqplot:'../bower_components/jqplot/jquery.jqplot.min',
 			bubbleRenderer:'./map/jqplot.bubbleRenderer',
@@ -31,12 +32,8 @@
 			textRenderer:'./map/jqplot.canvasTextRenderer.min',
 			tree:'./map/bootstrap-tree',
 			nggooglechart:'../bower_components/angular-google-chart/ng-google-chart',
-			producerPopInfo:'./utils/producerPopInfo',
-			retailerPopInfo:'./utils/retailerPopInfo',
-			reportTitle:'./utils/reportTitle',
 			domReady: '../bower_components/requirejs-domready/domReady',
 			labelBase: './utils/labelBase'
-			//addProduct:'../js/functions/addNewProduct'
 		},
 		baseUrl: 'js',
 		shim: {
@@ -117,7 +114,7 @@
 	require([
 		'angular',
 		'app',
-		'routes'
+		'routes',
 	], function(angular, app, routes) {
 		'use strict';
 		var $html = angular.element(document.getElementsByTagName('html')[0]);

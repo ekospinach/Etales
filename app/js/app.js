@@ -2,6 +2,7 @@ define([
 	'angular',
 	'filters',
 	'services',
+	'placeholder',
 	'directives',
 	'angularRoute',
 	'angularXeditable',
@@ -15,21 +16,19 @@ define([
 	'bubbleRenderer',
 	'labelRenderer',
 	'textRenderer',
-	'tree',
-	'producerPopInfo',
-	'retailerPopInfo',
-	'reportTitle'
-	], function (angular, filters, services, directives, controllers) {
+	'tree'
+	], function (angular, filters, services,directives,bootstrap, controllers) {
 		'use strict';
 		return angular.module('myApp', [
 			'ngRoute',
 			'myApp.filters',
 			'myApp.services',
+			//'placeholders',
 			'myApp.directives',
 			'xeditable',
 			'ui.bootstrap',
 			'chieffancypants.loadingBar',
-			'ngCookies'
+			'ngCookies',
 		]).run(function(editableOptions){
 			editableOptions.theme = 'bs3';
 		}).run(['$rootScope', '$location','Auth','$http', function ($rootScope, $location, Auth, $http) {		    

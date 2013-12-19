@@ -125,3 +125,68 @@ exports.setPassiveDecision = function(io){
 			})
 	}	
 }
+
+exports.importResult = function(io){
+	return function(req, res, next){
+		var options = {
+			producerID : '1', 
+			retailerID : '1',
+			seminar : req.body.seminar, 
+			startFrom: req.body.period, 
+			endWith: req.body.period, 
+			cgiHost : conf.cgi.host, 
+			cgiPort : conf.cgi.port,			
+			cgiPath : conf.cgi.path_producerDecision, 
+		}			
+		
+        options.cgiPath = conf.cgi.path_brandHistoryInfo;			
+		require('./models/brandHistoryInfo.js').addInfos(options).then(function(result){
+            io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });		
+            options.cgiPath = conf.cgi.path_variantHistoryInfo;			
+			return require('./models/variantHistoryInfo.js').addInfos(options);										
+		}).then(function(result){
+            io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });		
+            options.cgiPath = conf.cgi.path_companyHistoryInfo;			
+			return require('./models/companyHistoryInfo.js').addInfos(options);				
+		}).then(function(result){
+            io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });		
+            options.cgiPath = conf.cgi.path_quarterHistoryInfo;			
+			return require('./models/quarterHistoryInfo.js').addInfos(options);		
+
+		//import reports and charts		
+		}).then(function(result){
+            io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });		
+            options.cgiPath = conf.cgi.path_marketReport;			
+			return require('./models/marketReport.js').addInfos(options);	
+		}).then(function(result){
+            io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });		
+            options.cgiPath = conf.cgi.path_lineChart;			
+			return require('./models/lineChart.js').addInfos(options);	
+		}).then(function(result){
+            io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });		
+            options.cgiPath = conf.cgi.path_perceptionMap;			
+			return require('./models/perceptionMap.js').addInfos(options);	
+		}).then(function(result){
+            io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });		
+            options.cgiPath = conf.cgi.path_finReport;			
+			return require('./models/finReport.js').addInfos(options);	
+		}).then(function(result){
+            io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });		
+            options.cgiPath = conf.cgi.path_volReport;			
+			return require('./models/volReport.js').addInfos(options);	
+
+		//deal with promises chain 						
+		}).then(function(result){ //log the success info
+            io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	
+            res.send(200, 'success');
+		}, function(error){ //log the error
+			console.log(error.msg);
+            io.sockets.emit('AdminProcessLog', { msg: error.msg, isError: true });			
+            res.send(300, 'error');            
+		}, function(progress){ //log the progress
+            io.sockets.emit('AdminProcessLog', { msg: progress.msg, isError: false });			
+		})
+	
+	}
+
+}
