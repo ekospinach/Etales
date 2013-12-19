@@ -350,8 +350,8 @@ var
 
       jo.I['brandID'] := pVar.drv_BrandID;
       jo.I['variantID'] := pVar.drv_VariantID;
-//      jo.S['brandName'] := pVar.drv_BrandName;
-//      jo.S['varName'] := pVar.drv_VariantName;
+      jo.S['brandName'] := pVar.drv_BrandName;
+      jo.S['varName'] := pVar.drv_VariantName;
       jo.I['dateOfBirth'] := pVar.drv_DateofBirth;
       jo.I['dateOfDeath'] := pVar.drv_DateOfDeath;
       jo.D['order'] := pVar.drv_Order;
@@ -595,8 +595,8 @@ var
     begin
       pVar.drv_BrandID := jo.I['brandID'];
       pVar.drv_VariantID := jo.I['variantID'];
-//      StringToWideChar(jo.S['brandName'], pVar.drv_BrandName, BrandNameLength + 1);
-//      StringToWideChar(jo.S['varName'], pVar.drv_VariantName, VarNameLength + 1);
+      StringToWideChar(jo.S['brandName'], pVar.drv_BrandName, BrandNameLength + 1);
+      StringToWideChar(jo.S['varName'], pVar.drv_VariantName, VarNameLength + 1);
       pVar.drv_DateofBirth := jo.I['dateOfBirth'];
       pVar.drv_DateOfDeath := jo.I['dateOfDeath'];
       pVar.drv_Order := jo.D['order'];
