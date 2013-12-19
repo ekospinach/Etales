@@ -1,4 +1,4 @@
-//require('newrelic');
+require('newrelic');
 
 var path    = require('path'),
 
@@ -45,10 +45,6 @@ app.post('/logout', require('./api/auth').logout);
 app.post('/initialiseSeminar', require('./api/initialiseSeminar.js').initialiseSeminar(io));
 app.post('/initialiseSeminarRetailer',require('./api/initialiseSeminar.js').initialiseSeminarRetailer(io));
 app.post('/passiveSeminar', require('./api/passiveSeminar.js').passiveSeminar(io));
-app.post('/getPassiveDecision', require('./api/passiveSeminar.js').getPassiveDecision(io));
-app.post('/setPassiveDecision', require('./api/passiveSeminar.js').setPassiveDecision(io));
-app.post('/importResult', require('./api/passiveSeminar.js').importResult(io));
-
 app.post('/runSeminar', require('./api/kernelSeminar.js').runSeminar(io));
 
 app.post('/contract');
@@ -111,8 +107,8 @@ app.get('/producerCurrentDecision/:seminar/:period/:producerID/:brandName/:varNa
 app.get('/checkProducerProduct/:seminar/:period/:producerID/:categoryID/:checkType/:brandName/:varName',require('./api/models/producerDecision.js').checkProducerProduct);
 app.get('/producerExpend/:seminar/:period/:producerID/:brandName/:location/:additionalIdx',require('./api/models/producerDecision.js').getProducerExpend);
 
+app.get('/checkContractLock/:contractCode',require('./api/models/contract.js').checkContractLock);
 app.get('/producerVariantBM/:seminar/:period/:producerID/:categoryID/:brandName/:varName',require('./api/models/producerDecision.js').getProducerVariantBM);
-
 //retailer check
 app.get('/retailerExpend/:seminar/:period/:retailerID/:marketID/:location/:additionalIdx',require('./api/models/retailerDecision.js').getRetailerExpend);
 app.get('/retailerShelfSpace/:seminar/:period/:retailerID/:marketID/:categoryID/:brandName/:varName',require('./api/models/retailerDecision.js').getRetailerShelfSpace);

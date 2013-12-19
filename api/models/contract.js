@@ -83,6 +83,23 @@ exports.getContractList = function(req, res, next){
         })
 }
 
+exports.checkContractLock=function(req,res,next){
+	contract.findOne({
+		contractCode:req.params.contractCode
+	},function(err,doc){
+		if(err) {next(new Error(err))};
+		if(doc){
+			if(doc.isLocked){
+				res.send(200,'isLocked');
+			}else{
+				res.send(200,'unLocked');
+			}
+		}else{
+			res.send(404,'there is no contract');
+		}
+	})
+}
+
 exports.deleteContractDetailData=function(io){
 	return function(req,res,next){
 		var result=false;
@@ -136,45 +153,11 @@ exports.deleteContractDetailData=function(io){
 				res.send(200,'successfully');
 			}
 		})
-			/*contractDetails.findOne({
-				contractCode:queryCondition.contractCode,
-				relatedBrandName:queryCondition.relatedBrandName
-			},function(err,doc){
-				if(err){
-					next(new Error(err));
-				}
-				if(!doc){
-					res.send(200,'no contract,mission complete');
-				}else{
-					if(queryCondition.deleteType=="variant"){
-						//if(queryCondition.deleteType=="variant"){
-						if(queryCondition.index==0){
-							doc.variant_A_ruralValue=0;
-							doc.variant_A_urbanValue=0;
-						}else if(queryCondition.index==1){
-							doc.variant_B_ruralValue=0;
-							doc.variant_B_urbanValue=0;
-						}else if(queryCondition.index==2){
-							doc.variant_C_ruralValue=0;
-							doc.variant_C_urbanValue=0;
-						}
-						doc.save(function(err){
-							if(err) next(new Error(err));
-						});
-					}else{
-						doc.remove(function(err){
-							if(err) next(new Error(err));
-						});
-					}
-					res.send(200,'successfully!');
-				}
-			});*/
 	}
 }
 
 exports.updateContractDetails = function(io){
   	return function(req, res, next){
-  		//console.log(req.body);
   		var result=false;
   		var queryCondition={
   			contractCode:req.body.contractCode,
@@ -188,7 +171,6 @@ exports.updateContractDetails = function(io){
   			value:req.body.value,
   			count:req.body.count
   		};
-  		console.log(queryCondition);
   		contractDetails.findOne({
   			contractCode:queryCondition.contractCode,
   			userType:queryCondition.userType,
@@ -270,53 +252,53 @@ exports.updateContractDetails = function(io){
   			switch(doc.negotiationItem){
   				case 'nc_MinimumOrder':
   					if(doc.useBrandDetails){
-	  					doc.displayValue=doc.brand_urbanValue+doc.brand_ruralValue;
+	  					doc.displayValue=parseFloat(doc.brand_urbanValue)+parseFloat(doc.brand_ruralValue);
 	  				}else{
-	  					doc.displayValue=doc.variant_A_urbanValue+doc.variant_A_ruralValue+doc.variant_B_urbanValue+doc.variant_B_ruralValue+doc.variant_C_urbanValue+doc.variant_C_ruralValue;
+	  					doc.displayValue=parseFloat(doc.variant_A_urbanValue)+parseFloat(doc.variant_A_ruralValue)+parseFloat(doc.variant_B_urbanValue)+parseFloat(doc.variant_B_ruralValue)+parseFloat(doc.variant_C_urbanValue)+parseFloat(doc.variant_C_ruralValue);
 	  				}
 	  				break;
 	  			case 'nc_VolumeDiscountRate':
 	  				if(doc.useBrandDetails){
-	  					doc.displayValue=(doc.brand_urbanValue+doc.brand_ruralValue)/2;
+	  					doc.displayValue=(parseFloat(doc.brand_urbanValue)+(doc.brand_ruralValue))/2;
 	  				}else{
-	  					doc.displayValue=(doc.variant_A_urbanValue+doc.variant_A_ruralValue+doc.variant_B_urbanValue+doc.variant_B_ruralValue+doc.variant_C_urbanValue+doc.variant_C_ruralValue)/(queryCondition.count*2);
+	  					doc.displayValue=(parseFloat(doc.variant_A_urbanValue)+parseFloat(doc.variant_A_ruralValue)+parseFloat(doc.variant_B_urbanValue)+parseFloat(doc.variant_B_ruralValue)+parseFloat(doc.variant_C_urbanValue)+parseFloat(doc.variant_C_ruralValue))/(queryCondition.count*2);
 	  				}
 	  				doc.displayValue=(doc.displayValue*100).toFixed(2)+"%";
 	  				break;
 	  			case 'nc_SalesTargetVolume':
 	  			  	if(doc.useBrandDetails){
-	  					doc.displayValue=doc.brand_urbanValue+doc.brand_ruralValue;
+	  					doc.displayValue=parseFloat(doc.brand_urbanValue)+parseFloat(doc.brand_ruralValue);
 	  				}else{
-	  					doc.displayValue=doc.variant_A_urbanValue+doc.variant_A_ruralValue+doc.variant_B_urbanValue+doc.variant_B_ruralValue+doc.variant_C_urbanValue+doc.variant_C_ruralValue;
+	  					doc.displayValue=parseFloat(doc.variant_A_urbanValue)+parseFloat(doc.variant_A_ruralValue)+parseFloat(doc.variant_B_urbanValue)+parseFloat(doc.variant_B_ruralValue)+parseFloat(doc.variant_C_urbanValue)+parseFloat(doc.variant_C_ruralValue);
 	  				}
 	  				break;
 	  			case 'nc_PerformanceBonusAmount':
 	  			  	if(doc.useBrandDetails){
-	  					doc.displayValue=doc.brand_urbanValue+doc.brand_ruralValue;
+	  					doc.displayValue=parseFloat(doc.brand_urbanValue)+parseFloat(doc.brand_ruralValue);
 	  				}else{
-	  					doc.displayValue=doc.variant_A_urbanValue+doc.variant_A_ruralValue+doc.variant_B_urbanValue+doc.variant_B_ruralValue+doc.variant_C_urbanValue+doc.variant_C_ruralValue;
+	  					doc.displayValue=parseFloat(doc.variant_A_urbanValue)+parseFloat(doc.variant_A_ruralValue)+parseFloat(doc.variant_B_urbanValue)+parseFloat(doc.variant_B_ruralValue)+parseFloat(doc.variant_C_urbanValue)+parseFloat(doc.variant_C_ruralValue);
 	  				}
 	  				break;
 	  			case 'nc_PerformanceBonusRate':
 	  				if(doc.useBrandDetails){
-	  					doc.displayValue=(doc.brand_urbanValue+doc.brand_ruralValue)/2;
+	  					doc.displayValue=(parseFloat(doc.brand_urbanValue)+(doc.brand_ruralValue))/2;
 	  				}else{
-	  					doc.displayValue=(doc.variant_A_urbanValue+doc.variant_A_ruralValue+doc.variant_B_urbanValue+doc.variant_B_ruralValue+doc.variant_C_urbanValue+doc.variant_C_ruralValue)/(queryCondition.count*2);
+	  					doc.displayValue=(parseFloat(doc.variant_A_urbanValue)+parseFloat(doc.variant_A_ruralValue)+parseFloat(doc.variant_B_urbanValue)+parseFloat(doc.variant_B_ruralValue)+parseFloat(doc.variant_C_urbanValue)+parseFloat(doc.variant_C_ruralValue))/(queryCondition.count*2);
 	  				}
 	  				doc.displayValue=(doc.displayValue*100).toFixed(2)+"%";
 	  				break;
 	  			case 'nc_PaymentDays':
 	  				if(doc.useBrandDetails){
-	  					doc.displayValue=(doc.brand_urbanValue+doc.brand_ruralValue)/2;
+	  					doc.displayValue=(parseFloat(doc.brand_urbanValue)+(doc.brand_ruralValue))/2;
 	  				}else{
-	  					doc.displayValue=(doc.variant_A_urbanValue+doc.variant_A_ruralValue+doc.variant_B_urbanValue+doc.variant_B_ruralValue+doc.variant_C_urbanValue+doc.variant_C_ruralValue)/(queryCondition.count*2);
+	  					doc.displayValue=(parseFloat(doc.variant_A_urbanValue)+parseFloat(doc.variant_A_ruralValue)+parseFloat(doc.variant_B_urbanValue)+parseFloat(doc.variant_B_ruralValue)+parseFloat(doc.variant_C_urbanValue)+parseFloat(doc.variant_C_ruralValue))/(queryCondition.count*2);
 	  				}
 	  				break;
 	  			case 'nc_OtherCompensation':
 	  			  	if(doc.useBrandDetails){
-	  					doc.displayValue=doc.brand_urbanValue+doc.brand_ruralValue;
+	  					doc.displayValue=parseFloat(doc.brand_urbanValue)+parseFloat(doc.brand_ruralValue);
 	  				}else{
-	  					doc.displayValue=doc.variant_A_urbanValue+doc.variant_A_ruralValue+doc.variant_B_urbanValue+doc.variant_B_ruralValue+doc.variant_C_urbanValue+doc.variant_C_ruralValue;
+	  					doc.displayValue=parseFloat(doc.variant_A_urbanValue)+parseFloat(doc.variant_A_ruralValue)+parseFloat(doc.variant_B_urbanValue)+parseFloat(doc.variant_B_ruralValue)+parseFloat(doc.variant_C_urbanValue)+parseFloat(doc.variant_C_ruralValue);
 	  				}
 	  				break;
   			}
@@ -593,7 +575,8 @@ exports.addContract = function(io){
 						draftedByCompanyID : req.body.draftedByCompanyID,
 						producerID : req.body.producerID,
 						retailerID : req.body.retailerID,
-						isDraftFinished : false
+						isDraftFinished : false,
+						isLocked:false
 				  	});
 				  	/*need add Contract Detail*/
 				  	newContract.save(function(err){
@@ -626,7 +609,8 @@ exports.duplicateContract = function(io){
 						draftedByCompanyID : req.body.draftedByCompanyID,
 						producerID : req.body.producerID,
 						retailerID : req.body.retailerID,
-						isDraftFinished : false
+						isDraftFinished : false,
+						isLocked:false
 				  	});
 				  	contractDetails.find({contractCode : req.body.duplicateCode, userType:'P'}, function(err, docs){
 				  		if(err) {next(new Error(err))};
