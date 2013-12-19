@@ -99,7 +99,7 @@ define(['angular','services'], function(angular, services) {
                             var offset = parseInt(attr.scrollOffset, 10)
                             if(!offset) offset = 10;
                             console.log("offset:  " + offset);
-                            elem.attr.scrollspy({ "offset" : offset});
+                            elem.scrollspy({ "offset" : offset});
                             scope.$watch(attr.scrollSpy, function(value) {
                                 $timeout(function() { 
                                   elem.scrollspy('refresh', { "offset" : offset})
