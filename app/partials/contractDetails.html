@@ -25,7 +25,7 @@
     </div>
 
     <div ng-show="refreshingProcess">      
-        <progress percent="refreshingProcessLabel.toFixed(0)" class="progress progress-suceess active progress-striped" style="width:30%;margin:0 auto;"></progress>
+        <progress percent="refreshingProcessLabel.toFixed(0)" class="progress progress-suceess active progress-striped" style="width:30%;margin:0 auto;" ng-show='false'></progress>
         <p class="text-center">{{Label.getContent('Loading')}}({{refreshingProcessLabel.toFixed(0)}}%)...</p>
     </div>
     
