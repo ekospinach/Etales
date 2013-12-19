@@ -384,6 +384,7 @@ var getLabelBase = function(){
 		{id:'SL_MEDIUM',  ENG:'MEDIUM',  CHN:'中等',  RUS:''},
 		{id:'SL_ENHANCED',  ENG:'ENHANCED',  CHN:'好',  RUS:''},
 		{id:'SL_PREMIUM',  ENG:'PREMIUM',  CHN:'优质',  RUS:''},
+		{id:'Check Error',  ENG:"Check fail. This decision has been locked",  CHN:'验证失败。决策已经被锁定。',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
 
 		/*producerstep2*/

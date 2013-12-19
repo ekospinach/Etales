@@ -122,7 +122,7 @@
                   {{product.varName}}
                 </p>
                 <button type="button" class="btn btn-primary btn-xs pull-left" style="margin-left:5px" ng-click="getMoreInfo(product.parentBrandName,product.varName)">{{Label.getContent('More')}}</button>
-                <button type="button" class="btn btn-danger btn-xs pull-left" ng-show="(product.dateOfBirth==-4)&&(!isReady)" ng-click="deleteProduct(category,product.parentBrandName,product.varName)" style="margin-left:5px">{{Label.getContent('Delete')}}</button>
+                <button type="button" class="btn btn-danger btn-xs pull-left" ng-show="(product.dateOfBirth==currentPeriod)&&(!isReady)" ng-click="deleteProduct(category,product.parentBrandName,product.varName)" style="margin-left:5px">{{Label.getContent('Delete')}}</button>
                 <div style="clear:both"></div>
               </th>
             </tr>            
