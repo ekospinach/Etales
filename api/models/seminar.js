@@ -128,6 +128,50 @@ exports.getCurrentPeriod=function(req,res,next){
 	})
 }
 
+exports.checkProducerDecision=function(req,res,next){
+	seminar.findOne({seminarCode:req.params.seminar},function(err,doc){
+		if(err) {next(new Error(err))};
+		if(doc){
+			if(doc.producers[req.params.producerID-1].newProductDecisionReadyPeriod==doc.currentPeriod){
+				res.send(200,'isReady');
+			}else{
+				res.send(200,'unReady');
+			}
+		}else{
+			res.send(404,'there is no contract');
+		}
+	})
+}
+
+exports.submitDecision=function(io){
+	return function(req,res,next){
+		var queryCondition={
+			seminar:req.body.seminar,
+			producerID:req.body.producerID
+		}
+		console.log(queryCondition);
+		seminar.findOne({seminarCode:queryCondition.seminar},function(err,doc){
+			if(err) {next(new Error(err))};
+			if(doc){
+				doc.producers[queryCondition.producerID-1].newProductDecisionReadyPeriod=doc.currentPeriod;
+				console.log(doc.producers[queryCondition.producerID-1].newProductDecisionReadyPeriod);
+				doc.markModified('producers');
+				doc.save(function(err){
+					if(!err){
+						io.sockets.emit('producerBaseChanged', 'this is a baseChanged');
+						res.send(200,'success');
+					}else{
+						io.sockets.emit('producerBaseChanged', 'this is a baseChanged');
+						res.send(400,'fail');
+					}
+				})
+			}else{
+				res.send(404,'there is no contract');
+			}
+		})
+	}
+}
+
 exports.addSeminar=function(req,res,next){
 	
 	var Newseminar = new seminar({

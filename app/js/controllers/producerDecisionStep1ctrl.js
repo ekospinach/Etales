@@ -70,7 +70,19 @@ define(['app'], function(app) {
 					$scope.calculateBrandID=calculateBrandID;
 					$scope.calculateVarID=calculateVarID;
 					$scope.deleteProduct=deleteProduct;
-					showView($scope.producerID,$scope.period,$scope.category,$scope.language);
+					$scope.submitDecision=submitDecision;
+					var url='/checkProducerDecision/'+$rootScope.user.seminar+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+					$http({
+						method:'GET',
+						url:url
+					}).then(function(data){
+						if(data.data=="isReady"){
+							$scope.isReady=true;
+						}else{
+							$scope.isReady=false;
+						}
+						showView($scope.producerID,$scope.period,$scope.category,$scope.language);
+					})
 				return delay.promise;
 			}
 
@@ -591,6 +603,10 @@ define(['app'], function(app) {
 					}
 					console.log('read history info fail:' + err.data);
 				});
+			}
+
+			var submitDecision=function(){
+				ProducerDecisionBase.submitDecision();
 			}
 
 			var addNewProduct=function(parameter){

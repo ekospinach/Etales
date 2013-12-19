@@ -188,25 +188,37 @@ define(['app'], function(app) {
 						}
 					}
 					var urls=new Array();
+					var checkurls=new Array();
 					for(i=0;i<3;i++){
 						urls[i]='/producerProducts/'+(i+1)+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.seminar+'/'+category;
+						checkurls[i]='/checkProducerDecision/'+$rootScope.user.seminar+'/'+(i+1);
 					}
-					(function multipleRequestShooter(urls,idx){
+					(function multipleRequestShooter(checkurls,urls,idx){
 						$http({
 							method:'GET',
-							url:urls[idx]
+							url:checkurls[idx]
+						}).then(function(data){
+							if(data.data=="isReady"){
+								urls[idx]="/";
+							}
+							return $http({
+								method:'GET',
+								url:urls[idx]
+							});
 						}).then(function(data){
 							for(var j=0;j<data.data.length;j++){
-								if(data.data[j].brandID!=0&&data.data[j].varID!=0){
+								if(data.data[j].brandID!=undefined&&data.data[j].brandID!=0&&data.data[j].varID!=0){
 									data.data[j].variantID=data.data[j].varID;
 									data.data[j].select=false;
 									orderProducts.push(data.data[j]);
 								}
 							}
-						},function(data){}).finally(function(){
+						},function(data){
+
+						}).finally(function(){
 							if(idx!=2){
 								idx++;
-								multipleRequestShooter(urls,idx);
+								multipleRequestShooter(checkurls,urls,idx);
 							}else{
 								$scope.orderProducts=orderProducts;
 								var indexs=new Array();
@@ -220,10 +232,9 @@ define(['app'], function(app) {
 								for(i=indexs.length-1;i>=0;i--){
 									$scope.orderProducts.splice(indexs[i],1);
 								}
-								console.log($scope.orderProducts);
 							}
 						})
-					})(urls,0);
+					})(checkurls,urls,0);
 				},function(){
 					console.log('showView fail');
 				});

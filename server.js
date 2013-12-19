@@ -119,6 +119,10 @@ app.get('/retailerCurrentDecision/:seminar/:period/:retailerID/:brandName/:varNa
 app.post('/getCurrentUnitCost', require('./api/utils/unitCost').getCurrentUnitCost);
 app.get('/currentPeriod/:seminar',require('./api/models/seminar.js').getCurrentPeriod);
 
+//seminar 
+app.get('/checkProducerDecision/:seminar/:producerID',require('./api/models/seminar.js').checkProducerDecision);
+app.post('/submitDecision',require('./api/models/seminar.js').submitDecision(io));
+
 app.post('/deleteOrderData',require('./api/models/retailerDecision.js').deleteOrderData(io));
 app.post('/deleteDetailData',require('./api/models/contract.js').deleteContractDetailData(io));
 

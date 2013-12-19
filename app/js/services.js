@@ -435,6 +435,22 @@ define(['angular',
 					 	$rootScope.$broadcast('producerDecisionBaseChanged', base);
 					 })
 				},
+				submitDecision:function(){
+					$rootScope.$broadcast('producerDecisionBaseChanged', base);
+					var queryCondition={
+						producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),
+						seminar:$rootScope.user.seminar
+					}
+					$http({
+						method:'POST',
+						url:'/submitDecision',
+						data:queryCondition
+					}).then(function(data){
+						$rootScope.$broadcast('producerDecisionBaseChanged', base);
+					},function(err){
+						$rootScope.$broadcast('producerDecisionBaseChanged', base);
+					})
+				},
 				getBase : function(){
 					return base;
 				},
