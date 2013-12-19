@@ -44,6 +44,8 @@ const
   dummySeminar = 'MAY';
   aCategories : array[TCategories] of string = ('Elecsories', 'HealthBeauties');
   aMarkets : array[TMarketsTotal] of string = ('Urban', 'Rural', 'Total');
+  aChannels : array[TAllRetailers] of string =
+    ('Retailer 1', 'Retailer 2', 'Traditional Trade', 'e-Mall');
 
   msBrandAwareness    = 1;
   msMarketShareVol    = 2;
@@ -51,11 +53,15 @@ const
   msAvgMarketPrice    = 4;
   msBrandVisibility   = 5;
   msConsumerOfftake   = 6;
+  msRetailPerceptions = 7;
+  msShopperBehavior   = 8;
 
   colsItemPeriods     = 1;
   colsBrnPrevCur      = 2;
   colsBrnSeg          = 3;
   colsBrnChannel      = 4;
+  colsRetPerception   = 5;
+  colsRetSeg          = 6;
 
 var
    i: integer;
@@ -299,6 +305,38 @@ var
           Result.O[''] := SO('{id: "0", labelENG: "eMall", labelRUS: "и-Молл", labelCHN:  "网上商城", type: "number" }');
         end;
 
+      //channel+segments
+      if colType = colsRetSeg then
+        begin
+          Result.O[''] := SO('{id: "0", labelENG: "Channel", labelRUS: "Канал", labelCHN: "分销渠道", type: "string" }');
+          // now we need to distinguish which category we use
+          if curCategory = ElecsoriesID then
+            begin
+              Result.O[''] := SO('{id: "1", labelENG: "Price Sensitive", labelRUS: "Чувствительные к цене", labelCHN:  "股价敏感资料", type: "number" }');
+              Result.O[''] := SO('{id: "2", labelENG: "Value for Money", labelRUS: "Соотношение цены и качества", labelCHN:  "抵食", type: "number" }');
+              Result.O[''] := SO('{id: "3", labelENG: "Fashion", labelRUS: "Модники", labelCHN:  "时尚", type: "number" }');
+              Result.O[''] := SO('{id: "4", labelENG: "Freaks", labelRUS: "Чудаки", labelCHN:  "怪胎", type: "number" }');
+              Result.O[''] := SO('{id: "5", labelENG: "Total", labelRUS: "Итого", labelCHN:  "合计", type: "number" }');
+            end;
+          if curCategory = HealthBeautiesID then
+            begin
+              Result.O[''] := SO('{id: "1", labelENG: "Price Sensitive", labelRUS: "Чувствительные к цене", labelCHN:  "股价敏感资料", type: "number" }');
+              Result.O[''] := SO('{id: "2", labelENG: "Value for Money", labelRUS: "Соотношение цены и качества", labelCHN:  "抵食", type: "number" }');
+              Result.O[''] := SO('{id: "3", labelENG: "Health Conscious", labelRUS: "Заботящиеся о здоровьи", labelCHN:  "时尚", type: "number" }');
+              Result.O[''] := SO('{id: "4", labelENG: "Impatient", labelRUS: "Нетерпеливые", labelCHN:  "急躁", type: "number" }');
+              Result.O[''] := SO('{id: "5", labelENG: "Total", labelRUS: "Итого", labelCHN:  "合计", type: "number" }');
+            end;
+        end;
+
+      if colType = colsRetPerception then
+        begin
+          Result.O[''] := SO('{id: "0", labelENG: "Channel", labelRUS: "Канал", labelCHN: "分销渠道", type: "string" }');
+          Result.O[''] := SO('{id: "1", labelENG: "Price", labelRUS: "Цена", labelCHN:  "价格", type: "number" }');
+          Result.O[''] := SO('{id: "2", labelENG: "Convenience", labelRUS: "Удобство", labelCHN:  "方便", type: "number" }');
+          Result.O[''] := SO('{id: "3", labelENG: "Assortment", labelRUS: "Ассортимент", labelCHN:  "品种", type: "number" }');
+        end;
+
+
       //facts+cur+prev
       //facts+team
       //facts+cat
@@ -341,7 +379,7 @@ var
         if filter and (j_row.S['c[0].v'] <> '') then Result.O[''] := j_row;
         //writeln(j_row.S['c[0].v']);
         end;
-      end;
+    end;
 
     function collectRowsSeg(docType, curPeriod, curCat, curMkt : Integer; filter : Boolean=True): ISuperObject;
     var
@@ -381,7 +419,59 @@ var
         if filter and (j_row.S['c[0].v'] <> '') then Result.O[''] := j_row;
         //writeln(j_row.S['c[0].v']);
         end;
+    end;
+
+    //what should we do with market?
+    function collectRowsRetPerceptions(pMkt: Integer): ISuperObject;
+    var
+      chn: Integer;
+      perc: TStorePerceptions;
+      jrow, jcol: ISuperObject;
+    begin
+      Result := SA([]);
+      for chn := Low(TAllRetailers) to High(TAllRetailers) do
+      begin
+        jrow  := SO;
+        jcol  := SA([]);
+        //first col with channel aka retailer name
+        jcol.O[''] := SO('{"v": ' +  aChannels[chn] + '}');
+        // n cols with data
+        for perc := PRICE to ASSORTMENT do
+        begin
+          jcol.O[''] := SO('{"v": "' +
+            FormatFloat('0.00',
+            currentResult.r_Retailers[chn].rr_Markets[pMkt].rm_StorePerceptions[perc])
+            + '"}');
+        end;
+        jrow['c'] := jcol;
+        Result.O[''] := jrow;
       end;
+    end;
+
+    function collectRowsShopper(pMkt,pCat: Integer): ISuperObject;
+    var
+      chn, seg: Integer;
+      jrow, jcol: ISuperObject;
+    begin
+      Result := SA([]);
+      for chn := Low(TAllRetailers) to High(TAllRetailers) do
+      begin
+        jrow  := SO;
+        jcol  := SA([]);
+        //first col with channel aka retailer name
+        jcol.O[''] := SO('{"v": ' +  aChannels[chn] + '}');
+        // n cols with data
+        for seg := Low(TSegmentsTotal) to High(TSegmentsTotal) do
+        begin
+          jcol.O[''] := SO('{"v": "' +
+            FormatFloat('0.00',
+            currentResult.r_Retailers[chn].rr_Quarters[pMkt,pCat].rq_Buyers[seg])
+            + '"}');
+        end;
+        jrow['c'] := jcol;
+        Result.O[''] := jrow;
+      end;
+    end;
 
     function collectRowsChan(docType, curPeriod, curCat, curMkt : Integer; filter: Boolean=True): ISuperObject;
     // we need to collect data by channels (aka retailers) - they are cols/cells here
@@ -487,8 +577,10 @@ var
         msMarketShareVol    : s_str := 'Market Share (Volume)';
         msMarketShareVal    : s_str := 'Market Share (Value)';
         msAvgMarketPrice    : s_str := 'Average Net Market Price';
-        msBrandVisibility   : s_str := 'Brand Visibility Share';
+        msBrandVisibility   : s_str := 'Brand Visibility Share (shelf space + in-store activity)';
         msConsumerOfftake   : s_str := 'Consumer off-take';
+        msRetailPerceptions : s_str := 'Retailer Perceptions';
+        msShopperBehavior   : s_str := 'Shopper Behavior';
       end;
       j_o.S['titleENG'] := s_str;
 
@@ -498,8 +590,10 @@ var
         msMarketShareVol    : s_str := 'Доля рынка (Объем)';
         msMarketShareVal    : s_str := 'Доля рынка (Стоимость)';
         msAvgMarketPrice    : s_str := 'Средневзвешенная рыночная цена';
-        msBrandVisibility   : s_str := 'Видимость марки ';
+        msBrandVisibility   : s_str := 'Видимость марки (полка + акции)';
         msConsumerOfftake   : s_str := 'Рыночные продажи';
+        msRetailPerceptions : s_str := 'Восприятие ритейлеров';
+        msShopperBehavior   : s_str := 'Поведение покупателей';
       end;
       j_o.S['titleRUS'] := s_str;
 
@@ -509,8 +603,10 @@ var
         msMarketShareVol    : s_str := '市场份额（卷）';
         msMarketShareVal    : s_str := '市场份额（价值）';
         msAvgMarketPrice    : s_str := '平均净市场价格';
-        msBrandVisibility   : s_str := '品牌知名度股份';
+        msBrandVisibility   : s_str := '品牌知名度股份（货架空间+店内活动）';
         msConsumerOfftake   : s_str := '消费者承购';
+        msRetailPerceptions : s_str := '零售商看法';
+        msShopperBehavior   : s_str := '购物者行为';
       end;
       j_o.S['titleCHN'] := s_str;
 
@@ -542,6 +638,8 @@ var
               msAvgMarketPrice    : j_ch['data.cols'] := collectColumns(colsBrnChannel,0,cat);
               msBrandVisibility   : j_ch['data.cols'] := collectColumns(colsBrnChannel,0,cat);
               msConsumerOfftake   : j_ch['data.cols'] := collectColumns(colsBrnChannel,0,cat);
+              msRetailPerceptions : j_ch['data.cols'] := collectColumns(colsRetPerception,0,cat);
+              msShopperBehavior   : j_ch['data.cols'] := collectColumns(colsRetSeg,0,cat);
             end;
             //rows
             case docType of
@@ -551,6 +649,8 @@ var
               msAvgMarketPrice    : j_ch['data.rows'] := collectRowsChan(msAvgMarketPrice,currentPeriod,cat,mkt);
               msBrandVisibility   : j_ch['data.rows'] := collectRowsChan(msBrandVisibility,currentPeriod,cat,mkt);
               msConsumerOfftake   : j_ch['data.rows'] := collectRowsChan(msConsumerOfftake,currentPeriod,cat,mkt);
+              msRetailPerceptions : j_ch['data.rows'] := collectRowsRetPerceptions(mkt);
+              msShopperBehavior   : j_ch['data.rows'] := collectRowsShopper(mkt,cat);
             end;
             //j_ch['data.rows'] := collectRows2(1,currentPeriod,cat,mkt);
             //add chart to Collection
@@ -576,6 +676,8 @@ var
       oJsonFile[''] := serveRequest(msAvgMarketPrice);
       oJsonFile[''] := serveRequest(msBrandVisibility);
       oJsonFile[''] := serveRequest(msConsumerOfftake);
+      oJsonFile[''] := serveRequest(msRetailPerceptions);
+      oJsonFile[''] := serveRequest(msShopperBehavior);
       s_str := 'out' + '.json';
       oJsonFile.SaveTo(s_str, true, false);
       writeln(oJsonFile.AsJSon(False,False));

@@ -595,8 +595,8 @@ var
     begin
       pVar.drv_BrandID := jo.I['brandID'];
       pVar.drv_VariantID := jo.I['variantID'];
-//      StringToWideChar(jo.S['brandName'], pVar.drv_BrandName, BrandNameLength);
-//      StringToWideChar(jo.S['varName'], pVar.drv_VariantName, VarNameLength);
+      StringToWideChar(jo.S['brandName'], pVar.drv_BrandName, BrandNameLength + 1);
+      StringToWideChar(jo.S['varName'], pVar.drv_VariantName, VarNameLength + 1);
       pVar.drv_DateofBirth := jo.I['dateOfBirth'];
       pVar.drv_DateOfDeath := jo.I['dateOfDeath'];
       pVar.drv_Order := jo.D['order'];
@@ -640,7 +640,7 @@ var
     var
       I : Integer;
     begin
-      StringToWideChar(jo.S['varName'],pVar.drplv_VariantName,BrandNameLength) ;
+      StringToWideChar(jo.S['varName'],pVar.drplv_VariantName,BrandNameLength + 1) ;
       pVar.drplv_VarID := jo.I['varID'];
       pVar.drplv_ParentBrandID := jo.I['parentBrandID'];
       pVar.drplv_DateOfDeath := jo.I['dateOfDeath'];
@@ -655,7 +655,7 @@ var
     var
       ivar : Integer;
     begin
-      StringToWideChar(jo.S['brandName'],pBrand.drpl_BrandName,BrandNameLength);
+      StringToWideChar(jo.S['brandName'],pBrand.drpl_BrandName,BrandNameLength + 1);
       pBrand.drpl_BrandID := jo.I['brandID'];
       pBrand.drpl_ParentCompanyID := jo.I['parentCompanyID'];
       pBrand.drpl_DateofBirth := jo.I['dateOfBirth'];
@@ -832,7 +832,7 @@ begin
 
 //    // initialize globals
 //        currentSeminar := getSeminar;
-//        currentPeriod := getPeriod;
+//        currentPeriod := 0;
 //        currentRetailer := getRetailer;
 //          oJsonFile := SO;
 //          oJsonFile := tsuperobject.ParseString('{"test" : "yes"}', TRUE);
@@ -856,14 +856,15 @@ begin
 //          writeln(currentdecision.dr_RetailerID);
 //
 ////
-////    {** Read results file **}
-////        vReadRes := ReadRetdecisionRecord(currentPeriod,currentRetailer,
-////          currentDecision,DataDirectory,currentSeminar); // read Decision file
-////
-////    // Now let's make some JSON stuff here
-////        if vReadRes = 0 then
-////        writeln('debug');
-////         makeJson;
+//    {** Read results file **}
+//        vReadRes := ReadRetdecisionRecord(currentPeriod,currentRetailer,
+//          currentDecision,DataDirectory,currentSeminar); // read Decision file
+
+//    // Now let's make some JSON stuff here
+//        if vReadRes = 0 then
+//        writeln('debug');
+//         makeJson;
+
 //    writeln(#10'press enter ...');
 //    readln;
 //    WriteLn('</BODY></HTML>');

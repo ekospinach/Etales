@@ -2536,50 +2536,50 @@ var
           end;
         result.A['rows'].Add(jo);
 
-      //10 pv_InStoreActivitiesFee
-        jo := SO;
-        jo.O['c'] := SA([]);
-        jf := SO(aProfitabilityProducer[10]);
-        jo.A['c'].Add(jf);
-        for I := Low(TAllRetailers) to High(TAllRetailers) do
-          begin
-            jr := SO('{f: "", v: "' +
-              FormatFloat('0.00',
-                pp.pc_InStoreActivitiesFee[I, pmark]) +
-              '"}');
-            jo.A['c'].Add(jr);
-          end;
-        result.A['rows'].Add(jo);
+//      //10 pv_InStoreActivitiesFee
+//        jo := SO;
+//        jo.O['c'] := SA([]);
+//        jf := SO(aProfitabilityProducer[10]);
+//        jo.A['c'].Add(jf);
+//        for I := Low(TAllRetailers) to High(TAllRetailers) do
+//          begin
+//            jr := SO('{f: "", v: "' +
+//              FormatFloat('0.00',
+//                pp.pc_InStoreActivitiesFee[I, pmark]) +
+//              '"}');
+//            jo.A['c'].Add(jr);
+//          end;
+//        result.A['rows'].Add(jo);
 
-      //11  pv_InventoryHoldingCost
-        jo := SO;
-        jo.O['c'] := SA([]);
-        jf := SO(aProfitabilityProducer[11]);
-        jo.A['c'].Add(jf);
-        for I := Low(TAllRetailers) to High(TAllRetailers) do
-          begin
-            jr := SO('{f: "", v: "' +
-              FormatFloat('0.00',
-                pp.pc_InventoryHoldingCost[I, pmark]) +
-              '"}');
-            jo.A['c'].Add(jr);
-          end;
-        result.A['rows'].Add(jo);
+//      //11  pv_InventoryHoldingCost
+//        jo := SO;
+//        jo.O['c'] := SA([]);
+//        jf := SO(aProfitabilityProducer[11]);
+//        jo.A['c'].Add(jf);
+//        for I := Low(TAllRetailers) to High(TAllRetailers) do
+//          begin
+//            jr := SO('{f: "", v: "' +
+//              FormatFloat('0.00',
+//                pp.pc_InventoryHoldingCost[I, pmark]) +
+//              '"}');
+//            jo.A['c'].Add(jr);
+//          end;
+//        result.A['rows'].Add(jo);
 
-      //12 pv_PromotionalSupport
-        jo := SO;
-        jo.O['c'] := SA([]);
-        jf := SO(aProfitabilityProducer[12]);
-        jo.A['c'].Add(jf);
-        for I := Low(TAllRetailers) to High(TAllRetailers) do
-          begin
-            jr := SO('{f: "", v: "' +
-              FormatFloat('0.00',
-                pp.pc_PromotionalSupport[I, pmark]) +
-              '"}');
-            jo.A['c'].Add(jr);
-          end;
-        result.A['rows'].Add(jo);
+//      //12 pv_PromotionalSupport
+//        jo := SO;
+//        jo.O['c'] := SA([]);
+//        jf := SO(aProfitabilityProducer[12]);
+//        jo.A['c'].Add(jf);
+//        for I := Low(TAllRetailers) to High(TAllRetailers) do
+//          begin
+//            jr := SO('{f: "", v: "' +
+//              FormatFloat('0.00',
+//                pp.pc_PromotionalSupport[I, pmark]) +
+//              '"}');
+//            jo.A['c'].Add(jr);
+//          end;
+//        result.A['rows'].Add(jo);
 
       //13 pv_NetFinancialCost
         jo := SO;
@@ -2856,7 +2856,7 @@ var
       //7     rq_AdjustedGrossProfitMargin
         jo := SO;
         jo.O['c'] := SA([]);
-        jf := SO(aProfitabilityRetail[1]);
+        jf := SO(aProfitabilityRetail[7]);
         jo.A['c'].Add(jf);
         for vmnft := Low(TAllProducers) to High(TAllProducers) do
           begin
@@ -2886,7 +2886,7 @@ var
       //9      rq_AdjustedGrossProfitPerShelfSpace
         jo := SO;
         jo.O['c'] := SA([]);
-        jf := SO(aProfitabilityRetail[1]);
+        jf := SO(aProfitabilityRetail[9]);
         jo.A['c'].Add(jf);
         for vmnft := Low(TAllProducers) to High(TAllProducers) do
           begin

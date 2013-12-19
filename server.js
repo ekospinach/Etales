@@ -1,4 +1,4 @@
-require('newrelic');
+//require('newrelic');
 
 var path    = require('path'),
 
@@ -45,6 +45,10 @@ app.post('/logout', require('./api/auth').logout);
 app.post('/initialiseSeminar', require('./api/initialiseSeminar.js').initialiseSeminar(io));
 app.post('/initialiseSeminarRetailer',require('./api/initialiseSeminar.js').initialiseSeminarRetailer(io));
 app.post('/passiveSeminar', require('./api/passiveSeminar.js').passiveSeminar(io));
+app.post('/getPassiveDecision', require('./api/passiveSeminar.js').getPassiveDecision(io));
+app.post('/setPassiveDecision', require('./api/passiveSeminar.js').setPassiveDecision(io));
+app.post('/importResult', require('./api/passiveSeminar.js').importResult(io));
+
 app.post('/runSeminar', require('./api/kernelSeminar.js').runSeminar(io));
 
 app.post('/contract');

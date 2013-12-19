@@ -1,6 +1,6 @@
 define(['app','socketIO'], function(app) {
 
-	app.controller('loginCtrl',['$scope', '$http', '$location','$rootScope','Auth','Label', function($scope, $http, $location,$rootScope,Auth,Label) {
+	app.controller('loginCtrl',['$scope', '$http', '$location','$rootScope','Auth', function($scope, $http, $location,$rootScope,Auth) {
 		// You can access the scope of the controller from here
 
 		    $rootScope.loginFooter="container";
@@ -10,6 +10,7 @@ define(['app','socketIO'], function(app) {
 
 		var userRoles = routingConfig.userRoles;
 
+		$scope.welcomeMessage = 'hey this is loginCtrl.js!';
 		$scope.loginOpts = {
 			backdropFade: true,
 			dialogFade:true
@@ -19,7 +20,6 @@ define(['app','socketIO'], function(app) {
 			dialogFade:true
 		};
 		$scope.openLoginModal=function(){
-			$scope.userRole='1';
 			$scope.loginModal=true;
 		}
 		var closeLoginModal=function(){
@@ -56,26 +56,31 @@ define(['app','socketIO'], function(app) {
 				password:password,
 				rememberme:true
 			},function(res){
-				showbubleMsg(Label.getContent('Login successful'),2);
+				showbubleMsg('login success.',2);
 				var url="/currentPeriod/"+seminar;
 				$http.get(url).success(function(data){
+					//console.log(data);
+					//startfrom --->endwith
 					$rootScope.currentPeriod=data.currentPeriod;
 					$rootScope.rootStartFrom=-2;
 					$rootScope.rootEndWith=$rootScope.currentPeriod-1;
+					//console.log($rootScope.currentPeriod);
 					closeLoginModal();
 				});
+				
+
 			},function(res){
-				showbubleMsg(Label.getContent('Login fail'),1);
+				showbubleMsg('login failure.',1);
 			})			
 		}
 
 		$scope.adminLogin=function(){
 			if($scope.adminSeminar=="MAY"&&$scope.adminPassword=="123"){
-				showbubleMsg(Label.getContent('Login successful'),5);
+				showbubleMsg('login success',5);
 				closeAdminLoginModal();
 				$location.path('/admin');
 			}else{
-                showbubleMsg(Label.getContent('Login fail'),4);
+                showbubleMsg('Failed to login',4);
 			}
 		}
 
@@ -84,32 +89,32 @@ define(['app','socketIO'], function(app) {
 	 		switch(status){
 	 			case 1: 
 	 				$scope.userBubleClassName = 'alert alert-danger'; 
-	 				$scope.userBubleTitle = Label.getContent('Error')+'!';
+	 				$scope.userBubleTitle = 'Error!';
 	 				$scope.userBubleMsg=content;
 	 				break;
 	 			case 2: 
 	 				$scope.userBubleClassName = 'alert alert-success'; 
-	 				$scope.userBubleTitle = Label.getContent('Success')+'!';
+	 				$scope.userBubleTitle = 'Success!';
 	 				$scope.userBubleMsg=content;
 	 				break;
 	 			case 3:
 	 				$scope.userBubleClassName = 'alert alert-block'; 
-	 				$scope.userBubleTitle = Label.getContent('Warning')+'!';
+	 				$scope.userBubleTitle = 'Warning!';
 	 				$scope.userBubleMsg=content;
 	 				break;	
 	 			case 4: 
 	 				$scope.adminBubleClassName = 'alert alert-danger'; 
-	 				$scope.adminBubleTitle = Label.getContent('Error')+'!';
+	 				$scope.adminBubleTitle = 'Error!';
 	 				$scope.adminBubleMsg=content;
 	 				break;
 	 			case 5: 
 	 				$scope.adminBubleClassName = 'alert alert-success'; 
-	 				$scope.adminBubleTitle = Label.getContent('Success')+'!';
+	 				$scope.adminBubleTitle = 'Success!';
 	 				$scope.adminBubleMsg=content;
 	 				break;
 	 			case 6:
 	 				$scope.adminBubleClassName = 'alert alert-block'; 
-	 				$scope.adminBubleTitle = Label.getContent('Warning')+'!';
+	 				$scope.adminBubleTitle = 'Warning!';
 	 				$scope.adminBubleMsg=content;
 	 				break;	  			
 	 			default:

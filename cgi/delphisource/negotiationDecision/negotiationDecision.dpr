@@ -40,7 +40,7 @@ const
   DecisionFileName = 'Negotiations.';
   dummyNo = 1;
   DataDirectory = 'C:\E-project\ecgi\';
-  dummySeminar = 'MAY';
+  dummySeminar = 'ROUND1';
   aCategories : array[TCategories] of string = ('Elecsories', 'HealthBeauties');
   aMarkets : array[TMarketsTotal] of string = ('Urban', 'Rural', 'Total');
 
@@ -271,45 +271,40 @@ var
     Result := vTempResult;
   end;
 
-  function WriteNegoRecordByProDecision(pPeriodNumber : TPeriodNumber;
-    var pDecision: TAllDeals; vDataDirectory : AnsiString; vSeminarCode : AnsiString) : Integer;
-  var
-    vFile    : file of TAllDeals;
-    vDecision : TAllDeals;
-    vFileName   : String;
-    vTempResult : integer;
-  begin
-    vFileName := vDataDirectory + NegotiationsFileName + vSeminarCode;
-    if FileExists(vFileName) = false then
+    function WriteNegoDecisionRecord(pPeriodNumber: TPeriodNumber; var pDecision : TAllDeals; vDatadirectory:AnsiString; vSeminarCode:AnsiString) : Integer;
+    var
+      vFile    : file of TAllDeals;
+      vFileName   : String;
+      vTempResult : integer;
     begin
-        Writeln('negotiation file does not exist:' + vFileName);
-        Result := -1;
-        exit;
+      vFileName := vDataDirectory +  NegotiationsFileName + vSeminarCode;
+      if FileExists(vFileName) = false then
+      begin
+          Writeln('decision file does not exist:' + vFileName);
+          Result := -1;
+          exit;
+      end;
+
+      try
+        AssignFile( vFile, vFileName );
+        Reset( vFile );
+        if ( pPeriodNumber < HistoryEnd ) then pPeriodNumber := HistoryEnd;
+        Seek( vFile, pPeriodNumber - HistoryStart);
+        Write( vFile, pDecision);
+        CloseFile( vFile );
+        vTempResult := 0;
+      except
+        on E: EInOutError do
+        begin
+       //   showMsg(exceptionlist, 'Error: ' + IntToStr( E.ErrorCode ) + #13 + #10 + vFileName + #13 + #10 + E.Message );
+          vTempResult := E.ErrorCode;
+          CloseFile( vFile );
+        end;
+      end;
+      Result := vTempResult;
+
     end;
 
-    try
-        try
-          AssignFile( vFile, vFileName );
-          Reset( vFile );
-          if ( pPeriodNumber < HistoryEnd ) then pPeriodNumber := HistoryEnd;
-          Seek( vFile, pPeriodNumber - HistoryStart );
-          Read( vFile, vDecision);
-          vDecision := pDecision;
-          Seek( vFile, pPeriodNumber - HistoryStart );
-          Write( vFile, vDecision);
-          vTempResult := 0;
-        except
-          on E: EInOutError do
-          begin
-            Writeln('Error: ' + IntToStr( E.ErrorCode ) + #13 + #10 + vFileName + #13 + #10 + E.Message );
-            vTempResult := E.ErrorCode;
-          end;
-        end;
-    finally
-       CloseFile( vFile );
-    end;
-    Result := vTempResult;
-  end;
 
     function variantsDetailsSchema(var curVariantDetails: TVariantDetails): ISuperObject;
     var
@@ -751,6 +746,9 @@ begin
 //          Writeln('currentSeminar : ' + currentSeminar);
 
 
+      // initiate temporary binary structure with 0
+          FillChar(currentAllDeals, SizeOf(TALLDeals), #0);
+
       // now we have process JSON and convert it into binary stucture
           fromJSONallDealSchema(currentAllDeals, oJsonFile);
 
@@ -758,7 +756,7 @@ begin
 //          oJsonFile.SaveTo('out.json', true, false);
 
       // write tranlated JSON to binary file
-          vReadRes := WriteNegoRecordByProDecision(currentPeriod,
+          vReadRes := WriteNegoDecisionRecord(currentPeriod,
             currentAllDeals,DataDirectory,currentSeminar); // update Decision file
 
       // shake hands
@@ -771,38 +769,41 @@ begin
 //    WriteAllEnvironVariables;
 
 
-////    // initialize globals
+//    // initialize globals
 //        currentSeminar := getSeminar;
 //        currentPeriod := getPeriod;
 //////        currentRetailer := getRetailer;
 //////          oJsonFile := SO;
 //////          oJsonFile := tsuperobject.ParseString('{"test" : "yes"}', TRUE);
 //////          Writeln(oJsonFile.AsString);
-//          sFile := 'negotiationExample2.json';
+//          sFile := 'postJSON.json';
 //          Writeln(sFile);
 //          oJsonFile := TSuperObject.ParseFile(sFile,TRUE);
 //          Writeln(oJsonFile.AsString);
+////////
+//////        vReadRes := ReadNegoRecordByProDecision(currentPeriod,currentAllDeals,
+//////          DataDirectory,currentSeminar); // read Nego file
 //////
-////        vReadRes := ReadNegoRecordByProDecision(currentPeriod,currentAllDeals,
-////          DataDirectory,currentSeminar); // read Nego file
-////
-////    // Now let's make some JSON stuff here
-////        if vReadRes = 0 then
-////          makeJson;
-////
-////          currentSeminar := oJsonFile['seminar'].AsString;
-////          currentPeriod := oJsonFile['period'].AsInteger;
+//////    // Now let's make some JSON stuff here
+//////        if vReadRes = 0 then
+//////          makeJson;
 //////
-////          Writeln('currentPeriod : ' + IntToStr(currentPeriod));
-////          Writeln('currentSeminar : ' + currentSeminar);
-//////
-//////      // now we have process JSON and convert it into binary stucture
+//////          currentSeminar := oJsonFile['seminar'].AsString;
+//////          currentPeriod := oJsonFile['period'].AsInteger;
+////////
+//////          Writeln('currentPeriod : ' + IntToStr(currentPeriod));
+//////          Writeln('currentSeminar : ' + currentSeminar);
+////////
+      // initiate temporary binary structure with 0
+//          FillChar(currentAllDeals, SizeOf(TALLDeals), #0);
+
+      // now we have process JSON and convert it into binary stucture
 //          fromJSONallDealSchema(currentAllDeals, oJsonFile);
+
+////////    {** Read results file **}
+//          vReadRes := WriteNegoDecisionRecord(currentPeriod,
+//            currentAllDeals,DataDirectory,currentSeminar); // update Decision file
 //////
-//////    {** Read results file **}
-////          vReadRes := WriteNegoRecordByProDecision(currentPeriod,
-////            currentAllDeals,DataDirectory,currentSeminar); // update Decision file
-////
 //    writeln(#10'press enter ...');
 //    readln;
 //    WriteLn('</BODY></HTML>');

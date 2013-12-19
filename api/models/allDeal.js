@@ -421,6 +421,8 @@ function fillNegotiationItemByContractDetail(categoryDeal, negotiationItem, prod
                                                     }else{
                                                       categoryDeal.brandsDetails[brandCount].useVariantsDetails = true;
                                                       categoryDeal.brandsDetails[brandCount].useMarketsDetails = false;
+                                                      categoryDeal.brandsDetails[brandCount].dateOfBirth = brand.dateOfBirth;
+                                                      categoryDeal.brandsDetails[brandCount].dateOfDeath = brand.dateOfDeath;                                                      
                                                       console.log('User Varinat Details, enter varinat loop...');
 
                                                       (function loopVariant(brandCount, varCount, producerID, seminar, period){
@@ -438,16 +440,16 @@ function fillNegotiationItemByContractDetail(categoryDeal, negotiationItem, prod
                                                                 categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].dateOfDeath = variant.dateOfDeath;
                                                                 switch(varCount){
                                                                   case 0:
-                                                                    categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[0] = contractDetailsDoc.variant_A_ruralValue;
-                                                                    categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[1] = contractDetailsDoc.variant_A_urbanValue;                  
+                                                                    categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[0] = contractDetailsDoc.variant_A_urbanValue;                  
+                                                                    categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[1] = contractDetailsDoc.variant_A_ruralValue;
                                                                     break;
                                                                   case 1:
-                                                                    categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[0] = contractDetailsDoc.variant_B_ruralValue;
-                                                                    categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[1] = contractDetailsDoc.variant_B_urbanValue;                  
+                                                                    categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[0] = contractDetailsDoc.variant_B_urbanValue;                  
+                                                                    categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[1] = contractDetailsDoc.variant_B_ruralValue;
                                                                     break;
                                                                   case 2:
-                                                                    categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[0] = contractDetailsDoc.variant_C_ruralValue;
-                                                                    categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[1] = contractDetailsDoc.variant_C_urbanValue;                  
+                                                                    categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[0] = contractDetailsDoc.variant_C_urbanValue;                  
+                                                                    categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[1] = contractDetailsDoc.variant_C_ruralValue;
                                                                     break;   
                                                                 }
 
