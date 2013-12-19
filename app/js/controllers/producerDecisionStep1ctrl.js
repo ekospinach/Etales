@@ -1,6 +1,6 @@
 define(['app'], function(app) {
 		app.controller('producerDecisionStep1Ctrl',
-			['$scope','$q','$rootScope','$http','$filter','ProducerDecision','ProducerDecisionBase','Label', function($scope,$q,$rootScope,$http,$filter,ProducerDecision,ProducerDecisionBase,Label) {
+			['$scope','$q','$rootScope','$location','$http','$filter','ProducerDecision','ProducerDecisionBase','Label', function($scope,$q,$rootScope,$location,$http,$filter,ProducerDecision,ProducerDecisionBase,Label) {
 			$rootScope.decisionActive="active";
 			$rootScope.loginCss="";
 		    $rootScope.loginFooter="bs-footer";
@@ -678,7 +678,8 @@ define(['app'], function(app) {
 					url:'/submitDecision',
 					data:queryCondition
 				}).then(function(data){
-					ProducerDecisionBase.reload({producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
+					$location.path('/producerDecisionStep2');
+					/*ProducerDecisionBase.reload({producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 						$scope.pageBase = base;	
 					}).then(function(){
 						return promiseStep1();
@@ -686,7 +687,7 @@ define(['app'], function(app) {
 						console.log('from ctr: ' + reason);
 					}, function(update){
 						console.log('from ctr: ' + update);
-					};
+					};*/
 				},function(err){
 					console.log('fail');
 				})
