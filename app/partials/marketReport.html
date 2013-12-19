@@ -69,12 +69,12 @@
 				</h3>
 			</div>
 
-			<h4 class="pull-left"><span class="label label-warning">{{Label.getContent(cat)}}</span></h4>
+			<h4 class="pull-left"><span class="label label-warning" ng-show="titleENG!='Retailer Perceptions'">{{Label.getContent(cat)}}</span></h4>
 			<h4 class="pull-left" style="margin-left:10px"><span class="label label-success">{{Label.getContent(market)}}</span></h4>
 			<h4 class="pull-left" style="margin-left:10px"><span class="label label-info">{{Label.getContent('Period')}}:{{period}}</span></h4>
 			<div style="padding:1px 0;clear:both"></div>
 			<div class="btn-group">
-				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+				<button type="button" class="btn btn-primary dropdown-toggle" ng-show="titleENG!='Retailer Perceptions'" data-toggle="dropdown">
 			    {{Label.getContent('Category')}}<span class="caret"></span>
 			 	</button>
 			  	<ul class="dropdown-menu">

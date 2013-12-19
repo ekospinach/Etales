@@ -33,10 +33,15 @@ define(['app','socketIO','routingConfig'], function(app) {
 		  	$scope.cat=cat;
 		    $scope.market=market;
 		    $scope.language=language;
-
-		    $scope.reportCollection=_.find(myreport.reportCollection,function(obj){
-		      return (obj.market==market&&obj.category==cat)
-		    });
+		    if($scope.titleENG=="Retailer Perceptions"){
+		    	$scope.reportCollection=_.find(myreport.reportCollection,function(obj){
+		    		return (obj.market==market)
+		    	});
+		    }else{
+		    	$scope.reportCollection=_.find(myreport.reportCollection,function(obj){
+			    	return (obj.market==market&&obj.category==cat)
+			    });
+		    }
 	  	}
 
 
