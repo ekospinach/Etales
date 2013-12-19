@@ -14,13 +14,13 @@
 </div>
 
 <div class="container bs-docs-container">
+    <br>
+    <div class="alert alert-warning" ng-show="isLock"><strong>{{Label.getContent('Warning')}}!</strong> {{Label.getContent('Warning Info')}} </div>
     <div class="page-header">
         <h3>{{Label.getContent('Contract Name')}} : {{contractInfo.contractCode.substring(0,contractInfo.contractCode.indexOf('_'))}}
             <small>
                 {{Label.getContent('Producer')}} {{contractInfo.producerID}} & {{Label.getContent('Retailer')}} {{contractInfo.retailerID}}, {{Label.getContent('Period')}}:{{contractInfo.period}}, {{Label.getContent('Seminar')}}:{{contractInfo.seminar}}
             </small>
-            <strong style="color:red" ng-show="isLock">{{Label.getContent('Warning')}}!</strong>
-            <small style="color:red" ng-show="isLock">{{Label.getContent('Warning Info')}}</small>       
         </h3>
     </div>
 
@@ -31,7 +31,7 @@
     
     <div>
         <div class="btn-group">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" ng-disabled="refreshingProcess">
+            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" ng-disabled="refreshingProcess">
                 {{Label.getContent('Category')}}<span class="caret"></span>
             </button>
             <ul class="dropdown-menu">

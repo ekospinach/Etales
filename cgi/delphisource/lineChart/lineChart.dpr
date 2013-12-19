@@ -60,7 +60,8 @@ const
   grpExpense          = 30;
   grpWholesale        = 40;
   grpRetail           = 50;
-  grpCash             = 60;
+  grpConsumer         = 60;
+  grpCash             = 90;
   grpOnline           = 70;
   grpEfficiency       = 80;
 
@@ -83,9 +84,13 @@ const
   scrRMShValue        = 52;
   scrRSalesVolume     = 53;
   scrRMShVolume       = 54;
+  scrNewSalesValue    = 61;
+  scrNewMShValue      = 62;
+  scrNewSalesVolume   = 63;
+  scrNewMShVolume     = 64;
 
-  aRegistredScreens : array[1..19] of Integer =
-    (11, 12, 13, 14, 21, 22, 23, 31, 32, 33, 34, 41, 42, 43, 44, 51, 52, 53, 54);
+  aRegistredScreens : array[1..23] of Integer =
+    (11, 12, 13, 14, 21, 22, 23, 31, 32, 33, 34, 41, 42, 43, 44, 51, 52, 53, 54, 61, 62, 63, 64);
 
 var
    i: integer;
@@ -341,6 +346,10 @@ var
       scrRMShValue         : tmp :=  allResults[prd].r_Retailers[who].rr_Quarters[mkt][cat].rq_RetailersValueMarketShare * 100 ;
       scrRSalesVolume      : tmp :=  allResults[prd].r_Retailers[who].rr_Quarters[mkt][cat].rq_SalesVolume ;
       scrRMShVolume        : tmp :=  allResults[prd].r_Retailers[who].rr_Quarters[mkt][cat].rq_RetailersVolumeMarketShare * 100 ;
+      scrNewSalesValue     : tmp := 0;
+      scrNewMShValue       : tmp := 0;
+      scrNewSalesVolume    : tmp := 0;
+      scrNewMShVolume      : tmp := 0;
     end;
       Result := FormatFloat('0', tmp);
     end;
@@ -365,10 +374,14 @@ var
       scrWMShValue        : tmp := allResults[prd].r_Producers[who].pt_CategoriesResults[cat].pc_WholesaleValueMarketShare[mkt] ;
       scrWSalesVolume     : tmp := allResults[prd].r_Producers[who].pt_CategoriesResults[cat].pc_SalesVolume[AllRetsMaxTotal][mkt] ;
       scrWMShVolume       : tmp := allResults[prd].r_Producers[who].pt_CategoriesResults[cat].pc_WholesaleVolumeMarketShare[mkt] ;
-      scrRSalesValue      : tmp := 0 ;
-      scrRMShValue        : tmp := 0 ;
-      scrRSalesVolume     : tmp := 0 ;
-      scrRMShVolume       : tmp := 0 ;
+      scrRSalesValue      : tmp := 0;
+      scrRMShValue        : tmp := 0;
+      scrRSalesVolume     : tmp := 0;
+      scrRMShVolume       : tmp := 0;
+      scrNewSalesValue    : tmp := allResults[prd].r_Producers[who].pt_CategoriesResults[cat].pc_CPTO[mkt][SegmentsMaxTotal] ;
+      scrNewMShValue      : tmp := allResults[prd].r_Producers[who].pt_CategoriesResults[cat].pc_CPTOShare[mkt][SegmentsMaxTotal] ;
+      scrNewSalesVolume   : tmp := allResults[prd].r_Producers[who].pt_CategoriesResults[cat].pc_ConsumersSalesVolume[mkt][SegmentsMaxTotal] ;
+      scrNewMShVolume     : tmp := allResults[prd].r_Producers[who].pt_CategoriesResults[cat].pc_ConsumersVolumeMarketShare[mkt][SegmentsMaxTotal] ;
     end;
       Result := FormatFloat('0', tmp);
     end;
@@ -498,13 +511,17 @@ var
         scrTrade             : s_str := 'Total Trade (Producer) Support' ;
         scrGeneralExpense    : s_str := 'Total General Expenses' ;
         scrWSalesValue       : s_str := 'Wholesale Sales Value' ;
-        scrWMShValue         : s_str := 'Wholesale Market Share (Value)' ;
+        scrWMShValue         : s_str := 'Wholesale Share (Value)' ;
         scrWSalesVolume      : s_str := 'Wholesale Sales Volume' ;
-        scrWMShVolume        : s_str := 'Wholesale Market Share (Volume)' ;
+        scrWMShVolume        : s_str := 'Wholesale Share (Volume)' ;
         scrRSalesValue       : s_str := 'Retail Market Sales (Value)' ;
         scrRMShValue         : s_str := 'Retail Market Share (Value)' ;
         scrRSalesVolume      : s_str := 'Retail Market Sales (Volume)' ;
         scrRMShVolume        : s_str := 'Retail Market Share (Volume)' ;
+        scrNewSalesValue     : s_str := 'Consumer Sales (Value)' ;
+        scrNewMShValue       : s_str := 'Consumer Market Share (Value)' ;
+        scrNewSalesVolume    : s_str := 'Consumer Sales (Volume)' ;
+        scrNewMShVolume      : s_str := 'Consumer Market Sales (Volume)' ;
       end;
       j_o.S['titleENG'] := s_str;
 
@@ -529,6 +546,10 @@ var
         scrRMShValue         : s_str := 'Доля рынка розница (стоимость)' ;
         scrRSalesVolume      : s_str := 'Розничные продажи (объем)' ;
         scrRMShVolume        : s_str := 'Доля рынка (объем)' ;
+        scrNewSalesValue     : s_str := 'Consumer Sales (Value)' ;
+        scrNewMShValue       : s_str := 'Consumer Market Share (Value)' ;
+        scrNewSalesVolume    : s_str := 'Consumer Sales (Volume)' ;
+        scrNewMShVolume      : s_str := 'Consumer Market Sales (Volume)' ;
       end;
       j_o.S['titleRUS'] := s_str;
 
@@ -553,6 +574,10 @@ var
         scrRMShValue         : s_str := '零售市场份额（价值）' ;
         scrRSalesVolume      : s_str := '零售市场销售部（卷）' ;
         scrRMShVolume        : s_str := '零售市场份额（上册）' ;
+        scrNewSalesValue     : s_str := 'Consumer Sales (Value)' ;
+        scrNewMShValue       : s_str := 'Consumer Market Share (Value)' ;
+        scrNewSalesVolume    : s_str := 'Consumer Sales (Volume)' ;
+        scrNewMShVolume      : s_str := 'Consumer Market Sales (Volume)' ;
       end;
       j_o.S['titleCHN'] := s_str;
 
@@ -593,6 +618,7 @@ var
         grpExpense          : s_str := 'Expenses';
         grpWholesale        : s_str := 'Wholesales Market Results';
         grpRetail           : s_str := 'Retail Market Results';
+        grpConsumer         : s_str := 'Consumer Market Results';
         grpCash             : s_str := 'Cashflow';
         grpOnline           : s_str := 'Online Activity';
         grpEfficiency       : s_str := 'Efficiency Indices';
@@ -602,10 +628,11 @@ var
       //group name RUS
       case grpType of
         grpProfitAbs        : s_str := 'Прибыльность в абсолютных значениях';
-        grpProfitRel        : s_str := 'Прибальность как percentage от продаж';
+        grpProfitRel        : s_str := 'Прибальность как % от продаж';
         grpExpense          : s_str := 'Затраты';
         grpWholesale        : s_str := 'Оптовый рынок';
         grpRetail           : s_str := 'Розничный рынок';
+        grpConsumer         : s_str := 'Consumer Market Results';
         grpCash             : s_str := 'Движение денежных средств';
         grpOnline           : s_str := 'Продвижение онлайн';
         grpEfficiency       : s_str := 'Индексы эффективности';
@@ -619,6 +646,7 @@ var
         grpExpense          : s_str := '支出';
         grpWholesale        : s_str := '批发市场结果';
         grpRetail           : s_str := '零售市场业绩';
+        grpConsumer         : s_str := 'Consumer Market Results';
         grpCash             : s_str := '现金流量';
         grpOnline           : s_str := '在线活动';
         grpEfficiency       : s_str := '效率指数';
@@ -650,7 +678,7 @@ var
       oJsonFile.A['chartGroup'].Add( buildOneGroup(grpExpense,curPeriod) );
       oJsonFile.A['chartGroup'].Add( buildOneGroup(grpWholesale,curPeriod) );
       oJsonFile.A['chartGroup'].Add( buildOneGroup(grpRetail,curPeriod) );
-
+      oJsonFile.A['chartGroup'].Add( buildOneGroup(grpConsumer,curPeriod) );
       s_str := 'out' + '.json';
       oJsonFile.SaveTo(s_str, true, false);
       writeln(oJsonFile.AsJSon(False,False));
