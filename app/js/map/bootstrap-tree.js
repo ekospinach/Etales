@@ -7,7 +7,7 @@
                 <% var ps; %>\
                 <% if ( !_.isUndefined(ps = _.find(options.selected, function(elem) { return elem.key === this.key; }, parent)) ) { %>\
                 checked="checked"\
-                <% } %> value="<%= parent.key %>" /> <%= parent.key %><i class="icon-chevron-up icon-black"></i></span>\
+                <% } %> value="<%= parent.key %>" /> <%= parent.key %><i class="glyphicon glyphicon-chevron-up"></i></span>\
                 <% if (options.startCollapsed) { %>\
                 <ul style="display: none;">\
                 <% } else { %>\
@@ -65,13 +65,13 @@
         if (jQElement.children('ul').is(':visible')) {
             // The user wants to collapse the child list.
             jQElement.children('span').children('i')
-                .removeClass('icon-chevron-down')
-                .addClass('icon-chevron-up');
+                .removeClass('glyphicon glyphicon-chevron-down')
+                .addClass('glyphicon glyphicon-chevron-up');
         } else {
             // The user wants to expand the child list.
             jQElement.children('span').children('i')
-                .removeClass('icon-chevron-up')
-                .addClass('icon-chevron-down');
+                .removeClass('glyphicon glyphicon-chevron-up')
+                .addClass('glyphicon glyphicon-chevron-down');
         }
     }
     

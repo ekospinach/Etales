@@ -91,6 +91,8 @@ var getLabelBase = function(){
 		{id:'Generate Map',  ENG:'Generate Map',  CHN:'生成图表',  RUS:''},
 		{id:'Period',  ENG:'Period',  CHN:'阶段',  RUS:''},
 		{id:'Reason',  ENG:"For some reason,something in this page can't translate immediately",  CHN:'For some reason,something in this page cannot translate immediately。',  RUS:''},
+		{id:'Performance',  ENG:"Performance",  CHN:'效果',  RUS:''},
+		{id:'Gentleness',  ENG:"Gentleness",  CHN:'亲柔度',  RUS:''},
 		{id:'Perceptions Map',  ENG:'Perceptions Map',  CHN:'感知图',  RUS:''},
 		{id:'Ease of Use perception',  ENG:'Ease of Use perception',  CHN:'易用性感知',  RUS:''},
 		{id:'Quality perception',  ENG:'Quality perception',  CHN:'质量感知',  RUS:''},
