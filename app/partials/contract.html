@@ -50,7 +50,8 @@
                             <th>{{Label.getContent('Producer')}}</th>
                             <th>{{Label.getContent('Retailer')}}</th>
                             <th>{{Label.getContent('Drafted By')}}</th>
-                            <th ng-show="false">{{Label.getContent('isLock')}}?</th>
+                            <th>{{Label.getContent('isDraftFinished')}}?</th>
+                            <th>{{Label.getContent('isLock')}}?</th>
                             <th></th>
 			    		</tr>
 			    	</thead>
@@ -61,12 +62,22 @@
 				    		<td>Producer-{{allContract.producerID}}</td>
 				    		<td>Retailer-{{(allContract.retailerID)}}</td>
 				    		<td>{{(allContract.draftedByCompanyID>3)?'Retailer':'Producer'}}-{{(allContract.draftedByCompanyID>3)?(allContract.draftedByCompanyID-4):allContract.draftedByCompanyID}}</td>
-				    		<td ng-show="false">
+				    		<td>
 				    			<fieldset disabled>
 				    				<div class="checkbox">
 				    					<label>
 				    						<input type="checkbox" checked ng-show=(allContract.isDraftFinished)>
 				    						<input type="checkbox" ng-show=(!allContract.isDraftFinished)>
+				    					</label>
+				    				</div>
+				    			</fieldset>
+				    		</td>
+				    		<td>
+				    			<fieldset disabled>
+				    				<div class="checkbox">
+				    					<label>
+				    						<input type="checkbox" checked ng-show=(allContract.isLocked)>
+				    						<input type="checkbox" ng-show=(!allContract.isLocked)>
 				    					</label>
 				    				</div>
 				    			</fieldset>

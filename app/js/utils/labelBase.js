@@ -279,6 +279,7 @@ var getLabelBase = function(){
 		{id:'Contract with',  ENG:'Contract with',  CHN:'乙方（接受协议的一方）',  RUS:''},
 		{id:'Duplicate Negotiation',  ENG:'Duplicate Negotiation',  CHN:'复制谈判',  RUS:''},
 		{id:'isLock',  ENG:'isLock',  CHN:'冻结',  RUS:''},
+		{id:'isDraftFinished',  ENG:'isDraftFinished',  CHN:'完成',  RUS:''},
 
 		/*Contract Details*/
 		{id:'Contract Details',  ENG:'Contract Details',  CHN:'合同细节',  RUS:''},
@@ -306,7 +307,8 @@ var getLabelBase = function(){
 		{id:'Amount',  ENG:'Amount',  CHN:'金额',  RUS:''},
 		{id:'Rate',  ENG:'Rate',  CHN:'折扣比例',  RUS:''},
 		{id:'Close',  ENG:'Close',  CHN:'关闭',  RUS:''},
-
+		{id:'Warning Info',  ENG:"Time's up, this contract has been locked",  CHN:'已超过截止时间，合同被锁定。',  RUS:''},
+		{id:'Check Warning',  ENG:"Check fail。Time's up, this contract has been locked",  CHN:'验证失败。已超过截止时间，合同被锁定。',  RUS:''},
 		/*producerstep1*/
 		{id:'Products portfolio',  ENG:'Products portfolio',  CHN:'产品组合',  RUS:''},
 		{id:'Products portfolio Info',  ENG:'determine your products portfolio, i.e. brand names, variant(s) of each brand with their respective name(s) and product composition or product specification, including packaging format.',  CHN:'决定你的产品组合，如品牌名称、配方、包装等',  RUS:''},

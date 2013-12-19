@@ -42,12 +42,18 @@ define(['app'], function(app) {
 					$scope.retailerEditable=true;					
 				}
 
-				//get current brand name list of this $scope.contractInfo, depends on producerID/seminar/period
-				var url='/producerBrands/'+$scope.contractInfo.producerID+'/'+$scope.contractInfo.period+'/'+$scope.contractInfo.seminar;
-				//console.log('url:' + url);
-				$http({method:'GET',url:url}).then(function(data){
-					$scope.brandList=data.data;
 
+				var url="/checkContractLock/"+$scope.contractInfo.contractCode;
+				$http({method:'GET',url:url}).then(function(data){
+					if(data.data=="isLocked"){
+						$scope.isLock=true;
+					}else{
+						$scope.isLock=false;
+					}
+					url='/producerBrands/'+$scope.contractInfo.producerID+'/'+$scope.contractInfo.period+'/'+$scope.contractInfo.seminar;
+					return $http({method:'GET',url:url});
+				}).then(function(data){
+					$scope.brandList=data.data;
 					var details = [];
 					//get contract details from server, fill into and deal with array "details" 
 					(function multipleRequestShooter(urls, idx){
@@ -99,17 +105,23 @@ define(['app'], function(app) {
 											}
 										}
 									};
-
 									//console.log('load details:' + $scope.details);									
 									renderContractDetailsByCategory('Elecssories');
 								}																									
 							}
 						});
 					})(generateRequestUrls($scope.brandList, $scope.contractInfo), 0);
-
-				},function(error){
+				},function(err){
 					console.log('get brandList fail callback...');
 				});
+				// //get current brand name list of this $scope.contractInfo, depends on producerID/seminar/period
+				// var url='/producerBrands/'+$scope.contractInfo.producerID+'/'+$scope.contractInfo.period+'/'+$scope.contractInfo.seminar;
+				// //console.log('url:' + url);
+				// $http({method:'GET',url:url}).then(function(data){
+					
+				// },function(error){
+				// 	console.log('get brandList fail callback...');
+				// });
 			}
 
 			var renderContractDetailsByCategory = function(category){
@@ -125,38 +137,12 @@ define(['app'], function(app) {
 				var proDetailList = new Array();
 				for (var i = 0; i < negotiationItems.length; i++) {
 					proDetailList[i]=_.filter(singleCategoryDetails ,function(obj){ return (obj.userType=="P"&&obj.negotiationItem==negotiationItems[i]); });
-					//if rate value*100;
-					// if(negotiationItems[i]=="nc_VolumeDiscountRate"||negotiationItems[i]=="nc_PerformanceBonusRate"){
-					// 	for(var j=0;j<proDetailList[i].length;j++){
-					// 		proDetailList[i][j].brand_ruralValue*=100;
-					// 		proDetailList[i][j].brand_urbanValue*=100;
-					// 		proDetailList[i][j].variant_A_ruralValue*=100;
-					// 		proDetailList[i][j].variant_A_urbanValue*=100;
-					// 		proDetailList[i][j].variant_B_ruralValue*=100;
-					// 		proDetailList[i][j].variant_B_urbanValue*=100;
-					// 		proDetailList[i][j].variant_C_ruralValue*=100;
-					// 		proDetailList[i][j].variant_C_urbanValue*=100;
-					// 	}
-					// }
 				};				
 
 				$scope.proDetailList=proDetailList;
 				var retDetailList=new Array();
 				for (var i = 0; i < negotiationItems.length; i++) {
 					retDetailList[i] =_.filter(singleCategoryDetails ,function(obj){ return (obj.userType=="R"&&obj.negotiationItem==negotiationItems[i]);});
-					// if(negotiationItems[i]=="nc_VolumeDiscountRate"||negotiationItems[i]=="nc_PerformanceBonusRate"){
-					// 	//if rate value*100;
-					// 	for(var j=0;j<retDetailList[i].length;j++){
-					// 		retDetailList[i][j].brand_ruralValue*=100;
-					// 		retDetailList[i][j].brand_urbanValue*=100;
-					// 		retDetailList[i][j].variant_A_ruralValue*=100;
-					// 		retDetailList[i][j].variant_A_urbanValue*=100;
-					// 		retDetailList[i][j].variant_B_ruralValue*=100;
-					// 		retDetailList[i][j].variant_B_urbanValue*=100;
-					// 		retDetailList[i][j].variant_C_ruralValue*=100;
-					// 		retDetailList[i][j].variant_C_urbanValue*=100;
-					// 	}
-					// }
 				};
 				$scope.retDetailList=retDetailList;
 				var variantListByCategory=new Array();
@@ -178,28 +164,6 @@ define(['app'], function(app) {
 					$scope.refreshingProcess = false;
 				});									
 			}
-
-			// var showbubleMsg = function(content, status){
-		 // 		$scope.bubleMsg = ' ' + content;
-		 // 		switch(status){
-		 // 			case 1: 
-		 // 				$scope.bubleClassName = 'alert alert-danger'; 
-		 // 				$scope.bubleTitle = 'Error!';
-		 // 				break;
-		 // 			case 2: 
-		 // 				$scope.bubleClassName = 'alert alert-success'; 
-		 // 				$scope.bubleTitle = 'Success!';
-		 // 				break;
-		 // 			case 3:
-		 // 				$scope.bubleClassName = 'alert alert-block'; 
-		 // 				$scope.bubleTitle = 'Warning!';
-		 // 				break;	 			
-		 // 			default:
-		 // 			 $scope.bubleClassName = 'alert'; 
-		 // 		}
-		 // 		console.log('infoBuble.show');
-		 // 		$scope.infoBuble = true;
-		 // 	};
 
 			var compare=function(contract){
 			  $scope.refreshingProcess = true;
@@ -268,29 +232,37 @@ define(['app'], function(app) {
 							$scope.editDetailDisRate=_.find($scope.retDetailList[4],function(obj){return (obj.relatedBrandName==selectedDetail.relatedBrandName&&obj.relatedBrandID==selectedDetail.relatedBrandID);});	
 							break;							
 					}
-					if($scope.editDetailDisRate.brand_ruralValue>0&&$scope.editDetailDisRate.brand_ruralValue<1){
+					if($scope.editDetailDisRate.brand_ruralValue>0&&$scope.editDetailDisRate.brand_ruralValue<=1){
 						$scope.editDetailDisRate.brand_ruralValue*=100;
+						$scope.editDetailDisRate.brand_ruralValue=$scope.editDetailDisRate.brand_ruralValue.toFixed(2);
 					}
-					if($scope.editDetailDisRate.brand_urbanValue>0&&$scope.editDetailDisRate.brand_urbanValue<1){
+					if($scope.editDetailDisRate.brand_urbanValue>0&&$scope.editDetailDisRate.brand_urbanValue<=1){
 						$scope.editDetailDisRate.brand_urbanValue*=100;
+						$scope.editDetailDisRate.brand_urbanValue=$scope.editDetailDisRate.brand_urbanValue.toFixed(2);
 					}
-					if($scope.editDetailDisRate.variant_A_ruralValue>0&&$scope.editDetailDisRate.variant_A_ruralValue<1){
+					if($scope.editDetailDisRate.variant_A_ruralValue>0&&$scope.editDetailDisRate.variant_A_ruralValue<=1){
 						$scope.editDetailDisRate.variant_A_ruralValue*=100;
+						$scope.editDetailDisRate.variant_A_ruralValue=$scope.editDetailDisRate.variant_A_ruralValue.toFixed(2);
 					}
-					if($scope.editDetailDisRate.variant_A_urbanValue>0&&$scope.editDetailDisRate.variant_A_urbanValue<1){
+					if($scope.editDetailDisRate.variant_A_urbanValue>0&&$scope.editDetailDisRate.variant_A_urbanValue<=1){
 						$scope.editDetailDisRate.variant_A_urbanValue*=100;
+						$scope.editDetailDisRate.variant_A_urbanValue=$scope.editDetailDisRate.variant_A_urbanValue.toFixed(2);
 					}
-					if($scope.editDetailDisRate.variant_B_ruralValue>0&&$scope.editDetailDisRate.variant_B_ruralValue<1){
+					if($scope.editDetailDisRate.variant_B_ruralValue>0&&$scope.editDetailDisRate.variant_B_ruralValue<=1){
 						$scope.editDetailDisRate.variant_B_ruralValue*=100;
+						$scope.editDetailDisRate.variant_B_ruralValue=$scope.editDetailDisRate.variant_B_ruralValue.toFixed(2);
 					}
-					if($scope.editDetailDisRate.variant_B_urbanValue>0&&$scope.editDetailDisRate.variant_B_urbanValue<1){
+					if($scope.editDetailDisRate.variant_B_urbanValue>0&&$scope.editDetailDisRate.variant_B_urbanValue<=1){
 						$scope.editDetailDisRate.variant_B_urbanValue*=100;
+						$scope.editDetailDisRate.variant_B_urbanValue=$scope.editDetailDisRate.variant_B_urbanValue.toFixed(2);
 					}
-					if($scope.editDetailDisRate.variant_C_ruralValue>0&&$scope.editDetailDisRate.variant_C_ruralValue<1){
+					if($scope.editDetailDisRate.variant_C_ruralValue>0&&$scope.editDetailDisRate.variant_C_ruralValue<=1){
 						$scope.editDetailDisRate.variant_C_ruralValue*=100;
+						$scope.editDetailDisRate.variant_C_ruralValue=$scope.editDetailDisRate.variant_C_ruralValue.toFixed(2);
 					}
-					if($scope.editDetailDisRate.variant_C_urbanValue>0&&$scope.editDetailDisRate.variant_C_urbanValue<1){
+					if($scope.editDetailDisRate.variant_C_urbanValue>0&&$scope.editDetailDisRate.variant_C_urbanValue<=1){
 						$scope.editDetailDisRate.variant_C_urbanValue*=100;
+						$scope.editDetailDisRate.variant_C_urbanValue=$scope.editDetailDisRate.variant_C_urbanValue.toFixed(2);
 					}
 				}
 				else if(selectedDetail.negotiationItem=="nc_SalesTargetVolume"){
@@ -317,29 +289,38 @@ define(['app'], function(app) {
 						$scope.shouldBeBonusAmount="none";
 						$scope.shouldBeBonusRate="";							
 					}
-					if($scope.editDetailBonusRate.brand_ruralValue>0&&$scope.editDetailBonusRate.brand_ruralValue<1){
+					if($scope.editDetailBonusRate.brand_ruralValue>0&&$scope.editDetailBonusRate.brand_ruralValue<=1){
 						$scope.editDetailBonusRate.brand_ruralValue*=100;
+						$scope.editDetailBonusRate.brand_ruralValue=$scope.editDetailBonusRate.brand_ruralValue.toFixed(2);
 					}
-					if($scope.editDetailBonusRate.brand_urbanValue>0&&$scope.editDetailBonusRate.brand_urbanValue<1){
+					if($scope.editDetailBonusRate.brand_urbanValue>0&&$scope.editDetailBonusRate.brand_urbanValue<=1){
 						$scope.editDetailBonusRate.brand_urbanValue*=100;
+						$scope.editDetailBonusRate.brand_urbanValue=$scope.editDetailBonusRate.brand_urbanValue.toFixed(2);
+
 					}
-					if($scope.editDetailBonusRate.variant_A_ruralValue>0&&$scope.editDetailBonusRate.variant_A_ruralValue<1){
+					if($scope.editDetailBonusRate.variant_A_ruralValue>0&&$scope.editDetailBonusRate.variant_A_ruralValue<=1){
 						$scope.editDetailBonusRate.variant_A_ruralValue*=100;
+						$scope.editDetailBonusRate.variant_A_ruralValue=$scope.editDetailBonusRate.variant_A_ruralValue.toFixed(2);
 					}
-					if($scope.editDetailBonusRate.variant_A_urbanValue>0&&$scope.editDetailBonusRate.variant_A_urbanValue<1){
+					if($scope.editDetailBonusRate.variant_A_urbanValue>0&&$scope.editDetailBonusRate.variant_A_urbanValue<=1){
 						$scope.editDetailBonusRate.variant_A_urbanValue*=100;
+						$scope.editDetailBonusRate.variant_A_urbanValue=$scope.editDetailBonusRate.variant_A_urbanValue.toFixed(2);
 					}
-					if($scope.editDetailBonusRate.variant_B_ruralValue>0&&$scope.editDetailBonusRate.variant_B_ruralValue<1){
+					if($scope.editDetailBonusRate.variant_B_ruralValue>0&&$scope.editDetailBonusRate.variant_B_ruralValue<=1){
 						$scope.editDetailBonusRate.variant_B_ruralValue*=100;
+						$scope.editDetailBonusRate.variant_B_ruralValue=$scope.editDetailBonusRate.variant_B_ruralValue.toFixed(2);
 					}
-					if($scope.editDetailBonusRate.variant_B_urbanValue>0&&$scope.editDetailBonusRate.variant_B_urbanValue<1){
+					if($scope.editDetailBonusRate.variant_B_urbanValue>0&&$scope.editDetailBonusRate.variant_B_urbanValue<=1){
 						$scope.editDetailBonusRate.variant_B_urbanValue*=100;
+						$scope.editDetailBonusRate.variant_B_urbanValue=$scope.editDetailBonusRate.variant_B_urbanValue.toFixed(2);
 					}
-					if($scope.editDetailBonusRate.variant_C_ruralValue>0&&$scope.editDetailBonusRate.variant_C_ruralValue<1){
+					if($scope.editDetailBonusRate.variant_C_ruralValue>0&&$scope.editDetailBonusRate.variant_C_ruralValue<=1){
 						$scope.editDetailBonusRate.variant_C_ruralValue*=100;
+						$scope.editDetailBonusRate.variant_C_ruralValue=$scope.editDetailBonusRate.variant_C_ruralValue.toFixed(2);
 					}
-					if($scope.editDetailBonusRate.variant_C_urbanValue>0&&$scope.editDetailBonusRate.variant_C_urbanValue<1){
+					if($scope.editDetailBonusRate.variant_C_urbanValue>0&&$scope.editDetailBonusRate.variant_C_urbanValue<=1){
 						$scope.editDetailBonusRate.variant_C_urbanValue*=100;
+						$scope.editDetailBonusRate.variant_C_urbanValue=$scope.editDetailBonusRate.variant_C_urbanValue.toFixed(2);
 					}
 				}
 
@@ -415,107 +396,135 @@ define(['app'], function(app) {
 				}
 			}
 
-			var checkData=function(item,value){
+			var checkData=function(contractCode,item,value){
 				var d = $q.defer();	
 				var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
 				if(!filter.test(value)){
 					d.resolve(Label.getContent('Input a number'));
-				}else if(item=="nc_VolumeDiscountRate"||item=="nc_PerformanceBonusRate"){
-					if(value>100){
-						d.resolve(Label.getContent('Input range')+':0~100');
-					}else{
-						d.resolve();
-					}
-				}else if(item=="nc_PaymentDays"){
-					if(value>180){
-						d.resolve(Label.getContent('Input range')+':0~180');
-					}else{
-						d.resolve();
-					}
 				}else{
-					d.resolve();
+					var url="/checkContractLock/"+contractCode;
+					$http({
+						method:'GET',
+						url:url
+					}).then(function(data){
+						if(data.data=="isLocked"){
+							d.resolve(Label.getContent('Check Warning'));
+							$scope.isLock=true;
+						}else{
+							$scope.isLock=false;
+							if(item=="nc_VolumeDiscountRate"||item=="nc_PerformanceBonusRate"){
+								if(value>100){
+									d.resolve(Label.getContent('Input range')+':0~100');
+								}else{
+									d.resolve();
+								}
+							}else if(item=="nc_PaymentDays"){
+								if(value>180){
+									d.resolve(Label.getContent('Input range')+':0~180');
+								}else{
+									d.resolve();
+								}
+							}else{
+								d.resolve();
+							}
+						}
+					},function(){
+						d.resolve(Label.getContent('fail'));
+					})
 				}
 				return d.promise;
 			}
 
-			var checkAmount=function(detail,item,location,index,type,value){
+			var checkAmount=function(contractCode,detail,item,location,index,type,value){
 				var d=$q.defer();
 				var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
 				if(!filter.test(value)){
 					d.resolve(Label.getContent('Input a number'));
 				}
-					var seminar=$rootScope.user.seminar,
-					period=$rootScope.currentPeriod,
-					producerID=detail.relatedBrandName.substring(detail.relatedBrandName.length-1);
-					//producerID=detail.producerID;
-					var url="/getProductInfo/"+producerID+'/'+period+'/'+seminar+'/'+detail.relatedBrandName;
-					$http({
+				var seminar=$rootScope.user.seminar,
+				period=$rootScope.currentPeriod,
+				producerID=detail.relatedBrandName.substring(detail.relatedBrandName.length-1);
+				//producerID=detail.producerID;
+				var url="/checkContractLock/"+contractCode;
+				$http({
+					method:'GET',
+					url:url
+				}).then(function(data){
+					if(data.data=="isLocked"){
+						d.resolve(Label.getContent('Check Warning'));
+						$scope.isLock=true;
+					}else{
+						$scope.isLock=false;
+					}
+					url="/getProductInfo/"+producerID+'/'+period+'/'+seminar+'/'+detail.relatedBrandName;
+					return $http({
 						method:'GET',
 						url:url
-					}).then(function(data){
-						var variants=data.data,urls=new Array(),results=new Array(),url="",categoryID;
-						for(i=0;i<variants.length;i++){
-							if(variants[i].varID!=0&&variants[i].varName!=""){
-								if(variants[i].dateOfBirth<$rootScope.currentPeriod){
-									url="/variantHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/'+detail.relatedBrandName+'/'+variants[i].varName;
-									urls.push(url);
-								}else{
-									if(detail.relatedBrandName.substring(0,1)=="E"){
-						                categoryID=1;
-						            }else{
-						                categoryID=2;
-						            }
-									url='/producerVariantBM/'+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+categoryID+'/'+detail.relatedBrandName+'/'+variants[i].varName;
-									urls.push(url);
-								}
-							}else{
-								urls.push("");
-							}
-						}
-						(function multipleRequestShooter(urls, idx){
-							$http({method:'GET', url:urls[idx]}).then(function(data){
-								if(data.data.supplierView!=undefined){
-									results.push(data.data.supplierView[0].nextPriceBM)
-								}else if(data.data.result!=undefined){
-									results.push(data.data.result);
-								}else{
-									results.push(0);
-								}
-							}, function(data){
-								//console.log('get contractDetails fail callback');
-							}).finally(function(){
-								if(idx!=urls.length-1) { 
-									idx++;
-									multipleRequestShooter(urls, idx);							
-								}else{
-									var max=0,saleTarget=0;
-									if(type=="brand"){
-										if(location=="urban"){
-											saleTarget=$scope.editDetail.brand_urbanValue;
-										}else{
-											saleTarget=$scope.editDetail.brand_ruralValue;
-										}
-										price=(results[0]+results[1]+results[2])/$scope.count;
-									}else{
-										price=results[index];
-										if(location=="urban"){
-											saleTarget=detail.urbanValue;
-										}else{
-											saleTarget=detail.ruralValue;
-										}
-									}
-									max=saleTarget*price;
-									if(value>max){
-										d.resolve(Label.getContent('Input range')+':0~'+max.toFixed(2));
-									}else{
-										d.resolve();
-									}										
-								}
-							});
-						})(urls, 0);
-					},function(){
 					});
-
+				}).then(function(data){
+					var variants=data.data,urls=new Array(),results=new Array(),url="",categoryID;
+					for(i=0;i<variants.length;i++){
+						if(variants[i].varID!=0&&variants[i].varName!=""){
+							if(variants[i].dateOfBirth<$rootScope.currentPeriod){
+								url="/variantHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/'+detail.relatedBrandName+'/'+variants[i].varName;
+								urls.push(url);
+							}else{
+								if(detail.relatedBrandName.substring(0,1)=="E"){
+					                categoryID=1;
+					            }else{
+						            categoryID=2;
+						        }
+								url='/producerVariantBM/'+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+categoryID+'/'+detail.relatedBrandName+'/'+variants[i].varName;
+								urls.push(url);
+							}
+						}else{
+							urls.push("");
+						}
+					}
+					(function multipleRequestShooter(urls, idx){
+						$http({method:'GET', url:urls[idx]}).then(function(data){
+							if(data.data.supplierView!=undefined){
+								results.push(data.data.supplierView[0].nextPriceBM)
+							}else if(data.data.result!=undefined){
+								results.push(data.data.result);
+							}else{
+								results.push(0);
+							}
+						}, function(data){
+							//console.log('get contractDetails fail callback');
+						}).finally(function(){
+							if(idx!=urls.length-1) { 
+								idx++;
+								multipleRequestShooter(urls, idx);							
+							}else{
+								var max=0,saleTarget=0;
+								if(type=="brand"){
+									if(location=="urban"){
+										saleTarget=$scope.editDetail.brand_urbanValue;
+									}else{
+										saleTarget=$scope.editDetail.brand_ruralValue;
+									}
+									price=(results[0]+results[1]+results[2])/$scope.count;
+								}else{
+									price=results[index];
+									if(location=="urban"){
+										saleTarget=detail.urbanValue;
+									}else{
+										saleTarget=detail.ruralValue;
+									}
+								}
+								max=saleTarget*price;
+								if(value>max){
+									d.resolve(Label.getContent('Input range')+':0~'+max.toFixed(2));
+								}else{
+									d.resolve();
+								}										
+							}
+						});
+					})(urls, 0);
+				},function(){
+					d.resolve('fail');
+				})
 				return d.promise;
 			}
 
@@ -896,12 +905,12 @@ define(['app'], function(app) {
 											}
 										}else if(item=="nc_PerformanceBonusAmount"){
 											otherItem="nc_PerformanceBonusRate";
-											othervalue=value/(saleTarget*price);
-											othervalue=othervalue.toFixed(4);
+											othervalue=value*100/(saleTarget*price);
+											othervalue=othervalue.toFixed(2);
 											if(location=="urban"){
-												$scope.editDetailBonusRate.brand_urbanValue=othervalue*100;
+												$scope.editDetailBonusRate.brand_urbanValue=othervalue;
 											}else{
-												$scope.editDetailBonusRate.brand_ruralValue=othervalue*100;
+												$scope.editDetailBonusRate.brand_ruralValue=othervalue;
 											}
 										}else{
 											if(item=="nc_SalesTargetVolume"){
@@ -935,12 +944,12 @@ define(['app'], function(app) {
 											}
 										}else if(item=="nc_PerformanceBonusAmount"){
 											otherItem="nc_PerformanceBonusRate";
-											othervalue=value/(saleTarget*price);
-											othervalue=othervalue.toFixed(4);
+											othervalue=value*100/(saleTarget*price);
+											othervalue=othervalue.toFixed(2);
 											if(location=="urban"){
-												$scope.editProductList[index].rate_urbanValue=othervalue*100;
+												$scope.editProductList[index].rate_urbanValue=othervalue;
 											}else{
-												$scope.editProductList[index].rate_ruralValue=othervalue*100;
+												$scope.editProductList[index].rate_ruralValue=othervalue;
 											}
 										}else{
 											otherItem="nc_PerformanceBonusAmount";
@@ -970,6 +979,9 @@ define(['app'], function(app) {
 										url:'/updateContractDetails',
 										data:queryCondition
 									}).then(function(data){
+										if(otherItem=="nc_PerformanceBonusRate"){
+											othervalue=othervalue/100;
+										}
 										queryCondition={
 											contractCode:detail.contractCode,
 											negotiationItem:otherItem,
@@ -1019,6 +1031,7 @@ define(['app'], function(app) {
 			$scope.renderContractDetailsByCategory = renderContractDetailsByCategory;
 			$scope.loadModalDate=loadModalDate;
 			//$scope.showbubleMsg=showbubleMsg;
+			$scope.isLock=false;
 			$scope.compare=compare;
 			$scope.copyProposal = copyProposal;
 			$scope.checkData=checkData;
