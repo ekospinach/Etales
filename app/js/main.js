@@ -34,7 +34,6 @@
 			nggooglechart:'../bower_components/angular-google-chart/ng-google-chart',
 			domReady: '../bower_components/requirejs-domready/domReady',
 			labelBase: './utils/labelBase'
-			//addProduct:'../js/functions/addNewProduct'
 		},
 		baseUrl: 'js',
 		shim: {
