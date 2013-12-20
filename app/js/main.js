@@ -10,7 +10,7 @@
 	require.config({
 		paths: {
 			angular: '../bower_components/angular/angular',
-			angularAnimate: '../bower_components/angular-animate/angular-animate',
+			//angularAnimate: '../bower_components/angular-animate/angular-animate',
 			angularCookies: '../bower_components/angular-cookies/angular-cookies',
 			angularRoute: '../bower_components/angular-route/angular-route',
 			angularResource: '../bower_components/angular-resource/angular-resource',
