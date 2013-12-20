@@ -47,8 +47,17 @@
                 <td>{{companyDecisionHistory.investInProductionFlexibility.toFixed(2)}}</td>
               </tr>
               <tr>
-                <td>{{Label.getContent('Acquired Design Level')}}</td>
+                <td ng-show="isElecssories">{{Label.getContent('Acquired Design Level')}}</td>
+                <td ng-show="isHealthBeauty">{{Label.getContent('Acquired Active agent')}}</td>
                 <td>{{categoryID==1?companyHistory.acquiredDesignLevel[0]:companyHistory.acquiredDesignLevel[1]}}</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td ng-show="isElecssories">{{Label.getContent('Acquired Quality-of-Raw-Materials')}}</td>
+                <td ng-show="isHealthBeauty">{{Label.getContent('Acquired Smoothener Level')}}</td>
+                <td ng-show='isElecssories'>{{companyHistory.acquiredTechnologyLevel[0]+2}}</td>
+                <td ng-show='isHealthBeauty'>{{companyHistory.acquiredTechnologyLevel[1]+2}}</td>
                 <td></td>
                 <td></td>
               </tr>

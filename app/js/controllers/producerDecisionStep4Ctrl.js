@@ -125,8 +125,14 @@ define(['app'], function(app) {
 			var getCategoryMoreInfo=function(categoryID){
 				$scope.categoryID = categoryID;
 				switch(categoryID){
-					case 1: $scope.category = 'Elecssories';break;
-					case 2: $scope.category = 'HealthBeauty';break;
+					case 1: $scope.category = 'Elecssories';
+							$scope.isElecssories = true;
+							$scope.isHealthBeauty = false;
+					break;
+					case 2: $scope.category = 'HealthBeauty';
+							$scope.isElecssories = false;
+							$scope.isHealthBeauty = true;
+					break;
 				}
 				$scope.isCollapsed=false;
 				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
