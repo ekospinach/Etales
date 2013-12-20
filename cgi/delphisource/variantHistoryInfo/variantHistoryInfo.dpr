@@ -38,9 +38,9 @@ uses
 
 const
   DecisionFileName = 'Negotiations.';
-  dummyNo = 1;
+  dummyNo = 0;
   DataDirectory = 'C:\E-project\ecgi\';
-  dummySeminar = 'ROUND1';
+  dummySeminar = 'MAY';
   aCategories : array[TCategories] of string = ('Elecsories', 'HealthBeauties');
   aMarkets : array[TMarketsTotal] of string = ('Urban', 'Rural', 'Total');
 
@@ -319,7 +319,13 @@ var
     jo.I['promotionsDetails.promo_Frequency'] := curVar.rv_PromotionsDetails.promo_Frequency;
     jo.D['promotionsDetails.promo_Rate']  := curVar.rv_PromotionsDetails.promo_Rate;
 
-    result  := jo;
+//    Writeln(
+//      curVar.rv_VariantName + ' varId ' +
+//      inttostr(curVar.rv_VariantID) + ' brnId ' +
+//      inttostr(curVar.rv_ParentBrandID) + ' brnIndex ' +
+//      inttostr(curVar.rv_ParentBrandIndex));
+//    Writeln(jo.asString);
+    Result  := jo;
   end;
 
   function channelViewSchema(pChannel: TAllRetailersTotal;
@@ -330,16 +336,18 @@ var
     I: Integer;
   begin
     jo  := SO;
-//Writeln('channelViewSchema ch ' + IntToStr(pChannel) + IntToStr(pCategory) + IntToStr(pBrand) + IntToStr(pVariant));
 //var channelViewSchema = mongoose.Schema({
 //    channelMarketView : [channelMarketViewSchema] //length: TMarketsTotal(1~3)
 //})
     jo.O['channelMarketView'] := SA([]);
     for I := Low(TMarketsTotal) to High(TMarketsTotal) do
+      begin
+//         Writeln('channelViewSchema cat ' + IntToStr(pCategory) + ' ret ' + IntToStr(pChannel) + ' mkt ' + inttostr(I) + ' brn ' + IntToStr(pBrand) + ' var ' + IntToStr(pVariant));
       jo.A['channelMarketView'].Add(
         channelMarketViewSchema
-        (currentResult.r_Retailers[pChannel].rr_Quarters[I,pCategory].rq_BrandsResults[pBrand].rb_VariantsResults[pVariant])
-         );
+        (currentResult.r_Retailers[pChannel].rr_Quarters[I,pCategory].rq_BrandsResults[pBrand].rb_VariantsResults[pVariant]));
+
+      end;
 
     result  := jo;
   end;
@@ -477,16 +485,19 @@ var
     Result  := jo;
   end;
 
-  function varHistInfoSchema(var curVar: TVariantResults; pCategoryID: TCategories): ISuperObject;
+  function varHistInfoSchema(pVar: TVariants; pCategoryID: TCategories): ISuperObject;
   var
     jo: ISuperObject;
+		curVar: TVariantResults;
     vBrn: TProBrands;
     vVnt: TOneBrandVars;
-    I: Integer;
+    chn: Integer;
   begin
     jo  := SO;
-    vBrn := curVar.v_ParentBrandID - curVar.v_ParentCompanyID * 10;
-    vVnt := curVar.v_VariantID - curVar.v_ParentBrandID * 10;
+		curVar := currentResult.r_Variants[pCategoryID][pVar];
+    //vBrn := curVar.v_ParentBrandID - curVar.v_ParentCompanyID * 10;
+		vBrn := curVar.v_ParentBrandIndex;	
+    vVnt := curVar.v_VariantID mod 10;
 //var variantHistoryInfoSchema = mongoose.Schema({
 //    period : Number,
 //    seminar : String,
@@ -516,17 +527,15 @@ var
     jo.I['parentCatID'] := pCategoryID;
     jo.I['parentCompanyID'] := curVar.v_ParentCompanyID;
     jo.O['supplierView']  := SA([]);
-    if curVar.v_VariantID <> 0 then     // variant active
-      if curVar.v_ParentCompanyID <= High(TAllProducers) then // only for producers 1~4
+		if curVar.v_ParentCompanyID <= High(TAllProducers) then // only for producers 1~4
       begin
 //        writeln(curVar.v_VariantID);
           jo.A['supplierView'].Add( supplierViewSchema(currentResult.r_Producers[curVar.v_ParentCompanyID].pt_CategoriesResults[pCategoryID].pc_BrandsResults[vBrn].pb_VariantsResults[vVnt]) );
       end;
     jo.O['channelView'] := SA([]);
-    if curVar.v_VariantID <> 0 then
-      for I := Low(TAllRetailers) to High(TAllRetailers) do
+    for chn := Low(TAllRetailers) to High(TAllRetailers) do
 //          writeln( inttostr(I) + inttostr(Low(TAllRetailers)) + inttostr(High(TAllRetailers)));
-          jo.A['channelView'].Add( channelViewSchema(I,pCategoryID,curVar.v_ParentBrandID,vVnt) );
+          jo.A['channelView'].Add( channelViewSchema(chn,pCategoryID,vBrn,vVnt) );
 
     result  := jo;
 
@@ -542,8 +551,7 @@ var
     for cat := Low(TCategories) to High(TCategories) do
       for vnt := Low(TVariants) to High(TVariants) do
         if currentResult.r_Variants[cat][vnt].v_VariantID <> 0 then
-          jo['']  :=
-          varHistInfoSchema( currentResult.r_Variants[cat][vnt], cat);
+          jo['']  := varHistInfoSchema(vnt, cat);
 
     Result  := jo;
   end;
@@ -674,7 +682,7 @@ begin
 //
 //        vReadRes := ReadResults(currentPeriod, currentSeminar, DataDirectory,
 //          currentResult); // read Results file
-//
+
 //    // Now let's make some JSON stuff here
 //        if vReadRes = 0 then
 //          makeJson;
