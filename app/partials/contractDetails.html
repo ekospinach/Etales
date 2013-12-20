@@ -171,8 +171,8 @@
         </table>
     </div>
     <div>
-        <a class="btn btn-primary" ng-click="compare(contractInfo)" ng-disabled="refreshingProcess">{{Label.getContent('Compare and Refresh')}}</a>
-        <a class="btn btn-primary" ng-click="copyProposal(contractInfo)" ng-show=retailerEditable ng-disabled="refreshingProcess">{{Label.getContent('Copy from peer proposal')}}</a>        
+        <a class="btn btn-primary" ng-click="compare(contractInfo)" ng-disabled="refreshingProcess||isLock">{{Label.getContent('Compare and Refresh')}}</a>
+        <a class="btn btn-primary" ng-click="copyProposal(contractInfo)" ng-show=retailerEditable ng-disabled="refreshingProcess||isLock">{{Label.getContent('Copy from peer proposal')}}</a>        
     </div>
 </div>
 
@@ -203,8 +203,7 @@
                         </tr>
                     </tbody>
                 </table>
-<!--                 <p style="display:{{shouldBeAmount}}">{{Label.getContent('Amount Info')}}</p>
- -->                <div class="" style="display:{{shouldShowBrand}}">
+                <div class="" style="display:{{shouldShowBrand}}">
                     <table class="table" style="display:{{shouldBeRate}}">
                         <thead>
                             <tr>

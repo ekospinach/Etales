@@ -166,29 +166,63 @@ define(['app'], function(app) {
 			}
 
 			var compare=function(contract){
-			  $scope.refreshingProcess = true;
-			  var postData = {
-			  	contractCode : contract.contractCode
-			  }
-			  $http({method:'POST', url:'/compareContractDetailsAndUpdateIsVerified', data: postData}).then(function(res){
-			  	console.log('Compare Success:' + res);
-				refreshBrandAndContractDetails();
-			  },function(res){
-			  	console.log('Compare Failed:' + res);
-			  })			
+				$scope.refreshingProcess = true;
+				var url="/checkContractLock/"+contract.contractCode;
+				$http({
+					method:'GET',
+					url:url
+				}).then(function(data){
+					if(data.data=="isLocked"){
+						$scope.isLock=true;
+						url='/';
+					}else{
+						$scope.isLock=false;
+						url='/compareContractDetailsAndUpdateIsVerified';
+					}
+					var postData = {
+						contractCode : contract.contractCode
+					}
+					return $http({
+						method:'POST',
+						url:url,
+						data:postData
+					})
+				}).then(function(res){
+					refreshBrandAndContractDetails();
+				},function(res){
+					console.log('Compare Failed:' + res);
+					$scope.refreshingProcess = false;
+				})
 			}
 
 			var copyProposal = function(contract){
-			  $scope.refreshingProcess = true;
-			  var postData = {
-			  	contractCode : contract.contractCode
-			  }
-			  $http({method:'POST', url:'/copyProposal', data: postData}).then(function(res){
-			  	console.log('Compare Success:' + res);
-			  	compare(contract);
-			  },function(res){
-			  	console.log('Compare Failed:' + res);
-			  })			
+				$scope.refreshingProcess = true;
+			  	var url="/checkContractLock/"+contract.contractCode;
+				$http({
+					method:'GET',
+					url:url
+				}).then(function(data){
+					if(data.data=="isLocked"){
+						$scope.isLock=true;
+						url='/';
+					}else{
+						$scope.isLock=false;
+						url='/copyProposal';
+					}
+					var postData = {
+						contractCode : contract.contractCode
+					}
+					return $http({
+						method:'POST',
+						url:url,
+						data:postData
+					})
+				}).then(function(res){
+					compare(contract);
+				},function(res){
+					console.log('Compare Failed:' + res);
+					$scope.refreshingProcess = false;
+				})		
 			}				
 
 			var loadModalDate=function(selectedDetail){
