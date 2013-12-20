@@ -54,6 +54,15 @@ define(['app'], function(app) {
 			};
 			var close = function () {
 			    $scope.shouldBeOpen = false;
+			    RetailerDecisionBase.reload({retailerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
+					$scope.pageBase = base;
+				}).then(function(){
+					return promiseStep1();
+				}), function(reason){
+					console.log('from ctr: ' + reason);
+				}, function(update){
+					console.log('from ctr: ' + update);
+				};
 			};
 
 			var loadAllOder=function(){
