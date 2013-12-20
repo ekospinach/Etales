@@ -379,7 +379,7 @@ define(['app'], function(app) {
 				if(category=="Elecssories"){
 					categoryID=1;
 				}else{
-					catagoryID=2;
+					categoryID=2;
 				}
 				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
 				$http({
