@@ -25,10 +25,9 @@
     </div>
 
     <div ng-show="refreshingProcess">      
-        <progress percent="refreshingProcessLabel.toFixed(0)" class="progress progress-suceess active progress-striped" style="width:30%;margin:0 auto;" ng-show='false'></progress>
+        <progress percent="refreshingProcessLabel.toFixed(0)" class="progress-suceess progress-striped" style="margin:0 auto;" ng-show="false"></progress>
         <p class="text-center">{{Label.getContent('Loading')}}({{refreshingProcessLabel.toFixed(0)}}%)...</p>
     </div>
-    
     <div>
         <div class="btn-group">
             <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" ng-disabled="refreshingProcess">
