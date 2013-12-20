@@ -318,6 +318,15 @@ define(['app'], function(app) {
 			};
 			var closeProductModal = function () {
 			    $scope.productModal = false;
+			    ProducerDecisionBase.reload({producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
+					$scope.pageBase = base;	
+				}).then(function(){
+					return promiseStep1();
+				}), function(reason){
+					console.log('from ctr: ' + reason);
+				}, function(update){
+					console.log('from ctr: ' + update);
+				};
 			};
 
 			var checkProduction=function(category,brandName,varName,location,additionalIdx,index,value){
