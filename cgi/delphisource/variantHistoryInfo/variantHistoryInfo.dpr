@@ -312,16 +312,13 @@ var
         jo.A['closingInventory'].Add(jt);
       end;
     jo.D['currentUnitAcquisitionCost'] := curVar.rv_CurrentUnitAcquisitionCost;
-    //Writeln('inside salesVolume:'+ FloatToStr(curVar.rv_SalesVolume));
     jo.D['salesVolume'] := curVar.rv_SalesVolume;
-
-
     jo.D['shelfSpace'] := curVar.rv_ShelfSpace;
     jo.D['marketPrice'] := curVar.rv_MarketPrice;
     jo.D['netMarketPrice']  := curVar.rv_NetMarketPrice;
     jo.I['promotionsDetails.promo_Frequency'] := curVar.rv_PromotionsDetails.promo_Frequency;
     jo.D['promotionsDetails.promo_Rate']  := curVar.rv_PromotionsDetails.promo_Rate;
-    //     Writeln('JSON Salesvolume:'  + jo['salesVolume'].AsString);
+
     result  := jo;
   end;
 
@@ -330,35 +327,28 @@ var
     pVariant: TOneBrandVars): ISuperObject;
   var
     jo: ISuperObject;
+    I: Integer;
   begin
     jo  := SO;
-   // Writeln('channelViewSchema ch ' + IntToStr(pChannel) + IntToStr(pCategory) + IntToStr(pBrand) + IntToStr(pVariant));
+//Writeln('channelViewSchema ch ' + IntToStr(pChannel) + IntToStr(pCategory) + IntToStr(pBrand) + IntToStr(pVariant));
 //var channelViewSchema = mongoose.Schema({
 //    channelMarketView : [channelMarketViewSchema] //length: TMarketsTotal(1~3)
 //})
     jo.O['channelMarketView'] := SA([]);
     for I := Low(TMarketsTotal) to High(TMarketsTotal) do
-    begin
-//          Writeln('brandName: ' +  currentResult.r_Retailers[pChannel].rr_Quarters[I,pCategory].rq_BrandsResults[pBrand].rb_BrandName + ', Market:' + IntToStr(I));
-//           Writeln('Retailer: ' + IntToStr(pChannel));
-//          Writeln('VarName: ' +  currentResult.r_Retailers[pChannel].rr_Quarters[I,pCategory].rq_BrandsResults[pBrand].rb_VariantsResults[pVariant].rv_VariantName);
-//          Writeln('SalesVolume' + FloatToStr(currentResult.r_Retailers[pChannel].rr_Quarters[I,pCategory].rq_BrandsResults[pBrand].rb_VariantsResults[pVariant].rv_SalesVolume));
-
       jo.A['channelMarketView'].Add(
         channelMarketViewSchema
         (currentResult.r_Retailers[pChannel].rr_Quarters[I,pCategory].rq_BrandsResults[pBrand].rb_VariantsResults[pVariant])
          );
-    end;
 
-   // Writeln('JO:' + jo['
     result  := jo;
-
   end;
 
   function supplierChannelViewSchema(var curVar: TProducerVariantResults;
     pRet: TAllRetailersTotal): ISuperObject;
   var
     jo: ISuperObject;
+    I: Integer;
   begin
 //Writeln('supplierChannelViewSchema');
     jo  := SO;
@@ -563,7 +553,7 @@ var
       s_str : string;
     begin
       oJsonFile := SO;
- //     oJsonFile := collectAllVariants;
+//      oJsonFile := collectAllVariants;
       oJsonFile := collectVariantsNoProducer;
       s_str := 'out' + '.json';
       writeln( oJsonFile.AsJSon(False,False));
