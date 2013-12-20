@@ -191,7 +191,7 @@
               </th>
               <th ng-repeat='product in products'>
                 <a href="#" editable-text="product.currentPriceBM" onbeforesave="checkCurrentBM(category,product.parentBrandName,product.varName,'currentPriceBM','0',$index,$data)" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'currentPriceBM','0',$index)" ng-show="product.dateOfBirth==currentPeriod&&(!isReady)">{{ product.currentPriceBM || 0 }}</a>
-                <p ng-show='product.dateOfBirth!=currentPeriod||isReady'>{{ product.currentPriceEmall }}</p>
+                <p ng-show='product.dateOfBirth!=currentPeriod||isReady'>{{ product.currentPriceBM }}</p>
 
               </th>
             </tr>
