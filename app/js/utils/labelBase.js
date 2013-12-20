@@ -6,7 +6,7 @@ var getLabelBase = function(){
 		{id:'-National Off-line ($mln)',  ENG:'National Off-line ($mln)',  CHN:'全国性传统广告',  RUS:''},
 		{id:'-National On-line ($mln)',  ENG:'National On-line ($mln)',  CHN:'全国性网络广告',  RUS:''},
 		{id:'-Local Tier T ($mln)',  ENG:'Local Tier T ($mln)',  CHN:'本地广告投入',  RUS:''},
-		{id:'-Stores Operating Costs ($mln)',  ENG:'-Stores Operating Costs ($mln)',  CHN:'门店运营费用',  RUS:''},
+		{id:'-Stores Operating Costs ($mln)',  ENG:'Stores Operating Costs ($mln)',  CHN:'门店运营费用',  RUS:''},
 		{id:'-Amortisation ($mln)',  ENG:'Amortisation ($mln)',  CHN:'折旧和摊销费用',  RUS:''},
 		{id:'Manufacturer 1',  ENG:'Manufacturer 1',  CHN:'生产商 1',  RUS:''},	
 		{id:'Manufacturer 2',  ENG:'Manufacturer 2',  CHN:'生产商 2',  RUS:''},	
@@ -260,9 +260,9 @@ var getLabelBase = function(){
 		{id:'Consumer off-take Info',  ENG:'This measure indicates how many units of a product have been sold to the consumer.',  CHN:'衡量消费者实际购买数量的指标',  RUS:''},
 		
 		{id:'Retailer Perceptions',  ENG:'Retailer Perceptions',  CHN:'零售商感知',  RUS:''},
-		{id:'Retailer Perceptions Info',  ENG:'Shows how shoppers perceive retail players in terms of price (lower cheaper, higher more expensive), convenience and assortment.',  CHN:'',  RUS:''},
+		{id:'Retailer Perceptions Info',  ENG:'Shows how shoppers perceive retail players in terms of price (lower cheaper, higher more expensive), convenience and assortment.',  CHN:'表现购买者对零售商的感知，包括其价格（便宜低价，较贵高价），便利性和产品丰富性。',  RUS:''},
 		{id:'Shopper Behavior',  ENG:'Shopper Behavior',  CHN:'购物者行为',  RUS:''},
-		{id:'Shopper Behavior Info',  ENG:'Registers where consumers from different segments prefer to go shopping',  CHN:'购物者行为',  RUS:''},
+		{id:'Shopper Behavior Info',  ENG:'Registers where consumers from different segments prefer to go shopping',  CHN:'表现不同细分市场的消费者对于购物渠道的偏好。',  RUS:''},
 
 		{id:'Channel',  ENG:'Channel',  CHN:'分销渠道',  RUS:''},
 		{id:'Assortment',  ENG:'Assortment',  CHN:'产品丰富性',  RUS:''},

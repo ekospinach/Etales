@@ -3025,7 +3025,7 @@ var
           '"}');
         jo.A['c'].Add(jf);
         jo.A['c'].Add(jr);
-        result.A['rows'].Add(jo);
+        //result.A['rows'].Add(jo);
 
       //13	pt_AdvertisingNationalOldMedia	[MrktsMaxTotal]
         jo := SO;
@@ -3527,7 +3527,7 @@ var
             pt_CategoriesResults[HealthBeautiesID].pc_AdvertisingTotal[pmark]) +
           '"}');
         jo.A['c'].Add(jr);
-        result.A['rows'].Add(jo);
+       // result.A['rows'].Add(jo);
 
       //13 pt_CategoriesResults[].pc_AdvertisingNationalOldMedia   [MrktsMaxTotal]
         jo := SO;
@@ -4193,7 +4193,7 @@ var
               '"}');
             jo.A['c'].Add(jr);
           end;
-        result.A['rows'].Add(jo);
+      //  result.A['rows'].Add(jo);
 
       //13 pt_CategoriesResults[].pc_AdvertisingNationalOldMedia   [MrktsMaxTotal]
         jo := SO;
@@ -4938,7 +4938,7 @@ var
                   end;
               end;
           end;
-        result.A['rows'].Add(jo);
+       // result.A['rows'].Add(jo);
 
       //13 pt_CategoriesResults[].pc_AdvertisingNationalOldMedia   [MrktsMaxTotal]
         jo := SO;
