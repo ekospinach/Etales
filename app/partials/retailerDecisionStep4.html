@@ -65,88 +65,37 @@
                     <th ng-show="isHistoryProduct">{{Label.getContent('List Price')}}</th>
                     <th ng-show="isHistoryProduct">{{variantHistory.supplierView[0].nextPriceBM.toFixed(2)}}</th>
                     <td></td>
-                    <td>{{Label.getContent('Urban')}}</td>
-                    <td>{{Label.getContent('Rural')}}</td>      
-                  </tr>
-                  <tr>
-                    <!-- Current period -->
-                    <td>{{Label.getContent('Urban')}} {{Label.getContent('Closing Inventory')}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].volume.toFixed(2)||0}}</td>
-                    <!-- Previous period-->                   
-                    <td style="display:{{ElecssoriesVar}}">{{Label.getContent('Design Level')}}</td>                    
-                    <td style="display:{{HealthBeautyVar}}">{{Label.getContent('Active agent')}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[0]||0}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[0]||0}}</td>
-                  </tr>
-                  <tr>
-                    <!-- Current period -->
-                    <td>{{Label.getContent('Rural')}} {{Label.getContent('Closing Inventory')}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[3].volume.toFixed(2)||0}}</td>           
-                    <!-- Previous period-->
-                    <td>{{Label.getContent('Technology Level')}}</td>    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[1]||0}}</td>
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[1]||0}}</td>                    
+                    <td></td>
+                    <td></td>                    
                   </tr>
                   <tr>
                     <!-- Current period -->                    
+                    <!-- Current period -->                    
                     <td style="display:{{ElecssoriesVar}}">{{Label.getContent('Design Level')}}</td>                    
                     <td style="display:{{HealthBeautyVar}}">{{Label.getContent('Active agent')}}</td>                    
-                    <td>{{decisionCurrent.composition[0]}}</td>   
-                    <!-- Previous period-->
-                    <td style="display:{{ElecssoriesVar}}">{{Label.getContent('Quality-of-Raw-Materials')}}</td>
-
-                    <td style="display:{{HealthBeautyVar}}">{{Label.getContent('Smoothener Level')}}</td>  
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[2]||0}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[2]||0}}</td>                                        
-
+                    <td>{{decisionCurrent.composition[0]}}</td>                              
+                    <td></td>
+                    <td></td>
+                    <td></td>                    
                   </tr>
                   <tr>
                     <!-- Current period -->                    
                     <td>{{Label.getContent('Technology Level')}}</td>                    
                     <td>{{decisionCurrent.composition[1]}}</td>    
-                    <!-- Previous period-->
-                    <td>{{Label.getContent('Sales Volume at your store')}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].salesVolume.toFixed(2)||0}}</td>        
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].salesVolume.toFixed(2)||0}}</td>                                   
+                    <td></td>
+                    <td></td>
+                    <td></td>                         
                   </tr>
                   <tr>
                     <!-- Current period -->                    
                     <td style="display:{{ElecssoriesVar}}">{{Label.getContent('Quality-of-Raw-Materials')}}</td>  
                     <td style="display:{{HealthBeautyVar}}">{{Label.getContent('Smoothener Level')}}</td>                  
                     <td>{{decisionCurrent.composition[2]}}</td> 
-                    <!-- Previous period-->
-                    <td>{{Label.getContent('Shelf Space at your store')}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].shelfSpace.toFixed(2)*100||0}}%</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].shelfSpace.toFixed(2)*100||0}}%</td>                                        
+                    <td></td>
+                    <td></td>
+                    <td></td>                         
                   </tr>
-                  <tr>
-                    <td></td>                    
-                    <td></td>                    
-                    <td>{{Label.getContent('Market Price at your store')}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].marketPrice.toFixed(2)||0}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].marketPrice.toFixed(2)||0}}</td>                                        
-                  </tr>
-                  <tr>
-                    <td></td>                    
-                    <td></td>                                        
-                    <td>{{Label.getContent('Net Price at your store')}}</td>
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].netMarketPrice.toFixed(2)||0}}</td>
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].netMarketPrice.toFixed(2)||0}}</td>
-                  </tr>
-                  <tr>
-                    <td></td>                    
-                    <td></td>                                        
-                    <td>{{Label.getContent('Promotions Frequency')}}({{Label.getContent('weeks')}})</td>
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].promotionsDetails.promo_Frequency||0}} weeks</td>
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].promotionsDetails.promo_Frequency||0}} weeks</td>
-                  </tr>
-                  <tr>
-                    <td></td>                    
-                    <td></td>                    
-                    <td>{{Label.getContent('Reduction Rate')}}</td>
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].promotionsDetails.promo_Rate*100||0}}%</td>
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].promotionsDetails.promo_Rate*100||0}}%</td>
-                  </tr>
+
                 </tbody>  
               </table>
           </div>
