@@ -181,7 +181,9 @@ define(['app'], function(app) {
 				if(location=="localAdvertising"){
 					RetailerDecisionBase.setMarketDecisionBase(marketID,location,additionalIdx,$scope.markets[index][location][additionalIdx]);					
 				}else if(location=="categorySurfaceShare"){
-					RetailerDecisionBase.setMarketDecisionBase(marketID,location,additionalIdx,($scope.markets[index][location][additionalIdx])/100);					
+					RetailerDecisionBase.setMarketDecisionBase(marketID,location,additionalIdx,($scope.markets[index][location][additionalIdx])/100);
+					$scope.markets[index][location][1-additionalIdx]=((100-$scope.markets[index][location][additionalIdx])).toFixed(2);
+					//RetailerDecisionBase.setMarketDecisionBase(marketID,location,(1-additionalIdx),(100-$scope.markets[index][location][additionalIdx])/100);					
 				}else{
 					RetailerDecisionBase.setMarketDecisionBase(marketID,location,postion,$scope.markets[index][location]);										
 				}
