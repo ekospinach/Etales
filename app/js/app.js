@@ -16,8 +16,7 @@ define([
 	'bubbleRenderer',
 	'labelRenderer',
 	'textRenderer',
-	'tree',
-	'angularAnimate'
+	'tree'
 	], function (angular, filters, services,directives,bootstrap, controllers) {
 		'use strict';
 		return angular.module('myApp', [
@@ -30,7 +29,6 @@ define([
 			'ui.bootstrap',
 			'chieffancypants.loadingBar',
 			'ngCookies',
-			'ngAnimate'
 		]).run(function(editableOptions){
 			editableOptions.theme = 'bs3';
 		}).run(['$rootScope', '$location','Auth','$http', function ($rootScope, $location, Auth, $http) {		    
