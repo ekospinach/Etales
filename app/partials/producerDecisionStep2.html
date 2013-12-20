@@ -113,14 +113,15 @@
                     <td>{{Label.getContent('Acquired Technology Level')}}</td>  
                     <td ng-show="isElecssories">{{companyHistory.acquiredTechnologyLevel[0]||0}}</td>
                     <td ng-show="isHealthBeauty">{{companyHistory.acquiredTechnologyLevel[1]||0}}</td>
+
                     <td>{{Label.getContent('Unit Production Cost')}}</td>
                     <td>{{variantHistory.supplierView[0].currentUnitAverageCost.toFixed(2)||0}}</td>
                   </tr>
                   <tr>
-                    <td ng-show="isElecssories">{{Label.getContent('Acquired Design Level')}}</td>
-                    <td ng-show="isHealthBeauty">{{Label.getContent('Acquired Active agent')}}</td>
+                    <td>{{Label.getContent('Acquired Design Level')}}</td>
                     <td ng-show="isElecssories">{{companyHistory.acquiredDesignLevel[0]||0}}</td>
-                    <td ng-show="isHealthBeauty">{{companyHistory.acquiredDesignLevel[1]||0}}</td>
+                    <td ng-show="isHealthBeauty">/</td>                   
+
                     <td>{{Label.getContent('Production Volume')}}</td>
                     <td>{{variantHistory.supplierView[0].productionVolume.toFixed(2)||0}}</td>
                   </tr>
@@ -128,13 +129,17 @@
                     <td ng-show="isElecssories">{{Label.getContent('Acquired Quality-of-Raw-Materials')}}</td>
                     <td ng-show="isHealthBeauty">{{Label.getContent('Acquired Smoothener Level')}}</td>
                     <td ng-show="isElecssories">{{companyHistory.acquiredTechnologyLevel[0]+2}}</td>
-                    <td ng-show="isHealthBeauty">{{companyHistory.acquiredTechnologyLevel[1]+2}}</td> <td>{{Label.getContent('Initial Inventory')}}</td>
+                    <td ng-show="isHealthBeauty">{{companyHistory.acquiredTechnologyLevel[1]+2}}</td> 
+
+                    <td>{{Label.getContent('Initial Inventory')}}</td>
                     <td>{{variantHistory.supplierView[0].initialInventory[4].volume.toFixed(2)||0}}</td>
                   </tr>
                   <tr>
                     <td></td>
                     <td></td>                                        
-                    <td>{{Label.getContent('Design Level')}}</td>
+                    <td ng-show="isElecssories">{{Label.getContent('Design Level')}}</td>                    
+                    <td ng-show="isHealthBeauty">{{Label.getContent('Active agent')}}</td>    
+
                     <td>{{variantHistory.supplierView[0].composition[0]||0}}</td>
                   </tr>
                   <tr>
@@ -147,7 +152,8 @@
                   <tr>
                     <td></td>
                     <td></td>
-                    <td>{{Label.getContent('Quality-of-Raw-Materials')}}</td>
+                    <td ng-show="isElecssories">{{Label.getContent('Quality-of-Raw-Materials')}}</td>  
+                    <td ng-show="isHealthBeauty">{{Label.getContent('Smoothener Level')}}</td>              
                     <td>{{variantHistory.supplierView[0].composition[2]||0}}</td>
                   </tr>                 
                   <tr>
@@ -161,7 +167,7 @@
                     <td></td>                    
                     <td>{{Label.getContent('Current Price Emall')}}</td>
                     <td>{{variantHistory.supplierView[0].currentPriceEmall.toFixed(2)||0}}</td>                    
-                  </tr>                
+                  </tr>              
                 </tbody>
               </table>                    
         </div>
