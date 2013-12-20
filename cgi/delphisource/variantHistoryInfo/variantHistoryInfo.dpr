@@ -312,7 +312,9 @@ var
         jo.A['closingInventory'].Add(jt);
       end;
     jo.D['currentUnitAcquisitionCost'] := curVar.rv_CurrentUnitAcquisitionCost;
+    Writeln('inside salesVolume:'+ FloatToStr(curVar.rv_SalesVolume));
     jo.D['salesVolume'] := curVar.rv_SalesVolume;
+    writeln(jo);
     jo.D['shelfSpace'] := curVar.rv_ShelfSpace;
     jo.D['marketPrice'] := curVar.rv_MarketPrice;
     jo.D['netMarketPrice']  := curVar.rv_NetMarketPrice;
@@ -329,17 +331,22 @@ var
     jo: ISuperObject;
   begin
     jo  := SO;
-//Writeln('channelViewSchema ch ' + IntToStr(pChannel) + IntToStr(pCategory) + IntToStr(pBrand) + IntToStr(pVariant));
+    Writeln('channelViewSchema ch ' + IntToStr(pChannel) + IntToStr(pCategory) + IntToStr(pBrand) + IntToStr(pVariant));
 //var channelViewSchema = mongoose.Schema({
 //    channelMarketView : [channelMarketViewSchema] //length: TMarketsTotal(1~3)
 //})
     jo.O['channelMarketView'] := SA([]);
     for I := Low(TMarketsTotal) to High(TMarketsTotal) do
+    begin
+          Writeln('brandName: ' +  currentResult.r_Retailers[pChannel].rr_Quarters[I,pCategory].rq_BrandsResults[pBrand].rb_BrandName + ', Market:' + IntToStr(I));
+           Writeln('Retailer: ' + IntToStr(pChannel));
+          Writeln('VarName: ' +  currentResult.r_Retailers[pChannel].rr_Quarters[I,pCategory].rq_BrandsResults[pBrand].rb_VariantsResults[pVariant].rv_VariantName);
+          Writeln('SalesVolume' + FloatToStr(currentResult.r_Retailers[pChannel].rr_Quarters[I,pCategory].rq_BrandsResults[pBrand].rb_VariantsResults[pVariant].rv_SalesVolume));
       jo.A['channelMarketView'].Add(
         channelMarketViewSchema
         (currentResult.r_Retailers[pChannel].rr_Quarters[I,pCategory].rq_BrandsResults[pBrand].rb_VariantsResults[pVariant])
          );
-
+    end;
     result  := jo;
   end;
 
