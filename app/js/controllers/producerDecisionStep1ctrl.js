@@ -490,7 +490,7 @@ define(['app'], function(app) {
 				if(category=="Elecssories"){
 					categoryID=1;
 				}else{
-					catagoryID=2;
+					categoryID=2;
 				}
 				var url='/checkProducerDecision/'+$rootScope.user.seminar+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
 				$http({
