@@ -8,7 +8,8 @@ define(['app'], function(app) {
 		    $rootScope.loginDiv="container";
 
 			$scope.language=Label.getCurrentLanguage(),
-			$scope.producerID=$rootScope.user.username.substring($rootScope.user.username.length-1);
+			$scope.producerID=parseInt($rootScope.user.roleID);
+			console.log($rootScope.user);
 			$scope.period=$rootScope.currentPeriod,
 			$scope.category='Elecssories',
 			$scope.isCollapsed=true;
@@ -32,7 +33,7 @@ define(['app'], function(app) {
 			};
 			/*Angular-ui-bootstrap modal end*/		
 			ProducerDecisionBase.startListenChangeFromServer();
-			ProducerDecisionBase.reload({producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
+			ProducerDecisionBase.reload({producerID:parseInt($rootScope.user.roleID),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 				$scope.pageBase = base;	
 			}).then(function(){
 				return promiseStep1();
@@ -70,7 +71,7 @@ define(['app'], function(app) {
 					$scope.calculateVarID=calculateVarID;
 					$scope.deleteProduct=deleteProduct;
 					$scope.submitDecision=submitDecision;
-					var url='/checkProducerDecision/'+$rootScope.user.seminar+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+					var url='/checkProducerDecision/'+$rootScope.user.seminar+'/'+parseInt($rootScope.user.roleID);
 					$http({
 						method:'GET',
 						url:url
@@ -80,8 +81,10 @@ define(['app'], function(app) {
 						}else{
 							$scope.isReady=false;
 						}
+						d.resolve();
 						return showView($scope.producerID,$scope.period,$scope.category,$scope.language);
 					},function(){
+						//console.log('Check ProducersDecision status fail');
 						d.reject('Check ProducersDecision status fail');
 					})
 				return d.promise;
@@ -162,7 +165,7 @@ define(['app'], function(app) {
 					categoryID=2;
 					fakeName="HName";
 				}
-	      		var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+	      		var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+parseInt($rootScope.user.roleID);
 	      		$http({
 	      			method:'GET',
 	      			url:url
@@ -174,7 +177,7 @@ define(['app'], function(app) {
 	      				abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
 	      			}
 					acMax=data.data.productionCapacity[categoryID-1];
-	      			url="/producerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/brandName/location/1';
+	      			url="/producerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+parseInt($rootScope.user.roleID)+'/brandName/location/1';
 	      			return  $http({
 	      				method:'GET',
 	      				url:url,
@@ -183,7 +186,7 @@ define(['app'], function(app) {
 	      			expend=data.data.result;
 	       			$scope.surplusExpend=abMax-expend;
 	       			$scope.percentageExpend=(abMax-expend)/abMax*100;
-	      			url="/productionResult/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+fakeName+'/varName';
+	      			url="/productionResult/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+parseInt($rootScope.user.roleID)+'/'+fakeName+'/varName';
 	      			return $http({
 	      				method:'GET',
 	      				url:url
@@ -230,9 +233,10 @@ define(['app'], function(app) {
 	                }
 	                if(count==0){
 	                	d.reject('load products fail');
+	                }else{
+	                	d.resolve();
 	                }
 	                $scope.products=products;
-	                d.resolve($scope.products);
 	      		},function(data){
 	      			d.reject('show showView fail');
 	      		});	
@@ -274,7 +278,7 @@ define(['app'], function(app) {
 					category="HealthBeauty";
 					$scope.brandFirstName="H";
 				}
-				$scope.brandLastName=$rootScope.user.username.substring($rootScope.user.username.length-1);/*need check*/
+				$scope.brandLastName=parseInt($rootScope.user.roleID);/*need check*/
 			}
 			/*LoadAllBrand by category*/
 			var loadAllBrand=function(category){
@@ -319,7 +323,7 @@ define(['app'], function(app) {
 			};
 			var closeProductModal = function () {
 			    $scope.productModal = false;
-			    ProducerDecisionBase.reload({producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
+			    ProducerDecisionBase.reload({producerID:parseInt($rootScope.user.roleID),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 					$scope.pageBase = base;	
 				}).then(function(){
 					return promiseStep1();
@@ -343,7 +347,7 @@ define(['app'], function(app) {
 				else{
 					categoryID=2;
 				}	
-				var url='/checkProducerDecision/'+$rootScope.user.seminar+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+				var url='/checkProducerDecision/'+$rootScope.user.seminar+'/'+parseInt($rootScope.user.roleID);
 				$http({
 					method:'GET',
 					url:url
@@ -351,14 +355,14 @@ define(['app'], function(app) {
 					if(data.data=="isReady"){
 						d.resolve(Label.getContent('Check Error'));
 					}
-					url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+					url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+parseInt($rootScope.user.roleID);
 					return $http({
 						method:'GET',
 						url:url
 					});
 				}).then(function(data){
 					max=data.data.productionCapacity[categoryID-1];
-					url="/productionResult/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+brandName+'/'+varName;
+					url="/productionResult/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+parseInt($rootScope.user.roleID)+'/'+brandName+'/'+varName;
 					return $http({
 						method:'GET',
 						url:url
@@ -383,7 +387,7 @@ define(['app'], function(app) {
 				if(!filter.test(value)){
 					d.resolve(Label.getContent('Input a Integer'));
 				}
-				var url='/checkProducerDecision/'+$rootScope.user.seminar+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+				var url='/checkProducerDecision/'+$rootScope.user.seminar+'/'+parseInt($rootScope.user.roleID);
 				$http({
 					method:'GET',
 					url:url
@@ -391,7 +395,7 @@ define(['app'], function(app) {
 					if(data.data=="isReady"){
 						d.resolve(Label.getContent('Check Error'));
 					}
-					url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+					url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+parseInt($rootScope.user.roleID);
 					return $http({
 						method:'GET',
 						url:url
@@ -427,7 +431,7 @@ define(['app'], function(app) {
 				if(!filter.test(value)){
 					d.resolve(Label.getContent('Input a Integer'));
 				}
-				var url='/checkProducerDecision/'+$rootScope.user.seminar+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+				var url='/checkProducerDecision/'+$rootScope.user.seminar+'/'+parseInt($rootScope.user.roleID);
 				$http({
 					method:'GET',
 					url:url
@@ -435,7 +439,7 @@ define(['app'], function(app) {
 					if(data.data=="isReady"){
 						d.resolve(Label.getContent('Check Error'));
 					}
-					url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+					url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+parseInt($rootScope.user.roleID);
 					return $http({
 						method:'GET',
 						url:url
@@ -456,7 +460,7 @@ define(['app'], function(app) {
 							d.resolve();
 						}
 					}
-					url="/producerCurrentDecision/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+brandName+'/'+varName;
+					url="/producerCurrentDecision/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+parseInt($rootScope.user.roleID)+'/'+brandName+'/'+varName;
 					return $http({
 							method:'GET',
 							url:url
@@ -493,7 +497,7 @@ define(['app'], function(app) {
 				}else{
 					categoryID=2;
 				}
-				var url='/checkProducerDecision/'+$rootScope.user.seminar+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+				var url='/checkProducerDecision/'+$rootScope.user.seminar+'/'+parseInt($rootScope.user.roleID);
 				$http({
 					method:'GET',
 					url:url
@@ -501,7 +505,7 @@ define(['app'], function(app) {
 					if(data.data=="isReady"){
 						d.resolve(Label.getContent('Check Error'));
 					}
-					url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+					url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+parseInt($rootScope.user.roleID);
 					return $http({
 						method:'GET',
 						url:url
@@ -531,7 +535,7 @@ define(['app'], function(app) {
 				}else{
 					categoryID=2;
 				}
-				var url='/checkProducerDecision/'+$rootScope.user.seminar+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+				var url='/checkProducerDecision/'+$rootScope.user.seminar+'/'+parseInt($rootScope.user.roleID);
 				$http({
 					method:'GET',
 					url:url
@@ -579,7 +583,7 @@ define(['app'], function(app) {
 				}else{
 					categoryID=2;
 				}
-				var url='/checkProducerDecision/'+$rootScope.user.seminar+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+				var url='/checkProducerDecision/'+$rootScope.user.seminar+'/'+parseInt($rootScope.user.roleID);
 				$http({
 					method:'GET',
 					url:url
@@ -647,7 +651,7 @@ define(['app'], function(app) {
 					catID = 2;
 				}				
 				$scope.isCollapsed=false;
-				url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+				url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+parseInt($rootScope.user.roleID);
 				$http({method: 'GET', url: url})
 				.then(function(data) {
 					//console.log($scope.variantHistory);
@@ -680,7 +684,7 @@ define(['app'], function(app) {
 
 			var submitDecision=function(){
 				var queryCondition={
-					producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),
+					producerID:parseInt($rootScope.user.roleID),
 					seminar:$rootScope.user.seminar
 				}
 				$http({
@@ -728,7 +732,7 @@ define(['app'], function(app) {
 						return (obj.categoryID==$scope.lauchNewCategory);
 					});
 					newBrand.brandID=calculateBrandID(proBrandsDecision,$scope.producerID);
-					newBrand.brandName=$scope.brandFirstName+$scope.lauchNewBrandName+$rootScope.user.username.substring($rootScope.user.username.length-1);
+					newBrand.brandName=$scope.brandFirstName+$scope.lauchNewBrandName+parseInt($rootScope.user.roleID);
 					newBrand.paranetCompanyID=$scope.producerID;
 					newBrand.dateOfDeath=10;
 					newBrand.dateOfBirth=$scope.period;
@@ -743,7 +747,7 @@ define(['app'], function(app) {
 					//need add 2 null vars
 					newBrand.proVarDecision.push(newproducerDecision,nullDecision,nullDecision);
 
-					url="/checkProducerProduct/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+$scope.lauchNewCategory+'/brand/'+newBrand.brandName+'/'+newproducerDecision.varName;
+					url="/checkProducerProduct/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+parseInt($rootScope.user.roleID)+'/'+$scope.lauchNewCategory+'/brand/'+newBrand.brandName+'/'+newproducerDecision.varName;
 					$http({
 						method:'GET',
 						url:url
@@ -771,7 +775,7 @@ define(['app'], function(app) {
 			       			break;
 			       		}
 			       	}
-			       	url="/checkProducerProduct/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+$scope.lauchNewCategory+'/variant/'+newBrandName+'/'+newproducerDecision.varName;
+			       	url="/checkProducerProduct/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+parseInt($rootScope.user.roleID)+'/'+$scope.lauchNewCategory+'/variant/'+newBrandName+'/'+newproducerDecision.varName;
 			       	
 			       	$http({
 						method:'GET',
@@ -809,7 +813,7 @@ define(['app'], function(app) {
 		 	};
 			
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
-				ProducerDecisionBase.reload({producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
+				ProducerDecisionBase.reload({producerID:parseInt($rootScope.user.roleID),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 					$scope.pageBase = base;	
 				}).then(function(){
 					return promiseStep1();
