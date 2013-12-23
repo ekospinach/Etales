@@ -227,9 +227,9 @@ define(['app'], function(app) {
 
 			var loadModalDate=function(selectedDetail){
 				$scope.editDetail=selectedDetail;
-				$scope.shouldBeRate="none";
-				$scope.shouldBeAmount="none";
-				$scope.shouldBeNormal="";
+				$scope.shouldBeRate=false;
+				$scope.shouldBeAmount=false;
+				$scope.shouldBeNormal=true;
 				var count=0;
 				switch(selectedDetail.negotiationItem){
 					case 'nc_MinimumOrder':
@@ -253,9 +253,9 @@ define(['app'], function(app) {
 				//deal with special details combination : MinimumOrder&DiscountRate / SaleTarget/PerformanceBonus
 				if(selectedDetail.negotiationItem=="nc_MinimumOrder"){
 					//set default value
-					$scope.shouldBeRate="";
-					$scope.shouldBeAmount="none";
-					$scope.shouldBeNormal="none";
+					$scope.shouldBeRate=true;
+					$scope.shouldBeAmount=false;
+					$scope.shouldBeNormal=false;
 					//read real value
 					switch(selectedDetail.userType){
 						case 'P':
@@ -301,9 +301,9 @@ define(['app'], function(app) {
 				}
 				else if(selectedDetail.negotiationItem=="nc_SalesTargetVolume"){
 					//set default value
-					$scope.shouldBeRate="none";
-					$scope.shouldBeAmount="";
-					$scope.shouldBeNormal="none";
+					$scope.shouldBeRate=false;
+					$scope.shouldBeAmount=true;
+					$scope.shouldBeNormal=false;
 					//read real value
 					switch(selectedDetail.userType){
 						case 'P':
@@ -317,11 +317,11 @@ define(['app'], function(app) {
 							break;
 					}
 					if(selectedDetail.amount_or_rate){
-						$scope.shouldBeBonusAmount="";
-						$scope.shouldBeBonusRate="none";
+						$scope.shouldBeBonusAmount=true;
+						$scope.shouldBeBonusRate=false;
 					}else{
-						$scope.shouldBeBonusAmount="none";
-						$scope.shouldBeBonusRate="";							
+						$scope.shouldBeBonusAmount=false;
+						$scope.shouldBeBonusRate=true;							
 					}
 					if($scope.editDetailBonusRate.brand_ruralValue>0&&$scope.editDetailBonusRate.brand_ruralValue<=1){
 						$scope.editDetailBonusRate.brand_ruralValue*=100;
@@ -360,12 +360,12 @@ define(['app'], function(app) {
 
 				//Render Brand/Variant Details depends on userBrandDetails
 				if(selectedDetail.useBrandDetails){
-					$scope.shouldShowBrand="block";
-					$scope.shouldShowVariant="none";
+					$scope.shouldShowBrand=true;
+					$scope.shouldShowVariant=false;
 				}
 				else{
-					$scope.shouldShowBrand="none";
-					$scope.shouldShowVariant="block";
+					$scope.shouldShowBrand=false;
+					$scope.shouldShowVariant=true;
 				}
 
 				//Read Varinat(A/B/C) Decision from contractDetails into interface
@@ -571,13 +571,13 @@ define(['app'], function(app) {
 			$scope.setShowDetailType=function(type,detail){
 				var value=true;
 				if(type=="brand"){
-					$scope.shouldShowBrand="";
-					$scope.shouldShowVariant="none";
+					$scope.shouldShowBrand=true;
+					$scope.shouldShowVariant=false;
 					value=true;
 				}
 				else if(type=="variant"){
-					$scope.shouldShowBrand="none";
-					$scope.shouldShowVariant="";
+					$scope.shouldShowBrand=false;
+					$scope.shouldShowVariant=true;
 					value=false;
 				}
 				var queryCondition={
@@ -648,12 +648,12 @@ define(['app'], function(app) {
 			$scope.setShowBonusType=function(type,detail){
 				var value=true;
 				if(type=="Amout"){
-					$scope.shouldBeBonusAmount="";
-					$scope.shouldBeBonusRate="none";
+					$scope.shouldBeBonusAmount=true;
+					$scope.shouldBeBonusRate=false;
 					value=true;
 				}else if(type=="Rate"){
-					$scope.shouldBeBonusAmount="none";
-					$scope.shouldBeBonusRate="";	
+					$scope.shouldBeBonusAmount=false;
+					$scope.shouldBeBonusRate=true;	
 					value=false;			
 				}
 				var queryCondition={
