@@ -43,8 +43,8 @@ define(['app'], function(app) {
 			};
 
 			var promiseStep1=function(){
-				var delay=$q.defer();
-				delay.notify('start to show view');
+				var d=$q.defer();
+				d.notify('start to show view');
 					$scope.selectPacks=selectPacks;
 					$scope.openProductModal=openProductModal;
 					$scope.closeProductModal=closeProductModal;
@@ -62,7 +62,6 @@ define(['app'], function(app) {
 					$scope.checkRMQ=checkRMQ;
 					$scope.checkCurrentBM=checkCurrentBM;
 					$scope.checkCurrentEMall=checkCurrentEMall;
-
 					$scope.addNewProduct=addNewProduct;
 					$scope.updateProducerDecision=updateProducerDecision;
 					$scope.getMoreInfo=getMoreInfo;
@@ -81,9 +80,11 @@ define(['app'], function(app) {
 						}else{
 							$scope.isReady=false;
 						}
-						showView($scope.producerID,$scope.period,$scope.category,$scope.language);
+						return showView($scope.producerID,$scope.period,$scope.category,$scope.language);
+					},function(){
+						d.reject('Check ProducersDecision status fail');
 					})
-				return delay.promise;
+				return d.promise;
 			}
 
 			var calculateBrandID=function(proBrandsDecision,producerID){
@@ -118,7 +119,7 @@ define(['app'], function(app) {
 		    	var result=0;min=parentBrandID*10+1,max=parentBrandID*10+3;
 		    	var nums=new Array();
 		    	for(var i=0;i<proVarDecision.proVarDecision.length;i++){
-					if(proVarDecision.proVarDecision[i]!=undefined&&proVarDecision.proVarDecision[i].varID!=undefined&&proVarDecision.proVarDecision[i].varID!=0){
+					if(proVarDecision.proVarDecision[i]!=undefined&&proVarDecision.proVarDecision[i].varID!=0){
 						nums.push(proVarDecision.proVarDecision[i].varID);
 					}
 				}
@@ -152,7 +153,6 @@ define(['app'], function(app) {
 				$scope.producerID=producerID,$scope.period=period,$scope.category=category,$scope.language=language;
 				var categoryID=0,count=0,result=0,acMax=0,abMax=0,expend=0,avaiableMax=0;
 				var products=new Array();
-				//var labelLanguages={},infoLanguages={};
 				var fakeName="";
 				if(category=="Elecssories"){
 					categoryID=1;
@@ -195,12 +195,12 @@ define(['app'], function(app) {
 					$scope.producerID=producerID,$scope.period=period,$scope.category=category,$scope.language=language;
 					
 					if(category=="Elecssories"){
-						$scope.EleShow="inline";
-						$scope.HeaShow="none";
+						$scope.EleShow=true;
+						$scope.HeaShow=false;
 					}
 					else if(category=="HealthBeauty"){
-						$scope.EleShow="none";
-	                    $scope.HeaShow="inline";
+						$scope.EleShow=false;
+						$scope.HeaShow=true;
 	                }
 	                var allProCatDecisions=loadSelectCategroy(category);
 	                for(var i=0;i<allProCatDecisions.length;i++){
@@ -228,12 +228,13 @@ define(['app'], function(app) {
 	                		}
 	                	}
 	                }
-	                if(count!=0){
-	                	result=1;
+	                if(count==0){
+	                	d.reject('load products fail');
 	                }
 	                $scope.products=products;
+	                d.resolve($scope.products);
 	      		},function(data){
-	      			console.log('show showView fail');
+	      			d.reject('show showView fail');
 	      		});	
 	      		return d.promise;		
 			}
@@ -688,15 +689,6 @@ define(['app'], function(app) {
 					data:queryCondition
 				}).then(function(data){
 					$location.path('/producerDecisionStep2');
-					/*ProducerDecisionBase.reload({producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
-						$scope.pageBase = base;	
-					}).then(function(){
-						return promiseStep1();
-					}), function(reason){
-						console.log('from ctr: ' + reason);
-					}, function(update){
-						console.log('from ctr: ' + update);
-					};*/
 				},function(err){
 					console.log('fail');
 				})
