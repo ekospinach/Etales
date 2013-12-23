@@ -242,16 +242,16 @@ define(['app'], function(app) {
 			/*set add function is lauch new Brand*/
 			var setAddNewBrand=function(){
 				$scope.parameter="NewBrand";/*add new Brand*/
-				$scope.newBrand="";
-				$scope.newVariant="none";
+				$scope.newBrand=true;
+				$scope.newVariant=false;
 				$scope.lauchNewCategory=1;
 				setBrandName($scope.lauchNewCategory);
 			}	
 			/*set add function is add under a existed brand*/
 			var setAddNewProUnderBrand=function(){
 				$scope.parameter="ExistedBrand";/*add new product under existed Brand*/
-				$scope.newBrand="none";
-				$scope.newVariant="";
+				$scope.newBrand=false;
+				$scope.newVariant=true;
 				$scope.addNewCategory=1;
 				loadAllBrand($scope.addNewCategory);
 			}
