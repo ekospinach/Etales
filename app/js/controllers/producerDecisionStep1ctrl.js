@@ -7,11 +7,10 @@ define(['app'], function(app) {
 		    $rootScope.loginLink="footer-links";
 		    $rootScope.loginDiv="container";
 
-			$scope.language=Label.getCurrentLanguage(),
+			$scope.language=Label.getCurrentLanguage();
 			$scope.producerID=parseInt($rootScope.user.roleID);
-			console.log($rootScope.user);
-			$scope.period=$rootScope.currentPeriod,
-			$scope.category='Elecssories',
+			$scope.period=$rootScope.currentPeriod;
+			$scope.category='Elecssories';
 			$scope.isCollapsed=true;
 
 			$scope.packs = [{
@@ -45,7 +44,7 @@ define(['app'], function(app) {
 
 			var promiseStep1=function(){
 				var d=$q.defer();
-				d.notify('start to show view');
+				d.notify(Label.getContent('start to show view'));
 					$scope.selectPacks=selectPacks;
 					$scope.openProductModal=openProductModal;
 					$scope.closeProductModal=closeProductModal;
@@ -84,8 +83,7 @@ define(['app'], function(app) {
 						d.resolve();
 						return showView($scope.producerID,$scope.period,$scope.category,$scope.language);
 					},function(){
-						//console.log('Check ProducersDecision status fail');
-						d.reject('Check ProducersDecision status fail');
+						d.reject(Label.getContent('Check ProducersDecision status fail'));
 					})
 				return d.promise;
 			}
@@ -232,13 +230,13 @@ define(['app'], function(app) {
 	                	}
 	                }
 	                if(count==0){
-	                	d.reject('load products fail');
+	                	d.reject(Label.getContent('load products fail'));
 	                }else{
 	                	d.resolve();
 	                }
 	                $scope.products=products;
 	      		},function(data){
-	      			d.reject('show showView fail');
+	      			d.reject(Label.getContent('showView fail'));
 	      		});	
 	      		return d.promise;		
 			}

@@ -39,62 +39,6 @@
             {{variantHistory.parentBrandName||showNewHistory.brandName}} {{variantHistory.varName||showNewHistory.varName}}
             <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button></div>
 
-            <!--
-              <table class="table table-condensed table-bordered">
-                <thead>
-                  <tr>
-                    <td colspan="2" class="col-md-6">Current period ({{currentPeriod}})</td>
-                    <td colspan="2" class="col-md-6">Previous period ({{currentPeriod-1}})</td>               
-                  </tr>                  
-                </thead>
-                <tbody>
-                  <tr>
-                    <th>Unit cost</th>
-                    <th>???</th>
-                    <td>Sales Volume</td>
-                    <td>{{variantHistory.supplierView[0].supplierChannelView[4].salesVolume[2]||0}}</td>
-                  </tr>
-                  <tr>
-                    <td>Acquired technology level</td>                  
-                    <td ng-show="isElecssories">{{companyHistory.acquiredTechnologyLevel[0]||'/'}}</td>
-                    <td ng-show="isHealthBeauty">{{companyHistory.acquiredTechnologyLevel[1]||'/'}}</td>
-                    <td>Unit production cost</td>
-                    <td>{{variantHistory.supplierView[0].currentUnitAverageCost||'/'}}</td>
-                  </tr>
-                  <tr>
-                    <td>Acquired design level</td>
-                    <td ng-show="isElecssories">{{companyHistory.acquiredDesignLevel[0]||'/'}}</td>
-                    <td ng-show="isHealthBeauty">/</td>
-                    <td>Production Volume</td>
-                    <td>{{variantHistory.supplierView[0].productionVolume||'/'}}</td>
-                  </tr>
-                  <tr>
-                    <td>Current price BM</td>
-                    <td>{{variantHistory.supplierView[0].currentPriceBM||'/'}}</td>
-                    <td>initial inventory</td>
-                    <td>{{variantHistory.supplierView[0].initialInventory[4].volume||'/'}}</td>
-                  </tr>
-                  <tr>
-                    <td>Current price emall</td>
-                    <td>{{variantHistory.supplierView[0].currentPriceEmall||'/'}}</td>
-                    <td>Design Index</td>
-                    <td>{{variantHistory.supplierView[0].composition[0]||'/'}}</td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td>Technology Level:</td>
-                    <td>{{variantHistory.supplierView[0].composition[1]||'/'}}</td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td>Raw Materials Quality</td>
-                    <td>{{variantHistory.supplierView[0].composition[2]||'/'}}</td>
-                  </tr>                 
-                </tbody>
-              </table>
-              --> 
               <table class="table table-condensed table-bordered">
                 <thead>
                   <tr>
@@ -204,8 +148,8 @@
               </tr>
               <tr>
                 <th>
-                  <p style="display:{{HeaShow}}" class="text-primary" Popover-animation="true" popover="{{Label.getContent('Smoothener Level Info')}}" popover-title="{{Label.getContent('Smoothener Level')}}" popover-trigger="mouseenter" popover-placement="right">{{Label.getContent('Smoothener Level')}}<span style="color:red">*</span></p>
-                  <p style="display:{{EleShow}}" class="text-primary" Popover-animation="true" popover="{{Label.getContent('Quality-of-Raw-Materials Info')}}" popover-title="{{Label.getContent('Quality-of-Raw-Materials')}}" popover-trigger="mouseenter" popover-placement="right">{{Label.getContent('Quality-of-Raw-Materials')}}<span style="color:red">*</span></p>
+                  <p ng-show="HeaShow" class="text-primary" Popover-animation="true" popover="{{Label.getContent('Smoothener Level Info')}}" popover-title="{{Label.getContent('Smoothener Level')}}" popover-trigger="mouseenter" popover-placement="right">{{Label.getContent('Smoothener Level')}}<span style="color:red">*</span></p>
+                  <p ng-show="EleShow" class="text-primary" Popover-animation="true" popover="{{Label.getContent('Quality-of-Raw-Materials Info')}}" popover-title="{{Label.getContent('Quality-of-Raw-Materials')}}" popover-trigger="mouseenter" popover-placement="right">{{Label.getContent('Quality-of-Raw-Materials')}}<span style="color:red">*</span></p>
                 </th>
                 <th ng-repeat='product in products'>
                   {{product.composition[2]}}
@@ -221,8 +165,8 @@
               </tr>
               <tr>
                 <th>
-                  <p style="display:{{HeaShow}}" class="text-primary" Popover-animation="true" popover="{{Label.getContent('Active agent Info')}}" popover-title="{{Label.getContent('Active agent')}}" popover-trigger="mouseenter" popover-placement="right">{{Label.getContent('Active agent')}}<span style="color:red">*</span></p>
-                  <p style="display:{{EleShow}}" class="text-primary" Popover-animation="true" popover="{{Label.getContent('Design Level Info')}}" popover-title="{{Label.getContent('Design Level')}}" popover-trigger="mouseenter" popover-placement="right">{{Label.getContent('Design Level')}}<span style="color:red">*</span></p>
+                  <p ng-show="HeaShow" class="text-primary" Popover-animation="true" popover="{{Label.getContent('Active agent Info')}}" popover-title="{{Label.getContent('Active agent')}}" popover-trigger="mouseenter" popover-placement="right">{{Label.getContent('Active agent')}}<span style="color:red">*</span></p>
+                  <p ng-show="EleShow" class="text-primary" Popover-animation="true" popover="{{Label.getContent('Design Level Info')}}" popover-title="{{Label.getContent('Design Level')}}" popover-trigger="mouseenter" popover-placement="right">{{Label.getContent('Design Level')}}<span style="color:red">*</span></p>
               </th>
                 <th ng-repeat='product in products'>
                   {{product.composition[0]}}

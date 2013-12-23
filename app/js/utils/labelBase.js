@@ -542,10 +542,13 @@ var getLabelBase = function(){
 		/*login*/
 		{id:'Login successful',  ENG:'Login successful',  CHN:'登录成功',  RUS:''},	
 		{id:'Login fail',  ENG:'Login fail',  CHN:'登录失败',  RUS:''},	
-		{id:'',  ENG:'',  CHN:'',  RUS:''},	
-		{id:'',  ENG:'',  CHN:'',  RUS:''},	
-		{id:'',  ENG:'',  CHN:'',  RUS:''},	
-		{id:'',  ENG:'',  CHN:'',  RUS:''},	
+		/*reject*/
+		{id:'load brands fail',  ENG:'load brands fail,please call the admin',  CHN:'加载品牌失败，请联系管理员',  RUS:''},	
+		{id:'load products fail',  ENG:'load products fail,please call the admin',  CHN:'加载单品失败，请联系管理员',  RUS:''},	
+		{id:'load categorys fail',  ENG:'load categorys fail,please call the admin',  CHN:'加载品类失败，请联系管理员',  RUS:''},	
+		{id:'showView fail',  ENG:'showView fail,please call the admin',  CHN:'加载页面失败，请联系管理员',  RUS:''},	
+		{id:'Check ProducersDecision status fail',  ENG:'Check ProducersDecision status fail,please call the admin',  CHN:'验证用户决策失败，请联系管理员',  RUS:''},	
+		{id:'start to show view',  ENG:'start to show view',  CHN:'加载页面',  RUS:''},	
 		{id:'',  ENG:'',  CHN:'',  RUS:''},	
 		{id:'',  ENG:'',  CHN:'',  RUS:''},	
 		{id:'',  ENG:'',  CHN:'',  RUS:''},	

@@ -30,25 +30,29 @@
             <tbody>
               <tr>
                 <td>{{Label.getContent('Production capacity')}}</td>
-                <td>{{categoryID==1?companyHistory.productionCapacity[0]:companyHistory.productionCapacity[1].toFixed(2)}}</td>
+                <td ng-show='isElecssories'>{{companyHistory.productionCapacity[0].toFixed(2)}}</td>
+                <td ng-show='isHealthBeauty'>{{companyHistory.productionCapacity[1].toFixed(2)}}</td>
                 <td>{{Label.getContent('in capacity change')}}</td>
                 <td>{{companyDecisionHistory.capacityChange.toFixed(2)}}</td>
               </tr>
               <tr>
                 <td>{{Label.getContent('Acquired Technology Level')}}</td>
-                <td>{{categoryID==1?companyHistory.acquiredTechnologyLevel[0]:companyHistory.acquiredTechnologyLevel[1]}}</td>
+                <td ng-show='isElecssories'>{{companyHistory.acquiredTechnologyLevel[0].toFixed(2)}}</td>
+                <td ng-show='isHealthBeauty'>{{companyHistory.acquiredTechnologyLevel[1].toFixed(2)}}</td>
                 <td>{{Label.getContent('improve Available Technology')}}</td>
                 <td>{{companyDecisionHistory.investInTechnology.toFixed(2)}}</td>
               </tr>
               <tr>
                 <td>{{Label.getContent('Acquired production flexibility')}}</td>
-                <td>{{categoryID==1?companyHistory.acquiredProductionFlexibility[0].toFixed(2)*100:companyHistory.acquiredProductionFlexibility[1].toFixed(2)*100}}%</td>
+                <td ng-show='isElecssories'>{{(companyHistory.acquiredProductionFlexibility[0]*100).toFixed(2)}}%</td>
+                <td ng-show='isHealthBeauty'>{{(companyHistory.acquiredProductionFlexibility[1]*100).toFixed(2)}}%</td>
                 <td>{{Label.getContent('improve Flexibility')}}</td>
                 <td>{{companyDecisionHistory.investInProductionFlexibility.toFixed(2)}}</td>
               </tr>
               <tr>
                 <td>{{Label.getContent('Acquired Design Level')}}</td>
-                <td>{{categoryID==1?companyHistory.acquiredDesignLevel[0]:companyHistory.acquiredDesignLevel[1]}}</td>
+                <td ng-show='isElecssories'>{{companyHistory.acquiredDesignLevel[0].toFixed(2)}}</td>
+                <td ng-show='isHealthBeauty'>{{companyHistory.acquiredDesignLevel[1].toFixed(2)}}</td>
                 <td></td>
                 <td></td>
               </tr>
