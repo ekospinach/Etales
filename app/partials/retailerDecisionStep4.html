@@ -38,7 +38,6 @@
           <progress percent="showPercentageShelf" class="progress progress-suceess active progress-striped"></progress>
           <small>
             <em>{{Label.getContent(market)}}-{{Label.getContent(category)}} {{Label.getContent('Available ShelfSpace')}}: <strong>{{showSurplusShelf.toFixed(2)}}%</strong></em>
-
           </small>
         </div>
           <div style="clear:both"></div>
@@ -71,8 +70,8 @@
                   <tr>
                     <!-- Current period -->                    
                     <!-- Current period -->                    
-                    <td style="display:{{ElecssoriesVar}}">{{Label.getContent('Design Level')}}</td>                    
-                    <td style="display:{{HealthBeautyVar}}">{{Label.getContent('Active agent')}}</td>                    
+                    <td ng-show="ElecssoriesVar">{{Label.getContent('Design Level')}}</td>                    
+                    <td ng-show="HealthBeautyVar">{{Label.getContent('Active agent')}}</td>                    
                     <td>{{decisionCurrent.composition[0]}}</td>                              
                     <td></td>
                     <td></td>
@@ -88,8 +87,8 @@
                   </tr>
                   <tr>
                     <!-- Current period -->                    
-                    <td style="display:{{ElecssoriesVar}}">{{Label.getContent('Quality-of-Raw-Materials')}}</td>  
-                    <td style="display:{{HealthBeautyVar}}">{{Label.getContent('Smoothener Level')}}</td>                  
+                    <td ng-show="ElecssoriesVar">{{Label.getContent('Quality-of-Raw-Materials')}}</td>  
+                    <td ng-show="HealthBeautyVar">{{Label.getContent('Smoothener Level')}}</td>                  
                     <td>{{decisionCurrent.composition[2]}}</td> 
                     <td></td>
                     <td></td>

@@ -26,18 +26,12 @@
           <small>
             <em>{{Label.getContent('Available Budget')}}:{{surplusExpend}}</em>
           </small>
-          <!--<progress percent="ePercentageProduction" class="progress progress-suceess active progress-striped">{{eSurplusProduction}}</progress>
-          <small>
-            <em>Elecssories Available Capacity</em>
-          </small>
-            <progress percent="hPercentageProduction" class="progress progress-suceess active progress-striped">{{hSurplusProduction}}</progress>
-          <small>
-            <em>HealthBeauty Available Capacity</em>
-          </small>-->
         </div>
           <div style="clear:both"></div>
           <div collapse="isCollapsed" class="panel panel-info">
-            <div class="panel-heading">{{variantHistory.parentBrandName||showNewHistory.brandName}}{{variantHistory.varName||showNewHistory.varName}} <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button></div>
+            <div class="panel-heading">{{variantHistory.parentBrandName||showNewHistory.brandName}}{{variantHistory.varName||showNewHistory.varName}}
+              <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button>
+            </div>
               <table class="table table-condensed table-bordered">
                 <thead>
                   <tr>
@@ -75,11 +69,6 @@
               </table>
           </div>
           <table class="table table-hover">
-            <!--<tr>
-              <th>{{labelLanguages.Category}}</th>
-              <th ng-repeat='product in products'>
-              {{product.category}}</th>
-            </tr>-->
             <thead>
               <tr>
                 <th>{{Label.getContent('Brand')}}</th> 
@@ -100,7 +89,6 @@
               </tr>              
             </thead>
             <tbody>
-              
               <tr>
                 <th>
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Pack Format Info')}}" popover-title="{{Label.getContent('Pack Format')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Pack Format')}}<span style="color:red">*</span></p>
@@ -118,8 +106,8 @@
               </tr>
               <tr>
                 <th>
-                  <p style="display:{{HeaShow}}" class="text-primary" Popover-animation="true" popover="{{Label.getContent('Active agent Info')}}" popover-title="{{Label.getContent('Active agent')}}" popover-trigger="mouseenter" popover-placement="right">{{Label.getContent('Active agent')}}<span style="color:red">*</span></p>
-                  <p style="display:{{EleShow}}" class="text-primary" Popover-animation="true" popover="{{Label.getContent('Design Level Info')}}" popover-title="{{Label.getContent('Design Level')}}" popover-trigger="mouseenter" popover-placement="right">{{Label.getContent('Design Level')}}<span style="color:red">*</span></p>
+                  <p ng-show="HeaShow" class="text-primary" Popover-animation="true" popover="{{Label.getContent('Active agent Info')}}" popover-title="{{Label.getContent('Active agent')}}" popover-trigger="mouseenter" popover-placement="right">{{Label.getContent('Active agent')}}<span style="color:red">*</span></p>
+                  <p ng-show="EleShow" class="text-primary" Popover-animation="true" popover="{{Label.getContent('Design Level Info')}}" popover-title="{{Label.getContent('Design Level')}}" popover-trigger="mouseenter" popover-placement="right">{{Label.getContent('Design Level')}}<span style="color:red">*</span></p>
                 </th>
                 <th ng-repeat='product in products'>
                   <a href="#" editable-text="product.composition[0]" onbeforesave="checkDesign(category,product.parentBrandName,product.varName,'composition','0',$index,$data)" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'composition','0',$index)">{{ product.composition[0] || 0 }}</a>
@@ -127,8 +115,8 @@
               </tr>
               <tr>
                 <th>
-                  <p style="display:{{HeaShow}}" class="text-primary" Popover-animation="true" popover="{{Label.getContent('Smoothener Level Info')}}" popover-title="{{Label.getContent('Smoothener Level')}}" popover-trigger="mouseenter" popover-placement="right">{{Label.getContent('Smoothener Level')}}<span style="color:red">*</span></p>
-                  <p style="display:{{EleShow}}" class="text-primary" Popover-animation="true" popover="{{Label.getContent('Quality-of-Raw-Materials Info')}}" popover-title="{{Label.getContent('Quality-of-Raw-Materials')}}" popover-trigger="mouseenter" popover-placement="right">{{Label.getContent('Quality-of-Raw-Materials')}}<span style="color:red">*</span></p>
+                  <p ng-show="HeaShow" class="text-primary" Popover-animation="true" popover="{{Label.getContent('Smoothener Level Info')}}" popover-title="{{Label.getContent('Smoothener Level')}}" popover-trigger="mouseenter" popover-placement="right">{{Label.getContent('Smoothener Level')}}<span style="color:red">*</span></p>
+                  <p ng-show="EleShow" class="text-primary" Popover-animation="true" popover="{{Label.getContent('Quality-of-Raw-Materials Info')}}" popover-title="{{Label.getContent('Quality-of-Raw-Materials')}}" popover-trigger="mouseenter" popover-placement="right">{{Label.getContent('Quality-of-Raw-Materials')}}<span style="color:red">*</span></p>
                   </p>
                 </th>
                 <th ng-repeat='product in products'><a href="#" editable-text="product.composition[2]" onbeforesave="checkRMQ(category,product.parentBrandName,product.varName,'composition','2',$index,$data)" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'composition','2',$index)">{{ product.composition[2] || 0 }}</a></th>
@@ -222,8 +210,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <input type="button" ng-click="addNewProduct(parameter)" style="display:{{newBrand}}" class="btn btn-primary" value="{{Label.getContent('Add')}}" ng-disabled="((myForm.lauchVarName.$invalid)||(myForm.newBrandName.$invalid))"/>
-          <input type="button" style="display:{{newVariant}}" ng-click="addNewProduct(parameter)" class="btn btn-primary" value="{{Label.getContent('Add')}}" ng-disabled="(myForm.addVarName.$invalid)">
+          <input type="button" ng-click="addNewProduct(parameter)" ng-show="newBrand" class="btn btn-primary" value="{{Label.getContent('Add')}}" ng-disabled="((myForm.lauchVarName.$invalid)||(myForm.newBrandName.$invalid))"/>
+          <input type="button" ng-show="newVariant" ng-click="addNewProduct(parameter)" class="btn btn-primary" value="{{Label.getContent('Add')}}" ng-disabled="(myForm.addVarName.$invalid)">
           <input type="button" class="btn btn-default" ng-click="closeProductModal()" value="{{Label.getContent('Cancel')}}">
         </div>
       </form>
