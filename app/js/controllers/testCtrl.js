@@ -42,6 +42,18 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
 		  })			
 		}
 
+		$scope.setCurrentPeriod = function(period){
+		  var postData = {
+		  	seminar : 'MAY',
+		  	period : period
+		  }
+		  $http({method:'POST', url:'/setCurrentPeriod', data: postData}).then(function(res){
+		  	console.log('testPassive Success:' + res);
+		  },function(res){
+		  	console.log('testPassive Failed:' + res);
+		  })			
+		}		
+
 		$scope.importPassiveDecision = function(period){
 		  var postData = {
 		  	seminar : 'MAY',

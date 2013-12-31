@@ -52,6 +52,7 @@ app.post('/runSeminar', require('./api/kernelSeminar.js').runSeminar(io));
 
 
 
+
 app.post('/contract');
 app.post('/contractDetails');
 app.post('/producerDecision',require('./api/models/producerDecision.js').updateProducerDecision(io));
@@ -61,6 +62,7 @@ app.post('/updateContractDetails',require('./api/models/contract.js').updateCont
 
 //add Seminar
 app.post('/addSeminar',require('./api/models/seminar.js').addSeminar);
+app.post('/setCurrentPeriod', require('./api/models/seminar.js').setCurrentPeriod);
 
 app.get('/producerDecision/:producerID/:period/:seminar',require('./api/models/producerDecision.js').getAllProducerDecision);
 app.get('/producerProducts/:producerID/:period/:seminar/:categoryID',require('./api/models/producerDecision.js').getProducerProductList);
