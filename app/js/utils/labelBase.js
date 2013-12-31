@@ -486,6 +486,11 @@ var getLabelBase = function(){
 		{id:'Retailer Discontinue this product Info',  ENG:'take this decision with caution: all unsold stocks of this product will be automatically returned to your warehouse and scrapped at a cost to your business.',  CHN:'请注意:　所有期末未销售完的库存将退回到你的仓库进行销毁，成为你的成本。',  RUS:''},
 		{id:'Retailer DisContinue',  ENG:'DisContinue',  CHN:'停止销售',  RUS:''},
 		{id:'Retailer Continue',  ENG:'Continue',  CHN:'继续销售',  RUS:''},
+		{id:'Inventory Design Level',  ENG:'Inventory Design Level',  CHN:'库存中产品的设计水平',  RUS:''},	
+		{id:'Inventory Active agent',  ENG:'Inventory Active agent',  CHN:'库存中产品的活力因子',  RUS:''},	
+		{id:'Inventory Technology Level',  ENG:'Inventory Technology Level',  CHN:'库存中产品的技术水平',  RUS:''},	
+		{id:'Inventory Quality-of-Raw-Materials',  ENG:'Inventory Quality-of-Raw-Materials',  CHN:'库存中产品的原材料质量',  RUS:''},	
+		{id:'Inventory Smoothener Level',  ENG:'Inventory Smoothener Level',  CHN:'库存中产品的光滑因子',  RUS:''},											
 
 		/*retailer step 4*/
 		{id:'Order Pricing Shelf',  ENG:'Order, Pricing and Shelf Allocation',  CHN:'订货、定价和货架分配',  RUS:''},

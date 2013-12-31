@@ -47,7 +47,7 @@ const
   aDetails : array[1..4] of string = ('Global','Category','Brand','Variant');
   aRoles : array[Prod_1_ID..Admin_ID] of string = (
     'Producer 1', 'Producer 2', 'Producer 3', 'Producer 4',
-    'Retailer 1', 'Retailer 2', 'Traditional Trade', 'e-Mall',
+    'Retailer 1', 'Retailer 2', 'Retailer 3', 'Retailer 4',
     'Administrator');
 
   aVolRetail : array[1..5] of string = (
@@ -859,38 +859,44 @@ var
         result.O['rows'] := sa([]);
 
       //1 pc_InitialInventory
-        jo := SO;
-        jo.O['c'] := SA([]);
-        jf := SO(aVolProducer[1]);
-        jo.A['c'].Add(jf);
-        jr := SO('{f: "", v: "' +
-          FormatFloat('0.00',
-            pt_CategoriesResults[ElecsoriesID].pc_InitialInventory) +
-          '"}');
-        jo.A['c'].Add(jr);
-        jr := SO('{f: "", v: "' +
-          FormatFloat('0.00',
-            pt_CategoriesResults[HealthBeautiesID].pc_InitialInventory) +
-          '"}');
-        jo.A['c'].Add(jr);
-        result.A['rows'].Add(jo);
+      if pmark = MrktsMaxTotal then
+        begin
+          jo := SO;
+          jo.O['c'] := SA([]);
+          jf := SO(aVolProducer[1]);
+          jo.A['c'].Add(jf);
+          jr := SO('{f: "", v: "' +
+            FormatFloat('0.00',
+              pt_CategoriesResults[ElecsoriesID].pc_InitialInventory) +
+            '"}');
+          jo.A['c'].Add(jr);
+          jr := SO('{f: "", v: "' +
+            FormatFloat('0.00',
+              pt_CategoriesResults[HealthBeautiesID].pc_InitialInventory) +
+            '"}');
+          jo.A['c'].Add(jr);
+          result.A['rows'].Add(jo);
+        end;
 
       //2 pc_ProductionVolume
-        jo := SO;
-        jo.O['c'] := SA([]);
-        jf := SO(aVolProducer[2]);
-        jo.A['c'].Add(jf);
-        jr := SO('{f: "", v: "' +
-          FormatFloat('0.00',
-            pt_CategoriesResults[ElecsoriesID].pc_ProductionVolume) +
-          '"}');
-        jo.A['c'].Add(jr);
-        jr := SO('{f: "", v: "' +
-          FormatFloat('0.00',
-            pt_CategoriesResults[HealthBeautiesID].pc_ProductionVolume) +
-          '"}');
-        jo.A['c'].Add(jr);
-        result.A['rows'].Add(jo);
+      if pmark = MrktsMaxTotal then
+        begin
+          jo := SO;
+          jo.O['c'] := SA([]);
+          jf := SO(aVolProducer[2]);
+          jo.A['c'].Add(jf);
+          jr := SO('{f: "", v: "' +
+            FormatFloat('0.00',
+              pt_CategoriesResults[ElecsoriesID].pc_ProductionVolume) +
+            '"}');
+          jo.A['c'].Add(jr);
+          jr := SO('{f: "", v: "' +
+            FormatFloat('0.00',
+              pt_CategoriesResults[HealthBeautiesID].pc_ProductionVolume) +
+            '"}');
+          jo.A['c'].Add(jr);
+          result.A['rows'].Add(jo);
+        end;
 
       //3 pc_SalesVolume
         jo := SO;
@@ -910,40 +916,46 @@ var
         result.A['rows'].Add(jo);
 
        //4 pc_DiscontinuedGoodsVolume
-        jo := SO;
-        jo.O['c'] := SA([]);
-        jf := SO(aVolProducer[4]);
-        jo.A['c'].Add(jf);
-        jr := SO('{f: "", v: "' +
-          FormatFloat('0.00',
-            pt_CategoriesResults[ElecsoriesID].pc_DiscontinuedGoodsVolume ) +
-          '"}');
-        jo.A['c'].Add(jr);
-        jr := SO('{f: "", v: "' +
-          FormatFloat('0.00',
-            pt_CategoriesResults[HealthBeautiesID].pc_DiscontinuedGoodsVolume ) +
-          '"}');
-        jo.A['c'].Add(jr);
-        result.A['rows'].Add(jo);
+      if pmark = MrktsMaxTotal then
+        begin
+          jo := SO;
+          jo.O['c'] := SA([]);
+          jf := SO(aVolProducer[4]);
+          jo.A['c'].Add(jf);
+          jr := SO('{f: "", v: "' +
+            FormatFloat('0.00',
+              pt_CategoriesResults[ElecsoriesID].pc_DiscontinuedGoodsVolume ) +
+            '"}');
+          jo.A['c'].Add(jr);
+          jr := SO('{f: "", v: "' +
+            FormatFloat('0.00',
+              pt_CategoriesResults[HealthBeautiesID].pc_DiscontinuedGoodsVolume ) +
+            '"}');
+          jo.A['c'].Add(jr);
+          result.A['rows'].Add(jo);
+        end;
 
       //5 pc_ClosingInventory
-        jo := SO;
-        jo.O['c'] := SA([]);
-        jf := SO(aVolProducer[5]);
-        jo.A['c'].Add(jf);
-        jr := SO('{f: "", v: "' +
-          FormatFloat('0.00',
-            pt_CategoriesResults[ElecsoriesID].pc_ClosingInventory) +
-          '"}');
-        jo.A['c'].Add(jr);
-        jr := SO('{f: "", v: "' +
-          FormatFloat('0.00',
-            pt_CategoriesResults[HealthBeautiesID].pc_ClosingInventory) +
-          '"}');
-        jo.A['c'].Add(jr);
-        result.A['rows'].Add(jo);
+      if pmark = MrktsMaxTotal then
+        begin
+          jo := SO;
+          jo.O['c'] := SA([]);
+          jf := SO(aVolProducer[5]);
+          jo.A['c'].Add(jf);
+          jr := SO('{f: "", v: "' +
+            FormatFloat('0.00',
+              pt_CategoriesResults[ElecsoriesID].pc_ClosingInventory) +
+            '"}');
+          jo.A['c'].Add(jr);
+          jr := SO('{f: "", v: "' +
+            FormatFloat('0.00',
+              pt_CategoriesResults[HealthBeautiesID].pc_ClosingInventory) +
+            '"}');
+          jo.A['c'].Add(jr);
+          result.A['rows'].Add(jo);
         end;
       end;
+    end;
 
     function buildVolumeProducerBrand(pprod,pmark,pcat: Integer): ISuperObject;
     var
@@ -992,36 +1004,42 @@ var
         result.O['rows'] := sa([]);
 
       //1 pb_InitialInventory
-        jo := SO;
-        jo.O['c'] := SA([]);
-        jf := SO(aVolProducer[1]);
-        jo.A['c'].Add(jf);
-        for I := Low(abrn) to High(abrn) do
-          begin
-            pp := currentResult.r_Producers[pprod].pt_CategoriesResults[pcat].pc_BrandsResults[abrn[I]];
-            jr := SO('{f: "", v: "' +
-              FormatFloat('0.00',
-                pp.pb_InitialInventory) +
-              '"}');
-            jo.A['c'].Add(jr);
-          end;
-        result.A['rows'].Add(jo);
+      if pmark = MrktsMaxTotal then
+        begin
+          jo := SO;
+          jo.O['c'] := SA([]);
+          jf := SO(aVolProducer[1]);
+          jo.A['c'].Add(jf);
+          for I := Low(abrn) to High(abrn) do
+            begin
+              pp := currentResult.r_Producers[pprod].pt_CategoriesResults[pcat].pc_BrandsResults[abrn[I]];
+              jr := SO('{f: "", v: "' +
+                FormatFloat('0.00',
+                  pp.pb_InitialInventory) +
+                '"}');
+              jo.A['c'].Add(jr);
+            end;
+          result.A['rows'].Add(jo);
+        end;
 
       //2 pb_ProductionVolume
-        jo := SO;
-        jo.O['c'] := SA([]);
-        jf := SO(aVolProducer[2]);
-        jo.A['c'].Add(jf);
-        for I := Low(abrn) to High(abrn) do
-          begin
-            pp := currentResult.r_Producers[pprod].pt_CategoriesResults[pcat].pc_BrandsResults[abrn[I]];
-            jr := SO('{f: "", v: "' +
-              FormatFloat('0.00',
-                pp.pb_ProductionVolume ) +
-              '"}');
-            jo.A['c'].Add(jr);
-          end;
-        result.A['rows'].Add(jo);
+      if pmark = MrktsMaxTotal then
+        begin
+          jo := SO;
+          jo.O['c'] := SA([]);
+          jf := SO(aVolProducer[2]);
+          jo.A['c'].Add(jf);
+          for I := Low(abrn) to High(abrn) do
+            begin
+              pp := currentResult.r_Producers[pprod].pt_CategoriesResults[pcat].pc_BrandsResults[abrn[I]];
+              jr := SO('{f: "", v: "' +
+                FormatFloat('0.00',
+                  pp.pb_ProductionVolume ) +
+                '"}');
+              jo.A['c'].Add(jr);
+            end;
+          result.A['rows'].Add(jo);
+        end;
 
       //3 pb_SalesVolume
         jo := SO;
@@ -1040,37 +1058,43 @@ var
         result.A['rows'].Add(jo);
 
        //4 pb_DiscontinuedGoodsVolume
-        jo := SO;
-        jo.O['c'] := SA([]);
-        jf := SO(aVolProducer[4]);
-        jo.A['c'].Add(jf);
-        for I := Low(abrn) to High(abrn) do
-          begin
-            pp := currentResult.r_Producers[pprod].pt_CategoriesResults[pcat].pc_BrandsResults[abrn[I]];
-            jr := SO('{f: "", v: "' +
-              FormatFloat('0.00',
-                pp.pb_DiscontinuedGoodsVolume ) +
-              '"}');
-            jo.A['c'].Add(jr);
-          end;
-        result.A['rows'].Add(jo);
+      if pmark = MrktsMaxTotal then
+        begin
+          jo := SO;
+          jo.O['c'] := SA([]);
+          jf := SO(aVolProducer[4]);
+          jo.A['c'].Add(jf);
+          for I := Low(abrn) to High(abrn) do
+            begin
+              pp := currentResult.r_Producers[pprod].pt_CategoriesResults[pcat].pc_BrandsResults[abrn[I]];
+              jr := SO('{f: "", v: "' +
+                FormatFloat('0.00',
+                  pp.pb_DiscontinuedGoodsVolume ) +
+                '"}');
+              jo.A['c'].Add(jr);
+            end;
+          result.A['rows'].Add(jo);
+        end;
 
       //5 pt_CategoriesResults[].pc_CostOfGoodsSold   [AllRetsMaxTotal, MrktsMaxTotal]
-        jo := SO;
-        jo.O['c'] := SA([]);
-        jf := SO(aVolProducer[5]);
-        jo.A['c'].Add(jf);
-        for I := Low(abrn) to High(abrn) do
-          begin
-            pp := currentResult.r_Producers[pprod].pt_CategoriesResults[pcat].pc_BrandsResults[abrn[I]];
-            jr := SO('{f: "", v: "' +
-              FormatFloat('0.00',
-                pp.pb_ClosingInventory ) +
-              '"}');
-            jo.A['c'].Add(jr);
-          end;
-        result.A['rows'].Add(jo);
-      end;
+      if pmark = MrktsMaxTotal then
+        begin
+          jo := SO;
+          jo.O['c'] := SA([]);
+          jf := SO(aVolProducer[5]);
+          jo.A['c'].Add(jf);
+          for I := Low(abrn) to High(abrn) do
+            begin
+              pp := currentResult.r_Producers[pprod].pt_CategoriesResults[pcat].pc_BrandsResults[abrn[I]];
+              jr := SO('{f: "", v: "' +
+                FormatFloat('0.00',
+                  pp.pb_ClosingInventory ) +
+                '"}');
+              jo.A['c'].Add(jr);
+            end;
+          result.A['rows'].Add(jo);
+        end;
+    end;
 
     function buildVolumeProducerVariant(pprod,pmark,pcat: Integer): ISuperObject;
     var
@@ -1129,52 +1153,58 @@ var
         result.O['rows'] := sa([]);
 
       //1 pv_InitialInventory
-        jo := SO;
-        jo.O['c'] := SA([]);
-        jf := SO(aVolProducer[1]);
-        jo.A['c'].Add(jf);
-        for I := Low(abrn) to High(abrn) do
-          begin
-            pp := currentResult.r_Producers[pprod].pt_CategoriesResults[pcat].pc_BrandsResults[abrn[I]];
-            for vr := Low(TOneBrandVars) to High(TOneBrandVars) do
-              begin
-                pv := pp.pb_VariantsResults[vr];
-                //check variant exists :: could be not the best
-                if pv.pv_VariantID <> 0 then
-                  begin
-                    jr := SO('{f: "", v: "' +
-                      FormatFloat('0.00',
-                        pv.pv_InitialInventory[InventoryAgesMaxTotal].invd_Volume ) +
-                      '"}');
-                    jo.A['c'].Add(jr);
-                  end;
-              end;
-          end;
-        result.A['rows'].Add(jo);
+      if pmark = MrktsMaxTotal then
+        begin
+          jo := SO;
+          jo.O['c'] := SA([]);
+          jf := SO(aVolProducer[1]);
+          jo.A['c'].Add(jf);
+          for I := Low(abrn) to High(abrn) do
+            begin
+              pp := currentResult.r_Producers[pprod].pt_CategoriesResults[pcat].pc_BrandsResults[abrn[I]];
+              for vr := Low(TOneBrandVars) to High(TOneBrandVars) do
+                begin
+                  pv := pp.pb_VariantsResults[vr];
+                  //check variant exists :: could be not the best
+                  if pv.pv_VariantID <> 0 then
+                    begin
+                      jr := SO('{f: "", v: "' +
+                        FormatFloat('0.00',
+                          pv.pv_InitialInventory[InventoryAgesMaxTotal].invd_Volume ) +
+                        '"}');
+                      jo.A['c'].Add(jr);
+                    end;
+                end;
+            end;
+          result.A['rows'].Add(jo);
+        end;
 
       //2 pv_ProductionVolume
-        jo := SO;
-        jo.O['c'] := SA([]);
-        jf := SO(aVolProducer[2]);
-        jo.A['c'].Add(jf);
-        for I := Low(abrn) to High(abrn) do
-          begin
-            pp := currentResult.r_Producers[pprod].pt_CategoriesResults[pcat].pc_BrandsResults[abrn[I]];
-            for vr := Low(TOneBrandVars) to High(TOneBrandVars) do
-              begin
-                pv := pp.pb_VariantsResults[vr];
-                //check variant exists :: could be not the best
-                if pv.pv_VariantID <> 0 then
-                  begin
-                    jr := SO('{f: "", v: "' +
-                      FormatFloat('0.00',
-                        pv.pv_ProductionVolume) +
-                      '"}');
-                    jo.A['c'].Add(jr);
-                  end;
-              end;
-          end;
-        result.A['rows'].Add(jo);
+      if pmark = MrktsMaxTotal then
+        begin
+          jo := SO;
+          jo.O['c'] := SA([]);
+          jf := SO(aVolProducer[2]);
+          jo.A['c'].Add(jf);
+          for I := Low(abrn) to High(abrn) do
+            begin
+              pp := currentResult.r_Producers[pprod].pt_CategoriesResults[pcat].pc_BrandsResults[abrn[I]];
+              for vr := Low(TOneBrandVars) to High(TOneBrandVars) do
+                begin
+                  pv := pp.pb_VariantsResults[vr];
+                  //check variant exists :: could be not the best
+                  if pv.pv_VariantID <> 0 then
+                    begin
+                      jr := SO('{f: "", v: "' +
+                        FormatFloat('0.00',
+                          pv.pv_ProductionVolume) +
+                        '"}');
+                      jo.A['c'].Add(jr);
+                    end;
+                end;
+            end;
+          result.A['rows'].Add(jo);
+        end;
 
       //3 pv_SalesVolume
         jo := SO;
@@ -1201,53 +1231,59 @@ var
         result.A['rows'].Add(jo);
 
       //4 pv_DiscontinuedGoodsVolume
-        jo := SO;
-        jo.O['c'] := SA([]);
-        jf := SO(aVolProducer[4]);
-        jo.A['c'].Add(jf);
-        for I := Low(abrn) to High(abrn) do
-          begin
-            pp := currentResult.r_Producers[pprod].pt_CategoriesResults[pcat].pc_BrandsResults[abrn[I]];
-            for vr := Low(TOneBrandVars) to High(TOneBrandVars) do
-              begin
-                pv := pp.pb_VariantsResults[vr];
-                //check variant exists :: could be not the best
-                if pv.pv_VariantID <> 0 then
-                  begin
-                    jr := SO('{f: "", v: "' +
-                      FormatFloat('0.00',
-                        pv.pv_DiscontinuedGoodsVolume ) +
-                      '"}');
-                    jo.A['c'].Add(jr);
-                  end;
-              end;
-          end;
-        result.A['rows'].Add(jo);
+      if pmark = MrktsMaxTotal then
+        begin
+          jo := SO;
+          jo.O['c'] := SA([]);
+          jf := SO(aVolProducer[4]);
+          jo.A['c'].Add(jf);
+          for I := Low(abrn) to High(abrn) do
+            begin
+              pp := currentResult.r_Producers[pprod].pt_CategoriesResults[pcat].pc_BrandsResults[abrn[I]];
+              for vr := Low(TOneBrandVars) to High(TOneBrandVars) do
+                begin
+                  pv := pp.pb_VariantsResults[vr];
+                  //check variant exists :: could be not the best
+                  if pv.pv_VariantID <> 0 then
+                    begin
+                      jr := SO('{f: "", v: "' +
+                        FormatFloat('0.00',
+                          pv.pv_DiscontinuedGoodsVolume ) +
+                        '"}');
+                      jo.A['c'].Add(jr);
+                    end;
+                end;
+            end;
+          result.A['rows'].Add(jo);
+        end;
 
       //5 pv_ClosingInventory
-        jo := SO;
-        jo.O['c'] := SA([]);
-        jf := SO(aVolProducer[5]);
-        jo.A['c'].Add(jf);
-        for I := Low(abrn) to High(abrn) do
-          begin
-            pp := currentResult.r_Producers[pprod].pt_CategoriesResults[pcat].pc_BrandsResults[abrn[I]];
-            for vr := Low(TOneBrandVars) to High(TOneBrandVars) do
-              begin
-                pv := pp.pb_VariantsResults[vr];
-                //check variant exists :: could be not the best
-                if pv.pv_VariantID <> 0 then
-                  begin
-                    jr := SO('{f: "", v: "' +
-                      FormatFloat('0.00',
-                        pv.pv_ClosingInventory[InventoryAgesMaxTotal].invd_Volume ) +
-                      '"}');
-                    jo.A['c'].Add(jr);
-                  end;
-              end;
-          end;
-        result.A['rows'].Add(jo);
-      end;
+      if pmark = MrktsMaxTotal then
+        begin
+          jo := SO;
+          jo.O['c'] := SA([]);
+          jf := SO(aVolProducer[5]);
+          jo.A['c'].Add(jf);
+          for I := Low(abrn) to High(abrn) do
+            begin
+              pp := currentResult.r_Producers[pprod].pt_CategoriesResults[pcat].pc_BrandsResults[abrn[I]];
+              for vr := Low(TOneBrandVars) to High(TOneBrandVars) do
+                begin
+                  pv := pp.pb_VariantsResults[vr];
+                  //check variant exists :: could be not the best
+                  if pv.pv_VariantID <> 0 then
+                    begin
+                      jr := SO('{f: "", v: "' +
+                        FormatFloat('0.00',
+                          pv.pv_ClosingInventory[InventoryAgesMaxTotal].invd_Volume ) +
+                        '"}');
+                      jo.A['c'].Add(jr);
+                    end;
+                end;
+            end;
+          result.A['rows'].Add(jo);
+        end;
+    end;
 
     function collectDataProducer(pwho,pmkt,pdet,pcat: Integer): ISuperObject;
     begin
@@ -1282,16 +1318,16 @@ var
       Result.S['detail'] := aDetails[pdet];
       Result.S['roleID'] := aRoles[pwho];
       Result.O['data'] := SO();
-      if (pwho > Prod_4_ID) and (pwho < TradTrade_ID) and (pdet = 1) then
+      if (pwho > Prod_4_ID) and (pwho < Admin_ID) and (pdet = 1) then
         Result['data'] := buildVolumeRetailerGlobal(pwho - Prod_4_ID,pmkt);
-      if (pwho > Prod_4_ID) and (pwho < TradTrade_ID) and (pdet = 2) then
+      if (pwho > Prod_4_ID) and (pwho < Admin_ID) and (pdet = 2) then
         Result['data'] := buildVolumeRetailerCategory(pwho - Prod_4_ID,pmkt);
-      if (pwho > Prod_4_ID) and (pwho < TradTrade_ID) and (pdet = 3)  then
+      if (pwho > Prod_4_ID) and (pwho < Admin_ID) and (pdet = 3)  then
         begin
           Result.S['category'] := aCategories[pcat];
           Result['data'] := buildVolumeRetailerBrand(pwho - Prod_4_ID,pmkt,pcat);
         end;
-      if (pwho > Prod_4_ID) and (pwho < TradTrade_ID) and (pdet = 4)  then
+      if (pwho > Prod_4_ID) and (pwho < Admin_ID) and (pdet = 4)  then
         begin
           Result.S['category'] := aCategories[pcat];
           Result['data'] := buildVolumeRetailerVariant(pwho - Prod_4_ID,pmkt,pcat);
@@ -1352,7 +1388,8 @@ var
           // collect Retailer reports
           if rrole = 2 then
             for det := 1 to 4 do
-              for pl := Ret_1_ID to Ret_2_ID do
+//              for pl := Ret_1_ID to Ret_2_ID do
+              for pl := Ret_1_ID to E_Mall_ID do
                 for mkt := Low(TMarketsTotal) to High(TMarketsTotal) do
                   begin
                     if det < 3 then

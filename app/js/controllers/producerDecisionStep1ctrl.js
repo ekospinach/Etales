@@ -207,6 +207,7 @@ define(['app'], function(app) {
 	                for(var i=0;i<allProCatDecisions.length;i++){
 	                	for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
 	                		if(allProCatDecisions[i].proBrandsDecision[j].brandID!=undefined&&allProCatDecisions[i].proBrandsDecision[j].brandID!=0){
+
 	                			for(var k=0;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
 	                				if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=0&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=undefined){
 	                					products.push(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]);
@@ -221,11 +222,12 @@ define(['app'], function(app) {
 	                					else if(products[count].packFormat=="PREMIUM"){
 	                						products[count].packFormat=3;
 	                					}
-	                					products[count].currentPriceBM=parseFloat(products[count].currentPriceBM).toFixed(2);
-	                					products[count].currentPriceEmall=parseFloat(products[count].currentPriceEmall).toFixed(2);
+	                					 products[count].currentPriceBM=parseFloat(products[count].currentPriceBM).toFixed(2);
+	                					 products[count].currentPriceEmall=parseFloat(products[count].currentPriceEmall).toFixed(2);
 	                					count++;
 	                				}
 	                			}
+
 	                		}
 	                	}
 	                }
