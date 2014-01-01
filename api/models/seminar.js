@@ -172,14 +172,38 @@ exports.submitDecision=function(io){
 	}
 }
 
+exports.setCurrentPeriod = function(req, res, next){
+		var queryCondition={
+			seminar:req.body.seminar,
+			period:req.body.period
+		}
+		console.log('setCurrentPeriod:' + queryCondition.seminar + '/' + queryCondition.period);
+		seminar.findOne({seminarCode:queryCondition.seminar},function(err,doc){
+			if(err) {next(new Error(err))};
+			if(doc){
+				console.log('find seminar:' + doc)
+				doc.currentPeriod = queryCondition.period;
+				doc.save(function(err){
+					if(!err){
+						console.log('update seminar:' + doc)						
+						res.send(200,'success');
+					}else{
+						res.send(400,'fail');
+					}
+				})
+			}else{
+				res.send(404,'there is no such seminar...');
+			}
+		})
+}
+
 exports.addSeminar=function(req,res,next){
-	
 	var Newseminar = new seminar({
 		seminarCode: req.body.seminarCode,
 		seminarDescription: req.body.seminarDescription,
 		seminarDate: Date.now(),
 		currentPeriod:req.body.currentPeriod,
-		isInitialise:false,
+		isInitialise:true,
 		producers : [{
 			producerID : 1,
 			password : "110",
