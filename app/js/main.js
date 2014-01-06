@@ -34,7 +34,10 @@
 			tree:'./map/bootstrap-tree',
 			nggooglechart:'../bower_components/angular-google-chart/ng-google-chart',
 			domReady: '../bower_components/requirejs-domready/domReady',
-			labelBase: './utils/labelBase'
+			labelBase: './utils/labelBase',
+			//hightchart
+			highchart:'./utils/highchart',
+			highcharts:'../bower_components/highcharts-ng/src/directives/highcharts-ng'
 		},
 		baseUrl: 'js',
 		shim: {
@@ -54,7 +57,8 @@
 			'bubbleRenderer':['jqplot','jquery'],
 			'labelRenderer':['jqplot','jquery'],
 			'textRenderer':['jqplot','jquery'],
-			'tree':['jquery']
+			'tree':['jquery'],
+			'highcharts':['jquery','angular','highchart']
 			},
 		priority: [
 			"angular"

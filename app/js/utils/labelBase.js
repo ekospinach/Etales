@@ -2,21 +2,8 @@ var getLabelBase = function(){
 	return [
 		{id:'Manual popInfo',  ENG:'Remark: If it is not specified otherwise in this simulation game, the monetary unit is RMB Million, the unit price is RMB Yuan and the volume unit is Million Package.',  CHN:'备注：除非特别说明，本模拟游戏中使用的货币单位均为人民币（百万元），产品单价均为人民币（元），产品数量单位均为百万包。 ',  RUS:''},	
 		/*retail report new label */
-		{id:'- Advertising Total ($mln)',  ENG:'Advertising Total ($mln)',  CHN:'广告投入合计',  RUS:''},
-		{id:'-National Off-line ($mln)',  ENG:'National Off-line ($mln)',  CHN:'全国性传统广告',  RUS:''},
-		{id:'-National On-line ($mln)',  ENG:'National On-line ($mln)',  CHN:'全国性网络广告',  RUS:''},
-		{id:'-Local Tier T ($mln)',  ENG:'Local Tier T ($mln)',  CHN:'本地广告投入',  RUS:''},
-		{id:'-Stores Operating Costs ($mln)',  ENG:'Stores Operating Costs ($mln)',  CHN:'门店运营费用',  RUS:''},
-		{id:'-Amortisation ($mln)',  ENG:'Amortisation ($mln)',  CHN:'折旧和摊销费用',  RUS:''},
-		{id:'Manufacturer 1',  ENG:'Manufacturer 1',  CHN:'生产商 1',  RUS:''},	
-		{id:'Manufacturer 2',  ENG:'Manufacturer 2',  CHN:'生产商 2',  RUS:''},	
-		{id:'Manufacturer 3',  ENG:'Manufacturer 3',  CHN:'生产商 3',  RUS:''},	
-		{id:'Private label',  ENG:'Private label',  CHN:'自有品牌',  RUS:''},	
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
-
 		/*line chart page */
 		{id:'e-Mall',  ENG:'E-Mall',  CHN:'网上商城',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
         {id:'Retail Market Sales (Value)',  ENG:'Retail Market Sales (Value)',  CHN:'各零售商的销售额',  RUS:''},        
         {id:'Retail Market Share (Value)',  ENG:'Retail Market Share (Value)',  CHN:'各零售商的市场份额（按销售额计）',  RUS:''},        
         {id:'Retail Market Sales (Volume)',  ENG:'Retail Market Sales (Volume)',  CHN:'各零售商的市场销量',  RUS:''},        
@@ -238,10 +225,18 @@ var getLabelBase = function(){
 		{id:'Adjusted gross contribution (RMB 000)',  ENG:'Adjusted gross contribution (RMB 000)',  CHN:'调整后的毛利贡献额',  RUS:''},
 		{id:'Terms of payment (days)',  ENG:'Terms of payment (days)',  CHN:'帐期（天数）',  RUS:''},
 		{id:'Purchases',  ENG:'Purchases',  CHN:'本阶段采购量',  RUS:''},
-
 		{id:'per 1% of shelf space (RMB 000)',  ENG:'per 1% of shelf space',  CHN:'每1%货架的销量',  RUS:''},
 		{id:'as % of net sales (%)',  ENG:'as % of net sales (%)',  CHN:'调整后的毛利率（%）',  RUS:''},
-
+		{id:'- Advertising Total ($mln)',  ENG:'Advertising Total ($mln)',  CHN:'广告投入合计',  RUS:''},
+		{id:'-National Off-line ($mln)',  ENG:'National Off-line ($mln)',  CHN:'全国性传统广告',  RUS:''},
+		{id:'-National On-line ($mln)',  ENG:'National On-line ($mln)',  CHN:'全国性网络广告',  RUS:''},
+		{id:'-Local Tier T ($mln)',  ENG:'Local Tier T ($mln)',  CHN:'本地广告投入',  RUS:''},
+		{id:'-Stores Operating Costs ($mln)',  ENG:'Stores Operating Costs ($mln)',  CHN:'门店运营费用',  RUS:''},
+		{id:'-Amortisation ($mln)',  ENG:'Amortisation ($mln)',  CHN:'折旧和摊销费用',  RUS:''},
+		{id:'Manufacturer 1',  ENG:'Manufacturer 1',  CHN:'生产商 1',  RUS:''},	
+		{id:'Manufacturer 2',  ENG:'Manufacturer 2',  CHN:'生产商 2',  RUS:''},	
+		{id:'Manufacturer 3',  ENG:'Manufacturer 3',  CHN:'生产商 3',  RUS:''},	
+		{id:'Private label',  ENG:'Private label',  CHN:'自有品牌',  RUS:''},	
 		/*market report*/
 		{id:'Market popInfo',  ENG:'Click on column header to sort the table.',  CHN:'点击顶部的标题栏，可以对数据进行排序。',  RUS:''},
 		{id:'Market studies',  ENG:'Market studies',  CHN:'市场研究',  RUS:''},
