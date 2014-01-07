@@ -7,6 +7,7 @@ define(['app','socketIO'], function(app) {
 		    $rootScope.loginCss="bs-docs-home";
 		    $rootScope.loginLink="bs-masthead-links";
 		    $rootScope.loginDiv="";
+		    $rootScope.loadShow=true;
 
 		var userRoles = routingConfig.userRoles;
 

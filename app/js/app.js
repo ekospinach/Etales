@@ -57,6 +57,7 @@ define([
 	            	if(Auth.isLoggedIn()){
 						var url="/currentPeriod/"+$rootScope.user.seminar;
 						$http.get(url).success(function(data){
+							$rootScope.loadShow=false;
 							$rootScope.currentPeriod=data.currentPeriod;
 							$rootScope.rootStartFrom=-2;
 							$rootScope.rootEndWith=$rootScope.currentPeriod-1;

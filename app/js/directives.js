@@ -32,6 +32,16 @@ define(['angular','services'], function(angular, services) {
                             }
                         };
                 })
+                .directive('loadEnd',function(){
+                    return function(scope,elm,attrs){
+                        pageheader=document.getElementById('pageheader'),
+                        pagefooter=document.getElementById('pagefooter'),
+                        pageloader=document.getElementById('pageloader');
+                        pageheader.style.display="block";
+                        pagefooter.style.display="block";
+                        pageloader.style.display="none";
+                    }
+                })
                 .directive('activeNav', ['$location', function(location) {
                     return {
                         restrict: 'A',
