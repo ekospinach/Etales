@@ -38,7 +38,7 @@
 			labelBase: './utils/labelBase',
 			//hightchart
 			highchart:'./utils/highchart',
-			highcharts:'../bower_components/highcharts-ng/src/directives/highcharts-ng'
+			highcharts:'./utils/highcharts-ng'
 		},
 		baseUrl: 'js',
 		shim: {

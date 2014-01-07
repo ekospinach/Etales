@@ -18,6 +18,7 @@ define([
 	'labelRenderer',
 	'textRenderer',
 	'tree',
+	//'highchart',
 	'highcharts'
 	], function (angular, filters, services,directives,bootstrap, controllers) {
 		'use strict';
