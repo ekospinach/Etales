@@ -28,6 +28,7 @@
 			placeholder:'../bower_components/angular-placeholders/demo/assets/ui-bootstrap-tpls-0.1.0-SNAPSHOT.min',
 			//jquery-jqplot-->Map.html
 			jqplot:'../bower_components/jqplot/jquery.jqplot.min',
+			angular_ui_chart:'../bower_components/angular-ui-chart/src/chart',
 			bubbleRenderer:'./map/jqplot.bubbleRenderer',
 			labelRenderer:'./map/jqplot.canvasAxisLabelRenderer.min',
 			textRenderer:'./map/jqplot.canvasTextRenderer.min',

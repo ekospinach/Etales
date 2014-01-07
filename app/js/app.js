@@ -13,6 +13,7 @@ define([
 	'angularLoadingBar',
 	'angularCookies',
 	'jqplot',
+	'angular_ui_chart',
 	'bubbleRenderer',
 	'labelRenderer',
 	'textRenderer',
@@ -31,6 +32,7 @@ define([
 			'chieffancypants.loadingBar',
 			'ngCookies',
 			'highcharts-ng',
+			'ui.chart',
 		]).run(function(editableOptions){
 			editableOptions.theme = 'bs3';
 		}).run(['$rootScope', '$location','Auth','$http', function ($rootScope, $location, Auth, $http) {		    

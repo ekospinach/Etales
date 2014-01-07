@@ -278,9 +278,10 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
 	    ];
 
 	    $scope.chartSeries = [
-	        {"name": "Some data", "data": [1, 2, 4, 7, 3]},
+	        {"name": "Some data", "data": [[1,6],[3,2], [6,4], [7,5], [3,4]],color:'#004CE5',connectNulls:true,type:"line"},
 	        {"name": "Some data 3", "data": [3, 1, null, 5, 2], connectNulls: true},
 	        {"name": "Some data 2", "data": [5, 2, 2, 3, 5], type: "column"},
+	        {},
 	        {"name": "My Super Column", "data": [1, 1, 2, 3, 2], type: "column"}
 	    ];
 
@@ -324,7 +325,7 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
 	    $scope.chartConfig = {
 	        options: {
 	            chart: {
-	                type: 'areaspline'
+	                type: 'line'
 	            },
 	            plotOptions: {
 	                series: {

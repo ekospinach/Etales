@@ -52,17 +52,6 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    	});
 		    	charts[i].data=$scope.chartCollection.data;
 		    	title=Label.getContent($scope.chartdata.chartSetCollection[i].titleENG);
-		    	console.log($scope.chartdata.chartSetCollection[i].titleENG);
-		    	// if(language=="ENG"){
-		    	// 	title=$scope.chartdata.chartSetCollection[i].titleENG;
-		    	// }
-		    	// else if(language=="CHN"){
-		    	// 	title=$scope.chartdata.chartSetCollection[i].titleCHN;
-		    	// }
-		    	// else if(language=="RUS"){
-		    	// 	title=$scope.chartdata.chartSetCollection[i].titleRUS;
-		    	// }
-
 		    	for(var j=0;j<$scope.chartCollection.data.cols.length;j++)
 		    	{
 		    		$scope.chartCollection.data.cols[j].label=Label.getContent($scope.chartCollection.data.cols[j].labelENG);
@@ -101,6 +90,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 	        $scope.chart2=charts[1];
 	        $scope.chart3=charts[2];
 	        $scope.chart4=charts[3];
+	        console.log($scope.chart1);
 	    }
 
 	    var initialisePage = function(){
@@ -141,10 +131,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 
 			getLineChart($scope.seminar,$scope.groupTitle,$scope.period);
 	    }
-
 	    initialisePage();
-
-
 	}]);
 
 });
