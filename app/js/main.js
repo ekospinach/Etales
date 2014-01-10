@@ -98,8 +98,13 @@
 	        pageheader.style.display="none";
 	        pagefooter.style.display="none";
 	        if (loadingStatusEl && loadingModuleNameEl) {  	
-	          loadingStatusEl.innerHTML = loadingStatusEl.innerHTML += '.'; //add one more dot character
-	          loadingModuleNameEl.innerHTML = map.name + (map.url ? ' at ' + map.url : '') ;
+	        	if(map.url=="js/routes.js"){
+	        		pageheader.style.display="block";
+	        		pagefooter.style.display="block";
+	        		pageloader.style.display="none";
+	        	}
+	        	loadingStatusEl.innerHTML = loadingStatusEl.innerHTML += '.'; //add one more dot character
+	        	loadingModuleNameEl.innerHTML = map.name + (map.url ? ' at ' + map.url : '') ;
 	        } else {
 	          //TODO later load, must have loading indicator for this then
 	        }
