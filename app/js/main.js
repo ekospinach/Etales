@@ -31,6 +31,7 @@
 			angular_ui_chart:'../bower_components/angular-ui-chart/src/chart',
 			bubbleRenderer:'./map/jqplot.bubbleRenderer',
 			labelRenderer:'./map/jqplot.canvasAxisLabelRenderer.min',
+			pieRenderer:'./map/jqplot.pieRenderer',
 			textRenderer:'./map/jqplot.canvasTextRenderer.min',
 			tree:'./map/bootstrap-tree',
 			nggooglechart:'../bower_components/angular-google-chart/ng-google-chart',
