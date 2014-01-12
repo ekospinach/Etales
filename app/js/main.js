@@ -38,7 +38,10 @@
 			labelBase: './utils/labelBase',
 			//hightchart
 			highchart:'./utils/highchart',
-			highcharts:'./utils/highcharts-ng'
+			highcharts:'./utils/highcharts-ng',
+			//export
+			generatedata:'./jqxGrid/generatedata',
+			jqxgrid:'./jqxGrid/jqxgrid'
 		},
 		baseUrl: 'js',
 		shim: {
@@ -55,6 +58,7 @@
 			'angularBootstrap':['jquery','bootstrap','angular'],
 			'angularLoadingBar' : ['angular'],
 			'jqplot':['jquery'],
+			'jqxgrid':['jquery'],
 			'bubbleRenderer':['jqplot','jquery'],
 			'labelRenderer':['jqplot','jquery'],
 			'textRenderer':['jqplot','jquery'],

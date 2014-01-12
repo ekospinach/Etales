@@ -17,8 +17,9 @@ define([
 	'labelRenderer',
 	'textRenderer',
 	'tree',
-	//'highchart',
-	'highcharts'
+	'highcharts',
+	'generatedata',
+	'jqxgrid',
 	], function (angular, filters, services,directives,bootstrap, controllers) {
 		'use strict';
 		return angular.module('myApp', [
