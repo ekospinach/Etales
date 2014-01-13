@@ -108,6 +108,10 @@ app.get('/perceptionMaps/:seminar/:period',require('./api/models/perceptionMap.j
 app.get('/finReport', require('./api/models/finReport.js').getFinReport);
 app.get('/volReport', require('./api/models/volReport.js').getVolReport);
 
+//export data to excel
+app.get('/excel',require('./api/utils/excel.js').testGet);
+app.post('/excel',require('./api/utils/excel.js').testPost);
+
 //producer check
 app.get('/productionResult/:seminar/:period/:producerID/:brandName/:varName',require('./api/models/producerDecision.js').getProductionResult);
 app.get('/producerCurrentDecision/:seminar/:period/:producerID/:brandName/:varName',require('./api/models/producerDecision.js').getProducerCurrentDecision);

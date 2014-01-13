@@ -23,7 +23,8 @@
     "passport-local": "~0.1.6",
     "validator": "~2.0.0",
     "connect-flash": "~0.1.1",
-    "newrelic": "~1.1.1"
+    "newrelic": "~1.1.1",
+    "excel-export": "~0.3.10"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
