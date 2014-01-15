@@ -1,8 +1,6 @@
-//var xlsx = require('../node-xlsx');
 define(['app','socketIO','routingConfig','bootstrap'], function(app) {
 
 	app.controller('testCtrl',['$scope', '$http','$location', 'ProducerDecisionBase','$rootScope','Auth','Label', function($scope, $http,$location, ProducerDecisionBase,$rootScope,Auth,Label) {
-		//var xlsx = require('../node-xlsx');
 		// You can access the scope of the controller from here
 			$rootScope.loginCss="";
 		    $rootScope.loginFooter="bs-footer";
@@ -30,6 +28,18 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
 		  },function(res){
 		  	console.log('testUnitCost Failed:' + res.data);
 		  })				
+		}
+
+		$scope.testExportPost=function(){
+			$http({
+				method:'POST',
+				url:'/excel',
+				data:''
+			}).then(function(){
+				console.log('Success');
+			},function(){
+				console.log('fail');
+			});
 		}
 
 		$scope.testExport=function(){
