@@ -31,6 +31,8 @@
     "requirejs-domready": "~2.0.1",
     "angular-placeholders": "*",
     "angular-animate": "~1.2.5",
-    "font-awesome": "3.2.1"
+    "font-awesome": "3.2.1",
+    "highcharts-ng": "~0.0.3",
+    "highcharts": "~3.0.7"
   }
 }

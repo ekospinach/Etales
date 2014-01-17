@@ -54,7 +54,7 @@ var getLabelBase = function(){
 
 		{id:'Net Sales Value Info',  ENG:'Net Sales Value Info',  CHN:'Net Sales Value Info',  RUS:''},	
 		{id:'Gross Profit Info',  ENG:'Gross Profit Info',  CHN:'Gross Profit Info',  RUS:''},	
-		{id:'Operating Profit Info',  ENG:'Operating Profit Info',  CHN:'',  RUS:''},	
+		{id:'Operating Profit Info',  ENG:'Operating Profit Info',  CHN:'Operating Profit Info',  RUS:''},	
 		{id:'Net Profit Info',  ENG:'Net Profit Info',  CHN:'Net Profit Info',  RUS:''},	
 		{id:'Gross Profit Margin Info',  ENG:'Gross Profit Margin Info',  CHN:'Gross Profit Margin Info',  RUS:''},	
 		{id:'Operating Profit Margin Info',  ENG:'Operating Profit Margin Info',  CHN:'Operating Profit Margin Info',  RUS:''},	

@@ -36,9 +36,13 @@
 			nggooglechart:'../bower_components/angular-google-chart/ng-google-chart',
 			domReady: '../bower_components/requirejs-domready/domReady',
 			labelBase: './utils/labelBase',
-			//hightchart
+			//highchart
+			/*
 			highchart:'./utils/highchart',
 			highcharts:'./utils/highcharts-ng',
+			*/
+			highchart:'../bower_components/highcharts/highcharts',
+			highcharts:'../bower_components/highcharts-ng/src/highcharts-ng',
 			//export
 			generatedata:'./jqxGrid/generatedata',
 			jqxgrid:'./jqxGrid/jqxgrid'
