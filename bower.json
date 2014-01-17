@@ -30,6 +30,7 @@
     "angular-google-chart": "~0.0.5",
     "requirejs-domready": "~2.0.1",
     "angular-placeholders": "*",
-    "angular-animate": "~1.2.5"
+    "angular-animate": "~1.2.5",
+    "font-awesome": "3.2.1"
   }
 }

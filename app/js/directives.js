@@ -329,15 +329,15 @@ define(['angular','services'], function(angular, services) {
                                     for(var i=0;i<6;i++){
                                         if(htmls[i].substring(htmls[i].length-4,htmls[i].length)=="DOWN"){
                                             htmls[i]=htmls[i].substring(0,htmls[i].length-4);
-                                            icons[i]='<span class="glyphicon glyphicon-arrow-down"></span>';
+                                            icons[i]='<span class="icon-arrow-down"></span>';
                                         }
                                         else if(htmls[i].substring(htmls[i].length-2,htmls[i].length)=="UP"){
                                             htmls[i]=htmls[i].substring(0,htmls[i].length-2);
-                                            icons[i]='<span class="glyphicon glyphicon-arrow-up"></span>';
+                                            icons[i]='<span class="icon-arrow-up"></span>';
                                         }
                                         else if(htmls[i].substring(htmls[i].length-4,htmls[i].length)=="SAME"){
                                             htmls[i]=htmls[i].substring(0,htmls[i].length-4);
-                                            icons[i]='<span class="glyphicon glyphicon-arrow-right" style="width:20px"></span>';
+                                            icons[i]='<span class="icon-arrow-right" style="width:20px"></span>';
                                         }
                                     }
                                     $('#tooltip1b').html('<p style="font-size:14px;font-weight:bold;color:' + color + ';">' + data[3] + '</p>' + 
