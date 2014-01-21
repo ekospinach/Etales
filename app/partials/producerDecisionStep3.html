@@ -90,10 +90,10 @@
                 </th>
                 <th ng-repeat='brand in brands'>
                   <div style="clear:both"></div>
-                  <p class="pull-left">
+                  <button type="button" class="btn btn-primary btn-xs pull-right" ng-click="getBrandMoreInfo(brand.brandID,brand.brandName)">{{Label.getContent('More')}}</button>
+                  <p class="pull-right" style="margin-right:5px">
                   {{brand.brandName}}
                   </p>
-                  <button type="button" class="btn btn-primary btn-xs pull-left" style="margin-left:5px" ng-click="getBrandMoreInfo(brand.brandID,brand.brandName)">{{Label.getContent('More')}}</button>
                 </th>
               </tr>              
             </thead>
@@ -103,7 +103,10 @@
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Urban Advertising Off-Line Info')}}" popover-title="{{Label.getContent('Urban Advertising Off-Line')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Urban Advertising Off-Line')}}<span style="color:red">*</span></p>
                 </th>
                 <th ng-repeat='brand in brands'>
-                  <a href="#" editable-text="brand.advertisingOffLine[0]" onbeforesave="checkData(category,brand.brandName,'advertisingOffLine','0',$index,$data)" onaftersave="updateProducerDecision(category,brand.brandName,'advertisingOffLine','0',$index)">{{ brand.advertisingOffLine[0] || 0 }}</a>
+                  <a href="#" editable-text="brand.advertisingOffLine[0]" onbeforesave="checkData(category,brand.brandName,'advertisingOffLine','0',$index,$data)" onaftersave="updateProducerDecision(category,brand.brandName,'advertisingOffLine','0',$index)">
+                    <p class="text-right">{{ brand.advertisingOffLine[0] || 0 }}
+                    </p>
+                  </a>
                 </th>
               </tr>
               <tr>
@@ -111,7 +114,9 @@
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Urban Traditional Trade Support Info')}}" popover-title="{{Label.getContent('Urban Traditional Trade Support')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Urban Traditional Trade Support')}}<span style="color:red">*</span></p>
                 </th>
                 <th ng-repeat='brand in brands'>
-                  <a href="#" editable-text="brand.supportTraditionalTrade[0]" onbeforesave="checkData(category,brand.brandName,'supportTraditionalTrade','0',$index,$data)" onaftersave="updateProducerDecision(category,brand.brandName,'supportTraditionalTrade','0',$index)">{{ brand.supportTraditionalTrade[0] || 0 }}</a>
+                  <a href="#" editable-text="brand.supportTraditionalTrade[0]" onbeforesave="checkData(category,brand.brandName,'supportTraditionalTrade','0',$index,$data)" onaftersave="updateProducerDecision(category,brand.brandName,'supportTraditionalTrade','0',$index)">
+                    <p class="text-right">{{ brand.supportTraditionalTrade[0] || 0 }}</p>
+                  </a>
                 </th>
               </tr>
               <tr>
@@ -119,7 +124,10 @@
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Rural Advertising Off-Line Info')}}" popover-title="{{Label.getContent('Rural Advertising Off-Line')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Rural Advertising Off-Line')}}<span style="color:red">*</span></p>
                 </th>
                 <th ng-repeat='brand in brands'>
-                  <a href="#" editable-text="brand.advertisingOffLine[1]" onbeforesave="checkData(category,brand.brandName,'advertisingOffLine','1',$index,$data)" onaftersave="updateProducerDecision(category,brand.brandName,'advertisingOffLine','1',$index)">{{ brand.advertisingOffLine[1] || 0 }}</a>
+                  <a href="#" editable-text="brand.advertisingOffLine[1]" onbeforesave="checkData(category,brand.brandName,'advertisingOffLine','1',$index,$data)" onaftersave="updateProducerDecision(category,brand.brandName,'advertisingOffLine','1',$index)">
+                    <p class="text-right">{{ brand.advertisingOffLine[1] || 0 }}
+                    </p>
+                  </a>
                 </th>
               </tr>
               <tr>
@@ -127,7 +135,9 @@
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Rural Traditional Trade Support Info')}}" popover-title="{{Label.getContent('Rural Traditional Trade Support')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Rural Traditional Trade Support')}}<span style="color:red">*</span></p>
                 </th>
                 <th ng-repeat='brand in brands'>
-                  <a href="#" editable-text="brand.supportTraditionalTrade[1]" onbeforesave="checkData(category,brand.brandName,'supportTraditionalTrade','1',$index,$data)" onaftersave="updateProducerDecision(category,brand.brandName,'supportTraditionalTrade','1',$index)">{{ brand.supportTraditionalTrade[1] || 0 }}</a>
+                  <a href="#" editable-text="brand.supportTraditionalTrade[1]" onbeforesave="checkData(category,brand.brandName,'supportTraditionalTrade','1',$index,$data)" onaftersave="updateProducerDecision(category,brand.brandName,'supportTraditionalTrade','1',$index)">
+                    <p class="text-right">{{ brand.supportTraditionalTrade[1] || 0 }}</p>
+                  </a>
                 </th>
               </tr>
               <tr>
@@ -135,7 +145,9 @@
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('On-line Advertising Info')}}" popover-title="{{Label.getContent('On-line Advertising')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('On-line Advertising')}}<span style="color:red">*</span></p>
                 </th>
                 <th ng-repeat='brand in brands'>
-                  <a href="#" editable-text="brand.advertisingOnLine" onbeforesave="checkData(category,brand.brandName,'advertisingOnLine','1',$index,$data)" onaftersave="updateProducerDecision(category,brand.brandName,'advertisingOnLine','1',$index)">{{ brand.advertisingOnLine || 0 }}</a>
+                  <a href="#" editable-text="brand.advertisingOnLine" onbeforesave="checkData(category,brand.brandName,'advertisingOnLine','1',$index,$data)" onaftersave="updateProducerDecision(category,brand.brandName,'advertisingOnLine','1',$index)">
+                    <p class="text-right">{{ brand.advertisingOnLine || 0 }}</p>
+                  </a>
                 </th>
               </tr> 
               <tr>
@@ -143,7 +155,9 @@
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('E-Mall visibility investment Info')}}" popover-title="{{Label.getContent('E-Mall visibility investment')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('E-Mall visibility investment')}}<span style="color:red">*</span></p>
                 </th>
                 <th ng-repeat='brand in brands'>
-                  <a href="#" editable-text="brand.supportEmall" onbeforesave="checkData(category,brand.brandName,'supportEmall','1',$index,$data)" onaftersave="updateProducerDecision(category,brand.brandName,'supportEmall','1',$index)">{{ brand.supportEmall || 0 }}</a>
+                  <a href="#" editable-text="brand.supportEmall" onbeforesave="checkData(category,brand.brandName,'supportEmall','1',$index,$data)" onaftersave="updateProducerDecision(category,brand.brandName,'supportEmall','1',$index)">
+                    <p class="text-right">{{ brand.supportEmall || 0 }}</p>
+                  </a>
                 </th>
               </tr>    
             </tbody>
