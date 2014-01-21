@@ -44,8 +44,8 @@
 			highchart:'../bower_components/highcharts/highcharts',
 			highcharts:'../bower_components/highcharts-ng/src/highcharts-ng',
 			//export
-			generatedata:'./jqxGrid/generatedata',
-			jqxgrid:'./jqxGrid/jqxgrid'
+			//generatedata:'./jqxGrid/generatedata',
+			//jqxgrid:'./jqxGrid/jqxgrid'
 		},
 		baseUrl: 'js',
 		shim: {

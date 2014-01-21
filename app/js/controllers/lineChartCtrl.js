@@ -1,6 +1,6 @@
 define(['app','socketIO','routingConfig'], function(app) {
 
-	app.controller('lineChartCtrl',['$scope', '$http', 'ProducerDecisionBase','$rootScope','Auth','Label', function($scope, $http, ProducerDecisionBase,$rootScope,Auth,Label) {
+	app.controller('lineChartCtrl',['$scope', '$http','$location', 'ProducerDecisionBase','$rootScope','Auth','Label', function($scope, $http,$location, ProducerDecisionBase,$rootScope,Auth,Label) {
 		// You can access the scope of the controller from here
 
 			$rootScope.loginCss="";
@@ -42,6 +42,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 	    	$scope.role=role;
 	    	$scope.language=language;
 	    	var charts = new Array({},{},{},{});
+	    	var exlcelCharts=new Array({},{},{},{})
 	    	var pColors=new Array("#004CE5","#BB0000","#FFBC01","#34393D");
 	    	var rColors=new Array("#339933","#990099","#FF5200","#272727");
 	    	var colors=new Array();
@@ -61,6 +62,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    	if($scope.chartCollection.data!=undefined)
 		    	{
 			    	var data=new Array();
+			    	var excelData=new Array();
 		    		for(var j=0;j<$scope.chartCollection.data.cols.length-1;j++)
 			    	{
 			    		data.push({name:Label.getContent($scope.chartCollection.data.cols[j+1].labelENG)});
@@ -81,6 +83,24 @@ define(['app','socketIO','routingConfig'], function(app) {
 			    		data[j].data.push(parseInt($scope.chartCollection.data.rows[2].c[j+1].v));
 			    		data[j].data.push(parseInt($scope.chartCollection.data.rows[3].c[j+1].v));
 			    	}
+			    	excelData.name=Title;
+			    	excelData.data=new Array();
+			    	excelData.data[0]=new Array();
+			    	excelData.data[0].push('Team\\Period');
+			    	for(var j=0;j<$scope.chartCollection.data.cols.length-1;j++){
+			    		excelData.data[j+1]=new Array();
+			    		excelData.data[j+1].push(Label.getContent($scope.chartCollection.data.cols[j+1].labelENG));
+			    	}
+			    	for(var j=0;j<$scope.chartCollection.data.rows.length;j++){
+			    		excelData.data[0].push($scope.chartCollection.data.rows[j].c[0].v);
+			    	}
+			    	for(var j=0;j<$scope.chartCollection.data.rows.length;j++){
+			    		excelData.data[j+1].push(parseInt($scope.chartCollection.data.rows[0].c[j+1].v));
+			    		excelData.data[j+1].push(parseInt($scope.chartCollection.data.rows[1].c[j+1].v));
+			    		excelData.data[j+1].push(parseInt($scope.chartCollection.data.rows[2].c[j+1].v));
+			    		excelData.data[j+1].push(parseInt($scope.chartCollection.data.rows[3].c[j+1].v));
+			    	}
+			    	exlcelCharts[i].worksheets=excelData;
 
 			    	charts[i].chartConfig = {
 			    		series:data,
@@ -104,14 +124,33 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    	}
 		    	else{
 		    		charts[i]=null;
+		    		exlcelCharts[i]=null;
 		    	}
 	    	}
 	    	$scope.chart1=charts[0]; 
 	        $scope.chart2=charts[1];
 	        $scope.chart3=charts[2];
 	        $scope.chart4=charts[3];
-	        console.log($scope.chart4);
+	        $scope.exlcelCharts=exlcelCharts;
 	    }
+
+	    var exportExcel=function(num){
+	    	var name=$scope.exlcelCharts[num-1].worksheets.name+'_'+(new Date()).getTime()+'_'+Math.floor((Math.random()*10000)+1)+'.xlsx';
+	    	var postData={
+	    		name:name,
+	    		data:$scope.exlcelCharts[num-1].worksheets.data
+	    	}
+	    	$http({
+	    		method:'POST',
+	    		url:'/excel',
+	    		data:postData
+	    	}).then(function(){
+	    		window.location.href='upload/'+name;
+	    	},function(){
+	    		console.log('fail');
+	    	})
+	    }
+
 	    //old linechart
 	   	// var showLineChart=function(cat,market,role,language){
 	    // 	$scope.cat=cat;
@@ -186,7 +225,8 @@ define(['app','socketIO','routingConfig'], function(app) {
 			$scope.language=Label.getCurrentLanguage();
 
 		    $scope.showLineChart=showLineChart;//("HealthBeauties","Rural","Producer");
-		    $scope.getLineChart=getLineChart;	    	
+		    $scope.getLineChart=getLineChart;	
+		    $scope.exportExcel=exportExcel;    	
 
 		    switch(parseInt($rootScope.user.role)){
 		    	case Auth.userRoles.producer:

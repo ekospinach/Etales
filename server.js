@@ -109,8 +109,8 @@ app.get('/finReport', require('./api/models/finReport.js').getFinReport);
 app.get('/volReport', require('./api/models/volReport.js').getVolReport);
 
 //export data to excel
-app.get('/excel',require('./api/utils/excel.js').testGet);
-app.post('/excel',require('./api/utils/excel.js').testPost);
+//app.get('/excel',require('./api/utils/excel.js').testGet);
+app.post('/excel',require('./api/utils/excel.js').exportExcel);
 
 //producer check
 app.get('/productionResult/:seminar/:period/:producerID/:brandName/:varName',require('./api/models/producerDecision.js').getProductionResult);

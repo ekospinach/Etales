@@ -88,18 +88,26 @@
 	 <div google-chart3 chart3="chart3" style="width:50%;float:left;height:400px" id="chart3"></div>
 	 <div google-chart4 chart4="chart4" style="width:50%;float:left;height:400px" id="chart4"></div>
  -->	
- 	<div class="col-lg-6">
-		<highchart id="chart1" config="chart1.chartConfig" class="span9" ng-show=(chart1.chartConfig!=undefined)></highchart>
+ 	<div class="col-lg-6" ng-show=(chart1.chartConfig!=undefined)>
+ 		<button type="button" class="btn btn-primary pull-right"
+		ng-click="exportExcel(1)" style='margin-top:-40px'>{{Label.getContent('Export Excel')}}</button>
+		<highchart id="chart1" config="chart1.chartConfig" class="span9"></highchart>
 	</div>
-	<div class="col-lg-6">
-		<highchart id="chart2" config="chart2.chartConfig" class="span9" ng-show=(chart2.chartConfig!=undefined)></highchart>
+	<div class="col-lg-6" ng-show=(chart2.chartConfig!=undefined)>
+		<button type="button" class="btn btn-primary pull-right"
+		ng-click="exportExcel(2)" style='margin-top:-40px'>{{Label.getContent('Export Excel')}}</button>
+		<highchart id="chart2" config="chart2.chartConfig" class="span9"></highchart>
 	</div>
 	<div style="clear:both;padding:25px 0"></div>
-	<div class="col-lg-6">
-		<highchart id="chart3" config="chart3.chartConfig" class="span9" ng-show=(chart3.chartConfig!=undefined)></highchart>
+	<div class="col-lg-6" ng-show=(chart3.chartConfig!=undefined)>
+		<button type="button" class="btn btn-primary pull-right"
+		ng-click="exportExcel(3)" style='margin-top:-40px'>{{Label.getContent('Export Excel')}}</button>
+		<highchart id="chart3" config="chart3.chartConfig" class="span9"></highchart>
 	</div>
-	<div class="col-lg-6">
-		<highchart id="chart4" config="chart4.chartConfig" class="span9" ng-show=(chart4.chartConfig!=undefined)></highchart>
+	<div class="col-lg-6" ng-show=(chart4.chartConfig!=undefined)>
+		<button type="button" class="btn btn-primary pull-right"
+		ng-click="exportExcel(4)" style='margin-top:-40px'>{{Label.getContent('Export Excel')}}</button>
+		<highchart id="chart4" config="chart4.chartConfig" class="span9"></highchart>
 	</div>
 </div>
 

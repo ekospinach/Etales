@@ -20,6 +20,7 @@ var getLabelBase = function(){
 		{id:'Consumer Market Share (Value)',  ENG:'Consumer Market Share (Value)',  CHN:'各生产商的市场份额（按销售额计）',  RUS:''},
 		{id:'Consumer Sales (Volume)',  ENG:'Consumer Sales (Volume)',  CHN:'各生产商的市场销量（到消费者）',  RUS:''},
 		{id:'Consumer Market Sales (Volume)',  ENG:'Consumer Market Sales (Volume)',  CHN:'各生产商的市场份额（按销量计）',  RUS:''},
+		{id:'Export Excel',  ENG:'Export Excel',  CHN:'Excel导出',  RUS:''},
 
 		{id:'Net Sales Value',  ENG:'Net Sales Value',  CHN:'净销售额',  RUS:''},	
 		{id:'Expenses',  ENG:'Cost and Expenses',  CHN:'成本和费用',  RUS:''},

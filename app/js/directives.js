@@ -32,6 +32,7 @@ define(['angular','services'], function(angular, services) {
                             }
                         };
                 })
+/*
                 .directive('tableExcel',function(){
                     return {
                         restrict:'A',
@@ -134,6 +135,7 @@ define(['angular','services'], function(angular, services) {
                         }
                     }
                 })
+*/
                 .directive('loadEnd',function(){
                     return function(scope,elm,attrs){
                         pageheader=document.getElementById('pageheader'),

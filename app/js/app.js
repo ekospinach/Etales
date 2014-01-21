@@ -18,8 +18,6 @@ define([
 	'textRenderer',
 	'tree',
 	'highcharts',
-	'generatedata',
-	'jqxgrid',
 	], function (angular, filters, services,directives,bootstrap, controllers) {
 		'use strict';
 		return angular.module('myApp', [
