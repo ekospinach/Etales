@@ -122,16 +122,17 @@
               <tr>
                 <th>{{Label.getContent('Brand')}}</th>
                 <th ng-repeat='product in products'>
-                {{product.parentBrandName}}</th>
+                  <p class="text-right">{{product.parentBrandName}}</p>
+                </th>
               </tr>
               <tr>
                 <th>{{Label.getContent('Variant')}}</th>
                 <th ng-repeat='product in products'>
                   <div style="clear:both"></div>
-                  <p class="pull-left">
+                  <button type="button" class="btn btn-primary btn-xs pull-right" ng-click="getMoreInfo(product.parentBrandName,product.varName)">{{Label.getContent('More')}}</button>
+                  <p class="pull-right" style="margin-right:5px">
                     {{product.varName}}
                   </p>
-                  <button type="button" class="btn btn-primary btn-xs pull-left" style="margin-left:5px" ng-click="getMoreInfo(product.parentBrandName,product.varName)">{{Label.getContent('More')}}</button>
                   <div style="clear:both"></div>
                 </th>
               </tr>              
@@ -143,7 +144,8 @@
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Pack Format Info')}}" popover-title="{{Label.getContent('Pack Format')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Pack Format')}}<span style="color:red">*</span></p>
                 </th>
                 <th ng-repeat='product in products'>
-                  {{Label.getContent(product.packFormat)}}
+                  <p class="text-right">{{Label.getContent(product.packFormat)}}
+                  </p>
                 </th>
               </tr>
               <tr>
@@ -152,7 +154,8 @@
                   <p ng-show="EleShow" class="text-primary" Popover-animation="true" popover="{{Label.getContent('Quality-of-Raw-Materials Info')}}" popover-title="{{Label.getContent('Quality-of-Raw-Materials')}}" popover-trigger="mouseenter" popover-placement="right">{{Label.getContent('Quality-of-Raw-Materials')}}<span style="color:red">*</span></p>
                 </th>
                 <th ng-repeat='product in products'>
-                  {{product.composition[2]}}
+                  <p class="text-right">{{product.composition[2]}}
+                  </p>
                 </th>
               </tr>
               <tr>
@@ -160,7 +163,8 @@
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Technology Level Info')}}" popover-title="{{Label.getContent('Technology Level')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Technology Level')}}<span style="color:red">*</span></p>
                 </th>
                 <th ng-repeat='product in products'>
-                  {{product.composition[1]}}
+                  <p class="text-right">{{product.composition[1]}}
+                  </p>
                 </th>
               </tr>
               <tr>
@@ -169,26 +173,42 @@
                   <p ng-show="EleShow" class="text-primary" Popover-animation="true" popover="{{Label.getContent('Design Level Info')}}" popover-title="{{Label.getContent('Design Level')}}" popover-trigger="mouseenter" popover-placement="right">{{Label.getContent('Design Level')}}<span style="color:red">*</span></p>
               </th>
                 <th ng-repeat='product in products'>
-                  {{product.composition[0]}}
+                  <p class="text-right">{{product.composition[0]}}
+                  </p>
                 </th>
               </tr>
               <tr>
                 <th>
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Production Volume Info')}}" popover-title="{{Label.getContent('Production Volume')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Production Volume')}}<span style="color:red">*</span></p>
                 </th>
-                <th ng-repeat='product in products'><a href="#" editable-text="product.production" onbeforesave="checkProduction(category,product.parentBrandName,product.varName,'production','0',$index,$data)" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'production','0',$index)">{{ product.production || 0 }}</a></th>
+                <th ng-repeat='product in products'>
+                  <a href="#" editable-text="product.production" onbeforesave="checkProduction(category,product.parentBrandName,product.varName,'production','0',$index,$data)" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'production','0',$index)">
+                    <p class="text-right">{{ product.production || 0 }}
+                    </p>
+                  </a>
+                </th>
               </tr>
               <tr>
                 <th>
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Next Price BM Info')}}" popover-title="{{Label.getContent('Next Price BM')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Next Price BM')}}<span style="color:red">*</span></p>
                 </th>
-                <th ng-repeat='product in products'><a href="#" editable-text="product.nextPriceBM" onbeforesave="checkNextPriceBM(category,product.parentBrandName,product.varName,'nextPriceBM','0',$index,$data)" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'nextPriceBM','0',$index)">{{ product.nextPriceBM || 0 }}</a></th>
+                <th ng-repeat='product in products'>
+                  <a href="#" editable-text="product.nextPriceBM" onbeforesave="checkNextPriceBM(category,product.parentBrandName,product.varName,'nextPriceBM','0',$index,$data)" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'nextPriceBM','0',$index)">
+                    <p class="text-right">{{ product.nextPriceBM || 0 }}
+                    </p>
+                  </a>
+                </th>
               </tr>
               <tr>
                 <th>
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Next Price Emall Info')}}" popover-title="{{Label.getContent('Next Price Emall')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Next Price Emall')}}<span style="color:red">*</span></p>
                 </th>
-                <th ng-repeat='product in products'><a href="#" editable-text="product.nextPriceEmall" onbeforesave="checknextPriceEmall(category,product.parentBrandName,product.varName,'nextPriceEmall','0',$index,$data)" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'nextPriceEmall','0',$index)">{{ product.nextPriceEmall || 0 }}</a></th>
+                <th ng-repeat='product in products'>
+                  <a href="#" editable-text="product.nextPriceEmall" onbeforesave="checknextPriceEmall(category,product.parentBrandName,product.varName,'nextPriceEmall','0',$index,$data)" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'nextPriceEmall','0',$index)">
+                    <p class="text-right">{{ product.nextPriceEmall || 0 }}
+                    </p>
+                  </a>
+                </th>
               </tr>   
             </tbody>
           </table>
