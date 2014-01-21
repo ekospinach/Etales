@@ -113,8 +113,6 @@ define(['app'], function(app) {
 				      		}
 				   		}
 				    $scope.products=products;
-					$scope.labelLanguages=labelLanguages;
-					$scope.infoLanguages=infoLanguages;
 					if(count!=0){
 						d.resolve();
 					}else{

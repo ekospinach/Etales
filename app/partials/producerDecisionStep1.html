@@ -120,17 +120,18 @@
           <thead>
             <tr>
               <th>{{Label.getContent('Brand')}}</th> 
-              <th ng-repeat='product in products'>{{product.parentBrandName}}</th>
+              <th ng-repeat='product in products'><p class="text-right">{{product.parentBrandName}}<p></th>
             </tr>
             <tr>
               <th>{{Label.getContent('Variant')}}</th>
               <th ng-repeat='product in products'>
                 <div style="clear:both"></div>
-                <p class="pull-left">
+                
+                <button type="button" class="btn btn-danger btn-xs pull-right" ng-show="(product.dateOfBirth==currentPeriod)&&(!isReady)" ng-click="deleteProduct(category,product.parentBrandName,product.varName)">{{Label.getContent('Delete')}}</button>
+                <button type="button" class="btn btn-primary btn-xs pull-right" style="margin-right:5px" ng-click="getMoreInfo(product.parentBrandName,product.varName)">{{Label.getContent('More')}}</button>
+                <p class="pull-right" style="margin-right:5px">
                   {{product.varName}}
                 </p>
-                <button type="button" class="btn btn-primary btn-xs pull-left" style="margin-left:5px" ng-click="getMoreInfo(product.parentBrandName,product.varName)">{{Label.getContent('More')}}</button>
-                <button type="button" class="btn btn-danger btn-xs pull-left" ng-show="(product.dateOfBirth==currentPeriod)&&(!isReady)" ng-click="deleteProduct(category,product.parentBrandName,product.varName)" style="margin-left:5px">{{Label.getContent('Delete')}}</button>
                 <div style="clear:both"></div>
               </th>
             </tr>            
@@ -142,8 +143,8 @@
                 <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Pack Format Info')}}" popover-title="{{Label.getContent('Pack Format')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Pack Format')}}<span style="color:red">*</span></p>
               </th>
               <th ng-repeat='product in products'>
-                <a href="#" editable-select="product.packFormat" e-ng-options="p.value as p.text for p in packs" ng-show="product.dateOfBirth==currentPeriod&&(!isReady)" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'packFormat','0',$index)">{{ selectPacks(product.parentBrandName,product.varName) }}</a>
-                <span ng-show="product.dateOfBirth<currentPeriod||isReady">{{ selectPacks(product.parentBrandName,product.varName) }}</span>
+                <a href="#" editable-select="product.packFormat" e-ng-options="p.value as p.text for p in packs" ng-show="product.dateOfBirth==currentPeriod&&(!isReady)" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'packFormat','0',$index)"><p class="text-right">{{ selectPacks(product.parentBrandName,product.varName) }}</p></a>
+                <span ng-show="product.dateOfBirth<currentPeriod||isReady"><p class="text-right">{{ selectPacks(product.parentBrandName,product.varName) }}</p></span>
               </th>
             </tr>
             <tr>
@@ -152,8 +153,8 @@
                 <p ng-show='EleShow' class="text-primary" Popover-animation="true" popover="{{Label.getContent('Quality-of-Raw-Materials Info')}}" popover-title="{{Label.getContent('Quality-of-Raw-Materials')}}" popover-trigger="mouseenter" popover-placement="right">{{Label.getContent('Quality-of-Raw-Materials')}}<span style="color:red">*</span></p>
               </th>
               <th ng-repeat='product in products'>
-                <a href="#" editable-text="product.composition[2]" onbeforesave="checkRMQ(category,product.parentBrandName,product.varName,'composition','2',$index,$data)" ng-show="!isReady" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'composition','2',$index)">{{ product.composition[2] || 0 }}</a>
-                <span ng-show="isReady">{{ product.composition[2] || 0 }}</span>
+                <a href="#" editable-text="product.composition[2]" onbeforesave="checkRMQ(category,product.parentBrandName,product.varName,'composition','2',$index,$data)" ng-show="!isReady" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'composition','2',$index)"><p class="text-right">{{ product.composition[2] || 0 }}</p></a>
+                <p ng-show="isReady" class="text-right">{{ product.composition[2] || 0 }}</p>
               </th>
             </tr>
             <tr>
@@ -161,8 +162,8 @@
                 <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Technology Level Info')}}" popover-title="{{Label.getContent('Technology Level')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Technology Level')}}<span style="color:red">*</span></p>
               </th>
               <th ng-repeat='product in products'>
-                <a href="#" editable-text="product.composition[1]" onbeforesave="checkTechnology(category,product.parentBrandName,product.varName,'composition','1',$index,$data)" ng-show="!isReady" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'composition','1',$index)">{{ product.composition[1] || 0 }}</a>
-                <span ng-show="isReady">{{ product.composition[1] || 0 }}</span>
+                <a href="#" editable-text="product.composition[1]" onbeforesave="checkTechnology(category,product.parentBrandName,product.varName,'composition','1',$index,$data)" ng-show="!isReady" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'composition','1',$index)"><p class="text-right">{{ product.composition[1] || 0 }}</p></a>
+                <p ng-show="isReady" class="text-right">{{ product.composition[1] || 0 }}</p>
               </th>
             </tr>
             <tr>
@@ -171,8 +172,8 @@
                 <p ng-show='EleShow' class="text-primary" Popover-animation="true" popover="{{Label.getContent('Design Level Info')}}" popover-title="{{Label.getContent('Design Level')}}" popover-trigger="mouseenter" popover-placement="right">{{Label.getContent('Design Level')}}<span style="color:red">*</span></p>
               </th>
               <th ng-repeat='product in products'>
-                <a href="#" editable-text="product.composition[0]" onbeforesave="checkDesign(category,product.parentBrandName,product.varName,'composition','0',$index,$data)" ng-show="!isReady" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'composition','0',$index)">{{ product.composition[0] || 0 }}</a>
-                <span ng-show="isReady">{{ product.composition[0] || 0 }}</span>
+                <a href="#" editable-text="product.composition[0]" onbeforesave="checkDesign(category,product.parentBrandName,product.varName,'composition','0',$index,$data)" ng-show="!isReady" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'composition','0',$index)"><p class="text-right">{{ product.composition[0] || 0 }}</p></a>
+                <p ng-show="isReady" class="text-right">{{ product.composition[0] || 0 }}</p>
               </th>
             </tr>
             
@@ -181,8 +182,8 @@
                 <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Estimated Production Volume Info')}}" popover-title="{{Label.getContent('Estimated Production Volume')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Estimated Production Volume')}}<span style="color:red">*</span></p>
               </th>
               <th ng-repeat='product in products'>
-                <a href="#" editable-text="product.production" onbeforesave="checkProduction(category,product.parentBrandName,product.varName,'production','0',$index,$data)" ng-show="!isReady" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'production','0',$index)">{{ product.production || 0 }}</a>
-                <span ng-show="isReady">{{ product.production || 0 }}</span>
+                <a href="#" editable-text="product.production" onbeforesave="checkProduction(category,product.parentBrandName,product.varName,'production','0',$index,$data)" ng-show="!isReady" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'production','0',$index)"><p class="text-right">{{ product.production || 0 }}</p></a>
+                <p ng-show="isReady" class="text-right">{{ product.production || 0 }}</p>
               </th>
             </tr>
             <tr>
@@ -190,8 +191,8 @@
                 <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Current Price BM Info')}}" popover-title="{{Label.getContent('Current Price BM')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Current Price BM')}}<span style="color:red">*</span></p>
               </th>
               <th ng-repeat='product in products'>
-                <a href="#" editable-text="product.currentPriceBM" onbeforesave="checkCurrentBM(category,product.parentBrandName,product.varName,'currentPriceBM','0',$index,$data)" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'currentPriceBM','0',$index)" ng-show="product.dateOfBirth==currentPeriod&&(!isReady)">{{ product.currentPriceBM || 0 }}</a>
-                <p ng-show='product.dateOfBirth!=currentPeriod||isReady'>{{ product.currentPriceBM }}</p>
+                <a href="#" editable-text="product.currentPriceBM" onbeforesave="checkCurrentBM(category,product.parentBrandName,product.varName,'currentPriceBM','0',$index,$data)" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'currentPriceBM','0',$index)" ng-show="product.dateOfBirth==currentPeriod&&(!isReady)"><p class="text-right">{{ product.currentPriceBM || 0 }}</p></a>
+                <p ng-show='product.dateOfBirth!=currentPeriod||isReady' class="text-right">{{ product.currentPriceBM }}</p>
               </th>
             </tr>
             <tr>
@@ -199,8 +200,8 @@
                 <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Current Price Emall Info')}}" popover-title="{{Label.getContent('Current Price Emall')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Current Price Emall')}}<span style="color:red">*</span></p>
               </th>
               <th ng-repeat='product in products'>
-                <a href="#" editable-text="product.currentPriceEmall" onbeforesave="checkCurrentEMall(category,product.parentBrandName,product.varName,'currentPriceEmall','0',$index,$data)" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'currentPriceEmall','0',$index)" ng-show="product.dateOfBirth==currentPeriod&&(!isReady)">{{ product.currentPriceEmall || 0 }}</a>
-                <p ng-show='product.dateOfBirth!=currentPeriod||isReady'>{{ product.currentPriceEmall }}</p>
+                <a href="#" editable-text="product.currentPriceEmall" onbeforesave="checkCurrentEMall(category,product.parentBrandName,product.varName,'currentPriceEmall','0',$index,$data)" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'currentPriceEmall','0',$index)" ng-show="product.dateOfBirth==currentPeriod&&(!isReady)"><p class="text-right">{{ product.currentPriceEmall || 0 }}</p></a>
+                <p ng-show='product.dateOfBirth!=currentPeriod||isReady' class="text-right">{{ product.currentPriceEmall }}</p>
               </th>
             </tr>
             <tr>
@@ -208,8 +209,8 @@
                 <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Discontinue this product Info')}}" popover-title="{{Label.getContent('Discontinue this product')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Discontinue this product')}}<span style="color:red">*</span></p>
               </th>
               <th ng-repeat='product in products'>
-                <a href="#" editable-checkbox="product.discontinue" e-title="{{Label.getContent('Discontinue this product')}}?" ng-show="!isReady" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'discontinue','0',$index)">{{ product.discontinue && Label.getContent('DisContinue') || Label.getContent('Continue') }}</a>
-                <span ng-show="isReady">{{ product.discontinue && Label.getContent('DisContinue') || Label.getContent('Continue') }}</span>
+                <a href="#" editable-checkbox="product.discontinue" e-title="{{Label.getContent('Discontinue this product')}}?" ng-show="!isReady" onaftersave="updateProducerDecision(category,product.parentBrandName,product.varName,'discontinue','0',$index)"><p class="text-right">{{ product.discontinue && Label.getContent('DisContinue') || Label.getContent('Continue') }}</p></a>
+                <p ng-show="isReady" class="text-right">{{ product.discontinue && Label.getContent('DisContinue') || Label.getContent('Continue') }}</p>
               </th>
             </tr>    
           </tbody>
