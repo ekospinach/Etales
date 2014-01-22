@@ -62,19 +62,20 @@
       <table class="table table-hover">
         <thead>
           <tr>
-              <th>{{Label.getContent('Category')}}</th>
-              <th>
+              <th style="width:25%">{{Label.getContent('Category')}}</th>
+              <th style="width:25%">
                 <div style="clear:both"></div>
-                <p class="pull-left">{{Label.getContent('Elecssories')}}</p>
-                <button type="button" class="btn btn-primary btn-xs pull-left" style="margin-left:5px" ng-click="getCategoryMoreInfo(1)">{{Label.getContent('More')}}</button>
-                <div style="clear:both"></div>
-              </th>
-              <th>
-                <div style="clear:both"></div>
-                <p class="pull-left">{{Label.getContent('HealthBeauty')}}</p>
-                <button type="button" class="btn btn-primary btn-xs pull-left" style="margin-left:5px" ng-click="getCategoryMoreInfo(2)">{{Label.getContent('More')}}</button>
+                <button type="button" class="btn btn-primary btn-xs pull-right" ng-click="getCategoryMoreInfo(1)">{{Label.getContent('More')}}</button>
+                <p class="pull-right" style="margin-right:5px">{{Label.getContent('Elecssories')}}</p>
                 <div style="clear:both"></div>
               </th>
+              <th style="width:25%">
+                <div style="clear:both"></div>
+                <button type="button" class="btn btn-primary btn-xs pull-right" ng-click="getCategoryMoreInfo(2)">{{Label.getContent('More')}}</button>
+                <p class="pull-right" style="margin-right:5px">{{Label.getContent('HealthBeauty')}}</p>
+                <div style="clear:both"></div>
+              </th>
+              <th style="width:25%"></th>
           </tr>              
         </thead>
         <tbody>
@@ -83,16 +84,23 @@
                 <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('in capacity change Info')}}" popover-title="{{Label.getContent('in capacity change')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('in capacity change')}}<span style="color:red">*</span></p>
               </th>
               <th ng-repeat='category in categorys'>
-                <a href="#" editable-text="category.capacityChange" onbeforesave="checkData($data)" onaftersave="updateProducerDecision(category.categoryID,'capacityChange',$index)">{{ category.capacityChange || 0 }}</a>
+                <a href="#" editable-text="category.capacityChange" onbeforesave="checkData($data)" onaftersave="updateProducerDecision(category.categoryID,'capacityChange',$index)">
+                  <p class="text-right">{{ category.capacityChange || 0 }}</p>
+                </a>
               </th>
+              <th></th>
             </tr>
             <tr>
               <th>
                 <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('improve Available Technology Info')}}" popover-title="{{Label.getContent('improve Available Technology')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('improve Available Technology')}}<span style="color:red">*</span></p>
               </th>
               <th ng-repeat='category in categorys'>
-                <a href="#" editable-text="category.investInTechnology" onbeforesave="checkData($data)" onaftersave="updateProducerDecision(category.categoryID,'investInTechnology',$index)">{{ category.investInTechnology || 0 }}</a>
+                <a href="#" editable-text="category.investInTechnology" onbeforesave="checkData($data)" onaftersave="updateProducerDecision(category.categoryID,'investInTechnology',$index)">
+                  <p class="text-right">{{ category.investInTechnology || 0 }}
+                  </p>
+                </a>
               </th>
+              <th></th>
             </tr>
             <tr>
               <th>
@@ -100,16 +108,24 @@
                 </p>
               </th>
               <th ng-repeat='category in categorys'>
-                <a href="#" editable-text="category.investInProductionFlexibility" onbeforesave="checkData($data)" onaftersave="updateProducerDecision(category.categoryID,'investInProductionFlexibility',$index)">{{ category.investInProductionFlexibility || 0 }}</a>
+                <a href="#" editable-text="category.investInProductionFlexibility" onbeforesave="checkData($data)" onaftersave="updateProducerDecision(category.categoryID,'investInProductionFlexibility',$index)">
+                  <p class="text-right">{{ category.investInProductionFlexibility || 0 }}
+                  </p>
+                </a>
               </th>
+              <th></th>
             </tr>
             <tr>
               <th>
                 <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('improve Design Know-How Info')}}" popover-title="{{Label.getContent('improve Design Know-How')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('improve Design Know-How')}}<span style="color:red">*</span></p>
               </th>
               <th>
-                <a href="#" editable-text="categorys[0].investInDesign" onbeforesave="checkData($data)" onaftersave="updateProducerDecision(1,'investInDesign',0)">{{ categorys[0].investInDesign || 0 }}</a>
+                <a href="#" editable-text="categorys[0].investInDesign" onbeforesave="checkData($data)" onaftersave="updateProducerDecision(1,'investInDesign',0)">
+                  <p class="text-right">{{ categorys[0].investInDesign || 0 }}
+                  </p>
+                </a>
               </th>
+              <th></th>
               <th></th>
             </tr>              
         </tbody>

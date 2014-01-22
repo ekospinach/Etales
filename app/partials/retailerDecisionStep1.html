@@ -77,52 +77,94 @@
           <table class="table table-hover">
             <thead>
             <tr>
-              <th></th>
-              <th>
-                <button type="button" class="btn btn-primary btn-xs" style="margin-left:5px" ng-click="getMoreInfo()">{{Label.getContent('More')}}</button>
+              <th style="width:25%"></th>
+              <th style="width:25%"></th>
+              <th style="width:25%">
+                <div style="clear:both"></div>
+                <div class="pull-right">
+                  <button type="button" class="btn btn-primary btn-xs" style="margin-left:5px" ng-click="getMoreInfo()">{{Label.getContent('More')}}</button>
+                </div>
+                <div style="clear:both"></div>
               </th>
+              <th style="width:25%"></th>
             </tr>              
             </thead>
             <tbody>              
               <tr>
+                <th style="width:25%"></th>
                 <th>
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Convenience Off-line Info')}}" popover-title="{{Label.getContent('Convenience Off-line')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Convenience Off-line')}}<span style="color:red">*</span></p>
                 </th>
-                <th><a href="#" editable-text="pageBase.tradtionalAdvertising[1]" onbeforesave="checkBudget('tradtionalAdvertising','1',$data)" onaftersave="updateRetailerDecision('tradtionalAdvertising','1')">{{ pageBase.tradtionalAdvertising[1] || 0 }}</a></th>
+                <th>
+                  <a href="#" editable-text="pageBase.tradtionalAdvertising[1]" onbeforesave="checkBudget('tradtionalAdvertising','1',$data)" onaftersave="updateRetailerDecision('tradtionalAdvertising','1')">
+                    <p class="text-right">{{ pageBase.tradtionalAdvertising[1] || 0 }}
+                    </p>
+                  </a>
+                </th>
+                <th style="width:25%"></th>
               </tr>
               <tr>
+                <th style="width:25%"></th>
                 <th>
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Convenience On-line Info')}}" popover-title="{{Label.getContent('Convenience On-line')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Convenience On-line')}}<span style="color:red">*</span></p>
                 </th>
-                <th><a href="#" editable-text="pageBase.onlineAdvertising[1]" onbeforesave="checkBudget('onlineAdvertising','1',$data)" onaftersave="updateRetailerDecision('onlineAdvertising','1')">{{ pageBase.onlineAdvertising[1]|| 0 }}</a></th>
+                <th>
+                  <a href="#" editable-text="pageBase.onlineAdvertising[1]" onbeforesave="checkBudget('onlineAdvertising','1',$data)" onaftersave="updateRetailerDecision('onlineAdvertising','1')">
+                    <p class="text-right">{{ pageBase.onlineAdvertising[1]|| 0 }}</p>
+                  </a>
+                </th>
+                <th style="width:25%"></th>
               </tr>
               <tr>
+                <th style="width:25%"></th>
                 <th>
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Assortment Off-line Info')}}" popover-title="{{Label.getContent('Assortment Off-line')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Assortment Off-line')}}<span style="color:red">*</span></p>
                 </th>
-                <th><a href="#" editable-text="pageBase.tradtionalAdvertising[2]" onbeforesave="checkBudget('tradtionalAdvertising','2',$data)" onaftersave="updateRetailerDecision('tradtionalAdvertising','2')">{{ pageBase.tradtionalAdvertising[2] || 0 }}</a></th>
+                <th>
+                  <a href="#" editable-text="pageBase.tradtionalAdvertising[2]" onbeforesave="checkBudget('tradtionalAdvertising','2',$data)" onaftersave="updateRetailerDecision('tradtionalAdvertising','2')">
+                    <p class="text-right">{{ pageBase.tradtionalAdvertising[2] || 0 }}
+                    </p>
+                  </a>
+                </th>
+                <th style="width:25%"></th>
               </tr>
               <tr>
+                <th style="width:25%"></th>
                 <th>
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Assortment On-line Info')}}" popover-title="{{Label.getContent('Assortment On-line')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Assortment On-line')}}<span style="color:red">*</span></p>
                 </th>
                 <th>
-                  <a href="#" editable-text="pageBase.onlineAdvertising[2]" onbeforesave="checkBudget('onlineAdvertising','2',$data)" onaftersave="updateRetailerDecision('onlineAdvertising','2')">{{ pageBase.onlineAdvertising[2] || 0 }}</a>
+                  <a href="#" editable-text="pageBase.onlineAdvertising[2]" onbeforesave="checkBudget('onlineAdvertising','2',$data)" onaftersave="updateRetailerDecision('onlineAdvertising','2')">
+                    <p class="text-right">{{ pageBase.onlineAdvertising[2] || 0 }}
+                    </p>
+                  </a>
                 </th>
+                <th style="width:25%"></th>
               </tr>
               <tr>
+                <th style="width:25%"></th>
                 <th>
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Price Off-line Info')}}" popover-title="{{Label.getContent('Price Off-line')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Price Off-line')}}<span style="color:red">*</span></p>
                 </th>
-                <th><a href="#" editable-text="pageBase.tradtionalAdvertising[0]" onbeforesave="checkBudget('tradtionalAdvertising','0',$data)" onaftersave="updateRetailerDecision('tradtionalAdvertising','0')">{{ pageBase.tradtionalAdvertising[0] || 0 }}</a></th>
+                <th>
+                  <a href="#" editable-text="pageBase.tradtionalAdvertising[0]" onbeforesave="checkBudget('tradtionalAdvertising','0',$data)" onaftersave="updateRetailerDecision('tradtionalAdvertising','0')">
+                    <p class="text-right">{{ pageBase.tradtionalAdvertising[0] || 0 }}
+                    </p>
+                  </a>
+                </th>
+                <th style="width:25%"></th>
               </tr>
               <tr>
+                <th style="width:25%"></th>
                 <th>
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Price On-line Info')}}" popover-title="{{Label.getContent('Price On-line')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Price On-line')}}<span style="color:red">*</span></p>
                 </th>
                 <th>
-                  <a href="#" editable-text="pageBase.onlineAdvertising[0]" onbeforesave="checkBudget('onlineAdvertising','0',$data)" onaftersave="updateRetailerDecision('onlineAdvertising','0')">{{ pageBase.onlineAdvertising[0] || 0 }}</a>
+                  <a href="#" editable-text="pageBase.onlineAdvertising[0]" onbeforesave="checkBudget('onlineAdvertising','0',$data)" onaftersave="updateRetailerDecision('onlineAdvertising','0')">
+                    <p class="text-right">{{ pageBase.onlineAdvertising[0] || 0 }}</p>
+                  </a>
                 </th>
+                <th style="width:25%"></th>
               </tr>
             </tbody>
           </table>

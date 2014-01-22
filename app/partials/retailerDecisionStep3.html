@@ -96,17 +96,19 @@
               <tr>
                 <th>{{Label.getContent('Brand')}}</th> 
                 <th ng-repeat='product in products'>
-                {{product.parentBrandName}}</th>
+                  <p class="text-right">{{product.parentBrandName}}
+                  </p>
+                </th>
               </tr>
               <tr>
                 <th>{{Label.getContent('Variant')}}</th>
                 <th ng-repeat='product in products'>
                   <div style="clear:both"></div>
-                  <p class="pull-left">
+                  <button type="button" class="btn btn-danger btn-xs pull-right {{(product.dateOfBirth==-4)?'hide':'show'}}" ng-click="deleteProduct(category,product.parentBrandName,product.varName)">{{Label.getContent('Delete')}}</button>
+                  <button type="button" class="btn btn-primary btn-xs pull-right" style="margin-right:5px" ng-click="getMoreInfo(product.parentBrandName,product.varName)">{{Label.getContent('More')}}</button>
+                  <p class="pull-right" style="margin-right:5px">
                     {{product.varName}}
                   </p>
-                  <button type="button" class="btn btn-primary btn-xs pull-left" style="margin-left:5px" ng-click="getMoreInfo(product.parentBrandName,product.varName)">{{Label.getContent('More')}}</button>
-                  <button type="button" class="btn btn-danger btn-xs pull-left {{(product.dateOfBirth==-4)?'hide':'show'}}" ng-click="deleteProduct(category,product.parentBrandName,product.varName)" style="margin-left:5px">{{Label.getContent('Delete')}}</button>
                   <div style="clear:both"></div>
                 </th>
               </tr>              
@@ -117,8 +119,11 @@
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Pack Format Info')}}" popover-title="{{Label.getContent('Pack Format')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Pack Format')}}<span style="color:red">*</span></p>
                 </th>
                 <th ng-repeat='product in products'>
-                  <a href="#" editable-select="product.packFormat" e-ng-options="p.value as p.text for p in packs" ng-show="product.dateOfBirth==currentPeriod" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'packFormat','0',$index)">{{ selectPacks(product.parentBrandName,product.varName) }}</a>
-                  <span ng-show="product.dateOfBirth<currentPeriod">{{ selectPacks(product.parentBrandName,product.varName) }}</span>
+                  <a href="#" editable-select="product.packFormat" e-ng-options="p.value as p.text for p in packs" ng-show="product.dateOfBirth==currentPeriod" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'packFormat','0',$index)">
+                    <p class="text-right">{{ selectPacks(product.parentBrandName,product.varName) }}
+                    </p>
+                  </a>
+                  <p class="text-right" ng-show="product.dateOfBirth<currentPeriod">{{ selectPacks(product.parentBrandName,product.varName) }}</p class="text-right">
                 </th>
               </tr>
               <tr>
@@ -127,13 +132,23 @@
                   <p ng-show="EleShow" class="text-primary" Popover-animation="true" popover="{{Label.getContent('Quality-of-Raw-Materials Info')}}" popover-title="{{Label.getContent('Quality-of-Raw-Materials')}}" popover-trigger="mouseenter" popover-placement="right">{{Label.getContent('Quality-of-Raw-Materials')}}<span style="color:red">*</span></p>
                   </p>
                 </th>
-                <th ng-repeat='product in products'><a href="#" editable-text="product.composition[2]" onbeforesave="checkRMQ(category,product.parentBrandName,product.varName,'composition','2',$index,$data)" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'composition','2',$index)">{{ product.composition[2] || 0 }}</a></th>
+                <th ng-repeat='product in products'>
+                  <a href="#" editable-text="product.composition[2]" onbeforesave="checkRMQ(category,product.parentBrandName,product.varName,'composition','2',$index,$data)" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'composition','2',$index)">
+                    <p class="text-right">{{ product.composition[2] || 0 }}
+                    </p>
+                  </a>
+                </th>
               </tr>
               <tr>
                 <th>
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Technology Level Info')}}" popover-title="{{Label.getContent('Technology Level')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Technology Level')}}<span style="color:red">*</span></p>
                 </th>
-                <th ng-repeat='product in products'><a href="#" editable-text="product.composition[1]" onbeforesave="checkTechnology(category,product.parentBrandName,product.varName,'composition','1',$index,$data)" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'composition','1',$index)">{{ product.composition[1] || 0 }}</a></th>
+                <th ng-repeat='product in products'>
+                  <a href="#" editable-text="product.composition[1]" onbeforesave="checkTechnology(category,product.parentBrandName,product.varName,'composition','1',$index,$data)" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'composition','1',$index)">
+                    <p class="text-right">{{ product.composition[1] || 0 }}
+                    </p>
+                  </a>
+                </th>
               </tr>
               <tr>
                 <th>
@@ -141,7 +156,10 @@
                   <p ng-show="EleShow" class="text-primary" Popover-animation="true" popover="{{Label.getContent('Design Level Info')}}" popover-title="{{Label.getContent('Design Level')}}" popover-trigger="mouseenter" popover-placement="right">{{Label.getContent('Design Level')}}<span style="color:red">*</span></p>
                 </th>
                 <th ng-repeat='product in products'>
-                  <a href="#" editable-text="product.composition[0]" onbeforesave="checkDesign(category,product.parentBrandName,product.varName,'composition','0',$index,$data)" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'composition','0',$index)">{{ product.composition[0] || 0 }}</a>
+                  <a href="#" editable-text="product.composition[0]" onbeforesave="checkDesign(category,product.parentBrandName,product.varName,'composition','0',$index,$data)" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'composition','0',$index)">
+                    <p class="text-right">{{ product.composition[0] || 0 }}
+                    </p>
+                  </a>
                 </th>
               </tr>
               <tr>
@@ -149,7 +167,10 @@
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Retailer Discontinue this product Info')}}" popover-title="{{Label.getContent('Retailer Discontinue this product')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Retailer Discontinue this product')}}<span style="color:red">*</span></p>
                 </th>
                 <th ng-repeat='product in products'>
-                  <a href="#" editable-checkbox="product.discontinue" e-title="{{Label.getContent('Retailer Discontinue this product')}}?" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'discontinue','0',$index)">{{ product.discontinue && Label.getContent('Retailer DisContinue') || Label.getContent('Retailer Continue') }}</a>
+                  <a href="#" editable-checkbox="product.discontinue" e-title="{{Label.getContent('Retailer Discontinue this product')}}?" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'discontinue','0',$index)">
+                    <p class="text-right">{{ product.discontinue && Label.getContent('Retailer DisContinue') || Label.getContent('Retailer Continue') }}
+                    </p>
+                  </a>
                 </th>
               </tr>    
             </tbody>
