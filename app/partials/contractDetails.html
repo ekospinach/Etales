@@ -35,7 +35,10 @@
             </button>
             <ul class="dropdown-menu">
                 <li class=""><a ng-click="renderContractDetailsByCategory('Elecssories')">{{Label.getContent('Elecssories')}}</a></li>
-                <li class=""><a ng-click="renderContractDetailsByCategory('HealthBeauty')">{{Label.getContent('HealthBeauty')}}</a></li>
+                <li class="">
+                    <a ng-click="renderContractDetailsByCategory('HealthBeauty')">{{Label.getContent('HealthBeauty')}}
+                    </a>
+                </li>
             </ul>
         </div>
         <button type="button" class="btn btn-info" style="margin-left:10px">{{Label.getContent(category)}}</button>
@@ -209,72 +212,110 @@
                         <thead>
                             <tr>
                                 <td style="width:10%"></td>
-                                <td style="width:45%">{{Label.getContent(showTitle)}}</td>
-                                <td style="width:45%">{{Label.getContent('Discount Rate')}}(%)</td>
+                                <td style="width:45%">
+                                    <p class="text-right">{{Label.getContent(showTitle)}}
+                                    </p>
+                                </td>
+                                <td style="width:45%">
+                                    <p class="text-right">{{Label.getContent('Discount Rate')}}(%)
+                                    </p>
+                                </td>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>{{Label.getContent('Urban')}}:</td>
                                 <td>
-                                    <a href="#" editable-text="editDetail.brand_urbanValue" onbeforesave="checkData(contractInfo.contractCode,editDetail.negotiationItem,$data)" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'urban','index','brand')">{{ editDetail.brand_urbanValue || 0 }}
+                                    <a href="#" editable-text="editDetail.brand_urbanValue" onbeforesave="checkData(contractInfo.contractCode,editDetail.negotiationItem,$data)" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'urban','index','brand')">
+                                        <p class="text-right">{{ editDetail.brand_urbanValue || 0 }}
+                                        </p>
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="#" editable-text="editDetailDisRate.brand_urbanValue" onbeforesave="checkData(contractInfo.contractCode,editDetailDisRate.negotiationItem,$data)" onaftersave="updateContractDetails(editDetailDisRate,editDetailDisRate.negotiationItem,'urban','index','brand')">{{ editDetailDisRate.brand_urbanValue || 0 }}</a>
+                                    <a href="#" editable-text="editDetailDisRate.brand_urbanValue" onbeforesave="checkData(contractInfo.contractCode,editDetailDisRate.negotiationItem,$data)" onaftersave="updateContractDetails(editDetailDisRate,editDetailDisRate.negotiationItem,'urban','index','brand')">
+                                        <p class="text-right">{{ editDetailDisRate.brand_urbanValue || 0 }}
+                                        </p>
+                                    </a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>{{Label.getContent('Rural')}}:</td>
                                 <td>
-                                    <a href="#" editable-text="editDetail.brand_ruralValue" onbeforesave="checkData(contractInfo.contractCode,editDetail.negotiationItem,$data)" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'rural','index','brand')">{{ editDetail.brand_ruralValue || 0 }}</a>
+                                    <a href="#" editable-text="editDetail.brand_ruralValue" onbeforesave="checkData(contractInfo.contractCode,editDetail.negotiationItem,$data)" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'rural','index','brand')">
+                                        <p class="text-right">{{ editDetail.brand_ruralValue || 0 }}
+                                        </p>
+                                    </a>
                                 </td>
                                 <td>
-                                    <a href="#" editable-text="editDetailDisRate.brand_ruralValue" onbeforesave="checkData(contractInfo.contractCode,editDetailDisRate.negotiationItem,$data)" onaftersave="updateContractDetails(editDetailDisRate,editDetailDisRate.negotiationItem,'rural','index','brand')">{{ editDetailDisRate.brand_ruralValue || 0 }}</a>
-                                </td>                                                
+                                    <a href="#" editable-text="editDetailDisRate.brand_ruralValue" onbeforesave="checkData(contractInfo.contractCode,editDetailDisRate.negotiationItem,$data)" onaftersave="updateContractDetails(editDetailDisRate,editDetailDisRate.negotiationItem,'rural','index','brand')">
+                                        <p class="text-right">{{ editDetailDisRate.brand_ruralValue || 0 }}
+                                        </p>
+                                    </a>
+                                </td>                   
                             </tr>
                         </tbody>
                     </table>
                     <div class="" ng-show="shouldBeAmount">
-                        
                         <table class="table">
                             <thead>
                                 <tr>
                                     <td style="width:10%"></td>
-                                    <td style="width:30%">{{Label.getContent(showTitle)}}</td>
-                                    <td style="width:30%">{{Label.getContent('Amount')}}(mln$)</td>
-                                    <td style="width:30%">{{Label.getContent('Rate')}}(%)</td>
+                                    <td style="width:30%">
+                                        <p class="text-right">{{Label.getContent(showTitle)}}
+                                        </p>
+                                    </td>
+                                    <td style="width:30%">
+                                        <p class="text-right">{{Label.getContent('Amount')}}(mln$)
+                                        </p>
+                                    </td>
+                                    <td style="width:30%">
+                                        <p class="text-right">{{Label.getContent('Rate')}}(%)
+                                        </p>
+                                    </td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>{{Label.getContent('Urban')}}:</td>
                                     <td>
-                                        <a href="#" editable-text="editDetail.brand_urbanValue" onbeforesave="checkData(contractInfo.contractCode,editDetail.negotiationItem,$data)" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'urban','index','brand')">{{ editDetail.brand_urbanValue || 0 }}
+                                        <a href="#" editable-text="editDetail.brand_urbanValue" onbeforesave="checkData(contractInfo.contractCode,editDetail.negotiationItem,$data)" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'urban','index','brand')">
+                                            <p class="text-right">{{ editDetail.brand_urbanValue || 0 }}</p>
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="#" editable-text="editDetailBonusAmount.brand_urbanValue" ng-show="editDetail.brand_urbanValue!=0" onbeforesave="checkAmount(contractInfo.contractCode,editDetailBonusAmount,'nc_PerformanceBonusAmount','urban','index','brand',$data)" onaftersave="updateContractDetails(editDetailBonusAmount,'nc_PerformanceBonusAmount','urban','index','brand')">{{ editDetailBonusAmount.brand_urbanValue || 0 }}</a>
-                                        <span ng-show="editDetail.brand_urbanValue==0">{{ editDetailBonusAmount.brand_urbanValue || 0 }}</span>
+                                        <a href="#" editable-text="editDetailBonusAmount.brand_urbanValue" ng-show="editDetail.brand_urbanValue!=0" onbeforesave="checkAmount(contractInfo.contractCode,editDetailBonusAmount,'nc_PerformanceBonusAmount','urban','index','brand',$data)" onaftersave="updateContractDetails(editDetailBonusAmount,'nc_PerformanceBonusAmount','urban','index','brand')">
+                                            <p class="text-right">{{ editDetailBonusAmount.brand_urbanValue || 0 }}</p>
+                                        </a>
+                                        <p class="text-right" ng-show="editDetail.brand_urbanValue==0">{{ editDetailBonusAmount.brand_urbanValue || 0 }}</p>
                                     </td>
                                     <td>
-                                        <a href="#" editable-text="editDetailBonusRate.brand_urbanValue" ng-show="editDetail.brand_urbanValue!=0" onbeforesave="checkData(contractInfo.contractCode,editDetailBonusRate.negotiationItem,$data)" onaftersave="updateContractDetails(editDetailBonusRate,'nc_PerformanceBonusRate','urban','index','brand')">{{ editDetailBonusRate.brand_urbanValue || 0 }}</a>
-                                        <span ng-show="editDetail.brand_urbanValue==0">{{ editDetailBonusRate.brand_urbanValue || 0 }}</span>
+                                        <a href="#" editable-text="editDetailBonusRate.brand_urbanValue" ng-show="editDetail.brand_urbanValue!=0" onbeforesave="checkData(contractInfo.contractCode,editDetailBonusRate.negotiationItem,$data)" onaftersave="updateContractDetails(editDetailBonusRate,'nc_PerformanceBonusRate','urban','index','brand')">
+                                            <p class="text-right">{{ editDetailBonusRate.brand_urbanValue || 0 }}
+                                            </p>
+                                        </a>
+                                        <p class="text-right" ng-show="editDetail.brand_urbanValue==0">{{ editDetailBonusRate.brand_urbanValue || 0 }}</p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>{{Label.getContent('Rural')}}:</td>
                                     <td>
-                                        <a href="#" editable-text="editDetail.brand_ruralValue" onbeforesave="checkData(contractInfo.contractCode,editDetail.negotiationItem,$data)" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'rural','index','brand')">{{ editDetail.brand_ruralValue || 0 }}
+                                        <a href="#" editable-text="editDetail.brand_ruralValue" onbeforesave="checkData(contractInfo.contractCode,editDetail.negotiationItem,$data)" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'rural','index','brand')">
+                                            <p class="text-right">{{ editDetail.brand_ruralValue || 0 }}</p>
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="#" editable-text="editDetailBonusAmount.brand_ruralValue" ng-show="editDetail.brand_ruralValue!=0"  onbeforesave="checkAmount(contractInfo.contractCode,editDetailBonusAmount,'nc_PerformanceBonusAmount','rural','index','brand',$data)" onaftersave="updateContractDetails(editDetailBonusAmount,'nc_PerformanceBonusAmount','rural','index','brand')">{{ editDetailBonusAmount.brand_ruralValue || 0 }}</a>
-                                        <span ng-show="editDetail.brand_ruralValue==0">{{ editDetailBonusAmount.brand_ruralValue || 0 }}</span>
+                                        <a href="#" editable-text="editDetailBonusAmount.brand_ruralValue" ng-show="editDetail.brand_ruralValue!=0"  onbeforesave="checkAmount(contractInfo.contractCode,editDetailBonusAmount,'nc_PerformanceBonusAmount','rural','index','brand',$data)" onaftersave="updateContractDetails(editDetailBonusAmount,'nc_PerformanceBonusAmount','rural','index','brand')">
+                                            <p class="text-right">{{ editDetailBonusAmount.brand_ruralValue || 0 }}
+                                            </p>
+                                        </a>
+                                        <p class="text-right" ng-show="editDetail.brand_ruralValue==0">{{ editDetailBonusAmount.brand_ruralValue || 0 }}</p>
                                     </td>
                                     <td>
-                                        <a href="#" editable-text="editDetailBonusRate.brand_ruralValue" ng-show="editDetail.brand_ruralValue!=0" onbeforesave="checkData(contractInfo.contractCode,editDetailBonusRate.negotiationItem,$data)" onaftersave="updateContractDetails(editDetailBonusRate,'nc_PerformanceBonusRate','rural','index','brand')">{{ editDetailBonusRate.brand_ruralValue || 0 }}</a>
-                                        <span ng-show="editDetail.brand_ruralValue==0">{{ editDetailBonusRate.brand_ruralValue || 0 }}</span>
+                                        <a href="#" editable-text="editDetailBonusRate.brand_ruralValue" ng-show="editDetail.brand_ruralValue!=0" onbeforesave="checkData(contractInfo.contractCode,editDetailBonusRate.negotiationItem,$data)" onaftersave="updateContractDetails(editDetailBonusRate,'nc_PerformanceBonusRate','rural','index','brand')">
+                                            <p class="text-right">{{ editDetailBonusRate.brand_ruralValue || 0 }}
+                                            </p>
+                                        </a>
+                                        <p class="text-right" ng-show="editDetail.brand_ruralValue==0">{{ editDetailBonusRate.brand_ruralValue || 0 }}</p>
                                     </td>
                                 </tr>
                             </tbody>
@@ -285,14 +326,18 @@
                             <tr>
                                 <td style="width:40%">{{Label.getContent('Urban')}} {{Label.getContent(showTitle)}}:</td>
                                 <td style="width:60%">
-                                    <a href="#" editable-text="editDetail.brand_urbanValue" onbeforesave="checkData(contractInfo.contractCode,editDetail.negotiationItem,$data)" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'urban','index','brand')">{{ editDetail.brand_urbanValue || 0 }}
+                                    <a href="#" editable-text="editDetail.brand_urbanValue" onbeforesave="checkData(contractInfo.contractCode,editDetail.negotiationItem,$data)" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'urban','index','brand')">
+                                        <p class="text-right">{{ editDetail.brand_urbanValue || 0 }}</p>
                                     </a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>{{Label.getContent('Rural')}} {{Label.getContent(showTitle)}}:</td>
                                 <td>
-                                    <a href="#" editable-text="editDetail.brand_ruralValue" onbeforesave="checkData(contractInfo.contractCode,editDetail.negotiationItem,$data)" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'rural','index','brand')">{{ editDetail.brand_ruralValue || 0 }}</a>
+                                    <a href="#" editable-text="editDetail.brand_ruralValue" onbeforesave="checkData(contractInfo.contractCode,editDetail.negotiationItem,$data)" onaftersave="updateContractDetails(editDetail,editDetail.negotiationItem,'rural','index','brand')">
+                                        <p class="text-right">{{ editDetail.brand_ruralValue || 0 }}
+                                        </p>
+                                    </a>
                                 </td>                                        
                             </tr>
                         </tbody>
@@ -308,27 +353,41 @@
                                     <thead>
                                         <tr>
                                             <td style="width:10%"></td>
-                                            <td style="width:45%">{{Label.getContent(showTitle)}}</td>
-                                            <td style="width:45%">{{Label.getContent('Discount Rate')}}(%)</td>
+                                            <td style="width:45%">
+                                                <p class="text-right">{{Label.getContent(showTitle)}}</p>
+                                            </td>
+                                            <td style="width:45%">
+                                                <p class="text-right">{{Label.getContent('Discount Rate')}}(%)</p>
+                                            </td>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>{{Label.getContent('Urban')}}:</td>
                                             <td>
-                                                <a href="#" editable-text="product.urbanValue" onbeforesave="checkData(contractInfo.contractCode,product.negotiationItem,$data)" onaftersave="updateContractDetails(product,product.negotiationItem,'urban',product.index,'variant')">{{ product.urbanValue || 0 }}</a>
+                                                <a href="#" editable-text="product.urbanValue" onbeforesave="checkData(contractInfo.contractCode,product.negotiationItem,$data)" onaftersave="updateContractDetails(product,product.negotiationItem,'urban',product.index,'variant')">
+                                                    <p class="text-right">{{ product.urbanValue || 0 }}</p>
+                                                </a>
                                             </td>
                                             <td>
-                                                <a href="#" editable-text="product.dis_urbanValue" onbeforesave="checkData(contractInfo.contractCode,'nc_VolumeDiscountRate',$data)" onaftersave="updateContractDetails(product,'nc_VolumeDiscountRate','urban',product.index,'variant')">{{ product.dis_urbanValue || 0 }}</a>
+                                                <a href="#" editable-text="product.dis_urbanValue" onbeforesave="checkData(contractInfo.contractCode,'nc_VolumeDiscountRate',$data)" onaftersave="updateContractDetails(product,'nc_VolumeDiscountRate','urban',product.index,'variant')">
+                                                    <p class="text-right">{{ product.dis_urbanValue || 0 }}
+                                                    </p>
+                                                </a>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>{{Label.getContent('Rural')}}:</td>
                                             <td>
-                                                <a href="#" editable-text="product.ruralValue" onbeforesave="checkData(contractInfo.contractCode,product.negotiationItem,$data)" onaftersave="updateContractDetails(product,product.negotiationItem,'rural',product.index,'variant')">{{ product.ruralValue || 0 }}</a>
+                                                <a href="#" editable-text="product.ruralValue" onbeforesave="checkData(contractInfo.contractCode,product.negotiationItem,$data)" onaftersave="updateContractDetails(product,product.negotiationItem,'rural',product.index,'variant')">
+                                                    <p class="text-right">{{ product.ruralValue || 0 }}
+                                                    </p>
+                                                </a>
                                             </td>
                                             <td>
-                                                <a href="#" editable-text="product.dis_ruralValue" onbeforesave="checkData(contractInfo.contractCode,'nc_VolumeDiscountRate',$data)" onaftersave="updateContractDetails(product,'nc_VolumeDiscountRate','rural',product.index,'variant')">{{ product.dis_ruralValue || 0 }}</a>
+                                                <a href="#" editable-text="product.dis_ruralValue" onbeforesave="checkData(contractInfo.contractCode,'nc_VolumeDiscountRate',$data)" onaftersave="updateContractDetails(product,'nc_VolumeDiscountRate','rural',product.index,'variant')">
+                                                    <p class="text-right">{{ product.dis_ruralValue || 0 }}</p>
+                                                </a>
                                             </td>                                                
                                         </tr>
                                     </tbody>
@@ -344,40 +403,59 @@
                                         <thead>
                                             <tr>
                                                 <td style="width:10%"></td>
-                                                <td style="width:30%">{{Label.getContent(showTitle)}}</td>
-                                                <td style="width:30%">{{Label.getContent('Amount')}}(mln$)</td>
-                                                <td style="width:30%">{{Label.getContent('Rate')}}(%)</td>
+                                                <td style="width:30%">
+                                                    <p class="text-right">{{Label.getContent(showTitle)}}</p>
+                                                </td>
+                                                <td style="width:30%">
+                                                    <p class="text-right">{{Label.getContent('Amount')}}(mln$)</p>
+                                                </td>
+                                                <td style="width:30%">
+                                                    <p class="text-right">{{Label.getContent('Rate')}}(%)
+                                                    </p>
+                                                </td>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <td>{{Label.getContent('Urban')}}:</td>
                                                 <td>
-                                                    <a href="#" editable-text="product.urbanValue" onbeforesave="checkData(contractInfo.contractCode,product.negotiationItem,$data)" onaftersave="updateContractDetails(product,product.negotiationItem,'urban',product.index,'variant')">{{ product.urbanValue || 0 }}
+                                                    <a href="#" editable-text="product.urbanValue" onbeforesave="checkData(contractInfo.contractCode,product.negotiationItem,$data)" onaftersave="updateContractDetails(product,product.negotiationItem,'urban',product.index,'variant')">
+                                                        <p class="text-right">{{ product.urbanValue || 0 }}</p>
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <a href="#" editable-text="product.amout_urbanValue" ng-show="product.urbanValue!=0" onbeforesave="checkAmount(contractInfo.contractCode,product,'nc_PerformanceBonusAmount','urban',product.index,'variant',$data)" onaftersave="updateContractDetails(product,'nc_PerformanceBonusAmount','urban',product.index,'variant')">{{ product.amout_urbanValue || 0 }}</a>
-                                                    <span ng-show="product.urbanValue==0">{{ product.amout_urbanValue || 0 }}</span>
+                                                    <a href="#" editable-text="product.amout_urbanValue" ng-show="product.urbanValue!=0" onbeforesave="checkAmount(contractInfo.contractCode,product,'nc_PerformanceBonusAmount','urban',product.index,'variant',$data)" onaftersave="updateContractDetails(product,'nc_PerformanceBonusAmount','urban',product.index,'variant')">
+                                                        <p class="text-right">{{ product.amout_urbanValue || 0 }}</p>
+                                                    </a>
+                                                    <p class="text-right" ng-show="product.urbanValue==0">{{ product.amout_urbanValue || 0 }}</p>
                                                 </td>
                                                 <td>
-                                                    <a href="#" editable-text="product.rate_urbanValue " ng-show="product.urbanValue!=0" onbeforesave="checkData(contractInfo.contractCode,'nc_PerformanceBonusRate',$data)" onaftersave="updateContractDetails(product,'nc_PerformanceBonusRate','urban',product.index,'variant')">{{ product.rate_urbanValue  || 0 }}</a>
-                                                    <span ng-show="product.urbanValue==0">{{ product.rate_urbanValue  || 0 }}</span>
+                                                    <a href="#" editable-text="product.rate_urbanValue " ng-show="product.urbanValue!=0" onbeforesave="checkData(contractInfo.contractCode,'nc_PerformanceBonusRate',$data)" onaftersave="updateContractDetails(product,'nc_PerformanceBonusRate','urban',product.index,'variant')">
+                                                        <p class="text-right">{{ product.rate_urbanValue  || 0 }}
+                                                        </p>
+                                                    </a>
+                                                    <p class="text-right" ng-show="product.urbanValue==0">{{ product.rate_urbanValue  || 0 }}</p>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>{{Label.getContent('Rural')}}:</td>
                                                 <td>
-                                                    <a href="#" editable-text="product.ruralValue" onbeforesave="checkData(contractInfo.contractCode,product.negotiationItem,$data)" onaftersave="updateContractDetails(product,product.negotiationItem,'rural',product.index,'variant')">{{ product.ruralValue || 0 }}
+                                                    <a href="#" editable-text="product.ruralValue" onbeforesave="checkData(contractInfo.contractCode,product.negotiationItem,$data)" onaftersave="updateContractDetails(product,product.negotiationItem,'rural',product.index,'variant')">
+                                                        <p class="text-right">{{ product.ruralValue || 0 }}</p>
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <a href="#" editable-text="product.amout_ruralValue" ng-show="product.ruralValue!=0"onbeforesave="checkAmount(contractInfo.contractCode,product,'nc_PerformanceBonusAmount','rural',product.index,'variant',$data)" onaftersave="updateContractDetails(product,'nc_PerformanceBonusAmount','rural',product.index,'variant')">{{ product.amout_ruralValue || 0 }}</a>
-                                                    <span ng-show="product.ruralValue==0">{{ product.amout_ruralValue || 0 }}</span>
+                                                    <a href="#" editable-text="product.amout_ruralValue" ng-show="product.ruralValue!=0"onbeforesave="checkAmount(contractInfo.contractCode,product,'nc_PerformanceBonusAmount','rural',product.index,'variant',$data)" onaftersave="updateContractDetails(product,'nc_PerformanceBonusAmount','rural',product.index,'variant')">
+                                                        <p class="text-right">{{ product.amout_ruralValue || 0 }}
+                                                        </p>
+                                                    </a>
+                                                    <p class="text-right" ng-show="product.ruralValue==0">{{ product.amout_ruralValue || 0 }}</p>
                                                 </td>
                                                 <td>
-                                                    <a href="#" editable-text="product.rate_ruralValue" ng-show="product.ruralValue!=0" onbeforesave="checkData(contractInfo.contractCode,'nc_PerformanceBonusRate',$data)" onaftersave="updateContractDetails(product,'nc_PerformanceBonusRate','rural',product.index,'variant')">{{ product.rate_ruralValue || 0 }}</a>
-                                                    <span ng-show="product.ruralValue==0">{{ product.rate_ruralValue || 0 }}</span>
+                                                    <a href="#" editable-text="product.rate_ruralValue" ng-show="product.ruralValue!=0" onbeforesave="checkData(contractInfo.contractCode,'nc_PerformanceBonusRate',$data)" onaftersave="updateContractDetails(product,'nc_PerformanceBonusRate','rural',product.index,'variant')">
+                                                        <p class="text-right">{{ product.rate_ruralValue || 0 }}</p>
+                                                    </a>
+                                                    <p ng-show="product.ruralValue==0">{{ product.rate_ruralValue || 0 }}</p>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -394,13 +472,18 @@
                                         <tr>
                                             <td style="width:40%">{{Label.getContent('Urban')}} {{Label.getContent(showTitle)}}:</td>
                                             <td style="width:60%">
-                                                <a href="#" editable-text="product.urbanValue" onbeforesave="checkData(contractInfo.contractCode,product.negotiationItem,$data)" onaftersave="updateContractDetails(product,product.negotiationItem,'urban',product.index,'variant')">{{ product.urbanValue || 0 }}</a>
+                                                <a href="#" editable-text="product.urbanValue" onbeforesave="checkData(contractInfo.contractCode,product.negotiationItem,$data)" onaftersave="updateContractDetails(product,product.negotiationItem,'urban',product.index,'variant')">
+                                                    <p class="text-right">{{ product.urbanValue || 0 }}</p>
+                                                </a>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>{{Label.getContent('Rural')}} {{Label.getContent(showTitle)}}:</td>
                                             <td>
-                                                <a href="#" editable-text="product.ruralValue" onbeforesave="checkData(contractInfo.contractCode,product.negotiationItem,$data)" onaftersave="updateContractDetails(product,product.negotiationItem,'rural',product.index,'variant')">{{ product.ruralValue || 0 }}</a>
+                                                <a href="#" editable-text="product.ruralValue" onbeforesave="checkData(contractInfo.contractCode,product.negotiationItem,$data)" onaftersave="updateContractDetails(product,product.negotiationItem,'rural',product.index,'variant')">
+                                                    <p class="text-right">{{ product.ruralValue || 0 }}
+                                                    </p>
+                                                </a>
                                             </td>                                        
                                         </tr>
                                     </tbody>
@@ -418,7 +501,7 @@
 </div>
 
 <div modal="viewModal" class="hide" options="viewOpts">
-     <div class="modal-dialog">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeViewModal()">&times;</button>
@@ -432,28 +515,32 @@
                         <thead>
                             <tr>
                                 <td style="width:10%"></td>
-                                <td style="width:45%">{{Label.getContent(showTitle)}}</td>
-                                <td style="width:45%">{{Label.getContent('Discount Rate')}}(%)</td>
+                                <td style="width:45%">
+                                    <p class="text-right">{{Label.getContent(showTitle)}}</p>
+                                </td>
+                                <td style="width:45%">
+                                    <p class="text-right">{{Label.getContent('Discount Rate')}}(%)
+                                    </p>
+                                </td>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>{{Label.getContent('Urban')}}:</td>
                                 <td>
-                                    {{ editDetail.brand_urbanValue || 0 }}
-
+                                    <p class="text-right">{{ editDetail.brand_urbanValue || 0 }}</p>
                                 </td>
                                 <td>
-                                    {{ editDetailDisRate.brand_urbanValue || 0 }}
+                                    <p class="text-right">{{ editDetailDisRate.brand_urbanValue || 0 }}</p>
                                 </td>
                             </tr>
                             <tr>
                                 <td>{{Label.getContent('Rural')}}:</td>
                                 <td>
-                                    {{ editDetail.brand_ruralValue || 0 }}
+                                    <p class="text-right">{{ editDetail.brand_ruralValue || 0 }}</p>
                                 </td>
                                 <td>
-                                    {{ editDetailDisRate.brand_ruralValue || 0 }}
+                                    <p class="text-right">{{ editDetailDisRate.brand_ruralValue || 0 }}</p>
                                 </td>                                                
                             </tr>
                         </tbody>
@@ -463,34 +550,43 @@
                             <thead>
                                 <tr>
                                     <td style="width:10%"></td>
-                                    <td style="width:30%">{{Label.getContent(showTitle)}}</td>
-                                    <td style="width:30%">{{Label.getContent('Amount')}}(mln$)</td>
-                                    <td style="width:30%">{{Label.getContent('Rate')}}(%)</td>
+                                    <td style="width:30%">
+                                        <p class="text-right">{{Label.getContent(showTitle)}}
+                                        </p>
+                                    </td>
+                                    <td style="width:30%">
+                                        <p class="text-right">{{Label.getContent('Amount')}}(mln$)
+                                        </p>
+                                    </td>
+                                    <td style="width:30%">
+                                        <p class="text-right">{{Label.getContent('Rate')}}(%)
+                                        </p>
+                                    </td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>{{Label.getContent('Urban')}}:</td>
                                     <td>
-                                        {{ editDetail.brand_urbanValue || 0 }}
+                                        <p class="text-right">{{ editDetail.brand_urbanValue || 0 }}</p>
                                     </td>
                                     <td>
-                                        {{ editDetailBonusAmount.brand_urbanValue || 0 }}
+                                        <p class="text-right">{{ editDetailBonusAmount.brand_urbanValue || 0 }}</p>
                                     </td>
                                     <td>
-                                        {{ editDetailBonusRate.brand_urbanValue || 0 }}
+                                        <p class="text-right">{{ editDetailBonusRate.brand_urbanValue || 0 }}</p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>{{Label.getContent('Rural')}}:</td>
                                     <td>
-                                        {{ editDetail.brand_ruralValue || 0 }}
+                                        <p class="text-right">{{ editDetail.brand_ruralValue || 0 }}</p>
                                     </td>
                                     <td>
-                                        {{ editDetailBonusAmount.brand_ruralValue || 0 }}
+                                        <p class="text-right">{{ editDetailBonusAmount.brand_ruralValue || 0 }}</p>
                                     </td>
                                     <td>
-                                        {{ editDetailBonusRate.brand_ruralValue || 0 }}
+                                        <p class="text-right">{{ editDetailBonusRate.brand_ruralValue || 0 }}</p>
                                     </td>
                                 </tr>
                             </tbody>
@@ -501,13 +597,13 @@
                             <tr>
                                 <td style="width:40%">{{Label.getContent('Urban')}} {{Label.getContent(showTitle)}}:</td>
                                 <td style="width:60%">
-                                    {{ editDetail.brand_urbanValue || 0 }}
+                                    <p class="text-right">{{ editDetail.brand_urbanValue || 0 }}</p>
                                 </td>
                             </tr>
                             <tr>
                                 <td>{{Label.getContent('Rural')}} {{Label.getContent(showTitle)}}:</td>
                                 <td>
-                                    {{ editDetail.brand_ruralValue || 0 }}
+                                    <p class="text-right">{{ editDetail.brand_ruralValue || 0 }}</p>
                                 </td>                                        
                             </tr>
                         </tbody>
@@ -523,27 +619,31 @@
                                     <thead>
                                         <tr>
                                             <td style="width:10%"></td>
-                                            <td style="width:45%">{{Label.getContent(showTitle)}}</td>
-                                            <td style="width:45%">{{Label.getContent('Discount Rate')}}(%)</td>
+                                            <td style="width:45%">
+                                                <p class="text-right">{{Label.getContent(showTitle)}}</p>
+                                            </td>
+                                            <td style="width:45%">
+                                                <p class="text-right">{{Label.getContent('Discount Rate')}}(%)</p>
+                                            </td>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>{{Label.getContent('Urban')}}:</td>
                                             <td>
-                                                {{ product.urbanValue || 0 }}
+                                                <p class="text-right">{{ product.urbanValue || 0 }}</p>
                                             </td>
                                             <td>
-                                                {{ product.dis_urbanValue || 0 }}
+                                                <p class="text-right">{{ product.dis_urbanValue || 0 }}</p>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>{{Label.getContent('Rural')}}:</td>
                                             <td>
-                                                {{ product.ruralValue || 0 }}
+                                                <p class="text-right">{{ product.ruralValue || 0 }}</p>
                                             </td>
                                             <td>
-                                                {{ product.dis_ruralValue || 0 }}
+                                                <p class="text-right">{{ product.dis_ruralValue || 0 }}</p>
                                             </td>                                                
                                         </tr>
                                     </tbody>
@@ -559,34 +659,43 @@
                                         <thead>
                                             <tr>
                                                 <td style="width:10%"></td>
-                                                <td style="width:40%">{{Label.getContent(showTitle)}}</td>
-                                                <td style="width:40%">{{Label.getContent('Amount')}}(mln$)</td>
-                                                <td style="width:10%">{{Label.getContent('Rate')}}(%)</td>
+                                                <td style="width:30%">
+                                                    <p class="text-right">{{Label.getContent(showTitle)}}
+                                                    </p>
+                                                </td>
+                                                <td style="width:30%">
+                                                    <p class="text-right">{{Label.getContent('Amount')}}(mln$)
+                                                    </p>
+                                                </td>
+                                                <td style="width:30%">
+                                                    <p class="text-right">{{Label.getContent('Rate')}}(%)
+                                                    </p>
+                                                </td>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <td>{{Label.getContent('Urban')}}:</td>
                                                 <td>
-                                                    {{ product.urbanValue || 0 }}
+                                                    <p class="text-right">{{ product.urbanValue || 0 }}</p>
                                                 </td>
                                                 <td>
-                                                    {{ product.amout_urbanValue || 0 }}
+                                                    <p class="text-right">{{ product.amout_urbanValue || 0 }}</p>
                                                 </td>
                                                 <td>
-                                                    {{ product.rate_urbanValue  || 0 }}
+                                                    <p class="text-right">{{ product.rate_urbanValue  || 0 }}</p>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>{{Label.getContent('Rural')}}:</td>
                                                 <td>
-                                                    {{ product.ruralValue || 0 }}
+                                                    <p class="text-right">{{ product.ruralValue || 0 }}</p>
                                                 </td>
                                                 <td>
-                                                    {{ product.amout_ruralValue || 0 }}
+                                                    <p class="text-right">{{ product.amout_ruralValue || 0 }}</p>
                                                 </td>
                                                 <td>
-                                                    {{ product.rate_ruralValue || 0 }}
+                                                    <p class="text-right">{{ product.rate_ruralValue || 0 }}</p>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -603,13 +712,13 @@
                                         <tr>
                                             <td style="width:40%">{{Label.getContent('Urban')}} {{Label.getContent(showTitle)}}:</td>
                                             <td style="width:60%">
-                                                {{ product.urbanValue || 0 }}
+                                                <p class="text-right">{{ product.urbanValue || 0 }}</p>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>{{Label.getContent('Rural')}} {{Label.getContent(showTitle)}}:</td>
                                             <td>
-                                                {{ product.ruralValue || 0 }}
+                                                <p class="text-right">{{ product.ruralValue || 0 }}</p>
                                             </td>         
                                         </tr>
                                     </tbody>
