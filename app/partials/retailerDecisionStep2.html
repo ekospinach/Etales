@@ -1,6 +1,6 @@
 <div id="content" class="bs-header">
     <div class="container">
-        <h1>{{Label.getContent('Market')}}</h1>
+        <h1>{{Label.getContent('Step 2 of 4')}} {{Label.getContent('Market')}}</h1>
         <p>{{Label.getContent('Market Info')}}</p>
     </div>
 </div>
@@ -8,10 +8,6 @@
   <div class="row">
     <div class="col-md-12">
       <div class="bs-docs-section">
-        <h4>{{Label.getContent('Step 2 of 4')}}</h4>
-        <div class="pull-left" style="width:40%">
-          <h3 style="margin-top:0px">{{Label.getContent('Market')}}</h3>
-        </div>
         <div class="pull-right" style="width:40%">
           <progress percent="percentageExpend" class="progress active"></progress>
           <small>
@@ -78,7 +74,6 @@
                 <th ng-repeat='market in markets' style="width:25%">
                   <div style="clear:both"></div>
                   <button type="button" class="btn btn-primary btn-xs pull-right" ng-click="getMarketMoreInfo(market.marketID)">{{Label.getContent('More')}}</button>
-                  <div style="clear:both"></div>
                   <p class="pull-right" style="margin-right:5px">
                     {{Label.getContent(market.marketName)}}
                   </p>

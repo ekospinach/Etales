@@ -125,7 +125,8 @@ define(['app'], function(app) {
 			}
 
 			var renderContractDetailsByCategory = function(category){
-				console.log('renderContractDetailsByCategory:' + category);
+				//console.log('renderContractDetailsByCategory:' + category);
+				$scope.category=category;
 				var singleCategoryDetails =_.filter($scope.details,function(obj){
 					if(category=="Elecssories"){
 						return (obj.relatedBrandName.substring(0,1)=="E");
@@ -1141,6 +1142,8 @@ define(['app'], function(app) {
 			    backdropFade: true,
 			    dialogFade:true
 			};
+			
+			$scope.category="Elecssories";
 			$scope.language=Label.getCurrentLanguage();
 			$scope.renderContractDetailsByCategory = renderContractDetailsByCategory;
 			$scope.loadModalDate=loadModalDate;

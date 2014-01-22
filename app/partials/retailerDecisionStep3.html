@@ -1,6 +1,6 @@
 <div id="content" class="bs-header">
     <div class="container">
-        <h1>{{Label.getContent('Private Labels Composition')}}</h1>
+        <h1>{{Label.getContent('Step 3 of 4')}} {{Label.getContent('Private Labels Composition')}}</h1>
         <p>{{Label.getContent('Private Labels Composition Info')}} </p>
     </div>
 </div>
@@ -8,9 +8,11 @@
   <div class="row">
     <div class="col-md-12">
       <div class="bs-docs-section">
-        <h4>{{Label.getContent('Step 3 of 4')}}</h4>
         <div class="pull-left" style="width:40%">
-          <h3 style="margin-top:0px">{{Label.getContent('Private Labels Composition')}}</h3>
+          <h4 class="pull-left">
+            <span class="label label-info">{{Label.getContent(category)}}</span>
+          </h4>
+          <div style="clear:both"></div>
           <div class="btn-group pull-left">
               <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
                 {{Label.getContent('Category')}} <span class="caret"></span>
