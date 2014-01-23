@@ -40,79 +40,126 @@
         <div collapse="isCollapsed" class="panel panel-info">
           <div class="panel-heading">
             {{variantHistory.parentBrandName||showNewHistory.brandName}} {{variantHistory.varName||showNewHistory.varName}}
-            <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button></div>
+            <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button>
+          </div>
               <table class="table table-condensed table-bordered">
                 <thead>
                   <tr>
+                    <td colspan="2" class="col-md-6">{{Label.getContent('Previous period')}} ({{currentPeriod-1}})</td>
+
                     <td colspan="2" class="col-md-6">{{Label.getContent('Current period')}} ({{currentPeriod}})</td>
-                    <td colspan="2" class="col-md-6">{{Label.getContent('Previous period')}} ({{currentPeriod-1}})</td>               
                   </tr>                  
                 </thead>
                 <tbody>
                   <tr>
-                    <th>{{Label.getContent('Unit Cost')}}</th>
-                    <th>{{currentUnitCost}}</th>
                     <td>{{Label.getContent('Sales Volume')}}</td>
-                    <td>{{variantHistory.supplierView[0].supplierChannelView[4].salesVolume[2].toFixed(2)||0}}</td>
+                    <td>
+                      <p class="text-right">
+                        {{variantHistory.supplierView[0].supplierChannelView[4].salesVolume[2].toFixed(2)||0}}
+                      </p>
+                    </td>
+
+                    <th>{{Label.getContent('Unit Cost')}}</th>
+                    <th>
+                      <p class="text-right">{{currentUnitCost}}
+                      </p>
+                    </th>
                   </tr>
                   <tr>
-                    <td>{{Label.getContent('Acquired Technology Level')}}</td>  
-                    <td ng-show="isElecssories">{{companyHistory.acquiredTechnologyLevel[0]||0}}</td>
-                    <td ng-show="isHealthBeauty">{{companyHistory.acquiredTechnologyLevel[1]||0}}</td>
-
                     <td>{{Label.getContent('Unit Production Cost')}}</td>
-                    <td>{{variantHistory.supplierView[0].currentUnitAverageCost.toFixed(2)||0}}</td>
-                  </tr>
-                  <tr>
-                    <td>{{Label.getContent('Acquired Design Level')}}</td>
-                    <td ng-show="isElecssories">{{companyHistory.acquiredDesignLevel[0]||0}}</td>
-                    <td ng-show="isHealthBeauty">/</td>                   
+                    <td>
+                      <p class="text-right">{{variantHistory.supplierView[0].currentUnitAverageCost.toFixed(2)||0}}</p>
+                    </td>
 
-                    <td>{{Label.getContent('Production Volume')}}</td>
-                    <td>{{variantHistory.supplierView[0].productionVolume.toFixed(2)||0}}</td>
+                    <td>{{Label.getContent('Acquired Technology Level')}}</td>  
+                    <td ng-show="isElecssories">
+                      <p class="text-right">{{companyHistory.acquiredTechnologyLevel[0]||0}}
+                      </p>
+                    </td>
+                    <td ng-show="isHealthBeauty">
+                      <p class="text-right">{{companyHistory.acquiredTechnologyLevel[1]||0}}
+                      </p>
+                    </td>
                   </tr>
                   <tr>
-                    <td ng-show="isElecssories">{{Label.getContent('Acquired Quality-of-Raw-Materials')}}</td>
+                    <td>{{Label.getContent('Production Volume')}}</td>
+                    <td>
+                      <p class="text-right">{{variantHistory.supplierView[0].productionVolume.toFixed(2)||0}}
+                      </p>
+                    </td>
+
+                    <td>{{Label.getContent('Acquired Design Level')}}</td>
+                    <td ng-show="isElecssories">
+                      <p class="text-right">{{companyHistory.acquiredDesignLevel[0]||0}}
+                      </p>
+                    </td>
+                    <td ng-show="isHealthBeauty">
+                      <p class="text-right">/</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>{{Label.getContent('Initial Inventory')}}</td>
+                    <td>
+                      <p class="text-right">{{variantHistory.supplierView[0].initialInventory[4].volume.toFixed(2)||0}}
+                      </p>
+                    </td>
+
+                    <td></td>
+                    <td></td>
+                    <!--<td ng-show="isElecssories">{{Label.getContent('Acquired Quality-of-Raw-Materials')}}</td>
                     <td ng-show="isHealthBeauty">{{Label.getContent('Acquired Smoothener Level')}}</td>
                     <td ng-show="isElecssories">{{companyHistory.acquiredTechnologyLevel[0]+2}}</td>
-                    <td ng-show="isHealthBeauty">{{companyHistory.acquiredTechnologyLevel[1]+2}}</td> 
-
-                    <td>{{Label.getContent('Initial Inventory')}}</td>
-                    <td>{{variantHistory.supplierView[0].initialInventory[4].volume.toFixed(2)||0}}</td>
+                    <td ng-show="isHealthBeauty">{{companyHistory.acquiredTechnologyLevel[1]+2}}</td>-->
                   </tr>
                   <tr>
-                    <td></td>
-                    <td></td>                                        
                     <td ng-show="isElecssories">{{Label.getContent('Design Level')}}</td>                    
                     <td ng-show="isHealthBeauty">{{Label.getContent('Active agent')}}</td>    
+                    <td>
+                      <p class="text-right">{{variantHistory.supplierView[0].composition[0]||0}}
+                      </p>
+                    </td>
 
-                    <td>{{variantHistory.supplierView[0].composition[0]||0}}</td>
+                    <td></td>
+                    <td></td>                                        
                   </tr>
                   <tr>
-                    <td></td>
-                    <td></td>
-
                     <td>{{Label.getContent('Technology Level')}}</td>
-                    <td>{{variantHistory.supplierView[0].composition[1]||0}}</td>
+                    <td>
+                      <p class="text-right">{{variantHistory.supplierView[0].composition[1]||0}}
+                      </p>
+                    </td>
+
+                    <td></td>
+                    <td></td>
                   </tr>
                   <tr>
-                    <td></td>
-                    <td></td>
                     <td ng-show="isElecssories">{{Label.getContent('Quality-of-Raw-Materials')}}</td>  
                     <td ng-show="isHealthBeauty">{{Label.getContent('Smoothener Level')}}</td>              
-                    <td>{{variantHistory.supplierView[0].composition[2]||0}}</td>
+                    <td>
+                      <p class="text-right">{{variantHistory.supplierView[0].composition[2]||0}}</p>
+                    </td>
+
+                    <td></td>
+                    <td></td>
                   </tr>                 
                   <tr>
+                    <td>{{Label.getContent('Current Price BM')}}</td>
+                    <td>
+                      <p class="text-right">{{variantHistory.supplierView[0].currentPriceBM.toFixed(2)||0}}
+                      </p>
+                    </td>
+
                     <td></td>
                     <td></td>                    
-                    <td>{{Label.getContent('Current Price BM')}}</td>
-                    <td>{{variantHistory.supplierView[0].currentPriceBM.toFixed(2)||0}}</td>
                   </tr>
                   <tr>
-                    <td></td>
-                    <td></td>                    
                     <td>{{Label.getContent('Current Price Emall')}}</td>
-                    <td>{{variantHistory.supplierView[0].currentPriceEmall.toFixed(2)||0}}</td>                    
+                    <td>
+                      <p class="text-right">{{variantHistory.supplierView[0].currentPriceEmall.toFixed(2)||0}}</p>
+                    </td>  
+                    
+                    <td></td>
+                    <td></td>
                   </tr>
                 </tbody>
               </table>                     

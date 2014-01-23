@@ -199,3 +199,6 @@
 .bs-masthead-links{
   padding-top:100px;
 }
+table tr td p,table tr th p{
+  margin: 0;
+}

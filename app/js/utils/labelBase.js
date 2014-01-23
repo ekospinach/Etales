@@ -394,7 +394,7 @@ var getLabelBase = function(){
 		{id:'Cancel',  ENG:'Cancel',  CHN:'取消',  RUS:''},	
 		{id:'Current period',  ENG:'Current period',  CHN:'当前阶段',  RUS:''},
 		{id:'Previous period',  ENG:'Previous period',  CHN:'上一阶段',  RUS:''},
-		{id:'Unit Cost',  ENG:'Unit Cost',  CHN:'单位生产成本',  RUS:''},
+		{id:'Unit Cost',  ENG:'Unit Production Cost',  CHN:'单位生产成本',  RUS:''},
 		{id:'Acquired Technology Level',  ENG:'Acquired Technology Level',  CHN:'当前拥有最高技术水平',  RUS:''},
 		{id:'Acquired Design Level',  ENG:'Acquired Design Level',  CHN:'当前拥有最高设计水平',  RUS:''},
 		{id:'Acquired Active agent',  ENG:'Acquired Active agent',  CHN:'当前拥有活力因子',  RUS:''},

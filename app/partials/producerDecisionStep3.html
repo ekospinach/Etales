@@ -41,44 +41,66 @@
               <table class="table table-condensed table-bordered">
                 <thead>
                   <tr>
-                    <td colspan="2" class="col-md-6">{{Label.getContent('Current period')}} ({{currentPeriod}})</td>
                     <td colspan="2" class="col-md-6">{{Label.getContent('Previous period')}} ({{currentPeriod-1}})</td>
+
+                    <td colspan="2" class="col-md-6">{{Label.getContent('Current period')}} ({{currentPeriod}})</td>
                   </tr>                  
                 </thead>
                 <tbody>
                   <tr>
-                    <td>{{Label.getContent('Urban')}}{{Label.getContent('brand awareness')}}</td>
-                    <td>{{brandHistory.supplierView[0].awareness[0].toFixed(2) * 100||0}}%</td>
                     <td>{{Label.getContent('Urban Advertising Off-Line')}}</td>
-                    <td>{{brandDecisionHistory.advertisingOffLine[0].toFixed(2)||0}}</td>
+                    <td>
+                      <p class="text-right">{{brandDecisionHistory.advertisingOffLine[0].toFixed(2)||0}}</p>
+                    </td>
+                    <td>{{Label.getContent('Urban')}}{{Label.getContent('brand awareness')}}</td>
+                    <td>
+                      <p class="text-right">{{brandHistory.supplierView[0].awareness[0].toFixed(2) * 100||0}}%</p>
+                    </td>
                   </tr>     
                   <tr>
-                    <td>{{Label.getContent('Rural')}} {{Label.getContent('brand awareness')}}</td>                    
-                    <td>{{brandHistory.supplierView[0].awareness[1].toFixed(2) * 100||0}}%</td>                  
                     <td>{{Label.getContent('Urban Traditional Trade Support')}}</td> 
-                    <td>{{brandDecisionHistory.supportTraditionalTrade[0].toFixed(2)||0}}</td>
+                    <td>
+                      <p class="text-right">{{brandDecisionHistory.supportTraditionalTrade[0].toFixed(2)||0}}</p>
+                    </td>
+
+                    <td>{{Label.getContent('Rural')}} {{Label.getContent('brand awareness')}}</td>                    
+                    <td>
+                      <p class="text-right">{{brandHistory.supplierView[0].awareness[1].toFixed(2) * 100||0}}%</p>
+                    </td>                  
                   </tr>           
                   <tr>
-                    <td></td>
-                    <td></td>                    
                     <td>{{Label.getContent('Rural Advertising Off-Line')}}</td>                    
-                    <td>{{brandDecisionHistory.advertisingOffLine[1].toFixed(2)||0}}</td>                                        
-                  </tr>           
-                  <tr>
+                    <td>
+                      <p class="text-right">{{brandDecisionHistory.advertisingOffLine[1].toFixed(2)||0}}</p>
+                    </td>
+
                     <td></td>
-                    <td></td>                    
-                    <td>{{Label.getContent('Rural Traditional Trade Support')}}</td>                    
-                    <td>{{brandDecisionHistory.supportTraditionalTrade[1].toFixed(2)||0}}</td>                                        
+                    <td></td>
                   </tr>           
                   <tr>
-                    <td ng-show="false">Web trawler brand strength index</td>                    
-                    <td ng-show="false">{{brandHistory.supplierView[0].socialNetworksScore[2].strength||0}}</td>                    
+                    <td>{{Label.getContent('Rural Traditional Trade Support')}}</td>                    
+                    <td>
+                      <p class="text-right">{{brandDecisionHistory.supportTraditionalTrade[1].toFixed(2)||0}}</p>
+                    </td>
+
+                    <td></td>
+                    <td></td>                                                            
+                  </tr>           
+                  <tr>
+                    <!--
                     <td ng-show="false">Web trawler brand sentiment index</td>                    
-                    <td ng-show="false">{{brandHistory.supplierView[0].socialNetworksScore[2].sentiment||0}}</td>                                  
+                    <td ng-show="false">{{brandHistory.supplierView[0].socialNetworksScore[2].sentiment||0}}</td>
+
+                    <td ng-show="false">Web trawler brand strength index</td>                    
+                    <td ng-show="false">{{brandHistory.supplierView[0].socialNetworksScore[2].strength||0}}</td>
+                  -->
+                    <td>{{Label.getContent('National advertising online')}}</td>                    
+                    <td>
+                      <p class="text-right">{{brandDecisionHistory.advertisingOnLine.toFixed(2)||0}}</p>
+                    </td>
+
                     <td></td>                    
                     <td></td>                                        
-                    <td>{{Label.getContent('National advertising online')}}</td>                    
-                    <td>{{brandDecisionHistory.advertisingOnLine.toFixed(2)||0}}</td>                                        
                   </tr>           
                 </tbody>
               </table>
