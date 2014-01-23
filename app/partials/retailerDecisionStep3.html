@@ -15,11 +15,15 @@
           <div style="clear:both"></div>
           <div class="btn-group pull-left">
               <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
-                {{Label.getContent('Category')}} <span class="caret"></span>
+                {{Label.getContent('Category')}}<span class="caret"></span>
               </button>
               <ul class="dropdown-menu">
-                <li class=""><a ng-click="showView(retailerID,period,'Elecssories',language)">{{Label.getContent('Elecssories')}}</a></li>
-                <li class=""><a ng-click="showView(retailerID,period,'HealthBeauty',language)">{{Label.getContent('HealthBeauty')}}</a></li>       
+                <li class="">
+                  <a ng-click="showView(retailerID,period,'Elecssories',language)">{{Label.getContent('Elecssories')}}</a>
+                </li>
+                <li class="">
+                  <a ng-click="showView(retailerID,period,'HealthBeauty',language)">{{Label.getContent('HealthBeauty')}}</a>
+                </li>       
               </ul>
           </div>
         </div>
@@ -37,58 +41,99 @@
               <table class="table table-condensed table-bordered">
                 <thead>
                   <tr>
-                    <td colspan="2" class="col-md-6">{{Label.getContent('Current period')}} ({{currentPeriod}})</td>
-                    <td colspan="3" class="col-md-6">{{Label.getContent('Previous period')}} ({{currentPeriod-1}})</td>               
+                    <td colspan="3" class="col-md-6">{{Label.getContent('Previous period')}} ({{currentPeriod-1}})</td>
+
+                    <td colspan="2" class="col-md-6">{{Label.getContent('Current period')}} ({{currentPeriod}})</td>   
                   </tr>                  
                 </thead>
                 <tbody>
                   <tr>
+                    <td></td>
+                    <td>
+                      <p class="text-right">{{Label.getContent('Urban')}}</p>
+                    </td>           
+                    <td>
+                      <p class="text-right">{{Label.getContent('Rural')}}</p>
+                    </td>
+
                     <th>{{Label.getContent('Unit Production Cost')}}</th>
-                    <th>{{currentUnitCost}}</th>
-                    <td></td>
-                    <td>{{Label.getContent('Urban')}}</td>           
-                    <td>{{Label.getContent('Rural')}}</td>
+                    <th>
+                      <p class="text-right">{{currentUnitCost}}</p>
+                    </th>
+
                   </tr>                
                   <tr>
-                    <td>{{Label.getContent('Acquired Technology Level')}}</td>
-                    <td ng-show="isElecssories">{{companyHistory.acquiredTechnologyLevel[0]||0}}</td>
-                    <td ng-show="isHealthBeauty">{{companyHistory.acquiredTechnologyLevel[1]||0}}</td>                    
                     <td>{{Label.getContent('Sales Volume')}}</td>
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].salesVolume.toFixed(2)||0}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].salesVolume.toFixed(2)||0}}</td>                    
-                  </tr>                
+                    <td>
+                      <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].salesVolume.toFixed(2)||0}}</p>
+                    </td>
+                    <td>
+                      <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].salesVolume.toFixed(2)||0}}</p>
+                    </td>
+                    
+                    <td>{{Label.getContent('Acquired Technology Level')}}</td>
+                    <td ng-show="isElecssories">
+                      <p class="text-right">{{companyHistory.acquiredTechnologyLevel[0]||0}}</p>
+                    </td>
+                    <td ng-show="isHealthBeauty">
+                      <p class="text-right">{{companyHistory.acquiredTechnologyLevel[1]||0}}</p>
+                    </td>
+                  </tr>              
                   <tr>
-                    <td>{{Label.getContent('Acquired Design Level')}}</td>
-                    <td ng-show="isElecssories">{{companyHistory.acquiredDesignLevel[0]||0}}</td>
-                    <td ng-show="isHealthBeauty">/</td>             
                     <td>{{Label.getContent('Unit Production Cost')}}</td>
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].currentUnitAcquisitionCost.toFixed(2)||0}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].currentUnitAcquisitionCost.toFixed(2)||0}}</td>   
+                    <td>
+                      <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].currentUnitAcquisitionCost.toFixed(2)||0}}</p>
+                    </td>                    
+                    <td>
+                      <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].currentUnitAcquisitionCost.toFixed(2)||0}}</p>
+                    </td>
+
+                    <td>{{Label.getContent('Acquired Design Level')}}</td>
+                    <td ng-show="isElecssories">
+                      <p class="text-right">{{companyHistory.acquiredDesignLevel[0]||0}}</p>
+                    </td>
+                    <td ng-show="isHealthBeauty">
+                      <p class="text-right">/</p>
+                    </td>
                   </tr>                
                   <tr>
-                    <td ng-show="false">Expected perception(x-axis)</td>
-                    <td></td>
-                    <td></td>
                     <td ng-show="isElecssories">{{Label.getContent('Inventory Design Level')}}</td>                    
                     <td ng-show="isHealthBeauty">{{Label.getContent('Inventory Active agent')}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[0]||0}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[0]||0}}</td>                    
+                    <td>
+                      <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[0]||0}}</p>
+                    </td>                    
+                    <td>
+                      <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[0]||0}}</p>
+                    </td>   
+
+                    <td ng-show="false">Expected perception(x-axis)</td>
+                    <td></td>
+                    <td></td>                 
                   </tr>                
                   <tr>
+                    <td>{{Label.getContent('Inventory Technology Level')}}</td>
+                    <td>
+                      <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[1]||0}}</p>
+                    </td>                    
+                    <td>
+                      <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[1]||0}}</p>
+                    </td>   
+
                     <td ng-show="false">Expected perception(y-axis)</td>
                     <td></td>
-                    <td></td>
-                    <td>{{Label.getContent('Inventory Technology Level')}}</td>
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[1]||0}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[1]||0}}</td>                    
+                    <td></td>                 
                   </tr>                
                   <tr>
-                    <td></td>
-                    <td></td>
                     <td ng-show="isElecssories">{{Label.getContent('Inventory Quality-of-Raw-Materials')}}</td>  
                     <td ng-show="isHealthBeauty">{{Label.getContent('Inventory Smoothener Level')}}</td>                  
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[2]||0}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[2]||0}}</td>                                        
+                    <td>
+                      <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[2]||0}}</p>
+                    </td>                    
+                    <td>
+                      <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[2]||0}}</p>
+                    </td>    
+                    <td></td>
+                    <td></td>                                    
                   </tr>          
                 </tbody>   
               </table>

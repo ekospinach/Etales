@@ -23,48 +23,67 @@
             <table class="table table-condensed table-bordered">
               <thead>
                 <tr>
-                  <td colspan="2" class="col-md-6">{{Label.getContent('Current period')}} ({{currentPeriod}})</td>
                   <td colspan="2" class="col-md-6">{{Label.getContent('Previous period')}} ({{currentPeriod-1}})</td>
+
+                  <td colspan="2" class="col-md-6">{{Label.getContent('Current period')}} ({{currentPeriod}})</td>
                 </tr>                  
               </thead>
               <tbody>
                 <tr>
-                  <td ng-show="false">Web-trawler strength index</td>
-                  <td></td>
-                  <td></td>
+                  <!--<td ng-show="false">Web-trawler strength index</td>-->
                   <td>{{Label.getContent('Convenience Off-line')}}</td>
-                  <td>{{retailerDecisionHistory.tradtionalAdvertising[1]}}</td>
+                  <td>
+                    <p class="text-right">{{retailerDecisionHistory.tradtionalAdvertising[1]}}</p>
+                  </td>
+
+                  <td></td>
+                  <td></td>
                 </tr>
                 <tr>
-                  <td ng-show="false">Web-trawler sentiment index</td>
+                  <!--<td ng-show="false">Web-trawler sentiment index</td>-->
+                  <td>{{Label.getContent('Assortment Off-line')}}</td>
+                  <td>
+                    <p class="text-right">{{retailerDecisionHistory.tradtionalAdvertising[2]}}</p>
+                  </td>
+                  
                   <td></td>                  
                   <td></td>
-                  <td>{{Label.getContent('Assortment Off-line')}}</td>
-                  <td>{{retailerDecisionHistory.tradtionalAdvertising[2]}}</td>
                 </tr>
                 <tr>
-                  <td></td>
-                  <td></td>
                   <td>{{Label.getContent('Price Off-line')}}</td>
-                  <td>{{retailerDecisionHistory.tradtionalAdvertising[0]}}</td>
+                  <td>
+                    <p class="text-right">{{retailerDecisionHistory.tradtionalAdvertising[0]}}</p>
+                  </td>
+
+                  <td></td>
+                  <td></td>
                 </tr>
                 <tr>
-                  <td></td>
-                  <td></td>
                   <td>{{Label.getContent('Convenience On-line')}}</td>
-                  <td>{{retailerDecisionHistory.onlineAdvertising[1]}}</td>
+                  <td>
+                    <p class="text-right">{{retailerDecisionHistory.onlineAdvertising[1]}}</p>
+                  </td>
+
+                  <td></td>
+                  <td></td>
                 </tr>
                 <tr>
-                  <td></td>
-                  <td></td>
                   <td>{{Label.getContent('Assortment On-line')}}</td>
-                  <td>{{retailerDecisionHistory.onlineAdvertising[2]}}</td>
+                  <td>
+                    <p class="text-right">{{retailerDecisionHistory.onlineAdvertising[2]}}</p>
+                  </td>
+
+                  <td></td>
+                  <td></td>
                 </tr>                
                 <tr>
-                  <td></td>
-                  <td></td>
                   <td>{{Label.getContent('Price On-line')}}</td>
-                  <td>{{retailerDecisionHistory.onlineAdvertising[0]}}</td>
+                  <td>
+                    <p class="text-right">{{retailerDecisionHistory.onlineAdvertising[0]}}</p>
+                  </td>
+
+                  <td></td>
+                  <td></td>
                 </tr>        
               </tbody>
             </table>
