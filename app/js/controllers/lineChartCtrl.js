@@ -1,6 +1,6 @@
 define(['app','socketIO','routingConfig'], function(app) {
 
-	app.controller('lineChartCtrl',['$scope', '$http', 'ProducerDecisionBase','$rootScope','Auth','Label', function($scope, $http, ProducerDecisionBase,$rootScope,Auth,Label) {
+	app.controller('lineChartCtrl',['$scope', '$http','$location', 'ProducerDecisionBase','$rootScope','Auth','Label', function($scope, $http,$location, ProducerDecisionBase,$rootScope,Auth,Label) {
 		// You can access the scope of the controller from here
 
 			$rootScope.loginCss="";
@@ -42,66 +42,172 @@ define(['app','socketIO','routingConfig'], function(app) {
 	    	$scope.role=role;
 	    	$scope.language=language;
 	    	var charts = new Array({},{},{},{});
+	    	var exlcelCharts=new Array({},{},{},{})
 	    	var pColors=new Array("#004CE5","#BB0000","#FFBC01","#34393D");
 	    	var rColors=new Array("#339933","#990099","#FF5200","#272727");
 	    	var colors=new Array();
-	    	var title="";
+	    	var chartConfig=new Array();
+	    	var Title="",SubtitleTitle="";
+	    	var categories=new Array();
+	    	//chartConfig.push({options:{chart:{type:'line'}},plotOptions:{series:{stacking:''}}});
 	    	for (var i=0;i<$scope.chartdata.chartSetCollection.length;i++){
 		    	$scope.chartCollection=_.find($scope.chartdata.chartSetCollection[i].chartCollection,function(obj){
 		    		return (obj.market==market&&obj.category==cat&&obj.seriesRole==role)
 		    	});
-		    	charts[i].data=$scope.chartCollection.data;
-		    	title=Label.getContent($scope.chartdata.chartSetCollection[i].titleENG);
-		    	console.log($scope.chartdata.chartSetCollection[i].titleENG);
-		    	// if(language=="ENG"){
-		    	// 	title=$scope.chartdata.chartSetCollection[i].titleENG;
-		    	// }
-		    	// else if(language=="CHN"){
-		    	// 	title=$scope.chartdata.chartSetCollection[i].titleCHN;
-		    	// }
-		    	// else if(language=="RUS"){
-		    	// 	title=$scope.chartdata.chartSetCollection[i].titleRUS;
-		    	// }
+		    	//charts[i].data=$scope.chartCollection.data;
+		    	//title may 
+		    	Title=Label.getContent($scope.chartdata.chartSetCollection[i].titleENG);
+		    	SubtitleTitle=Label.getContent($scope.chartdata.chartSetCollection[i].titleENG+' Info');
 
-		    	for(var j=0;j<$scope.chartCollection.data.cols.length;j++)
+		    	if($scope.chartCollection.data!=undefined)
 		    	{
-		    		$scope.chartCollection.data.cols[j].label=Label.getContent($scope.chartCollection.data.cols[j].labelENG);
-		    	}
-		    	if(role=="Producer"){
-		    		colors=pColors;
-		    	}
-		    	else if(role=="Retailer"){
-		    		colors=rColors;
-		    	}
-		    	if(charts[i].data!=undefined)
-		    	{
-			    	charts[i].type="LineChart";
-			    	charts[i].displayed=true;
-			    	charts[i].cssStyle="height:100%; width:800;";
-			    	charts[i].options = {
-				        "title": title,
-				        "isStacked": "true",
-				        "fill": 20,
-				        "displayExactValues": true,
-				        "colors":colors,
-				        "titleTextStyle" : { 
-			        	  color: "black",
-						  fontName: "",
-						  fontSize: 15,
-						  bold: false,
-						  italic: false 
-						},
+			    	var data=new Array();
+			    	var excelData=new Array();
+		    		for(var j=0;j<$scope.chartCollection.data.cols.length-1;j++)
+			    	{
+			    		data.push({name:Label.getContent($scope.chartCollection.data.cols[j+1].labelENG)});
+			    		data[j].type='line';
+			    		data[j].connectNulls=true;
+			    		if(role=="Producer"){
+				    		data[j].color=pColors[j];
+				    	}
+				    	else if(role=="Retailer"){
+				    		data[j].color=rColors[j];
+				    	}
 			    	}
+			    	for(var j=0;j<$scope.chartCollection.data.rows.length;j++){
+			    		categories.push($scope.chartCollection.data.rows[j].c[0].v);
+			    		data[j].data=new Array();
+			    		data[j].data.push(parseInt($scope.chartCollection.data.rows[0].c[j+1].v));
+			    		data[j].data.push(parseInt($scope.chartCollection.data.rows[1].c[j+1].v));
+			    		data[j].data.push(parseInt($scope.chartCollection.data.rows[2].c[j+1].v));
+			    		data[j].data.push(parseInt($scope.chartCollection.data.rows[3].c[j+1].v));
+			    	}
+			    	excelData.name=Title;
+			    	excelData.data=new Array();
+			    	excelData.data[0]=new Array();
+			    	excelData.data[0].push('Team\\Period');
+			    	for(var j=0;j<$scope.chartCollection.data.cols.length-1;j++){
+			    		excelData.data[j+1]=new Array();
+			    		excelData.data[j+1].push(Label.getContent($scope.chartCollection.data.cols[j+1].labelENG));
+			    	}
+			    	for(var j=0;j<$scope.chartCollection.data.rows.length;j++){
+			    		excelData.data[0].push($scope.chartCollection.data.rows[j].c[0].v);
+			    	}
+			    	for(var j=0;j<$scope.chartCollection.data.rows.length;j++){
+			    		excelData.data[j+1].push(parseInt($scope.chartCollection.data.rows[0].c[j+1].v));
+			    		excelData.data[j+1].push(parseInt($scope.chartCollection.data.rows[1].c[j+1].v));
+			    		excelData.data[j+1].push(parseInt($scope.chartCollection.data.rows[2].c[j+1].v));
+			    		excelData.data[j+1].push(parseInt($scope.chartCollection.data.rows[3].c[j+1].v));
+			    	}
+			    	exlcelCharts[i].worksheets=excelData;
+
+			    	charts[i].chartConfig = {
+			    		series:data,
+				        title: {
+				        	text:Title,
+				        },
+				        xAxis:{
+				        	categories:categories,
+				        	title:{
+				        		text:'Period'
+				        	}
+				        },
+				        credits: {
+				            enabled: true
+				        },
+				        loading: false,
+				        subtitle:{
+				        	text:SubtitleTitle,
+				        },
+				    }
 		    	}
 		    	else{
 		    		charts[i]=null;
+		    		exlcelCharts[i]=null;
 		    	}
 	    	}
 	    	$scope.chart1=charts[0]; 
 	        $scope.chart2=charts[1];
 	        $scope.chart3=charts[2];
 	        $scope.chart4=charts[3];
+	        $scope.exlcelCharts=exlcelCharts;
 	    }
+
+	    var exportExcel=function(num){
+	    	var name=$scope.exlcelCharts[num-1].worksheets.name+'_'+(new Date()).getTime()+'_'+Math.floor((Math.random()*10000)+1)+'.xlsx';
+	    	var postData={
+	    		name:name,
+	    		data:$scope.exlcelCharts[num-1].worksheets.data
+	    	}
+	    	$http({
+	    		method:'POST',
+	    		url:'/excel',
+	    		data:postData
+	    	}).then(function(){
+	    		window.location.href='upload/'+name;
+	    	},function(){
+	    		console.log('fail');
+	    	})
+	    }
+
+	    //old linechart
+	   	// var showLineChart=function(cat,market,role,language){
+	    // 	$scope.cat=cat;
+	    // 	$scope.market=market;
+	    // 	$scope.role=role;
+	    // 	$scope.language=language;
+	    // 	var charts = new Array({},{},{},{});
+	    // 	var pColors=new Array("#004CE5","#BB0000","#FFBC01","#34393D");
+	    // 	var rColors=new Array("#339933","#990099","#FF5200","#272727");
+	    // 	var colors=new Array();
+	    // 	var title="";
+	    // 	for (var i=0;i<$scope.chartdata.chartSetCollection.length;i++){
+		   //  	$scope.chartCollection=_.find($scope.chartdata.chartSetCollection[i].chartCollection,function(obj){
+		   //  		return (obj.market==market&&obj.category==cat&&obj.seriesRole==role)
+		   //  	});
+		   //  	charts[i].data=$scope.chartCollection.data;
+		   //  	title=Label.getContent($scope.chartdata.chartSetCollection[i].titleENG);
+		   //  	for(var j=0;j<$scope.chartCollection.data.cols.length;j++)
+		   //  	{
+		   //  		$scope.chartCollection.data.cols[j].label=Label.getContent($scope.chartCollection.data.cols[j].labelENG);
+		   //  	}
+		   //  	if(role=="Producer"){
+		   //  		colors=pColors;
+		   //  	}
+		   //  	else if(role=="Retailer"){
+		   //  		colors=rColors;
+		   //  	}
+		   //  	if(charts[i].data!=undefined)
+		   //  	{
+			  //   	charts[i].type="LineChart";
+			  //   	charts[i].displayed=true;
+			  //   	charts[i].cssStyle="height:100%; width:800;";
+			  //   	charts[i].options = {
+				 //        "title": title,
+				 //        "isStacked": "true",
+				 //        "fill": 20,
+				 //        "displayExactValues": true,
+				 //        "colors":colors,
+				 //        "titleTextStyle" : { 
+			  //       	  color: "black",
+					// 	  fontName: "",
+					// 	  fontSize: 15,
+					// 	  bold: false,
+					// 	  italic: false 
+					// 	},
+			  //   	}
+		   //  	}
+		   //  	else{
+		   //  		charts[i]=null;
+		   //  	}
+	    // 	}
+	    // 	$scope.chart1=charts[0]; 
+	    //     $scope.chart2=charts[1];
+	    //     $scope.chart3=charts[2];
+	    //     $scope.chart4=charts[3];
+	    //     console.log($scope.chart1);
+	    // }
 
 	    var initialisePage = function(){
 		  	var startFrom=$rootScope.rootStartFrom;
@@ -119,7 +225,8 @@ define(['app','socketIO','routingConfig'], function(app) {
 			$scope.language=Label.getCurrentLanguage();
 
 		    $scope.showLineChart=showLineChart;//("HealthBeauties","Rural","Producer");
-		    $scope.getLineChart=getLineChart;	    	
+		    $scope.getLineChart=getLineChart;	
+		    $scope.exportExcel=exportExcel;    	
 
 		    switch(parseInt($rootScope.user.role)){
 		    	case Auth.userRoles.producer:
@@ -141,10 +248,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 
 			getLineChart($scope.seminar,$scope.groupTitle,$scope.period);
 	    }
-
 	    initialisePage();
-
-
 	}]);
 
 });

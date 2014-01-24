@@ -7,17 +7,17 @@ define(['app'], function(app) {
 		    $rootScope.loginLink="footer-links";
 		    $rootScope.loginDiv="container";
 
-			$scope.language=Label.getCurrentLanguage(),
-			$scope.retailerID=$rootScope.user.username.substring($rootScope.user.username.length-1);
-			$scope.period=$rootScope.currentPeriod,
-			$scope.category='Elecssories',
+			$scope.language=Label.getCurrentLanguage();
+			$scope.retailerID=parseInt($rootScope.user.roleID);
+			$scope.period=$rootScope.currentPeriod;
+			$scope.category='Elecssories';
 			$scope.isCollapsed=true;
-			$scope.market="Urban",
-			$scope.shouldShow="",
-			$scope.shouldHide="none",
+			$scope.market="Urban";
+			$scope.shouldShow="";
+			$scope.shouldHide="none";
 
 			ProducerDecisionBase.startListenChangeFromServer();
-			RetailerDecisionBase.reload({retailerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
+			RetailerDecisionBase.reload({retailerID:parseInt($rootScope.user.roleID),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 				$scope.pageBase = base;
 			}).then(function(){
 				return promiseStep1();
@@ -28,8 +28,8 @@ define(['app'], function(app) {
 			};
 
 			var promiseStep1=function(){
-				var delay=$q.defer();
-				delay.notify('start to show view');
+				var d=$q.defer();
+				d.notify(Label.getContent('start to show view'));
 
 					$scope.showView=showView;
 					//check
@@ -45,8 +45,9 @@ define(['app'], function(app) {
 					$scope.close=close;
 					$scope.addOrders=addOrders;
 					$scope.deleteOrder=deleteOrder;
-				showView($scope.retailerID,$scope.period,$scope.category,$scope.market,$scope.language);
-				return delay.promise;
+					d.resolve();
+					return showView($scope.retailerID,$scope.period,$scope.category,$scope.market,$scope.language);
+				return d.promise;
 			}
 
 			var open = function () {
@@ -54,7 +55,7 @@ define(['app'], function(app) {
 			};
 			var close = function () {
 			    $scope.shouldBeOpen = false;
-			    RetailerDecisionBase.reload({retailerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
+			    RetailerDecisionBase.reload({retailerID:parseInt($rootScope.user.roleID),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 					$scope.pageBase = base;
 				}).then(function(){
 					return promiseStep1();
@@ -64,18 +65,6 @@ define(['app'], function(app) {
 					console.log('from ctr: ' + update);
 				};
 			};
-
-			var loadAllOder=function(){
-				ProducerDecisionBase.reload({producerID:1,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar}).then(function(base){
-					$scope.pageBase = base;	
-				}).then(function(){
-					ProducerDecisionBase.reload({producerID:1,period:$rootScope.rootPeriod,seminar:$rootScope.rootSeminar});
-				}), function(reason){
-					console.log('from ctr: ' + reason);
-				}, function(update){
-					console.log('from ctr: ' + update);
-				};
-			}
 
 			/*LoadSelectCategroy*/
 			var loadSelectCategroy=function(market,category){
@@ -113,7 +102,7 @@ define(['app'], function(app) {
 				}else if(category=="HealthBeauty"){
 					category=2;
 				}
-	      		var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/R/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+	      		var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/R/'+parseInt($rootScope.user.roleID);
 	      		$http({
 	      			method:'GET',
 	      			url:url
@@ -124,7 +113,7 @@ define(['app'], function(app) {
 	      				abMax=data.data.budgetAvailable;
 	      			}
 	      			$scope.abMax=abMax;
-	      			url="/retailerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/-1/location/1';
+	      			url="/retailerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+parseInt($rootScope.user.roleID)+'/-1/location/1';
 	      			return $http({
 	      				method:'GET',
 	      				url:url,
@@ -133,7 +122,7 @@ define(['app'], function(app) {
 	      			expend=data.data.result;
 	      			$scope.surplusExpend=abMax-expend;
 	      			$scope.percentageExpend=(abMax-expend)/abMax*100;
-	      		 	url="/retailerShelfSpace/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/-1/0/brandName/varName';
+	      		 	url="/retailerShelfSpace/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+parseInt($rootScope.user.roleID)+'/-1/0/brandName/varName';
 	      			return $http({
 	      				method:'GET',
 	      				url:url
@@ -183,7 +172,7 @@ define(['app'], function(app) {
 								category=2;
 							}
 							//添加retailer load
-							url='/retailerProducts/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.seminar+'/'+category;
+							url='/retailerProducts/'+parseInt($rootScope.user.roleID)+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.seminar+'/'+category;
 							return $http({
 								method:'GET',
 								url:url
@@ -243,11 +232,12 @@ define(['app'], function(app) {
 								for(i=indexs.length-1;i>=0;i--){
 									$scope.orderProducts.splice(indexs[i],1);
 								}
+								d.resolve();
 							}
 						})
 					})(checkurls,urls,0);
 				},function(){
-					console.log('showView fail');
+					d.reject(Label.getContent('showView fail'));
 				});
 				return d.promise;
 			}
@@ -305,7 +295,7 @@ define(['app'], function(app) {
 				}else if(category=="HealthBeauty"){
 					category=2;
 				}
-				var url="/retailerShelfSpace/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+market+'/'+category+'/'+brandName+'/'+varName;
+				var url="/retailerShelfSpace/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+parseInt($rootScope.user.roleID)+'/'+market+'/'+category+'/'+brandName+'/'+varName;
 	      		$http({
 	      			method:'GET',
 	      			url:url
@@ -476,18 +466,18 @@ define(['app'], function(app) {
 
 				//deal with composition label show/hide mechanism
 				if(product.brandName.substring(0,1)=="E"){
-					$scope.ElecssoriesVar="";
-					$scope.HealthBeautyVar="none";
+					$scope.ElecssoriesVar=true;
+					$scope.HealthBeautyVar=false;
 					catID = 1;
 				}else{
-					$scope.ElecssoriesVar="none";
-					$scope.HealthBeautyVar="";
+					$scope.ElecssoriesVar=false;
+					$scope.HealthBeautyVar=true;
 					catID = 2;
 				}
 
 				var url="";
 				if(!$scope.isPrivateLabel){ url='/getProducerDecisionByVar/'+product.brandName.substring(product.brandName.length-1)+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.seminar+'/'+product.brandName+'/'+product.varName;}
-				else{ url='/getRetailerDecisionByVar/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.seminar+'/'+product.brandName+'/'+product.varName;}
+				else{ url='/getRetailerDecisionByVar/'+parseInt($rootScope.user.roleID)+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.seminar+'/'+product.brandName+'/'+product.varName;}
 				$http({
 					method:'GET',
 					url:url
@@ -497,7 +487,7 @@ define(['app'], function(app) {
 					if(!$scope.isPrivateLabel){
 						url='/getProducerDecisionByVar/'+product.brandName.substring(product.brandName.length-1)+'/'+($rootScope.currentPeriod-1)+'/'+$rootScope.user.seminar+'/'+product.brandName+'/'+product.varName;
 					}else{//retailer variant
-						url='/getRetailerDecisionByVar/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+($rootScope.currentPeriod-1)+'/'+$rootScope.user.seminar+'/'+product.brandName+'/'+product.varName;
+						url='/getRetailerDecisionByVar/'+parseInt($rootScope.user.roleID)+'/'+($rootScope.currentPeriod-1)+'/'+$rootScope.user.seminar+'/'+product.brandName+'/'+product.varName;
 					}
 					return $http({
 						method:'GET',
@@ -581,13 +571,12 @@ define(['app'], function(app) {
 			}
 
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
-				console.log('producerDecisionBaseChangedFromServer');
 				showView($scope.retailerID,$scope.period,$scope.category,$scope.market,$scope.language);
 			}); 	
 
 			$scope.$on('retailerDecisionBaseChangedFromServer', function(event, newBase){
 				console.log('retailerDecisionBaseChangedFromServer');
-				RetailerDecisionBase.reload({retailerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
+				RetailerDecisionBase.reload({retailerID:parseInt($rootScope.user.roleID),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 					$scope.pageBase = base;
 				}).then(function(){
 					return promiseStep1();

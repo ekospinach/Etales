@@ -6,13 +6,13 @@ define(['app'], function(app) {
 		    $rootScope.loginLink="footer-links";
 		    $rootScope.loginDiv="container";
 			$rootScope.decisionActive="active";
-			$scope.language=Label.getCurrentLanguage(),
-			$scope.producerID=$rootScope.user.username.substring($rootScope.user.username.length-1);
-			$scope.period=$rootScope.currentPeriod,
-			$scope.category='Elecssories',
+			$scope.language=Label.getCurrentLanguage();
+			$scope.producerID=parseInt($rootScope.user.roleID);
+			$scope.period=$rootScope.currentPeriod;
+			$scope.category='Elecssories';
 			$scope.isCollapsed=true;
 
-			ProducerDecisionBase.reload({producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
+			ProducerDecisionBase.reload({producerID:parseInt($rootScope.user.roleID),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 				$scope.pageBase = base;
 			}).then(function(){
 				return promiseStep1();
@@ -23,8 +23,8 @@ define(['app'], function(app) {
 			};
 
 			var promiseStep1=function(){
-				var delay=$q.defer();
-				delay.notify('start to show view');
+				var d=$q.defer();
+				d.notify(Label.getContent('start to show view'));
 
 					$scope.showView=showView;
 					$scope.updateProducerDecision=updateProducerDecision;
@@ -32,8 +32,9 @@ define(['app'], function(app) {
 					$scope.closeInfo=closeInfo;
 					//check data
 					$scope.checkData=checkData;
-					showView($scope.producerID,$scope.period,$scope.language);
-				return delay.promise;
+					d.resolve();
+					return showView($scope.producerID,$scope.period,$scope.language);
+				return d.promise;
 			}
 
 
@@ -44,7 +45,7 @@ define(['app'], function(app) {
 				var categoryID=0,count=0,result=0,eAcMax=0,hAcMax,abMax=0,expend=0,avaiableMax=0;
 				//var labelLanguages={},infoLanguages={};
 				var fakeName="EName";
-	      		var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+	      		var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+parseInt($rootScope.user.roleID);
 	      		$http({
 	      			method:'GET',
 	      			url:url
@@ -59,7 +60,7 @@ define(['app'], function(app) {
 
 					eAcMax=data.data.productionCapacity[0];
 					hAcMax=data.data.productionCapacity[1];
-					url="/producerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/brandName/location/1';
+					url="/producerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+parseInt($rootScope.user.roleID)+'/brandName/location/1';
 	      			return $http({
 	      				method:'GET',
 	      				url:url,
@@ -68,7 +69,7 @@ define(['app'], function(app) {
 	      			expend=data.data.result;
 	      			$scope.surplusExpend=abMax-expend;
 	      			$scope.percentageExpend=(abMax-expend)/abMax*100;
-	      			url="/productionResult/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+fakeName+'/varName';
+	      			url="/productionResult/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+parseInt($rootScope.user.roleID)+'/'+fakeName+'/varName';
 					return $http({
 						method:'GET',
 						url:url
@@ -77,7 +78,7 @@ define(['app'], function(app) {
 					$scope.eSurplusProduction=eAcMax-data.data.result;
 					$scope.ePercentageProduction=(eAcMax-data.data.result)/eAcMax*100;
 					fakeName="HName";
-	      			url="/productionResult/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+fakeName+'/varName';
+	      			url="/productionResult/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+parseInt($rootScope.user.roleID)+'/'+fakeName+'/varName';
 					return $http({
 						method:'GET',
 						url:url
@@ -92,11 +93,13 @@ define(['app'], function(app) {
 		            	count++;
 		            }
 		            if(count!=0){
-		            	result=1;
+		            	d.resolve();
+		            }else{
+		            	d.reject(Label.getContent('load categorys fail'));
 		            }
 		            $scope.categorys=categorys;
 				},function(){
-					console.log('show view fail');
+					d.reject(Label.getContent('showView fail'));
 				});	
 	      		return d.promise;		
 			}
@@ -135,11 +138,11 @@ define(['app'], function(app) {
 					break;
 				}
 				$scope.isCollapsed=false;
-				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+parseInt($rootScope.user.roleID);
 				$http({method: 'GET', url: url})
 				.then(function(data){
 					$scope.companyHistory=data.data;
-					url="/producerCompanyDecision/"+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+($rootScope.currentPeriod-1)+'/'+$rootScope.user.seminar+'/'+categoryID;
+					url="/producerCompanyDecision/"+parseInt($rootScope.user.roleID)+'/'+($rootScope.currentPeriod-1)+'/'+$rootScope.user.seminar+'/'+categoryID;
 					return $http({method:'GET',url:url});
 				}).then(function(data){
 					$scope.companyDecisionHistory=data.data[0];
@@ -149,7 +152,7 @@ define(['app'], function(app) {
 			}	
 
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
-				ProducerDecisionBase.reload({producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
+				ProducerDecisionBase.reload({producerID:parseInt($rootScope.user.roleID),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 					$scope.pageBase = base;	
 				}).then(function(){
 					return promiseStep1();

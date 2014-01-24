@@ -1,6 +1,6 @@
 <div id="content" class="bs-header">
     <div class="container">
-        <h1>{{Label.getContent('Order Pricing Shelf')}}</h1>
+        <h1>{{Label.getContent('Step 4 of 4')}} {{Label.getContent('Order Pricing Shelf')}}</h1>
         <p>{{Label.getContent('Order Pricing Shelf Info')}}</p>
     </div>
 </div>
@@ -8,9 +8,14 @@
   <div class="row">
     <div class="col-md-12">
       <div class="bs-docs-section">
-        <h4>{{Label.getContent('Step 4 of 4')}}</h4>
         <div class="pull-left" style="width:40%">
-          <h3 style="margin-top:0px">{{Label.getContent('Order Pricing Shelf')}}</h3>
+          <h4 class="pull-left">
+            <span class="label label-info">{{Label.getContent(category)}}</span>
+          </h4>
+          <h4 class="pull-left" style="margin-left:10px">
+            <span class="label label-info">{{Label.getContent(market)}}</span>
+          </h4>
+          <div style="clear:both"></div>
           <div class="btn-group pull-left">
               <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
                 {{Label.getContent('Category')}} <span class="caret"></span>
@@ -38,7 +43,6 @@
           <progress percent="showPercentageShelf" class="progress progress-suceess active progress-striped"></progress>
           <small>
             <em>{{Label.getContent(market)}}-{{Label.getContent(category)}} {{Label.getContent('Available ShelfSpace')}}: <strong>{{showSurplusShelf.toFixed(2)}}%</strong></em>
-
           </small>
         </div>
           <div style="clear:both"></div>
@@ -50,101 +54,221 @@
               </div>
               <table class="table table-condensed table-bordered">
                 <thead>
+                  <tr>
+                    <td>{{Label.getContent('Previous period')}} ({{currentPeriod-1}})
+                    </td>
+                    <td>
+                      <p class="text-right">{{Label.getContent('Urban')}}</p>
+                    </td>
+                    <td>
+                      <p class="text-right">{{Label.getContent('Rural')}}</p>
+                    </td>
+                    
                     <td colspan="2" class="col-md-6">{{Label.getContent('Current period')}} ({{currentPeriod}})</td>
-                    <td colspan="3" class="col-md-6">{{Label.getContent('Previous period')}} ({{currentPeriod-1}})</td>               
+                  </tr>         
                 </thead>
                 <tbody>                  
-                    <tr>
-                    <!-- New Private label, show UnitCost  -->
-                    <th ng-show="isPrivateLabel">{{Label.getContent('Unit Cost')}} ({{Label.getContent('Private Label')}})</th>
-                    <th ng-show="isPrivateLabel"> {{currentUnitCost}} </th>
-                    <!-- New Product from Producer, show decision producer made  -->
-                    <th ng-show="isNewProducerProduct">{{Label.getContent('List Price')}}({{Label.getContent('New Product')}})</th>
-                    <th ng-show="isNewProducerProduct">{{decisionCurrent.currentPriceBM.toFixed(2)}}</th>
-                    <!-- History Product, show pv_nextPriceBM-->                  
-                    <th ng-show="isHistoryProduct">{{Label.getContent('List Price')}}</th>
-                    <th ng-show="isHistoryProduct">{{variantHistory.supplierView[0].nextPriceBM.toFixed(2)}}</th>
-                    <td></td>
-                    <td>{{Label.getContent('Urban')}}</td>
-                    <td>{{Label.getContent('Rural')}}</td>      
-                  </tr>
                   <tr>
-                    <!-- Current period -->
-                    <td>{{Label.getContent('Urban')}} {{Label.getContent('Closing Inventory')}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].volume.toFixed(2)||0}}</td>
                     <!-- Previous period-->                   
-                    <td style="display:{{ElecssoriesVar}}">{{Label.getContent('Design Level')}}</td>                    
-                    <td style="display:{{HealthBeautyVar}}">{{Label.getContent('Active agent')}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[0]||0}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[0]||0}}</td>
-                  </tr>
-                  <tr>
+                    <td ng-show="ElecssoriesVar">
+                      <p class="padding-20">{{Label.getContent('Design Level')}}</p>
+                    </td>                    
+                    <td ng-show="HealthBeautyVar">
+                      <p class="padding-20">{{Label.getContent('Active agent')}}</p>
+                    </td>                    
+                    <td>
+                      <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[0]||0}}</p>
+                    </td>                    
+                    <td>
+                      <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[0]||0}}</p>
+                    </td>
                     <!-- Current period -->
-                    <td>{{Label.getContent('Rural')}} {{Label.getContent('Closing Inventory')}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[3].volume.toFixed(2)||0}}</td>           
-                    <!-- Previous period-->
-                    <td>{{Label.getContent('Technology Level')}}</td>    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[1]||0}}</td>
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[1]||0}}</td>                    
+                    <td ng-show="ElecssoriesVar">
+                      <p class="padding-20">{{Label.getContent('Design Level')}}</p>
+                    </td>                    
+                    <td ng-show="HealthBeautyVar">
+                      <p class="padding-20">{{Label.getContent('Active agent')}}</p>
+                    </td>                   
+                    <td>
+                      <p class="text-right">{{decisionCurrent.composition[1]}}</p>
+                    </td> 
                   </tr>
                   <tr>
-                    <!-- Current period -->                    
-                    <td style="display:{{ElecssoriesVar}}">{{Label.getContent('Design Level')}}</td>                    
-                    <td style="display:{{HealthBeautyVar}}">{{Label.getContent('Active agent')}}</td>                    
-                    <td>{{decisionCurrent.composition[0]}}</td>   
                     <!-- Previous period-->
-                    <td style="display:{{ElecssoriesVar}}">{{Label.getContent('Quality-of-Raw-Materials')}}</td>
+                    <td>
+                      <p class="padding-20">{{Label.getContent('Technology Level')}}</p>
+                    </td>    
+                    <td>
+                      <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[1]||0}}</p>
+                    </td>
+                    <td>
+                      <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[1]||0}}</p>
+                    </td> 
+                    <!-- Current period -->                    
+                    <td>
+                      <p class="padding-20">{{Label.getContent('Technology Level')}}</p>
+                    </td>                    
+                    <td>
+                      <p class="text-right">{{decisionCurrent.composition[1]}}</p>
+                    </td>                              
+                  </tr>
+                  <tr>
+                    <!-- Previous period-->                   
+                    <td ng-show="ElecssoriesVar">
+                      <p class="padding-20">{{Label.getContent('Quality-of-Raw-Materials')}}</p>
+                    </td>                    
+                    <td ng-show="HealthBeautyVar">
+                      <p class="padding-20">{{Label.getContent('Smoothener Level')}}</p>
+                    </td>                    
+                    <td>
+                      <p class="text-right">???</p>
+                    </td>                    
+                    <td>
+                      <p class="text-right">???</p>
+                    </td>
+                    <!-- Current period -->
+                    <td ng-show="ElecssoriesVar">
+                      <p class="padding-20">{{Label.getContent('Quality-of-Raw-Materials')}}</p>
+                    </td>                    
+                    <td ng-show="HealthBeautyVar">
+                      <p class="padding-20">{{Label.getContent('Smoothener Level')}}</p>
+                    </td>                   
+                    <td>
+                      <p class="text-right">{{decisionCurrent.composition[2]}}</p>
+                    </td> 
+                  </tr>
+                  <tr>
+                    <!-- Previous period-->
+                    <td>
+                      <p class="padding-20">{{Label.getContent('Sales Volume')}}</p>
+                    </td>                    
+                    <td>
+                      <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].salesVolume.toFixed(2)||0}}
+                      </p>
+                    </td>
+                    <td>
+                      <p class="text-right">
+                        {{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].salesVolume.toFixed(2)||0}}
+                      </p>
+                    </td>
 
-                    <td style="display:{{HealthBeautyVar}}">{{Label.getContent('Smoothener Level')}}</td>  
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[2]||0}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[2]||0}}</td>                                        
+                    <!-- Current period -->
+                    <td>
+                      <p class="padding-20">{{Label.getContent('Urban')}} {{Label.getContent('Closing Inventory')}}</p>
+                    </td>                    
+                    <td>
+                      <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].volume.toFixed(2)||0}}</p>
+                    </td>    
+                    
                   </tr>
                   <tr>
-                    <!-- Current period -->                    
-                    <td>{{Label.getContent('Technology Level')}}</td>                    
-                    <td>{{decisionCurrent.composition[1]}}</td>    
                     <!-- Previous period-->
-                    <td>{{Label.getContent('Sales Volume at your store')}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].salesVolume.toFixed(2)||0}}</td>        
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].salesVolume.toFixed(2)||0}}</td>                                   
+                    <td>
+                      <p class="padding-20">{{Label.getContent('Shelf Space')}}</p>
+                    </td>                    
+                    <td>
+                      <p class="text-right">
+                        {{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].shelfSpace.toFixed(2)*100||0}}%
+                      </p>
+                    </td>                    
+                    <td>
+                      <p class="text-right">
+                        {{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].shelfSpace.toFixed(2)*100||0}}%
+                      </p>
+                    </td>   
+                    <!-- Current period -->
+                    <td>
+                      <p class="padding-20">{{Label.getContent('Rural')}} {{Label.getContent('Closing Inventory')}}</p>
+                    </td>                    
+                    <td>
+                      <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[3].volume.toFixed(2)||0}}</p>
+                    </td>
                   </tr>
                   <tr>
-                    <!-- Current period -->                    
-                    <td style="display:{{ElecssoriesVar}}">{{Label.getContent('Quality-of-Raw-Materials')}}</td>  
-                    <td style="display:{{HealthBeautyVar}}">{{Label.getContent('Smoothener Level')}}</td>                  
-                    <td>{{decisionCurrent.composition[2]}}</td> 
-                    <!-- Previous period-->
-                    <td>{{Label.getContent('Shelf Space at your store')}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].shelfSpace.toFixed(2)*100||0}}%</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].shelfSpace.toFixed(2)*100||0}}%</td>                                        
+                    <td>
+                      <p class="padding-20">{{Label.getContent('Market Price')}}</p>
+                    </td>                    
+                    <td>
+                      <p class="text-right">
+                        {{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].marketPrice.toFixed(2)||0}}
+                      </p>
+                    </td>                    
+                    <td>
+                      <p class="text-right">
+                        {{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].marketPrice.toFixed(2)||0}}
+                      </p>
+                    </td> 
+                    <!-- New Private label, show UnitCost  -->
+                    <th ng-show="isPrivateLabel">
+                      <p class="padding-20">{{Label.getContent('Unit Cost')}} ({{Label.getContent('Private Label')}})</p>
+                    </th>
+                    <th ng-show="isPrivateLabel">
+                      <p class="text-right">{{currentUnitCost}}</p>
+                    </th>
+                    <!-- New Product from Producer, show decision producer made  -->
+                    <th ng-show="isNewProducerProduct">
+                      <p class="padding-20">{{Label.getContent('Order Price')}}({{Label.getContent('New Product')}})</p>
+                    </th>
+                    <th ng-show="isNewProducerProduct">
+                      <p class="text-right">{{decisionCurrent.currentPriceBM.toFixed(2)}}</p>
+                    </th>
+                    <!-- History Product, show pv_nextPriceBM-->                  
+                    <th ng-show="isHistoryProduct">
+                      <p class="padding-20">{{Label.getContent('Order Price')}}</p>
+                    </th>
+                    <th ng-show="isHistoryProduct">
+                      <p class="text-right">{{variantHistory.supplierView[0].nextPriceBM.toFixed(2)}}</p>
+                    </th>
                   </tr>
                   <tr>
+                    <td>
+                      <p class="padding-20">{{Label.getContent('Net Price')}}</p>
+                    </td>
+                    <td>
+                      <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].netMarketPrice.toFixed(2)||0}}</p>
+                    </td>
+                    <td>
+                      <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].netMarketPrice.toFixed(2)||0}}</p>
+                    </td>
                     <td></td>                    
-                    <td></td>                    
-                    <td>{{Label.getContent('Market Price at your store')}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].marketPrice.toFixed(2)||0}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].marketPrice.toFixed(2)||0}}</td>                                        
+                    <td></td>  
                   </tr>
                   <tr>
-                    <td></td>                    
-                    <td></td>                                        
-                    <td>{{Label.getContent('Net Price at your store')}}</td>
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].netMarketPrice.toFixed(2)||0}}</td>
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].netMarketPrice.toFixed(2)||0}}</td>
+                    <th>
+                      <p class="padding-20">{{Label.getContent('Promotions')}}</p>
+                    </th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                   </tr>
-                  <tr>
+                  <tr>                                     
+                    <td>
+                      <p class="padding-40">{{Label.getContent('Frequency')}}({{Label.getContent('weeks')}})
+                      </p>
+                    </td>
+                    <td>
+                      <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].promotionsDetails.promo_Frequency||0}} weeks</p>
+                    </td>
+                    <td>
+                      <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].promotionsDetails.promo_Frequency||0}} weeks</p>
+                    </td>
                     <td></td>                    
-                    <td></td>                                        
-                    <td>{{Label.getContent('Promotions Frequency')}}({{Label.getContent('weeks')}})</td>
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].promotionsDetails.promo_Frequency||0}} weeks</td>
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].promotionsDetails.promo_Frequency||0}} weeks</td>
+                    <td></td>   
                   </tr>
-                  <tr>
+                  <tr>                  
+                    <td>
+                      <p class="padding-40">{{Label.getContent('Reduction Rate')}}
+                      </p>
+                    </td>
+                    <td>
+                      <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].promotionsDetails.promo_Rate*100||0}}%</p>
+                    </td>
+                    <td>
+                      <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].promotionsDetails.promo_Rate*100||0}}%</p>
+                    </td>
                     <td></td>                    
-                    <td></td>                    
-                    <td>{{Label.getContent('Reduction Rate')}}</td>
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].promotionsDetails.promo_Rate*100||0}}%</td>
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].promotionsDetails.promo_Rate*100||0}}%</td>
+                    <td></td>  
                   </tr>
                 </tbody>  
               </table>
@@ -158,19 +282,19 @@
               <th>{{Label.getContent('Brand')}}</th>
               <th>{{Label.getContent('Variant')}}</th>
               <th style="width:300px">
-                <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Order Volume Info')}}" popover-title="{{Label.getContent('Order Volume')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Order Volume')}}<span style="color:red">*</span></p>
+                <p class="text-primary text-right" Popover-animation="true" popover="{{Label.getContent('Order Volume Info')}}" popover-title="{{Label.getContent('Order Volume')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Order Volume')}}<span style="color:red">*</span></p>
               </th>
               <th>
-                <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Shelf Space Info')}}" popover-title="{{Label.getContent('Shelf Space')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Shelf Space')}}<span style="color:red">*</span></p>  
+                <p class="text-primary text-right" Popover-animation="true" popover="{{Label.getContent('Shelf Space Info')}}" popover-title="{{Label.getContent('Shelf Space')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Shelf Space')}}<span style="color:red">*</span></p>  
               </th>
               <th>
-                <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Retail Price Info')}}" popover-title="{{Label.getContent('Retail Price')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Retail Price')}}<span style="color:red">*</span></p>
+                <p class="text-primary text-right" Popover-animation="true" popover="{{Label.getContent('Retail Price Info')}}" popover-title="{{Label.getContent('Retail Price')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Retail Price')}}<span style="color:red">*</span></p>
               </th>
               <th>
-                <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Promotions Frequency Info')}}" popover-title="{{Label.getContent('Promotions Frequency')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Promotions Frequency')}}<span style="color:red">*</span></p>
+                <p class="text-primary text-right" Popover-animation="true" popover="{{Label.getContent('Promotions Frequency Info')}}" popover-title="{{Label.getContent('Promotions Frequency')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Promotions Frequency')}}<span style="color:red">*</span></p>
               </th>
               <th>
-                <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Reduction Rate Info')}}" popover-title="{{Label.getContent('Reduction Rate')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Reduction Rate')}}<span style="color:red">*</span></p>
+                <p class="text-primary text-right" Popover-animation="true" popover="{{Label.getContent('Reduction Rate Info')}}" popover-title="{{Label.getContent('Reduction Rate')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Reduction Rate')}}<span style="color:red">*</span></p>
               </th>
             </tr>
             </thead>
@@ -188,19 +312,34 @@
                 <div style="clear:both"></div>
               </td>
               <td>
-                <a href="#" editable-text="product.order" onbeforesave="checkOrderVolume(category,market,product.brandName,product.varName,'order','postion',$index,$data)" onaftersave="updateRetailerDecision(category,market,product.brandName,product.varName,'order','postion',$index)">{{ product.order || 0 }}</a>
+                <a href="#" editable-text="product.order" onbeforesave="checkOrderVolume(category,market,product.brandName,product.varName,'order','postion',$index,$data)" onaftersave="updateRetailerDecision(category,market,product.brandName,product.varName,'order','postion',$index)">
+                  <p class="text-right">{{ product.order || 0 }}
+                  </p>
+                </a>
               </td>
               <td>
-                <a href="#" editable-text="product.shelfSpace" onbeforesave="checkShelfSpace(category,market,product.brandName,product.varName,'shelfSpace','postion',$index,$data)" onaftersave="updateRetailerDecision(category,market,product.brandName,product.varName,'shelfSpace','postion',$index)">{{ product.shelfSpace || 0 }}</a>
+                <a href="#" editable-text="product.shelfSpace" onbeforesave="checkShelfSpace(category,market,product.brandName,product.varName,'shelfSpace','postion',$index,$data)" onaftersave="updateRetailerDecision(category,market,product.brandName,product.varName,'shelfSpace','postion',$index)">
+                  <p class="text-right">{{ product.shelfSpace || 0 }}
+                  </p>
+                </a>
               </td>
               <td>
-                <a href="#" editable-text="product.retailerPrice" onbeforesave="checkRetailerPrice(category,market,product.brandName,product.varName,'retailerPrice','postion',$index,product.dateOfBirth,$data)" onaftersave="updateRetailerDecision(category,market,product.brandName,product.varName,'retailerPrice','postion',$index)">{{ product.retailerPrice || 0 }}</a>
+                <a href="#" editable-text="product.retailerPrice" onbeforesave="checkRetailerPrice(category,market,product.brandName,product.varName,'retailerPrice','postion',$index,product.dateOfBirth,$data)" onaftersave="updateRetailerDecision(category,market,product.brandName,product.varName,'retailerPrice','postion',$index)">
+                  <p class="text-right">{{ product.retailerPrice || 0 }}
+                  </p>
+                </a>
               </td>
               <td>
-                <a href="#" editable-text="product.pricePromotions.promo_Frequency" onbeforesave="checkPromototionFrequency($data)" onaftersave="updateRetailerDecision(category,market,product.brandName,product.varName,'pricePromotions','promo_Frequency',$index)">{{ product.pricePromotions.promo_Frequency || 0 }}</a>
+                <a href="#" editable-text="product.pricePromotions.promo_Frequency" onbeforesave="checkPromototionFrequency($data)" onaftersave="updateRetailerDecision(category,market,product.brandName,product.varName,'pricePromotions','promo_Frequency',$index)">
+                  <p class="text-right">{{ product.pricePromotions.promo_Frequency || 0 }}
+                  </p>
+                </a>
               </td>
               <td>
-                <a href="#" editable-text="product.pricePromotions.promo_Rate" onbeforesave="checkReductionRate($data)" onaftersave="updateRetailerDecision(category,market,product.brandName,product.varName,'pricePromotions','promo_Rate',$index)">{{ product.pricePromotions.promo_Rate || 0 }}</a>
+                <a href="#" editable-text="product.pricePromotions.promo_Rate" onbeforesave="checkReductionRate($data)" onaftersave="updateRetailerDecision(category,market,product.brandName,product.varName,'pricePromotions','promo_Rate',$index)">
+                  <p class="text-right">{{ product.pricePromotions.promo_Rate || 0 }}
+                  </p>
+                </a>
               </td>
             </tr>  
           </tbody>

@@ -30,11 +30,22 @@
 			jqplot:'../bower_components/jqplot/jquery.jqplot.min',
 			bubbleRenderer:'./map/jqplot.bubbleRenderer',
 			labelRenderer:'./map/jqplot.canvasAxisLabelRenderer.min',
+			pieRenderer:'./map/jqplot.pieRenderer',
 			textRenderer:'./map/jqplot.canvasTextRenderer.min',
 			tree:'./map/bootstrap-tree',
 			nggooglechart:'../bower_components/angular-google-chart/ng-google-chart',
 			domReady: '../bower_components/requirejs-domready/domReady',
-			labelBase: './utils/labelBase'
+			labelBase: './utils/labelBase',
+			//highchart
+			/*
+			highchart:'./utils/highchart',
+			highcharts:'./utils/highcharts-ng',
+			*/
+			highchart:'../bower_components/highcharts/highcharts',
+			highcharts:'../bower_components/highcharts-ng/src/highcharts-ng',
+			//export
+			//generatedata:'./jqxGrid/generatedata',
+			//jqxgrid:'./jqxGrid/jqxgrid'
 		},
 		baseUrl: 'js',
 		shim: {
@@ -51,10 +62,12 @@
 			'angularBootstrap':['jquery','bootstrap','angular'],
 			'angularLoadingBar' : ['angular'],
 			'jqplot':['jquery'],
+			'jqxgrid':['jquery'],
 			'bubbleRenderer':['jqplot','jquery'],
 			'labelRenderer':['jqplot','jquery'],
 			'textRenderer':['jqplot','jquery'],
-			'tree':['jquery']
+			'tree':['jquery'],
+			'highcharts':['jquery','angular','highchart']
 			},
 		priority: [
 			"angular"
@@ -90,18 +103,16 @@
 	        	pageheader=document.getElementById('pageheader'),
 	        	pagefooter=document.getElementById('pagefooter'),
 	        	pageloader=document.getElementById('pageloader');
-
 	        pageheader.style.display="none";
 	        pagefooter.style.display="none";
-	        //first load
 	        if (loadingStatusEl && loadingModuleNameEl) {  	
 	        	if(map.url=="js/routes.js"){
 	        		pageheader.style.display="block";
 	        		pagefooter.style.display="block";
 	        		pageloader.style.display="none";
-	          	}
-	          loadingStatusEl.innerHTML = loadingStatusEl.innerHTML += '.'; //add one more dot character
-	          loadingModuleNameEl.innerHTML = map.name + (map.url ? ' at ' + map.url : '') ;
+	        	}
+	        	loadingStatusEl.innerHTML = loadingStatusEl.innerHTML += '.'; //add one more dot character
+	        	loadingModuleNameEl.innerHTML = map.name + (map.url ? ' at ' + map.url : '') ;
 	        } else {
 	          //TODO later load, must have loading indicator for this then
 	        }

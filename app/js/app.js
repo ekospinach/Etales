@@ -16,7 +16,8 @@ define([
 	'bubbleRenderer',
 	'labelRenderer',
 	'textRenderer',
-	'tree'
+	'tree',
+	'highcharts',
 	], function (angular, filters, services,directives,bootstrap, controllers) {
 		'use strict';
 		return angular.module('myApp', [
@@ -29,6 +30,7 @@ define([
 			'ui.bootstrap',
 			'chieffancypants.loadingBar',
 			'ngCookies',
+			'highcharts-ng',
 		]).run(function(editableOptions){
 			editableOptions.theme = 'bs3';
 		}).run(['$rootScope', '$location','Auth','$http', function ($rootScope, $location, Auth, $http) {		    
@@ -52,6 +54,7 @@ define([
 	            	if(Auth.isLoggedIn()){
 						var url="/currentPeriod/"+$rootScope.user.seminar;
 						$http.get(url).success(function(data){
+							$rootScope.loadShow=false;
 							$rootScope.currentPeriod=data.currentPeriod;
 							$rootScope.rootStartFrom=-2;
 							$rootScope.rootEndWith=$rootScope.currentPeriod-1;

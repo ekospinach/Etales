@@ -32,6 +32,120 @@ define(['angular','services'], function(angular, services) {
                             }
                         };
                 })
+/*
+                .directive('tableExcel',function(){
+                    return {
+                        restrict:'A',
+                        link:function(scope,element,attrs){
+
+                            var tableToExcel = (function() {
+                              var uri = 'data:application/vnd.ms-excel;base64,'
+                                , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
+                                , base64 = function(s) { return window.btoa(unescape(encodeURIComponent(s))) }
+                                , format = function(s, c) { return s.replace(/{(\w+)}/g, function(m, p) { return c[p]; }) }
+                              return function(table, name) {
+                                if (!table.nodeType) table = document.getElementById(table)
+                                var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
+                                window.location.href = uri + base64(format(template, ctx))
+                              }
+                            })() 
+
+                            $('#tableToExcel').click(function(){
+                                tableToExcel('testTable', 'xls','W3C Example Table');
+                            });
+                        }
+                    }
+                })
+                .directive('tableExcel2',function(){
+                    return {
+                        restrict:'A',
+                        link:function(scope,element,attrs){
+                            var data = generatedata(100);
+
+                            var source = {
+                                localdata: data,
+                                datatype: "array",
+                                updaterow: function(rowid, rowdata) {
+                                    // synchronize with the server - send update command   
+                                }
+                            };
+
+                            var dataAdapter = new $.jqx.dataAdapter(source);
+
+                            // initialize jqxGrid
+                            $("#jqxgrid").jqxGrid({
+                                width: 1,
+                                source: dataAdapter,
+                                theme: 'energyblue',
+                                altrows: true,
+                                pageable: true,
+                                //autoheight: true,
+                                height:1,
+                                selectionmode: 'multiplecellsextended',
+                                columns: [
+                                    {
+                                    text: 'First Name',
+                                    datafield: 'firstname',
+                                    width: 90},
+                                {
+                                    text: 'Last Name',
+                                    datafield: 'lastname',
+                                    width: 90},
+                                {
+                                    text: 'Product',
+                                    datafield: 'productname',
+                                    width: 177},
+                                {
+                                    text: 'Available',
+                                    datafield: 'available',
+                                    width: 67,
+                                    cellsalign: 'center',
+                                    align: 'center'},
+                                {
+                                    text: 'Ship Date',
+                                    datafield: 'date',
+                                    width: 90,
+                                    align: 'right',
+                                    cellsalign: 'right',
+                                    cellsformat: 'd'},
+                                {
+                                    text: 'Quantity',
+                                    datafield: 'quantity',
+                                    width: 70,
+                                    align: 'right',
+                                    cellsalign: 'right'},
+                                {
+                                    text: 'Price',
+                                    datafield: 'price',
+                                    cellsalign: 'right',
+                                    align: 'right',
+                                    cellsformat: 'c2'}
+                                ]
+                            });
+
+                            $('#jqxgrid').css('visibility','hidden');
+
+                            $("#excelExport").jqxButton({
+                                theme: 'energyblue'
+                            });
+
+                            $("#excelExport").click(function() {
+                                $("#jqxgrid").jqxGrid('exportdata', 'xls', 'jqxGrid');
+                            });
+                        }
+                    }
+                })
+*/
+                .directive('loadEnd',function(){
+                    return function(scope,elm,attrs){
+                        pageheader=document.getElementById('pageheader'),
+                        pagefooter=document.getElementById('pagefooter'),
+                        pageloader=document.getElementById('pageloader');
+                        pageheader.style.display="block";
+                        pagefooter.style.display="block";
+                        pageloader.style.display="none";
+                    }
+                })
                 .directive('activeNav', ['$location', function(location) {
                     return {
                         restrict: 'A',
@@ -217,15 +331,15 @@ define(['angular','services'], function(angular, services) {
                                     for(var i=0;i<6;i++){
                                         if(htmls[i].substring(htmls[i].length-4,htmls[i].length)=="DOWN"){
                                             htmls[i]=htmls[i].substring(0,htmls[i].length-4);
-                                            icons[i]='<span class="glyphicon glyphicon-arrow-down"></span>';
+                                            icons[i]='<span class="icon-arrow-down"></span>';
                                         }
                                         else if(htmls[i].substring(htmls[i].length-2,htmls[i].length)=="UP"){
                                             htmls[i]=htmls[i].substring(0,htmls[i].length-2);
-                                            icons[i]='<span class="glyphicon glyphicon-arrow-up"></span>';
+                                            icons[i]='<span class="icon-arrow-up"></span>';
                                         }
                                         else if(htmls[i].substring(htmls[i].length-4,htmls[i].length)=="SAME"){
                                             htmls[i]=htmls[i].substring(0,htmls[i].length-4);
-                                            icons[i]='<span class="glyphicon glyphicon-arrow-right" style="width:20px"></span>';
+                                            icons[i]='<span class="icon-arrow-right" style="width:20px"></span>';
                                         }
                                     }
                                     $('#tooltip1b').html('<p style="font-size:14px;font-weight:bold;color:' + color + ';">' + data[3] + '</p>' + 

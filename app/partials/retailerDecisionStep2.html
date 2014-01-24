@@ -1,6 +1,6 @@
 <div id="content" class="bs-header">
     <div class="container">
-        <h1>{{Label.getContent('Market')}}</h1>
+        <h1>{{Label.getContent('Step 2 of 4')}} {{Label.getContent('Market')}}</h1>
         <p>{{Label.getContent('Market Info')}}</p>
     </div>
 </div>
@@ -8,30 +8,11 @@
   <div class="row">
     <div class="col-md-12">
       <div class="bs-docs-section">
-        <h4>{{Label.getContent('Step 2 of 4')}}</h4>
-        <div class="pull-left" style="width:40%">
-          <h3 style="margin-top:0px">{{Label.getContent('Market')}}</h3>
-          <!--<div class="btn-group pull-left" data-toggle="buttons">
-              <label class="btn btn-default" ng-click="showView(user,period,'English')">
-              <input type="radio" name="options"> English</label>
-              <label class="btn btn-default" ng-click="showView(user,period,'Chinese')">
-              <input type="radio" name="options"> Chinese
-              </label>
-          </div>-->
-        </div>
         <div class="pull-right" style="width:40%">
           <progress percent="percentageExpend" class="progress active"></progress>
           <small>
             <em>{{Label.getContent('Available Budget')}}: <strong>{{surplusExpend.toFixed(2)}}</strong></em>
           </small>
-          <!--<progress percent="ePercentageProduction" class="progress progress-suceess active progress-striped">{{eSurplusProduction}}</progress>
-          <small>
-            <em>Elecssories Available Capacity</em>
-          </small>
-            <progress percent="hPercentageProduction" class="progress progress-suceess active progress-striped">{{hSurplusProduction}}</progress>
-          <small>
-            <em>HealthBeauty Available Capacity</em>
-          </small>-->
         </div>
           <div style="clear:both"></div>
           <div collapse="isCollapsed" class="panel panel-info">
@@ -42,62 +23,102 @@
             <table class="table table-condensed table-bordered">
               <thead>
                 <tr>
-                  <td colspan="2" class="col-md-6">{{Label.getContent('Current period')}} ({{currentPeriod}})</td>
-                  <td colspan="2" class="col-md-6">{{Label.getContent('Previous period')}} ({{currentPeriod-1}})</td>
+                  <td colspan="2" class="col-md-6">{{Label.getContent('Previous period Investment')}} ({{currentPeriod-1}})</td>
+
+                  <td colspan="2" class="col-md-6">{{Label.getContent('Current period Investment Achieved Perception')}} ({{currentPeriod}})</td>
                 </tr>                  
               </thead>
               <tbody>
                 <tr>
-                  <td></td>
-                  <td></td>
-                  <td>{{Label.getContent('In-store Service Level')}}</td>
-                  <td>{{retailerDecisionHistory[0].serviceLevel}}</td>
-                </tr>                  
+                  <td>
+                    <p class="padding-20">{{Label.getContent('Local Convenience Advertising')}}</p>
+                  </td>
+                  <td>
+                    <p class="text-right">{{retailerDecisionHistory[0].localAdvertising[1].toFixed(2)}}</p>
+                  </td>
+
+                  <td>
+                    <p class="padding-20">{{Label.getContent('Local Convenience Perception')}}</p>
+                  </td>
+                  <td>
+                    <p class="text-right">???</p>
+                  </td>
+                </tr>   
+                <!--               
                 <tr>
-                  <td></td>
-                  <td></td>
-                  <td>{{Label.getContent('Elecssories Selling surface')}}</td>
-                  <td>{{retailerDecisionHistory[0].categorySurfaceShare[0]*100}}%</td>
-                </tr>                  
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td>{{Label.getContent('HealthBeauty Selling surface')}}</td>
-                  <td>{{retailerDecisionHistory[0].categorySurfaceShare[1]*100}}%</td>
-                </tr>    
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td>{{Label.getContent('Local Convenience Advertising')}}</td>
-                  <td>{{retailerDecisionHistory[0].localAdvertising[1].toFixed(2)}}</td>
-                </tr>                  
-                <tr>
-                  <td></td>
-                  <td></td>
                   <td>{{Label.getContent('Local Assortment Advertising')}}</td>
-                  <td>{{retailerDecisionHistory[0].localAdvertising[2].toFixed(2)}}</td>
+                  <td>
+                    <p class="text-right">{{retailerDecisionHistory[0].localAdvertising[2].toFixed(2)}}</p>
+                  </td>
+
+                  <td></td>
+                  <td></td>
+                </tr> 
+                -->                 
+                <tr>
+                  <td>
+                    <p class="padding-20">{{Label.getContent('Local Price Advertising')}}</p>
+                  </td>
+                  <td>
+                    <p class="text-right">{{retailerDecisionHistory[0].localAdvertising[0].toFixed(2)}}</p>
+                  </td>
+
+                  <td>
+                    <p class="padding-20">{{Label.getContent('Local Price Perception')}}</p>
+                  </td>
+                  <td>
+                    <p class="text-right">???</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p class="padding-20">{{Label.getContent('In-store Service Level')}}</p>
+                  </td>
+                  <td>
+                    <p class="text-right">{{Label.getContent(retailerDecisionHistory[0].serviceLevel)}}</p>
+                  </td>
+
+                  <td></td>
+                  <td></td>
                 </tr>                  
                 <tr>
+                  <td>
+                    <p class="padding-20">{{Label.getContent('Elecssories Selling surface')}}</p>
+                  </td>
+                  <td>
+                    <p class="text-right">{{retailerDecisionHistory[0].categorySurfaceShare[0]*100}}%</p>
+                  </td>
+
                   <td></td>
                   <td></td>
-                  <td>{{Label.getContent('Local Price Advertising')}}</td>
-                  <td>{{retailerDecisionHistory[0].localAdvertising[0].toFixed(2)}}</td>
                 </tr>                  
+                <tr>
+                  <td>
+                    <p class="padding-20">{{Label.getContent('HealthBeauty Selling surface')}}</p>
+                  </td>
+                  <td>
+                    <p class="text-right">{{retailerDecisionHistory[0].categorySurfaceShare[1]*100}}%</p>
+                  </td>
+
+                  <td></td>
+                  <td></td>
+
+                </tr>                      
               </tbody>        
             </table>
           </div>
           <table class="table table-hover">
             <thead>
               <tr>
-                <th>{{Label.getContent('Market')}}</th>
-                <th ng-repeat='market in markets'>
+                <th style="width:25%">{{Label.getContent('Market')}}</th>
+                <th ng-repeat='market in markets' style="width:25%">
                   <div style="clear:both"></div>
-                  <p class="pull-left">
+                  <button type="button" class="btn btn-primary btn-xs pull-right" ng-click="getMarketMoreInfo(market.marketID)">{{Label.getContent('More')}}</button>
+                  <p class="pull-right" style="margin-right:5px">
                     {{Label.getContent(market.marketName)}}
                   </p>
-                  <button type="button" class="btn btn-primary btn-xs pull-left" style="margin-left:5px" ng-click="getMarketMoreInfo(market.marketID)">{{Label.getContent('More')}}</button>
-                  <div style="clear:both"></div>
                 </th>
+                <th style="width:25%"></th>
               </tr>              
             </thead>
             <tbody>
@@ -106,46 +127,84 @@
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('In-store Service Level Info')}}" popover-title="{{Label.getContent('In-store Service Level')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('In-store Service Level')}}<span style="color:red">*</span></p>
                 </th>
                 <th ng-repeat='market in markets'>
-                	<a href="#" editable-select="market.serviceLevel" e-ng-options="p.value as p.text for p in packs" onaftersave="updateMarketDecision(market.marketID,'serviceLevel','postion','addtionalIdx',$index)">{{ selectPacks(market.marketID) }}</a></th>
+                	<a href="#" editable-select="market.serviceLevel" e-ng-options="p.value as p.text for p in packs" onaftersave="updateMarketDecision(market.marketID,'serviceLevel','postion','addtionalIdx',$index)">
+                    <p class="text-right">{{ selectPacks(market.marketID) }}
+                    </p>
+                  </a>
+                </th>
+                <th></th>  
               </tr>
               <tr>
                 <th>
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('HealthBeauty Selling surface Info')}}" popover-title="{{Label.getContent('HealthBeauty Selling surface')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('HealthBeauty Selling surface')}} %<span style="color:red">*</span></p>
                 </th>
-                <th ng-repeat='market in markets'><a href="#" editable-text="market.categorySurfaceShare[1]" onbeforesave="checkSurface($data)" onaftersave="updateMarketDecision(market.marketID,'categorySurfaceShare','postion','1',$index)">{{ market.categorySurfaceShare[1] || 0 }}</a></th>
+                <th ng-repeat='market in markets'>
+                  <a href="#" editable-text="market.categorySurfaceShare[1]" onbeforesave="checkSurface($data)" onaftersave="updateMarketDecision(market.marketID,'categorySurfaceShare','postion','1',$index)">
+                    <p class="text-right">{{ market.categorySurfaceShare[1] || 0 }}
+                    </p>
+                  </a>
+                </th>
+                <th></th>  
               </tr>
               <tr>
                 <th>
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Elecssories Selling surface Info')}}" popover-title="{{Label.getContent('Elecssories Selling surface')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Elecssories Selling surface')}} %<span style="color:red">*</span></p>
                 </th>
-                <th ng-repeat='market in markets'><a href="#" editable-text="market.categorySurfaceShare[0]" onbeforesave="checkSurface($data)" onaftersave="updateMarketDecision(market.marketID,'categorySurfaceShare','postion','0',$index)">{{ market.categorySurfaceShare[0] || 0 }}</a></th>
+                <th ng-repeat='market in markets'>
+                  <a href="#" editable-text="market.categorySurfaceShare[0]" onbeforesave="checkSurface($data)" onaftersave="updateMarketDecision(market.marketID,'categorySurfaceShare','postion','0',$index)">
+                    <p class="text-right">{{ market.categorySurfaceShare[0] || 0 }}
+                    </p>
+                  </a>
+                </th>
+                <th></th>  
               </tr>
               <tr>
                 <th>
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Local Convenience Advertising Info')}}" popover-title="{{Label.getContent('Local Convenience Advertising')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Local Convenience Advertising')}}<span style="color:red">*</span></p>
                 </th>
-                <th ng-repeat='market in markets'><a href="#" editable-text="market.localAdvertising[1]" onbeforesave="checkBudget(market.marketID,'localAdvertising','postion','1',$index,$data)" onaftersave="updateMarketDecision(market.marketID,'localAdvertising','postion','1',$index)">{{ market.localAdvertising[1]|| 0 }}</a></th>
+                <th ng-repeat='market in markets'>
+                  <a href="#" editable-text="market.localAdvertising[1]" onbeforesave="checkBudget(market.marketID,'localAdvertising','postion','1',$index,$data)" onaftersave="updateMarketDecision(market.marketID,'localAdvertising','postion','1',$index)">
+                    <p class="text-right">{{ market.localAdvertising[1]|| 0 }}
+                    </p>
+                  </a>
+                </th>
+                <th></th>  
               </tr>
               <tr>
                 <th>
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Local Assortment Advertising Info')}}" popover-title="{{Label.getContent('Local Assortment Advertising')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Local Assortment Advertising')}}<span style="color:red">*</span></p>
                 </th>
-                <th ng-repeat='market in markets'><a href="#" editable-text="market.localAdvertising[2]" onbeforesave="checkBudget(market.marketID,'localAdvertising','postion','2',$index,$data)" onaftersave="updateMarketDecision(market.marketID,'localAdvertising','postion','2',$index)">{{ market.localAdvertising[2] || 0 }}</a></th>
+                <th ng-repeat='market in markets'>
+                  <a href="#" editable-text="market.localAdvertising[2]" onbeforesave="checkBudget(market.marketID,'localAdvertising','postion','2',$index,$data)" onaftersave="updateMarketDecision(market.marketID,'localAdvertising','postion','2',$index)">
+                    <p class="text-right">{{ market.localAdvertising[2] || 0 }}
+                    </p>
+                  </a>
+                </th>
+                <th></th>  
               </tr>
               <tr>
                 <th>
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Local Price Advertising Info')}}" popover-title="{{Label.getContent('Local Price Advertising')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Local Price Advertising')}}<span style="color:red">*</span></p>
                 </th>
-                <th ng-repeat='market in markets'><a href="#" editable-text="market.localAdvertising[0]" onbeforesave="checkBudget(market.marketID,'localAdvertising','postion','0',$index,$data)" onaftersave="updateMarketDecision(market.marketID,'localAdvertising','postion','0',$index)">{{ market.localAdvertising[0] || 0 }}</a></th>
+                <th ng-repeat='market in markets'>
+                  <a href="#" editable-text="market.localAdvertising[0]" onbeforesave="checkBudget(market.marketID,'localAdvertising','postion','0',$index,$data)" onaftersave="updateMarketDecision(market.marketID,'localAdvertising','postion','0',$index)">
+                    <p class="text-right">{{ market.localAdvertising[0] || 0 }}
+                    </p>
+                  </a>
+                </th>
+                <th></th>  
               </tr>
               <tr ng-show="false">
                 <th>
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Allocate Empty Place Info')}}" popover-title="{{Label.getContent('Allocate Empty Place')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Allocate Empty Place')}}<span style="color:red">*</span></p>
                 </th>
                 <th ng-repeat='market in markets'>
-                  <a href="#" editable-checkbox="market.emptySpaceOptimised" e-title="{{Label.getContent('Allocate Empty Place')}}?" onaftersave="updateMarketDecision(market.marketID,'emptySpaceOptimised','postion','0',$index)">{{ market.emptySpaceOptimised && Label.getContent('Allocate') || Label.getContent('No') }}
+                  <a href="#" editable-checkbox="market.emptySpaceOptimised" e-title="{{Label.getContent('Allocate Empty Place')}}?" onaftersave="updateMarketDecision(market.marketID,'emptySpaceOptimised','postion','0',$index)">
+                    <p class="text-right">{{ market.emptySpaceOptimised && Label.getContent('Allocate') || Label.getContent('No') }}
+                    </p>
                   </a>
-                </th>              
+                </th>
+                <th></th>              
               </tr>
             </tbody>
           </table>

@@ -1,6 +1,6 @@
 <div id="content" class="bs-header">
     <div class="container">
-        <h1>{{Label.getContent('Private Labels Composition')}}</h1>
+        <h1>{{Label.getContent('Step 3 of 4')}} {{Label.getContent('Private Labels Composition')}}</h1>
         <p>{{Label.getContent('Private Labels Composition Info')}} </p>
     </div>
 </div>
@@ -8,16 +8,22 @@
   <div class="row">
     <div class="col-md-12">
       <div class="bs-docs-section">
-        <h4>{{Label.getContent('Step 3 of 4')}}</h4>
         <div class="pull-left" style="width:40%">
-          <h3 style="margin-top:0px">{{Label.getContent('Private Labels Composition')}}</h3>
+          <h4 class="pull-left">
+            <span class="label label-info">{{Label.getContent(category)}}</span>
+          </h4>
+          <div style="clear:both"></div>
           <div class="btn-group pull-left">
               <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
-                {{Label.getContent('Category')}} <span class="caret"></span>
+                {{Label.getContent('Category')}}<span class="caret"></span>
               </button>
               <ul class="dropdown-menu">
-                <li class=""><a ng-click="showView(retailerID,period,'Elecssories',language)">{{Label.getContent('Elecssories')}}</a></li>
-                <li class=""><a ng-click="showView(retailerID,period,'HealthBeauty',language)">{{Label.getContent('HealthBeauty')}}</a></li>       
+                <li class="">
+                  <a ng-click="showView(retailerID,period,'Elecssories',language)">{{Label.getContent('Elecssories')}}</a>
+                </li>
+                <li class="">
+                  <a ng-click="showView(retailerID,period,'HealthBeauty',language)">{{Label.getContent('HealthBeauty')}}</a>
+                </li>       
               </ul>
           </div>
         </div>
@@ -26,142 +32,208 @@
           <small>
             <em>{{Label.getContent('Available Budget')}}:{{surplusExpend}}</em>
           </small>
-          <!--<progress percent="ePercentageProduction" class="progress progress-suceess active progress-striped">{{eSurplusProduction}}</progress>
-          <small>
-            <em>Elecssories Available Capacity</em>
-          </small>
-            <progress percent="hPercentageProduction" class="progress progress-suceess active progress-striped">{{hSurplusProduction}}</progress>
-          <small>
-            <em>HealthBeauty Available Capacity</em>
-          </small>-->
         </div>
           <div style="clear:both"></div>
           <div collapse="isCollapsed" class="panel panel-info">
-            <div class="panel-heading">{{variantHistory.parentBrandName||showNewHistory.brandName}}{{variantHistory.varName||showNewHistory.varName}} <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button></div>
+            <div class="panel-heading">{{variantHistory.parentBrandName||showNewHistory.brandName}}{{variantHistory.varName||showNewHistory.varName}}
+              <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button>
+            </div>
               <table class="table table-condensed table-bordered">
                 <thead>
                   <tr>
-                    <td colspan="2" class="col-md-6">{{Label.getContent('Current period')}} ({{currentPeriod}})</td>
-                    <td colspan="3" class="col-md-6">{{Label.getContent('Previous period')}} ({{currentPeriod-1}})</td>               
+                    <td colspan="3" class="col-md-6">{{Label.getContent('Previous period')}} ({{currentPeriod-1}})</td>
+
+                    <td colspan="2" class="col-md-6">{{Label.getContent('Current period')}} ({{currentPeriod}})</td>   
                   </tr>                  
                 </thead>
                 <tbody>
                   <tr>
-                    <th>{{Label.getContent('Unit Production Cost')}}</th>
-                    <th>{{currentUnitCost}}</th>
                     <td></td>
-                    <td>{{Label.getContent('Urban')}}</td>           
-                    <td>{{Label.getContent('Rural')}}</td>
-                  </tr>                
+                    <td>
+                      <p class="text-right">{{Label.getContent('Urban')}}</p>
+                    </td>           
+                    <td>
+                      <p class="text-right">{{Label.getContent('Rural')}}</p>
+                    </td>
+                    <td></td>
+                    <td></td>
+                  </tr>                              
                   <tr>
-                    <td>{{Label.getContent('Acquired Technology Level')}}</td>
-                    <td ng-show="isElecssories">{{companyHistory.acquiredTechnologyLevel[0]||0}}</td>
-                    <td ng-show="isHealthBeauty">{{companyHistory.acquiredTechnologyLevel[1]||0}}</td>                    
-                    <td>{{Label.getContent('Sales Volume')}}</td>
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].salesVolume.toFixed(2)||0}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].salesVolume.toFixed(2)||0}}</td>                    
-                  </tr>                
+                    <td>
+                      <p class="padding-20">{{Label.getContent('Unit Production Cost')}}
+                      </p>
+                    </td>
+                    <td>
+                      <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].currentUnitAcquisitionCost.toFixed(2)||0}}</p>
+                    </td>                    
+                    <td>
+                      <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].currentUnitAcquisitionCost.toFixed(2)||0}}</p>
+                    </td>
+                    <th>
+                      <p class="padding-20">{{Label.getContent('Unit Production Cost')}}</p>
+                    </th>
+                    <th>
+                      <p class="text-right">{{currentUnitCost}}</p>
+                    </th>
+                  </tr>
                   <tr>
-                    <td>{{Label.getContent('Acquired Design Level')}}</td>
-                    <td ng-show="isElecssories">{{companyHistory.acquiredDesignLevel[0]||0}}</td>
-                    <td ng-show="isHealthBeauty">/</td>             
-                    <td>{{Label.getContent('Unit Production Cost')}}</td>
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].currentUnitAcquisitionCost.toFixed(2)||0}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].currentUnitAcquisitionCost.toFixed(2)||0}}</td>   
-                  </tr>                
+                    <td>
+                      <p class="padding-20">{{Label.getContent('Technology Level')}}</p>
+                    </td>
+                    <td>
+                      <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[1]||0}}</p>
+                    </td>                    
+                    <td>
+                      <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[1]||0}}</p>
+                    </td>
+                    <td>
+                      <p class="padding-20">{{Label.getContent('Acquired Technology Level')}}</p>
+                    </td>
+                    <td ng-show="isElecssories">
+                      <p class="text-right">{{companyHistory.acquiredTechnologyLevel[0]||0}}</p>
+                    </td>
+                    <td ng-show="isHealthBeauty">
+                      <p class="text-right">{{companyHistory.acquiredTechnologyLevel[1]||0}}</p>
+                    </td>               
+                  </tr>               
                   <tr>
-                    <td ng-show="false">Expected perception(x-axis)</td>
-                    <td></td>
-                    <td></td>
-                    <td ng-show="isElecssories">{{Label.getContent('Inventory Design Level')}}</td>                    
-                    <td ng-show="isHealthBeauty">{{Label.getContent('Inventory Active agent')}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[0]||0}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[0]||0}}</td>                    
-                  </tr>                
+                    <td ng-show="isElecssories">
+                      <p class="padding-20">{{Label.getContent('Design Level')}}</p>
+                    </td>                    
+                    <td ng-show="isHealthBeauty">
+                      <p class="padding-20">{{Label.getContent('Active agent')}}</p>
+                    </td>                    
+                    <td>
+                      <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[0]||0}}</p>
+                    </td>                    
+                    <td>
+                      <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[0]||0}}</p>
+                    </td>   
+
+                    <td ng-show="isElecssories">
+                      <p class="padding-20">{{Label.getContent('Acquired Design Level')}}</p>
+                    </td>
+                    <td ng-show="isElecssories">
+                      <p class="text-right">{{companyHistory.acquiredDesignLevel[0]||0}}</p>
+                    </td>
+                    <td ng-show="isHealthBeauty">
+                    </td>
+                    <td ng-show="isHealthBeauty">
+                    </td>
+                  </tr>                                
                   <tr>
-                    <td ng-show="false">Expected perception(y-axis)</td>
+                    <td ng-show="isElecssories">
+                      <p class="padding-20">{{Label.getContent('Quality-of-Raw-Materials')}}</p>
+                    </td>  
+                    <td ng-show="isHealthBeauty">
+                      <p class="padding-20">{{Label.getContent('Smoothener Level')}}</p>
+                    </td>                  
+                    <td>
+                      <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[2]||0}}</p>
+                    </td>                    
+                    <td>
+                      <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[2]||0}}</p>
+                    </td>    
                     <td></td>
-                    <td></td>
-                    <td>{{Label.getContent('Inventory Technology Level')}}</td>
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[1]||0}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[1]||0}}</td>                    
-                  </tr>                
+                    <td></td>                                    
+                  </tr>   
                   <tr>
+                    <td>
+                      <p class="padding-20">{{Label.getContent('Sales Volume')}}</p>
+                    </td>
+                    <td>
+                      <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].salesVolume.toFixed(2)||0}}</p>
+                    </td>
+                    <td>
+                      <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].salesVolume.toFixed(2)||0}}</p>
+                    </td>
+                    
                     <td></td>
                     <td></td>
-                    <td ng-show="isElecssories">{{Label.getContent('Inventory Quality-of-Raw-Materials')}}</td>  
-                    <td ng-show="isHealthBeauty">{{Label.getContent('Inventory Smoothener Level')}}</td>                  
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[2]||0}}</td>                    
-                    <td>{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[2]||0}}</td>                                        
-                  </tr>          
+                  </tr>       
                 </tbody>   
               </table>
           </div>
           <table class="table table-hover">
-            <!--<tr>
-              <th>{{labelLanguages.Category}}</th>
-              <th ng-repeat='product in products'>
-              {{product.category}}</th>
-            </tr>-->
             <thead>
               <tr>
                 <th>{{Label.getContent('Brand')}}</th> 
                 <th ng-repeat='product in products'>
-                {{product.parentBrandName}}</th>
+                  <p class="text-right">{{product.parentBrandName}}
+                  </p>
+                </th>
               </tr>
               <tr>
                 <th>{{Label.getContent('Variant')}}</th>
                 <th ng-repeat='product in products'>
                   <div style="clear:both"></div>
-                  <p class="pull-left">
+                  <button type="button" class="btn btn-danger btn-xs pull-right {{(product.dateOfBirth==-4)?'hide':'show'}}" ng-click="deleteProduct(category,product.parentBrandName,product.varName)">{{Label.getContent('Delete')}}</button>
+                  <button type="button" class="btn btn-primary btn-xs pull-right" style="margin-right:5px" ng-click="getMoreInfo(product.parentBrandName,product.varName)">{{Label.getContent('More')}}</button>
+                  <p class="pull-right" style="margin-right:5px">
                     {{product.varName}}
                   </p>
-                  <button type="button" class="btn btn-primary btn-xs pull-left" style="margin-left:5px" ng-click="getMoreInfo(product.parentBrandName,product.varName)">{{Label.getContent('More')}}</button>
-                  <button type="button" class="btn btn-danger btn-xs pull-left {{(product.dateOfBirth==-4)?'hide':'show'}}" ng-click="deleteProduct(category,product.parentBrandName,product.varName)" style="margin-left:5px">{{Label.getContent('Delete')}}</button>
                   <div style="clear:both"></div>
                 </th>
               </tr>              
             </thead>
             <tbody>
-              
               <tr>
                 <th>
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Pack Format Info')}}" popover-title="{{Label.getContent('Pack Format')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Pack Format')}}<span style="color:red">*</span></p>
                 </th>
                 <th ng-repeat='product in products'>
-                  <a href="#" editable-select="product.packFormat" e-ng-options="p.value as p.text for p in packs" ng-show="product.dateOfBirth==currentPeriod" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'packFormat','0',$index)">{{ selectPacks(product.parentBrandName,product.varName) }}</a>
-                  <span ng-show="product.dateOfBirth<currentPeriod">{{ selectPacks(product.parentBrandName,product.varName) }}</span>
+                  <a href="#" editable-select="product.packFormat" e-ng-options="p.value as p.text for p in packs" ng-show="product.dateOfBirth==currentPeriod" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'packFormat','0',$index)">
+                    <p class="text-right">{{ selectPacks(product.parentBrandName,product.varName) }}
+                    </p>
+                  </a>
+                  <p class="text-right" ng-show="product.dateOfBirth<currentPeriod">{{ selectPacks(product.parentBrandName,product.varName) }}</p class="text-right">
+                </th>
+              </tr>
+              <tr>
+                <th>
+                  <p ng-show="HeaShow" class="text-primary" Popover-animation="true" popover="{{Label.getContent('Smoothener Level Info')}}" popover-title="{{Label.getContent('Smoothener Level')}}" popover-trigger="mouseenter" popover-placement="right">{{Label.getContent('Smoothener Level')}}<span style="color:red">*</span></p>
+                  <p ng-show="EleShow" class="text-primary" Popover-animation="true" popover="{{Label.getContent('Quality-of-Raw-Materials Info')}}" popover-title="{{Label.getContent('Quality-of-Raw-Materials')}}" popover-trigger="mouseenter" popover-placement="right">{{Label.getContent('Quality-of-Raw-Materials')}}<span style="color:red">*</span></p>
+                  </p>
+                </th>
+                <th ng-repeat='product in products'>
+                  <a href="#" editable-text="product.composition[2]" onbeforesave="checkRMQ(category,product.parentBrandName,product.varName,'composition','2',$index,$data)" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'composition','2',$index)">
+                    <p class="text-right">{{ product.composition[2] || 0 }}
+                    </p>
+                  </a>
                 </th>
               </tr>
               <tr>
                 <th>
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Technology Level Info')}}" popover-title="{{Label.getContent('Technology Level')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Technology Level')}}<span style="color:red">*</span></p>
                 </th>
-                <th ng-repeat='product in products'><a href="#" editable-text="product.composition[1]" onbeforesave="checkTechnology(category,product.parentBrandName,product.varName,'composition','1',$index,$data)" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'composition','1',$index)">{{ product.composition[1] || 0 }}</a></th>
+                <th ng-repeat='product in products'>
+                  <a href="#" editable-text="product.composition[1]" onbeforesave="checkTechnology(category,product.parentBrandName,product.varName,'composition','1',$index,$data)" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'composition','1',$index)">
+                    <p class="text-right">{{ product.composition[1] || 0 }}
+                    </p>
+                  </a>
+                </th>
               </tr>
               <tr>
                 <th>
-                  <p style="display:{{HeaShow}}" class="text-primary" Popover-animation="true" popover="{{Label.getContent('Active agent Info')}}" popover-title="{{Label.getContent('Active agent')}}" popover-trigger="mouseenter" popover-placement="right">{{Label.getContent('Active agent')}}<span style="color:red">*</span></p>
-                  <p style="display:{{EleShow}}" class="text-primary" Popover-animation="true" popover="{{Label.getContent('Design Level Info')}}" popover-title="{{Label.getContent('Design Level')}}" popover-trigger="mouseenter" popover-placement="right">{{Label.getContent('Design Level')}}<span style="color:red">*</span></p>
+                  <p ng-show="HeaShow" class="text-primary" Popover-animation="true" popover="{{Label.getContent('Active agent Info')}}" popover-title="{{Label.getContent('Active agent')}}" popover-trigger="mouseenter" popover-placement="right">{{Label.getContent('Active agent')}}<span style="color:red">*</span></p>
+                  <p ng-show="EleShow" class="text-primary" Popover-animation="true" popover="{{Label.getContent('Design Level Info')}}" popover-title="{{Label.getContent('Design Level')}}" popover-trigger="mouseenter" popover-placement="right">{{Label.getContent('Design Level')}}<span style="color:red">*</span></p>
                 </th>
                 <th ng-repeat='product in products'>
-                  <a href="#" editable-text="product.composition[0]" onbeforesave="checkDesign(category,product.parentBrandName,product.varName,'composition','0',$index,$data)" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'composition','0',$index)">{{ product.composition[0] || 0 }}</a>
+                  <a href="#" editable-text="product.composition[0]" onbeforesave="checkDesign(category,product.parentBrandName,product.varName,'composition','0',$index,$data)" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'composition','0',$index)">
+                    <p class="text-right">{{ product.composition[0] || 0 }}
+                    </p>
+                  </a>
                 </th>
-              </tr>
-              <tr>
-                <th>
-                  <p style="display:{{HeaShow}}" class="text-primary" Popover-animation="true" popover="{{Label.getContent('Smoothener Level Info')}}" popover-title="{{Label.getContent('Smoothener Level')}}" popover-trigger="mouseenter" popover-placement="right">{{Label.getContent('Smoothener Level')}}<span style="color:red">*</span></p>
-                  <p style="display:{{EleShow}}" class="text-primary" Popover-animation="true" popover="{{Label.getContent('Quality-of-Raw-Materials Info')}}" popover-title="{{Label.getContent('Quality-of-Raw-Materials')}}" popover-trigger="mouseenter" popover-placement="right">{{Label.getContent('Quality-of-Raw-Materials')}}<span style="color:red">*</span></p>
-                  </p>
-                </th>
-                <th ng-repeat='product in products'><a href="#" editable-text="product.composition[2]" onbeforesave="checkRMQ(category,product.parentBrandName,product.varName,'composition','2',$index,$data)" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'composition','2',$index)">{{ product.composition[2] || 0 }}</a></th>
               </tr>
               <tr>
                 <th>
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Retailer Discontinue this product Info')}}" popover-title="{{Label.getContent('Retailer Discontinue this product')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Retailer Discontinue this product')}}<span style="color:red">*</span></p>
                 </th>
                 <th ng-repeat='product in products'>
-                  <a href="#" editable-checkbox="product.discontinue" e-title="{{Label.getContent('Retailer Discontinue this product')}}?" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'discontinue','0',$index)">{{ product.discontinue && Label.getContent('Retailer DisContinue') || Label.getContent('Retailer Continue') }}</a>
+                  <a href="#" editable-checkbox="product.discontinue" e-title="{{Label.getContent('Retailer Discontinue this product')}}?" onaftersave="updateRetailerDecision(category,product.parentBrandName,product.varName,'discontinue','0',$index)">
+                    <p class="text-right">{{ product.discontinue && Label.getContent('Retailer DisContinue') || Label.getContent('Retailer Continue') }}
+                    </p>
+                  </a>
                 </th>
               </tr>    
             </tbody>
@@ -245,8 +317,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <input type="button" ng-click="addNewProduct(parameter)" style="display:{{newBrand}}" class="btn btn-primary" value="{{Label.getContent('Add')}}" ng-disabled="((myForm.lauchVarName.$invalid)||(myForm.newBrandName.$invalid))"/>
-          <input type="button" style="display:{{newVariant}}" ng-click="addNewProduct(parameter)" class="btn btn-primary" value="{{Label.getContent('Add')}}" ng-disabled="(myForm.addVarName.$invalid)">
+          <input type="button" ng-click="addNewProduct(parameter)" ng-show="newBrand" class="btn btn-primary" value="{{Label.getContent('Add')}}" ng-disabled="((myForm.lauchVarName.$invalid)||(myForm.newBrandName.$invalid))"/>
+          <input type="button" ng-show="newVariant" ng-click="addNewProduct(parameter)" class="btn btn-primary" value="{{Label.getContent('Add')}}" ng-disabled="(myForm.addVarName.$invalid)">
           <input type="button" class="btn btn-default" ng-click="closeProductModal()" value="{{Label.getContent('Cancel')}}">
         </div>
       </form>

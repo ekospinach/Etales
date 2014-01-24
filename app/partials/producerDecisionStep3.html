@@ -1,7 +1,7 @@
 <div id="content" class="bs-header">
     <div class="container">
-        <h1>{{Label.getContent('Advertising')}}</h1>
-        <p>{{Label.getContent('Producer Advertising Info')}}.</p>
+        <h1>{{Label.getContent('Step 3 of 4')}} {{Label.getContent('Advertising')}}</h1>
+        <p>{{Label.getContent('Producer Advertising Info')}}</p>
     </div>
 </div>
 
@@ -9,9 +9,11 @@
   <div class="row">
     <div class="col-md-12">
       <div class="bs-docs-section">
-        <h4>{{Label.getContent('Step 3 of 4')}}</h4>
         <div class="pull-left" style="width:40%">
-          <h3 style="margin-top:0px">{{Label.getContent('Advertising')}}</h3>
+          <h4 class="pull-left">
+            <span class="label label-info">{{Label.getContent(category)}}</span>
+          </h4>
+          <div style="clear:both"></div>
           <div class="btn-group pull-left">
               <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
                 {{Label.getContent('Category')}} <span class="caret"></span>
@@ -21,13 +23,6 @@
                 <li class=""><a ng-click="showView(user,period,'HealthBeauty',language)">{{Label.getContent('HealthBeauty')}}</a></li>
               </ul>
           </div>
-          <!--<div class="btn-group pull-left" data-toggle="buttons" style="margin-left:10px">
-              <label class="btn btn-default" ng-click="showView(user,period,category,'English')">
-              <input type="radio" name="options"> English</label>
-              <label class="btn btn-default" ng-click="showView(user,period,category,'Chinese')">
-              <input type="radio" name="options"> Chinese
-              </label>
-          </div>-->
         </div>
         <div class="pull-right" style="width:40%">
           <progress percent="percentageExpend" class="progress active"></progress>
@@ -46,48 +41,82 @@
               <table class="table table-condensed table-bordered">
                 <thead>
                   <tr>
-                    <td colspan="2" class="col-md-6">{{Label.getContent('Current period')}} ({{currentPeriod}})</td>
-                    <td colspan="2" class="col-md-6">{{Label.getContent('Previous period')}} ({{currentPeriod-1}})</td>
+                    <td colspan="2" class="col-md-6">{{Label.getContent('Previous period Investment')}} ({{currentPeriod-1}})</td>
+
+                    <td colspan="2" class="col-md-6">{{Label.getContent('Current period Awareness achieve')}} ({{currentPeriod}})</td>
                   </tr>                  
                 </thead>
                 <tbody>
                   <tr>
-                    <td>{{Label.getContent('Urban')}}{{Label.getContent('brand awareness')}}</td>
-                    <td>{{brandHistory.supplierView[0].awareness[0].toFixed(2) * 100||0}}%</td>
-                    <td>{{Label.getContent('Urban Advertising Off-Line')}}</td>
-                    <td>{{brandDecisionHistory.advertisingOffLine[0].toFixed(2)||0}}</td>
+                    <!--
+                    <td ng-show="false">Web trawler brand sentiment index</td>                    
+                    <td ng-show="false">{{brandHistory.supplierView[0].socialNetworksScore[2].sentiment||0}}</td>
+
+                    <td ng-show="false">Web trawler brand strength index</td>                    
+                    <td ng-show="false">{{brandHistory.supplierView[0].socialNetworksScore[2].strength||0}}</td>
+                  -->
+                    <td>
+                      <p class="padding-20">{{Label.getContent('National advertising online')}}</p>
+                    </td>                    
+                    <td>
+                      <p class="text-right">{{brandDecisionHistory.advertisingOnLine.toFixed(2)||0}}</p>
+                    </td>
+
+                    <td></td>                    
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="padding-20">{{Label.getContent('Urban Advertising Off-Line')}}</p>
+                    </td>
+                    <td>
+                      <p class="text-right">{{brandDecisionHistory.advertisingOffLine[0].toFixed(2)||0}}</p>
+                    </td>
+
+                    <td>
+                      <p class="padding-20">{{Label.getContent('Urban')}} {{Label.getContent('brand awareness')}}</p>
+                    </td>
+                    <td>
+                      <p class="text-right">{{brandHistory.supplierView[0].awareness[0].toFixed(2) * 100||0}}%</p>
+                    </td> 
                   </tr>     
                   <tr>
-                    <td>{{Label.getContent('Rural')}} {{Label.getContent('brand awareness')}}</td>                    
-                    <td>{{brandHistory.supplierView[0].awareness[1].toFixed(2) * 100||0}}%</td>                  
-                    <td>{{Label.getContent('Urban Traditional Trade Support')}}</td> 
-                    <td>{{brandDecisionHistory.supportTraditionalTrade[0].toFixed(2)||0}}</td>
-                  </tr>           
-                  <tr>
+                    <td>
+                      <p class="padding-20">{{Label.getContent('Urban Traditional Trade Support')}}</p>
+                    </td> 
+                    <td>
+                      <p class="text-right">{{brandDecisionHistory.supportTraditionalTrade[0].toFixed(2)||0}}</p>
+                    </td>
                     <td></td>
-                    <td></td>                    
-                    <td>{{Label.getContent('Rural Advertising Off-Line')}}</td>                    
-                    <td>{{brandDecisionHistory.advertisingOffLine[1].toFixed(2)||0}}</td>                                        
+                    <td></td>              
                   </tr>           
                   <tr>
+                    <td>
+                      <p class="padding-20">{{Label.getContent('Rural Advertising Off-Line')}}</p>
+                    </td>                    
+                    <td>
+                      <p class="text-right">{{brandDecisionHistory.advertisingOffLine[1].toFixed(2)||0}}</p>
+                    </td>
+
+                    <td>
+                      <p class="padding-20">{{Label.getContent('Rural')}} {{Label.getContent('brand awareness')}}</p>
+                    </td>                    
+                    <td>
+                      <p class="text-right">{{brandHistory.supplierView[0].awareness[1].toFixed(2) * 100||0}}%</p>
+                    </td>
+                  </tr>           
+                  <tr>
+                    <td>
+                      <p class="padding-20">{{Label.getContent('Rural Traditional Trade Support')}}</p>
+                    </td>                    
+                    <td>
+                      <p class="text-right">{{brandDecisionHistory.supportTraditionalTrade[1].toFixed(2)||0}}</p>
+                    </td>
                     <td></td>
-                    <td></td>                    
-                    <td>{{Label.getContent('Rural Traditional Trade Support')}}</td>                    
-                    <td>{{brandDecisionHistory.supportTraditionalTrade[1].toFixed(2)||0}}</td>                                        
-                  </tr>           
-                  <tr>
-                    <td ng-show="false">Web trawler brand strength index</td>                    
-                    <td ng-show="false">{{brandHistory.supplierView[0].socialNetworksScore[2].strength||0}}</td>                    
-                    <td ng-show="false">Web trawler brand sentiment index</td>                    
-                    <td ng-show="false">{{brandHistory.supplierView[0].socialNetworksScore[2].sentiment||0}}</td>                                  
-                    <td></td>                    
-                    <td></td>                                        
-                    <td>{{Label.getContent('National advertising online')}}</td>                    
-                    <td>{{brandDecisionHistory.advertisingOnLine.toFixed(2)||0}}</td>                                        
-                  </tr>           
+                    <td></td>                                                       
+                  </tr>    
                 </tbody>
               </table>
-
           </div>
           <table class="table table-hover">
             <thead>
@@ -97,10 +126,10 @@
                 </th>
                 <th ng-repeat='brand in brands'>
                   <div style="clear:both"></div>
-                  <p class="pull-left">
+                  <button type="button" class="btn btn-primary btn-xs pull-right" ng-click="getBrandMoreInfo(brand.brandID,brand.brandName)">{{Label.getContent('More')}}</button>
+                  <p class="pull-right" style="margin-right:5px">
                   {{brand.brandName}}
                   </p>
-                  <button type="button" class="btn btn-primary btn-xs pull-left" style="margin-left:5px" ng-click="getBrandMoreInfo(brand.brandID,brand.brandName)">{{Label.getContent('More')}}</button>
                 </th>
               </tr>              
             </thead>
@@ -110,7 +139,10 @@
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Urban Advertising Off-Line Info')}}" popover-title="{{Label.getContent('Urban Advertising Off-Line')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Urban Advertising Off-Line')}}<span style="color:red">*</span></p>
                 </th>
                 <th ng-repeat='brand in brands'>
-                  <a href="#" editable-text="brand.advertisingOffLine[0]" onbeforesave="checkData(category,brand.brandName,'advertisingOffLine','0',$index,$data)" onaftersave="updateProducerDecision(category,brand.brandName,'advertisingOffLine','0',$index)">{{ brand.advertisingOffLine[0] || 0 }}</a>
+                  <a href="#" editable-text="brand.advertisingOffLine[0]" onbeforesave="checkData(category,brand.brandName,'advertisingOffLine','0',$index,$data)" onaftersave="updateProducerDecision(category,brand.brandName,'advertisingOffLine','0',$index)">
+                    <p class="text-right">{{ brand.advertisingOffLine[0] || 0 }}
+                    </p>
+                  </a>
                 </th>
               </tr>
               <tr>
@@ -118,7 +150,9 @@
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Urban Traditional Trade Support Info')}}" popover-title="{{Label.getContent('Urban Traditional Trade Support')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Urban Traditional Trade Support')}}<span style="color:red">*</span></p>
                 </th>
                 <th ng-repeat='brand in brands'>
-                  <a href="#" editable-text="brand.supportTraditionalTrade[0]" onbeforesave="checkData(category,brand.brandName,'supportTraditionalTrade','0',$index,$data)" onaftersave="updateProducerDecision(category,brand.brandName,'supportTraditionalTrade','0',$index)">{{ brand.supportTraditionalTrade[0] || 0 }}</a>
+                  <a href="#" editable-text="brand.supportTraditionalTrade[0]" onbeforesave="checkData(category,brand.brandName,'supportTraditionalTrade','0',$index,$data)" onaftersave="updateProducerDecision(category,brand.brandName,'supportTraditionalTrade','0',$index)">
+                    <p class="text-right">{{ brand.supportTraditionalTrade[0] || 0 }}</p>
+                  </a>
                 </th>
               </tr>
               <tr>
@@ -126,7 +160,10 @@
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Rural Advertising Off-Line Info')}}" popover-title="{{Label.getContent('Rural Advertising Off-Line')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Rural Advertising Off-Line')}}<span style="color:red">*</span></p>
                 </th>
                 <th ng-repeat='brand in brands'>
-                  <a href="#" editable-text="brand.advertisingOffLine[1]" onbeforesave="checkData(category,brand.brandName,'advertisingOffLine','1',$index,$data)" onaftersave="updateProducerDecision(category,brand.brandName,'advertisingOffLine','1',$index)">{{ brand.advertisingOffLine[1] || 0 }}</a>
+                  <a href="#" editable-text="brand.advertisingOffLine[1]" onbeforesave="checkData(category,brand.brandName,'advertisingOffLine','1',$index,$data)" onaftersave="updateProducerDecision(category,brand.brandName,'advertisingOffLine','1',$index)">
+                    <p class="text-right">{{ brand.advertisingOffLine[1] || 0 }}
+                    </p>
+                  </a>
                 </th>
               </tr>
               <tr>
@@ -134,7 +171,9 @@
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Rural Traditional Trade Support Info')}}" popover-title="{{Label.getContent('Rural Traditional Trade Support')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Rural Traditional Trade Support')}}<span style="color:red">*</span></p>
                 </th>
                 <th ng-repeat='brand in brands'>
-                  <a href="#" editable-text="brand.supportTraditionalTrade[1]" onbeforesave="checkData(category,brand.brandName,'supportTraditionalTrade','1',$index,$data)" onaftersave="updateProducerDecision(category,brand.brandName,'supportTraditionalTrade','1',$index)">{{ brand.supportTraditionalTrade[1] || 0 }}</a>
+                  <a href="#" editable-text="brand.supportTraditionalTrade[1]" onbeforesave="checkData(category,brand.brandName,'supportTraditionalTrade','1',$index,$data)" onaftersave="updateProducerDecision(category,brand.brandName,'supportTraditionalTrade','1',$index)">
+                    <p class="text-right">{{ brand.supportTraditionalTrade[1] || 0 }}</p>
+                  </a>
                 </th>
               </tr>
               <tr>
@@ -142,7 +181,9 @@
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('On-line Advertising Info')}}" popover-title="{{Label.getContent('On-line Advertising')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('On-line Advertising')}}<span style="color:red">*</span></p>
                 </th>
                 <th ng-repeat='brand in brands'>
-                  <a href="#" editable-text="brand.advertisingOnLine" onbeforesave="checkData(category,brand.brandName,'advertisingOnLine','1',$index,$data)" onaftersave="updateProducerDecision(category,brand.brandName,'advertisingOnLine','1',$index)">{{ brand.advertisingOnLine || 0 }}</a>
+                  <a href="#" editable-text="brand.advertisingOnLine" onbeforesave="checkData(category,brand.brandName,'advertisingOnLine','1',$index,$data)" onaftersave="updateProducerDecision(category,brand.brandName,'advertisingOnLine','1',$index)">
+                    <p class="text-right">{{ brand.advertisingOnLine || 0 }}</p>
+                  </a>
                 </th>
               </tr> 
               <tr>
@@ -150,7 +191,9 @@
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('E-Mall visibility investment Info')}}" popover-title="{{Label.getContent('E-Mall visibility investment')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('E-Mall visibility investment')}}<span style="color:red">*</span></p>
                 </th>
                 <th ng-repeat='brand in brands'>
-                  <a href="#" editable-text="brand.supportEmall" onbeforesave="checkData(category,brand.brandName,'supportEmall','1',$index,$data)" onaftersave="updateProducerDecision(category,brand.brandName,'supportEmall','1',$index)">{{ brand.supportEmall || 0 }}</a>
+                  <a href="#" editable-text="brand.supportEmall" onbeforesave="checkData(category,brand.brandName,'supportEmall','1',$index,$data)" onaftersave="updateProducerDecision(category,brand.brandName,'supportEmall','1',$index)">
+                    <p class="text-right">{{ brand.supportEmall || 0 }}</p>
+                  </a>
                 </th>
               </tr>    
             </tbody>

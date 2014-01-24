@@ -18,13 +18,13 @@ define(['app'], function(app) {
 			},{
 				value: 5, text: Label.getContent('SL_PREMIUM')
 			}]; 
-			$scope.language=Label.getCurrentLanguage(),
-			$scope.retailerID=$rootScope.user.username.substring($rootScope.user.username.length-1);
-			$scope.period=$rootScope.currentPeriod,
-			$scope.category='Elecssories',
+			$scope.language=Label.getCurrentLanguage();
+			$scope.retailerID=parseInt($rootScope.user.roleID);
+			$scope.period=$rootScope.currentPeriod;
+			$scope.category='Elecssories';
 			$scope.isCollapsed=true;
 
-			RetailerDecisionBase.reload({retailerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
+			RetailerDecisionBase.reload({retailerID:parseInt($rootScope.user.roleID),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 				$scope.pageBase = base;
 			}).then(function(){
 				return promiseStep1();
@@ -35,8 +35,8 @@ define(['app'], function(app) {
 			};
 
 			var promiseStep1=function(){
-				var delay=$q.defer();
-				delay.notify('start to show view');
+				var d=$q.defer();
+				d.notify(Label.getContent('start to show view'));
 
 					$scope.showView=showView;
 					$scope.updateMarketDecision=updateMarketDecision;
@@ -46,8 +46,9 @@ define(['app'], function(app) {
 					//check
 					$scope.checkSurface=checkSurface;
 					$scope.checkBudget=checkBudget;
-				showView($scope.retailerID,$scope.period,$scope.language);
-				return delay.promise;
+					d.resolve();
+					return showView($scope.retailerID,$scope.period,$scope.language);
+				return d.promise;
 			}
 
 			var selectPacks = function(marketID) {
@@ -74,7 +75,7 @@ define(['app'], function(app) {
 				$scope.retailerID=retailerID,$scope.period=period,$scope.language=language;
 				var categoryID=0,count=0,result=0,expend=0;
 				var fakeName="EName",max=100;
-	      		var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/R/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+	      		var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/R/'+parseInt($rootScope.user.roleID);
 	      		$http({
 	      			method:'GET',
 	      			url:url
@@ -85,7 +86,7 @@ define(['app'], function(app) {
 	      				abMax=data.data.budgetAvailable;
 	      			}
 	      			$scope.abMax=abMax;
-	      			url="/retailerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/-1/location/1';
+	      			url="/retailerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+parseInt($rootScope.user.roleID)+'/-1/location/1';
 	      			return $http({
 	      				method:'GET',
 	      				url:url,
@@ -123,10 +124,10 @@ define(['app'], function(app) {
 				      			}				      			
 				      			markets.push($scope.pageBase.retMarketDecision[i]);
 				      		}
-				      		result=1;
 				      		$scope.markets=markets;
+				      		d.resolve();
 	      		},function(){
-	      			console.log('showView fail');
+	      			d.reject(Label('showView fail'));
 	      		});	
 	      		return d.promise;
 			}
@@ -153,13 +154,13 @@ define(['app'], function(app) {
 				if(!filter.test(value)){
 					d.resolve(Label.getContent('Input a number'));
 				}
-				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/R/'+$rootScope.user.username.substring($rootScope.user.username.length-1);
+				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/R/'+parseInt($rootScope.user.roleID);
 	      		$http({
 	      			method:'GET',
 	      			url:url
 	      		}).then(function(data){
 	      			max=data.data.budgetAvailable;
-	      			url="/retailerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+marketID+'/'+location+'/'+additionalIdx;
+	      			url="/retailerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+parseInt($rootScope.user.roleID)+'/'+marketID+'/'+location+'/'+additionalIdx;
 		      		return $http({
 		      			method:'GET',
 		      			url:url,
@@ -198,7 +199,7 @@ define(['app'], function(app) {
 					case 2: $scope.marketName = 'Rural'; break;				
 				}
 				$scope.isCollapsed=false;
-				var url="/retailerDecision/"+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+($rootScope.currentPeriod-1)+'/'+$rootScope.user.seminar;
+				var url="/retailerDecision/"+parseInt($rootScope.user.roleID)+'/'+($rootScope.currentPeriod-1)+'/'+$rootScope.user.seminar;
 				$http({method:'GET',url:url})
 				.success(function(data){
 					$scope.retailerDecisionHistory=_.filter(data.retMarketDecision,function(obj){
@@ -212,7 +213,7 @@ define(['app'], function(app) {
 			}	
 			
 			$scope.$on('retailerDecisionBaseChangedFromServer', function(event, newBase){
-				RetailerDecisionBase.reload({retailerID:$rootScope.user.username.substring($rootScope.user.username.length-1),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
+				RetailerDecisionBase.reload({retailerID:parseInt($rootScope.user.roleID),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 					$scope.pageBase = base;
 				}).then(function(){
 					return promiseStep1();

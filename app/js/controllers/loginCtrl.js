@@ -1,12 +1,13 @@
 define(['app','socketIO'], function(app) {
 
-	app.controller('loginCtrl',['$scope', '$http', '$location','$rootScope','Auth', function($scope, $http, $location,$rootScope,Auth) {
+	app.controller('loginCtrl',['$scope', '$http', '$location','$rootScope','Auth','$q', function($scope, $http, $location,$rootScope,Auth,$q) {
 		// You can access the scope of the controller from here
 
 		    $rootScope.loginFooter="container";
 		    $rootScope.loginCss="bs-docs-home";
 		    $rootScope.loginLink="bs-masthead-links";
 		    $rootScope.loginDiv="";
+		    $rootScope.loadShow=true;
 
 		var userRoles = routingConfig.userRoles;
 
