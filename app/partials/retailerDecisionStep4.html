@@ -55,72 +55,93 @@
               <table class="table table-condensed table-bordered">
                 <thead>
                   <tr>
-                    <td colspan="3" class="col-md-6">{{Label.getContent('Previous period')}} ({{currentPeriod-1}})</td>
-                    
-                    <td colspan="2" class="col-md-6">{{Label.getContent('Current period')}} ({{currentPeriod}})</td>
-                  </tr>         
-                </thead>
-                <tbody>                  
-                  <tr>
-                    <td></td>
+                    <td>{{Label.getContent('Previous period')}} ({{currentPeriod-1}})
+                    </td>
                     <td>
                       <p class="text-right">{{Label.getContent('Urban')}}</p>
                     </td>
                     <td>
                       <p class="text-right">{{Label.getContent('Rural')}}</p>
                     </td>
-
-                    <!-- New Private label, show UnitCost  -->
-                    <th ng-show="isPrivateLabel">{{Label.getContent('Unit Cost')}} ({{Label.getContent('Private Label')}})</th>
-                    <th ng-show="isPrivateLabel">
-                      <p class="text-right">{{currentUnitCost}}</p>
-                    </th>
-                    <!-- New Product from Producer, show decision producer made  -->
-                    <th ng-show="isNewProducerProduct">{{Label.getContent('List Price')}}({{Label.getContent('New Product')}})</th>
-                    <th ng-show="isNewProducerProduct">
-                      <p class="text-right">{{decisionCurrent.currentPriceBM.toFixed(2)}}</p>
-                    </th>
-                    <!-- History Product, show pv_nextPriceBM-->                  
-                    <th ng-show="isHistoryProduct">{{Label.getContent('List Price')}}</th>
-                    <th ng-show="isHistoryProduct">
-                      <p class="text-right">{{variantHistory.supplierView[0].nextPriceBM.toFixed(2)}}</p>
-                    </th>    
-                  </tr>
+                    
+                    <td colspan="2" class="col-md-6">{{Label.getContent('Current period')}} ({{currentPeriod}})</td>
+                  </tr>         
+                </thead>
+                <tbody>                  
                   <tr>
                     <!-- Previous period-->                   
-                    <td ng-show="ElecssoriesVar">{{Label.getContent('Design Level')}}</td>                    
-                    <td ng-show="HealthBeautyVar">{{Label.getContent('Active agent')}}</td>                    
+                    <td ng-show="ElecssoriesVar">
+                      <p class="padding-20">{{Label.getContent('Design Level')}}</p>
+                    </td>                    
+                    <td ng-show="HealthBeautyVar">
+                      <p class="padding-20">{{Label.getContent('Active agent')}}</p>
+                    </td>                    
                     <td>
                       <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[0]||0}}</p>
                     </td>                    
                     <td>
                       <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[0]||0}}</p>
                     </td>
-
                     <!-- Current period -->
-                    <td>{{Label.getContent('Urban')}} {{Label.getContent('Closing Inventory')}}</td>                    
+                    <td ng-show="ElecssoriesVar">
+                      <p class="padding-20">{{Label.getContent('Design Level')}}</p>
+                    </td>                    
+                    <td ng-show="HealthBeautyVar">
+                      <p class="padding-20">{{Label.getContent('Active agent')}}</p>
+                    </td>                   
                     <td>
-                      <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].volume.toFixed(2)||0}}</p>
-                    </td>
+                      <p class="text-right">{{decisionCurrent.composition[1]}}</p>
+                    </td> 
                   </tr>
                   <tr>
                     <!-- Previous period-->
-                    <td>{{Label.getContent('Technology Level')}}</td>    
+                    <td>
+                      <p class="padding-20">{{Label.getContent('Technology Level')}}</p>
+                    </td>    
                     <td>
                       <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].composition[1]||0}}</p>
                     </td>
                     <td>
                       <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[4].composition[1]||0}}</p>
                     </td> 
-                    <!-- Current period -->
-                    <td>{{Label.getContent('Rural')}} {{Label.getContent('Closing Inventory')}}</td>                    
+                    <!-- Current period -->                    
                     <td>
-                      <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[3].volume.toFixed(2)||0}}</p>
+                      <p class="padding-20">{{Label.getContent('Technology Level')}}</p>
+                    </td>                    
+                    <td>
+                      <p class="text-right">{{decisionCurrent.composition[1]}}</p>
                     </td>                              
                   </tr>
                   <tr>
+                    <!-- Previous period-->                   
+                    <td ng-show="ElecssoriesVar">
+                      <p class="padding-20">{{Label.getContent('Quality-of-Raw-Materials')}}</p>
+                    </td>                    
+                    <td ng-show="HealthBeautyVar">
+                      <p class="padding-20">{{Label.getContent('Smoothener Level')}}</p>
+                    </td>                    
+                    <td>
+                      <p class="text-right">???</p>
+                    </td>                    
+                    <td>
+                      <p class="text-right">???</p>
+                    </td>
+                    <!-- Current period -->
+                    <td ng-show="ElecssoriesVar">
+                      <p class="padding-20">{{Label.getContent('Quality-of-Raw-Materials')}}</p>
+                    </td>                    
+                    <td ng-show="HealthBeautyVar">
+                      <p class="padding-20">{{Label.getContent('Smoothener Level')}}</p>
+                    </td>                   
+                    <td>
+                      <p class="text-right">{{decisionCurrent.composition[2]}}</p>
+                    </td> 
+                  </tr>
+                  <tr>
                     <!-- Previous period-->
-                    <td>{{Label.getContent('Sales Volume at your store')}}</td>                    
+                    <td>
+                      <p class="padding-20">{{Label.getContent('Sales Volume')}}</p>
+                    </td>                    
                     <td>
                       <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].salesVolume.toFixed(2)||0}}
                       </p>
@@ -131,16 +152,20 @@
                       </p>
                     </td>
 
-                    <!-- Current period -->                    
-                    <td>{{Label.getContent('Technology Level')}}</td>                    
+                    <!-- Current period -->
                     <td>
-                      <p class="text-right">{{decisionCurrent.composition[1]}}</p>
+                      <p class="padding-20">{{Label.getContent('Urban')}} {{Label.getContent('Closing Inventory')}}</p>
+                    </td>                    
+                    <td>
+                      <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].closingInventory[4].volume.toFixed(2)||0}}</p>
                     </td>    
                     
                   </tr>
                   <tr>
                     <!-- Previous period-->
-                    <td>{{Label.getContent('Shelf Space at your store')}}</td>                    
+                    <td>
+                      <p class="padding-20">{{Label.getContent('Shelf Space')}}</p>
+                    </td>                    
                     <td>
                       <p class="text-right">
                         {{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].shelfSpace.toFixed(2)*100||0}}%
@@ -151,15 +176,18 @@
                         {{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].shelfSpace.toFixed(2)*100||0}}%
                       </p>
                     </td>   
-                    <!-- Current period -->                    
-                    <td ng-show="ElecssoriesVar">{{Label.getContent('Quality-of-Raw-Materials')}}</td>  
-                    <td ng-show="HealthBeautyVar">{{Label.getContent('Smoothener Level')}}</td>                  
+                    <!-- Current period -->
                     <td>
-                      <p class="text-right">{{decisionCurrent.composition[2]}}</p>
-                    </td>                                      
+                      <p class="padding-20">{{Label.getContent('Rural')}} {{Label.getContent('Closing Inventory')}}</p>
+                    </td>                    
+                    <td>
+                      <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].closingInventory[3].volume.toFixed(2)||0}}</p>
+                    </td>
                   </tr>
                   <tr>
-                    <td>{{Label.getContent('Market Price at your store')}}</td>                    
+                    <td>
+                      <p class="padding-20">{{Label.getContent('Market Price')}}</p>
+                    </td>                    
                     <td>
                       <p class="text-right">
                         {{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].marketPrice.toFixed(2)||0}}
@@ -170,11 +198,32 @@
                         {{variantHistory.channelView[currentRetailerIdx].channelMarketView[1].marketPrice.toFixed(2)||0}}
                       </p>
                     </td> 
-                    <td></td>                    
-                    <td></td>
+                    <!-- New Private label, show UnitCost  -->
+                    <th ng-show="isPrivateLabel">
+                      <p class="padding-20">{{Label.getContent('Unit Cost')}} ({{Label.getContent('Private Label')}})</p>
+                    </th>
+                    <th ng-show="isPrivateLabel">
+                      <p class="text-right">{{currentUnitCost}}</p>
+                    </th>
+                    <!-- New Product from Producer, show decision producer made  -->
+                    <th ng-show="isNewProducerProduct">
+                      <p class="padding-20">{{Label.getContent('Order Price')}}({{Label.getContent('New Product')}})</p>
+                    </th>
+                    <th ng-show="isNewProducerProduct">
+                      <p class="text-right">{{decisionCurrent.currentPriceBM.toFixed(2)}}</p>
+                    </th>
+                    <!-- History Product, show pv_nextPriceBM-->                  
+                    <th ng-show="isHistoryProduct">
+                      <p class="padding-20">{{Label.getContent('Order Price')}}</p>
+                    </th>
+                    <th ng-show="isHistoryProduct">
+                      <p class="text-right">{{variantHistory.supplierView[0].nextPriceBM.toFixed(2)}}</p>
+                    </th>
                   </tr>
-                  <tr>                                      
-                    <td>{{Label.getContent('Net Price at your store')}}</td>
+                  <tr>
+                    <td>
+                      <p class="padding-20">{{Label.getContent('Net Price')}}</p>
+                    </td>
                     <td>
                       <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].netMarketPrice.toFixed(2)||0}}</p>
                     </td>
@@ -184,8 +233,20 @@
                     <td></td>                    
                     <td></td>  
                   </tr>
+                  <tr>
+                    <th>
+                      <p class="padding-20">{{Label.getContent('Promotions')}}</p>
+                    </th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
                   <tr>                                     
-                    <td>{{Label.getContent('Promotions Frequency')}}({{Label.getContent('weeks')}})</td>
+                    <td>
+                      <p class="padding-40">{{Label.getContent('Frequency')}}({{Label.getContent('weeks')}})
+                      </p>
+                    </td>
                     <td>
                       <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].promotionsDetails.promo_Frequency||0}} weeks</p>
                     </td>
@@ -196,7 +257,10 @@
                     <td></td>   
                   </tr>
                   <tr>                  
-                    <td>{{Label.getContent('Reduction Rate')}}</td>
+                    <td>
+                      <p class="padding-40">{{Label.getContent('Reduction Rate')}}
+                      </p>
+                    </td>
                     <td>
                       <p class="text-right">{{variantHistory.channelView[currentRetailerIdx].channelMarketView[0].promotionsDetails.promo_Rate*100||0}}%</p>
                     </td>

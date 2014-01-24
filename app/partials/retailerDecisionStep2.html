@@ -23,49 +23,28 @@
             <table class="table table-condensed table-bordered">
               <thead>
                 <tr>
-                  <td colspan="2" class="col-md-6">{{Label.getContent('Previous period')}} ({{currentPeriod-1}})</td>
+                  <td colspan="2" class="col-md-6">{{Label.getContent('Previous period Investment')}} ({{currentPeriod-1}})</td>
 
-                  <td colspan="2" class="col-md-6">{{Label.getContent('Current period')}} ({{currentPeriod}})</td>
+                  <td colspan="2" class="col-md-6">{{Label.getContent('Current period Investment Achieved Perception')}} ({{currentPeriod}})</td>
                 </tr>                  
               </thead>
               <tbody>
                 <tr>
-                  <td>{{Label.getContent('In-store Service Level')}}</td>
                   <td>
-                    <p class="text-right">{{retailerDecisionHistory[0].serviceLevel}}</p>
+                    <p class="padding-20">{{Label.getContent('Local Convenience Advertising')}}</p>
                   </td>
-
-                  <td></td>
-                  <td></td>
-                </tr>                  
-                <tr>
-                  <td>{{Label.getContent('Elecssories Selling surface')}}</td>
-                  <td>
-                    <p class="text-right">{{retailerDecisionHistory[0].categorySurfaceShare[0]*100}}%</p>
-                  </td>
-
-                  <td></td>
-                  <td></td>
-                </tr>                  
-                <tr>
-                  <td>{{Label.getContent('HealthBeauty Selling surface')}}</td>
-                  <td>
-                    <p class="text-right">{{retailerDecisionHistory[0].categorySurfaceShare[1]*100}}%</p>
-                  </td>
-
-                  <td></td>
-                  <td></td>
-
-                </tr>    
-                <tr>
-                  <td>{{Label.getContent('Local Convenience Advertising')}}</td>
                   <td>
                     <p class="text-right">{{retailerDecisionHistory[0].localAdvertising[1].toFixed(2)}}</p>
                   </td>
 
-                  <td></td>
-                  <td></td>
-                </tr>                  
+                  <td>
+                    <p class="padding-20">{{Label.getContent('Local Convenience Perception')}}</p>
+                  </td>
+                  <td>
+                    <p class="text-right">???</p>
+                  </td>
+                </tr>   
+                <!--               
                 <tr>
                   <td>{{Label.getContent('Local Assortment Advertising')}}</td>
                   <td>
@@ -74,16 +53,57 @@
 
                   <td></td>
                   <td></td>
-                </tr>                  
+                </tr> 
+                -->                 
                 <tr>
-                  <td>{{Label.getContent('Local Price Advertising')}}</td>
+                  <td>
+                    <p class="padding-20">{{Label.getContent('Local Price Advertising')}}</p>
+                  </td>
                   <td>
                     <p class="text-right">{{retailerDecisionHistory[0].localAdvertising[0].toFixed(2)}}</p>
+                  </td>
+
+                  <td>
+                    <p class="padding-20">{{Label.getContent('Local Price Perception')}}</p>
+                  </td>
+                  <td>
+                    <p class="text-right">???</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p class="padding-20">{{Label.getContent('In-store Service Level')}}</p>
+                  </td>
+                  <td>
+                    <p class="text-right">{{Label.getContent(retailerDecisionHistory[0].serviceLevel)}}</p>
                   </td>
 
                   <td></td>
                   <td></td>
                 </tr>                  
+                <tr>
+                  <td>
+                    <p class="padding-20">{{Label.getContent('Elecssories Selling surface')}}</p>
+                  </td>
+                  <td>
+                    <p class="text-right">{{retailerDecisionHistory[0].categorySurfaceShare[0]*100}}%</p>
+                  </td>
+
+                  <td></td>
+                  <td></td>
+                </tr>                  
+                <tr>
+                  <td>
+                    <p class="padding-20">{{Label.getContent('HealthBeauty Selling surface')}}</p>
+                  </td>
+                  <td>
+                    <p class="text-right">{{retailerDecisionHistory[0].categorySurfaceShare[1]*100}}%</p>
+                  </td>
+
+                  <td></td>
+                  <td></td>
+
+                </tr>                      
               </tbody>        
             </table>
           </div>

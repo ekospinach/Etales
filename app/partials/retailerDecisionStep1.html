@@ -23,24 +23,30 @@
             <table class="table table-condensed table-bordered">
               <thead>
                 <tr>
-                  <td colspan="2" class="col-md-6">{{Label.getContent('Previous period')}} ({{currentPeriod-1}})</td>
+                  <td colspan="2" class="col-md-6">{{Label.getContent('Previous period Investment')}} ({{currentPeriod-1}})</td>
 
-                  <td colspan="2" class="col-md-6">{{Label.getContent('Current period')}} ({{currentPeriod}})</td>
+                  <td colspan="2" class="col-md-6">{{Label.getContent('Current period Investment Achieved Perception')}} ({{currentPeriod}})</td>
                 </tr>                  
               </thead>
               <tbody>
                 <tr>
                   <!--<td ng-show="false">Web-trawler strength index</td>-->
-                  <td>{{Label.getContent('Convenience Off-line')}}</td>
+                  <td>
+                    <p class="padding-20">{{Label.getContent('Convenience Off-line')}}</p>
+                  </td>
                   <td>
                     <p class="text-right">{{retailerDecisionHistory.tradtionalAdvertising[1]}}</p>
                   </td>
 
-                  <td></td>
-                  <td></td>
+                  <td>
+                    <p class="padding-20">{{Label.getContent('Convenience Perception')}}</p>
+                  </td>
+                  <td>
+                    <p class="text-right">???</p>
+                  </td>
                 </tr>
-                <tr>
-                  <!--<td ng-show="false">Web-trawler sentiment index</td>-->
+                <!--<tr>
+                  <td ng-show="false">Web-trawler sentiment index</td>
                   <td>{{Label.getContent('Assortment Off-line')}}</td>
                   <td>
                     <p class="text-right">{{retailerDecisionHistory.tradtionalAdvertising[2]}}</p>
@@ -48,18 +54,11 @@
                   
                   <td></td>                  
                   <td></td>
-                </tr>
+                </tr>-->
                 <tr>
-                  <td>{{Label.getContent('Price Off-line')}}</td>
                   <td>
-                    <p class="text-right">{{retailerDecisionHistory.tradtionalAdvertising[0]}}</p>
+                    <p class="padding-20">{{Label.getContent('Convenience On-line')}}</p>
                   </td>
-
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>{{Label.getContent('Convenience On-line')}}</td>
                   <td>
                     <p class="text-right">{{retailerDecisionHistory.onlineAdvertising[1]}}</p>
                   </td>
@@ -68,6 +67,22 @@
                   <td></td>
                 </tr>
                 <tr>
+                  <td>
+                    <p class="padding-20">{{Label.getContent('Price Off-line')}}</p>
+                  </td>
+                  <td>
+                    <p class="text-right">{{retailerDecisionHistory.tradtionalAdvertising[0]}}</p>
+                  </td>
+
+                  <td>
+                    <p class="padding-20">{{Label.getContent('Price Perception')}}</p>
+                  </td>
+                  <td>
+                    <p class="text-right">???</p>
+                  </td>
+                </tr>
+                
+                <!--<tr>
                   <td>{{Label.getContent('Assortment On-line')}}</td>
                   <td>
                     <p class="text-right">{{retailerDecisionHistory.onlineAdvertising[2]}}</p>
@@ -75,9 +90,11 @@
 
                   <td></td>
                   <td></td>
-                </tr>                
+                </tr>-->                
                 <tr>
-                  <td>{{Label.getContent('Price On-line')}}</td>
+                  <td>
+                    <p class="padding-20">{{Label.getContent('Price On-line')}}</p>
+                  </td>
                   <td>
                     <p class="text-right">{{retailerDecisionHistory.onlineAdvertising[0]}}</p>
                   </td>
