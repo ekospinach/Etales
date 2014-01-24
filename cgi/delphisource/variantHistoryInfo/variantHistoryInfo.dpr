@@ -29,7 +29,7 @@ uses
   {$ELSE}
     Windows,
   {$ENDIF}
-  Classes, superobject, HCD_SystemDefinitions, System.TypInfo;
+  Classes, superobject, HCD_SystemDefinitions, System.TypInfo, inifiles;
 
 {$I 'ET0_Common_Constants.INC'}
 {$I 'ET0_Common_Types.INC'}
@@ -39,7 +39,6 @@ uses
 const
   DecisionFileName = 'Negotiations.';
   dummyNo = 0;
-  DataDirectory = 'C:\E-project\ecgi\';
   dummySeminar = 'MAY';
   aCategories : array[TCategories] of string = ('Elecsories', 'HealthBeauties');
   aMarkets : array[TMarketsTotal] of string = ('Urban', 'Rural', 'Total');
@@ -56,6 +55,7 @@ var
    currentPeriod : TPeriodNumber;
    currentSeminar : string;
    vReadRes : Integer;
+   DataDirectory : string;
 
    oJsonFile : ISuperObject;
    sFile  : string;
@@ -214,7 +214,7 @@ var
       partOne := 'Retailer ';
       partNum := IntToStr(getRetailer);
       seminar := getSeminar;
-      Result := DataDirectory + partOne + partNum + DecisionFileName + dummySeminar;
+      Result := DataDirectory + partOne + partNum + DecisionFileName + seminar;
     end;
 
    function getJson(): ISuperObject;
@@ -569,7 +569,22 @@ var
     end;
 
 
+
+  procedure LoadConfigIni();
+  var
+  ini : Tinifile;
+  begin
+    ini := TIniFile.Create(ExtractFilePath(ParamStr(0)) + 'CgiConfig.ini');
+    with ini do
+    begin
+      DataDirectory := ini.ReadString('Options','DataDirectory','C:\E-project\ecgi\');
+      DataDirectory := DataDirectory + getSeminar + '\';
+      ini.Free;
+    end;
+  end;
+
 begin
+
     SetMultiByteConversionCodePage(CP_UTF8);
     sDati := '';
     sListData := TStringList.Create;
@@ -615,6 +630,7 @@ begin
 
         sValue := getVariable('QUERY_STRING');
         Explode(sValue, sListData);
+         LoadConfigIni();
 //        WriteLn('<H4>Values passed in mode <i>get http</i> :</H4>'+sDati);
 //        for i:= 0 to sListData.Count-1 do
 //           WriteLn(DecodeUrl(sListData[i])+'<BR>');

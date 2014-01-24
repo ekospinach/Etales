@@ -16,7 +16,19 @@ var seminarSchema = mongoose.Schema({
 	isInitialise : {type:Boolean, default:false}, //when user login, need check this value
 	producers : [producerSchema],
 	retailers : [retailerSchema],
-	facilitator : [facilitatorSchema]
+	facilitator : [facilitatorSchema],
+
+    simulationSpan : Number,
+    traceActive : Boolean,
+    traditionalTradeActive : Boolean,
+    EMallActive : Boolean,
+    virtualSupplierActive : Boolean,
+    independentMarkets : Boolean,
+    forceNextDecisionsOverwrite : Boolean,
+	market1ID : Number,
+	market2ID : Number,
+	category1ID : Number,
+	category2ID : Number
 })
 
 var producerSchema = mongoose.Schema({
@@ -203,7 +215,7 @@ exports.addSeminar=function(req,res,next){
 		seminarDescription: req.body.seminarDescription,
 		seminarDate: Date.now(),
 		currentPeriod:req.body.currentPeriod,
-		isInitialise:true,
+		isInitialise: false,
 		producers : [{
 			producerID : 1,
 			password : "110",
@@ -301,14 +313,26 @@ exports.addSeminar=function(req,res,next){
 		facilitator : [{
 			facilitatorDescription : "Help you",
 			password : "310"
-		}]
+		}],
+	    simulationSpan : 6,
+	    traceActive : true,
+	    traditionalTradeActive : false,
+	    EMallActive : false,
+	    virtualSupplierActive : false,
+	    independentMarkets : false,
+	    forceNextDecisionsOverwrite : false,
+		market1ID : 1,
+		market2ID : 2,
+		category1ID : 1,
+		category2ID : 2		
 	});
+
 	Newseminar.save(function(err) {
 		if(!err){
 			res.send(200,Newseminar);
 			console.log("created new seminar:"+Newseminar);
 		} else {
-			res.send(400,err);
+			res.send(400,"Seminar code has existed in the list, validation failed.");
 		}
 	});
 }

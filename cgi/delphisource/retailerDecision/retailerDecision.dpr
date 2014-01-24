@@ -29,7 +29,7 @@ uses
   {$ELSE}
     Windows,
   {$ENDIF}
-  Classes, superobject, HCD_SystemDefinitions, System.TypInfo;
+  Classes, superobject, HCD_SystemDefinitions, System.TypInfo, inifiles;
 
 {$I 'ET0_Common_Constants.INC'}
 {$I 'ET0_Common_Types.INC'}
@@ -39,7 +39,7 @@ uses
 const
   DecisionFileName = ' Decisions.';
   dummyNo = 1;
-  DataDirectory = 'C:\E-project\ecgi\';
+
   dummySeminar = 'ROUND1';
   aCategories : array[TCategories] of string = ('Elecsories', 'HealthBeauties');
   aMarkets : array[TMarketsTotal] of string = ('Urban', 'Rural', 'Total');
@@ -52,6 +52,7 @@ var
    sValue : string;
    iSize : integer;
 
+   DataDirectory : string;
    currentDecision : TRetDecision;
 //	 prevDecision : TRetDecision;
    currentPeriod : TPeriodNumber;
@@ -216,7 +217,7 @@ var
       partOne := 'Retailer ';
       partNum := IntToStr(getRetailer);
       seminar := getSeminar;
-      Result := DataDirectory + partOne + partNum + DecisionFileName + dummySeminar;
+      Result := DataDirectory + partOne + partNum + DecisionFileName + seminar;
     end;
 
    function getJson(): ISuperObject;
@@ -704,170 +705,104 @@ var
         translateMarket(jo.A['retMarketDecision'].O[cat - 1], currentDecision.dr_Markets[cat]);
     end;
 
-begin
-    SetMultiByteConversionCodePage(CP_UTF8);
-    sDati := '';
-    sListData := TStringList.Create;
-    sListData.Clear;
 
+  procedure LoadConfigIni(vseminar : string);
+  var
+  ini : Tinifile;
+  begin
+    ini := TIniFile.Create(ExtractFilePath(ParamStr(0)) + 'CgiConfig.ini');
+    with ini do
+    begin
+      DataDirectory := ini.ReadString('Options','DataDirectory','C:\E-project\ecgi\');
+      DataDirectory := DataDirectory + vseminar + '\';
+      ini.Free;
+    end;
+  end;
+
+begin
+  SetMultiByteConversionCodePage(CP_UTF8);
+  sDati := '';
+  sListData := TStringList.Create;
+  sListData.Clear;
   try
 
     WriteLn('Content-type: application/json');
     Writeln;
-
-//    WriteLn('Content-type: text/html; charset=UTF-8');
-//    WriteLn;
-//   WriteLn('<HTML>');
-//    WriteLn('<HEAD>');
-//    WriteLn('<TITLE>CGI Example!</TITLE>');
-//    WriteLn('</HEAD>');
-//   WriteLn('<BODY bgcolor="#FFFBDB">');
-//    WriteLn('<H2>CGI developed with');
-//
-//    {$IFDEF FPC}
-//       WriteLn('Freepascal');
-//    {$ELSE}
-//      {$IFDEF LINUX}
-//        WriteLn('Kylix');
-//      {$ELSE}
-//        WriteLn('Delphi');
-//      {$ENDIF}
-//    {$ENDIF}
-//
-//    WriteLn('</H2>');
-
     sValue := getVariable('REQUEST_METHOD');
+    // GET
+    //         .../producerDecision?period=x&seminar=xxx&producerID=x
+    //I would expect to get JSON single record which is defined in Schema attached,
+    //this should be coming from the translation result of related binary file.
     if sValue='GET' then
       begin
-        // GET
-//         .../producerDecision?period=x&seminar=xxx&producerID=x
-//I would expect to get JSON single record which is defined in Schema attached,
-//this should be coming from the translation result of related binary file.
+
         sValue := getVariable('QUERY_STRING');
         Explode(sValue, sListData);
-//        WriteLn('<H4>Values passed in mode <i>get http</i> :</H4>'+sDati);
-//        for i:= 0 to sListData.Count-1 do
-//           WriteLn(DecodeUrl(sListData[i])+'<BR>');
-
-    // initialize globals
+        // initialize globals
         currentSeminar := getSeminar;
         currentPeriod := getPeriod;
         currentRetailer := getRetailer;
-    {** Read results file **}
+        {** Read results file **}
+        //generate dataDirectory depends on seminar
+        LoadConfigIni(currentSeminar);
         vReadRes := ReadRetdecisionRecord(currentPeriod,currentRetailer,
           currentDecision,DataDirectory,currentSeminar); // read Decision file
 
-    // Now let's make some JSON stuff here
+        // Now let's make some JSON stuff here
         if vReadRes = 0 then
           makeJson;
       end
     else
-      // POST
-//.../producerDecision
-//I would put a JSON data for single record in the POST request content,
-//it would be great if you can translate and write it into related binary files
-//and return a status code 200 if everything goes well on server side,
-//return 500 if something goes wrong
+    // POST
+    //.../producerDecision
+    //I would put a JSON data for single record in the POST request content,
+    //it would be great if you can translate and write it into related binary files
+    //and return a status code 200 if everything goes well on server side,
+    //return 500 if something goes wrong
+    begin
+      sValue := trim(getVariable('CONTENT_LENGTH'));
+      if (sValue<>'') then
       begin
-        sValue := trim(getVariable('CONTENT_LENGTH'));
+        iSize := strtoint(sValue);
+        SetLength(sDati,iSize);
 
-//        WriteLn('<H4>Values passed in mode <i>post http</i> :</H4>');
-//        WriteLn('Data Length: '+sValue+'<BR><BR>');
-//        Writeln;
-        if (sValue<>'') then
-        begin
-          iSize := strtoint(sValue);
-          SetLength(sDati,iSize);
+        bUpload := false;
+        sValue := getVariable('HTTP_CONTENT_TYPE');
+        if (Trim(sValue)<>'') and (Trim(sValue) <> 'application/x-www-form-urlencoded') then
+            bUpload := true; // There is an attached file
+            // We my use this mechanism if we want to, i.e. reading JSON
 
-          bUpload := false;
-          sValue := getVariable('HTTP_CONTENT_TYPE');
-          if (Trim(sValue)<>'') and (Trim(sValue) <> 'application/x-www-form-urlencoded') then
-              bUpload := true; // There is an attached file
-              // We my use this mechanism if we want to, i.e. reading JSON
+        for i:=1 to iSize do
+          Read(sDati[i]);
 
-          for i:=1 to iSize do
-            Read(sDati[i]);
+        if bUpload then
+          sListData.Add(sDati)
+        else
+          Explode(sDati, sListData);
 
-          if bUpload then
-            sListData.Add(sDati)
-          else
-            Explode(sDati, sListData);
-
-//          for i:= 0 to sListData.Count-1 do
-//            WriteLn(sListData[i]+'<BR>');  // This is where request contents sit
-            // You may start request parameters here
-
-      // initialize globals
+        // initialize globals
         // read JSON data from post field
-          oJsonFile := getJson;
+        oJsonFile := getJson;
         // these work only if JSON is correct, that is it keeps them
-          currentSeminar := oJsonFile.S['seminar'];
-          currentPeriod := oJsonFile.I['period'];
-          currentRetailer := oJsonFile.I['retailerID'];
+        currentSeminar := oJsonFile.S['seminar'];
+        currentPeriod := oJsonFile.I['period'];
+        currentRetailer := oJsonFile.I['retailerID'];
 
-//          Writeln(oJsonFile.AsString);
-//          Writeln('currentRetailer : ' + IntToStr(currentRetailer));
-//          Writeln('currentPeriod : ' + IntToStr(currentPeriod));
-//          Writeln('currentSeminar : ' + currentSeminar);
+        // now we have process JSON and convert it into binary stucture
+        translateJson(oJsonFile,currentDecision);
+        oJsonFile.SaveTo('out.json', true, false);
+        //geenerate dataDirectory based on seminar
+        LoadConfigIni(currentSeminar);
+        Writeln('dataDirectory:' + DataDirectory);
+        // write tranlated JSON to binary file
+        vReadRes := WriteRetdecisionRecord(currentPeriod,currentRetailer,
+        currentDecision,DataDirectory,currentSeminar); // update Decision file
 
+        // shake hands
+        Writeln('Status : 200 OK');
 
-      // now we have process JSON and convert it into binary stucture
-          translateJson(oJsonFile,currentDecision);
-
-//          writeln( oJsonFile.AsJSon(False,False));
-          oJsonFile.SaveTo('out.json', true, false);
-
-      // write tranlated JSON to binary file
-          vReadRes := WriteRetdecisionRecord(currentPeriod,currentRetailer,
-            currentDecision,DataDirectory,currentSeminar); // update Decision file
-
-      // shake hands
-          Writeln('Status : 200 OK');
-
-        end;
       end;
-    // List of environment variables
-//    WriteAllEnvironVariables;
-
-
-//    // initialize globals
-//        currentSeminar := getSeminar;
-//        currentPeriod := 0;
-//        currentRetailer := getRetailer;
-//          oJsonFile := SO;
-//          oJsonFile := tsuperobject.ParseString('{"test" : "yes"}', TRUE);
-//          Writeln(oJsonFile.AsString);
-//          sFile := 'C:\json_out.txt';
-//          Writeln(sFile);
-//          oJsonFile := TSuperObject.ParseFile(sFile,TRUE);
-//          Writeln(oJsonFile.AsString);
-//
-//          currentSeminar := oJsonFile.S['seminar'];
-//          currentPeriod := oJsonFile.I['period'];
-//          currentRetailer := oJsonFile.I['retailerID'];
-//
-//          Writeln('currentRetailer : ' + IntToStr(currentRetailer));
-//          Writeln('currentPeriod : ' + IntToStr(currentPeriod));
-//          Writeln('currentSeminar : ' + currentSeminar);
-//
-//      // now we have process JSON and convert it into binary stucture
-//          translateJson(oJsonFile,currentDecision);
-//
-//          writeln(currentdecision.dr_RetailerID);
-//
-////
-//    {** Read results file **}
-//        vReadRes := ReadRetdecisionRecord(currentPeriod,currentRetailer,
-//          currentDecision,DataDirectory,currentSeminar); // read Decision file
-
-//    // Now let's make some JSON stuff here
-//        if vReadRes = 0 then
-//        writeln('debug');
-//         makeJson;
-
-//    writeln(#10'press enter ...');
-//    readln;
-//    WriteLn('</BODY></HTML>');
+    end;
   finally
     sListData.Free;
   end;

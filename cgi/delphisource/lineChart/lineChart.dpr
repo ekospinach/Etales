@@ -29,7 +29,7 @@ uses
   {$ELSE}
     Windows,
   {$ENDIF}
-  Classes, superobject, HCD_SystemDefinitions;
+  Classes, superobject, HCD_SystemDefinitions, iniFiles;
 
 {$I 'ET0_Common_Constants.INC'}
 {$I 'ET0_Common_Types.INC'}
@@ -38,7 +38,7 @@ uses
 const
   ResultsFileName = 'Results.';
   PerNo = 1;
-  DatDir = 'C:\E-project\ecgi\';
+
   //had to remove this to test @ Linux
   //DatDir = '';
   dummySeminar = 'MAY';
@@ -99,6 +99,7 @@ var
    bUpload: boolean;
    sValue : string;
    iSize : integer;
+    DatDir : string;
 
    currentResult : TAllResults;
 //	 prevResult : TAllResults;
@@ -222,7 +223,7 @@ var
 
     function getFileName(): AnsiString;
     begin
-      Result := DatDir + 'Results' +'.' + dummySeminar;
+      Result := DatDir + 'Results' +'.' + currentSeminar;
       if sListData.IndexOfName('filepath') <> -1 then
         Result := DecodeUrl(sListData.Values['filepath']);
     end;
@@ -684,7 +685,21 @@ var
       writeln(oJsonFile.AsJSon(False,False));
     end;
 
+  procedure LoadConfigIni();
+  var
+  ini : Tinifile;
+  begin
+    ini := TIniFile.Create(ExtractFilePath(ParamStr(0)) + 'CgiConfig.ini');
+    with ini do
+    begin
+      DatDir := ini.ReadString('Options','DataDirectory','C:\E-project\ecgi\');
+      DatDir := DatDir  + getSeminar + '\';
+      ini.Free;
+    end;
+  end;
+
 begin
+
     SetMultiByteConversionCodePage(CP_UTF8);
     sDati := '';
     sListData := TStringList.Create;
@@ -729,6 +744,7 @@ begin
 
         sValue := getVariable('QUERY_STRING');
         Explode(sValue, sListData);
+        LoadConfigIni();
         // initialize globals
         currentSeminar := getSeminar;
         currentPeriod := getPeriod;

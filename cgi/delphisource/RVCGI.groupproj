@@ -39,6 +39,15 @@
 			<Projects Include="negotiationDecision\negotiationDecision.dproj">
 				<Dependencies/>
 			</Projects>
+			<Projects Include="operating\initialize.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="operating\kernel.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="operating\passive.dproj">
+				<Dependencies/>
+			</Projects>
 		</ItemGroup>
 		<ProjectExtensions>
 			<Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -155,14 +164,41 @@
 		<Target Name="negotiationDecision:Make">
 			<MSBuild Projects="negotiationDecision\negotiationDecision.dproj" Targets="Make"/>
 		</Target>
+		<Target Name="initialize">
+			<MSBuild Projects="operating\initialize.dproj"/>
+		</Target>
+		<Target Name="initialize:Clean">
+			<MSBuild Projects="operating\initialize.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="initialize:Make">
+			<MSBuild Projects="operating\initialize.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="kernel">
+			<MSBuild Projects="operating\kernel.dproj"/>
+		</Target>
+		<Target Name="kernel:Clean">
+			<MSBuild Projects="operating\kernel.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="kernel:Make">
+			<MSBuild Projects="operating\kernel.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="passive">
+			<MSBuild Projects="operating\passive.dproj"/>
+		</Target>
+		<Target Name="passive:Clean">
+			<MSBuild Projects="operating\passive.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="passive:Make">
+			<MSBuild Projects="operating\passive.dproj" Targets="Make"/>
+		</Target>
 		<Target Name="Build">
-			<CallTarget Targets="marketReport;lineChart;perceptionMap;finReport;volReport;producerDecision;retailerDecision;variantHistoryInfo;companyHistoryInfo;brandHistoryInfo;quarterHistoryInfo;negotiationDecision"/>
+			<CallTarget Targets="marketReport;lineChart;perceptionMap;finReport;volReport;producerDecision;retailerDecision;variantHistoryInfo;companyHistoryInfo;brandHistoryInfo;quarterHistoryInfo;negotiationDecision;initialize;kernel;passive"/>
 		</Target>
 		<Target Name="Clean">
-			<CallTarget Targets="marketReport:Clean;lineChart:Clean;perceptionMap:Clean;finReport:Clean;volReport:Clean;producerDecision:Clean;retailerDecision:Clean;variantHistoryInfo:Clean;companyHistoryInfo:Clean;brandHistoryInfo:Clean;quarterHistoryInfo:Clean;negotiationDecision:Clean"/>
+			<CallTarget Targets="marketReport:Clean;lineChart:Clean;perceptionMap:Clean;finReport:Clean;volReport:Clean;producerDecision:Clean;retailerDecision:Clean;variantHistoryInfo:Clean;companyHistoryInfo:Clean;brandHistoryInfo:Clean;quarterHistoryInfo:Clean;negotiationDecision:Clean;initialize:Clean;kernel:Clean;passive:Clean"/>
 		</Target>
 		<Target Name="Make">
-			<CallTarget Targets="marketReport:Make;lineChart:Make;perceptionMap:Make;finReport:Make;volReport:Make;producerDecision:Make;retailerDecision:Make;variantHistoryInfo:Make;companyHistoryInfo:Make;brandHistoryInfo:Make;quarterHistoryInfo:Make;negotiationDecision:Make"/>
+			<CallTarget Targets="marketReport:Make;lineChart:Make;perceptionMap:Make;finReport:Make;volReport:Make;producerDecision:Make;retailerDecision:Make;variantHistoryInfo:Make;companyHistoryInfo:Make;brandHistoryInfo:Make;quarterHistoryInfo:Make;negotiationDecision:Make;initialize:Make;kernel:Make;passive:Make"/>
 		</Target>
 		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
 	</Project>

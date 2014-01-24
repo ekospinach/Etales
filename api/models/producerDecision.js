@@ -86,7 +86,7 @@ exports.exportToBinary = function(options){
                                 if(!doc) {
                                     deferred.reject({msg: 'Export to binary, cannot find matched doc. ' + 'producerID:' + options.producerID + '/seminar:' + options.seminar + '/period:' + options.period});
                                 } else {        
-                                    console.log(JSON.stringify(doc));
+                                    //console.log(JSON.stringify(doc));
                                     request.post('http://' + options.cgiHost + ':' + options.cgiPort + options.cgiPath, {form: {jsonData: JSON.stringify(doc)}}, function(error, response){
                                         console.log('status:' + response.status);
                                         console.log('body:' + response.body);

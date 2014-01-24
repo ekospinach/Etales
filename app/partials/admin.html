@@ -1,76 +1,52 @@
-<div id="content" class="bs-header">
-    <div class="container">
-        <h1>Admin</h1>
-        <p>We deliver a highly disruptive and transformational experiential learning model on a global scale !</p>
-    </div>
-</div>
-<div class="bs-old-docs">
-    <div class="container">
-        <strong>
-            Traditional learning models are broken.
-        </strong>
-    </div>
-</div>
 <div class="container bs-docs-container">
     <div class="row">
         <div class="col-lg-12">
-        	<div class="bs-docs-section">
-        		<h3>Generate New Seminar</h3>
-        		<form role="form">
-        			<div class="form-group">
-        				<label for="seminarCode">Seminar Code</label>
-        				<div style="clear:both"></div>
-        				<div class="col-xs-4">
-        				 	<input type="text" placeholder="Seminar Code" ng-model='seminarCode' class="form-control">
-        	        	</div>
-        	        	<div style="clear:both"></div>
-        	        </div>
-        			<div class="form-group">
-        				<label for="seminarDescription">Seminar Description</label>
-        				<div style="clear:both"></div>
-        				<div class="col-xs-4">
-        					<input type="text" placeholder="Seminar Description" ng-model='seminarDescription' class="form-control">
-        				</div>
-        				<div style="clear:both"></div>
-        			</div>
-        			<button class="btn btn-default" ng-click="addSeminar()">Submit</button>
-        		</form>
-        		<div class="{{bubleClassName}}" ng-show='true'>
-        			<strong>{{bubleTitle}}</strong>{{bubleMsg}}
-        		</div>	
+        	<div class="bs-docs-section">				
+				<div class="page-header">
+					<h3>Seminar list
+						<small>
+						 	click <button class="btn btn-primary btn-sm" ng-click="openNewSeminarModal()">New</button> to add seminar into list
 
-        		<h3>Seminar Code List</h3>
-        		<div class="col-xs-3 pull-right">
-        			<input type="text" class="form-control pull-right" ng-model="query" placeholder="Search...">
-        		</div>
-        		<table class="table table-striped">
+							<input type="text" class="pull-right" ng-model="query" placeholder="Search...">						 	
+						</small>
+					</h3>
+				</div>        		
+
+				<div class="{{bubleClassName}}" ng-show='true'>
+				<strong>{{bubleTitle}}</strong>{{bubleMsg}}
+				</div>	
+
+        		<table class="table table-hover table-bordered table-condensed">
 					<thead>
 						<tr>
-							<th>Seminar</th>
-							<th>currentPeriod</th>
-							<th>description</th>
-							<th>Status</th>
+							<th>Seminar code/description</th>
+							<th>Current period/span</th>
+							<th>TraditionalTrade/ EMall/ VirtualSupplier</th>
 							<th></th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr data-ng-repeat="seminar in seminars | filter:query | limitTo:20">
+						<tr data-ng-repeat="seminar in seminars | filter:query | limitTo:50">
 							<td>
-								{{ seminar.seminarCode }}
+								{{ seminar.seminarCode }} ({{ seminar.seminarDescription}})
 							</td>
 							<td>
-								{{ seminar.currentPeriod}}
-							</td>
-							<td>
-								{{ seminar.seminarDescription}}
+								{{ seminar.currentPeriod}} / {{ seminar.simulationSpan}}
 							</td>
 							<td>
 								<h4>
-									<span data-ng-class="{&quot;label-warning&quot;: seminar.isInitialise == true, &quot;label-success&quot;: seminar.isInitialise == false}" class="label">{{ getSeminarStatus(seminar.isInitialise) }}</span>
+									<span data-ng-class="{&quot;label-success&quot;: seminar.traditionalTradeActive == true, &quot;label-danger&quot;: seminar.traditionalTradeActive == false}" class="label">{{ getSeminarStatus(seminar.traditionalTradeActive) }}</span>
+
+									<span data-ng-class="{&quot;label-success&quot;: seminar.EMallActive == true, &quot;label-danger&quot;: seminar.EMallActive == false}" class="label">{{ getSeminarStatus(seminar.EMallActive) }}</span>
+									
+									<span data-ng-class="{&quot;label-success&quot;: seminar.virtualSupplierActive == true, &quot;label-danger&quot;: seminar.virtualSupplierActive == false}" class="label">{{ getSeminarStatus(seminar.virtualSupplierActive) }}</span>
+
 								</h4>
 							</td>
 							<td>
-								<button class="btn btn-primary btn-sm" ng-click="openSeminarModal(seminar)">Select</button>
+								<button class="btn btn-primary btn-sm" ng-click="openSeminarModal(seminar)">Details</button>
+								<button class="btn btn-default btn-sm" ng-click="openSeminarModal(seminar)">Backup</button>
+								<button class="btn btn-default btn-sm" ng-click="openSeminarModal(seminar)">Delete</button>																
 							</td>
 						</tr>
 					</tbody>
@@ -79,7 +55,45 @@
         </div>
     </div>
 </div>
-<!--modal-->
+<!--model : generate new seminar -->
+<div modal="newSeminarModal" class="hide" close="closeNewSeminarModal()" options="seminarOpts" style="width:800px">
+
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeSeminarModal()">&times;</button>
+					<h4 class="modal-title">New seminar</h4>
+				</div>
+				<div class="modal-body">
+				<form role="form">
+					<div class="form-group">
+						<label for="seminarCode">Seminar Code</label>
+						<div style="clear:both"></div>
+						<div class="col-xs-4">
+						 	<input type="text" placeholder="Seminar Code" ng-model='seminarCode' class="form-control">
+				    	</div>
+				    	<div style="clear:both"></div>
+				    </div>
+					<div class="form-group">
+						<label for="seminarDescription">Seminar Description</label>
+						<div style="clear:both"></div>
+						<div class="col-xs-4">
+							<input type="text" placeholder="Seminar Description" ng-model='seminarDescription' class="form-control">
+						</div>
+						<div style="clear:both"></div>
+					</div>				
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-default" ng-click="addSeminar()">Submit</button>
+				</form>						
+					<a class="btn btn-default" ng-click="closeNewSeminarModal()">Close</a>
+				</div>
+			</div>
+		</div>
+</div>
+
+
+<!--modal -->
 	<div modal="seminarModal" class="hide" close="closeSeminarModal()" options="seminarOpts" style="width:800px">
 		<div class="modal-dialog">
 			<div class="modal-content">

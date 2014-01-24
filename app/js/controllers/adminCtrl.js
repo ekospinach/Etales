@@ -18,8 +18,8 @@ define(['app','socketIO'], function(app) {
 		showView();
 		$scope.showView=showView;
 		$scope.getSeminarStatus = function(status){
-			if (status) return 'Finish'; 
-			else return 'Undo';
+			if (status) return 'Active'; 
+			else return 'Closed';
 		}
 
 		$scope.addSeminar=function(){
@@ -32,18 +32,21 @@ define(['app','socketIO'], function(app) {
 			$http({method: 'POST', url: '/addSeminar',data:data}).success(function(data, status, headers, config) {
 				showbubleMsg('Save new seminar successfully',2);
 				$scope.seminars.push(data);
+				$scope.newSeminarModal=false;
+
 			}).error(function(data, status, headers, config) {
 				showbubleMsg('Insert failure, ' + data,1);
+				$scope.newSeminarModal=false;
 			});
 		}
 
-		$scope.openSeminarModal=function(seminar){
-			$scope.selectSeminar=seminar;
-			$scope.seminarModal=true;
+		$scope.openNewSeminarModal=function(seminar){
+//			$scope.selectSeminar=seminar;
+			$scope.newSeminarModal=true;
 		}
 
-		$scope.closeSeminarModal=function(){
-			$scope.seminarModal=false;
+		$scope.closeNewSeminarModal=function(){
+			$scope.newSeminarModal=false;
 		}
 
 		$scope.seminarOpts = {
@@ -84,15 +87,15 @@ define(['app','socketIO'], function(app) {
 	 		switch(status){
 	 			case 1: 
 	 				$scope.bubleClassName = 'alert alert-danger'; 
-	 				$scope.bubleTitle = 'Error!';
+	 				$scope.bubleTitle = 'Error ';
 	 				break;
 	 			case 2: 
 	 				$scope.bubleClassName = 'alert alert-success'; 
-	 				$scope.bubleTitle = 'Success!';
+	 				$scope.bubleTitle = 'Success ';
 	 				break;
 	 			case 3:
 	 				$scope.bubleClassName = 'alert alert-block'; 
-	 				$scope.bubleTitle = 'Warning!';
+	 				$scope.bubleTitle = 'Warning ';
 	 				break;	 			
 	 			default:
 	 			 $scope.bubleClassName = 'alert'; 
