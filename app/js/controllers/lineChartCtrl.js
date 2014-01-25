@@ -22,6 +22,16 @@ define(['app','socketIO','routingConfig'], function(app) {
 			$scope.seminar=seminar;
 			$scope.period=period;
 
+			if(period>$rootScope.rootStartFrom){
+				$scope.previousBtn=true;
+			}else{
+				$scope.previousBtn=false;
+			}
+			if(period<$rootScope.rootEndWith){
+				$scope.nextBtn=true;
+			}else{
+				$scope.nextBtn=false;
+			}				
 			var url='/lineChart?seminar='+seminar+'&groupTitleENG='+groupTitle+'&period='+period;
 		    $scope.showGroupENG=groupTitle.replace('as %25 of','as % of');
 		    $scope.realGroupENG=groupTitle.replace('as % of','as %25 of');
@@ -75,13 +85,15 @@ define(['app','socketIO','routingConfig'], function(app) {
 				    		data[j].color=rColors[j];
 				    	}
 			    	}
+			    	console.log($scope.chartCollection.data.rows);
+			    	for(var k=0;k<4;k++){
+			    		data[k].data=new Array();
+			    	}
 			    	for(var j=0;j<$scope.chartCollection.data.rows.length;j++){
 			    		categories.push($scope.chartCollection.data.rows[j].c[0].v);
-			    		data[j].data=new Array();
-			    		data[j].data.push(parseInt($scope.chartCollection.data.rows[0].c[j+1].v));
-			    		data[j].data.push(parseInt($scope.chartCollection.data.rows[1].c[j+1].v));
-			    		data[j].data.push(parseInt($scope.chartCollection.data.rows[2].c[j+1].v));
-			    		data[j].data.push(parseInt($scope.chartCollection.data.rows[3].c[j+1].v));
+			    		for(var k=0;k<4;k++){
+			    			data[k].data.push(parseInt($scope.chartCollection.data.rows[j].c[k+1].v));
+			    		}			    		
 			    	}
 			    	excelData.name=Title;
 			    	excelData.data=new Array();
@@ -94,11 +106,13 @@ define(['app','socketIO','routingConfig'], function(app) {
 			    	for(var j=0;j<$scope.chartCollection.data.rows.length;j++){
 			    		excelData.data[0].push($scope.chartCollection.data.rows[j].c[0].v);
 			    	}
+
+			    	
+
 			    	for(var j=0;j<$scope.chartCollection.data.rows.length;j++){
-			    		excelData.data[j+1].push(parseInt($scope.chartCollection.data.rows[0].c[j+1].v));
-			    		excelData.data[j+1].push(parseInt($scope.chartCollection.data.rows[1].c[j+1].v));
-			    		excelData.data[j+1].push(parseInt($scope.chartCollection.data.rows[2].c[j+1].v));
-			    		excelData.data[j+1].push(parseInt($scope.chartCollection.data.rows[3].c[j+1].v));
+			    		for(var k=0;k<4;k++){
+			    			excelData.data[k+1].push(parseInt($scope.chartCollection.data.rows[j].c[k+1].v));
+			    		}
 			    	}
 			    	exlcelCharts[i].worksheets=excelData;
 
@@ -111,6 +125,11 @@ define(['app','socketIO','routingConfig'], function(app) {
 				        	categories:categories,
 				        	title:{
 				        		text:'Period'
+				        	}
+				        },
+				        yAxis:{
+				        	title:{
+				        		text:''
 				        	}
 				        },
 				        credits: {
@@ -151,8 +170,8 @@ define(['app','socketIO','routingConfig'], function(app) {
 	    	})
 	    }
 
-	    //old linechart
-	   	// var showLineChart=function(cat,market,role,language){
+	    // //old linechart
+	   	// var showLineChart2=function(cat,market,role,language){
 	    // 	$scope.cat=cat;
 	    // 	$scope.market=market;
 	    // 	$scope.role=role;
@@ -168,6 +187,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 		   //  	});
 		   //  	charts[i].data=$scope.chartCollection.data;
 		   //  	title=Label.getContent($scope.chartdata.chartSetCollection[i].titleENG);
+		   //  	console.log($scope.chartCollection.data.rows);
 		   //  	for(var j=0;j<$scope.chartCollection.data.cols.length;j++)
 		   //  	{
 		   //  		$scope.chartCollection.data.cols[j].label=Label.getContent($scope.chartCollection.data.cols[j].labelENG);
@@ -225,6 +245,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 			$scope.language=Label.getCurrentLanguage();
 
 		    $scope.showLineChart=showLineChart;//("HealthBeauties","Rural","Producer");
+		    //$scope.showLineChart2=showLineChart2;
 		    $scope.getLineChart=getLineChart;	
 		    $scope.exportExcel=exportExcel;    	
 

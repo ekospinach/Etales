@@ -394,6 +394,7 @@ var getLabelBase = function(){
 		{id:'Cancel',  ENG:'Cancel',  CHN:'取消',  RUS:''},	
 		{id:'Current period',  ENG:'Current period',  CHN:'当前阶段',  RUS:''},
 		{id:'Previous period',  ENG:'Previous period',  CHN:'上一阶段',  RUS:''},
+		{id:'Next period',  ENG:'Next period',  CHN:'下一阶段',  RUS:''},
 		
 		{id:'Current period Awareness achieve',  ENG:'Current period Awareness achieve',  CHN:'当前阶段收获',  RUS:''},
 		{id:'Current period Investment Achieved Perception',  ENG:'Current period Investment Achieved Perception',  CHN:'当前投入收获感知',  RUS:''},

@@ -192,19 +192,7 @@ define(['angular','services'], function(angular, services) {
                             $(this).parent().addClass("active");
                         });
                     }
-                    /*
-                    return function(scope,elm,attrs){
-                        $(".bs-sidenav>li>a").click(function(){
-                            $(".bs-sidenav li").removeClass("active");
-                            $(this).parent().addClass("active");
-                        });
-                        $(".second-sidenav>li>a").click(function(){
-                            $(".second-sidenav li").removeClass("active");
-                            $(this).parent().addClass("active");
-                        });
-                    }*/
                 })
-                
                 .directive('accessLevel', ['$rootScope', 'Auth', function($rootScope, Auth) {
                     return {
                         restrict: 'A',
