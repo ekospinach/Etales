@@ -163,6 +163,24 @@ define(['angular','services'], function(angular, services) {
                         }
                     };
                 }])
+                .directive('navBootstrap',function(){
+                    return {
+                        restrict:'A',
+                        link:function(scope,element,attrs){
+                            $('.bs-sidenav li').click(function(){
+                                $(".bs-sidenav li").removeClass("active");
+                                $(this).addClass('active');
+                            });
+                            $('.second-sidenav li').click(function(){
+                                $('.second-sidenav li').removeClass("active");
+                                $(".bs-sidenav li").removeClass("active");
+                                $($($(this).parent()).parent()).addClass("active");
+                                $(this).addClass('active');
+                            })
+                        }
+
+                    }
+                })
                 .directive('angularBootstrap',function(){
                     return function(scope,elm,attrs){
                         $(".bs-sidenav>li>a").click(function(){
@@ -174,6 +192,17 @@ define(['angular','services'], function(angular, services) {
                             $(this).parent().addClass("active");
                         });
                     }
+                    /*
+                    return function(scope,elm,attrs){
+                        $(".bs-sidenav>li>a").click(function(){
+                            $(".bs-sidenav li").removeClass("active");
+                            $(this).parent().addClass("active");
+                        });
+                        $(".second-sidenav>li>a").click(function(){
+                            $(".second-sidenav li").removeClass("active");
+                            $(this).parent().addClass("active");
+                        });
+                    }*/
                 })
                 
                 .directive('accessLevel', ['$rootScope', 'Auth', function($rootScope, Auth) {
