@@ -14,6 +14,16 @@ define(['app','socketIO','routingConfig'], function(app) {
 	    	$rootScope.mapPeriod=period;
 	    	$scope.brandHistorys=new Array();
 	    	var url="/brandHistoryInfo/"+seminar+'/'+(period-1);
+	    	if(period>$rootScope.rootStartFrom){
+				$scope.previousBtn=true;
+			}else{
+				$scope.previousBtn=false;
+			}
+			if(period<$rootScope.rootEndWith){
+				$scope.nextBtn=true;
+			}else{
+				$scope.nextBtn=false;
+			}	
 	    	$http({
 	    		method:'GET',
 	    		url:url
