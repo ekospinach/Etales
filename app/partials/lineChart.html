@@ -39,7 +39,8 @@
 				</ul>
 				<h4 class="pull-left"><span class="label label-warning">{{Label.getContent(cat)}}</span></h4>
 				<h4 class="pull-left" style="margin-left:10px"><span class="label label-success">{{Label.getContent(market)}}</span></h4>
-				<h4 class="pull-left" style="margin-left:10px"><span class="label label-info">{{Label.getContent('Period')}}:{{period}}</span></h4>
+				<!--
+				<h4 class="pull-left" style="margin-left:10px"><span class="label label-info">{{Label.getContent('Period')}}:{{period}}</span></h4>-->
 				<!--
 				<h4 class="pull-left" style="margin-left:10px"><span class="label label-danger" ng-show="isRoleChangeBtnShow">{{role}}</span></h4>-->
 				<div style="clear:both"></div>
@@ -63,11 +64,13 @@
 				    <li><a ng-click="showLineChart(cat,'Total',role,language)">{{Label.getContent('Total')}}</a></li>
 				  </ul>
 				</div>
+				<!--
 				<div style="padding:4px 0;clear:both"></div>
-				<div>
+				<div ng-show="false">
 					<button type="button" class="btn btn-danger" ng-click="getLineChart(seminar,realGroupENG,period-1)" ng-disabled="!previousBtn">{{Label.getContent('Previous period')}}</button>
 					<button type="button" ng-click="getLineChart(seminar,realGroupENG,period+1)" class="btn btn-danger" ng-disabled="!nextBtn">{{Label.getContent('Next period')}}</button>
 				</div>
+			-->
 		    </div>
 		</div>
 		<!--
