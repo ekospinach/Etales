@@ -1,12 +1,13 @@
 <div id="content" class="bs-header">
     <div class="container">
-        <h1>{{Label.getContent('Step 2 of 4')}} {{Label.getContent('Market')}}</h1>
+        <h1>{{Label.getContent('Step 2 of 4')}}</h1>
+        <h1>{{Label.getContent('Market')}}</h1>
         <p>{{Label.getContent('Market Info')}}</p>
     </div>
 </div>
 <div class="container bs-docs-container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-9">
       <div class="bs-docs-section">
         <div class="pull-right" style="width:40%">
           <progress percent="percentageExpend" class="progress active"></progress>
@@ -110,15 +111,14 @@
           <table class="table table-hover">
             <thead>
               <tr>
-                <th style="width:25%">{{Label.getContent('Market')}}</th>
-                <th ng-repeat='market in markets' style="width:25%">
+                <th>{{Label.getContent('Market')}}</th>
+                <th ng-repeat='market in markets'>
                   <div style="clear:both"></div>
                   <button type="button" class="btn btn-primary btn-xs pull-right" ng-click="getMarketMoreInfo(market.marketID)">{{Label.getContent('More')}}</button>
                   <p class="pull-right" style="margin-right:5px">
                     {{Label.getContent(market.marketName)}}
                   </p>
                 </th>
-                <th style="width:25%"></th>
               </tr>              
             </thead>
             <tbody>
@@ -131,8 +131,7 @@
                     <p class="text-right">{{ selectPacks(market.marketID) }}
                     </p>
                   </a>
-                </th>
-                <th></th>  
+                </th> 
               </tr>
               <tr>
                 <th>
@@ -143,8 +142,7 @@
                     <p class="text-right">{{ market.categorySurfaceShare[1] || 0 }}
                     </p>
                   </a>
-                </th>
-                <th></th>  
+                </th> 
               </tr>
               <tr>
                 <th>
@@ -155,8 +153,7 @@
                     <p class="text-right">{{ market.categorySurfaceShare[0] || 0 }}
                     </p>
                   </a>
-                </th>
-                <th></th>  
+                </th> 
               </tr>
               <tr>
                 <th>
@@ -167,8 +164,7 @@
                     <p class="text-right">{{ market.localAdvertising[1]|| 0 }}
                     </p>
                   </a>
-                </th>
-                <th></th>  
+                </th> 
               </tr>
               <tr>
                 <th>
@@ -179,8 +175,7 @@
                     <p class="text-right">{{ market.localAdvertising[2] || 0 }}
                     </p>
                   </a>
-                </th>
-                <th></th>  
+                </th> 
               </tr>
               <tr>
                 <th>
@@ -191,8 +186,7 @@
                     <p class="text-right">{{ market.localAdvertising[0] || 0 }}
                     </p>
                   </a>
-                </th>
-                <th></th>  
+                </th> 
               </tr>
               <tr ng-show="false">
                 <th>
@@ -203,8 +197,7 @@
                     <p class="text-right">{{ market.emptySpaceOptimised && Label.getContent('Allocate') || Label.getContent('No') }}
                     </p>
                   </a>
-                </th>
-                <th></th>              
+                </th>             
               </tr>
             </tbody>
           </table>

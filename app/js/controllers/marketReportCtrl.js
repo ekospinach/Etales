@@ -19,6 +19,17 @@ define(['app','socketIO','routingConfig'], function(app) {
 			$scope.titleENG=titleENG;
 			var url='/marketReport?seminar='+seminar+'&titleENG='+titleENG+'&period='+period;
 
+			if(period>$rootScope.rootStartFrom){
+				$scope.previousBtn=true;
+			}else{
+				$scope.previousBtn=false;
+			}
+			if(period<$rootScope.rootEndWith){
+				$scope.nextBtn=true;
+			}else{
+				$scope.nextBtn=false;
+			}
+
 			$http({method: 'GET', url: url}).
 			success(function(data, status, headers, config) {
 				myreport=data;

@@ -1,12 +1,13 @@
 <div id="content" class="bs-header">
     <div class="container">
-        <h1>{{Label.getContent('Step 1 of 4')}} {{Label.getContent('Advertising')}}</h1>
+        <h1>{{Label.getContent('Step 1 of 4')}}</h1>
+        <h1>{{Label.getContent('Advertising')}}</h1>
         <p>{{Label.getContent('Rteailer Advertising Info')}}</p>
     </div>
 </div>
 <div class="container bs-docs-container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-9">
       <div class="bs-docs-section">
         <div class="pull-right" style="width:40%">
           <progress percent="percentageExpend" class="progress active"></progress>
@@ -109,21 +110,18 @@
           <table class="table table-hover">
             <thead>
             <tr>
-              <th style="width:25%"></th>
-              <th style="width:25%"></th>
-              <th style="width:25%">
+              <th></th>
+              <th>
                 <div style="clear:both"></div>
                 <div class="pull-right">
                   <button type="button" class="btn btn-primary btn-xs" style="margin-left:5px" ng-click="getMoreInfo()">{{Label.getContent('More')}}</button>
                 </div>
                 <div style="clear:both"></div>
               </th>
-              <th style="width:25%"></th>
             </tr>              
             </thead>
             <tbody>              
               <tr>
-                <th style="width:25%"></th>
                 <th>
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Convenience Off-line Info')}}" popover-title="{{Label.getContent('Convenience Off-line')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Convenience Off-line')}}<span style="color:red">*</span></p>
                 </th>
@@ -133,10 +131,8 @@
                     </p>
                   </a>
                 </th>
-                <th style="width:25%"></th>
               </tr>
               <tr>
-                <th style="width:25%"></th>
                 <th>
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Convenience On-line Info')}}" popover-title="{{Label.getContent('Convenience On-line')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Convenience On-line')}}<span style="color:red">*</span></p>
                 </th>
@@ -145,10 +141,9 @@
                     <p class="text-right">{{ pageBase.onlineAdvertising[1]|| 0 }}</p>
                   </a>
                 </th>
-                <th style="width:25%"></th>
               </tr>
+              <!--
               <tr>
-                <th style="width:25%"></th>
                 <th>
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Assortment Off-line Info')}}" popover-title="{{Label.getContent('Assortment Off-line')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Assortment Off-line')}}<span style="color:red">*</span></p>
                 </th>
@@ -158,10 +153,8 @@
                     </p>
                   </a>
                 </th>
-                <th style="width:25%"></th>
               </tr>
               <tr>
-                <th style="width:25%"></th>
                 <th>
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Assortment On-line Info')}}" popover-title="{{Label.getContent('Assortment On-line')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Assortment On-line')}}<span style="color:red">*</span></p>
                 </th>
@@ -171,10 +164,8 @@
                     </p>
                   </a>
                 </th>
-                <th style="width:25%"></th>
-              </tr>
+              </tr>-->
               <tr>
-                <th style="width:25%"></th>
                 <th>
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Price Off-line Info')}}" popover-title="{{Label.getContent('Price Off-line')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Price Off-line')}}<span style="color:red">*</span></p>
                 </th>
@@ -184,10 +175,8 @@
                     </p>
                   </a>
                 </th>
-                <th style="width:25%"></th>
               </tr>
               <tr>
-                <th style="width:25%"></th>
                 <th>
                   <p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Price On-line Info')}}" popover-title="{{Label.getContent('Price On-line')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Price On-line')}}<span style="color:red">*</span></p>
                 </th>
@@ -196,7 +185,6 @@
                     <p class="text-right">{{ pageBase.onlineAdvertising[0] || 0 }}</p>
                   </a>
                 </th>
-                <th style="width:25%"></th>
               </tr>
             </tbody>
           </table>

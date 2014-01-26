@@ -1,13 +1,14 @@
 <div id="content" class="bs-header">
     <div class="container">
-        <h1>{{Label.getContent('Step 4 of 4')}} {{Label.getContent('Category Decision')}}</h1>
+        <h1>{{Label.getContent('Step 4 of 4')}}</h1>
+        <h1>{{Label.getContent('Category Decision')}}</h1>
         <p>{{Label.getContent('Category Decision Info')}}</p>
     </div>
 </div>
 
 <div class="container bs-docs-container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-9">
       <div class="bs-docs-section">
         <div collapse="isCollapsed" class="panel panel-info">
           <div class="panel-heading">{{Label.getContent(category)}}
@@ -81,7 +82,7 @@
                     <p class="padding-20">{{Label.getContent('improve Design Know-How')}}</p>
                   </td>
                   <td ng-show='isElecssories'>
-                    <p class="text-right">???</p>
+                    <p class="text-right">{{companyDecisionHistory.investInDesign.toFixed(2)}}</p>
                   </td>
 
                   <td ng-show='isElecssories'>
@@ -101,20 +102,19 @@
         <table class="table table-hover">
           <thead>
             <tr>
-                <th style="width:25%">{{Label.getContent('Category')}}</th>
-                <th style="width:25%">
+                <th>{{Label.getContent('Category')}}</th>
+                <th>
                   <div style="clear:both"></div>
                   <button type="button" class="btn btn-primary btn-xs pull-right" ng-click="getCategoryMoreInfo(1)">{{Label.getContent('More')}}</button>
                   <p class="pull-right" style="margin-right:5px">{{Label.getContent('Elecssories')}}</p>
                   <div style="clear:both"></div>
                 </th>
-                <th style="width:25%">
+                <th>
                   <div style="clear:both"></div>
                   <button type="button" class="btn btn-primary btn-xs pull-right" ng-click="getCategoryMoreInfo(2)">{{Label.getContent('More')}}</button>
                   <p class="pull-right" style="margin-right:5px">{{Label.getContent('HealthBeauty')}}</p>
                   <div style="clear:both"></div>
                 </th>
-                <th style="width:25%"></th>
             </tr>              
           </thead>
           <tbody>
@@ -127,7 +127,6 @@
                     <p class="text-right">{{ category.capacityChange || 0 }}</p>
                   </a>
                 </th>
-                <th></th>
               </tr>
               <tr>
                 <th>
@@ -139,7 +138,6 @@
                     </p>
                   </a>
                 </th>
-                <th></th>
               </tr>
               <tr>
                 <th>
@@ -152,7 +150,6 @@
                     </p>
                   </a>
                 </th>
-                <th></th>
               </tr>
               <tr>
                 <th>
@@ -164,7 +161,6 @@
                     </p>
                   </a>
                 </th>
-                <th></th>
                 <th></th>
               </tr>              
           </tbody>

@@ -26,6 +26,16 @@ define(['app','socketIO','routingConfig'], function(app) {
 		      $rootScope.finRetShow="";
 		    }
 
+			if(period>$rootScope.rootStartFrom){
+				$scope.previousBtn=true;
+			}else{
+				$scope.previousBtn=false;
+			}
+			if(period<$rootScope.rootEndWith){
+				$scope.nextBtn=true;
+			}else{
+				$scope.nextBtn=false;
+			}
 		    var url="";
 		    if(finTitleENG=="Prices per unit"){
 		      $scope.detail="Variant";
