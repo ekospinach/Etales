@@ -6,7 +6,6 @@
         files: [
           'server.js',
           'api/**/*.js',
-          'app/bower_components/*.js'
         ],
         tasks: ['develop'],
         options: { nospawn: true }
@@ -14,10 +13,11 @@
       //active livereload to refresh browser when anything changed in code 
       browserSide: {  
         files: [
-          'app/**/*.html',
+          'app/index.html',
+          'app/partials/*.html',
           'app/css/**/*.css',
           'app/js/**/*.js',
-          'app/img/**/*.{png,jpg,jpeg,gif,webp,svg}'        
+          'app/img/**/*.{png,jpg,jpeg,gif,webp,svg}',        
         ],
         options: { livereload: true }
       }
@@ -33,7 +33,7 @@
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-develop');
   grunt.registerTask('default', [
-    'develop',
-    'watch']);
+    'develop','watch']);
+  //'watch'
 };
 

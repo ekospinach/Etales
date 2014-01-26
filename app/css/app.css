@@ -208,3 +208,9 @@ table tr td p,table tr th p{
 .padding-40{
   padding-left: 40px;
 }
+.margin-0{
+  margin: 0px;
+}
+.margin-row-10{
+  margin: 10px 0;
+}
