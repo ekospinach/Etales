@@ -1,5 +1,3 @@
-require('newrelic');
-
 var path    = require('path'),
 
 mongoose = require('mongoose'),

@@ -5,7 +5,8 @@
       serverSide: {  
         files: [
           'server.js',
-          'api/**/*.js'
+          'api/**/*.js',
+          'app/bower_components/*.js'
         ],
         tasks: ['develop'],
         options: { nospawn: true }

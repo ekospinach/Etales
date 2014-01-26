@@ -25,13 +25,13 @@
     "bootstrap": "~3.0.0",
     "socket.io-client": "~0.9.16",
     "angular-resource": "~1.2.0-rc.3",
-    "angular-loading-bar": "~0.2.0",
+    "angular-loading-bar": "*",
     "jqplot": "*",
     "angular-google-chart": "~0.0.5",
     "requirejs-domready": "~2.0.1",
     "angular-placeholders": "*",
     "angular-animate": "~1.2.5",
-    "font-awesome": "3.2.1",
+    "font-awesome": "*",
     "highcharts-ng": "~0.0.3",
     "highcharts": "~3.0.7"
   }

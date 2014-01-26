@@ -76,6 +76,11 @@ define(['angular',
 			templateUrl:'partials/admin.html',
 			controller:'adminCtrl',
 			access : access.public			
+		}).when('/adminDetails',{
+			templateUrl:'partials/adminDetails.html',
+			controller:'adminDetailsCtrl',
+			access : access.public			
+
 		}).when('/map',{
 			controller: 'mapCtrl',
 			templateUrl:'partials/map.html',
