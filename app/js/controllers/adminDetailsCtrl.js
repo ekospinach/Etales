@@ -135,7 +135,6 @@ define(['app','socketIO'], function(app) {
 			$http({method:'POST', url:'/passiveSeminar', data:postData}).then(function(res){
 				$scope.isKernelMessageShown = true;
 				$scope.kernelMessage.push(res.data);		
-
 				$scope.isActive = true;
 			},function(res){
 				$scope.isKernelMessageShown = true;
@@ -187,7 +186,6 @@ define(['app','socketIO'], function(app) {
 		$scope.openRunModal = function(){
 			$scope.isRunConfirmInfoShown = true;
 		}
-
 
 		var showbubleMsg = function(content, status){
 	 		$scope.bubleMsg = ' ' + content;
