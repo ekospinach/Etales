@@ -11,15 +11,30 @@ exports.initialiseSeminar = function(io){
 			endWith: 1, 
 			cgiHost : conf.cgi.host, 
 			cgiPort : conf.cgi.port,			
-			cgiPath : conf.cgi.path_producerDecision, 
+			cgiPath : conf.cgi.path_initialize, 
+
+		    simulationSpan : req.body.simulationSpan,
+		    traceActive : req.body.traceActive,
+		    traditionalTradeActive : req.body.traditionalTradeActive,
+		    EMallActive : req.body.EMallActive,
+		    virtualSupplierActive : req.body.virtualSupplierActive,
+		    independentMarkets : req.body.independentMarkets,
+		    forceNextDecisionsOverwrite : req.body.forceNextDecisionsOverwrite,
+			market1ID : req.body.market1ID,
+			market2ID : req.body.market2ID,
+			category1ID : req.body.category1ID,
+			category2ID : req.body.category2ID			
 		}	
 		console.log('ini on the server');
 
 		//call Initialize on the server, callback		
-		//...		
-		//import Decisions and Negotiation(import function haven't ready now, by Hao 20131210)
-		require('./models/producerDecision.js').addProducerDecisions(options).then(function(result){
-            io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
+		require('./models/seminar.js').initializeSeminar(options).then(function(result){
+            io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });						
+			options.producerID = '1';
+			options.cgiPath = conf.cgi.path_producerDecision;
+			return require('./models/producerDecision.js').addProducerDecisions(options);
+		}).then(function(result){
+            io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });						
 			options.producerID = '2';			
 			return require('./models/producerDecision.js').addProducerDecisions(options);
 		}).then(function(result){
@@ -44,10 +59,12 @@ exports.initialiseSeminar = function(io){
             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
 			options.retailerID = '4';			
 			return require('./models/retailerDecision.js').addRetailerDecisions(options);	
+
+		//import function of negotiation hasn't been ready...
 		// }).then(function(result){
-  //           io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
-  //           options.cgiPath = conf.cgi.path_negotiationDecision;
-  //           console.log('outside:' + util.inspect(options));
+        //           io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
+        //           options.cgiPath = conf.cgi.path_negotiationDecision;
+        //           console.log('outside:' + util.inspect(options));
 		// 	return require('./models/allDeal.js').addDecisions(options);	
 
 		//import historyInformation		
@@ -94,28 +111,14 @@ exports.initialiseSeminar = function(io){
 
 		//deal with promises chain 						
 		}).then(function(result){ //log the success info
-            io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	
-            res.send(200, 'success');
+            //io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	
+            res.send(200, result.msg);
 		}, function(error){ //log the error
-			console.log(error.msg);
-            io.sockets.emit('AdminProcessLog', { msg: error.msg, isError: true });			
-            res.send(300, 'error');            
+            //io.sockets.emit('AdminProcessLog', { msg: error.msg, isError: true });			
+            res.send(404, error.msg);            
 		}, function(progress){ //log the progress
             io.sockets.emit('AdminProcessLog', { msg: progress.msg, isError: false });			
-		})
-	
-
-		//import negotiations...
-		//...		
-		//import reports and charts and historyInfo...
-		//...		
-	    // require('./models/marketReport.js').addMarketReports({cgiHost : conf.cgi.host, cgiPath : conf.cgi.path_marketReport, cgiPort : conf.cgi.port, seminar : req.body.seminar, startFrom: -3, endWith:0,}, socket);
-	    // require('./models/lineChart.js').addLineCharts({cgiHost : conf.cgi.host, cgiPath : conf.cgi.path_lineChart, cgiPort : conf.cgi.port, seminar : req.body.seminar, startFrom: -3, endWith:0,}, socket);
-	    // require('./models/perceptionMap.js').addPerceptionMaps({cgiHost : conf.cgi.host, cgiPath : conf.cgi.path_perceptionMap, cgiPort : conf.cgi.port, seminar : req.body.seminar, startFrom: -3, endWith:0,}, socket);
-	    // require('./models/finReport.js').addFinReports({cgiHost : conf.cgi.host, cgiPath : conf.cgi.path_finReport, cgiPort : conf.cgi.port, seminar : req.body.seminar, startFrom: -3, endWith:0,}, socket);
-	    // require('./models/volReport.js').addVolReports({cgiHost : conf.cgi.host, cgiPath : conf.cgi.path_volReport, cgiPort : conf.cgi.port, seminar : req.body.seminar, startFrom: -3, endWith:0,}, socket);	    
-
-
+		})	
 	}
 
 }

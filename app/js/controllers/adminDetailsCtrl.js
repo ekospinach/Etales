@@ -1,69 +1,42 @@
 define(['app','socketIO'], function(app) {
 
-	app.controller('adminDetailsCtrl',['$scope', '$http','$rootScope', function($scope, $http,$rootScope) {
-		// You can access the scope of the controller from here
+	app.controller('adminDetailsCtrl',['$scope', '$http','$rootScope','SeminarInfo', function($scope, $http,$rootScope, SeminarInfo) {
 		$rootScope.loginCss="";
 	    $rootScope.loginFooter="bs-footer";
 	    $rootScope.loginLink="footer-links";
 	    $rootScope.loginDiv="container";
 
-		$scope.welcomeMessage = 'hey this is adminCtrl.js!';
+		var socket = io.connect('http://localhost');
+		socket.on('AdminProcessLog', function(data){
+			$scope.isInitializeMessageShown = true;			
+			if(data.msg != ''){ $scope.initializeMessage.push(data.msg); }
+			
+		}).on('PassiveProcessLog', function(data){
+			$scope.isKernelMessageShown = true;
+			if(data.msg != ''){ $scope.kernelMessage.push(data.msg); }
+		}).on('KernelProcessLog', function(data){
+			$scope.isKernelMessageShown = true;
+			if(data.msg != ''){ $scope.kernelMessage.push(data.msg); }
+		});	        
 
-		var showView=function(){
-			$http.get('/seminarList').success(function(data){
-				$scope.seminars=data;
-			});
+		var initializePage=function(){
+			$scope.seminar = SeminarInfo.getSelectedSeminar();
+			$scope.isMessageShown = false;
+			console.log($scope.seminar);
 		}
-		showView();
-		$scope.showView=showView;
-		$scope.getSeminarStatus = function(status){
-			if (status) return 'Active'; 
-			else return 'Closed';
-		}
+		initializePage();
+	
+	    $scope.$watch('seminar.traceActive', function() {
+	      console.log('traceActive changeed.');
+	    });		
 
-		$scope.addSeminar=function(){
-			var data={
-				'seminarCode':$scope.seminarCode,
-				'seminarDescription':$scope.seminarDescription,
-				'currentPeriod':0,
-				//'seminarDate':
+		$scope.getSeminarStatus = function(value){
+			if(value){
+				return 'Ture';
+			} else {
+				return 'False (Please set related paramters below and initialise seminar)'
 			}
-			$http({method: 'POST', url: '/addSeminar',data:data}).success(function(data, status, headers, config) {
-				showbubleMsg('Save new seminar successfully',2);
-				$scope.seminars.push(data);
-				$scope.newSeminarModal=false;
-
-			}).error(function(data, status, headers, config) {
-				showbubleMsg('Insert failure, ' + data,1);
-				$scope.newSeminarModal=false;
-			});
 		}
-
-		$scope.openNewSeminarModal=function(seminar){
-//			$scope.selectSeminar=seminar;
-			$scope.newSeminarModal=true;
-		}
-
-		$scope.closeNewSeminarModal=function(){
-			$scope.newSeminarModal=false;
-		}
-
-		$scope.seminarOpts = {
-			backdropFade: true,
-			dialogFade:true
-		};
-
-		$scope.initialiseSeminar=function(seminarCode){
-			var postData={
-				seminar:seminarCode,
-			}
-			$http({method:'POST', url:'/initialiseSeminar', data: postData}).then(function(res){
-		  		console.log('testInitialise Success:' + res.data);
-		  	},function(res){
-		  		console.log('testInitialise Failed:' + res.data);
-		  	})		
-		}
-
 		$scope.updatePassword=function(seminar,location,additionalIdx){
 			var data={
 				seminarCode:seminar.seminarCode,
@@ -71,7 +44,9 @@ define(['app','socketIO'], function(app) {
 				additionalIdx:additionalIdx,
 				value:seminar[location][additionalIdx].password,
 				behaviour:'updatePassword'
+
 			}
+			console.log('post data:' + data);
 			$http({method: 'POST', url: '/updateSeminar',data:data}).
 			  success(function(data, status, headers, config) {
 			  	console.log('update success');
@@ -80,6 +55,139 @@ define(['app','socketIO'], function(app) {
 			  	console.log('update error');
 			  });
 		}
+
+		$scope.updateCurrentPeriod = function(seminar){
+			var data = {
+				seminarCode : seminar.seminarCode,
+				value : seminar.currentPeriod,
+				behaviour:'updateCurrentPeriod'
+			}
+			$http({method: 'POST', url: '/updateSeminar',data:data}).
+			  success(function(data, status, headers, config) {
+			  	console.log('update success');
+			  }).
+			  error(function(data, status, headers, config) {
+			  	console.log('update error');
+			  });			
+		}
+
+		$scope.Initialize =function(seminar){
+			$scope.isInitializeMessageShown = false;
+			$scope.initializeMessage = [];
+			$scope.isInitializeConfirmInfoShown = false;
+			$scope.isActive = false;
+			var postData = {
+				seminar : seminar.seminarCode,
+			    simulationSpan : seminar.simulationSpan,
+			    traceActive : seminar.traceActive,
+			    traditionalTradeActive : seminar.traditionalTradeActive,
+			    EMallActive : seminar.EMallActive,
+			    virtualSupplierActive : seminar.virtualSupplierActive,
+			    independentMarkets : seminar.independentMarkets,
+			    forceNextDecisionsOverwrite : seminar.forceNextDecisionsOverwrite,
+				market1ID : seminar.market1ID,
+				market2ID : seminar.market2ID,
+				category1ID : seminar.category1ID,
+				category2ID : seminar.category2ID			
+			}
+
+			$http({method:'POST', url:'/initialiseSeminar', data:postData}).then(function(res){
+				$scope.isInitializeMessageShown = true;	
+				$scope.initializeMessage.push(res.data);								
+
+				//if Initialize seminar successfully, set active of current period into TRUE
+				var newData = {
+					seminarCode : seminar.seminarCode,
+					value : true,
+					behaviour:'updateActived'
+				}										
+				$http({method: 'POST', url: '/updateSeminar',data:newData}).
+				  success(function(res) {
+				  	$scope.seminar.isInitialise = newData.value;
+					$scope.initializeMessage.push('Seminar ' + seminar.seminarCode + ' has been actived!');
+					$scope.isActive = true;
+				  }).
+				  error(function(res) {
+					$scope.initializeMessage.push('Active seminar ' + seminar.seminarCode + ' failed.');
+					$scope.isActive = true;					  	
+				  });						
+			},function(res){
+				$scope.isInitializeMessageShown = true;	
+				$scope.initializeMessage.push(res.data);								
+				$scope.isActive = true;				
+			})
+		}
+
+		$scope.openInitializeModal = function(){
+			$scope.isInitializeConfirmInfoShown = true;
+		}
+
+		$scope.passiveDecision = function(seminar, selectedPeriod){
+			$scope.isKernelMessageShown = false;
+			$scope.kernelMessage  = [];
+			$scope.isRunConfirmInfoShown = false;
+			$scope.isActive = false;
+
+			var postData = {
+				seminar : seminar.seminarCode,
+				period : selectedPeriod				
+			}
+			$http({method:'POST', url:'/passiveSeminar', data:postData}).then(function(res){
+				$scope.isKernelMessageShown = true;
+				$scope.kernelMessage.push(res.data);		
+
+				$scope.isActive = true;
+			},function(res){
+				$scope.isKernelMessageShown = true;
+				$scope.kernelMessage.push(res.data);				
+				$scope.isActive = true;				
+			})
+		}
+
+		$scope.Run =function(seminar, selectedPeriod){
+			$scope.isKernelMessageShown = false;
+			$scope.kernelMessage  = [];
+			$scope.isRunConfirmInfoShown = false;
+			$scope.isActive = false;
+
+			var postData = {
+				seminar  : seminar.seminarCode,
+				period : selectedPeriod,
+			}			
+			$http({method:'POST', url:'/runSeminar', data:postData}).then(function(res){
+				$scope.isKernelMessageShown = true;
+				$scope.kernelMessage.push(res.data);			
+
+				//if Run seminar successfully, current period need to be added by 1
+				if(selectedPeriod == seminar.currentPeriod){
+					var newData = {
+						seminarCode : seminar.seminarCode,
+						value : seminar.currentPeriod + 1,
+						behaviour:'updateCurrentPeriod'
+					}					
+					$http({method: 'POST', url: '/updateSeminar',data:newData}).
+					  success(function(res) {
+					  	$scope.seminar.currentPeriod = newData.value;
+						$scope.kernelMessage.push('current period has been modified into period ' + newData.value + ' !');
+						$scope.isActive = true;
+					  }).
+					  error(function(res) {
+						$scope.kernelMessage.push('current period modified failed ' + + ' !');
+						$scope.isActive = true;					  	
+					  });						
+				}
+
+			},function(res){
+				$scope.isKernelMessageShown = true;
+				$scope.kernelMessage.push(res.data);				
+				$scope.isActive = true;				
+			})
+		}
+
+		$scope.openRunModal = function(){
+			$scope.isRunConfirmInfoShown = true;
+		}
+
 
 		var showbubleMsg = function(content, status){
 	 		$scope.bubleMsg = ' ' + content;
@@ -93,8 +201,8 @@ define(['app','socketIO'], function(app) {
 	 				$scope.bubleTitle = 'Success ';
 	 				break;
 	 			case 3:
-	 				$scope.bubleClassName = 'alert alert-block'; 
-	 				$scope.bubleTitle = 'Warning ';
+	 				$scope.bubleClassName = 'alert alert-info'; 
+	 				$scope.bubleTitle = 'Info ';
 	 				break;	 			
 	 			default:
 	 			 $scope.bubleClassName = 'alert'; 
@@ -102,6 +210,7 @@ define(['app','socketIO'], function(app) {
 	 		console.log('infoBuble.show');
 	 		$scope.infoBuble = true;
 	 	};
+
 	}]);
 
 });

@@ -5,7 +5,7 @@ define(['angular','services'], function(angular, services) {
                         return function(scope, elm, attrs) {
                                 elm.text(version);
                         };
-                }])
+                }])        
                 .directive('btnLoading',function () {        
                         return {
                             link:function (scope, element, attrs) {
@@ -31,6 +31,7 @@ define(['angular','services'], function(angular, services) {
                                 );
                             }
                         };
+
                 })
 /*
                 .directive('tableExcel',function(){

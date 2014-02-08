@@ -20,6 +20,7 @@
 			angularXeditable: '../bower_components/angular-xeditable/dist/js/xeditable',
 			socketIO: '../bower_components/socket.io-client/dist/socket.io',
 			jquery:'../bower_components/jquery/jquery',
+			bootstrapswitch: '../bower_components/bootstrap-switch/build/js/bootstrap-switch',
 			require:'../bower_components/requirejs/require',
 			underscore:'../bower_components/underscore/underscore',
 			bootstrap:'../bower_components/bootstrap/dist/js/bootstrap',
@@ -37,12 +38,9 @@
 			domReady: '../bower_components/requirejs-domready/domReady',
 			labelBase: './utils/labelBase',
 			//highchart
-			/*
-			highchart:'./utils/highchart',
-			highcharts:'./utils/highcharts-ng',
-			*/
 			highchart:'../bower_components/highcharts/highcharts',
 			highcharts:'../bower_components/highcharts-ng/src/highcharts-ng',
+			angularBootstrapSwitch: '../bower_components/angular-bootstrap-switch/dist/angular-bootstrap-switch'
 			//export
 			//generatedata:'./jqxGrid/generatedata',
 			//jqxgrid:'./jqxGrid/jqxgrid'
@@ -67,7 +65,9 @@
 			'labelRenderer':['jqplot','jquery'],
 			'textRenderer':['jqplot','jquery'],
 			'tree':['jquery'],
-			'highcharts':['jquery','angular','highchart']
+			'highcharts':['jquery','angular','highchart'],
+			'bootstrapswitch' : ['jquery'],
+			'angularBootstrapSwitch':['angular','jquery','bootstrapswitch'],
 			},
 		priority: [
 			"angular"
@@ -92,7 +92,6 @@
 	};
 
 
-
 	require(['domReady'], function(domReady) {
 	    domReady(function() {
 	      //re-implement updateModuleProgress here for domReady
@@ -114,6 +113,7 @@
 	        	loadingStatusEl.innerHTML = loadingStatusEl.innerHTML += '.'; //add one more dot character
 	        	loadingModuleNameEl.innerHTML = map.name + (map.url ? ' at ' + map.url : '') ;
 	        } else {
+	        	
 	          //TODO later load, must have loading indicator for this then
 	        }
 	      };
@@ -127,6 +127,7 @@
 		'angular',
 		'app',
 		'routes',
+		'bootstrapswitch',
 	], function(angular, app, routes) {
 		'use strict';
 		var $html = angular.element(document.getElementsByTagName('html')[0]);

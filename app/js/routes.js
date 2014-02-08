@@ -13,6 +13,7 @@ define(['angular',
 		'controllers/contractDetailsCtrl',
 		'controllers/loginCtrl',
 		'controllers/adminCtrl',
+		'controllers/adminDetailsCtrl',
 		'controllers/homeCtrl',
 		'controllers/mapCtrl',
 		'controllers/marketReportCtrl',
@@ -72,6 +73,7 @@ define(['angular',
 			templateUrl:'partials/login.html',
 			controller:'loginCtrl',
 			access : access.public			
+
 		}).when('/admin',{
 			templateUrl:'partials/admin.html',
 			controller:'adminCtrl',

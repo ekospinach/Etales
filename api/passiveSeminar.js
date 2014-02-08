@@ -12,45 +12,63 @@ exports.passiveSeminar = function(io){
 		cgiHost : conf.cgi.host, 
 		cgiPort : conf.cgi.port,
 		cgiPath : conf.cgi.path_producerDecision,
-		startFrom: -3, 
-		endWith: 0
+		startFrom: req.body.period, 
+		endWith: req.body.period
 	}	
 
 	//export to binary, negotiations, P1/P2/P3, R1/R2
 	require('./models/producerDecision.js').exportToBinary(options).then(function(result){
-        io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
+        io.sockets.emit('PassiveProcessLog', { msg: result.msg, isError: false });			
 		options.producerID = '2';
 		return require('./models/producerDecision.js').exportToBinary(options);
 	}).then(function(result){
-        io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
+        io.sockets.emit('PassiveProcessLog', { msg: result.msg, isError: false });			
 		options.producerID = '3';
 		return require('./models/producerDecision.js').exportToBinary(options);
 	}).then(function(result){
-        io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
+        io.sockets.emit('PassiveProcessLog', { msg: result.msg, isError: false });			
 		options.retailerID = '1';
 		options.cgiPath = conf.cgi.path_retailerDecision;
 		return require('./models/retailerDecision.js').exportToBinary(options);
 	}).then(function(result){
-        io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
+        io.sockets.emit('PassiveProcessLog', { msg: result.msg, isError: false });			
 		options.retailerID = '2';
 		return require('./models/retailerDecision.js').exportToBinary(options);
 	}).then(function(result){
-        io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
+        io.sockets.emit('PassiveProcessLog', { msg: result.msg, isError: false });			
     	options.cgiPath = conf.cgi.path_negotiationDecision;
 		return require('./models/allDeal.js').exportToBinary(options);
-
-	//call passive module on the server, callback...
-	//...		
-	//if callback true, import P4 and R3/R4
-	//...
 	}).then(function(result){
-        io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			
+        io.sockets.emit('PassiveProcessLog', { msg: result.msg, isError: false });			
+		
+	//call passive module on the server, callback...
+        options.cgiPath = conf.cgi.path_passive;
+        return require('./models/seminar.js').passiveSeminar(options);
+	}).then(function(result){
+        io.sockets.emit('PassiveProcessLog', { msg: result.msg, isError: false });			
+
+	//if callback true, import P4 and R3/R4		
+        options.producerID = 4;
+        options.cgiPath = conf.cgi.path_producerDecision;
+        return require('./models/producerDecision.js').addProducerDecisions(options);        
+	}).then(function(result){
+        io.sockets.emit('PassiveProcessLog', { msg: result.msg, isError: false });			
+		options.retailerID = '3';	
+		options.cgiPath = conf.cgi.path_retailerDecision;
+		return require('./models/retailerDecision.js').addRetailerDecisions(options);			
+	}).then(function(result){
+        io.sockets.emit('PassiveProcessLog', { msg: result.msg, isError: false });			
+		options.retailerID = '4';			
+		return require('./models/retailerDecision.js').addRetailerDecisions(options);			
+
+	}).then(function(result){
+        io.sockets.emit('PassiveProcessLog', { msg: result.msg, isError: false });			
 		res.send(200, 'complete');	
 	}, function(error){ //log the error
-        io.sockets.emit('AdminProcessLog', { msg: error.msg, isError: true });			
+        io.sockets.emit('PassiveProcessLog', { msg: error.msg, isError: true });			
         res.send(300, 'error');            
 	}, function(progress){ //log the progress
-        io.sockets.emit('AdminProcessLog', { msg: progress.msg, isError: false });			
+        io.sockets.emit('PassiveProcessLog', { msg: progress.msg, isError: false });			
 	})
 	
 	}

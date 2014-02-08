@@ -18,6 +18,7 @@ define([
 	'textRenderer',
 	'tree',
 	'highcharts',
+	'angularBootstrapSwitch'
 	], function (angular, filters, services,directives,bootstrap, controllers) {
 		'use strict';
 		return angular.module('myApp', [
@@ -31,6 +32,7 @@ define([
 			'chieffancypants.loadingBar',
 			'ngCookies',
 			'highcharts-ng',
+			'frapontillo.bootstrap-switch'	
 		]).run(function(editableOptions){
 			editableOptions.theme = 'bs3';
 		}).run(['$rootScope', '$location','Auth','$http', function ($rootScope, $location, Auth, $http) {		    

@@ -60,6 +60,7 @@ app.post('/updateContractDetails',require('./api/models/contract.js').updateCont
 
 //add Seminar
 app.post('/addSeminar',require('./api/models/seminar.js').addSeminar);
+app.post('/duplicateSeminar', require('./api/models/seminar.js').duplicateSeminar);
 app.post('/setCurrentPeriod', require('./api/models/seminar.js').setCurrentPeriod);
 
 app.get('/producerDecision/:producerID/:period/:seminar',require('./api/models/producerDecision.js').getAllProducerDecision);

@@ -84,6 +84,20 @@ define(['angular',
 		}
 	})
 
+	services.factory('SeminarInfo', function(){
+		var selectedSeminar;
+		return {
+			getSelectedSeminar : function(){
+				console.log('services get:' + selectedSeminar);
+				return selectedSeminar;
+			},
+			setSelectedSeminar : function(value){
+				selectedSeminar = value;
+				console.log('services set seminar: ' + selectedSeminar);
+			}		
+		}
+	})
+
 	services.factory('Auth', function($http, $rootScope, $cookieStore){
 	    var accessLevels = routingConfig.accessLevels
 	        , userRoles = routingConfig.userRoles;

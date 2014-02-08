@@ -8,6 +8,7 @@
 		<link rel="stylesheet" type="text/css" href="/bower_components/jqplot/jquery.jqplot.min.css">
 		<link rel="stylesheet" type="text/css" href="/bower_components/angular-loading-bar/src/loading-bar.css">
 		<link rel="stylesheet" type="text/css" href="/bower_components/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="/bower_components/bootstrap-switch/build/css/bootstrap3/bootstrap-switch.css">
 		<link rel="stylesheet" type="text/css" media="all" href="css/app.css" />
 		<link rel="stylesheet" type="text/css" media="all" href="css/docs.css" />
 	</head>
@@ -22,7 +23,6 @@
 						<li class="active" access-level='{{accessLevels.public}}' active-nav>
 							<a href="/#/home">{{Label.getContent('Participant manual')}}</a>
 						</li>
-
 						<li class="{{rootShow}}" access-level='{{accessLevels.playerView}}' artive-nav>
 							<a href="/#/map">{{Label.getContent('Perception Map')}}</a>
 						</li>
@@ -103,7 +103,5 @@
 	    	</div>
 	    </div>
 	    <script data-main="js/main" src="/bower_components/requirejs/require.js"></script>
-	    <script type="text/javascript" src="js/google/jsapi.js"></script>
-	    <script type="text/javascript" src="js/google/google.js"></script>
 	</body>
 </html>

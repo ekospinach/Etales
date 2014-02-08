@@ -3,10 +3,10 @@ define(['app','socketIO','routingConfig'], function(app) {
 	app.controller('marketReportCtrl',['$scope', '$http', 'ProducerDecisionBase','$rootScope','Auth','Label', function($scope, $http, ProducerDecisionBase,$rootScope,Auth,Label) {
 		// You can access the scope of the controller from here
 
-			$rootScope.loginCss="";
-		    $rootScope.loginFooter="bs-footer";
-		    $rootScope.loginLink="footer-links";
-		    $rootScope.loginDiv="container";
+		$rootScope.loginCss="";
+	    $rootScope.loginFooter="bs-footer";
+	    $rootScope.loginLink="footer-links";
+	    $rootScope.loginDiv="container";
 		    		
 		var myreport=myfinreport="";
 		$scope.myreport=myreport;

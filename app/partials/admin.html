@@ -5,11 +5,12 @@
 				<div class="page-header">
 					<h3>Seminar list
 						<small>
-						 	click <button class="btn btn-primary btn-sm" ng-click="openNewSeminarModal()">New</button> to add seminar into list
-
-							<input type="text" class="pull-right" ng-model="query" placeholder="Search...">						 	
+						 	click <button class="btn btn-default btn-sm" ng-click="openNewSeminarModal()">New</button> to add seminar into list
+							<div class="form-group pull-right">
+							    <input type="text" class="form-control pull-right"  ng-model="query" placeholder="Search">
+							</div>									 	
 						</small>
-					</h3>
+					</h3>			
 				</div>        		
 
 				<div class="{{bubleClassName}}" ng-show='true'>
@@ -19,33 +20,26 @@
         		<table class="table table-hover table-bordered table-condensed">
 					<thead>
 						<tr>
-							<th>Seminar code/description</th>
+							<th>Seminar code</th>
+							<th>Description</th>
 							<th>Current period/span</th>
-							<th>TraditionalTrade/ EMall/ VirtualSupplier</th>
 							<th></th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr data-ng-repeat="seminar in seminars | filter:query | limitTo:50">
 							<td>
-								{{ seminar.seminarCode }} ({{ seminar.seminarDescription}})
+								{{ seminar.seminarCode }} 
+							</td>
+							<td>
+								{{ seminar.seminarDescription}}		
 							</td>
 							<td>
 								{{ seminar.currentPeriod}} / {{ seminar.simulationSpan}}
 							</td>
 							<td>
-								<h4>
-									<span data-ng-class="{&quot;label-success&quot;: seminar.traditionalTradeActive == true, &quot;label-danger&quot;: seminar.traditionalTradeActive == false}" class="label">{{ getSeminarStatus(seminar.traditionalTradeActive) }}</span>
-
-									<span data-ng-class="{&quot;label-success&quot;: seminar.EMallActive == true, &quot;label-danger&quot;: seminar.EMallActive == false}" class="label">{{ getSeminarStatus(seminar.EMallActive) }}</span>
-									
-									<span data-ng-class="{&quot;label-success&quot;: seminar.virtualSupplierActive == true, &quot;label-danger&quot;: seminar.virtualSupplierActive == false}" class="label">{{ getSeminarStatus(seminar.virtualSupplierActive) }}</span>
-
-								</h4>
-							</td>
-							<td>
-								<button class="btn btn-primary btn-sm" ng-click="openSeminarModal(seminar)">Details</button>
-								<button class="btn btn-default btn-sm" ng-click="openSeminarModal(seminar)">Backup</button>
+								<button class="btn btn-primary btn-sm" ng-click="checkSeminarDetails(seminar)">Details</button>
+								<button class="btn btn-default btn-sm" ng-click="openDuplicateSeminarModal(seminar)">Backup</button>
 								<button class="btn btn-default btn-sm" ng-click="openSeminarModal(seminar)">Delete</button>																
 							</td>
 						</tr>
@@ -55,6 +49,7 @@
         </div>
     </div>
 </div>
+
 <!--model : generate new seminar -->
 <div modal="newSeminarModal" class="hide" close="closeNewSeminarModal()" options="seminarOpts" style="width:800px">
 
@@ -67,110 +62,62 @@
 				<div class="modal-body">
 				<form role="form">
 					<div class="form-group">
-						<label for="seminarCode">Seminar Code</label>
-						<div style="clear:both"></div>
-						<div class="col-xs-4">
+						<label>Seminar Code</label>
+						<div>
 						 	<input type="text" placeholder="Seminar Code" ng-model='seminarCode' class="form-control">
 				    	</div>
-				    	<div style="clear:both"></div>
 				    </div>
 					<div class="form-group">
-						<label for="seminarDescription">Seminar Description</label>
-						<div style="clear:both"></div>
-						<div class="col-xs-4">
+						<label>Seminar Description</label>
+						<div>
 							<input type="text" placeholder="Seminar Description" ng-model='seminarDescription' class="form-control">
 						</div>
-						<div style="clear:both"></div>
 					</div>				
 				</div>
 				<div class="modal-footer">
-					<button class="btn btn-default" ng-click="addSeminar()">Submit</button>
-				</form>						
 					<a class="btn btn-default" ng-click="closeNewSeminarModal()">Close</a>
+					<button class="btn btn-primary" ng-click="addSeminar()">Submit</button>
+				</form>						
+				</div>
+			</div>
+		</div>
+</div>
+
+<!--model : duplicate seminar -->
+<div modal="duplicateSeminarModal" class="hide" close="closeDuplicateSeminarModal()" options="seminarOpts" style="width:800px">
+
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeSeminarModal()">&times;</button>
+					<h4 class="modal-title">Duplicate seminar</h4>
+				</div>
+				<div class="modal-body">
+				<form role="form">
+					<div class="form-group">
+						<label>Original seminar Code : {{originalSeminarCode}} </label> 
+				    </div>					
+					<div class="form-group">
+						<label>New seminar Code</label>
+						<div>
+						 	<input type="text" placeholder="New seminar code" ng-model='targetSeminarCode' class="form-control">
+				    	</div>
+				    </div>
+					<div class="form-group">
+						<label>New seminar Description</label>
+						<div>
+							<input type="text" placeholder="New seminar description" ng-model='targetSeminarDescription' class="form-control">
+						</div>
+					</div>				
+				</div>
+				<div class="modal-footer">
+					<a class="btn btn-default" ng-click="closeDuplicateSeminarModal()">Close</a>
+					<button class="btn btn-primary" ng-click="duplicateSeminar()">Submit</button>
+				</form>						
 				</div>
 			</div>
 		</div>
 </div>
 
 
-<!--modal -->
-	<div modal="seminarModal" class="hide" close="closeSeminarModal()" options="seminarOpts" style="width:800px">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeSeminarModal()">&times;</button>
-					<h4 class="modal-title">Seminar : {{selectSeminar.seminarCode}}</h4>
-				</div>
-				<div class="modal-body">
-					<tabset>
-						<tab heading="Operation" class="tab-pane">
-							<p>
-								<a class="btn btn-success" ng-click="initialiseSeminar(selectSeminar.seminarCode)">Initialise</a>
-							</p>
-							<p>
-								<div class="col-xs-3">
-									<select class="form-control" ng-model="userRole">
-										<option value="1">Period 1</option>
-										<option value="2">Period 2</option>
-										<option value="3">Period 3</option>
-									</select>
-								</div>
-								<a class="btn btn-warning" style="margin-left:20px">Run</a>
-							</p>
-						</tab>
-						<tab heading="Edit">
-							<p>Producer 1 Password:
-								<a href="#" editable-text="selectSeminar.producers[0].password" onaftersave="updatePassword(selectSeminar,'producers',0)">
-									{{ selectSeminar.producers[0].password || 'empty' }}
-								</a>
-							</p>
-							<p>Producer 2 Password:
-								<a href="#" editable-text="selectSeminar.producers[1].password" onaftersave="updatePassword(selectSeminar,'producers',1)">
-									{{ selectSeminar.producers[1].password || 'empty' }}
-								</a>
-							</p>
-							<p>Producer 3 Password:
-								<a href="#" editable-text="selectSeminar.producers[2].password" onaftersave="updatePassword(selectSeminar,'producers',2)">
-									{{ selectSeminar.producers[2].password || 'empty' }}
-								</a>
-							</p>
-							<p>Producer 4 Password:
-								<a href="#" editable-text="selectSeminar.producers[3].password" onaftersave="updatePassword(selectSeminar,'producers',3)">
-									{{ selectSeminar.producers[3].password || 'empty' }}
-								</a>
-							</p>
-							<p>Retailer 1 Password:
-								<a href="#" editable-text="selectSeminar.retailers[0].password" onaftersave="updatePassword(selectSeminar,'retailers',0)">
-									{{ selectSeminar.retailers[0].password || 'empty' }}
-								</a>
-							</p>
-							<p>Retailer 2 Password:
-								<a href="#" editable-text="selectSeminar.retailers[1].password" onaftersave="updatePassword(selectSeminar,'retailers',1)">
-									{{ selectSeminar.retailers[1].password || 'empty' }}
-								</a>
-							</p>
-							<p>Retailer 3 Password:
-								<a href="#" editable-text="selectSeminar.retailers[2].password" onaftersave="updatePassword(selectSeminar,'retailers',2)">
-									{{ selectSeminar.retailers[2].password || 'empty' }}
-								</a>
-							</p>
-							<p>Retailer 4 Password:
-								<a href="#" editable-text="selectSeminar.retailers[3].password" onaftersave="updatePassword(selectSeminar,'retailers',3)">
-									{{ selectSeminar.retailers[3].password || 'empty' }}
-								</a>
-							</p>
-							<p>Facilitator Password:
-								<a href="#" editable-text="selectSeminar.facilitator[0].password" onaftersave="updatePassword(selectSeminar,'facilitator',0)">
-									{{ selectSeminar.facilitator[0].password || 'empty' }}
-								</a>
-							</p>
-						</tab>
-					</tabset>
-				</div>
-				<div class="modal-footer">
-					<a class="btn btn-default" ng-click="closeSeminarModal()">Close</a>
-				</div>
-			</div>
-		</div>
-	</div>
 

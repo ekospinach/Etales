@@ -18,6 +18,10 @@ module.exports = function(){
 				  path_companyHistoryInfo : '/cgi-bin/companyHistoryInfo.exe',
 				  path_quarterHistoryInfo : '/cgi-bin/quarterHistoryInfo.exe',
 
+				  path_initialize : '/cgi-bin/initialize.exe',
+				  path_passive : '/cgi-bin/passive.exe',
+				  path_kernel : '/cgi-bin/kernel.exe',
+
    			  	  uploadFileAbsDir : '&filepath=\\\\vmware-host\\Shared%20Folders\\ludwikOnMac\\Code\\Actived\\Etales-result-viewer\\upload\\'
 				},
 				server : {
@@ -41,6 +45,11 @@ module.exports = function(){
 				  path_variantHistoryInfo : '/cgi-bin/variantHistoryInfo.exe',
 				  path_companyHistoryInfo : '/cgi-bin/companyHistoryInfo.exe',
 				  path_quarterHistoryInfo : '/cgi-bin/quarterHistoryInfo.exe',
+
+				  path_initialize : '/cgi-bin/initialize.exe',
+				  path_passive : '/cgi-bin/passive.exe',
+				  path_kernel : '/cgi-bin/kernel.exe',
+
 				},
 				server : {
 				  port : 80
@@ -63,7 +72,11 @@ module.exports = function(){
 				  path_variantHistoryInfo : '/cgi-bin/variantHistoryInfo.exe',
 				  path_companyHistoryInfo : '/cgi-bin/companyHistoryInfo.exe',
 				  path_quarterHistoryInfo : '/cgi-bin/quarterHistoryInfo.exe',
-				  uploadFileAbsDir : ''
+				  uploadFileAbsDir : '',
+
+				  path_initialize : '/cgi-bin/initialize.exe',
+				  path_passive : '/cgi-bin/passive.exe',
+				  path_kernel : '/cgi-bin/kernel.exe',				  
 				},
 				server : {
 				  port : 8000

@@ -1,22 +1,24 @@
 define(['app','socketIO'], function(app) {
 
-	app.controller('adminCtrl',['$scope', '$http','$rootScope', function($scope, $http,$rootScope) {
-		// You can access the scope of the controller from here
+	app.controller('adminCtrl',['$scope', '$http','$rootScope','SeminarInfo','$location', function($scope, $http,$rootScope, SeminarInfo, $location) {
+		$rootScope.loginCss="";
+	    $rootScope.loginFooter="bs-footer";
+	    $rootScope.loginLink="footer-links";
+	    $rootScope.loginDiv="container";
 
-			$rootScope.loginCss="";
-		    $rootScope.loginFooter="bs-footer";
-		    $rootScope.loginLink="footer-links";
-		    $rootScope.loginDiv="container";
-
-		$scope.welcomeMessage = 'hey this is adminCtrl.js!';
-
-		var showView=function(){
+		var initializePage = function(){
 			$http.get('/seminarList').success(function(data){
 				$scope.seminars=data;
 			});
 		}
-		showView();
-		$scope.showView=showView;
+
+		initializePage();
+
+		$scope.checkSeminarDetails = function(seminar){
+			SeminarInfo.setSelectedSeminar(seminar);
+			$location.path('/adminDetails')
+		}
+
 		$scope.getSeminarStatus = function(status){
 			if (status) return 'Active'; 
 			else return 'Closed';
@@ -25,9 +27,7 @@ define(['app','socketIO'], function(app) {
 		$scope.addSeminar=function(){
 			var data={
 				'seminarCode':$scope.seminarCode,
-				'seminarDescription':$scope.seminarDescription,
-				'currentPeriod':0,
-				//'seminarDate':
+				'seminarDescription':$scope.seminarDescription
 			}
 			$http({method: 'POST', url: '/addSeminar',data:data}).success(function(data, status, headers, config) {
 				showbubleMsg('Save new seminar successfully',2);
@@ -40,47 +40,32 @@ define(['app','socketIO'], function(app) {
 			});
 		}
 
-		$scope.openNewSeminarModal=function(seminar){
-//			$scope.selectSeminar=seminar;
-			$scope.newSeminarModal=true;
+		$scope.duplicateSeminar = function(){
+			var data = {
+				'originalSeminarCode' : $scope.originalSeminarCode,
+				'targetSeminarCode':$scope.targetSeminarCode,
+				'seminarDescription':$scope.targetSeminarDescription
+			}
+
+			$http({method: 'POST', url: '/duplicateSeminar', data:data}).success(function(data, status, headers, config) {
+
+			}).error(function(data, status, headers, config){
+
+			})
+
 		}
 
-		$scope.closeNewSeminarModal=function(){
-			$scope.newSeminarModal=false;
-		}
+		$scope.openNewSeminarModal=function(seminar){ $scope.newSeminarModal=true; }
+		$scope.closeNewSeminarModal=function(){ $scope.newSeminarModal=false; }
+
+		$scope.openDuplicateSeminarModal=function(seminar){ $scope.originalSeminarCode = seminar.seminarCode; $scope.duplicateSeminarModal=true; }
+		$scope.closeDuplicateSeminarModal=function(){ $scope.duplicateSeminarModal=false; }
+
 
 		$scope.seminarOpts = {
 			backdropFade: true,
 			dialogFade:true
 		};
-
-		$scope.initialiseSeminar=function(seminarCode){
-			var postData={
-				seminar:seminarCode,
-			}
-			$http({method:'POST', url:'/initialiseSeminar', data: postData}).then(function(res){
-		  		console.log('testInitialise Success:' + res.data);
-		  	},function(res){
-		  		console.log('testInitialise Failed:' + res.data);
-		  	})		
-		}
-
-		$scope.updatePassword=function(seminar,location,additionalIdx){
-			var data={
-				seminarCode:seminar.seminarCode,
-				location:location,
-				additionalIdx:additionalIdx,
-				value:seminar[location][additionalIdx].password,
-				behaviour:'updatePassword'
-			}
-			$http({method: 'POST', url: '/updateSeminar',data:data}).
-			  success(function(data, status, headers, config) {
-			  	console.log('update success');
-			  }).
-			  error(function(data, status, headers, config) {
-			  	console.log('update error');
-			  });
-		}
 
 		var showbubleMsg = function(content, status){
 	 		$scope.bubleMsg = ' ' + content;

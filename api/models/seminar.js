@@ -214,7 +214,7 @@ exports.addSeminar=function(req,res,next){
 		seminarCode: req.body.seminarCode,
 		seminarDescription: req.body.seminarDescription,
 		seminarDate: Date.now(),
-		currentPeriod:req.body.currentPeriod,
+		currentPeriod:1,
 		isInitialise: false,
 		producers : [{
 			producerID : 1,
@@ -363,6 +363,9 @@ exports.updateSeminar=function(req,res,next){
 				case 'updatePassword':
 					doc[queryCondition.location][queryCondition.additionalIdx].password=queryCondition.value;
 					break;
+				case 'updateCurrentPeriod':
+					doc.currentPeriod = queryCondition.value;
+					break;
 			}
 			if(isUpdate){
 				doc.markModified('facilitator');
@@ -380,4 +383,197 @@ exports.updateSeminar=function(req,res,next){
 
 		}
 	});
+}
+
+exports.initializeSeminar = function(options){
+	var deferred = q.defer();
+
+	console.log('initialise Seminar:' + options);
+	var reqOptions = {
+		hostname: options.cgiHost,
+		port: options.cgiPort,
+		path: options.cgiPath + '?seminar=' + options.seminar
+			  + '&span=' + options.simulationSpan
+			  + '&isTraceActive=' + options.traceActive
+			  + '&isTraditionalTradeActive=' + options.traditionalTradeActive
+			  + '&isEMallActive=' + options.EMallActive
+			  + '&isVirtualSupplierActive=' + options.virtualSupplierActive
+			  + '&isIndependentMarkets=' + options.independentMarkets
+			  + '&isForceNextDecisionsOverwrite=' + options.forceNextDecisionsOverwrite
+			  + '&market1ID=' + options.market1ID
+			  + '&market2ID=' + options.market2ID
+			  + '&category1ID=' + options.category1ID
+			  + '&category2ID=' + options.category2ID
+	};
+
+	http.get(reqOptions, function(response){
+		var data = '';
+		response.setEncoding('utf8');
+		response.on('data', function(chunk){
+			data += chunk;
+		}).on('end', function(){
+			if (response.statusCode === (404 || 500))
+  			  	deferred.reject({msg:data});
+			else {
+				seminar.findOne({seminarCode:options.seminar},function(err,doc){
+					if(err){ deferred.reject({msg:err}); } 
+					if(!doc){ deferred.reject({msg:'cannot find matched seminar : ' + options.seminar}); } 
+				    doc.simulationSpan = options.simulationSpan;
+				    doc.traceActive = options.traceActive;
+				    doc.traditionalTradeActive = options.traditionalTradeActive;
+				    doc.EMallActive = options.EMallActive;
+				    doc.virtualSupplierActive = options.virtualSupplierActive;
+				    doc.independentMarkets = options.independentMarkets;
+				    doc.forceNextDecisionsOverwrite = options.forceNextDecisionsOverwrite;
+					doc.market1ID = options.market1ID;
+					doc.market2ID = options.market2ID;
+					doc.category1ID = options.category1ID;
+					doc.category2ID = options.category2ID;
+					doc.save(function(err,doc,numberAffected){
+						if(err){ deferred.reject({msg:err}); }
+						deferred.resolve({msg:'Initialize complete: '+ data})
+					});				
+  		   	    });					
+			}
+		}).on('error', function(e){
+			deferred.reject({msg:e.message});
+		});
+	})
+
+	return deferred.promise;
+}
+
+exports.passiveSeminar = function(options){
+	var deferred = q.defer();
+	seminar.findOne({seminarCode:options.seminar}, function(err, doc){
+		if(err){ deferred.reject({msg:err}); } 
+		if(!doc){ deferred.reject({msg:'cannot find matched seminar : ' + options.seminar}); } 
+		var reqOptions = {
+			hostname: options.cgiHost,
+			port: options.cgiPort,
+			path: options.cgiPath + '?seminar=' + doc.seminar
+				  + '&span=' + doc.simulationSpan
+				  + '&isTraceActive=' + doc.traceActive
+				  + '&isTraditionalTradeActive=' + doc.traditionalTradeActive
+				  + '&isEMallActive=' + doc.EMallActive
+				  + '&isVirtualSupplierActive=' + doc.virtualSupplierActive
+				  + '&isIndependentMarkets=' + doc.independentMarkets
+				  + '&isForceNextDecisionsOverwrite=' + doc.forceNextDecisionsOverwrite
+				  + '&market1ID=' + doc.market1ID
+				  + '&market2ID=' + doc.market2ID
+				  + '&category1ID=' + doc.category1ID
+				  + '&category2ID=' + doc.category2ID,
+			period : options.period
+		};
+		http.get(reqOptions, function(response){
+			var data = '';
+			response.setEncoding('utf8');
+			response.on('data', function(chunk){
+				data += chunk;
+			}).on('end', function(){		
+				if (response.statusCode === (404 || 500))
+	  			  	deferred.reject({msg:data});
+				else {				
+					deferred.resolve({msg:'Get passive decision complete:' + data});
+				}
+			}).on('error', function(e){
+				deferred.reject({msg:e.message});
+			});				
+
+		})
+	});	
+	return deferred.promise;
+}
+
+exports.kernelSeminar = function(options){
+	var deferred = q.defer();
+	seminar.findOne({seminarCode:options.seminar}, function(err, doc){
+		if(err){ deferred.reject({msg:err}); } 
+		if(!doc){ deferred.reject({msg:'cannot find matched seminar : ' + options.seminar}); } 
+		var reqOptions = {
+			hostname: options.cgiHost,
+			port: options.cgiPort,
+			path: options.cgiPath + '?seminar=' + doc.seminar
+				  + '&span=' + doc.simulationSpan
+				  + '&isTraceActive=' + doc.traceActive
+				  + '&isTraditionalTradeActive=' + doc.traditionalTradeActive
+				  + '&isEMallActive=' + doc.EMallActive
+				  + '&isVirtualSupplierActive=' + doc.virtualSupplierActive
+				  + '&isIndependentMarkets=' + doc.independentMarkets
+				  + '&isForceNextDecisionsOverwrite=' + doc.forceNextDecisionsOverwrite
+				  + '&market1ID=' + doc.market1ID
+				  + '&market2ID=' + doc.market2ID
+				  + '&category1ID=' + doc.category1ID
+				  + '&category2ID=' + doc.category2ID,
+			period : options.period
+
+		};
+		http.get(reqOptions, function(response){
+			var data = '';
+			response.setEncoding('utf8');
+			response.on('data', function(chunk){
+				data += chunk;
+			}).on('end', function(){		
+				if (response.statusCode === (404 || 500))
+	  			  	deferred.reject({msg:data});
+				else {				
+					deferred.resolve({msg:'Run kernel complete:' + data});
+				}
+			}).on('error', function(e){
+				deferred.reject({msg:e.message});
+			});				
+		})	
+	});
+	return deferred.promise;
+}
+
+function duplicateSeminarDoc(options){
+	var deferred = q.defer();
+
+	seminar.findOne({seminarCode:options.originalSeminarCode}, function(err, doc){
+		if(err){ deferred.reject({msg:err});}
+		if(doc){
+			console.log(doc);
+			deferred.resolve({msg:'duplicate seminar document complete.'});
+		}else{
+			deferred.reject({msg:'cannot find matched seminar : ' + options.originalSeminarCode});
+		}
+
+		// if(!doc){ deferred.reject({msg:'cannot find matched seminar : ' + options.originalSeminarCode});}
+		// console.log(doc);
+		// console.log('doc:' + util.inspect(doc, {depth:null}));
+		// var newDoc = doc;
+		// console.log('newDoc:' + util.inspect(newDoc,{depth:null}));
+
+		// newDoc.seminarCode = options.targetSeminarCode;
+		// newDoc.seminarDescription = options.seminarDescription;
+		// newDoc.save(function(err){
+		// 	if(!err){ deferred.resolve({msg:'duplicate seminar document complete.'});}
+		// 	else{ deferred.reject({msg:'duplicate seminar document failed, err: ' + err});}
+		// })
+	})			
+
+	return deferred.promise;
+}
+
+exports.duplicateSeminar = function(req, res, next){
+	var queryCondition = {
+		originalSeminarCode : req.body.originalSeminarCode,
+		targetSeminarCode : req.body.targetSeminarCode,
+		seminarDescription : req.body.seminarDescription
+	}
+
+	console.log('query:' + util.inspect(queryCondition));
+	duplicateSeminarDoc(queryCondition)
+	//deal with promises chain 						
+	.then(function(result){ //log the success info
+        io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	
+        res.send(200, result.msg);
+	}, function(error){ //log the error
+		console.log(error.msg);
+        io.sockets.emit('AdminProcessLog', { msg: error.msg, isError: true });			
+        res.send(404, error.msg);            
+	}, function(progress){ //log the progress
+        io.sockets.emit('AdminProcessLog', { msg: progress.msg, isError: false });			
+	})	
 }
