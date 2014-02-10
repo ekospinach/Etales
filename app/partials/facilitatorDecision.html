@@ -21,7 +21,7 @@
 					<div class="form-group">
 						<label for="userRole" class="col-sm-3 control-label">{{Label.getContent('Choose Your Role')}}:</label>
 						<div class="col-sm-4">
-							<select class="form-control" id="userRole" ng-model="userRole">
+							<select class="form-control" id="userRole" ng-model="userRole" ng-change="setPlayer(userRole)">
 					    		<option value="1">{{Label.getContent('Producer')}} 1</option>
 								<option value="2">{{Label.getContent('Producer')}} 2</option>
 								<option value="3">{{Label.getContent('Producer')}} 3</option>
