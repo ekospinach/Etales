@@ -1,6 +1,6 @@
 define(['app'], function(app) {
 		app.controller('producerDecisionStep1Ctrl',
-			['$scope','$q','$rootScope','$location','$http','$filter','ProducerDecision','ProducerDecisionBase','Label', function($scope,$q,$rootScope,$location,$http,$filter,ProducerDecision,ProducerDecisionBase,Label) {
+			['$scope','$q','$rootScope','$location','$http','$filter','ProducerDecision','ProducerDecisionBase','Label','PlayerInfo', function($scope,$q,$rootScope,$location,$http,$filter,ProducerDecision,ProducerDecisionBase,Label,PlayerInfo) {
 			$rootScope.decisionActive="active";
 			$rootScope.loginCss="";
 		    $rootScope.loginFooter="bs-footer";
@@ -8,7 +8,7 @@ define(['app'], function(app) {
 		    $rootScope.loginDiv="container";
 
 			$scope.language=Label.getCurrentLanguage();
-			$scope.producerID=parseInt($rootScope.user.roleID);
+			$scope.producerID=parseInt(PlayerInfo.getPlayer());
 			$scope.period=$rootScope.currentPeriod;
 			$scope.category='Elecssories';
 			$scope.isCollapsed=true;
@@ -32,7 +32,7 @@ define(['app'], function(app) {
 			};
 			/*Angular-ui-bootstrap modal end*/		
 			ProducerDecisionBase.startListenChangeFromServer();
-			ProducerDecisionBase.reload({producerID:parseInt($rootScope.user.roleID),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
+			ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 				$scope.pageBase = base;	
 			}).then(function(){
 				return promiseStep1();
@@ -70,7 +70,7 @@ define(['app'], function(app) {
 					$scope.calculateVarID=calculateVarID;
 					$scope.deleteProduct=deleteProduct;
 					$scope.submitDecision=submitDecision;
-					var url='/checkProducerDecision/'+$rootScope.user.seminar+'/'+parseInt($rootScope.user.roleID);
+					var url='/checkProducerDecision/'+$rootScope.user.seminar+'/'+parseInt(PlayerInfo.getPlayer());
 					$http({
 						method:'GET',
 						url:url
@@ -323,7 +323,7 @@ define(['app'], function(app) {
 			};
 			var closeProductModal = function () {
 			    $scope.productModal = false;
-			    ProducerDecisionBase.reload({producerID:parseInt($rootScope.user.roleID),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
+			    ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 					$scope.pageBase = base;	
 				}).then(function(){
 					return promiseStep1();
@@ -684,7 +684,7 @@ define(['app'], function(app) {
 
 			var submitDecision=function(){
 				var queryCondition={
-					producerID:parseInt($rootScope.user.roleID),
+					producerID:parseInt(PlayerInfo.getPlayer()),
 					seminar:$rootScope.user.seminar
 				}
 				$http({
@@ -813,7 +813,7 @@ define(['app'], function(app) {
 		 	};
 			
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
-				ProducerDecisionBase.reload({producerID:parseInt($rootScope.user.roleID),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
+				ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 					$scope.pageBase = base;	
 				}).then(function(){
 					return promiseStep1();

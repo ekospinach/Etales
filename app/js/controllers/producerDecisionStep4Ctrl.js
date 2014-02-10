@@ -1,18 +1,18 @@
 define(['app'], function(app) {
 		app.controller('producerDecisionStep4Ctrl',
-			['$scope','$q','$rootScope','$http','$filter','ProducerDecision','ProducerDecisionBase','Label', function($scope,$q,$rootScope,$http,$filter,ProducerDecision,ProducerDecisionBase,Label) {
+			['$scope','$q','$rootScope','$http','$filter','ProducerDecision','ProducerDecisionBase','Label','PlayerInfo', function($scope,$q,$rootScope,$http,$filter,ProducerDecision,ProducerDecisionBase,Label,PlayerInfo) {
 			$rootScope.loginCss="";
 		    $rootScope.loginFooter="bs-footer";
 		    $rootScope.loginLink="footer-links";
 		    $rootScope.loginDiv="container";
 			$rootScope.decisionActive="active";
 			$scope.language=Label.getCurrentLanguage();
-			$scope.producerID=parseInt($rootScope.user.roleID);
+			$scope.producerID=parseInt(PlayerInfo.getPlayer());
 			$scope.period=$rootScope.currentPeriod;
 			$scope.category='Elecssories';
 			$scope.isCollapsed=true;
 
-			ProducerDecisionBase.reload({producerID:parseInt($rootScope.user.roleID),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
+			ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 				$scope.pageBase = base;
 			}).then(function(){
 				return promiseStep1();
@@ -45,7 +45,7 @@ define(['app'], function(app) {
 				var categoryID=0,count=0,result=0,eAcMax=0,hAcMax,abMax=0,expend=0,avaiableMax=0;
 				//var labelLanguages={},infoLanguages={};
 				var fakeName="EName";
-	      		var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+parseInt($rootScope.user.roleID);
+	      		var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
 	      		$http({
 	      			method:'GET',
 	      			url:url
@@ -60,7 +60,7 @@ define(['app'], function(app) {
 
 					eAcMax=data.data.productionCapacity[0];
 					hAcMax=data.data.productionCapacity[1];
-					url="/producerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+parseInt($rootScope.user.roleID)+'/brandName/location/1';
+					url="/producerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+parseInt(PlayerInfo.getPlayer())+'/brandName/location/1';
 	      			return $http({
 	      				method:'GET',
 	      				url:url,
@@ -69,7 +69,7 @@ define(['app'], function(app) {
 	      			expend=data.data.result;
 	      			$scope.surplusExpend=abMax-expend;
 	      			$scope.percentageExpend=(abMax-expend)/abMax*100;
-	      			url="/productionResult/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+parseInt($rootScope.user.roleID)+'/'+fakeName+'/varName';
+	      			url="/productionResult/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+parseInt(PlayerInfo.getPlayer())+'/'+fakeName+'/varName';
 					return $http({
 						method:'GET',
 						url:url
@@ -78,7 +78,7 @@ define(['app'], function(app) {
 					$scope.eSurplusProduction=eAcMax-data.data.result;
 					$scope.ePercentageProduction=(eAcMax-data.data.result)/eAcMax*100;
 					fakeName="HName";
-	      			url="/productionResult/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+parseInt($rootScope.user.roleID)+'/'+fakeName+'/varName';
+	      			url="/productionResult/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+parseInt(PlayerInfo.getPlayer())+'/'+fakeName+'/varName';
 					return $http({
 						method:'GET',
 						url:url
@@ -138,11 +138,11 @@ define(['app'], function(app) {
 					break;
 				}
 				$scope.isCollapsed=false;
-				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+parseInt($rootScope.user.roleID);
+				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
 				$http({method: 'GET', url: url})
 				.then(function(data){
 					$scope.companyHistory=data.data;
-					url="/producerCompanyDecision/"+parseInt($rootScope.user.roleID)+'/'+($rootScope.currentPeriod-1)+'/'+$rootScope.user.seminar+'/'+categoryID;
+					url="/producerCompanyDecision/"+parseInt(PlayerInfo.getPlayer())+'/'+($rootScope.currentPeriod-1)+'/'+$rootScope.user.seminar+'/'+categoryID;
 					return $http({method:'GET',url:url});
 				}).then(function(data){
 					$scope.companyDecisionHistory=data.data[0];
@@ -152,7 +152,7 @@ define(['app'], function(app) {
 			}	
 
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
-				ProducerDecisionBase.reload({producerID:parseInt($rootScope.user.roleID),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
+				ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 					$scope.pageBase = base;	
 				}).then(function(){
 					return promiseStep1();

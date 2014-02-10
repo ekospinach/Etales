@@ -8,7 +8,7 @@ define(['app'], function(app) {
 		    $rootScope.loginDiv="container";
 
 			$scope.language=Label.getCurrentLanguage();
-			$scope.retailerID=parseInt($rootScope.user.roleID);
+			$scope.retailerID=parseInt(PlayerInfo.getPlayer());
 			$scope.period=$rootScope.currentPeriod;
 			$scope.category='Elecssories';
 			$scope.isCollapsed=true;
@@ -30,7 +30,7 @@ define(['app'], function(app) {
 			    dialogFade:true
 			};
 			/*Angular-ui-bootstrap modal end*/		
-			RetailerDecisionBase.reload({retailerID:parseInt($rootScope.user.roleID),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
+			RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 				$scope.pageBase = base;
 			}).then(function(){
 				return promiseStep1();
@@ -135,7 +135,7 @@ define(['app'], function(app) {
 				$scope.retailerID=retailerID,$scope.period=period,$scope.category=category,$scope.language=language;
 				var categoryID=0,count=0,result=0,expend=0;
 				var fakeName="EName",max=100;
-	      		var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/R/'+parseInt($rootScope.user.roleID);
+	      		var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/R/'+parseInt(PlayerInfo.getPlayer());
 	      		$http({
 	      			method:'GET',
 	      			url:url
@@ -146,7 +146,7 @@ define(['app'], function(app) {
 	      				abMax=data.data.budgetAvailable;
 	      			}
 	      			$scope.abMax=abMax;
-	      			url="/retailerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+parseInt($rootScope.user.roleID)+'/-1/location/1';
+	      			url="/retailerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+parseInt(PlayerInfo.getPlayer())+'/-1/location/1';
 	      			return $http({
 	      				method:'GET',
 	      				url:url,
@@ -238,7 +238,7 @@ define(['app'], function(app) {
 					category="HealthBeauty";
 					$scope.brandFirstName="H";
 				}
-				$scope.brandLastName=parseInt(parseInt($rootScope.user.roleID))+4;/*need check*/
+				$scope.brandLastName=parseInt(parseInt(PlayerInfo.getPlayer()))+4;/*need check*/
 			}
 			/*LoadAllBrand by category*/
 			var loadAllBrand=function(category){
@@ -284,7 +284,7 @@ define(['app'], function(app) {
 			};
 			var closeProductModal = function () {
 			    $scope.productModal = false;
-			    RetailerDecisionBase.reload({retailerID:parseInt($rootScope.user.roleID),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
+			    RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 					$scope.pageBase = base;
 				}).then(function(){
 					return promiseStep1();
@@ -338,7 +338,7 @@ define(['app'], function(app) {
 				if(!filter.test(value)){
 					d.resolve(Label.getContent('Input a Integer'));
 				}
-				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+parseInt($rootScope.user.roleID);
+				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
 				$http({
 					method:'GET',
 					url:url
@@ -358,7 +358,7 @@ define(['app'], function(app) {
 							d.resolve();
 						}
 					}
-					url="/retailerCurrentDecision/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+parseInt($rootScope.user.roleID)+'/'+brandName+'/'+varName;
+					url="/retailerCurrentDecision/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+parseInt(PlayerInfo.getPlayer())+'/'+brandName+'/'+varName;
 					return $http({
 						method:'GET',
 						url:url
@@ -387,7 +387,7 @@ define(['app'], function(app) {
 				}else{
 					categoryID=2;
 				}
-				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+parseInt($rootScope.user.roleID);
+				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
 				$http({
 					method:'GET',
 					url:url
@@ -437,7 +437,7 @@ define(['app'], function(app) {
 					$scope.isHealthBeauty=true;
 					catID = 2;
 				}
-				$scope.currentRetailerIdx = parseInt($rootScope.user.roleID) - 1;			
+				$scope.currentRetailerIdx = parseInt(PlayerInfo.getPlayer()) - 1;			
 				$scope.isCollapsed=false;
 				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/4';
 				$http({method:'GET',url:url})
@@ -450,13 +450,13 @@ define(['app'], function(app) {
 					    varName : varName,
 					    catID : catID,
 					    userRole :  $rootScope.userRoles.retailer,
-					    userID : $rootScope.user.roleID,								
+					    userID : PlayerInfo.getPlayer(),								
 					}
 					return $http({method:'POST', url:'/getCurrentUnitCost', data:postData});
 				}).then(function(data){
 					console.log(data.data);
 				   $scope.currentUnitCost = data.data.result;					
-					url="/retailerDecision/"+parseInt($rootScope.user.roleID)+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.seminar;
+					url="/retailerDecision/"+parseInt(PlayerInfo.getPlayer())+'/'+($rootScope.currentPeriod)+'/'+$rootScope.user.seminar;
 					return $http({method:'GET',url:url});
 				}).then(function(data){
 					$scope.variantDecisionHistory=data;
@@ -508,7 +508,7 @@ define(['app'], function(app) {
 						newretailerDecision.varID=10*newBrand.brandID+1;/*need check*/
 						newBrand.privateLabelVarDecision.push(newretailerDecision,nullDecision,nullDecision);
 						
-						url="/checkRetailerProduct/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+parseInt($rootScope.user.roleID)+'/'+$scope.lauchNewCategory+'/brand/'+newBrand.brandName+'/'+newretailerDecision.varName;
+						url="/checkRetailerProduct/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+parseInt(PlayerInfo.getPlayer())+'/'+$scope.lauchNewCategory+'/brand/'+newBrand.brandName+'/'+newretailerDecision.varName;
 						$http({
 							method:'GET',
 							url:url
@@ -536,7 +536,7 @@ define(['app'], function(app) {
 			        			break;
 			        		}
 			        	}
-			        	url="/checkRetailerProduct/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+parseInt($rootScope.user.roleID)+'/'+$scope.lauchNewCategory+'/variant/'+newBrandName+'/'+newretailerDecision.varName;
+			        	url="/checkRetailerProduct/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+parseInt(PlayerInfo.getPlayer())+'/'+$scope.lauchNewCategory+'/variant/'+newBrandName+'/'+newretailerDecision.varName;
 				       	$http({
 							method:'GET',
 							url:url
@@ -573,7 +573,7 @@ define(['app'], function(app) {
 		 	};
 
 			$scope.$on('retailerDecisionBaseChangedFromServer', function(event, newBase){
-				RetailerDecisionBase.reload({retailerID:parseInt($rootScope.user.roleID),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
+				RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 					$scope.pageBase = base;
 				}).then(function(){
 					return promiseStep1();

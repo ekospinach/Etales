@@ -10,6 +10,9 @@ define(['app'], function(app) {
 		    PlayerInfo.setPlayer(1);
 
 		    $scope.setPlayer=function(userRole){
+		    	if(userRole>4){
+		    		userRole-=4;
+		    	}
 		    	PlayerInfo.setPlayer(userRole);
 		    }
 		}]);
