@@ -55,6 +55,7 @@ app.post('/contract');
 app.post('/contractDetails');
 app.post('/producerDecision',require('./api/models/producerDecision.js').updateProducerDecision(io));
 app.post('/retailerDecision',require('./api/models/retailerDecision.js').updateRetailerDecision(io));
+app.post('/setContractLock',require('./api/models/contract.js').setContractLock(io));
 
 app.post('/updateContractDetails',require('./api/models/contract.js').updateContractDetails(io));
 

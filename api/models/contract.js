@@ -83,6 +83,34 @@ exports.getContractList = function(req, res, next){
         })
 }
 
+exports.setContractLock=function(io){
+	return function(req,res,next){
+		console.log(req.body);
+		contract.findOne({
+			contractCode:req.body.contractCode
+		},function(err,doc){
+			if(err) {next(new Error(err))};
+			if(doc){
+				if(req.body.lock==1){
+					doc.isLocked=true;
+				}else{
+				doc.isLocked=false;
+				}
+			}else{
+				res.send(404,'there is no contract');
+			}
+			doc.save(function(err,doc,numberAffected){
+  				if(err){
+  					next(new Error(err));
+  				}
+  				console.log('save update,number affected:'+numberAffected);
+  				res.send(200, {result:'successful'});
+  			});	
+		})
+	}
+}
+
+
 exports.checkContractLock=function(req,res,next){
 	contract.findOne({
 		contractCode:req.params.contractCode

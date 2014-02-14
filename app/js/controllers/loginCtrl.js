@@ -69,8 +69,8 @@ define(['app','socketIO'], function(app) {
 					$rootScope.rootEndWith=$rootScope.currentPeriod-1;
 					closeLoginModal();
 				}).then(function(){
+					console.log($rootScope.user.userRole);
 					PlayerInfo.setPlayer($rootScope.user.roleID);
-					//console.log($rootScope.user.roleID);
 				});
 			},function(res){
 				showbubleMsg('login failure.',1);

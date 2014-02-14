@@ -311,7 +311,9 @@ var getLabelBase = function(){
 		{id:'New contract name',  ENG:'New contract name',  CHN:'新合同名称',  RUS:''},
 		{id:'Contract with',  ENG:'Contract with',  CHN:'乙方（接受协议的一方）',  RUS:''},
 		{id:'Duplicate Negotiation',  ENG:'Duplicate Negotiation',  CHN:'复制谈判',  RUS:''},
-		{id:'isLock',  ENG:'isLock',  CHN:'冻结',  RUS:''},
+		{id:'isLock',  ENG:'isLock',  CHN:'锁定',  RUS:''},
+		{id:'Lock',  ENG:'Lock',  CHN:'锁定',  RUS:''},
+		{id:'UnLock',  ENG:'UnLock',  CHN:'解锁',  RUS:''},
 		{id:'isDraftFinished',  ENG:'isDraftFinished',  CHN:'完成',  RUS:''},
 
 		/*Contract Details*/
@@ -584,6 +586,7 @@ var getLabelBase = function(){
 		{id:'Duplicate contratct successful',  ENG:'Duplicate contratct successful',  CHN:'合同复制成功',  RUS:''},	
 		{id:'Duplicate contratct fail',  ENG:'Duplicate contratct fail',  CHN:'合同复制失败',  RUS:''},	
 		{id:'another contractCode',  ENG:'There is another contractCode in this game',  CHN:'此游戏中已存在同名合同',  RUS:''},	
+		{id:'Choose Player',  ENG:'Choose Player',  CHN:'选择角色',  RUS:''},	
 		/*login*/
 		{id:'Login successful',  ENG:'Login successful',  CHN:'登录成功',  RUS:''},	
 		{id:'Login fail',  ENG:'Login fail',  CHN:'登录失败',  RUS:''},	
@@ -597,7 +600,7 @@ var getLabelBase = function(){
 		{id:'Facilitator Decision',  ENG:'Facilitator Decision',  CHN:'Facilitator Decision',  RUS:''},	
 		{id:'Facilitator Decision Info',  ENG:'Facilitator Decision Info',  CHN:'Facilitator Decision Info',  RUS:''},	
 		{id:'Choose Your Role',  ENG:'Choose Your Role',  CHN:'请选择角色',  RUS:''},	
-		{id:'',  ENG:'',  CHN:'',  RUS:''},	
+		{id:'OK',  ENG:'OK',  CHN:'确定',  RUS:''},	
 		{id:'',  ENG:'',  CHN:'',  RUS:''},	
 		{id:'',  ENG:'',  CHN:'',  RUS:''},	
 		{id:'',  ENG:'',  CHN:'',  RUS:''},	

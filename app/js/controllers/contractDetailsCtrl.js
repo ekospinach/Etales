@@ -1,6 +1,6 @@
 define(['app'], function(app) {
 	app.controller('contractDetailsCtrl',
-		['$scope','$q','$rootScope','$http','$filter','ContractInfo','Label', function($scope,$q,$rootScope,$http,$filter, ContractInfo,Label) {
+		['$scope','$q','$rootScope','$http','$filter','ContractInfo','Label','PlayerInfo', function($scope,$q,$rootScope,$http,$filter, ContractInfo,Label,PlayerInfo) {
 			$rootScope.loginCss="";
 		    $rootScope.loginFooter="bs-footer";
 		    $rootScope.loginLink="footer-links";
@@ -31,8 +31,8 @@ define(['app'], function(app) {
 
 				//decide Edit mode depends on contract's drafterd user
 				if($scope.contractInfo.producerID==$scope.contractInfo.draftedByCompanyID
-					&&$rootScope.user.username.substring($rootScope.user.username.length-3,$rootScope.user.username.length-2)==2
-					&&$scope.contractInfo.producerID==$rootScope.user.username.substring($rootScope.user.username.length-1)){
+					&&parseInt(PlayerInfo.getPlayer())<5
+					&&$scope.contractInfo.producerID==parseInt(PlayerInfo.getPlayer())){
 					//current user role is producer, drafter, active producer editable mode
 					$scope.producerEditable=true;
 					$scope.retailerEditable=false;
@@ -509,7 +509,7 @@ define(['app'], function(app) {
 					            }else{
 						            categoryID=2;
 						        }
-								url='/producerVariantBM/'+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+categoryID+'/'+detail.relatedBrandName+'/'+variants[i].varName;
+								url='/producerVariantBM/'+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+producerID+'/'+categoryID+'/'+detail.relatedBrandName+'/'+variants[i].varName;
 								urls.push(url);
 							}
 						}else{
@@ -876,7 +876,6 @@ define(['app'], function(app) {
 				}else{
 					var seminar=$rootScope.user.seminar,
 					period=$rootScope.currentPeriod,
-					//producerID=$rootScope.user.username.substring($rootScope.user.username.length-1);
 					producerID=detail.relatedBrandName.substring(detail.relatedBrandName.length-1);
 					var url="/getProductInfo/"+producerID+'/'+period+'/'+seminar+'/'+detail.relatedBrandName;
 					$http({
@@ -896,7 +895,7 @@ define(['app'], function(app) {
 						            }else{
 						                categoryID=2;
 						            }
-									url='/producerVariantBM/'+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+$rootScope.user.username.substring($rootScope.user.username.length-1)+'/'+categoryID+'/'+detail.relatedBrandName+'/'+variants[i].varName;
+									url='/producerVariantBM/'+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+producerID+'/'+categoryID+'/'+detail.relatedBrandName+'/'+variants[i].varName;
 									urls.push(url);
 								}
 							}else{
