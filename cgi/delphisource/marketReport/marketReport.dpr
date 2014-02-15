@@ -698,99 +698,32 @@ var
   end;
 
 begin
-
-    SetMultiByteConversionCodePage(CP_UTF8);
-    sDati := '';
-    sListData := TStringList.Create;
-    sListData.Clear;
-
+  SetMultiByteConversionCodePage(CP_UTF8);
+  sDati := '';
+  sListData := TStringList.Create;
+  sListData.Clear;
   try
-
     WriteLn('Content-type: application/json; charset=UTF-8');
     Writeln;
-
-
-//    WriteLn('Content-type: text/html');
-//    WriteLn;
-//    WriteLn('<HTML>');
-//    WriteLn('<HEAD>');
-//    WriteLn('<TITLE>CGI Example!</TITLE>');
-//    WriteLn('</HEAD>');
-//    WriteLn('<BODY bgcolor="#FFFBDB">');
-//    WriteLn('<H2>CGI developed with');
-//
-//    {$IFDEF FPC}
-//       WriteLn('Freepascal');
-//    {$ELSE}
-//      {$IFDEF LINUX}
-//        WriteLn('Kylix');
-//      {$ELSE}
-//        WriteLn('Delphi');
-//      {$ENDIF}
-//    {$ENDIF}
-//
-//    WriteLn('</H2>');
     sValue := getVariable('REQUEST_METHOD');
     if sValue='GET' then
-      begin
-        // GET
-//1.Market Report
-//Action: GET
-//Parameter: seminar, period
-//Route example : ../marketReport.exe?seminar=MAY&period=0
-//Response:
-//status code 200, JSON record”S" which is defined in related schema, including all the marketReport”S" which meets the specified parameters(seminar/period), response content should be a array. CGI should decide which result file to read totally depends on seminar instead of *fileName (which is one of old version parameters).
-
-        sValue := getVariable('QUERY_STRING');
-        Explode(sValue, sListData);
-        LoadConfigIni();
-//        WriteLn('<H4>Values passed in mode <i>get http</i> :</H4>'+sDati);
-//        for i:= 0 to sListData.Count-1 do
-//           WriteLn(DecodeUrl(sListData[i])+'<BR>');
-        // initialize globals
-        currentSeminar := getSeminar;
-        currentPeriod := getPeriod;
-
-
-        // Now let's make some JSON stuff here
-             makeJson;
-      end
-    else
-      // POST
-      begin
-        sValue := trim(getVariable('CONTENT_LENGTH'));
-
-//        WriteLn('<H4>Values passed in mode <i>post http</i> :</H4>');
-//        WriteLn('Data Length: '+sValue+'<BR><BR>');
-//        Writeln;
-        if (sValue<>'') then
-        begin
-          iSize := strtoint(sValue);
-          SetLength(sDati,iSize);
-          
-          bUpload := false;
-          sValue := getVariable('HTTP_CONTENT_TYPE');
-          if (Trim(sValue)<>'') and (Trim(sValue) <> 'application/x-www-form-urlencoded') then
-              bUpload := true; // There is an attached file
-              // We my use this mechanism if we want to, i.e. reading JSON
-
-          for i:=1 to iSize do
-            Read(sDati[i]);
-
-          if bUpload then
-            sListData.Add(sDati)
-          else
-            Explode(sDati, sListData);
-
-//          for i:= 0 to sListData.Count-1 do
-//            WriteLn(sListData[i]+'<BR>');  // This is where request contents sit
-            // You may start request parameters here
-        end;
-      end;
-    // List of environment variables
-//    WriteAllEnvironVariables;
-
-//    WriteLn('</BODY></HTML>');
+    begin
+      // GET
+      //1.Market Report
+      //Action: GET
+      //Parameter: seminar, period
+      //Route example : ../marketReport.exe?seminar=MAY&period=0
+      //Response:
+      //status code 200, JSON record”S" which is defined in related schema, including all the marketReport”S" which meets the specified parameters(seminar/period), response content should be a array. CGI should decide which result file to read totally depends on seminar instead of *fileName (which is one of old version parameters).
+      sValue := getVariable('QUERY_STRING');
+      Explode(sValue, sListData);
+      LoadConfigIni();
+      // initialize globals
+      currentSeminar := getSeminar;
+      currentPeriod := getPeriod;
+      // Now let's make some JSON stuff here
+      makeJson;
+    end
   finally
     sListData.Free;
   end;

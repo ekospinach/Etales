@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
 
 var marketReportSchema = mongoose.Schema({
     seminar : String,
-    fileName : String,
+    //fileName : String,
     latestHistoryPeriod : Number,
     titleENG : String,
     titleCHN : String,
@@ -45,11 +45,10 @@ exports.addMarketReports = function(options){
         fileName = req.body.fileName;
 
     (function sendRequest(currentPeriod){        
-      if (options.uploadFileAbsDir === '') fileName = ''; 
       var reqOptions = {
           hostname: options.cgiHost,
           port: options.cgiPort,
-          path: options.cgiPath + '?period=' + currentPeriod + options.uploadFileAbsDir + fileName
+          path: options.cgiPath + '?period=' + currentPeriod + '&seminar=' + options.seminar
       };
       http.get(reqOptions, function(response) { 
         var data = '';

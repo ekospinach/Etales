@@ -353,7 +353,7 @@ exports.updateSeminar=function(req,res,next){
 	seminar.findOne({seminarCode:queryCondition.seminarCode},function(err,doc){
 		if(err){
 			next(new Error(err));
-		}		
+		}
 		if(!doc){
 			console.log("cannot find matched doc....");
 			res.send(404,'cannot find matched doc....');
@@ -366,9 +366,8 @@ exports.updateSeminar=function(req,res,next){
 				case 'updateCurrentPeriod':
 					doc.currentPeriod = queryCondition.value;
 					break;
-				case 'updateActived':
-					doc.isInitialise = queryCondition.value;
-					break;
+				case 'updateActive':
+					doc.is
 			}
 			if(isUpdate){
 				doc.markModified('facilitator');
@@ -454,7 +453,7 @@ exports.passiveSeminar = function(options){
 		var reqOptions = {
 			hostname: options.cgiHost,
 			port: options.cgiPort,
-			path: options.cgiPath + '?seminar=' + doc.seminarCode
+			path: options.cgiPath + '?seminar=' + doc.seminar
 				  + '&span=' + doc.simulationSpan
 				  + '&isTraceActive=' + doc.traceActive
 				  + '&isTraditionalTradeActive=' + doc.traditionalTradeActive
@@ -496,7 +495,7 @@ exports.kernelSeminar = function(options){
 		var reqOptions = {
 			hostname: options.cgiHost,
 			port: options.cgiPort,
-			path: options.cgiPath + '?seminar=' + doc.seminarCode
+			path: options.cgiPath + '?seminar=' + doc.seminar
 				  + '&span=' + doc.simulationSpan
 				  + '&isTraceActive=' + doc.traceActive
 				  + '&isTraditionalTradeActive=' + doc.traditionalTradeActive
