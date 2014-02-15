@@ -1,6 +1,6 @@
 define(['app'], function(app) {
 		app.controller('retailerDecisionStep2Ctrl',
-			['$scope','$q','$rootScope','$http','$filter','RetailerDecisionBase','Label', function($scope,$q,$rootScope,$http,$filter,RetailerDecisionBase,Label) {
+			['$scope','$q','$rootScope','$http','$filter','RetailerDecisionBase','Label','PlayerInfo', function($scope,$q,$rootScope,$http,$filter,RetailerDecisionBase,Label,PlayerInfo) {
 			$rootScope.decisionActive="active";
 			$rootScope.loginCss="";
 		    $rootScope.loginFooter="bs-footer";
@@ -19,12 +19,12 @@ define(['app'], function(app) {
 				value: 5, text: Label.getContent('SL_PREMIUM')
 			}]; 
 			$scope.language=Label.getCurrentLanguage();
-			$scope.retailerID=parseInt($rootScope.user.roleID);
+			$scope.retailerID=parseInt(PlayerInfo.getPlayer());
 			$scope.period=$rootScope.currentPeriod;
 			$scope.category='Elecssories';
 			$scope.isCollapsed=true;
 
-			RetailerDecisionBase.reload({retailerID:parseInt($rootScope.user.roleID),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
+			RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 				$scope.pageBase = base;
 			}).then(function(){
 				return promiseStep1();
@@ -75,7 +75,7 @@ define(['app'], function(app) {
 				$scope.retailerID=retailerID,$scope.period=period,$scope.language=language;
 				var categoryID=0,count=0,result=0,expend=0;
 				var fakeName="EName",max=100;
-	      		var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/R/'+parseInt($rootScope.user.roleID);
+	      		var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/R/'+parseInt(PlayerInfo.getPlayer());
 	      		$http({
 	      			method:'GET',
 	      			url:url
@@ -86,7 +86,7 @@ define(['app'], function(app) {
 	      				abMax=data.data.budgetAvailable;
 	      			}
 	      			$scope.abMax=abMax;
-	      			url="/retailerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+parseInt($rootScope.user.roleID)+'/-1/location/1';
+	      			url="/retailerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+parseInt(PlayerInfo.getPlayer())+'/-1/location/1';
 	      			return $http({
 	      				method:'GET',
 	      				url:url,
@@ -154,13 +154,13 @@ define(['app'], function(app) {
 				if(!filter.test(value)){
 					d.resolve(Label.getContent('Input a number'));
 				}
-				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/R/'+parseInt($rootScope.user.roleID);
+				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/R/'+parseInt(PlayerInfo.getPlayer());
 	      		$http({
 	      			method:'GET',
 	      			url:url
 	      		}).then(function(data){
 	      			max=data.data.budgetAvailable;
-	      			url="/retailerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+parseInt($rootScope.user.roleID)+'/'+marketID+'/'+location+'/'+additionalIdx;
+	      			url="/retailerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+parseInt(PlayerInfo.getPlayer())+'/'+marketID+'/'+location+'/'+additionalIdx;
 		      		return $http({
 		      			method:'GET',
 		      			url:url,
@@ -199,7 +199,7 @@ define(['app'], function(app) {
 					case 2: $scope.marketName = 'Rural'; break;				
 				}
 				$scope.isCollapsed=false;
-				var url="/retailerDecision/"+parseInt($rootScope.user.roleID)+'/'+($rootScope.currentPeriod-1)+'/'+$rootScope.user.seminar;
+				var url="/retailerDecision/"+parseInt(PlayerInfo.getPlayer())+'/'+($rootScope.currentPeriod-1)+'/'+$rootScope.user.seminar;
 				$http({method:'GET',url:url})
 				.success(function(data){
 					$scope.retailerDecisionHistory=_.filter(data.retMarketDecision,function(obj){
@@ -213,7 +213,7 @@ define(['app'], function(app) {
 			}	
 			
 			$scope.$on('retailerDecisionBaseChangedFromServer', function(event, newBase){
-				RetailerDecisionBase.reload({retailerID:parseInt($rootScope.user.roleID),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
+				RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
 					$scope.pageBase = base;
 				}).then(function(){
 					return promiseStep1();

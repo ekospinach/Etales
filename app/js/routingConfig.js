@@ -19,6 +19,8 @@
          */
         accessLevels : {
             'public' : "*",
+            'producerViewOnly': ['producer'],
+            'retailerViewOnly' : ['retailer'],
             'producerView': ['producer','facilitator'],
             'retailerView' : ['retailer','facilitator'],
             'facilitatorView' : ['facilitator'],

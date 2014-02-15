@@ -84,6 +84,20 @@ define(['angular',
 		}
 	})
 
+	services.factory('PlayerInfo',function(){
+		var player;
+		return {
+			getPlayer:function(){
+				console.log('get player:' + player);
+				return player;
+			},
+			setPlayer:function(value){
+				player=value;
+				console.log('set player:'+player)
+			}
+		}
+	})
+
 	services.factory('SeminarInfo', function(){
 		var selectedSeminar;
 		return {

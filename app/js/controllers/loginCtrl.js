@@ -1,6 +1,6 @@
 define(['app','socketIO'], function(app) {
 
-	app.controller('loginCtrl',['$scope', '$http', '$location','$rootScope','Auth','$q', function($scope, $http, $location,$rootScope,Auth,$q) {
+	app.controller('loginCtrl',['$scope', '$http', '$location','$rootScope','Auth','$q','PlayerInfo', function($scope, $http, $location,$rootScope,Auth,$q,PlayerInfo) {
 		// You can access the scope of the controller from here
 
 		    $rootScope.loginFooter="container";
@@ -25,6 +25,7 @@ define(['app','socketIO'], function(app) {
 		}
 		var closeLoginModal=function(){
 			$scope.loginModal=false;
+			
 		}
 
 		$scope.openAdminLoginModal=function(){
@@ -59,20 +60,21 @@ define(['app','socketIO'], function(app) {
 			},function(res){
 				showbubleMsg('login success.',2);
 				var url="/currentPeriod/"+seminar;
-				$http.get(url).success(function(data){
-					//console.log(data);
-					//startfrom --->endwith
+				$http({
+					method:'GET',
+					url:url
+				}).then(function(data){
 					$rootScope.currentPeriod=data.currentPeriod;
 					$rootScope.rootStartFrom=-2;
 					$rootScope.rootEndWith=$rootScope.currentPeriod-1;
-					//console.log($rootScope.currentPeriod);
 					closeLoginModal();
+				}).then(function(){
+					console.log($rootScope.user.userRole);
+					PlayerInfo.setPlayer($rootScope.user.roleID);
 				});
-				
-
 			},function(res){
 				showbubleMsg('login failure.',1);
-			})			
+			});	
 		}
 
 		$scope.adminLogin=function(){

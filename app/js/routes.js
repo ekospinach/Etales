@@ -9,6 +9,7 @@ define(['angular',
 		'controllers/retailerDecisionStep2Ctrl',
 		'controllers/retailerDecisionStep3Ctrl',
 		'controllers/retailerDecisionStep4Ctrl',
+		'controllers/facilitatorDecisionCtrl',
 		'controllers/contractCtrl',
 		'controllers/contractDetailsCtrl',
 		'controllers/loginCtrl',
@@ -72,8 +73,7 @@ define(['angular',
 		}).when('/login',{
 			templateUrl:'partials/login.html',
 			controller:'loginCtrl',
-			access : access.public			
-
+			access : access.public
 		}).when('/admin',{
 			templateUrl:'partials/admin.html',
 			controller:'adminCtrl',
@@ -81,8 +81,7 @@ define(['angular',
 		}).when('/adminDetails',{
 			templateUrl:'partials/adminDetails.html',
 			controller:'adminDetailsCtrl',
-			access : access.public			
-
+			access : access.public
 		}).when('/map',{
 			controller: 'mapCtrl',
 			templateUrl:'partials/map.html',
@@ -108,6 +107,10 @@ define(['angular',
 			controller:'testCtrl',
 			templateUrl:'partials/test.html',
 			access:access.public
+		}).when('/facilitatorDecision',{
+			controller:'facilitatorDecisionCtrl',
+			templateUrl:'partials/facilitatorDecision.html',
+			access:access.facilitatorView
 		});	
 
 		$routeProvider.otherwise({redirectTo: '/login'});

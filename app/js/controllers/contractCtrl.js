@@ -1,6 +1,6 @@
 define(['app'], function(app) {
 	app.controller('contractCtrl',
-		['$scope','$q','$rootScope','$http','$filter','$location','ContractInfo','Label', function($scope,$q,$rootScope,$http,$filter,$location,ContractInfo,Label) {
+		['$scope','$q','$rootScope','$http','$filter','$location','ContractInfo','Label','PlayerInfo', function($scope,$q,$rootScope,$http,$filter,$location,ContractInfo,Label,PlayerInfo) {
 
 			$rootScope.loginCss="";
 		    $rootScope.loginFooter="bs-footer";
@@ -11,7 +11,8 @@ define(['app'], function(app) {
 				$http.get(url).success(function(data){
 					$scope.allContracts=data;
 					$scope.contractList=$scope.allContracts;
-					if(contractUserID==0){
+					if(contractUserID==0||contractUserID==undefined){
+
 					}else if(contractUserID<5){
 						$scope.producerShow=true;
 						$scope.retailerShow=false;
@@ -91,8 +92,8 @@ define(['app'], function(app) {
 						'contractCode':$scope.newContractCode+'_'+$rootScope.user.seminar+'_'+$rootScope.currentPeriod,
 						'seminar':$rootScope.user.seminar,
 						'period':$rootScope.currentPeriod,
-						'draftedByCompanyID':$rootScope.user.username.substring($rootScope.user.username.length-1),
-						'producerID':$rootScope.user.username.substring($rootScope.user.username.length-1),
+						'draftedByCompanyID':PlayerInfo.getPlayer(),
+						'producerID':PlayerInfo.getPlayer(),
 						'retailerID':$scope.newRetailerID
 					}
 					$http({method: 'POST', url: '/addContract',data:data}).success(function(data){
@@ -121,6 +122,67 @@ define(['app'], function(app) {
 				$scope.duplicateModal=false;
 			}
 
+			$scope.setPlayer=function(userRole){
+				$scope.contractUserID=userRole;
+		    	if(userRole>4){
+		    		//userRole-=4;
+		    		$scope.retailerID=userRole;
+		    	}else{
+		    		$scope.producerID=userRole;
+		    	}
+		    	PlayerInfo.setPlayer(userRole);
+		    }
+
+		    $scope.setLock=function(contract){
+		    	var data={
+		    		contractCode:contract.contractCode,
+		    		lock:1
+		    	}
+		    	$http({
+		    		method:'POST',
+		    		url:'/setContractLock',
+		    		data:data
+		    	}).then(function(data){
+		    		console.log('success');
+		    		showView($scope.contractUserID);
+		    	},function(){
+		    		console.log('fail');
+		    	})
+		    }
+
+		    $scope.setUnLock=function(contract){
+		    	var data={
+		    		contractCode:contract.contractCode,
+		    		lock:0
+		    	}
+		    	$http({
+		    		method:'POST',
+		    		url:'/setContractLock',
+		    		data:data
+		    	}).then(function(data){
+		    		console.log('success');
+		    		showView($scope.contractUserID);
+		    	},function(){
+		    		console.log('fail');
+		    	})
+		    }
+
+			$scope.openPlayerModal=function(){
+				$scope.playerModal=true;
+				$scope.userRole=1;
+				$scope.contractUserID=1;
+				PlayerInfo.setPlayer(1);
+			}
+
+			var closePlayerModal=function(){
+				$scope.playerModal=false;
+			}
+
+			$scope.setFinish=function(){
+				showView($scope.contractUserID);
+				closePlayerModal();
+			}
+
 			$scope.duplicate = function(contract){
 				var retailerID=0;
 				if(contract.retailerID==1){
@@ -133,8 +195,8 @@ define(['app'], function(app) {
 						'contractCode':$scope.duplicateContractCode+'_'+$rootScope.user.seminar+'_'+$rootScope.currentPeriod,
 						'seminar':$rootScope.user.seminar,
 						'period':$rootScope.currentPeriod,
-						'draftedByCompanyID':$rootScope.user.username.substring($rootScope.user.username.length-1),
-						'producerID':$rootScope.user.username.substring($rootScope.user.username.length-1),
+						'draftedByCompanyID':PlayerInfo.getPlayer(),
+						'producerID':PlayerInfo.getPlayer(),
 						'retailerID':retailerID,
 						'duplicateCode':contract.contractCode
 					}
@@ -148,18 +210,37 @@ define(['app'], function(app) {
 				}else{
 					showbubleMsg(Label.getContent('Duplicate contratct fail'),4);
 				}
-
 			}
 
+
+			if($rootScope.user.role==8){
+				//Facilitator login
+				$scope.producerShow=false;
+				$scope.retailerShow=false;
+				//console.log((producerShow||retailerShow));
+
+			}else if($rootScope.user.role==4){
+				//retailer login
+				//$scope.contractUserID=parseInt(PlayerInfo.getPlayer())+4;\
+				$scope.contractUserID=parseInt(PlayerInfo.getPlayer());
+				$scope.retailerID=parseInt(PlayerInfo.getPlayer());
+			}else if($rootScope.user.role==2){
+				//producer login
+				$scope.contractUserID=parseInt(PlayerInfo.getPlayer());
+				$scope.producerID=parseInt(PlayerInfo.getPlayer());
+			}
+
+			
 			//$scope.contractUserID=$rootScope.rootContractUserID;
-			if($rootScope.user.username.substring($rootScope.user.username.length-3,$rootScope.user.username.length-2)==2){
-				$scope.contractUserID=$rootScope.user.username.substring($rootScope.user.username.length-1);
-				$scope.producerID=$scope.contractUserID;
-			}else if($rootScope.user.username.substring($rootScope.user.username.length-3,$rootScope.user.username.length-2)==4){
-				$scope.contractUserID=parseInt($rootScope.user.username.substring($rootScope.user.username.length-1))+4;
-				$scope.retailerID=parseInt($rootScope.user.username.substring($rootScope.user.username.length-1));
-			}
+			// if($rootScope.user.username.substring($rootScope.user.username.length-3,$rootScope.user.username.length-2)==2){
+			// 	$scope.contractUserID=PlayerInfo.getPlayer();
+			// 	$scope.producerID=$scope.contractUserID;
+			// }else if($rootScope.user.username.substring($rootScope.user.username.length-3,$rootScope.user.username.length-2)==4){
+			// 	$scope.contractUserID=parseInt(PlayerInfo.getPlayer())+4;
+			// 	$scope.retailerID=parseInt(PlayerInfo.getPlayer());
+			// }
 			//console.log($scope.contractUserID);
+			$scope.closePlayerModal=closePlayerModal;
 			$scope.language=Label.getCurrentLanguage();
 			$scope.filterUser=filterUser;
 			$scope.closeInsertModal=closeInsertModal;
