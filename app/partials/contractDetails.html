@@ -457,7 +457,7 @@
                                                     <a href="#" editable-text="product.rate_ruralValue" ng-show="product.ruralValue!=0" onbeforesave="checkData(contractInfo.contractCode,'nc_PerformanceBonusRate',$data)" onaftersave="updateContractDetails(product,'nc_PerformanceBonusRate','rural',product.index,'variant')">
                                                         <p class="text-right">{{ product.rate_ruralValue || 0 }}</p>
                                                     </a>
-                                                    <p ng-show="product.ruralValue==0">{{ product.rate_ruralValue || 0 }}</p>
+                                                    <p class="text-right" ng-show="product.ruralValue==0">{{ product.rate_ruralValue || 0 }}</p>
                                                 </td>
                                             </tr>
                                         </tbody>
