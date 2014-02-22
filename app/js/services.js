@@ -185,10 +185,11 @@ define(['angular',
     	return $resource('/perceptionMaps/:seminar/:period',{seminar:'@seminar',period:'@period'});
 	}]);
 
-	services.factory('MapLoader', ['Map', '$route','$rootScope', '$q',function(Map, $route,$rootScope, $q) {
+	services.factory('MapLoader', ['Map', '$route','$rootScope', '$q','SeminarInfo','PeriodInfo',function(Map, $route,$rootScope, $q,SeminarInfo,PeriodInfo) {
     	return function() {
     		var delay = $q.defer();
-    		Map.get({seminar: $rootScope.user.seminar,period:$rootScope.mapPeriod}, function(map) {
+
+    		Map.get({seminar: SeminarInfo.getSelectedSeminar(),period:PeriodInfo.getCurrentPeriod()}, function(map) {
     			delay.resolve(map);
     		}, function() {
     			delay.reject('Unable to fetch file '  + $route.current.params.id);
@@ -208,19 +209,19 @@ define(['angular',
 
 	services.factory('ContractDetailLoader', ['ContractDetail', '$route','$rootScope', '$q',function(ContractDetail, $route,$rootScope, $q) {
     	return function() {
-    		var delay = $q.defer();
-    		ContractDetail.get({
-    			contractCode:$rootScope.rootContractCode,
-    			userType:$rootScope.rootUserType,
-    			negotiationItem:$rootScope.rootNegotiationItem,
-    			brandName:$rootScope.rootBrandName
-    		}, function(detail) {
-    			delay.resolve(detail);
-    		}, function() {
-    			delay.reject('Unable to fetch file ');
-    		});
-    		return delay.promise;
-  		};
+    // 		var delay = $q.defer();
+    // 		ContractDetail.get({
+    // 			contractCode:$rootScope.rootContractCode,
+    // 			userType:$rootScope.rootUserType,
+    // 			negotiationItem:$rootScope.rootNegotiationItem,
+    // 			brandName:$rootScope.rootBrandName
+    // 		}, function(detail) {
+    // 			delay.resolve(detail);
+    // 		}, function() {
+    // 			delay.reject('Unable to fetch file ');
+    // 		});
+    // 		return delay.promise;
+  		 };
 	}]);
 
 	//services.factory('ContractListen')
@@ -269,9 +270,9 @@ define(['angular',
 	services.factory('ProducerDecisionLoader', ['ProducerDecision', '$route','$rootScope','$q',function(ProducerDecision, $route, $rootScope, $q) {
 		return function() {
 			var delay = $q.defer();
-			ProducerDecision.get({producerID: $rootScope.rootProducerID,
-								  period:$rootScope.rootPeriod,
-								  seminar:$rootScope.rootSeminar}, function(producerDecision) {
+			ProducerDecision.get({producerID :PlayerInfo.getPlayer(),
+									period:PeriodInfo.getCurrentPeriod(),
+									seminar:SeminarInfo.getSelectedSeminar()}, function(producerDecision) {
 				delay.resolve(producerDecision);
 			}, function() {
 				delay.reject('Unable to fetch producerDecision '  + $route.current.params.producerID);
@@ -533,7 +534,7 @@ define(['angular',
 			}, base;			
 
 		this.setDefaultPara = function(p) { requestPara = p };
-		this.$get = ['RetailerDecision', '$q','$rootScope','$http', function(RetailerDecision, $q, $rootScope,$http){
+		this.$get = ['RetailerDecision', '$q','$rootScope','$http','PlayerInfo','SeminarInfo','PeriodInfo', function(RetailerDecision, $q, $rootScope,$http,PlayerInfo,SeminarInfo,PeriodInfo){
 			return {
 				reload : function(p){ 
 					requestPara = p;
@@ -578,9 +579,9 @@ define(['angular',
 				//step1
 				setRetailerDecisionBase:function(location,additionalIdx,value){
 					var queryCondition = {
-						retailerID :$rootScope.user.username.substring($rootScope.user.username.length-1),
-						period:$rootScope.currentPeriod,
-						seminar:$rootScope.user.seminar,
+						retailerID :PlayerInfo.getPlayer(),
+						period:PeriodInfo.getCurrentPeriod(),
+						seminar:SeminarInfo.getSelectedSeminar(),
 						behaviour : 'updateGeneralDecision', 
 						location : location,
 						additionalIdx  : additionalIdx,
@@ -605,9 +606,9 @@ define(['angular',
 						}
 					}
 					var queryCondition = {
-						retailerID :$rootScope.user.username.substring($rootScope.user.username.length-1),
-						period:$rootScope.currentPeriod,
-						seminar:$rootScope.user.seminar,
+						retailerID :PlayerInfo.getPlayer(),
+						period:PeriodInfo.getCurrentPeriod(),
+						seminar:SeminarInfo.getSelectedSeminar(),
 						behaviour : 'updateMarketDecision', 
 						marketID : marketID,
 						location : location,
@@ -631,9 +632,9 @@ define(['angular',
 						}
 					}
 					var queryCondition = {
-						retailerID :$rootScope.user.username.substring($rootScope.user.username.length-1),
-						period:$rootScope.currentPeriod,
-						seminar:$rootScope.user.seminar,
+						retailerID :PlayerInfo.getPlayer(),
+						period:PeriodInfo.getCurrentPeriod(),
+						seminar:SeminarInfo.getSelectedSeminar(),
 						behaviour : 'updatePrivateLabel', 
 						categoryID : categoryID,
 						brandName : brandName,
@@ -653,9 +654,9 @@ define(['angular',
 				//step4
 				setRetailerDecision:function(categoryID,marketID,brandName,varName,location,additionalIdx,value){
 					var queryCondition = {
-						retailerID :$rootScope.user.username.substring($rootScope.user.username.length-1),
-						period:$rootScope.currentPeriod,
-						seminar:$rootScope.user.seminar,
+						retailerID :PlayerInfo.getPlayer(),
+						period:PeriodInfo.getCurrentPeriod(),
+						seminar:SeminarInfo.getSelectedSeminar(),
 						behaviour : 'updateOrder', 
 						categoryID : categoryID,
 						marketID : marketID,
@@ -680,9 +681,9 @@ define(['angular',
 				},				
 				addProductNewBrand:function(newproducerDecision,categoryID){
 					var queryCondition = {
-						retailerID :$rootScope.user.username.substring($rootScope.user.username.length-1),
-						period:$rootScope.currentPeriod,
-						seminar:$rootScope.user.seminar,
+						retailerID :PlayerInfo.getPlayer(),
+						period:PeriodInfo.getCurrentPeriod(),
+						seminar:SeminarInfo.getSelectedSeminar(),
 						behaviour : 'addProductNewBrand', 
 						categoryID : categoryID,
 						value : newproducerDecision
@@ -696,9 +697,9 @@ define(['angular',
 				},
 				addProductExistedBrand:function(newproducerDecision,categoryID,brandName){
 					var queryCondition = {
-						retailerID :$rootScope.user.username.substring($rootScope.user.username.length-1),
-						period:$rootScope.currentPeriod,
-						seminar:$rootScope.user.seminar,
+						retailerID :PlayerInfo.getPlayer(),
+						period:PeriodInfo.getCurrentPeriod(),
+						seminar:SeminarInfo.getSelectedSeminar(),
 						behaviour : 'addProductExistedBrand', 
 						categoryID : categoryID,
 						brandName : brandName,
@@ -713,9 +714,9 @@ define(['angular',
 				},
 				deleteProduct:function(categoryID,brandName,varName){
 					var queryCondition = {
-						retailerID :$rootScope.user.username.substring($rootScope.user.username.length-1),
-						period:$rootScope.currentPeriod,
-						seminar:$rootScope.user.seminar,
+						retailerID :PlayerInfo.getPlayer(),
+						period:PeriodInfo.getCurrentPeriod(),
+						seminar:SeminarInfo.getSelectedSeminar(),
 						behaviour : 'deleteProduct', 
 						categoryID : categoryID,
 						varName : varName,
@@ -728,8 +729,9 @@ define(['angular',
 					 	console.log('Success:' + res);
 					 	queryCondition={
 					 		//retailerID :$rootScope.user.username.substring($rootScope.user.username.length-1),
-							period:$rootScope.currentPeriod,
-							seminar:$rootScope.user.seminar,
+							//retailerID :PlayerInfo.getPlayer(),
+							period:PeriodInfo.getCurrentPeriod(),
+							seminar:SeminarInfo.getSelectedSeminar(),
 							categoryID : categoryID,
 							varName : varName,
 							brandName:brandName
@@ -767,9 +769,9 @@ define(['angular',
 					var queryCondition = {};
 					(function multipleRequestShooter(myProducts,idx){
 						queryCondition = {
-							retailerID :$rootScope.user.username.substring($rootScope.user.username.length-1),
-							period:$rootScope.currentPeriod,
-							seminar:$rootScope.user.seminar,
+							retailerID :PlayerInfo.getPlayer(),
+							period:PeriodInfo.getCurrentPeriod(),
+							seminar:SeminarInfo.getSelectedSeminar(),
 							behaviour : 'addOrder', 
 							marketID:marketID,
 							value:myProducts[idx]
@@ -795,9 +797,9 @@ define(['angular',
 				},
 				deleteOrder:function(marketID,categoryID,brandName,varName){
 					var queryCondition = {
-						retailerID :$rootScope.user.username.substring($rootScope.user.username.length-1),
-						period:$rootScope.currentPeriod,
-						seminar:$rootScope.user.seminar,
+						retailerID :PlayerInfo.getPlayer(),
+						period:PeriodInfo.getCurrentPeriod(),
+						seminar:SeminarInfo.getSelectedSeminar(),
 						behaviour : 'deleteOrder', 
 						marketID:marketID,
 						categoryID:categoryID,
