@@ -1,6 +1,6 @@
 define(['app','socketIO'], function(app) {
 
-	app.controller('loginCtrl',['$scope', '$http', '$location','$rootScope','Auth','$q','PlayerInfo', function($scope, $http, $location,$rootScope,Auth,$q,PlayerInfo) {
+	app.controller('loginCtrl',['$scope', '$http', '$location','$rootScope','Auth','$q','PlayerInfo','SeminarInfo','PeriodInfo', function($scope, $http, $location,$rootScope,Auth,$q,PlayerInfo,SeminarInfo,PeriodInfo) {
 		// You can access the scope of the controller from here
 
 		    $rootScope.loginFooter="container";
@@ -10,6 +10,7 @@ define(['app','socketIO'], function(app) {
 		    $rootScope.loadShow=true;
 
 		var userRoles = routingConfig.userRoles;
+
 
 		$scope.welcomeMessage = 'hey this is loginCtrl.js!';
 		$scope.loginOpts = {
@@ -41,6 +42,7 @@ define(['app','socketIO'], function(app) {
 		$scope.userLogin=function(){
 			var username="";
 			var seminar=$scope.userSeminar;
+			SeminarInfo.setSelectedSeminar(seminar);
 			var password=$scope.userPassword;
 			switch($scope.userRole){
 				case '1':username=seminar+'^'+userRoles.producer+'^'+$scope.userRole;break;
@@ -64,12 +66,13 @@ define(['app','socketIO'], function(app) {
 					method:'GET',
 					url:url
 				}).then(function(data){
-					$rootScope.currentPeriod=data.currentPeriod;
+					//$rootScope.currentPeriod=data.currentPeriod;
+					PeriodInfo.setCurrentPeriod(data.data.currentPeriod);
 					$rootScope.rootStartFrom=-2;
-					$rootScope.rootEndWith=$rootScope.currentPeriod-1;
+					$rootScope.rootEndWith=data.currentPeriod-1;
 					closeLoginModal();
 				}).then(function(){
-					console.log($rootScope.user.userRole);
+					//console.log($rootScope.user.userRole);
 					PlayerInfo.setPlayer($rootScope.user.roleID);
 				});
 			},function(res){

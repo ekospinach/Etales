@@ -1,6 +1,6 @@
 define(['app'], function(app) {
 		app.controller('retailerDecisionStep4Ctrl',
-			['$scope','$q','$rootScope','$http','$filter','RetailerDecisionBase','ProducerDecisionBase','Label', function($scope,$q,$rootScope,$http,$filter,RetailerDecisionBase,ProducerDecisionBase,Label) {
+			['$scope','$q','$rootScope','$http','$filter','RetailerDecisionBase','ProducerDecisionBase','Label','PlayerInfo', function($scope,$q,$rootScope,$http,$filter,RetailerDecisionBase,ProducerDecisionBase,Label,PlayerInfo) {
 			$rootScope.decisionActive="active";
 			$rootScope.loginCss="";
 		    $rootScope.loginFooter="bs-footer";

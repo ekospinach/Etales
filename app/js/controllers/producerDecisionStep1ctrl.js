@@ -1,6 +1,6 @@
 define(['app'], function(app) {
 		app.controller('producerDecisionStep1Ctrl',
-			['$scope','$q','$rootScope','$location','$http','$filter','ProducerDecision','ProducerDecisionBase','Label','PlayerInfo', function($scope,$q,$rootScope,$location,$http,$filter,ProducerDecision,ProducerDecisionBase,Label,PlayerInfo) {
+			['$scope','$q','$rootScope','$location','$http','$filter','ProducerDecision','ProducerDecisionBase','Label','PlayerInfo','SeminarInfo','PeriodInfo', function($scope,$q,$rootScope,$location,$http,$filter,ProducerDecision,ProducerDecisionBase,Label,PlayerInfo,SeminarInfo,PeriodInfo) {
 			$rootScope.decisionActive="active";
 			$rootScope.loginCss="";
 		    $rootScope.loginFooter="bs-footer";
@@ -9,7 +9,7 @@ define(['app'], function(app) {
 
 			$scope.language=Label.getCurrentLanguage();
 			$scope.producerID=parseInt(PlayerInfo.getPlayer());
-			$scope.period=$rootScope.currentPeriod;
+			$scope.period=PeriodInfo.getCurrentPeriod();
 			$scope.category='Elecssories';
 			$scope.isCollapsed=true;
 
@@ -21,7 +21,6 @@ define(['app'], function(app) {
 				value: 3, text: Label.getContent('PREMIUM')
 			}]; 
 
-
 			$scope.parameter="NewBrand";/*default add new Brand*/
 
 			/*Angular-ui-bootstrap modal start*/
@@ -32,7 +31,7 @@ define(['app'], function(app) {
 			};
 			/*Angular-ui-bootstrap modal end*/		
 			ProducerDecisionBase.startListenChangeFromServer();
-			ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
+			ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
 				$scope.pageBase = base;	
 			}).then(function(){
 				return promiseStep1();
@@ -55,6 +54,8 @@ define(['app'], function(app) {
 					$scope.setBrandName=setBrandName;
 					$scope.loadAllBrand=loadAllBrand;
 					$scope.showbubleMsg=showbubleMsg;
+					$scope.getPrevious=getPrevious;
+					$scope.getNext=getNext;
 					//check
 					$scope.checkProduction=checkProduction;
 					$scope.checkDesign=checkDesign;
@@ -70,7 +71,32 @@ define(['app'], function(app) {
 					$scope.calculateVarID=calculateVarID;
 					$scope.deleteProduct=deleteProduct;
 					$scope.submitDecision=submitDecision;
-					var url='/checkProducerDecision/'+$rootScope.user.seminar+'/'+parseInt(PlayerInfo.getPlayer());
+
+					if($rootScope.user.role==8){
+						//Facilitator
+						$scope.facilitatorShow=true;
+						var url="/currentPeriod/"+SeminarInfo.getSelectedSeminar();
+						$http({
+							method:'GET',
+							url:url
+						}).then(function(data){
+							if(PeriodInfo.getCurrentPeriod()<data.data.currentPeriod){
+								$scope.nextBtn=true;
+							}else{
+								$scope.nextBtn=false;
+							}
+							if(PeriodInfo.getCurrentPeriod()<=data.data.currentPeriod&&PeriodInfo.getCurrentPeriod()>=2){
+								$scope.previousBtn=true;
+							}else{
+								$scope.previousBtn=false;
+							}
+						})
+					}else{
+						$scope.facilitatorShow=false;
+					}
+
+
+					var url='/checkProducerDecision/'+SeminarInfo.getSelectedSeminar()+'/'+parseInt(PlayerInfo.getPlayer());
 					$http({
 						method:'GET',
 						url:url
@@ -163,19 +189,19 @@ define(['app'], function(app) {
 					categoryID=2;
 					fakeName="HName";
 				}
-	      		var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+parseInt($rootScope.user.roleID);
+	      		var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
 	      		$http({
 	      			method:'GET',
 	      			url:url
 	      		}).then(function(data){
 	      			avaiableMax=data.data.budgetAvailable;
-	      			if($rootScope.currentPeriod<=1){
+	      			if(PeriodInfo.getCurrentPeriod()<=1){
 	      				abMax=data.data.budgetAvailable;
 	      			}else{
 	      				abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
 	      			}
 					acMax=data.data.productionCapacity[categoryID-1];
-	      			url="/producerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+parseInt($rootScope.user.roleID)+'/brandName/location/1';
+	      			url="/producerExpend/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/brandName/location/1';
 	      			return  $http({
 	      				method:'GET',
 	      				url:url,
@@ -184,7 +210,7 @@ define(['app'], function(app) {
 	      			expend=data.data.result;
 	       			$scope.surplusExpend=abMax-expend;
 	       			$scope.percentageExpend=(abMax-expend)/abMax*100;
-	      			url="/productionResult/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+parseInt($rootScope.user.roleID)+'/'+fakeName+'/varName';
+	      			url="/productionResult/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+fakeName+'/varName';
 	      			return $http({
 	      				method:'GET',
 	      				url:url
@@ -278,7 +304,7 @@ define(['app'], function(app) {
 					category="HealthBeauty";
 					$scope.brandFirstName="H";
 				}
-				$scope.brandLastName=parseInt($rootScope.user.roleID);/*need check*/
+				$scope.brandLastName=parseInt(PlayerInfo.getPlayer());/*need check*/
 			}
 			/*LoadAllBrand by category*/
 			var loadAllBrand=function(category){
@@ -323,7 +349,7 @@ define(['app'], function(app) {
 			};
 			var closeProductModal = function () {
 			    $scope.productModal = false;
-			    ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
+			    ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
 					$scope.pageBase = base;	
 				}).then(function(){
 					return promiseStep1();
@@ -347,7 +373,7 @@ define(['app'], function(app) {
 				else{
 					categoryID=2;
 				}	
-				var url='/checkProducerDecision/'+$rootScope.user.seminar+'/'+parseInt($rootScope.user.roleID);
+				var url='/checkProducerDecision/'+SeminarInfo.getSelectedSeminar()+'/'+parseInt(PlayerInfo.getPlayer());
 				$http({
 					method:'GET',
 					url:url
@@ -355,14 +381,14 @@ define(['app'], function(app) {
 					if(data.data=="isReady"){
 						d.resolve(Label.getContent('Check Error'));
 					}
-					url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+parseInt($rootScope.user.roleID);
+					url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
 					return $http({
 						method:'GET',
 						url:url
 					});
 				}).then(function(data){
 					max=data.data.productionCapacity[categoryID-1];
-					url="/productionResult/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+parseInt($rootScope.user.roleID)+'/'+brandName+'/'+varName;
+					url="/productionResult/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+brandName+'/'+varName;
 					return $http({
 						method:'GET',
 						url:url
@@ -387,7 +413,7 @@ define(['app'], function(app) {
 				if(!filter.test(value)){
 					d.resolve(Label.getContent('Input a Integer'));
 				}
-				var url='/checkProducerDecision/'+$rootScope.user.seminar+'/'+parseInt($rootScope.user.roleID);
+				var url='/checkProducerDecision/'+SeminarInfo.getSelectedSeminar()+'/'+parseInt(PlayerInfo.getPlayer());
 				$http({
 					method:'GET',
 					url:url
@@ -395,7 +421,7 @@ define(['app'], function(app) {
 					if(data.data=="isReady"){
 						d.resolve(Label.getContent('Check Error'));
 					}
-					url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+parseInt($rootScope.user.roleID);
+					url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
 					return $http({
 						method:'GET',
 						url:url
@@ -431,7 +457,7 @@ define(['app'], function(app) {
 				if(!filter.test(value)){
 					d.resolve(Label.getContent('Input a Integer'));
 				}
-				var url='/checkProducerDecision/'+$rootScope.user.seminar+'/'+parseInt($rootScope.user.roleID);
+				var url='/checkProducerDecision/'+SeminarInfo.getSelectedSeminar()+'/'+parseInt(PlayerInfo.getPlayer());
 				$http({
 					method:'GET',
 					url:url
@@ -439,7 +465,7 @@ define(['app'], function(app) {
 					if(data.data=="isReady"){
 						d.resolve(Label.getContent('Check Error'));
 					}
-					url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+parseInt($rootScope.user.roleID);
+					url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
 					return $http({
 						method:'GET',
 						url:url
@@ -460,7 +486,7 @@ define(['app'], function(app) {
 							d.resolve();
 						}
 					}
-					url="/producerCurrentDecision/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+parseInt($rootScope.user.roleID)+'/'+brandName+'/'+varName;
+					url="/producerCurrentDecision/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+brandName+'/'+varName;
 					return $http({
 							method:'GET',
 							url:url
@@ -497,7 +523,7 @@ define(['app'], function(app) {
 				}else{
 					categoryID=2;
 				}
-				var url='/checkProducerDecision/'+$rootScope.user.seminar+'/'+parseInt($rootScope.user.roleID);
+				var url='/checkProducerDecision/'+SeminarInfo.getSelectedSeminar()+'/'+parseInt(PlayerInfo.getPlayer());
 				$http({
 					method:'GET',
 					url:url
@@ -505,7 +531,7 @@ define(['app'], function(app) {
 					if(data.data=="isReady"){
 						d.resolve(Label.getContent('Check Error'));
 					}
-					url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+parseInt($rootScope.user.roleID);
+					url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
 					return $http({
 						method:'GET',
 						url:url
@@ -535,7 +561,7 @@ define(['app'], function(app) {
 				}else{
 					categoryID=2;
 				}
-				var url='/checkProducerDecision/'+$rootScope.user.seminar+'/'+parseInt($rootScope.user.roleID);
+				var url='/checkProducerDecision/'+SeminarInfo.getSelectedSeminar()+'/'+parseInt(PlayerInfo.getPlayer());
 				$http({
 					method:'GET',
 					url:url
@@ -545,13 +571,13 @@ define(['app'], function(app) {
 					}
 
 					var postData = {
-						period : $rootScope.currentPeriod,
-						seminar : $rootScope.user.seminar,
+						period : PeriodInfo.getCurrentPeriod(),
+						seminar : SeminarInfo.getSelectedSeminar(),
 						brandName : brandName,
 						varName : varName,
 						catID : categoryID,
 						userRole :  $rootScope.userRoles.producer,
-						userID : $rootScope.user.roleID,								
+						userID : parseInt(PlayerInfo.getPlayer()),								
 					}
 					return $http({
 						method:'POST',
@@ -583,7 +609,7 @@ define(['app'], function(app) {
 				}else{
 					categoryID=2;
 				}
-				var url='/checkProducerDecision/'+$rootScope.user.seminar+'/'+parseInt($rootScope.user.roleID);
+				var url='/checkProducerDecision/'+SeminarInfo.getSelectedSeminar()+'/'+parseInt(PlayerInfo.getPlayer());
 				$http({
 					method:'GET',
 					url:url
@@ -592,13 +618,13 @@ define(['app'], function(app) {
 						d.resolve(Label.getContent('Check Error'));
 					}
 					var postData = {
-						period : $rootScope.currentPeriod,
-						seminar : $rootScope.user.seminar,
+						period : PeriodInfo.getCurrentPeriod(),
+						seminar : SeminarInfo.getSelectedSeminar(),
 						brandName : brandName,
 						varName : varName,
 						catID : categoryID,
 						userRole :  $rootScope.userRoles.producer,
-						userID : $rootScope.user.roleID,								
+						userID : parseInt(PlayerInfo.getPlayer()),								
 					}
 					return $http({
 						method:'POST',
@@ -651,24 +677,24 @@ define(['app'], function(app) {
 					catID = 2;
 				}				
 				$scope.isCollapsed=false;
-				url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+parseInt($rootScope.user.roleID);
+				url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
 				$http({method: 'GET', url: url})
 				.then(function(data) {
 					//console.log($scope.variantHistory);
 					$scope.companyHistory=data.data;
 					var postData = {
-					    period : $rootScope.currentPeriod,
-					    seminar : $rootScope.user.seminar,
+					    period : PeriodInfo.getCurrentPeriod(),
+					    seminar : SeminarInfo.getSelectedSeminar(),
 					    brandName : brandName,
 					    varName : varName,
 					    catID : catID,
 					    userRole :  $rootScope.userRoles.producer,
-					    userID : $rootScope.user.roleID,								
+					    userID : parseInt(PlayerInfo.getPlayer()),								
 					}
 					return $http({method:'POST', url:'/getCurrentUnitCost', data:postData});
 				}).then(function(data){
 				   $scope.currentUnitCost = data.data.result;
-				   var url='/variantHistoryInfo/'+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/'+brandName+'/'+varName;
+				   var url='/variantHistoryInfo/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+brandName+'/'+varName;
 				   return $http({method: 'GET', url: url});
 				}).then(function(data){
 					$scope.variantHistory=data.data;
@@ -685,7 +711,7 @@ define(['app'], function(app) {
 			var submitDecision=function(){
 				var queryCondition={
 					producerID:parseInt(PlayerInfo.getPlayer()),
-					seminar:$rootScope.user.seminar
+					seminar:SeminarInfo.getSelectedSeminar()
 				}
 				$http({
 					method:'POST',
@@ -732,7 +758,7 @@ define(['app'], function(app) {
 						return (obj.categoryID==$scope.lauchNewCategory);
 					});
 					newBrand.brandID=calculateBrandID(proBrandsDecision,$scope.producerID);
-					newBrand.brandName=$scope.brandFirstName+$scope.lauchNewBrandName+parseInt($rootScope.user.roleID);
+					newBrand.brandName=$scope.brandFirstName+$scope.lauchNewBrandName+parseInt(PlayerInfo.getPlayer());
 					newBrand.paranetCompanyID=$scope.producerID;
 					newBrand.dateOfDeath=10;
 					newBrand.dateOfBirth=$scope.period;
@@ -747,7 +773,7 @@ define(['app'], function(app) {
 					//need add 2 null vars
 					newBrand.proVarDecision.push(newproducerDecision,nullDecision,nullDecision);
 
-					url="/checkProducerProduct/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+parseInt($rootScope.user.roleID)+'/'+$scope.lauchNewCategory+'/brand/'+newBrand.brandName+'/'+newproducerDecision.varName;
+					url="/checkProducerProduct/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+$scope.lauchNewCategory+'/brand/'+newBrand.brandName+'/'+newproducerDecision.varName;
 					$http({
 						method:'GET',
 						url:url
@@ -775,7 +801,7 @@ define(['app'], function(app) {
 			       			break;
 			       		}
 			       	}
-			       	url="/checkProducerProduct/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+parseInt($rootScope.user.roleID)+'/'+$scope.lauchNewCategory+'/variant/'+newBrandName+'/'+newproducerDecision.varName;
+			       	url="/checkProducerProduct/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+$scope.lauchNewCategory+'/variant/'+newBrandName+'/'+newproducerDecision.varName;
 			       	
 			       	$http({
 						method:'GET',
@@ -812,8 +838,32 @@ define(['app'], function(app) {
 		 		$scope.infoBuble = true;
 		 	};
 			
+			var getPrevious=function(){
+				ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getPreviousPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
+					$scope.pageBase = base;	
+				}).then(function(){
+					return promiseStep1();
+				}), function(reason){
+					console.log('from ctr: ' + reason);
+				}, function(update){
+					console.log('from ctr: ' + update);
+				};
+			}
+
+			var getNext=function(){
+				ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getNextPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
+					$scope.pageBase = base;	
+				}).then(function(){
+					return promiseStep1();
+				}), function(reason){
+					console.log('from ctr: ' + reason);
+				}, function(update){
+					console.log('from ctr: ' + update);
+				};
+			}
+
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
-				ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
+				ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
 					$scope.pageBase = base;	
 				}).then(function(){
 					return promiseStep1();

@@ -1,6 +1,6 @@
 define(['app'], function(app) {
 		app.controller('producerDecisionStep3Ctrl',
-			['$scope','$q','$rootScope','$http','$filter','ProducerDecision','ProducerDecisionBase','Label','PlayerInfo', function($scope,$q,$rootScope,$http,$filter,ProducerDecision,ProducerDecisionBase,Label,PlayerInfo) {
+			['$scope','$q','$rootScope','$http','$filter','ProducerDecision','ProducerDecisionBase','Label','PlayerInfo','SeminarInfo','PeriodInfo', function($scope,$q,$rootScope,$http,$filter,ProducerDecision,ProducerDecisionBase,Label,PlayerInfo,SeminarInfo,PeriodInfo) {
 			$rootScope.decisionActive="active";
 			$rootScope.loginCss="";
 		    $rootScope.loginFooter="bs-footer";
@@ -9,11 +9,11 @@ define(['app'], function(app) {
 
 			$scope.language=Label.getCurrentLanguage();
 			$scope.producerID=parseInt(PlayerInfo.getPlayer());
-			$scope.period=$rootScope.currentPeriod;
+			$scope.period=PeriodInfo.getCurrentPeriod();
 			$scope.category='Elecssories';
 			$scope.isCollapsed=true;
 	
-			ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
+			ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
 				$scope.pageBase = base;
 			}).then(function(){
 				return promiseStep1();
@@ -32,6 +32,31 @@ define(['app'], function(app) {
 					$scope.updateProducerDecision=updateProducerDecision;
 					$scope.getBrandMoreInfo=getBrandMoreInfo;
 					$scope.closeInfo=closeInfo;
+					$scope.getPrevious=getPrevious;
+					$scope.getNext=getNext;
+					if($rootScope.user.role==8){
+						//Facilitator
+						$scope.facilitatorShow=true;
+						var url="/currentPeriod/"+SeminarInfo.getSelectedSeminar();
+						$http({
+							method:'GET',
+							url:url
+						}).then(function(data){
+							if(PeriodInfo.getCurrentPeriod()<data.data.currentPeriod){
+								$scope.nextBtn=true;
+							}else{
+								$scope.nextBtn=false;
+							}
+							if(PeriodInfo.getCurrentPeriod()<=data.data.currentPeriod&&PeriodInfo.getCurrentPeriod()>=2){
+								$scope.previousBtn=true;
+							}else{
+								$scope.previousBtn=false;
+							}
+						})
+					}else{
+						$scope.facilitatorShow=false;
+					}
+
 					d.resolve();
 					return showView($scope.producerID,$scope.period,$scope.category,$scope.language);
 				return d.promise;
@@ -52,19 +77,19 @@ define(['app'], function(app) {
 					categoryID=2;
 					fakeName="HName";
 				}
-	      		var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
+	      		var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
 	      		$http({
 	      			method:'GET',
 	      			url:url
 	      		}).then(function(data){
 	      			avaiableMax=data.data.budgetAvailable;
-	      			if($rootScope.currentPeriod<=1){
+	      			if(PeriodInfo.getCurrentPeriod()<=1){
 	      				abMax=data.data.budgetAvailable;
 	      			}else{
 	      				abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
 	      			}
 					acMax=data.data.productionCapacity[categoryID-1];
-					url="/producerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+parseInt(PlayerInfo.getPlayer())+'/brandName/location/1';
+					url="/producerExpend/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/brandName/location/1';
 	      			return $http({
 	      				method:'GET',
 	      				url:url,
@@ -73,7 +98,7 @@ define(['app'], function(app) {
 	      			expend=data.data.result;
 	      			$scope.surplusExpend=abMax-expend;
 	      			$scope.percentageExpend=(abMax-expend)/abMax*100;
-	      			url="/productionResult/"+$rootScope.user.seminar+'/'+$rootScope.currentPeriod+'/'+parseInt(PlayerInfo.getPlayer())+'/'+fakeName+'/varName';
+	      			url="/productionResult/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+fakeName+'/varName';
 					return $http({
 						method:'GET',
 						url:url
@@ -142,13 +167,13 @@ define(['app'], function(app) {
 				if(!filter.test(value)){
 					d.resolve(Label.getContent('Input a number'));
 				}
-				var url="/companyHistoryInfo/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
+				var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
 	      		$http({
 	      			method:'GET',
 	      			url:url
 	      		}).then(function(data){
 	      			max=data.data.budgetAvailable;
-	      			url="/producerExpend/"+$rootScope.user.seminar+'/'+($rootScope.currentPeriod)+'/'+parseInt(PlayerInfo.getPlayer())+'/'+brandName+'/'+location+'/'+tep;
+	      			url="/producerExpend/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/'+brandName+'/'+location+'/'+tep;
 	      			return $http({
 	      				method:'GET',
 	      				url:url
@@ -168,11 +193,11 @@ define(['app'], function(app) {
 			var getBrandMoreInfo=function(brandID,brandName){
 				var d=$q.defer();
 				$scope.isCollapsed=false;
-				var url='/brandHistoryInfo/'+$rootScope.user.seminar+'/'+($rootScope.currentPeriod-1)+'/'+brandName;
+				var url='/brandHistoryInfo/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+brandName;
 				$http({method: 'GET', url: url})
 				.then(function(data) {
 					$scope.brandHistory=data.data;
-					url="/producerBrandDecision/"+parseInt(PlayerInfo.getPlayer())+'/'+($rootScope.currentPeriod-1)+'/'+$rootScope.user.seminar+'/'+brandName;
+					url="/producerBrandDecision/"+parseInt(PlayerInfo.getPlayer())+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+SeminarInfo.getSelectedSeminar()+'/'+brandName;
 					return $http({method:'GET',url:url});
 				}).then(function(data){
 					$scope.brandDecisionHistory=data.data;
@@ -187,8 +212,33 @@ define(['app'], function(app) {
 				return d.promise;
 			}
 
+			var getPrevious=function(){
+				ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getPreviousPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
+					$scope.pageBase = base;	
+				}).then(function(){
+					return promiseStep1();
+				}), function(reason){
+					console.log('from ctr: ' + reason);
+				}, function(update){
+					console.log('from ctr: ' + update);
+				};
+			}
+
+			var getNext=function(){
+				ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getNextPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
+					$scope.pageBase = base;	
+				}).then(function(){
+					return promiseStep1();
+				}), function(reason){
+					console.log('from ctr: ' + reason);
+				}, function(update){
+					console.log('from ctr: ' + update);
+				};
+			}
+
+
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
-				ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:$rootScope.currentPeriod,seminar:$rootScope.user.seminar}).then(function(base){
+				ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
 					$scope.pageBase = base;	
 				}).then(function(){
 					return promiseStep1();

@@ -12,6 +12,9 @@
         <div class="pull-left" style="width:40%">
           <h4 class="pull-left">
             <span class="label label-info">{{Label.getContent(category)}}</span>
+            <span class="label label-success" ng-show='facilitatorShow'>
+              {{Label.getContent('Period')}}:{{period}}
+            </span>
           </h4>
           <div style="clear:both"></div>
           <div class="btn-group pull-left">
@@ -26,6 +29,12 @@
                   <a ng-click="showView(retailerID,period,'HealthBeauty',language)">{{Label.getContent('HealthBeauty')}}</a>
                 </li>       
               </ul>
+          </div>
+          <div class="btn-group" style="margin-left:5px">
+            <button type="button" class="btn btn-default" ng-click="" ng-show='facilitatorShow' ng-disabled="!previousBtn">{{Label.getContent('Previous period')}}</button>
+          </div>
+          <div class="btn-group">
+            <button type="button" ng-click="" class="btn btn-default" ng-show='facilitatorShow' ng-disabled="!nextBtn">{{Label.getContent('Next period')}}</button>
           </div>
         </div>
         <div ng-show="false" class="pull-right" style="width:40%">

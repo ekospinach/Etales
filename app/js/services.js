@@ -112,6 +112,31 @@ define(['angular',
 		}
 	})
 
+	services.factory('PeriodInfo', function(){
+		var currentPeriod;
+		return {
+			getCurrentPeriod:function(){
+				console.log('services get period:'+currentPeriod);
+				return currentPeriod;
+			},
+			getPreviousPeriod:function(){
+				currentPeriod=currentPeriod-1;
+				console.log('services get period:'+currentPeriod);
+				return currentPeriod;
+			},
+			getNextPeriod:function(){
+				currentPeriod=currentPeriod+1;
+				console.log('services get period:'+currentPeriod);
+				return currentPeriod;
+			},
+			setCurrentPeriod:function(value){
+				currentPeriod=value;
+				console.log('services set period:'+currentPeriod);
+			}	
+		}
+	})
+
+
 	services.factory('Auth', function($http, $rootScope, $cookieStore){
 	    var accessLevels = routingConfig.accessLevels
 	        , userRoles = routingConfig.userRoles;
@@ -263,7 +288,7 @@ define(['angular',
 			}, base;			
 
 		this.setDefaultPara = function(p) { requestPara = p };
-		this.$get = ['ProducerDecision', '$q','$rootScope','$http', function(ProducerDecision, $q, $rootScope,$http){
+		this.$get = ['ProducerDecision', '$q','$rootScope','$http','PlayerInfo','SeminarInfo','PeriodInfo', function(ProducerDecision, $q, $rootScope,$http,PlayerInfo,SeminarInfo,PeriodInfo){
 			return {
 				reload : function(p){ 
 					requestPara = p;
@@ -296,9 +321,9 @@ define(['angular',
 				setProducerDecisionValue:function(categoryID,brandName,varName,location,additionalIdx,value){
 
 					var queryCondition = {
-						producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),
-						period:$rootScope.currentPeriod,
-						seminar:$rootScope.user.seminar,
+						producerID:PlayerInfo.getPlayer(),
+						period:PeriodInfo.getCurrentPeriod(),
+						seminar:SeminarInfo.getSelectedSeminar(),
 						behaviour : 'updateVariant', 
 							    /* 
 							    switch(behaviour) case...
@@ -327,9 +352,9 @@ define(['angular',
 				//step3
 				setProducerDecisionBrand:function(categoryID,brandName,location,additionalIdx,value){
 					var queryCondition = {
-						producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),
-						period:$rootScope.currentPeriod,
-						seminar:$rootScope.user.seminar,
+						producerID:PlayerInfo.getPlayer(),
+						period:PeriodInfo.getCurrentPeriod(),
+						seminar:SeminarInfo.getSelectedSeminar(),
 						behaviour : 'updateBrand', 
 							    /* 
 							    switch(behaviour) case...
@@ -357,9 +382,9 @@ define(['angular',
 				//step4
 				setProducerDecisionCategory:function(categoryID,location,value){
 					var queryCondition = {
-						producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),
-						period:$rootScope.currentPeriod,
-						seminar:$rootScope.user.seminar,
+						producerID:PlayerInfo.getPlayer(),
+						period:PeriodInfo.getCurrentPeriod(),
+						seminar:SeminarInfo.getSelectedSeminar(),
 						behaviour : 'updateCategory', 
 						categoryID : categoryID,
 						location : location,
@@ -374,9 +399,9 @@ define(['angular',
 				},
 				addProductNewBrand:function(newproducerDecision,categoryID){
 					var queryCondition = {
-						producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),
-						period:$rootScope.currentPeriod,
-						seminar:$rootScope.user.seminar,
+						producerID:PlayerInfo.getPlayer(),
+						period:PeriodInfo.getCurrentPeriod(),
+						seminar:SeminarInfo.getSelectedSeminar(),
 						behaviour : 'addProductNewBrand', 
 						categoryID : categoryID,
 						value : newproducerDecision
@@ -387,13 +412,12 @@ define(['angular',
 					 },function(res){
 						return 0;
 					});
-
 				},
 				addProductExistedBrand:function(newproducerDecision,categoryID,brandName){
 					var queryCondition = {
-						producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),
-						period:$rootScope.currentPeriod,
-						seminar:$rootScope.user.seminar,
+						producerID:PlayerInfo.getPlayer(),
+						period:PeriodInfo.getCurrentPeriod(),
+						seminar:SeminarInfo.getSelectedSeminar(),
 						behaviour : 'addProductExistedBrand', 
 						categoryID : categoryID,
 						value : newproducerDecision,
@@ -401,18 +425,16 @@ define(['angular',
 					}
 					$http({method:'POST', url:'/producerDecision', data: queryCondition}).then(function(res){
 						$rootScope.$broadcast('producerDecisionBaseChanged', base);
-					 	//console.log('Success:' + res);
 					 	return 1;
 					 },function(res){
-						//console.log('Failed:' + res);
 						return 0;
 					});
 				},
 				deleteProduct:function(categoryID,brandName,varName){
 					var queryCondition = {
-						producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),
-						period:$rootScope.currentPeriod,
-						seminar:$rootScope.user.seminar,
+						producerID:PlayerInfo.getPlayer(),
+						period:PeriodInfo.getCurrentPeriod(),
+						seminar:SeminarInfo.getSelectedSeminar(),
 						behaviour : 'deleteProduct', 
 						categoryID : categoryID,
 						varName : varName,
@@ -433,9 +455,9 @@ define(['angular',
 							relatedBrandName:brandName,
 							deleteType:deleteType,
 							index:data.data.index,
-							producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),
-							period:$rootScope.currentPeriod,
-							seminar:$rootScope.user.seminar
+							producerID:PlayerInfo.getPlayer(),
+							period:PeriodInfo.getCurrentPeriod(),
+							seminar:SeminarInfo.getSelectedSeminar()
 						}
 						return $http({
 							method:'POST',
@@ -444,8 +466,8 @@ define(['angular',
 						})
 					 }).then(function(data){
 					 	queryCondition={
-					 		period:$rootScope.currentPeriod,
-							seminar:$rootScope.user.seminar,
+							period:PeriodInfo.getCurrentPeriod(),
+							seminar:SeminarInfo.getSelectedSeminar(),
 					 		brandName:brandName,
 					 		varName:varName,
 					 		categoryID:categoryID,
@@ -466,8 +488,8 @@ define(['angular',
 				submitDecision:function(){
 					//$rootScope.$broadcast('producerDecisionBaseChanged', base);
 					var queryCondition={
-						producerID:$rootScope.user.username.substring($rootScope.user.username.length-1),
-						seminar:$rootScope.user.seminar
+						producerID:PlayerInfo.getPlayer(),
+						seminar:SeminarInfo.getSelectedSeminar(),
 					}
 					$http({
 						method:'POST',
