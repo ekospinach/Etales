@@ -1,13 +1,13 @@
 define(['app'], function(app) {
 	app.controller('contractCtrl',
-		['$scope','$q','$rootScope','$http','$filter','$location','ContractInfo','Label','PlayerInfo', function($scope,$q,$rootScope,$http,$filter,$location,ContractInfo,Label,PlayerInfo) {
+		['$scope','$q','$rootScope','$http','$filter','$location','ContractInfo','Label','PlayerInfo','SeminarInfo','PeriodInfo', function($scope,$q,$rootScope,$http,$filter,$location,ContractInfo,Label,PlayerInfo,SeminarInfo,PeriodInfo) {
 
 			$rootScope.loginCss="";
 		    $rootScope.loginFooter="bs-footer";
 		    $rootScope.loginLink="footer-links";
 		    $rootScope.loginDiv="container";
 			var showView=function(contractUserID){
-				var url="/contracts/"+$rootScope.user.seminar+'/'+contractUserID;
+				var url="/contracts/"+SeminarInfo.getSelectedSeminar()+'/'+contractUserID;
 				$http.get(url).success(function(data){
 					$scope.allContracts=data;
 					$scope.contractList=$scope.allContracts;
@@ -89,9 +89,9 @@ define(['app'], function(app) {
 			$scope.addNewContract=function(){
 				if($scope.newContractCode.length>0){
 					var data={
-						'contractCode':$scope.newContractCode+'_'+$rootScope.user.seminar+'_'+$rootScope.currentPeriod,
-						'seminar':$rootScope.user.seminar,
-						'period':$rootScope.currentPeriod,
+						'contractCode':$scope.newContractCode+'_'+SeminarInfo.getSelectedSeminar()+'_'+PeriodInfo.getCurrentPeriod(),
+						'seminar':SeminarInfo.getSelectedSeminar(),
+						'period':PeriodInfo.getCurrentPeriod(),
 						'draftedByCompanyID':PlayerInfo.getPlayer(),
 						'producerID':PlayerInfo.getPlayer(),
 						'retailerID':$scope.newRetailerID
@@ -167,11 +167,13 @@ define(['app'], function(app) {
 		    	})
 		    }
 
-			$scope.openPlayerModal=function(){
+			$scope.openPlayerModal=function(contract){
+				$scope.contract=contract;
+				//$scope.contractCode=contract.contractCode;
+				$scope.userRole=parseInt(contract.producerID);
+				$scope.contractUserID=contract.producerID;
 				$scope.playerModal=true;
-				$scope.userRole=1;
-				$scope.contractUserID=1;
-				PlayerInfo.setPlayer(1);
+				PlayerInfo.setPlayer(contract.producerID);
 			}
 
 			var closePlayerModal=function(){
@@ -179,8 +181,10 @@ define(['app'], function(app) {
 			}
 
 			$scope.setFinish=function(){
-				showView($scope.contractUserID);
+				//showView($scope.contractUserID);
 				closePlayerModal();
+				ContractInfo.setSelectedContract($scope.contract);
+				$location.path('/contractDetails');
 			}
 
 			$scope.duplicate = function(contract){
@@ -192,9 +196,9 @@ define(['app'], function(app) {
 				}
 				if($scope.duplicateContractCode.length>0&&$scope.duplicateContractCode.length<10){
 					var data={
-						'contractCode':$scope.duplicateContractCode+'_'+$rootScope.user.seminar+'_'+$rootScope.currentPeriod,
-						'seminar':$rootScope.user.seminar,
-						'period':$rootScope.currentPeriod,
+						'contractCode':$scope.duplicateContractCode+'_'+SeminarInfo.getSelectedSeminar()+'_'+PeriodInfo.getCurrentPeriod(),
+						'seminar':SeminarInfo.getSelectedSeminar(),
+						'period':PeriodInfo.getCurrentPeriod(),
 						'draftedByCompanyID':PlayerInfo.getPlayer(),
 						'producerID':PlayerInfo.getPlayer(),
 						'retailerID':retailerID,
@@ -215,6 +219,7 @@ define(['app'], function(app) {
 
 			if($rootScope.user.role==8){
 				//Facilitator login
+				$scope.facilitatorShow=true;
 				$scope.producerShow=false;
 				$scope.retailerShow=false;
 				//console.log((producerShow||retailerShow));
@@ -222,10 +227,16 @@ define(['app'], function(app) {
 			}else if($rootScope.user.role==4){
 				//retailer login
 				//$scope.contractUserID=parseInt(PlayerInfo.getPlayer())+4;\
+				$scope.retailerShow=true;
+				$scope.producerShow=false;
+				$scope.facilitatorShow=false;
 				$scope.contractUserID=parseInt(PlayerInfo.getPlayer());
 				$scope.retailerID=parseInt(PlayerInfo.getPlayer());
 			}else if($rootScope.user.role==2){
 				//producer login
+				$scope.producerShow=true;
+				$scope.facilitatorShow=false;
+				$scope.retailerShow=false;
 				$scope.contractUserID=parseInt(PlayerInfo.getPlayer());
 				$scope.producerID=parseInt(PlayerInfo.getPlayer());
 			}

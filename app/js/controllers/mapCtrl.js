@@ -1,7 +1,7 @@
 define(['app','socketIO','routingConfig'], function(app) {
 
-	app.controller('mapCtrl', ['$scope','$rootScope','$http','$location','$resource','map','Map','Auth','Label',
-		function($scope, $rootScope,$http,$location,$resource,map,Map,Auth,Label,charting) {
+	app.controller('mapCtrl', ['$scope','$rootScope','$http','$location','$resource','map','Map','Auth','Label','PlayerInfo','SeminarInfo','PeriodInfo',
+		function($scope, $rootScope,$http,$location,$resource,map,Map,Auth,Label,PlayerInfo,SeminarInfo,PeriodInfo,charting) {
 		// You can access the scope of the controller from here
 			$rootScope.loginCss="";
 		    $rootScope.loginFooter="bs-footer";
@@ -364,7 +364,7 @@ define(['app','socketIO','routingConfig'], function(app) {
         for(var i=startFrom;i<=endWith;i++){
         	$scope.periods.push(i);
         }
-        $scope.seminar=$rootScope.user.seminar;
+        $scope.seminar=SeminarInfo.getSelectedSeminar();
         $scope.getMap=getMap;
         $scope.showSelect=showSelect;
         $scope.showChart = showChart;

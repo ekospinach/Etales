@@ -72,7 +72,10 @@
 				    			</fieldset>
 				    		</td>
 				    		<td>
-				    			<a class="btn btn-primary" ng-show="(producerShow||retailerShow)" ng-click="openDetailModal(allContract)">
+				    			<a class="btn btn-primary" ng-show="(!facilitatorShow)" ng-click="openDetailModal(allContract)">
+				    				{{Label.getContent('Details')}}
+				    			</a>
+				    			<a class="btn btn-primary" ng-show='facilitatorShow' ng-click='openPlayerModal(allContract)' access-level='{{accessLevels.facilitatorView}}'>
 				    				{{Label.getContent('Details')}}
 				    			</a>
 				    			<a class="btn btn-default" ng-show=(producerShow&&(allContract.period==currentPeriod)) ng-click="openDuplicateModal(allContract)">
@@ -89,10 +92,13 @@
 			    	</tbody>
 			    </table>
 			    <a class="btn btn-primary" ng-click="openInsertModal()" ng-show=producerShow>
-			    	{{Label.getContent('New Contract')}}</a>
+			    	{{Label.getContent('New Contract')}}
+			    </a>
+			    <!--
 			    <a class="btn btn-primary" ng-click="openPlayerModal()" access-level='{{accessLevels.facilitatorView}}'>
 			    	{{Label.getContent('Choose Player')}}
-			    </a>
+			    </a>-->
+
 		    </div>
 		</div>
 	</div>
@@ -185,7 +191,8 @@
 						<label for="userRole" class="col-sm-4 control-label">{{Label.getContent('Choose Your Role')}}:
 						</label>
 						<div class="col-sm-6">
-							<select class="form-control" id="userRole" ng-model="userRole" ng-change="setPlayer(userRole)">
+							<select class="form-control" ng-model="userRole" ng-change="setPlayer(userRole)">
+					    		<!--
 					    		<option value="1">{{Label.getContent('Producer')}} 1</option>
 								<option value="2">{{Label.getContent('Producer')}} 2</option>
 								<option value="3">{{Label.getContent('Producer')}} 3</option>
@@ -193,7 +200,11 @@
 								<option value="5">{{Label.getContent('Retailer')}} 1</option>
 								<option value="6">{{Label.getContent('Retailer')}} 2</option>
 								<option value="7">{{Label.getContent('Traditional Trade')}}</option>
-								<option value="8">{{Label.getContent('eMall')}}</option>
+								<option value="8">{{Label.getContent('eMall')}}</option>-->
+								<option value='{{contract.producerID}}'>{{Label.getContent('Producer')}} {{contract.producerID}}
+								</option>
+								<option value='{{contract.retailerID+4}}'>{{Label.getContent('Retailer')}} {{contract.retailerID}}
+								</option>
 							</select>
 						</div>
 					</div>
