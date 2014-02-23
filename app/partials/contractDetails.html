@@ -13,6 +13,9 @@
     </div>
 </div>
 
+
+
+
 <div class="container bs-docs-container">
     <br>
     <div class="alert alert-warning" ng-show="isLock"><strong>{{Label.getContent('Warning')}}!</strong> {{Label.getContent('Warning Info')}} </div>
@@ -457,7 +460,7 @@
                                                     <a href="#" editable-text="product.rate_ruralValue" ng-show="product.ruralValue!=0" onbeforesave="checkData(contractInfo.contractCode,'nc_PerformanceBonusRate',$data)" onaftersave="updateContractDetails(product,'nc_PerformanceBonusRate','rural',product.index,'variant')">
                                                         <p class="text-right">{{ product.rate_ruralValue || 0 }}</p>
                                                     </a>
-                                                    <p ng-show="product.ruralValue==0">{{ product.rate_ruralValue || 0 }}</p>
+                                                    <p class="text-right" ng-show="product.ruralValue==0">{{ product.rate_ruralValue || 0 }}</p>
                                                 </td>
                                             </tr>
                                         </tbody>

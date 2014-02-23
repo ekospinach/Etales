@@ -1,13 +1,14 @@
 define(['app'], function(app) {
 	app.controller('contractCtrl',
-		['$scope','$q','$rootScope','$http','$filter','$location','ContractInfo','Label','PlayerInfo', function($scope,$q,$rootScope,$http,$filter,$location,ContractInfo,Label,PlayerInfo) {
+		['$scope','$q','$rootScope','$http','$filter','$location','ContractInfo','Label','PlayerInfo','SeminarInfo','PeriodInfo', function($scope,$q,$rootScope,$http,$filter,$location,ContractInfo,Label,PlayerInfo,SeminarInfo,PeriodInfo) {
 
 			$rootScope.loginCss="";
 		    $rootScope.loginFooter="bs-footer";
 		    $rootScope.loginLink="footer-links";
 		    $rootScope.loginDiv="container";
 			var showView=function(contractUserID){
-				var url="/contracts/"+$rootScope.user.seminar+'/'+contractUserID;
+				$scope.period=PeriodInfo.getCurrentPeriod();
+				var url="/contracts/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+contractUserID;
 				$http.get(url).success(function(data){
 					$scope.allContracts=data;
 					$scope.contractList=$scope.allContracts;
@@ -22,6 +23,22 @@ define(['app'], function(app) {
 						$scope.retailerShow=true;
 					}
 				});
+				var url="/currentPeriod/"+SeminarInfo.getSelectedSeminar();
+					$http({
+						method:'GET',
+						url:url
+					}).then(function(data){
+						if(PeriodInfo.getCurrentPeriod()<data.data.currentPeriod){
+							$scope.nextBtn=true;
+						}else{
+							$scope.nextBtn=false;
+						}
+						if(PeriodInfo.getCurrentPeriod()<=data.data.currentPeriod&&PeriodInfo.getCurrentPeriod()>=2){
+							$scope.previousBtn=true;
+						}else{
+							$scope.previousBtn=false;
+						}
+					})
 			}
 
 			var filterUser=function(producerID,retailerID){
@@ -89,9 +106,9 @@ define(['app'], function(app) {
 			$scope.addNewContract=function(){
 				if($scope.newContractCode.length>0){
 					var data={
-						'contractCode':$scope.newContractCode+'_'+$rootScope.user.seminar+'_'+$rootScope.currentPeriod,
-						'seminar':$rootScope.user.seminar,
-						'period':$rootScope.currentPeriod,
+						'contractCode':$scope.newContractCode+'_'+SeminarInfo.getSelectedSeminar()+'_'+PeriodInfo.getCurrentPeriod(),
+						'seminar':SeminarInfo.getSelectedSeminar(),
+						'period':PeriodInfo.getCurrentPeriod(),
 						'draftedByCompanyID':PlayerInfo.getPlayer(),
 						'producerID':PlayerInfo.getPlayer(),
 						'retailerID':$scope.newRetailerID
@@ -167,11 +184,13 @@ define(['app'], function(app) {
 		    	})
 		    }
 
-			$scope.openPlayerModal=function(){
+			$scope.openPlayerModal=function(contract){
+				$scope.contract=contract;
+				//$scope.contractCode=contract.contractCode;
+				$scope.userRole=parseInt(contract.producerID);
+				$scope.contractUserID=contract.producerID;
 				$scope.playerModal=true;
-				$scope.userRole=1;
-				$scope.contractUserID=1;
-				PlayerInfo.setPlayer(1);
+				PlayerInfo.setPlayer(contract.producerID);
 			}
 
 			var closePlayerModal=function(){
@@ -179,8 +198,10 @@ define(['app'], function(app) {
 			}
 
 			$scope.setFinish=function(){
-				showView($scope.contractUserID);
+				//showView($scope.contractUserID);
 				closePlayerModal();
+				ContractInfo.setSelectedContract($scope.contract);
+				$location.path('/contractDetails');
 			}
 
 			$scope.duplicate = function(contract){
@@ -192,9 +213,9 @@ define(['app'], function(app) {
 				}
 				if($scope.duplicateContractCode.length>0&&$scope.duplicateContractCode.length<10){
 					var data={
-						'contractCode':$scope.duplicateContractCode+'_'+$rootScope.user.seminar+'_'+$rootScope.currentPeriod,
-						'seminar':$rootScope.user.seminar,
-						'period':$rootScope.currentPeriod,
+						'contractCode':$scope.duplicateContractCode+'_'+SeminarInfo.getSelectedSeminar()+'_'+PeriodInfo.getCurrentPeriod(),
+						'seminar':SeminarInfo.getSelectedSeminar(),
+						'period':PeriodInfo.getCurrentPeriod(),
 						'draftedByCompanyID':PlayerInfo.getPlayer(),
 						'producerID':PlayerInfo.getPlayer(),
 						'retailerID':retailerID,
@@ -212,9 +233,38 @@ define(['app'], function(app) {
 				}
 			}
 
+			var getPrevious=function(){
+				// ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getPreviousPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
+				// 	$scope.pageBase = base;	
+				// }).then(function(){
+				// 	return promiseStep1();
+				// }), function(reason){
+				// 	console.log('from ctr: ' + reason);
+				// }, function(update){
+				// 	console.log('from ctr: ' + update);
+				// };
+				PeriodInfo.getPreviousPeriod();
+				showView($scope.contractUserID);
+			}
+
+			var getNext=function(){
+				PeriodInfo.getNextPeriod();
+				// ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getNextPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
+				// 	$scope.pageBase = base;	
+				// }).then(function(){
+				// 	return promiseStep1();
+				// }), function(reason){
+				// 	console.log('from ctr: ' + reason);
+				// }, function(update){
+				// 	console.log('from ctr: ' + update);
+				// };
+				showView($scope.contractUserID);
+			}
+
 
 			if($rootScope.user.role==8){
 				//Facilitator login
+				$scope.facilitatorShow=true;
 				$scope.producerShow=false;
 				$scope.retailerShow=false;
 				//console.log((producerShow||retailerShow));
@@ -222,10 +272,16 @@ define(['app'], function(app) {
 			}else if($rootScope.user.role==4){
 				//retailer login
 				//$scope.contractUserID=parseInt(PlayerInfo.getPlayer())+4;\
+				$scope.retailerShow=true;
+				$scope.producerShow=false;
+				$scope.facilitatorShow=false;
 				$scope.contractUserID=parseInt(PlayerInfo.getPlayer());
 				$scope.retailerID=parseInt(PlayerInfo.getPlayer());
 			}else if($rootScope.user.role==2){
 				//producer login
+				$scope.producerShow=true;
+				$scope.facilitatorShow=false;
+				$scope.retailerShow=false;
 				$scope.contractUserID=parseInt(PlayerInfo.getPlayer());
 				$scope.producerID=parseInt(PlayerInfo.getPlayer());
 			}
@@ -247,6 +303,8 @@ define(['app'], function(app) {
 			$scope.showbubleMsg=showbubleMsg;
 			$scope.openDetailModal=openDetailModal;
 			$scope.closeDuplicateModal=closeDuplicateModal;
+			$scope.getPrevious=getPrevious;
+			$scope.getNext=getNext;
 			showView($scope.contractUserID);
 		}]
 	)
