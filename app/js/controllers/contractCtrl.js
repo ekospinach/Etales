@@ -7,7 +7,8 @@ define(['app'], function(app) {
 		    $rootScope.loginLink="footer-links";
 		    $rootScope.loginDiv="container";
 			var showView=function(contractUserID){
-				var url="/contracts/"+SeminarInfo.getSelectedSeminar()+'/'+contractUserID;
+				$scope.period=PeriodInfo.getCurrentPeriod();
+				var url="/contracts/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+contractUserID;
 				$http.get(url).success(function(data){
 					$scope.allContracts=data;
 					$scope.contractList=$scope.allContracts;
@@ -22,6 +23,22 @@ define(['app'], function(app) {
 						$scope.retailerShow=true;
 					}
 				});
+				var url="/currentPeriod/"+SeminarInfo.getSelectedSeminar();
+					$http({
+						method:'GET',
+						url:url
+					}).then(function(data){
+						if(PeriodInfo.getCurrentPeriod()<data.data.currentPeriod){
+							$scope.nextBtn=true;
+						}else{
+							$scope.nextBtn=false;
+						}
+						if(PeriodInfo.getCurrentPeriod()<=data.data.currentPeriod&&PeriodInfo.getCurrentPeriod()>=2){
+							$scope.previousBtn=true;
+						}else{
+							$scope.previousBtn=false;
+						}
+					})
 			}
 
 			var filterUser=function(producerID,retailerID){
@@ -216,6 +233,34 @@ define(['app'], function(app) {
 				}
 			}
 
+			var getPrevious=function(){
+				// ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getPreviousPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
+				// 	$scope.pageBase = base;	
+				// }).then(function(){
+				// 	return promiseStep1();
+				// }), function(reason){
+				// 	console.log('from ctr: ' + reason);
+				// }, function(update){
+				// 	console.log('from ctr: ' + update);
+				// };
+				PeriodInfo.getPreviousPeriod();
+				showView($scope.contractUserID);
+			}
+
+			var getNext=function(){
+				PeriodInfo.getNextPeriod();
+				// ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getNextPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
+				// 	$scope.pageBase = base;	
+				// }).then(function(){
+				// 	return promiseStep1();
+				// }), function(reason){
+				// 	console.log('from ctr: ' + reason);
+				// }, function(update){
+				// 	console.log('from ctr: ' + update);
+				// };
+				showView($scope.contractUserID);
+			}
+
 
 			if($rootScope.user.role==8){
 				//Facilitator login
@@ -258,6 +303,8 @@ define(['app'], function(app) {
 			$scope.showbubleMsg=showbubleMsg;
 			$scope.openDetailModal=openDetailModal;
 			$scope.closeDuplicateModal=closeDuplicateModal;
+			$scope.getPrevious=getPrevious;
+			$scope.getNext=getNext;
 			showView($scope.contractUserID);
 		}]
 	)

@@ -68,11 +68,11 @@ var contractDetails = mongoose.model('contractDetails', contractDetailsSchema);
 exports.getContractList = function(req, res, next){
         var data="";
         if(req.params.contractUserID==1||req.params.contractUserID==2||req.params.contractUserID==3){
-                data={'seminar':req.params.seminar,'producerID':req.params.contractUserID};
+                data={'seminar':req.params.seminar,'period':req.params.period,'producerID':req.params.contractUserID};
         }else if(req.params.contractUserID==5||req.params.contractUserID==6){
-                data={'seminar':req.params.seminar,'retailerID':req.params.contractUserID-4};
+                data={'seminar':req.params.seminar,'period':req.params.period,'retailerID':req.params.contractUserID-4};
         }else{
-                data={'seminar':req.params.seminar};
+                data={'seminar':req.params.seminar,'period':req.params.period};
         }
         contract.find(data,function(err,docs){
                 if(docs){

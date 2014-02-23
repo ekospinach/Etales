@@ -17,6 +17,19 @@
 	<div class="row">
 		<div class="col-md-12">
 		    <div class="bs-docs-section">
+		    	<h4>
+		    		<span class="label label-success" ng-show='facilitatorShow'>
+		    			{{Label.getContent('Period')}}:{{period}}
+		    		</span>
+		    	</h4>
+		    	<div>
+		    		<div class="btn-group">
+		    			<button type="button" class="btn btn-default" ng-click="getPrevious()" ng-show='facilitatorShow' ng-disabled="!previousBtn">{{Label.getContent('Previous period')}}</button>
+		    		</div>
+		    		<div class="btn-group">
+		    			<button type="button" ng-click="getNext()" class="btn btn-default" ng-show='facilitatorShow' ng-disabled="!nextBtn">{{Label.getContent('Next period')}}</button>
+		    		</div>
+		    	</div>
 		    	<div class="page-header">
 			    	<h3>{{Label.getContent('Contract List')}}
 			    		<small>{{Label.getContent('Contract List Info')}}</small>

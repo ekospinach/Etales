@@ -78,7 +78,7 @@ app.get('/seminarList',require('./api/models/seminar.js').getSeminarList);
 //update seminar
 app.post('/updateSeminar',require('./api/models/seminar.js').updateSeminar);
 
-app.get('/contracts/:seminar/:contractUserID',require('./api/models/contract.js').getContractList);
+app.get('/contracts/:seminar/:period/:contractUserID',require('./api/models/contract.js').getContractList);
 //get contractDetail
 app.get('/contractDetail/:contractCode/:userType/:negotiationItem/:brandName',require('./api/models/contract.js').getContractDetail);
 app.post('/compareContractDetailsAndUpdateIsVerified', require('./api/models/contract.js').compareContractDetailsAndUpdateIsVerified);
