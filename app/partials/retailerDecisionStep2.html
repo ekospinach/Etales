@@ -9,6 +9,7 @@
   <div class="row">
     <div class="col-md-9">
       <div class="bs-docs-section">
+        <!--
         <div class="pull-left" style="width:40%">
           <h4 class="pull-left">
             <span class="label label-success" ng-show='facilitatorShow'>
@@ -22,15 +23,15 @@
           <div class="btn-group">
             <button type="button" ng-click="getNext()" class="btn btn-default" ng-show='facilitatorShow' ng-disabled="!nextBtn">{{Label.getContent('Next period')}}</button>
           </div>
-        </div>
+        </div>-->
         <div class="pull-right" style="width:40%">
           <progress percent="percentageExpend" class="progress active"></progress>
           <small>
             <em>{{Label.getContent('Available Budget')}}: <strong>{{surplusExpend.toFixed(2)}}</strong></em>
           </small>
         </div>
-          <div style="clear:both"></div>
-          <div collapse="isCollapsed" class="panel panel-info">
+        <div style="clear:both"></div>
+        <div collapse="isCollapsed" class="panel panel-info">
             <div class="panel-heading">
               {{Label.getContent(marketName)}}
               <button type="button pull-right" class="close" aria-hidden="true" ng-click="closeInfo()">&times;</button>
@@ -121,8 +122,8 @@
                 </tr>                      
               </tbody>        
             </table>
-          </div>
-          <table class="table table-hover">
+        </div>
+        <table class="table table-hover">
             <thead>
               <tr>
                 <th>{{Label.getContent('Market')}}</th>
@@ -214,11 +215,10 @@
                 </th>             
               </tr>
             </tbody>
-          </table>
-          <div>
+        </table>
+        <div>
             <a href="/#/retailerDecisionStep1" class="btn btn-default">{{Label.getContent('Back')}}</a>
             <a href="/#/retailerDecisionStep3" class="btn btn-primary">{{Label.getContent('Next')}}</a>
-          </div>
         </div>
       </div>
     </div>
