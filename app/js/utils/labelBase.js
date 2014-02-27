@@ -600,6 +600,7 @@ var getLabelBase = function(){
 		{id:'Facilitator Decision',  ENG:'Facilitator Decision',  CHN:'Facilitator Decision',  RUS:''},	
 		{id:'Facilitator Decision Info',  ENG:'Facilitator Decision Info',  CHN:'Facilitator Decision Info',  RUS:''},	
 		{id:'Choose Your Role',  ENG:'Choose Your Role',  CHN:'请选择角色',  RUS:''},	
+		{id:'Choose Period',  ENG:'Choose Period',  CHN:'请选择阶段',  RUS:''},	
 		{id:'OK',  ENG:'OK',  CHN:'确定',  RUS:''},	
 		{id:'',  ENG:'',  CHN:'',  RUS:''},	
 		{id:'',  ENG:'',  CHN:'',  RUS:''},	
