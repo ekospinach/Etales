@@ -184,8 +184,8 @@ define(['angular','services'], function(angular, services) {
                 })
                 .directive('angularBootstrap',function(){
                     return function(scope,elm,attrs){
-                        $(".bs-sidenav>li>a").click(function(){
-                            $(".bs-sidenav li").removeClass("active");
+                        $(".bs-docs-sidenav>li>a").click(function(){
+                            $(".bs-docs-sidenav li").removeClass("active");
                             $(this).parent().addClass("active");
                         });
                         $(".second-sidenav>li>a").click(function(){
