@@ -214,3 +214,12 @@ table tr td p,table tr th p{
 .margin-row-10{
   margin: 10px 0;
 }
+.blue >a,.blue >ul >li >a{
+  color: blue;
+}
+.green >a,.green >ul >li >a{
+  color: green;
+}
+.red >a >li a{
+  color: red;
+}
