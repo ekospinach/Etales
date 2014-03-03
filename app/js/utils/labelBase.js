@@ -607,17 +607,32 @@ var getLabelBase = function(){
 		{id:'Summary Report',  ENG:'Summary Report',  CHN:'总结报告',  RUS:''},	
 		{id:'Summary Report Info',  ENG:'Summary Report Info',  CHN:'总结报告介绍',  RUS:''},	
 		{id:'Summary Report popInfo',  ENG:'This table is the consolidated profit/loss statement of both categories at SKU level.',  CHN:'总结报告介绍',  RUS:''},	
-		{id:'',  ENG:'',  CHN:'',  RUS:''},	
-		{id:'',  ENG:'',  CHN:'',  RUS:''},	
-		{id:'',  ENG:'',  CHN:'',  RUS:''},	
-		{id:'',  ENG:'',  CHN:'',  RUS:''},	
-		{id:'',  ENG:'',  CHN:'',  RUS:''},	
-		{id:'',  ENG:'',  CHN:'',  RUS:''},	
-		{id:'',  ENG:'',  CHN:'',  RUS:''},	
-		{id:'',  ENG:'',  CHN:'',  RUS:''},	
-		{id:'',  ENG:'',  CHN:'',  RUS:''},	
-		{id:'',  ENG:'',  CHN:'',  RUS:''},	
-		{id:'',  ENG:'',  CHN:'',  RUS:''},	
+		{id:'Performance Highlights',  ENG:'Performance Highlights',  CHN:'突出业界',  RUS:''},	
+		{id:'Market Shares',  ENG:'Market Shares',  CHN:'市场份额',  RUS:''},	
+		{id:'Cross-Segment Sales Volumes',  ENG:'Cross-Segment Sales Volumes',  CHN:'跨段销售量',  RUS:''},	
+		{id:'Product Portfolio',  ENG:'Product Portfolio',  CHN:'产品组合',  RUS:''},	
+		{id:'eMall Prices and Promotion Intensity',  ENG:'eMall Prices and Promotion Intensity',  CHN:'网上价格和促销强度',  RUS:''},	
+		{id:'Financial Results',  ENG:'Financial Results',  CHN:'财务业绩',  RUS:''},	
+		{id:'Consolidated Profit & Loss Statement',  ENG:'Consolidated Profit & Loss Statement',  CHN:'合并盈利和亏损声明',  RUS:''},	
+		{id:'B&M Business Profit & Loss Statement',  ENG:'B&M Business Profit & Loss Statement',  CHN:'领头企业盈利和亏损声明',  RUS:''},	
+		{id:'Online Business Profit & Loss Statement',  ENG:'Online Business Profit & Loss Statement',  CHN:'在线业务盈利和亏损声明',  RUS:''},	
+		{id:'Profitability by Channel',  ENG:'Profitability by Channel',  CHN:'盈利通道',  RUS:''},	
+		{id:'Last Period Negotiations',  ENG:'Last Period Negotiations',  CHN:'最后一期的谈判',  RUS:''},	
+		{id:'Situation Report',  ENG:'Situation Report',  CHN:'情况报告',  RUS:''}
+		{id:'Key Performance Indicators',  ENG:'Key Performance Indicators',  CHN:'关键性能指标',  RUS:''}
+		{id:'Awareness',  ENG:'Awareness',  CHN:'认知度',  RUS:''}
+		{id:'Perceptions',  ENG:'Perceptions',  CHN:'认知',  RUS:''}
+		{id:'Behavior',  ENG:'Behavior',  CHN:'行为',  RUS:''}
+		{id:'Retailer Prices and Promotion Intensity',  ENG:'Retailer Prices and Promotion Intensity',  CHN:'零售商的价格和促销强度',  RUS:''}
+		{id:'Supplier Intelligence',  ENG:'Supplier Intelligence',  CHN:'供应商情报',  RUS:''}
+		{id:'Retailer Intelligence',  ENG:'Retailer Intelligence',  CHN:'零售商情报',  RUS:''}
+		{id:'Forecasts',  ENG:'Forecasts',  CHN:'预测',  RUS:''}
+		{id:'',  ENG:'',  CHN:'',  RUS:''}
+		{id:'',  ENG:'',  CHN:'',  RUS:''}
+		{id:'',  ENG:'',  CHN:'',  RUS:''}
+		{id:'',  ENG:'',  CHN:'',  RUS:''}
+		{id:'',  ENG:'',  CHN:'',  RUS:''}
+		{id:'',  ENG:'',  CHN:'',  RUS:''}
 		{id:'',  ENG:'',  CHN:'',  RUS:''}
 	]
 }
