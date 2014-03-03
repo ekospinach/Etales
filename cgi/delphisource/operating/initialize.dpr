@@ -97,43 +97,48 @@ var
    begin
       ReturnCode := InitialiseFiles( conf );
       sResponseData.Add( 'Initialisation Exit Code:  ' + IntToStr( ReturnCode ));
+
       if ( ReturnCode = init_InitialisationRun_OK ) then
       begin
         PeriodNumber := HistoryStart;
-        ReturnCode := MakePassivePlayersDecisions( conf, PeriodNumber, TRUE );
-        if ( ReturnCode = passive_PassivePlayersDecisionsRun_OK ) then
-        begin
-          ReturnCode := RunOnePeriod( conf, PeriodNumber );
-          if ( ReturnCode = kernel_SimulationRun_OK ) then
-          begin
-            ReturnCode := MakePassivePlayersDecisions( conf, PeriodNumber, TRUE );
-            if ( ReturnCode = passive_PassivePlayersDecisionsRun_OK ) then
-            begin
-              ReturnCode := RunOnePeriod( conf, PeriodNumber );
-              if ( ReturnCode = kernel_SimulationRun_OK ) then
-              begin
-                ReturnCode := MakePassivePlayersDecisions( conf, PeriodNumber, TRUE );
+        ReturnCode := MakePassivePlayersDecisions( conf, PeriodNumber, TRUE );    //periodNumber = -3
+
+//        if ( ReturnCode = passive_PassivePlayersDecisionsRun_OK ) then
+//        begin
+//          ReturnCode := RunOnePeriod( conf, PeriodNumber );
+//          if ( ReturnCode = kernel_SimulationRun_OK ) then
+//          begin
+//            ReturnCode := MakePassivePlayersDecisions( conf, PeriodNumber, TRUE );    //periodNumber = -3
+//            if ( ReturnCode = passive_PassivePlayersDecisionsRun_OK ) then
+//            begin
+//              ReturnCode := RunOnePeriod( conf, PeriodNumber );
+//              if ( ReturnCode = kernel_SimulationRun_OK ) then
+//              begin
+//                ReturnCode := MakePassivePlayersDecisions( conf, PeriodNumber, TRUE );  //periodNumber = -3
+
+
+
                 if ( ReturnCode = passive_PassivePlayersDecisionsRun_OK ) then
                 begin
                   ReturnCode := RunOnePeriod( conf, PeriodNumber );
                   if ( ReturnCode = kernel_SimulationRun_OK ) then
                   begin
                     Inc( PeriodNumber );
-                    ReturnCode := MakePassivePlayersDecisions( conf, PeriodNumber, TRUE );
+                    ReturnCode := MakePassivePlayersDecisions( conf, PeriodNumber, TRUE );    //periodNumber = -2
                     if ( ReturnCode = passive_PassivePlayersDecisionsRun_OK ) then
                     begin
                       ReturnCode := RunOnePeriod( conf, PeriodNumber );
                       if ( ReturnCode = kernel_SimulationRun_OK ) then
                       begin
                         Inc( PeriodNumber );
-                        ReturnCode := MakePassivePlayersDecisions( conf, PeriodNumber, TRUE );
+                        ReturnCode := MakePassivePlayersDecisions( conf, PeriodNumber, TRUE );   //periodNumber = -1
                         if ( ReturnCode = passive_PassivePlayersDecisionsRun_OK ) then
                         begin
                           ReturnCode := RunOnePeriod( conf, PeriodNumber );
                           if ( ReturnCode = kernel_SimulationRun_OK ) then
                           begin
                             Inc( PeriodNumber );
-                            ReturnCode := MakePassivePlayersDecisions( conf, PeriodNumber, TRUE );
+                            ReturnCode := MakePassivePlayersDecisions( conf, PeriodNumber, TRUE ); //periodNumber = 0
                             if ( ReturnCode = passive_PassivePlayersDecisionsRun_OK ) then
                             begin
                               ReturnCode := RunOnePeriod( conf, PeriodNumber );
@@ -143,14 +148,25 @@ var
                       end;
                     end;
                   end;
+
+
                 end;
-              end;
-            end;
-          end;
-        end;
+
+
+
+
+//              end;
+//            end;
+//          end;
+//        end;
+
+
+
+
+
         sResponseData.Add('Simulation Period ' + IntToStr( PeriodNumber ) + '  Exit Code:  ' + IntToStr( ReturnCode ));
       end;
-      
+
       if (ReturnCode = kernel_SimulationRun_OK) then
       begin
         Result := 'Status: 200 OK';
