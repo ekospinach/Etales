@@ -618,21 +618,29 @@ var getLabelBase = function(){
 		{id:'Online Business Profit & Loss Statement',  ENG:'Online Business Profit & Loss Statement',  CHN:'在线业务盈利和亏损声明',  RUS:''},	
 		{id:'Profitability by Channel',  ENG:'Profitability by Channel',  CHN:'盈利通道',  RUS:''},	
 		{id:'Last Period Negotiations',  ENG:'Last Period Negotiations',  CHN:'最后一期的谈判',  RUS:''},	
-		{id:'Situation Report',  ENG:'Situation Report',  CHN:'情况报告',  RUS:''}
-		{id:'Key Performance Indicators',  ENG:'Key Performance Indicators',  CHN:'关键性能指标',  RUS:''}
-		{id:'Awareness',  ENG:'Awareness',  CHN:'认知度',  RUS:''}
-		{id:'Perceptions',  ENG:'Perceptions',  CHN:'认知',  RUS:''}
-		{id:'Behavior',  ENG:'Behavior',  CHN:'行为',  RUS:''}
-		{id:'Retailer Prices and Promotion Intensity',  ENG:'Retailer Prices and Promotion Intensity',  CHN:'零售商的价格和促销强度',  RUS:''}
-		{id:'Supplier Intelligence',  ENG:'Supplier Intelligence',  CHN:'供应商情报',  RUS:''}
-		{id:'Retailer Intelligence',  ENG:'Retailer Intelligence',  CHN:'零售商情报',  RUS:''}
-		{id:'Forecasts',  ENG:'Forecasts',  CHN:'预测',  RUS:''}
-		{id:'',  ENG:'',  CHN:'',  RUS:''}
-		{id:'',  ENG:'',  CHN:'',  RUS:''}
-		{id:'',  ENG:'',  CHN:'',  RUS:''}
-		{id:'',  ENG:'',  CHN:'',  RUS:''}
-		{id:'',  ENG:'',  CHN:'',  RUS:''}
-		{id:'',  ENG:'',  CHN:'',  RUS:''}
+		{id:'Situation Report',  ENG:'Situation Report',  CHN:'情况报告',  RUS:''},
+		{id:'Key Performance Indicators',  ENG:'Key Performance Indicators',  CHN:'关键性能指标',  RUS:''},
+		{id:'Awareness',  ENG:'Awareness',  CHN:'认知度',  RUS:''},
+		{id:'Perceptions',  ENG:'Perceptions',  CHN:'认知',  RUS:''},
+		{id:'Behavior',  ENG:'Behavior',  CHN:'行为',  RUS:''},
+		{id:'Retailer Prices and Promotion Intensity',  ENG:'Retailer Prices and Promotion Intensity',  CHN:'零售商的价格和促销强度',  RUS:''},
+		{id:'Supplier Intelligence',  ENG:'Supplier Intelligence',  CHN:'供应商情报',  RUS:''},
+		{id:'Retailer Intelligence',  ENG:'Retailer Intelligence',  CHN:'零售商情报',  RUS:''},
+		{id:'Forecasts',  ENG:'Forecasts',  CHN:'预测',  RUS:''},
+		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'',  ENG:'',  CHN:'',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''}
 	]
 }
