@@ -30,7 +30,7 @@ var supplierViewSchema = mongoose.Schema({
         volume : Number,
         unitCost : Number,
         composition : [Number] 
-    }], //length : TInventoryAgesTotal(0~4)
+    }], //length : TInventoryAgesTotal(0~4) (five member)
     supplierChannelView : [supplierChannelViewSchema] //length : TAllRetailersTotal(1~5)
 })
 

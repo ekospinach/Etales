@@ -627,7 +627,7 @@ var getLabelBase = function(){
 		{id:'Supplier Intelligence',  ENG:'Supplier Intelligence',  CHN:'供应商情报',  RUS:''},
 		{id:'Retailer Intelligence',  ENG:'Retailer Intelligence',  CHN:'零售商情报',  RUS:''},
 		{id:'Forecasts',  ENG:'Forecasts',  CHN:'预测',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'Facilitator Report',  ENG:'Facilitator Report',  CHN:'额外报告',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
