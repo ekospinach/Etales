@@ -76,8 +76,8 @@
 
 	});
 
-	  //this requires dom ready to update on ui, so this function expression
-	  //will be implemented later when domReady.
+	//this requires dom ready to update on ui, so this function expression
+	//will be implemented later when domReady.
 	var updateModuleProgress = function(context, map, depMaps) {
 	    //when dom is not ready, do something more useful?
 	    var console = root.console;
@@ -85,7 +85,6 @@
 	      console.log('loading: ' + map.name + ' at ' + map.url);
 	    }
 	  };
-
 
 	require.onResourceLoad = function(context, map, depMaps) {
 	    updateModuleProgress(context, map, depMaps);

@@ -22,7 +22,7 @@
     "underscore": "~1.5.2",
     "angular-ui-bootstrap-bower": "0.5.0",
     "jquery": "~2.0.3",
-    "bootstrap": "~3.0.0",
+    "bootstrap": "~3.1.1",
     "socket.io-client": "~0.9.16",
     "angular-resource": "~1.2.0-rc.3",
     "angular-loading-bar": "*",
@@ -35,6 +35,6 @@
     "highcharts-ng": "~0.0.3",
     "highcharts": "~3.0.7",
     "bootstrap-switch" : "*",
-    "angular-bootstrap-switch": "~0.2.1"
+    "angular-bootstrap-switch": "0.3.0-alpha.1"
   }
 }
