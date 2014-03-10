@@ -630,6 +630,7 @@ var getLabelBase = function(){
 		{id:'Supplier Intelligence',  ENG:'Supplier Intelligence',  CHN:'供应商情报',  RUS:''},
 		{id:'Retailer Intelligence',  ENG:'Retailer Intelligence',  CHN:'零售商情报',  RUS:''},
 		{id:'Forecasts',  ENG:'Forecasts',  CHN:'预测',  RUS:''},
+
 		{id:'Volume',  ENG:'Volume',  CHN:'销售量',  RUS:''},
 		{id:'Value',  ENG:'Value',  CHN:'销售额',  RUS:''},
 		{id:'Consumer Market Shares',  ENG:'Consumer Market Shares',  CHN:'消费者市场份额',  RUS:''},

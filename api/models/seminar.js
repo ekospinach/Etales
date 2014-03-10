@@ -28,7 +28,12 @@ var seminarSchema = mongoose.Schema({
 	market1ID : Number,
 	market2ID : Number,
 	category1ID : Number,
-	category2ID : Number
+	category2ID : Number,
+	// reportPrice : {
+	// 	brandAwareness : Number,
+	// 	brandPerceptions : Number,
+	// 	retailerPerceptions : Number	
+	// }
 })
 
 var producerSchema = mongoose.Schema({

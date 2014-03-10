@@ -13,9 +13,9 @@ flash = require('connect-flash'),
 userRoles = require('./app/js/routingConfig').userRoles,
 accessLevels = require('./app/js/routingConfig').accessLevels;
 
-
 //process.env.NODE_ENV = 'production';
 conf = new Config();
+
 app.use(express.cookieParser());
 app.use(express.favicon());
 app.use(express.json());
@@ -47,9 +47,6 @@ app.post('/getPassiveDecision', require('./api/passiveSeminar.js').getPassiveDec
 app.post('/setPassiveDecision', require('./api/passiveSeminar.js').setPassiveDecision(io));
 app.post('/importResult', require('./api/passiveSeminar.js').importResult(io));
 app.post('/runSeminar', require('./api/kernelSeminar.js').runSeminar(io));
-
-
-
 
 app.post('/contract');
 app.post('/contractDetails');

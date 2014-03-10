@@ -120,7 +120,6 @@ exports.initialiseSeminar = function(io){
             io.sockets.emit('AdminProcessLog', { msg: progress.msg, isError: false });			
 		})	
 	}
-
 }
 
 exports.initialiseSeminarRetailer=function(io){
