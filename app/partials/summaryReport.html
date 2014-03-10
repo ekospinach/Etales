@@ -17,57 +17,378 @@
     <div class="row">
         <div class="col-md-9">
             <div class="bs-docs-section">
-            	<table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th style="width:80%" scope="col">对比项</th>
-                            <th style="width:10%" scope="col">城市</th>
-                            <th class="width:10%" scope="col">农村</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>家庭户数（百万）</td>
-                            <td>16</td>
-                            <td>38</td>
-                        </tr>
-                        <tr>
-                            <td>品类渗透率 %（两个品类）</td>
-                            <td>100</td>
-                            <td>70</td>
-                        </tr>
-                        <tr>
-                            <td>互联网普及率 %</td>
-                            <td>75</td>
-                            <td>30</td>
-                        </tr>
-                        <tr>
-                            <th>市场份额组成</th>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>现代零售连锁占整个市场的百分比%</td>
-                            <td>60</td>
-                            <td>35</td>
-                        </tr>
-                        <tr>
-                            <td>传统零售占整个市场的百分比%</td>
-                            <td>30</td>
-                            <td>60</td>
-                        </tr>
-                        <tr>
-                            <td>网上零售占整个市场的百分比 %</td>
-                            <td>10</td>
-                            <td>5</td>
-                        </tr>
-                        <tr>
-                            <td>零售商1与零售商2在两市场门店数类似</td>
-                            <td>30</td>
-                            <td>30</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <!--general report -->
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title text-center">{{Label.getContent('Performance Highlights')}}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>{{Label.getContent('Performance Highlights Info')}}</p>
+                    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th colspan="3"></th>
+                                <th colspan="3">
+                                    <p class="text-center">
+                                        {{Label.getContent('Producer')}}
+                                    </p>
+                                </th>
+                                <th colspan="2">
+                                    <p class="text-center">
+                                        {{Label.getContent('Retailer')}}
+                                    </p>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="3"></td>
+                                <td>
+                                    <p class="text-center">
+                                        {{Label.getContent('Producer')}} 1
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center">
+                                        {{Label.getContent('Producer')}} 2
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center">
+                                        {{Label.getContent('Producer')}} 3
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center">
+                                        {{Label.getContent('Retailer')}} 1
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center">
+                                        {{Label.getContent('Retailer')}} 2
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="8">{{Label.getContent('Sales')}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="8">
+                                    <p class="padding-20">
+                                        {{Label.getContent('Volume')}}(units mln)
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="active">
+                                <td colspan="3">
+                                    <p class="padding-40">
+                                        {{Label.getContent('Elecssories')}}
+                                    </p>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr class="danger">
+                                <td colspan="3">
+                                    <p class="padding-40">
+                                        {{Label.getContent('HealthBeauties')}}
+                                    </p>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="8">
+                                    <p class="padding-20">
+                                        {{Label.getContent('Value')}}($mln)
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="active">
+                                <td colspan="3">
+                                    <p class="padding-40">
+                                        {{Label.getContent('Elecssories')}}
+                                    </p>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr class="danger">
+                                <td colspan="3">
+                                    <p class="padding-40">
+                                        {{Label.getContent('HealthBeauties')}}
+                                    </p>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="8">{{Label.getContent('Consumer Market Shares')}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="8">
+                                    <p class="padding-20">
+                                        {{Label.getContent('Value Market Shares')}} (%)
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="active">
+                                <td colspan="3">
+                                    <p class="padding-40">
+                                        {{Label.getContent('Elecssories')}}
+                                    </p>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr class="danger">
+                                <td colspan="3">
+                                    <p class="padding-40">
+                                        {{Label.getContent('HealthBeauties')}}
+                                    </p>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="8">
+                                    <p class="padding-20">
+                                        {{Label.getContent('Volume Market Shares')}} (%)
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr class="active">
+                                <td colspan="3">
+                                    <p class="padding-40">
+                                        {{Label.getContent('Elecssories')}}
+                                    </p>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr class="danger">
+                                <td colspan="3">
+                                    <p class="padding-40">
+                                        {{Label.getContent('HealthBeauties')}}
+                                    </p>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    {{Label.getContent('Operating Profit')}}($mln)
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    {{Label.getContent('Cumulative Investments')}}($mln)
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!--general report -->
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title text-center">{{Label.getContent('Product Portfolio')}}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>{{Label.getContent('Product Portfolio Info')}}</p>
+                    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>
+                                    <p class="text-center">{{Label.getContent('Pack Format')}}</p>
+                                </th>
+                                <th>
+                                    <p class="text-center">{{Label.getContent('Technology Level')}}</p>
+                                </th>
+                                <th>
+                                    <p class="text-center">{{Label.getContent('Design Level')}}</p>
+                                </th>
+                                <th>
+                                    <p class="text-center">{{Label.getContent('Quality-of-Raw-Materials')}}</p>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!--E-->
+                            <tr class="active">
+                                <th colspan="5">{{Label.getContent('Elecssories')}}</th>
+                            </tr>
+                            <tr class="active">
+                                <td colspan="5">
+                                    <p class="padding-20">{{Label.getContent('Producer')}} 1</p>
+                                </td>
+                            </tr>
+                            <tr class="active">
+                                <td>
+                                    <p class="padding-40">ELAND1</p>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <!--H-->
+                            <tr>
+                                <th></th>
+                                <th>
+                                    <p class="text-center">{{Label.getContent('Pack Format')}}</p>
+                                </th>
+                                <th>
+                                    <p class="text-center">{{Label.getContent('Technology Level')}}</p>
+                                </th>
+                                <th>
+                                    <p class="text-center">{{Label.getContent('Active agent')}}</p>
+                                </th>
+                                <th>
+                                    <p class="text-center">{{Label.getContent('Smoothener Level')}}</p>
+                                </th>
+                            </tr>
+                            <tr class="danger">
+                                <th colspan="5">{{Label.getContent('HealthBeauties')}}</th>
+                            </tr>
+                            <tr class="danger">
+                                <td colspan="5">
+                                    <p class="padding-20">{{Label.getContent('Producer')}} 1</p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="padding-40">HLAND1</p>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!--general report -->
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title text-center">{{Label.getContent('eMall Prices and Promotion Intensity')}}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>{{Label.getContent('eMall Prices and Promotion Intensity Info')}}</p>
+                    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="2">
+                                    <p class="text-center">{{Label.getContent('Price')}}</p>
+                                </th>
+                                <th colspan="2">
+                                    <p class="text-center">{{Label.getContent('Promotion Intensity')}}</p>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <p class="text-center">
+                                        {{Label.getContent('Net Online Retail Price')}} ($)
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center">
+                                        {{Label.getContent('Change over the Previous Period')}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center">
+                                        {{Label.getContent('Length of Promotion')}}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="text-center">
+                                        {{Label.getContent('Depth of Promotion')}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <!--E-->
+                            <tr class="active">
+                                <th colspan="5">{{Label.getContent('Elecssories')}}</th>
+                            </tr>
+                            <tr class="active">
+                                <td colspan="5">
+                                    <p class="padding-20">{{Label.getContent('Producer')}} 1</p>
+                                </td>
+                            </tr>
+                            <tr class="active">
+                                <td>
+                                    <p class="padding-40">ELAND1</p>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <!--H-->
+                            <tr class="danger">
+                                <th colspan="5">{{Label.getContent('HealthBeauties')}}</th>
+                            </tr>
+                            <tr class="danger">
+                                <td colspan="5">
+                                    <p class="padding-20">{{Label.getContent('Producer')}} 1</p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td>
+                                    <p class="padding-40">HLAND1</p>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
         </div>
         <div class="col-md-3">
@@ -75,23 +396,6 @@
                 <ul class="nav bs-docs-sidenav">
                     <li class="active">
                         <a href="/#/summaryReport" style="color:blue">{{Label.getContent('Performance Highlights')}}</a>
-                        <ul class="nav second-sidenav">
-                            <li class="active">
-                                <a href="/#/summaryReport" style="color:blue">简述</a>
-                            </li>
-                            <li class="">
-                                <a href="/#/summaryReport" style="color:blue">市场/地理区域</a>
-                            </li>
-                            <li class="">
-                                <a href="/#/summaryReport" style="color:blue">品类</a>
-                            </li>
-                            <li class="">
-                                <a href="/#/summaryReport" style="color:blue">游戏结构</a>
-                            </li>
-                            <li class="">
-                                <a href="/#/summaryReport" style="color:blue">消费者/购物者</a>
-                            </li>
-                        </ul>
                     </li>
                     <li class="">
                         <a href="/#/summaryReport" style="color:blue">{{Label.getContent('Market Shares')}}</a>
@@ -133,6 +437,14 @@
                     </li>
                     <li class="">
                         <a href="/#/summaryReport" style="color:green">{{Label.getContent('Situation Report')}}</a>
+                        <ul class="nav second-sidenav">
+                            <li class="">
+                                <a href="/#/summaryReport" style="color:green">{{Label.getContent('Elecssories')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/summaryReport" style="color:green">{{Label.getContent('HealthBeauties')}}</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="">
                         <a href="/#/summaryReport" style="color:green">{{Label.getContent('Key Performance Indicators')}}</a>
