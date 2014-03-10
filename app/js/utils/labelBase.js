@@ -642,7 +642,7 @@ var getLabelBase = function(){
 		{id:'Change over the Previous Period',  ENG:'Change over the Previous Period',  CHN:'对比上一轮改变',  RUS:''},
 		{id:'Length of Promotion',  ENG:'Length of Promotion',  CHN:'推广力度',  RUS:''},
 		{id:'Depth of Promotion',  ENG:'Depth of Promotion',  CHN:'推广深度',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'Facilitator Report',  ENG:'Facilitator Report',  CHN:'讲师报告',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''}
 	]
