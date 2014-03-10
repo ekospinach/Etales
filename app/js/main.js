@@ -34,7 +34,6 @@
 			pieRenderer:'./map/jqplot.pieRenderer',
 			textRenderer:'./map/jqplot.canvasTextRenderer.min',
 			tree:'./map/bootstrap-tree',
-			nggooglechart:'../bower_components/angular-google-chart/ng-google-chart',
 			domReady: '../bower_components/requirejs-domready/domReady',
 			labelBase: './utils/labelBase',
 			//highchart
