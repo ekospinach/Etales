@@ -40,6 +40,9 @@
 .table{
   margin: 5px auto;
 }
+.panel > .table{
+  margin: 0px auto;
+}
 .thumbnail{
   max-width:96%;
   margin: 0 auto; 
@@ -222,4 +225,32 @@ table tr td p,table tr th p{
 }
 .red >a >li a{
   color: red;
+}
+.table > thead > tr > td.etales-success,
+.table > tbody > tr > td.etales-success,
+.table > tfoot > tr > td.etales-success,
+.table > thead > tr > th.etales-success,
+.table > tbody > tr > th.etales-success,
+.table > tfoot > tr > th.etales-success,
+.table > thead > tr.etales-success > td,
+.table > tbody > tr.etales-success > td,
+.table > tfoot > tr.etales-success > td,
+.table > thead > tr.etales-success > th,
+.table > tbody > tr.etales-success > th,
+.table > tfoot > tr.etales-success > th {
+  background-color: #7FFFD4;
+}
+.table > thead > tr > td.etales-danger,
+.table > tbody > tr > td.etales-danger,
+.table > tfoot > tr > td.etales-danger,
+.table > thead > tr > th.etales-danger,
+.table > tbody > tr > th.etales-danger,
+.table > tfoot > tr > th.etales-danger,
+.table > thead > tr.etales-danger > td,
+.table > tbody > tr.etales-danger > td,
+.table > tfoot > tr.etales-danger > td,
+.table > thead > tr.etales-danger > th,
+.table > tbody > tr.etales-danger > th,
+.table > tfoot > tr.etales-danger > th {
+  background-color: #FF82AB;
 }
