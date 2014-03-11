@@ -626,7 +626,7 @@ var getLabelBase = function(){
 		{id:'Awareness',  ENG:'Awareness',  CHN:'认知度',  RUS:''},
 		{id:'Perceptions',  ENG:'Perceptions',  CHN:'认知',  RUS:''},
 		{id:'Behavior',  ENG:'Behavior',  CHN:'行为',  RUS:''},
-		{id:'Retailer Prices and Promotion Intensity',  ENG:'Retailer Prices&Promotion Intensity',  CHN:'零售商的价格和促销强度',  RUS:''},
+		{id:'Retailer Prices and Promotion Intensity',  ENG:'Retailer Prices & Promotion Intensity',  CHN:'零售商的价格和促销强度',  RUS:''},
 		{id:'Supplier Intelligence',  ENG:'Supplier Intelligence',  CHN:'供应商情报',  RUS:''},
 		{id:'Retailer Intelligence',  ENG:'Retailer Intelligence',  CHN:'零售商情报',  RUS:''},
 		{id:'Forecasts',  ENG:'Forecasts',  CHN:'预测',  RUS:''},
