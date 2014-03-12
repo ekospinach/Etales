@@ -35,15 +35,17 @@ var actorInfoSchema = mongoose.Schema({
 
 var actorCategoryInfoSchema = mongoose.Schema({
     categoryID : Number,                   //TCategoriesTotal : 1~(2+1)
+    //Performance Highlights 
     grph_SalesVolume             : Number, //CategoryID : 1~2
-    grph_NetSalesValue           : Number, //CategoryID : 1~2
+    grph_NetSalesValue           : Number, //CategoryID : 1~3
+    
     grph_ValueMarketShare        : Number, //CategoryID : 1~2
+    grph_VolumeMarketShare       : Number, //CategoryID : 1~3
+
     grph_NetSalesValueChange     : Number, //CategoryID : 1~2
     grph_ValueMarketShareChange  : Number, //CategoryID : 1~2
-
     grph_VolumeMarketShareChange : Number, //CategoryID : 1~3
     grph_SalesVolumeChange       : Number, //CategoryID : 1~3
-    grph_VolumeMarketShare       : Number, //CategoryID : 1~3
 
     actorMarketInfo : [actorMarketInfoSchema],
     variantInfo : [variantInfoSchema]
@@ -75,7 +77,6 @@ var actorShooperInfoSchma = mongoose.Schema({
     grcss_CrossSegmentsNetValues : Number, //CategoryID : 1~3
     grcss_CrossSegmentsVolumes   : Number, //CategoryID : 1~2
 })
-
 
 var variantInfo = mongoose.Schema({
     varName : String,
