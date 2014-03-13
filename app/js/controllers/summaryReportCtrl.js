@@ -21,6 +21,10 @@ define(['app','socketIO','routingConfig'], function(app) {
 
 		    var showPerformance=function(){
 		    	$scope.Performance=true;
+		    	$scope.MarketShare=false;
+		    	$scope.Product=false;
+		    	$scope.EMallPrices=false;
+
 		    	$scope.operatingProfits=new Array();
 		    	$scope.cumulativeInvestments=new Array();
 		    	$scope.salesVolumes=new Array();
@@ -40,7 +44,59 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    	console.log($scope.valueShares);
 		    }
 
+		    var showMarketShare=function(){
+		    	$scope.Performance=false;
+		    	$scope.MarketShare=true;
+		    	$scope.Product=false;
+		    	$scope.EMallPrices=false;
+
+		    	$scope.chartSeries = [
+			        {"name": "Some data", "data": [1, 2, 4, 7, 3],type: "column"},
+			        {"name": "Some data 3", "data": [3, 1, 5, 5, 2], type: "column"},
+			        {"name": "Some data 2", "data": [5, 2, 2, 3, 5], type: "column"},
+			        {"name": "My Super Column", "data": [1, 1, 2, 3, 2], type: "column"}
+			    ];
+
+			    $scope.chartConfig = {
+			        options: {
+			            chart: {
+			                type: 'areaspline'
+			            },
+			            plotOptions: {
+			                series: {
+			                    stacking: 'percent'
+			                }
+			            }
+			        },
+			        series: $scope.chartSeries,
+			        title: {
+			            text: 'Hello'
+			        },
+			        credits: {
+			            enabled: true
+			        },
+			        loading: false
+			    }
+		    }
+
+		    var showProduct=function(){
+		    	$scope.Performance=false;
+		    	$scope.MarketShare=false;
+		    	$scope.Product=true;
+		    	$scope.EMallPrices=false;
+		    }
+
+		    var showEMallPrices=function(){
+		    	$scope.Performance=false;
+		    	$scope.MarketShare=false;
+		    	$scope.Product=false;
+		    	$scope.EMallPrices=true;
+		    }
+
 		    $scope.showPerformance=showPerformance;
+		    $scope.showMarketShare=showMarketShare;
+		    $scope.showProduct=showProduct;
+		  	$scope.showEMallPrices=showEMallPrices;
 
 	}]);
 
