@@ -31,14 +31,14 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    	$scope.salesValues=new Array();
 		    	$scope.volumeShares=new Array();
 		    	$scope.valueShares=new Array();
-		    	for(i=0;i<5;i++){
-		    		$scope.operatingProfits.push($scope.generalReport[0].actorInfo[i].grph_OperatingProfit);
-		    		$scope.cumulativeInvestments.push($scope.generalReport[0].actorInfo[i].grph_CumulativeInvestment);
-		    		for(j=0;j<2;j++){
-		    			$scope.salesVolumes.push($scope.generalReport[0].actorInfo[i].actorCategoryInfo[j].grph_SalesVolume);
-		    			$scope.salesValues.push($scope.generalReport[0].actorInfo[i].actorCategoryInfo[j].grph_NetSalesValue);
-		    			$scope.valueShares.push($scope.generalReport[0].actorInfo[i].actorCategoryInfo[j].grph_ValueMarketShare);
-		    			$scope.volumeShares.push($scope.generalReport[0].actorInfo[i].actorCategoryInfo[j].grph_VolumeMarketShare);
+		    	for(i=0;i<$scope.generalReport[0].actorInfo.length;i++){
+		    		$scope.operatingProfits.push({'value':$scope.generalReport[0].actorInfo[i].grph_OperatingProfit});
+		    		$scope.cumulativeInvestments.push({'value':$scope.generalReport[0].actorInfo[i].grph_CumulativeInvestment});
+		    		for(j=0;j<$scope.generalReport[0].actorInfo[i].actorCategoryInfo.length-1;j++){
+		    			$scope.salesVolumes.push({'value':$scope.generalReport[0].actorInfo[i].actorCategoryInfo[j].grph_SalesVolume});
+		    			$scope.salesValues.push({'value':$scope.generalReport[0].actorInfo[i].actorCategoryInfo[j].grph_NetSalesValue});
+		    			$scope.valueShares.push({'value':$scope.generalReport[0].actorInfo[i].actorCategoryInfo[j].grph_ValueMarketShare});
+		    			$scope.volumeShares.push({'value':$scope.generalReport[0].actorInfo[i].actorCategoryInfo[j].grph_VolumeMarketShare});
 		    		}
 		    	}
 		    	console.log($scope.valueShares);
@@ -49,6 +49,12 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    	$scope.MarketShare=true;
 		    	$scope.Product=false;
 		    	$scope.EMallPrices=false;
+
+		    	$scope.totals=new Array();
+
+		    	for(i=0;i<5;i++){
+
+		    	}
 
 		    	$scope.chartSeries = [
 			        {"name": "Some data", "data": [1, 2, 4, 7, 3],type: "column"},

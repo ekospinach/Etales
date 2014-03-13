@@ -109,8 +109,8 @@
                                         {{Label.getContent('Elecssories')}}
                                     </p>
                                 </td>
-                                <td ng-repeat='salesVolume in salesVolumes' ng-show='$even'>
-                                    <p class="text-right">{{salesVolume}}</p>
+                                <td ng-repeat='salesVolume in salesVolumes' ng-show='$even&&$index!=6&&$index!=12'>
+                                    <p class="text-right">{{salesVolume.value}}</p>
                                 </td>
                             </tr>
                             <tr class="danger">
@@ -119,8 +119,8 @@
                                         {{Label.getContent('HealthBeauties')}}
                                     </p>
                                 </td>
-                                <td ng-repeat='salesVolume in salesVolumes' ng-show='$odd'>
-                                    <p class="text-right">{{salesVolume}}</p>
+                                <td ng-repeat='salesVolume in salesVolumes' ng-show='$odd&&$index!=7&&$index!=13'>
+                                    <p class="text-right">{{salesVolume.value}}</p>
                                 </td>
                             </tr>
                             <tr>
@@ -136,8 +136,8 @@
                                         {{Label.getContent('Elecssories')}}
                                     </p>
                                 </td>
-                                <td ng-repeat='salesValue in salesValues' ng-show='$even'>
-                                    <p class="text-right">{{salesValue}}</p>
+                                <td ng-repeat='salesValue in salesValues' ng-show='$even&&$index!=6&&$index!=12'>
+                                    <p class="text-right">{{salesValue.value}}</p>
                                 </td>
                             </tr>
                             <tr class="danger">
@@ -146,8 +146,8 @@
                                         {{Label.getContent('HealthBeauties')}}
                                     </p>
                                 </td>
-                                <td ng-repeat='salesValue in salesValues' ng-show='$odd'>
-                                    <p class="text-right">{{salesValue}}</p>
+                                <td ng-repeat='salesValue in salesValues' ng-show='$odd&&$index!=7&&$index!=13'>
+                                    <p class="text-right">{{salesValue.value}}</p>
                                 </td>
                             </tr>
 
@@ -167,8 +167,8 @@
                                         {{Label.getContent('Elecssories')}}
                                     </p>
                                 </td>
-                                <td ng-repeat='valueShare in valueShares' ng-show='$even'>
-                                    <p class="text-right">{{valueShare}}</p>
+                                <td ng-repeat='valueShare in valueShares' ng-show='$even&&$index!=6&&$index!=12'>
+                                    <p class="text-right">{{valueShare.value}}</p>
                                 </td>
                             </tr>
                             <tr class="danger">
@@ -177,8 +177,8 @@
                                         {{Label.getContent('HealthBeauties')}}
                                     </p>
                                 </td>
-                                <td ng-repeat='valueShare in valueShares' ng-show='$odd'>
-                                    <p class="text-right">{{valueShare}}</p>
+                                <td ng-repeat='valueShare in valueShares' ng-show='$odd&&$index!=7&&$index!=13'>
+                                    <p class="text-right">{{valueShare.value}}</p>
                                 </td>
                             </tr>
                             <tr>
@@ -194,8 +194,8 @@
                                         {{Label.getContent('Elecssories')}}
                                     </p>
                                 </td>
-                                <td ng-repeat='volumeShare in volumeShares' ng-show='$even'>
-                                    <p class="text-right">{{volumeShare}}</p>
+                                <td ng-repeat='volumeShare in volumeShares' ng-show='$even&&$index!=6&&$index!=12'>
+                                    <p class="text-right">{{volumeShare.value}}</p>
                                 </td>
                             </tr>
                             <tr class="danger">
@@ -204,24 +204,24 @@
                                         {{Label.getContent('HealthBeauties')}}
                                     </p>
                                 </td>
-                                <td ng-repeat='volumeShare in volumeShares' ng-show='$odd'>
-                                    <p class="text-right">{{volumeShare}}</p>
+                                <td ng-repeat='volumeShare in volumeShares' ng-show='$odd&&$index!=7&&$index!=13'>
+                                    <p class="text-right">{{volumeShare.value}}</p>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="3">
                                     {{Label.getContent('Operating Profit')}}($mln)
                                 </td>
-                                <td ng-repeat='operatingProfit in operatingProfits'>
-                                    <p class="text-right">{{operatingProfit}}</p>
+                                <td ng-repeat='operatingProfit in operatingProfits' ng-show='$index!=3&&$index!=6'>
+                                    <p class="text-right">{{operatingProfit.value}}</p>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="3">
                                     {{Label.getContent('Cumulative Investments')}}($mln)
                                 </td>
-                                <td ng-repeat='cumulativeInvestment in cumulativeInvestments'>
-                                    <p class="text-right">{{cumulativeInvestment}}</p>
+                                <td ng-repeat='cumulativeInvestment in cumulativeInvestments' ng-show='$index!=3&&$index!=6'>
+                                    <p class="text-right">{{cumulativeInvestment.value}}</p>
                                 </td>
                             </tr>
                         </tbody>

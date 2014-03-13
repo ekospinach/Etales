@@ -2824,7 +2824,7 @@ exports.addGeneralReport=function(req,res,next){
             grph_CumulativeInvestment:25,
             actorCategoryInfo:[{
                 categoryID:1,
-                grph_SalesVolume             : 31, //CategoryID : 1~2
+                grph_SalesVolume             : 131, //CategoryID : 1~2
                 grph_NetSalesValue           : 32, //CategoryID : 1~3                    
                 grph_ValueMarketShare        : 33, //CategoryID : 1~2
                 grph_VolumeMarketShare       : 34, //CategoryID : 1~3
@@ -16429,10 +16429,10 @@ exports.addGeneralReport=function(req,res,next){
             grph_CumulativeInvestment:75,
             actorCategoryInfo:[{
                 categoryID:1,
-                grph_SalesVolume             : 11, //CategoryID : 1~2
-                grph_NetSalesValue           : 12, //CategoryID : 1~3                    
-                grph_ValueMarketShare        : 13, //CategoryID : 1~2
-                grph_VolumeMarketShare       : 14, //CategoryID : 1~3
+                grph_SalesVolume             : 131, //CategoryID : 1~2
+                grph_NetSalesValue           : 132, //CategoryID : 1~3                    
+                grph_ValueMarketShare        : 133, //CategoryID : 1~2
+                grph_VolumeMarketShare       : 134, //CategoryID : 1~3
                 grph_NetSalesValueChange     : 1, //CategoryID : 1~2
                 grph_ValueMarketShareChange  : 2, //CategoryID : 1~2
                 grph_VolumeMarketShareChange : 3, //CategoryID : 1~3
@@ -17334,10 +17334,10 @@ exports.addGeneralReport=function(req,res,next){
                 }]
             },{
                 categoryID:2,
-                grph_SalesVolume             : 11, //CategoryID : 1~2
-                grph_NetSalesValue           : 12, //CategoryID : 1~3                    
-                grph_ValueMarketShare        : 13, //CategoryID : 1~2
-                grph_VolumeMarketShare       : 14, //CategoryID : 1~3
+                grph_SalesVolume             : 141, //CategoryID : 1~2
+                grph_NetSalesValue           : 142, //CategoryID : 1~3                    
+                grph_ValueMarketShare        : 143, //CategoryID : 1~2
+                grph_VolumeMarketShare       : 144, //CategoryID : 1~3
                 grph_NetSalesValueChange     : 1, //CategoryID : 1~2
                 grph_ValueMarketShareChange  : 2, //CategoryID : 1~2
                 grph_VolumeMarketShareChange : 3, //CategoryID : 1~3
