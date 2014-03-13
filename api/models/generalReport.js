@@ -117,7 +117,7 @@ exports.addGeneralReport=function(req,res,next){
                         segmentID:1,
                         actorShopperInfo:[{
                             shoperKind:'BMS',
-                            grsom_MarketShareValue         : 21, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 60, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 10, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 23, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 24, //CategoryID : 1~2
@@ -131,7 +131,7 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 30, //CategoryID : 1~2
                         },{
                             shoperKind:'NETIZENS',
-                            grsom_MarketShareValue         : 29, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 40, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 20, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 27, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 26, //CategoryID : 1~2
@@ -145,7 +145,7 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 20, //CategoryID : 1~2
                         },{
                             shoperKind:'MIXED',
-                            grsom_MarketShareValue         : 31, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 20, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 30, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 33, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 34, //CategoryID : 1~2
@@ -176,7 +176,7 @@ exports.addGeneralReport=function(req,res,next){
                         segmentID:2,
                         actorShopperInfo:[{
                             shoperKind:'BMS',
-                            grsom_MarketShareValue         : 21, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 40, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 50, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 23, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 24, //CategoryID : 1~2
@@ -190,7 +190,7 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 30, //CategoryID : 1~2
                         },{
                             shoperKind:'NETIZENS',
-                            grsom_MarketShareValue         : 29, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 10, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 60, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 27, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 26, //CategoryID : 1~2
@@ -204,7 +204,7 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 20, //CategoryID : 1~2
                         },{
                             shoperKind:'MIXED',
-                            grsom_MarketShareValue         : 31, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 50, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 70, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 33, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 34, //CategoryID : 1~2
@@ -218,7 +218,7 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 40, //CategoryID : 1~2
                         },{
                             shoperKind:'ALLSHOPPERS',
-                            grsom_MarketShareValue         : 51, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 30, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 80, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 53, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 54, //CategoryID : 1~2
@@ -235,7 +235,7 @@ exports.addGeneralReport=function(req,res,next){
                         segmentID:3,
                         actorShopperInfo:[{
                             shoperKind:'BMS',
-                            grsom_MarketShareValue         : 21, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 60, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 90, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 23, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 24, //CategoryID : 1~2
@@ -249,7 +249,7 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 30, //CategoryID : 1~2
                         },{
                             shoperKind:'NETIZENS',
-                            grsom_MarketShareValue         : 29, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 50, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 80, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 27, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 26, //CategoryID : 1~2
@@ -263,7 +263,7 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 20, //CategoryID : 1~2
                         },{
                             shoperKind:'MIXED',
-                            grsom_MarketShareValue         : 31, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 10, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 70, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 33, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 34, //CategoryID : 1~2
@@ -294,7 +294,7 @@ exports.addGeneralReport=function(req,res,next){
                         segmentID:4,
                         actorShopperInfo:[{
                             shoperKind:'BMS',
-                            grsom_MarketShareValue         : 21, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 60, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 50, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 23, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 24, //CategoryID : 1~2
@@ -308,7 +308,7 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 30, //CategoryID : 1~2
                         },{
                             shoperKind:'NETIZENS',
-                            grsom_MarketShareValue         : 29, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 50, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 40, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 27, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 26, //CategoryID : 1~2
@@ -322,7 +322,7 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 20, //CategoryID : 1~2
                         },{
                             shoperKind:'MIXED',
-                            grsom_MarketShareValue         : 31, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 10, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 30, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 33, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 34, //CategoryID : 1~2
@@ -336,8 +336,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 40, //CategoryID : 1~2
                         },{
                             shoperKind:'ALLSHOPPERS',
-                            grsom_MarketShareValue         : 40, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 20, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 50, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 53, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 54, //CategoryID : 1~2
                             //MarketSales
@@ -353,7 +353,7 @@ exports.addGeneralReport=function(req,res,next){
                         segmentID:5,
                         actorShopperInfo:[{
                             shoperKind:'BMS',
-                            grsom_MarketShareValue         : 21, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 50, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 10, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 23, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 24, //CategoryID : 1~2
@@ -367,7 +367,7 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 30, //CategoryID : 1~2
                         },{
                             shoperKind:'NETIZENS',
-                            grsom_MarketShareValue         : 29, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 60, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 20, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 27, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 26, //CategoryID : 1~2
@@ -381,7 +381,7 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 20, //CategoryID : 1~2
                         },{
                             shoperKind:'MIXED',
-                            grsom_MarketShareValue         : 31, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 40, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 30, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 33, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 34, //CategoryID : 1~2
@@ -395,7 +395,7 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 40, //CategoryID : 1~2
                         },{
                             shoperKind:'ALLSHOPPERS',
-                            grsom_MarketShareValue         : 10, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 30, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 40, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 53, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 54, //CategoryID : 1~2
@@ -415,7 +415,7 @@ exports.addGeneralReport=function(req,res,next){
                         segmentID:1,
                         actorShopperInfo:[{
                             shoperKind:'BMS',
-                            grsom_MarketShareValue         : 21, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 50, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 50, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 23, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 24, //CategoryID : 1~2
@@ -429,7 +429,7 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 30, //CategoryID : 1~2
                         },{
                             shoperKind:'NETIZENS',
-                            grsom_MarketShareValue         : 29, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 10, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 60, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 27, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 26, //CategoryID : 1~2
@@ -443,7 +443,7 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 20, //CategoryID : 1~2
                         },{
                             shoperKind:'MIXED',
-                            grsom_MarketShareValue         : 31, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 50, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 70, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 33, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 34, //CategoryID : 1~2
@@ -457,7 +457,7 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 40, //CategoryID : 1~2
                         },{
                             shoperKind:'ALLSHOPPERS',
-                            grsom_MarketShareValue         : 51, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 30, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 80, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 53, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 54, //CategoryID : 1~2
@@ -474,7 +474,7 @@ exports.addGeneralReport=function(req,res,next){
                         segmentID:2,
                         actorShopperInfo:[{
                             shoperKind:'BMS',
-                            grsom_MarketShareValue         : 21, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 30, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 90, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 23, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 24, //CategoryID : 1~2
@@ -488,7 +488,7 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 30, //CategoryID : 1~2
                         },{
                             shoperKind:'NETIZENS',
-                            grsom_MarketShareValue         : 29, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 50, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 80, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 27, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 26, //CategoryID : 1~2
@@ -502,7 +502,7 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 20, //CategoryID : 1~2
                         },{
                             shoperKind:'MIXED',
-                            grsom_MarketShareValue         : 31, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 60, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 70, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 33, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 34, //CategoryID : 1~2
@@ -516,7 +516,7 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 40, //CategoryID : 1~2
                         },{
                             shoperKind:'ALLSHOPPERS',
-                            grsom_MarketShareValue         : 51, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 20, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 60, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 53, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 54, //CategoryID : 1~2
@@ -533,7 +533,7 @@ exports.addGeneralReport=function(req,res,next){
                         segmentID:3,
                         actorShopperInfo:[{
                             shoperKind:'BMS',
-                            grsom_MarketShareValue         : 21, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 40, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 50, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 23, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 24, //CategoryID : 1~2
@@ -547,7 +547,7 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 30, //CategoryID : 1~2
                         },{
                             shoperKind:'NETIZENS',
-                            grsom_MarketShareValue         : 29, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 10, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 40, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 27, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 26, //CategoryID : 1~2
@@ -561,7 +561,7 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 20, //CategoryID : 1~2
                         },{
                             shoperKind:'MIXED',
-                            grsom_MarketShareValue         : 31, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 70, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 30, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 33, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 34, //CategoryID : 1~2
@@ -575,7 +575,7 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 40, //CategoryID : 1~2
                         },{
                             shoperKind:'ALLSHOPPERS',
-                            grsom_MarketShareValue         : 51, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 30, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 20, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 53, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 54, //CategoryID : 1~2
@@ -592,7 +592,7 @@ exports.addGeneralReport=function(req,res,next){
                         segmentID:4,
                         actorShopperInfo:[{
                             shoperKind:'BMS',
-                            grsom_MarketShareValue         : 21, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 60, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 10, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 23, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 24, //CategoryID : 1~2
@@ -606,7 +606,7 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 30, //CategoryID : 1~2
                         },{
                             shoperKind:'NETIZENS',
-                            grsom_MarketShareValue         : 29, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 50, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 15, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 27, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 26, //CategoryID : 1~2
@@ -620,7 +620,7 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 20, //CategoryID : 1~2
                         },{
                             shoperKind:'MIXED',
-                            grsom_MarketShareValue         : 31, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 74, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 25, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 33, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 34, //CategoryID : 1~2
@@ -634,7 +634,7 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 40, //CategoryID : 1~2
                         },{
                             shoperKind:'ALLSHOPPERS',
-                            grsom_MarketShareValue         : 51, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 36, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 35, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 53, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 54, //CategoryID : 1~2
@@ -651,7 +651,7 @@ exports.addGeneralReport=function(req,res,next){
                         segmentID:5,
                         actorShopperInfo:[{
                             shoperKind:'BMS',
-                            grsom_MarketShareValue         : 21, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 64, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 45, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 23, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 24, //CategoryID : 1~2
@@ -665,7 +665,7 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 30, //CategoryID : 1~2
                         },{
                             shoperKind:'NETIZENS',
-                            grsom_MarketShareValue         : 29, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 28, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 55, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 27, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 26, //CategoryID : 1~2
@@ -679,7 +679,7 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 20, //CategoryID : 1~2
                         },{
                             shoperKind:'MIXED',
-                            grsom_MarketShareValue         : 31, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 36, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 65, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 33, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 34, //CategoryID : 1~2
@@ -693,7 +693,7 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 40, //CategoryID : 1~2
                         },{
                             shoperKind:'ALLSHOPPERS',
-                            grsom_MarketShareValue         : 20, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 50, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 75, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 53, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 54, //CategoryID : 1~2
@@ -713,7 +713,7 @@ exports.addGeneralReport=function(req,res,next){
                         segmentID:1,
                         actorShopperInfo:[{
                             shoperKind:'BMS',
-                            grsom_MarketShareValue         : 21, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 70, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 85, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 23, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 24, //CategoryID : 1~2
@@ -727,7 +727,7 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 30, //CategoryID : 1~2
                         },{
                             shoperKind:'NETIZENS',
-                            grsom_MarketShareValue         : 95, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 15, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 95, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 27, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 26, //CategoryID : 1~2
@@ -741,7 +741,7 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 20, //CategoryID : 1~2
                         },{
                             shoperKind:'MIXED',
-                            grsom_MarketShareValue         : 15, //CategoryID : 1~3
+                            grsom_MarketShareValue         : 35, //CategoryID : 1~3
                             grsom_MarketShareVolume        : 25, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 33, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 34, //CategoryID : 1~2
@@ -1123,8 +1123,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 40, //CategoryID : 1~2
                         },{
                             shoperKind:'ALLSHOPPERS',
-                            grsom_MarketShareValue         : 51, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 52, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 60, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 30, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 53, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 54, //CategoryID : 1~2
                             //MarketSales
@@ -1140,8 +1140,8 @@ exports.addGeneralReport=function(req,res,next){
                         segmentID:3,
                         actorShopperInfo:[{
                             shoperKind:'BMS',
-                            grsom_MarketShareValue         : 21, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 22, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 50, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 32, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 23, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 24, //CategoryID : 1~2
                             //MarketSales
@@ -1154,8 +1154,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 30, //CategoryID : 1~2
                         },{
                             shoperKind:'NETIZENS',
-                            grsom_MarketShareValue         : 29, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 28, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 60, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 27, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 26, //CategoryID : 1~2
                             //MarketSales
@@ -1168,8 +1168,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 20, //CategoryID : 1~2
                         },{
                             shoperKind:'MIXED',
-                            grsom_MarketShareValue         : 31, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 32, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 50, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 60, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 33, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 34, //CategoryID : 1~2
                             //MarketSales
@@ -1182,8 +1182,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 40, //CategoryID : 1~2
                         },{
                             shoperKind:'ALLSHOPPERS',
-                            grsom_MarketShareValue         : 51, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 52, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 25, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 70, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 53, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 54, //CategoryID : 1~2
                             //MarketSales
@@ -1199,8 +1199,8 @@ exports.addGeneralReport=function(req,res,next){
                         segmentID:4,
                         actorShopperInfo:[{
                             shoperKind:'BMS',
-                            grsom_MarketShareValue         : 21, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 22, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 35, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 65, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 23, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 24, //CategoryID : 1~2
                             //MarketSales
@@ -1213,8 +1213,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 30, //CategoryID : 1~2
                         },{
                             shoperKind:'NETIZENS',
-                            grsom_MarketShareValue         : 29, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 28, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 64, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 58, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 27, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 26, //CategoryID : 1~2
                             //MarketSales
@@ -1227,8 +1227,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 20, //CategoryID : 1~2
                         },{
                             shoperKind:'MIXED',
-                            grsom_MarketShareValue         : 31, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 32, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 37, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 64, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 33, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 34, //CategoryID : 1~2
                             //MarketSales
@@ -1241,8 +1241,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 40, //CategoryID : 1~2
                         },{
                             shoperKind:'ALLSHOPPERS',
-                            grsom_MarketShareValue         : 51, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 52, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 32, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 53, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 54, //CategoryID : 1~2
                             //MarketSales
@@ -1258,8 +1258,8 @@ exports.addGeneralReport=function(req,res,next){
                         segmentID:5,
                         actorShopperInfo:[{
                             shoperKind:'BMS',
-                            grsom_MarketShareValue         : 21, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 22, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 50, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 23, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 24, //CategoryID : 1~2
                             //MarketSales
@@ -1272,8 +1272,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 30, //CategoryID : 1~2
                         },{
                             shoperKind:'NETIZENS',
-                            grsom_MarketShareValue         : 29, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 28, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 50, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 20, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 27, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 26, //CategoryID : 1~2
                             //MarketSales
@@ -1286,8 +1286,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 20, //CategoryID : 1~2
                         },{
                             shoperKind:'MIXED',
-                            grsom_MarketShareValue         : 31, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 32, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 70, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 50, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 33, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 34, //CategoryID : 1~2
                             //MarketSales
@@ -1320,8 +1320,8 @@ exports.addGeneralReport=function(req,res,next){
                         segmentID:1,
                         actorShopperInfo:[{
                             shoperKind:'BMS',
-                            grsom_MarketShareValue         : 21, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 22, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 65, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 35, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 23, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 24, //CategoryID : 1~2
                             //MarketSales
@@ -1334,8 +1334,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 30, //CategoryID : 1~2
                         },{
                             shoperKind:'NETIZENS',
-                            grsom_MarketShareValue         : 29, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 28, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 55, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 45, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 27, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 26, //CategoryID : 1~2
                             //MarketSales
@@ -1348,8 +1348,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 20, //CategoryID : 1~2
                         },{
                             shoperKind:'MIXED',
-                            grsom_MarketShareValue         : 31, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 32, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 65, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 65, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 33, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 34, //CategoryID : 1~2
                             //MarketSales
@@ -1362,8 +1362,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 40, //CategoryID : 1~2
                         },{
                             shoperKind:'ALLSHOPPERS',
-                            grsom_MarketShareValue         : 51, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 52, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 55, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 55, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 53, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 54, //CategoryID : 1~2
                             //MarketSales
@@ -1379,8 +1379,8 @@ exports.addGeneralReport=function(req,res,next){
                         segmentID:2,
                         actorShopperInfo:[{
                             shoperKind:'BMS',
-                            grsom_MarketShareValue         : 21, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 22, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 65, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 75, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 23, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 24, //CategoryID : 1~2
                             //MarketSales
@@ -1393,8 +1393,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 30, //CategoryID : 1~2
                         },{
                             shoperKind:'NETIZENS',
-                            grsom_MarketShareValue         : 29, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 28, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 45, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 35, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 27, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 26, //CategoryID : 1~2
                             //MarketSales
@@ -1407,8 +1407,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 20, //CategoryID : 1~2
                         },{
                             shoperKind:'MIXED',
-                            grsom_MarketShareValue         : 31, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 32, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 75, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 85, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 33, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 34, //CategoryID : 1~2
                             //MarketSales
@@ -1421,8 +1421,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 40, //CategoryID : 1~2
                         },{
                             shoperKind:'ALLSHOPPERS',
-                            grsom_MarketShareValue         : 51, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 52, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 25, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 75, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 53, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 54, //CategoryID : 1~2
                             //MarketSales
@@ -1438,8 +1438,8 @@ exports.addGeneralReport=function(req,res,next){
                         segmentID:3,
                         actorShopperInfo:[{
                             shoperKind:'BMS',
-                            grsom_MarketShareValue         : 21, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 22, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 45, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 65, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 23, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 24, //CategoryID : 1~2
                             //MarketSales
@@ -1452,8 +1452,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 30, //CategoryID : 1~2
                         },{
                             shoperKind:'NETIZENS',
-                            grsom_MarketShareValue         : 29, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 28, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 50, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 55, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 27, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 26, //CategoryID : 1~2
                             //MarketSales
@@ -1466,8 +1466,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 20, //CategoryID : 1~2
                         },{
                             shoperKind:'MIXED',
-                            grsom_MarketShareValue         : 31, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 32, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 45, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 25, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 33, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 34, //CategoryID : 1~2
                             //MarketSales
@@ -1480,8 +1480,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 40, //CategoryID : 1~2
                         },{
                             shoperKind:'ALLSHOPPERS',
-                            grsom_MarketShareValue         : 51, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 52, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 35, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 25, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 53, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 54, //CategoryID : 1~2
                             //MarketSales
@@ -1497,8 +1497,8 @@ exports.addGeneralReport=function(req,res,next){
                         segmentID:4,
                         actorShopperInfo:[{
                             shoperKind:'BMS',
-                            grsom_MarketShareValue         : 21, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 22, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 54, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 63, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 23, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 24, //CategoryID : 1~2
                             //MarketSales
@@ -1511,8 +1511,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 30, //CategoryID : 1~2
                         },{
                             shoperKind:'NETIZENS',
-                            grsom_MarketShareValue         : 29, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 28, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 53, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 27, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 26, //CategoryID : 1~2
                             //MarketSales
@@ -1525,8 +1525,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 20, //CategoryID : 1~2
                         },{
                             shoperKind:'MIXED',
-                            grsom_MarketShareValue         : 31, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 32, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 73, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 28, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 33, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 34, //CategoryID : 1~2
                             //MarketSales
@@ -1539,8 +1539,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 40, //CategoryID : 1~2
                         },{
                             shoperKind:'ALLSHOPPERS',
-                            grsom_MarketShareValue         : 51, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 52, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 91, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 32, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 53, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 54, //CategoryID : 1~2
                             //MarketSales
@@ -1556,8 +1556,8 @@ exports.addGeneralReport=function(req,res,next){
                         segmentID:5,
                         actorShopperInfo:[{
                             shoperKind:'BMS',
-                            grsom_MarketShareValue         : 21, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 22, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 65, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 35, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 23, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 24, //CategoryID : 1~2
                             //MarketSales
@@ -1570,8 +1570,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 30, //CategoryID : 1~2
                         },{
                             shoperKind:'NETIZENS',
-                            grsom_MarketShareValue         : 29, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 28, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 45, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 75, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 27, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 26, //CategoryID : 1~2
                             //MarketSales
@@ -1584,8 +1584,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 20, //CategoryID : 1~2
                         },{
                             shoperKind:'MIXED',
-                            grsom_MarketShareValue         : 31, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 32, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 55, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 55, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 33, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 34, //CategoryID : 1~2
                             //MarketSales
@@ -1618,8 +1618,8 @@ exports.addGeneralReport=function(req,res,next){
                         segmentID:1,
                         actorShopperInfo:[{
                             shoperKind:'BMS',
-                            grsom_MarketShareValue         : 21, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 22, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 53, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 71, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 23, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 24, //CategoryID : 1~2
                             //MarketSales
@@ -1632,8 +1632,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 30, //CategoryID : 1~2
                         },{
                             shoperKind:'NETIZENS',
-                            grsom_MarketShareValue         : 29, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 28, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 57, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 68, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 27, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 26, //CategoryID : 1~2
                             //MarketSales
@@ -1646,8 +1646,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 20, //CategoryID : 1~2
                         },{
                             shoperKind:'MIXED',
-                            grsom_MarketShareValue         : 31, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 32, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 84, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 82, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 33, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 34, //CategoryID : 1~2
                             //MarketSales
@@ -1660,8 +1660,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 40, //CategoryID : 1~2
                         },{
                             shoperKind:'ALLSHOPPERS',
-                            grsom_MarketShareValue         : 51, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 52, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 35, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 62, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 53, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 54, //CategoryID : 1~2
                             //MarketSales
@@ -1677,8 +1677,8 @@ exports.addGeneralReport=function(req,res,next){
                         segmentID:2,
                         actorShopperInfo:[{
                             shoperKind:'BMS',
-                            grsom_MarketShareValue         : 21, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 22, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 71, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 83, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 23, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 24, //CategoryID : 1~2
                             //MarketSales
@@ -1691,8 +1691,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 30, //CategoryID : 1~2
                         },{
                             shoperKind:'NETIZENS',
-                            grsom_MarketShareValue         : 29, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 28, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 15, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 45, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 27, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 26, //CategoryID : 1~2
                             //MarketSales
@@ -1705,8 +1705,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 20, //CategoryID : 1~2
                         },{
                             shoperKind:'MIXED',
-                            grsom_MarketShareValue         : 31, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 32, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 65, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 35, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 33, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 34, //CategoryID : 1~2
                             //MarketSales
@@ -1719,8 +1719,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 40, //CategoryID : 1~2
                         },{
                             shoperKind:'ALLSHOPPERS',
-                            grsom_MarketShareValue         : 51, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 52, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 25, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 25, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 53, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 54, //CategoryID : 1~2
                             //MarketSales
@@ -1736,8 +1736,8 @@ exports.addGeneralReport=function(req,res,next){
                         segmentID:3,
                         actorShopperInfo:[{
                             shoperKind:'BMS',
-                            grsom_MarketShareValue         : 21, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 22, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 50, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 50, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 23, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 24, //CategoryID : 1~2
                             //MarketSales
@@ -1750,8 +1750,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 30, //CategoryID : 1~2
                         },{
                             shoperKind:'NETIZENS',
-                            grsom_MarketShareValue         : 29, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 28, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 60, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 60, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 27, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 26, //CategoryID : 1~2
                             //MarketSales
@@ -1764,8 +1764,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 20, //CategoryID : 1~2
                         },{
                             shoperKind:'MIXED',
-                            grsom_MarketShareValue         : 31, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 32, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 70, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 70, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 33, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 34, //CategoryID : 1~2
                             //MarketSales
@@ -1778,8 +1778,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 40, //CategoryID : 1~2
                         },{
                             shoperKind:'ALLSHOPPERS',
-                            grsom_MarketShareValue         : 51, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 52, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 80, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 80, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 53, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 54, //CategoryID : 1~2
                             //MarketSales
@@ -1795,8 +1795,8 @@ exports.addGeneralReport=function(req,res,next){
                         segmentID:4,
                         actorShopperInfo:[{
                             shoperKind:'BMS',
-                            grsom_MarketShareValue         : 21, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 22, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 50, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 50, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 23, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 24, //CategoryID : 1~2
                             //MarketSales
@@ -1809,8 +1809,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 30, //CategoryID : 1~2
                         },{
                             shoperKind:'NETIZENS',
-                            grsom_MarketShareValue         : 29, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 28, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 60, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 60, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 27, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 26, //CategoryID : 1~2
                             //MarketSales
@@ -1823,8 +1823,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 20, //CategoryID : 1~2
                         },{
                             shoperKind:'MIXED',
-                            grsom_MarketShareValue         : 31, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 32, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 75, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 55, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 33, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 34, //CategoryID : 1~2
                             //MarketSales
@@ -1837,8 +1837,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 40, //CategoryID : 1~2
                         },{
                             shoperKind:'ALLSHOPPERS',
-                            grsom_MarketShareValue         : 51, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 52, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 65, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 28, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 53, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 54, //CategoryID : 1~2
                             //MarketSales
@@ -1854,8 +1854,8 @@ exports.addGeneralReport=function(req,res,next){
                         segmentID:5,
                         actorShopperInfo:[{
                             shoperKind:'BMS',
-                            grsom_MarketShareValue         : 21, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 22, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 76, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 54, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 23, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 24, //CategoryID : 1~2
                             //MarketSales
@@ -1868,8 +1868,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 30, //CategoryID : 1~2
                         },{
                             shoperKind:'NETIZENS',
-                            grsom_MarketShareValue         : 29, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 28, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 97, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 62, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 27, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 26, //CategoryID : 1~2
                             //MarketSales
@@ -1882,8 +1882,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 20, //CategoryID : 1~2
                         },{
                             shoperKind:'MIXED',
-                            grsom_MarketShareValue         : 31, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 32, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 50, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 50, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 33, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 34, //CategoryID : 1~2
                             //MarketSales
@@ -1927,8 +1927,8 @@ exports.addGeneralReport=function(req,res,next){
                         segmentID:1,
                         actorShopperInfo:[{
                             shoperKind:'BMS',
-                            grsom_MarketShareValue         : 21, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 22, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 55, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 64, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 23, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 24, //CategoryID : 1~2
                             //MarketSales
@@ -1941,8 +1941,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 30, //CategoryID : 1~2
                         },{
                             shoperKind:'NETIZENS',
-                            grsom_MarketShareValue         : 29, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 28, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 65, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 54, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 27, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 26, //CategoryID : 1~2
                             //MarketSales
@@ -1955,8 +1955,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 20, //CategoryID : 1~2
                         },{
                             shoperKind:'MIXED',
-                            grsom_MarketShareValue         : 31, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 32, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 65, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 50, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 33, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 34, //CategoryID : 1~2
                             //MarketSales
@@ -1969,8 +1969,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 40, //CategoryID : 1~2
                         },{
                             shoperKind:'ALLSHOPPERS',
-                            grsom_MarketShareValue         : 51, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 52, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 35, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 70, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 53, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 54, //CategoryID : 1~2
                             //MarketSales
@@ -1986,8 +1986,8 @@ exports.addGeneralReport=function(req,res,next){
                         segmentID:2,
                         actorShopperInfo:[{
                             shoperKind:'BMS',
-                            grsom_MarketShareValue         : 21, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 22, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 89, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 77, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 23, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 24, //CategoryID : 1~2
                             //MarketSales
@@ -2000,8 +2000,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 30, //CategoryID : 1~2
                         },{
                             shoperKind:'NETIZENS',
-                            grsom_MarketShareValue         : 29, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 28, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 65, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 55, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 27, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 26, //CategoryID : 1~2
                             //MarketSales
@@ -2014,8 +2014,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 20, //CategoryID : 1~2
                         },{
                             shoperKind:'MIXED',
-                            grsom_MarketShareValue         : 31, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 32, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 60, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 60, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 33, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 34, //CategoryID : 1~2
                             //MarketSales
@@ -2028,8 +2028,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 40, //CategoryID : 1~2
                         },{
                             shoperKind:'ALLSHOPPERS',
-                            grsom_MarketShareValue         : 51, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 52, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 35, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 35, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 53, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 54, //CategoryID : 1~2
                             //MarketSales
@@ -2045,8 +2045,8 @@ exports.addGeneralReport=function(req,res,next){
                         segmentID:3,
                         actorShopperInfo:[{
                             shoperKind:'BMS',
-                            grsom_MarketShareValue         : 21, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 22, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 45, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 45, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 23, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 24, //CategoryID : 1~2
                             //MarketSales
@@ -2059,8 +2059,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 30, //CategoryID : 1~2
                         },{
                             shoperKind:'NETIZENS',
-                            grsom_MarketShareValue         : 29, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 28, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 50, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 50, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 27, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 26, //CategoryID : 1~2
                             //MarketSales
@@ -2073,8 +2073,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 20, //CategoryID : 1~2
                         },{
                             shoperKind:'MIXED',
-                            grsom_MarketShareValue         : 31, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 32, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 60, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 50, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 33, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 34, //CategoryID : 1~2
                             //MarketSales
@@ -2087,8 +2087,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 40, //CategoryID : 1~2
                         },{
                             shoperKind:'ALLSHOPPERS',
-                            grsom_MarketShareValue         : 51, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 52, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 35, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 35, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 53, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 54, //CategoryID : 1~2
                             //MarketSales
@@ -2104,8 +2104,8 @@ exports.addGeneralReport=function(req,res,next){
                         segmentID:4,
                         actorShopperInfo:[{
                             shoperKind:'BMS',
-                            grsom_MarketShareValue         : 21, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 22, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 54, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 45, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 23, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 24, //CategoryID : 1~2
                             //MarketSales
@@ -2118,8 +2118,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 30, //CategoryID : 1~2
                         },{
                             shoperKind:'NETIZENS',
-                            grsom_MarketShareValue         : 29, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 28, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 60, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 71, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 27, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 26, //CategoryID : 1~2
                             //MarketSales
@@ -2132,8 +2132,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 20, //CategoryID : 1~2
                         },{
                             shoperKind:'MIXED',
-                            grsom_MarketShareValue         : 31, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 32, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 83, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 65, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 33, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 34, //CategoryID : 1~2
                             //MarketSales
@@ -2146,8 +2146,8 @@ exports.addGeneralReport=function(req,res,next){
                             grcss_CrossSegmentsVolumes   : 40, //CategoryID : 1~2
                         },{
                             shoperKind:'ALLSHOPPERS',
-                            grsom_MarketShareValue         : 51, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 52, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 90, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 30, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 53, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 54, //CategoryID : 1~2
                             //MarketSales
@@ -2163,8 +2163,8 @@ exports.addGeneralReport=function(req,res,next){
                         segmentID:5,
                         actorShopperInfo:[{
                             shoperKind:'BMS',
-                            grsom_MarketShareValue         : 21, //CategoryID : 1~3
-                            grsom_MarketShareVolume        : 22, //CategoryID : 1~2
+                            grsom_MarketShareValue         : 45, //CategoryID : 1~3
+                            grsom_MarketShareVolume        : 25, //CategoryID : 1~2
                             grsom_MarketShareValueChange   : 23, //CategoryID : 1~3
                             grsom_MarketShareVolumeChange  : 24, //CategoryID : 1~2
                             //MarketSales
