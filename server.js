@@ -134,6 +134,9 @@ app.post('/submitDecision',require('./api/models/seminar.js').submitDecision(io)
 app.post('/deleteOrderData',require('./api/models/retailerDecision.js').deleteOrderData(io));
 app.post('/deleteDetailData',require('./api/models/contract.js').deleteContractDetailData(io));
 
+app.get('/addGeneralReport',require('./api/models/generalReport.js').addGeneralReport);
+app.get('/getGeneralReport/:seminar/:period',require('./api/models/generalReport.js').getGeneralReport);
+
 app.use(express.errorHandler());
 
 

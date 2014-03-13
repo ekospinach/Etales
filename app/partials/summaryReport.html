@@ -44,7 +44,7 @@
         <div class="col-md-9">
             <div class="bs-docs-section">
                 <!--general report -->
-                <div class="panel panel-primary">
+                <div class="panel panel-primary" ng-show='Performance'>
                     <div class="panel-heading">
                         <h3 class="panel-title text-center" popover="{{Label.getContent('Performance Highlights Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Performance Highlights')}}</h3>
                     </div>
@@ -109,11 +109,9 @@
                                         {{Label.getContent('Elecssories')}}
                                     </p>
                                 </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td ng-repeat='salesVolume in salesVolumes' ng-show='$even'>
+                                    <p class="text-right">{{salesVolume}}</p>
+                                </td>
                             </tr>
                             <tr class="danger">
                                 <td colspan="3">
@@ -121,11 +119,9 @@
                                         {{Label.getContent('HealthBeauties')}}
                                     </p>
                                 </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td ng-repeat='salesVolume in salesVolumes' ng-show='$odd'>
+                                    <p class="text-right">{{salesVolume}}</p>
+                                </td>
                             </tr>
                             <tr>
                                 <td colspan="8">
@@ -140,11 +136,9 @@
                                         {{Label.getContent('Elecssories')}}
                                     </p>
                                 </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td ng-repeat='salesValue in salesValues' ng-show='$even'>
+                                    <p class="text-right">{{salesValue}}</p>
+                                </td>
                             </tr>
                             <tr class="danger">
                                 <td colspan="3">
@@ -152,11 +146,9 @@
                                         {{Label.getContent('HealthBeauties')}}
                                     </p>
                                 </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td ng-repeat='salesValue in salesValues' ng-show='$odd'>
+                                    <p class="text-right">{{salesValue}}</p>
+                                </td>
                             </tr>
 
                             <tr>
@@ -175,11 +167,9 @@
                                         {{Label.getContent('Elecssories')}}
                                     </p>
                                 </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td ng-repeat='valueShare in valueShares' ng-show='$even'>
+                                    <p class="text-right">{{valueShare}}</p>
+                                </td>
                             </tr>
                             <tr class="danger">
                                 <td colspan="3">
@@ -187,11 +177,9 @@
                                         {{Label.getContent('HealthBeauties')}}
                                     </p>
                                 </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td ng-repeat='valueShare in valueShares' ng-show='$odd'>
+                                    <p class="text-right">{{valueShare}}</p>
+                                </td>
                             </tr>
                             <tr>
                                 <td colspan="8">
@@ -206,11 +194,9 @@
                                         {{Label.getContent('Elecssories')}}
                                     </p>
                                 </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td ng-repeat='volumeShare in volumeShares' ng-show='$even'>
+                                    <p class="text-right">{{volumeShare}}</p>
+                                </td>
                             </tr>
                             <tr class="danger">
                                 <td colspan="3">
@@ -218,37 +204,31 @@
                                         {{Label.getContent('HealthBeauties')}}
                                     </p>
                                 </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td ng-repeat='volumeShare in volumeShares' ng-show='$odd'>
+                                    <p class="text-right">{{volumeShare}}</p>
+                                </td>
                             </tr>
                             <tr>
                                 <td colspan="3">
                                     {{Label.getContent('Operating Profit')}}($mln)
                                 </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td ng-repeat='operatingProfit in operatingProfits'>
+                                    <p class="text-right">{{operatingProfit}}</p>
+                                </td>
                             </tr>
                             <tr>
                                 <td colspan="3">
                                     {{Label.getContent('Cumulative Investments')}}($mln)
                                 </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td ng-repeat='cumulativeInvestment in cumulativeInvestments'>
+                                    <p class="text-right">{{cumulativeInvestment}}</p>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <!--general report -->
-                <div class="panel panel-primary">
+                <div class="panel panel-primary" ng-show='false'>
                     <div class="panel-heading">
                         <h3 class="panel-title text-center" popover="{{Label.getContent('Product Portfolio Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Product Portfolio')}}</h3>
                     </div>
@@ -326,7 +306,7 @@
                     </table>
                 </div>
                 <!--general report -->
-                <div class="panel panel-primary">
+                <div class="panel panel-primary" ng-show='false'>
                     <div class="panel-heading">
                         <h3 class="panel-title text-center" popover="{{Label.getContent('eMall Prices and Promotion Intensity Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('eMall Prices and Promotion Intensity')}}</h3>
                     </div>

@@ -321,6 +321,18 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
         })
     }
 
+    $scope.addReport=function(){
+    	var url="/addGeneralReport";
+    	$http({
+    		method:'GET',
+    		url:url
+    	}).then(function(data){
+    		console.log(data.data);
+    	},function(){
+    		console.log('fail');
+    	})
+    }
+
     $scope.removeRandomSeries = function () {
         var seriesArray = $scope.chartConfig.series;
         var rndIdx = Math.floor(Math.random() * seriesArray.length);
