@@ -237,7 +237,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 			            },
 			            tooltip: {
 				            formatter: function() {
-				                var s = '<p><b>'+this.series.name+'</b></p>'+'<p>Volume Market Share:'+this.point.percentage.toFixed(2)+'%</p>'+'<p>'+$scope.change1s[this.series._i][this.point.x]+' over previous period'+'</p>';
+				                var s = '<p><b>'+this.series.name+'</b></p>'+'<p>'+Label.getContent('Volume Market Shares')+':'+this.point.percentage.toFixed(2)+'%</p>'+'<p>'+$scope.change1s[this.series._i][this.point.x]+' '+Label.getContent('over previous period')+'</p>';
 				                return s;
 				            },
 				            shared: false,
@@ -297,7 +297,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 			            },
 			            tooltip: {
 				            formatter: function() {
-				                var s = '<p><b>'+this.series.name+'</b></p>'+'<p>Volume Market Share:'+this.point.percentage.toFixed(2)+'%</p>'+'<p>'+$scope.change2s[this.series._i][this.point.x]+' over previous period'+'</p>';
+				                var s = '<p><b>'+this.series.name+'</b></p>'+'<p>'+Label.getContent('Value Market Shares')+':'+this.point.percentage.toFixed(2)+'%</p>'+'<p>'+$scope.change2s[this.series._i][this.point.x]+' '+Label.getContent('over previous period')+'</p>';
 				                return s;
 				            },
 				            shared: false,
@@ -355,7 +355,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 			            },
 			            tooltip: {
 				            formatter: function() {
-				                var s = '<p><b>'+this.series.name+'</b></p>'+'<p>Volume Market Share:'+this.point.percentage.toFixed(2)+'%</p>'+'<p>'+$scope.change3s[this.series._i][this.point.x]+' over previous period'+'</p>';
+				                var s = '<p><b>'+this.series.name+'</b></p>'+'<p>'+Label.getContent('Volume Market Shares')+':'+this.point.percentage.toFixed(2)+'%</p>'+'<p>'+$scope.change3s[this.series._i][this.point.x]+' '+Label.getContent('over previous period')+'</p>';
 				                return s;
 				            },
 				            shared: false,
@@ -412,7 +412,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 			            },
 			            tooltip: {
 				            formatter: function() {
-				                var s = '<p><b>'+this.series.name+'</b></p>'+'<p>Volume Market Share:'+this.point.percentage.toFixed(2)+'%</p>'+'<p>'+$scope.change4s[this.series._i][this.point.x]+' over previous period'+'</p>';
+				                var s = '<p><b>'+this.series.name+'</b></p>'+'<p>'+Label.getContent('Value Market Shares')+':'+this.point.percentage.toFixed(2)+'%</p>'+'<p>'+$scope.change4s[this.series._i][this.point.x]+' '+Label.getContent('over previous period')+'</p>';
 				                return s;
 				            },
 				            shared: false,

@@ -647,7 +647,7 @@ var getLabelBase = function(){
 		{id:'B&M Only',  ENG:'B&M Only',  CHN:'实体店',  RUS:''},
 		{id:'Online Only',  ENG:'Online Only',  CHN:'网上商城',  RUS:''},
 		{id:'Mixed',  ENG:'Mixed',  CHN:'混合',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'over previous period',  ENG:'over previous period',  CHN:'对比上一轮',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
