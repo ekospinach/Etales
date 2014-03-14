@@ -357,7 +357,16 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
                 series: {
                     stacking: 'percent'
                 }
-            }
+            },
+            tooltip: {
+	        	shared: false,
+	        	useHTML: true,
+	        	headerFormat: '<small style="color: {series.color}>{series.name}</small><table>',
+	        	pointFormat: '<tr><td style="color: {series.color}">{series.name}: </td>' +
+	        	'<td style="text-align: right"><b>{point.y} EUR</b></td></tr>',
+	        	footerFormat: '</table>',
+	        	valueDecimals: 2
+	        }
         },
         series: $scope.chartSeries,
         title: {

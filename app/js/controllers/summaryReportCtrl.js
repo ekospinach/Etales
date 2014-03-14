@@ -201,13 +201,27 @@ define(['app','socketIO','routingConfig'], function(app) {
 					R2 #F05422
 				*/
 
-		    	$scope.chart1Series = [
+		    	$scope.chart1Series = [			        
 			        {"name": Label.getContent('Producer')+' 1', "data": [$scope.totals[0][0],0,$scope.rurals[0][0],$scope.urbans[0][0],0,$scope.prices[0][0],$scope.values[0][0],$scope.fashions[0][0],$scope.freakss[0][0],0,$scope.bms[0][0],$scope.onlines[0][0],$scope.mixeds[0][0]], type: "column",color:'#3257A7'},
 			        {"name": Label.getContent('Producer')+' 2', "data": [$scope.totals[0][1],0,$scope.rurals[0][1],$scope.urbans[0][1],0,$scope.prices[0][1],$scope.values[0][1],$scope.fashions[0][1],$scope.freakss[0][1],0,$scope.bms[0][1],$scope.onlines[0][1],$scope.mixeds[0][1]], type: "column",color:'#B11E22'},
 			        {"name": Label.getContent('Producer')+' 3', "data": [$scope.totals[0][2],0,$scope.rurals[0][2],$scope.urbans[0][2],0,$scope.prices[0][2],$scope.values[0][2],$scope.fashions[0][2],$scope.freakss[0][2],0,$scope.bms[0][2],$scope.onlines[0][2],$scope.mixeds[0][2]], type: "column",color:'#F6B920'},
 			        {"name": Label.getContent('Producer')+' 4', "data": [$scope.totals[0][3],0,$scope.rurals[0][3],$scope.urbans[0][3],0,$scope.prices[0][3],$scope.values[0][3],$scope.fashions[0][3],$scope.freakss[0][3],0,$scope.bms[0][3],$scope.onlines[0][3],$scope.mixeds[0][3]], type: "column",color:'#329444'},
 			      	{"name": Label.getContent('Retailer')+' 1', "data": [$scope.totals[0][4],0,$scope.rurals[0][4],$scope.urbans[0][4],0,$scope.prices[0][4],$scope.values[0][4],$scope.fashions[0][4],$scope.freakss[0][4],0,$scope.bms[0][4],$scope.onlines[0][4],$scope.mixeds[0][4]], type: "column",color:'#8B288B'},
 			        {"name": Label.getContent('Retailer')+' 2', "data": [$scope.totals[0][5],0,$scope.rurals[0][5],$scope.urbans[0][5],0,$scope.prices[0][5],$scope.values[0][5],$scope.fashions[0][5],$scope.freakss[0][5],0,$scope.bms[0][5],$scope.onlines[0][5],$scope.mixeds[0][5]], type: "column",color:'#F05422'},
+			    ];
+
+			    $scope.change1s=new Array();
+			    for(i=0;i<6;i++){
+			    	$scope.change1s[i]=new Array();
+			    }
+
+			    $scope.change1s=[
+			    	[$scope.totalChanges[0][0],0,$scope.ruralChanges[0][0],$scope.urbanChanges[0][0],0,$scope.priceChanges[0][0],$scope.valueChanges[0][0],$scope.fashionChanges[0][0],$scope.freaksChanges[0][0],0,$scope.bmChanges[0][0],$scope.onlineChanges[0][0],$scope.mixedChanges[0][0]],
+			    	[$scope.totalChanges[0][1],0,$scope.ruralChanges[0][1],$scope.urbanChanges[0][1],0,$scope.priceChanges[0][1],$scope.valueChanges[0][1],$scope.fashionChanges[0][1],$scope.freaksChanges[0][1],0,$scope.bmChanges[0][1],$scope.onlineChanges[0][1],$scope.mixedChanges[0][1]],
+			    	[$scope.totalChanges[0][2],0,$scope.ruralChanges[0][2],$scope.urbanChanges[0][2],0,$scope.priceChanges[0][2],$scope.valueChanges[0][2],$scope.fashionChanges[0][2],$scope.freaksChanges[0][2],0,$scope.bmChanges[0][2],$scope.onlineChanges[0][2],$scope.mixedChanges[0][2]],
+			    	[$scope.totalChanges[0][3],0,$scope.ruralChanges[0][3],$scope.urbanChanges[0][3],0,$scope.priceChanges[0][3],$scope.valueChanges[0][3],$scope.fashionChanges[0][3],$scope.freaksChanges[0][3],0,$scope.bmChanges[0][3],$scope.onlineChanges[0][3],$scope.mixedChanges[0][3]],
+			    	[$scope.totalChanges[0][4],0,$scope.ruralChanges[0][4],$scope.urbanChanges[0][4],0,$scope.priceChanges[0][4],$scope.valueChanges[0][4],$scope.fashionChanges[0][4],$scope.freaksChanges[0][4],0,$scope.bmChanges[0][4],$scope.onlineChanges[0][4],$scope.mixedChanges[0][4]],
+			    	[$scope.totalChanges[0][5],0,$scope.ruralChanges[0][5],$scope.urbanChanges[0][5],0,$scope.priceChanges[0][5],$scope.valueChanges[0][5],$scope.fashionChanges[0][5],$scope.freaksChanges[0][5],0,$scope.bmChanges[0][5],$scope.onlineChanges[0][5],$scope.mixedChanges[0][5]]
 			    ];
 
 			    $scope.chart1Config = {
@@ -221,6 +235,14 @@ define(['app','socketIO','routingConfig'], function(app) {
 			            chart: {
 			                type: 'areaspline'
 			            },
+			            tooltip: {
+				            formatter: function() {
+				                var s = '<p><b>'+this.series.name+'</b></p>'+'<p>Volume Market Share:'+this.point.percentage.toFixed(2)+'%</p>'+'<p>'+$scope.change1s[this.series._i][this.point.x]+' over previous period'+'</p>';
+				                return s;
+				            },
+				            shared: false,
+				            useHTML: true
+				        },
 			            plotOptions: {
 			                series: {
 			                    stacking: 'percent'
@@ -246,8 +268,24 @@ define(['app','socketIO','routingConfig'], function(app) {
 			        {"name": Label.getContent('Retailer')+' 2', "data": [$scope.totals[1][5],0,$scope.rurals[1][5],$scope.urbans[1][5],0,$scope.prices[1][5],$scope.values[1][5],$scope.fashions[1][5],$scope.freakss[1][5],0,$scope.bms[1][5],$scope.onlines[1][5],$scope.mixeds[1][5]], type: "column",color:'#F05422'},
 			    ];
 
+			    $scope.change2s=new Array();
+			    for(i=0;i<6;i++){
+			    	$scope.change2s[i]=new Array();
+			    }
+
+			    $scope.change2s=[
+			    	[$scope.totalChanges[1][0],0,$scope.ruralChanges[1][0],$scope.urbanChanges[1][0],0,$scope.priceChanges[1][0],$scope.valueChanges[1][0],$scope.fashionChanges[1][0],$scope.freaksChanges[1][0],0,$scope.bmChanges[1][0],$scope.onlineChanges[1][0],$scope.mixedChanges[1][0]],
+			    	[$scope.totalChanges[1][1],0,$scope.ruralChanges[1][1],$scope.urbanChanges[1][1],0,$scope.priceChanges[1][1],$scope.valueChanges[1][1],$scope.fashionChanges[1][1],$scope.freaksChanges[1][1],0,$scope.bmChanges[1][1],$scope.onlineChanges[1][1],$scope.mixedChanges[1][1]],
+			    	[$scope.totalChanges[1][2],0,$scope.ruralChanges[1][2],$scope.urbanChanges[1][2],0,$scope.priceChanges[1][2],$scope.valueChanges[1][2],$scope.fashionChanges[1][2],$scope.freaksChanges[1][2],0,$scope.bmChanges[1][2],$scope.onlineChanges[1][2],$scope.mixedChanges[1][2]],
+			    	[$scope.totalChanges[1][3],0,$scope.ruralChanges[1][3],$scope.urbanChanges[1][3],0,$scope.priceChanges[1][3],$scope.valueChanges[1][3],$scope.fashionChanges[1][3],$scope.freaksChanges[1][3],0,$scope.bmChanges[1][3],$scope.onlineChanges[1][3],$scope.mixedChanges[1][3]],
+			    	[$scope.totalChanges[1][4],0,$scope.ruralChanges[1][4],$scope.urbanChanges[1][4],0,$scope.priceChanges[1][4],$scope.valueChanges[1][4],$scope.fashionChanges[1][4],$scope.freaksChanges[1][4],0,$scope.bmChanges[1][4],$scope.onlineChanges[1][4],$scope.mixedChanges[1][4]],
+			    	[$scope.totalChanges[1][5],0,$scope.ruralChanges[1][5],$scope.urbanChanges[1][5],0,$scope.priceChanges[1][5],$scope.valueChanges[1][5],$scope.fashionChanges[1][5],$scope.freaksChanges[1][5],0,$scope.bmChanges[1][5],$scope.onlineChanges[1][5],$scope.mixedChanges[1][5]]
+			    ];
+
+
 			    $scope.chart2Config = {
 			        options: {
+
 			        	xAxis: {
 				            categories: [Label.getContent('Total'), '', Label.getContent('Rural'), Label.getContent('Urban'), '', Label.getContent('Price Sensitive'),Label.getContent('Value for Money'),Label.getContent('Fashion'),Label.getContent('Freaks'),'',Label.getContent('B&M Only'),Label.getContent('Online Only'),Label.getContent('Mixed')]
 				        },
@@ -257,6 +295,14 @@ define(['app','socketIO','routingConfig'], function(app) {
 			            chart: {
 			                type: 'areaspline'
 			            },
+			            tooltip: {
+				            formatter: function() {
+				                var s = '<p><b>'+this.series.name+'</b></p>'+'<p>Volume Market Share:'+this.point.percentage.toFixed(2)+'%</p>'+'<p>'+$scope.change2s[this.series._i][this.point.x]+' over previous period'+'</p>';
+				                return s;
+				            },
+				            shared: false,
+				            useHTML: true
+				        },
 			            plotOptions: {
 			                series: {
 			                    stacking: 'percent'
@@ -282,6 +328,20 @@ define(['app','socketIO','routingConfig'], function(app) {
 			        {"name": Label.getContent('Retailer')+' 2', "data": [$scope.totals[2][5],0,$scope.rurals[2][5],$scope.urbans[2][5],0,$scope.prices[2][5],$scope.values[2][5],$scope.fashions[2][5],$scope.freakss[2][5],0,$scope.bms[2][5],$scope.onlines[2][5],$scope.mixeds[2][5]], type: "column",color:'#F05422'},
 			    ];
 
+			    $scope.change3s=new Array();
+			    for(i=0;i<6;i++){
+			    	$scope.change3s[i]=new Array();
+			    }
+
+			    $scope.change3s=[
+			    	[$scope.totalChanges[2][0],0,$scope.ruralChanges[2][0],$scope.urbanChanges[2][0],0,$scope.priceChanges[2][0],$scope.valueChanges[2][0],$scope.fashionChanges[2][0],$scope.freaksChanges[2][0],0,$scope.bmChanges[2][0],$scope.onlineChanges[2][0],$scope.mixedChanges[2][0]],
+			    	[$scope.totalChanges[2][1],0,$scope.ruralChanges[2][1],$scope.urbanChanges[2][1],0,$scope.priceChanges[2][1],$scope.valueChanges[2][1],$scope.fashionChanges[2][1],$scope.freaksChanges[2][1],0,$scope.bmChanges[2][1],$scope.onlineChanges[2][1],$scope.mixedChanges[2][1]],
+			    	[$scope.totalChanges[2][2],0,$scope.ruralChanges[2][2],$scope.urbanChanges[2][2],0,$scope.priceChanges[2][2],$scope.valueChanges[2][2],$scope.fashionChanges[2][2],$scope.freaksChanges[2][2],0,$scope.bmChanges[2][2],$scope.onlineChanges[2][2],$scope.mixedChanges[2][2]],
+			    	[$scope.totalChanges[2][3],0,$scope.ruralChanges[2][3],$scope.urbanChanges[2][3],0,$scope.priceChanges[2][3],$scope.valueChanges[2][3],$scope.fashionChanges[2][3],$scope.freaksChanges[2][3],0,$scope.bmChanges[2][3],$scope.onlineChanges[2][3],$scope.mixedChanges[2][3]],
+			    	[$scope.totalChanges[2][4],0,$scope.ruralChanges[2][4],$scope.urbanChanges[2][4],0,$scope.priceChanges[2][4],$scope.valueChanges[2][4],$scope.fashionChanges[2][4],$scope.freaksChanges[2][4],0,$scope.bmChanges[2][4],$scope.onlineChanges[2][4],$scope.mixedChanges[2][4]],
+			    	[$scope.totalChanges[2][5],0,$scope.ruralChanges[2][5],$scope.urbanChanges[2][5],0,$scope.priceChanges[2][5],$scope.valueChanges[2][5],$scope.fashionChanges[2][5],$scope.freaksChanges[2][5],0,$scope.bmChanges[2][5],$scope.onlineChanges[2][5],$scope.mixedChanges[2][5]]
+			    ];
+
 			    $scope.chart3Config = {
 			        options: {
 			        	xAxis: {
@@ -293,6 +353,14 @@ define(['app','socketIO','routingConfig'], function(app) {
 			            chart: {
 			                type: 'areaspline'
 			            },
+			            tooltip: {
+				            formatter: function() {
+				                var s = '<p><b>'+this.series.name+'</b></p>'+'<p>Volume Market Share:'+this.point.percentage.toFixed(2)+'%</p>'+'<p>'+$scope.change3s[this.series._i][this.point.x]+' over previous period'+'</p>';
+				                return s;
+				            },
+				            shared: false,
+				            useHTML: true
+				        },
 			            plotOptions: {
 			                series: {
 			                    stacking: 'percent'
@@ -317,6 +385,19 @@ define(['app','socketIO','routingConfig'], function(app) {
 			      	{"name": Label.getContent('Retailer')+' 1', "data": [$scope.totals[3][4],0,$scope.rurals[3][4],$scope.urbans[3][4],0,$scope.prices[3][4],$scope.values[3][4],$scope.fashions[3][4],$scope.freakss[3][4],0,$scope.bms[3][4],$scope.onlines[3][4],$scope.mixeds[3][4]], type: "column",color:'#8B288B'},
 			        {"name": Label.getContent('Retailer')+' 2', "data": [$scope.totals[3][5],0,$scope.rurals[3][5],$scope.urbans[3][5],0,$scope.prices[3][5],$scope.values[3][5],$scope.fashions[3][5],$scope.freakss[3][5],0,$scope.bms[3][5],$scope.onlines[3][5],$scope.mixeds[3][5]], type: "column",color:'#F05422'},
 			    ];
+			    $scope.change4s=new Array();
+			    for(i=0;i<6;i++){
+			    	$scope.change4s[i]=new Array();
+			    }
+
+			    $scope.change4s=[
+			    	[$scope.totalChanges[3][0],0,$scope.ruralChanges[3][0],$scope.urbanChanges[3][0],0,$scope.priceChanges[3][0],$scope.valueChanges[3][0],$scope.fashionChanges[3][0],$scope.freaksChanges[3][0],0,$scope.bmChanges[3][0],$scope.onlineChanges[3][0],$scope.mixedChanges[3][0]],
+			    	[$scope.totalChanges[3][1],0,$scope.ruralChanges[3][1],$scope.urbanChanges[3][1],0,$scope.priceChanges[3][1],$scope.valueChanges[3][1],$scope.fashionChanges[3][1],$scope.freaksChanges[3][1],0,$scope.bmChanges[3][1],$scope.onlineChanges[3][1],$scope.mixedChanges[3][1]],
+			    	[$scope.totalChanges[3][2],0,$scope.ruralChanges[3][2],$scope.urbanChanges[3][2],0,$scope.priceChanges[3][2],$scope.valueChanges[3][2],$scope.fashionChanges[3][2],$scope.freaksChanges[3][2],0,$scope.bmChanges[3][2],$scope.onlineChanges[3][2],$scope.mixedChanges[3][2]],
+			    	[$scope.totalChanges[3][3],0,$scope.ruralChanges[3][3],$scope.urbanChanges[3][3],0,$scope.priceChanges[3][3],$scope.valueChanges[3][3],$scope.fashionChanges[3][3],$scope.freaksChanges[3][3],0,$scope.bmChanges[3][3],$scope.onlineChanges[3][3],$scope.mixedChanges[3][3]],
+			    	[$scope.totalChanges[3][4],0,$scope.ruralChanges[3][4],$scope.urbanChanges[3][4],0,$scope.priceChanges[3][4],$scope.valueChanges[3][4],$scope.fashionChanges[3][4],$scope.freaksChanges[3][4],0,$scope.bmChanges[3][4],$scope.onlineChanges[3][4],$scope.mixedChanges[3][4]],
+			    	[$scope.totalChanges[3][5],0,$scope.ruralChanges[3][5],$scope.urbanChanges[3][5],0,$scope.priceChanges[3][5],$scope.valueChanges[3][5],$scope.fashionChanges[3][5],$scope.freaksChanges[3][5],0,$scope.bmChanges[3][5],$scope.onlineChanges[3][5],$scope.mixedChanges[3][5]]
+			    ];
 
 			    $scope.chart4Config = {
 			        options: {
@@ -329,6 +410,14 @@ define(['app','socketIO','routingConfig'], function(app) {
 			            chart: {
 			                type: 'areaspline'
 			            },
+			            tooltip: {
+				            formatter: function() {
+				                var s = '<p><b>'+this.series.name+'</b></p>'+'<p>Volume Market Share:'+this.point.percentage.toFixed(2)+'%</p>'+'<p>'+$scope.change4s[this.series._i][this.point.x]+' over previous period'+'</p>';
+				                return s;
+				            },
+				            shared: false,
+				            useHTML: true
+				        },
 			            plotOptions: {
 			                series: {
 			                    stacking: 'percent'
