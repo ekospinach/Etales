@@ -321,6 +321,18 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
         })
     }
 
+    $scope.addReport=function(){
+    	var url="/addGeneralReport";
+    	$http({
+    		method:'GET',
+    		url:url
+    	}).then(function(data){
+    		console.log(data.data);
+    	},function(){
+    		console.log('fail');
+    	})
+    }
+
     $scope.removeRandomSeries = function () {
         var seriesArray = $scope.chartConfig.series;
         var rndIdx = Math.floor(Math.random() * seriesArray.length);
@@ -345,7 +357,16 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
                 series: {
                     stacking: 'percent'
                 }
-            }
+            },
+            tooltip: {
+	        	shared: false,
+	        	useHTML: true,
+	        	headerFormat: '<small style="color: {series.color}>{series.name}</small><table>',
+	        	pointFormat: '<tr><td style="color: {series.color}">{series.name}: </td>' +
+	        	'<td style="text-align: right"><b>{point.y} EUR</b></td></tr>',
+	        	footerFormat: '</table>',
+	        	valueDecimals: 2
+	        }
         },
         series: $scope.chartSeries,
         title: {

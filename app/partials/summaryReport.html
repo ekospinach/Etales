@@ -1,6 +1,6 @@
 <style TYPE="text/css">
     .popover-content{
-        color: black;
+        color: #333333;
     }
     .table-bordered > thead > tr > th,
     .table-bordered > tbody > tr > th,
@@ -9,6 +9,7 @@
     .table-bordered > tbody > tr > td,
     .table-bordered > tfoot > tr > td {
       border: 1px solid #428BCA;
+      border-right: none;
     }
     .col-md-9{
         width: 74%;
@@ -44,7 +45,7 @@
         <div class="col-md-9">
             <div class="bs-docs-section">
                 <!--general report -->
-                <div class="panel panel-primary">
+                <div class="panel panel-primary" ng-show='Performance'>
                     <div class="panel-heading">
                         <h3 class="panel-title text-center" popover="{{Label.getContent('Performance Highlights Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Performance Highlights')}}</h3>
                     </div>
@@ -109,11 +110,9 @@
                                         {{Label.getContent('Elecssories')}}
                                     </p>
                                 </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td ng-repeat='salesVolume in salesVolumes' ng-show='$even&&$index!=6&&$index!=12'>
+                                    <p class="text-right">{{salesVolume.value}}</p>
+                                </td>
                             </tr>
                             <tr class="danger">
                                 <td colspan="3">
@@ -121,11 +120,9 @@
                                         {{Label.getContent('HealthBeauties')}}
                                     </p>
                                 </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td ng-repeat='salesVolume in salesVolumes' ng-show='$odd&&$index!=7&&$index!=13'>
+                                    <p class="text-right">{{salesVolume.value}}</p>
+                                </td>
                             </tr>
                             <tr>
                                 <td colspan="8">
@@ -140,11 +137,9 @@
                                         {{Label.getContent('Elecssories')}}
                                     </p>
                                 </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td ng-repeat='salesValue in salesValues' ng-show='$even&&$index!=6&&$index!=12'>
+                                    <p class="text-right">{{salesValue.value}}</p>
+                                </td>
                             </tr>
                             <tr class="danger">
                                 <td colspan="3">
@@ -152,11 +147,9 @@
                                         {{Label.getContent('HealthBeauties')}}
                                     </p>
                                 </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td ng-repeat='salesValue in salesValues' ng-show='$odd&&$index!=7&&$index!=13'>
+                                    <p class="text-right">{{salesValue.value}}</p>
+                                </td>
                             </tr>
 
                             <tr>
@@ -175,11 +168,9 @@
                                         {{Label.getContent('Elecssories')}}
                                     </p>
                                 </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td ng-repeat='valueShare in valueShares' ng-show='$even&&$index!=6&&$index!=12'>
+                                    <p class="text-right">{{valueShare.value}}</p>
+                                </td>
                             </tr>
                             <tr class="danger">
                                 <td colspan="3">
@@ -187,11 +178,9 @@
                                         {{Label.getContent('HealthBeauties')}}
                                     </p>
                                 </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td ng-repeat='valueShare in valueShares' ng-show='$odd&&$index!=7&&$index!=13'>
+                                    <p class="text-right">{{valueShare.value}}</p>
+                                </td>
                             </tr>
                             <tr>
                                 <td colspan="8">
@@ -206,11 +195,9 @@
                                         {{Label.getContent('Elecssories')}}
                                     </p>
                                 </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td ng-repeat='volumeShare in volumeShares' ng-show='$even&&$index!=6&&$index!=12'>
+                                    <p class="text-right">{{volumeShare.value}}</p>
+                                </td>
                             </tr>
                             <tr class="danger">
                                 <td colspan="3">
@@ -218,37 +205,45 @@
                                         {{Label.getContent('HealthBeauties')}}
                                     </p>
                                 </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td ng-repeat='volumeShare in volumeShares' ng-show='$odd&&$index!=7&&$index!=13'>
+                                    <p class="text-right">{{volumeShare.value}}</p>
+                                </td>
                             </tr>
                             <tr>
                                 <td colspan="3">
                                     {{Label.getContent('Operating Profit')}}($mln)
                                 </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td ng-repeat='operatingProfit in operatingProfits' ng-show='$index!=3&&$index!=6'>
+                                    <p class="text-right">{{operatingProfit.value}}</p>
+                                </td>
                             </tr>
                             <tr>
                                 <td colspan="3">
                                     {{Label.getContent('Cumulative Investments')}}($mln)
                                 </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td ng-repeat='cumulativeInvestment in cumulativeInvestments' ng-show='$index!=3&&$index!=6'>
+                                    <p class="text-right">{{cumulativeInvestment.value}}</p>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+
+                <div class="panel panel-primary" ng-show='MarketShare'>
+                    <div class="panel-heading">
+                        <h3 class="panel-title text-center" popover="{{Label.getContent('Market Shares Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Market Shares')}}</h3>
+                    </div>
+                    <highchart id="chart1" config="chart1Config" class="span9" style="height:600px;width:810px;"></highchart>
+                    <highchart id="chart2" config="chart2Config" class="span9" style="height:600px;width:810px;"></highchart>
+                    <highchart id="chart3" config="chart3Config" class="span9" style="height:600px;width:810px;"></highchart>
+                    <highchart id="chart4" config="chart4Config" class="span9" style="height:600px;width:810px;"></highchart>
+
+
+
+                </div>
+
                 <!--general report -->
-                <div class="panel panel-primary">
+                <div class="panel panel-primary" ng-show='Product'>
                     <div class="panel-heading">
                         <h3 class="panel-title text-center" popover="{{Label.getContent('Product Portfolio Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Product Portfolio')}}</h3>
                     </div>
@@ -326,7 +321,7 @@
                     </table>
                 </div>
                 <!--general report -->
-                <div class="panel panel-primary">
+                <div class="panel panel-primary" ng-show='EMallPrices'>
                     <div class="panel-heading">
                         <h3 class="panel-title text-center" popover="{{Label.getContent('eMall Prices and Promotion Intensity Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('eMall Prices and Promotion Intensity')}}</h3>
                     </div>
@@ -412,10 +407,10 @@
             <div class="bs-docs-sidebar hidden-print" affix='200' role="complementary" angular-bootstrap>
                 <ul class="nav bs-docs-sidenav">
                     <li class="active">
-                        <a href="/#/summaryReport" style="color:#428BCA">{{Label.getContent('Performance Highlights')}}</a>
+                        <a href="/#/summaryReport" style="color:#428BCA" ng-click="showPerformance()">{{Label.getContent('Performance Highlights')}}</a>
                     </li>
                     <li class="">
-                        <a href="/#/summaryReport" style="color:#428BCA">{{Label.getContent('Market Shares')}}</a>
+                        <a href="/#/summaryReport" style="color:#428BCA" ng-click='showMarketShare()'>{{Label.getContent('Market Shares')}}</a>
                     </li>
                     <li class="">
                         <a href="/#/summaryReport" style="color:#428BCA">{{Label.getContent('Sales')}}</a>
@@ -424,10 +419,10 @@
                         <a href="/#/summaryReport" style="color:#428BCA">{{Label.getContent('Cross-Segment Sales Volumes')}}</a>
                     </li>
                     <li class="">
-                        <a href="/#/summaryReport" style="color:#428BCA">{{Label.getContent('Product Portfolio')}}</a>
+                        <a href="/#/summaryReport" style="color:#428BCA" ng-click='showProduct()'>{{Label.getContent('Product Portfolio')}}</a>
                     </li>
                     <li class="">
-                        <a href="/#/summaryReport" style="color:#428BCA">{{Label.getContent('eMall Prices and Promotion Intensity')}}</a>
+                        <a href="/#/summaryReport" style="color:#428BCA" ng-click='showEMallPrices()'>{{Label.getContent('eMall Prices and Promotion Intensity')}}</a>
                     </li>
                     <li class="">
                     	<a href="/#/summaryReport" style="color:#5CB85C">{{Label.getContent('Financial Results')}}</a>
