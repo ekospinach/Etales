@@ -447,6 +447,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    	$scope.MarketShare=false;
 		    	$scope.Product=false;
 		    	$scope.EMallPrices=true;
+		    	
 		    }
 
 		    $scope.showPerformance=showPerformance;
