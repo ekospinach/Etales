@@ -559,22 +559,22 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    			}
 		    		}
 		    		for(var i=0;i<data.data[0].categoryInfo[1].variantInfo.length;i++){
-		    			switch(data.data[0].categoryInfo[0].variantInfo[i].varName.substring(data.data[0].categoryInfo[0].variantInfo[i].varName.length-1)){
+		    			switch(data.data[0].categoryInfo[1].variantInfo[i].varName.substring(data.data[0].categoryInfo[1].variantInfo[i].varName.length-1)){
 		    				case '1':
-		    					$scope.producer1hs.push(data.data[0].categoryInfo[0].variantInfo[i]);
+		    					$scope.producer1hs.push(data.data[0].categoryInfo[1].variantInfo[i]);
 		    				break;
 		    				case '2':
-		    					$scope.producer2hs.push(data.data[0].categoryInfo[0].variantInfo[i]);
+		    					$scope.producer2hs.push(data.data[0].categoryInfo[1].variantInfo[i]);
 		    				break;
 		    				case '3':
-		    					$scope.producer3hs.push(data.data[0].categoryInfo[0].variantInfo[i]);
+		    					$scope.producer3hs.push(data.data[0].categoryInfo[1].variantInfo[i]);
 		    				break;
 		    				case '4':break;
 		    				case '5':
-		    					$scope.retailer1hs.push(data.data[0].categoryInfo[0].variantInfo[i]);
+		    					$scope.retailer1hs.push(data.data[0].categoryInfo[1].variantInfo[i]);
 		    				break;
 		    				case '6':
-		    					$scope.retailer2hs.push(data.data[0].categoryInfo[0].variantInfo[i]);
+		    					$scope.retailer2hs.push(data.data[0].categoryInfo[1].variantInfo[i]);
 		    				break;
 		    				case '7':break;
 		    			}
@@ -629,15 +629,15 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    			}
 		    		}
 		    		for(var i=0;i<data.data[0].categoryInfo[1].variantInfo.length;i++){
-		    			switch(data.data[0].categoryInfo[0].variantInfo[i].varName.substring(data.data[0].categoryInfo[0].variantInfo[i].varName.length-1)){
+		    			switch(data.data[0].categoryInfo[1].variantInfo[i].varName.substring(data.data[0].categoryInfo[1].variantInfo[i].varName.length-1)){
 		    				case '1':
-		    					$scope.producer1hs.push(data.data[0].categoryInfo[0].variantInfo[i]);
+		    					$scope.producer1hs.push(data.data[0].categoryInfo[1].variantInfo[i]);
 		    				break;
 		    				case '2':
-		    					$scope.producer2hs.push(data.data[0].categoryInfo[0].variantInfo[i]);
+		    					$scope.producer2hs.push(data.data[0].categoryInfo[1].variantInfo[i]);
 		    				break;
 		    				case '3':
-		    					$scope.producer3hs.push(data.data[0].categoryInfo[0].variantInfo[i]);
+		    					$scope.producer3hs.push(data.data[0].categoryInfo[1].variantInfo[i]);
 		    				break;
 		    				case '4':break;
 		    				// case '5':

@@ -260,16 +260,44 @@
                                 <th></th>
                                 <th colspan="4">
                                     <p class="text-center">
-                                        {{Label.getContent('Volume Market Share')}}
+                                        {{Label.getContent('Volume Market Shares')}}
                                     </p>
                                 </th>
                                 <th colspan="4">
                                     <p class="text-center">
-                                        {{Label.getContent('Value Market Share')}}
+                                        {{Label.getContent('Value Market Shares')}}
                                     </p>
                                 </th>
                             </tr>
                         </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td colspan="2">{{Label.getContent('Number 1')}}</td>
+                                <td colspan="2">{{Label.getContent('Number 2')}}</td>
+                                <td colspan="2">{{Label.getContent('Number 1')}}</td>
+                                <td colspan="2">{{Label.getContent('Number 2')}}</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>{{Label.getContent('SKU name')}}</td>
+                                <td>{{Label.getContent('Share')}} (%)</td>
+                                <td>{{Label.getContent('SKU name')}}</td>
+                                <td>{{Label.getContent('Share')}} (%)</td>
+                                <td>{{Label.getContent('SKU name')}}</td>
+                                <td>{{Label.getContent('Share')}} (%)</td>
+                                <td>{{Label.getContent('SKU name')}}</td>
+                                <td>{{Label.getContent('Share')}} (%)</td>
+                            </tr>
+                            <tr class="success">
+                                <th colspan="9">{{Label.getContent('Elecssories')}}</th>
+                            </tr>
+                            <tr class="success">
+                                <td colspan="9">
+                                    <p class="padding-20">{{Label.getConetnt('Consumer Segments')}}</p>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
 
@@ -604,10 +632,10 @@
                                     <p class="text-right">{{producer1e.vemp_PriceChange}}</p>
                                 </td>
                                 <td>
-                                    <p class="text-right">{{producer1e.vemp_Promotions[0]}}</p>
+                                    <p class="text-right">{{producer1e.vemp_Promotions.promo_Frequency}}</p>
                                 </td>
                                 <td>
-                                    <p class="text-right">{{producer1e.vemp_Promotions[1]}}</p>
+                                    <p class="text-right">{{producer1e.vemp_Promotions.promo_Rate}}</p>
                                 </td>
                             </tr>
                             <tr class="success">
@@ -626,10 +654,10 @@
                                     <p class="text-right">{{producer2e.vemp_PriceChange}}</p>
                                 </td>
                                 <td>
-                                    <p class="text-right">{{producer2e.vemp_Promotions[0]}}</p>
+                                    <p class="text-right">{{producer2e.vemp_Promotions.promo_Frequency}}</p>
                                 </td>
                                 <td>
-                                    <p class="text-right">{{producer2e.vemp_Promotions[1]}}</p>
+                                    <p class="text-right">{{producer2e.vemp_Promotions.promo_Rate}}</p>
                                 </td>
                             </tr>
                             <tr class="success">
@@ -648,10 +676,10 @@
                                     <p class="text-right">{{producer3e.vemp_PriceChange}}</p>
                                 </td>
                                 <td>
-                                    <p class="text-right">{{producer3e.vemp_Promotions[0]}}</p>
+                                    <p class="text-right">{{producer3e.vemp_Promotions.promo_Frequency}}</p>
                                 </td>
                                 <td>
-                                    <p class="text-right">{{producer3e.vemp_Promotions[1]}}</p>
+                                    <p class="text-right">{{producer3e.vemp_Promotions.promo_Rate}}</p>
                                 </td>
                             </tr>
 
@@ -675,10 +703,10 @@
                                     <p class="text-right">{{producer1h.vemp_PriceChange}}</p>
                                 </td>
                                 <td>
-                                    <p class="text-right">{{producer1h.vemp_Promotions[0]}}</p>
+                                    <p class="text-right">{{producer1h.vemp_Promotions.promo_Frequency}}</p>
                                 </td>
                                 <td>
-                                    <p class="text-right">{{producer1h.vemp_Promotions[1]}}</p>
+                                    <p class="text-right">{{producer1h.vemp_Promotions.promo_Rate}}</p>
                                 </td>
                             </tr>
                             <tr class="danger">
@@ -697,10 +725,10 @@
                                     <p class="text-right">{{producer2h.vemp_PriceChange}}</p>
                                 </td>
                                 <td>
-                                    <p class="text-right">{{producer2h.vemp_Promotions[0]}}</p>
+                                    <p class="text-right">{{producer2h.vemp_Promotions.promo_Frequency}}</p>
                                 </td>
                                 <td>
-                                    <p class="text-right">{{producer2h.vemp_Promotions[1]}}</p>
+                                    <p class="text-right">{{producer2h.vemp_Promotions.promo_Rate}}</p>
                                 </td>
                             </tr>
                             <tr class="danger">
@@ -719,10 +747,10 @@
                                     <p class="text-right">{{producer3h.vemp_PriceChange}}</p>
                                 </td>
                                 <td>
-                                    <p class="text-right">{{producer3h.vemp_Promotions[0]}}</p>
+                                    <p class="text-right">{{producer3h.vemp_Promotions.promo_Frequency}}</p>
                                 </td>
                                 <td>
-                                    <p class="text-right">{{producer3h.vemp_Promotions[1]}}</p>
+                                    <p class="text-right">{{producer3h.vemp_Promotions.promo_Rate}}</p>
                                 </td>
                             </tr>
                         </tbody>
