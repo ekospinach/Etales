@@ -10,7 +10,7 @@ var mongoose = require('mongoose'),
 //TActors : 1~(4+3)
 //TBrandOwener : 1~6 (Prod_1_ID...Ret_2_ID)
 //TAllProducer : 1~4 (ProsMaxPlus)
-var generalReportsSchema = mongoose.Schema({
+var marketShareSchema = mongoose.Schema({
 	period : Number,
     seminar : String,
 	actorInfo : [actorInfoSchema],    
@@ -47,7 +47,6 @@ var actorSegmentInfoSchema = mongoose.Schema({
 
 var actorShooperInfoSchma = mongoose.Schema({
     shoperKind : String, // BMS, NETIZENS, MIXED, ALLSHOPPERS
-    //SharesOfMarket
     grsom_MarketShareValue         : Number, //CategoryID : 1~3
     grsom_MarketShareVolume        : Number, //CategoryID : 1~2
     grsom_MarketShareValueChange   : Number, //CategoryID : 1~3
