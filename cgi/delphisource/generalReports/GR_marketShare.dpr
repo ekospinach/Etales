@@ -16,37 +16,43 @@ var
   vReadRes : Integer;
   oJsonFile : ISuperObject;
 
+  function actorMarketInfoSchema(actorID: Integer; catID : Integer; marketID : Integer; binaryReport : TGR_SharesOfMarket):
+  var
+    jo : ISuperObject;
+    segmentID : Integer;
+  begin
+    jo := SO;
+    jo.I['marketID'] := marketID;
+    jo.O['actorMarketInfo'] := SA([]);
+    for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do
+      jo.A['actorMarketInfo'].Add( actorMarketInfoSchema(actorID, catID, marketID, binaryReport) );
+
+    result := jo;  
+
+  end;
+
   function actorCategoryInfoSchema(actorID : Integer; catID : integer; binaryReport : TGR_PerformanceHighlights): ISuperObject;
   var
     jo : ISuperObject;
+    marketID : integer;
   begin
     jo := SO;
     jo.I['categoryID'] := catID;
-    jo.D['grph_SalesVolume'] := binaryReport.grph_SalesVolume[actorID, catID];
-    jo.D['grph_NetSalesValue'] := binaryReport.grph_NetSalesValue[actorID, catID];    
-
-    jo.D['grph_ValueMarketShare'] := binaryReport.grph_ValueMarketShare[actorID, catID];
-    jo.D['grph_VolumeMarketShare'] := binaryReport.grph_VolumeMarketShare[actorID, catID];
-
-    jo.D['grph_NetSalesValueChange'] := binaryReport.grph_NetSalesValueChange[actorID, catID];
-    jo.D['grph_ValueMarketShareChange'] := binaryReport.grph_ValueMarketShareChange[actorID, catID];
-    jo.D['grph_VolumeMarketShareChange'] := binaryReport.grph_VolumeMarketShareChange[actorID, catID];
-    jo.D['grph_SalesVolumeChange'] := binaryReport.grph_SalesVolumeChange[actorID, catID];
+    jo.O['actorMarketInfo'] := SA([]);
+    for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do
+      jo.A['actorMarketInfo'].Add( actorMarketInfoSchema(actorID, catID, marketID, binaryReport) );
 
     result := jo;
   end;
 
 
-  function actorInfoSchema(actorID : Integer; binaryReport : TGR_PerformanceHighlights): ISuperObject;
+  function actorInfoSchema(actorID : Integer; binaryReport : TGR_SharesOfMarket): ISuperObject;
   var
     jo: ISuperObject;
-    I, cat: Integer;
+    cat: Integer;
   begin
     jo := SO;
     jo.I['actorID'] := actorID;
-    jo.D['grph_OperatingProfit'] := binaryReport.grph_OperatingProfit[actorID];
-    jo.D['grph_OperatingProfitChange'] := binaryReport.grph_OperatingProfitChange[actorID];
-    jo.D['grph_CumulativeInvestment'] := binaryReport.grph_CumulativeInvestment[actorID];
     jo.O['actorCategoryInfo'] := SA([]);
     for cat := Low(TCategoriesTotal) to High(TCategoriesTotal) do
       jo.A['actorCategoryInfo'].Add( actorCategoryInfoSchema(actorID, cat, binaryReport) );
@@ -64,7 +70,7 @@ var
     oJsonFile.I['period'] := currentPeriod;
     oJsonFile.O['actorInfo'] := SA([]);
     for actorID := Low(TActors) to High(TActors) do
-      oJsonFile.A['actorInfo'].Add( actorInfoSchema(actorID, currentResult.r_GeneralReport.gr_PerformanceHighlights) );
+      oJsonFile.A['actorInfo'].Add( actorInfoSchema(actorID, currentResult.r_GeneralReport.gr_SharesOfMarket) );
 
     //for debug used
     s_str := 'out' + '.json';
