@@ -237,9 +237,40 @@
                     <highchart id="chart2" config="chart2Config" class="span9" style="height:600px;width:810px;"></highchart>
                     <highchart id="chart3" config="chart3Config" class="span9" style="height:600px;width:810px;"></highchart>
                     <highchart id="chart4" config="chart4Config" class="span9" style="height:600px;width:810px;"></highchart>
+                </div>
+
+                <div class="panel panel-primary" ng-show='MarketSales'>
+                    <div class="panel-heading">
+                        <h3 class="panel-title text-center" popover="{{Label.getContent('Market Sales Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Market Sales')}}</h3>
+                    </div>
+                    <highchart id="chart1" config="chart1Config" class="span9" style="height:600px;width:810px;"></highchart>
+                    <highchart id="chart2" config="chart2Config" class="span9" style="height:600px;width:810px;"></highchart>
+                    <highchart id="chart3" config="chart3Config" class="span9" style="height:600px;width:810px;"></highchart>
+                    <highchart id="chart4" config="chart4Config" class="span9" style="height:600px;width:810px;"></highchart>
+                </div>
 
 
-
+                <div class="panel panel-primary" ng-show='Segment'>
+                    <div class="panel-heading">
+                        <h3 class="panel-title text-center" popover="{{Label.getContent('Segment Leadership Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Segment Leadership')}}</h3>
+                    </div>
+                    <table class="table table-condensed table-bordered">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th colspan="4">
+                                    <p class="text-center">
+                                        {{Label.getContent('Volume Market Share')}}
+                                    </p>
+                                </th>
+                                <th colspan="4">
+                                    <p class="text-center">
+                                        {{Label.getContent('Value Market Share')}}
+                                    </p>
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
                 </div>
 
                 <!--general report -->
@@ -275,14 +306,110 @@
                                     <p class="padding-20">{{Label.getContent('Producer')}} 1</p>
                                 </td>
                             </tr>
-                            <tr class="success">
+                            <tr class="success" ng-repeat='producer1e in producer1es'>
                                 <td>
-                                    <p class="padding-40">ELAND1</p>
+                                    <p class="padding-40">{{producer1e.varName}}</p>
                                 </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>
+                                    <p class="text-center">{{producer1e.packFormat}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer1e.vc_composition[1]}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer1e.vc_composition[0]}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer1e.vc_composition[2]}}</p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td colspan="5">
+                                    <p class="padding-20">{{Label.getContent('Producer')}} 2</p>
+                                </td>
+                            </tr>
+                            <tr class="success" ng-repeat='producer2e in producer2es'>
+                                <td>
+                                    <p class="padding-40">{{producer2e.varName}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{producer2e.packFormat}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer2e.vc_composition[1]}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer2e.vc_composition[0]}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer2e.vc_composition[2]}}</p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td colspan="5">
+                                    <p class="padding-20">{{Label.getContent('Producer')}} 3</p>
+                                </td>
+                            </tr>
+                            <tr class="success" ng-repeat='producer3e in producer3es'>
+                                <td>
+                                    <p class="padding-40">{{producer3e.varName}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{producer3e.packFormat}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer3e.vc_composition[1]}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer3e.vc_composition[0]}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer3e.vc_composition[2]}}</p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td colspan="5">
+                                    <p class="padding-20">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                            </tr>
+                            <tr class="success" ng-repeat='retailer1e in retailer1es'>
+                                <td>
+                                    <p class="padding-40">{{retailer1e.varName}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{retailer1e.packFormat}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{retailer1e.vc_composition[1]}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{retailer1e.vc_composition[0]}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{retailer1e.vc_composition[2]}}</p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td colspan="5">
+                                    <p class="padding-20">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                            </tr>
+                            <tr class="success" ng-repeat='retailer2e in retailer2es'>
+                                <td>
+                                    <p class="padding-40">{{retailer2e.varName}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{retailer2e.packFormat}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{retailer2e.vc_composition[1]}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{retailer2e.vc_composition[0]}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{retailer2e.vc_composition[2]}}</p>
+                                </td>
                             </tr>
                             <!--H-->
                             <tr>
@@ -308,14 +435,110 @@
                                     <p class="padding-20">{{Label.getContent('Producer')}} 1</p>
                                 </td>
                             </tr>
-                            <tr class="danger">
+                            <tr class="danger" ng-repeat='producer1h in producer1hs'>
                                 <td>
-                                    <p class="padding-40">HLAND1</p>
+                                    <p class="padding-40">{{producer1h.varName}}</p>
                                 </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>
+                                    <p class="text-center">{{producer1h.packFormat}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer1h.vc_composition[1]}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer1h.vc_composition[0]}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer1h.vc_composition[2]}}</p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td colspan="5">
+                                    <p class="padding-20">{{Label.getContent('Producer')}} 2</p>
+                                </td>
+                            </tr>
+                            <tr class="danger" ng-repeat='producer2h in producer2hs'>
+                                <td>
+                                    <p class="padding-40">{{producer2h.varName}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{producer2h.packFormat}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer2h.vc_composition[1]}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer2h.vc_composition[0]}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer2h.vc_composition[2]}}</p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td colspan="5">
+                                    <p class="padding-20">{{Label.getContent('Producer')}} 3</p>
+                                </td>
+                            </tr>
+                            <tr class="danger" ng-repeat='producer3h in producer3hs'>
+                                <td>
+                                    <p class="padding-40">{{producer3h.varName}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{producer3h.packFormat}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer3h.vc_composition[1]}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer3h.vc_composition[0]}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer3h.vc_composition[2]}}</p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td colspan="5">
+                                    <p class="padding-20">{{Label.getContent('Retailer')}} 1</p>
+                                </td>
+                            </tr>
+                            <tr class="danger" ng-repeat='retailer1h in retailer1hs'>
+                                <td>
+                                    <p class="padding-40">{{retailer1h.varName}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{retailer1h.packFormat}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{retailer1h.vc_composition[1]}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{retailer1h.vc_composition[0]}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{retailer1h.vc_composition[2]}}</p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td colspan="5">
+                                    <p class="padding-20">{{Label.getContent('Retailer')}} 2</p>
+                                </td>
+                            </tr>
+                            <tr class="danger" ng-repeat='retailer2h in retailer2hs'>
+                                <td>
+                                    <p class="padding-40">{{retailer2h.varName}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-center">{{retailer2h.packFormat}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{retailer2h.vc_composition[1]}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{retailer2h.vc_composition[0]}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{retailer2h.vc_composition[2]}}</p>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -370,15 +593,68 @@
                                     <p class="padding-20">{{Label.getContent('Producer')}} 1</p>
                                 </td>
                             </tr>
-                            <tr class="success">
+                            <tr class="success" ng-repeat='producer1e in producer1es'>
                                 <td>
-                                    <p class="padding-40">ELAND1</p>
+                                    <p class="padding-40">{{producer1e.varName}}</p>
                                 </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>
+                                    <p class="text-right">{{producer1e.vemp_NetOnlinePrice}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer1e.vemp_PriceChange}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer1e.vemp_Promotions[0]}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer1e.vemp_Promotions[1]}}</p>
+                                </td>
                             </tr>
+                            <tr class="success">
+                                <td colspan="5">
+                                    <p class="padding-20">{{Label.getContent('Producer')}} 2</p>
+                                </td>
+                            </tr>
+                            <tr class="success" ng-repeat='producer2e in producer2es'>
+                                <td>
+                                    <p class="padding-40">{{producer2e.varName}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer2e.vemp_NetOnlinePrice}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer2e.vemp_PriceChange}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer2e.vemp_Promotions[0]}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer2e.vemp_Promotions[1]}}</p>
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td colspan="5">
+                                    <p class="padding-20">{{Label.getContent('Producer')}} 3</p>
+                                </td>
+                            </tr>
+                            <tr class="success" ng-repeat='producer3e in producer3es'>
+                                <td>
+                                    <p class="padding-40">{{producer3e.varName}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer3e.vemp_NetOnlinePrice}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer3e.vemp_PriceChange}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer3e.vemp_Promotions[0]}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer3e.vemp_Promotions[1]}}</p>
+                                </td>
+                            </tr>
+
                             <!--H-->
                             <tr class="danger">
                                 <th colspan="5">{{Label.getContent('HealthBeauties')}}</th>
@@ -388,14 +664,66 @@
                                     <p class="padding-20">{{Label.getContent('Producer')}} 1</p>
                                 </td>
                             </tr>
-                            <tr class="danger">
+                            <tr class="danger" ng-repeat='producer1h in producer1hs'>
                                 <td>
-                                    <p class="padding-40">HLAND1</p>
+                                    <p class="padding-40">{{producer1h.varName}}</p>
                                 </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>
+                                    <p class="text-right">{{producer1h.vemp_NetOnlinePrice}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer1h.vemp_PriceChange}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer1h.vemp_Promotions[0]}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer1h.vemp_Promotions[1]}}</p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td colspan="5">
+                                    <p class="padding-20">{{Label.getContent('Producer')}} 2</p>
+                                </td>
+                            </tr>
+                            <tr class="danger" ng-repeat='producer2h in producer2hs'>
+                                <td>
+                                    <p class="padding-40">{{producer2h.varName}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer2h.vemp_NetOnlinePrice}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer2h.vemp_PriceChange}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer2h.vemp_Promotions[0]}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer2h.vemp_Promotions[1]}}</p>
+                                </td>
+                            </tr>
+                            <tr class="danger">
+                                <td colspan="5">
+                                    <p class="padding-20">{{Label.getContent('Producer')}} 3</p>
+                                </td>
+                            </tr>
+                            <tr class="danger" ng-repeat='producer3h in producer3hs'>
+                                <td>
+                                    <p class="padding-40">{{producer3h.varName}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer3h.vemp_NetOnlinePrice}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer3h.vemp_PriceChange}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer3h.vemp_Promotions[0]}}</p>
+                                </td>
+                                <td>
+                                    <p class="text-right">{{producer3h.vemp_Promotions[1]}}</p>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -413,10 +741,13 @@
                         <a href="/#/summaryReport" style="color:#428BCA" ng-click='showMarketShare()'>{{Label.getContent('Market Shares')}}</a>
                     </li>
                     <li class="">
-                        <a href="/#/summaryReport" style="color:#428BCA">{{Label.getContent('Sales')}}</a>
+                        <a href="/#/summaryReport" style="color:#428BCA" ng-click='showMarketSales()'>{{Label.getContent('Sales')}}</a>
                     </li>
                     <li class="">
-                        <a href="/#/summaryReport" style="color:#428BCA">{{Label.getContent('Cross-Segment Sales Volumes')}}</a>
+                        <a href="/#/summaryReport" style="color:#428BCA" ng-click='showSegment()'>{{Label.getContent('Segment Leadership')}}</a>
+                    </li>
+                    <li class="">
+                        <a href="/#/summaryReport" style="color:#428BCA" ng-click='showCross()'>{{Label.getContent('Cross-Segment Sales Volumes')}}</a>
                     </li>
                     <li class="">
                         <a href="/#/summaryReport" style="color:#428BCA" ng-click='showProduct()'>{{Label.getContent('Product Portfolio')}}</a>

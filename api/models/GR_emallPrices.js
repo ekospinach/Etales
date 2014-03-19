@@ -21,13 +21,125 @@ var categoryInfoSchema = mongoose.Schema({
     variantInfo : [variantInfoSchema]
 })
 
-var variantInfo = mongoose.Schema({
+var variantInfoSchema = mongoose.Schema({
     varName : String,
     varID : Number,
     parentBrandID : Number,
     parentBrandName : String,
     vemp_NetOnlinePrice  : Number, //TAllProducer : 1~4 (ProsMaxPlus)
     vemp_PriceChange     : Number, //TAllProducer : 1~4 (ProsMaxPlus)
-    vemp_Promotions      : Number, //TAllProducer : 1~4 (ProsMaxPlus)
+    vemp_Promotions      : [Number] //TAllProducer : 1~4 (ProsMaxPlus)
 })
 
+var emallPrices=mongoose.model('emallPrices',emallPricesSchema);
+
+exports.addEmallPrices=function(req,res,next){
+    var newEMallPrices=new emallPrices({
+        period:1,
+        seminar:'MAY',
+        categoryInfo:[{
+            categoryID:1,
+            variantInfo:[{
+                varName : 'ELAN1',
+                varID : 101,
+                parentBrandID : 10,
+                parentBrandName : 'ELAN',
+                vemp_NetOnlinePrice  : 1, //TAllProducer : 1~4 (ProsMaxPlus)
+                vemp_PriceChange     : 2, //TAllProducer : 1~4 (ProsMaxPlus)
+                vemp_Promotions      : [3,4] //TAllProducer : 1~4 (ProsMaxPlus)               
+            },{
+                varName : 'ELAN2',
+                varID : 101,
+                parentBrandID : 10,
+                parentBrandName : 'ELAN',
+                vemp_NetOnlinePrice  : 1, //TAllProducer : 1~4 (ProsMaxPlus)
+                vemp_PriceChange     : 2, //TAllProducer : 1~4 (ProsMaxPlus)
+                vemp_Promotions      : [3,4] //TAllProducer : 1~4 (ProsMaxPlus)               
+            },{
+                varName : 'ELAN3',
+                varID : 101,
+                parentBrandID : 10,
+                parentBrandName : 'ELAN',
+                vemp_NetOnlinePrice  : 1, //TAllProducer : 1~4 (ProsMaxPlus)
+                vemp_PriceChange     : 2, //TAllProducer : 1~4 (ProsMaxPlus)
+                vemp_Promotions      : [3,4] //TAllProducer : 1~4 (ProsMaxPlus)               
+            }]
+        },{
+            categoryID:2,
+            variantInfo:[{
+                varName : 'HTTP1',
+                varID : 101,
+                parentBrandID : 10,
+                parentBrandName : 'HTTP',
+                vemp_NetOnlinePrice  : 1, //TAllProducer : 1~4 (ProsMaxPlus)
+                vemp_PriceChange     : 2, //TAllProducer : 1~4 (ProsMaxPlus)
+                vemp_Promotions      : [3,4] //TAllProducer : 1~4 (ProsMaxPlus)               
+            },{
+                varName : 'HTTP2',
+                varID : 101,
+                parentBrandID : 10,
+                parentBrandName : 'HTTP',
+                vemp_NetOnlinePrice  : 1, //TAllProducer : 1~4 (ProsMaxPlus)
+                vemp_PriceChange     : 2, //TAllProducer : 1~4 (ProsMaxPlus)
+                vemp_Promotions      : [3,4] //TAllProducer : 1~4 (ProsMaxPlus)               
+            },{
+                varName : 'HTTP3',
+                varID : 101,
+                parentBrandID : 10,
+                parentBrandName : 'HTTP',
+                vemp_NetOnlinePrice  : 1, //TAllProducer : 1~4 (ProsMaxPlus)
+                vemp_PriceChange     : 2, //TAllProducer : 1~4 (ProsMaxPlus)
+                vemp_Promotions      : [3,4] //TAllProducer : 1~4 (ProsMaxPlus)               
+            }]
+        },{
+            categoryID:3,
+            variantInfo:[{
+                varName : 'ELAN1',
+                varID : 101,
+                parentBrandID : 10,
+                parentBrandName : 'ELAN',
+                vemp_NetOnlinePrice  : 1, //TAllProducer : 1~4 (ProsMaxPlus)
+                vemp_PriceChange     : 2, //TAllProducer : 1~4 (ProsMaxPlus)
+                vemp_Promotions      : [3,4] //TAllProducer : 1~4 (ProsMaxPlus)               
+            },{
+                varName : 'ELAN2',
+                varID : 101,
+                parentBrandID : 10,
+                parentBrandName : 'ELAN',
+                vemp_NetOnlinePrice  : 1, //TAllProducer : 1~4 (ProsMaxPlus)
+                vemp_PriceChange     : 2, //TAllProducer : 1~4 (ProsMaxPlus)
+                vemp_Promotions      : [3,4] //TAllProducer : 1~4 (ProsMaxPlus)               
+            },{
+                varName : 'ELAN3',
+                varID : 101,
+                parentBrandID : 10,
+                parentBrandName : 'ELAN',
+                vemp_NetOnlinePrice  : 1, //TAllProducer : 1~4 (ProsMaxPlus)
+                vemp_PriceChange     : 2, //TAllProducer : 1~4 (ProsMaxPlus)
+                vemp_Promotions      : [3,4] //TAllProducer : 1~4 (ProsMaxPlus)               
+            }]
+        }]
+    });
+    newEMallPrices.save(function(err) {
+        if(!err){
+            res.send(200,newEMallPrices);
+            console.log("created new newEMallPrices:"+newEMallPrices);
+        } else {
+            res.send(400,"failed.");
+        }
+    });
+}
+
+exports.getEmallPrices=function(req,res,next){
+        var data={
+        'seminar':req.params.seminar,
+        'period':req.params.period
+    };
+    emallPrices.find(data,function(err,docs){
+        if(docs){
+            res.send(200,docs);
+        }else{
+            res.send(404,'failed');
+        }
+    })
+}

@@ -10,7 +10,7 @@ var mongoose = require('mongoose'),
 //TActors : 1~(4+3)
 //TBrandOwener : 1~6 (Prod_1_ID...Ret_2_ID)
 //TAllProducer : 1~4 (ProsMaxPlus)
-var generalReportsSchema = mongoose.Schema({
+var marketShareSchema = mongoose.Schema({
 	period : Number,
     seminar : String,
 	actorInfo : [actorInfoSchema],    
@@ -45,7 +45,7 @@ var actorSegmentInfoSchema = mongoose.Schema({
     actorShopperInfo : [actorShopperInfoSchema]
 })
 
-var actorShooperInfoSchma = mongoose.Schema({
+var actorShopperInfoSchema = mongoose.Schema({
     shoperKind : String, // BMS, NETIZENS, MIXED, ALLSHOPPERS
     //SharesOfMarket
     grsom_MarketShareValue         : Number, //CategoryID : 1~3
@@ -53,3 +53,8813 @@ var actorShooperInfoSchma = mongoose.Schema({
     grsom_MarketShareValueChange   : Number, //CategoryID : 1~3
     grsom_MarketShareVolumeChange  : Number, //CategoryID : 1~2
 })
+
+var marketShare=mongoose.model('marketShare',marketShareSchema);
+
+exports.addMarketShare=function(req,res,next){
+    var newMarketShare=new marketShare({
+        period : 1,
+        seminar : 'MAY',
+        actorInfo : [{
+            actorID:1,
+            actorCategoryInfo:[{
+                categoryID:1,
+                actorMarketInfo:[{
+                    marketID:1,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:2,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:3,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                }]
+            },{
+                categoryID:2,
+                actorMarketInfo:[{
+                    marketID:1,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:2,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:3,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                }]
+            },{
+                categoryID:3,
+                actorMarketInfo:[{
+                    marketID:1,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:2,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:3,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                }]
+            }]
+        },{
+            actorID:2,
+            actorCategoryInfo:[{
+                categoryID:1,
+                actorMarketInfo:[{
+                    marketID:1,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:2,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:3,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                }]
+            },{
+                categoryID:2,
+                actorMarketInfo:[{
+                    marketID:1,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:2,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:3,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                }]
+            },{
+                categoryID:3,
+                actorMarketInfo:[{
+                    marketID:1,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:2,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:3,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                }]
+            }]
+        },{
+            actorID:3,
+            actorCategoryInfo:[{
+                categoryID:1,
+                actorMarketInfo:[{
+                    marketID:1,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:2,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:3,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                }]
+            },{
+                categoryID:2,
+                actorMarketInfo:[{
+                    marketID:1,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:2,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:3,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                }]
+            },{
+                categoryID:3,
+                actorMarketInfo:[{
+                    marketID:1,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:2,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:3,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                }]
+            }]
+        },{
+            actorID:4,
+            actorCategoryInfo:[{
+                categoryID:1,
+                actorMarketInfo:[{
+                    marketID:1,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:2,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:3,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                }]
+            },{
+                categoryID:2,
+                actorMarketInfo:[{
+                    marketID:1,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:2,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:3,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                }]
+            },{
+                categoryID:3,
+                actorMarketInfo:[{
+                    marketID:1,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:2,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:3,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                }]
+            }]
+        },{
+            actorID:5,
+            actorCategoryInfo:[{
+                categoryID:1,
+                actorMarketInfo:[{
+                    marketID:1,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:2,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:3,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                }]
+            },{
+                categoryID:2,
+                actorMarketInfo:[{
+                    marketID:1,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:2,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:3,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                }]
+            },{
+                categoryID:3,
+                actorMarketInfo:[{
+                    marketID:1,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:2,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:3,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                }]
+            }]
+        },{
+            actorID:6,
+            actorCategoryInfo:[{
+                categoryID:1,
+                actorMarketInfo:[{
+                    marketID:1,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:2,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:3,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                }]
+            },{
+                categoryID:2,
+                actorMarketInfo:[{
+                    marketID:1,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:2,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:3,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                }]
+            },{
+                categoryID:3,
+                actorMarketInfo:[{
+                    marketID:1,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:2,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:3,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                }]
+            }]
+        },{
+            actorID:7,
+            actorCategoryInfo:[{
+                categoryID:1,
+                actorMarketInfo:[{
+                    marketID:1,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:2,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:3,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                }]
+            },{
+                categoryID:2,
+                actorMarketInfo:[{
+                    marketID:1,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:2,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:3,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                }]
+            },{
+                categoryID:3,
+                actorMarketInfo:[{
+                    marketID:1,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:2,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                },{
+                    marketID:3,
+                    actorSegmentInfo:[{
+                        segmentID:1,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:2,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:3,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:4,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    },{
+                        segmentID:5,
+                        actorShopperInfo:[{
+                            shoperKind:'BMS',
+                            grsom_MarketShareValue       : 10, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 11, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 12, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 13 //CategoryID : 1~2
+                        },{
+                            shoperKind:'NETIZENS',
+                            grsom_MarketShareValue       : 20, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 21, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 22, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 23 //CategoryID : 1~2
+                        },{
+                            shoperKind:'MIXED',
+                            grsom_MarketShareValue       : 30, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 31, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 32, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 33 //CategoryID : 1~2
+                        },{
+                            shoperKind:'ALLSHOPPERS',
+                            grsom_MarketShareValue       : 40, //CategoryID : 1~3
+                            grsom_MarketShareVolume         : 41, //CategoryID : 1~2
+                            grsom_MarketShareValueChange : 42, //CategoryID : 1~3
+                            grsom_MarketShareVolumeChange   : 43 //CategoryID : 1~2
+                        }]
+                    }]
+                }]
+            }]
+        }]    
+    });
+    newMarketShare.save(function(err) {
+        if(!err){
+            res.send(200,newMarketShare);
+            console.log("created new GeneralReport:"+newMarketShare);
+        } else {
+            res.send(400,"failed.");
+        }
+    });
+}
+
+exports.getMarketShare=function(req,res,next){
+    var data={
+        'seminar':req.params.seminar,
+        'period':req.params.period
+    };
+    marketShare.find(data,function(err,docs){
+        if(docs){
+            res.send(200,docs);
+        }else{
+            res.send(404,'failed');
+        }
+    })
+}

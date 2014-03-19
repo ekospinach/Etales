@@ -322,12 +322,54 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
     }
 
     $scope.addReport=function(){
-    	var url="/addGeneralReport";
+    	var url="/addCrossSegmentSales";
     	$http({
     		method:'GET',
     		url:url
-    	}).then(function(data){
-    		console.log(data.data);
+    	}).then(function(){
+    		console.log('Success1');
+    		url='/addEmallPrices';
+    		return $http({
+    			method:'GET',
+    			url:url
+    		});
+    	}).then(function(){
+    		console.log('Success2');
+    		url='/addMarketSales';
+    		return $http({
+    			method:'GET',
+    			url:url
+    		});
+    	}).then(function(){
+    		console.log('Success3');
+    		url='/addMarketShare';
+    		return $http({
+    			method:'GET',
+    			url:url
+    		});    		
+    	}).then(function(){
+    		console.log('Success4');
+    		url='/addPerformanceHighlights';
+    		return $http({
+    			method:'GET',
+    			url:url
+    		});    		
+    	}).then(function(){
+    		console.log('Success5');
+    		url='/addProductPortfolio';
+    		return $http({
+    			method:'GET',
+    			url:url
+    		});    		
+    	}).then(function(){
+    		console.log('Success6');
+    		url='/addSegmentLeadership';
+    		return $http({
+    			method:'GET',
+    			url:url
+    		});    		
+    	}).then(function(){
+    		console.log('Success7');	
     	},function(){
     		console.log('fail');
     	})

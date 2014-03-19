@@ -134,8 +134,25 @@ app.post('/submitDecision',require('./api/models/seminar.js').submitDecision(io)
 app.post('/deleteOrderData',require('./api/models/retailerDecision.js').deleteOrderData(io));
 app.post('/deleteDetailData',require('./api/models/contract.js').deleteContractDetailData(io));
 
-app.get('/addGeneralReport',require('./api/models/generalReport.js').addGeneralReport);
-app.get('/getGeneralReport/:seminar/:period',require('./api/models/generalReport.js').getGeneralReport);
+// app.get('/addGeneralReport',require('./api/models/generalReport.js').addGeneralReport);
+// app.get('/getGeneralReport/:seminar/:period',require('./api/models/generalReport.js').getGeneralReport);
+
+//add generalReport record
+app.get('/addCrossSegmentSales',require('./api/models/GR_crossSegmentSales.js').addCrossSegmentSales);
+app.get('/addEmallPrices',require('./api/models/GR_emallPrices.js').addEmallPrices);
+app.get('/addMarketSales',require('./api/models/GR_marketSales.js').addMarketSales);
+app.get('/addMarketShare',require('./api/models/GR_marketShare.js').addMarketShare);
+app.get('/addPerformanceHighlights',require('./api/models/GR_performanceHighlights.js').addPerformanceHighlights);
+app.get('/addProductPortfolio',require('./api/models/GR_productPortfolio.js').addProductPortfolio);
+app.get('/addSegmentLeadership',require('./api/models/GR_segmentLeadership.js').addSegmentLeadership);
+//get generalReport record
+app.get('/crossSegmentSales/:seminar/:period',require('./api/models/GR_crossSegmentSales.js').getCrossSegmentSales);
+app.get('/emallPrices/:seminar/:period',require('./api/models/GR_emallPrices.js').getEmallPrices);
+app.get('/marketSales/:seminar/:period',require('./api/models/GR_marketSales.js').getMarketSales);
+app.get('/marketShare/:seminar/:period',require('./api/models/GR_marketShare.js').getMarketShare);
+app.get('/performanceHighlights/:seminar/:period',require('./api/models/GR_performanceHighlights.js').getPerformanceHighlights);
+app.get('/productPortfolio/:seminar/:period',require('./api/models/GR_productPortfolio.js').getProductPortfolio);
+app.get('/segmentLeadership/:seminar/:period',require('./api/models/GR_segmentLeadership.js').getSegmentLeadership);
 
 app.use(express.errorHandler());
 

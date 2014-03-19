@@ -8,45 +8,103 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    $rootScope.loginLink="footer-links";
 		    $rootScope.loginDiv="container";
 
-		    var generalReport="";
-		    var url="/getGeneralReport/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod();
-		    $http({
-		    	method:'GET',
-		    	url:url
-		    }).then(function(data){
-		    	$scope.generalReport=data.data;
-		    	showPerformance();
-		    });
-
-		    var showPerformance=function(){
-		    	$scope.Performance=true;
-		    	$scope.MarketShare=false;
-		    	$scope.Product=false;
-		    	$scope.EMallPrices=false;
-
-		    	$scope.operatingProfits=new Array();
-		    	$scope.cumulativeInvestments=new Array();
-		    	$scope.salesVolumes=new Array();
-		    	$scope.salesValues=new Array();
-		    	$scope.volumeShares=new Array();
-		    	$scope.valueShares=new Array();
-		    	for(i=0;i<$scope.generalReport[0].actorInfo.length;i++){
-		    		$scope.operatingProfits.push({'value':$scope.generalReport[0].actorInfo[i].grph_OperatingProfit});
-		    		$scope.cumulativeInvestments.push({'value':$scope.generalReport[0].actorInfo[i].grph_CumulativeInvestment});
-		    		for(j=0;j<$scope.generalReport[0].actorInfo[i].actorCategoryInfo.length-1;j++){
-		    			$scope.salesVolumes.push({'value':$scope.generalReport[0].actorInfo[i].actorCategoryInfo[j].grph_SalesVolume});
-		    			$scope.salesValues.push({'value':$scope.generalReport[0].actorInfo[i].actorCategoryInfo[j].grph_NetSalesValue});
-		    			$scope.valueShares.push({'value':$scope.generalReport[0].actorInfo[i].actorCategoryInfo[j].grph_ValueMarketShare});
-		    			$scope.volumeShares.push({'value':$scope.generalReport[0].actorInfo[i].actorCategoryInfo[j].grph_VolumeMarketShare});
-		    		}
+		    var switching=function(type){
+		    	switch(type){
+		    		case'showPerformance':
+			    		$scope.Performance=true;
+				    	$scope.MarketShare=false;
+				    	$scope.MarketSales=false;
+				    	$scope.Segment=false;
+				    	$scope.Cross=false;
+				    	$scope.Product=false;
+				    	$scope.EMallPrices=false;
+				    break;
+				    case'showMarketShare':
+			    		$scope.Performance=false;
+				    	$scope.MarketShare=true;
+				    	$scope.MarketSales=false;
+				    	$scope.Segment=false;
+				    	$scope.Cross=false;
+				    	$scope.Product=false;
+				    	$scope.EMallPrices=false;
+				    break;
+				    case'showMarketSales':
+			    		$scope.Performance=false;
+				    	$scope.MarketShare=false;
+				    	$scope.MarketSales=true;
+				    	$scope.Segment=false;
+				    	$scope.Cross=false;
+				    	$scope.Product=false;
+				    	$scope.EMallPrices=false;
+				    break;
+				    case'showSegment':
+			    		$scope.Performance=false;
+				    	$scope.MarketShare=false;
+				    	$scope.MarketSales=false;
+				    	$scope.Segment=true;
+				    	$scope.Cross=false;
+				    	$scope.Product=false;
+				    	$scope.EMallPrices=false;
+				    break;
+				    case'showCross':
+			    		$scope.Performance=false;
+				    	$scope.MarketShare=false;
+				    	$scope.MarketSales=false;
+				    	$scope.Segment=false;
+				    	$scope.Cross=true;
+				    	$scope.Product=false;
+				    	$scope.EMallPrices=false;
+				    break;
+				    case'showProduct':
+			    		$scope.Performance=false;
+				    	$scope.MarketShare=false;
+				    	$scope.MarketSales=false;
+				    	$scope.Segment=false;
+				    	$scope.Cross=false;
+				    	$scope.Product=true;
+				    	$scope.EMallPrices=false;
+				    break;
+				    case'showEMallPrices':
+			    		$scope.Performance=false;
+				    	$scope.MarketShare=false;
+				    	$scope.MarketSales=false;
+				    	$scope.Segment=false;
+				    	$scope.Cross=false;
+				    	$scope.Product=false;
+				    	$scope.EMallPrices=true;
+				    break;
 		    	}
 		    }
 
+		    var showPerformance=function(){
+		    	switching('showPerformance');
+		    	var url='/performanceHighlights/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod();
+		    	$http({
+		    		method:'GET',
+		    		url:url
+		    	}).then(function(data){
+		    		$scope.operatingProfits=new Array();
+			    	$scope.cumulativeInvestments=new Array();
+			    	$scope.salesVolumes=new Array();
+			    	$scope.salesValues=new Array();
+			    	$scope.volumeShares=new Array();
+			    	$scope.valueShares=new Array();
+			    	for(var i=0;i<data.data[0].actorInfo.length;i++){
+			    		$scope.operatingProfits.push({'value':data.data[0].actorInfo[i].grph_OperatingProfit});
+			    		$scope.cumulativeInvestments.push({'value':data.data[0].actorInfo[i].grph_CumulativeInvestment});
+			    		for(j=0;j<data.data[0].actorInfo[i].actorCategoryInfo.length-1;j++){
+			    			$scope.salesVolumes.push({'value':data.data[0].actorInfo[i].actorCategoryInfo[j].grph_SalesVolume});
+			    			$scope.salesValues.push({'value':data.data[0].actorInfo[i].actorCategoryInfo[j].grph_NetSalesValue});
+			    			$scope.valueShares.push({'value':data.data[0].actorInfo[i].actorCategoryInfo[j].grph_ValueMarketShare});
+			    			$scope.volumeShares.push({'value':data.data[0].actorInfo[i].actorCategoryInfo[j].grph_VolumeMarketShare});
+			    		}
+			    	}
+		    	},function(){
+		    		console.log('fail');
+		    	});
+		    }
+
 		    var showMarketShare=function(){
-		    	$scope.Performance=false;
-		    	$scope.MarketShare=true;
-		    	$scope.Product=false;
-		    	$scope.EMallPrices=false;
 
 		    	$scope.totals=new Array();
 		    	$scope.totalChanges=new Array();
@@ -435,25 +493,177 @@ define(['app','socketIO','routingConfig'], function(app) {
 			    }
 		    }
 
+		    var showMarketSales=function(){
+		    	switching('showMarketSales');
+		    }
+
+		    var showSegment=function(){
+		    	switching('showSegment');
+		    	var url='/segmentLeadership/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod();
+		    	$http({
+		    		method:'GET',
+		    		url:url
+		    	}).then(function(data){
+
+		    	},function(){
+		    		console.log('fail');
+		    	})
+		    }
+
+		    var showCross=function(){
+		    	switching('showCross');
+		    }
+
 		    var showProduct=function(){
-		    	$scope.Performance=false;
-		    	$scope.MarketShare=false;
-		    	$scope.Product=true;
-		    	$scope.EMallPrices=false;
+		    	switching('showProduct');
+
+		    	var url='/productPortfolio/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod();
+		    	$http({
+		    		method:'GET',
+		    		url:url
+		    	}).then(function(data){
+		    		$scope.producer1es=new Array();
+		    		$scope.producer1hs=new Array();
+		    		
+		    		$scope.producer2es=new Array();
+		    		$scope.producer2hs=new Array();
+		    		
+		    		$scope.producer3es=new Array();
+		    		$scope.producer3hs=new Array();
+
+		    		$scope.retailer1es=new Array();
+		    		$scope.retailer1hs=new Array();
+
+		    		$scope.retailer2es=new Array();
+		    		$scope.retailer2hs=new Array();
+
+		    		for(var i=0;i<data.data[0].categoryInfo[0].variantInfo.length;i++){
+		    			switch(data.data[0].categoryInfo[0].variantInfo[i].varName.substring(data.data[0].categoryInfo[0].variantInfo[i].varName.length-1)){
+		    				case '1':
+		    					$scope.producer1es.push(data.data[0].categoryInfo[0].variantInfo[i]);
+		    				break;
+		    				case '2':
+		    					$scope.producer2es.push(data.data[0].categoryInfo[0].variantInfo[i]);
+		    				break;
+		    				case '3':
+		    					$scope.producer3es.push(data.data[0].categoryInfo[0].variantInfo[i]);
+		    				break;
+		    				case '4':break;
+		    				case '5':
+		    					$scope.retailer1es.push(data.data[0].categoryInfo[0].variantInfo[i]);
+		    				break;
+		    				case '6':
+		    					$scope.retailer2es.push(data.data[0].categoryInfo[0].variantInfo[i]);
+		    				break;
+		    				case '7':break;
+		    			}
+		    		}
+		    		for(var i=0;i<data.data[0].categoryInfo[1].variantInfo.length;i++){
+		    			switch(data.data[0].categoryInfo[0].variantInfo[i].varName.substring(data.data[0].categoryInfo[0].variantInfo[i].varName.length-1)){
+		    				case '1':
+		    					$scope.producer1hs.push(data.data[0].categoryInfo[0].variantInfo[i]);
+		    				break;
+		    				case '2':
+		    					$scope.producer2hs.push(data.data[0].categoryInfo[0].variantInfo[i]);
+		    				break;
+		    				case '3':
+		    					$scope.producer3hs.push(data.data[0].categoryInfo[0].variantInfo[i]);
+		    				break;
+		    				case '4':break;
+		    				case '5':
+		    					$scope.retailer1hs.push(data.data[0].categoryInfo[0].variantInfo[i]);
+		    				break;
+		    				case '6':
+		    					$scope.retailer2hs.push(data.data[0].categoryInfo[0].variantInfo[i]);
+		    				break;
+		    				case '7':break;
+		    			}
+		    		}
+
+		    	},function(){
+		    		console.log('fail');
+		    	})
 		    }
 
 		    var showEMallPrices=function(){
-		    	$scope.Performance=false;
-		    	$scope.MarketShare=false;
-		    	$scope.Product=false;
-		    	$scope.EMallPrices=true;
-		    	
+		    	switching('showEMallPrices');
+		    	var url='/emallPrices/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod();
+		    	$http({
+		    		method:'GET',
+		    		url:url
+		    	}).then(function(data){
+		    		$scope.producer1es=new Array();
+		    		$scope.producer1hs=new Array();
+		    		
+		    		$scope.producer2es=new Array();
+		    		$scope.producer2hs=new Array();
+		    		
+		    		$scope.producer3es=new Array();
+		    		$scope.producer3hs=new Array();
+
+		    		// $scope.retailer1es=new Array();
+		    		// $scope.retailer1hs=new Array();
+
+		    		// $scope.retailer2es=new Array();
+		    		// $scope.retailer2hs=new Array();
+
+		    		for(var i=0;i<data.data[0].categoryInfo[0].variantInfo.length;i++){
+		    			switch(data.data[0].categoryInfo[0].variantInfo[i].varName.substring(data.data[0].categoryInfo[0].variantInfo[i].varName.length-1)){
+		    				case '1':
+		    					$scope.producer1es.push(data.data[0].categoryInfo[0].variantInfo[i]);
+		    				break;
+		    				case '2':
+		    					$scope.producer2es.push(data.data[0].categoryInfo[0].variantInfo[i]);
+		    				break;
+		    				case '3':
+		    					$scope.producer3es.push(data.data[0].categoryInfo[0].variantInfo[i]);
+		    				break;
+		    				case '4':break;
+		    				// case '5':
+		    				// 	$scope.retailer1es.push(data.data[0].categoryInfo[0].variantInfo[i]);
+		    				// break;
+		    				// case '6':
+		    				// 	$scope.retailer2es.push(data.data[0].categoryInfo[0].variantInfo[i]);
+		    				// break;
+		    				// case '7':break;
+		    			}
+		    		}
+		    		for(var i=0;i<data.data[0].categoryInfo[1].variantInfo.length;i++){
+		    			switch(data.data[0].categoryInfo[0].variantInfo[i].varName.substring(data.data[0].categoryInfo[0].variantInfo[i].varName.length-1)){
+		    				case '1':
+		    					$scope.producer1hs.push(data.data[0].categoryInfo[0].variantInfo[i]);
+		    				break;
+		    				case '2':
+		    					$scope.producer2hs.push(data.data[0].categoryInfo[0].variantInfo[i]);
+		    				break;
+		    				case '3':
+		    					$scope.producer3hs.push(data.data[0].categoryInfo[0].variantInfo[i]);
+		    				break;
+		    				case '4':break;
+		    				// case '5':
+		    				// 	$scope.retailer1hs.push(data.data[0].categoryInfo[0].variantInfo[i]);
+		    				// break;
+		    				// case '6':
+		    				// 	$scope.retailer2hs.push(data.data[0].categoryInfo[0].variantInfo[i]);
+		    				// break;
+		    				// case '7':break;
+		    			}
+		    		}
+		    		
+		    	},function(){
+		    		console.log('fail');
+		    	})
 		    }
 
+		    $scope.switching=switching;
 		    $scope.showPerformance=showPerformance;
 		    $scope.showMarketShare=showMarketShare;
+		    $scope.showMarketSales=showMarketSales;
+		    $scope.showSegment=showSegment;
+		    $scope.showCross=showCross;
 		    $scope.showProduct=showProduct;
 		  	$scope.showEMallPrices=showEMallPrices;
+		  	showPerformance();
 
 	}]);
 
