@@ -1,4 +1,4 @@
-﻿program variantHistoryInfo;
+program variantHistoryInfo;
 
 //Original :: DelphiCGI Developed by Andrea Russo - Italy
 //email: andrusso@yahoo.com
@@ -556,19 +556,17 @@ var
     Result  := jo;
   end;
 
-    procedure makeJson();
-    var
-      s_str : string;
-    begin
-      oJsonFile := SO;
+  procedure makeJson();
+  var
+    s_str : string;
+  begin
+    oJsonFile := SO;
 //      oJsonFile := collectAllVariants;
-      oJsonFile := collectVariantsNoProducer;
-      s_str := 'out' + '.json';
-      writeln( oJsonFile.AsJSon(False,False));
-      oJsonFile.SaveTo(s_str, true, false);
-    end;
-
-
+    oJsonFile := collectVariantsNoProducer;
+    s_str := 'out' + '.json';
+    writeln( oJsonFile.AsJSon(False,False));
+    oJsonFile.SaveTo(s_str, true, false);
+  end;
 
   procedure LoadConfigIni();
   var
@@ -584,141 +582,47 @@ var
   end;
 
 begin
-
     SetMultiByteConversionCodePage(CP_UTF8);
     sDati := '';
     sListData := TStringList.Create;
     sListData.Clear;
 
   try
-
     WriteLn('Content-type: application/json');
     Writeln;
-
-//    WriteLn('Content-type: text/html; charset=UTF-8');
-//    WriteLn;
-//   WriteLn('<HTML>');
-//    WriteLn('<HEAD>');
-//    WriteLn('<TITLE>CGI Example!</TITLE>');
-//    WriteLn('</HEAD>');
-//   WriteLn('<BODY bgcolor="#FFFBDB">');
-//    WriteLn('<H2>CGI developed with');
-//
-//    {$IFDEF FPC}
-//       WriteLn('Freepascal');
-//    {$ELSE}
-//      {$IFDEF LINUX}
-//        WriteLn('Kylix');
-//      {$ELSE}
-//        WriteLn('Delphi');
-//      {$ENDIF}
-//    {$ENDIF}
-//
-//    WriteLn('</H2>');
 
     sValue := getVariable('REQUEST_METHOD');
     if sValue='GET' then
       begin
         // GET
-//Action: GET
-//Parameters: period, seminar
-//Route example: …/variantHistoryInfo?period=1&seminar=MAY
-//Schema: variantHistoryInfo.js
-//Response:
-//status code 200, JSON record”S" which is defined in related schema, including all the variants which meets the specified parameters(seminar/period)
-//status code 404, Binary data cannot not be found with specified parameters(period/seminar)
+        //Action: GET
+        //Parameters: period, seminar
+        //Route example: …/variantHistoryInfo?period=1&seminar=MAY
+        //Schema: variantHistoryInfo.js
+        //Response:
+        //status code 200, JSON record”S" which is defined in related schema, including all the variants which meets the specified parameters(seminar/period)
+        //status code 404, Binary data cannot not be found with specified parameters(period/seminar)
 
         sValue := getVariable('QUERY_STRING');
         Explode(sValue, sListData);
          LoadConfigIni();
-//        WriteLn('<H4>Values passed in mode <i>get http</i> :</H4>'+sDati);
-//        for i:= 0 to sListData.Count-1 do
-//           WriteLn(DecodeUrl(sListData[i])+'<BR>');
+        //        WriteLn('<H4>Values passed in mode <i>get http</i> :</H4>'+sDati);
+        //        for i:= 0 to sListData.Count-1 do
+        //           WriteLn(DecodeUrl(sListData[i])+'<BR>');
 
-    // initialize globals
+        // initialize globals
         currentSeminar := getSeminar;
         currentPeriod := getPeriod;
 
-    {** Read results file **}
-        vReadRes := ReadResults(currentPeriod, currentSeminar, DataDirectory,
-          currentResult); // read Results file
+        {** Read results file **}
+        vReadRes := ReadResults(currentPeriod, currentSeminar, DataDirectory,currentResult); // read Results file
 
-    // Now let's make some JSON stuff here
+        // Now let's make some JSON stuff here
         if vReadRes = 0 then
           makeJson;
       end
     else
-      // POST
-//Parameters: null
-//Post request content: single JSON record defined in schema
-//Route example: …/negotiationDecision
-//Schema: negotiationDecision.js
-//Response:
-//status code 200, Data has been written into binary file successfully
-//status code 500, with debug information if something goes wrong during writing process
 
-      begin
-        sValue := trim(getVariable('CONTENT_LENGTH'));
-
-//        WriteLn('<H4>Values passed in mode <i>post http</i> :</H4>');
-//        WriteLn('Data Length: '+sValue+'<BR><BR>');
-//        Writeln;
-        if (sValue<>'') then
-        begin
-          iSize := strtoint(sValue);
-          SetLength(sDati,iSize);
-
-          bUpload := false;
-          sValue := getVariable('HTTP_CONTENT_TYPE');
-          if (Trim(sValue)<>'') and (Trim(sValue) <> 'application/x-www-form-urlencoded') then
-              bUpload := true; // There is an attached file
-              // We my use this mechanism if we want to, i.e. reading JSON
-
-          for i:=1 to iSize do
-            Read(sDati[i]);
-
-          if bUpload then
-            sListData.Add(sDati)
-          else
-            Explode(sDati, sListData);
-
-//          for i:= 0 to sListData.Count-1 do
-//            WriteLn(sListData[i]+'<BR>');  // This is where request contents sit
-            // You may start request parameters here
-
-        end;
-      end;
-    // List of environment variables
-//    WriteAllEnvironVariables;
-
-
-////    // initialize globals
-//        currentSeminar := getSeminar;
-//        currentPeriod := getPeriod;
-//
-//        vReadRes := ReadResults(currentPeriod, currentSeminar, DataDirectory,
-//          currentResult); // read Results file
-
-//    // Now let's make some JSON stuff here
-//        if vReadRes = 0 then
-//          makeJson;
-////
-////          currentSeminar := oJsonFile['seminar'].AsString;
-////          currentPeriod := oJsonFile['period'].AsInteger;
-//////
-////          Writeln('currentPeriod : ' + IntToStr(currentPeriod));
-////          Writeln('currentSeminar : ' + currentSeminar);
-//////
-//////      // now we have process JSON and convert it into binary stucture
-////          fromJSONallDealSchema(currentAllDeals, oJsonFile);
-//////
-//////    {** Read results file **}
-////          vReadRes := WriteNegoRecordByProDecision(currentPeriod,
-////            currentAllDeals,DataDirectory,currentSeminar); // update Decision file
-////
-//    writeln(#10'press enter ...');
-//    readln;
-//    WriteLn('</BODY></HTML>');
   finally
     sListData.Free;
   end;
