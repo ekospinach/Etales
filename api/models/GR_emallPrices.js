@@ -28,6 +28,9 @@ var variantInfo = mongoose.Schema({
     parentBrandName : String,
     vemp_NetOnlinePrice  : Number, //TAllProducer : 1~4 (ProsMaxPlus)
     vemp_PriceChange     : Number, //TAllProducer : 1~4 (ProsMaxPlus)
-    vemp_Promotions      : Number, //TAllProducer : 1~4 (ProsMaxPlus)
+    vemp_Promotions      : {
+        promo_Frequency : Number, //saved as # of weeks 
+        promo_Rate : Number, //saved as a decimal 
+    }, //TAllProducer : 1~4 (ProsMaxPlus)
 })
 
