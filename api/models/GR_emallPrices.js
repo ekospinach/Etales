@@ -28,7 +28,10 @@ var variantInfoSchema = mongoose.Schema({
     parentBrandName : String,
     vemp_NetOnlinePrice  : Number, //TAllProducer : 1~4 (ProsMaxPlus)
     vemp_PriceChange     : Number, //TAllProducer : 1~4 (ProsMaxPlus)
-    vemp_Promotions      : [Number] //TAllProducer : 1~4 (ProsMaxPlus)
+    vemp_Promotions      : {
+        promo_Frequency : Number, //range: 0~52
+        promo_Rate : Number //0~1
+    } //TAllProducer : 1~4 (ProsMaxPlus)
 })
 
 var emallPrices=mongoose.model('emallPrices',emallPricesSchema);
@@ -46,7 +49,10 @@ exports.addEmallPrices=function(req,res,next){
                 parentBrandName : 'ELAN',
                 vemp_NetOnlinePrice  : 1, //TAllProducer : 1~4 (ProsMaxPlus)
                 vemp_PriceChange     : 2, //TAllProducer : 1~4 (ProsMaxPlus)
-                vemp_Promotions      : [3,4] //TAllProducer : 1~4 (ProsMaxPlus)               
+                vemp_Promotions      : {
+                    promo_Frequency : 30, //range: 0~52
+                    promo_Rate : 1 //0~1
+                } //TAllProducer : 1~4 (ProsMaxPlus)               
             },{
                 varName : 'ELAN2',
                 varID : 101,
@@ -54,7 +60,10 @@ exports.addEmallPrices=function(req,res,next){
                 parentBrandName : 'ELAN',
                 vemp_NetOnlinePrice  : 1, //TAllProducer : 1~4 (ProsMaxPlus)
                 vemp_PriceChange     : 2, //TAllProducer : 1~4 (ProsMaxPlus)
-                vemp_Promotions      : [3,4] //TAllProducer : 1~4 (ProsMaxPlus)               
+                vemp_Promotions      : {
+                    promo_Frequency : 30, //range: 0~52
+                    promo_Rate : 1 //0~1
+                } //TAllProducer : 1~4 (ProsMaxPlus)               
             },{
                 varName : 'ELAN3',
                 varID : 101,
@@ -62,7 +71,10 @@ exports.addEmallPrices=function(req,res,next){
                 parentBrandName : 'ELAN',
                 vemp_NetOnlinePrice  : 1, //TAllProducer : 1~4 (ProsMaxPlus)
                 vemp_PriceChange     : 2, //TAllProducer : 1~4 (ProsMaxPlus)
-                vemp_Promotions      : [3,4] //TAllProducer : 1~4 (ProsMaxPlus)               
+                vemp_Promotions      : {
+                    promo_Frequency : 30, //range: 0~52
+                    promo_Rate : 1 //0~1
+                } //TAllProducer : 1~4 (ProsMaxPlus)               
             }]
         },{
             categoryID:2,
@@ -73,7 +85,10 @@ exports.addEmallPrices=function(req,res,next){
                 parentBrandName : 'HTTP',
                 vemp_NetOnlinePrice  : 1, //TAllProducer : 1~4 (ProsMaxPlus)
                 vemp_PriceChange     : 2, //TAllProducer : 1~4 (ProsMaxPlus)
-                vemp_Promotions      : [3,4] //TAllProducer : 1~4 (ProsMaxPlus)               
+                vemp_Promotions      : {
+                    promo_Frequency : 30, //range: 0~52
+                    promo_Rate : 1 //0~1
+                } //TAllProducer : 1~4 (ProsMaxPlus)               
             },{
                 varName : 'HTTP2',
                 varID : 101,
@@ -81,7 +96,10 @@ exports.addEmallPrices=function(req,res,next){
                 parentBrandName : 'HTTP',
                 vemp_NetOnlinePrice  : 1, //TAllProducer : 1~4 (ProsMaxPlus)
                 vemp_PriceChange     : 2, //TAllProducer : 1~4 (ProsMaxPlus)
-                vemp_Promotions      : [3,4] //TAllProducer : 1~4 (ProsMaxPlus)               
+                vemp_Promotions      : {
+                    promo_Frequency : 30, //range: 0~52
+                    promo_Rate : 1 //0~1
+                } //TAllProducer : 1~4 (ProsMaxPlus)               
             },{
                 varName : 'HTTP3',
                 varID : 101,
@@ -89,7 +107,10 @@ exports.addEmallPrices=function(req,res,next){
                 parentBrandName : 'HTTP',
                 vemp_NetOnlinePrice  : 1, //TAllProducer : 1~4 (ProsMaxPlus)
                 vemp_PriceChange     : 2, //TAllProducer : 1~4 (ProsMaxPlus)
-                vemp_Promotions      : [3,4] //TAllProducer : 1~4 (ProsMaxPlus)               
+                vemp_Promotions      : {
+                    promo_Frequency : 30, //range: 0~52
+                    promo_Rate : 1 //0~1
+                } //TAllProducer : 1~4 (ProsMaxPlus)               
             }]
         },{
             categoryID:3,
@@ -100,7 +121,10 @@ exports.addEmallPrices=function(req,res,next){
                 parentBrandName : 'ELAN',
                 vemp_NetOnlinePrice  : 1, //TAllProducer : 1~4 (ProsMaxPlus)
                 vemp_PriceChange     : 2, //TAllProducer : 1~4 (ProsMaxPlus)
-                vemp_Promotions      : [3,4] //TAllProducer : 1~4 (ProsMaxPlus)               
+                vemp_Promotions      : {
+                    promo_Frequency : 30, //range: 0~52
+                    promo_Rate : 1 //0~1
+                } //TAllProducer : 1~4 (ProsMaxPlus)               
             },{
                 varName : 'ELAN2',
                 varID : 101,
@@ -108,7 +132,10 @@ exports.addEmallPrices=function(req,res,next){
                 parentBrandName : 'ELAN',
                 vemp_NetOnlinePrice  : 1, //TAllProducer : 1~4 (ProsMaxPlus)
                 vemp_PriceChange     : 2, //TAllProducer : 1~4 (ProsMaxPlus)
-                vemp_Promotions      : [3,4] //TAllProducer : 1~4 (ProsMaxPlus)               
+                vemp_Promotions      : {
+                    promo_Frequency : 30, //range: 0~52
+                    promo_Rate : 1 //0~1
+                } //TAllProducer : 1~4 (ProsMaxPlus)               
             },{
                 varName : 'ELAN3',
                 varID : 101,
@@ -116,7 +143,10 @@ exports.addEmallPrices=function(req,res,next){
                 parentBrandName : 'ELAN',
                 vemp_NetOnlinePrice  : 1, //TAllProducer : 1~4 (ProsMaxPlus)
                 vemp_PriceChange     : 2, //TAllProducer : 1~4 (ProsMaxPlus)
-                vemp_Promotions      : [3,4] //TAllProducer : 1~4 (ProsMaxPlus)               
+                vemp_Promotions      : {
+                    promo_Frequency : 30, //range: 0~52
+                    promo_Rate : 1 //0~1
+                } //TAllProducer : 1~4 (ProsMaxPlus)               
             }]
         }]
     });
