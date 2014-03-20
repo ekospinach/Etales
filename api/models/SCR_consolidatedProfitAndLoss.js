@@ -97,7 +97,7 @@ var SCR_consolidatedProfitAndLossSchema = mongoose.Schema({
 
 var categoryInfoSchema = mongoose.Schema({
     categoryID : Number, //TCategoriesTotal : 1~3 
-    value : [Number], //0-traditional 1-Internet 2-Total
+    value : [Number], //0-traditional, 1-Internet, 2-Total
 })
 
 var brandInfoSchema = mongoose.Schema({
