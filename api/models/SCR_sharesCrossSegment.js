@@ -8,7 +8,7 @@ var mongoose = require('mongoose'),
 //TActiveActors : 1~(3+2)
 //TActors : 1~(4+3)
 
-var SCR_channelsProfitabilitySchema = mongoose.Schema({
+var SCR_sharesCrossSegmentSchema = mongoose.Schema({
 	period : Number,
     seminar : String,
     producerID  : Number, //TAllProducer : 1~4 (ProsMaxPlus)
