@@ -5,65 +5,117 @@ var mongoose = require('mongoose'),
 	request = require('request'),
 	q = require('q');
 
-//TActiveActors : 1~(3+2)
-
-//TActors : 1~(4+3)
-//TBrandOwener : 1~6 (Prod_1_ID...Ret_2_ID)
-//TAllProducer : 1~4 (ProsMaxPlus)
-var marketShareSchema = mongoose.Schema({
-	period : Number,
+var SCR_consolidatedProfitAndLossSchema = mongoose.Schema({
+    period : Number,
     seminar : String,
-	actorInfo : [actorInfoSchema],    
+    producerID  : Number, //TAllProducer : 1~4 (ProsMaxPlus)
+
+    //Consolidated Profit & Loss statement, suppliers
+    scrpl_Sales                                : [categoryInfoSchema], 
+    scrpl_SalesChange                          : [categoryInfoSchema], 
+    scrpl_MaterialCosts                        : [categoryInfoSchema], 
+    scrpl_CostOfGoodsSold                      : [categoryInfoSchema], 
+    scrpl_DiscontinuedGoodsCost                : [categoryInfoSchema], 
+    scrpl_InventoryHoldingCost                 : [categoryInfoSchema], 
+    scrpl_GrossProfit                          : [categoryInfoSchema], 
+    scrpl_GrossProfitChange                    : [categoryInfoSchema], 
+    scrpl_GrossProfitMargin                    : [categoryInfoSchema], 
+    scrpl_TradeAndMarketing                    : [categoryInfoSchema], 
+    scrpl_TradeAndMarketingAsPercentageOfSales : [categoryInfoSchema], 
+    scrpl_GeneralExpenses                      : [categoryInfoSchema], 
+    scrpl_Amortisation                         : [categoryInfoSchema], 
+    scrpl_OperatingProfit                      : [categoryInfoSchema], 
+    scrpl_OperatingProfitChange                : [categoryInfoSchema], 
+    scrpl_OperatingProfitMargin                : [categoryInfoSchema], 
+    scrpl_Interest                             : [categoryInfoSchema], 
+    scrpl_Taxes                                : [categoryInfoSchema], 
+    scrpl_ExceptionalItems                     : [categoryInfoSchema], 
+    scrpl_NetProfit                            : [categoryInfoSchema], 
+    scrpl_NetProfitChange                      : [categoryInfoSchema], 
+    scrpl_NetProfitMargin                      : [categoryInfoSchema], 
+    //---  Additional, used on the next two tables ( P&L per brand in B&M and onLine ) for the first columns --- 
+    scrpl_AdvertisingOnLine                    : [categoryInfoSchema], 
+    scrpl_AdvertisingOffLine                   : [categoryInfoSchema], 
+    scrpl_TradeSupport                         : [categoryInfoSchema], 
+
+    //P&L per brand in B&M and onLine
+    scrb_Sales                                : [brandInfoSchema],
+    scrb_SalesChange                          : [brandInfoSchema],
+    scrb_SalesShareInCategory                 : [brandInfoSchema],
+    scrb_CostOfGoodsSold                      : [brandInfoSchema],
+    scrb_DiscontinuedGoodsCost                : [brandInfoSchema],
+    scrb_InventoryHoldingCost                 : [brandInfoSchema],
+    scrb_GrossProfit                          : [brandInfoSchema],
+    scrb_GrossProfitChange                    : [brandInfoSchema],
+    scrb_TradeAndMarketing                    : [brandInfoSchema],
+    scrb_AdvertisingOnLine                    : [brandInfoSchema],
+    scrb_AdvertisingOffLine                   : [brandInfoSchema],
+    scrb_TradeAndMarketingAsPercentageOfSales : [brandInfoSchema],
+    scrb_TradeAndMarketingShareInCategory     : [brandInfoSchema],
+    scrb_GeneralExpenses                      : [brandInfoSchema],
+    scrb_Amortisation                         : [brandInfoSchema],
+    scrb_OperatingProfit                      : [brandInfoSchema],
+    scrb_OperatingProfitChange                : [brandInfoSchema],
+    scrb_OperatingProfitMargin                : [brandInfoSchema],
+    scrb_OperatingProfitShareInCategory       : [brandInfoSchema],
+    scrb_Interest                             : [brandInfoSchema],
+    scrb_Taxes                                : [brandInfoSchema],
+    scrb_ExceptionalItems                     : [brandInfoSchema],
+    scrb_NetProfit                            : [brandInfoSchema],
+    scrb_NetProfitChange                      : [brandInfoSchema],
+    scrb_NetProfitMargin                      : [brandInfoSchema],
+    scrb_NetProfitShareInCategory             : [brandInfoSchema],
+
+    ////P&L per variant in B&M and onLine
+    scrv_Sales                                : [variantInfoSchema],
+    scrv_SalesChange                          : [variantInfoSchema],
+    scrv_SalesShareInCategory                 : [variantInfoSchema],
+    scrv_CostOfGoodsSold                      : [variantInfoSchema],
+    scrv_DiscontinuedGoodsCost                : [variantInfoSchema],
+    scrv_InventoryHoldingCost                 : [variantInfoSchema],
+    scrv_GrossProfit                          : [variantInfoSchema],
+    scrv_GrossProfitChange                    : [variantInfoSchema],
+    scrv_TradeAndMarketing                    : [variantInfoSchema],
+    scrv_AdvertisingOnLine                    : [variantInfoSchema],
+    scrv_AdvertisingOffLine                   : [variantInfoSchema],
+    scrv_TradeAndMarketingAsPercentageOfSales : [variantInfoSchema],
+    scrv_TradeAndMarketingShareInCategory     : [variantInfoSchema],
+    scrv_GeneralExpenses                      : [variantInfoSchema],
+    scrv_Amortisation                         : [variantInfoSchema],
+    scrv_OperatingProfit                      : [variantInfoSchema],
+    scrv_OperatingProfitChange                : [variantInfoSchema],
+    scrv_OperatingProfitMargin                : [variantInfoSchema],
+    scrv_OperatingProfitShareInCategory       : [variantInfoSchema],
+    scrv_Interest                             : [variantInfoSchema],
+    scrv_Taxes                                : [variantInfoSchema],
+    scrv_ExceptionalItems                     : [variantInfoSchema],
+    scrv_NetProfit                            : [variantInfoSchema],
+    scrv_NetProfitChange                      : [variantInfoSchema],
+    scrv_NetProfitMargin                      : [variantInfoSchema],
+    scrv_NetProfitShareInCategory             : [variantInfoSchema],
 })
 
-var actorInfoSchema = mongoose.Schema({
-	actorID 					 : Number, //TActors : 1~(4+3)
-    /*
-        1 - Supplier 1
-        2 - Supplier 2
-        3 - Supplier 3
-        4 - Supplier 4
-        5 - Retailer 1
-        6 - Retailer 2
-        7 - Traditional Trade         
-    */
-    actorCategoryInfo : [actorCategoryInfoSchema]
+var categoryInfoSchema = mongoose.Schema({
+    categoryID : Number, //TCategoriesTotal : 1~3 
+    value : [Number], //0-traditional 1-Internet 2-Total
 })
 
-var actorCategoryInfoSchema = mongoose.Schema({
-    categoryID : Number,                   //TCategoriesTotal : 1~(2+1)
-    actorMarketInfo : [actorMarketInfoSchema],
+var brandInfoSchema = mongoose.Schema({
+    brandName                            : String,
+    parentCategoryID                     : Number,
+    value                                : [Number], //0-traditional, 1-Internet, 2-Total
 })
 
-var actorMarketInfoSchema = mongoose.Schema({
-    marketID : Number, //TMarketTotal : 1~(2+1)
-    actorSegmentInfo : [actorSegmentInfoSchema]
-})
-
-var actorSegmentInfoSchema = mongoose.Schema({
-    segmentID : Number, //TSegmentsTotal : 1~(4+1)
-    actorShopperInfo : [actorShopperInfoSchema]
-})
-
-var actorShooperInfoSchma = mongoose.Schema({
-    shoperKind : String, // BMS, NETIZENS, MIXED, ALLSHOPPERS
-    grsom_MarketShareValue         : Number, //CategoryID : 1~3
-    grsom_MarketShareVolume        : Number, //CategoryID : 1~2
-    grsom_MarketShareValueChange   : Number, //CategoryID : 1~3
-    grsom_MarketShareVolumeChange  : Number, //CategoryID : 1~2
+var variantInfoSchema = mongoose.Schema({
+    variantName                          : String,
+    parentBrandName                      : String,
+    parentCategoryID                     : Number,
+    value                                : [Number], //0-traditional, 1-Internet, 2-Total
 })
 
 
-TSupplierConfidentialReport =
-  record
-    scr_SupplierID                : TProducers;
-    scr_ConsolidatedProfitAndLoss : TSCR_ConsolidatedProfitAndLoss;
-    scr_Brands                    : TSCR_SupplierBrands;
-    scr_ProfitabilityByChannels   : TSCR_ChannelsProfitability;
-    scr_Negotiations              : TSCR_Negotiations;
-    scr_SharesByConsumerSegment   : TSCR_CrossSegments;
-    scr_SharesByShopperSegment    : TSCR_CrossSegments;
-    scr_InventoryVolumes          : TSCR_InventoryVolumes;
-    scr_KeyPerformanceIndicators  : TSCR_KeyPerformanceIndicators;
-    scr_Info                      : TSCR_AdditionalInfo;
-  end;
+
+
+
+
+
