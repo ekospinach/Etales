@@ -499,6 +499,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 				    }
 		    	});		    	
 		    }
+
 		    var showMarketSales=function(){
 		    	switching('showMarketSales');
 
@@ -929,6 +930,181 @@ define(['app','socketIO','routingConfig'], function(app) {
 
 		    var showCross=function(){
 		    	switching('showCross');
+		    	var url='/crossSegmentSales/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod();
+		    	$http({
+		    		method:'GET',
+		    		url:url
+		    	}).then(function(data){
+		    		$scope.priceSensitives=new Array();
+		    		$scope.valueForMoneies=new Array();
+		    		$scope.fashions=new Array();
+		    		$scope.freakses=new Array();
+		    		for(var i=0;i<4;i++){
+		    			$scope.priceSensitives[i]=new Array();
+			    		$scope.valueForMoneies[i]=new Array();
+			    		$scope.fashions[i]=new Array();
+			    		$scope.freakses[i]=new Array();
+		    		}
+
+		    		for(var i=0;i<4;i++){
+		    			//priceSensitives
+		    			$scope.priceSensitives[0].push(data.data[0].categoryInfo[0].marketInfo[0].segmentInfo[0].shopperInfo[i].grcss_CrossSegmentsVolumes);
+		    			$scope.priceSensitives[1].push(data.data[0].categoryInfo[0].marketInfo[1].segmentInfo[0].shopperInfo[i].grcss_CrossSegmentsVolumes);
+		    			$scope.priceSensitives[2].push(data.data[0].categoryInfo[1].marketInfo[0].segmentInfo[0].shopperInfo[i].grcss_CrossSegmentsVolumes);
+		    			$scope.priceSensitives[3].push(data.data[0].categoryInfo[1].marketInfo[1].segmentInfo[0].shopperInfo[i].grcss_CrossSegmentsVolumes);
+		    			//valueForMoneies
+		    			$scope.valueForMoneies[0].push(data.data[0].categoryInfo[0].marketInfo[0].segmentInfo[1].shopperInfo[i].grcss_CrossSegmentsVolumes);
+		    			$scope.valueForMoneies[1].push(data.data[0].categoryInfo[0].marketInfo[1].segmentInfo[1].shopperInfo[i].grcss_CrossSegmentsVolumes);
+		    			$scope.valueForMoneies[2].push(data.data[0].categoryInfo[1].marketInfo[0].segmentInfo[1].shopperInfo[i].grcss_CrossSegmentsVolumes);
+		    			$scope.valueForMoneies[3].push(data.data[0].categoryInfo[1].marketInfo[1].segmentInfo[1].shopperInfo[i].grcss_CrossSegmentsVolumes);
+		    			//fashions
+		    			$scope.fashions[0].push(data.data[0].categoryInfo[0].marketInfo[0].segmentInfo[2].shopperInfo[i].grcss_CrossSegmentsVolumes);
+		    			$scope.fashions[1].push(data.data[0].categoryInfo[0].marketInfo[1].segmentInfo[2].shopperInfo[i].grcss_CrossSegmentsVolumes);
+		    			$scope.fashions[2].push(data.data[0].categoryInfo[1].marketInfo[0].segmentInfo[2].shopperInfo[i].grcss_CrossSegmentsVolumes);
+		    			$scope.fashions[3].push(data.data[0].categoryInfo[1].marketInfo[1].segmentInfo[2].shopperInfo[i].grcss_CrossSegmentsVolumes);
+		    			//freakses
+		    			$scope.freakses[0].push(data.data[0].categoryInfo[0].marketInfo[0].segmentInfo[3].shopperInfo[i].grcss_CrossSegmentsVolumes);
+		    			$scope.freakses[1].push(data.data[0].categoryInfo[0].marketInfo[1].segmentInfo[3].shopperInfo[i].grcss_CrossSegmentsVolumes);
+		    			$scope.freakses[2].push(data.data[0].categoryInfo[1].marketInfo[0].segmentInfo[3].shopperInfo[i].grcss_CrossSegmentsVolumes);
+		    			$scope.freakses[3].push(data.data[0].categoryInfo[1].marketInfo[1].segmentInfo[3].shopperInfo[i].grcss_CrossSegmentsVolumes);
+		    		}
+		    					    	
+		    		$scope.chart1Series = [			        
+				        {"name": Label.getContent('B&M Only'), "data": [$scope.priceSensitives[0][0],$scope.valueForMoneies[0][0],$scope.fashions[0][0],$scope.freakses[0][0]], type: "column",color:'#D9534F'},
+				        {"name": Label.getContent('Online Only'), "data": [$scope.priceSensitives[0][1],$scope.valueForMoneies[0][1],$scope.fashions[0][1],$scope.freakses[0][1]], type: "column",color:'#428BCA'},
+				        {"name": Label.getContent('Mixed'), "data": [$scope.priceSensitives[0][2],$scope.valueForMoneies[0][2],$scope.fashions[0][2],$scope.freakses[0][2]], type: "column",color:'#5CB85C'},
+				    ];
+
+				    $scope.chart1Config = {
+				        options: {
+				        	xAxis: {
+					            categories: [Label.getContent('Price Sensitive'), Label.getContent('Value for Money'), Label.getContent('Fashion'), Label.getContent('Freaks')]
+					        },
+					        yAxis:{
+					        	title:{text:"units mln"}
+					        },
+				            chart: {
+				                type: 'areaspline'
+				            },
+				            plotOptions: {
+				                series: {
+				                    stacking: ''
+				                }
+				            }
+				        },
+				        series: $scope.chart1Series,
+				        title: {
+				            text: Label.getContent('Elecssories')+' - '+Label.getContent('Urban')
+				        },
+				        credits: {
+				            enabled: true
+				        },
+				        loading: false
+				    }
+
+				    $scope.chart2Series = [			        
+				        {"name": Label.getContent('B&M Only'), "data": [$scope.priceSensitives[1][0],$scope.valueForMoneies[1][0],$scope.fashions[1][0],$scope.freakses[1][0]], type: "column",color:'#D9534F'},
+				        {"name": Label.getContent('Online Only'), "data": [$scope.priceSensitives[1][1],$scope.valueForMoneies[1][1],$scope.fashions[1][1],$scope.freakses[1][1]], type: "column",color:'#428BCA'},
+				        {"name": Label.getContent('Mixed'), "data": [$scope.priceSensitives[1][2],$scope.valueForMoneies[1][2],$scope.fashions[1][2],$scope.freakses[1][2]], type: "column",color:'#5CB85C'},
+				    ];
+
+				    $scope.chart2Config = {
+				        options: {
+				        	xAxis: {
+					            categories: [Label.getContent('Price Sensitive'), Label.getContent('Value for Money'), Label.getContent('Fashion'), Label.getContent('Freaks')]
+					        },
+					        yAxis:{
+					        	title:{text:"units mln"}
+					        },
+				            chart: {
+				                type: 'areaspline'
+				            },
+				            plotOptions: {
+				                series: {
+				                    stacking: ''
+				                }
+				            }
+				        },
+				        series: $scope.chart2Series,
+				        title: {
+				            text: Label.getContent('Elecssories')+' - '+Label.getContent('Rural')
+				        },
+				        credits: {
+				            enabled: true
+				        },
+				        loading: false
+				    }
+
+				    $scope.chart3Series = [			        
+				        {"name": Label.getContent('B&M Only'), "data": [$scope.priceSensitives[2][0],$scope.valueForMoneies[2][0],$scope.fashions[2][0],$scope.freakses[2][0]], type: "column",color:'#D9534F'},
+				        {"name": Label.getContent('Online Only'), "data": [$scope.priceSensitives[2][1],$scope.valueForMoneies[2][1],$scope.fashions[2][1],$scope.freakses[2][1]], type: "column",color:'#428BCA'},
+				        {"name": Label.getContent('Mixed'), "data": [$scope.priceSensitives[2][2],$scope.valueForMoneies[2][2],$scope.fashions[2][2],$scope.freakses[2][2]], type: "column",color:'#5CB85C'},
+				    ];
+
+				    $scope.chart3Config = {
+				        options: {
+				        	xAxis: {
+					            categories: [Label.getContent('Price Sensitive'), Label.getContent('Value for Money'), Label.getContent('Fashion'), Label.getContent('Freaks')]
+					        },
+					        yAxis:{
+					        	title:{text:"units mln"}
+					        },
+				            chart: {
+				                type: 'areaspline'
+				            },
+				            plotOptions: {
+				                series: {
+				                    stacking: ''
+				                }
+				            }
+				        },
+				        series: $scope.chart3Series,
+				        title: {
+				            text: Label.getContent('HealthBeauties')+' - '+Label.getContent('Urban')
+				        },
+				        credits: {
+				            enabled: true
+				        },
+				        loading: false
+				    }
+
+				    $scope.chart4Series = [			        
+				        {"name": Label.getContent('B&M Only'), "data": [$scope.priceSensitives[3][0],$scope.valueForMoneies[3][0],$scope.fashions[3][0],$scope.freakses[3][0]], type: "column",color:'#D9534F'},
+				        {"name": Label.getContent('Online Only'), "data": [$scope.priceSensitives[3][1],$scope.valueForMoneies[3][1],$scope.fashions[3][1],$scope.freakses[3][1]], type: "column",color:'#428BCA'},
+				        {"name": Label.getContent('Mixed'), "data": [$scope.priceSensitives[3][2],$scope.valueForMoneies[3][2],$scope.fashions[3][2],$scope.freakses[3][2]], type: "column",color:'#5CB85C'},
+				    ];
+
+				    $scope.chart4Config = {
+				        options: {
+				        	xAxis: {
+					            categories: [Label.getContent('Price Sensitive'), Label.getContent('Value for Money'), Label.getContent('Fashion'), Label.getContent('Freaks')]
+					        },
+					        yAxis:{
+					        	title:{text:"units mln"}
+					        },
+				            chart: {
+				                type: 'areaspline'
+				            },
+				            plotOptions: {
+				                series: {
+				                    stacking: ''
+				                }
+				            }
+				        },
+				        series: $scope.chart4Series,
+				        title: {
+				            text: Label.getContent('HealthBeauties')+' - '+Label.getContent('Rural')
+				        },
+				        credits: {
+				            enabled: true
+				        },
+				        loading: false
+				    }
+
+
+		    	},function(){
+		    		console.log('fail');
+		    	})
 		    }
 
 		    var showProduct=function(){
