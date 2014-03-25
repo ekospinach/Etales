@@ -41,7 +41,7 @@ var crossSegmentSales=mongoose.model('crossSegmentSales',crossSegmentSalesSchema
 
 exports.addCrossSegmentSales=function(req,res,next){
     var newCrossSegmentSales=new crossSegmentSales({
-        period:1,
+        period:0,
         seminar:'MAY',
         categoryInfo:[{
             categoryID:1,

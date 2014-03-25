@@ -34,7 +34,7 @@ var productPortfolio=mongoose.model('productPortfolio',productPortfolioSchema);
 
 exports.addProductPortfolio=function(req,res,next){
     var newProductPortfolio=new productPortfolio({
-        period : 1,
+        period : 0,
         seminar : 'MAY',
         categoryInfo : [{
             categoryID:1,

@@ -57,7 +57,7 @@ var marketSales=mongoose.model('marketSales',marketSalesSchema);
 
 exports.addMarketSales=function(req,res,next){
     var newMarketSales=new marketSales({
-        period : 1,
+        period : 0,
         seminar : 'MAY',
         actorInfo : [{
             actorID:1,

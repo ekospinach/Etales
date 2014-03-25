@@ -9,76 +9,90 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    $rootScope.loginDiv="container";
 
 		    var switching=function(type){
+		    	$scope.Performance=false;
+				$scope.MarketShare=false;
+				$scope.MarketSales=false;
+				$scope.Segment=false;
+				$scope.Cross=false;
+				$scope.Product=false;
+				$scope.EMallPrices=false;
+				$scope.ProducerConsolidate=false;
+				$scope.ProducerBMBusiness=false;
+				$scope.ProducerOnlineBusiness=false;
+				$scope.ProducerProfitability=false;
+				$scope.ProducerNegotiations=false;
+				$scope.ElecssoriesConsumer=false;
+				$scope.ElecssoriesShopper=false;
+				$scope.ElecssoriesVolume=false;
+				$scope.HealthBeautiesConsumer=false;
+				$scope.HealthBeautiesShopper=false;
+				$scope.HealthBeautiesVolume=false;
+				$scope.ProducerKey=false;
 		    	switch(type){
 		    		case'showPerformance':
 			    		$scope.Performance=true;
-				    	$scope.MarketShare=false;
-				    	$scope.MarketSales=false;
-				    	$scope.Segment=false;
-				    	$scope.Cross=false;
-				    	$scope.Product=false;
-				    	$scope.EMallPrices=false;
 				    break;
 				    case'showMarketShare':
-			    		$scope.Performance=false;
 				    	$scope.MarketShare=true;
-				    	$scope.MarketSales=false;
-				    	$scope.Segment=false;
-				    	$scope.Cross=false;
-				    	$scope.Product=false;
-				    	$scope.EMallPrices=false;
 				    break;
 				    case'showMarketSales':
-			    		$scope.Performance=false;
-				    	$scope.MarketShare=false;
 				    	$scope.MarketSales=true;
-				    	$scope.Segment=false;
-				    	$scope.Cross=false;
-				    	$scope.Product=false;
-				    	$scope.EMallPrices=false;
 				    break;
 				    case'showSegment':
-			    		$scope.Performance=false;
-				    	$scope.MarketShare=false;
-				    	$scope.MarketSales=false;
 				    	$scope.Segment=true;
-				    	$scope.Cross=false;
-				    	$scope.Product=false;
-				    	$scope.EMallPrices=false;
 				    break;
 				    case'showCross':
-			    		$scope.Performance=false;
-				    	$scope.MarketShare=false;
-				    	$scope.MarketSales=false;
-				    	$scope.Segment=false;
 				    	$scope.Cross=true;
-				    	$scope.Product=false;
-				    	$scope.EMallPrices=false;
 				    break;
 				    case'showProduct':
-			    		$scope.Performance=false;
-				    	$scope.MarketShare=false;
-				    	$scope.MarketSales=false;
-				    	$scope.Segment=false;
-				    	$scope.Cross=false;
 				    	$scope.Product=true;
-				    	$scope.EMallPrices=false;
 				    break;
 				    case'showEMallPrices':
-			    		$scope.Performance=false;
-				    	$scope.MarketShare=false;
-				    	$scope.MarketSales=false;
-				    	$scope.Segment=false;
-				    	$scope.Cross=false;
-				    	$scope.Product=false;
 				    	$scope.EMallPrices=true;
 				    break;
+				    case'showProducerConsolidate':
+				    	$scope.ProducerConsolidate=true;
+				    break;
+				    case'showProducerBMBusiness':
+				    	$scope.ProducerBMBusiness=true;
+				    break;
+				    case'showProducerOnlineBusiness':
+				    	$scope.ProducerOnlineBusiness=true;
+				    break;
+				    case'showProducerProfitability':
+				    	$scope.ProducerProfitability=true;
+				    break;
+				    case'showProducerNegotiations':
+				    	$scope.ProducerNegotiations=true;
+				    break;
+				    case'showElecssoriesConsumer':
+				    	$scope.ElecssoriesConsumer=true;
+				    break;
+				    case'showElecssoriesShopper':
+				    	$scope.ElecssoriesShopper=true;
+				    break;
+				    case'showElecssoriesVolume':
+				    	$scope.ElecssoriesVolume=true;
+				    break;
+				    case'showHealthBeautiesConsumer':
+				    	$scope.HealthBeautiesConsumer=true;
+				    break;
+				    case'showHealthBeautiesShopper':
+				    	$scope.HealthBeautiesShopper=true;
+				    break;
+				    case'showHealthBeautiesVolume':
+				    	$scope.HealthBeautiesVolume=true;
+				    break;
+				    case'showProducerKey':
+				    	$scope.ProducerKey=true;
+				    break;
+
 		    	}
 		    }
 
 		    var showPerformance=function(){
 		    	switching('showPerformance');
-		    	var url='/performanceHighlights/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod();
+		    	var url='/performanceHighlights/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1);
 		    	$http({
 		    		method:'GET',
 		    		url:url
@@ -107,7 +121,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    var showMarketShare=function(){
 		    	switching('showMarketShare');
 
-		    	var url='/marketShare/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod();
+		    	var url='/marketShare/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1);
 		    	$http({
 		    		method:'GET',
 		    		url:url
@@ -503,7 +517,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    var showMarketSales=function(){
 		    	switching('showMarketSales');
 
-		    	var url='/marketSales/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod();
+		    	var url='/marketSales/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1);
 		    	$http({
 		    		method:'GET',
 		    		url:url
@@ -897,7 +911,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 
 		    var showSegment=function(){
 		    	switching('showSegment');
-		    	var url='/segmentLeadership/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod();
+		    	var url='/segmentLeadership/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1);
 		    	$http({
 		    		method:'GET',
 		    		url:url
@@ -930,7 +944,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 
 		    var showCross=function(){
 		    	switching('showCross');
-		    	var url='/crossSegmentSales/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod();
+		    	var url='/crossSegmentSales/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1);
 		    	$http({
 		    		method:'GET',
 		    		url:url
@@ -1110,7 +1124,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    var showProduct=function(){
 		    	switching('showProduct');
 
-		    	var url='/productPortfolio/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod();
+		    	var url='/productPortfolio/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1);
 		    	$http({
 		    		method:'GET',
 		    		url:url
@@ -1180,7 +1194,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 
 		    var showEMallPrices=function(){
 		    	switching('showEMallPrices');
-		    	var url='/emallPrices/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod();
+		    	var url='/emallPrices/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1);
 		    	$http({
 		    		method:'GET',
 		    		url:url
@@ -1248,6 +1262,439 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    	})
 		    }
 
+
+		    var showProducerConsolidate=function(){
+		    	switching('showProducerConsolidate');
+		    	var url='/SCR-consolidatedProfitAndLoss/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+		    	$http({
+		    		method:'GET',
+		    		url:url
+		    	}).then(function(data){
+		    		$scope.sales=data.data[0].scrpl_Sales;
+		    		$scope.salesChanges=data.data[0].scrpl_SalesChange;
+		    		$scope.materialCosts=data.data[0].scrpl_MaterialCosts;
+		    		$scope.costGoodsSolds=data.data[0].scrpl_CostOfGoodsSold;
+		    		$scope.discontinuedGoodsCosts=data.data[0].scrpl_DiscontinuedGoodsCost;
+		    		$scope.holdingCosts=data.data[0].scrpl_InventoryHoldingCost;
+		    		$scope.grossProfits=data.data[0].scrpl_GrossProfit;
+		    		$scope.grossProfitChanges=data.data[0].scrpl_GrossProfitChange;
+		    		$scope.grossProfitMargins=data.data[0].scrpl_GrossProfitMargin;
+		    		$scope.expenseValues=data.data[0].scrpl_TradeAndMarketing;
+		    		$scope.expenseShares=data.data[0].scrpl_TradeAndMarketingAsPercentageOfSales;
+		    		$scope.generalExpenses=data.data[0].scrpl_GeneralExpenses;
+		    		$scope.amortisations=data.data[0].scrpl_Amortisation;
+		    		$scope.operatingProfits=data.data[0].scrpl_OperatingProfit;
+		    		$scope.operatingProfitChanges=data.data[0].scrpl_OperatingProfitChange;
+		    		$scope.operatingProfitMargins=data.data[0].scrpl_OperatingProfitMargin;
+		    		$scope.interests=data.data[0].scrpl_Interest;
+		    		$scope.taxes=data.data[0].scrpl_Taxes;
+		    		$scope.costsProfits=data.data[0].scrpl_ExceptionalItems;
+		    		$scope.netProfits=data.data[0].scrpl_NetProfit;
+		    		$scope.netProfitChanges=data.data[0].scrpl_NetProfitChange;
+		    		$scope.netProfitMargins=data.data[0].scrpl_NetProfitMargin;
+		    	},function(){
+		    		console.log('fail');
+		    	})
+		    }
+
+		    var showProducerBMBusiness=function(){
+		    	switching('showProducerBMBusiness');
+		    }
+
+		    var showProducerOnlineBusiness=function(){
+		    	switching('showProducerOnlineBusiness');
+		    }
+
+		    var showProducerProfitability=function(){
+		    	switching('showProducerProfitability');
+		    	var url='/SCR-channelsProfitability/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+		    	$http({
+		    		method:'GET',
+		    		url:url
+		    	}).then(function(data){
+		    		$scope.volumeOrdereds=data.data[0].scrcp_VolumeOrdered;
+		    		$scope.volumeSolds=data.data[0].scrcp_VolumeSold;
+		    		$scope.volumeSoldShares=data.data[0].scrcp_VolumeSoldShare;
+		    		$scope.salesValues=data.data[0].scrcp_SalesValue;
+    				$scope.salesValueShares=data.data[0].scrcp_SalesValueShare;
+    				$scope.costOfGoodsSolds=data.data[0].scrcp_CostOfGoodsSold;
+    				$scope.tradeSupports=data.data[0].scrcp_TradeSupport;
+    				$scope.tradeProfits=data.data[0].scrcp_TradeProfit;   
+    				$scope.tradeProfitShares=data.data[0].scrcp_TradeProfitShare;
+		    	},function(){
+		    		console.log('fail');
+		    	})
+		    }
+
+		    var showProducerNegotiations=function(){
+		    	switching('showProducerNegotiations');
+		    	var url='/SCR-negotiations/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+		    	$http({
+		    		method:'GET',
+		    		url:url
+		    	}).then(function(data){
+		    		$scope.product1es=new Array();
+		    		$scope.product1hs=new Array();
+		    		$scope.product2es=new Array();
+		    		$scope.product2hs=new Array();
+		    		var varName,brandName,discount_MinimumVolume,discount_Rate,bonus_TargetVolume,bonus_Rate,bonus_Value,vnd_PaymentTerm,vnd_OtherCompensation,vnd_ContractHonoured;
+
+		    		for(var i=0;i<data.data[0].vnd_QuantityDiscount.discount_MinimumVolume.length;i++){
+		    			if(data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].parentCategoryID==1){
+		    				for(var j=0;j<data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerInfo.length;j++){
+		    					switch(data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerInfo[j].modernRetailerID){
+			    					case 1:
+			    						brandName=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].parentBrandName;
+			    						varName=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].variantName;
+			    						discount_MinimumVolume=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerInfo[j].value;
+			    						var discount_Rates=_.find(data.data[0].vnd_QuantityDiscount.discount_Rate,function(obj){
+			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    						});
+			    						for(var k=0;k<discount_Rates.modernRetailerInfo.length;k++){
+			    							if(discount_Rates.modernRetailerInfo[k].modernRetailerID==1){
+			    								discount_Rate=discount_Rates.modernRetailerInfo[k].value;
+			    								break;
+			    							}
+			    						}
+			    						var bonus_TargetVolumes=_.find(data.data[0].vnd_TargetBonus.bonus_TargetVolume,function(obj){
+			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    						});
+			    						for(var k=0;k<bonus_TargetVolumes.modernRetailerInfo.length;k++){
+			    							if(bonus_TargetVolumes.modernRetailerInfo[k].modernRetailerID==1){
+			    								bonus_TargetVolume=bonus_TargetVolumes.modernRetailerInfo[k].value;
+			    								break;
+			    							}
+			    						}
+			    						var bonus_Rates=_.find(data.data[0].vnd_TargetBonus.bonus_TargetVolume,function(obj){
+			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    						});
+			    						for(var k=0;k<bonus_Rates.modernRetailerInfo.length;k++){
+			    							if(bonus_Rates.modernRetailerInfo[k].modernRetailerID==1){
+			    								bonus_Rate=bonus_Rates.modernRetailerInfo[k].value;
+			    								break;
+			    							}
+			    						}
+			    						var bonus_Values=_.find(data.data[0].vnd_TargetBonus.bonus_TargetVolume,function(obj){
+			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    						});
+			    						for(var k=0;k<bonus_Values.modernRetailerInfo.length;k++){
+			    							if(bonus_Values.modernRetailerInfo[k].modernRetailerID==1){
+			    								bonus_Value=bonus_Values.modernRetailerInfo[k].value;
+			    								break;
+			    							}
+			    						}
+			    						var vnd_PaymentTerms=_.find(data.data[0].vnd_PaymentTerms,function(obj){
+			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    						});
+			    						for(var k=0;k<vnd_PaymentTerms.modernRetailerInfo.length;k++){
+			    							if(vnd_PaymentTerms.modernRetailerInfo[k].modernRetailerID==1){
+			    								vnd_PaymentTerm=vnd_PaymentTerms.modernRetailerInfo[k].value;
+			    								break;
+			    							}
+			    						}
+			    						var vnd_OtherCompensations=_.find(data.data[0].vnd_OtherCompensation,function(obj){
+			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    						});
+			    						for(var k=0;k<vnd_OtherCompensations.modernRetailerInfo.length;k++){
+			    							if(vnd_OtherCompensations.modernRetailerInfo[k].modernRetailerID==1){
+			    								vnd_OtherCompensation=vnd_OtherCompensations.modernRetailerInfo[k].value;
+			    								break;
+			    							}
+			    						}
+			    						var vnd_ContractHonoureds=_.find(data.data[0].vnd_ContractHonoured,function(obj){
+			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    						});
+			    						for(var k=0;k<vnd_ContractHonoureds.modernRetailerInfo.length;k++){
+			    							if(vnd_ContractHonoureds.modernRetailerInfo[k].modernRetailerID==1){
+			    								vnd_ContractHonoured=vnd_ContractHonoureds.modernRetailerInfo[k].value;
+			    								break;
+			    							}
+			    						}
+			    						if(vnd_ContractHonoured==1){
+			    							vnd_ContractHonoured="yes";
+			    						}else{
+			    							vnd_ContractHonoured="no";
+			    						}
+			    						$scope.product1es.push({'fullName':brandName+varName,'discount_MinimumVolume':discount_MinimumVolume,'discount_Rate':discount_Rate,'bonus_TargetVolume':bonus_TargetVolume,'bonus_Rate':bonus_Rate,'bonus_Value':bonus_Value,'vnd_PaymentTerm':vnd_PaymentTerm,'vnd_OtherCompensation':vnd_OtherCompensation,'vnd_ContractHonoured':vnd_ContractHonoured});
+			    					break;
+			    					case 2:
+			    						brandName=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].parentBrandName;
+			    						varName=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].variantName;
+			    						discount_MinimumVolume=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerInfo[j].value;
+			    						var discount_Rates=_.find(data.data[0].vnd_QuantityDiscount.discount_Rate,function(obj){
+			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    						});
+			    						for(var k=0;k<discount_Rates.modernRetailerInfo.length;k++){
+			    							if(discount_Rates.modernRetailerInfo[k].modernRetailerID==2){
+			    								discount_Rate=discount_Rates.modernRetailerInfo[k].value;
+			    								break;
+			    							}
+			    						}
+			    						var bonus_TargetVolumes=_.find(data.data[0].vnd_TargetBonus.bonus_TargetVolume,function(obj){
+			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    						});
+			    						for(var k=0;k<bonus_TargetVolumes.modernRetailerInfo.length;k++){
+			    							if(bonus_TargetVolumes.modernRetailerInfo[k].modernRetailerID==2){
+			    								bonus_TargetVolume=bonus_TargetVolumes.modernRetailerInfo[k].value;
+			    								break;
+			    							}
+			    						}
+			    						var bonus_Rates=_.find(data.data[0].vnd_TargetBonus.bonus_TargetVolume,function(obj){
+			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    						});
+			    						for(var k=0;k<bonus_Rates.modernRetailerInfo.length;k++){
+			    							if(bonus_Rates.modernRetailerInfo[k].modernRetailerID==2){
+			    								bonus_Rate=bonus_Rates.modernRetailerInfo[k].value;
+			    								break;
+			    							}
+			    						}
+			    						var bonus_Values=_.find(data.data[0].vnd_TargetBonus.bonus_TargetVolume,function(obj){
+			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    						});
+			    						for(var k=0;k<bonus_Values.modernRetailerInfo.length;k++){
+			    							if(bonus_Values.modernRetailerInfo[k].modernRetailerID==2){
+			    								bonus_Value=bonus_Values.modernRetailerInfo[k].value;
+			    								break;
+			    							}
+			    						}
+			    						var vnd_PaymentTerms=_.find(data.data[0].vnd_PaymentTerms,function(obj){
+			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    						});
+			    						for(var k=0;k<vnd_PaymentTerms.modernRetailerInfo.length;k++){
+			    							if(vnd_PaymentTerms.modernRetailerInfo[k].modernRetailerID==2){
+			    								vnd_PaymentTerm=vnd_PaymentTerms.modernRetailerInfo[k].value;
+			    								break;
+			    							}
+			    						}
+			    						var vnd_OtherCompensations=_.find(data.data[0].vnd_OtherCompensation,function(obj){
+			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    						});
+			    						for(var k=0;k<vnd_OtherCompensations.modernRetailerInfo.length;k++){
+			    							if(vnd_OtherCompensations.modernRetailerInfo[k].modernRetailerID==2){
+			    								vnd_OtherCompensation=vnd_OtherCompensations.modernRetailerInfo[k].value;
+			    								break;
+			    							}
+			    						}
+			    						var vnd_ContractHonoureds=_.find(data.data[0].vnd_ContractHonoured,function(obj){
+			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    						});
+			    						for(var k=0;k<vnd_ContractHonoureds.modernRetailerInfo.length;k++){
+			    							if(vnd_ContractHonoureds.modernRetailerInfo[k].modernRetailerID==2){
+			    								vnd_ContractHonoured=vnd_ContractHonoureds.modernRetailerInfo[k].value;
+			    								break;
+			    							}
+			    						}
+			    						if(vnd_ContractHonoured==1){
+			    							vnd_ContractHonoured="yes";
+			    						}else{
+			    							vnd_ContractHonoured="no";
+			    						}
+			    						$scope.product2es.push({'fullName':brandName+varName,'discount_MinimumVolume':discount_MinimumVolume,'discount_Rate':discount_Rate,'bonus_TargetVolume':bonus_TargetVolume,'bonus_Rate':bonus_Rate,'bonus_Value':bonus_Value,'vnd_PaymentTerm':vnd_PaymentTerm,'vnd_OtherCompensation':vnd_OtherCompensation,'vnd_ContractHonoured':vnd_ContractHonoured});
+			    					break;
+			    				}
+		    				}
+		    			}else{
+		    				for(var j=0;j<data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerInfo.length;j++){
+		    					switch(data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerInfo[j].modernRetailerID){
+		    						case 1:
+			    						brandName=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].parentBrandName;
+			    						varName=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].variantName;
+			    						discount_MinimumVolume=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerInfo[j].value;
+			    						var discount_Rates=_.find(data.data[0].vnd_QuantityDiscount.discount_Rate,function(obj){
+			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    						});
+			    						for(var k=0;k<discount_Rates.modernRetailerInfo.length;k++){
+			    							if(discount_Rates.modernRetailerInfo[k].modernRetailerID==1){
+			    								discount_Rate=discount_Rates.modernRetailerInfo[k].value;
+			    								break;
+			    							}
+			    						}
+			    						var bonus_TargetVolumes=_.find(data.data[0].vnd_TargetBonus.bonus_TargetVolume,function(obj){
+			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    						});
+			    						for(var k=0;k<bonus_TargetVolumes.modernRetailerInfo.length;k++){
+			    							if(bonus_TargetVolumes.modernRetailerInfo[k].modernRetailerID==1){
+			    								bonus_TargetVolume=bonus_TargetVolumes.modernRetailerInfo[k].value;
+			    								break;
+			    							}
+			    						}
+			    						var bonus_Rates=_.find(data.data[0].vnd_TargetBonus.bonus_TargetVolume,function(obj){
+			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    						});
+			    						for(var k=0;k<bonus_Rates.modernRetailerInfo.length;k++){
+			    							if(bonus_Rates.modernRetailerInfo[k].modernRetailerID==1){
+			    								bonus_Rate=bonus_Rates.modernRetailerInfo[k].value;
+			    								break;
+			    							}
+			    						}
+			    						var bonus_Values=_.find(data.data[0].vnd_TargetBonus.bonus_TargetVolume,function(obj){
+			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    						});
+			    						for(var k=0;k<bonus_Values.modernRetailerInfo.length;k++){
+			    							if(bonus_Values.modernRetailerInfo[k].modernRetailerID==1){
+			    								bonus_Value=bonus_Values.modernRetailerInfo[k].value;
+			    								break;
+			    							}
+			    						}
+			    						var vnd_PaymentTerms=_.find(data.data[0].vnd_PaymentTerms,function(obj){
+			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    						});
+			    						for(var k=0;k<vnd_PaymentTerms.modernRetailerInfo.length;k++){
+			    							if(vnd_PaymentTerms.modernRetailerInfo[k].modernRetailerID==1){
+			    								vnd_PaymentTerm=vnd_PaymentTerms.modernRetailerInfo[k].value;
+			    								break;
+			    							}
+			    						}
+			    						var vnd_OtherCompensations=_.find(data.data[0].vnd_OtherCompensation,function(obj){
+			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    						});
+			    						for(var k=0;k<vnd_OtherCompensations.modernRetailerInfo.length;k++){
+			    							if(vnd_OtherCompensations.modernRetailerInfo[k].modernRetailerID==1){
+			    								vnd_OtherCompensation=vnd_OtherCompensations.modernRetailerInfo[k].value;
+			    								break;
+			    							}
+			    						}
+			    						var vnd_ContractHonoureds=_.find(data.data[0].vnd_ContractHonoured,function(obj){
+			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    						});
+			    						for(var k=0;k<vnd_ContractHonoureds.modernRetailerInfo.length;k++){
+			    							if(vnd_ContractHonoureds.modernRetailerInfo[k].modernRetailerID==1){
+			    								vnd_ContractHonoured=vnd_ContractHonoureds.modernRetailerInfo[k].value;
+			    								break;
+			    							}
+			    						}
+			    						if(vnd_ContractHonoured==1){
+			    							vnd_ContractHonoured="yes";
+			    						}else{
+			    							vnd_ContractHonoured="no";
+			    						}
+			    						$scope.product1hs.push({'fullName':brandName+varName,'discount_MinimumVolume':discount_MinimumVolume,'discount_Rate':discount_Rate,'bonus_TargetVolume':bonus_TargetVolume,'bonus_Rate':bonus_Rate,'bonus_Value':bonus_Value,'vnd_PaymentTerm':vnd_PaymentTerm,'vnd_OtherCompensation':vnd_OtherCompensation,'vnd_ContractHonoured':vnd_ContractHonoured});
+
+			    					break;
+			    					case 2:
+			    						brandName=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].parentBrandName;
+			    						varName=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].variantName;
+			    						discount_MinimumVolume=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerInfo[j].value;
+			    						var discount_Rates=_.find(data.data[0].vnd_QuantityDiscount.discount_Rate,function(obj){
+			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    						});
+			    						for(var k=0;k<discount_Rates.modernRetailerInfo.length;k++){
+			    							if(discount_Rates.modernRetailerInfo[k].modernRetailerID==2){
+			    								discount_Rate=discount_Rates.modernRetailerInfo[k].value;
+			    								break;
+			    							}
+			    						}
+			    						var bonus_TargetVolumes=_.find(data.data[0].vnd_TargetBonus.bonus_TargetVolume,function(obj){
+			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    						});
+			    						for(var k=0;k<bonus_TargetVolumes.modernRetailerInfo.length;k++){
+			    							if(bonus_TargetVolumes.modernRetailerInfo[k].modernRetailerID==2){
+			    								bonus_TargetVolume=bonus_TargetVolumes.modernRetailerInfo[k].value;
+			    								break;
+			    							}
+			    						}
+			    						var bonus_Rates=_.find(data.data[0].vnd_TargetBonus.bonus_TargetVolume,function(obj){
+			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    						});
+			    						for(var k=0;k<bonus_Rates.modernRetailerInfo.length;k++){
+			    							if(bonus_Rates.modernRetailerInfo[k].modernRetailerID==2){
+			    								bonus_Rate=bonus_Rates.modernRetailerInfo[k].value;
+			    								break;
+			    							}
+			    						}
+			    						var bonus_Values=_.find(data.data[0].vnd_TargetBonus.bonus_TargetVolume,function(obj){
+			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    						});
+			    						for(var k=0;k<bonus_Values.modernRetailerInfo.length;k++){
+			    							if(bonus_Values.modernRetailerInfo[k].modernRetailerID==2){
+			    								bonus_Value=bonus_Values.modernRetailerInfo[k].value;
+			    								break;
+			    							}
+			    						}
+			    						var vnd_PaymentTerms=_.find(data.data[0].vnd_PaymentTerms,function(obj){
+			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    						});
+			    						for(var k=0;k<vnd_PaymentTerms.modernRetailerInfo.length;k++){
+			    							if(vnd_PaymentTerms.modernRetailerInfo[k].modernRetailerID==2){
+			    								vnd_PaymentTerm=vnd_PaymentTerms.modernRetailerInfo[k].value;
+			    								break;
+			    							}
+			    						}
+			    						var vnd_OtherCompensations=_.find(data.data[0].vnd_OtherCompensation,function(obj){
+			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    						});
+			    						for(var k=0;k<vnd_OtherCompensations.modernRetailerInfo.length;k++){
+			    							if(vnd_OtherCompensations.modernRetailerInfo[k].modernRetailerID==2){
+			    								vnd_OtherCompensation=vnd_OtherCompensations.modernRetailerInfo[k].value;
+			    								break;
+			    							}
+			    						}
+			    						var vnd_ContractHonoureds=_.find(data.data[0].vnd_ContractHonoured,function(obj){
+			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    						});
+			    						for(var k=0;k<vnd_ContractHonoureds.modernRetailerInfo.length;k++){
+			    							if(vnd_ContractHonoureds.modernRetailerInfo[k].modernRetailerID==2){
+			    								vnd_ContractHonoured=vnd_ContractHonoureds.modernRetailerInfo[k].value;
+			    								break;
+			    							}
+			    						}
+			    						if(vnd_ContractHonoured==1){
+			    							vnd_ContractHonoured="yes";
+			    						}else{
+			    							vnd_ContractHonoured="no";
+			    						}
+			    						$scope.product2hs.push({'fullName':brandName+varName,'discount_MinimumVolume':discount_MinimumVolume,'discount_Rate':discount_Rate,'bonus_TargetVolume':bonus_TargetVolume,'bonus_Rate':bonus_Rate,'bonus_Value':bonus_Value,'vnd_PaymentTerm':vnd_PaymentTerm,'vnd_OtherCompensation':vnd_OtherCompensation,'vnd_ContractHonoured':vnd_ContractHonoured});
+			    					break;
+		    					}
+		    				}
+		    			}
+		    		}
+		    	},function(){
+		    		console.log('fail');
+		    	})
+		    }
+
+		    var showElecssoriesConsumer=function(){
+		    	switching('showElecssoriesConsumer');
+		    	var url='/SCR-sharesCrossSegment/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+		    	$http({
+		    		method:'GET',
+		    		url:url
+		    	}).then(function(data){
+		    		$scope.rural1s=new Array();
+		    		$scope.urban1s=new Array();
+		    		$scope.rural2s=new Array();
+		    		$scope.urban2s=new Array();
+		    	},function(){
+		    		console.log('fail');
+		    	})
+		    }
+
+		    var showElecssoriesShopper=function(){
+		    	switching('showElecssoriesShopper');
+		    }
+
+		    var showElecssoriesVolume=function(){
+		    	switching('showElecssoriesVolume');
+		    }
+
+		    var showHealthBeautiesConsumer=function(){
+		    	switching('');
+		    }
+
+		    var showHealthBeautiesShopper=function(){
+		    	switching('showHealthBeautiesShopper');
+		    }
+		    
+		    var showHealthBeautiesVolume=function(){
+		    	switching('showHealthBeautiesVolume');
+		    }
+		    
+		    var showProducerKey=function(){
+		    	switching('showProducerKey');
+		    }
+
+		    //general report
 		    $scope.switching=switching;
 		    $scope.showPerformance=showPerformance;
 		    $scope.showMarketShare=showMarketShare;
@@ -1256,6 +1703,21 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    $scope.showCross=showCross;
 		    $scope.showProduct=showProduct;
 		  	$scope.showEMallPrices=showEMallPrices;
+		  	//producer report
+			$scope.showProducerConsolidate=showProducerConsolidate;
+			$scope.showProducerBMBusiness=showProducerBMBusiness;
+			$scope.showProducerOnlineBusiness=showProducerOnlineBusiness;
+			$scope.showProducerProfitability=showProducerProfitability;
+			$scope.showProducerNegotiations=showProducerNegotiations;
+			$scope.showElecssoriesConsumer=showElecssoriesConsumer;
+			$scope.showElecssoriesShopper=showElecssoriesShopper;
+			$scope.showElecssoriesVolume=showElecssoriesVolume;
+			$scope.showHealthBeautiesConsumer=showHealthBeautiesConsumer;
+			$scope.showHealthBeautiesShopper=showHealthBeautiesShopper;
+			$scope.showHealthBeautiesVolume=showHealthBeautiesVolume;
+			$scope.showProducerKey=showProducerKey;  	
+		  	//retailer report
+
 		  	showPerformance();
 
 	}]);

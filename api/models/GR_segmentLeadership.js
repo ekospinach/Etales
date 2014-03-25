@@ -62,7 +62,7 @@ var segmentLeadership=mongoose.model('segmentLeadership',segmentLeadershipSchema
 
 exports.addSegmentLeadership=function(req,res,next){
     var newSegmentLeadership= segmentLeadership({
-        period : 1,
+        period : 0,
         seminar : 'MAY',
         categoryInfo : [{
             categoryID:1,

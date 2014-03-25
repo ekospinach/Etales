@@ -38,7 +38,7 @@ var emallPrices=mongoose.model('emallPrices',emallPricesSchema);
 
 exports.addEmallPrices=function(req,res,next){
     var newEMallPrices=new emallPrices({
-        period:1,
+        period:0,
         seminar:'MAY',
         categoryInfo:[{
             categoryID:1,

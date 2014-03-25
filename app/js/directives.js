@@ -171,6 +171,7 @@ define(['angular','services'], function(angular, services) {
                             $('.bs-sidenav li').click(function(){
                                 $(".bs-sidenav li").removeClass("active");
                                 $(this).addClass('active');
+                                //$(this).firstChild.addClass('active');
                             });
                             $('.second-sidenav li').click(function(){
                                 $('.second-sidenav li').removeClass("active");
@@ -187,6 +188,9 @@ define(['angular','services'], function(angular, services) {
                         $(".bs-docs-sidenav>li>a").click(function(){
                             $(".bs-docs-sidenav li").removeClass("active");
                             $(this).parent().addClass("active");
+                            if($($($(this).parent()).children()[1]).children()[0]!=undefined){
+                                $($($($(this).parent()).children()[1]).children()[0]).addClass('active');
+                            }
                         });
                         $(".second-sidenav>li>a").click(function(){
                             $(".second-sidenav li").removeClass("active");

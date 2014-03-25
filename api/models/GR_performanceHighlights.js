@@ -53,7 +53,7 @@ var performanceHighlights=mongoose.model('performanceHighlights',performanceHigh
 
 exports.addPerformanceHighlights=function(req,res,next){
     var newPerformanceHighlights=new performanceHighlights({
-        period:1,
+        period:0,
         seminar:'MAY',
         actorInfo:[{
             actorID:1,

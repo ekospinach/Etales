@@ -145,6 +145,7 @@ app.get('/addMarketShare',require('./api/models/GR_marketShare.js').addMarketSha
 app.get('/addPerformanceHighlights',require('./api/models/GR_performanceHighlights.js').addPerformanceHighlights);
 app.get('/addProductPortfolio',require('./api/models/GR_productPortfolio.js').addProductPortfolio);
 app.get('/addSegmentLeadership',require('./api/models/GR_segmentLeadership.js').addSegmentLeadership);
+
 //get generalReport record
 app.get('/crossSegmentSales/:seminar/:period',require('./api/models/GR_crossSegmentSales.js').getCrossSegmentSales);
 app.get('/emallPrices/:seminar/:period',require('./api/models/GR_emallPrices.js').getEmallPrices);
@@ -153,6 +154,22 @@ app.get('/marketShare/:seminar/:period',require('./api/models/GR_marketShare.js'
 app.get('/performanceHighlights/:seminar/:period',require('./api/models/GR_performanceHighlights.js').getPerformanceHighlights);
 app.get('/productPortfolio/:seminar/:period',require('./api/models/GR_productPortfolio.js').getProductPortfolio);
 app.get('/segmentLeadership/:seminar/:period',require('./api/models/GR_segmentLeadership.js').getSegmentLeadership);
+
+//add producer report record
+app.get('/addSCR-consolidatedProfitAndLoss',require('./api/models/SCR_consolidatedProfitAndLoss.js').addSCR_consolidatedProfitAndLoss);
+app.get('/addSCR-channelsProfitability',require('./api/models/SCR_channelsProfitability.js').addSCR_channelsProfitability);
+app.get('/addSCR-inventoryVolumes',require('./api/models/SCR_inventoryVolumes.js').addSCR_inventoryVolumes);
+app.get('/addSCR-keyPerformanceIndicators',require('./api/models/SCR_keyPerformanceIndicators.js').addSCR_keyPerformanceIndicators);
+app.get('/addSCR-negotiations',require('./api/models/SCR_negotiations.js').addSCR_negotiations);
+app.get('/addSCR-sharesCrossSegment',require('./api/models/SCR_sharesCrossSegment.js').addSCR_sharesCrossSegment);
+
+//get producer report record
+app.get('/SCR-consolidatedProfitAndLoss/:seminar/:period/:producerID',require('./api/models/SCR_consolidatedProfitAndLoss.js').getSCR_consolidatedProfitAndLoss);
+app.get('/SCR-channelsProfitability/:seminar/:period/:producerID',require('./api/models/SCR_channelsProfitability.js').getSCR_channelsProfitability);
+app.get('/SCR-inventoryVolumes/:seminar/:period/:producerID',require('./api/models/SCR_inventoryVolumes.js').getSCR_inventoryVolumes);
+app.get('/SCR-keyPerformanceIndicators/:seminar/:period/:producerID',require('./api/models/SCR_keyPerformanceIndicators.js').getSCR_keyPerformanceIndicators);
+app.get('/SCR-negotiations/:seminar/:period/:producerID',require('./api/models/SCR_negotiations.js').getSCR_negotiations);
+app.get('/SCR-sharesCrossSegment/:seminar/:period/:producerID',require('./api/models/SCR_sharesCrossSegment.js').getSCR_sharesCrossSegment);
 
 app.use(express.errorHandler());
 

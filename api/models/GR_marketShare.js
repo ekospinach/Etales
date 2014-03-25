@@ -57,7 +57,7 @@ var marketShare=mongoose.model('marketShare',marketShareSchema);
 
 exports.addMarketShare=function(req,res,next){
     var newMarketShare=new marketShare({
-        period : 1,
+        period : 0,
         seminar : 'MAY',
         actorInfo : [{
             actorID:1,

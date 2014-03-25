@@ -375,6 +375,18 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
     	})
     }
 
+    $scope.addProducerReport=function(){
+    	var url='/addSCR-consolidatedProfitAndLoss';
+    	$http({
+    		method:'GET',
+    		url:url
+    	}).then(function(){
+    		console.log('Success');
+    	},function(){
+    		console.log('fail');
+    	});
+    }
+
     $scope.removeRandomSeries = function () {
         var seriesArray = $scope.chartConfig.series;
         var rndIdx = Math.floor(Math.random() * seriesArray.length);
