@@ -41,4 +41,25 @@ var producerInfoSchema = mongoose.Schema({
     value : Number,
 })
 
+var RCR_negotiations=mongoose.model('RCR_negotiations',RCR_negotiationsSchema);
+
+exports.addRCR_negotiations=function(req,res,next){
+
+}
+
+exports.getRCR_negotiations=function(req,res,next){
+    var data={
+        'seminar':req.params.seminar,
+        'period':req.params.period,
+        'producerID':req.params.producerID
+    };
+    RCR_negotiations.find(data,function(err,docs){
+        if(docs){
+            res.send(200,docs);
+        }else{
+            res.send(404,'failed');
+        }
+    })    
+}
+
 

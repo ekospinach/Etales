@@ -33,3 +33,23 @@ var variantInfoSchema = mongoose.Schema({
     value : [Number], //0-Urban, 1-Rural, 2-Total
 
 })
+var RCR_inventoryVolumes=mongoose.model('RCR_inventoryVolumes',RCR_inventoryVolumesSchema);
+
+exports.addRCR_inventoryVolumes=function(req,res,next){
+
+}
+
+exports.getRCR_inventoryVolumes=function(req,res,next){
+    var data={
+        'seminar':req.params.seminar,
+        'period':req.params.period,
+        'producerID':req.params.producerID
+    };
+    RCR_inventoryVolumes.find(data,function(err,docs){
+        if(docs){
+            res.send(200,docs);
+        }else{
+            res.send(404,'failed');
+        }
+    })    
+}

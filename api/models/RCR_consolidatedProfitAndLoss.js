@@ -111,4 +111,24 @@ var variantInfoSchema = mongoose.Schema({
     value                                : [Number], //0-Urban, 1-Rural, 2-Total
 })
 
+var RCR_consolidatedProfitAndLoss=mongoose.model('RCR_consolidatedProfitAndLoss',RCR_consolidatedProfitAndLossSchema);
+
+exports.addRCR_consolidatedProfitAndLoss=function(req,res,next){
+
+}
+
+exports.getRCR_consolidatedProfitAndLoss=function(req,res,next){
+    var data={
+        'seminar':req.params.seminar,
+        'period':req.params.period,
+        'producerID':req.params.producerID
+    };
+    RCR_consolidatedProfitAndLoss.find(data,function(err,docs){
+        if(docs){
+            res.send(200,docs);
+        }else{
+            res.send(404,'failed');
+        }
+    })    
+}
 

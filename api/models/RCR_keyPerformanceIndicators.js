@@ -29,4 +29,24 @@ var shoperInfoSchema = mongoose.Schema({
     shoperKind : String, // BMS, NETIZENS, MIXED, ALLSHOPPERS})
     categoryInfo : [categoryInfoSchema]
 })
+var RCR_keyPerformanceIndicators=mongoose.model('RCR_keyPerformanceIndicators',RCR_keyPerformanceIndicatorsSchema);
+
+exports.addRCR_keyPerformanceIndicators=function(req,res,next){
+
+}
+
+exports.getRCR_keyPerformanceIndicators=function(req,res,next){
+    var data={
+        'seminar':req.params.seminar,
+        'period':req.params.period,
+        'producerID':req.params.producerID
+    };
+    RCR_keyPerformanceIndicators.find(data,function(err,docs){
+        if(docs){
+            res.send(200,docs);
+        }else{
+            res.send(404,'failed');
+        }
+    })    
+}
 

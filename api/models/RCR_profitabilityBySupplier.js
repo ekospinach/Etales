@@ -46,3 +46,23 @@ var factoriesInfoSchema = mongoose.Schema({
     value : Number,
 })
 
+var RCR_profitabilityBySupplier=mongoose.model('RCR_profitabilityBySupplier',RCR_profitabilityBySupplierSchema);
+
+exports.addRCR_profitabilityBySupplier=function(req,res,next){
+
+}
+
+exports.getRCR_profitabilityBySupplier=function(req,res,next){
+    var data={
+        'seminar':req.params.seminar,
+        'period':req.params.period,
+        'producerID':req.params.producerID
+    };
+    RCR_profitabilityBySupplier.find(data,function(err,docs){
+        if(docs){
+            res.send(200,docs);
+        }else{
+            res.send(404,'failed');
+        }
+    })    
+}
