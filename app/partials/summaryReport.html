@@ -3051,13 +3051,251 @@
                                 <tr>
                                     <th></th>
                                     <th colspan="2">
-                                        <p class="text-center">{{Label.getContent('B&M Only')}}</p>
+                                        <p class="text-center">{{Label.getContent('Price Sensitive')}}</p>
                                     </th>
                                     <th colspan="2">
-                                        <p class="text-center">{{Label.getContent('Online Only')}}</p>
+                                        <p class="text-center">{{Label.getContent('Value for Money')}}</p>
                                     </th>
                                     <th colspan="2">
-                                        <p class="text-center">{{Label.getContent('Mixed')}}</p>
+                                        <p class="text-center">{{Label.getContent('Fashion')}}</p>
+                                    </th>
+                                    <th colspan="2">
+                                        <p class="text-center">{{Label.getContent('Freaks')}}</p>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Change')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Change')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Change')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Change')}}</p>
+                                    </td>
+                                </tr>
+                                <tr class="info">
+                                    <td colspan="9">
+                                        <p>{{Label.getContent('Rural')}}</p>
+                                    </td>
+                                </tr>
+                                <tr class="info" ng-repeat='rural1 in rural1s'>
+                                    <td>
+                                        <p class="padding-20">{{rural1.fullName}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural1.priceShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural1.priceChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural1.moneyShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural1.moneyChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural1.fashionShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural1.fashionChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural1.freaksShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural1.freaksChange}}</p>
+                                    </td>
+                                </tr>
+                                <tr class="warning">
+                                    <td colspan="9">
+                                        <p>{{Label.getContent('Urban')}}</p>
+                                    </td>
+                                </tr>
+                                <tr class="warning" ng-repeat='urban1 in urban1s'>
+                                    <td>
+                                        <p class="padding-20">{{urban1.fullName}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban1.priceShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban1.priceChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban1.moneyShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban1.moneyChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban1.fashionShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban1.fashionChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban1.freaksShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban1.freaksChange}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <th colspan="2">
+                                        <p class="text-center">{{Label.getContent('Price Sensitive')}}</p>
+                                    </th>
+                                    <th colspan="2">
+                                        <p class="text-center">{{Label.getContent('Value for Money')}}</p>
+                                    </th>
+                                    <th colspan="2">
+                                        <p class="text-center">{{Label.getContent('Fashion')}}</p>
+                                    </th>
+                                    <th colspan="2">
+                                        <p class="text-center">{{Label.getContent('Freaks')}}</p>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Change')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Change')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Change')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Change')}}</p>
+                                    </td>
+                                </tr>
+                                <tr class="info">
+                                    <td colspan="9">
+                                        <p>{{Label.getContent('Rural')}}</p>
+                                    </td>
+                                </tr>
+                                <tr class="info" ng-repeat='rural2 in rural2s'>
+                                    <td>
+                                        <p class="padding-20">{{rural2.fullName}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural2.priceShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural2.priceChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural2.moneyShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural2.moneyChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural2.fashionShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural2.fashionChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural2.freaksShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural2.freaksChange}}</p>
+                                    </td>
+                                </tr>
+                                <tr class="warning">
+                                    <td colspan="9">
+                                        <p>{{Label.getContent('Urban')}}</p>
+                                    </td>
+                                </tr>
+                                <tr class="warning" ng-repeat='urban2 in urban2s'>
+                                    <td>
+                                        <p class="padding-20">{{urban2.fullName}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban2.priceShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban2.priceChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban2.moneyShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban2.moneyChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban2.fashionShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban2.fashionChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban2.freaksShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban2.freaksChange}}</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="panel panel-success" ng-show='ElecssoriesShopper'>
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-center" popover="{{Label.getContent('Market Shares by Shopper Segment Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Elecssories')}} {{Label.getContent('Situation Report')}}-{{Label.getContent('Market Shares by Shopper Segment')}}</h3>
+                        </div>
+                        <table class="table table-condensed table-bordered table-success">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th colspan="2">
+                                        <p class="text-center">
+                                            {{Label.getContent('B&M Only')}}
+                                        </p>
+                                    </th>
+                                    <th colspan="2">
+                                        <p class="text-center">
+                                            {{Label.getContent('Online Only')}}
+                                        </p>
+                                    </th>
+                                    <th colspan="2">
+                                        <p class="text-center">
+                                            {{Label.getContent('Mixed')}}
+                                        </p>
                                     </th>
                                 </tr>
                             </thead>
@@ -3088,21 +3326,73 @@
                                         <p>{{Label.getContent('Rural')}}</p>
                                     </td>
                                 </tr>
+                                <tr class="info" ng-repeat='rural1 in rural1s'>
+                                    <td>
+                                        <p class="padding-20">{{rural1.fullName}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural1.bmShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural1.bmChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural1.onlineShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural1.onlineChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural1.mixedShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural1.mixedChange}}</p>
+                                    </td>
+                                </tr>
                                 <tr class="warning">
                                     <td colspan="7">
                                         <p>{{Label.getContent('Urban')}}</p>
                                     </td>
                                 </tr>
+                                <tr class="warning" ng-repeat='urban1 in urban1s'>
+                                    <td>
+                                        <p class="padding-20">{{urban1.fullName}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban1.bmShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban1.bmChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban1.onlineShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban1.onlineChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban1.mixedShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban1.mixedChange}}</p>
+                                    </td>
+                                </tr>
                                 <tr>
                                     <th></th>
                                     <th colspan="2">
-                                        <p class="text-center">{{Label.getContent('B&M Only')}}</p>
+                                        <p class="text-center">
+                                            {{Label.getContent('B&M Only')}}
+                                        </p>
                                     </th>
                                     <th colspan="2">
-                                        <p class="text-center">{{Label.getContent('Online Only')}}</p>
+                                        <p class="text-center">
+                                            {{Label.getContent('Online Only')}}
+                                        </p>
                                     </th>
                                     <th colspan="2">
-                                        <p class="text-center">{{Label.getContent('Mixed')}}</p>
+                                        <p class="text-center">
+                                            {{Label.getContent('Mixed')}}
+                                        </p>
                                     </th>
                                 </tr>
                                 <tr>
@@ -3131,24 +3421,706 @@
                                         <p>{{Label.getContent('Rural')}}</p>
                                     </td>
                                 </tr>
+                                <tr class="info" ng-repeat='rural2 in rural2s'>
+                                    <td>
+                                        <p class="padding-20">{{rural2.fullName}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural2.bmShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural2.bmChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural2.onlineShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural2.onlineChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural2.mixedShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural2.mixedChange}}</p>
+                                    </td>
+                                </tr>
                                 <tr class="warning">
                                     <td colspan="7">
                                         <p>{{Label.getContent('Urban')}}</p>
+                                    </td>
+                                </tr>
+                                <tr class="warning" ng-repeat='urban2 in urban2s'>
+                                    <td>
+                                        <p class="padding-20">{{urban2.fullName}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban2.bmShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban2.bmChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban2.onlineShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban2.onlineChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban2.mixedShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban2.mixedChange}}</p>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
 
-                    <div class="panel panel-success" ng-show='ElecssoriesShopper'></div>
+                    <div class="panel panel-success" ng-show='ElecssoriesVolume'>
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-center" popover="{{Label.getContent('Volume Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Elecssories')}} {{Label.getContent('Situation Report')}}-{{Label.getContent('Volume')}}</h3>
+                        </div>
+                        <table class="table table-condensed table-bordered table-success">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <p class="padding-20">(units mln)</p>
+                                    </th>
+                                    <th colspan="2">
+                                        <p class="text-center">
+                                            {{Label.getContent('Initial Inventory')}}
+                                        </p>
+                                    </th>
+                                    <th>
+                                        <p class="text-center">
+                                            {{Label.getContent('Production Volume')}}
+                                        </p>
+                                    </th>
+                                    <th colspan="2">
+                                        <p class="text-center">
+                                            {{Label.getContent('Sales Volume')}}
+                                        </p>
+                                    </th>
+                                    <th>
+                                        <p class="text-center">
+                                            {{Label.getContent('Discontinued Goods Volume')}}
+                                        </p>
+                                    </th>
+                                    <th colspan="2">
+                                        <p class="text-center">
+                                            {{Label.getContent('Closing Inventory')}}
+                                        </p>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <p class="text-center">
+                                            {{Label.getContent('Offline')}}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">
+                                            {{Label.getContent('Online')}}
+                                        </p>
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                        <p class="text-center">
+                                            {{Label.getContent('Offline')}}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">
+                                            {{Label.getContent('Online')}}
+                                        </p>
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                        <p class="text-center">
+                                            {{Label.getContent('Offline')}}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">
+                                            {{Label.getContent('Online')}}
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat='product in products'>
+                                    <td>
+                                        <p class="padding-20">{{product.fullName}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{product.initial.value[0]}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{product.initial.value[1]}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{product.production.value[2]}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{product.sales.value[0]}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{product.sales.value[1]}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{product.discontinued.value[2]}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{product.closing.value[0]}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{product.closing.value[1]}}</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
-                    <div class="panel panel-success" ng-show='ElecssoriesVolume'></div>
+                    <div class="panel panel-success" ng-show='HealthBeautiesConsumer'>
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-center" popover="{{Label.getContent('Market Shares by Consumer Segment Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('HealthBeauties')}} {{Label.getContent('Situation Report')}}-{{Label.getContent('Market Shares by Consumer Segment')}}</h3>
+                        </div>
+                        <table class="table table-condensed table-bordered table-success">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th colspan="2">
+                                        <p class="text-center">{{Label.getContent('Price Sensitive')}}</p>
+                                    </th>
+                                    <th colspan="2">
+                                        <p class="text-center">{{Label.getContent('Value for Money')}}</p>
+                                    </th>
+                                    <th colspan="2">
+                                        <p class="text-center">{{Label.getContent('Health Conscious')}}</p>
+                                    </th>
+                                    <th colspan="2">
+                                        <p class="text-center">{{Label.getContent('Impatient')}}</p>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Change')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Change')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Change')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Change')}}</p>
+                                    </td>
+                                </tr>
+                                <tr class="info">
+                                    <td colspan="9">
+                                        <p>{{Label.getContent('Rural')}}</p>
+                                    </td>
+                                </tr>
+                                <tr class="info" ng-repeat='rural1 in rural1s'>
+                                    <td>
+                                        <p class="padding-20">{{rural1.fullName}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural1.priceShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural1.priceChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural1.moneyShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural1.moneyChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural1.fashionShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural1.fashionChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural1.freaksShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural1.freaksChange}}</p>
+                                    </td>
+                                </tr>
+                                <tr class="warning">
+                                    <td colspan="9">
+                                        <p>{{Label.getContent('Urban')}}</p>
+                                    </td>
+                                </tr>
+                                <tr class="warning" ng-repeat='urban1 in urban1s'>
+                                    <td>
+                                        <p class="padding-20">{{urban1.fullName}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban1.priceShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban1.priceChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban1.moneyShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban1.moneyChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban1.fashionShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban1.fashionChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban1.freaksShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban1.freaksChange}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <th colspan="2">
+                                        <p class="text-center">{{Label.getContent('Price Sensitive')}}</p>
+                                    </th>
+                                    <th colspan="2">
+                                        <p class="text-center">{{Label.getContent('Value for Money')}}</p>
+                                    </th>
+                                    <th colspan="2">
+                                        <p class="text-center">{{Label.getContent('Health Conscious')}}</p>
+                                    </th>
+                                    <th colspan="2">
+                                        <p class="text-center">{{Label.getContent('Impatient')}}</p>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Change')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Change')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Change')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Change')}}</p>
+                                    </td>
+                                </tr>
+                                <tr class="info">
+                                    <td colspan="9">
+                                        <p>{{Label.getContent('Rural')}}</p>
+                                    </td>
+                                </tr>
+                                <tr class="info" ng-repeat='rural2 in rural2s'>
+                                    <td>
+                                        <p class="padding-20">{{rural2.fullName}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural2.priceShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural2.priceChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural2.moneyShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural2.moneyChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural2.fashionShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural2.fashionChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural2.freaksShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural2.freaksChange}}</p>
+                                    </td>
+                                </tr>
+                                <tr class="warning">
+                                    <td colspan="9">
+                                        <p>{{Label.getContent('Urban')}}</p>
+                                    </td>
+                                </tr>
+                                <tr class="warning" ng-repeat='urban2 in urban2s'>
+                                    <td>
+                                        <p class="padding-20">{{urban2.fullName}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban2.priceShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban2.priceChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban2.moneyShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban2.moneyChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban2.fashionShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban2.fashionChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban2.freaksShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban2.freaksChange}}</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
-                    <div class="panel panel-success" ng-show='HealthBeautiesConsumer'></div>
+                    <div class="panel panel-success" ng-show='HealthBeautiesShopper'>
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-center" popover="{{Label.getContent('Market Shares by Shopper Segment Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('HealthBeauties')}} {{Label.getContent('Situation Report')}}-{{Label.getContent('Market Shares by Shopper Segment')}}</h3>
+                        </div>
+                        <table class="table table-condensed table-bordered table-success">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th colspan="2">
+                                        <p class="text-center">
+                                            {{Label.getContent('B&M Only')}}
+                                        </p>
+                                    </th>
+                                    <th colspan="2">
+                                        <p class="text-center">
+                                            {{Label.getContent('Online Only')}}
+                                        </p>
+                                    </th>
+                                    <th colspan="2">
+                                        <p class="text-center">
+                                            {{Label.getContent('Mixed')}}
+                                        </p>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Change')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Change')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Change')}}</p>
+                                    </td>
+                                </tr>
+                                <tr class="info">
+                                    <td colspan="7">
+                                        <p>{{Label.getContent('Rural')}}</p>
+                                    </td>
+                                </tr>
+                                <tr class="info" ng-repeat='rural1 in rural1s'>
+                                    <td>
+                                        <p class="padding-20">{{rural1.fullName}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural1.bmShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural1.bmChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural1.onlineShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural1.onlineChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural1.mixedShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural1.mixedChange}}</p>
+                                    </td>
+                                </tr>
+                                <tr class="warning">
+                                    <td colspan="7">
+                                        <p>{{Label.getContent('Urban')}}</p>
+                                    </td>
+                                </tr>
+                                <tr class="warning" ng-repeat='urban1 in urban1s'>
+                                    <td>
+                                        <p class="padding-20">{{urban1.fullName}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban1.bmShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban1.bmChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban1.onlineShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban1.onlineChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban1.mixedShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban1.mixedChange}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <th colspan="2">
+                                        <p class="text-center">
+                                            {{Label.getContent('B&M Only')}}
+                                        </p>
+                                    </th>
+                                    <th colspan="2">
+                                        <p class="text-center">
+                                            {{Label.getContent('Online Only')}}
+                                        </p>
+                                    </th>
+                                    <th colspan="2">
+                                        <p class="text-center">
+                                            {{Label.getContent('Mixed')}}
+                                        </p>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Change')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Change')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Change')}}</p>
+                                    </td>
+                                </tr>
+                                <tr class="info">
+                                    <td colspan="7">
+                                        <p>{{Label.getContent('Rural')}}</p>
+                                    </td>
+                                </tr>
+                                <tr class="info" ng-repeat='rural2 in rural2s'>
+                                    <td>
+                                        <p class="padding-20">{{rural2.fullName}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural2.bmShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural2.bmChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural2.onlineShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural2.onlineChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural2.mixedShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural2.mixedChange}}</p>
+                                    </td>
+                                </tr>
+                                <tr class="warning">
+                                    <td colspan="7">
+                                        <p>{{Label.getContent('Urban')}}</p>
+                                    </td>
+                                </tr>
+                                <tr class="warning" ng-repeat='urban2 in urban2s'>
+                                    <td>
+                                        <p class="padding-20">{{urban2.fullName}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban2.bmShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban2.bmChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban2.onlineShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban2.onlineChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban2.mixedShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban2.mixedChange}}</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
-                    <div class="panel panel-success" ng-show='HealthBeautiesShopper'></div>
-
-                    <div class="panel panel-success" ng-show='HealthBeautiesVolume'></div>
+                    <div class="panel panel-success" ng-show='HealthBeautiesVolume'>
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-center" popover="{{Label.getContent('Volume Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('HealthBeauties')}} {{Label.getContent('Situation Report')}}-{{Label.getContent('Volume')}}</h3>
+                        </div>
+                        <table class="table table-condensed table-bordered table-success">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <p class="padding-20">(units mln)</p>
+                                    </th>
+                                    <th colspan="2">
+                                        <p class="text-center">
+                                            {{Label.getContent('Initial Inventory')}}
+                                        </p>
+                                    </th>
+                                    <th>
+                                        <p class="text-center">
+                                            {{Label.getContent('Production Volume')}}
+                                        </p>
+                                    </th>
+                                    <th colspan="2">
+                                        <p class="text-center">
+                                            {{Label.getContent('Sales Volume')}}
+                                        </p>
+                                    </th>
+                                    <th>
+                                        <p class="text-center">
+                                            {{Label.getContent('Discontinued Goods Volume')}}
+                                        </p>
+                                    </th>
+                                    <th colspan="2">
+                                        <p class="text-center">
+                                            {{Label.getContent('Closing Inventory')}}
+                                        </p>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <p class="text-center">
+                                            {{Label.getContent('Offline')}}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">
+                                            {{Label.getContent('Online')}}
+                                        </p>
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                        <p class="text-center">
+                                            {{Label.getContent('Offline')}}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">
+                                            {{Label.getContent('Online')}}
+                                        </p>
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                        <p class="text-center">
+                                            {{Label.getContent('Offline')}}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">
+                                            {{Label.getContent('Online')}}
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat='product in products'>
+                                    <td>
+                                        <p class="padding-20">{{product.fullName}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{product.initial.value[0]}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{product.initial.value[1]}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{product.production.value[2]}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{product.sales.value[0]}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{product.sales.value[1]}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{product.discontinued.value[2]}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{product.closing.value[0]}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{product.closing.value[1]}}</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
                     <div class="panel panel-success" ng-show='ProducerKey'></div>
                 <!--producer report end-->
