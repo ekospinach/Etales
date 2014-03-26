@@ -1,6 +1,6 @@
 define(['app','socketIO'], function(app) {
 
-	app.controller('loginCtrl',['$scope', '$http', '$location','$rootScope','Auth','$q','PlayerInfo','SeminarInfo','PeriodInfo', function($scope, $http, $location,$rootScope,Auth,$q,PlayerInfo,SeminarInfo,PeriodInfo) {
+	app.controller('loginCtrl',['$scope', '$http', '$location','$rootScope','Auth','$q','PlayerInfo','SeminarInfo','PeriodInfo','RoleInfo', function($scope, $http, $location,$rootScope,Auth,$q,PlayerInfo,SeminarInfo,PeriodInfo,RoleInfo) {
 		// You can access the scope of the controller from here
 
 		    $rootScope.loginFooter="container";
@@ -74,6 +74,7 @@ define(['app','socketIO'], function(app) {
 				}).then(function(){
 					//console.log($rootScope.user.userRole);
 					PlayerInfo.setPlayer($rootScope.user.roleID);
+					RoleInfo.setRole($rootScope.user.role);
 				});
 			},function(res){
 				showbubleMsg('login failure.',1);

@@ -25,7 +25,8 @@
             'retailerView' : ['retailer','facilitator'],
             'facilitatorView' : ['facilitator'],
             'adminView' : ['admin'],
-            'playerView' : ['producer','facilitator','retailer']
+            'playerView' : ['producer','facilitator','retailer'],
+            'PandRView':['producer','retailer']
         }
 
     }

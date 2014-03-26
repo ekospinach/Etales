@@ -22,6 +22,7 @@ define(['angular',
 		'controllers/reportCtrl',
 		'controllers/testCtrl',
 		'controllers/summaryReportCtrl',
+		'controllers/facilitatorSummaryReportCtrl',
 		'controllers/navbarCtrl'], function(angular, app) {
 	'use strict';
 	return app.config(['$routeProvider','$httpProvider', function($routeProvider, $httpProvider) {
@@ -115,7 +116,11 @@ define(['angular',
 		}).when('/summaryReport',{
 			controller:'summaryReportCtrl',
 			templateUrl:'partials/summaryReport.html',
-			access:access.public
+			access:access.playerView
+		}).when('/facilitatorSummaryReport',{
+			controller:'facilitatorSummaryReportCtrl',
+			templateUrl:'partials/facilitatorSummaryReport.html',
+			access:access.facilitatorView
 		});	
 
 		$routeProvider.otherwise({redirectTo: '/login'});

@@ -98,6 +98,20 @@ define(['angular',
 		}
 	})
 
+	services.factory('RoleInfo',function(){
+		var role;
+		return{
+			getRole:function(){
+				console.log('get role:'+role);
+				return role;
+			},
+			setRole:function(value){
+				role=value;
+				console.log('set role:'+role);
+			}
+		}
+	})
+
 	services.factory('SeminarInfo', function(){
 		var selectedSeminar;
 		return {
