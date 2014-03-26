@@ -1,0 +1,108 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{E564D8B6-FA6A-407F-A063-C7C37516188D}</ProjectGuid>
+		</PropertyGroup>
+		<ItemGroup>
+			<Projects Include="GR_crossSegmentSales.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="GR_emallPrices.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="GR_marketSales.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="GR_marketShare.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="GR_performanceHighlights.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="GR_productPortfolio.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="GR_segmentLeadership.dproj">
+				<Dependencies/>
+			</Projects>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Default.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Default.Personality/>
+			</BorlandProject>
+		</ProjectExtensions>
+		<Target Name="GR_crossSegmentSales">
+			<MSBuild Projects="GR_crossSegmentSales.dproj"/>
+		</Target>
+		<Target Name="GR_crossSegmentSales:Clean">
+			<MSBuild Projects="GR_crossSegmentSales.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="GR_crossSegmentSales:Make">
+			<MSBuild Projects="GR_crossSegmentSales.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="GR_emallPrices">
+			<MSBuild Projects="GR_emallPrices.dproj"/>
+		</Target>
+		<Target Name="GR_emallPrices:Clean">
+			<MSBuild Projects="GR_emallPrices.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="GR_emallPrices:Make">
+			<MSBuild Projects="GR_emallPrices.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="GR_marketSales">
+			<MSBuild Projects="GR_marketSales.dproj"/>
+		</Target>
+		<Target Name="GR_marketSales:Clean">
+			<MSBuild Projects="GR_marketSales.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="GR_marketSales:Make">
+			<MSBuild Projects="GR_marketSales.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="GR_marketShare">
+			<MSBuild Projects="GR_marketShare.dproj"/>
+		</Target>
+		<Target Name="GR_marketShare:Clean">
+			<MSBuild Projects="GR_marketShare.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="GR_marketShare:Make">
+			<MSBuild Projects="GR_marketShare.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="GR_performanceHighlights">
+			<MSBuild Projects="GR_performanceHighlights.dproj"/>
+		</Target>
+		<Target Name="GR_performanceHighlights:Clean">
+			<MSBuild Projects="GR_performanceHighlights.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="GR_performanceHighlights:Make">
+			<MSBuild Projects="GR_performanceHighlights.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="GR_productPortfolio">
+			<MSBuild Projects="GR_productPortfolio.dproj"/>
+		</Target>
+		<Target Name="GR_productPortfolio:Clean">
+			<MSBuild Projects="GR_productPortfolio.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="GR_productPortfolio:Make">
+			<MSBuild Projects="GR_productPortfolio.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="GR_segmentLeadership">
+			<MSBuild Projects="GR_segmentLeadership.dproj"/>
+		</Target>
+		<Target Name="GR_segmentLeadership:Clean">
+			<MSBuild Projects="GR_segmentLeadership.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="GR_segmentLeadership:Make">
+			<MSBuild Projects="GR_segmentLeadership.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="Build">
+			<CallTarget Targets="GR_crossSegmentSales;GR_emallPrices;GR_marketSales;GR_marketShare;GR_performanceHighlights;GR_productPortfolio;GR_segmentLeadership"/>
+		</Target>
+		<Target Name="Clean">
+			<CallTarget Targets="GR_crossSegmentSales:Clean;GR_emallPrices:Clean;GR_marketSales:Clean;GR_marketShare:Clean;GR_performanceHighlights:Clean;GR_productPortfolio:Clean;GR_segmentLeadership:Clean"/>
+		</Target>
+		<Target Name="Make">
+			<CallTarget Targets="GR_crossSegmentSales:Make;GR_emallPrices:Make;GR_marketSales:Make;GR_marketShare:Make;GR_performanceHighlights:Make;GR_productPortfolio:Make;GR_segmentLeadership:Make"/>
+		</Target>
+		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
+	</Project>

@@ -13,7 +13,9 @@ var SCR_sharesCrossSegmentSchema = mongoose.Schema({
     seminar : String,
     producerID  : Number, //TAllProducer : 1~4 (ProsMaxPlus)
     absoluteValue     : [variantInfoSchema],
-    change            : [variantInfoSchema],
+    valueChange       : [variantInfoSchema],
+    absoluteVolume    : [variantInfoSchema],
+    volumeChange      : [variantInfoSchema],
 })
 
 var variantInfoSchema = mongoose.Schema({
