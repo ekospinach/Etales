@@ -20,14 +20,47 @@ const
   aCategories : array[TCategories] of string = ('Elecsories', 'HealthBeauties');
   aMarkets : array[TMarketsTotal] of string = ('Urban', 'Rural', 'Total');
 
-function getVariable(name : string):string;
-procedure Explode(sQuery: string; var Params:TStrings);
 function getSeminar(sListData : TStrings): string;
 function getPeriod(sListData : TStrings): Integer;
+function getProducerID(sListData : TStrings): Integer;
+function getRetailerID(sListData : TStrings) : Integer;
+
+
+function getVariable(name : string):string;
+procedure Explode(sQuery: string; var Params:TStrings);  
 function ReadResults(PeriodNumber : TPeriodNumber; SeminarCode : ansistring; DataDirectory : Ansistring; var OnePeriodResults : TAllResults ) : Integer;
 procedure LoadConfigIni(var DataDirectory : string; seminar : string);
   
 implementation {-------------------------------------------------------------------------------------------------------------------}
+
+function getSeminar(sListData : TStrings): string; 
+begin
+  Result := dummySeminar;
+  if sListData.IndexOfName('seminar') <> -1 then
+    Result  := sListData.Values['seminar'];
+end;
+
+function getPeriod(sListData : tStrings): Integer;
+begin
+  Result := dummyNo;
+  if sListData.IndexOfName('period') <> -1 then
+     Result := StrToInt(sListData.Values['period']);
+end;
+
+function getProducerID(sListData : TStrings): Integer;
+begin
+  Result := 1;
+  if sListData.IndexOfName('producerID') <> -1 then
+     Result := StrToInt(sListData.Values['producerID']);
+end;
+
+function getRetailerID(sListData : TStrings): Integer;
+begin
+  Result := 1;
+  if sListData.IndexOfName('retailerID') <> -1 then
+     Result := StrToInt(sListData.Values['retailerID']);
+end;
+
 
 function getVariable(name:string):string;
    {$IFNDEF LINUX}
@@ -69,19 +102,6 @@ begin
   end;
 end;
 
-function getSeminar(sListData : TStrings): string; 
-begin
-  Result := dummySeminar;
-  if sListData.IndexOfName('seminar') <> -1 then
-    Result  := sListData.Values['seminar'];
-end;
-
-function getPeriod(sListData : tStrings): Integer;
-begin
-  Result := dummyNo;
-  if sListData.IndexOfName('period') <> -1 then
-     Result := StrToInt(sListData.Values['period']);
-end;
 
 Function ReadResults(PeriodNumber : TPeriodNumber; SeminarCode : ansistring; DataDirectory : Ansistring; var OnePeriodResults : TAllResults ) : Integer;
 var
