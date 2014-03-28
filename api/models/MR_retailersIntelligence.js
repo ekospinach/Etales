@@ -8,34 +8,30 @@ var mongoose = require('mongoose'),
 var MR_retailersIntelligenceSchema = mongoose.Schema({
     period : Number,
     seminar : String,
-    supplierInfo : [supplierInfoSchema],x
+    retailerInfo : [retailerInfoSchema],
 })
 
-var supplierInfoSchema = mongoose.Schema({
-    supplierID : Number,
-    categoryInfo : [categoryInfoSchema]
+var retailerInfoSchema = mongoose.Schema({
+    retailerID : Number, //1~3     
+    storeServiceLevel : [String], //0-Urban, 1-Rural
+//    storePerceptionInfo : [storePerceptionInfoSchema],
+    onlineAdvertising : [Number], //0-Urban, 1-Rural
+    offlineAdvertising : [Number], //0-Urban, 1-Rural
+    variantInfo : [variantInfoSchema],
 })
 
-var categoryInfoSchema = mongoose.Schema({
-    categoryID : Number, //1~3 
-    advertisingOnLine              : Number,
-    onLine_Visibility             : Number,
-    onLine_Other                  : Number,
-    acquiredTechnologyLevel       : Number,
-    acquiredDesignLevel           : Number,
-    productionCapacityAvailable   : Number,
-    capacityUtilisationRate       : Number,
-    productionplanningFlexibility : Number,    
-
-    advertisingOffLine            : [Number], //0-Urban, 1-Rural, 2-Total
-
-    actualTradeSupport            : [BMretailerInfoSchema], //BMRetsMax = 3
-    negotiatedTradeSupport        : [BMretailerInfoSchema]
-})
-
-var BMretailerInfoSchema = mongoose.Schema({
-    BMretailerID : Number, //1~3, 1-Retailer1, 2-Retailer2, 3-TraditionalTrade
-    value : [Number] //0-Urban, 1-Rural, 2-Total
+var variantInfoSchema = mongoose.Schema({
+    variantName                          : String,
+    parentBrandName                      : String,
+    parentCategoryID                     : Number,
+    parentCompanyID                      : Number, //TActors : 1~(4+3) 
+    shelfSpace                           : [Number], //0-Urban, 1-Rural
 })
 
 
+// var storePerceptionInfoSchema = mongoose.Schema({
+//     perception : String, //PRICE, CONVENIENCE, TOTAL
+//     onlineAdvertising : Number,
+//     offlineAdvertising : Number,
+//     localAdvertising : [Number], //0-Urban, 1-Rural               
+// })
