@@ -2038,6 +2038,247 @@
                         <div class="panel-heading">
                             <h3 class="panel-title text-center" popover="{{Label.getContent('B&M Business Profit Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Financial Results')}}-{{Label.getContent('B&M Business Profit & Loss Statement')}}({{Label.getContent('Elecssories')}})</h3>
                         </div>
+                        <table class="table table-condensed table-bordered table-success">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>
+                                        <p class="text-center">{{Label.getContent('Total')}}</p>
+                                    </th>
+                                    <th ng-repeat='brand1 in brand1s'>{{brand1.brandName}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="tr-info">
+                                    <td>
+                                        <p>{{Label.getContent('Sales')}}($mln)</p>
+                                    </td>
+                                    <td></td>
+                                    <td ng-repeat='brand1 in brand1s'>
+                                        <p class="text-right">{{brand1.Sales}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="text-right">{{Label.getContent('Change from Previous Period')}}(%)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                    <td ng-repeat='brand1 in brand1s'>
+                                        <p class="text-right">{{brand1.SalesChange}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="text-right">{{Label.getContent('Value Share in Category')}}(%)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                    <td ng-repeat='brand1 in brand1s'>
+                                        <p class="text-right">{{brand1.SalesShareInCategory}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-20">{{Label.getContent('Material Costs')}}($mln)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                    <td ng-repeat='brand1 in brand1s'>
+                                        <p class="text-right">{{brand1.MaterialCosts}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-40">{{Label.getContent('Cost of Goods Sold')}}($mln)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                    <td ng-repeat='brand1 in brand1s'>
+                                        <p class="text-right">{{brand1.CostOfGoodsSold}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-40">{{Label.getContent('Discontinued Goods Cost')}}($mln)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                    <td ng-repeat='brand1 in brand1s'>
+                                        <p class="text-right">{{brand1.DiscontinuedGoodsCost}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-40">{{Label.getContent('Inventory Holding Cost')}}($mln)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                    <td ng-repeat='brand1 in brand1s'>
+                                        <p class="text-right">{{brand1.InventoryHoldingCost}}</p>
+                                    </td>
+                                </tr>
+                                <tr class="tr-info">
+                                    <td>
+                                        <p>{{Label.getContent('Gross Profit')}}($mln)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                    <td ng-repeat='brand1 in brand1s'>
+                                        <p class="text-right">{{brand1.GrossProfit}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="text-right">{{Label.getContent('Change from Previous Period')}}(%)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                    <td ng-repeat='brand1 in brand1s'>
+                                        <p class="text-right">{{brand1.GrossProfitChange}}</p>
+                                    </td>
+                                </tr>
+                                <tr class="tr-info">
+                                    <td>
+                                        <p class="padding-20">{{Label.getContent('Gross Profit Margin')}}(%)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                    <td ng-repeat='brand1 in brand1s'>
+                                        <p class="text-right">{{brand1.GrossProfitMargin}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="text-right">{{Label.getContent('Share of Gross Profit/Loss in Category')}}(%)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                    <td ng-repeat='brand1 in brand1s'>
+                                        <p class="text-right">{{brand1.GrossProfitMarginShare}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-20">{{Label.getContent('Marketing Expenses')}}($mln)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                    <td ng-repeat='brand1 in brand1s'>
+                                        <p class="text-right">{{brand1.TradeAndMarketing}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-40">{{Label.getContent('Advertising Online')}}($mln)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                    <td ng-repeat='brand1 in brand1s'>
+                                        <p class="text-right">{{brand1.AdvertisingOnLine}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-40">{{Label.getContent('Advertising Offline')}}($mln)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                    <td ng-repeat='brand1 in brand1s'>
+                                        <p class="text-right">{{brand1.AdvertisingOffLine}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-40">{{Label.getContent('Trade Support')}}($mln)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                    <td ng-repeat='brand1 in brand1s'>
+                                        <p class="text-right">{{brand1.TradeAndMarketingAsPercentageOfSales}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="text-right">{{Label.getContent('Marketing Expenses')}}({{Label.getContent('as % of sales')}})</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                    <td ng-repeat='brand1 in brand1s'>
+                                        <p class="text-right">{{brand1.TradeAndMarketingShareInCategory}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="text-right">{{Label.getContent('Trade Support')}}($mln)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-20">{{Label.getContent('General Expenses')}}($mln)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-20">{{Label.getContent('Amortisation')}}($mln)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                </tr>
+                                <tr class="tr-info">
+                                    <td>
+                                        <p>{{Label.getContent('Operating Profit')}}($mln)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="text-right">{{Label.getContent('Change from Previous Period')}}(%)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                </tr>
+                                <tr class="tr-info">
+                                    <td>
+                                        <p>{{Label.getContent('Operating Profit Margin')}}(%)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="text-right">{{Label.getContent('Share of Operating Profit/Loss in Category')}}(%)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-20">{{Label.getContent('Interest')}}($mln)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-20">{{Label.getContent('Taxes')}}($mln)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-20">{{Label.getContent('Exceptional Costs/Profits')}}($mln)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                </tr>
+                                <tr class="tr-info">
+                                    <td>
+                                        <p>{{Label.getContent('Net Profit')}}($mln)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="text-right">{{Label.getContent('Change from Previous Period')}}(%)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                </tr>
+                                <tr class="tr-info">
+                                    <td>
+                                        <p>{{Label.getContent('Net Profit Margin')}}(%)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="text-right">{{Label.getContent('Share of Net Profit/Loss in Category')}}(%)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                     <div class="panel panel-success" ng-show='ProducerBMBusiness'>
                         <div class="panel-heading">
@@ -2049,7 +2290,7 @@
 
                     <div class="panel panel-success" ng-show='ProducerProfitability'>
                         <div class="panel-heading">
-                            <h3 class="panel-title text-center" popover="{{Label.getContent('B&M Business Profit Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Financial Results')}}-{{Label.getContent('Profitability by Channel')}}</h3>
+                            <h3 class="panel-title text-center" popover="{{Label.getContent('Profitability by Channel Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Financial Results')}}-{{Label.getContent('Profitability by Channel')}}</h3>
                         </div>
                         <table class="table table-condensed table-bordered table-success">
                             <thead>
@@ -4271,6 +4512,630 @@
                 <!--producer report end-->
 
                 <!--retailer report start-->
+                    <div class="panel panel-success" ng-show='RetailerConsolidate'>
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-center" popover="{{Label.getContent('Consolidated Profit & Loss Statement Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Financial Results')}}-{{Label.getContent('Consolidated Profit & Loss Statement')}}</h3>
+                        </div>
+                        <table class="table table-condensed table-bordered table-success">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>
+                                        <p class="text-center">{{Label.getContent('TOTAL')}}</p>
+                                    </th>
+                                    <th colspan="3">
+                                        <p class="text-center">
+                                            {{Label.getContent('Rural')}}
+                                        </p>
+                                    </th>
+                                    <th colspan="3">
+                                        <p class="text-center">
+                                            {{Label.getContent('Urban')}}
+                                        </p>
+                                    </th>
+                                </tr>
+                                
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        <p class="text-center">
+                                            {{Label.getContent('Total')}}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">
+                                            {{Label.getContent('Elecssories')}}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">
+                                            {{Label.getContent('HealthBeauties')}}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">
+                                            {{Label.getContent('Total')}}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">
+                                            {{Label.getContent('Elecssories')}}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">
+                                            {{Label.getContent('HealthBeauties')}}
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr class="tr-info">
+                                    <td>
+                                        <p>{{Label.getContent('Sales')}}($mln)</p>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-20">{{Label.getContent('Cost of Price Promotions')}}($mln)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-20">{{Label.getContent('Other Compensation')}}($mln)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr class="tr-info">
+                                    <td>
+                                        <p>{{Label.getContent('Net Sales Value')}}($mln)</p>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="text-right">{{Label.getContent('Change from Previous Period')}}(%)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-20">{{Label.getContent('Cost of Goods Sold')}}($mln)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-20">{{Label.getContent('Value of Quantity Discounts')}}($mln)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-20">{{Label.getContent('Value of Performance Bonus')}}($mln)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-20">{{Label.getContent('Discontinued Goods Cost')}}($mln)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-20">{{Label.getContent('Inventory Holding Cost')}}($mln)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr class="tr-info">
+                                    <td>
+                                        <p>{{Label.getContent('Gross Profit')}}($mln)</p>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="text-right">{{Label.getContent('Change from Previous Period')}}(%)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr class="tr-info">
+                                    <td>
+                                        <p>{{Label.getContent('Gross Profit Margin')}}(%)</p>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-20">{{Label.getContent('General Expenses')}}($mln)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+
+                                <tr class="tr-info">
+                                    <td>
+                                        <p>{{Label.getContent('Operating Profit')}}($mln)</p>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="text-right">{{Label.getContent('Change from Previous Period')}}(%)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr class="tr-info">
+                                    <td>
+                                        <p>{{Label.getContent('Operating Profit Margin')}}(%)</p>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-20">{{Label.getContent('Interest')}}($mln)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-20">{{Label.getContent('Taxes')}}($mln)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-20">{{Label.getContent('Exceptional Costs/Profits')}}($mln)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr class="tr-info">
+                                    <td>
+                                        <p>{{Label.getContent('Net Profit')}}($mln)</p>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="text-right">{{Label.getContent('Change from Previous Period')}}(%)</p>
+                                    </td>
+                                    <td class="td-info"></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr class="tr-info">
+                                    <td>
+                                        <p>{{Label.getContent('Net Profit Margin')}}(%)</p>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="panel panel-success" ng-show='RetailerRuralProfit'>
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-center" popover="{{Label.getContent('Rural Profit & Loss Statement Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Financial Results')}}-{{Label.getContent('Rural Profit & Loss Statement')}}({{Label.getContent('Elecssories')}})</h3>
+                        </div>
+                        <table class="table table-condensed table-bordered table-success">
+                        </table>
+                    </div>
+                    <div class="panel panel-success" ng-show='RetailerRuralProfit'>
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-center" popover="{{Label.getContent('Rural Profit & Loss Statement Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Financial Results')}}-{{Label.getContent('Rural Profit & Loss Statement')}}({{Label.getContent('HealthBeauties')}})</h3>
+                        </div>
+                        <table class="table table-condensed table-bordered table-success">
+                        </table>
+                    </div>
+
+                    <div class="panel panel-success" ng-show='RetailerUrbanProfit'></div>
+
+                    <div class="panel panel-success" ng-show='RetailerUrbanProfit'></div>
+
+                    <div class="panel panel-success" ng-show='RetailerProfitability'>
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-center" popover="{{Label.getContent('Profitability by Channel Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Financial Results')}}-{{Label.getContent('Profitability by Channel')}}</h3>
+                        </div>
+                        <table class="table table-condensed table-bordered table-success">
+                        </table>
+                    </div>
+
+                    <div class="panel panel-success" ng-show='RetailerNegotiations'>
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-center" popover="{{Label.getContent('Last Period Negotiations Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Financial Results')}}-{{Label.getContent('Last Period Negotiations')}}</h3>
+                        </div>
+                        <table class="table table-condensed table-bordered table-success">
+                        </table>
+                    </div>
+
+                    <div class="panel panel-success" ng-show='RuralConsumer'>
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-center" popover="{{Label.getContent('Market Shares by Consumer Segment Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Rural')}} {{Label.getContent('Situation Report')}}-{{Label.getContent('Market Shares by Consumer Segment')}}</h3>
+                        </div>
+                        <table class="table table-condensed table-bordered table-success">
+                        </table>
+                    </div>
+
+                    <div class="panel panel-success" ng-show='RuralShopper'>
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-center" popover="{{Label.getContent('Market Shares by Shopper Segment Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Rural')}} {{Label.getContent('Situation Report')}}-{{Label.getContent('Market Shares by Shopper Segment')}}</h3>
+                        </div>
+                        <table class="table table-condensed table-bordered table-success">
+                        </table>
+                    </div>
+
+                    <div class="panel panel-success" ng-show='RuralVolume'>
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-center" popover="{{Label.getContent('Volume Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Rural')}} {{Label.getContent('Situation Report')}}-{{Label.getContent('Volume')}}</h3>
+                        </div>
+                        <table class="table table-condensed table-bordered table-success">
+                        </table>
+                    </div>
+
+                    <div class="panel panel-success" ng-show='UrbanConsumer'>
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-center" popover="{{Label.getContent('Market Shares by Consumer Segment Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Urban')}} {{Label.getContent('Situation Report')}}-{{Label.getContent('Market Shares by Consumer Segment')}}</h3>
+                        </div>
+                        <table class="table table-condensed table-bordered table-success">
+                        </table>
+                    </div>
+
+                    <div class="panel panel-success" ng-show='UrbanShopper'>
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-center" popover="{{Label.getContent('Market Shares by Shopper Segment Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Urban')}} {{Label.getContent('Situation Report')}}-{{Label.getContent('Market Shares by Shopper Segment')}}</h3>
+                        </div>
+                        <table class="table table-condensed table-bordered table-success">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th colspan="2">
+                                        <p class="text-center">
+                                            {{Label.getContent('B&M Only')}}
+                                        </p>
+                                    </th>
+                                    <th colspan="2">
+                                        <p class="text-center">
+                                            {{Label.getContent('Online Only')}}
+                                        </p>
+                                    </th>
+                                    <th colspan="2">
+                                        <p class="text-center">
+                                            {{Label.getContent('Mixed')}}
+                                        </p>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Change')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Change')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Change')}}</p>
+                                    </td>
+                                </tr>
+                                <tr class="info">
+                                    <td colspan="7">
+                                        <p>{{Label.getContent('Rural')}}</p>
+                                    </td>
+                                </tr>
+                                <tr class="info" ng-repeat='rural1 in rural1s'>
+                                    <td>
+                                        <p class="padding-20">{{rural1.fullName}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural1.bmShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural1.bmChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural1.onlineShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural1.onlineChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural1.mixedShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural1.mixedChange}}</p>
+                                    </td>
+                                </tr>
+                                <tr class="warning">
+                                    <td colspan="7">
+                                        <p>{{Label.getContent('Urban')}}</p>
+                                    </td>
+                                </tr>
+                                <tr class="warning" ng-repeat='urban1 in urban1s'>
+                                    <td>
+                                        <p class="padding-20">{{urban1.fullName}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban1.bmShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban1.bmChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban1.onlineShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban1.onlineChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban1.mixedShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban1.mixedChange}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <th colspan="2">
+                                        <p class="text-center">
+                                            {{Label.getContent('B&M Only')}}
+                                        </p>
+                                    </th>
+                                    <th colspan="2">
+                                        <p class="text-center">
+                                            {{Label.getContent('Online Only')}}
+                                        </p>
+                                    </th>
+                                    <th colspan="2">
+                                        <p class="text-center">
+                                            {{Label.getContent('Mixed')}}
+                                        </p>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Change')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Change')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Change')}}</p>
+                                    </td>
+                                </tr>
+                                <tr class="info">
+                                    <td colspan="7">
+                                        <p>{{Label.getContent('Rural')}}</p>
+                                    </td>
+                                </tr>
+                                <tr class="info" ng-repeat='rural2 in rural2s'>
+                                    <td>
+                                        <p class="padding-20">{{rural2.fullName}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural2.bmShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural2.bmChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural2.onlineShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural2.onlineChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural2.mixedShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{rural2.mixedChange}}</p>
+                                    </td>
+                                </tr>
+                                <tr class="warning">
+                                    <td colspan="7">
+                                        <p>{{Label.getContent('Urban')}}</p>
+                                    </td>
+                                </tr>
+                                <tr class="warning" ng-repeat='urban2 in urban2s'>
+                                    <td>
+                                        <p class="padding-20">{{urban2.fullName}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban2.bmShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban2.bmChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban2.onlineShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban2.onlineChange}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban2.mixedShare}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{urban2.mixedChange}}</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="panel panel-success" ng-show='UrbanVolume'>
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-center" popover="{{Label.getContent('Volume Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('HealthBeauties')}} {{Label.getContent('Situation Report')}}-{{Label.getContent('Volume')}}</h3>
+                        </div>
+                        <table class="table table-condensed table-bordered table-success">
+                        </table>
+                    </div>
+
+                    <div class="panel panel-success" ng-show='RetailerKey'>
+                         <div class="panel-heading">
+                            <h3 class="panel-title text-center" popover="{{Label.getContent('Key Performance Indicators Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Key Performance Indicators')}}</h3>
+                        </div>
+                        <table class="table table-condensed table-bordered table-success">
+                        </table>
+                    </div>
                 <!--retailer report end-->
 
             </div>
@@ -4350,6 +5215,60 @@
                     <li class="" ng-show='producerShow'>
                         <a href="/#/summaryReport" style="color:#5CB85C" ng-click='showProducerKey()'>{{Label.getContent('Key Performance Indicators')}}</a>
                     </li>
+
+                    <li class="" ng-show='retailerShow'>
+                        <a href="/#/summaryReport" style="color:#5CB85C" ng-click='showRetailerConsolidate()'>{{Label.getContent('Financial Results')}}</a>
+                        <ul class="nav second-sidenav">
+                            <li class="">
+                                <a href="/#/summaryReport" style="color:#5CB85C" ng-click='showRetailerConsolidate()'>{{Label.getContent('Consolidated Profit & Loss Statement')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/summaryReport" style="color:#5CB85C" ng-click='showRetailerRuralProfit()'>{{Label.getContent('Rural')}} {{Label.getContent(' Profit & Loss Statement')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/summaryReport" style="color:#5CB85C" ng-click='showRetailerUrbanProfit()'>{{Label.getContent('Urban')}} {{Label.getContent(' Profit & Loss Statement')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/summaryReport" style="color:#5CB85C" ng-click='showRetailerProfitability()'>{{Label.getContent('Profitability by Channel')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/summaryReport" style="color:#5CB85C" ng-click='showRetailerNegotiations()'>{{Label.getContent('Last Period Negotiations')}}</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="" ng-show='retailerShow'>
+                        <a href="/#/summaryReport" style="color:#5CB85C" ng-click='showRuralConsumer()'>{{Label.getContent('Rural')}} {{Label.getContent('Situation Report')}}</a>
+                        <ul class="nav second-sidenav">
+                            <li class="">
+                                <a href="/#/summaryReport" style="color:#5CB85C" ng-click='showRuralConsumer()'>{{Label.getContent('Market Shares by Consumer Segment')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/summaryReport" style="color:#5CB85C" ng-click='showRuralShopper()'>{{Label.getContent('Market Shares by Shopper Segment')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/summaryReport" style="color:#5CB85C" ng-click='showRuralVolume()'>{{Label.getContent('Volume')}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="" ng-show='retailerShow'>
+                        <a href="/#/summaryReport" style="color:#5CB85C" ng-click='showUrbanConsumer()'>{{Label.getContent('Urban')}} {{Label.getContent('Situation Report')}}</a>
+                        <ul class="nav second-sidenav">
+                            <li class="">
+                                <a href="/#/summaryReport" style="color:#5CB85C" ng-click='showUrbanConsumer()'>{{Label.getContent('Market Shares by Consumer Segment')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/summaryReport" style="color:#5CB85C" ng-click='showUrbanShopper()'>{{Label.getContent('Market Shares by Shopper Segment')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/summaryReport" style="color:#5CB85C" ng-click='showUrbanVolume()'>{{Label.getContent('Volume')}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="" ng-show='retailerShow'>
+                        <a href="/#/summaryReport" style="color:#5CB85C" ng-click='showRetailerKey()'>{{Label.getContent('Key Performance Indicators')}}</a>
+                    </li>
+
                     <li class="">
                         <a href="/#/summaryReport" style="color:#D9534F">{{Label.getContent('Awareness')}}</a>
                     </li>
@@ -4376,3 +5295,4 @@
         </div>
     </div>
 </div>
+

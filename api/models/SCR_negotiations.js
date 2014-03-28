@@ -171,6 +171,9 @@ exports.addSCR_negotiations=function(req,res,next){
             modernRetailerInfo:[{
                 modernRetailerID:1,
                 value:10
+            },{
+                modernRetailerID:2,
+                value:30
             }]
         },{
             variantName:'_B',
@@ -191,6 +194,9 @@ exports.addSCR_negotiations=function(req,res,next){
             modernRetailerInfo:[{
                 modernRetailerID:1,
                 value:10
+            },{
+                modernRetailerID:2,
+                value:30
             }]
         },{
             variantName:'_B',
@@ -211,6 +217,9 @@ exports.addSCR_negotiations=function(req,res,next){
             modernRetailerInfo:[{
                 modernRetailerID:1,
                 value:1
+            },{
+                modernRetailerID:2,
+                value:0
             }]
         },{
             variantName:'_B',

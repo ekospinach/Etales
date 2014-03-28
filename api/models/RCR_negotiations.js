@@ -14,17 +14,17 @@ var RCR_negotiationsSchema = mongoose.Schema({
     retailerID  : Number, //TBMRetailers : 1~3 (BMRetsMax)
 
     vnd_QuantityDiscount  : {
-        discount_MinimumVolume : [variantInfoSchema]
-        discount_Rate          : [variantInfoSchema]
-    }
+        discount_MinimumVolume : [variantInfoSchema],
+        discount_Rate          : [variantInfoSchema],
+    },
     vnd_TargetBonus       : {
-        bonus_TargetVolume : [variantInfoSchema]
-        bonus_Rate         : [variantInfoSchema]
-        bonus_Value        : [variantInfoSchema]        
-    }
-    vnd_PaymentTerms      : [variantInfoSchema]
-    vnd_OtherCompensation : [variantInfoSchema]
-    vnd_ContractHonoured  : [variantInfoSchema],  
+        bonus_TargetVolume : [variantInfoSchema],
+        bonus_Rate         : [variantInfoSchema],
+        bonus_Value        : [variantInfoSchema],       
+    },
+    vnd_PaymentTerms      : [variantInfoSchema],
+    vnd_OtherCompensation : [variantInfoSchema],
+    vnd_ContractHonoured  : [variantInfoSchema] 
 })
 
 var variantInfoSchema = mongoose.Schema({
@@ -44,7 +44,223 @@ var producerInfoSchema = mongoose.Schema({
 var RCR_negotiations=mongoose.model('RCR_negotiations',RCR_negotiationsSchema);
 
 exports.addRCR_negotiations=function(req,res,next){
-
+    var newRCR_negotiations=RCR_negotiations({
+        period : 0,
+        seminar : 'MAY',
+        retailerID  : 1,
+        vnd_QuantityDiscount  : {
+            discount_MinimumVolume : [{
+                variantName:'_A',
+                parentBrandName:'ELAN1',
+                parentCategoryID:1,
+                producerInfo:[{
+                    producerID:1,
+                    value:10
+                }]
+            },{
+                variantName:'_B',
+                parentBrandName:'HLAN2',
+                parentCategoryID:2,
+                producerInfo:[{
+                    producerID:2,
+                    value:20
+                }]
+            },{
+                variantName:'_C',
+                parentBrandName:'ETALE3',
+                parentCategoryID:1,
+                producerInfo:[{
+                    producerID:3,
+                    value:30
+                }]
+            }],
+            discount_Rate          : [{
+                variantName:'_A',
+                parentBrandName:'ELAN1',
+                parentCategoryID:1,
+                producerInfo:[{
+                    producerID:1,
+                    value:10
+                }]
+            },{
+                variantName:'_B',
+                parentBrandName:'HLAN2',
+                parentCategoryID:2,
+                producerInfo:[{
+                    producerID:2,
+                    value:20
+                }]
+            },{
+                variantName:'_C',
+                parentBrandName:'ETALE3',
+                parentCategoryID:1,
+                producerInfo:[{
+                    producerID:3,
+                    value:30
+                }]
+            }],
+        },
+        vnd_TargetBonus       : {
+            bonus_TargetVolume : [{
+                variantName:'_A',
+                parentBrandName:'ELAN1',
+                parentCategoryID:1,
+                producerInfo:[{
+                    producerID:1,
+                    value:10
+                }]
+            },{
+                variantName:'_B',
+                parentBrandName:'HLAN2',
+                parentCategoryID:2,
+                producerInfo:[{
+                    producerID:2,
+                    value:20
+                }]
+            },{
+                variantName:'_C',
+                parentBrandName:'ETALE3',
+                parentCategoryID:1,
+                producerInfo:[{
+                    producerID:3,
+                    value:30
+                }]
+            }],
+            bonus_Rate         : [{
+                variantName:'_A',
+                parentBrandName:'ELAN1',
+                parentCategoryID:1,
+                producerInfo:[{
+                    producerID:1,
+                    value:10
+                }]
+            },{
+                variantName:'_B',
+                parentBrandName:'HLAN2',
+                parentCategoryID:2,
+                producerInfo:[{
+                    producerID:2,
+                    value:20
+                }]
+            },{
+                variantName:'_C',
+                parentBrandName:'ETALE3',
+                parentCategoryID:1,
+                producerInfo:[{
+                    producerID:3,
+                    value:30
+                }]
+            }],
+            bonus_Value        : [{
+                variantName:'_A',
+                parentBrandName:'ELAN1',
+                parentCategoryID:1,
+                producerInfo:[{
+                    producerID:1,
+                    value:10
+                }]
+            },{
+                variantName:'_B',
+                parentBrandName:'HLAN2',
+                parentCategoryID:2,
+                producerInfo:[{
+                    producerID:2,
+                    value:20
+                }]
+            },{
+                variantName:'_C',
+                parentBrandName:'ETALE3',
+                parentCategoryID:1,
+                producerInfo:[{
+                    producerID:3,
+                    value:30
+                }]
+            }]  
+        },
+        vnd_PaymentTerms      : [{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            producerInfo:[{
+                producerID:1,
+                value:10
+            }]
+        },{
+            variantName:'_B',
+            parentBrandName:'HLAN2',
+            parentCategoryID:2,
+            producerInfo:[{
+                producerID:2,
+                value:20
+            }]
+        },{
+            variantName:'_C',
+            parentBrandName:'ETALE3',
+            parentCategoryID:1,
+            producerInfo:[{
+                producerID:3,
+                value:30
+            }]
+        }],
+        vnd_OtherCompensation : [{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            producerInfo:[{
+                producerID:1,
+                value:10
+            }]
+        },{
+            variantName:'_B',
+            parentBrandName:'HLAN2',
+            parentCategoryID:2,
+            producerInfo:[{
+                producerID:2,
+                value:20
+            }]
+        },{
+            variantName:'_C',
+            parentBrandName:'ETALE3',
+            parentCategoryID:1,
+            producerInfo:[{
+                producerID:3,
+                value:30
+            }]
+        }],
+        vnd_ContractHonoured  : [{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            producerInfo:[{
+                producerID:1,
+                value:10
+            }]
+        },{
+            variantName:'_B',
+            parentBrandName:'HLAN2',
+            parentCategoryID:2,
+            producerInfo:[{
+                producerID:2,
+                value:20
+            }]
+        },{
+            variantName:'_C',
+            parentBrandName:'ETALE3',
+            parentCategoryID:1,
+            producerInfo:[{
+                producerID:3,
+                value:30
+            }]
+        }] 
+    });
+    newRCR_negotiations.save(function(err) {
+        if(!err){
+            res.send(200,newRCR_negotiations);
+            console.log("created new GeneralReport:"+newRCR_negotiations);
+        } else {
+            res.send(400,"failed.");
+        }
+    }); 
 }
 
 exports.getRCR_negotiations=function(req,res,next){

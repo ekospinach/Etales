@@ -36,7 +36,144 @@ var variantInfoSchema = mongoose.Schema({
 var RCR_inventoryVolumes=mongoose.model('RCR_inventoryVolumes',RCR_inventoryVolumesSchema);
 
 exports.addRCR_inventoryVolumes=function(req,res,next){
-
+    var newRCR_inventoryVolumes=RCR_inventoryVolumes({
+        period : 0,
+        seminar : 'MAY',
+        retailerID  : 1, //TBMRetailers : 1~3 (BMRetsMax)
+        rcrviv_Initial          : [{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompany:1,
+            value:[10,20,30]
+        },{
+            variantName:'_B',
+            parentBrandName:'HLAN2',
+            parentCategoryID:2,
+            parentCompany:2,
+            value:[40,50,60]
+        },{
+            variantName:'_C',
+            parentBrandName:'ETALE3',
+            parentCategoryID:1,
+            ParentCompany:3,
+            value:[55,65,75]
+        },{
+            variantName:'_D',
+            parentBrandName:'HTTP2',
+            parentCategoryID:2,
+            ParentCompany:2,
+            value:[15,25,35]
+        }],
+        rcrviv_Purchase         : [{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompany:1,
+            value:[10,20,30]
+        },{
+            variantName:'_B',
+            parentBrandName:'HLAN2',
+            parentCategoryID:2,
+            parentCompany:2,
+            value:[40,50,60]
+        },{
+            variantName:'_C',
+            parentBrandName:'ETALE3',
+            parentCategoryID:1,
+            ParentCompany:3,
+            value:[55,65,75]
+        },{
+            variantName:'_D',
+            parentBrandName:'HTTP2',
+            parentCategoryID:2,
+            ParentCompany:2,
+            value:[15,25,35]
+        }],
+        rcrviv_Sales            : [{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompany:1,
+            value:[10,20,30]
+        },{
+            variantName:'_B',
+            parentBrandName:'HLAN2',
+            parentCategoryID:2,
+            parentCompany:2,
+            value:[40,50,60]
+        },{
+            variantName:'_C',
+            parentBrandName:'ETALE3',
+            parentCategoryID:1,
+            ParentCompany:3,
+            value:[55,65,75]
+        },{
+            variantName:'_D',
+            parentBrandName:'HTTP2',
+            parentCategoryID:2,
+            ParentCompany:2,
+            value:[15,25,35]
+        }],
+        rcrviv_Discontinued     : [{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompany:1,
+            value:[10,20,30]
+        },{
+            variantName:'_B',
+            parentBrandName:'HLAN2',
+            parentCategoryID:2,
+            parentCompany:2,
+            value:[40,50,60]
+        },{
+            variantName:'_C',
+            parentBrandName:'ETALE3',
+            parentCategoryID:1,
+            ParentCompany:3,
+            value:[55,65,75]
+        },{
+            variantName:'_D',
+            parentBrandName:'HTTP2',
+            parentCategoryID:2,
+            ParentCompany:2,
+            value:[15,25,35]
+        }],
+        rcrviv_Closing          : [{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompany:1,
+            value:[10,20,30]
+        },{
+            variantName:'_B',
+            parentBrandName:'HLAN2',
+            parentCategoryID:2,
+            parentCompany:2,
+            value:[40,50,60]
+        },{
+            variantName:'_C',
+            parentBrandName:'ETALE3',
+            parentCategoryID:1,
+            ParentCompany:3,
+            value:[55,65,75]
+        },{
+            variantName:'_D',
+            parentBrandName:'HTTP2',
+            parentCategoryID:2,
+            ParentCompany:2,
+            value:[15,25,35]
+        }]
+    });
+    newRCR_inventoryVolumes.save(function(err) {
+        if(!err){
+            res.send(200,newRCR_inventoryVolumes);
+            console.log("created new GeneralReport:"+newRCR_inventoryVolumes);
+        } else {
+            res.send(400,"failed.");
+        }
+    }); 
 }
 
 exports.getRCR_inventoryVolumes=function(req,res,next){

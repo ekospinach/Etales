@@ -43,14 +43,20 @@ var SCR_consolidatedProfitAndLossSchema = mongoose.Schema({
     scrb_Sales                                : [brandInfoSchema],
     scrb_SalesChange                          : [brandInfoSchema],
     scrb_SalesShareInCategory                 : [brandInfoSchema],
+    //add to the report
+    scrb_MaterialCosts                        : [brandInfoSchema],
     scrb_CostOfGoodsSold                      : [brandInfoSchema],
     scrb_DiscontinuedGoodsCost                : [brandInfoSchema],
     scrb_InventoryHoldingCost                 : [brandInfoSchema],
     scrb_GrossProfit                          : [brandInfoSchema],
     scrb_GrossProfitChange                    : [brandInfoSchema],
+    //add to the report
+    scrb_GrossProfitMargin                    : [brandInfoSchema],
+    scrb_GrossProfitMarginShare               : [brandInfoSchema],    
     scrb_TradeAndMarketing                    : [brandInfoSchema],
     scrb_AdvertisingOnLine                    : [brandInfoSchema],
     scrb_AdvertisingOffLine                   : [brandInfoSchema],
+    scrb_TradeSupport                         : [brandInfoSchema],
     scrb_TradeAndMarketingAsPercentageOfSales : [brandInfoSchema],
     scrb_TradeAndMarketingShareInCategory     : [brandInfoSchema],
     scrb_GeneralExpenses                      : [brandInfoSchema],
@@ -71,14 +77,20 @@ var SCR_consolidatedProfitAndLossSchema = mongoose.Schema({
     scrv_Sales                                : [variantInfoSchema],
     scrv_SalesChange                          : [variantInfoSchema],
     scrv_SalesShareInCategory                 : [variantInfoSchema],
+    //add to the report
+    scrv_MaterialCosts                        : [variantInfoSchema],
     scrv_CostOfGoodsSold                      : [variantInfoSchema],
     scrv_DiscontinuedGoodsCost                : [variantInfoSchema],
     scrv_InventoryHoldingCost                 : [variantInfoSchema],
     scrv_GrossProfit                          : [variantInfoSchema],
     scrv_GrossProfitChange                    : [variantInfoSchema],
+    //add to the report
+    scrv_GrossProfitMargin                    : [variantInfoSchema],
+    scrv_GrossProfitMarginShare               : [variantInfoSchema],    
     scrv_TradeAndMarketing                    : [variantInfoSchema],
     scrv_AdvertisingOnLine                    : [variantInfoSchema],
     scrv_AdvertisingOffLine                   : [variantInfoSchema],
+    scrv_TradeSupport                         : [variantInfoSchema],
     scrv_TradeAndMarketingAsPercentageOfSales : [variantInfoSchema],
     scrv_TradeAndMarketingShareInCategory     : [variantInfoSchema],
     scrv_GeneralExpenses                      : [variantInfoSchema],
@@ -410,6 +422,24 @@ exports.addSCR_consolidatedProfitAndLoss=function(req,res,next){
             parentCategoryID:2,
             value:[55,65,75]
         }],
+        scrb_MaterialCosts                 : [{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            value:[10,20,30]
+        },{
+            brandName:'HLAN1',
+            parentCategoryID:2,
+            value:[40,50,60]
+        }],
+        scrb_CostOfGoodsSold                      : [{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            value:[90,80,70]
+        },{
+            brandName:'HLAN1',
+            parentCategoryID:2,
+            value:[55,65,75]
+        }],
         scrb_DiscontinuedGoodsCost                : [{
             brandName:'ELAN1',
             parentCategoryID:1,
@@ -455,6 +485,42 @@ exports.addSCR_consolidatedProfitAndLoss=function(req,res,next){
             parentCategoryID:2,
             value:[40,50,60]
         }],
+        scrb_GrossProfitMargin                    : [{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            value:[90,80,70]
+        },{
+            brandName:'HLAN1',
+            parentCategoryID:2,
+            value:[55,65,75]
+        }],
+        scrb_TradeAndMarketing                    : [{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            value:[10,20,30]
+        },{
+            brandName:'HLAN1',
+            parentCategoryID:2,
+            value:[40,50,60]
+        }],
+        scrb_GrossProfitMarginShare               : [{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            value:[90,80,70]
+        },{
+            brandName:'HLAN1',
+            parentCategoryID:2,
+            value:[55,65,75]
+        }],
+        scrb_TradeAndMarketing                    : [{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            value:[10,20,30]
+        },{
+            brandName:'HLAN1',
+            parentCategoryID:2,
+            value:[40,50,60]
+        }],
         scrb_AdvertisingOnLine                    : [{
             brandName:'ELAN1',
             parentCategoryID:1,
@@ -465,6 +531,15 @@ exports.addSCR_consolidatedProfitAndLoss=function(req,res,next){
             value:[55,65,75]
         }],
         scrb_AdvertisingOffLine                   : [{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            value:[10,20,30]
+        },{
+            brandName:'HLAN1',
+            parentCategoryID:2,
+            value:[40,50,60]
+        }],
+        scrb_TradeSupport                         : [{
             brandName:'ELAN1',
             parentCategoryID:1,
             value:[10,20,30]
@@ -643,6 +718,17 @@ exports.addSCR_consolidatedProfitAndLoss=function(req,res,next){
             parentCategoryID:2,
             value:[70,80,90]
         }],
+        scrv_MaterialCosts                        : [{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            value:[10,20,30]
+        },{
+            variantName:'_B',
+            parentBrandName:'HLAN1',
+            parentCategoryID:2,
+            value:[70,80,90]
+        }],
         scrv_CostOfGoodsSold                      : [{
             variantName:'_A',
             parentBrandName:'ELAN1',
@@ -698,6 +784,28 @@ exports.addSCR_consolidatedProfitAndLoss=function(req,res,next){
             parentCategoryID:2,
             value:[45,55,65]
         }],
+        scrv_GrossProfitMargin                    : [{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            value:[40,50,60]
+        },{
+            variantName:'_B',
+            parentBrandName:'HLAN1',
+            parentCategoryID:2,
+            value:[45,55,65]
+        }],
+        scrv_GrossProfitMarginShare               : [{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            value:[40,50,60]
+        },{
+            variantName:'_B',
+            parentBrandName:'HLAN1',
+            parentCategoryID:2,
+            value:[45,55,65]
+        }],
         scrv_TradeAndMarketing                    : [{
             variantName:'_A',
             parentBrandName:'ELAN1',
@@ -721,6 +829,17 @@ exports.addSCR_consolidatedProfitAndLoss=function(req,res,next){
             value:[45,55,65]
         }],
         scrv_AdvertisingOffLine                   : [{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            value:[10,20,30]
+        },{
+            variantName:'_B',
+            parentBrandName:'HLAN1',
+            parentCategoryID:2,
+            value:[70,80,90]
+        }],
+         scrv_TradeSupport                        : [{
             variantName:'_A',
             parentBrandName:'ELAN1',
             parentCategoryID:1,

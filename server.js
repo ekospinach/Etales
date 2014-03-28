@@ -171,6 +171,21 @@ app.get('/SCR-keyPerformanceIndicators/:seminar/:period/:producerID',require('./
 app.get('/SCR-negotiations/:seminar/:period/:producerID',require('./api/models/SCR_negotiations.js').getSCR_negotiations);
 app.get('/SCR-sharesCrossSegment/:seminar/:period/:producerID',require('./api/models/SCR_sharesCrossSegment.js').getSCR_sharesCrossSegment);
 
+//add retailer report record
+app.get('/addRCR-consolidatedProfitAndLoss',require('./api/models/RCR_consolidatedProfitAndLoss.js').addRCR_consolidatedProfitAndLoss);
+app.get('/addRCR-inventoryVolumes',require('./api/models/RCR_inventoryVolumes.js').addRCR_inventoryVolumes);
+app.get('/addRCR-keyPerformanceIndicators',require('./api/models/RCR_keyPerformanceIndicators.js').addRCR_keyPerformanceIndicators);
+app.get('/addRCR-negotiations',require('./api/models/RCR_negotiations.js').addRCR_negotiations);
+app.get('/addRCR-profitabilityBySupplier',require('./api/models/RCR_profitabilityBySupplier.js').addRCR_profitabilityBySupplier);
+app.get('/addRCR-sharesCrossSegment',require('./api/models/RCR_sharesCrossSegment.js').addRCR_sharesCrossSegment);
+
+//get retailer report record
+app.get('/RCR-consolidatedProfitAndLoss/:seminar/:period/:retailerID',require('./api/models/RCR_consolidatedProfitAndLoss.js').getRCR_consolidatedProfitAndLoss);
+app.get('/RCR-inventoryVolumes/:seminar/:period/:retailerID',require('./api/models/RCR_inventoryVolumes.js').getRCR_inventoryVolumes);
+app.get('/RCR-keyPerformanceIndicators/:seminar/:period/:retailerID',require('./api/models/RCR_keyPerformanceIndicators.js').getRCR_keyPerformanceIndicators);
+app.get('/RCR-negotiations/:seminar/:period/:retailerID',require('./api/models/RCR_negotiations.js').getRCR_negotiations);
+app.get('/RCR-profitabilityBySupplier/:seminar/:period/:retailerID',require('./api/models/RCR_profitabilityBySupplier.js').getRCR_profitabilityBySupplier);
+app.get('/RCR-sharesCrossSegment/:seminar/:period/:retailerID',require('./api/models/RCR_sharesCrossSegment.js').getRCR_sharesCrossSegment);
 app.use(express.errorHandler());
 
 

@@ -1,14 +1,9 @@
 define(['app','socketIO','routingConfig'], function(app) {
-
 	app.controller('summaryReportCtrl',['$scope', '$http', 'ProducerDecisionBase','$rootScope','Auth','$anchorScroll','$q','PlayerInfo','SeminarInfo','PeriodInfo','Label','RoleInfo', function($scope, $http, ProducerDecisionBase,$rootScope,Auth,$anchorScroll,$q,PlayerInfo,SeminarInfo,PeriodInfo,Label,RoleInfo) {
-		// You can access the scope of the controller from here
-
 			$rootScope.loginCss="";
 		    $rootScope.loginFooter="bs-footer";
 		    $rootScope.loginLink="footer-links";
 		    $rootScope.loginDiv="container";
-
-
 		    if(RoleInfo.getRole()==2){
 		    	$scope.producerShow=true;
 		    	$scope.retailerShow=false;
@@ -18,84 +13,41 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    }
 
 		    var switching=function(type){
-		    	$scope.Performance=false;
-				$scope.MarketShare=false;
-				$scope.MarketSales=false;
-				$scope.Segment=false;
-				$scope.Cross=false;
-				$scope.Product=false;
-				$scope.EMallPrices=false;
-				$scope.ProducerConsolidate=false;
-				$scope.ProducerBMBusiness=false;
-				$scope.ProducerOnlineBusiness=false;
-				$scope.ProducerProfitability=false;
-				$scope.ProducerNegotiations=false;
-				$scope.ElecssoriesConsumer=false;
-				$scope.ElecssoriesShopper=false;
-				$scope.ElecssoriesVolume=false;
-				$scope.HealthBeautiesConsumer=false;
-				$scope.HealthBeautiesShopper=false;
-				$scope.HealthBeautiesVolume=false;
-				$scope.ProducerKey=false;
+		    	$scope.Performance=$scope.MarketShare=$scope.MarketSales=$scope.Segment=$scope.Cross=$scope.Product=$scope.EMallPrices=$scope.ProducerConsolidate=$scope.ProducerBMBusiness=$scope.ProducerOnlineBusiness=$scope.ProducerProfitability=$scope.ProducerNegotiations=$scope.ElecssoriesConsumer=$scope.ElecssoriesShopper=$scope.ElecssoriesVolume=$scope.HealthBeautiesConsumer=$scope.HealthBeautiesShopper=$scope.HealthBeautiesVolume=$scope.ProducerKey=$scope.showRuralConsumer=$scope.showRuralShopper=$scope.showRuralVolume=$scope.showUrbanConsumer=$scope.showUrbanShopper=$scope.showUrbanVolume=$scope.showRetailerKey=$scope.showRetailerConsolidate=$scope.showRetailerRuralProfit=$scope.showRetailerUrbanProfit=$scope.showRetailerProfitability=$scope.showRetailerNegotiations=false;
 		    	switch(type){
-		    		case'showPerformance':
-			    		$scope.Performance=true;
-				    break;
-				    case'showMarketShare':
-				    	$scope.MarketShare=true;
-				    break;
-				    case'showMarketSales':
-				    	$scope.MarketSales=true;
-				    break;
-				    case'showSegment':
-				    	$scope.Segment=true;
-				    break;
-				    case'showCross':
-				    	$scope.Cross=true;
-				    break;
-				    case'showProduct':
-				    	$scope.Product=true;
-				    break;
-				    case'showEMallPrices':
-				    	$scope.EMallPrices=true;
-				    break;
-				    case'showProducerConsolidate':
-				    	$scope.ProducerConsolidate=true;
-				    break;
-				    case'showProducerBMBusiness':
-				    	$scope.ProducerBMBusiness=true;
-				    break;
-				    case'showProducerOnlineBusiness':
-				    	$scope.ProducerOnlineBusiness=true;
-				    break;
-				    case'showProducerProfitability':
-				    	$scope.ProducerProfitability=true;
-				    break;
-				    case'showProducerNegotiations':
-				    	$scope.ProducerNegotiations=true;
-				    break;
-				    case'showElecssoriesConsumer':
-				    	$scope.ElecssoriesConsumer=true;
-				    break;
-				    case'showElecssoriesShopper':
-				    	$scope.ElecssoriesShopper=true;
-				    break;
-				    case'showElecssoriesVolume':
-				    	$scope.ElecssoriesVolume=true;
-				    break;
-				    case'showHealthBeautiesConsumer':
-				    	$scope.HealthBeautiesConsumer=true;
-				    break;
-				    case'showHealthBeautiesShopper':
-				    	$scope.HealthBeautiesShopper=true;
-				    break;
-				    case'showHealthBeautiesVolume':
-				    	$scope.HealthBeautiesVolume=true;
-				    break;
-				    case'showProducerKey':
-				    	$scope.ProducerKey=true;
-				    break;
-
+		    		case'showPerformance':$scope.Performance=true;break;
+				    case'showMarketShare':$scope.MarketShare=true;break;
+				    case'showMarketSales':$scope.MarketSales=true;break;
+				    case'showSegment':$scope.Segment=true;break;
+				    case'showCross':$scope.Cross=true;break;
+				    case'showProduct':$scope.Product=true;break;
+				    case'showEMallPrices':$scope.EMallPrices=true;break;
+				    
+				    case'showProducerConsolidate':$scope.ProducerConsolidate=true;break;
+				    case'showProducerBMBusiness':$scope.ProducerBMBusiness=true;break;
+				    case'showProducerOnlineBusiness':$scope.ProducerOnlineBusiness=true;break;
+				    case'showProducerProfitability':$scope.ProducerProfitability=true;break;
+				    case'showProducerNegotiations':$scope.ProducerNegotiations=true;break;
+				    case'showElecssoriesConsumer':$scope.ElecssoriesConsumer=true;break;
+				    case'showElecssoriesShopper':$scope.ElecssoriesShopper=true;break;
+				    case'showElecssoriesVolume':$scope.ElecssoriesVolume=true;break;
+				    case'showHealthBeautiesConsumer':$scope.HealthBeautiesConsumer=true;break;
+				    case'showHealthBeautiesShopper':$scope.HealthBeautiesShopper=true;break;
+				    case'showHealthBeautiesVolume':$scope.HealthBeautiesVolume=true;break;
+				    case'showProducerKey':$scope.ProducerKey=true;break;
+				   
+				    case'showRetailerConsolidate':$scope.RetailerConsolidate=true;break;
+				    case'showRetailerRuralProfit':$scope.RetailerRuralProfit=true;break;
+				    case'showRetailerUrbanProfit':$scope.RetailerUrbanProfit=true;break;
+				    case'showRetailerProfitability':$scope.RetailerProfitability=true;break;
+				    case'showRetailerNegotiations':$scope.RetailerNegotiations=true;break;
+				    case'showRuralConsumer':$scope.RuralConsumer=true;break;
+				    case'showRuralShopper':$scope.RuralShopper=true;break;
+				    case'showRuralVolume':$scope.RuralVolume=true;break;
+				    case'showUrbanConsumer':$scope.UrbanConsumer=true;break;
+				    case'showUrbanShopper':$scope.UrbanShopper=true;break;
+				    case'showUrbanVolume':$scope.UrbanVolume=true;break;
+				    case'showRetailerKey':$scope.RetailerKey=true;break;
 		    	}
 		    }
 
@@ -129,164 +81,63 @@ define(['app','socketIO','routingConfig'], function(app) {
 
 		    var showMarketShare=function(){
 		    	switching('showMarketShare');
-
 		    	var url='/marketShare/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1);
 		    	$http({
 		    		method:'GET',
 		    		url:url
 		    	}).then(function(data){
-		    		$scope.totals=new Array();
-			    	$scope.totalChanges=new Array();
-
-			    	$scope.rurals=new Array();
-			    	$scope.ruralChanges=new Array();
-			    	$scope.urbans=new Array();
-			    	$scope.urbanChanges=new Array();
-
-			    	$scope.prices=new Array();
-			    	$scope.priceChanges=new Array();
-			    	$scope.values=new Array();
-			    	$scope.valueChanges=new Array();
-			    	$scope.fashions=new Array();
-			    	$scope.fashionChanges=new Array();
-			    	$scope.freakss=new Array();
-			    	$scope.freaksChanges=new Array();
-
-			    	$scope.bms=new Array();
-			    	$scope.bmChanges=new Array();
-			    	$scope.onlines=new Array();
-			    	$scope.onlineChanges=new Array();
-			    	$scope.mixeds=new Array();
-			    	$scope.mixedChanges=new Array();
-
-
+		    		$scope.totals=$scope.totalChanges=$scope.rurals=$scope.ruralChanges=$scope.urbans=$scope.urbanChanges=$scope.prices=$scope.priceChanges=$scope.values=$scope.valueChanges=$scope.fashions=$scope.fashionChanges=$scope.freakss=$scope.freaksChanges=$scope.bms=$scope.bmChanges=$scope.onlines=$scope.onlineChanges=$scope.mixeds=$scope.mixedChanges=new Array();
 			    	for(var i=0;i<4;i++){
-			    		$scope.totals[i]=new Array();
-			    		$scope.totalChanges[i]=new Array();
-			    		$scope.rurals[i]=new Array();
-			    		$scope.ruralChanges[i]=new Array();
-			    		$scope.urbans[i]=new Array();
-			    		$scope.urbanChanges[i]=new Array();
-
-			    		$scope.prices[i]=new Array();
-			    		$scope.priceChanges[i]=new Array();
-			    		$scope.values[i]=new Array();
-			    		$scope.valueChanges[i]=new Array();
-			    		$scope.fashions[i]=new Array();
-			    		$scope.fashionChanges[i]=new Array();
-			    		$scope.freakss[i]=new Array();
-			    		$scope.freaksChanges[i]=new Array();
-
-			    		$scope.bms[i]=new Array();
-			    		$scope.bmChanges[i]=new Array();
-			    		$scope.onlines[i]=new Array();
-			    		$scope.onlineChanges[i]=new Array();
-			    		$scope.mixeds[i]=new Array();
-			    		$scope.mixedChanges[i]=new Array();
+			    		$scope.totals[i]=$scope.totalChanges[i]=$scope.rurals[i]=$scope.ruralChanges[i]=$scope.urbans[i]=$scope.urbanChanges[i]=$scope.prices[i]=$scope.priceChanges[i]=$scope.values[i]=$scope.valueChanges[i]=$scope.fashions[i]=$scope.fashionChanges[i]=$scope.freakss[i]=$scope.freaksChanges[i]=$scope.bms[i]=$scope.bmChanges[i]=$scope.onlines[i]=$scope.onlineChanges[i]=$scope.mixeds[i]=$scope.mixedChanges[i]=new Array();
 			    	}
-
 			    	for(i=0;i<data.data[0].actorInfo.length;i++){
-			    		//total
-			    		$scope.totals[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareVolume);
-			    		$scope.totalChanges[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareVolumeChange);
-			    		$scope.totals[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareValue);
-			    		$scope.totalChanges[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareValueChange);
-			    		$scope.totals[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareVolume);
-			    		$scope.totalChanges[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareVolumeChange);
-			    		$scope.totals[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareValue);
-			    		$scope.totalChanges[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareValueChange);
-			    		//rural
-			    		$scope.rurals[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[0].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareVolume);
-			    		$scope.ruralChanges[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[0].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareVolumeChange);
-			    		$scope.rurals[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[0].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareValue);
-			    		$scope.ruralChanges[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[0].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareValueChange);
-			    		$scope.rurals[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[0].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareVolume);
-			    		$scope.ruralChanges[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[0].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareVolumeChange);
-			    		$scope.rurals[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[0].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareValue);
-			    		$scope.ruralChanges[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[0].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareValueChange);
-			    		//urban
-			    		$scope.urbans[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[1].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareVolume);
-			    		$scope.urbanChanges[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[1].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareVolumeChange);
-			    		$scope.urbans[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[1].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareValue);
-			    		$scope.urbanChanges[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[1].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareValueChange);
-			    		$scope.urbans[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[1].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareVolume);
-			    		$scope.urbanChanges[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[1].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareVolumeChange);
-			    		$scope.urbans[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[1].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareValue);
-			    		$scope.urbanChanges[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[1].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareValueChange);
-			    		//price
-			    		$scope.prices[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[0].actorShopperInfo[3].grsom_MarketShareVolume);
-			    		$scope.priceChanges[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[0].actorShopperInfo[3].grsom_MarketShareVolumeChange);
-			    		$scope.prices[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[0].actorShopperInfo[3].grsom_MarketShareValue);
-			    		$scope.priceChanges[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[0].actorShopperInfo[3].grsom_MarketShareValueChange);
-			    		$scope.prices[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[0].actorShopperInfo[3].grsom_MarketShareVolume);
-			    		$scope.priceChanges[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[0].actorShopperInfo[3].grsom_MarketShareVolumeChange);
-			    		$scope.prices[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[0].actorShopperInfo[3].grsom_MarketShareValue);
-			    		$scope.priceChanges[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[0].actorShopperInfo[3].grsom_MarketShareValueChange);
-			    		//value
-			    		$scope.values[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[1].actorShopperInfo[3].grsom_MarketShareVolume);
-			    		$scope.valueChanges[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[1].actorShopperInfo[3].grsom_MarketShareVolumeChange);
-			    		$scope.values[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[1].actorShopperInfo[3].grsom_MarketShareValue);
-			    		$scope.valueChanges[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[1].actorShopperInfo[3].grsom_MarketShareValueChange);
-			    		$scope.values[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[1].actorShopperInfo[3].grsom_MarketShareVolume);
-			    		$scope.valueChanges[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[1].actorShopperInfo[3].grsom_MarketShareVolumeChange);
-			    		$scope.values[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[1].actorShopperInfo[3].grsom_MarketShareValue);
-			    		$scope.valueChanges[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[1].actorShopperInfo[3].grsom_MarketShareValueChange);		    		
-			    		//fashion
-			    		$scope.fashions[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[2].actorShopperInfo[3].grsom_MarketShareVolume);
-			    		$scope.fashionChanges[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[2].actorShopperInfo[3].grsom_MarketShareVolumeChange);
-			    		$scope.fashions[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[2].actorShopperInfo[3].grsom_MarketShareValue);
-			    		$scope.fashionChanges[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[2].actorShopperInfo[3].grsom_MarketShareValueChange);
-			    		$scope.fashions[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[2].actorShopperInfo[3].grsom_MarketShareVolume);
-			    		$scope.fashionChanges[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[2].actorShopperInfo[3].grsom_MarketShareVolumeChange);
-			    		$scope.fashions[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[2].actorShopperInfo[3].grsom_MarketShareValue);
-			    		$scope.fashionChanges[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[2].actorShopperInfo[3].grsom_MarketShareValueChange);		    		
-			    		//freaks
-			    		$scope.freakss[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[3].actorShopperInfo[3].grsom_MarketShareVolume);
-			    		$scope.freaksChanges[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[3].actorShopperInfo[3].grsom_MarketShareVolumeChange);
-			    		$scope.freakss[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[3].actorShopperInfo[3].grsom_MarketShareValue);
-			    		$scope.freaksChanges[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[3].actorShopperInfo[3].grsom_MarketShareValueChange);
-			    		$scope.freakss[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[3].actorShopperInfo[3].grsom_MarketShareVolume);
-			    		$scope.freaksChanges[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[3].actorShopperInfo[3].grsom_MarketShareVolumeChange);
-			    		$scope.freakss[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[3].actorShopperInfo[3].grsom_MarketShareValue);
-			    		$scope.freaksChanges[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[3].actorShopperInfo[3].grsom_MarketShareValueChange);		    		
-			    		//bm
-			    		$scope.bms[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[0].grsom_MarketShareVolume);
-			    		$scope.bmChanges[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[0].grsom_MarketShareVolumeChange);
-			    		$scope.bms[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[0].grsom_MarketShareValue);
-			    		$scope.bmChanges[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[0].grsom_MarketShareValueChange);
-			    		$scope.bms[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[0].grsom_MarketShareVolume);
-			    		$scope.bmChanges[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[0].grsom_MarketShareVolumeChange);
-			    		$scope.bms[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[0].grsom_MarketShareValue);
-			    		$scope.bmChanges[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[0].grsom_MarketShareValueChange);
-			    		//online
-			    		$scope.onlines[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[1].grsom_MarketShareVolume);
-			    		$scope.onlineChanges[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[1].grsom_MarketShareVolumeChange);
-			    		$scope.onlines[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[1].grsom_MarketShareValue);
-			    		$scope.onlineChanges[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[1].grsom_MarketShareValueChange);
-			    		$scope.onlines[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[1].grsom_MarketShareVolume);
-			    		$scope.onlineChanges[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[1].grsom_MarketShareVolumeChange);
-			    		$scope.onlines[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[1].grsom_MarketShareValue);
-			    		$scope.onlineChanges[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[1].grsom_MarketShareValueChange);
-			    		//mixed
-			    		$scope.mixeds[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[2].grsom_MarketShareVolume);
-			    		$scope.mixedChanges[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[2].grsom_MarketShareVolumeChange);
-			    		$scope.mixeds[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[2].grsom_MarketShareValue);
-			    		$scope.mixedChanges[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[2].grsom_MarketShareValueChange);
-			    		$scope.mixeds[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[2].grsom_MarketShareVolume);
-			    		$scope.mixedChanges[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[2].grsom_MarketShareVolumeChange);
-			    		$scope.mixeds[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[2].grsom_MarketShareValue);
-			    		$scope.mixedChanges[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[2].grsom_MarketShareValueChange);
+			    		for(var j=0;j<4;j+=2){
+			    			var k=0;
+			    			if(j>=2){
+			    				k=1;
+			    			}
+			    			$scope.totals[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareVolume);
+				    		$scope.totalChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareVolumeChange);
+				    		$scope.totals[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareValue);
+				    		$scope.totalChanges[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareValueChange);
+				    		$scope.rurals[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[0].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareVolume);
+				    		$scope.ruralChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[0].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareVolumeChange);
+				    		$scope.rurals[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[0].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareValue);
+				    		$scope.ruralChanges[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[0].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareValueChange);
+				    		$scope.urbans[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[1].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareVolume);
+				    		$scope.urbanChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[1].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareVolumeChange);
+				    		$scope.urbans[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[1].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareValue);
+				    		$scope.urbanChanges[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[1].actorSegmentInfo[4].actorShopperInfo[3].grsom_MarketShareValueChange);
+				    		$scope.prices[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[0].actorShopperInfo[3].grsom_MarketShareVolume);
+				    		$scope.priceChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[0].actorShopperInfo[3].grsom_MarketShareVolumeChange);
+				    		$scope.prices[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[0].actorShopperInfo[3].grsom_MarketShareValue);
+				    		$scope.values[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[1].actorShopperInfo[3].grsom_MarketShareVolume);
+				    		$scope.valueChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[1].actorShopperInfo[3].grsom_MarketShareVolumeChange);
+				    		$scope.values[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[1].actorShopperInfo[3].grsom_MarketShareValue);
+				    		$scope.valueChanges[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[1].actorShopperInfo[3].grsom_MarketShareValueChange);
+				    		$scope.fashions[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[2].actorShopperInfo[3].grsom_MarketShareVolume);
+				    		$scope.fashionChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[2].actorShopperInfo[3].grsom_MarketShareVolumeChange);
+				    		$scope.fashions[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[2].actorShopperInfo[3].grsom_MarketShareValue);
+				    		$scope.fashionChanges[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[2].actorShopperInfo[3].grsom_MarketShareValueChange);
+				    		$scope.freakss[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[3].actorShopperInfo[3].grsom_MarketShareVolume);
+				    		$scope.freaksChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[3].actorShopperInfo[3].grsom_MarketShareVolumeChange);
+				    		$scope.freakss[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[3].actorShopperInfo[3].grsom_MarketShareValue);
+				    		$scope.freaksChanges[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[3].actorShopperInfo[3].grsom_MarketShareValueChange);
+				    		$scope.bms[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[0].grsom_MarketShareVolume);
+				    		$scope.bmChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[0].grsom_MarketShareVolumeChange);
+				    		$scope.bms[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[0].grsom_MarketShareValue);
+				    		$scope.bmChanges[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[0].grsom_MarketShareValueChange);
+				    		$scope.onlines[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[1].grsom_MarketShareVolume);
+				    		$scope.onlineChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[1].grsom_MarketShareVolumeChange);
+				    		$scope.onlines[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[1].grsom_MarketShareValue);
+				    		$scope.onlineChanges[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[1].grsom_MarketShareValueChange);
+				    		$scope.mixeds[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[2].grsom_MarketShareVolume);
+				    		$scope.mixedChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[2].grsom_MarketShareVolumeChange);
+				    		$scope.mixeds[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[2].grsom_MarketShareValue);
+				    		$scope.mixedChanges[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[2].grsom_MarketShareValueChange);
+			    		
+			    		}
 			    	}
-
-					//color
-					/*
-						P1 #3257A7
-						P2 #B11E22
-						P3 #F6B920
-						P4 #329444
-						R1 #8B288B
-						R2 #F05422
-					*/
 
 			    	$scope.chart1Series = [			        
 				        {"name": Label.getContent('Producer')+' 1', "data": [$scope.totals[0][0],0,$scope.rurals[0][0],$scope.urbans[0][0],0,$scope.prices[0][0],$scope.values[0][0],$scope.fashions[0][0],$scope.freakss[0][0],0,$scope.bms[0][0],$scope.onlines[0][0],$scope.mixeds[0][0]], type: "column",color:'#3257A7'},
@@ -297,9 +148,9 @@ define(['app','socketIO','routingConfig'], function(app) {
 				        {"name": Label.getContent('Retailer')+' 2', "data": [$scope.totals[0][5],0,$scope.rurals[0][5],$scope.urbans[0][5],0,$scope.prices[0][5],$scope.values[0][5],$scope.fashions[0][5],$scope.freakss[0][5],0,$scope.bms[0][5],$scope.onlines[0][5],$scope.mixeds[0][5]], type: "column",color:'#F05422'},
 				    ];
 
-				    $scope.change1s=new Array();
-				    for(i=0;i<6;i++){
-				    	$scope.change1s[i]=new Array();
+				    $scope.change1s=$scope.change2s=$scope.change3s=$scope.change4s=new Array();
+				    for(var i=0;i<6;i++){
+				    	$scope.change1s[i]=$scope.change2s[i]=$scope.change3s[i]=$scope.change4s[i]=new Array();
 				    }
 
 				    $scope.change1s=[
@@ -355,11 +206,6 @@ define(['app','socketIO','routingConfig'], function(app) {
 				        {"name": Label.getContent('Retailer')+' 2', "data": [$scope.totals[1][5],0,$scope.rurals[1][5],$scope.urbans[1][5],0,$scope.prices[1][5],$scope.values[1][5],$scope.fashions[1][5],$scope.freakss[1][5],0,$scope.bms[1][5],$scope.onlines[1][5],$scope.mixeds[1][5]], type: "column",color:'#F05422'},
 				    ];
 
-				    $scope.change2s=new Array();
-				    for(i=0;i<6;i++){
-				    	$scope.change2s[i]=new Array();
-				    }
-
 				    $scope.change2s=[
 				    	[$scope.totalChanges[1][0],0,$scope.ruralChanges[1][0],$scope.urbanChanges[1][0],0,$scope.priceChanges[1][0],$scope.valueChanges[1][0],$scope.fashionChanges[1][0],$scope.freaksChanges[1][0],0,$scope.bmChanges[1][0],$scope.onlineChanges[1][0],$scope.mixedChanges[1][0]],
 				    	[$scope.totalChanges[1][1],0,$scope.ruralChanges[1][1],$scope.urbanChanges[1][1],0,$scope.priceChanges[1][1],$scope.valueChanges[1][1],$scope.fashionChanges[1][1],$scope.freaksChanges[1][1],0,$scope.bmChanges[1][1],$scope.onlineChanges[1][1],$scope.mixedChanges[1][1]],
@@ -368,7 +214,6 @@ define(['app','socketIO','routingConfig'], function(app) {
 				    	[$scope.totalChanges[1][4],0,$scope.ruralChanges[1][4],$scope.urbanChanges[1][4],0,$scope.priceChanges[1][4],$scope.valueChanges[1][4],$scope.fashionChanges[1][4],$scope.freaksChanges[1][4],0,$scope.bmChanges[1][4],$scope.onlineChanges[1][4],$scope.mixedChanges[1][4]],
 				    	[$scope.totalChanges[1][5],0,$scope.ruralChanges[1][5],$scope.urbanChanges[1][5],0,$scope.priceChanges[1][5],$scope.valueChanges[1][5],$scope.fashionChanges[1][5],$scope.freaksChanges[1][5],0,$scope.bmChanges[1][5],$scope.onlineChanges[1][5],$scope.mixedChanges[1][5]]
 				    ];
-
 
 				    $scope.chart2Config = {
 				        options: {
@@ -414,11 +259,6 @@ define(['app','socketIO','routingConfig'], function(app) {
 				      	{"name": Label.getContent('Retailer')+' 1', "data": [$scope.totals[2][4],0,$scope.rurals[2][4],$scope.urbans[2][4],0,$scope.prices[2][4],$scope.values[2][4],$scope.fashions[2][4],$scope.freakss[2][4],0,$scope.bms[2][4],$scope.onlines[2][4],$scope.mixeds[2][4]], type: "column",color:'#8B288B'},
 				        {"name": Label.getContent('Retailer')+' 2', "data": [$scope.totals[2][5],0,$scope.rurals[2][5],$scope.urbans[2][5],0,$scope.prices[2][5],$scope.values[2][5],$scope.fashions[2][5],$scope.freakss[2][5],0,$scope.bms[2][5],$scope.onlines[2][5],$scope.mixeds[2][5]], type: "column",color:'#F05422'},
 				    ];
-
-				    $scope.change3s=new Array();
-				    for(i=0;i<6;i++){
-				    	$scope.change3s[i]=new Array();
-				    }
 
 				    $scope.change3s=[
 				    	[$scope.totalChanges[2][0],0,$scope.ruralChanges[2][0],$scope.urbanChanges[2][0],0,$scope.priceChanges[2][0],$scope.valueChanges[2][0],$scope.fashionChanges[2][0],$scope.freaksChanges[2][0],0,$scope.bmChanges[2][0],$scope.onlineChanges[2][0],$scope.mixedChanges[2][0]],
@@ -472,10 +312,6 @@ define(['app','socketIO','routingConfig'], function(app) {
 				      	{"name": Label.getContent('Retailer')+' 1', "data": [$scope.totals[3][4],0,$scope.rurals[3][4],$scope.urbans[3][4],0,$scope.prices[3][4],$scope.values[3][4],$scope.fashions[3][4],$scope.freakss[3][4],0,$scope.bms[3][4],$scope.onlines[3][4],$scope.mixeds[3][4]], type: "column",color:'#8B288B'},
 				        {"name": Label.getContent('Retailer')+' 2', "data": [$scope.totals[3][5],0,$scope.rurals[3][5],$scope.urbans[3][5],0,$scope.prices[3][5],$scope.values[3][5],$scope.fashions[3][5],$scope.freakss[3][5],0,$scope.bms[3][5],$scope.onlines[3][5],$scope.mixeds[3][5]], type: "column",color:'#F05422'},
 				    ];
-				    $scope.change4s=new Array();
-				    for(i=0;i<6;i++){
-				    	$scope.change4s[i]=new Array();
-				    }
 
 				    $scope.change4s=[
 				    	[$scope.totalChanges[3][0],0,$scope.ruralChanges[3][0],$scope.urbanChanges[3][0],0,$scope.priceChanges[3][0],$scope.valueChanges[3][0],$scope.fashionChanges[3][0],$scope.freaksChanges[3][0],0,$scope.bmChanges[3][0],$scope.onlineChanges[3][0],$scope.mixedChanges[3][0]],
@@ -531,158 +367,59 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    		method:'GET',
 		    		url:url
 		    	}).then(function(data){
-		    		$scope.totals=new Array();
-			    	$scope.totalChanges=new Array();
-
-			    	$scope.rurals=new Array();
-			    	$scope.ruralChanges=new Array();
-			    	$scope.urbans=new Array();
-			    	$scope.urbanChanges=new Array();
-
-			    	$scope.prices=new Array();
-			    	$scope.priceChanges=new Array();
-			    	$scope.values=new Array();
-			    	$scope.valueChanges=new Array();
-			    	$scope.fashions=new Array();
-			    	$scope.fashionChanges=new Array();
-			    	$scope.freakss=new Array();
-			    	$scope.freaksChanges=new Array();
-
-			    	$scope.bms=new Array();
-			    	$scope.bmChanges=new Array();
-			    	$scope.onlines=new Array();
-			    	$scope.onlineChanges=new Array();
-			    	$scope.mixeds=new Array();
-			    	$scope.mixedChanges=new Array();
-
-
-			    	for(var i=0;i<4;i++){
-			    		$scope.totals[i]=new Array();
-			    		$scope.totalChanges[i]=new Array();
-			    		$scope.rurals[i]=new Array();
-			    		$scope.ruralChanges[i]=new Array();
-			    		$scope.urbans[i]=new Array();
-			    		$scope.urbanChanges[i]=new Array();
-
-			    		$scope.prices[i]=new Array();
-			    		$scope.priceChanges[i]=new Array();
-			    		$scope.values[i]=new Array();
-			    		$scope.valueChanges[i]=new Array();
-			    		$scope.fashions[i]=new Array();
-			    		$scope.fashionChanges[i]=new Array();
-			    		$scope.freakss[i]=new Array();
-			    		$scope.freaksChanges[i]=new Array();
-
-			    		$scope.bms[i]=new Array();
-			    		$scope.bmChanges[i]=new Array();
-			    		$scope.onlines[i]=new Array();
-			    		$scope.onlineChanges[i]=new Array();
-			    		$scope.mixeds[i]=new Array();
-			    		$scope.mixedChanges[i]=new Array();
+		    		$scope.totals=$scope.totalChanges=$scope.rurals=$scope.ruralChanges=$scope.urbans=$scope.urbanChanges=$scope.prices=$scope.priceChanges=$scope.values=$scope.valueChanges=$scope.fashions=$scope.fashionChanges=$scope.freakss=$scope.freaksChanges=$scope.bms=$scope.bmChanges=$scope.onlines=$scope.onlineChanges=$scope.mixeds=$scope.mixedChanges=new Array();
+		    		for(var i=0;i<4;i++){
+			    		$scope.totals[i]=$scope.totalChanges[i]=$scope.rurals[i]=$scope.ruralChanges[i]=$scope.urbans[i]=$scope.urbanChanges[i]=$scope.prices[i]=$scope.priceChanges[i]=$scope.values[i]=$scope.valueChanges[i]=$scope.fashions[i]=$scope.fashionChanges[i]=$scope.freakss[i]=$scope.freaksChanges[i]=$scope.bms[i]=$scope.bmChanges[i]=$scope.onlines[i]=$scope.onlineChanges[i]=$scope.mixeds[i]=$scope.mixedChanges[i]=new Array();
 			    	}
 
 			    	for(i=0;i<data.data[0].actorInfo.length;i++){
-			    		//total
-			    		$scope.totals[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketSalesVolume);
-			    		$scope.totalChanges[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketSalesVolumeChange);
-			    		$scope.totals[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketNetSalesValue);
-			    		$scope.totalChanges[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketNetSalesValueChange);
-			    		$scope.totals[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketSalesVolume);
-			    		$scope.totalChanges[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketSalesVolumeChange);
-			    		$scope.totals[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketNetSalesValue);
-			    		$scope.totalChanges[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketNetSalesValueChange);
-			    		//rural
-			    		$scope.rurals[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[0].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketSalesVolume);
-			    		$scope.ruralChanges[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[0].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketSalesVolumeChange);
-			    		$scope.rurals[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[0].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketNetSalesValue);
-			    		$scope.ruralChanges[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[0].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketNetSalesValueChange);
-			    		$scope.rurals[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[0].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketSalesVolume);
-			    		$scope.ruralChanges[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[0].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketSalesVolumeChange);
-			    		$scope.rurals[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[0].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketNetSalesValue);
-			    		$scope.ruralChanges[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[0].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketNetSalesValueChange);
-			    		//urban
-			    		$scope.urbans[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[1].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketSalesVolume);
-			    		$scope.urbanChanges[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[1].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketSalesVolumeChange);
-			    		$scope.urbans[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[1].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketNetSalesValue);
-			    		$scope.urbanChanges[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[1].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketNetSalesValueChange);
-			    		$scope.urbans[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[1].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketSalesVolume);
-			    		$scope.urbanChanges[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[1].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketSalesVolumeChange);
-			    		$scope.urbans[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[1].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketNetSalesValue);
-			    		$scope.urbanChanges[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[1].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketNetSalesValueChange);
-			    		//price
-			    		$scope.prices[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[0].actorShopperInfo[3].grms_MarketSalesVolume);
-			    		$scope.priceChanges[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[0].actorShopperInfo[3].grms_MarketSalesVolumeChange);
-			    		$scope.prices[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[0].actorShopperInfo[3].grms_MarketNetSalesValue);
-			    		$scope.priceChanges[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[0].actorShopperInfo[3].grms_MarketNetSalesValueChange);
-			    		$scope.prices[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[0].actorShopperInfo[3].grms_MarketSalesVolume);
-			    		$scope.priceChanges[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[0].actorShopperInfo[3].grms_MarketSalesVolumeChange);
-			    		$scope.prices[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[0].actorShopperInfo[3].grms_MarketNetSalesValue);
-			    		$scope.priceChanges[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[0].actorShopperInfo[3].grms_MarketNetSalesValueChange);
-			    		//value
-			    		$scope.values[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[1].actorShopperInfo[3].grms_MarketSalesVolume);
-			    		$scope.valueChanges[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[1].actorShopperInfo[3].grms_MarketSalesVolumeChange);
-			    		$scope.values[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[1].actorShopperInfo[3].grms_MarketNetSalesValue);
-			    		$scope.valueChanges[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[1].actorShopperInfo[3].grms_MarketNetSalesValueChange);
-			    		$scope.values[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[1].actorShopperInfo[3].grms_MarketSalesVolume);
-			    		$scope.valueChanges[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[1].actorShopperInfo[3].grms_MarketSalesVolumeChange);
-			    		$scope.values[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[1].actorShopperInfo[3].grms_MarketNetSalesValue);
-			    		$scope.valueChanges[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[1].actorShopperInfo[3].grms_MarketNetSalesValueChange);		    		
-			    		//fashion
-			    		$scope.fashions[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[2].actorShopperInfo[3].grms_MarketSalesVolume);
-			    		$scope.fashionChanges[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[2].actorShopperInfo[3].grms_MarketSalesVolumeChange);
-			    		$scope.fashions[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[2].actorShopperInfo[3].grms_MarketNetSalesValue);
-			    		$scope.fashionChanges[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[2].actorShopperInfo[3].grms_MarketNetSalesValueChange);
-			    		$scope.fashions[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[2].actorShopperInfo[3].grms_MarketSalesVolume);
-			    		$scope.fashionChanges[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[2].actorShopperInfo[3].grms_MarketSalesVolumeChange);
-			    		$scope.fashions[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[2].actorShopperInfo[3].grms_MarketNetSalesValue);
-			    		$scope.fashionChanges[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[2].actorShopperInfo[3].grms_MarketNetSalesValueChange);		    		
-			    		//freaks
-			    		$scope.freakss[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[3].actorShopperInfo[3].grms_MarketSalesVolume);
-			    		$scope.freaksChanges[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[3].actorShopperInfo[3].grms_MarketSalesVolumeChange);
-			    		$scope.freakss[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[3].actorShopperInfo[3].grms_MarketNetSalesValue);
-			    		$scope.freaksChanges[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[3].actorShopperInfo[3].grms_MarketNetSalesValueChange);
-			    		$scope.freakss[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[3].actorShopperInfo[3].grms_MarketSalesVolume);
-			    		$scope.freaksChanges[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[3].actorShopperInfo[3].grms_MarketSalesVolumeChange);
-			    		$scope.freakss[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[3].actorShopperInfo[3].grms_MarketNetSalesValue);
-			    		$scope.freaksChanges[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[3].actorShopperInfo[3].grms_MarketNetSalesValueChange);		    		
-			    		//bm
-			    		$scope.bms[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[0].grms_MarketSalesVolume);
-			    		$scope.bmChanges[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[0].grms_MarketSalesVolumeChange);
-			    		$scope.bms[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[0].grms_MarketNetSalesValue);
-			    		$scope.bmChanges[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[0].grms_MarketNetSalesValueChange);
-			    		$scope.bms[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[0].grms_MarketSalesVolume);
-			    		$scope.bmChanges[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[0].grms_MarketSalesVolumeChange);
-			    		$scope.bms[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[0].grms_MarketNetSalesValue);
-			    		$scope.bmChanges[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[0].grms_MarketNetSalesValueChange);
-			    		//online
-			    		$scope.onlines[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[1].grms_MarketSalesVolume);
-			    		$scope.onlineChanges[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[1].grms_MarketSalesVolumeChange);
-			    		$scope.onlines[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[1].grms_MarketNetSalesValue);
-			    		$scope.onlineChanges[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[1].grms_MarketNetSalesValueChange);
-			    		$scope.onlines[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[1].grms_MarketSalesVolume);
-			    		$scope.onlineChanges[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[1].grms_MarketSalesVolumeChange);
-			    		$scope.onlines[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[1].grms_MarketNetSalesValue);
-			    		$scope.onlineChanges[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[1].grms_MarketNetSalesValueChange);
-			    		//mixed
-			    		$scope.mixeds[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[2].grms_MarketSalesVolume);
-			    		$scope.mixedChanges[0].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[2].grms_MarketSalesVolumeChange);
-			    		$scope.mixeds[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[2].grms_MarketNetSalesValue);
-			    		$scope.mixedChanges[1].push(data.data[0].actorInfo[i].actorCategoryInfo[0].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[2].grms_MarketNetSalesValueChange);
-			    		$scope.mixeds[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[2].grms_MarketSalesVolume);
-			    		$scope.mixedChanges[2].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[2].grms_MarketSalesVolumeChange);
-			    		$scope.mixeds[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[2].grms_MarketNetSalesValue);
-			    		$scope.mixedChanges[3].push(data.data[0].actorInfo[i].actorCategoryInfo[1].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[2].grms_MarketNetSalesValueChange);
+			    		for(j=0;j<4;j+=2){
+			    			var k=0;
+			    			if(j>=2){
+			    				k=1;
+			    			};
+			    			$scope.totals[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketSalesVolume);
+			    			$scope.totalChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketSalesVolumeChange);
+							$scope.totals[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketNetSalesValue);
+			    			$scope.totalChanges[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketNetSalesValueChange);
+							$scope.rurals[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[0].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketSalesVolume);
+			    			$scope.ruralChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[0].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketSalesVolumeChange);
+			    			$scope.rurals[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[0].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketNetSalesValue);
+			    			$scope.ruralChanges[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[0].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketNetSalesValueChange);
+				    		$scope.urbans[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[1].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketSalesVolume);
+				    		$scope.urbanChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[1].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketSalesVolumeChange);
+				    		$scope.urbans[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[1].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketNetSalesValue);
+				    		$scope.urbanChanges[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[1].actorSegmentInfo[4].actorShopperInfo[3].grms_MarketNetSalesValueChange);
+				    		$scope.prices[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[0].actorShopperInfo[3].grms_MarketSalesVolume);
+				    		$scope.priceChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[0].actorShopperInfo[3].grms_MarketSalesVolumeChange);
+				    		$scope.prices[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[0].actorShopperInfo[3].grms_MarketNetSalesValue);
+				    		$scope.priceChanges[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[0].actorShopperInfo[3].grms_MarketNetSalesValueChange);
+				    		$scope.values[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[1].actorShopperInfo[3].grms_MarketSalesVolume);
+				    		$scope.valueChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[1].actorShopperInfo[3].grms_MarketSalesVolumeChange);
+				    		$scope.values[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[1].actorShopperInfo[3].grms_MarketNetSalesValue);
+				    		$scope.valueChanges[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[1].actorShopperInfo[3].grms_MarketNetSalesValueChange);
+				    		$scope.fashions[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[2].actorShopperInfo[3].grms_MarketSalesVolume);
+				    		$scope.fashionChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[2].actorShopperInfo[3].grms_MarketSalesVolumeChange);
+				    		$scope.fashions[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[2].actorShopperInfo[3].grms_MarketNetSalesValue);
+				    		$scope.fashionChanges[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[2].actorShopperInfo[3].grms_MarketNetSalesValueChange);
+				    		$scope.freakss[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[3].actorShopperInfo[3].grms_MarketSalesVolume);
+				    		$scope.freaksChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[3].actorShopperInfo[3].grms_MarketSalesVolumeChange);
+				    		$scope.freakss[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[3].actorShopperInfo[3].grms_MarketNetSalesValue);
+				    		$scope.freaksChanges[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[3].actorShopperInfo[3].grms_MarketNetSalesValueChange);
+				    		$scope.bms[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[0].grms_MarketSalesVolume);
+				    		$scope.bmChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[0].grms_MarketSalesVolumeChange);
+				    		$scope.bms[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[0].grms_MarketNetSalesValue);
+				    		$scope.bmChanges[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[0].grms_MarketNetSalesValueChange);
+				    		$scope.onlines[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[1].grms_MarketSalesVolume);
+				    		$scope.onlineChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[1].grms_MarketSalesVolumeChange);
+				    		$scope.onlines[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[1].grms_MarketNetSalesValue);
+				    		$scope.onlineChanges[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[1].grms_MarketNetSalesValueChange);
+							$scope.mixeds[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[2].grms_MarketSalesVolume);
+				    		$scope.mixedChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[2].grms_MarketSalesVolumeChange);
+				    		$scope.mixeds[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[2].grms_MarketNetSalesValue);
+				    		$scope.mixedChanges[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[4].actorShopperInfo[2].grms_MarketNetSalesValueChange);
+			    		}
 			    	}
-
-					//color
-					/*
-						P1 #3257A7
-						P2 #B11E22
-						P3 #F6B920
-						P4 #329444
-						R1 #8B288B
-						R2 #F05422
-					*/
 
 			    	$scope.chart1Series = [			        
 				        {"name": Label.getContent('Producer')+' 1', "data": [$scope.totals[0][0],0,$scope.rurals[0][0],$scope.urbans[0][0],0,$scope.prices[0][0],$scope.values[0][0],$scope.fashions[0][0],$scope.freakss[0][0],0,$scope.bms[0][0],$scope.onlines[0][0],$scope.mixeds[0][0]], type: "column",color:'#3257A7'},
@@ -693,9 +430,9 @@ define(['app','socketIO','routingConfig'], function(app) {
 				        {"name": Label.getContent('Retailer')+' 2', "data": [$scope.totals[0][5],0,$scope.rurals[0][5],$scope.urbans[0][5],0,$scope.prices[0][5],$scope.values[0][5],$scope.fashions[0][5],$scope.freakss[0][5],0,$scope.bms[0][5],$scope.onlines[0][5],$scope.mixeds[0][5]], type: "column",color:'#F05422'},
 				    ];
 
-				    $scope.change1s=new Array();
-				    for(i=0;i<6;i++){
-				    	$scope.change1s[i]=new Array();
+				    $scope.change1s=$scope.change2s=$scope.change3s=$scope.change4s=new Array();
+				    for(var i=0;i<6;i++){
+				    	$scope.change1s[i]=$scope.change2s[i]=$scope.change3s[i]=$scope.change4s[i]=new Array();
 				    }
 
 				    $scope.change1s=[
@@ -925,8 +662,6 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    		method:'GET',
 		    		url:url
 		    	}).then(function(data){
-		    		//Price marketID :3 segmentID 1 allShopperInfo
-		    		//B&m	segmentID 5  BMPrice
 		    		$scope.priceSensitives=new Array();
 		    		$scope.valueForMoneies=new Array();
 		    		$scope.fashions=new Array();
@@ -1123,8 +858,6 @@ define(['app','socketIO','routingConfig'], function(app) {
 				        },
 				        loading: false
 				    }
-
-
 		    	},function(){
 		    		console.log('fail');
 		    	})
@@ -1139,63 +872,37 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    		url:url
 		    	}).then(function(data){
 		    		$scope.producer1es=new Array();
-		    		$scope.producer1hs=new Array();
-		    		
+		    		$scope.producer1hs=new Array();		    		
 		    		$scope.producer2es=new Array();
 		    		$scope.producer2hs=new Array();
-		    		
 		    		$scope.producer3es=new Array();
 		    		$scope.producer3hs=new Array();
-
 		    		$scope.retailer1es=new Array();
 		    		$scope.retailer1hs=new Array();
-
 		    		$scope.retailer2es=new Array();
 		    		$scope.retailer2hs=new Array();
-
 		    		for(var i=0;i<data.data[0].categoryInfo[0].variantInfo.length;i++){
 		    			switch(data.data[0].categoryInfo[0].variantInfo[i].varName.substring(data.data[0].categoryInfo[0].variantInfo[i].varName.length-1)){
-		    				case '1':
-		    					$scope.producer1es.push(data.data[0].categoryInfo[0].variantInfo[i]);
-		    				break;
-		    				case '2':
-		    					$scope.producer2es.push(data.data[0].categoryInfo[0].variantInfo[i]);
-		    				break;
-		    				case '3':
-		    					$scope.producer3es.push(data.data[0].categoryInfo[0].variantInfo[i]);
-		    				break;
+		    				case '1':$scope.producer1es.push(data.data[0].categoryInfo[0].variantInfo[i]);break;
+		    				case '2':$scope.producer2es.push(data.data[0].categoryInfo[0].variantInfo[i]);break;
+		    				case '3':$scope.producer3es.push(data.data[0].categoryInfo[0].variantInfo[i]);break;
 		    				case '4':break;
-		    				case '5':
-		    					$scope.retailer1es.push(data.data[0].categoryInfo[0].variantInfo[i]);
-		    				break;
-		    				case '6':
-		    					$scope.retailer2es.push(data.data[0].categoryInfo[0].variantInfo[i]);
-		    				break;
+		    				case '5':$scope.retailer1es.push(data.data[0].categoryInfo[0].variantInfo[i]);break;
+		    				case '6':$scope.retailer2es.push(data.data[0].categoryInfo[0].variantInfo[i]);break;
 		    				case '7':break;
 		    			}
 		    		}
 		    		for(var i=0;i<data.data[0].categoryInfo[1].variantInfo.length;i++){
 		    			switch(data.data[0].categoryInfo[1].variantInfo[i].varName.substring(data.data[0].categoryInfo[1].variantInfo[i].varName.length-1)){
-		    				case '1':
-		    					$scope.producer1hs.push(data.data[0].categoryInfo[1].variantInfo[i]);
-		    				break;
-		    				case '2':
-		    					$scope.producer2hs.push(data.data[0].categoryInfo[1].variantInfo[i]);
-		    				break;
-		    				case '3':
-		    					$scope.producer3hs.push(data.data[0].categoryInfo[1].variantInfo[i]);
-		    				break;
+		    				case '1':$scope.producer1hs.push(data.data[0].categoryInfo[1].variantInfo[i]);break;
+		    				case '2':$scope.producer2hs.push(data.data[0].categoryInfo[1].variantInfo[i]);break;
+		    				case '3':$scope.producer3hs.push(data.data[0].categoryInfo[1].variantInfo[i]);break;
 		    				case '4':break;
-		    				case '5':
-		    					$scope.retailer1hs.push(data.data[0].categoryInfo[1].variantInfo[i]);
-		    				break;
-		    				case '6':
-		    					$scope.retailer2hs.push(data.data[0].categoryInfo[1].variantInfo[i]);
-		    				break;
+		    				case '5':$scope.retailer1hs.push(data.data[0].categoryInfo[1].variantInfo[i]);break;
+		    				case '6':$scope.retailer2hs.push(data.data[0].categoryInfo[1].variantInfo[i]);break;
 		    				case '7':break;
 		    			}
 		    		}
-
 		    	},function(){
 		    		console.log('fail');
 		    	})
@@ -1209,19 +916,11 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    		url:url
 		    	}).then(function(data){
 		    		$scope.producer1es=new Array();
-		    		$scope.producer1hs=new Array();
-		    		
+		    		$scope.producer1hs=new Array();		    		
 		    		$scope.producer2es=new Array();
-		    		$scope.producer2hs=new Array();
-		    		
+		    		$scope.producer2hs=new Array();		    		
 		    		$scope.producer3es=new Array();
 		    		$scope.producer3hs=new Array();
-
-		    		// $scope.retailer1es=new Array();
-		    		// $scope.retailer1hs=new Array();
-
-		    		// $scope.retailer2es=new Array();
-		    		// $scope.retailer2hs=new Array();
 
 		    		for(var i=0;i<data.data[0].categoryInfo[0].variantInfo.length;i++){
 		    			switch(data.data[0].categoryInfo[0].variantInfo[i].varName.substring(data.data[0].categoryInfo[0].variantInfo[i].varName.length-1)){
@@ -1235,13 +934,6 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    					$scope.producer3es.push(data.data[0].categoryInfo[0].variantInfo[i]);
 		    				break;
 		    				case '4':break;
-		    				// case '5':
-		    				// 	$scope.retailer1es.push(data.data[0].categoryInfo[0].variantInfo[i]);
-		    				// break;
-		    				// case '6':
-		    				// 	$scope.retailer2es.push(data.data[0].categoryInfo[0].variantInfo[i]);
-		    				// break;
-		    				// case '7':break;
 		    			}
 		    		}
 		    		for(var i=0;i<data.data[0].categoryInfo[1].variantInfo.length;i++){
@@ -1306,8 +998,81 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    	})
 		    }
 
+		    var loadValue=function(data,name,num){
+		    	var array=_.find(data,function(obj){
+		    		return (obj.brandName==name);
+		    	});
+		    	return array.value[num];
+		    }
+
+		    var loadBusiness=function(data,category,num){
+		    	if(category==1){
+		    		$scope.brand1s=new Array();
+		    		$scope.total1s=new Array();
+		    	}else{
+		    		$scope.brand2s=new Array();
+		    		$scope.total2s=new Array();
+		    	}
+		    	var brandName;//Sales,totalChanges,Changes,totalSalesShareInCategory,SalesShareInCategory,totalCostOfGoodsSold,CostOfGoodsSold,totalDiscontinuedGoodsCost,DiscontinuedGoodsCost,totalInventoryHoldingCost,InventoryHoldingCost,totalGrossProfit,GrossProfit,totalGrossProfitChange,GrossProfitChange,totalTradeAndMarketing,TradeAndMarketing,totalAdvertisingOnLine,AdvertisingOnLine,totalAdvertisingOffLine,AdvertisingOffLine,totalTradeAndMarketingAsPercentageOfSales,TradeAndMarketingAsPercentageOfSales,totalTradeAndMarketingShareInCategory,TradeAndMarketingShareInCategory,totalGeneralExpenses,GeneralExpenses,totalAmortisation,Amortisation,totalOperatingProfit,OperatingProfit,totalOperatingProfitChange,OperatingProfitChange,totalOperatingProfitMargin,OperatingProfitMargin,totalOperatingProfitShareInCategory,OperatingProfitShareInCategory,totalInterest,Interest,totalTaxes,Taxes,totalExceptionalItems,ExceptionalItems,totalNetProfit,NetProfit,totalNetProfitChange,NetProfitChange,totalNetProfitMargin,NetProfitMargin,totalNetProfitShareInCategory,NetProfitShareInCategory;
+		    	for(var i=0;i<data.data[0].scrb_Sales.length;i++){
+		    		if(data.data[0].scrb_Sales[i].parentCategoryID==category){
+		    			var brandName=data.data[0].scrb_Sales[i].brandName;
+		    			var Sales=data.data[0].scrb_Sales[i].value[num];
+		    			var SalesChange=loadValue(data.data[0].scrb_SalesChange,brandName,num);
+			    		var SalesShareInCategory=loadValue(data.data[0].scrb_SalesShareInCategory,brandName,num);
+			    		var MaterialCosts=loadValue(data.data[0].scrb_MaterialCosts,brandName,num);
+			    		var CostOfGoodsSold=loadValue(data.data[0].scrb_CostOfGoodsSold,brandName,num);
+			    		var DiscontinuedGoodsCost=loadValue(data.data[0].scrb_DiscontinuedGoodsCost,brandName,num);
+			    		var InventoryHoldingCost=loadValue(data.data[0].scrb_InventoryHoldingCost,brandName,num);
+			    		var GrossProfit=loadValue(data.data[0].scrb_GrossProfit,brandName,num);
+			    		var GrossProfitChange=loadValue(data.data[0].scrb_GrossProfitChange,brandName,num);
+			    		var GrossProfitMargin=loadValue(data.data[0].scrb_GrossProfitMargin,brandName,num);
+			    		var GrossProfitMarginShare=loadValue(data.data[0].scrb_GrossProfitMarginShare,brandName,num);
+			    		var TradeAndMarketing=loadValue(data.data[0].scrb_TradeAndMarketing,brandName,num);
+			    		var AdvertisingOnLine=loadValue(data.data[0].scrb_AdvertisingOnLine,brandName,num);
+			    		var AdvertisingOffLine=loadValue(data.data[0].scrb_AdvertisingOffLine,brandName,num);
+			    		var TradeAndMarketingAsPercentageOfSales=loadValue(data.data[0].scrb_TradeAndMarketingAsPercentageOfSales,brandName,num);
+			    		var TradeAndMarketingShareInCategory=loadValue(data.data[0].scrb_TradeAndMarketingShareInCategory,brandName,num);
+			    		var GeneralExpenses=loadValue(data.data[0].scrb_GeneralExpenses,brandName,num);
+			    		var Amortisation=loadValue(data.data[0].scrb_Amortisation,brandName,num);
+			    		var OperatingProfit=loadValue(data.data[0].scrb_OperatingProfit,brandName,num);
+			    		var OperatingProfitChange=loadValue(data.data[0].scrb_OperatingProfitChange,brandName,num);
+			    		var OperatingProfitMargin=loadValue(data.data[0].scrb_OperatingProfitMargin,brandName,num);
+			    		var OperatingProfitShareInCategory=loadValue(data.data[0].scrb_OperatingProfitShareInCategory,brandName,num);
+			    		var Interest=loadValue(data.data[0].scrb_Interest,brandName,num);
+			    		var Taxes=loadValue(data.data[0].scrb_Taxes,brandName,num);
+			    		var ExceptionalItems=loadValue(data.data[0].scrb_ExceptionalItems,brandName,num);
+			    		var NetProfit=loadValue(data.data[0].scrb_NetProfit,brandName,num);
+			    		var NetProfitChange=loadValue(data.data[0].scrb_NetProfitChange,brandName,num);
+			    		var NetProfitMargin=loadValue(data.data[0].scrb_NetProfitMargin,brandName,num);
+			    		var NetProfitShareInCategory=loadValue(data.data[0].scrb_NetProfitShareInCategory,brandName,num);
+			    		if(category==1){
+							$scope.brand1s.push({'brandName':brandName,'Sales':Sales,'SalesChange':SalesChange,'SalesShareInCategory':SalesShareInCategory,'MaterialCosts':MaterialCosts,'CostOfGoodsSold':CostOfGoodsSold,'DiscontinuedGoodsCost':DiscontinuedGoodsCost,'InventoryHoldingCost':InventoryHoldingCost,'GrossProfit':GrossProfit,
+				    		'GrossProfitChange':GrossProfitChange,'TradeAndMarketing':TradeAndMarketing,'AdvertisingOnLine':AdvertisingOnLine,'AdvertisingOffLine':AdvertisingOffLine,'TradeAndMarketingAsPercentageOfSales':TradeAndMarketingAsPercentageOfSales,'TradeAndMarketingShareInCategory':TradeAndMarketingShareInCategory,
+				    		'GeneralExpenses':GeneralExpenses,'Amortisation':Amortisation,'OperatingProfit':OperatingProfit,'OperatingProfitChange':OperatingProfitChange,'OperatingProfitMargin':OperatingProfitMargin,'OperatingProfitMargin':OperatingProfitMargin,'OperatingProfitShareInCategory':OperatingProfitShareInCategory,
+				   			'Interest':Interest,'Taxes':Taxes,'ExceptionalItems':ExceptionalItems,'NetProfit':NetProfit,'NetProfitChange':NetProfitChange,'NetProfitMargin':NetProfitMargin,'NetProfitShareInCategory':NetProfitShareInCategory,'GrossProfitMargin':GrossProfitMargin,'GrossProfitMarginShare':GrossProfitMarginShare});
+			    		}else{
+			   				$scope.brand2s.push({'brandName':brandName,'Sales':Sales,'SalesChange':SalesChange,'SalesShareInCategory':SalesShareInCategory,'MaterialCosts':MaterialCosts,'CostOfGoodsSold':CostOfGoodsSold,'DiscontinuedGoodsCost':DiscontinuedGoodsCost,'InventoryHoldingCost':InventoryHoldingCost,'GrossProfit':GrossProfit,
+			    			'GrossProfitChange':GrossProfitChange,'TradeAndMarketing':TradeAndMarketing,'AdvertisingOnLine':AdvertisingOnLine,'AdvertisingOffLine':AdvertisingOffLine,'TradeAndMarketingAsPercentageOfSales':TradeAndMarketingAsPercentageOfSales,'TradeAndMarketingShareInCategory':TradeAndMarketingShareInCategory,
+			    			'GeneralExpenses':GeneralExpenses,'Amortisation':Amortisation,'OperatingProfit':OperatingProfit,'OperatingProfitChange':OperatingProfitChange,'OperatingProfitMargin':OperatingProfitMargin,'OperatingProfitMargin':OperatingProfitMargin,'OperatingProfitShareInCategory':OperatingProfitShareInCategory,
+			    			'Interest':Interest,'Taxes':Taxes,'ExceptionalItems':ExceptionalItems,'NetProfit':NetProfit,'NetProfitChange':NetProfitChange,'NetProfitMargin':NetProfitMargin,'NetProfitShareInCategory':NetProfitShareInCategory,'GrossProfitMargin':GrossProfitMargin,'GrossProfitMarginShare':GrossProfitMarginShare});
+			    		}
+		   			}
+		    	}
+		    }
+
 		    var showProducerBMBusiness=function(){
 		    	switching('showProducerBMBusiness');
+		    	var url='/SCR-consolidatedProfitAndLoss/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+		    	$http({
+		    		method:'GET',
+		    		url:url
+		    	}).then(function(data){
+		    		loadBusiness(data,1,0);
+		    		loadBusiness(data,2,0);
+		    	},function(){
+		    		console.log('fail');
+		    	})
 		    }
 
 		    var showProducerOnlineBusiness=function(){
@@ -1335,6 +1100,106 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    	})
 		    }
 
+		    var loadNegotiations=function(data,category,retailer,i,j){
+		    	var varName,brandName,discount_MinimumVolume,discount_Rate,bonus_TargetVolume,bonus_Rate,bonus_Value,vnd_PaymentTerm,vnd_OtherCompensation,vnd_ContractHonoured;
+		    							brandName=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].parentBrandName;
+			    						varName=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].variantName;
+			    						discount_MinimumVolume=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerInfo[j].value;
+			    						var discount_Rates=_.find(data.data[0].vnd_QuantityDiscount.discount_Rate,function(obj){
+			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    						});
+			    						for(var k=0;k<discount_Rates.modernRetailerInfo.length;k++){
+			    							if(discount_Rates.modernRetailerInfo[k].modernRetailerID==retailer){
+			    								discount_Rate=discount_Rates.modernRetailerInfo[k].value;
+			    								break;
+			    							}
+			    						}
+			    						var bonus_TargetVolumes=_.find(data.data[0].vnd_TargetBonus.bonus_TargetVolume,function(obj){
+			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    						});
+			    						for(var k=0;k<bonus_TargetVolumes.modernRetailerInfo.length;k++){
+			    							if(bonus_TargetVolumes.modernRetailerInfo[k].modernRetailerID==retailer){
+			    								bonus_TargetVolume=bonus_TargetVolumes.modernRetailerInfo[k].value;
+			    								break;
+			    							}
+			    						}
+			    						var bonus_Rates=_.find(data.data[0].vnd_TargetBonus.bonus_TargetVolume,function(obj){
+			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    						});
+			    						for(var k=0;k<bonus_Rates.modernRetailerInfo.length;k++){
+			    							if(bonus_Rates.modernRetailerInfo[k].modernRetailerID==retailer){
+			    								bonus_Rate=bonus_Rates.modernRetailerInfo[k].value;
+			    								break;
+			    							}
+			    						}
+			    						var bonus_Values=_.find(data.data[0].vnd_TargetBonus.bonus_TargetVolume,function(obj){
+			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    						});
+			    						for(var k=0;k<bonus_Values.modernRetailerInfo.length;k++){
+			    							if(bonus_Values.modernRetailerInfo[k].modernRetailerID==retailer){
+			    								bonus_Value=bonus_Values.modernRetailerInfo[k].value;
+			    								break;
+			    							}
+			    						}
+			    						var vnd_PaymentTerms=_.find(data.data[0].vnd_PaymentTerms,function(obj){
+			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    						});
+			    						for(var k=0;k<vnd_PaymentTerms.modernRetailerInfo.length;k++){
+			    							if(vnd_PaymentTerms.modernRetailerInfo[k].modernRetailerID==retailer){
+			    								vnd_PaymentTerm=vnd_PaymentTerms.modernRetailerInfo[k].value;
+			    								break;
+			    							}
+			    						}
+			    						var vnd_OtherCompensations=_.find(data.data[0].vnd_OtherCompensation,function(obj){
+			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    						});
+			    						for(var k=0;k<vnd_OtherCompensations.modernRetailerInfo.length;k++){
+			    							if(vnd_OtherCompensations.modernRetailerInfo[k].modernRetailerID==retailer){
+			    								vnd_OtherCompensation=vnd_OtherCompensations.modernRetailerInfo[k].value;
+			    								break;
+			    							}
+			    						}
+			    						var vnd_ContractHonoureds=_.find(data.data[0].vnd_ContractHonoured,function(obj){
+			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    						});
+			    						for(var k=0;k<vnd_ContractHonoureds.modernRetailerInfo.length;k++){
+			    							if(vnd_ContractHonoureds.modernRetailerInfo[k].modernRetailerID==retailer){
+			    								vnd_ContractHonoured=vnd_ContractHonoureds.modernRetailerInfo[k].value;
+			    								break;
+			    							}
+			    						}
+			    						if(vnd_ContractHonoured==1){
+			    							vnd_ContractHonoured="yes";
+			    						}else{
+			    							vnd_ContractHonoured="no";
+			    						}
+			    if(category==1){
+			    	if(retailer==1){
+			    		if(discount_MinimumVolume!=undefined&&discount_Rate!=undefined&&bonus_TargetVolume!=undefined&&bonus_Rate!=undefined&&bonus_Value!=undefined&&vnd_PaymentTerm!=undefined&vnd_OtherCompensation!=undefined&&vnd_ContractHonoured!=undefined)
+			    		{
+			    			$scope.product1es.push({'fullName':brandName+varName,'discount_MinimumVolume':discount_MinimumVolume,'discount_Rate':discount_Rate,'bonus_TargetVolume':bonus_TargetVolume,'bonus_Rate':bonus_Rate,'bonus_Value':bonus_Value,'vnd_PaymentTerm':vnd_PaymentTerm,'vnd_OtherCompensation':vnd_OtherCompensation,'vnd_ContractHonoured':vnd_ContractHonoured});
+			    		}
+			    	}else{
+			    		if(discount_MinimumVolume!=undefined&&discount_Rate!=undefined&&bonus_TargetVolume!=undefined&&bonus_Rate!=undefined&&bonus_Value!=undefined&&vnd_PaymentTerm!=undefined&vnd_OtherCompensation!=undefined&&vnd_ContractHonoured!=undefined)
+			    		{
+			    			$scope.product2es.push({'fullName':brandName+varName,'discount_MinimumVolume':discount_MinimumVolume,'discount_Rate':discount_Rate,'bonus_TargetVolume':bonus_TargetVolume,'bonus_Rate':bonus_Rate,'bonus_Value':bonus_Value,'vnd_PaymentTerm':vnd_PaymentTerm,'vnd_OtherCompensation':vnd_OtherCompensation,'vnd_ContractHonoured':vnd_ContractHonoured});
+			    		}
+			    	}
+			    }else{
+			    	if(retailer==1){
+			    		if(discount_MinimumVolume!=undefined&&discount_Rate!=undefined&&bonus_TargetVolume!=undefined&&bonus_Rate!=undefined&&bonus_Value!=undefined&&vnd_PaymentTerm!=undefined&vnd_OtherCompensation!=undefined&&vnd_ContractHonoured!=undefined)
+			    		{
+			    			$scope.product1hs.push({'fullName':brandName+varName,'discount_MinimumVolume':discount_MinimumVolume,'discount_Rate':discount_Rate,'bonus_TargetVolume':bonus_TargetVolume,'bonus_Rate':bonus_Rate,'bonus_Value':bonus_Value,'vnd_PaymentTerm':vnd_PaymentTerm,'vnd_OtherCompensation':vnd_OtherCompensation,'vnd_ContractHonoured':vnd_ContractHonoured});
+			    		}
+			    	}else{
+			    		if(discount_MinimumVolume!=undefined&&discount_Rate!=undefined&&bonus_TargetVolume!=undefined&&bonus_Rate!=undefined&&bonus_Value!=undefined&&vnd_PaymentTerm!=undefined&vnd_OtherCompensation!=undefined&&vnd_ContractHonoured!=undefined)
+			    		{
+			    			$scope.product2hs.push({'fullName':brandName+varName,'discount_MinimumVolume':discount_MinimumVolume,'discount_Rate':discount_Rate,'bonus_TargetVolume':bonus_TargetVolume,'bonus_Rate':bonus_Rate,'bonus_Value':bonus_Value,'vnd_PaymentTerm':vnd_PaymentTerm,'vnd_OtherCompensation':vnd_OtherCompensation,'vnd_ContractHonoured':vnd_ContractHonoured});
+			    		}
+			    	}
+			    }
+		    }
+
 		    var showProducerNegotiations=function(){
 		    	switching('showProducerNegotiations');
 		    	var url='/SCR-negotiations/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
@@ -1352,308 +1217,15 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    			if(data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].parentCategoryID==1){
 		    				for(var j=0;j<data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerInfo.length;j++){
 		    					switch(data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerInfo[j].modernRetailerID){
-			    					case 1:
-			    						brandName=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].parentBrandName;
-			    						varName=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].variantName;
-			    						discount_MinimumVolume=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerInfo[j].value;
-			    						var discount_Rates=_.find(data.data[0].vnd_QuantityDiscount.discount_Rate,function(obj){
-			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
-			    						});
-			    						for(var k=0;k<discount_Rates.modernRetailerInfo.length;k++){
-			    							if(discount_Rates.modernRetailerInfo[k].modernRetailerID==1){
-			    								discount_Rate=discount_Rates.modernRetailerInfo[k].value;
-			    								break;
-			    							}
-			    						}
-			    						var bonus_TargetVolumes=_.find(data.data[0].vnd_TargetBonus.bonus_TargetVolume,function(obj){
-			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
-			    						});
-			    						for(var k=0;k<bonus_TargetVolumes.modernRetailerInfo.length;k++){
-			    							if(bonus_TargetVolumes.modernRetailerInfo[k].modernRetailerID==1){
-			    								bonus_TargetVolume=bonus_TargetVolumes.modernRetailerInfo[k].value;
-			    								break;
-			    							}
-			    						}
-			    						var bonus_Rates=_.find(data.data[0].vnd_TargetBonus.bonus_TargetVolume,function(obj){
-			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
-			    						});
-			    						for(var k=0;k<bonus_Rates.modernRetailerInfo.length;k++){
-			    							if(bonus_Rates.modernRetailerInfo[k].modernRetailerID==1){
-			    								bonus_Rate=bonus_Rates.modernRetailerInfo[k].value;
-			    								break;
-			    							}
-			    						}
-			    						var bonus_Values=_.find(data.data[0].vnd_TargetBonus.bonus_TargetVolume,function(obj){
-			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
-			    						});
-			    						for(var k=0;k<bonus_Values.modernRetailerInfo.length;k++){
-			    							if(bonus_Values.modernRetailerInfo[k].modernRetailerID==1){
-			    								bonus_Value=bonus_Values.modernRetailerInfo[k].value;
-			    								break;
-			    							}
-			    						}
-			    						var vnd_PaymentTerms=_.find(data.data[0].vnd_PaymentTerms,function(obj){
-			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
-			    						});
-			    						for(var k=0;k<vnd_PaymentTerms.modernRetailerInfo.length;k++){
-			    							if(vnd_PaymentTerms.modernRetailerInfo[k].modernRetailerID==1){
-			    								vnd_PaymentTerm=vnd_PaymentTerms.modernRetailerInfo[k].value;
-			    								break;
-			    							}
-			    						}
-			    						var vnd_OtherCompensations=_.find(data.data[0].vnd_OtherCompensation,function(obj){
-			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
-			    						});
-			    						for(var k=0;k<vnd_OtherCompensations.modernRetailerInfo.length;k++){
-			    							if(vnd_OtherCompensations.modernRetailerInfo[k].modernRetailerID==1){
-			    								vnd_OtherCompensation=vnd_OtherCompensations.modernRetailerInfo[k].value;
-			    								break;
-			    							}
-			    						}
-			    						var vnd_ContractHonoureds=_.find(data.data[0].vnd_ContractHonoured,function(obj){
-			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
-			    						});
-			    						for(var k=0;k<vnd_ContractHonoureds.modernRetailerInfo.length;k++){
-			    							if(vnd_ContractHonoureds.modernRetailerInfo[k].modernRetailerID==1){
-			    								vnd_ContractHonoured=vnd_ContractHonoureds.modernRetailerInfo[k].value;
-			    								break;
-			    							}
-			    						}
-			    						if(vnd_ContractHonoured==1){
-			    							vnd_ContractHonoured="yes";
-			    						}else{
-			    							vnd_ContractHonoured="no";
-			    						}
-			    						$scope.product1es.push({'fullName':brandName+varName,'discount_MinimumVolume':discount_MinimumVolume,'discount_Rate':discount_Rate,'bonus_TargetVolume':bonus_TargetVolume,'bonus_Rate':bonus_Rate,'bonus_Value':bonus_Value,'vnd_PaymentTerm':vnd_PaymentTerm,'vnd_OtherCompensation':vnd_OtherCompensation,'vnd_ContractHonoured':vnd_ContractHonoured});
-			    					break;
-			    					case 2:
-			    						brandName=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].parentBrandName;
-			    						varName=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].variantName;
-			    						discount_MinimumVolume=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerInfo[j].value;
-			    						var discount_Rates=_.find(data.data[0].vnd_QuantityDiscount.discount_Rate,function(obj){
-			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
-			    						});
-			    						for(var k=0;k<discount_Rates.modernRetailerInfo.length;k++){
-			    							if(discount_Rates.modernRetailerInfo[k].modernRetailerID==2){
-			    								discount_Rate=discount_Rates.modernRetailerInfo[k].value;
-			    								break;
-			    							}
-			    						}
-			    						var bonus_TargetVolumes=_.find(data.data[0].vnd_TargetBonus.bonus_TargetVolume,function(obj){
-			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
-			    						});
-			    						for(var k=0;k<bonus_TargetVolumes.modernRetailerInfo.length;k++){
-			    							if(bonus_TargetVolumes.modernRetailerInfo[k].modernRetailerID==2){
-			    								bonus_TargetVolume=bonus_TargetVolumes.modernRetailerInfo[k].value;
-			    								break;
-			    							}
-			    						}
-			    						var bonus_Rates=_.find(data.data[0].vnd_TargetBonus.bonus_TargetVolume,function(obj){
-			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
-			    						});
-			    						for(var k=0;k<bonus_Rates.modernRetailerInfo.length;k++){
-			    							if(bonus_Rates.modernRetailerInfo[k].modernRetailerID==2){
-			    								bonus_Rate=bonus_Rates.modernRetailerInfo[k].value;
-			    								break;
-			    							}
-			    						}
-			    						var bonus_Values=_.find(data.data[0].vnd_TargetBonus.bonus_TargetVolume,function(obj){
-			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
-			    						});
-			    						for(var k=0;k<bonus_Values.modernRetailerInfo.length;k++){
-			    							if(bonus_Values.modernRetailerInfo[k].modernRetailerID==2){
-			    								bonus_Value=bonus_Values.modernRetailerInfo[k].value;
-			    								break;
-			    							}
-			    						}
-			    						var vnd_PaymentTerms=_.find(data.data[0].vnd_PaymentTerms,function(obj){
-			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
-			    						});
-			    						for(var k=0;k<vnd_PaymentTerms.modernRetailerInfo.length;k++){
-			    							if(vnd_PaymentTerms.modernRetailerInfo[k].modernRetailerID==2){
-			    								vnd_PaymentTerm=vnd_PaymentTerms.modernRetailerInfo[k].value;
-			    								break;
-			    							}
-			    						}
-			    						var vnd_OtherCompensations=_.find(data.data[0].vnd_OtherCompensation,function(obj){
-			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
-			    						});
-			    						for(var k=0;k<vnd_OtherCompensations.modernRetailerInfo.length;k++){
-			    							if(vnd_OtherCompensations.modernRetailerInfo[k].modernRetailerID==2){
-			    								vnd_OtherCompensation=vnd_OtherCompensations.modernRetailerInfo[k].value;
-			    								break;
-			    							}
-			    						}
-			    						var vnd_ContractHonoureds=_.find(data.data[0].vnd_ContractHonoured,function(obj){
-			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
-			    						});
-			    						for(var k=0;k<vnd_ContractHonoureds.modernRetailerInfo.length;k++){
-			    							if(vnd_ContractHonoureds.modernRetailerInfo[k].modernRetailerID==2){
-			    								vnd_ContractHonoured=vnd_ContractHonoureds.modernRetailerInfo[k].value;
-			    								break;
-			    							}
-			    						}
-			    						if(vnd_ContractHonoured==1){
-			    							vnd_ContractHonoured="yes";
-			    						}else{
-			    							vnd_ContractHonoured="no";
-			    						}
-			    						$scope.product2es.push({'fullName':brandName+varName,'discount_MinimumVolume':discount_MinimumVolume,'discount_Rate':discount_Rate,'bonus_TargetVolume':bonus_TargetVolume,'bonus_Rate':bonus_Rate,'bonus_Value':bonus_Value,'vnd_PaymentTerm':vnd_PaymentTerm,'vnd_OtherCompensation':vnd_OtherCompensation,'vnd_ContractHonoured':vnd_ContractHonoured});
-			    					break;
+			    					case 1:loadNegotiations(data,1,1,i,j);break;
+			    					case 2:loadNegotiations(data,1,2,i,j);break;
 			    				}
 		    				}
 		    			}else{
 		    				for(var j=0;j<data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerInfo.length;j++){
 		    					switch(data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerInfo[j].modernRetailerID){
-		    						case 1:
-			    						brandName=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].parentBrandName;
-			    						varName=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].variantName;
-			    						discount_MinimumVolume=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerInfo[j].value;
-			    						var discount_Rates=_.find(data.data[0].vnd_QuantityDiscount.discount_Rate,function(obj){
-			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
-			    						});
-			    						for(var k=0;k<discount_Rates.modernRetailerInfo.length;k++){
-			    							if(discount_Rates.modernRetailerInfo[k].modernRetailerID==1){
-			    								discount_Rate=discount_Rates.modernRetailerInfo[k].value;
-			    								break;
-			    							}
-			    						}
-			    						var bonus_TargetVolumes=_.find(data.data[0].vnd_TargetBonus.bonus_TargetVolume,function(obj){
-			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
-			    						});
-			    						for(var k=0;k<bonus_TargetVolumes.modernRetailerInfo.length;k++){
-			    							if(bonus_TargetVolumes.modernRetailerInfo[k].modernRetailerID==1){
-			    								bonus_TargetVolume=bonus_TargetVolumes.modernRetailerInfo[k].value;
-			    								break;
-			    							}
-			    						}
-			    						var bonus_Rates=_.find(data.data[0].vnd_TargetBonus.bonus_TargetVolume,function(obj){
-			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
-			    						});
-			    						for(var k=0;k<bonus_Rates.modernRetailerInfo.length;k++){
-			    							if(bonus_Rates.modernRetailerInfo[k].modernRetailerID==1){
-			    								bonus_Rate=bonus_Rates.modernRetailerInfo[k].value;
-			    								break;
-			    							}
-			    						}
-			    						var bonus_Values=_.find(data.data[0].vnd_TargetBonus.bonus_TargetVolume,function(obj){
-			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
-			    						});
-			    						for(var k=0;k<bonus_Values.modernRetailerInfo.length;k++){
-			    							if(bonus_Values.modernRetailerInfo[k].modernRetailerID==1){
-			    								bonus_Value=bonus_Values.modernRetailerInfo[k].value;
-			    								break;
-			    							}
-			    						}
-			    						var vnd_PaymentTerms=_.find(data.data[0].vnd_PaymentTerms,function(obj){
-			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
-			    						});
-			    						for(var k=0;k<vnd_PaymentTerms.modernRetailerInfo.length;k++){
-			    							if(vnd_PaymentTerms.modernRetailerInfo[k].modernRetailerID==1){
-			    								vnd_PaymentTerm=vnd_PaymentTerms.modernRetailerInfo[k].value;
-			    								break;
-			    							}
-			    						}
-			    						var vnd_OtherCompensations=_.find(data.data[0].vnd_OtherCompensation,function(obj){
-			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
-			    						});
-			    						for(var k=0;k<vnd_OtherCompensations.modernRetailerInfo.length;k++){
-			    							if(vnd_OtherCompensations.modernRetailerInfo[k].modernRetailerID==1){
-			    								vnd_OtherCompensation=vnd_OtherCompensations.modernRetailerInfo[k].value;
-			    								break;
-			    							}
-			    						}
-			    						var vnd_ContractHonoureds=_.find(data.data[0].vnd_ContractHonoured,function(obj){
-			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
-			    						});
-			    						for(var k=0;k<vnd_ContractHonoureds.modernRetailerInfo.length;k++){
-			    							if(vnd_ContractHonoureds.modernRetailerInfo[k].modernRetailerID==1){
-			    								vnd_ContractHonoured=vnd_ContractHonoureds.modernRetailerInfo[k].value;
-			    								break;
-			    							}
-			    						}
-			    						if(vnd_ContractHonoured==1){
-			    							vnd_ContractHonoured="yes";
-			    						}else{
-			    							vnd_ContractHonoured="no";
-			    						}
-			    						$scope.product1hs.push({'fullName':brandName+varName,'discount_MinimumVolume':discount_MinimumVolume,'discount_Rate':discount_Rate,'bonus_TargetVolume':bonus_TargetVolume,'bonus_Rate':bonus_Rate,'bonus_Value':bonus_Value,'vnd_PaymentTerm':vnd_PaymentTerm,'vnd_OtherCompensation':vnd_OtherCompensation,'vnd_ContractHonoured':vnd_ContractHonoured});
-
-			    					break;
-			    					case 2:
-			    						brandName=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].parentBrandName;
-			    						varName=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].variantName;
-			    						discount_MinimumVolume=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerInfo[j].value;
-			    						var discount_Rates=_.find(data.data[0].vnd_QuantityDiscount.discount_Rate,function(obj){
-			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
-			    						});
-			    						for(var k=0;k<discount_Rates.modernRetailerInfo.length;k++){
-			    							if(discount_Rates.modernRetailerInfo[k].modernRetailerID==2){
-			    								discount_Rate=discount_Rates.modernRetailerInfo[k].value;
-			    								break;
-			    							}
-			    						}
-			    						var bonus_TargetVolumes=_.find(data.data[0].vnd_TargetBonus.bonus_TargetVolume,function(obj){
-			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
-			    						});
-			    						for(var k=0;k<bonus_TargetVolumes.modernRetailerInfo.length;k++){
-			    							if(bonus_TargetVolumes.modernRetailerInfo[k].modernRetailerID==2){
-			    								bonus_TargetVolume=bonus_TargetVolumes.modernRetailerInfo[k].value;
-			    								break;
-			    							}
-			    						}
-			    						var bonus_Rates=_.find(data.data[0].vnd_TargetBonus.bonus_TargetVolume,function(obj){
-			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
-			    						});
-			    						for(var k=0;k<bonus_Rates.modernRetailerInfo.length;k++){
-			    							if(bonus_Rates.modernRetailerInfo[k].modernRetailerID==2){
-			    								bonus_Rate=bonus_Rates.modernRetailerInfo[k].value;
-			    								break;
-			    							}
-			    						}
-			    						var bonus_Values=_.find(data.data[0].vnd_TargetBonus.bonus_TargetVolume,function(obj){
-			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
-			    						});
-			    						for(var k=0;k<bonus_Values.modernRetailerInfo.length;k++){
-			    							if(bonus_Values.modernRetailerInfo[k].modernRetailerID==2){
-			    								bonus_Value=bonus_Values.modernRetailerInfo[k].value;
-			    								break;
-			    							}
-			    						}
-			    						var vnd_PaymentTerms=_.find(data.data[0].vnd_PaymentTerms,function(obj){
-			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
-			    						});
-			    						for(var k=0;k<vnd_PaymentTerms.modernRetailerInfo.length;k++){
-			    							if(vnd_PaymentTerms.modernRetailerInfo[k].modernRetailerID==2){
-			    								vnd_PaymentTerm=vnd_PaymentTerms.modernRetailerInfo[k].value;
-			    								break;
-			    							}
-			    						}
-			    						var vnd_OtherCompensations=_.find(data.data[0].vnd_OtherCompensation,function(obj){
-			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
-			    						});
-			    						for(var k=0;k<vnd_OtherCompensations.modernRetailerInfo.length;k++){
-			    							if(vnd_OtherCompensations.modernRetailerInfo[k].modernRetailerID==2){
-			    								vnd_OtherCompensation=vnd_OtherCompensations.modernRetailerInfo[k].value;
-			    								break;
-			    							}
-			    						}
-			    						var vnd_ContractHonoureds=_.find(data.data[0].vnd_ContractHonoured,function(obj){
-			    							return(obj.variantName==varName&&obj.parentBrandName==brandName);
-			    						});
-			    						for(var k=0;k<vnd_ContractHonoureds.modernRetailerInfo.length;k++){
-			    							if(vnd_ContractHonoureds.modernRetailerInfo[k].modernRetailerID==2){
-			    								vnd_ContractHonoured=vnd_ContractHonoureds.modernRetailerInfo[k].value;
-			    								break;
-			    							}
-			    						}
-			    						if(vnd_ContractHonoured==1){
-			    							vnd_ContractHonoured="yes";
-			    						}else{
-			    							vnd_ContractHonoured="no";
-			    						}
-			    						$scope.product2hs.push({'fullName':brandName+varName,'discount_MinimumVolume':discount_MinimumVolume,'discount_Rate':discount_Rate,'bonus_TargetVolume':bonus_TargetVolume,'bonus_Rate':bonus_Rate,'bonus_Value':bonus_Value,'vnd_PaymentTerm':vnd_PaymentTerm,'vnd_OtherCompensation':vnd_OtherCompensation,'vnd_ContractHonoured':vnd_ContractHonoured});
-			    					break;
+		    						case 1:loadNegotiations(data,2,1,i,j);break;
+			    					case 2:loadNegotiations(data,2,2,i,j);break;
 		    					}
 		    				}
 		    			}
@@ -1663,20 +1235,14 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    	})
 		    }
 
-		    var showElecssoriesConsumer=function(){
-		    	switching('showElecssoriesConsumer');
-		    	var url='/SCR-sharesCrossSegment/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
-		    	$http({
-		    		method:'GET',
-		    		url:url
-		    	}).then(function(data){
+		    var loadConsumer=function(data,category){
 		    		$scope.rural1s=new Array();
 		    		$scope.urban1s=new Array();
 		    		$scope.rural2s=new Array();
 		    		$scope.urban2s=new Array();
 		    		var varName,brandName,priceShare,priceChange,moneyShare,moneyChange,fashionShare,fashionChange,freaksShare,freaksChange;
 		    		for(var i=0;i<data.data[0].absoluteValue.length;i++){
-		    			if(data.data[0].absoluteValue[i].parentCategoryID==1){
+		    			if(data.data[0].absoluteValue[i].parentCategoryID==category){
 		    				varName=data.data[0].absoluteValue[i].variantName;
 		    				brandName=data.data[0].absoluteValue[i].parentBrandName;
 		    				priceShare=data.data[0].absoluteValue[i].marketInfo[0].segmentInfo[0].shopperInfo[3].value;
@@ -1726,7 +1292,95 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    				$scope.rural2s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
 		    			}
 		    		}
+		    }
 
+		    var loadShooper=function(data,category){
+		    		$scope.rural1s=new Array();
+		    		$scope.urban1s=new Array();
+		    		$scope.rural2s=new Array();
+		    		$scope.urban2s=new Array();
+		    		var varName,brandName,bmShare,bmChange,onlineShare,onlineChange,mixedShare,mixedChange;
+		    		for(var i=0;i<data.data[0].absoluteValue.length;i++){
+		    			if(data.data[0].absoluteValue[i].parentCategoryID==category){
+		    				varName=data.data[0].absoluteValue[i].variantName;
+		    				brandName=data.data[0].absoluteValue[i].parentBrandName;
+		    				bmShare=data.data[0].absoluteValue[i].marketInfo[0].segmentInfo[4].shopperInfo[0].value;
+		    				onlineShare=data.data[0].absoluteValue[i].marketInfo[0].segmentInfo[4].shopperInfo[1].value;
+		    				mixedShare=data.data[0].absoluteValue[i].marketInfo[0].segmentInfo[4].shopperInfo[2].value;
+		    				var Changes=_.find(data.data[0].valueChange,function(obj){
+			    				return(obj.variantName==varName&&obj.parentBrandName==brandName);
+		    				});
+		    				bmChange=Changes.marketInfo[0].segmentInfo[4].shopperInfo[0].value;
+		    				onlineChange=Changes.marketInfo[0].segmentInfo[4].shopperInfo[1].value;
+		    				mixedChange=Changes.marketInfo[0].segmentInfo[4].shopperInfo[2].value;
+		    				$scope.urban1s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
+
+		    				bmShare=data.data[0].absoluteValue[i].marketInfo[1].segmentInfo[4].shopperInfo[0].value;
+		    				onlineShare=data.data[0].absoluteValue[i].marketInfo[1].segmentInfo[4].shopperInfo[1].value;
+		    				mixedShare=data.data[0].absoluteValue[i].marketInfo[1].segmentInfo[4].shopperInfo[2].value;
+		    				bmChange=Changes.marketInfo[1].segmentInfo[4].shopperInfo[0].value;
+		    				onlineChange=Changes.marketInfo[1].segmentInfo[4].shopperInfo[1].value;
+		    				mixedChange=Changes.marketInfo[1].segmentInfo[4].shopperInfo[2].value;
+		    				$scope.rural1s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
+		    				var Volumes=_.find(data.data[0].absoluteVolume,function(obj){
+			    				return(obj.variantName==varName&&obj.parentBrandName==brandName);
+		    				});
+		    				var Changes=_.find(data.data[0].volumeChange,function(obj){
+			    				return(obj.variantName==varName&&obj.parentBrandName==brandName);
+		    				});
+		    				bmShare=Volumes.marketInfo[0].segmentInfo[4].shopperInfo[0].value;
+		    				onlineShare=Volumes.marketInfo[0].segmentInfo[4].shopperInfo[1].value;
+		    				mixedShare=Volumes.marketInfo[0].segmentInfo[4].shopperInfo[2].value;
+		    				bmChange=Changes.marketInfo[0].segmentInfo[4].shopperInfo[0].value;
+		    				onlineChange=Changes.marketInfo[0].segmentInfo[4].shopperInfo[1].value;
+		    				mixedChange=Changes.marketInfo[0].segmentInfo[4].shopperInfo[2].value;
+		    				$scope.urban2s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
+		    				bmShare=Volumes.marketInfo[1].segmentInfo[4].shopperInfo[0].value;
+		    				onlineShare=Volumes.marketInfo[1].segmentInfo[4].shopperInfo[1].value;
+		    				mixedShare=Volumes.marketInfo[1].segmentInfo[4].shopperInfo[2].value;
+		    				bmChange=Changes.marketInfo[1].segmentInfo[4].shopperInfo[0].value;
+		    				onlineChange=Changes.marketInfo[1].segmentInfo[4].shopperInfo[1].value;
+		    				mixedChange=Changes.marketInfo[1].segmentInfo[4].shopperInfo[2].value;
+		    				$scope.rural2s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
+
+		    			}
+		    		}
+		    }
+
+		    var loadVolume=function(data,category){
+		    		$scope.products=new Array();
+		    		var varName,brandName,initial,production,sales,discontinued,closing;
+		    		for(var i=0;i<data.data[0].scrviv_Initial.length;i++){
+		    			if(data.data[0].scrviv_Initial[i].parentCategoryID==category){
+		    				varName=data.data[0].scrviv_Initial[i].variantName;
+		    				brandName=data.data[0].scrviv_Initial[i].parentBrandName;
+		    				initial=data.data[0].scrviv_Initial[i];
+
+		    				production=_.find(data.data[0].scrviv_Production,function(obj){
+		    					return (obj.variantName==varName&&obj.parentBrandName==brandName);
+		    				});
+		    				sales=_.find(data.data[0].scrviv_Sales,function(obj){
+		    					return (obj.variantName==varName&&obj.parentBrandName==brandName);
+		    				});
+		    				discontinued=_.find(data.data[0].scrviv_Discontinued,function(obj){
+		    					return (obj.variantName==varName&&obj.parentBrandName==brandName);
+		    				});
+		    				closing=_.find(data.data[0].scrviv_Closing,function(obj){
+		    					return (obj.variantName==varName&&obj.parentBrandName==brandName);
+		    				});
+		    				$scope.products.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing});
+		    			}
+		    		}
+		    }
+
+		    var showElecssoriesConsumer=function(){
+		    	switching('showElecssoriesConsumer');
+		    	var url='/SCR-sharesCrossSegment/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+		    	$http({
+		    		method:'GET',
+		    		url:url
+		    	}).then(function(data){
+		    		loadConsumer(data,1);
 		    	},function(){
 		    		console.log('fail');
 		    	})
@@ -1739,60 +1393,10 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    		method:'GET',
 		    		url:url
 		    	}).then(function(data){
-		    		$scope.rural1s=new Array();
-		    		$scope.urban1s=new Array();
-		    		$scope.rural2s=new Array();
-		    		$scope.urban2s=new Array();
-		    		var varName,brandName,bmShare,bmChange,onlineShare,onlineChange,mixedShare,mixedChange;
-		    		for(var i=0;i<data.data[0].absoluteValue.length;i++){
-		    			if(data.data[0].absoluteValue[i].parentCategoryID==1){
-		    				varName=data.data[0].absoluteValue[i].variantName;
-		    				brandName=data.data[0].absoluteValue[i].parentBrandName;
-		    				bmShare=data.data[0].absoluteValue[i].marketInfo[0].segmentInfo[4].shopperInfo[0].value;
-		    				onlineShare=data.data[0].absoluteValue[i].marketInfo[0].segmentInfo[4].shopperInfo[1].value;
-		    				mixedShare=data.data[0].absoluteValue[i].marketInfo[0].segmentInfo[4].shopperInfo[2].value;
-		    				var Changes=_.find(data.data[0].valueChange,function(obj){
-			    				return(obj.variantName==varName&&obj.parentBrandName==brandName);
-		    				});
-		    				bmChange=Changes.marketInfo[0].segmentInfo[4].shopperInfo[0].value;
-		    				onlineChange=Changes.marketInfo[0].segmentInfo[4].shopperInfo[1].value;
-		    				mixedChange=Changes.marketInfo[0].segmentInfo[4].shopperInfo[2].value;
-		    				$scope.urban1s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
-
-		    				bmShare=data.data[0].absoluteValue[i].marketInfo[1].segmentInfo[4].shopperInfo[0].value;
-		    				onlineShare=data.data[0].absoluteValue[i].marketInfo[1].segmentInfo[4].shopperInfo[1].value;
-		    				mixedShare=data.data[0].absoluteValue[i].marketInfo[1].segmentInfo[4].shopperInfo[2].value;
-		    				bmChange=Changes.marketInfo[1].segmentInfo[4].shopperInfo[0].value;
-		    				onlineChange=Changes.marketInfo[1].segmentInfo[4].shopperInfo[1].value;
-		    				mixedChange=Changes.marketInfo[1].segmentInfo[4].shopperInfo[2].value;
-		    				$scope.rural1s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
-		    				var Volumes=_.find(data.data[0].absoluteVolume,function(obj){
-			    				return(obj.variantName==varName&&obj.parentBrandName==brandName);
-		    				});
-		    				var Changes=_.find(data.data[0].volumeChange,function(obj){
-			    				return(obj.variantName==varName&&obj.parentBrandName==brandName);
-		    				});
-		    				bmShare=Volumes.marketInfo[0].segmentInfo[4].shopperInfo[0].value;
-		    				onlineShare=Volumes.marketInfo[0].segmentInfo[4].shopperInfo[1].value;
-		    				mixedShare=Volumes.marketInfo[0].segmentInfo[4].shopperInfo[2].value;
-		    				bmChange=Changes.marketInfo[0].segmentInfo[4].shopperInfo[0].value;
-		    				onlineChange=Changes.marketInfo[0].segmentInfo[4].shopperInfo[1].value;
-		    				mixedChange=Changes.marketInfo[0].segmentInfo[4].shopperInfo[2].value;
-		    				$scope.urban2s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
-		    				bmShare=Volumes.marketInfo[1].segmentInfo[4].shopperInfo[0].value;
-		    				onlineShare=Volumes.marketInfo[1].segmentInfo[4].shopperInfo[1].value;
-		    				mixedShare=Volumes.marketInfo[1].segmentInfo[4].shopperInfo[2].value;
-		    				bmChange=Changes.marketInfo[1].segmentInfo[4].shopperInfo[0].value;
-		    				onlineChange=Changes.marketInfo[1].segmentInfo[4].shopperInfo[1].value;
-		    				mixedChange=Changes.marketInfo[1].segmentInfo[4].shopperInfo[2].value;
-		    				$scope.rural2s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
-
-		    			}
-		    		}
+		    		loadShooper(data,1);
 		    	},function(){
 		    		console.log('fail');
 		    	})
-
 		    }
 
 		    var showElecssoriesVolume=function(){
@@ -1802,29 +1406,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    		method:'GET',
 		    		url:url
 		    	}).then(function(data){
-		    		$scope.products=new Array();
-		    		var varName,brandName,initial,production,sales,discontinued,closing;
-		    		for(var i=0;i<data.data[0].scrviv_Initial.length;i++){
-		    			if(data.data[0].scrviv_Initial[i].parentCategoryID==1){
-		    				varName=data.data[0].scrviv_Initial[i].variantName;
-		    				brandName=data.data[0].scrviv_Initial[i].parentBrandName;
-		    				initial=data.data[0].scrviv_Initial[i];
-
-		    				production=_.find(data.data[0].scrviv_Production,function(obj){
-		    					return (obj.variantName==varName&&obj.parentBrandName==brandName);
-		    				});
-		    				sales=_.find(data.data[0].scrviv_Sales,function(obj){
-		    					return (obj.variantName==varName&&obj.parentBrandName==brandName);
-		    				});
-		    				discontinued=_.find(data.data[0].scrviv_Discontinued,function(obj){
-		    					return (obj.variantName==varName&&obj.parentBrandName==brandName);
-		    				});
-		    				closing=_.find(data.data[0].scrviv_Closing,function(obj){
-		    					return (obj.variantName==varName&&obj.parentBrandName==brandName);
-		    				});
-		    				$scope.products.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing});
-		    			}
-		    		}
+		    		loadVolume(data,1);
 		    	},function(){
 		    		console.log('fail');
 		    	})
@@ -1837,63 +1419,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    		method:'GET',
 		    		url:url
 		    	}).then(function(data){
-		    		$scope.rural1s=new Array();
-		    		$scope.urban1s=new Array();
-		    		$scope.rural2s=new Array();
-		    		$scope.urban2s=new Array();
-		    		var varName,brandName,priceShare,priceChange,moneyShare,moneyChange,fashionShare,fashionChange,freaksShare,freaksChange;
-		    		for(var i=0;i<data.data[0].absoluteValue.length;i++){
-		    			if(data.data[0].absoluteValue[i].parentCategoryID==2){
-		    				varName=data.data[0].absoluteValue[i].variantName;
-		    				brandName=data.data[0].absoluteValue[i].parentBrandName;
-		    				priceShare=data.data[0].absoluteValue[i].marketInfo[0].segmentInfo[0].shopperInfo[3].value;
-		    				moneyShare=data.data[0].absoluteValue[i].marketInfo[0].segmentInfo[1].shopperInfo[3].value;
-		    				fashionShare=data.data[0].absoluteValue[i].marketInfo[0].segmentInfo[2].shopperInfo[3].value;
-		    				freaksShare=data.data[0].absoluteValue[i].marketInfo[0].segmentInfo[3].shopperInfo[3].value;
-		    				var Changes=_.find(data.data[0].valueChange,function(obj){
-			    				return(obj.variantName==varName&&obj.parentBrandName==brandName);
-		    				});
-		    				priceChange=Changes.marketInfo[0].segmentInfo[0].shopperInfo[3].value;
-		    				moneyChange=Changes.marketInfo[0].segmentInfo[1].shopperInfo[3].value;
-		    				fashionChange=Changes.marketInfo[0].segmentInfo[2].shopperInfo[3].value;
-		    				freaksChange=Changes.marketInfo[0].segmentInfo[3].shopperInfo[3].value;
-		    				$scope.urban1s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
-		    				priceShare=data.data[0].absoluteValue[i].marketInfo[1].segmentInfo[0].shopperInfo[3].value;
-		    				moneyShare=data.data[0].absoluteValue[i].marketInfo[1].segmentInfo[1].shopperInfo[3].value;
-		    				fashionShare=data.data[0].absoluteValue[i].marketInfo[1].segmentInfo[2].shopperInfo[3].value;
-		    				freaksShare=data.data[0].absoluteValue[i].marketInfo[1].segmentInfo[3].shopperInfo[3].value;
-		    				priceChange=Changes.marketInfo[1].segmentInfo[0].shopperInfo[3].value;
-		    				moneyChange=Changes.marketInfo[1].segmentInfo[1].shopperInfo[3].value;
-		    				fashionChange=Changes.marketInfo[1].segmentInfo[2].shopperInfo[3].value;
-		    				freaksChange=Changes.marketInfo[1].segmentInfo[3].shopperInfo[3].value;
-		    				$scope.rural1s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
-		    				var Volumes=_.find(data.data[0].absoluteVolume,function(obj){
-			    				return(obj.variantName==varName&&obj.parentBrandName==brandName);
-		    				});
-		    				var Changes=_.find(data.data[0].volumeChange,function(obj){
-			    				return(obj.variantName==varName&&obj.parentBrandName==brandName);
-		    				});
-		    				priceChange=Volumes.marketInfo[0].segmentInfo[0].shopperInfo[3].value;
-		    				moneyChange=Volumes.marketInfo[0].segmentInfo[1].shopperInfo[3].value;
-		    				fashionChange=Volumes.marketInfo[0].segmentInfo[2].shopperInfo[3].value;
-		    				freaksChange=Volumes.marketInfo[0].segmentInfo[3].shopperInfo[3].value;
-		    				priceChange=Changes.marketInfo[0].segmentInfo[0].shopperInfo[3].value;
-		    				moneyChange=Changes.marketInfo[0].segmentInfo[1].shopperInfo[3].value;
-		    				fashionChange=Changes.marketInfo[0].segmentInfo[2].shopperInfo[3].value;
-		    				freaksChange=Changes.marketInfo[0].segmentInfo[3].shopperInfo[3].value;
-		    				$scope.urban2s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
-		    				priceChange=Volumes.marketInfo[1].segmentInfo[0].shopperInfo[3].value;
-		    				moneyChange=Volumes.marketInfo[1].segmentInfo[1].shopperInfo[3].value;
-		    				fashionChange=Volumes.marketInfo[1].segmentInfo[2].shopperInfo[3].value;
-		    				freaksChange=Volumes.marketInfo[1].segmentInfo[3].shopperInfo[3].value;
-		    				priceChange=Changes.marketInfo[1].segmentInfo[0].shopperInfo[3].value;
-		    				moneyChange=Changes.marketInfo[1].segmentInfo[1].shopperInfo[3].value;
-		    				fashionChange=Changes.marketInfo[1].segmentInfo[2].shopperInfo[3].value;
-		    				freaksChange=Changes.marketInfo[1].segmentInfo[3].shopperInfo[3].value;
-		    				$scope.rural2s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
-		    			}
-		    		}
-
+		    		loadConsumer(data,2);
 		    	},function(){
 		    		console.log('fail');
 		    	})
@@ -1906,56 +1432,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    		method:'GET',
 		    		url:url
 		    	}).then(function(data){
-		    		$scope.rural1s=new Array();
-		    		$scope.urban1s=new Array();
-		    		$scope.rural2s=new Array();
-		    		$scope.urban2s=new Array();
-		    		var varName,brandName,bmShare,bmChange,onlineShare,onlineChange,mixedShare,mixedChange;
-		    		for(var i=0;i<data.data[0].absoluteValue.length;i++){
-		    			if(data.data[0].absoluteValue[i].parentCategoryID==2){
-		    				varName=data.data[0].absoluteValue[i].variantName;
-		    				brandName=data.data[0].absoluteValue[i].parentBrandName;
-		    				bmShare=data.data[0].absoluteValue[i].marketInfo[0].segmentInfo[4].shopperInfo[0].value;
-		    				onlineShare=data.data[0].absoluteValue[i].marketInfo[0].segmentInfo[4].shopperInfo[1].value;
-		    				mixedShare=data.data[0].absoluteValue[i].marketInfo[0].segmentInfo[4].shopperInfo[2].value;
-		    				var Changes=_.find(data.data[0].valueChange,function(obj){
-			    				return(obj.variantName==varName&&obj.parentBrandName==brandName);
-		    				});
-		    				bmChange=Changes.marketInfo[0].segmentInfo[4].shopperInfo[0].value;
-		    				onlineChange=Changes.marketInfo[0].segmentInfo[4].shopperInfo[1].value;
-		    				mixedChange=Changes.marketInfo[0].segmentInfo[4].shopperInfo[2].value;
-		    				$scope.urban1s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
-
-		    				bmShare=data.data[0].absoluteValue[i].marketInfo[1].segmentInfo[4].shopperInfo[0].value;
-		    				onlineShare=data.data[0].absoluteValue[i].marketInfo[1].segmentInfo[4].shopperInfo[1].value;
-		    				mixedShare=data.data[0].absoluteValue[i].marketInfo[1].segmentInfo[4].shopperInfo[2].value;
-		    				bmChange=Changes.marketInfo[1].segmentInfo[4].shopperInfo[0].value;
-		    				onlineChange=Changes.marketInfo[1].segmentInfo[4].shopperInfo[1].value;
-		    				mixedChange=Changes.marketInfo[1].segmentInfo[4].shopperInfo[2].value;
-		    				$scope.rural1s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
-		    				var Volumes=_.find(data.data[0].absoluteVolume,function(obj){
-			    				return(obj.variantName==varName&&obj.parentBrandName==brandName);
-		    				});
-		    				var Changes=_.find(data.data[0].volumeChange,function(obj){
-			    				return(obj.variantName==varName&&obj.parentBrandName==brandName);
-		    				});
-		    				bmShare=Volumes.marketInfo[0].segmentInfo[4].shopperInfo[0].value;
-		    				onlineShare=Volumes.marketInfo[0].segmentInfo[4].shopperInfo[1].value;
-		    				mixedShare=Volumes.marketInfo[0].segmentInfo[4].shopperInfo[2].value;
-		    				bmChange=Changes.marketInfo[0].segmentInfo[4].shopperInfo[0].value;
-		    				onlineChange=Changes.marketInfo[0].segmentInfo[4].shopperInfo[1].value;
-		    				mixedChange=Changes.marketInfo[0].segmentInfo[4].shopperInfo[2].value;
-		    				$scope.urban2s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
-		    				bmShare=Volumes.marketInfo[1].segmentInfo[4].shopperInfo[0].value;
-		    				onlineShare=Volumes.marketInfo[1].segmentInfo[4].shopperInfo[1].value;
-		    				mixedShare=Volumes.marketInfo[1].segmentInfo[4].shopperInfo[2].value;
-		    				bmChange=Changes.marketInfo[1].segmentInfo[4].shopperInfo[0].value;
-		    				onlineChange=Changes.marketInfo[1].segmentInfo[4].shopperInfo[1].value;
-		    				mixedChange=Changes.marketInfo[1].segmentInfo[4].shopperInfo[2].value;
-		    				$scope.rural2s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
-
-		    			}
-		    		}
+		    		loadShooper(data,2);
 		    	},function(){
 		    		console.log('fail');
 		    	})
@@ -1968,29 +1445,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    		method:'GET',
 		    		url:url
 		    	}).then(function(data){
-		    		$scope.products=new Array();
-		    		var varName,brandName,initial,production,sales,discontinued,closing;
-		    		for(var i=0;i<data.data[0].scrviv_Initial.length;i++){
-		    			if(data.data[0].scrviv_Initial[i].parentCategoryID==2){
-		    				varName=data.data[0].scrviv_Initial[i].variantName;
-		    				brandName=data.data[0].scrviv_Initial[i].parentBrandName;
-		    				initial=data.data[0].scrviv_Initial[i];
-
-		    				production=_.find(data.data[0].scrviv_Production,function(obj){
-		    					return (obj.variantName==varName&&obj.parentBrandName==brandName);
-		    				});
-		    				sales=_.find(data.data[0].scrviv_Sales,function(obj){
-		    					return (obj.variantName==varName&&obj.parentBrandName==brandName);
-		    				});
-		    				discontinued=_.find(data.data[0].scrviv_Discontinued,function(obj){
-		    					return (obj.variantName==varName&&obj.parentBrandName==brandName);
-		    				});
-		    				closing=_.find(data.data[0].scrviv_Closing,function(obj){
-		    					return (obj.variantName==varName&&obj.parentBrandName==brandName);
-		    				});
-		    				$scope.products.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing});
-		    			}
-		    		}
+		    		loadVolume(data,2);
 		    	},function(){
 		    		console.log('fail');
 		    	})
@@ -2009,8 +1464,64 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    	})
 		    }
 
-		    //general report
+		    var showRetailerConsolidate=function(){
+		    	switching('showRetailerConsolidate');
+		    	console.log('read');
+		    }
+
+		    var showRetailerRuralProfit=function(){
+		    	switching('showRetailerRuralProfit');
+
+		    }
+		    var showRetailerUrbanProfit=function(){
+		    	switching('showRetailerUrbanProfit');
+
+		    }
+		    var showRetailerProfitability=function(){
+		    	switching('showRetailerProfitability');
+
+		    }
+		    var showRetailerNegotiations=function(){
+		    	switching('showRetailerNegotiations');
+
+		    }
+		    var showRuralConsumer=function(){
+		    	switching('showRuralConsumer');
+
+		    }
+		    var showRuralShopper=function(){
+		    	switching('showRuralShopper');
+
+		    }
+		    var showRuralVolume=function(){
+		    	switching('showRuralVolume');
+
+		    }
+		    var showUrbanConsumer=function(){
+		    	switching('showUrbanConsumer');
+
+		    }
+		    var showUrbanShopper=function(){
+		    	switching('showUrbanShopper');
+
+		    }
+		    var showUrbanVolume=function(){
+		    	switching('showUrbanVolume');
+
+		    }
+		    var showRetailerKey=function(){
+		    	switching('showRetailerKey');
+
+		    }
+
+		    //load Function
 		    $scope.switching=switching;
+		    $scope.loadValue=loadValue;
+		    $scope.loadBusiness=loadBusiness;
+		    $scope.loadConsumer=loadConsumer;
+		    $scope.loadShooper=loadShooper;
+		    $scope.loadVolume=loadVolume;
+		    //general report
 		    $scope.showPerformance=showPerformance;
 		    $scope.showMarketShare=showMarketShare;
 		    $scope.showMarketSales=showMarketSales;
@@ -2032,6 +1543,18 @@ define(['app','socketIO','routingConfig'], function(app) {
 			$scope.showHealthBeautiesVolume=showHealthBeautiesVolume;
 			$scope.showProducerKey=showProducerKey;  	
 		  	//retailer report
+		  	$scope.showRetailerConsolidate=showRetailerConsolidate;
+			$scope.showRetailerRuralProfit=showRetailerRuralProfit;
+			$scope.showRetailerUrbanProfit=showRetailerUrbanProfit;
+			$scope.showRetailerProfitability=showRetailerProfitability;
+			$scope.showRetailerNegotiations=showRetailerNegotiations;
+			$scope.showRuralConsumer=showRuralConsumer;
+			$scope.showRuralShopper=showRuralShopper;
+			$scope.showRuralVolume=showRuralVolume;
+			$scope.showUrbanConsumer=showUrbanConsumer;
+			$scope.showUrbanShopper=showUrbanShopper;
+			$scope.showUrbanVolume=showUrbanVolume;
+			$scope.showRetailerKey=showRetailerKey;  
 
 		  	showPerformance();
 
