@@ -5,10 +5,11 @@ var mongoose = require('mongoose'),
     request = require('request'),
     q = require('q');
 
-var MR_retailersIntelligenceSchema = mongoose.Schema({
+var MR_supplierIntelligenceSchema = mongoose.Schema({
     period : Number,
     seminar : String,
-    supplierInfo : [supplierInfoSchema],x
+
+    supplierInfo : [supplierInfoSchema],
 })
 
 var supplierInfoSchema = mongoose.Schema({
@@ -18,7 +19,7 @@ var supplierInfoSchema = mongoose.Schema({
 
 var categoryInfoSchema = mongoose.Schema({
     categoryID : Number, //1~3 
-    advertisingOnLine              : Number,
+    dvertisingOnLine              : Number,
     onLine_Visibility             : Number,
     onLine_Other                  : Number,
     acquiredTechnologyLevel       : Number,
@@ -34,7 +35,7 @@ var categoryInfoSchema = mongoose.Schema({
 })
 
 var BMretailerInfoSchema = mongoose.Schema({
-    BMretailerID : Number, //1~3, 1-Retailer1, 2-Retailer2, 3-TraditionalTrade
+    BMretailerID : Number, //1~BMRetsMax(3), 1-Retailer1, 2-Retailer2, 3-TraditionalTrade
     value : [Number] //0-Urban, 1-Rural, 2-Total
 })
 
