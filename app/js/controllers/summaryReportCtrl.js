@@ -942,8 +942,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    		console.log('fail');
 		    	})
 		    }
-
-
+		    
 		    var loadTotal=function(data){
 		    	$scope.sales=data.data[0].scrpl_Sales;
 		    	$scope.salesChanges=data.data[0].scrpl_SalesChange;

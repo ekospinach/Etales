@@ -381,7 +381,89 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
     		method:'GET',
     		url:url
     	}).then(function(){
-    		console.log('Success');
+    		console.log('Success1');
+    		url='/addSCR-channelsProfitability';
+    		return $http({
+    			method:'GET',
+    			url:url
+    		});
+    	}).then(function(){
+    		console.log('Success2');
+    		url='/addSCR-inventoryVolumes';
+    		return $http({
+    			method:'GET',
+    			url:url
+    		});
+    	}).then(function(){
+    		console.log('Success3');
+    		url='/addSCR-keyPerformanceIndicators';
+    		return $http({
+    			method:'GET',
+    			url:url
+    		});    		
+    	}).then(function(){
+    		console.log('Success4');
+    		url='/addSCR-negotiations';
+    		return $http({
+    			method:'GET',
+    			url:url
+    		});    		
+    	}).then(function(){
+    		console.log('Success5');
+    		url='/addSCR-sharesCrossSegment';
+    		return $http({
+    			method:'GET',
+    			url:url
+    		});    		
+    	}).then(function(){
+    		console.log('Success6');	
+    	},function(){
+    		console.log('fail');
+    	});
+    }
+
+    $scope.addRetailerReport=function(){
+    	var url='/addRCR-consolidatedProfitAndLoss';
+    	$http({
+    		method:'GET',
+    		url:url
+    	}).then(function(){
+    		console.log('Success1');
+    		url='/addRCR-inventoryVolumes';
+    		return $http({
+    			method:'GET',
+    			url:url
+    		});
+    	}).then(function(){
+    		console.log('Success2');
+    		url='/addRCR-keyPerformanceIndicators';
+    		return $http({
+    			method:'GET',
+    			url:url
+    		});
+    	}).then(function(){
+    		console.log('Success3');
+    		url='/addRCR-negotiations';
+    		return $http({
+    			method:'GET',
+    			url:url
+    		});    		
+    	}).then(function(){
+    		console.log('Success4');
+    		url='/addRCR-profitabilityBySupplier';
+    		return $http({
+    			method:'GET',
+    			url:url
+    		});    		
+    	}).then(function(){
+    		console.log('Success5');
+    		url='/addRCR-sharesCrossSegment';
+    		return $http({
+    			method:'GET',
+    			url:url
+    		});    		
+    	}).then(function(){
+    		console.log('Success6');	
     	},function(){
     		console.log('fail');
     	});
