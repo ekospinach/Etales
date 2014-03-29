@@ -36,6 +36,7 @@ var RCR_consolidatedProfitAndLossSchema = mongoose.Schema({
     rcrpl_NetProfitMargin               : [categoryInfoSchema],
 
     //P&L per brand in B&M and onLine
+    rcrb_Sales                         : [brandInfoSchema],
     rcrb_PromotionsCost                : [brandInfoSchema],
     rcrb_OtherCompensation             : [brandInfoSchema],
     rcrb_NetSales                      : [brandInfoSchema],
@@ -52,8 +53,9 @@ var RCR_consolidatedProfitAndLossSchema = mongoose.Schema({
     rcrb_GrossProfitShareInCategory    : [brandInfoSchema],
     rcrb_GeneralExpenses               : [brandInfoSchema],
     rcrb_OperatingProfit               : [brandInfoSchema],
-    rcrb_OperatingProfitChange          : [brandInfoSchema],
+    rcrb_OperatingProfitChange         : [brandInfoSchema],
     rcrb_OperatingProfitMargin         : [brandInfoSchema],
+    rcrb_OperatingProfitMarginShareInCategory: [brandInfoSchema],
     rcrb_Interest                      : [brandInfoSchema],
     rcrb_Taxes                         : [brandInfoSchema],
     rcrb_ExceptionalItems              : [brandInfoSchema],
@@ -80,13 +82,14 @@ var RCR_consolidatedProfitAndLossSchema = mongoose.Schema({
     rcrv_GrossProfitShareInCategory    : [variantInfoSchema],
     rcrv_GeneralExpenses               : [variantInfoSchema],
     rcrv_OperatingProfit               : [variantInfoSchema],
-    rcrv_OperatingProfitChange          : [variantInfoSchema],
+    rcrv_OperatingProfitChange         : [variantInfoSchema],
     rcrv_OperatingProfitMargin         : [variantInfoSchema],
+    rcrv_OperatingProfitMarginShareInCategory:[variantInfoSchema],
     rcrv_Interest                      : [variantInfoSchema],
     rcrv_Taxes                         : [variantInfoSchema],
     rcrv_ExceptionalItems              : [variantInfoSchema],
     rcrv_NetProfit                     : [variantInfoSchema],
-    rcrv_NetProfitChange                : [variantInfoSchema],
+    rcrv_NetProfitChange               : [variantInfoSchema],
     rcrv_NetProfitMargin               : [variantInfoSchema],
     rcrv_NetProfitShareInCategory      : [variantInfoSchema],
 })
@@ -352,6 +355,27 @@ exports.addRCR_consolidatedProfitAndLoss=function(req,res,next){
         }],
 
         //P&L per brand in B&M and onLine
+        rcrb_Sales                          : [{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            value:[10,20,30]
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            value:[40,50,60]
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            value:[35,45,55]
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            value:[65,75,85]
+        }],
         rcrb_PromotionsCost                : [{
             brandName:'ELAN1',
             parentCategoryID:1,
@@ -710,6 +734,27 @@ exports.addRCR_consolidatedProfitAndLoss=function(req,res,next){
             value:[65,75,85]
         }],
         rcrb_OperatingProfitMargin         : [{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            value:[10,20,30]
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            value:[40,50,60]
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            value:[35,45,55]
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            value:[65,75,85]
+        }],
+        rcrb_OperatingProfitMarginShareInCategory         : [{
             brandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
@@ -1330,6 +1375,31 @@ exports.addRCR_consolidatedProfitAndLoss=function(req,res,next){
             value:[65,55,45]
         }],
         rcrv_OperatingProfitMargin         : [{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            value:[35,45,55]
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            value:[55,65,75]
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            value:[95,85,75]
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            value:[65,55,45]
+        }],
+        rcrv_OperatingProfitMarginShareInCategory         : [{
             variantName:'_A',
             parentBrandName:'ELAN1',
             parentCategoryID:1,
