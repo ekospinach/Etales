@@ -1,0 +1,168 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{E564D8B6-FA6A-407F-A063-C7C37516188D}</ProjectGuid>
+		</PropertyGroup>
+		<ItemGroup>
+			<Projects Include="SCR_channelsProfitability.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="SCR_consolidatedProfitAndLoss.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="SCR_inventoryVolumes.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="SCR_keyPerformanceIndicators.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="SCR_negotiations.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="SCR_sharesCrossSegment.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="RCR_consolidatedProfitAndLoss.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="RCR_inventoryVolumes.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="RCR_keyPerformanceIndicators.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="RCR_negotiations.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="RCR_profitabilityBySupplier.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="RCR_sharesCrossSegment.dproj">
+				<Dependencies/>
+			</Projects>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Default.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Default.Personality/>
+			</BorlandProject>
+		</ProjectExtensions>
+		<Target Name="SCR_channelsProfitability">
+			<MSBuild Projects="SCR_channelsProfitability.dproj"/>
+		</Target>
+		<Target Name="SCR_channelsProfitability:Clean">
+			<MSBuild Projects="SCR_channelsProfitability.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="SCR_channelsProfitability:Make">
+			<MSBuild Projects="SCR_channelsProfitability.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="SCR_consolidatedProfitAndLoss">
+			<MSBuild Projects="SCR_consolidatedProfitAndLoss.dproj"/>
+		</Target>
+		<Target Name="SCR_consolidatedProfitAndLoss:Clean">
+			<MSBuild Projects="SCR_consolidatedProfitAndLoss.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="SCR_consolidatedProfitAndLoss:Make">
+			<MSBuild Projects="SCR_consolidatedProfitAndLoss.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="SCR_inventoryVolumes">
+			<MSBuild Projects="SCR_inventoryVolumes.dproj"/>
+		</Target>
+		<Target Name="SCR_inventoryVolumes:Clean">
+			<MSBuild Projects="SCR_inventoryVolumes.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="SCR_inventoryVolumes:Make">
+			<MSBuild Projects="SCR_inventoryVolumes.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="SCR_keyPerformanceIndicators">
+			<MSBuild Projects="SCR_keyPerformanceIndicators.dproj"/>
+		</Target>
+		<Target Name="SCR_keyPerformanceIndicators:Clean">
+			<MSBuild Projects="SCR_keyPerformanceIndicators.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="SCR_keyPerformanceIndicators:Make">
+			<MSBuild Projects="SCR_keyPerformanceIndicators.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="SCR_negotiations">
+			<MSBuild Projects="SCR_negotiations.dproj"/>
+		</Target>
+		<Target Name="SCR_negotiations:Clean">
+			<MSBuild Projects="SCR_negotiations.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="SCR_negotiations:Make">
+			<MSBuild Projects="SCR_negotiations.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="SCR_sharesCrossSegment">
+			<MSBuild Projects="SCR_sharesCrossSegment.dproj"/>
+		</Target>
+		<Target Name="SCR_sharesCrossSegment:Clean">
+			<MSBuild Projects="SCR_sharesCrossSegment.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="SCR_sharesCrossSegment:Make">
+			<MSBuild Projects="SCR_sharesCrossSegment.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="RCR_consolidatedProfitAndLoss">
+			<MSBuild Projects="RCR_consolidatedProfitAndLoss.dproj"/>
+		</Target>
+		<Target Name="RCR_consolidatedProfitAndLoss:Clean">
+			<MSBuild Projects="RCR_consolidatedProfitAndLoss.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="RCR_consolidatedProfitAndLoss:Make">
+			<MSBuild Projects="RCR_consolidatedProfitAndLoss.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="RCR_inventoryVolumes">
+			<MSBuild Projects="RCR_inventoryVolumes.dproj"/>
+		</Target>
+		<Target Name="RCR_inventoryVolumes:Clean">
+			<MSBuild Projects="RCR_inventoryVolumes.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="RCR_inventoryVolumes:Make">
+			<MSBuild Projects="RCR_inventoryVolumes.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="RCR_keyPerformanceIndicators">
+			<MSBuild Projects="RCR_keyPerformanceIndicators.dproj"/>
+		</Target>
+		<Target Name="RCR_keyPerformanceIndicators:Clean">
+			<MSBuild Projects="RCR_keyPerformanceIndicators.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="RCR_keyPerformanceIndicators:Make">
+			<MSBuild Projects="RCR_keyPerformanceIndicators.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="RCR_negotiations">
+			<MSBuild Projects="RCR_negotiations.dproj"/>
+		</Target>
+		<Target Name="RCR_negotiations:Clean">
+			<MSBuild Projects="RCR_negotiations.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="RCR_negotiations:Make">
+			<MSBuild Projects="RCR_negotiations.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="RCR_profitabilityBySupplier">
+			<MSBuild Projects="RCR_profitabilityBySupplier.dproj"/>
+		</Target>
+		<Target Name="RCR_profitabilityBySupplier:Clean">
+			<MSBuild Projects="RCR_profitabilityBySupplier.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="RCR_profitabilityBySupplier:Make">
+			<MSBuild Projects="RCR_profitabilityBySupplier.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="RCR_sharesCrossSegment">
+			<MSBuild Projects="RCR_sharesCrossSegment.dproj"/>
+		</Target>
+		<Target Name="RCR_sharesCrossSegment:Clean">
+			<MSBuild Projects="RCR_sharesCrossSegment.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="RCR_sharesCrossSegment:Make">
+			<MSBuild Projects="RCR_sharesCrossSegment.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="Build">
+			<CallTarget Targets="SCR_channelsProfitability;SCR_consolidatedProfitAndLoss;SCR_inventoryVolumes;SCR_keyPerformanceIndicators;SCR_negotiations;SCR_sharesCrossSegment;RCR_consolidatedProfitAndLoss;RCR_inventoryVolumes;RCR_keyPerformanceIndicators;RCR_negotiations;RCR_profitabilityBySupplier;RCR_sharesCrossSegment"/>
+		</Target>
+		<Target Name="Clean">
+			<CallTarget Targets="SCR_channelsProfitability:Clean;SCR_consolidatedProfitAndLoss:Clean;SCR_inventoryVolumes:Clean;SCR_keyPerformanceIndicators:Clean;SCR_negotiations:Clean;SCR_sharesCrossSegment:Clean;RCR_consolidatedProfitAndLoss:Clean;RCR_inventoryVolumes:Clean;RCR_keyPerformanceIndicators:Clean;RCR_negotiations:Clean;RCR_profitabilityBySupplier:Clean;RCR_sharesCrossSegment:Clean"/>
+		</Target>
+		<Target Name="Make">
+			<CallTarget Targets="SCR_channelsProfitability:Make;SCR_consolidatedProfitAndLoss:Make;SCR_inventoryVolumes:Make;SCR_keyPerformanceIndicators:Make;SCR_negotiations:Make;SCR_sharesCrossSegment:Make;RCR_consolidatedProfitAndLoss:Make;RCR_inventoryVolumes:Make;RCR_keyPerformanceIndicators:Make;RCR_negotiations:Make;RCR_profitabilityBySupplier:Make;RCR_sharesCrossSegment:Make"/>
+		</Target>
+		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
+	</Project>

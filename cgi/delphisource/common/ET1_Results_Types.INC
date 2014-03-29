@@ -39,6 +39,7 @@ TVariantNegotiationsDetails = record
                                 vnd_VariantName       : TVariantName;
                                 vnd_ParentBrandID     : TBrandID;
                                 vnd_ParentBrandName   : TBrandName;
+				vnd_ParentCompanyID   : TActors;
                                 vnd_QuantityDiscount  : TDiscountsDetails;
                                 vnd_TargetBonus       : TBonusDetails;
                                 vnd_PaymentTerms      : TDelayOfPayment;
@@ -54,20 +55,22 @@ TVariantCrossSegmentDetails = record
                                 vsd_ParentCompanyID   : TActors;
                                 vsd_Hidden            : boolean;    { flag used to determine if should be displayed. For instance, Private Labels of Retailer 1, should not be displayed in Retailer 2 report }
                                 vsd_AbsoluteValue     : array[TSegmentsTotal, TShoppersKind] of single;
-                                vsd_Change            : array[TSegmentsTotal, TShoppersKind] of single;
+                                vsd_ValueChange       : array[TSegmentsTotal, TShoppersKind] of single;
+                                vsd_AbsoluteVolume    : array[TSegmentsTotal, TShoppersKind] of single;
+                                vsd_VolumeChange      : array[TSegmentsTotal, TShoppersKind] of single;
                               end;
 
 
 
 TGR_PerformanceHighlights =
   record
-    grph_SalesVolume             : array[TActors, TCategories] of single;
+    grph_SalesVolume             : array[TActors, TCategoriesTotal] of single;
     grph_NetSalesValue           : array[TActors, TCategoriesTotal] of single;
-    grph_VolumeMarketShare       : array[TActors, TCategories] of single;
+    grph_VolumeMarketShare       : array[TActors, TCategoriesTotal] of single;
     grph_ValueMarketShare        : array[TActors, TCategoriesTotal] of single;
-    grph_SalesVolumeChange       : array[TActors, TCategories] of single;
+    grph_SalesVolumeChange       : array[TActors, TCategoriesTotal] of single;
     grph_NetSalesValueChange     : array[TActors, TCategoriesTotal] of single;
-    grph_VolumeMarketShareChange : array[TActors, TCategories] of single;
+    grph_VolumeMarketShareChange : array[TActors, TCategoriesTotal] of single;
     grph_ValueMarketShareChange  : array[TActors, TCategoriesTotal] of single;
     grph_OperatingProfit         : array[TActiveActors] of single;
     grph_OperatingProfitChange   : array[TActiveActors] of single;
@@ -77,9 +80,9 @@ TGR_PerformanceHighlights =
 TGR_SharesOfMarket =
   record
     grsom_MarketShareValue        : array[TActors, TMarketsTotal, TCategoriesTotal, TSegmentsTotal, TShoppersKind] of single;
-    grsom_MarketShareVolume       : array[TActors, TMarketsTotal, TCategories, TSegmentsTotal, TShoppersKind] of single;
+    grsom_MarketShareVolume       : array[TActors, TMarketsTotal, TCategoriesTotal, TSegmentsTotal, TShoppersKind] of single;
     grsom_MarketShareValueChange  : array[TActors, TMarketsTotal, TCategoriesTotal, TSegmentsTotal, TShoppersKind] of single;
-    grsom_MarketShareVolumeChange : array[TActors, TMarketsTotal, TCategories, TSegmentsTotal, TShoppersKind] of single;
+    grsom_MarketShareVolumeChange : array[TActors, TMarketsTotal, TCategoriesTotal, TSegmentsTotal, TShoppersKind] of single;
   end;
 
 TGR_MarketSales =
@@ -291,6 +294,7 @@ TSCR_CategoryKeyPerformanceIndicators =
   record
     scrkpi_TradeSpendingEffectiveness : single;
     scrkpi_MarketingEffectiveness     : single;
+    scrkpi_PortfolioStrength          : single;
     scrkpi_ChannelSalesValueShare     : array[TProducerDivisions] of single;
     scrkpi_ChannelSalesVolumeShare    : array[TProducerDivisions] of single;
     scrkpi_ShoppersShare              : array[TProducerDivisions] of single;
