@@ -13,7 +13,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    }
 
 		    var switching=function(type){
-		    	$scope.Performance=$scope.MarketShare=$scope.MarketSales=$scope.Segment=$scope.Cross=$scope.Product=$scope.EMallPrices=$scope.ProducerConsolidate=$scope.ProducerBMBusiness=$scope.ProducerOnlineBusiness=$scope.ProducerProfitability=$scope.ProducerNegotiations=$scope.ElecssoriesConsumer=$scope.ElecssoriesShopper=$scope.ElecssoriesVolume=$scope.HealthBeautiesConsumer=$scope.HealthBeautiesShopper=$scope.HealthBeautiesVolume=$scope.ProducerKey=$scope.showRuralConsumer=$scope.showRuralShopper=$scope.showRuralVolume=$scope.showUrbanConsumer=$scope.showUrbanShopper=$scope.showUrbanVolume=$scope.showRetailerKey=$scope.showRetailerConsolidate=$scope.showRetailerRuralProfit=$scope.showRetailerUrbanProfit=$scope.showRetailerProfitability=$scope.showRetailerNegotiations=false;
+		    	$scope.Performance=$scope.MarketShare=$scope.MarketSales=$scope.Segment=$scope.Cross=$scope.Product=$scope.EMallPrices=$scope.ProducerConsolidate=$scope.ProducerBMBusiness=$scope.ProducerOnlineBusiness=$scope.ProducerProfitability=$scope.ProducerNegotiations=$scope.ElecssoriesConsumer=$scope.ElecssoriesShopper=$scope.ElecssoriesVolume=$scope.HealthBeautiesConsumer=$scope.HealthBeautiesShopper=$scope.HealthBeautiesVolume=$scope.ProducerKey=$scope.RuralConsumer=$scope.RuralShopper=$scope.RuralVolume=$scope.UrbanConsumer=$scope.UrbanShopper=$scope.UrbanVolume=$scope.RetailerKey=$scope.RetailerConsolidate=$scope.RetailerRuralProfit=$scope.RetailerUrbanProfit=$scope.RetailerProfitability=$scope.RetailerNegotiations=false;
 		    	switch(type){
 		    		case'showPerformance':$scope.Performance=true;break;
 				    case'showMarketShare':$scope.MarketShare=true;break;
@@ -924,45 +924,54 @@ define(['app','socketIO','routingConfig'], function(app) {
 
 		    		for(var i=0;i<data.data[0].categoryInfo[0].variantInfo.length;i++){
 		    			switch(data.data[0].categoryInfo[0].variantInfo[i].varName.substring(data.data[0].categoryInfo[0].variantInfo[i].varName.length-1)){
-		    				case '1':
-		    					$scope.producer1es.push(data.data[0].categoryInfo[0].variantInfo[i]);
-		    				break;
-		    				case '2':
-		    					$scope.producer2es.push(data.data[0].categoryInfo[0].variantInfo[i]);
-		    				break;
-		    				case '3':
-		    					$scope.producer3es.push(data.data[0].categoryInfo[0].variantInfo[i]);
-		    				break;
+		    				case '1':$scope.producer1es.push(data.data[0].categoryInfo[0].variantInfo[i]);break;
+		    				case '2':$scope.producer2es.push(data.data[0].categoryInfo[0].variantInfo[i]);break;
+		    				case '3':$scope.producer3es.push(data.data[0].categoryInfo[0].variantInfo[i]);break;
 		    				case '4':break;
 		    			}
 		    		}
 		    		for(var i=0;i<data.data[0].categoryInfo[1].variantInfo.length;i++){
 		    			switch(data.data[0].categoryInfo[1].variantInfo[i].varName.substring(data.data[0].categoryInfo[1].variantInfo[i].varName.length-1)){
-		    				case '1':
-		    					$scope.producer1hs.push(data.data[0].categoryInfo[1].variantInfo[i]);
-		    				break;
-		    				case '2':
-		    					$scope.producer2hs.push(data.data[0].categoryInfo[1].variantInfo[i]);
-		    				break;
-		    				case '3':
-		    					$scope.producer3hs.push(data.data[0].categoryInfo[1].variantInfo[i]);
-		    				break;
+		    				case '1':$scope.producer1hs.push(data.data[0].categoryInfo[1].variantInfo[i]);break;
+		    				case '2':$scope.producer2hs.push(data.data[0].categoryInfo[1].variantInfo[i]);break;
+		    				case '3':$scope.producer3hs.push(data.data[0].categoryInfo[1].variantInfo[i]);break;
 		    				case '4':break;
-		    				// case '5':
-		    				// 	$scope.retailer1hs.push(data.data[0].categoryInfo[0].variantInfo[i]);
-		    				// break;
-		    				// case '6':
-		    				// 	$scope.retailer2hs.push(data.data[0].categoryInfo[0].variantInfo[i]);
-		    				// break;
-		    				// case '7':break;
 		    			}
 		    		}
-		    		
 		    	},function(){
 		    		console.log('fail');
 		    	})
 		    }
 
+
+		    var loadTotal=function(data){
+		    	$scope.sales=data.data[0].scrpl_Sales;
+		    	$scope.salesChanges=data.data[0].scrpl_SalesChange;
+		    	$scope.materialCosts=data.data[0].scrpl_MaterialCosts;
+		    	$scope.costGoodsSolds=data.data[0].scrpl_CostOfGoodsSold;
+		    	$scope.discontinuedGoodsCosts=data.data[0].scrpl_DiscontinuedGoodsCost;
+		    	$scope.holdingCosts=data.data[0].scrpl_InventoryHoldingCost;
+		    	$scope.grossProfits=data.data[0].scrpl_GrossProfit;
+		    	$scope.grossProfitChanges=data.data[0].scrpl_GrossProfitChange;
+		    	$scope.grossProfitMargins=data.data[0].scrpl_GrossProfitMargin;
+		    	$scope.expenseValues=data.data[0].scrpl_TradeAndMarketing;
+		    	//some need to add
+		    	$scope.advertisingOnLines=data.data[0].scrpl_AdvertisingOnLine;
+		    	$scope.advertisingOffLines=data.data[0].scrpl_AdvertisingOffLine;
+		    	$scope.tradeSupports=data.data[0].scrpl_TradeSupport;
+		    	$scope.expenseShares=data.data[0].scrpl_TradeAndMarketingAsPercentageOfSales;
+		    	$scope.generalExpenses=data.data[0].scrpl_GeneralExpenses;
+		    	$scope.amortisations=data.data[0].scrpl_Amortisation;
+		    	$scope.operatingProfits=data.data[0].scrpl_OperatingProfit;
+		    	$scope.operatingProfitChanges=data.data[0].scrpl_OperatingProfitChange;
+		    	$scope.operatingProfitMargins=data.data[0].scrpl_OperatingProfitMargin;
+		    	$scope.interests=data.data[0].scrpl_Interest;
+		    	$scope.taxes=data.data[0].scrpl_Taxes;
+		    	$scope.costsProfits=data.data[0].scrpl_ExceptionalItems;
+		    	$scope.netProfits=data.data[0].scrpl_NetProfit;
+		    	$scope.netProfitChanges=data.data[0].scrpl_NetProfitChange;
+		    	$scope.netProfitMargins=data.data[0].scrpl_NetProfitMargin;		    	
+		    }
 
 		    var showProducerConsolidate=function(){
 		    	switching('showProducerConsolidate');
@@ -971,28 +980,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    		method:'GET',
 		    		url:url
 		    	}).then(function(data){
-		    		$scope.sales=data.data[0].scrpl_Sales;
-		    		$scope.salesChanges=data.data[0].scrpl_SalesChange;
-		    		$scope.materialCosts=data.data[0].scrpl_MaterialCosts;
-		    		$scope.costGoodsSolds=data.data[0].scrpl_CostOfGoodsSold;
-		    		$scope.discontinuedGoodsCosts=data.data[0].scrpl_DiscontinuedGoodsCost;
-		    		$scope.holdingCosts=data.data[0].scrpl_InventoryHoldingCost;
-		    		$scope.grossProfits=data.data[0].scrpl_GrossProfit;
-		    		$scope.grossProfitChanges=data.data[0].scrpl_GrossProfitChange;
-		    		$scope.grossProfitMargins=data.data[0].scrpl_GrossProfitMargin;
-		    		$scope.expenseValues=data.data[0].scrpl_TradeAndMarketing;
-		    		$scope.expenseShares=data.data[0].scrpl_TradeAndMarketingAsPercentageOfSales;
-		    		$scope.generalExpenses=data.data[0].scrpl_GeneralExpenses;
-		    		$scope.amortisations=data.data[0].scrpl_Amortisation;
-		    		$scope.operatingProfits=data.data[0].scrpl_OperatingProfit;
-		    		$scope.operatingProfitChanges=data.data[0].scrpl_OperatingProfitChange;
-		    		$scope.operatingProfitMargins=data.data[0].scrpl_OperatingProfitMargin;
-		    		$scope.interests=data.data[0].scrpl_Interest;
-		    		$scope.taxes=data.data[0].scrpl_Taxes;
-		    		$scope.costsProfits=data.data[0].scrpl_ExceptionalItems;
-		    		$scope.netProfits=data.data[0].scrpl_NetProfit;
-		    		$scope.netProfitChanges=data.data[0].scrpl_NetProfitChange;
-		    		$scope.netProfitMargins=data.data[0].scrpl_NetProfitMargin;
+		    		loadTotal(data);
 		    	},function(){
 		    		console.log('fail');
 		    	})
@@ -1005,15 +993,19 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    	return array.value[num];
 		    }
 
+		    var loadVariantValue=function(data,brandName,variantName,num){
+		    	var array=_.find(data,function(obj){
+		    		return (obj.variantName==variantName&&obj.parentBrandName==brandName);
+		    	});
+		    	return array.value[num];
+		    }
+
 		    var loadBusiness=function(data,category,num){
 		    	if(category==1){
 		    		$scope.brand1s=new Array();
-		    		$scope.total1s=new Array();
 		    	}else{
 		    		$scope.brand2s=new Array();
-		    		$scope.total2s=new Array();
 		    	}
-		    	var brandName;//Sales,totalChanges,Changes,totalSalesShareInCategory,SalesShareInCategory,totalCostOfGoodsSold,CostOfGoodsSold,totalDiscontinuedGoodsCost,DiscontinuedGoodsCost,totalInventoryHoldingCost,InventoryHoldingCost,totalGrossProfit,GrossProfit,totalGrossProfitChange,GrossProfitChange,totalTradeAndMarketing,TradeAndMarketing,totalAdvertisingOnLine,AdvertisingOnLine,totalAdvertisingOffLine,AdvertisingOffLine,totalTradeAndMarketingAsPercentageOfSales,TradeAndMarketingAsPercentageOfSales,totalTradeAndMarketingShareInCategory,TradeAndMarketingShareInCategory,totalGeneralExpenses,GeneralExpenses,totalAmortisation,Amortisation,totalOperatingProfit,OperatingProfit,totalOperatingProfitChange,OperatingProfitChange,totalOperatingProfitMargin,OperatingProfitMargin,totalOperatingProfitShareInCategory,OperatingProfitShareInCategory,totalInterest,Interest,totalTaxes,Taxes,totalExceptionalItems,ExceptionalItems,totalNetProfit,NetProfit,totalNetProfitChange,NetProfitChange,totalNetProfitMargin,NetProfitMargin,totalNetProfitShareInCategory,NetProfitShareInCategory;
 		    	for(var i=0;i<data.data[0].scrb_Sales.length;i++){
 		    		if(data.data[0].scrb_Sales[i].parentCategoryID==category){
 		    			var brandName=data.data[0].scrb_Sales[i].brandName;
@@ -1031,6 +1023,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 			    		var TradeAndMarketing=loadValue(data.data[0].scrb_TradeAndMarketing,brandName,num);
 			    		var AdvertisingOnLine=loadValue(data.data[0].scrb_AdvertisingOnLine,brandName,num);
 			    		var AdvertisingOffLine=loadValue(data.data[0].scrb_AdvertisingOffLine,brandName,num);
+			    		var TradeSupport=loadValue(data.data[0].scrb_TradeSupport,brandName,num);
 			    		var TradeAndMarketingAsPercentageOfSales=loadValue(data.data[0].scrb_TradeAndMarketingAsPercentageOfSales,brandName,num);
 			    		var TradeAndMarketingShareInCategory=loadValue(data.data[0].scrb_TradeAndMarketingShareInCategory,brandName,num);
 			    		var GeneralExpenses=loadValue(data.data[0].scrb_GeneralExpenses,brandName,num);
@@ -1050,12 +1043,12 @@ define(['app','socketIO','routingConfig'], function(app) {
 							$scope.brand1s.push({'brandName':brandName,'Sales':Sales,'SalesChange':SalesChange,'SalesShareInCategory':SalesShareInCategory,'MaterialCosts':MaterialCosts,'CostOfGoodsSold':CostOfGoodsSold,'DiscontinuedGoodsCost':DiscontinuedGoodsCost,'InventoryHoldingCost':InventoryHoldingCost,'GrossProfit':GrossProfit,
 				    		'GrossProfitChange':GrossProfitChange,'TradeAndMarketing':TradeAndMarketing,'AdvertisingOnLine':AdvertisingOnLine,'AdvertisingOffLine':AdvertisingOffLine,'TradeAndMarketingAsPercentageOfSales':TradeAndMarketingAsPercentageOfSales,'TradeAndMarketingShareInCategory':TradeAndMarketingShareInCategory,
 				    		'GeneralExpenses':GeneralExpenses,'Amortisation':Amortisation,'OperatingProfit':OperatingProfit,'OperatingProfitChange':OperatingProfitChange,'OperatingProfitMargin':OperatingProfitMargin,'OperatingProfitMargin':OperatingProfitMargin,'OperatingProfitShareInCategory':OperatingProfitShareInCategory,
-				   			'Interest':Interest,'Taxes':Taxes,'ExceptionalItems':ExceptionalItems,'NetProfit':NetProfit,'NetProfitChange':NetProfitChange,'NetProfitMargin':NetProfitMargin,'NetProfitShareInCategory':NetProfitShareInCategory,'GrossProfitMargin':GrossProfitMargin,'GrossProfitMarginShare':GrossProfitMarginShare});
+				   			'Interest':Interest,'Taxes':Taxes,'ExceptionalItems':ExceptionalItems,'NetProfit':NetProfit,'NetProfitChange':NetProfitChange,'NetProfitMargin':NetProfitMargin,'NetProfitShareInCategory':NetProfitShareInCategory,'GrossProfitMargin':GrossProfitMargin,'GrossProfitMarginShare':GrossProfitMarginShare,'TradeSupport':TradeSupport});
 			    		}else{
 			   				$scope.brand2s.push({'brandName':brandName,'Sales':Sales,'SalesChange':SalesChange,'SalesShareInCategory':SalesShareInCategory,'MaterialCosts':MaterialCosts,'CostOfGoodsSold':CostOfGoodsSold,'DiscontinuedGoodsCost':DiscontinuedGoodsCost,'InventoryHoldingCost':InventoryHoldingCost,'GrossProfit':GrossProfit,
 			    			'GrossProfitChange':GrossProfitChange,'TradeAndMarketing':TradeAndMarketing,'AdvertisingOnLine':AdvertisingOnLine,'AdvertisingOffLine':AdvertisingOffLine,'TradeAndMarketingAsPercentageOfSales':TradeAndMarketingAsPercentageOfSales,'TradeAndMarketingShareInCategory':TradeAndMarketingShareInCategory,
 			    			'GeneralExpenses':GeneralExpenses,'Amortisation':Amortisation,'OperatingProfit':OperatingProfit,'OperatingProfitChange':OperatingProfitChange,'OperatingProfitMargin':OperatingProfitMargin,'OperatingProfitMargin':OperatingProfitMargin,'OperatingProfitShareInCategory':OperatingProfitShareInCategory,
-			    			'Interest':Interest,'Taxes':Taxes,'ExceptionalItems':ExceptionalItems,'NetProfit':NetProfit,'NetProfitChange':NetProfitChange,'NetProfitMargin':NetProfitMargin,'NetProfitShareInCategory':NetProfitShareInCategory,'GrossProfitMargin':GrossProfitMargin,'GrossProfitMarginShare':GrossProfitMarginShare});
+			    			'Interest':Interest,'Taxes':Taxes,'ExceptionalItems':ExceptionalItems,'NetProfit':NetProfit,'NetProfitChange':NetProfitChange,'NetProfitMargin':NetProfitMargin,'NetProfitShareInCategory':NetProfitShareInCategory,'GrossProfitMargin':GrossProfitMargin,'GrossProfitMarginShare':GrossProfitMarginShare,'TradeSupport':TradeSupport});
 			    		}
 		   			}
 		    	}
@@ -1068,6 +1061,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    		method:'GET',
 		    		url:url
 		    	}).then(function(data){
+		    		loadTotal(data);
 		    		loadBusiness(data,1,0);
 		    		loadBusiness(data,2,0);
 		    	},function(){
@@ -1077,6 +1071,17 @@ define(['app','socketIO','routingConfig'], function(app) {
 
 		    var showProducerOnlineBusiness=function(){
 		    	switching('showProducerOnlineBusiness');
+		    	var url='/SCR-consolidatedProfitAndLoss/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+		    	$http({
+		    		method:'GET',
+		    		url:url
+		    	}).then(function(data){
+		    		loadTotal(data);
+		    		loadBusiness(data,1,1);
+		    		loadBusiness(data,2,1);
+		    	},function(){
+		    		console.log('fail');
+		    	})
 		    }
 
 		    var showProducerProfitability=function(){
@@ -1466,7 +1471,37 @@ define(['app','socketIO','routingConfig'], function(app) {
 
 		    var showRetailerConsolidate=function(){
 		    	switching('showRetailerConsolidate');
-		    	console.log('read');
+		    	var url='/RCR-consolidatedProfitAndLoss/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+		    	$http({
+		    		method:'GET',
+		    		url:url
+		    	}).then(function(data){
+		    		$scope.Sales=data.data[0].rcrpl_Sales;
+		    		$scope.PromotionsCost=data.data[0].rcrpl_PromotionsCost;
+		    		$scope.OtherCompensation=data.data[0].rcrpl_OtherCompensation;
+		    		$scope.NetSales=data.data[0].rcrpl_NetSales;
+		    		$scope.NetSalesChange=data.data[0].rcrpl_NetSalesChange;
+		    		$scope.CostOfGoodsSold=data.data[0].rcrpl_CostOfGoodsSold;
+		    		$scope.ValueOfQuantityDiscounts=data.data[0].rcrpl_ValueOfQuantityDiscounts;
+		    		$scope.ValueOfPerformanceBonus=data.data[0].rcrpl_ValueOfPerformanceBonus;
+		    		$scope.DiscontinuedGoodsCost=data.data[0].rcrpl_DiscontinuedGoodsCost;
+		    		$scope.InventoryHoldingCost=data.data[0].rcrpl_InventoryHoldingCost;
+		    		$scope.GrossProfit=data.data[0].rcrpl_GrossProfit;
+		    		$scope.GrossProfitChange=data.data[0].rcrpl_GrossProfitChange;
+		    		$scope.GrossProfitMargin=data.data[0].rcrpl_GrossProfitMargin;
+		    		$scope.GeneralExpenses=data.data[0].rcrpl_GeneralExpenses;
+		    		$scope.OperatingProfit=data.data[0].rcrpl_OperatingProfit;
+		    		$scope.OperatingProfitChange=data.data[0].rcrpl_OperatingProfitChange;
+		    		$scope.OperatingProfitMargin=data.data[0].rcrpl_OperatingProfitMargin;
+		    		$scope.Interest=data.data[0].rcrpl_Interest;
+		    		$scope.Taxes=data.data[0].rcrpl_Taxes;
+		    		$scope.ExceptionalItems=data.data[0].rcrpl_ExceptionalItems;
+		    		$scope.NetProfit=data.data[0].rcrpl_NetProfit;
+		    		$scope.NetProfitChange=data.data[0].rcrpl_NetProfitChange;
+		    		$scope.NetProfitMargin=data.data[0].rcrpl_NetProfitMargin;		    		
+		    	},function(){
+		    		console.log('fail');
+		    	})
 		    }
 
 		    var showRetailerRuralProfit=function(){
@@ -1511,16 +1546,88 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    }
 		    var showRetailerKey=function(){
 		    	switching('showRetailerKey');
-
 		    }
+
+		    $scope.openProductModal=function(brandName,type){
+				var num=0;
+				$scope.variants=new Array();
+				$scope.brandName=brandName;
+				$scope.productModal=true;
+				if(type="BM"){
+					$scope.BMShow=true;
+					$scope.OLShow=false;
+					num=0;
+				}else{
+					$scope.BMShow=false;
+					$scope.OLShow=true;
+					num=1;
+				}
+				var url='/SCR-consolidatedProfitAndLoss/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+		    	$http({
+		    		method:'GET',
+		    		url:url
+		    	}).then(function(data){
+		    		for(var i=0;i<data.data[0].scrv_Sales.length;i++){
+		    			if(data.data[0].scrv_Sales[i].parentBrandName==brandName){
+		    				var variantName=data.data[0].scrv_Sales[i].variantName;
+			    			var Sales=data.data[0].scrv_Sales[i].value[num];
+			    			var SalesChange=loadVariantValue(data.data[0].scrv_SalesChange,brandName,variantName,num);
+				    		var SalesShareInCategory=loadVariantValue(data.data[0].scrv_SalesShareInCategory,brandName,variantName,num);
+				    		var MaterialCosts=loadVariantValue(data.data[0].scrv_MaterialCosts,brandName,variantName,num);
+				    		var CostOfGoodsSold=loadVariantValue(data.data[0].scrv_CostOfGoodsSold,brandName,variantName,num);
+				    		var DiscontinuedGoodsCost=loadVariantValue(data.data[0].scrv_DiscontinuedGoodsCost,brandName,variantName,num);
+				    		var InventoryHoldingCost=loadVariantValue(data.data[0].scrv_InventoryHoldingCost,brandName,variantName,num);
+				    		var GrossProfit=loadVariantValue(data.data[0].scrv_GrossProfit,brandName,variantName,num);
+				    		var GrossProfitChange=loadVariantValue(data.data[0].scrv_GrossProfitChange,brandName,variantName,num);
+				    		var GrossProfitMargin=loadVariantValue(data.data[0].scrv_GrossProfitMargin,brandName,variantName,num);
+				    		var GrossProfitMarginShare=loadVariantValue(data.data[0].scrv_GrossProfitMarginShare,brandName,variantName,num);
+				    		var TradeAndMarketing=loadVariantValue(data.data[0].scrv_TradeAndMarketing,brandName,variantName,num);
+				    		var AdvertisingOnLine=loadVariantValue(data.data[0].scrv_AdvertisingOnLine,brandName,variantName,num);
+				    		var AdvertisingOffLine=loadVariantValue(data.data[0].scrv_AdvertisingOffLine,brandName,variantName,num);
+				    		var TradeSupport=loadVariantValue(data.data[0].scrv_TradeSupport,brandName,variantName,num);
+				    		var TradeAndMarketingAsPercentageOfSales=loadVariantValue(data.data[0].scrv_TradeAndMarketingAsPercentageOfSales,brandName,variantName,num);
+				    		var TradeAndMarketingShareInCategory=loadVariantValue(data.data[0].scrv_TradeAndMarketingShareInCategory,brandName,variantName,num);
+				    		var GeneralExpenses=loadVariantValue(data.data[0].scrv_GeneralExpenses,brandName,variantName,num);
+				    		var Amortisation=loadVariantValue(data.data[0].scrv_Amortisation,brandName,variantName,num);
+				    		var OperatingProfit=loadVariantValue(data.data[0].scrv_OperatingProfit,brandName,variantName,num);
+				    		var OperatingProfitChange=loadVariantValue(data.data[0].scrv_OperatingProfitChange,brandName,variantName,num);
+				    		var OperatingProfitMargin=loadVariantValue(data.data[0].scrv_OperatingProfitMargin,brandName,variantName,num);
+				    		var OperatingProfitShareInCategory=loadVariantValue(data.data[0].scrv_OperatingProfitShareInCategory,brandName,variantName,num);
+				    		var Interest=loadVariantValue(data.data[0].scrv_Interest,brandName,variantName,num);
+				    		var Taxes=loadVariantValue(data.data[0].scrv_Taxes,brandName,variantName,num);
+				    		var ExceptionalItems=loadVariantValue(data.data[0].scrv_ExceptionalItems,brandName,variantName,num);
+				    		var NetProfit=loadVariantValue(data.data[0].scrv_NetProfit,brandName,variantName,num);
+				    		var NetProfitChange=loadVariantValue(data.data[0].scrv_NetProfitChange,brandName,variantName,num);
+				    		var NetProfitMargin=loadVariantValue(data.data[0].scrv_NetProfitMargin,brandName,variantName,num);
+				    		var NetProfitShareInCategory=loadVariantValue(data.data[0].scrv_NetProfitShareInCategory,brandName,variantName,num);
+				    		$scope.variants.push({'variantName':variantName,'Sales':Sales,'SalesChange':SalesChange,'SalesShareInCategory':SalesShareInCategory,'MaterialCosts':MaterialCosts,'CostOfGoodsSold':CostOfGoodsSold,'DiscontinuedGoodsCost':DiscontinuedGoodsCost,'InventoryHoldingCost':InventoryHoldingCost,'GrossProfit':GrossProfit,
+				    		'GrossProfitChange':GrossProfitChange,'TradeAndMarketing':TradeAndMarketing,'AdvertisingOnLine':AdvertisingOnLine,'AdvertisingOffLine':AdvertisingOffLine,'TradeAndMarketingAsPercentageOfSales':TradeAndMarketingAsPercentageOfSales,'TradeAndMarketingShareInCategory':TradeAndMarketingShareInCategory,
+				    		'GeneralExpenses':GeneralExpenses,'Amortisation':Amortisation,'OperatingProfit':OperatingProfit,'OperatingProfitChange':OperatingProfitChange,'OperatingProfitMargin':OperatingProfitMargin,'OperatingProfitMargin':OperatingProfitMargin,'OperatingProfitShareInCategory':OperatingProfitShareInCategory,
+				   			'Interest':Interest,'Taxes':Taxes,'ExceptionalItems':ExceptionalItems,'NetProfit':NetProfit,'NetProfitChange':NetProfitChange,'NetProfitMargin':NetProfitMargin,'NetProfitShareInCategory':NetProfitShareInCategory,'GrossProfitMargin':GrossProfitMargin,'GrossProfitMarginShare':GrossProfitMarginShare,'TradeSupport':TradeSupport});
+		    			}
+		    		}
+		    	},function(){
+		    		console.log('fail');
+		    	})
+			}
+			$scope.productOpts = {
+				backdropFade: true,
+				dialogFade:true
+			};
+			$scope.closeProductModal=function(){
+				$scope.productModal=false;	
+			}
+
 
 		    //load Function
 		    $scope.switching=switching;
 		    $scope.loadValue=loadValue;
+		    $scope.loadVariantValue=loadVariantValue;
 		    $scope.loadBusiness=loadBusiness;
 		    $scope.loadConsumer=loadConsumer;
 		    $scope.loadShooper=loadShooper;
 		    $scope.loadVolume=loadVolume;
+		    $scope.loadTotal=loadTotal;
 		    //general report
 		    $scope.showPerformance=showPerformance;
 		    $scope.showMarketShare=showMarketShare;
@@ -1529,7 +1636,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    $scope.showCross=showCross;
 		    $scope.showProduct=showProduct;
 		  	$scope.showEMallPrices=showEMallPrices;
-		  	//producer report
+		  	//producer report	
 			$scope.showProducerConsolidate=showProducerConsolidate;
 			$scope.showProducerBMBusiness=showProducerBMBusiness;
 			$scope.showProducerOnlineBusiness=showProducerOnlineBusiness;
@@ -1541,9 +1648,9 @@ define(['app','socketIO','routingConfig'], function(app) {
 			$scope.showHealthBeautiesConsumer=showHealthBeautiesConsumer;
 			$scope.showHealthBeautiesShopper=showHealthBeautiesShopper;
 			$scope.showHealthBeautiesVolume=showHealthBeautiesVolume;
-			$scope.showProducerKey=showProducerKey;  	
-		  	//retailer report
-		  	$scope.showRetailerConsolidate=showRetailerConsolidate;
+			$scope.showProducerKey=showProducerKey;
+			//retailer report
+			$scope.showRetailerConsolidate=showRetailerConsolidate;
 			$scope.showRetailerRuralProfit=showRetailerRuralProfit;
 			$scope.showRetailerUrbanProfit=showRetailerUrbanProfit;
 			$scope.showRetailerProfitability=showRetailerProfitability;
@@ -1555,9 +1662,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 			$scope.showUrbanShopper=showUrbanShopper;
 			$scope.showUrbanVolume=showUrbanVolume;
 			$scope.showRetailerKey=showRetailerKey;  
-
 		  	showPerformance();
-
 	}]);
 
 });

@@ -32,7 +32,7 @@ var RCR_consolidatedProfitAndLossSchema = mongoose.Schema({
     rcrpl_Taxes                         : [categoryInfoSchema],
     rcrpl_ExceptionalItems              : [categoryInfoSchema],
     rcrpl_NetProfit                     : [categoryInfoSchema],
-    rcrpl_NetProfitChage                : [categoryInfoSchema],
+    rcrpl_NetProfitChange               : [categoryInfoSchema],
     rcrpl_NetProfitMargin               : [categoryInfoSchema],
 
     //P&L per brand in B&M and onLine
@@ -52,13 +52,13 @@ var RCR_consolidatedProfitAndLossSchema = mongoose.Schema({
     rcrb_GrossProfitShareInCategory    : [brandInfoSchema],
     rcrb_GeneralExpenses               : [brandInfoSchema],
     rcrb_OperatingProfit               : [brandInfoSchema],
-    rcrb_OperatingProfitChage          : [brandInfoSchema],
+    rcrb_OperatingProfitChange          : [brandInfoSchema],
     rcrb_OperatingProfitMargin         : [brandInfoSchema],
     rcrb_Interest                      : [brandInfoSchema],
     rcrb_Taxes                         : [brandInfoSchema],
     rcrb_ExceptionalItems              : [brandInfoSchema],
     rcrb_NetProfit                     : [brandInfoSchema],
-    rcrb_NetProfitChage                : [brandInfoSchema],
+    rcrb_NetProfitChange               : [brandInfoSchema],
     rcrb_NetProfitMargin               : [brandInfoSchema],
     rcrb_NetProfitShareInCategory      : [brandInfoSchema],
 
@@ -80,13 +80,13 @@ var RCR_consolidatedProfitAndLossSchema = mongoose.Schema({
     rcrv_GrossProfitShareInCategory    : [variantInfoSchema],
     rcrv_GeneralExpenses               : [variantInfoSchema],
     rcrv_OperatingProfit               : [variantInfoSchema],
-    rcrv_OperatingProfitChage          : [variantInfoSchema],
+    rcrv_OperatingProfitChange          : [variantInfoSchema],
     rcrv_OperatingProfitMargin         : [variantInfoSchema],
     rcrv_Interest                      : [variantInfoSchema],
     rcrv_Taxes                         : [variantInfoSchema],
     rcrv_ExceptionalItems              : [variantInfoSchema],
     rcrv_NetProfit                     : [variantInfoSchema],
-    rcrv_NetProfitChage                : [variantInfoSchema],
+    rcrv_NetProfitChange                : [variantInfoSchema],
     rcrv_NetProfitMargin               : [variantInfoSchema],
     rcrv_NetProfitShareInCategory      : [variantInfoSchema],
 })
@@ -330,7 +330,7 @@ exports.addRCR_consolidatedProfitAndLoss=function(req,res,next){
             categoryID:3,
             value:[75,85,95]
         }],
-        rcrpl_NetProfitChage                : [{
+        rcrpl_NetProfitChange                : [{
             categoryID:1,
             value:[10,20,30]
         },{
@@ -688,7 +688,7 @@ exports.addRCR_consolidatedProfitAndLoss=function(req,res,next){
             parentCompanyID:1,
             value:[65,75,85]
         }],
-        rcrb_OperatingProfitChage          : [{
+        rcrb_OperatingProfitChange          : [{
             brandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
@@ -814,7 +814,7 @@ exports.addRCR_consolidatedProfitAndLoss=function(req,res,next){
             parentCompanyID:1,
             value:[65,75,85]
         }],
-        rcrb_NetProfitChage                : [{
+        rcrb_NetProfitChange                : [{
             brandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
@@ -1304,7 +1304,7 @@ exports.addRCR_consolidatedProfitAndLoss=function(req,res,next){
             parentCompanyID:1,
             value:[65,55,45]
         }],
-        rcrv_OperatingProfitChage          : [{
+        rcrv_OperatingProfitChange          : [{
             variantName:'_A',
             parentBrandName:'ELAN1',
             parentCategoryID:1,
@@ -1454,7 +1454,7 @@ exports.addRCR_consolidatedProfitAndLoss=function(req,res,next){
             parentCompanyID:1,
             value:[65,55,45]
         }],
-        rcrv_NetProfitChage                : [{
+        rcrv_NetProfitChange                : [{
             variantName:'_A',
             parentBrandName:'ELAN1',
             parentCategoryID:1,
