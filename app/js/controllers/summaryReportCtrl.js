@@ -1580,6 +1580,23 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    }
 		    var showRetailerProfitability=function(){
 		    	switching('showRetailerProfitability');
+		    	var url='/RCR-profitabilityBySupplier/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+		    	$http({
+		    		method:'GET',
+		    		url:url
+		    	}).then(function(data){
+		    		$scope.ShelfSpaces=data.data[0].rcrps_ShelfSpace;
+		    		$scope.NetSales=data.data[0].rcrps_NetSales;
+		    		$scope.NetSalesPerShelfSpaces=data.data[0].rcrps_NetSalesPerShelfSpace;
+		    		$scope.NetSalesShares=data.data[0].rcrps_NetSalesShare;
+		    		$scope.GrossContributions=data.data[0].rcrps_GrossContribution ;
+		    		$scope.GrossContributionPerShelfSpaces=data.data[0].rcrps_GrossContributionPerShelfSpace;
+		    		$scope.GrossContributionMargins=data.data[0].rcrps_GrossContributionMargin;
+		    		$scope.GrossContributionShares=data.data[0].rcrps_GrossContributionShare;
+		    		$scope.PaymentTerms=data.data[0].rcrps_PaymentTerms;	
+		    	},function(){
+		    		console.log('fail');
+		    	})
 		    }
 
 		    var loadRetailerNegotiations=function(data,category,producer,i,j){
