@@ -86,9 +86,9 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    		method:'GET',
 		    		url:url
 		    	}).then(function(data){
-		    		$scope.totals=$scope.totalChanges=$scope.rurals=$scope.ruralChanges=$scope.urbans=$scope.urbanChanges=$scope.prices=$scope.priceChanges=$scope.values=$scope.valueChanges=$scope.fashions=$scope.fashionChanges=$scope.freakss=$scope.freaksChanges=$scope.bms=$scope.bmChanges=$scope.onlines=$scope.onlineChanges=$scope.mixeds=$scope.mixedChanges=new Array();
+		    		$scope.totals=new Array();$scope.totalChanges=new Array();$scope.rurals=new Array();$scope.ruralChanges=new Array();$scope.urbans=new Array();$scope.urbanChanges=new Array();$scope.prices=new Array();$scope.priceChanges=new Array();$scope.values=new Array();$scope.valueChanges=new Array();$scope.fashions=new Array();$scope.fashionChanges=new Array();$scope.freakss=new Array();$scope.freaksChanges=new Array();$scope.bms=new Array();$scope.bmChanges=new Array();$scope.onlines=new Array();$scope.onlineChanges=new Array();$scope.mixeds=new Array();$scope.mixedChanges=new Array();
 			    	for(var i=0;i<4;i++){
-			    		$scope.totals[i]=$scope.totalChanges[i]=$scope.rurals[i]=$scope.ruralChanges[i]=$scope.urbans[i]=$scope.urbanChanges[i]=$scope.prices[i]=$scope.priceChanges[i]=$scope.values[i]=$scope.valueChanges[i]=$scope.fashions[i]=$scope.fashionChanges[i]=$scope.freakss[i]=$scope.freaksChanges[i]=$scope.bms[i]=$scope.bmChanges[i]=$scope.onlines[i]=$scope.onlineChanges[i]=$scope.mixeds[i]=$scope.mixedChanges[i]=new Array();
+			    		$scope.totals[i]=new Array();$scope.totalChanges[i]=new Array();$scope.rurals[i]=new Array();$scope.ruralChanges[i]=new Array();$scope.urbans[i]=new Array();$scope.urbanChanges[i]=new Array();$scope.prices[i]=new Array();$scope.priceChanges[i]=new Array();$scope.values[i]=new Array();$scope.valueChanges[i]=new Array();$scope.fashions[i]=new Array();$scope.fashionChanges[i]=new Array();$scope.freakss[i]=new Array();$scope.freaksChanges[i]=new Array();$scope.bms[i]=new Array();$scope.bmChanges[i]=new Array();$scope.onlines[i]=new Array();$scope.onlineChanges[i]=new Array();$scope.mixeds[i]=new Array();$scope.mixedChanges[i]=new Array();
 			    	}
 			    	for(i=0;i<data.data[0].actorInfo.length;i++){
 			    		for(var j=0;j<4;j+=2){
@@ -367,9 +367,9 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    		method:'GET',
 		    		url:url
 		    	}).then(function(data){
-		    		$scope.totals=$scope.totalChanges=$scope.rurals=$scope.ruralChanges=$scope.urbans=$scope.urbanChanges=$scope.prices=$scope.priceChanges=$scope.values=$scope.valueChanges=$scope.fashions=$scope.fashionChanges=$scope.freakss=$scope.freaksChanges=$scope.bms=$scope.bmChanges=$scope.onlines=$scope.onlineChanges=$scope.mixeds=$scope.mixedChanges=new Array();
+		    		$scope.totals=new Array();$scope.totalChanges=new Array();$scope.rurals=new Array();$scope.ruralChanges=new Array();$scope.urbans=new Array();$scope.urbanChanges=new Array();$scope.prices=new Array();$scope.priceChanges=new Array();$scope.values=new Array();$scope.valueChanges=new Array();$scope.fashions=new Array();$scope.fashionChanges=new Array();$scope.freakss=new Array();$scope.freaksChanges=new Array();$scope.bms=new Array();$scope.bmChanges=new Array();$scope.onlines=new Array();$scope.onlineChanges=new Array();$scope.mixeds=new Array();$scope.mixedChanges=new Array();
 		    		for(var i=0;i<4;i++){
-			    		$scope.totals[i]=$scope.totalChanges[i]=$scope.rurals[i]=$scope.ruralChanges[i]=$scope.urbans[i]=$scope.urbanChanges[i]=$scope.prices[i]=$scope.priceChanges[i]=$scope.values[i]=$scope.valueChanges[i]=$scope.fashions[i]=$scope.fashionChanges[i]=$scope.freakss[i]=$scope.freaksChanges[i]=$scope.bms[i]=$scope.bmChanges[i]=$scope.onlines[i]=$scope.onlineChanges[i]=$scope.mixeds[i]=$scope.mixedChanges[i]=new Array();
+			    		$scope.totals[i]=new Array();$scope.totalChanges[i]=new Array();$scope.rurals[i]=new Array();$scope.ruralChanges[i]=new Array();$scope.urbans[i]=new Array();$scope.urbanChanges[i]=new Array();$scope.prices[i]=new Array();$scope.priceChanges[i]=new Array();$scope.values[i]=new Array();$scope.valueChanges[i]=new Array();$scope.fashions[i]=new Array();$scope.fashionChanges[i]=new Array();$scope.freakss[i]=new Array();$scope.freaksChanges[i]=new Array();$scope.bms[i]=new Array();$scope.bmChanges[i]=new Array();$scope.onlines[i]=new Array();$scope.onlineChanges[i]=new Array();$scope.mixeds[i]=new Array();$scope.mixedChanges[i]=new Array();
 			    	}
 
 			    	for(i=0;i<data.data[0].actorInfo.length;i++){
@@ -662,25 +662,16 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    		method:'GET',
 		    		url:url
 		    	}).then(function(data){
-		    		$scope.priceSensitives=new Array();
-		    		$scope.valueForMoneies=new Array();
-		    		$scope.fashions=new Array();
-		    		$scope.freakses=new Array();
-
-					$scope.bms=new Array();
-					$scope.onlines=new Array();
-					$scope.mixeds=new Array();	    	
-
+		    		$scope.priceSensitives=new Array();$scope.valueForMoneies=new Array();$scope.fashions=new Array();$scope.freakses=new Array();
+		    		$scope.bms=new Array();$scope.onlines=new Array();$scope.mixeds=new Array();	    	
 		    		//data.data[0].categoryInfo[2].marketInfo[2].segmentInfo[0].shopperInfo[3].grsl_ValueLeaders
 		    		$scope.priceSensitives.push(data.data[0].categoryInfo[0].marketInfo[2].segmentInfo[0].shopperInfo[3],data.data[0].categoryInfo[1].marketInfo[2].segmentInfo[0].shopperInfo[3]);
 		    		$scope.valueForMoneies.push(data.data[0].categoryInfo[0].marketInfo[2].segmentInfo[1].shopperInfo[3],data.data[0].categoryInfo[1].marketInfo[2].segmentInfo[1].shopperInfo[3]);
 		    		$scope.fashions.push(data.data[0].categoryInfo[0].marketInfo[2].segmentInfo[2].shopperInfo[3],data.data[0].categoryInfo[1].marketInfo[2].segmentInfo[2].shopperInfo[3]);
-		    		$scope.freakses.push(data.data[0].categoryInfo[0].marketInfo[2].segmentInfo[3].shopperInfo[3],data.data[0].categoryInfo[1].marketInfo[2].segmentInfo[3].shopperInfo[3]);
-					
+		    		$scope.freakses.push(data.data[0].categoryInfo[0].marketInfo[2].segmentInfo[3].shopperInfo[3],data.data[0].categoryInfo[1].marketInfo[2].segmentInfo[3].shopperInfo[3]);					
 					$scope.bms.push(data.data[0].categoryInfo[0].marketInfo[2].segmentInfo[4].shopperInfo[0],data.data[0].categoryInfo[1].marketInfo[2].segmentInfo[4].shopperInfo[0]);
 					$scope.onlines.push(data.data[0].categoryInfo[0].marketInfo[2].segmentInfo[4].shopperInfo[1],data.data[0].categoryInfo[1].marketInfo[2].segmentInfo[4].shopperInfo[1]);
 					$scope.mixeds.push(data.data[0].categoryInfo[0].marketInfo[2].segmentInfo[4].shopperInfo[2],data.data[0].categoryInfo[1].marketInfo[2].segmentInfo[4].shopperInfo[2]);	
-
 		    	},function(){
 		    		console.log('fail');
 		    	})
@@ -1589,7 +1580,6 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    }
 		    var showRetailerProfitability=function(){
 		    	switching('showRetailerProfitability');
-
 		    }
 
 		    var loadRetailerNegotiations=function(data,category,producer,i,j){
@@ -1709,7 +1699,12 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    		method:'GET',
 		    		url:url
 		    	}).then(function(data){
-		    		$scope.product1es=$scope.product1hs=$scope.product2es=$scope.product2hs=$scope.product3es=$scope.product3hs=new Array();
+		    		$scope.product1es=new Array();
+		    		$scope.product1hs=new Array();
+		    		$scope.product2es=new Array();
+		    		$scope.product2hs=new Array();
+		    		$scope.product3es=new Array();
+		    		$scope.product3hs=new Array();
 		    		var varName,brandName,discount_MinimumVolume,discount_Rate,bonus_TargetVolume,bonus_Rate,bonus_Value,vnd_PaymentTerm,vnd_OtherCompensation,vnd_ContractHonoured;
 
 		    		for(var i=0;i<data.data[0].vnd_QuantityDiscount.discount_MinimumVolume.length;i++){
@@ -1731,6 +1726,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    				}
 		    			}
 		    		}
+		    		console.log($scope.product1es);
 		    	},function(){
 		    		console.log('fail');
 		    	})
