@@ -1267,19 +1267,19 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    				var Changes=_.find(data.data[0].volumeChange,function(obj){
 			    				return(obj.variantName==varName&&obj.parentBrandName==brandName);
 		    				});
-		    				priceChange=Volumes.marketInfo[0].segmentInfo[0].shopperInfo[3].value;
-		    				moneyChange=Volumes.marketInfo[0].segmentInfo[1].shopperInfo[3].value;
-		    				fashionChange=Volumes.marketInfo[0].segmentInfo[2].shopperInfo[3].value;
-		    				freaksChange=Volumes.marketInfo[0].segmentInfo[3].shopperInfo[3].value;
+		    				priceShare=Volumes.marketInfo[0].segmentInfo[0].shopperInfo[3].value;
+		    				moneyShare=Volumes.marketInfo[0].segmentInfo[1].shopperInfo[3].value;
+		    				fashionShare=Volumes.marketInfo[0].segmentInfo[2].shopperInfo[3].value;
+		    				freaksShare=Volumes.marketInfo[0].segmentInfo[3].shopperInfo[3].value;
 		    				priceChange=Changes.marketInfo[0].segmentInfo[0].shopperInfo[3].value;
 		    				moneyChange=Changes.marketInfo[0].segmentInfo[1].shopperInfo[3].value;
 		    				fashionChange=Changes.marketInfo[0].segmentInfo[2].shopperInfo[3].value;
 		    				freaksChange=Changes.marketInfo[0].segmentInfo[3].shopperInfo[3].value;
 		    				$scope.urban2s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
-		    				priceChange=Volumes.marketInfo[1].segmentInfo[0].shopperInfo[3].value;
-		    				moneyChange=Volumes.marketInfo[1].segmentInfo[1].shopperInfo[3].value;
-		    				fashionChange=Volumes.marketInfo[1].segmentInfo[2].shopperInfo[3].value;
-		    				freaksChange=Volumes.marketInfo[1].segmentInfo[3].shopperInfo[3].value;
+		    				priceShare=Volumes.marketInfo[1].segmentInfo[0].shopperInfo[3].value;
+		    				moneyShare=Volumes.marketInfo[1].segmentInfo[1].shopperInfo[3].value;
+		    				fashionShare=Volumes.marketInfo[1].segmentInfo[2].shopperInfo[3].value;
+		    				freaksShare=Volumes.marketInfo[1].segmentInfo[3].shopperInfo[3].value;
 		    				priceChange=Changes.marketInfo[1].segmentInfo[0].shopperInfo[3].value;
 		    				moneyChange=Changes.marketInfo[1].segmentInfo[1].shopperInfo[3].value;
 		    				fashionChange=Changes.marketInfo[1].segmentInfo[2].shopperInfo[3].value;
@@ -1749,32 +1749,314 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    	})
 
 		    }
+
+		    var loadRetailerConsumer=function(data,category,market){
+		    	for(var i=0;i<data.data[0].absoluteValue.length;i++){
+		    		if(data.data[0].absoluteValue[i].parentCategoryID==category){
+		    			for(var j=0;j<data.data[0].absoluteValue[i].marketInfo.length;j++){
+		    				if(data.data[0].absoluteValue[i].marketInfo[j].marketID==market){
+		    					var varName=data.data[0].absoluteValue[i].variantName;
+		    					var brandName=data.data[0].absoluteValue[i].parentBrandName;
+		    					var priceShare=data.data[0].absoluteValue[i].marketInfo[j].segmentInfo[0].shopperInfo[3].value;
+			    				var moneyShare=data.data[0].absoluteValue[i].marketInfo[j].segmentInfo[1].shopperInfo[3].value;
+			    				var fashionShare=data.data[0].absoluteValue[i].marketInfo[j].segmentInfo[2].shopperInfo[3].value;
+			    				var freaksShare=data.data[0].absoluteValue[i].marketInfo[j].segmentInfo[3].shopperInfo[3].value;
+			    				var Changes=_.find(data.data[0].valueChange,function(obj){
+				    				return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    				});
+			    				var priceChange=Changes.marketInfo[j].segmentInfo[0].shopperInfo[3].value;
+		    					var moneyChange=Changes.marketInfo[j].segmentInfo[1].shopperInfo[3].value;
+		    					var fashionChange=Changes.marketInfo[j].segmentInfo[2].shopperInfo[3].value;
+		    					var freaksChange=Changes.marketInfo[j].segmentInfo[3].shopperInfo[3].value;
+		    					switch(data.data[0].absoluteValue[i].parentCompanyID){
+		    						case 1:if(category==1){
+		    							$scope.eleValue1s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
+		    						}else{
+		    							$scope.heaValue1s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
+		    						}break;
+		    						case 2:if(category==1){
+		    							$scope.eleValue2s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
+		    						}else{
+		    							$scope.heaValue2s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
+		    						}break;
+		    						case 3:if(category==1){
+		    							$scope.eleValue3s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
+		    						}else{
+		    							$scope.heaValue3s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
+		    						}break;
+		    						case 4:break;
+		    						case 5:
+		    						case 6:if(category==1){
+		    							$scope.eleValue4s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
+		    						}else{
+		    							$scope.heaValue4s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
+		    						}break;
+		    					}
+		    					var Volumes=_.find(data.data[0].absoluteVolume,function(obj){
+				    				return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    				});
+			    				var Changes=_.find(data.data[0].volumeChange,function(obj){
+				    				return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    				});
+			    				priceShare=Volumes.marketInfo[j].segmentInfo[0].shopperInfo[3].value;
+			    				moneyShare=Volumes.marketInfo[j].segmentInfo[1].shopperInfo[3].value;
+			    				fashionShare=Volumes.marketInfo[j].segmentInfo[2].shopperInfo[3].value;
+			    				freaksShare=Volumes.marketInfo[j].segmentInfo[3].shopperInfo[3].value;
+			    				priceChange=Changes.marketInfo[j].segmentInfo[0].shopperInfo[3].value;
+			    				moneyChange=Changes.marketInfo[j].segmentInfo[1].shopperInfo[3].value;
+			    				fashionChange=Changes.marketInfo[j].segmentInfo[2].shopperInfo[3].value;
+			    				freaksChange=Changes.marketInfo[j].segmentInfo[3].shopperInfo[3].value;
+			    				switch(data.data[0].absoluteValue[i].parentCompanyID){
+		    						case 1:if(category==1){
+		    							$scope.eleVolume1s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
+		    						}else{
+		    							$scope.heaVolume1s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
+		    						}break;
+		    						case 2:if(category==1){
+		    							$scope.eleVolume2s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
+		    						}else{
+		    							$scope.heaVolume2s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
+		    						}break;
+		    						case 3:if(category==1){
+		    							$scope.eleVolume3s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
+		    						}else{
+		    							$scope.heaVolume3s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
+		    						}break;
+		    						case 4:break;
+		    						case 5:
+		    						case 6:if(category==1){
+		    							$scope.eleVolume4s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
+		    						}else{
+		    							$scope.heaVolume4s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
+		    						}break;
+		    					}
+		    				}
+		    			}
+		    		}
+		    	}
+		    }
+
+		    var loadRetailerShooper=function(data,category,market){
+		    	for(var i=0;i<data.data[0].absoluteValue.length;i++){
+		    		if(data.data[0].absoluteValue[i].parentCategoryID==category){
+		    			for(var j=0;j<data.data[0].absoluteValue[i].marketInfo.length;j++){
+		    				if(data.data[0].absoluteValue[i].marketInfo[j].marketID==market){
+		    					var varName=data.data[0].absoluteValue[i].variantName;
+		    					var brandName=data.data[0].absoluteValue[i].parentBrandName;
+		    					var bmShare=data.data[0].absoluteValue[i].marketInfo[j].segmentInfo[4].shopperInfo[0].value;
+		    					var onlineShare=data.data[0].absoluteValue[i].marketInfo[j].segmentInfo[4].shopperInfo[1].value;
+		    					var mixedShare=data.data[0].absoluteValue[i].marketInfo[j].segmentInfo[4].shopperInfo[2].value;
+		    					var Changes=_.find(data.data[0].valueChange,function(obj){
+				    				return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    				});
+			    				var bmChange=Changes.marketInfo[j].segmentInfo[4].shopperInfo[0].value;
+		    					var onlineChange=Changes.marketInfo[j].segmentInfo[4].shopperInfo[1].value;
+		    					var mixedChange=Changes.marketInfo[j].segmentInfo[4].shopperInfo[2].value;
+		    					switch(data.data[0].absoluteValue[i].parentCompanyID){
+		    						case 1:if(category==1){
+		    							$scope.eleValue1s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
+		    						}else{
+		    							$scope.heaValue1s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
+		    						}break;
+		    						case 2:if(category==1){
+		    							$scope.eleValue2s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
+		    						}else{
+		    							$scope.heaValue2s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
+		    						}break;
+		    						case 3:if(category==1){
+		    							$scope.eleValue3s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
+		    						}else{
+		    							$scope.heaValue3s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
+		    						}break;
+		    						case 4:break;
+		    						case 5:
+		    						case 6:if(category==1){
+		    							$scope.eleValue4s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
+		    						}else{
+		    							$scope.heaValue4s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
+		    						}break;
+		    					}
+		    					var Volumes=_.find(data.data[0].absoluteVolume,function(obj){
+				    				return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    				});
+			    				var Changes=_.find(data.data[0].volumeChange,function(obj){
+				    				return(obj.variantName==varName&&obj.parentBrandName==brandName);
+			    				});
+			    				var bmShare=Volumes.marketInfo[j].segmentInfo[4].shopperInfo[0].value;
+		    					var onlineShare=Volumes.marketInfo[j].segmentInfo[4].shopperInfo[1].value;
+		    					var mixedShare=Volumes.marketInfo[j].segmentInfo[4].shopperInfo[2].value;
+		    					var bmChange=Changes.marketInfo[j].segmentInfo[4].shopperInfo[0].value;
+		    					var onlineChange=Changes.marketInfo[j].segmentInfo[4].shopperInfo[1].value;
+		    					var mixedChange=Changes.marketInfo[j].segmentInfo[4].shopperInfo[2].value;
+		    					switch(data.data[0].absoluteValue[i].parentCompanyID){
+		    						case 1:if(category==1){
+		    							$scope.eleVolume1s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
+		    						}else{
+		    							$scope.heaVolume1s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
+		    						}break;
+		    						case 2:if(category==1){
+		    							$scope.eleVolume2s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
+		    						}else{
+		    							$scope.heaVolume2s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
+		    						}break;
+		    						case 3:if(category==1){
+		    							$scope.eleVolume3s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
+		    						}else{
+		    							$scope.heaVolume3s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
+		    						}break;
+		    						case 4:break;
+		    						case 5:
+		    						case 6:if(category==1){
+		    							$scope.eleVolume4s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
+		    						}else{
+		    							$scope.heaVolume4s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
+		    						}break;
+		    					}
+		    				}
+		    			}
+		    		}
+		    	}
+		    }
+
+		    var loadretailerVolume=function(data,category,market){
+		    // value : [Number], //0-Urban, 1-Rural, 2-Total
+		    	for(var i=0;i<data.data[0].rcrviv_Initial.length;i++){
+		    		if(data.data[0].rcrviv_Initial[i].parentCategoryID==category){
+		    			var varName=data.data[0].rcrviv_Initial[i].variantName;
+		    			var brandName=data.data[0].rcrviv_Initial[i].parentBrandName;
+		    			var initial=data.data[0].rcrviv_Initial[i].value[market-1];
+		    			var production=loadVariantValue(data.data[0].rcrviv_Purchase,brandName,varName,market-1);
+		    			var sales=loadVariantValue(data.data[0].rcrviv_Sales,brandName,varName,market-1);
+		    			var discontinued=loadVariantValue(data.data[0].rcrviv_Discontinued,brandName,varName,market-1);
+		    			var closing=loadVariantValue(data.data[0].rcrviv_Closing,brandName,varName,market-1);
+		    			switch(data.data[0].rcrviv_Initial[i].parentCompany){
+		    				case 1:if(category==1){
+		    					$scope.product1es.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing});
+		    				}else{
+		    					$scope.product1hs.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing});
+		    				}break;
+		    				case 2:if(category==1){
+		    					$scope.product2es.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing});
+		    				}else{
+		    					$scope.product2hs.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing});
+		    				}break;
+		    					case 3:if(category==1){
+		    					$scope.product3es.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing});
+		    				}else{
+		    					$scope.product3hs.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing});
+		    				}break;
+		    				case 4:break;
+		    				case 5:
+		    				case 6:if(category==1){
+		    					$scope.product4es.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing});
+		    				}else{
+		    					$scope.product4hs.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing});
+		    				}break;
+		    			}
+		    		}
+		    	}
+		    }
+
 		    var showRuralConsumer=function(){
 		    	switching('showRuralConsumer');
+		    	$scope.eleValue1s=new Array();$scope.heaValue1s=new Array();$scope.eleValue2s=new Array();$scope.heaValue2s=new Array();$scope.eleValue3s=new Array();$scope.heaValue3s=new Array();$scope.eleValue4s=new Array();$scope.heaValue4s=new Array();$scope.eleVolume1s=new Array();$scope.heaVolume1s=new Array();$scope.eleVolume2s=new Array();$scope.heaVolume2s=new Array();$scope.eleVolume3s=new Array();$scope.heaVolume3s=new Array();$scope.eleVolume4s=new Array();$scope.heaVolume4s=new Array();
+		    	var url='/RCR-sharesCrossSegment/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+		    	$http({
+		    		method:'GET',
+		    		url:url
+		    	}).then(function(data){
+		    		loadRetailerConsumer(data,1,2);
+		    		loadRetailerConsumer(data,2,2);
+		    	},function(){
+		    		console.log('fail');
+		    	})
 
 		    }
 		    var showRuralShopper=function(){
 		    	switching('showRuralShopper');
-
+		    	$scope.eleValue1s=new Array();$scope.heaValue1s=new Array();$scope.eleValue2s=new Array();$scope.heaValue2s=new Array();$scope.eleValue3s=new Array();$scope.heaValue3s=new Array();$scope.eleValue4s=new Array();$scope.heaValue4s=new Array();$scope.eleVolume1s=new Array();$scope.heaVolume1s=new Array();$scope.eleVolume2s=new Array();$scope.heaVolume2s=new Array();$scope.eleVolume3s=new Array();$scope.heaVolume3s=new Array();$scope.eleVolume4s=new Array();$scope.heaVolume4s=new Array();
+		    	var url='/RCR-sharesCrossSegment/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+		    	$http({
+		    		method:'GET',
+		    		url:url
+		    	}).then(function(data){
+		    		loadRetailerShooper(data,1,2);
+		    		loadRetailerShooper(data,2,2);
+		    	},function(){
+		    		console.log('fail');
+		    	})
 		    }
 		    var showRuralVolume=function(){
 		    	switching('showRuralVolume');
-
+		    	$scope.product1es=new Array();$scope.product1hs=new Array();$scope.product2es=new Array();$scope.product2hs=new Array();$scope.product3es=new Array();$scope.product3hs=new Array();$scope.product4es=new Array();$scope.product4hs=new Array();
+		    	var url='/RCR-inventoryVolumes/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+		    	$http({
+		    		method:'GET',
+		    		url:url
+		    	}).then(function(data){
+		    		loadretailerVolume(data,1,2);
+		    		loadretailerVolume(data,2,2);
+		    	},function(){
+		    		console.log('fail');
+		    	})
+		    
 		    }
 		    var showUrbanConsumer=function(){
 		    	switching('showUrbanConsumer');
+		    	$scope.eleValue1s=new Array();$scope.heaValue1s=new Array();$scope.eleValue2s=new Array();$scope.heaValue2s=new Array();$scope.eleValue3s=new Array();$scope.heaValue3s=new Array();$scope.eleValue4s=new Array();$scope.heaValue4s=new Array();$scope.eleVolume1s=new Array();$scope.heaVolume1s=new Array();$scope.eleVolume2s=new Array();$scope.heaVolume2s=new Array();$scope.eleVolume3s=new Array();$scope.heaVolume3s=new Array();$scope.eleVolume4s=new Array();$scope.heaVolume4s=new Array();
+		    	var url='/RCR-sharesCrossSegment/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+		    	$http({
+		    		method:'GET',
+		    		url:url
+		    	}).then(function(data){
+		    		loadRetailerConsumer(data,1,1);
+		    		loadRetailerConsumer(data,2,1);
+		    	},function(){
+		    		console.log('fail');
+		    	})
 
 		    }
 		    var showUrbanShopper=function(){
 		    	switching('showUrbanShopper');
+		    	$scope.eleValue1s=new Array();$scope.heaValue1s=new Array();$scope.eleValue2s=new Array();$scope.heaValue2s=new Array();$scope.eleValue3s=new Array();$scope.heaValue3s=new Array();$scope.eleValue4s=new Array();$scope.heaValue4s=new Array();$scope.eleVolume1s=new Array();$scope.heaVolume1s=new Array();$scope.eleVolume2s=new Array();$scope.heaVolume2s=new Array();$scope.eleVolume3s=new Array();$scope.heaVolume3s=new Array();$scope.eleVolume4s=new Array();$scope.heaVolume4s=new Array();
+		    	var url='/RCR-sharesCrossSegment/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+		    	$http({
+		    		method:'GET',
+		    		url:url
+		    	}).then(function(data){
+		    		loadRetailerShooper(data,1,1);
+		    		loadRetailerShooper(data,2,1);
+		    	},function(){
+		    		console.log('fail');
+		    	})
 
 		    }
 		    var showUrbanVolume=function(){
 		    	switching('showUrbanVolume');
+		    	$scope.product1es=new Array();$scope.product1hs=new Array();$scope.product2es=new Array();$scope.product2hs=new Array();$scope.product3es=new Array();$scope.product3hs=new Array();$scope.product4es=new Array();$scope.product4hs=new Array();
+		    	var url='/RCR-inventoryVolumes/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+		    	$http({
+		    		method:'GET',
+		    		url:url
+		    	}).then(function(data){
+		    		loadretailerVolume(data,1,1);
+		    		loadretailerVolume(data,2,1);
+		    	},function(){
+		    		console.log('fail');
+		    	})
 
 		    }
 		    var showRetailerKey=function(){
 		    	switching('showRetailerKey');
+		    	var url='/RCR-keyPerformanceIndicators/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+		    	$http({
+		    		method:'GET',
+		    		url:url
+		    	}).then(function(data){
+					$scope.data=data.data[0];
+		    	},function(){
+		    		console.log('fail');
+		    	})
 		    }
 
 		    $scope.openProductModal=function(brandName,type){

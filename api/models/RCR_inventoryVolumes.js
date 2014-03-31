@@ -16,7 +16,7 @@ var RCR_inventoryVolumesSchema = mongoose.Schema({
     rcrviv_Purchase         : [variantInfoSchema],
     rcrviv_Sales            : [variantInfoSchema],
     rcrviv_Discontinued     : [variantInfoSchema],
-    rcrviv_Closing          : [variantInfoSchema],
+    rcrviv_Closing          : [variantInfoSchema]
 })
 
 var variantInfoSchema = mongoose.Schema({
@@ -48,8 +48,8 @@ exports.addRCR_inventoryVolumes=function(req,res,next){
             value:[10,20,30]
         },{
             variantName:'_B',
-            parentBrandName:'HLAN2',
-            parentCategoryID:2,
+            parentBrandName:'ETAE2',
+            parentCategoryID:1,
             parentCompany:2,
             value:[40,50,60]
         },{
@@ -60,9 +60,33 @@ exports.addRCR_inventoryVolumes=function(req,res,next){
             value:[55,65,75]
         },{
             variantName:'_D',
-            parentBrandName:'HTTP2',
+            parentBrandName:'ETTO5',
+            parentCategoryID:1,
+            ParentCompany:5,
+            value:[15,25,35]
+        },{
+            variantName:'_A',
+            parentBrandName:'HLEN1',
             parentCategoryID:2,
-            ParentCompany:2,
+            parentCompany:1,
+            value:[10,20,30]
+        },{
+            variantName:'_B',
+            parentBrandName:'HEAT2',
+            parentCategoryID:2,
+            parentCompany:2,
+            value:[40,50,60]
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP3',
+            parentCategoryID:2,
+            ParentCompany:3,
+            value:[55,65,75]
+        },{
+            variantName:'_D',
+            parentBrandName:'HTTO5',
+            parentCategoryID:2,
+            ParentCompany:5,
             value:[15,25,35]
         }],
         rcrviv_Purchase         : [{
@@ -73,8 +97,8 @@ exports.addRCR_inventoryVolumes=function(req,res,next){
             value:[10,20,30]
         },{
             variantName:'_B',
-            parentBrandName:'HLAN2',
-            parentCategoryID:2,
+            parentBrandName:'ETAE2',
+            parentCategoryID:1,
             parentCompany:2,
             value:[40,50,60]
         },{
@@ -85,9 +109,33 @@ exports.addRCR_inventoryVolumes=function(req,res,next){
             value:[55,65,75]
         },{
             variantName:'_D',
-            parentBrandName:'HTTP2',
+            parentBrandName:'ETTO5',
+            parentCategoryID:1,
+            ParentCompany:5,
+            value:[15,25,35]
+        },{
+            variantName:'_A',
+            parentBrandName:'HLEN1',
             parentCategoryID:2,
-            ParentCompany:2,
+            parentCompany:1,
+            value:[10,20,30]
+        },{
+            variantName:'_B',
+            parentBrandName:'HEAT2',
+            parentCategoryID:2,
+            parentCompany:2,
+            value:[40,50,60]
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP3',
+            parentCategoryID:2,
+            ParentCompany:3,
+            value:[55,65,75]
+        },{
+            variantName:'_D',
+            parentBrandName:'HTTO5',
+            parentCategoryID:2,
+            ParentCompany:5,
             value:[15,25,35]
         }],
         rcrviv_Sales            : [{
@@ -98,8 +146,8 @@ exports.addRCR_inventoryVolumes=function(req,res,next){
             value:[10,20,30]
         },{
             variantName:'_B',
-            parentBrandName:'HLAN2',
-            parentCategoryID:2,
+            parentBrandName:'ETAE2',
+            parentCategoryID:1,
             parentCompany:2,
             value:[40,50,60]
         },{
@@ -110,9 +158,33 @@ exports.addRCR_inventoryVolumes=function(req,res,next){
             value:[55,65,75]
         },{
             variantName:'_D',
-            parentBrandName:'HTTP2',
+            parentBrandName:'ETTO5',
+            parentCategoryID:1,
+            ParentCompany:5,
+            value:[15,25,35]
+        },{
+            variantName:'_A',
+            parentBrandName:'HLEN1',
             parentCategoryID:2,
-            ParentCompany:2,
+            parentCompany:1,
+            value:[10,20,30]
+        },{
+            variantName:'_B',
+            parentBrandName:'HEAT2',
+            parentCategoryID:2,
+            parentCompany:2,
+            value:[40,50,60]
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP3',
+            parentCategoryID:2,
+            ParentCompany:3,
+            value:[55,65,75]
+        },{
+            variantName:'_D',
+            parentBrandName:'HTTO5',
+            parentCategoryID:2,
+            ParentCompany:5,
             value:[15,25,35]
         }],
         rcrviv_Discontinued     : [{
@@ -123,8 +195,8 @@ exports.addRCR_inventoryVolumes=function(req,res,next){
             value:[10,20,30]
         },{
             variantName:'_B',
-            parentBrandName:'HLAN2',
-            parentCategoryID:2,
+            parentBrandName:'ETAE2',
+            parentCategoryID:1,
             parentCompany:2,
             value:[40,50,60]
         },{
@@ -135,9 +207,33 @@ exports.addRCR_inventoryVolumes=function(req,res,next){
             value:[55,65,75]
         },{
             variantName:'_D',
-            parentBrandName:'HTTP2',
+            parentBrandName:'ETTO5',
+            parentCategoryID:1,
+            ParentCompany:5,
+            value:[15,25,35]
+        },{
+            variantName:'_A',
+            parentBrandName:'HLEN1',
             parentCategoryID:2,
-            ParentCompany:2,
+            parentCompany:1,
+            value:[10,20,30]
+        },{
+            variantName:'_B',
+            parentBrandName:'HEAT2',
+            parentCategoryID:2,
+            parentCompany:2,
+            value:[40,50,60]
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP3',
+            parentCategoryID:2,
+            ParentCompany:3,
+            value:[55,65,75]
+        },{
+            variantName:'_D',
+            parentBrandName:'HTTO5',
+            parentCategoryID:2,
+            ParentCompany:5,
             value:[15,25,35]
         }],
         rcrviv_Closing          : [{
@@ -148,8 +244,8 @@ exports.addRCR_inventoryVolumes=function(req,res,next){
             value:[10,20,30]
         },{
             variantName:'_B',
-            parentBrandName:'HLAN2',
-            parentCategoryID:2,
+            parentBrandName:'ETAE2',
+            parentCategoryID:1,
             parentCompany:2,
             value:[40,50,60]
         },{
@@ -160,9 +256,33 @@ exports.addRCR_inventoryVolumes=function(req,res,next){
             value:[55,65,75]
         },{
             variantName:'_D',
-            parentBrandName:'HTTP2',
+            parentBrandName:'ETTO5',
+            parentCategoryID:1,
+            ParentCompany:5,
+            value:[15,25,35]
+        },{
+            variantName:'_A',
+            parentBrandName:'HLEN1',
             parentCategoryID:2,
-            ParentCompany:2,
+            parentCompany:1,
+            value:[10,20,30]
+        },{
+            variantName:'_B',
+            parentBrandName:'HEAT2',
+            parentCategoryID:2,
+            parentCompany:2,
+            value:[40,50,60]
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP3',
+            parentCategoryID:2,
+            ParentCompany:3,
+            value:[55,65,75]
+        },{
+            variantName:'_D',
+            parentBrandName:'HTTO5',
+            parentCategoryID:2,
+            ParentCompany:5,
             value:[15,25,35]
         }]
     });
