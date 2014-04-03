@@ -26,3 +26,31 @@ var accountInfoSchema = mongoose.Schema({
     netMarketPriceChange   : [Number], //0-Urban, 1-Rural   
 })
 
+var MR_netMarketPrices=mongoose.model('MR_netMarketPrices',MR_netMarketPricesSchema);
+
+exports.addMR_netMarketPrices=function(req,res,next){
+    var newMR_netMarketPrices=MR_netMarketPrices({});
+    newMR_netMarketPrices.save(function(err) {
+        if(!err){
+            res.send(200,newMR_netMarketPrices);
+            console.log("created new GeneralReport:"+newMR_netMarketPrices);
+        } else {
+            res.send(400,"failed.");
+        }
+    }); 
+}    
+
+exports.getMR_netMarketPrices=function(req,res,next){
+    var data={
+        'seminar':req.params.seminar,
+        'period':req.params.period,
+        'producerID':req.params.producerID
+    };
+    MR_netMarketPrices.find(data,function(err,docs){
+        if(docs){
+            res.send(200,docs);
+        }else{
+            res.send(404,'failed');
+        }
+    })    
+}

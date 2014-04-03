@@ -293,10 +293,20 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
     ];
 
     $scope.chartSeries = [
-        {"name": "Some data", "data": [1, 2, 4, 7, 3],type: "column"},
+        {
+            name: 'John',
+            data: [5, 3, 4, 7, 2]
+        }, {
+            name: 'Jane',
+            data: [2, 2, 3, 2, 1]
+        }, {
+            name: 'Joe',
+            data: [3, 4, 4, 2, 5]
+        }
+        /*{"name": "Some data", "data": [1, 2, 4, 7, 3],type: "column"},
         {"name": "Some data 3", "data": [3, 1, 5, 5, 2], type: "column"},
         {"name": "Some data 2", "data": [5, 2, 2, 3, 5], type: "column"},
-        {"name": "My Super Column", "data": [1, 1, 2, 3, 2], type: "column"}
+        {"name": "My Super Column", "data": [1, 1, 2, 3, 2], type: "column"}*/
     ];
 
     $scope.chartStack = [
@@ -487,14 +497,23 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
     $scope.chartConfig = {
         options: {
             chart: {
-                type: 'areaspline'
+                type: 'bar'
             },
             plotOptions: {
                 series: {
-                    stacking: 'percent'
+                    stacking: 'normal'
                 }
             },
-            tooltip: {
+            xAxis: {
+            	categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+	        },
+	        yAxis: {
+	            min: 0,
+	            title: {
+	                text: 'Total fruit consumption'
+	            }
+	        }
+            /*tooltip: {
 	        	shared: false,
 	        	useHTML: true,
 	        	headerFormat: '<small style="color: {series.color}>{series.name}</small><table>',
@@ -502,7 +521,7 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
 	        	'<td style="text-align: right"><b>{point.y} EUR</b></td></tr>',
 	        	footerFormat: '</table>',
 	        	valueDecimals: 2
-	        }
+	        }*/
         },
         series: $scope.chartSeries,
         title: {

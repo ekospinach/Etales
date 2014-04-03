@@ -188,6 +188,14 @@ app.get('/RCR-profitabilityBySupplier/:seminar/:period/:retailerID',require('./a
 app.get('/RCR-sharesCrossSegment/:seminar/:period/:retailerID',require('./api/models/RCR_sharesCrossSegment.js').getRCR_sharesCrossSegment);
 app.use(express.errorHandler());
 
+//add market report
+app.get('/addMR-awarenessEvolution',require('./api/models/MR_awarenessEvolution.js').addMR_awarenessEvolution);
+app.get('/addMR-sharesCrossSegment',require('./api/models/MR_sharesCrossSegment.js').addMR_sharesCrossSegment);
+app.get('/addMR-salesCrossSegment',require('./api/models/MR_salesCrossSegment.js').addMR_salesCrossSegment);
+//get market report
+app.get('/getMR-awarenessEvolution/:seminar/:period',require('./api/models/MR_awarenessEvolution.js').getMR_awarenessEvolution);
+app.get('/getMR-sharesCrossSegment/:seminar/:period',require('./api/models/MR_sharesCrossSegment.js').getMR_sharesCrossSegment);
+app.get('/getMR-salesCrossSegment/:seminar/:period',require('./api/models/MR_salesCrossSegment.js').getMR_salesCrossSegment);
 
 port = parseInt(process.env.PORT, 10) || conf.server.port;
 mongoose.connect('mongodb://localhost/Etales');

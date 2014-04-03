@@ -20,7 +20,7 @@
 			angularXeditable: '../bower_components/angular-xeditable/dist/js/xeditable',
 			socketIO: '../bower_components/socket.io-client/dist/socket.io',
 			jquery:'../bower_components/jquery/dist/jquery',
-			bootstrapswitch: '../bower_components/bootstrap-switch/build/js/bootstrap-switch',
+			bootstrapswitch: '../bower_components/bootstrap-switch/dist/js/bootstrap-switch',
 			require:'../bower_components/requirejs/require',
 			underscore:'../bower_components/underscore/underscore',
 			bootstrap:'../bower_components/bootstrap/dist/js/bootstrap',
@@ -38,7 +38,7 @@
 			labelBase: './utils/labelBase',
 			//highchart
 			highchart:'../bower_components/highcharts/highcharts',
-			highcharts:'../bower_components/highcharts-ng/src/highcharts-ng',
+			angularHighcharts:'../bower_components/highcharts-ng/src/highcharts-ng',
 			angularBootstrapSwitch: '../bower_components/angular-bootstrap-switch/dist/angular-bootstrap-switch'
 			//export
 			//generatedata:'./jqxGrid/generatedata',

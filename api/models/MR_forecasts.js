@@ -77,4 +77,32 @@ var periodInfoSchema = mongoose.Schema({
     value : [Number] //0-Urban, 1-Rural        
 })
 
+var MR_forcasts=mongoose.model('MR_forcasts',MR_forcastsSchema);
+
+exports.addMR_forcasts=function(req,res,next){
+    var newMR_forcasts=MR_forcasts({});
+    newMR_forcasts.save(function(err) {
+        if(!err){
+            res.send(200,newMR_forcasts);
+            console.log("created new GeneralReport:"+newMR_forcasts);
+        } else {
+            res.send(400,"failed.");
+        }
+    }); 
+}    
+
+exports.getMR_forcasts=function(req,res,next){
+    var data={
+        'seminar':req.params.seminar,
+        'period':req.params.period,
+        'producerID':req.params.producerID
+    };
+    MR_forcasts.find(data,function(err,docs){
+        if(docs){
+            res.send(200,docs);
+        }else{
+            res.send(404,'failed');
+        }
+    })    
+}
 
