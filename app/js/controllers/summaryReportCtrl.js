@@ -2239,20 +2239,49 @@ define(['app','socketIO','routingConfig'], function(app) {
 					for(var i=0;i<data.data[0].brandInfo.length;i++){
 						if(data.data[0].brandInfo[i].parentCategoryID==category){
 							$scope.brandNames[count]=data.data[0].brandInfo[i].brandName;
-							$scope.valueRural[count]=data.data[0].brandInfo[i].previousAwareness[1];
-							$scope.valueUrban[count]=data.data[0].brandInfo[i].previousAwareness[0];
-							if(data.data[0].brandInfo[i].latestAwareness[1]>=0){
-								$scope.increaseRural[count]=data.data[0].brandInfo[i].latestAwareness[1];
+							// $scope.valueRural[count]=data.data[0].brandInfo[i].previousAwareness[1];
+							// $scope.valueUrban[count]=data.data[0].brandInfo[i].previousAwareness[0];
+							// if(data.data[0].brandInfo[i].latestAwareness[1]>=0){
+							// 	$scope.increaseRural[count]=data.data[0].brandInfo[i].latestAwareness[1];
+							// 	$scope.dropRural[count]=0;
+							// }else{
+							// 	$scope.dropRural[count]=-data.data[0].brandInfo[i].latestAwareness[1];
+							// 	$scope.increaseRural[count]=0;
+							// }
+							// if(data.data[0].brandInfo[i].latestAwareness[0]>=0){
+							// 	$scope.increaseUrban[count]=data.data[0].brandInfo[i].latestAwareness[0];
+							// 	$scope.dropUrban[count]=0;
+							// }else{
+							// 	$scope.dropUrban[count]=-data.data[0].brandInfo[i].latestAwareness[0];
+							// 	$scope.increaseUrban[count]=0;
+							// }
+
+							//previousAwareness = 10
+							//latestAwareness = 4
+							//red part = 10-4 =6 (decrease part)
+							//gray part = 4 (latestAwareness)
+
+							//previousAwareness = 5
+							//latestAwareness = 6
+							//green part = 6-5 = 1 (increase part)
+							//gray part = 5(previousAwareness)
+							//so latestAwareness = green part + gray part
+							if(data.data[0].brandInfo[i].latestAwareness[1]>=data.data[0].brandInfo[i].previousAwareness[1]){
+								$scope.valueRural[count]=data.data[0].brandInfo[i].previousAwareness[1];
+								$scope.increaseRural[count]=data.data[0].brandInfo[i].latestAwareness[1]-data.data[0].brandInfo[i].previousAwareness[1];
 								$scope.dropRural[count]=0;
 							}else{
-								$scope.dropRural[count]=-data.data[0].brandInfo[i].latestAwareness[1];
+								$scope.valueRural[count]=data.data[0].brandInfo[i].latestAwareness[1];
+								$scope.dropRural[count]=data.data[0].brandInfo[i].previousAwareness[1]-data.data[0].brandInfo[i].latestAwareness[1];
 								$scope.increaseRural[count]=0;
 							}
-							if(data.data[0].brandInfo[i].latestAwareness[0]>=0){
-								$scope.increaseUrban[count]=data.data[0].brandInfo[i].latestAwareness[0];
+							if(data.data[0].brandInfo[i].latestAwareness[0]>=data.data[0].brandInfo[i].previousAwareness[0]){
+								$scope.valueUrban[count]=data.data[0].brandInfo[i].previousAwareness[0];
+								$scope.increaseUrban[count]=data.data[0].brandInfo[i].latestAwareness[0]-data.data[0].brandInfo[i].previousAwareness[0];
 								$scope.dropUrban[count]=0;
 							}else{
-								$scope.dropUrban[count]=-data.data[0].brandInfo[i].latestAwareness[0];
+								$scope.valueUrban[count]=data.data[0].brandInfo[i].latestAwareness[0];
+								$scope.dropUrban[count]=data.data[0].brandInfo[i].previousAwareness[0]-data.data[0].brandInfo[i].latestAwareness[0];
 								$scope.increaseUrban[count]=0;
 							}
 							count++;

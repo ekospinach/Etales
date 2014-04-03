@@ -30,19 +30,19 @@ exports.addMR_awarenessEvolution=function(req,res,next){
             parentCategoryID: 1,
             parentCompanyID: 1, 
             previousAwareness: [10,20], //0-Urban, 1-Rural
-            latestAwareness: [15,25]
+            latestAwareness: [15,15]
         },{
             brandName: 'HLAN1',
             parentCategoryID: 2,
             parentCompanyID: 1, 
             previousAwareness: [10,20], //0-Urban, 1-Rural
-            latestAwareness: [15,25]
+            latestAwareness: [6,14]
         },{
             brandName: 'EMOD2',
             parentCategoryID: 1,
             parentCompanyID: 2, 
             previousAwareness: [15,25], //0-Urban, 1-Rural
-            latestAwareness: [20,30]
+            latestAwareness: [25,30]
         },{
             brandName: 'HMOD2',
             parentCategoryID: 2,
@@ -54,13 +54,13 @@ exports.addMR_awarenessEvolution=function(req,res,next){
             parentCategoryID: 1,
             parentCompanyID: 3, 
             previousAwareness: [10,20], //0-Urban, 1-Rural
-            latestAwareness: [15,25]
+            latestAwareness: [6,14]
         },{
             brandName: 'HWAN3',
             parentCategoryID: 2,
             parentCompanyID: 3, 
             previousAwareness: [10,20], //0-Urban, 1-Rural
-            latestAwareness: [15,25]
+            latestAwareness: [7,17]
         },{
             brandName: 'ELAN5',
             parentCategoryID: 1,
@@ -77,14 +77,14 @@ exports.addMR_awarenessEvolution=function(req,res,next){
             brandName: 'ELAN6',
             parentCategoryID: 1,
             parentCompanyID: 6, 
-            previousAwareness: [17,27], //0-Urban, 1-Rural
-            latestAwareness: [35,45]
+            previousAwareness: [35,27], //0-Urban, 1-Rural
+            latestAwareness: [17,15]
         },{
             brandName: 'HGAN6',
             parentCategoryID: 2,
             parentCompanyID: 6, 
             previousAwareness: [20,30], //0-Urban, 1-Rural
-            latestAwareness: [25,35]
+            latestAwareness: [22,35]
         }]
     });
     newMR_awarenessEvolution.save(function(err) {
