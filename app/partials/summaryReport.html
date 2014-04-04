@@ -30,6 +30,15 @@
     .td-info{
         background-color: #D9EDF7;
     }
+    .td-warning{
+        background-color: #FCF8E3;
+    }
+    .td-success{
+        background-color: #DFF0D8;
+    }
+    .td-danger{
+        background-color: #F2DEDE;
+    }
     .col-md-9{
         width: 74%;
     }
@@ -11254,6 +11263,246 @@
                         </table>
                     </div>
 
+                    <div class="panel panel-danger" ng-show='BMElecssories||BMHealthBeauties'>
+                        <div class="panel-heading" ng-show='BMElecssories'>
+                            <h3 class="panel-title text-center" popover="{{Label.getContent('B&M Retail Prices Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
+                                {{Label.getContent('B&M Retail Prices')}}-{{Label.getContent('Elecssories')}}
+                            </h3>
+                        </div>
+                        <div class="panel-heading" ng-show='BMHealthBeauties'>
+                            <h3 class="panel-title text-center" popover="{{Label.getContent('B&M Retail Prices Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
+                                {{Label.getContent('B&M Retail Prices')}}-{{Label.getContent('HealthBeauties')}}
+                            </h3>
+                        </div>
+                        <table class="table table-condensed table-bordered table-danger">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th colspan="4">
+                                        <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                    </th>
+                                    <th colspan="4">
+                                        <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td colspan="2">
+                                        <p class="text-center">{{Label.getContent('Rural')}}</p>
+                                    </td>
+                                    <td colspan="2">
+                                        <p class="text-center">{{Label.getContent('Urban')}}</p>
+                                    </td>
+                                    <td colspan="2">
+                                        <p class="text-center">{{Label.getContent('Rural')}}</p>
+                                    </td>
+                                    <td colspan="2">
+                                        <p class="text-center">{{Label.getContent('Urban')}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Net Retail Price')}}($)</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Change')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Net Retail Price')}}($)</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Change')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Net Retail Price')}}($)</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Change')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Net Retail Price')}}($)</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Change')}}</p>
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="9">
+                                        <p class="padding-10">{{Label.getContent('Supplier')}} 1</p>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat='player1 in player1s'>
+                                    <td style='background-color:{{nameColor}}'>
+                                        <p class="padding-20">{{player1.fullName}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player1.rural1Value||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player1.rural1ValueChange||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player1.urban1Value||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player1.urban1ValueChange||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player1.rural2Value||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player1.rural2ValueChange||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player1.urban2Value||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player1.urban2ValueChange||'/'}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="9">
+                                        <p class="padding-10">{{Label.getContent('Supplier')}} 2</p>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat='player2 in player2s'>
+                                    <td style='background-color:{{nameColor}}'>
+                                        <p class="padding-20">{{player2.fullName}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player2.rural1Value||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player2.rural1ValueChange||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player2.urban1Value||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player2.urban1ValueChange||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player2.rural2Value||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player2.rural2ValueChange||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player2.urban2Value||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player2.urban2ValueChange||'/'}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="9">
+                                        <p class="padding-10">{{Label.getContent('Supplier')}} 3</p>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat='player3 in player3s'>
+                                    <td style='background-color:{{nameColor}}'>
+                                        <p class="padding-20">{{player3.fullName}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player3.rural1Value||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player3.rural1ValueChange||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player3.urban1Value||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player3.urban1ValueChange||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player3.rural2Value||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player3.rural2ValueChange||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player3.urban2Value||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player3.urban2ValueChange||'/'}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="9">
+                                        <p class="padding-10">{{Label.getContent('Retailer')}} 1</p>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat='player5 in player5s'>
+                                    <td style='background-color:{{nameColor}}'>
+                                        <p class="padding-20">{{player5.fullName}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player5.rural1Value||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player5.rural1ValueChange||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player5.urban1Value||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player5.urban1ValueChange||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player5.rural2Value||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player5.rural2ValueChange||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player5.urban2Value||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player5.urban2ValueChange||'/'}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="9">
+                                        <p class="padding-10">{{Label.getContent('Retailer')}} 1</p>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat='player6 in player6s'>
+                                    <td style='background-color:{{nameColor}}'>
+                                        <p class="padding-20">{{player6.fullName}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player6.rural1Value||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player6.rural1ValueChange||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player6.urban1Value||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player6.urban1ValueChange||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player6.rural2Value||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player6.rural2ValueChange||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player6.urban2Value||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player6.urban2ValueChange||'/'}}</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
                 <!--market report end-->
 
             </div>
@@ -11481,6 +11730,17 @@
                             </li>
                             <li class="">
                                 <a href="/#/summaryReport" style="color:#D9534F" ng-click='showUrbanHealthBeautiesShopperSales()'>{{Label.getContent('HealthBeauties')}}-{{Label.getContent('Urban')}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="/#/summaryReport" style="color:#D9534F" ng-click='showBMElecssories()'>{{Label.getContent('B&M Retail Prices')}}</a>
+                        <ul class="nav second-sidenav">
+                            <li class="">
+                                <a href="/#/summaryReport" style="color:#D9534F" ng-click='showBMElecssories()'>{{Label.getContent('Elecssories')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/summaryReport" style="color:#D9534F" ng-click='showBMHealthBeauties()'>{{Label.getContent('HealthBeauties')}}</a>
                             </li>
                         </ul>
                     </li>

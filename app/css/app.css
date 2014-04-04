@@ -205,8 +205,14 @@
 table tr td p,table tr th p{
   margin: 0;
 }
+.padding-10{
+  padding-left: 10px;
+}
 .padding-20{
   padding-left: 20px;
+}
+.padding-30{
+  padding-left: 30px;
 }
 .padding-40{
   padding-left: 40px;
