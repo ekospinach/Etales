@@ -3,10 +3,10 @@ var mongoose = require('mongoose'),
   config = require('../../config.js');
 
 var perceptionMapSchema = mongoose.Schema({
-	seminar : String,
-	fileName : String,
-	latestHistoryPeriod : Number,
-	pageCollection : [pageCollectionSchema]
+  	seminar : String,
+  	fileName : String,
+  	latestHistoryPeriod : Number,
+  	pageCollection : [pageCollectionSchema]
 })
 
 var pageCollectionSchema = mongoose.Schema({

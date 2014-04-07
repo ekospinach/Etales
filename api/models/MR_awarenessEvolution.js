@@ -16,5 +16,5 @@ var brandInfoSchema = mongoose.Schema({
     parentCategoryID                     : Number,
     parentCompanyID                      : Number, 
     previousAwareness                    : [Number], //0-Urban, 1-Rural
-    previousLatestAwareness              : [Number] //0-Urban, 1-Rural
+    latestAwareness              : [Number] //0-Urban, 1-Rural
 })
