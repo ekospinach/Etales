@@ -494,44 +494,45 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
         this.chartConfig.useHighStocks = !this.chartConfig.useHighStocks
     }
 
-    $scope.chartConfig = {
-        options: {
-            chart: {
-                type: 'bar'
-            },
-            plotOptions: {
-                series: {
-                    stacking: 'normal'
-                }
-            },
-            xAxis: {
-            	categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
-	        },
-	        yAxis: {
-	            min: 0,
-	            title: {
-	                text: 'Total fruit consumption'
-	            }
-	        }
-            /*tooltip: {
-	        	shared: false,
-	        	useHTML: true,
-	        	headerFormat: '<small style="color: {series.color}>{series.name}</small><table>',
-	        	pointFormat: '<tr><td style="color: {series.color}">{series.name}: </td>' +
-	        	'<td style="text-align: right"><b>{point.y} EUR</b></td></tr>',
-	        	footerFormat: '</table>',
-	        	valueDecimals: 2
-	        }*/
-        },
-        series: $scope.chartSeries,
-        title: {
-            text: 'Hello'
-        },
-        credits: {
-            enabled: true
-        },
-        loading: false
-    }
+    $scope.mySeries=[{
+    	data: [[97,36,10],[94,74,10],[68,76,10],[64,87,10],[68,27,10],[74,99,10],[7,93,10],[51,69,10],[38,23,10],[57,86,10]]
+    }, {
+    	data: [[25,10,10],[2,75,10],[11,54,10],[86,55,10],[5,3,10],[90,63,10],[91,33,10],[97,3,10],[15,67,10],[54,25,10]]
+    }, {
+    	data: [[47,47,10],[20,12,10],[6,76,10],[38,30,10],[57,98,10],[61,17,10],[83,60,10],[67,78,10],[64,12,10],[30,77,10]]
+    }];
+
+    $scope.myProducts=[
+    	['ELAN1_A','ELAN1_B','ELAN1_C','ELAN1_D','ELAN1_E','ELAN1_F','ELAN1_G','ELAN1_H','ELAN1_I','ELAN1_J'],
+    	['ELAN2_A','ELAN2_B','ELAN2_C','ELAN2_D','ELAN2_E','ELAN2_F','ELAN2_G','ELAN2_H','ELAN2_I','ELAN2_J'],
+    	['ELAN3_A','ELAN3_B','ELAN3_C','ELAN3_D','ELAN3_E','ELAN3_F','ELAN3_G','ELAN3_H','ELAN3_I','ELAN3_J']
+    ]
+
+
+ tooltip: {
+ 	formatter: function() {
+ 		var s = '<p><b>'+this.series.name+'</b></p>'+'<p>'+$scope.change1s[this.series._i][this.point.x]+' '+Label.getContent('over previous period')+'</p>';
+ 		return s;
+ 	},
+ 	shared: false,
+ 	useHTML: true
+ },
+  //   $scope.chartConfig = {
+  //       chart: {
+  //       	type: 'bubble',
+		// },
+  //       series: [{
+	 //        data: [[97,36,79],[94,74,60],[68,76,58],[64,87,56],[68,27,73],[74,99,42],[7,93,87],[51,69,40],[38,23,33],[57,86,31]]
+	 //    }, {
+	 //        data: [[25,10,87],[2,75,59],[11,54,8],[86,55,93],[5,3,58],[90,63,44],[91,33,17],[97,3,56],[15,67,48],[54,25,81]]
+	 //    }, {
+	 //        data: [[47,47,21],[20,12,4],[6,76,91],[38,30,60],[57,98,64],[61,17,80],[83,60,13],[67,78,75],[64,12,10],[30,77,82]]
+	 //    }],
+  //       title: {
+  //           text: 'Hello'
+  //       },
+  //       loading: false
+  //   }
 
 
 		$scope.Label = Label;

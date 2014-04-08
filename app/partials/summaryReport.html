@@ -1099,10 +1099,10 @@
                                         <p class="text-right">{{producer1e.vemp_PriceChange}}</p>
                                     </td>
                                     <td>
-                                        <p class="text-right">{{producer1e.vemp_Promotions.promo_Frequency}}</p>
+                                        <p class="text-right">{{producer1e.vemp_Promotions.Rate}}</p>
                                     </td>
                                     <td>
-                                        <p class="text-right">{{producer1e.vemp_Promotions.promo_Rate}}</p>
+                                        <p class="text-right">{{producer1e.vemp_Promotions.promo_Frequency}}</p>
                                     </td>
                                 </tr>
                                 <tr class="success">
@@ -1121,10 +1121,10 @@
                                         <p class="text-right">{{producer2e.vemp_PriceChange}}</p>
                                     </td>
                                     <td>
-                                        <p class="text-right">{{producer2e.vemp_Promotions.promo_Frequency}}</p>
+                                        <p class="text-right">{{producer2e.vemp_Promotions.Rate}}</p>
                                     </td>
                                     <td>
-                                        <p class="text-right">{{producer2e.vemp_Promotions.promo_Rate}}</p>
+                                        <p class="text-right">{{producer2e.vemp_Promotions.promo_Frequency}}</p>
                                     </td>
                                 </tr>
                                 <tr class="success">
@@ -1143,10 +1143,10 @@
                                         <p class="text-right">{{producer3e.vemp_PriceChange}}</p>
                                     </td>
                                     <td>
-                                        <p class="text-right">{{producer3e.vemp_Promotions.promo_Frequency}}</p>
+                                        <p class="text-right">{{producer3e.vemp_Promotions.Rate}}</p>
                                     </td>
                                     <td>
-                                        <p class="text-right">{{producer3e.vemp_Promotions.promo_Rate}}</p>
+                                        <p class="text-right">{{producer3e.vemp_Promotions.promo_Frequency}}</p>
                                     </td>
                                 </tr>
 
@@ -1170,10 +1170,10 @@
                                         <p class="text-right">{{producer1h.vemp_PriceChange}}</p>
                                     </td>
                                     <td>
-                                        <p class="text-right">{{producer1h.vemp_Promotions.promo_Frequency}}</p>
+                                        <p class="text-right">{{producer1h.vemp_Promotions.Rate}}</p>
                                     </td>
                                     <td>
-                                        <p class="text-right">{{producer1h.vemp_Promotions.promo_Rate}}</p>
+                                        <p class="text-right">{{producer1h.vemp_Promotions.promo_Frequency}}</p>
                                     </td>
                                 </tr>
                                 <tr class="danger">
@@ -1192,10 +1192,10 @@
                                         <p class="text-right">{{producer2h.vemp_PriceChange}}</p>
                                     </td>
                                     <td>
-                                        <p class="text-right">{{producer2h.vemp_Promotions.promo_Frequency}}</p>
+                                        <p class="text-right">{{producer2h.vemp_Promotions.Rate}}</p>
                                     </td>
                                     <td>
-                                        <p class="text-right">{{producer2h.vemp_Promotions.promo_Rate}}</p>
+                                        <p class="text-right">{{producer2h.vemp_Promotions.promo_Frequency}}</p>
                                     </td>
                                 </tr>
                                 <tr class="danger">
@@ -1214,10 +1214,10 @@
                                         <p class="text-right">{{producer3h.vemp_PriceChange}}</p>
                                     </td>
                                     <td>
-                                        <p class="text-right">{{producer3h.vemp_Promotions.promo_Frequency}}</p>
+                                        <p class="text-right">{{producer3h.vemp_Promotions.Rate}}</p>
                                     </td>
                                     <td>
-                                        <p class="text-right">{{producer3h.vemp_Promotions.promo_Rate}}</p>
+                                        <p class="text-right">{{producer3h.vemp_Promotions.promo_Frequency}}</p>
                                     </td>
                                 </tr>
                             </tbody>
@@ -11497,6 +11497,940 @@
                                     </td>
                                     <td class="td-warning">
                                         <p class="text-right">{{player6.urban2ValueChange||'/'}}</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="panel panel-danger" ng-show='PromotionElecssories||PromotionHealthBeauties'>
+                        <div class="panel-heading" ng-show='PromotionElecssories'>
+                            <h3 class="panel-title text-center" popover="{{Label.getContent('Promotion Intensity Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
+                                {{Label.getContent('Promotion Intensity')}}-{{Label.getContent('Elecssories')}}
+                            </h3>
+                        </div>
+                        <div class="panel-heading" ng-show='PromotionHealthBeauties'>
+                            <h3 class="panel-title text-center" popover="{{Label.getContent('Promotion Intensity Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
+                                {{Label.getContent('Promotion Intensity')}}-{{Label.getContent('HealthBeauties')}}
+                            </h3>
+                        </div>
+                        <table class="table table-condensed table-bordered table-danger">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th colspan="4">
+                                        <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                    </th>
+                                    <th colspan="4">
+                                        <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td colspan="2">
+                                        <p class="text-center">{{Label.getContent('Rural')}}</p>
+                                    </td>
+                                    <td colspan="2">
+                                        <p class="text-center">{{Label.getContent('Urban')}}</p>
+                                    </td>
+                                    <td colspan="2">
+                                        <p class="text-center">{{Label.getContent('Rural')}}</p>
+                                    </td>
+                                    <td colspan="2">
+                                        <p class="text-center">{{Label.getContent('Urban')}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Length')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Length')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Length')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Length')}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Depth')}}</p>
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="9">
+                                        <p class="padding-10">{{Label.getContent('Supplier')}} 1</p>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat='player1 in player1s'>
+                                    <td style='background-color:{{nameColor}}'>
+                                        <p class="padding-20">{{player1.fullName}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player1.rural1Length||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player1.rural1Depth||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player1.urban1Length||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player1.urban1Depth||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player1.rural2Length||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player1.rural2Depth||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player1.urban2Length||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player1.urban2Depth||'/'}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="9">
+                                        <p class="padding-10">{{Label.getContent('Supplier')}} 2</p>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat='player2 in player2s'>
+                                    <td style='background-color:{{nameColor}}'>
+                                        <p class="padding-20">{{player2.fullName}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player2.rural1Length||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player2.rural1Depth||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player2.urban1Length||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player2.urban1Depth||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player2.rural2Length||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player2.rural2Depth||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player2.urban2Length||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player2.urban2Depth||'/'}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="9">
+                                        <p class="padding-10">{{Label.getContent('Supplier')}} 3</p>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat='player3 in player3s'>
+                                    <td style='background-color:{{nameColor}}'>
+                                        <p class="padding-20">{{player3.fullName}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player3.rural1Length||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player3.rural1Depth||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player3.urban1Length||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player3.urban1Depth||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player3.rural2Length||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player3.rural2Depth||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player3.urban2Length||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player3.urban2Depth||'/'}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="9">
+                                        <p class="padding-10">{{Label.getContent('Retailer')}} 1</p>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat='player5 in player5s'>
+                                    <td style='background-color:{{nameColor}}'>
+                                        <p class="padding-20">{{player5.fullName}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player5.rural1Length||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player5.rural1Depth||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player5.urban1Length||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player5.urban1Depth||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player5.rural2Length||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player5.rural2Depth||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player5.urban2Length||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player5.urban2Depth||'/'}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="9">
+                                        <p class="padding-10">{{Label.getContent('Retailer')}} 1</p>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat='player6 in player6s'>
+                                    <td style='background-color:{{nameColor}}'>
+                                        <p class="padding-20">{{player6.fullName}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player6.rural1Length||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player6.rural1Depth||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player6.urban1Length||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player6.urban1Depth||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player6.rural2Length||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player6.rural2Depth||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player6.urban2Length||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player6.urban2Depth||'/'}}</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="panel panel-danger" ng-show='SupplierIntelligence'>
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-center" popover="{{Label.getContent('Supplier Intelligence Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
+                                {{Label.getContent('Supplier Intelligence')}}
+                            </h3>
+                        </div>
+                        <table class="table table-condensed table-bordered table-danger">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th colspan="3">
+                                        <p class="text-center">{{Label.getContent('Elecssories')}}</p>
+                                    </th>
+                                    <th colspan="3">
+                                        <p class="text-center">{{Label.getContent('HealthBeauties')}}</p>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Supplier')}} 1</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Supplier')}} 2</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Supplier')}} 3</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Supplier')}} 1</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Supplier')}} 2</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Supplier')}} 3</p>
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th colspan="7">
+                                        <p>{{Label.getContent('Advertising')}}($mln)</p>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-10">{{Label.getContent('Offline')}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.AdvertisingOffline_1e[2]}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.AdvertisingOffline_2e[2]}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.AdvertisingOffline_3e[2]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.AdvertisingOffline_1h[2]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.AdvertisingOffline_2h[2]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.AdvertisingOffline_3h[2]}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-20">{{Label.getContent('Rural')}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.AdvertisingOffline_1e[1]}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.AdvertisingOffline_2e[1]}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.AdvertisingOffline_3e[1]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.AdvertisingOffline_1h[1]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.AdvertisingOffline_2h[1]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.AdvertisingOffline_3h[1]}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-20">{{Label.getContent('Urban')}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.AdvertisingOffline_1e[0]}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.AdvertisingOffline_2e[0]}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.AdvertisingOffline_3e[0]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.AdvertisingOffline_1h[0]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.AdvertisingOffline_2h[0]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.AdvertisingOffline_3h[0]}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-10">{{Label.getContent('Online')}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.AdvertisingOnline_1e}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.AdvertisingOnline_2e}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.AdvertisingOnline_3e}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.AdvertisingOnline_1h}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.AdvertisingOnline_2h}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.AdvertisingOnline_3h}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th colspan="7">
+                                        <p>{{Label.getContent('Trade Support')}}($mln)</p>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-10">
+                                            {{Label.getContent('Actual')}}
+                                        </p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.TradeSupport_1e[2].value[2]}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.TradeSupport_2e[2].value[2]}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.TradeSupport_3e[2].value[2]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.TradeSupport_1h[2].value[2]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.TradeSupport_2h[2].value[2]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.TradeSupport_3h[2].value[2]}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-20">
+                                            {{Label.getContent('Rural')}}
+                                        </p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.TradeSupport_1e[2].value[1]}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.TradeSupport_2e[2].value[1]}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.TradeSupport_3e[2].value[1]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.TradeSupport_1h[2].value[1]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.TradeSupport_2h[2].value[1]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.TradeSupport_3h[2].value[1]}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-30">
+                                            {{Label.getContent('Retailer')}} 1
+                                        </p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.TradeSupport_1e[0].value[1]}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.TradeSupport_2e[0].value[1]}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.TradeSupport_3e[0].value[1]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.TradeSupport_1h[0].value[1]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.TradeSupport_2h[0].value[1]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.TradeSupport_3h[0].value[1]}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-30">
+                                            {{Label.getContent('Retailer')}} 2
+                                        </p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.TradeSupport_1e[1].value[1]}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.TradeSupport_2e[1].value[1]}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.TradeSupport_3e[1].value[1]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.TradeSupport_1h[1].value[1]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.TradeSupport_2h[1].value[1]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.TradeSupport_3h[1].value[1]}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-20">
+                                            {{Label.getContent('Urban')}}
+                                        </p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.TradeSupport_1e[2].value[0]}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.TradeSupport_2e[2].value[0]}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.TradeSupport_3e[2].value[0]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.TradeSupport_1h[2].value[0]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.TradeSupport_2h[2].value[0]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.TradeSupport_3h[2].value[0]}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-30">
+                                            {{Label.getContent('Retailer')}} 1
+                                        </p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.TradeSupport_1e[0].value[0]}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.TradeSupport_2e[0].value[0]}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.TradeSupport_3e[0].value[0]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.TradeSupport_1h[0].value[0]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.TradeSupport_2h[0].value[0]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.TradeSupport_3h[0].value[0]}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-30">
+                                            {{Label.getContent('Retailer')}} 2
+                                        </p>
+                                        <td class="td-success">
+                                        <p class="text-right">{{data.TradeSupport_1e[1].value[0]}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.TradeSupport_2e[1].value[0]}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.TradeSupport_3e[1].value[0]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.TradeSupport_1h[1].value[0]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.TradeSupport_2h[1].value[0]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.TradeSupport_3h[1].value[0]}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-10">
+                                            {{Label.getContent('Negotiated')}}
+                                        </p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.Negotiated_1e[2].value[2]}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.Negotiated_2e[2].value[2]}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.Negotiated_3e[2].value[2]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.Negotiated_1h[2].value[2]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.Negotiated_2h[2].value[2]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.Negotiated_3h[2].value[2]}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-20">
+                                            {{Label.getContent('Rural')}}
+                                        </p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.Negotiated_1e[2].value[1]}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.Negotiated_2e[2].value[1]}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.Negotiated_3e[2].value[1]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.Negotiated_1h[2].value[1]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.Negotiated_2h[2].value[1]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.Negotiated_3h[2].value[1]}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-30">
+                                            {{Label.getContent('Retailer')}} 1
+                                        </p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.Negotiated_1e[0].value[1]}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.Negotiated_2e[0].value[1]}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.Negotiated_3e[0].value[1]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.Negotiated_1h[0].value[1]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.Negotiated_2h[0].value[1]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.Negotiated_3h[0].value[1]}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-30">
+                                            {{Label.getContent('Retailer')}} 2
+                                        </p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.Negotiated_1e[1].value[1]}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.Negotiated_2e[1].value[1]}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.Negotiated_3e[1].value[1]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.Negotiated_1h[1].value[1]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.Negotiated_2h[1].value[1]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.Negotiated_3h[1].value[1]}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-20">
+                                            {{Label.getContent('Urban')}}
+                                        </p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.Negotiated_1e[2].value[0]}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.Negotiated_2e[2].value[0]}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.Negotiated_3e[2].value[0]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.Negotiated_1h[2].value[0]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.Negotiated_2h[2].value[0]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.Negotiated_3h[2].value[0]}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-30">
+                                            {{Label.getContent('Retailer')}} 1
+                                        </p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.Negotiated_1e[0].value[0]}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.Negotiated_2e[0].value[0]}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.Negotiated_3e[0].value[0]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.Negotiated_1h[0].value[0]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.Negotiated_2h[0].value[0]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.Negotiated_3h[0].value[0]}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-30">
+                                            {{Label.getContent('Retailer')}} 2
+                                        </p>
+                                        <td class="td-success">
+                                        <p class="text-right">{{data.Negotiated_1e[1].value[0]}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.Negotiated_2e[1].value[0]}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.Negotiated_3e[1].value[0]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.Negotiated_1h[1].value[0]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.Negotiated_2h[1].value[0]}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.Negotiated_3h[1].value[0]}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th colspan="7">
+                                        <p>{{Label.getContent('Online Investments')}}($mln)</p>
+                                    </th>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-10">{{Label.getContent('Visibility')}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.OnLine_Visibility_1e}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.OnLine_Visibility_2e}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.OnLine_Visibility_3e}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.OnLine_Visibility_1h}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.OnLine_Visibility_2h}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.OnLine_Visibility_3h}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-10">{{Label.getContent('Other')}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.OnLine_Other_1e}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.OnLine_Other_2e}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.OnLine_Other_3e}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.OnLine_Other_1h}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.OnLine_Other_2h}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.OnLine_Other_3h}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th colspan="7">
+                                        <p>{{Label.getContent('Assets')}}</p>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-10">{{Label.getContent('Technology Level')}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.TechnologyLevel_1e}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.TechnologyLevel_2e}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.TechnologyLevel_3e}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.TechnologyLevel_1h}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.TechnologyLevel_2h}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.TechnologyLevel_3h}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-10">{{Label.getContent('Design Level')}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.DesignLevel_1e}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.DesignLevel_2e}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.DesignLevel_3e}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.DesignLevel_1h}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.DesignLevel_2h}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.DesignLevel_3h}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="7">
+                                        <p class="padding-10">{{Label.getContent('Production')}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-20">{{Label.getContent('Capacity')}}(units mln)</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.Capacity_1e}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.Capacity_2e}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.Capacity_3e}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.Capacity_1h}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.Capacity_2h}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.Capacity_3h}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-20">{{Label.getContent('Utilization Rate')}}(%)</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.UtilizationRate_1e}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.UtilizationRate_2e}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.UtilizationRate_3e}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.UtilizationRate_1h}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.UtilizationRate_2h}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.UtilizationRate_3h}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-20">{{Label.getContent('Flexibility')}}({{Label.getContent('min')}})(%)</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.FlexibilityMin_1e}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.FlexibilityMin_2e}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.FlexibilityMin_3e}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.FlexibilityMin_1h}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.FlexibilityMin_2h}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.FlexibilityMin_3h}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-20">{{Label.getContent('Flexibility')}}({{Label.getContent('max')}})(%)</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.FlexibilityMax_1e}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.FlexibilityMax_2e}}</p>
+                                    </td>
+                                    <td class="td-success">
+                                        <p class="text-right">{{data.FlexibilityMax_3e}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.FlexibilityMax_1h}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.FlexibilityMax_2h}}</p>
+                                    </td>
+                                    <td class="td-danger">
+                                        <p class="text-right">{{data.FlexibilityMax_3h}}</p>
                                     </td>
                                 </tr>
                             </tbody>

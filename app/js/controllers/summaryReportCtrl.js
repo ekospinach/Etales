@@ -2614,14 +2614,148 @@ define(['app','socketIO','routingConfig'], function(app) {
 				$scope.nameColor='#F2DEDE'//红
 				loadRetailerPrice(2);
 			}
+
+			var loadPromotion=function(category){
+				var url='/getMR-pricePromotions/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1);
+				$http({
+					method:'GET',
+					url:url
+				}).then(function(data){
+					for(var i=0;i<data.data[0].variantInfo.length;i++){
+						if(data.data[0].variantInfo[i].parentCategoryID==category){
+							var fullName=data.data[0].variantInfo[i].parentBrandName+data.data[0].variantInfo[i].variantName;
+							var rural1Length=rural1Depth=urban1Length=urban1Depth=rural2Length=rural2Depth=urban2Length=urban2Depth=0;
+							if(data.data[0].variantInfo[i].accountInfo[0]!=undefined){
+								rural1Length=data.data[0].variantInfo[i].accountInfo[0].promoRate[1];
+								rural1Depth=data.data[0].variantInfo[i].accountInfo[0].promoFrequency[1];
+								urban1Length=data.data[0].variantInfo[i].accountInfo[0].promoRate[0];
+								urban1Depth=data.data[0].variantInfo[i].accountInfo[0].promoFrequency[0];
+							}
+							if(data.data[0].variantInfo[i].accountInfo[1]!=undefined){
+								rural2Length=data.data[0].variantInfo[i].accountInfo[1].promoRate[1];
+								rural2Depth=data.data[0].variantInfo[i].accountInfo[1].promoFrequency[1];
+								urban2Length=data.data[0].variantInfo[i].accountInfo[1].promoRate[0];
+								urban2Depth=data.data[0].variantInfo[i].accountInfo[1].promoFrequency[0];
+							}
+							switch(data.data[0].variantInfo[i].parentCompanyID){
+								case 1:$scope.player1s.push({'fullName':fullName,'rural1Length':rural1Length,'rural1Depth':rural1Depth,'urban1Length':urban1Length,'urban1Depth':urban1Depth,'rural2Length':rural2Length,'rural2Depth':rural2Depth,'urban2Length':urban2Length,'urban2Depth':urban2Depth});break;
+								case 2:$scope.player2s.push({'fullName':fullName,'rural1Length':rural1Length,'rural1Depth':rural1Depth,'urban1Length':urban1Length,'urban1Depth':urban1Depth,'rural2Length':rural2Length,'rural2Depth':rural2Depth,'urban2Length':urban2Length,'urban2Depth':urban2Depth});break;
+								case 3:$scope.player3s.push({'fullName':fullName,'rural1Length':rural1Length,'rural1Depth':rural1Depth,'urban1Length':urban1Length,'urban1Depth':urban1Depth,'rural2Length':rural2Length,'rural2Depth':rural2Depth,'urban2Length':urban2Length,'urban2Depth':urban2Depth});break;
+								case 5:$scope.player5s.push({'fullName':fullName,'rural1Length':rural1Length,'rural1Depth':rural1Depth,'urban1Length':urban1Length,'urban1Depth':urban1Depth,'rural2Length':rural2Length,'rural2Depth':rural2Depth,'urban2Length':urban2Length,'urban2Depth':urban2Depth});break;
+								case 6:$scope.player6s.push({'fullName':fullName,'rural1Length':rural1Length,'rural1Depth':rural1Depth,'urban1Length':urban1Length,'urban1Depth':urban1Depth,'rural2Length':rural2Length,'rural2Depth':rural2Depth,'urban2Length':urban2Length,'urban2Depth':urban2Depth});break;
+							}
+						}
+					}
+				})
+			}
+
 			var showPromotionElecssories=function(){
 				switching('showPromotionElecssories');
+				$scope.player1s=new Array();$scope.player2s=new Array();$scope.player3s=new Array();$scope.player5s=new Array();$scope.player6s=new Array();
+				$scope.nameColor='#DFF0D8';//绿
+				loadPromotion(1);
 			}
 			var showPromotionHealthBeauties=function(){
 				switching('showPromotionHealthBeauties');
+				$scope.player1s=new Array();$scope.player2s=new Array();$scope.player3s=new Array();$scope.player5s=new Array();$scope.player6s=new Array();
+				$scope.nameColor='#F2DEDE'//红
+				loadPromotion(2);
 			}
-			var showSupplierIntelligence=function(){
+
+			var CalculateMax=function(num1,num2,num3){
+
+			}
+
+			var loadSupplierIntelligence=function(){
+
+			}
+			var showSupplierIntelligence=function(category){
 				switching('showSupplierIntelligence');
+				var myData=new Array();
+				var url='/getMR-suppliersIntelligence/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1);
+				$http({
+					method:'GET',
+					url:url
+				}).then(function(data){
+					myData.push({
+						'AdvertisingOnline_1e':data.data[0].supplierInfo[0].categoryInfo[0].advertisingOnLine,
+						'AdvertisingOnline_2e':data.data[0].supplierInfo[1].categoryInfo[0].advertisingOnLine,
+						'AdvertisingOnline_3e':data.data[0].supplierInfo[2].categoryInfo[0].advertisingOnLine,
+						'AdvertisingOnline_1h':data.data[0].supplierInfo[0].categoryInfo[1].advertisingOnLine,
+						'AdvertisingOnline_2h':data.data[0].supplierInfo[1].categoryInfo[1].advertisingOnLine,
+						'AdvertisingOnline_3h':data.data[0].supplierInfo[2].categoryInfo[1].advertisingOnLine,
+						'AdvertisingOffline_1e':data.data[0].supplierInfo[0].categoryInfo[0].advertisingOffLine,
+						'AdvertisingOffline_2e':data.data[0].supplierInfo[1].categoryInfo[0].advertisingOffLine,
+						'AdvertisingOffline_3e':data.data[0].supplierInfo[2].categoryInfo[0].advertisingOffLine,
+						'AdvertisingOffline_1h':data.data[0].supplierInfo[0].categoryInfo[1].advertisingOffLine,
+						'AdvertisingOffline_2h':data.data[0].supplierInfo[1].categoryInfo[1].advertisingOffLine,
+						'AdvertisingOffline_3h':data.data[0].supplierInfo[2].categoryInfo[1].advertisingOffLine,
+						'OnLine_Visibility_1e':data.data[0].supplierInfo[0].categoryInfo[0].onLine_Visibility,
+						'OnLine_Visibility_2e':data.data[0].supplierInfo[1].categoryInfo[0].onLine_Visibility,
+						'OnLine_Visibility_3e':data.data[0].supplierInfo[2].categoryInfo[0].onLine_Visibility,
+						'OnLine_Visibility_1h':data.data[0].supplierInfo[0].categoryInfo[1].onLine_Visibility,
+						'OnLine_Visibility_2h':data.data[0].supplierInfo[1].categoryInfo[1].onLine_Visibility,
+						'OnLine_Visibility_3h':data.data[0].supplierInfo[2].categoryInfo[1].onLine_Visibility,
+						'OnLine_Other_1e':data.data[0].supplierInfo[0].categoryInfo[0].onLine_Other,
+						'OnLine_Other_2e':data.data[0].supplierInfo[1].categoryInfo[0].onLine_Other,
+						'OnLine_Other_3e':data.data[0].supplierInfo[2].categoryInfo[0].onLine_Other,
+						'OnLine_Other_1h':data.data[0].supplierInfo[0].categoryInfo[1].onLine_Other,
+						'OnLine_Other_2h':data.data[0].supplierInfo[1].categoryInfo[1].onLine_Other,
+						'OnLine_Other_3h':data.data[0].supplierInfo[2].categoryInfo[1].onLine_Other,
+						'TechnologyLevel_1e':data.data[0].supplierInfo[0].categoryInfo[0].acquiredTechnologyLevel,
+						'TechnologyLevel_2e':data.data[0].supplierInfo[1].categoryInfo[0].acquiredTechnologyLevel,
+						'TechnologyLevel_3e':data.data[0].supplierInfo[2].categoryInfo[0].acquiredTechnologyLevel,
+						'TechnologyLevel_1h':data.data[0].supplierInfo[0].categoryInfo[1].acquiredTechnologyLevel,
+						'TechnologyLevel_2h':data.data[0].supplierInfo[1].categoryInfo[1].acquiredTechnologyLevel,
+						'TechnologyLevel_3h':data.data[0].supplierInfo[2].categoryInfo[1].acquiredTechnologyLevel,
+						'DesignLevel_1e':data.data[0].supplierInfo[0].categoryInfo[0].acquiredDesignLevel,
+						'DesignLevel_2e':data.data[0].supplierInfo[1].categoryInfo[0].acquiredDesignLevel,
+						'DesignLevel_3e':data.data[0].supplierInfo[2].categoryInfo[0].acquiredDesignLevel,
+						'DesignLevel_1h':data.data[0].supplierInfo[0].categoryInfo[1].acquiredDesignLevel,
+						'DesignLevel_2h':data.data[0].supplierInfo[1].categoryInfo[1].acquiredDesignLevel,
+						'DesignLevel_3h':data.data[0].supplierInfo[2].categoryInfo[1].acquiredDesignLevel,
+						'Capacity_1e':data.data[0].supplierInfo[0].categoryInfo[0].productionCapacityAvailable,
+						'Capacity_2e':data.data[0].supplierInfo[1].categoryInfo[0].productionCapacityAvailable,
+						'Capacity_3e':data.data[0].supplierInfo[2].categoryInfo[0].productionCapacityAvailable,
+						'Capacity_1h':data.data[0].supplierInfo[0].categoryInfo[1].productionCapacityAvailable,
+						'Capacity_2h':data.data[0].supplierInfo[1].categoryInfo[1].productionCapacityAvailable,
+						'Capacity_3h':data.data[0].supplierInfo[2].categoryInfo[1].productionCapacityAvailable,
+						'UtilizationRate_1e':data.data[0].supplierInfo[0].categoryInfo[0].capacityUtilisationRate,
+						'UtilizationRate_2e':data.data[0].supplierInfo[1].categoryInfo[0].capacityUtilisationRate,
+						'UtilizationRate_3e':data.data[0].supplierInfo[2].categoryInfo[0].capacityUtilisationRate,
+						'UtilizationRate_1h':data.data[0].supplierInfo[0].categoryInfo[1].capacityUtilisationRate,
+						'UtilizationRate_2h':data.data[0].supplierInfo[1].categoryInfo[1].capacityUtilisationRate,
+						'UtilizationRate_3h':data.data[0].supplierInfo[2].categoryInfo[1].capacityUtilisationRate,
+						'FlexibilityMax_1e':data.data[0].supplierInfo[0].categoryInfo[0].productionplanningFlexibility,
+						'FlexibilityMax_2e':data.data[0].supplierInfo[1].categoryInfo[0].productionplanningFlexibility,
+						'FlexibilityMax_3e':data.data[0].supplierInfo[2].categoryInfo[0].productionplanningFlexibility,
+						'FlexibilityMax_1h':data.data[0].supplierInfo[0].categoryInfo[1].productionplanningFlexibility,
+						'FlexibilityMax_2h':data.data[0].supplierInfo[1].categoryInfo[1].productionplanningFlexibility,
+						'FlexibilityMax_3h':data.data[0].supplierInfo[2].categoryInfo[1].productionplanningFlexibility,
+						'FlexibilityMin_1e':data.data[0].supplierInfo[0].categoryInfo[0].productionplanningFlexibility,
+						'FlexibilityMin_2e':data.data[0].supplierInfo[1].categoryInfo[0].productionplanningFlexibility,
+						'FlexibilityMin_3e':data.data[0].supplierInfo[2].categoryInfo[0].productionplanningFlexibility,
+						'FlexibilityMin_1h':data.data[0].supplierInfo[0].categoryInfo[1].productionplanningFlexibility,
+						'FlexibilityMin_2h':data.data[0].supplierInfo[1].categoryInfo[1].productionplanningFlexibility,
+						'FlexibilityMin_3h':data.data[0].supplierInfo[2].categoryInfo[1].productionplanningFlexibility,
+						'TradeSupport_1e':data.data[0].supplierInfo[0].categoryInfo[0].actualTradeSupport,
+						'TradeSupport_2e':data.data[0].supplierInfo[1].categoryInfo[0].actualTradeSupport,
+						'TradeSupport_3e':data.data[0].supplierInfo[2].categoryInfo[0].actualTradeSupport,
+						'TradeSupport_1h':data.data[0].supplierInfo[0].categoryInfo[1].actualTradeSupport,
+						'TradeSupport_2h':data.data[0].supplierInfo[1].categoryInfo[1].actualTradeSupport,
+						'TradeSupport_3h':data.data[0].supplierInfo[2].categoryInfo[1].actualTradeSupport,
+						'Negotiated_1e':data.data[0].supplierInfo[0].categoryInfo[0].negotiatedTradeSupport,
+						'Negotiated_2e':data.data[0].supplierInfo[1].categoryInfo[0].negotiatedTradeSupport,
+						'Negotiated_3e':data.data[0].supplierInfo[2].categoryInfo[0].negotiatedTradeSupport,
+						'Negotiated_1h':data.data[0].supplierInfo[0].categoryInfo[1].negotiatedTradeSupport,
+						'Negotiated_2h':data.data[0].supplierInfo[1].categoryInfo[1].negotiatedTradeSupport,
+						'Negotiated_3h':data.data[0].supplierInfo[2].categoryInfo[1].negotiatedTradeSupport,
+					});
+					$scope.data=myData[0];
+					console.log($scope.data);
+				},function(){
+					console.log('fail');
+				})
 			}
 			var showRetailerIntelligence=function(){
 				switching('showRetailerIntelligence');

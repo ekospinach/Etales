@@ -18,6 +18,7 @@ define([
 	'textRenderer',
 	'tree',
 	'highchart',
+	'highchartMore',
 	'angularHighcharts',
 	'angularBootstrapSwitch'
 	], function (angular, filters, services,directives,bootstrap, controllers) {

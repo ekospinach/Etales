@@ -36,8 +36,9 @@
 			tree:'./map/bootstrap-tree',
 			domReady: '../bower_components/requirejs-domready/domReady',
 			labelBase: './utils/labelBase',
-			//highchart
 			highchart:'../bower_components/highcharts/highcharts',
+			//highchartAll:'../bower_components/highcharts/highcharts-all',
+			highchartMore:'../bower_components/highcharts/highcharts-more',
 			angularHighcharts:'../bower_components/highcharts-ng/src/highcharts-ng',
 			angularBootstrapSwitch: '../bower_components/angular-bootstrap-switch/dist/angular-bootstrap-switch'
 			//export

@@ -304,6 +304,28 @@ define(['angular','services'], function(angular, services) {
                     }
                   };
                 }])
+                .directive('sighlight',function(){
+                    return function(scope,elem,attrs){
+                        $('#sontainer').highcharts({
+                            chart: {
+                                type: 'bubble',
+                                zoomType: 'xy'
+                            },
+                            title: {
+                                text: 'Highcharts Bubbles'
+                            },  
+                            tooltip: {
+                                formatter: function() {
+                                    var s = '<p><b>'+this.series.name+'</b></p>'+'<p>'+$scope.myProducts[this.series._i][this.point.x]+' '+Label.getContent('over previous period')+'</p>';
+                                    return s;
+                                },
+                                shared: false,
+                                useHTML: true
+                             },                      
+                            series: scope.mySeries      
+                        });
+                    }
+                })
                 .directive('jqueryPlot',function(){
                     return function(scope,elem, attrs){
                         scope.$watch(attrs.ngModel, function(v){

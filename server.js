@@ -194,12 +194,14 @@ app.get('/addMR-sharesCrossSegment',require('./api/models/MR_sharesCrossSegment.
 app.get('/addMR-salesCrossSegment',require('./api/models/MR_salesCrossSegment.js').addMR_salesCrossSegment);
 app.get('/addMR-netMarketPrices',require('./api/models/MR_netMarketPrices.js').addMR_netMarketPrices);
 app.get('/addMR-pricePromotions',require('./api/models/MR_pricePromotions.js').addMR_pricePromotions);
+app.get('/addMR-suppliersIntelligence',require('./api/models/MR_suppliersIntelligence.js').addMR_supplierIntelligence);
 //get market report
 app.get('/getMR-awarenessEvolution/:seminar/:period',require('./api/models/MR_awarenessEvolution.js').getMR_awarenessEvolution);
 app.get('/getMR-sharesCrossSegment/:seminar/:period',require('./api/models/MR_sharesCrossSegment.js').getMR_sharesCrossSegment);
 app.get('/getMR-salesCrossSegment/:seminar/:period',require('./api/models/MR_salesCrossSegment.js').getMR_salesCrossSegment);
 app.get('/getMR-netMarketPrices/:seminar/:period',require('./api/models/MR_netMarketPrices.js').getMR_netMarketPrices);
 app.get('/getMR-pricePromotions/:seminar/:period',require('./api/models/MR_pricePromotions.js').getMR_pricePromotions);
+app.get('/getMR-suppliersIntelligence/:seminar/:period',require('./api/models/MR_suppliersIntelligence.js').getMR_supplierIntelligence);
 
 port = parseInt(process.env.PORT, 10) || conf.server.port;
 mongoose.connect('mongodb://localhost/Etales');
