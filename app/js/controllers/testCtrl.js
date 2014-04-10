@@ -292,23 +292,6 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
         {"id": "LongDashDotDot", "title": "LongDashDotDot"}
     ];
 
-    $scope.chartSeries = [
-        {
-            name: 'John',
-            data: [5, 3, 4, 7, 2]
-        }, {
-            name: 'Jane',
-            data: [2, 2, 3, 2, 1]
-        }, {
-            name: 'Joe',
-            data: [3, 4, 4, 2, 5]
-        }
-        /*{"name": "Some data", "data": [1, 2, 4, 7, 3],type: "column"},
-        {"name": "Some data 3", "data": [3, 1, 5, 5, 2], type: "column"},
-        {"name": "Some data 2", "data": [5, 2, 2, 3, 5], type: "column"},
-        {"name": "My Super Column", "data": [1, 1, 2, 3, 2], type: "column"}*/
-    ];
-
     $scope.chartStack = [
         {"id": '', "title": "No"},
         {"id": "normal", "title": "Normal"},
@@ -569,21 +552,42 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
         this.chartConfig.useHighStocks = !this.chartConfig.useHighStocks
     }
 
-  //   $scope.mySeries1=[{
-  //   	data: [[97,36,'ELAN1_A'],[94,74,'ELAN1_B'],[68,76,'ELAN1_D'],[64,87,'ELAN1_E'],[68,27,'ELAN1_F'],[74,99,'ELAN1_G'],[7,93,'ELAN1_H'],[51,69,'ELAN1_I'],[38,23,'ELAN1_J'],[57,86,'name']]
-  //   }, {
-  //   	data: [[25,10,'name'],[2,75,'name'],[11,54,'name'],[86,55,'name'],[5,3,'name'],[90,63,'name'],[91,33,'name'],[97,3,'name'],[15,67,'name'],[54,25,'name']]
-  //   }, {
-  //   	data: [[47,47,'name'],[20,12,'name'],[6,76,'name'],[38,30,'name'],[57,98,'name'],[61,17,'name'],[83,60,'name'],[67,78,'name'],[64,12,'name'],[30,77,'name']]
-  //   }];
+    $scope.chartSeries = [
+        {"name": "Some data", "data": [1, 2, 4, 7, 3],type: "column"},
+        {"name": "Some data 3", "data": [3, 1, 5, 5, 2], type: "column"},
+        {"name": "Some data 2", "data": [5, 2, 2, 3, 5], type: "column"},
+        {"name": "My Super Column", "data": [1, 1, 2, 3, 2], type: "column"}
+    ];
 
-  //   $scope.mySeries2=[{
-  //   	data: [[1,36,'ELAN1_A'],[1,74,'ELAN1_B'],[1,76,'ELAN1_D'],[1,87,'ELAN1_E'],[1,27,'ELAN1_F'],[1,99,'ELAN1_G'],[1,93,'ELAN1_H'],[1,69,'ELAN1_I'],[1,23,'ELAN1_J'],[1,86,'name']]
-  //   }, {
-  //   	data: [[1,10,'name'],[1,75,'name'],[1,54,'name'],[1,55,'name'],[1,3,'name'],[1,63,'name'],[1,33,'name'],[1,3,'name'],[1,67,'name'],[1,25,'name']]
-  //   }, {
-  //   	data: [[1,47,'name'],[1,12,'name'],[1,76,'name'],[1,30,'name'],[1,98,'name'],[1,17,'name'],[1,60,'name'],[1,78,'name'],[1,12,'name'],[1,77,'name']]
-  //   }];
+	$scope.chartConfig = {
+        options: {
+            chart: {
+                type: 'areaspline'
+            },
+            plotOptions: {
+                series: {
+                    stacking: 'percent'
+                }
+            },
+            tooltip: {
+	        	shared: false,
+	        	useHTML: true,
+	        	headerFormat: '<small style="color: {series.color}>{series.name}</small><table>',
+	        	pointFormat: '<tr><td style="color: {series.color}">{series.name}: </td>' +
+	        	'<td style="text-align: right"><b>{point.y} EUR</b></td></tr>',
+	        	footerFormat: '</table>',
+	        	valueDecimals: 2
+	        }
+        },
+        series: $scope.chartSeries,
+        title: {
+            text: 'Hello'
+        },
+        credits: {
+            enabled: true
+        },
+        loading: false
+    }
 		// $scope.Label = Label;
 	}]);
 
