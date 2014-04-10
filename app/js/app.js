@@ -3,7 +3,7 @@
 	'filters',
 	'services',
 	'placeholder',
-	'angularPromiseTracker',
+	'directives',
 	'directives/basicDirectives',
 	'directives/chartLibraryWrapper',
 	'directives/TE_GR_performanceHighlights',
@@ -38,8 +38,7 @@
 			'chieffancypants.loadingBar',
 			'ngCookies',
 			'highcharts-ng',
-			'frapontillo.bootstrap-switch',
-			'ajoslin.promise-tracker'
+			'frapontillo.bootstrap-switch'
 		]).run(function(editableOptions){
 			editableOptions.theme = 'bs3';
 		}).run(['$rootScope', '$location','Auth','$http', function ($rootScope, $location, Auth, $http) {		    

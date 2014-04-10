@@ -36,11 +36,11 @@
 			domReady:   			'../bower_components/requirejs-domready/domReady',
 			labelBase:   			'./utils/labelBase',
 			//highchart
-			highchart:     			'../bower_components/highcharts/highcharts',
-			highchartMore:          '../bower_components/highcharts/highcharts-more',
+			highchart:              '../bower_components/highcharts/highcharts',
 			angularHighcharts:      '../bower_components/highcharts-ng/src/highcharts-ng',
+			highchartMore:          '../bower_components/highcharts/highcharts-more',
 			//Bootstrap switch interface for admin module, handle initialize parameter configure 
-			angularBootstrapSwitch: '../bower_components/angular-bootstrap-switch/dist/angular-bootstrap-switch',
+			angularBootstrapSwitch: '../bower_components/angular-bootstrap-switch/dist/angular-bootstrap-switch'
 			//angular promise tracker is used for adding loading spinner by track general promise or request 
 			//angularPromiseTracker:  '../bower_components/angular-promise-tracker/promise-tracker'
 		},
