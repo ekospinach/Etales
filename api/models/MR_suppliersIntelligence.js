@@ -346,8 +346,7 @@ exports.addMR_supplierIntelligence=function(req,res,next){
 exports.getMR_supplierIntelligence=function(req,res,next){
     var data={
         'seminar':req.params.seminar,
-        'period':req.params.period,
-        'producerID':req.params.producerID
+        'period':req.params.period
     };
     MR_supplierIntelligence.find(data,function(err,docs){
         if(docs){

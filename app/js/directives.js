@@ -304,26 +304,128 @@ define(['angular','services'], function(angular, services) {
                     }
                   };
                 }])
-                .directive('sighlight',function(){
+                .directive('highchart1',function(){
                     return function(scope,elem,attrs){
-                        $('#sontainer').highcharts({
-                            chart: {
-                                type: 'bubble',
-                                zoomType: 'xy'
-                            },
-                            title: {
-                                text: 'Highcharts Bubbles'
-                            },  
-                            tooltip: {
-                                formatter: function() {
-                                    var s = '<p><b>'+this.series.name+'</b></p>'+'<p>'+$scope.myProducts[this.series._i][this.point.x]+' '+Label.getContent('over previous period')+'</p>';
-                                    return s;
+                        scope.$watch(attrs.ngModel, function(v){
+                            $('#highchart1').empty();
+                            $('#highchart1').highcharts({
+                                chart: {
+                                    type: 'bubble',
+                                    zoomType: 'xy'
                                 },
-                                shared: false,
-                                useHTML: true
-                             },                      
-                            series: scope.mySeries      
+                                title: {
+                                    text: ''
+                                },
+                                xAxis: {
+                                    title:{text:scope.xTitle1}
+                                },
+                                yAxis:{
+                                    title:{text:scope.yTitle1}
+                                },  
+                                tooltip: {
+                                    formatter: function() {
+                                        var s = '<p>'+this.point.z+'</p>'+'<p>('+this.point.x+','+this.point.y+')</p>';
+                                        return s;
+                                    },
+                                    shared: false,
+                                    useHTML: true
+                                },                      
+                                series: scope.mySeries1     
+                            });
+                        });   
+                    }
+                })
+                .directive('highchart2',function(){
+                    return function(scope,elem,attrs){
+                        scope.$watch(attrs.ngModel, function(v){
+                            $('#highchart2').empty();
+                            $('#highchart2').highcharts({
+                                chart: {
+                                    type: 'bubble',
+                                    zoomType: 'xy'
+                                },
+                                title: {
+                                    text: ''
+                                },
+                                xAxis: {
+                                    categories: ['','']
+                                }, 
+                                yAxis:{
+                                    title:{text:scope.yTitle2}
+                                },  
+                                tooltip: {
+                                    formatter: function() {
+                                        var s = '<p>'+this.point.z+'</p>'+'<p>('+this.point.y+')</p>';
+                                        return s;
+                                    },
+                                    shared: false,
+                                    useHTML: true
+                                 },                      
+                                series: scope.mySeries2     
+                            });
                         });
+                    }
+                })
+                .directive('highchart3',function(){
+                    return function(scope,elem,attrs){
+                        scope.$watch(attrs.ngModel, function(v){
+                            $('#highchart3').empty();
+                            $('#highchart3').highcharts({
+                                chart: {
+                                    type: 'bubble',
+                                    zoomType: 'xy'
+                                },
+                                title: {
+                                    text: ''
+                                },
+                                xAxis: {
+                                    title:{text:scope.xTitle3}
+                                },
+                                yAxis:{
+                                    title:{text:scope.yTitle3}
+                                },  
+                                tooltip: {
+                                    formatter: function() {
+                                        var s = '<p>'+this.series.name+'</p>'+'<p>('+this.point.x+','+this.point.y+')</p>';
+                                        return s;
+                                    },
+                                    shared: false,
+                                    useHTML: true
+                                },                      
+                                series: scope.mySeries1     
+                            });
+                        });   
+                    }
+                })
+                .directive('highchart4',function(){
+                    return function(scope,elem,attrs){
+                        scope.$watch(attrs.ngModel, function(v){
+                            $('#highchart4').empty();
+                            $('#highchart4').highcharts({
+                                chart: {
+                                    type: 'bubble',
+                                    zoomType: 'xy'
+                                },
+                                title: {
+                                    text: ''
+                                },
+                                xAxis: {
+                                    title:{text:scope.xTitle3}
+                                },
+                                yAxis:{
+                                    title:{text:scope.yTitle3}
+                                }, 
+                                tooltip: {
+                                    formatter: function() {
+                                        var s = '<p>'+this.series.name+'</p>'+'<p>('+this.point.x+','+this.point.y+')</p>';
+                                        return s;
+                                    },
+                                    shared: false,
+                                    useHTML: true
+                                },                      
+                                series: scope.mySeries2     
+                            });
+                        });   
                     }
                 })
                 .directive('jqueryPlot',function(){

@@ -195,6 +195,9 @@ app.get('/addMR-salesCrossSegment',require('./api/models/MR_salesCrossSegment.js
 app.get('/addMR-netMarketPrices',require('./api/models/MR_netMarketPrices.js').addMR_netMarketPrices);
 app.get('/addMR-pricePromotions',require('./api/models/MR_pricePromotions.js').addMR_pricePromotions);
 app.get('/addMR-suppliersIntelligence',require('./api/models/MR_suppliersIntelligence.js').addMR_supplierIntelligence);
+app.get('/addMR-variantPerceptionEvolution',require('./api/models/MR_variantPerceptionEvolution.js').addMR_variantPerceptionEvolution);
+app.get('/addMR-retailerPerceptionEvolution',require('./api/models/MR_retailerPerceptionEvolution.js').addMR_retailerPerceptionEvolution);
+app.get('/addMR-retailersIntelligence',require('./api/models/MR_retailersIntelligence.js').addMR_retailersIntelligence);
 //get market report
 app.get('/getMR-awarenessEvolution/:seminar/:period',require('./api/models/MR_awarenessEvolution.js').getMR_awarenessEvolution);
 app.get('/getMR-sharesCrossSegment/:seminar/:period',require('./api/models/MR_sharesCrossSegment.js').getMR_sharesCrossSegment);
@@ -202,6 +205,9 @@ app.get('/getMR-salesCrossSegment/:seminar/:period',require('./api/models/MR_sal
 app.get('/getMR-netMarketPrices/:seminar/:period',require('./api/models/MR_netMarketPrices.js').getMR_netMarketPrices);
 app.get('/getMR-pricePromotions/:seminar/:period',require('./api/models/MR_pricePromotions.js').getMR_pricePromotions);
 app.get('/getMR-suppliersIntelligence/:seminar/:period',require('./api/models/MR_suppliersIntelligence.js').getMR_supplierIntelligence);
+app.get('/getMR-variantPerceptionEvolution/:seminar/:period',require('./api/models/MR_variantPerceptionEvolution.js').getMR_variantPerceptionEvolution);
+app.get('/getMR-retailerPerceptionEvolution/:seminar/:period',require('./api/models/MR_retailerPerceptionEvolution.js').getMR_retailerPerceptionEvolution);
+app.get('/getMR-retailersIntelligence/:seminar/:period',require('./api/models/MR_retailersIntelligence.js').getMR_retailersIntelligence);
 
 port = parseInt(process.env.PORT, 10) || conf.server.port;
 mongoose.connect('mongodb://localhost/Etales');

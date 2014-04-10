@@ -494,29 +494,21 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
         this.chartConfig.useHighStocks = !this.chartConfig.useHighStocks
     }
 
-    $scope.mySeries=[{
-    	data: [[97,36,10],[94,74,10],[68,76,10],[64,87,10],[68,27,10],[74,99,10],[7,93,10],[51,69,10],[38,23,10],[57,86,10]]
+    $scope.mySeries1=[{
+    	data: [[97,36,'ELAN1_A'],[94,74,'ELAN1_B'],[68,76,'ELAN1_D'],[64,87,'ELAN1_E'],[68,27,'ELAN1_F'],[74,99,'ELAN1_G'],[7,93,'ELAN1_H'],[51,69,'ELAN1_I'],[38,23,'ELAN1_J'],[57,86,'name']]
     }, {
-    	data: [[25,10,10],[2,75,10],[11,54,10],[86,55,10],[5,3,10],[90,63,10],[91,33,10],[97,3,10],[15,67,10],[54,25,10]]
+    	data: [[25,10,'name'],[2,75,'name'],[11,54,'name'],[86,55,'name'],[5,3,'name'],[90,63,'name'],[91,33,'name'],[97,3,'name'],[15,67,'name'],[54,25,'name']]
     }, {
-    	data: [[47,47,10],[20,12,10],[6,76,10],[38,30,10],[57,98,10],[61,17,10],[83,60,10],[67,78,10],[64,12,10],[30,77,10]]
+    	data: [[47,47,'name'],[20,12,'name'],[6,76,'name'],[38,30,'name'],[57,98,'name'],[61,17,'name'],[83,60,'name'],[67,78,'name'],[64,12,'name'],[30,77,'name']]
     }];
 
-    $scope.myProducts=[
-    	['ELAN1_A','ELAN1_B','ELAN1_C','ELAN1_D','ELAN1_E','ELAN1_F','ELAN1_G','ELAN1_H','ELAN1_I','ELAN1_J'],
-    	['ELAN2_A','ELAN2_B','ELAN2_C','ELAN2_D','ELAN2_E','ELAN2_F','ELAN2_G','ELAN2_H','ELAN2_I','ELAN2_J'],
-    	['ELAN3_A','ELAN3_B','ELAN3_C','ELAN3_D','ELAN3_E','ELAN3_F','ELAN3_G','ELAN3_H','ELAN3_I','ELAN3_J']
-    ]
-
-
- tooltip: {
- 	formatter: function() {
- 		var s = '<p><b>'+this.series.name+'</b></p>'+'<p>'+$scope.change1s[this.series._i][this.point.x]+' '+Label.getContent('over previous period')+'</p>';
- 		return s;
- 	},
- 	shared: false,
- 	useHTML: true
- },
+    $scope.mySeries2=[{
+    	data: [[1,36,'ELAN1_A'],[1,74,'ELAN1_B'],[1,76,'ELAN1_D'],[1,87,'ELAN1_E'],[1,27,'ELAN1_F'],[1,99,'ELAN1_G'],[1,93,'ELAN1_H'],[1,69,'ELAN1_I'],[1,23,'ELAN1_J'],[1,86,'name']]
+    }, {
+    	data: [[1,10,'name'],[1,75,'name'],[1,54,'name'],[1,55,'name'],[1,3,'name'],[1,63,'name'],[1,33,'name'],[1,3,'name'],[1,67,'name'],[1,25,'name']]
+    }, {
+    	data: [[1,47,'name'],[1,12,'name'],[1,76,'name'],[1,30,'name'],[1,98,'name'],[1,17,'name'],[1,60,'name'],[1,78,'name'],[1,12,'name'],[1,77,'name']]
+    }];
   //   $scope.chartConfig = {
   //       chart: {
   //       	type: 'bubble',

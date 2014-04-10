@@ -430,8 +430,7 @@ exports.addMR_pricePromotions=function(req,res,next){
 exports.getMR_pricePromotions=function(req,res,next){
     var data={
         'seminar':req.params.seminar,
-        'period':req.params.period,
-        'producerID':req.params.producerID
+        'period':req.params.period
     };
     MR_pricePromotions.find(data,function(err,docs){
         if(docs){

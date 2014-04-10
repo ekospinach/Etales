@@ -96,7 +96,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 			    	$scope.cumulativeInvestments=new Array();
 			    	$scope.salesVolumes=new Array();
 			    	$scope.salesValues=new Array();
-			    	$scope.volumeShares=new Array();
+		    	$scope.volumeShares=new Array();
 			    	$scope.valueShares=new Array();
 			    	for(var i=0;i<data.data[0].actorInfo.length;i++){
 			    		$scope.operatingProfits.push({'value':data.data[0].actorInfo[i].grph_OperatingProfit});
@@ -2309,20 +2309,130 @@ define(['app','socketIO','routingConfig'], function(app) {
 				loadAwareness(2);
 			}
 
+			var loadBrandPerceptions=function(category,market){
+				$scope.quality1s=new Array();$scope.quality2s=new Array();$scope.quality3s=new Array();$scope.quality5s=new Array();$scope.quality6s=new Array();$scope.price1s=new Array();$scope.price2s=new Array();$scope.price3s=new Array();$scope.price5s=new Array();$scope.price6s=new Array();
+				var url='/getMR-variantPerceptionEvolution/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1);
+				$http({
+					method:'GET',
+					url:url
+				}).then(function(data){
+					for(var i=0;i<data.data[0].variantInfo.length;i++){
+						if(category==data.data[0].variantInfo[i].parentCategoryID){
+							switch(data.data[0].variantInfo[i].parentCompanyID){
+								case 1:$scope.quality1s.push([data.data[0].variantInfo[i].marketInfo[market-1].latestPerception[0],data.data[0].variantInfo[i].marketInfo[market-1].latestPerception[1],data.data[0].variantInfo[i].parentBrandName+data.data[0].variantInfo[i].variantName]);$scope.price1s.push([1,data.data[0].variantInfo[i].marketInfo[market-1].latestPerception[2],data.data[0].variantInfo[i].parentBrandName+data.data[0].variantInfo[i].variantName]);break;
+								case 2:$scope.quality2s.push([data.data[0].variantInfo[i].marketInfo[market-1].latestPerception[0],data.data[0].variantInfo[i].marketInfo[market-1].latestPerception[1],data.data[0].variantInfo[i].parentBrandName+data.data[0].variantInfo[i].variantName]);$scope.price2s.push([1,data.data[0].variantInfo[i].marketInfo[market-1].latestPerception[2],data.data[0].variantInfo[i].parentBrandName+data.data[0].variantInfo[i].variantName]);break;
+								case 3:$scope.quality3s.push([data.data[0].variantInfo[i].marketInfo[market-1].latestPerception[0],data.data[0].variantInfo[i].marketInfo[market-1].latestPerception[1],data.data[0].variantInfo[i].parentBrandName+data.data[0].variantInfo[i].variantName]);$scope.price3s.push([1,data.data[0].variantInfo[i].marketInfo[market-1].latestPerception[2],data.data[0].variantInfo[i].parentBrandName+data.data[0].variantInfo[i].variantName]);break;
+								case 5:$scope.quality5s.push([data.data[0].variantInfo[i].marketInfo[market-1].latestPerception[0],data.data[0].variantInfo[i].marketInfo[market-1].latestPerception[1],data.data[0].variantInfo[i].parentBrandName+data.data[0].variantInfo[i].variantName]);$scope.price5s.push([1,data.data[0].variantInfo[i].marketInfo[market-1].latestPerception[2],data.data[0].variantInfo[i].parentBrandName+data.data[0].variantInfo[i].variantName]);break;
+								case 6:$scope.quality6s.push([data.data[0].variantInfo[i].marketInfo[market-1].latestPerception[0],data.data[0].variantInfo[i].marketInfo[market-1].latestPerception[1],data.data[0].variantInfo[i].parentBrandName+data.data[0].variantInfo[i].variantName]);$scope.price6s.push([1,data.data[0].variantInfo[i].marketInfo[market-1].latestPerception[2],data.data[0].variantInfo[i].parentBrandName+data.data[0].variantInfo[i].variantName]);break;
+							}
+						}
+					}
+					$scope.mySeries1=[{
+						name:Label.getContent('Supplier')+' 1',data:$scope.quality1s,color:'#3257A7'
+					},{
+						name:Label.getContent('Supplier')+' 2',data:$scope.quality2s,color:'#B11E22'
+					},{
+						name:Label.getContent('Supplier')+' 3',data:$scope.quality3s,color:'#F6B920'
+					},{
+						name:Label.getContent('Retailer')+' 1',data:$scope.quality5s,color:'#8B288B'
+					},{
+						name:Label.getContent('Retailer')+' 2',data:$scope.quality6s,color:'#F05422'
+					}];
+					$scope.mySeries2=[{
+						name:Label.getContent('Supplier')+' 1',data:$scope.price1s,color:'#3257A7'
+					},{
+						name:Label.getContent('Supplier')+' 2',data:$scope.price2s,color:'#B11E22'
+					},{
+						name:Label.getContent('Supplier')+' 3',data:$scope.price3s,color:'#F6B920'
+					},{
+						name:Label.getContent('Retailer')+' 1',data:$scope.price5s,color:'#8B288B'
+					},{
+						name:Label.getContent('Retailer')+' 2',data:$scope.price6s,color:'#F05422'
+					}];
+					$scope.myModel=category+" "+market;
+				},function(){
+					console.log('fail');
+				})
+			}
+
 			var showRuralElecssoriesBrand=function(){
 				switching('showRuralElecssoriesBrand');
+				$scope.xTitle1="Easy of Use";
+				$scope.yTitle1="Quality";
+				$scope.yTitle2="Price Appeal";
+				loadBrandPerceptions(1,2);
 			}
 			var showUrbanElecssoriesBrand=function(){
 				switching('showUrbanElecssoriesBrand');
+				$scope.xTitle1="Easy of Use";
+				$scope.yTitle1="Quality";
+				$scope.yTitle2="Price Appeal";
+				loadBrandPerceptions(1,1);
 			}
 			var showRuralHealthBeautiesBrand=function(){
 				switching('showRuralHealthBeautiesBrand');
+				$scope.xTitle1="Performance";
+				$scope.yTitle1="Gentleness";
+				$scope.yTitle2="Price Appeal";
+				loadBrandPerceptions(2,2);
 			}
 			var showUrbanHealthBeautiesBrand=function(){
 				switching('showUrbanHealthBeautiesBrand');
+				$scope.xTitle1="Performance";
+				$scope.yTitle1="Gentleness";
+				$scope.yTitle2="Price Appeal";
+				loadBrandPerceptions(2,1);
 			}
 			var showRetailerPerceptions=function(){
 				switching('showRetailerPerceptions');
+				$scope.player1es=new Array();$scope.player2es=new Array();$scope.player3es=new Array();$scope.player4es=new Array();$scope.player5es=new Array();$scope.player6es=new Array();$scope.player1hs=new Array();$scope.player2hs=new Array();$scope.player3hs=new Array();$scope.player4hs=new Array();$scope.player5hs=new Array();$scope.player6hs=new Array();
+				var url='/getMR-retailerPerceptionEvolution/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1);
+				$http({
+					method:'GET',
+					url:url
+				}).then(function(data){
+					for(var i=0;i<data.data[0].storeInfo.length;i++){
+						switch(data.data[0].storeInfo[i].storeID){
+							case 1:$scope.player1es.push([data.data[0].storeInfo[i].marketInfo[0].latestPerception[1],data.data[0].storeInfo[i].marketInfo[0].latestPerception[0],10]);$scope.player1hs.push([data.data[0].storeInfo[i].marketInfo[1].latestPerception[1],data.data[0].storeInfo[i].marketInfo[1].latestPerception[0],10]);break;
+							case 2:$scope.player2es.push([data.data[0].storeInfo[i].marketInfo[0].latestPerception[1],data.data[0].storeInfo[i].marketInfo[0].latestPerception[0],10]);$scope.player2hs.push([data.data[0].storeInfo[i].marketInfo[1].latestPerception[1],data.data[0].storeInfo[i].marketInfo[1].latestPerception[0],10]);break;
+							case 3:$scope.player3es.push([data.data[0].storeInfo[i].marketInfo[0].latestPerception[1],data.data[0].storeInfo[i].marketInfo[0].latestPerception[0],10]);$scope.player3hs.push([data.data[0].storeInfo[i].marketInfo[1].latestPerception[1],data.data[0].storeInfo[i].marketInfo[1].latestPerception[0],10]);break;
+							case 4:$scope.player4es.push([data.data[0].storeInfo[i].marketInfo[0].latestPerception[1],data.data[0].storeInfo[i].marketInfo[0].latestPerception[0],10]);$scope.player4hs.push([data.data[0].storeInfo[i].marketInfo[1].latestPerception[1],data.data[0].storeInfo[i].marketInfo[1].latestPerception[0],10]);break;
+							case 5:$scope.player5es.push([data.data[0].storeInfo[i].marketInfo[0].latestPerception[1],data.data[0].storeInfo[i].marketInfo[0].latestPerception[0],10]);$scope.player5hs.push([data.data[0].storeInfo[i].marketInfo[1].latestPerception[1],data.data[0].storeInfo[i].marketInfo[1].latestPerception[0],10]);break;
+							case 6:$scope.player6es.push([data.data[0].storeInfo[i].marketInfo[0].latestPerception[1],data.data[0].storeInfo[i].marketInfo[0].latestPerception[0],10]);$scope.player6hs.push([data.data[0].storeInfo[i].marketInfo[1].latestPerception[1],data.data[0].storeInfo[i].marketInfo[1].latestPerception[0],10]);break;
+							case 7:break;
+						}
+					}
+					$scope.mySeries1=[{
+						name:Label.getContent('Retailer')+' 1',data:$scope.player1es,color:'#3257A7'
+					},{
+						name:Label.getContent('Retailer')+' 2',data:$scope.player2es,color:'#B11E22'
+					},{
+						name:Label.getContent('Traditional Trade'),data:$scope.player3es,color:'#F6B920'
+					},{
+						name:Label.getContent('Supplier 1 Online'),data:$scope.player4es,color:'#8B288B'
+					},{
+						name:Label.getContent('Supplier 2 Online'),data:$scope.player5es,color:'#F05422'
+					},{
+						name:Label.getContent('Supplier 3 Online'),data:$scope.player6es,color:'#329444'
+					}];
+					$scope.mySeries2=[{
+						name:Label.getContent('Retailer')+' 1',data:$scope.player1hs,color:'#3257A7'
+					},{
+						name:Label.getContent('Retailer')+' 2',data:$scope.player2hs,color:'#B11E22'
+					},{
+						name:Label.getContent('Traditional Trade'),data:$scope.player3hs,color:'#F6B920'
+					},{
+						name:Label.getContent('Supplier 1 Online'),data:$scope.player4hs,color:'#8B288B'
+					},{
+						name:Label.getContent('Supplier 2 Online'),data:$scope.player5hs,color:'#F05422'
+					},{
+						name:Label.getContent('Supplier 3 Online'),data:$scope.player6hs,color:'#329444'
+					}];
+					$scope.myModel="RetailerPerceptions";
+
+				},function(){
+					console.log('fail');
+				})
 			}
 
 			var loadMarketConsumer=function(url,category,market){
@@ -2662,13 +2772,6 @@ define(['app','socketIO','routingConfig'], function(app) {
 				loadPromotion(2);
 			}
 
-			var CalculateMax=function(num1,num2,num3){
-
-			}
-
-			var loadSupplierIntelligence=function(){
-
-			}
 			var showSupplierIntelligence=function(category){
 				switching('showSupplierIntelligence');
 				var myData=new Array();
@@ -2759,6 +2862,76 @@ define(['app','socketIO','routingConfig'], function(app) {
 			}
 			var showRetailerIntelligence=function(){
 				switching('showRetailerIntelligence');
+				$scope.data=new Array();$scope.variants=new Array();$scope.player1es=new Array();$scope.player2es=new Array();$scope.player3es=new Array();$scope.player5es=new Array();$scope.player6es=new Array();$scope.player1hs=new Array();$scope.player2hs=new Array();$scope.player3hs=new Array();$scope.player5hs=new Array();$scope.player6hs=new Array();
+				var url='/getMR-retailersIntelligence/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1);
+				$http({
+					method:'GET',
+					url:url
+				}).then(function(data){
+					data.data[0].retailerInfo[0].storeServiceLevel[2]=data.data[0].retailerInfo[1].storeServiceLevel[0];
+					data.data[0].retailerInfo[0].storeServiceLevel[3]=data.data[0].retailerInfo[1].storeServiceLevel[1];
+					data.data[0].retailerInfo[0].onlineAdvertising[2]=data.data[0].retailerInfo[1].onlineAdvertising[0];
+					data.data[0].retailerInfo[0].onlineAdvertising[3]=data.data[0].retailerInfo[1].onlineAdvertising[1];
+					data.data[0].retailerInfo[0].offlineAdvertising[2]=data.data[0].retailerInfo[1].offlineAdvertising[0];
+					data.data[0].retailerInfo[0].offlineAdvertising[3]=data.data[0].retailerInfo[1].offlineAdvertising[1];
+					$scope.data.push({'storeServiceLevel':data.data[0].retailerInfo[0].storeServiceLevel,'onlineAdvertising':data.data[0].retailerInfo[0].onlineAdvertising,'offlineAdvertising':data.data[0].retailerInfo[0].offlineAdvertising});
+					for(var i=0;i<data.data[0].retailerInfo[0].variantInfo.length;i++){
+						var variant=_.find(data.data[0].retailerInfo[1].variantInfo,function(obj){
+							return (obj.variantName==data.data[0].retailerInfo[0].variantInfo[i].variantName&&obj.parentBrandName==data.data[0].retailerInfo[0].variantInfo[i].parentBrandName);
+						})
+						if(variant!=undefined){
+							data.data[0].retailerInfo[0].variantInfo[i].shelfSpace[2]=variant.shelfSpace[0];
+							data.data[0].retailerInfo[0].variantInfo[i].shelfSpace[3]=variant.shelfSpace[1];
+						}else{
+							data.data[0].retailerInfo[0].variantInfo[i].shelfSpace[2]=0;
+							data.data[0].retailerInfo[0].variantInfo[i].shelfSpace[3]=0;
+						}
+						$scope.variants.push(data.data[0].retailerInfo[0].variantInfo[i]);
+					}
+					for(var i=0;i<data.data[0].retailerInfo[1].variantInfo.length;i++){
+						var variant=_.find($scope.variants,function(obj){
+							return (obj.variantName==data.data[0].retailerInfo[1].variantInfo[i].variantName&&obj.parentBrandName==data.data[0].retailerInfo[1].variantInfo[i].parentBrandName);
+						});
+						if(variant==undefined){
+							data.data[0].retailerInfo[1].variantInfo[i].shelfSpace[2]=data.data[0].retailerInfo[1].variantInfo[i].shelfSpace[0];
+							data.data[0].retailerInfo[1].variantInfo[i].shelfSpace[3]=data.data[0].retailerInfo[1].variantInfo[i].shelfSpace[1];
+							data.data[0].retailerInfo[1].variantInfo[i].shelfSpace[0]=0;
+							data.data[0].retailerInfo[1].variantInfo[i].shelfSpace[1]=0;
+							$scope.variants.push(data.data[0].retailerInfo[1].variantInfo[i]);
+						}
+					}
+					for(var i=0;i<$scope.variants.length;i++){
+						switch($scope.variants[i].parentCompanyID){
+							case 1:if($scope.variants[i].parentCategoryID==1){
+								$scope.player1es.push($scope.variants[i]);
+							}else{
+								$scope.player1hs.push($scope.variants[i]);
+							}break;
+							case 2:if($scope.variants[i].parentCategoryID==1){
+								$scope.player2es.push($scope.variants[i]);
+							}else{
+								$scope.player2hs.push($scope.variants[i]);
+							}break;
+							case 3:if($scope.variants[i].parentCategoryID==1){
+								$scope.player3es.push($scope.variants[i]);
+							}else{
+								$scope.player3hs.push($scope.variants[i]);
+							}break;
+							case 5:if($scope.variants[i].parentCategoryID==1){
+								$scope.player5es.push($scope.variants[i]);
+							}else{
+								$scope.player5hs.push($scope.variants[i]);
+							}break;
+							case 6:if($scope.variants[i].parentCategoryID==1){
+								$scope.player6es.push($scope.variants[i]);
+							}else{
+								$scope.player6hs.push($scope.variants[i]);
+							}break;
+						}
+					}
+				},function(){
+					console.log('fail');
+				})
 			}
 			var showForecastsConsumer=function(){
 				switching('showForecastsConsumer');

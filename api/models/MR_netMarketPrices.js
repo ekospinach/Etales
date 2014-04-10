@@ -511,8 +511,7 @@ exports.addMR_netMarketPrices=function(req,res,next){
 exports.getMR_netMarketPrices=function(req,res,next){
     var data={
         'seminar':req.params.seminar,
-        'period':req.params.period,
-        'producerID':req.params.producerID
+        'period':req.params.period
     };
     MR_netMarketPrices.find(data,function(err,docs){
         if(docs){

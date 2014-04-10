@@ -10283,6 +10283,8 @@
                                 {{Label.getContent('Brand Perceptions')}}-{{Label.getContent('HealthBeauties')}}({{Label.getContent('Urban')}})
                             </h3>
                         </div>
+                        <div style="width:75%;float:left" id="highchart1" ng-model='myModel' highchart1></div>
+                        <div div style="width:25%" id="highchart2" ng-model='myModel' highchart2></div>
                     </div>
 
                     <div class="panel panel-danger" ng-show='RetailerPerceptions'>
@@ -10291,6 +10293,8 @@
                                 {{Label.getContent('Retailer Perceptions')}}
                             </h3>
                         </div>
+                        <div id="highchart3" ng-model='myModel' highchart3></div>
+                        <div id="highchart4" ng-model='myModel' highchart4></div>
                     </div>
 
                     <div class="panel panel-danger" ng-show='RuralElecssoriesConsumerShare||UrbanElecssoriesConsumerShare||RuralHealthBeautiesConsumerShare||UrbanHealthBeautiesConsumerShare||RuralElecssoriesConsumerSales||UrbanElecssoriesConsumerSales||RuralHealthBeautiesConsumerSales||UrbanHealthBeautiesConsumerSales'>
@@ -12431,6 +12435,342 @@
                                     </td>
                                     <td class="td-danger">
                                         <p class="text-right">{{data.FlexibilityMax_3h}}</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="panel panel-danger" ng-show='RetailerIntelligence'>
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-center" popover="{{Label.getContent('Retailer Intelligence Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
+                                {{Label.getContent('Retailer Intelligence')}}
+                            </h3>
+                        </div>
+                        <table class="table table-condensed table-bordered table-danger">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th colspan="2">
+                                        <p class="text-center">{{Label.getContent('Rural')}}</p>
+                                    </th>
+                                    <th colspan="2">
+                                        <p class="text-center">{{Label.getContent('Urban')}}</p>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th colspan="5">
+                                        <p>{{Label.getContent('Advertising')}}($mln)</p>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-20">{{Label.getContent('Online')}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{data[0].onlineAdvertising[1]}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{data[0].onlineAdvertising[0]}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{data[0].onlineAdvertising[3]}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{data[0].onlineAdvertising[2]}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-20">{{Label.getContent('Offline')}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{data[0].offlineAdvertising[1]}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{data[0].offlineAdvertising[0]}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{data[0].offlineAdvertising[3]}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{data[0].offlineAdvertising[2]}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-20">{{Label.getContent('Local')}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">0</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">0</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">0</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">0</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <p>{{Label.getContent('In-Store Service')}}</p>
+                                    </th>
+                                    <td class="td-info">
+                                        <p class="text-right">{{Label.getContent(data[0].storeServiceLevel[1])}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{Label.getContent(data[0].storeServiceLevel[0])}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{Label.getContent(data[0].storeServiceLevel[3])}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{Label.getContent(data[0].storeServiceLevel[2])}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th colspan="5">
+                                        <p>{{Label.getContent('Shelf Space Allocation')}}(%)</p>
+                                    </th>
+                                </tr>
+                                <tr ng-show='player1es.length>=1'>
+                                    <td colspan="5">
+                                        <p class="padding-20">{{Label.getContent('Supplier')}} 1</p>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat='player1e in player1es'>
+                                    <td class="td-success">
+                                        <p class="padding-40">{{player1e.parentBrandName+player1e.variantName}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player1e.shelfSpace[1]||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player1e.shelfSpace[0]||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player1e.shelfSpace[3]||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player1e.shelfSpace[2]||'/'}}</p>
+                                    </td>
+                                </tr>
+                                <tr ng-show='player2es.length>=1'>
+                                    <td colspan="5">
+                                        <p class="padding-20">{{Label.getContent('Supplier')}} 2</p>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat='player2e in player2es'>
+                                    <td class="td-success">
+                                        <p class="padding-40">{{player2e.parentBrandName+player2e.variantName}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player2e.shelfSpace[1]||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player2e.shelfSpace[0]||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player2e.shelfSpace[3]||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player2e.shelfSpace[2]||'/'}}</p>
+                                    </td>
+                                </tr>
+                                <tr ng-show='player3es.length>=1'>
+                                    <td colspan="5">
+                                        <p class="padding-20">{{Label.getContent('Supplier')}} 3</p>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat='player3e in player3es'>
+                                    <td class="td-success">
+                                        <p class="padding-40">{{player3e.parentBrandName+player3e.variantName}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player3e.shelfSpace[1]||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player3e.shelfSpace[0]||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player3e.shelfSpace[3]||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player3e.shelfSpace[2]||'/'}}</p>
+                                    </td>
+                                </tr>
+                                <tr ng-show='player5es.length>=1'>
+                                    <td colspan="5">
+                                        <p class="padding-20">{{Label.getContent('Retailer')}} 1</p>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat='player5e in player5es'>
+                                    <td class="td-success">
+                                        <p class="padding-40">{{player5e.parentBrandName+player5e.variantName}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player5e.shelfSpace[1]||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player5e.shelfSpace[0]||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player5e.shelfSpace[3]||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player5e.shelfSpace[2]||'/'}}</p>
+                                    </td>
+                                </tr>
+                                <tr ng-show='player6es.length>=1'>
+                                    <td colspan="5">
+                                        <p class="padding-20">{{Label.getContent('Retailer')}} 2</p>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat='player6e in player6es'>
+                                    <td class="td-success">
+                                        <p class="padding-40">{{player6e.parentBrandName+player6e.variantName}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player6e.shelfSpace[1]||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player6e.shelfSpace[0]||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player6e.shelfSpace[3]||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player6e.shelfSpace[2]||'/'}}</p>
+                                    </td>
+                                </tr>
+                                <tr ng-show='player1hs.length>=1'>
+                                    <td colspan="5">
+                                        <p class="padding-20">{{Label.getContent('Supplier')}} 1</p>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat='player1h in player1hs'>
+                                    <td class="td-danger">
+                                        <p class="padding-40">{{player1h.parentBrandName+player1h.variantName}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player1h.shelfSpace[1]||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player1h.shelfSpace[0]||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player1h.shelfSpace[3]||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player1h.shelfSpace[2]||'/'}}</p>
+                                    </td>
+                                </tr>
+                                <tr ng-show='player2hs.length>=1'>
+                                    <td colspan="5">
+                                        <p class="padding-20">{{Label.getContent('Supplier')}} 2</p>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat='player2h in player2hs'>
+                                    <td class="td-danger">
+                                        <p class="padding-40">{{player2h.parentBrandName+player2h.variantName}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player2h.shelfSpace[1]||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player2h.shelfSpace[0]||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player2h.shelfSpace[3]||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player2h.shelfSpace[2]||'/'}}</p>
+                                    </td>
+                                </tr>
+                                <tr ng-show='player3hs.length>=1'>
+                                    <td colspan="5">
+                                        <p class="padding-20">{{Label.getContent('Supplier')}} 3</p>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat='player3h in player3hs'>
+                                    <td class="td-danger">
+                                        <p class="padding-40">{{player3h.parentBrandName+player3h.variantName}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player3h.shelfSpace[1]||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player3h.shelfSpace[0]||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player3h.shelfSpace[3]||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player3h.shelfSpace[2]||'/'}}</p>
+                                    </td>
+                                </tr>
+                                <tr ng-show='player5hs.length>=1'>
+                                    <td colspan="5">
+                                        <p class="padding-20">{{Label.getContent('Retailer')}} 1</p>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat='player5h in player5hs'>
+                                    <td class="td-danger">
+                                        <p class="padding-40">{{player5h.parentBrandName+player5h.variantName}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player5h.shelfSpace[1]||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player5h.shelfSpace[0]||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player5h.shelfSpace[3]||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player5h.shelfSpace[2]||'/'}}</p>
+                                    </td>
+                                </tr>
+                                <tr ng-show='player6hs.length>=1'>
+                                    <td colspan="5">
+                                        <p class="padding-20">{{Label.getContent('Retailer')}} 2</p>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat='player6h in player6hs'>
+                                    <td class="td-danger">
+                                        <p class="padding-40">{{player6h.parentBrandName+player6h.variantName}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player6h.shelfSpace[1]||'/'}}</p>
+                                    </td>
+                                    <td class="td-info">
+                                        <p class="text-right">{{player6h.shelfSpace[0]||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player6h.shelfSpace[3]||'/'}}</p>
+                                    </td>
+                                    <td class="td-warning">
+                                        <p class="text-right">{{player6h.shelfSpace[2]||'/'}}</p>
                                     </td>
                                 </tr>
                             </tbody>
