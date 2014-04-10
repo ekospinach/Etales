@@ -17,6 +17,7 @@ var retailerInfoSchema = mongoose.Schema({
 //    storePerceptionInfo : [storePerceptionInfoSchema],
     onlineAdvertising : [Number], //0-Urban, 1-Rural
     offlineAdvertising : [Number], //0-Urban, 1-Rural
+    localAdvertising : [Number],
     variantInfo : [variantInfoSchema],
 })
 
@@ -46,6 +47,7 @@ exports.addMR_retailersIntelligence=function(req,res,next){
             storeServiceLevel : ['SL_BASE','SL_ENHANCED'], //0-Urban, 1-Rural
             onlineAdvertising : [10,20], //0-Urban, 1-Rural
             offlineAdvertising : [15,20], //0-Urban, 1-Rural
+            localAdvertising : [20,25], //0-Urban, 1-Rural
             variantInfo : [{
                 variantName: '_A',
                 parentBrandName: 'ELAN1',
@@ -100,6 +102,7 @@ exports.addMR_retailersIntelligence=function(req,res,next){
             storeServiceLevel : ['SL_FAIR','SL_PREMIUM'], //0-Urban, 1-Rural
             onlineAdvertising : [15,25], //0-Urban, 1-Rural
             offlineAdvertising : [20,30], //0-Urban, 1-Rural
+            localAdvertising : [30,35], //0-Urban, 1-Rural
             variantInfo : [{
                 variantName: '_A',
                 parentBrandName: 'ELAN1',

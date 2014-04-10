@@ -2874,7 +2874,9 @@ define(['app','socketIO','routingConfig'], function(app) {
 					data.data[0].retailerInfo[0].onlineAdvertising[3]=data.data[0].retailerInfo[1].onlineAdvertising[1];
 					data.data[0].retailerInfo[0].offlineAdvertising[2]=data.data[0].retailerInfo[1].offlineAdvertising[0];
 					data.data[0].retailerInfo[0].offlineAdvertising[3]=data.data[0].retailerInfo[1].offlineAdvertising[1];
-					$scope.data.push({'storeServiceLevel':data.data[0].retailerInfo[0].storeServiceLevel,'onlineAdvertising':data.data[0].retailerInfo[0].onlineAdvertising,'offlineAdvertising':data.data[0].retailerInfo[0].offlineAdvertising});
+					data.data[0].retailerInfo[0].localAdvertising[2]=data.data[0].retailerInfo[1].localAdvertising[0];
+					data.data[0].retailerInfo[0].localAdvertising[3]=data.data[0].retailerInfo[1].localAdvertising[1];
+					$scope.data.push({'storeServiceLevel':data.data[0].retailerInfo[0].storeServiceLevel,'onlineAdvertising':data.data[0].retailerInfo[0].onlineAdvertising,'offlineAdvertising':data.data[0].retailerInfo[0].offlineAdvertising,'localAdvertising':data.data[0].retailerInfo[0].localAdvertising});
 					for(var i=0;i<data.data[0].retailerInfo[0].variantInfo.length;i++){
 						var variant=_.find(data.data[0].retailerInfo[1].variantInfo,function(obj){
 							return (obj.variantName==data.data[0].retailerInfo[0].variantInfo[i].variantName&&obj.parentBrandName==data.data[0].retailerInfo[0].variantInfo[i].parentBrandName);

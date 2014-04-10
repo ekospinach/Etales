@@ -12393,7 +12393,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <p class="padding-20">{{Label.getContent('Flexibility')}}({{Label.getContent('min')}})(%)</p>
+                                        <p class="padding-20">{{Label.getContent('Flexibility')}}(%)</p>
                                     </td>
                                     <td class="td-success">
                                         <p class="text-right">{{data.FlexibilityMin_1e}}</p>
@@ -12414,7 +12414,7 @@
                                         <p class="text-right">{{data.FlexibilityMin_3h}}</p>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr ng-show='false'>
                                     <td>
                                         <p class="padding-20">{{Label.getContent('Flexibility')}}({{Label.getContent('max')}})(%)</p>
                                     </td>
@@ -12519,16 +12519,16 @@
                                         <p class="padding-20">{{Label.getContent('Local')}}</p>
                                     </td>
                                     <td class="td-info">
-                                        <p class="text-right">0</p>
+                                        <p class="text-right">{{data[0].localAdvertising[1]}}</p>
                                     </td>
                                     <td class="td-info">
-                                        <p class="text-right">0</p>
+                                        <p class="text-right">{{data[0].localAdvertising[0]}}</p>
                                     </td>
                                     <td class="td-warning">
-                                        <p class="text-right">0</p>
+                                        <p class="text-right">{{data[0].localAdvertising[3]}}</p>
                                     </td>
                                     <td class="td-warning">
-                                        <p class="text-right">0</p>
+                                        <p class="text-right">{{data[0].localAdvertising[2]}}</p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -13046,7 +13046,7 @@
                             </li>
                         </ul>
                     </li>
-                    <!--<li class="">
+                    <li class="">
                         <a href="/#/summaryReport" style="color:#D9534F" ng-click='showPromotionElecssories()'>{{Label.getContent('Promotion Intensity')}}</a>
                         <ul class="nav second-sidenav">
                             <li class="">
@@ -13062,7 +13062,7 @@
                     </li>
                     <li class="">
                         <a href="/#/summaryReport" style="color:#D9534F" ng-click='showRetailerIntelligence()'>{{Label.getContent('Retailer Intelligence')}}</a>
-                    </li>-->
+                    </li>
                     <li class="">
                         <a href="/#/summaryReport" style="color:#D9534F" ng-click='showForecastsConsumer()'>{{Label.getContent('Forecasts')}}</a>
                         <ul class="nav second-sidenav">
