@@ -18,9 +18,9 @@ var supplierInfoSchema = mongoose.Schema({
 
 var categoryInfoSchema = mongoose.Schema({
     categoryID : Number, //1~3 
-    advertisingOnLine              : Number,
-    onLine_Visibility             : Number,
-    onLine_Other                  : Number,
+    advertisingOnLine             : Number,
+    onLineVisibility              : Number,
+    onLineOther                   : Number,
     acquiredTechnologyLevel       : Number,
     acquiredDesignLevel           : Number,
     productionCapacityAvailable   : Number,
@@ -48,8 +48,8 @@ exports.addMR_supplierIntelligence=function(req,res,next){
             categoryInfo : [{
                 categoryID : 1, //1~3 
                 advertisingOnLine              : 10,
-                onLine_Visibility             : 15,
-                onLine_Other                  : 20,
+                onLineVisibility             : 15,
+                onLineOther                  : 20,
                 acquiredTechnologyLevel       : 25,
                 acquiredDesignLevel           : 30,
                 productionCapacityAvailable   : 35,
@@ -79,8 +79,8 @@ exports.addMR_supplierIntelligence=function(req,res,next){
             },{
                 categoryID : 2, //1~3 
                 advertisingOnLine              : 10,
-                onLine_Visibility             : 15,
-                onLine_Other                  : 20,
+                onLineVisibility             : 15,
+                onLineOther                  : 20,
                 acquiredTechnologyLevel       : 25,
                 acquiredDesignLevel           : 30,
                 productionCapacityAvailable   : 35,
@@ -110,8 +110,8 @@ exports.addMR_supplierIntelligence=function(req,res,next){
             },{
                 categoryID : 3, //1~3 
                 advertisingOnLine              : 10,
-                onLine_Visibility             : 15,
-                onLine_Other                  : 20,
+                onLineVisibility             : 15,
+                onLineOther                  : 20,
                 acquiredTechnologyLevel       : 25,
                 acquiredDesignLevel           : 30,
                 productionCapacityAvailable   : 35,
@@ -144,8 +144,8 @@ exports.addMR_supplierIntelligence=function(req,res,next){
             categoryInfo : [{
                 categoryID : 1, //1~3 
                 advertisingOnLine              : 10,
-                onLine_Visibility             : 15,
-                onLine_Other                  : 20,
+                onLineVisibility             : 15,
+                onLineOther                  : 20,
                 acquiredTechnologyLevel       : 25,
                 acquiredDesignLevel           : 30,
                 productionCapacityAvailable   : 35,
@@ -175,8 +175,8 @@ exports.addMR_supplierIntelligence=function(req,res,next){
             },{
                 categoryID : 2, //1~3 
                 advertisingOnLine              : 10,
-                onLine_Visibility             : 15,
-                onLine_Other                  : 20,
+                onLineVisibility             : 15,
+                onLineOther                  : 20,
                 acquiredTechnologyLevel       : 25,
                 acquiredDesignLevel           : 30,
                 productionCapacityAvailable   : 35,
@@ -206,8 +206,8 @@ exports.addMR_supplierIntelligence=function(req,res,next){
             },{
                 categoryID : 3, //1~3 
                 advertisingOnLine              : 10,
-                onLine_Visibility             : 15,
-                onLine_Other                  : 20,
+                onLineVisibility             : 15,
+                onLineOther                  : 20,
                 acquiredTechnologyLevel       : 25,
                 acquiredDesignLevel           : 30,
                 productionCapacityAvailable   : 35,
@@ -240,8 +240,8 @@ exports.addMR_supplierIntelligence=function(req,res,next){
             categoryInfo : [{
                 categoryID : 1, //1~3 
                 advertisingOnLine              : 10,
-                onLine_Visibility             : 15,
-                onLine_Other                  : 20,
+                onLineVisibility             : 15,
+                onLineOther                  : 20,
                 acquiredTechnologyLevel       : 25,
                 acquiredDesignLevel           : 30,
                 productionCapacityAvailable   : 35,
@@ -271,8 +271,8 @@ exports.addMR_supplierIntelligence=function(req,res,next){
             },{
                 categoryID : 2, //1~3 
                 advertisingOnLine              : 10,
-                onLine_Visibility             : 15,
-                onLine_Other                  : 20,
+                onLineVisibility             : 15,
+                onLineOther                  : 20,
                 acquiredTechnologyLevel       : 25,
                 acquiredDesignLevel           : 30,
                 productionCapacityAvailable   : 35,
@@ -302,8 +302,8 @@ exports.addMR_supplierIntelligence=function(req,res,next){
             },{
                 categoryID : 3, //1~3 
                 advertisingOnLine              : 10,
-                onLine_Visibility             : 15,
-                onLine_Other                  : 20,
+                onLineVisibility             : 15,
+                onLineOther                  : 20,
                 acquiredTechnologyLevel       : 25,
                 acquiredDesignLevel           : 30,
                 productionCapacityAvailable   : 35,
