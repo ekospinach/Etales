@@ -1,9 +1,13 @@
-define([
+ define([
 	'angular',
 	'filters',
 	'services',
 	'placeholder',
 	'directives',
+	'directives/basicDirectives',
+	'directives/chartLibraryWrapper',
+	'directives/TE_GR_performanceHighlights',
+	'directives/TE_GR_marketShare',
 	'angularRoute',
 	'angularXeditable',
 	'angularBootstrap',
@@ -34,7 +38,7 @@ define([
 			'chieffancypants.loadingBar',
 			'ngCookies',
 			'highcharts-ng',
-			'frapontillo.bootstrap-switch'	
+			'frapontillo.bootstrap-switch'
 		]).run(function(editableOptions){
 			editableOptions.theme = 'bs3';
 		}).run(['$rootScope', '$location','Auth','$http', function ($rootScope, $location, Auth, $http) {		    

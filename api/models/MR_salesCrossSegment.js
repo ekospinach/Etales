@@ -28,7 +28,7 @@ var marketInfoSchema = mongoose.Schema({
 })
 
 var segmentInfoSchema = mongoose.Schema({
-    segmentID : Number, //TSegmentsTotal : 1~(4+1),
+    segmentID : Number, //TSegmentsTotal : 1~(4+1)x,
     /*
         Elecssories:
         1-PriceSensitive

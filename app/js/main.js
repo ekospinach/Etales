@@ -11,39 +11,39 @@
 		paths: {
 			angular: '../bower_components/angular/angular',
 			//angularAnimate: '../bower_components/angular-animate/angular-animate',
-			angularCookies: '../bower_components/angular-cookies/angular-cookies',
-			angularRoute: '../bower_components/angular-route/angular-route',
-			angularResource: '../bower_components/angular-resource/angular-resource',
-			angularMocks: '../bower_components/angular-mocks/angular-mocks',
-			angularLoadingBar : '../bower_components/angular-loading-bar/src/loading-bar',
-			text: '../bower_components/requirejs-text/text',
-			angularXeditable: '../bower_components/angular-xeditable/dist/js/xeditable',
-			socketIO: '../bower_components/socket.io-client/dist/socket.io',
-			jquery:'../bower_components/jquery/dist/jquery',
-			bootstrapswitch: '../bower_components/bootstrap-switch/dist/js/bootstrap-switch',
-			require:'../bower_components/requirejs/require',
-			underscore:'../bower_components/underscore/underscore',
-			bootstrap:'../bower_components/bootstrap/dist/js/bootstrap',
-			angularBootstrap:'../bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls',
-			routingConfig : './routingConfig',
-			placeholder:'../bower_components/angular-placeholders/demo/assets/ui-bootstrap-tpls-0.1.0-SNAPSHOT.min',
+			angularCookies: 		'../bower_components/angular-cookies/angular-cookies',
+			angularRoute: 			'../bower_components/angular-route/angular-route',
+			angularResource: 		'../bower_components/angular-resource/angular-resource',
+			angularMocks: 			'../bower_components/angular-mocks/angular-mocks',
+			angularLoadingBar : 	'../bower_components/angular-loading-bar/src/loading-bar',
+			text: 					'../bower_components/requirejs-text/text',
+			angularXeditable: 		'../bower_components/angular-xeditable/dist/js/xeditable',
+			socketIO: 				'../bower_components/socket.io-client/dist/socket.io',
+			jquery: 				'../bower_components/jquery/dist/jquery',
+			bootstrapswitch: 		'../bower_components/bootstrap-switch/dist/js/bootstrap-switch',
+			require: 				'../bower_components/requirejs/require',
+			underscore: 			'../bower_components/underscore/underscore',
+			bootstrap: 				'../bower_components/bootstrap/dist/js/bootstrap',
+			angularBootstrap:  		'../bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls',
+			routingConfig :  		'./routingConfig',
+			placeholder:  			'../bower_components/angular-placeholders/demo/assets/ui-bootstrap-tpls-0.1.0-SNAPSHOT.min',
 			//jquery-jqplot-->Map.html
-			jqplot:'../bower_components/jqplot/jquery.jqplot.min',
-			bubbleRenderer:'./map/jqplot.bubbleRenderer',
-			labelRenderer:'./map/jqplot.canvasAxisLabelRenderer.min',
-			pieRenderer:'./map/jqplot.pieRenderer',
-			textRenderer:'./map/jqplot.canvasTextRenderer.min',
-			tree:'./map/bootstrap-tree',
-			domReady: '../bower_components/requirejs-domready/domReady',
-			labelBase: './utils/labelBase',
-			highchart:'../bower_components/highcharts/highcharts',
-			//highchartAll:'../bower_components/highcharts/highcharts-all',
-			highchartMore:'../bower_components/highcharts/highcharts-more',
-			angularHighcharts:'../bower_components/highcharts-ng/src/highcharts-ng',
+			jqplot: 				'../bower_components/jqplot/jquery.jqplot.min',
+			bubbleRenderer: 		'./map/jqplot.bubbleRenderer',
+			labelRenderer: 			'./map/jqplot.canvasAxisLabelRenderer.min',
+			pieRenderer:  			'./map/jqplot.pieRenderer',
+			textRenderer: 			'./map/jqplot.canvasTextRenderer.min',
+			tree: 					'./map/bootstrap-tree',
+			domReady:   			'../bower_components/requirejs-domready/domReady',
+			labelBase:   			'./utils/labelBase',
+			//highchart
+			highchart:              '../bower_components/highcharts/highcharts',
+			angularHighcharts:      '../bower_components/highcharts-ng/src/highcharts-ng',
+			highchartMore:          '../bower_components/highcharts/highcharts-more',
+			//Bootstrap switch interface for admin module, handle initialize parameter configure 
 			angularBootstrapSwitch: '../bower_components/angular-bootstrap-switch/dist/angular-bootstrap-switch'
-			//export
-			//generatedata:'./jqxGrid/generatedata',
-			//jqxgrid:'./jqxGrid/jqxgrid'
+			//angular promise tracker is used for adding loading spinner by track general promise or request 
+			//angularPromiseTracker:  '../bower_components/angular-promise-tracker/promise-tracker'
 		},
 		baseUrl: 'js',
 		shim: {
@@ -68,7 +68,8 @@
 			'highcharts':['jquery','angular','highchart'],
 			'bootstrapswitch' : ['jquery'],
 			'angularBootstrapSwitch':['angular','jquery','bootstrapswitch'],
-			},
+			'angularPromiseTracker':['angular']
+		},
 		priority: [
 			"angular"
 		],
@@ -89,7 +90,6 @@
 	require.onResourceLoad = function(context, map, depMaps) {
 	    updateModuleProgress(context, map, depMaps);
 	};
-
 
 	require(['domReady'], function(domReady) {
 	    domReady(function() {
@@ -138,3 +138,4 @@
 	});
 
 }).call(this);
+2
