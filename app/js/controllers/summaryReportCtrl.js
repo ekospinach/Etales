@@ -705,15 +705,15 @@ define(['app','socketIO','routingConfig'], function(app) {
 
 		    var showProducerConsolidate=function(){
 		    	switching('showProducerConsolidate');
-		    	var url='/SCR-consolidatedProfitAndLoss/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
-		    	$http({
-		    		method:'GET',
-		    		url:url
-		    	}).then(function(data){
-		    		loadTotal(data);
-		    	},function(){
-		    		console.log('fail');
-		    	})
+		    	// var url='/SCR-consolidatedProfitAndLoss/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+		    	// $http({
+		    	// 	method:'GET',
+		    	// 	url:url
+		    	// }).then(function(data){
+		    	// 	loadTotal(data);
+		    	// },function(){
+		    	// 	console.log('fail');
+		    	// })
 		    }
 
 		    var loadValue=function(data,name,num){

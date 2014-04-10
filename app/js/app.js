@@ -8,6 +8,8 @@
 	'directives/chartLibraryWrapper',
 	'directives/TE_GR_performanceHighlights',
 	'directives/TE_GR_marketShare',
+	'directives/TE_SCR_ProducerConsolidate',
+	'directives/TE_SCR_ProducerBMBusiness',
 	'angularRoute',
 	'angularXeditable',
 	'angularBootstrap',
