@@ -17,6 +17,7 @@ var retailerInfoSchema = mongoose.Schema({
 //    storePerceptionInfo : [storePerceptionInfoSchema],
     onlineAdvertising : [Number], //0-Urban, 1-Rural
     offlineAdvertising : [Number], //0-Urban, 1-Rural
+    localAdvertising : [Number],//0-Urban, 1-Rural
     variantInfo : [variantInfoSchema],
 })
 
@@ -27,7 +28,6 @@ var variantInfoSchema = mongoose.Schema({
     parentCompanyID                      : Number, //TActors : 1~(4+3) 
     shelfSpace                           : [Number], //0-Urban, 1-Rural
 })
-
 
 // var storePerceptionInfoSchema = mongoose.Schema({
 //     perception : String, //PRICE, CONVENIENCE, TOTAL

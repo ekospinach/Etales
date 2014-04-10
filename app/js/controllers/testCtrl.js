@@ -292,13 +292,6 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
         {"id": "LongDashDotDot", "title": "LongDashDotDot"}
     ];
 
-    $scope.chartSeries = [
-        {"name": "Some data", "data": [1, 2, 4, 7, 3],type: "column"},
-        {"name": "Some data 3", "data": [3, 1, 5, 5, 2], type: "column"},
-        {"name": "Some data 2", "data": [5, 2, 2, 3, 5], type: "column"},
-        {"name": "My Super Column", "data": [1, 1, 2, 3, 2], type: "column"}
-    ];
-
     $scope.chartStack = [
         {"id": '', "title": "No"},
         {"id": "normal", "title": "Normal"},
@@ -469,6 +462,81 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
     	});
     }
 
+    $scope.addMarketReport=function(){
+    	var url='/addMR-awarenessEvolution';
+    	$http({
+    		method:'GET',
+    		url:url
+    	}).then(function(){
+    		console.log('Success1');
+    		url='/addMR-sharesCrossSegment';
+    		return $http({
+    			method:'GET',
+    			url:url
+    		});
+    	}).then(function(){
+    		console.log('Success2');
+    		url='/addMR-salesCrossSegment';
+    		return $http({
+    			method:'GET',
+    			url:url
+    		});
+    	}).then(function(){
+    		console.log('Success3');
+    		url='/addMR-netMarketPrices';
+    		return $http({
+    			method:'GET',
+    			url:url
+    		});    		
+    	}).then(function(){
+    		console.log('Success4');
+    		url='/addMR-pricePromotions';
+    		return $http({
+    			method:'GET',
+    			url:url
+    		});    		
+    	}).then(function(){
+    		console.log('Success5');
+    		url='/addMR-suppliersIntelligence';
+    		return $http({
+    			method:'GET',
+    			url:url
+    		});    		
+    	}).then(function(){
+    		console.log('Success6');
+    		url='/addMR-variantPerceptionEvolution';
+    		return $http({
+    			method:'GET',
+    			url:url
+    		});
+    	}).then(function(){
+    		console.log('Success7');
+    		url='/addMR-retailerPerceptionEvolution';
+    		return $http({
+    			method:'GET',
+    			url:url
+    		});    		
+    	}).then(function(){
+    		console.log('Success8');
+    		url='/addMR-retailersIntelligence';
+    		return $http({
+    			method:'GET',
+    			url:url
+    		});    		
+    	}).then(function(){
+    		console.log('Success9');
+    		url='/addMR-forecasts';
+    		return $http({
+    			method:'GET',
+    			url:url
+    		});
+    	}).then(function(){
+    		console.log('Success10');
+    	},function(){
+    		console.log('fail');
+    	})
+    }
+
     $scope.removeRandomSeries = function () {
         var seriesArray = $scope.chartConfig.series;
         var rndIdx = Math.floor(Math.random() * seriesArray.length);
@@ -484,7 +552,14 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
         this.chartConfig.useHighStocks = !this.chartConfig.useHighStocks
     }
 
-    $scope.chartConfig = {
+    $scope.chartSeries = [
+        {"name": "Some data", "data": [1, 2, 4, 7, 3],type: "column"},
+        {"name": "Some data 3", "data": [3, 1, 5, 5, 2], type: "column"},
+        {"name": "Some data 2", "data": [5, 2, 2, 3, 5], type: "column"},
+        {"name": "My Super Column", "data": [1, 1, 2, 3, 2], type: "column"}
+    ];
+
+	$scope.chartConfig = {
         options: {
             chart: {
                 type: 'areaspline'
@@ -513,9 +588,7 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
         },
         loading: false
     }
-
-
-		$scope.Label = Label;
+		// $scope.Label = Label;
 	}]);
 
 });

@@ -21,7 +21,9 @@
 	'labelRenderer',
 	'textRenderer',
 	'tree',
-	'highcharts',
+	'highchart',
+	'highchartMore',
+	'angularHighcharts',
 	'angularBootstrapSwitch'
 	], function (angular, filters, services,directives,bootstrap, controllers) {
 		'use strict';

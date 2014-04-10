@@ -10,7 +10,6 @@
 	require.config({
 		paths: {
 			angular: '../bower_components/angular/angular',
-			//angularAnimate: '../bower_components/angular-animate/angular-animate',
 			angularCookies: 		'../bower_components/angular-cookies/angular-cookies',
 			angularRoute: 			'../bower_components/angular-route/angular-route',
 			angularResource: 		'../bower_components/angular-resource/angular-resource',
@@ -38,12 +37,12 @@
 			labelBase:   			'./utils/labelBase',
 			//highchart
 			highchart:     			'../bower_components/highcharts/highcharts',
-			highcharts:  			'../bower_components/highcharts-ng/src/highcharts-ng',
-
+			highchartMore:          '../bower_components/highcharts/highcharts-more',
+			angularHighcharts:      '../bower_components/highcharts-ng/src/highcharts-ng',
 			//Bootstrap switch interface for admin module, handle initialize parameter configure 
 			angularBootstrapSwitch: '../bower_components/angular-bootstrap-switch/dist/angular-bootstrap-switch',
 			//angular promise tracker is used for adding loading spinner by track general promise or request 
-			angularPromiseTracker:  '../bower_components/angular-promise-tracker/promise-tracker'
+			//angularPromiseTracker:  '../bower_components/angular-promise-tracker/promise-tracker'
 		},
 		baseUrl: 'js',
 		shim: {
@@ -68,7 +67,7 @@
 			'highcharts':['jquery','angular','highchart'],
 			'bootstrapswitch' : ['jquery'],
 			'angularBootstrapSwitch':['angular','jquery','bootstrapswitch'],
-			'angularPromiseTracker':['angular']
+//			'angularPromiseTracker':['angular']
 		},
 		priority: [
 			"angular"
@@ -138,4 +137,4 @@
 	});
 
 }).call(this);
-2
+
