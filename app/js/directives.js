@@ -537,6 +537,33 @@ define(['angular','services'], function(angular, services) {
                         });
                     }
                 })
+                .directive('forecast',function(){
+                    return function(scope,elem,attrs){
+                        scope.$watch(attrs.ngModel,function(v){
+                            $('#forecast').empty();
+                            $('#forecast').highcharts({
+                                chart: {
+                                    type: 'arearange',
+                                    zoomType: 'x'
+                                },
+                                title: {
+                                    text: ''
+                                },
+                                xAxis: {
+                                    title:{text:scope.segmentXTitle},categories:['','-3','-2','-1','+1','+2']
+                                },
+                                yAxis:{
+                                    title:{text:scope.segmentYTitle}
+                                    
+                                }, 
+                                tooltip: {
+                                    crosshairs: true
+                                },                     
+                                series: scope.forecastSeries     
+                            });
+                        });
+                    }
+                })
                 .directive('jqueryPlot',function(){
                     return function(scope,elem, attrs){
                         scope.$watch(attrs.ngModel, function(v){

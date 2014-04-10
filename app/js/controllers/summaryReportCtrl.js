@@ -3063,9 +3063,52 @@ define(['app','socketIO','routingConfig'], function(app) {
 			}
 			var showForecastsCategory=function(){
 				switching('showForecastsCategory');
+				var url='/getMR-forecasts/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1);
+				$http({
+					method:'GET',
+					url:url
+				}).then(function(data){
+					$scope.forecastSeries=[{
+						'name':Label.getContent('Elecssories')+'/'+Label.getContent('Rural'),'color':'#329444',
+						'data':[[1,data.data[0].minTotalVolume[0].periodInfo[0].value[1],data.data[0].maxTotalVolume[0].periodInfo[0].value[1]],[2,data.data[0].minTotalVolume[0].periodInfo[1].value[1],data.data[0].maxTotalVolume[0].periodInfo[1].value[1]],[3,data.data[0].minTotalVolume[0].periodInfo[2].value[1],data.data[0].maxTotalVolume[0].periodInfo[2].value[1]],[4,data.data[0].minTotalVolume[0].periodInfo[3].value[1],data.data[0].maxTotalVolume[0].periodInfo[3].value[1]],[5,data.data[0].minTotalVolume[0].periodInfo[4].value[1],data.data[0].maxTotalVolume[0].periodInfo[4].value[1]]]
+					},{
+						'name':Label.getContent('Elecssories')+'/'+Label.getContent('Urban'),'color':'#F6B920',
+						'data':[[1,data.data[0].minTotalVolume[0].periodInfo[0].value[0],data.data[0].maxTotalVolume[0].periodInfo[0].value[0]],[2,data.data[0].minTotalVolume[0].periodInfo[1].value[0],data.data[0].maxTotalVolume[0].periodInfo[1].value[0]],[3,data.data[0].minTotalVolume[0].periodInfo[2].value[0],data.data[0].maxTotalVolume[0].periodInfo[2].value[0]],[4,data.data[0].minTotalVolume[0].periodInfo[3].value[0],data.data[0].maxTotalVolume[0].periodInfo[3].value[0]],[5,data.data[0].minTotalVolume[0].periodInfo[4].value[0],data.data[0].maxTotalVolume[0].periodInfo[4].value[0]]]	
+					},{
+						'name':Label.getContent('HealthBeauties')+'/'+Label.getContent('Rural'),'color':'#B11E22',
+						'data':[[1,data.data[0].minTotalVolume[1].periodInfo[0].value[1],data.data[0].maxTotalVolume[1].periodInfo[0].value[1]],[2,data.data[0].minTotalVolume[1].periodInfo[1].value[1],data.data[0].maxTotalVolume[1].periodInfo[1].value[1]],[3,data.data[0].minTotalVolume[1].periodInfo[2].value[1],data.data[0].maxTotalVolume[1].periodInfo[2].value[1]],[4,data.data[0].minTotalVolume[1].periodInfo[3].value[1],data.data[0].maxTotalVolume[1].periodInfo[3].value[1]],[5,data.data[0].minTotalVolume[1].periodInfo[4].value[1],data.data[0].maxTotalVolume[1].periodInfo[4].value[1]]]
+					},{
+						'name':Label.getContent('HealthBeauties')+'/'+Label.getContent('Urban'),'color':'#3257A7',
+						'data':[[1,data.data[0].minTotalVolume[1].periodInfo[0].value[0],data.data[0].maxTotalVolume[1].periodInfo[0].value[0]],[2,data.data[0].minTotalVolume[1].periodInfo[1].value[0],data.data[0].maxTotalVolume[1].periodInfo[1].value[0]],[3,data.data[0].minTotalVolume[1].periodInfo[2].value[0],data.data[0].maxTotalVolume[1].periodInfo[2].value[0]],[4,data.data[0].minTotalVolume[1].periodInfo[3].value[0],data.data[0].maxTotalVolume[1].periodInfo[3].value[0]],[5,data.data[0].minTotalVolume[1].periodInfo[4].value[0],data.data[0].maxTotalVolume[1].periodInfo[4].value[0]]]
+					}];
+					$scope.segmentYTitle=Label.getContent('Sales Volume')+'(units mln)';
+					$scope.segmentXTitle=Label.getContent('Period');
+					$scope.myModel='ForecastsCategory';
+				},function(){
+					console.log('fail');
+				})
 			}
 			var showForecastsInternet=function(){
 				switching('showForecastsInternet');
+				var url='/getMR-forecasts/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1);
+				$http({
+					method:'GET',
+					url:url
+				}).then(function(data){
+					$scope.forecastSeries=[{
+						'name':Label.getContent('Rural'),'color':'#3257A7',
+						'data':[[1,data.data[0].minInternetPenetrationRate[0].value[1],data.data[0].maxInternetPenetrationRate[0].value[1]],[2,data.data[0].minInternetPenetrationRate[1].value[1],data.data[0].maxInternetPenetrationRate[1].value[1]],[3,data.data[0].minInternetPenetrationRate[2].value[1],data.data[0].maxInternetPenetrationRate[2].value[1]],[4,data.data[0].minInternetPenetrationRate[3].value[1],data.data[0].maxInternetPenetrationRate[3].value[1]],[5,data.data[0].minInternetPenetrationRate[4].value[1],data.data[0].maxInternetPenetrationRate[4].value[1]]]
+					},{
+						'name':Label.getContent('Urban'),'color':'#B11E22',
+						'data':[[1,data.data[0].minInternetPenetrationRate[0].value[0],data.data[0].maxInternetPenetrationRate[0].value[0]],[2,data.data[0].minInternetPenetrationRate[1].value[0],data.data[0].maxInternetPenetrationRate[1].value[0]],[3,data.data[0].minInternetPenetrationRate[2].value[0],data.data[0].maxInternetPenetrationRate[2].value[0]],[4,data.data[0].minInternetPenetrationRate[3].value[0],data.data[0].maxInternetPenetrationRate[3].value[0]],[5,data.data[0].minInternetPenetrationRate[4].value[0],data.data[0].maxInternetPenetrationRate[4].value[0]]]
+					}];
+					$scope.segmentYTitle=Label.getContent('Penetration Level')+'(%)';
+					$scope.segmentXTitle=Label.getContent('Period');
+					$scope.myModel='ForecastsInternet';
+					
+				},function(){
+					console.log('fail');
+				})
 			}
 		    //load Function
 		    $scope.switching=switching;

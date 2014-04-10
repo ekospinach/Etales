@@ -12788,10 +12788,21 @@
                                 {{Label.getContent('Two-Period Ahead Forecasts')}}-{{Label.getContent('Shopper Segment Size')}}
                             </h3>
                         </div>
-                        <div id='segment1' style="float:left;width:50%;height:50%" ng-model='myModel' highchart-segment1></div>
-                        <div id='segment2' style="width:50%;height:50%" ng-model='myModel' highchart-segment2></div>
-                        <div id='segment3' style="float:left;width:50%;height:50%" ng-model='myModel' highchart-segment3></div>
-                        <div id='segment4' style="width:50%;height:50%" ng-model='myModel' highchart-segment4></div>
+                        <div class="panel-heading" ng-show='ForecastsCategory'>
+                            <h3 class="panel-title text-center" popover="{{Label.getContent('Category Volumes by Market Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
+                                {{Label.getContent('Two-Period Ahead Forecasts')}}-{{Label.getContent('Category Volumes by Market')}}
+                            </h3>
+                        </div>
+                        <div class="panel-heading" ng-show='ForecastsInternet'>
+                            <h3 class="panel-title text-center" popover="{{Label.getContent('Internet Penetration Rates Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
+                                {{Label.getContent('Two-Period Ahead Forecasts')}}-{{Label.getContent('Internet Penetration Rates')}}
+                            </h3>
+                        </div>
+                        <div ng-show='ForecastsConsumer||ForecastsShopper' id='segment1' style="float:left;width:50%;height:50%" ng-model='myModel' highchart-segment1></div>
+                        <div ng-show='ForecastsConsumer||ForecastsShopper' id='segment2' style="width:50%;height:50%" ng-model='myModel' highchart-segment2></div>
+                        <div ng-show='ForecastsConsumer||ForecastsShopper' id='segment3' style="float:left;width:50%;height:50%" ng-model='myModel' highchart-segment3></div>
+                        <div ng-show='ForecastsConsumer||ForecastsShopper' id='segment4' style="width:50%;height:50%" ng-model='myModel' highchart-segment4></div>
+                        <div ng-show='ForecastsCategory||ForecastsInternet' id='forecast' ng-model='myModel' forecast></div>
                     </div>
 
                 <!--market report end-->
