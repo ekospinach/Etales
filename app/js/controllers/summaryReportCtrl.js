@@ -15,7 +15,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    $scope.$watch('isPageLoading', function(newValue, oldValue){
 		    	console.log('isPageLoading fire, new value:' + newValue + ', oldValue:'+ oldValue);
 		    	
-		    	$scope.isPageLoading = newValue;		    	
+		    	$scope.isPageLoading = newValue;	    	
 		    })
 
 		    var switching=function(type){
@@ -816,23 +816,23 @@ define(['app','socketIO','routingConfig'], function(app) {
 
 		    var showProducerProfitability=function(){
 		    	switching('showProducerProfitability');
-		    	var url='/SCR-channelsProfitability/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
-		    	$http({
-		    		method:'GET',
-		    		url:url
-		    	}).then(function(data){
-		    		$scope.volumeOrdereds=data.data[0].scrcp_VolumeOrdered;
-		    		$scope.volumeSolds=data.data[0].scrcp_VolumeSold;
-		    		$scope.volumeSoldShares=data.data[0].scrcp_VolumeSoldShare;
-		    		$scope.salesValues=data.data[0].scrcp_SalesValue;
-    				$scope.salesValueShares=data.data[0].scrcp_SalesValueShare;
-    				$scope.costOfGoodsSolds=data.data[0].scrcp_CostOfGoodsSold;
-    				$scope.tradeSupports=data.data[0].scrcp_TradeSupport;
-    				$scope.tradeProfits=data.data[0].scrcp_TradeProfit;   
-    				$scope.tradeProfitShares=data.data[0].scrcp_TradeProfitShare;
-		    	},function(){
-		    		console.log('fail');
-		    	})
+		    	// var url='/SCR-channelsProfitability/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+		    	// $http({
+		    	// 	method:'GET',
+		    	// 	url:url
+		    	// }).then(function(data){
+		    	// 	$scope.volumeOrdereds=data.data[0].scrcp_VolumeOrdered;
+		    	// 	$scope.volumeSolds=data.data[0].scrcp_VolumeSold;
+		    	// 	$scope.volumeSoldShares=data.data[0].scrcp_VolumeSoldShare;
+		    	// 	$scope.salesValues=data.data[0].scrcp_SalesValue;
+    			// 	$scope.salesValueShares=data.data[0].scrcp_SalesValueShare;
+    			// 	$scope.costOfGoodsSolds=data.data[0].scrcp_CostOfGoodsSold;
+    			// 	$scope.tradeSupports=data.data[0].scrcp_TradeSupport;
+    			// 	$scope.tradeProfits=data.data[0].scrcp_TradeProfit;   
+    			// 	$scope.tradeProfitShares=data.data[0].scrcp_TradeProfitShare;
+		    	// },function(){
+		    	// 	console.log('fail');
+		    	// })
 		    }
 
 		    var loadNegotiations=function(data,category,retailer,i,j){
