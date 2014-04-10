@@ -198,6 +198,7 @@ app.get('/addMR-suppliersIntelligence',require('./api/models/MR_suppliersIntelli
 app.get('/addMR-variantPerceptionEvolution',require('./api/models/MR_variantPerceptionEvolution.js').addMR_variantPerceptionEvolution);
 app.get('/addMR-retailerPerceptionEvolution',require('./api/models/MR_retailerPerceptionEvolution.js').addMR_retailerPerceptionEvolution);
 app.get('/addMR-retailersIntelligence',require('./api/models/MR_retailersIntelligence.js').addMR_retailersIntelligence);
+app.get('/addMR-forecasts',require('./api/models/MR_forecasts.js').addMR_forecasts);
 //get market report
 app.get('/getMR-awarenessEvolution/:seminar/:period',require('./api/models/MR_awarenessEvolution.js').getMR_awarenessEvolution);
 app.get('/getMR-sharesCrossSegment/:seminar/:period',require('./api/models/MR_sharesCrossSegment.js').getMR_sharesCrossSegment);
@@ -208,6 +209,7 @@ app.get('/getMR-suppliersIntelligence/:seminar/:period',require('./api/models/MR
 app.get('/getMR-variantPerceptionEvolution/:seminar/:period',require('./api/models/MR_variantPerceptionEvolution.js').getMR_variantPerceptionEvolution);
 app.get('/getMR-retailerPerceptionEvolution/:seminar/:period',require('./api/models/MR_retailerPerceptionEvolution.js').getMR_retailerPerceptionEvolution);
 app.get('/getMR-retailersIntelligence/:seminar/:period',require('./api/models/MR_retailersIntelligence.js').getMR_retailersIntelligence);
+app.get('/getMR-forecasts/:seminar/:period',require('./api/models/MR_forecasts.js').getMR_forecasts);
 
 port = parseInt(process.env.PORT, 10) || conf.server.port;
 mongoose.connect('mongodb://localhost/Etales');

@@ -428,6 +428,115 @@ define(['angular','services'], function(angular, services) {
                         });   
                     }
                 })
+                //ForecastsConsumer
+                .directive('highchartSegment1',function(){
+                    return function(scope,elem,attrs){
+                        scope.$watch(attrs.ngModel,function(v){
+                            $('#segment1').empty();
+                            $('#segment1').highcharts({
+                                chart: {
+                                    type: 'arearange',
+                                    zoomType: 'x'
+                                },
+                                title: {
+                                    text: scope.title1
+                                },
+                                xAxis: {
+                                    title:{text:scope.segmentXTitle},categories:['','-3','-2','-1','+1','+2']
+                                },
+                                yAxis:{
+                                    title:{text:scope.segmentYTitle}
+                                    
+                                }, 
+                                tooltip: {
+                                    crosshairs: true
+                                },                     
+                                series: scope.mySeries1     
+                            });
+                        });
+                    }
+                })
+                .directive('highchartSegment2',function(){
+                    return function(scope,elem,attrs){
+                        scope.$watch(attrs.ngModel,function(v){
+                            $('#segment2').empty();
+                            $('#segment2').highcharts({
+                                chart: {
+                                    type: 'arearange',
+                                    zoomType: 'x'
+                                },
+                                title: {
+                                    text: scope.title2
+                                },
+                                xAxis: {
+                                    title:{text:scope.segmentXTitle},categories:['','-3','-2','-1','+1','+2']
+                                },
+                                yAxis:{
+                                    title:{text:scope.segmentYTitle}
+                                    
+                                }, 
+                                tooltip: {
+                                    crosshairs: true
+                                },                     
+                                series: scope.mySeries2     
+                            });
+                        });
+                    }
+                })
+                .directive('highchartSegment3',function(){
+                    return function(scope,elem,attrs){
+                        scope.$watch(attrs.ngModel,function(v){
+                            $('#segment3').empty();
+                            $('#segment3').highcharts({
+                                chart: {
+                                    type: 'arearange',
+                                    zoomType: 'x'
+                                },
+                                title: {
+                                    text: scope.title3
+                                },
+                                xAxis: {
+                                    title:{text:scope.segmentXTitle},categories:['','-3','-2','-1','+1','+2']
+                                },
+                                yAxis:{
+                                    title:{text:scope.segmentYTitle}
+                                    
+                                }, 
+                                tooltip: {
+                                    crosshairs: true
+                                },                     
+                                series: scope.mySeries3     
+                            });
+                        });
+                    }
+                })
+                .directive('highchartSegment4',function(){
+                    return function(scope,elem,attrs){
+                        scope.$watch(attrs.ngModel,function(v){
+                            $('#segment4').empty();
+                            $('#segment4').highcharts({
+                                chart: {
+                                    type: 'arearange',
+                                    zoomType: 'x'
+                                },
+                                title: {
+                                    text: scope.title4
+                                },
+                                xAxis: {
+                                    title:{text:scope.segmentXTitle},categories:['','-3','-2','-1','+1','+2']
+                                },
+                                yAxis:{
+                                    title:{text:scope.segmentYTitle}
+                                    
+                                }, 
+                                tooltip: {
+                                    crosshairs: true
+                                },                     
+                                series: scope.mySeries4     
+                            });
+                        });
+                    }
+                })
                 .directive('jqueryPlot',function(){
                     return function(scope,elem, attrs){
                         scope.$watch(attrs.ngModel, function(v){

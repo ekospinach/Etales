@@ -12777,6 +12777,23 @@
                         </table>
                     </div>
 
+                    <div class="panel panel-danger" ng-show='ForecastsConsumer||ForecastsShopper||ForecastsCategory||ForecastsInternet'>
+                        <div class="panel-heading" ng-show='ForecastsConsumer'>
+                            <h3 class="panel-title text-center" popover="{{Label.getContent('Consumer Segment Size Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
+                                {{Label.getContent('Two-Period Ahead Forecasts')}}-{{Label.getContent('Consumer Segment Size')}}
+                            </h3>
+                        </div>
+                        <div class="panel-heading" ng-show='ForecastsShopper'>
+                            <h3 class="panel-title text-center" popover="{{Label.getContent('Shopper Segment Size Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
+                                {{Label.getContent('Two-Period Ahead Forecasts')}}-{{Label.getContent('Shopper Segment Size')}}
+                            </h3>
+                        </div>
+                        <div id='segment1' style="float:left;width:50%;height:50%" ng-model='myModel' highchart-segment1></div>
+                        <div id='segment2' style="width:50%;height:50%" ng-model='myModel' highchart-segment2></div>
+                        <div id='segment3' style="float:left;width:50%;height:50%" ng-model='myModel' highchart-segment3></div>
+                        <div id='segment4' style="width:50%;height:50%" ng-model='myModel' highchart-segment4></div>
+                    </div>
+
                 <!--market report end-->
 
             </div>
@@ -13018,7 +13035,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="">
+                    <!--<li class="">
                         <a href="/#/summaryReport" style="color:#D9534F" ng-click='showPromotionElecssories()'>{{Label.getContent('Promotion Intensity')}}</a>
                         <ul class="nav second-sidenav">
                             <li class="">
@@ -13034,7 +13051,7 @@
                     </li>
                     <li class="">
                         <a href="/#/summaryReport" style="color:#D9534F" ng-click='showRetailerIntelligence()'>{{Label.getContent('Retailer Intelligence')}}</a>
-                    </li>
+                    </li>-->
                     <li class="">
                         <a href="/#/summaryReport" style="color:#D9534F" ng-click='showForecastsConsumer()'>{{Label.getContent('Forecasts')}}</a>
                         <ul class="nav second-sidenav">
@@ -13042,7 +13059,7 @@
                                 <a href="/#/summaryReport" style="color:#D9534F" ng-click='showForecastsConsumer()'>{{Label.getContent('Consumer Segment Size')}}</a>
                             </li>
                             <li class="">
-                                <a href="/#/summaryReport" style="color:#D9534F" ng-click='showForecastsShopper'>{{Label.getContent('Shopper Segment Size')}}</a>
+                                <a href="/#/summaryReport" style="color:#D9534F" ng-click='showForecastsShopper()'>{{Label.getContent('Shopper Segment Size')}}</a>
                             </li>
                             <li class="">
                                 <a href="/#/summaryReport" style="color:#D9534F" ng-click='showForecastsCategory()'>{{Label.getContent('Category Volume s by Market')}}</a>
