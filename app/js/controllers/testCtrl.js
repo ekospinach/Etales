@@ -479,6 +479,81 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
     	});
     }
 
+    $scope.addMarketReport=function(){
+    	var url='/addMR-awarenessEvolution';
+    	$http({
+    		method:'GET',
+    		url:url
+    	}).then(function(){
+    		console.log('Success1');
+    		url='/addMR-sharesCrossSegment';
+    		return $http({
+    			method:'GET',
+    			url:url
+    		});
+    	}).then(function(){
+    		console.log('Success2');
+    		url='/addMR-salesCrossSegment';
+    		return $http({
+    			method:'GET',
+    			url:url
+    		});
+    	}).then(function(){
+    		console.log('Success3');
+    		url='/addMR-netMarketPrices';
+    		return $http({
+    			method:'GET',
+    			url:url
+    		});    		
+    	}).then(function(){
+    		console.log('Success4');
+    		url='/addMR-pricePromotions';
+    		return $http({
+    			method:'GET',
+    			url:url
+    		});    		
+    	}).then(function(){
+    		console.log('Success5');
+    		url='/addMR-suppliersIntelligence';
+    		return $http({
+    			method:'GET',
+    			url:url
+    		});    		
+    	}).then(function(){
+    		console.log('Success6');
+    		url='/addMR-variantPerceptionEvolution';
+    		return $http({
+    			method:'GET',
+    			url:url
+    		});
+    	}).then(function(){
+    		console.log('Success7');
+    		url='/addMR-retailerPerceptionEvolution';
+    		return $http({
+    			method:'GET',
+    			url:url
+    		});    		
+    	}).then(function(){
+    		console.log('Success8');
+    		url='/addMR-retailersIntelligence';
+    		return $http({
+    			method:'GET',
+    			url:url
+    		});    		
+    	}).then(function(){
+    		console.log('Success9');
+    		url='/addMR-forecasts';
+    		return $http({
+    			method:'GET',
+    			url:url
+    		});
+    	}).then(function(){
+    		console.log('Success10');
+    	},function(){
+    		console.log('fail');
+    	})
+    }
+
     $scope.removeRandomSeries = function () {
         var seriesArray = $scope.chartConfig.series;
         var rndIdx = Math.floor(Math.random() * seriesArray.length);
@@ -494,40 +569,22 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
         this.chartConfig.useHighStocks = !this.chartConfig.useHighStocks
     }
 
-    $scope.mySeries1=[{
-    	data: [[97,36,'ELAN1_A'],[94,74,'ELAN1_B'],[68,76,'ELAN1_D'],[64,87,'ELAN1_E'],[68,27,'ELAN1_F'],[74,99,'ELAN1_G'],[7,93,'ELAN1_H'],[51,69,'ELAN1_I'],[38,23,'ELAN1_J'],[57,86,'name']]
-    }, {
-    	data: [[25,10,'name'],[2,75,'name'],[11,54,'name'],[86,55,'name'],[5,3,'name'],[90,63,'name'],[91,33,'name'],[97,3,'name'],[15,67,'name'],[54,25,'name']]
-    }, {
-    	data: [[47,47,'name'],[20,12,'name'],[6,76,'name'],[38,30,'name'],[57,98,'name'],[61,17,'name'],[83,60,'name'],[67,78,'name'],[64,12,'name'],[30,77,'name']]
-    }];
+  //   $scope.mySeries1=[{
+  //   	data: [[97,36,'ELAN1_A'],[94,74,'ELAN1_B'],[68,76,'ELAN1_D'],[64,87,'ELAN1_E'],[68,27,'ELAN1_F'],[74,99,'ELAN1_G'],[7,93,'ELAN1_H'],[51,69,'ELAN1_I'],[38,23,'ELAN1_J'],[57,86,'name']]
+  //   }, {
+  //   	data: [[25,10,'name'],[2,75,'name'],[11,54,'name'],[86,55,'name'],[5,3,'name'],[90,63,'name'],[91,33,'name'],[97,3,'name'],[15,67,'name'],[54,25,'name']]
+  //   }, {
+  //   	data: [[47,47,'name'],[20,12,'name'],[6,76,'name'],[38,30,'name'],[57,98,'name'],[61,17,'name'],[83,60,'name'],[67,78,'name'],[64,12,'name'],[30,77,'name']]
+  //   }];
 
-    $scope.mySeries2=[{
-    	data: [[1,36,'ELAN1_A'],[1,74,'ELAN1_B'],[1,76,'ELAN1_D'],[1,87,'ELAN1_E'],[1,27,'ELAN1_F'],[1,99,'ELAN1_G'],[1,93,'ELAN1_H'],[1,69,'ELAN1_I'],[1,23,'ELAN1_J'],[1,86,'name']]
-    }, {
-    	data: [[1,10,'name'],[1,75,'name'],[1,54,'name'],[1,55,'name'],[1,3,'name'],[1,63,'name'],[1,33,'name'],[1,3,'name'],[1,67,'name'],[1,25,'name']]
-    }, {
-    	data: [[1,47,'name'],[1,12,'name'],[1,76,'name'],[1,30,'name'],[1,98,'name'],[1,17,'name'],[1,60,'name'],[1,78,'name'],[1,12,'name'],[1,77,'name']]
-    }];
-  //   $scope.chartConfig = {
-  //       chart: {
-  //       	type: 'bubble',
-		// },
-  //       series: [{
-	 //        data: [[97,36,79],[94,74,60],[68,76,58],[64,87,56],[68,27,73],[74,99,42],[7,93,87],[51,69,40],[38,23,33],[57,86,31]]
-	 //    }, {
-	 //        data: [[25,10,87],[2,75,59],[11,54,8],[86,55,93],[5,3,58],[90,63,44],[91,33,17],[97,3,56],[15,67,48],[54,25,81]]
-	 //    }, {
-	 //        data: [[47,47,21],[20,12,4],[6,76,91],[38,30,60],[57,98,64],[61,17,80],[83,60,13],[67,78,75],[64,12,10],[30,77,82]]
-	 //    }],
-  //       title: {
-  //           text: 'Hello'
-  //       },
-  //       loading: false
-  //   }
-
-
-		$scope.Label = Label;
+  //   $scope.mySeries2=[{
+  //   	data: [[1,36,'ELAN1_A'],[1,74,'ELAN1_B'],[1,76,'ELAN1_D'],[1,87,'ELAN1_E'],[1,27,'ELAN1_F'],[1,99,'ELAN1_G'],[1,93,'ELAN1_H'],[1,69,'ELAN1_I'],[1,23,'ELAN1_J'],[1,86,'name']]
+  //   }, {
+  //   	data: [[1,10,'name'],[1,75,'name'],[1,54,'name'],[1,55,'name'],[1,3,'name'],[1,63,'name'],[1,33,'name'],[1,3,'name'],[1,67,'name'],[1,25,'name']]
+  //   }, {
+  //   	data: [[1,47,'name'],[1,12,'name'],[1,76,'name'],[1,30,'name'],[1,98,'name'],[1,17,'name'],[1,60,'name'],[1,78,'name'],[1,12,'name'],[1,77,'name']]
+  //   }];
+		// $scope.Label = Label;
 	}]);
 
 });
