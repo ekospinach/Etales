@@ -1,780 +1,780 @@
 <div class="panel my-panel-success panel-primary" ng-show='isResultShown'>
-                        <div class="panel-heading">
-                            <h3 class="panel-title text-center" popover="{{Label.getContent('Profitability by Channel Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Financial Results')}}-{{Label.getContent('Profitability by Channel')}}</h3>
-                        </div>
-                        <table class="table table-condensed table-bordered table-success">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th colspan="2">
-                                        <p class="text-center">{{Label.getContent('Retailer')}} 1
-                                        </p>
-                                    </th>
-                                    <th colspan="2">
-                                        <p class="text-center">{{Label.getContent('Retailer')}} 2
-                                        </p>
-                                    </th>
-                                    <th colspan="2">
-                                        <p class="text-center">{{Label.getContent('Traditional Trade')}}</p>
-                                    </th>
-                                    <th>
-                                        <p class="text-center">{{Label.getContent('Online Store')}}</p>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Rural')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Urban')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Rural')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Urban')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Rural')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Urban')}}</p>
-                                    </td>
-                                    <td></td>
-                                </tr>
-                                <tr class="success">
-                                    <td colspan='8'>
-                                        <p>{{Label.getContent('Elecssories')}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="success">
-                                    <td>
-                                        <p class="padding-20">{{Label.getContent('Order Volume')}}(units mln)</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeOrdereds[0].marketInfo[1].accountInfo[0].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeOrdereds[0].marketInfo[0].accountInfo[0].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeOrdereds[0].marketInfo[1].accountInfo[1].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeOrdereds[0].marketInfo[0].accountInfo[1].value}}
-                                        </p>
-                                    </td>               
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeOrdereds[0].marketInfo[1].accountInfo[2].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeOrdereds[0].marketInfo[0].accountInfo[2].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeOrdereds[0].marketInfo[2].accountInfo[3].value}}
-                                        </p>
-                                    </td>
-                                </tr>
-                                <tr class="success">
-                                    <td>
-                                        <p class="padding-20">{{Label.getContent('Volume Sales')}}(units mln)</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeSolds[0].marketInfo[1].accountInfo[0].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeSolds[0].marketInfo[0].accountInfo[0].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeSolds[0].marketInfo[1].accountInfo[1].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeSolds[0].marketInfo[0].accountInfo[1].value}}
-                                        </p>
-                                    </td>               
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeSolds[0].marketInfo[1].accountInfo[2].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeSolds[0].marketInfo[0].accountInfo[2].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeSolds[0].marketInfo[2].accountInfo[3].value}}
-                                        </p>
-                                    </td>
-                                </tr>
-                                <tr class="success">
-                                    <td>
-                                        <p class="text-right">{{Label.getContent('Share of Volume Sales')}}(%)</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeSoldShares[0].marketInfo[1].accountInfo[0].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeSoldShares[0].marketInfo[0].accountInfo[0].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeSoldShares[0].marketInfo[1].accountInfo[1].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeSoldShares[0].marketInfo[0].accountInfo[1].value}}
-                                        </p>
-                                    </td>               
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeSoldShares[0].marketInfo[1].accountInfo[2].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeSoldShares[0].marketInfo[0].accountInfo[2].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeSoldShares[0].marketInfo[2].accountInfo[3].value}}
-                                        </p>
-                                    </td>
-                                </tr>
-                                <tr class="success">
-                                    <td>
-                                        <p class="padding-20">{{Label.getContent('Gross Sales')}}($mln)</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{salesValues[0].marketInfo[1].accountInfo[0].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{salesValues[0].marketInfo[0].accountInfo[0].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{salesValues[0].marketInfo[1].accountInfo[1].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{salesValues[0].marketInfo[0].accountInfo[1].value}}
-                                        </p>
-                                    </td>               
-                                    <td>
-                                        <p class="text-right">
-                                            {{salesValues[0].marketInfo[1].accountInfo[2].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{salesValues[0].marketInfo[0].accountInfo[2].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{salesValues[0].marketInfo[2].accountInfo[3].value}}
-                                        </p>
-                                    </td>
-                                </tr>
-                                <tr class="success">
-                                    <td>
-                                        <p class="text-right">{{Label.getContent('Share of Gross Sales')}}(%)</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{salesValueShares[0].marketInfo[1].accountInfo[0].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{salesValueShares[0].marketInfo[0].accountInfo[0].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{salesValueShares[0].marketInfo[1].accountInfo[1].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{salesValueShares[0].marketInfo[0].accountInfo[1].value}}
-                                        </p>
-                                    </td>               
-                                    <td>
-                                        <p class="text-right">
-                                            {{salesValueShares[0].marketInfo[1].accountInfo[2].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{salesValueShares[0].marketInfo[0].accountInfo[2].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{salesValueShares[0].marketInfo[2].accountInfo[3].value}}
-                                        </p>
-                                    </td>
-                                </tr>
-                                <tr class="success">
-                                    <td>
-                                        <p class="padding-20">{{Label.getContent('Cost of Goods Sold')}}($mln)</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{costOfGoodsSolds[0].marketInfo[1].accountInfo[0].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{costOfGoodsSolds[0].marketInfo[0].accountInfo[0].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{costOfGoodsSolds[0].marketInfo[1].accountInfo[1].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{costOfGoodsSolds[0].marketInfo[0].accountInfo[1].value}}
-                                        </p>
-                                    </td>               
-                                    <td>
-                                        <p class="text-right">
-                                            {{costOfGoodsSolds[0].marketInfo[1].accountInfo[2].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{costOfGoodsSolds[0].marketInfo[0].accountInfo[2].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{costOfGoodsSolds[0].marketInfo[2].accountInfo[3].value}}
-                                        </p>
-                                    </td>
-                                </tr>
-                                <tr class="success">
-                                    <td>
-                                        <p class="padding-20">{{Label.getContent('Trade Expenses')}}($mln)</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeSupports[0].marketInfo[1].accountInfo[0].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeSupports[0].marketInfo[0].accountInfo[0].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeSupports[0].marketInfo[1].accountInfo[1].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeSupports[0].marketInfo[0].accountInfo[1].value}}
-                                        </p>
-                                    </td>               
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeSupports[0].marketInfo[1].accountInfo[2].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeSupports[0].marketInfo[0].accountInfo[2].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeSupports[0].marketInfo[2].accountInfo[3].value}}
-                                        </p>
-                                    </td>
-                                </tr>
-                                <tr class="success">
-                                    <td>
-                                        <p class="padding-20">{{Label.getContent('Trade Profit')}}($mln)</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeProfits[0].marketInfo[1].accountInfo[0].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeProfits[0].marketInfo[0].accountInfo[0].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeProfits[0].marketInfo[1].accountInfo[1].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeProfits[0].marketInfo[0].accountInfo[1].value}}
-                                        </p>
-                                    </td>               
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeProfits[0].marketInfo[1].accountInfo[2].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeProfits[0].marketInfo[0].accountInfo[2].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeProfits[0].marketInfo[2].accountInfo[3].value}}
-                                        </p>
-                                    </td>
-                                </tr>
-                                <tr class="success">
-                                    <td>
-                                        <p class="text-right">{{Label.getContent('Share of Trade Profit')}}(%)</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeProfitShares[0].marketInfo[1].accountInfo[0].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeProfitShares[0].marketInfo[0].accountInfo[0].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeProfitShares[0].marketInfo[1].accountInfo[1].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeProfitShares[0].marketInfo[0].accountInfo[1].value}}
-                                        </p>
-                                    </td>               
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeProfitShares[0].marketInfo[1].accountInfo[2].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeProfitShares[0].marketInfo[0].accountInfo[2].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeProfitShares[0].marketInfo[2].accountInfo[3].value}}
-                                        </p>
-                                    </td>
-                                </tr>
-                                <tr class="danger">
-                                    <td colspan='8'>
-                                        <p>{{Label.getContent('HealthBeauties')}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger">
-                                    <td>
-                                        <p class="padding-20">{{Label.getContent('Order Volume')}}(units mln)</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeOrdereds[1].marketInfo[1].accountInfo[0].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeOrdereds[1].marketInfo[0].accountInfo[0].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeOrdereds[1].marketInfo[1].accountInfo[1].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeOrdereds[1].marketInfo[0].accountInfo[1].value}}
-                                        </p>
-                                    </td>               
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeOrdereds[1].marketInfo[1].accountInfo[2].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeOrdereds[1].marketInfo[0].accountInfo[2].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeOrdereds[1].marketInfo[2].accountInfo[3].value}}
-                                        </p>
-                                    </td>
-                                </tr>
-                                <tr class="danger">
-                                    <td>
-                                        <p class="padding-20">{{Label.getContent('Volume Sales')}}(units mln)</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeSolds[1].marketInfo[1].accountInfo[0].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeSolds[1].marketInfo[0].accountInfo[0].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeSolds[1].marketInfo[1].accountInfo[1].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeSolds[1].marketInfo[0].accountInfo[1].value}}
-                                        </p>
-                                    </td>               
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeSolds[1].marketInfo[1].accountInfo[2].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeSolds[1].marketInfo[0].accountInfo[2].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeSolds[1].marketInfo[2].accountInfo[3].value}}
-                                        </p>
-                                    </td>
-                                </tr>
-                                <tr class="danger">
-                                    <td>
-                                        <p class="text-right">{{Label.getContent('Share of Volume Sales')}}(%)</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeSoldShares[1].marketInfo[1].accountInfo[0].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeSoldShares[1].marketInfo[0].accountInfo[0].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeSoldShares[1].marketInfo[1].accountInfo[1].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeSoldShares[1].marketInfo[0].accountInfo[1].value}}
-                                        </p>
-                                    </td>               
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeSoldShares[1].marketInfo[1].accountInfo[2].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeSoldShares[1].marketInfo[0].accountInfo[2].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{volumeSoldShares[1].marketInfo[2].accountInfo[3].value}}
-                                        </p>
-                                    </td>
-                                </tr>
-                                <tr class="danger">
-                                    <td>
-                                        <p class="padding-20">{{Label.getContent('Gross Sales')}}($mln)</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{salesValues[1].marketInfo[1].accountInfo[0].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{salesValues[1].marketInfo[0].accountInfo[0].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{salesValues[1].marketInfo[1].accountInfo[1].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{salesValues[1].marketInfo[0].accountInfo[1].value}}
-                                        </p>
-                                    </td>               
-                                    <td>
-                                        <p class="text-right">
-                                            {{salesValues[1].marketInfo[1].accountInfo[2].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{salesValues[1].marketInfo[0].accountInfo[2].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{salesValues[1].marketInfo[2].accountInfo[3].value}}
-                                        </p>
-                                    </td>
-                                </tr>
-                                <tr class="danger">
-                                    <td>
-                                        <p class="text-right">{{Label.getContent('Share of Gross Sales')}}(%)</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{salesValueShares[1].marketInfo[1].accountInfo[0].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{salesValueShares[1].marketInfo[0].accountInfo[0].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{salesValueShares[1].marketInfo[1].accountInfo[1].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{salesValueShares[1].marketInfo[0].accountInfo[1].value}}
-                                        </p>
-                                    </td>               
-                                    <td>
-                                        <p class="text-right">
-                                            {{salesValueShares[1].marketInfo[1].accountInfo[2].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{salesValueShares[1].marketInfo[0].accountInfo[2].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{salesValueShares[1].marketInfo[2].accountInfo[3].value}}
-                                        </p>
-                                    </td>
-                                </tr>
-                                <tr class="danger">
-                                    <td>
-                                        <p class="padding-20">{{Label.getContent('Cost of Goods Sold')}}($mln)</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{costOfGoodsSolds[1].marketInfo[1].accountInfo[0].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{costOfGoodsSolds[1].marketInfo[0].accountInfo[0].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{costOfGoodsSolds[1].marketInfo[1].accountInfo[1].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{costOfGoodsSolds[1].marketInfo[0].accountInfo[1].value}}
-                                        </p>
-                                    </td>               
-                                    <td>
-                                        <p class="text-right">
-                                            {{costOfGoodsSolds[1].marketInfo[1].accountInfo[2].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{costOfGoodsSolds[1].marketInfo[0].accountInfo[2].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{costOfGoodsSolds[1].marketInfo[2].accountInfo[3].value}}
-                                        </p>
-                                    </td>
-                                </tr>
-                                <tr class="danger">
-                                    <td>
-                                        <p class="padding-20">{{Label.getContent('Trade Expenses')}}($mln)</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeSupports[1].marketInfo[1].accountInfo[0].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeSupports[1].marketInfo[0].accountInfo[0].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeSupports[1].marketInfo[1].accountInfo[1].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeSupports[1].marketInfo[0].accountInfo[1].value}}
-                                        </p>
-                                    </td>               
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeSupports[1].marketInfo[1].accountInfo[2].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeSupports[1].marketInfo[0].accountInfo[2].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeSupports[1].marketInfo[2].accountInfo[3].value}}
-                                        </p>
-                                    </td>
-                                </tr>
-                                <tr class="danger">
-                                    <td>
-                                        <p class="padding-20">{{Label.getContent('Trade Profit')}}($mln)</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeProfits[1].marketInfo[1].accountInfo[0].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeProfits[1].marketInfo[0].accountInfo[0].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeProfits[1].marketInfo[1].accountInfo[1].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeProfits[1].marketInfo[0].accountInfo[1].value}}
-                                        </p>
-                                    </td>               
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeProfits[1].marketInfo[1].accountInfo[2].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeProfits[1].marketInfo[0].accountInfo[2].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeProfits[1].marketInfo[2].accountInfo[3].value}}
-                                        </p>
-                                    </td>
-                                </tr>
-                                <tr class="danger">
-                                    <td>
-                                        <p class="text-right">{{Label.getContent('Share of Trade Profit')}}(%)</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeProfitShares[1].marketInfo[1].accountInfo[0].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeProfitShares[1].marketInfo[0].accountInfo[0].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeProfitShares[1].marketInfo[1].accountInfo[1].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeProfitShares[1].marketInfo[0].accountInfo[1].value}}
-                                        </p>
-                                    </td>               
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeProfitShares[1].marketInfo[1].accountInfo[2].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeProfitShares[1].marketInfo[0].accountInfo[2].value}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">
-                                            {{tradeProfitShares[1].marketInfo[2].accountInfo[3].value}}
-                                        </p>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+    <div class="panel-heading">
+        <h3 class="panel-title text-center" popover="{{Label.getContent('Profitability by Channel Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Financial Results')}}-{{Label.getContent('Profitability by Channel')}}</h3>
+    </div>
+    <table class="table table-condensed table-bordered table-success">
+        <thead>
+            <tr>
+                <th></th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Retailer')}} 1
+                    </p>
+                </th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Retailer')}} 2
+                    </p>
+                </th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Traditional Trade')}}</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Online Store')}}</p>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                </td>
+                <td></td>
+            </tr>
+            <tr class="success">
+                <td colspan='8'>
+                    <p>{{Label.getContent('Elecssories')}}</p>
+                </td>
+            </tr>
+            <tr class="success">
+                <td>
+                    <p class="padding-20">{{Label.getContent('Order Volume')}}(units mln)</p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{volumeOrdereds[0].marketInfo[1].accountInfo[0].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{volumeOrdereds[0].marketInfo[0].accountInfo[0].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{volumeOrdereds[0].marketInfo[1].accountInfo[1].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{volumeOrdereds[0].marketInfo[0].accountInfo[1].value}}
+                    </p>
+                </td>               
+                <td>
+                    <p class="text-right">
+                        {{volumeOrdereds[0].marketInfo[1].accountInfo[2].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{volumeOrdereds[0].marketInfo[0].accountInfo[2].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{volumeOrdereds[0].marketInfo[2].accountInfo[3].value}}
+                    </p>
+                </td>
+            </tr>
+            <tr class="success">
+                <td>
+                    <p class="padding-20">{{Label.getContent('Volume Sales')}}(units mln)</p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{volumeSolds[0].marketInfo[1].accountInfo[0].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{volumeSolds[0].marketInfo[0].accountInfo[0].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{volumeSolds[0].marketInfo[1].accountInfo[1].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{volumeSolds[0].marketInfo[0].accountInfo[1].value}}
+                    </p>
+                </td>               
+                <td>
+                    <p class="text-right">
+                        {{volumeSolds[0].marketInfo[1].accountInfo[2].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{volumeSolds[0].marketInfo[0].accountInfo[2].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{volumeSolds[0].marketInfo[2].accountInfo[3].value}}
+                    </p>
+                </td>
+            </tr>
+            <tr class="success">
+                <td>
+                    <p class="text-right">{{Label.getContent('Share of Volume Sales')}}(%)</p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{volumeSoldShares[0].marketInfo[1].accountInfo[0].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{volumeSoldShares[0].marketInfo[0].accountInfo[0].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{volumeSoldShares[0].marketInfo[1].accountInfo[1].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{volumeSoldShares[0].marketInfo[0].accountInfo[1].value}}
+                    </p>
+                </td>               
+                <td>
+                    <p class="text-right">
+                        {{volumeSoldShares[0].marketInfo[1].accountInfo[2].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{volumeSoldShares[0].marketInfo[0].accountInfo[2].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{volumeSoldShares[0].marketInfo[2].accountInfo[3].value}}
+                    </p>
+                </td>
+            </tr>
+            <tr class="success">
+                <td>
+                    <p class="padding-20">{{Label.getContent('Gross Sales')}}($mln)</p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{salesValues[0].marketInfo[1].accountInfo[0].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{salesValues[0].marketInfo[0].accountInfo[0].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{salesValues[0].marketInfo[1].accountInfo[1].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{salesValues[0].marketInfo[0].accountInfo[1].value}}
+                    </p>
+                </td>               
+                <td>
+                    <p class="text-right">
+                        {{salesValues[0].marketInfo[1].accountInfo[2].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{salesValues[0].marketInfo[0].accountInfo[2].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{salesValues[0].marketInfo[2].accountInfo[3].value}}
+                    </p>
+                </td>
+            </tr>
+            <tr class="success">
+                <td>
+                    <p class="text-right">{{Label.getContent('Share of Gross Sales')}}(%)</p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{salesValueShares[0].marketInfo[1].accountInfo[0].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{salesValueShares[0].marketInfo[0].accountInfo[0].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{salesValueShares[0].marketInfo[1].accountInfo[1].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{salesValueShares[0].marketInfo[0].accountInfo[1].value}}
+                    </p>
+                </td>               
+                <td>
+                    <p class="text-right">
+                        {{salesValueShares[0].marketInfo[1].accountInfo[2].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{salesValueShares[0].marketInfo[0].accountInfo[2].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{salesValueShares[0].marketInfo[2].accountInfo[3].value}}
+                    </p>
+                </td>
+            </tr>
+            <tr class="success">
+                <td>
+                    <p class="padding-20">{{Label.getContent('Cost of Goods Sold')}}($mln)</p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{costOfGoodsSolds[0].marketInfo[1].accountInfo[0].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{costOfGoodsSolds[0].marketInfo[0].accountInfo[0].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{costOfGoodsSolds[0].marketInfo[1].accountInfo[1].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{costOfGoodsSolds[0].marketInfo[0].accountInfo[1].value}}
+                    </p>
+                </td>               
+                <td>
+                    <p class="text-right">
+                        {{costOfGoodsSolds[0].marketInfo[1].accountInfo[2].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{costOfGoodsSolds[0].marketInfo[0].accountInfo[2].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{costOfGoodsSolds[0].marketInfo[2].accountInfo[3].value}}
+                    </p>
+                </td>
+            </tr>
+            <tr class="success">
+                <td>
+                    <p class="padding-20">{{Label.getContent('Trade Expenses')}}($mln)</p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{tradeSupports[0].marketInfo[1].accountInfo[0].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{tradeSupports[0].marketInfo[0].accountInfo[0].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{tradeSupports[0].marketInfo[1].accountInfo[1].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{tradeSupports[0].marketInfo[0].accountInfo[1].value}}
+                    </p>
+                </td>               
+                <td>
+                    <p class="text-right">
+                        {{tradeSupports[0].marketInfo[1].accountInfo[2].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{tradeSupports[0].marketInfo[0].accountInfo[2].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{tradeSupports[0].marketInfo[2].accountInfo[3].value}}
+                    </p>
+                </td>
+            </tr>
+            <tr class="success">
+                <td>
+                    <p class="padding-20">{{Label.getContent('Trade Profit')}}($mln)</p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{tradeProfits[0].marketInfo[1].accountInfo[0].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{tradeProfits[0].marketInfo[0].accountInfo[0].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{tradeProfits[0].marketInfo[1].accountInfo[1].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{tradeProfits[0].marketInfo[0].accountInfo[1].value}}
+                    </p>
+                </td>               
+                <td>
+                    <p class="text-right">
+                        {{tradeProfits[0].marketInfo[1].accountInfo[2].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{tradeProfits[0].marketInfo[0].accountInfo[2].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{tradeProfits[0].marketInfo[2].accountInfo[3].value}}
+                    </p>
+                </td>
+            </tr>
+            <tr class="success">
+                <td>
+                    <p class="text-right">{{Label.getContent('Share of Trade Profit')}}(%)</p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{tradeProfitShares[0].marketInfo[1].accountInfo[0].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{tradeProfitShares[0].marketInfo[0].accountInfo[0].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{tradeProfitShares[0].marketInfo[1].accountInfo[1].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{tradeProfitShares[0].marketInfo[0].accountInfo[1].value}}
+                    </p>
+                </td>               
+                <td>
+                    <p class="text-right">
+                        {{tradeProfitShares[0].marketInfo[1].accountInfo[2].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{tradeProfitShares[0].marketInfo[0].accountInfo[2].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{tradeProfitShares[0].marketInfo[2].accountInfo[3].value}}
+                    </p>
+                </td>
+            </tr>
+            <tr class="danger">
+                <td colspan='8'>
+                    <p>{{Label.getContent('HealthBeauties')}}</p>
+                </td>
+            </tr>
+            <tr class="danger">
+                <td>
+                    <p class="padding-20">{{Label.getContent('Order Volume')}}(units mln)</p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{volumeOrdereds[1].marketInfo[1].accountInfo[0].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{volumeOrdereds[1].marketInfo[0].accountInfo[0].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{volumeOrdereds[1].marketInfo[1].accountInfo[1].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{volumeOrdereds[1].marketInfo[0].accountInfo[1].value}}
+                    </p>
+                </td>               
+                <td>
+                    <p class="text-right">
+                        {{volumeOrdereds[1].marketInfo[1].accountInfo[2].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{volumeOrdereds[1].marketInfo[0].accountInfo[2].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{volumeOrdereds[1].marketInfo[2].accountInfo[3].value}}
+                    </p>
+                </td>
+            </tr>
+            <tr class="danger">
+                <td>
+                    <p class="padding-20">{{Label.getContent('Volume Sales')}}(units mln)</p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{volumeSolds[1].marketInfo[1].accountInfo[0].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{volumeSolds[1].marketInfo[0].accountInfo[0].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{volumeSolds[1].marketInfo[1].accountInfo[1].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{volumeSolds[1].marketInfo[0].accountInfo[1].value}}
+                    </p>
+                </td>               
+                <td>
+                    <p class="text-right">
+                        {{volumeSolds[1].marketInfo[1].accountInfo[2].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{volumeSolds[1].marketInfo[0].accountInfo[2].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{volumeSolds[1].marketInfo[2].accountInfo[3].value}}
+                    </p>
+                </td>
+            </tr>
+            <tr class="danger">
+                <td>
+                    <p class="text-right">{{Label.getContent('Share of Volume Sales')}}(%)</p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{volumeSoldShares[1].marketInfo[1].accountInfo[0].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{volumeSoldShares[1].marketInfo[0].accountInfo[0].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{volumeSoldShares[1].marketInfo[1].accountInfo[1].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{volumeSoldShares[1].marketInfo[0].accountInfo[1].value}}
+                    </p>
+                </td>               
+                <td>
+                    <p class="text-right">
+                        {{volumeSoldShares[1].marketInfo[1].accountInfo[2].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{volumeSoldShares[1].marketInfo[0].accountInfo[2].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{volumeSoldShares[1].marketInfo[2].accountInfo[3].value}}
+                    </p>
+                </td>
+            </tr>
+            <tr class="danger">
+                <td>
+                    <p class="padding-20">{{Label.getContent('Gross Sales')}}($mln)</p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{salesValues[1].marketInfo[1].accountInfo[0].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{salesValues[1].marketInfo[0].accountInfo[0].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{salesValues[1].marketInfo[1].accountInfo[1].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{salesValues[1].marketInfo[0].accountInfo[1].value}}
+                    </p>
+                </td>               
+                <td>
+                    <p class="text-right">
+                        {{salesValues[1].marketInfo[1].accountInfo[2].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{salesValues[1].marketInfo[0].accountInfo[2].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{salesValues[1].marketInfo[2].accountInfo[3].value}}
+                    </p>
+                </td>
+            </tr>
+            <tr class="danger">
+                <td>
+                    <p class="text-right">{{Label.getContent('Share of Gross Sales')}}(%)</p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{salesValueShares[1].marketInfo[1].accountInfo[0].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{salesValueShares[1].marketInfo[0].accountInfo[0].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{salesValueShares[1].marketInfo[1].accountInfo[1].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{salesValueShares[1].marketInfo[0].accountInfo[1].value}}
+                    </p>
+                </td>               
+                <td>
+                    <p class="text-right">
+                        {{salesValueShares[1].marketInfo[1].accountInfo[2].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{salesValueShares[1].marketInfo[0].accountInfo[2].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{salesValueShares[1].marketInfo[2].accountInfo[3].value}}
+                    </p>
+                </td>
+            </tr>
+            <tr class="danger">
+                <td>
+                    <p class="padding-20">{{Label.getContent('Cost of Goods Sold')}}($mln)</p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{costOfGoodsSolds[1].marketInfo[1].accountInfo[0].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{costOfGoodsSolds[1].marketInfo[0].accountInfo[0].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{costOfGoodsSolds[1].marketInfo[1].accountInfo[1].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{costOfGoodsSolds[1].marketInfo[0].accountInfo[1].value}}
+                    </p>
+                </td>               
+                <td>
+                    <p class="text-right">
+                        {{costOfGoodsSolds[1].marketInfo[1].accountInfo[2].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{costOfGoodsSolds[1].marketInfo[0].accountInfo[2].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{costOfGoodsSolds[1].marketInfo[2].accountInfo[3].value}}
+                    </p>
+                </td>
+            </tr>
+            <tr class="danger">
+                <td>
+                    <p class="padding-20">{{Label.getContent('Trade Expenses')}}($mln)</p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{tradeSupports[1].marketInfo[1].accountInfo[0].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{tradeSupports[1].marketInfo[0].accountInfo[0].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{tradeSupports[1].marketInfo[1].accountInfo[1].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{tradeSupports[1].marketInfo[0].accountInfo[1].value}}
+                    </p>
+                </td>               
+                <td>
+                    <p class="text-right">
+                        {{tradeSupports[1].marketInfo[1].accountInfo[2].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{tradeSupports[1].marketInfo[0].accountInfo[2].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{tradeSupports[1].marketInfo[2].accountInfo[3].value}}
+                    </p>
+                </td>
+            </tr>
+            <tr class="danger">
+                <td>
+                    <p class="padding-20">{{Label.getContent('Trade Profit')}}($mln)</p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{tradeProfits[1].marketInfo[1].accountInfo[0].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{tradeProfits[1].marketInfo[0].accountInfo[0].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{tradeProfits[1].marketInfo[1].accountInfo[1].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{tradeProfits[1].marketInfo[0].accountInfo[1].value}}
+                    </p>
+                </td>               
+                <td>
+                    <p class="text-right">
+                        {{tradeProfits[1].marketInfo[1].accountInfo[2].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{tradeProfits[1].marketInfo[0].accountInfo[2].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{tradeProfits[1].marketInfo[2].accountInfo[3].value}}
+                    </p>
+                </td>
+            </tr>
+            <tr class="danger">
+                <td>
+                    <p class="text-right">{{Label.getContent('Share of Trade Profit')}}(%)</p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{tradeProfitShares[1].marketInfo[1].accountInfo[0].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{tradeProfitShares[1].marketInfo[0].accountInfo[0].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{tradeProfitShares[1].marketInfo[1].accountInfo[1].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{tradeProfitShares[1].marketInfo[0].accountInfo[1].value}}
+                    </p>
+                </td>               
+                <td>
+                    <p class="text-right">
+                        {{tradeProfitShares[1].marketInfo[1].accountInfo[2].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{tradeProfitShares[1].marketInfo[0].accountInfo[2].value}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
+                        {{tradeProfitShares[1].marketInfo[2].accountInfo[3].value}}
+                    </p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>

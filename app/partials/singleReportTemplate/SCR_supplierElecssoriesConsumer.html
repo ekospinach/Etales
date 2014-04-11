@@ -1,231 +1,231 @@
 <div class="panel my-panel-success panel-primary" ng-show='isResultShown'>
-                        <div class="panel-heading">
-                            <h3 class="panel-title text-center" popover="{{Label.getContent('Market Shares by Consumer Segment Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Elecssories')}} {{Label.getContent('Situation Report')}}-{{Label.getContent('Market Shares by Consumer Segment')}}</h3>
-                        </div>
-                        <table class="table table-condensed table-bordered table-success">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th colspan="2">
-                                        <p class="text-center">{{Label.getContent('Price Sensitive')}}</p>
-                                    </th>
-                                    <th colspan="2">
-                                        <p class="text-center">{{Label.getContent('Value for Money')}}</p>
-                                    </th>
-                                    <th colspan="2">
-                                        <p class="text-center">{{Label.getContent('Fashion')}}</p>
-                                    </th>
-                                    <th colspan="2">
-                                        <p class="text-center">{{Label.getContent('Freaks')}}</p>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Change')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Change')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Change')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Change')}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="info">
-                                    <td colspan="9">
-                                        <p>{{Label.getContent('Rural')}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="info" ng-repeat='rural1 in rural1s'>
-                                    <td>
-                                        <p class="padding-20">{{rural1.fullName}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{rural1.priceShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{rural1.priceChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{rural1.moneyShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{rural1.moneyChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{rural1.fashionShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{rural1.fashionChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{rural1.freaksShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{rural1.freaksChange}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="warning">
-                                    <td colspan="9">
-                                        <p>{{Label.getContent('Urban')}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="warning" ng-repeat='urban1 in urban1s'>
-                                    <td>
-                                        <p class="padding-20">{{urban1.fullName}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{urban1.priceShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{urban1.priceChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{urban1.moneyShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{urban1.moneyChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{urban1.fashionShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{urban1.fashionChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{urban1.freaksShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{urban1.freaksChange}}</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th></th>
-                                    <th colspan="2">
-                                        <p class="text-center">{{Label.getContent('Price Sensitive')}}</p>
-                                    </th>
-                                    <th colspan="2">
-                                        <p class="text-center">{{Label.getContent('Value for Money')}}</p>
-                                    </th>
-                                    <th colspan="2">
-                                        <p class="text-center">{{Label.getContent('Fashion')}}</p>
-                                    </th>
-                                    <th colspan="2">
-                                        <p class="text-center">{{Label.getContent('Freaks')}}</p>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Change')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Change')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Change')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Change')}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="info">
-                                    <td colspan="9">
-                                        <p>{{Label.getContent('Rural')}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="info" ng-repeat='rural2 in rural2s'>
-                                    <td>
-                                        <p class="padding-20">{{rural2.fullName}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{rural2.priceShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{rural2.priceChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{rural2.moneyShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{rural2.moneyChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{rural2.fashionShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{rural2.fashionChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{rural2.freaksShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{rural2.freaksChange}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="warning">
-                                    <td colspan="9">
-                                        <p>{{Label.getContent('Urban')}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="warning" ng-repeat='urban2 in urban2s'>
-                                    <td>
-                                        <p class="padding-20">{{urban2.fullName}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{urban2.priceShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{urban2.priceChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{urban2.moneyShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{urban2.moneyChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{urban2.fashionShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{urban2.fashionChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{urban2.freaksShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{urban2.freaksChange}}</p>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+    <div class="panel-heading">
+        <h3 class="panel-title text-center" popover="{{Label.getContent('Market Shares by Consumer Segment Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Elecssories')}} {{Label.getContent('Situation Report')}}-{{Label.getContent('Market Shares by Consumer Segment')}}</h3>
+    </div>
+    <table class="table table-condensed table-bordered table-success">
+        <thead>
+            <tr>
+                <th></th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Price Sensitive')}}</p>
+                </th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Value for Money')}}</p>
+                </th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Fashion')}}</p>
+                </th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Freaks')}}</p>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                </td>
+            </tr>
+            <tr class="info">
+                <td colspan="9">
+                    <p>{{Label.getContent('Rural')}}</p>
+                </td>
+            </tr>
+            <tr class="info" ng-repeat='rural1 in rural1s'>
+                <td>
+                    <p class="padding-20">{{rural1.fullName}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural1.priceShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural1.priceChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural1.moneyShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural1.moneyChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural1.fashionShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural1.fashionChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural1.freaksShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural1.freaksChange}}</p>
+                </td>
+            </tr>
+            <tr class="warning">
+                <td colspan="9">
+                    <p>{{Label.getContent('Urban')}}</p>
+                </td>
+            </tr>
+            <tr class="warning" ng-repeat='urban1 in urban1s'>
+                <td>
+                    <p class="padding-20">{{urban1.fullName}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{urban1.priceShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{urban1.priceChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{urban1.moneyShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{urban1.moneyChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{urban1.fashionShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{urban1.fashionChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{urban1.freaksShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{urban1.freaksChange}}</p>
+                </td>
+            </tr>
+            <tr>
+                <th></th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Price Sensitive')}}</p>
+                </th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Value for Money')}}</p>
+                </th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Fashion')}}</p>
+                </th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Freaks')}}</p>
+                </th>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                </td>
+            </tr>
+            <tr class="info">
+                <td colspan="9">
+                    <p>{{Label.getContent('Rural')}}</p>
+                </td>
+            </tr>
+            <tr class="info" ng-repeat='rural2 in rural2s'>
+                <td>
+                    <p class="padding-20">{{rural2.fullName}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural2.priceShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural2.priceChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural2.moneyShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural2.moneyChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural2.fashionShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural2.fashionChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural2.freaksShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural2.freaksChange}}</p>
+                </td>
+            </tr>
+            <tr class="warning">
+                <td colspan="9">
+                    <p>{{Label.getContent('Urban')}}</p>
+                </td>
+            </tr>
+            <tr class="warning" ng-repeat='urban2 in urban2s'>
+                <td>
+                    <p class="padding-20">{{urban2.fullName}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{urban2.priceShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{urban2.priceChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{urban2.moneyShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{urban2.moneyChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{urban2.fashionShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{urban2.fashionChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{urban2.freaksShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{urban2.freaksChange}}</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
