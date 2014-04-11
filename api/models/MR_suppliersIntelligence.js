@@ -26,9 +26,7 @@ var categoryInfoSchema = mongoose.Schema({
     productionCapacityAvailable   : Number,
     capacityUtilisationRate       : Number,
     productionplanningFlexibility : Number,    
-
-    advertisingOffLine            : [Number], //0-Urban, 1-Rural, 2-Total
-
+    adverwtisingOffLine            : [Number], //0-Urban, 1-Rural, 2-Total
     actualTradeSupport            : [BMretailerInfoSchema], //BMRetsMax = 3
     negotiatedTradeSupport        : [BMretailerInfoSchema]
 })
@@ -37,7 +35,9 @@ var BMretailerInfoSchema = mongoose.Schema({
     BMretailerID : Number, //1~3, 1-Retailer1, 2-Retailer2, 3-TraditionalTrade
     value : [Number] //0-Urban, 1-Rural, 2-Total
 })
+
 var MR_suppliersIntelligence=mongoose.model('MR_suppliersIntelligence',MR_suppliersIntelligenceSchema);
+
 
 exports.addMR_suppliersIntelligence=function(req,res,next){
     var newMR_suppliersIntelligence=MR_suppliersIntelligence({

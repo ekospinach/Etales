@@ -11,7 +11,7 @@ define(['directives', 'services'], function(directives){
             link : function(scope, element, attrs){
                 scope.test = 'TEST between scope';
                 var initializePage = function(){
-                    console.log('initializePage some big...');
+                    // console.log('initializePage some big...');
                     scope.isPageLoading = true;
                     scope.isResultShown = false;
                     scope.Label = Label;
@@ -24,9 +24,7 @@ define(['directives', 'services'], function(directives){
                     $http({
                         method:'GET',
                         url:url,
-                        tracker: scope.loadingTracker
                     }).then(function(data){
-                        //scope.loadingTracker.addPromise(organiseArray(data));                                                                     
                         return organiseArray(data);
                     }).then(function(data){
                         scope.isResultShown = true;                        
@@ -42,6 +40,7 @@ define(['directives', 'services'], function(directives){
                     for(var i=0;i<4;i++){
                         scope.totals[i]=new Array();scope.totalChanges[i]=new Array();scope.rurals[i]=new Array();scope.ruralChanges[i]=new Array();scope.urbans[i]=new Array();scope.urbanChanges[i]=new Array();scope.prices[i]=new Array();scope.priceChanges[i]=new Array();scope.values[i]=new Array();scope.valueChanges[i]=new Array();scope.fashions[i]=new Array();scope.fashionChanges[i]=new Array();scope.freakss[i]=new Array();scope.freaksChanges[i]=new Array();scope.bms[i]=new Array();scope.bmChanges[i]=new Array();scope.onlines[i]=new Array();scope.onlineChanges[i]=new Array();scope.mixeds[i]=new Array();scope.mixedChanges[i]=new Array();
                     }
+
                     for(i=0;i<data.data[0].actorInfo.length;i++){
                         for(var j=0;j<4;j+=2){
                             var k=0;
@@ -314,7 +313,7 @@ define(['directives', 'services'], function(directives){
                 }
 
                 scope.$watch('isPageShown', function(newValue, oldValue){
-                    console.log('watch in the TE_GR_marketShare fire, new value: ' + newValue + ', oldValue: '+ oldValue);
+                    // console.log('watch in the TE_GR_marketShare fire, new value: ' + newValue + ', oldValue: '+ oldValue);
 
                     if(newValue==true){ initializePage(); }
                 })

@@ -10,7 +10,6 @@
 	require.config({
 		paths: {
 			angular: '../bower_components/angular/angular',
-			//angularAnimate: '../bower_components/angular-animate/angular-animate',
 			angularCookies: 		'../bower_components/angular-cookies/angular-cookies',
 			angularRoute: 			'../bower_components/angular-route/angular-route',
 			angularResource: 		'../bower_components/angular-resource/angular-resource',
@@ -68,7 +67,7 @@
 			'highcharts':['jquery','angular','highchart'],
 			'bootstrapswitch' : ['jquery'],
 			'angularBootstrapSwitch':['angular','jquery','bootstrapswitch'],
-			'angularPromiseTracker':['angular']
+//			'angularPromiseTracker':['angular']
 		},
 		priority: [
 			"angular"
@@ -138,4 +137,4 @@
 	});
 
 }).call(this);
-2
+
