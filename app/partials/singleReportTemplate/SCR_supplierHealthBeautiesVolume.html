@@ -1,0 +1,105 @@
+<div class="panel panel-success" ng-show='isResultShown'>
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-center" popover="{{Label.getContent('Volume Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('HealthBeauties')}} {{Label.getContent('Situation Report')}}-{{Label.getContent('Volume')}}</h3>
+                        </div>
+                        <table class="table table-condensed table-bordered table-success">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <p class="padding-20">(units mln)</p>
+                                    </th>
+                                    <th colspan="2">
+                                        <p class="text-center">
+                                            {{Label.getContent('Initial Inventory')}}
+                                        </p>
+                                    </th>
+                                    <th>
+                                        <p class="text-center">
+                                            {{Label.getContent('Production Volume')}}
+                                        </p>
+                                    </th>
+                                    <th colspan="2">
+                                        <p class="text-center">
+                                            {{Label.getContent('Sales Volume')}}
+                                        </p>
+                                    </th>
+                                    <th>
+                                        <p class="text-center">
+                                            {{Label.getContent('Discontinued Goods Volume')}}
+                                        </p>
+                                    </th>
+                                    <th colspan="2">
+                                        <p class="text-center">
+                                            {{Label.getContent('Closing Inventory')}}
+                                        </p>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <p class="text-center">
+                                            {{Label.getContent('Offline')}}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">
+                                            {{Label.getContent('Online')}}
+                                        </p>
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                        <p class="text-center">
+                                            {{Label.getContent('Offline')}}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">
+                                            {{Label.getContent('Online')}}
+                                        </p>
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                        <p class="text-center">
+                                            {{Label.getContent('Offline')}}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p class="text-center">
+                                            {{Label.getContent('Online')}}
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat='product in products'>
+                                    <td>
+                                        <p class="padding-20">{{product.fullName}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{product.initial.value[0]}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{product.initial.value[1]}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{product.production.value[2]}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{product.sales.value[0]}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{product.sales.value[1]}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{product.discontinued.value[2]}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{product.closing.value[0]}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-right">{{product.closing.value[1]}}</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+</div>

@@ -1,0 +1,148 @@
+<div class="panel panel-success" ng-show='isResultShown'>
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-center" popover="{{Label.getContent('Key Performance Indicators Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
+                                {{Label.getContent('Key Performance Indicators')}}
+                            </h3>
+                        </div>
+                        <table class="table table-condensed table-bordered table-success">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th class="success">
+                                        <p class="text-center">{{Label.getContent('Elecssories')}}</p>
+                                    </th>
+                                    <th class="danger">
+                                        <p class="text-center">{{Label.getContent('HealthBeauties')}}</p>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <p>{{Label.getContent('Effectiveness of Trade Spending')}}</p>
+                                    </td>
+                                    <td class="success">
+                                        <p class="text-right">{{data.scrkpi_TradeSpendingEffectiveness[0].value[2]}}</p>
+                                    </td>
+                                    <td class="danger">
+                                        <p class="text-right">{{data.scrkpi_TradeSpendingEffectiveness[1].value[2]}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>{{Label.getContent('Effectiveness of Marketing Spending')}}</p>
+                                    </td>
+                                    <td class="success">
+                                        <p class="text-right">{{data.scrkpi_MarketingEffectiveness[0].value[2]}}</p>
+                                    </td>
+                                    <td class="danger">
+                                        <p class="text-right">{{data.scrkpi_MarketingEffectiveness[1].value[2]}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>{{Label.getContent('Portfolio Strength')}}</p>
+                                    </td>
+                                    <td class="success">
+                                        <p class="text-right">???</p>
+                                    </td>
+                                    <td class="danger">
+                                        <p class="text-right">???</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">
+                                        <p>{{Label.getContent('Channel Strength')}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">
+                                        <p class="padding-20">{{Label.getContent('B&M Channel')}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-40">
+                                            {{Label.getContent('Share of Value Sales')}}(%)
+                                        </p>
+                                    </td>
+                                    <td class="success">
+                                        <p class="text-right">{{data.scrkpi_ChannelSalesValueShare[0].value[0]}}</p>
+                                    </td>
+                                    <td class="danger">
+                                        <p class="text-right">{{data.scrkpi_ChannelSalesValueShare[1].value[0]}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-40">
+                                            {{Label.getContent('Share of Volume Sales')}}(%)
+                                        </p>
+                                    </td>
+                                    <td class="success">
+                                        <p class="text-right">{{data.scrkpi_ChannelSalesVolumeShare[0].value[0]}}</p>
+                                    </td>
+                                    <td class="danger">
+                                        <p class="text-right">{{data.scrkpi_ChannelSalesVolumeShare[1].value[0]}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-40">
+                                            {{Label.getContent('Share of Shoppers')}}(%)
+                                        </p>
+                                    </td>
+                                    <td class="success">
+                                        <p class="text-right">{{data.scrkpi_ShoppersShare[0].value[0]}}</p>
+                                    </td>
+                                    <td class="danger">
+                                        <p class="text-right">{{data.scrkpi_ShoppersShare[1].value[0]}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">
+                                        <p class="padding-20">{{Label.getContent('Online Channel')}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-40">
+                                            {{Label.getContent('Share of Value Sales')}}(%)
+                                        </p>
+                                    </td>
+                                    <td class="success">
+                                        <p class="text-right">{{data.scrkpi_ChannelSalesValueShare[0].value[1]}}</p>
+                                    </td>
+                                    <td class="danger">
+                                        <p class="text-right">{{data.scrkpi_ChannelSalesValueShare[1].value[1]}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-40">
+                                            {{Label.getContent('Share of Volume Sales')}}(%)
+                                        </p>
+                                    </td>
+                                    <td class="success">
+                                        <p class="text-right">{{data.scrkpi_ChannelSalesVolumeShare[0].value[1]}}</p>
+                                    </td>
+                                    <td class="danger">
+                                        <p class="text-right">{{data.scrkpi_ChannelSalesVolumeShare[1].value[1]}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="padding-40">
+                                            {{Label.getContent('Share of Shoppers')}}(%)
+                                        </p>
+                                    </td>
+                                    <td class="success">
+                                        <p class="text-right">{{data.scrkpi_ShoppersShare[0].value[1]}}</p>
+                                    </td>
+                                    <td class="danger">
+                                        <p class="text-right">{{data.scrkpi_ShoppersShare[1].value[1]}}</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+</div>

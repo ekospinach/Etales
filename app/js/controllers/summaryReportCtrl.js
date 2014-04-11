@@ -786,53 +786,36 @@ define(['app','socketIO','routingConfig'], function(app) {
 
 		    var showProducerBMBusiness=function(){
 		    	switching('showProducerBMBusiness');
-		    	var url='/SCR-consolidatedProfitAndLoss/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
-		    	$http({
-		    		method:'GET',
-		    		url:url
-		    	}).then(function(data){
-		    		loadTotal(data);
-		    		loadBusiness(data,1,0);
-		    		loadBusiness(data,2,0);
-		    	},function(){
-		    		console.log('fail');
-		    	})
-		    }
-
-		    var showProducerOnlineBusiness=function(){
-		    	switching('showProducerOnlineBusiness');
-		    	var url='/SCR-consolidatedProfitAndLoss/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
-		    	$http({
-		    		method:'GET',
-		    		url:url
-		    	}).then(function(data){
-		    		loadTotal(data);
-		    		loadBusiness(data,1,1);
-		    		loadBusiness(data,2,1);
-		    	},function(){
-		    		console.log('fail');
-		    	})
-		    }
-
-		    var showProducerProfitability=function(){
-		    	switching('showProducerProfitability');
-		    	// var url='/SCR-channelsProfitability/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+		    	// var url='/SCR-consolidatedProfitAndLoss/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
 		    	// $http({
 		    	// 	method:'GET',
 		    	// 	url:url
 		    	// }).then(function(data){
-		    	// 	$scope.volumeOrdereds=data.data[0].scrcp_VolumeOrdered;
-		    	// 	$scope.volumeSolds=data.data[0].scrcp_VolumeSold;
-		    	// 	$scope.volumeSoldShares=data.data[0].scrcp_VolumeSoldShare;
-		    	// 	$scope.salesValues=data.data[0].scrcp_SalesValue;
-    			// 	$scope.salesValueShares=data.data[0].scrcp_SalesValueShare;
-    			// 	$scope.costOfGoodsSolds=data.data[0].scrcp_CostOfGoodsSold;
-    			// 	$scope.tradeSupports=data.data[0].scrcp_TradeSupport;
-    			// 	$scope.tradeProfits=data.data[0].scrcp_TradeProfit;   
-    			// 	$scope.tradeProfitShares=data.data[0].scrcp_TradeProfitShare;
+		    	// 	loadTotal(data);
+		    	// 	loadBusiness(data,1,0);
+		    	// 	loadBusiness(data,2,0);
 		    	// },function(){
 		    	// 	console.log('fail');
 		    	// })
+		    }
+
+		    var showProducerOnlineBusiness=function(){
+		    	switching('showProducerOnlineBusiness');
+		    	// var url='/SCR-consolidatedProfitAndLoss/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+		    	// $http({
+		    	// 	method:'GET',
+		    	// 	url:url
+		    	// }).then(function(data){
+		    	// 	loadTotal(data);
+		    	// 	loadBusiness(data,1,1);
+		    	// 	loadBusiness(data,2,1);
+		    	// },function(){
+		    	// 	console.log('fail');
+		    	// })
+		    }
+
+		    var showProducerProfitability=function(){
+		    	switching('showProducerProfitability');
 		    }
 
 		    var loadNegotiations=function(data,category,retailer,i,j){
@@ -937,37 +920,6 @@ define(['app','socketIO','routingConfig'], function(app) {
 
 		    var showProducerNegotiations=function(){
 		    	switching('showProducerNegotiations');
-		    	// var url='/SCR-negotiations/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
-		    	// $http({
-		    	// 	method:'GET',
-		    	// 	url:url
-		    	// }).then(function(data){
-		    	// 	$scope.product1es=new Array();
-		    	// 	$scope.product1hs=new Array();
-		    	// 	$scope.product2es=new Array();
-		    	// 	$scope.product2hs=new Array();
-		    	// 	var varName,brandName,discount_MinimumVolume,discount_Rate,bonus_TargetVolume,bonus_Rate,bonus_Value,vnd_PaymentTerm,vnd_OtherCompensation,vnd_ContractHonoured;
-
-		    	// 	for(var i=0;i<data.data[0].vnd_QuantityDiscount.discount_MinimumVolume.length;i++){
-		    	// 		if(data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].parentCategoryID==1){
-		    	// 			for(var j=0;j<data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerInfo.length;j++){
-		    	// 				switch(data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerInfo[j].modernRetailerID){
-			    // 					case 1:loadNegotiations(data,1,1,i,j);break;
-			    // 					case 2:loadNegotiations(data,1,2,i,j);break;
-			    // 				}
-		    	// 			}
-		    	// 		}else{
-		    	// 			for(var j=0;j<data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerInfo.length;j++){
-		    	// 				switch(data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerInfo[j].modernRetailerID){
-		    	// 					case 1:loadNegotiations(data,2,1,i,j);break;
-			    // 					case 2:loadNegotiations(data,2,2,i,j);break;
-		    	// 				}
-		    	// 			}
-		    	// 		}
-		    	// 	}
-		    	// },function(){
-		    	// 	console.log('fail');
-		    	// })
 		    }
 
 		    var loadConsumer=function(data,category){
@@ -1110,93 +1062,30 @@ define(['app','socketIO','routingConfig'], function(app) {
 
 		    var showElecssoriesConsumer=function(){
 		    	switching('showElecssoriesConsumer');
-		    	var url='/SCR-sharesCrossSegment/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
-		    	$http({
-		    		method:'GET',
-		    		url:url
-		    	}).then(function(data){
-		    		loadConsumer(data,1);
-		    	},function(){
-		    		console.log('fail');
-		    	})
 		    }
 
 		    var showElecssoriesShopper=function(){
 		    	switching('showElecssoriesShopper');
-		    	var url='/SCR-sharesCrossSegment/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
-		    	$http({
-		    		method:'GET',
-		    		url:url
-		    	}).then(function(data){
-		    		loadShooper(data,1);
-		    	},function(){
-		    		console.log('fail');
-		    	})
 		    }
 
 		    var showElecssoriesVolume=function(){
 		    	switching('showElecssoriesVolume');
-		    	var url='/SCR-inventoryVolumes/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
-		    	$http({
-		    		method:'GET',
-		    		url:url
-		    	}).then(function(data){
-		    		loadVolume(data,1);
-		    	},function(){
-		    		console.log('fail');
-		    	})
 		    }
 
 		    var showHealthBeautiesConsumer=function(){
 		    	switching('showHealthBeautiesConsumer');
-		    	var url='/SCR-sharesCrossSegment/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
-		    	$http({
-		    		method:'GET',
-		    		url:url
-		    	}).then(function(data){
-		    		loadConsumer(data,2);
-		    	},function(){
-		    		console.log('fail');
-		    	})
 		    }
 
 		    var showHealthBeautiesShopper=function(){
 		    	switching('showHealthBeautiesShopper');
-		    	var url='/SCR-sharesCrossSegment/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
-		    	$http({
-		    		method:'GET',
-		    		url:url
-		    	}).then(function(data){
-		    		loadShooper(data,2);
-		    	},function(){
-		    		console.log('fail');
-		    	})
 		    }
 		    
 		    var showHealthBeautiesVolume=function(){
 		    	switching('showHealthBeautiesVolume');
-		    	var url='/SCR-inventoryVolumes/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
-		    	$http({
-		    		method:'GET',
-		    		url:url
-		    	}).then(function(data){
-		    		loadVolume(data,2);
-		    	},function(){
-		    		console.log('fail');
-		    	})
 		    }
 		    
 		    var showProducerKey=function(){
 		    	switching('showProducerKey');
-		    	var url='/SCR-keyPerformanceIndicators/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
-		    	$http({
-		    		method:'GET',
-		    		url:url
-		    	}).then(function(data){
-					$scope.data=data.data[0];
-		    	},function(){
-		    		console.log('fail');
-		    	})
 		    }
 
 		    var loadRetailerTotal=function(data){
@@ -1227,15 +1116,15 @@ define(['app','socketIO','routingConfig'], function(app) {
 
 		    var showRetailerConsolidate=function(){
 		    	switching('showRetailerConsolidate');
-		    	var url='/RCR-consolidatedProfitAndLoss/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
-		    	$http({
-		    		method:'GET',
-		    		url:url
-		    	}).then(function(data){
-		    		loadRetailerTotal(data);		    		
-		    	},function(){
-		    		console.log('fail');
-		    	})
+		    	// var url='/RCR-consolidatedProfitAndLoss/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+		    	// $http({
+		    	// 	method:'GET',
+		    	// 	url:url
+		    	// }).then(function(data){
+		    	// 	loadRetailerTotal(data);		    		
+		    	// },function(){
+		    	// 	console.log('fail');
+		    	// })
 		    }
 
 		    var loadUR=function(data,category,num){
@@ -1291,52 +1180,52 @@ define(['app','socketIO','routingConfig'], function(app) {
 
 		    var showRetailerRuralProfit=function(){
 		    	switching('showRetailerRuralProfit');
-		    	var url='/RCR-consolidatedProfitAndLoss/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
-		    	$http({
-		    		method:'GET',
-		    		url:url
-		    	}).then(function(data){
-		    		loadRetailerTotal(data);
-		    		loadUR(data,1,1);
-		    		loadUR(data,2,1);
-		    	},function(){
-		    		console.log('fail');
-		    	});
+		    	// var url='/RCR-consolidatedProfitAndLoss/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+		    	// $http({
+		    	// 	method:'GET',
+		    	// 	url:url
+		    	// }).then(function(data){
+		    	// 	loadRetailerTotal(data);
+		    	// 	loadUR(data,1,1);
+		    	// 	loadUR(data,2,1);
+		    	// },function(){
+		    	// 	console.log('fail');
+		    	// });
 
 		    }
 		    var showRetailerUrbanProfit=function(){
 		    	switching('showRetailerUrbanProfit');
-		    	var url='/RCR-consolidatedProfitAndLoss/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
-		    	$http({
-		    		method:'GET',
-		    		url:url
-		    	}).then(function(data){
-		    		loadRetailerTotal(data);
-		    		loadUR(data,1,0);
-		    		loadUR(data,2,0);
-		    	},function(){
-		    		console.log('fail');
-		    	});
+		    	// var url='/RCR-consolidatedProfitAndLoss/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+		    	// $http({
+		    	// 	method:'GET',
+		    	// 	url:url
+		    	// }).then(function(data){
+		    	// 	loadRetailerTotal(data);
+		    	// 	loadUR(data,1,0);
+		    	// 	loadUR(data,2,0);
+		    	// },function(){
+		    	// 	console.log('fail');
+		    	// });
 		    }
 		    var showRetailerProfitability=function(){
 		    	switching('showRetailerProfitability');
-		    	var url='/RCR-profitabilityBySupplier/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
-		    	$http({
-		    		method:'GET',
-		    		url:url
-		    	}).then(function(data){
-		    		$scope.ShelfSpaces=data.data[0].rcrps_ShelfSpace;
-		    		$scope.NetSales=data.data[0].rcrps_NetSales;
-		    		$scope.NetSalesPerShelfSpaces=data.data[0].rcrps_NetSalesPerShelfSpace;
-		    		$scope.NetSalesShares=data.data[0].rcrps_NetSalesShare;
-		    		$scope.GrossContributions=data.data[0].rcrps_GrossContribution ;
-		    		$scope.GrossContributionPerShelfSpaces=data.data[0].rcrps_GrossContributionPerShelfSpace;
-		    		$scope.GrossContributionMargins=data.data[0].rcrps_GrossContributionMargin;
-		    		$scope.GrossContributionShares=data.data[0].rcrps_GrossContributionShare;
-		    		$scope.PaymentTerms=data.data[0].rcrps_PaymentTerms;	
-		    	},function(){
-		    		console.log('fail');
-		    	})
+		    	// var url='/RCR-profitabilityBySupplier/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+		    	// $http({
+		    	// 	method:'GET',
+		    	// 	url:url
+		    	// }).then(function(data){
+		    	// 	$scope.ShelfSpaces=data.data[0].rcrps_ShelfSpace;
+		    	// 	$scope.NetSales=data.data[0].rcrps_NetSales;
+		    	// 	$scope.NetSalesPerShelfSpaces=data.data[0].rcrps_NetSalesPerShelfSpace;
+		    	// 	$scope.NetSalesShares=data.data[0].rcrps_NetSalesShare;
+		    	// 	$scope.GrossContributions=data.data[0].rcrps_GrossContribution ;
+		    	// 	$scope.GrossContributionPerShelfSpaces=data.data[0].rcrps_GrossContributionPerShelfSpace;
+		    	// 	$scope.GrossContributionMargins=data.data[0].rcrps_GrossContributionMargin;
+		    	// 	$scope.GrossContributionShares=data.data[0].rcrps_GrossContributionShare;
+		    	// 	$scope.PaymentTerms=data.data[0].rcrps_PaymentTerms;	
+		    	// },function(){
+		    	// 	console.log('fail');
+		    	// })
 		    }
 
 		    var loadRetailerNegotiations=function(data,category,producer,i,j){
@@ -1451,42 +1340,42 @@ define(['app','socketIO','routingConfig'], function(app) {
 
 		    var showRetailerNegotiations=function(){
 		    	switching('showRetailerNegotiations');
-		    	var url='/RCR-negotiations/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
-		    	$http({
-		    		method:'GET',
-		    		url:url
-		    	}).then(function(data){
-		    		$scope.product1es=new Array();
-		    		$scope.product1hs=new Array();
-		    		$scope.product2es=new Array();
-		    		$scope.product2hs=new Array();
-		    		$scope.product3es=new Array();
-		    		$scope.product3hs=new Array();
-		    		var varName,brandName,discount_MinimumVolume,discount_Rate,bonus_TargetVolume,bonus_Rate,bonus_Value,vnd_PaymentTerm,vnd_OtherCompensation,vnd_ContractHonoured;
+		    	// var url='/RCR-negotiations/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+		    	// $http({
+		    	// 	method:'GET',
+		    	// 	url:url
+		    	// }).then(function(data){
+		    	// 	$scope.product1es=new Array();
+		    	// 	$scope.product1hs=new Array();
+		    	// 	$scope.product2es=new Array();
+		    	// 	$scope.product2hs=new Array();
+		    	// 	$scope.product3es=new Array();
+		    	// 	$scope.product3hs=new Array();
+		    	// 	var varName,brandName,discount_MinimumVolume,discount_Rate,bonus_TargetVolume,bonus_Rate,bonus_Value,vnd_PaymentTerm,vnd_OtherCompensation,vnd_ContractHonoured;
 
-		    		for(var i=0;i<data.data[0].vnd_QuantityDiscount.discount_MinimumVolume.length;i++){
-		    			if(data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].parentCategoryID==1){
-		    				for(var j=0;j<data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].producerInfo.length;j++){
-		    					switch(data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].producerInfo[j].producerID){
-			    					case 1:loadRetailerNegotiations(data,1,1,i,j);break;
-			    					case 2:loadRetailerNegotiations(data,1,2,i,j);break;
-			    					case 3:loadRetailerNegotiations(data,1,3,i,j);break;
-			    				}
-		    				}
-		    			}else{
-		    				for(var j=0;j<data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].producerInfo.length;j++){
-		    					switch(data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].producerInfo[j].producerID){
-		    						case 1:loadRetailerNegotiations(data,2,1,i,j);break;
-			    					case 2:loadRetailerNegotiations(data,2,2,i,j);break;
-			    					case 3:loadRetailerNegotiations(data,2,3,i,j);break;
-		    					}
-		    				}
-		    			}
-		    		}
-		    		console.log($scope.product1es);
-		    	},function(){
-		    		console.log('fail');
-		    	})
+		    	// 	for(var i=0;i<data.data[0].vnd_QuantityDiscount.discount_MinimumVolume.length;i++){
+		    	// 		if(data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].parentCategoryID==1){
+		    	// 			for(var j=0;j<data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].producerInfo.length;j++){
+		    	// 				switch(data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].producerInfo[j].producerID){
+			    // 					case 1:loadRetailerNegotiations(data,1,1,i,j);break;
+			    // 					case 2:loadRetailerNegotiations(data,1,2,i,j);break;
+			    // 					case 3:loadRetailerNegotiations(data,1,3,i,j);break;
+			    // 				}
+		    	// 			}
+		    	// 		}else{
+		    	// 			for(var j=0;j<data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].producerInfo.length;j++){
+		    	// 				switch(data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].producerInfo[j].producerID){
+		    	// 					case 1:loadRetailerNegotiations(data,2,1,i,j);break;
+			    // 					case 2:loadRetailerNegotiations(data,2,2,i,j);break;
+			    // 					case 3:loadRetailerNegotiations(data,2,3,i,j);break;
+		    	// 				}
+		    	// 			}
+		    	// 		}
+		    	// 	}
+		    	// 	console.log($scope.product1es);
+		    	// },function(){
+		    	// 	console.log('fail');
+		    	// })
 
 		    }
 
@@ -1659,7 +1548,6 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    }
 
 		    var loadretailerVolume=function(data,category,market){
-		    // value : [Number], //0-Urban, 1-Rural, 2-Total
 		    	for(var i=0;i<data.data[0].rcrviv_Initial.length;i++){
 		    		if(data.data[0].rcrviv_Initial[i].parentCategoryID==category){
 		    			var varName=data.data[0].rcrviv_Initial[i].variantName;
@@ -1699,91 +1587,91 @@ define(['app','socketIO','routingConfig'], function(app) {
 
 		    var showRuralConsumer=function(){
 		    	switching('showRuralConsumer');
-		    	$scope.eleValue1s=new Array();$scope.heaValue1s=new Array();$scope.eleValue2s=new Array();$scope.heaValue2s=new Array();$scope.eleValue3s=new Array();$scope.heaValue3s=new Array();$scope.eleValue4s=new Array();$scope.heaValue4s=new Array();$scope.eleVolume1s=new Array();$scope.heaVolume1s=new Array();$scope.eleVolume2s=new Array();$scope.heaVolume2s=new Array();$scope.eleVolume3s=new Array();$scope.heaVolume3s=new Array();$scope.eleVolume4s=new Array();$scope.heaVolume4s=new Array();
-		    	var url='/RCR-sharesCrossSegment/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
-		    	$http({
-		    		method:'GET',
-		    		url:url
-		    	}).then(function(data){
-		    		loadRetailerConsumer(data,1,2);
-		    		loadRetailerConsumer(data,2,2);
-		    	},function(){
-		    		console.log('fail');
-		    	})
+		    	//$scope.eleValue1s=new Array();$scope.heaValue1s=new Array();$scope.eleValue2s=new Array();$scope.heaValue2s=new Array();$scope.eleValue3s=new Array();$scope.heaValue3s=new Array();$scope.eleValue4s=new Array();$scope.heaValue4s=new Array();$scope.eleVolume1s=new Array();$scope.heaVolume1s=new Array();$scope.eleVolume2s=new Array();$scope.heaVolume2s=new Array();$scope.eleVolume3s=new Array();$scope.heaVolume3s=new Array();$scope.eleVolume4s=new Array();$scope.heaVolume4s=new Array();
+		    	// var url='/RCR-sharesCrossSegment/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+		    	// $http({
+		    	// 	method:'GET',
+		    	// 	url:url
+		    	// }).then(function(data){
+		    	// 	loadRetailerConsumer(data,1,2);
+		    	// 	loadRetailerConsumer(data,2,2);
+		    	// },function(){
+		    	// 	console.log('fail');
+		    	// })
 
 		    }
 		    var showRuralShopper=function(){
 		    	switching('showRuralShopper');
-		    	$scope.eleValue1s=new Array();$scope.heaValue1s=new Array();$scope.eleValue2s=new Array();$scope.heaValue2s=new Array();$scope.eleValue3s=new Array();$scope.heaValue3s=new Array();$scope.eleValue4s=new Array();$scope.heaValue4s=new Array();$scope.eleVolume1s=new Array();$scope.heaVolume1s=new Array();$scope.eleVolume2s=new Array();$scope.heaVolume2s=new Array();$scope.eleVolume3s=new Array();$scope.heaVolume3s=new Array();$scope.eleVolume4s=new Array();$scope.heaVolume4s=new Array();
-		    	var url='/RCR-sharesCrossSegment/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
-		    	$http({
-		    		method:'GET',
-		    		url:url
-		    	}).then(function(data){
-		    		loadRetailerShooper(data,1,2);
-		    		loadRetailerShooper(data,2,2);
-		    	},function(){
-		    		console.log('fail');
-		    	})
+		    	// $scope.eleValue1s=new Array();$scope.heaValue1s=new Array();$scope.eleValue2s=new Array();$scope.heaValue2s=new Array();$scope.eleValue3s=new Array();$scope.heaValue3s=new Array();$scope.eleValue4s=new Array();$scope.heaValue4s=new Array();$scope.eleVolume1s=new Array();$scope.heaVolume1s=new Array();$scope.eleVolume2s=new Array();$scope.heaVolume2s=new Array();$scope.eleVolume3s=new Array();$scope.heaVolume3s=new Array();$scope.eleVolume4s=new Array();$scope.heaVolume4s=new Array();
+		    	// var url='/RCR-sharesCrossSegment/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+		    	// $http({
+		    	// 	method:'GET',
+		    	// 	url:url
+		    	// }).then(function(data){
+		    	// 	loadRetailerShooper(data,1,2);
+		    	// 	loadRetailerShooper(data,2,2);
+		    	// },function(){
+		    	// 	console.log('fail');
+		    	// })
 		    }
 		    var showRuralVolume=function(){
 		    	switching('showRuralVolume');
-		    	$scope.product1es=new Array();$scope.product1hs=new Array();$scope.product2es=new Array();$scope.product2hs=new Array();$scope.product3es=new Array();$scope.product3hs=new Array();$scope.product4es=new Array();$scope.product4hs=new Array();
-		    	var url='/RCR-inventoryVolumes/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
-		    	$http({
-		    		method:'GET',
-		    		url:url
-		    	}).then(function(data){
-		    		loadretailerVolume(data,1,2);
-		    		loadretailerVolume(data,2,2);
-		    	},function(){
-		    		console.log('fail');
-		    	})
+		    	// $scope.product1es=new Array();$scope.product1hs=new Array();$scope.product2es=new Array();$scope.product2hs=new Array();$scope.product3es=new Array();$scope.product3hs=new Array();$scope.product4es=new Array();$scope.product4hs=new Array();
+		    	// var url='/RCR-inventoryVolumes/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+		    	// $http({
+		    	// 	method:'GET',
+		    	// 	url:url
+		    	// }).then(function(data){
+		    	// 	loadretailerVolume(data,1,2);
+		    	// 	loadretailerVolume(data,2,2);
+		    	// },function(){
+		    	// 	console.log('fail');
+		    	// })
 		    
 		    }
 		    var showUrbanConsumer=function(){
 		    	switching('showUrbanConsumer');
-		    	$scope.eleValue1s=new Array();$scope.heaValue1s=new Array();$scope.eleValue2s=new Array();$scope.heaValue2s=new Array();$scope.eleValue3s=new Array();$scope.heaValue3s=new Array();$scope.eleValue4s=new Array();$scope.heaValue4s=new Array();$scope.eleVolume1s=new Array();$scope.heaVolume1s=new Array();$scope.eleVolume2s=new Array();$scope.heaVolume2s=new Array();$scope.eleVolume3s=new Array();$scope.heaVolume3s=new Array();$scope.eleVolume4s=new Array();$scope.heaVolume4s=new Array();
-		    	var url='/RCR-sharesCrossSegment/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
-		    	$http({
-		    		method:'GET',
-		    		url:url
-		    	}).then(function(data){
-		    		loadRetailerConsumer(data,1,1);
-		    		loadRetailerConsumer(data,2,1);
-		    	},function(){
-		    		console.log('fail');
-		    	})
+		    	// $scope.eleValue1s=new Array();$scope.heaValue1s=new Array();$scope.eleValue2s=new Array();$scope.heaValue2s=new Array();$scope.eleValue3s=new Array();$scope.heaValue3s=new Array();$scope.eleValue4s=new Array();$scope.heaValue4s=new Array();$scope.eleVolume1s=new Array();$scope.heaVolume1s=new Array();$scope.eleVolume2s=new Array();$scope.heaVolume2s=new Array();$scope.eleVolume3s=new Array();$scope.heaVolume3s=new Array();$scope.eleVolume4s=new Array();$scope.heaVolume4s=new Array();
+		    	// var url='/RCR-sharesCrossSegment/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+		    	// $http({
+		    	// 	method:'GET',
+		    	// 	url:url
+		    	// }).then(function(data){
+		    	// 	loadRetailerConsumer(data,1,1);
+		    	// 	loadRetailerConsumer(data,2,1);
+		    	// },function(){
+		    	// 	console.log('fail');
+		    	// })
 
 		    }
 		    var showUrbanShopper=function(){
 		    	switching('showUrbanShopper');
-		    	$scope.eleValue1s=new Array();$scope.heaValue1s=new Array();$scope.eleValue2s=new Array();$scope.heaValue2s=new Array();$scope.eleValue3s=new Array();$scope.heaValue3s=new Array();$scope.eleValue4s=new Array();$scope.heaValue4s=new Array();$scope.eleVolume1s=new Array();$scope.heaVolume1s=new Array();$scope.eleVolume2s=new Array();$scope.heaVolume2s=new Array();$scope.eleVolume3s=new Array();$scope.heaVolume3s=new Array();$scope.eleVolume4s=new Array();$scope.heaVolume4s=new Array();
-		    	var url='/RCR-sharesCrossSegment/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
-		    	$http({
-		    		method:'GET',
-		    		url:url
-		    	}).then(function(data){
-		    		loadRetailerShooper(data,1,1);
-		    		loadRetailerShooper(data,2,1);
-		    	},function(){
-		    		console.log('fail');
-		    	})
+		    	// $scope.eleValue1s=new Array();$scope.heaValue1s=new Array();$scope.eleValue2s=new Array();$scope.heaValue2s=new Array();$scope.eleValue3s=new Array();$scope.heaValue3s=new Array();$scope.eleValue4s=new Array();$scope.heaValue4s=new Array();$scope.eleVolume1s=new Array();$scope.heaVolume1s=new Array();$scope.eleVolume2s=new Array();$scope.heaVolume2s=new Array();$scope.eleVolume3s=new Array();$scope.heaVolume3s=new Array();$scope.eleVolume4s=new Array();$scope.heaVolume4s=new Array();
+		    	// var url='/RCR-sharesCrossSegment/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+		    	// $http({
+		    	// 	method:'GET',
+		    	// 	url:url
+		    	// }).then(function(data){
+		    	// 	loadRetailerShooper(data,1,1);
+		    	// 	loadRetailerShooper(data,2,1);
+		    	// },function(){
+		    	// 	console.log('fail');
+		    	// })
 
 		    }
 		    var showUrbanVolume=function(){
 		    	switching('showUrbanVolume');
-		    	$scope.product1es=new Array();$scope.product1hs=new Array();$scope.product2es=new Array();$scope.product2hs=new Array();$scope.product3es=new Array();$scope.product3hs=new Array();$scope.product4es=new Array();$scope.product4hs=new Array();
-		    	var url='/RCR-inventoryVolumes/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
-		    	$http({
-		    		method:'GET',
-		    		url:url
-		    	}).then(function(data){
-		    		loadretailerVolume(data,1,1);
-		    		loadretailerVolume(data,2,1);
-		    	},function(){
-		    		console.log('fail');
-		    	})
+		    	// $scope.product1es=new Array();$scope.product1hs=new Array();$scope.product2es=new Array();$scope.product2hs=new Array();$scope.product3es=new Array();$scope.product3hs=new Array();$scope.product4es=new Array();$scope.product4hs=new Array();
+		    	// var url='/RCR-inventoryVolumes/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+		    	// $http({
+		    	// 	method:'GET',
+		    	// 	url:url
+		    	// }).then(function(data){
+		    	// 	loadretailerVolume(data,1,1);
+		    	// 	loadretailerVolume(data,2,1);
+		    	// },function(){
+		    	// 	console.log('fail');
+		    	// })
 
 		    }
 		    var showRetailerKey=function(){
