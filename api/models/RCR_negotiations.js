@@ -233,7 +233,7 @@ exports.addRCR_negotiations=function(req,res,next){
             parentCategoryID:1,
             producerInfo:[{
                 producerID:1,
-                value:10
+                value:1
             }]
         },{
             variantName:'_B',
