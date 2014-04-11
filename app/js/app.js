@@ -36,6 +36,8 @@
 	'directives/TE_RCR_RetailerRuralVolume',
 	'directives/TE_RCR_RetailerUrbanVolume',
 	'directives/TE_RCR_RetailerKey',	
+	'directives/TE_MR_AwarenessElecssories',	
+	'directives/TE_MR_AwarenessHealthBeauties',	
 	'angularRoute',
 	'angularXeditable',
 	'angularBootstrap',

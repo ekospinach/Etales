@@ -432,14 +432,14 @@ define(['app','socketIO','routingConfig'], function(app) {
 
 			var showAwarenessElecssories=function(){
 				switching('showAwarenessElecssories');
-				$scope.valueRural=new Array();$scope.valueUrban=new Array();$scope.dropRural=new Array();$scope.dropUrban=new Array();$scope.increaseRural=new Array();$scope.increaseUrban=new Array();
-				loadAwareness(1);
+				// $scope.valueRural=new Array();$scope.valueUrban=new Array();$scope.dropRural=new Array();$scope.dropUrban=new Array();$scope.increaseRural=new Array();$scope.increaseUrban=new Array();
+				// loadAwareness(1);
 			}
 
 			var showAwarenessHealthBeauties=function(){
 				switching('showAwarenessHealthBeauties');
-				$scope.valueRural=new Array();$scope.valueUrban=new Array();$scope.dropRural=new Array();$scope.dropUrban=new Array();$scope.increaseRural=new Array();$scope.increaseUrban=new Array();
-				loadAwareness(2);
+				// $scope.valueRural=new Array();$scope.valueUrban=new Array();$scope.dropRural=new Array();$scope.dropUrban=new Array();$scope.increaseRural=new Array();$scope.increaseUrban=new Array();
+				// loadAwareness(2);
 			}
 
 			var loadBrandPerceptions=function(category,market){
