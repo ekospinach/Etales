@@ -18,6 +18,13 @@ define(['directives', 'services'], function(directives){
                     getResult();                    
                 }
 
+                var loadValue=function(data,name,num){
+                    var array=_.find(data,function(obj){
+                        return (obj.brandName==name);
+                    });
+                    return array.value[num];
+                }
+
                 var loadRetailerTotal=function(data){
                     scope.Sales=data.data[0].rcrpl_Sales;
                     scope.PromotionsCost=data.data[0].rcrpl_PromotionsCost;
