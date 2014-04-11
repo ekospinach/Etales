@@ -12,6 +12,7 @@
 	'directives/TE_SCR_SupplierBMBusiness',
 	'directives/TE_SCR_SupplierOnlineBusiness',
 	'directives/TE_SCR_SupplierProfitability',
+	'directives/TE_SCR_SupplierNegotiations',
 	'angularRoute',
 	'angularXeditable',
 	'angularBootstrap',

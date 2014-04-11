@@ -937,37 +937,37 @@ define(['app','socketIO','routingConfig'], function(app) {
 
 		    var showProducerNegotiations=function(){
 		    	switching('showProducerNegotiations');
-		    	var url='/SCR-negotiations/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
-		    	$http({
-		    		method:'GET',
-		    		url:url
-		    	}).then(function(data){
-		    		$scope.product1es=new Array();
-		    		$scope.product1hs=new Array();
-		    		$scope.product2es=new Array();
-		    		$scope.product2hs=new Array();
-		    		var varName,brandName,discount_MinimumVolume,discount_Rate,bonus_TargetVolume,bonus_Rate,bonus_Value,vnd_PaymentTerm,vnd_OtherCompensation,vnd_ContractHonoured;
+		    	// var url='/SCR-negotiations/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+		    	// $http({
+		    	// 	method:'GET',
+		    	// 	url:url
+		    	// }).then(function(data){
+		    	// 	$scope.product1es=new Array();
+		    	// 	$scope.product1hs=new Array();
+		    	// 	$scope.product2es=new Array();
+		    	// 	$scope.product2hs=new Array();
+		    	// 	var varName,brandName,discount_MinimumVolume,discount_Rate,bonus_TargetVolume,bonus_Rate,bonus_Value,vnd_PaymentTerm,vnd_OtherCompensation,vnd_ContractHonoured;
 
-		    		for(var i=0;i<data.data[0].vnd_QuantityDiscount.discount_MinimumVolume.length;i++){
-		    			if(data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].parentCategoryID==1){
-		    				for(var j=0;j<data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerInfo.length;j++){
-		    					switch(data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerInfo[j].modernRetailerID){
-			    					case 1:loadNegotiations(data,1,1,i,j);break;
-			    					case 2:loadNegotiations(data,1,2,i,j);break;
-			    				}
-		    				}
-		    			}else{
-		    				for(var j=0;j<data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerInfo.length;j++){
-		    					switch(data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerInfo[j].modernRetailerID){
-		    						case 1:loadNegotiations(data,2,1,i,j);break;
-			    					case 2:loadNegotiations(data,2,2,i,j);break;
-		    					}
-		    				}
-		    			}
-		    		}
-		    	},function(){
-		    		console.log('fail');
-		    	})
+		    	// 	for(var i=0;i<data.data[0].vnd_QuantityDiscount.discount_MinimumVolume.length;i++){
+		    	// 		if(data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].parentCategoryID==1){
+		    	// 			for(var j=0;j<data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerInfo.length;j++){
+		    	// 				switch(data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerInfo[j].modernRetailerID){
+			    // 					case 1:loadNegotiations(data,1,1,i,j);break;
+			    // 					case 2:loadNegotiations(data,1,2,i,j);break;
+			    // 				}
+		    	// 			}
+		    	// 		}else{
+		    	// 			for(var j=0;j<data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerInfo.length;j++){
+		    	// 				switch(data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerInfo[j].modernRetailerID){
+		    	// 					case 1:loadNegotiations(data,2,1,i,j);break;
+			    // 					case 2:loadNegotiations(data,2,2,i,j);break;
+		    	// 				}
+		    	// 			}
+		    	// 		}
+		    	// 	}
+		    	// },function(){
+		    	// 	console.log('fail');
+		    	// })
 		    }
 
 		    var loadConsumer=function(data,category){
