@@ -11,10 +11,10 @@
       border: 1px solid #428BCA;
       border-right: none;
     }
-    .mypanel-success > .panel-heading {
+    .my-panel-success > .panel-heading {
         background-color: #5CB85C;
     }
-    .mypanel-danger > .panel-heading {
+    .my-panel-danger > .panel-heading {
         background-color: #D9534F;
     }
     .tr-info{
@@ -133,7 +133,9 @@
                 <!--retailer report end-->
 
                 <!--market report start-->
-                    <div class="panel panel-primary mypanel-danger" ng-show='AwarenessElecssories||AwarenessHealthBeauties'>
+                    <market-wareness-elecssories ng-show='AwarenessElecssories' is-page-shown='AwarenessElecssories' is-page-loading='isPageLoading'></market-wareness-elecssories>
+                    <market-wareness-health-beauties ng-show='AwarenessHealthBeauties' is-page-shown='AwarenessHealthBeauties' is-page-loading='isPageLoading'></market-wareness-health-beauties>
+                    <!-- <div class="panel panel-primary my-panel-danger" ng-show='AwarenessElecssories||AwarenessHealthBeauties'>
                         <div class="panel-heading" ng-show='AwarenessElecssories'>
                             <h3 class="panel-title text-center" popover="{{Label.getContent('Awareness Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
                                 {{Label.getContent('Awareness')}}-{{Label.getContent('Elecssories')}}
@@ -146,9 +148,9 @@
                         </div>
                         <highchart id="chart1" config="chart1Config" class="span9" style="height:600px;width:810px;"></highchart>
                         <highchart id="chart2" config="chart2Config" class="span9" style="height:600px;width:810px;"></highchart>
-                    </div>
+                    </div> -->
 
-                    <div class="panel panel-primary mypanel-danger" ng-show='RuralElecssoriesBrand||UrbanElecssoriesBrand||RuralHealthBeautiesBrand||UrbanHealthBeautiesBrand'>
+                    <div class="panel panel-primary my-panel-danger" ng-show='RuralElecssoriesBrand||UrbanElecssoriesBrand||RuralHealthBeautiesBrand||UrbanHealthBeautiesBrand'>
                         <div class="panel-heading" ng-show='RuralElecssoriesBrand'>
                             <h3 class="panel-title text-center" popover="{{Label.getContent('Brand Perceptions Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
                                 {{Label.getContent('Brand Perceptions')}}-{{Label.getContent('Elecssories')}}({{Label.getContent('Rural')}})
@@ -173,7 +175,7 @@
                         <div div style="width:25%" id="highchart2" ng-model='myModel' highchart2></div>
                     </div>
 
-                    <div class="panel panel-primary mypanel-danger" ng-show='RetailerPerceptions'>
+                    <div class="panel panel-primary my-panel-danger" ng-show='RetailerPerceptions'>
                         <div class="panel-heading">
                             <h3 class="panel-title text-center" popover="{{Label.getContent('Retailer Perceptions Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
                                 {{Label.getContent('Retailer Perceptions')}}
@@ -183,7 +185,7 @@
                         <div id="highchart4" ng-model='myModel' highchart4></div>
                     </div>
 
-                    <div class="panel panel-primary mypanel-danger" ng-show='RuralElecssoriesConsumerShare||UrbanElecssoriesConsumerShare||RuralHealthBeautiesConsumerShare||UrbanHealthBeautiesConsumerShare||RuralElecssoriesConsumerSales||UrbanElecssoriesConsumerSales||RuralHealthBeautiesConsumerSales||UrbanHealthBeautiesConsumerSales'>
+                    <div class="panel panel-primary my-panel-danger" ng-show='RuralElecssoriesConsumerShare||UrbanElecssoriesConsumerShare||RuralHealthBeautiesConsumerShare||UrbanHealthBeautiesConsumerShare||RuralElecssoriesConsumerSales||UrbanElecssoriesConsumerSales||RuralHealthBeautiesConsumerSales||UrbanHealthBeautiesConsumerSales'>
                         <div class="panel-heading" ng-show='RuralElecssoriesConsumerShare'>
                             <h3 class="panel-title text-center" popover="{{Label.getContent('Market Shares by Consumer Segment Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
                                 {{Label.getContent('Market Shares by Consumer Segment')}}-{{Label.getContent('Elecssories')}}({{Label.getContent('Rural')}})
@@ -713,7 +715,7 @@
                         </table>
                     </div>
 
-                    <div class="panel panel-primary mypanel-danger" ng-show='RuralElecssoriesShopperShare||UrbanElecssoriesShopperShare||RuralHealthBeautiesShopperShare||UrbanHealthBeautiesShopperShare||RuralElecssoriesShopperSales||UrbanElecssoriesShopperSales||RuralHealthBeautiesShopperSales||UrbanHealthBeautiesShopperSales'>
+                    <div class="panel panel-primary my-panel-danger" ng-show='RuralElecssoriesShopperShare||UrbanElecssoriesShopperShare||RuralHealthBeautiesShopperShare||UrbanHealthBeautiesShopperShare||RuralElecssoriesShopperSales||UrbanElecssoriesShopperSales||RuralHealthBeautiesShopperSales||UrbanHealthBeautiesShopperSales'>
                         <div class="panel-heading" ng-show='RuralElecssoriesShopperShare'>
                             <h3 class="panel-title text-center" popover="{{Label.getContent('Market Shares by Shopper Segment Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
                                 {{Label.getContent('Market Shares by Shopper Segment')}}-{{Label.getContent('Elecssories')}}({{Label.getContent('Rural')}})
@@ -1153,7 +1155,7 @@
                         </table>
                     </div>
 
-                    <div class="panel panel-primary mypanel-danger" ng-show='BMElecssories||BMHealthBeauties'>
+                    <div class="panel panel-primary my-panel-danger" ng-show='BMElecssories||BMHealthBeauties'>
                         <div class="panel-heading" ng-show='BMElecssories'>
                             <h3 class="panel-title text-center" popover="{{Label.getContent('B&M Retail Prices Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
                                 {{Label.getContent('B&M Retail Prices')}}-{{Label.getContent('Elecssories')}}
@@ -1393,7 +1395,7 @@
                         </table>
                     </div>
 
-                    <div class="panel panel-primary mypanel-danger" ng-show='PromotionElecssories||PromotionHealthBeauties'>
+                    <div class="panel panel-primary my-panel-danger" ng-show='PromotionElecssories||PromotionHealthBeauties'>
                         <div class="panel-heading" ng-show='PromotionElecssories'>
                             <h3 class="panel-title text-center" popover="{{Label.getContent('Promotion Intensity Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
                                 {{Label.getContent('Promotion Intensity')}}-{{Label.getContent('Elecssories')}}
@@ -1633,7 +1635,7 @@
                         </table>
                     </div>
 
-                    <div class="panel panel-primary mypanel-danger" ng-show='SupplierIntelligence'>
+                    <div class="panel panel-primary my-panel-danger" ng-show='SupplierIntelligence'>
                         <div class="panel-heading">
                             <h3 class="panel-title text-center" popover="{{Label.getContent('Supplier Intelligence Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
                                 {{Label.getContent('Supplier Intelligence')}}
@@ -2327,7 +2329,7 @@
                         </table>
                     </div>
 
-                    <div class="panel panel-primary mypanel-danger" ng-show='RetailerIntelligence'>
+                    <div class="panel panel-primary my-panel-danger" ng-show='RetailerIntelligence'>
                         <div class="panel-heading">
                             <h3 class="panel-title text-center" popover="{{Label.getContent('Retailer Intelligence Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
                                 {{Label.getContent('Retailer Intelligence')}}
@@ -2663,7 +2665,7 @@
                         </table>
                     </div>
 
-                    <div class="panel panel-primary mypanel-danger" ng-show='ForecastsConsumer||ForecastsShopper||ForecastsCategory||ForecastsInternet'>
+                    <div class="panel panel-primary my-panel-danger" ng-show='ForecastsConsumer||ForecastsShopper||ForecastsCategory||ForecastsInternet'>
                         <div class="panel-heading" ng-show='ForecastsConsumer'>
                             <h3 class="panel-title text-center" popover="{{Label.getContent('Consumer Segment Size Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
                                 {{Label.getContent('Two-Period Ahead Forecasts')}}-{{Label.getContent('Consumer Segment Size')}}
