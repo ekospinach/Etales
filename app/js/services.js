@@ -31,7 +31,7 @@ define(['angular',
 						    if(item){ return item.ENG;}
 						    else{
 						    	items.push(value);
-						    	console.log(items);
+						    	//console.log(items);
 						    	return '**NotFound**';
 						    }
 						    break;

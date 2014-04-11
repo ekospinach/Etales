@@ -1,0 +1,269 @@
+<div class="panel panel-primary" ng-show="isResultShown">
+    <div class="panel-heading">
+        <h3 class="panel-title text-center" popover="{{Label.getContent('Product Portfolio Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Product Portfolio')}}</h3>
+    </div>
+    <table class="table table-condensed table-bordered table-primary">
+        <thead>
+            <tr>
+                <th></th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Pack Format')}}</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Technology Level')}}</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Design Level')}}</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Quality-of-Raw-Materials')}}</p>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <!--E-->
+            <tr class="success">
+                <th colspan="5">{{Label.getContent('Elecssories')}}</th>
+            </tr>
+            <tr class="success">
+                <td colspan="5">
+                    <p class="padding-20">{{Label.getContent('Producer')}} 1</p>
+                </td>
+            </tr>
+            <tr class="success" ng-repeat='producer1e in producer1es'>
+                <td>
+                    <p class="padding-40">{{producer1e.varName}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{producer1e.packFormat}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{producer1e.vc_composition[1]}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{producer1e.vc_composition[0]}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{producer1e.vc_composition[2]}}</p>
+                </td>
+            </tr>
+            <tr class="success">
+                <td colspan="5">
+                    <p class="padding-20">{{Label.getContent('Producer')}} 2</p>
+                </td>
+            </tr>
+            <tr class="success" ng-repeat='producer2e in producer2es'>
+                <td>
+                    <p class="padding-40">{{producer2e.varName}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{producer2e.packFormat}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{producer2e.vc_composition[1]}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{producer2e.vc_composition[0]}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{producer2e.vc_composition[2]}}</p>
+                </td>
+            </tr>
+            <tr class="success">
+                <td colspan="5">
+                    <p class="padding-20">{{Label.getContent('Producer')}} 3</p>
+                </td>
+            </tr>
+            <tr class="success" ng-repeat='producer3e in producer3es'>
+                <td>
+                    <p class="padding-40">{{producer3e.varName}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{producer3e.packFormat}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{producer3e.vc_composition[1]}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{producer3e.vc_composition[0]}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{producer3e.vc_composition[2]}}</p>
+                </td>
+            </tr>
+            <tr class="success">
+                <td colspan="5">
+                    <p class="padding-20">{{Label.getContent('Retailer')}} 1</p>
+                </td>
+            </tr>
+            <tr class="success" ng-repeat='retailer1e in retailer1es'>
+                <td>
+                    <p class="padding-40">{{retailer1e.varName}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{retailer1e.packFormat}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{retailer1e.vc_composition[1]}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{retailer1e.vc_composition[0]}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{retailer1e.vc_composition[2]}}</p>
+                </td>
+            </tr>
+            <tr class="success">
+                <td colspan="5">
+                    <p class="padding-20">{{Label.getContent('Retailer')}} 2</p>
+                </td>
+            </tr>
+            <tr class="success" ng-repeat='retailer2e in retailer2es'>
+                <td>
+                    <p class="padding-40">{{retailer2e.varName}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{retailer2e.packFormat}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{retailer2e.vc_composition[1]}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{retailer2e.vc_composition[0]}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{retailer2e.vc_composition[2]}}</p>
+                </td>
+            </tr>
+            <!--H-->
+            <tr>
+                <th></th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Pack Format')}}</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Technology Level')}}</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Active agent')}}</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Smoothener Level')}}</p>
+                </th>
+            </tr>
+            <tr class="danger">
+                <th colspan="5">{{Label.getContent('HealthBeauties')}}</th>
+            </tr>
+            <tr class="danger">
+                <td colspan="5">
+                    <p class="padding-20">{{Label.getContent('Producer')}} 1</p>
+                </td>
+            </tr>
+            <tr class="danger" ng-repeat='producer1h in producer1hs'>
+                <td>
+                    <p class="padding-40">{{producer1h.varName}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{producer1h.packFormat}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{producer1h.vc_composition[1]}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{producer1h.vc_composition[0]}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{producer1h.vc_composition[2]}}</p>
+                </td>
+            </tr>
+            <tr class="danger">
+                <td colspan="5">
+                    <p class="padding-20">{{Label.getContent('Producer')}} 2</p>
+                </td>
+            </tr>
+            <tr class="danger" ng-repeat='producer2h in producer2hs'>
+                <td>
+                    <p class="padding-40">{{producer2h.varName}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{producer2h.packFormat}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{producer2h.vc_composition[1]}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{producer2h.vc_composition[0]}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{producer2h.vc_composition[2]}}</p>
+                </td>
+            </tr>
+            <tr class="danger">
+                <td colspan="5">
+                    <p class="padding-20">{{Label.getContent('Producer')}} 3</p>
+                </td>
+            </tr>
+            <tr class="danger" ng-repeat='producer3h in producer3hs'>
+                <td>
+                    <p class="padding-40">{{producer3h.varName}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{producer3h.packFormat}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{producer3h.vc_composition[1]}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{producer3h.vc_composition[0]}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{producer3h.vc_composition[2]}}</p>
+                </td>
+            </tr>
+            <tr class="danger">
+                <td colspan="5">
+                    <p class="padding-20">{{Label.getContent('Retailer')}} 1</p>
+                </td>
+            </tr>
+            <tr class="danger" ng-repeat='retailer1h in retailer1hs'>
+                <td>
+                    <p class="padding-40">{{retailer1h.varName}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{retailer1h.packFormat}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{retailer1h.vc_composition[1]}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{retailer1h.vc_composition[0]}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{retailer1h.vc_composition[2]}}</p>
+                </td>
+            </tr>
+            <tr class="danger">
+                <td colspan="5">
+                    <p class="padding-20">{{Label.getContent('Retailer')}} 2</p>
+                </td>
+            </tr>
+            <tr class="danger" ng-repeat='retailer2h in retailer2hs'>
+                <td>
+                    <p class="padding-40">{{retailer2h.varName}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{retailer2h.packFormat}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{retailer2h.vc_composition[1]}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{retailer2h.vc_composition[0]}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{retailer2h.vc_composition[2]}}</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
