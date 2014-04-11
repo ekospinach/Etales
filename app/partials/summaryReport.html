@@ -11,17 +11,11 @@
       border: 1px solid #428BCA;
       border-right: none;
     }
-    .panel-success {
-        border-color: #428BCA;
+    .mypanel-success > .panel-heading {
+        background-color: #5CB85C;
     }
-    .panel-success > .panel-heading {
-        border-color: #428BCA;
-    }
-    .panel-danger {
-        border-color: #428BCA;
-    }
-    .panel-danger > .panel-heading {
-        border-color: #428BCA;
+    .mypanel-danger > .panel-heading {
+        background-color: #D9534F;
     }
     .tr-info{
         background-color: #428BCA;
@@ -1084,120 +1078,6 @@
 
                     <retailer-key ng-show='RetailerKey' is-page-shown='RetailerKey' is-page-loading='isPageLoading'></retailer-key>
 
-                    <!-- <div class="panel panel-success" ng-show='RetailerKey'>
-                        <div class="panel-heading">
-                            <h3 class="panel-title text-center" popover="{{Label.getContent('Key Performance Indicators Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
-                                {{Label.getContent('Key Performance Indicators')}}
-                            </h3>
-                        </div>
-                        <table class="table table-condensed table-bordered table-success">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th class="td-info">
-                                        <p class="text-center">{{Label.getContent('Rural')}}</p>
-                                    </th>
-                                    <th class="td-warning">
-                                        <p class="text-center">{{Label.getContent('Urban')}}</p>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <td colspan="3">
-                                        <p>{{Label.getContent('Rotation Index')}}</p>
-                                    </td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td colspan="3">
-                                        <p class="padding-20">{{Label.getContent('Volume')}}</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="padding-40">{{Label.getContent('Elecssories')}}</p>
-                                    </td>
-                                    <td class="td-info">
-                                        <p class="text-right">{{data.rcrkpi_VolumeRotationIndex[0].value[1]}}</p>
-                                    </td>
-                                    <td class="td-warning">
-                                        <p class="text-right">{{data.rcrkpi_VolumeRotationIndex[0].value[0]}}</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="padding-40">{{Label.getContent('HealthBeauties')}}</p>
-                                    </td>
-                                    <td class="td-info">
-                                        <p class="text-right">{{data.rcrkpi_VolumeRotationIndex[1].value[1]}}</p>
-                                    </td>
-                                    <td class="td-warning">
-                                        <p class="text-right">{{data.rcrkpi_VolumeRotationIndex[1].value[0]}}</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="padding-20">{{Label.getContent('Value')}}</p>
-                                    </td>
-                                    <td class="td-info">
-                                        <p class="text-right">{{data.rcrkpi_ValueRotationIndex[2].value[1]}}</p>
-                                    </td>
-                                    <td class="td-warning">
-                                        <p class="text-right">{{data.rcrkpi_ValueRotationIndex[2].value[0]}}</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p>{{Label.getContent('Profitability Index')}}</p>
-                                    </td>
-                                    <td class="td-info">
-                                        <p class="text-right">{{data.rcrkpi_ProfitabilityIndex[2].value[1]}}</p>
-                                    </td>
-                                    <td class="td-warning">
-                                        <p class="text-right">{{data.rcrkpi_ProfitabilityIndex[2].value[0]}}</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p>{{Label.getContent('Stock Cover')}}</p>
-                                    </td>
-                                    <td class="td-info">
-                                        <p class="text-right">{{data.rcrkpi_StockCover[2].value[1]}}</p>
-                                    </td>
-                                    <td class="td-warning">
-                                        <p class="text-right">{{data.rcrkpi_StockCover[2].value[0]}}</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="3">
-                                        <p>{{Label.getContent('Share of Shoppers')}}(%)</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="padding-20">{{Label.getContent('B&M Shoppers')}}</p>
-                                    </td>
-                                    <td class="td-info">
-                                        <p class="text-right">{{data.rcrkpi_ShoppersShare[0].value[0]}}</p>
-                                    </td>
-                                    <td class="td-warning">
-                                        <p class="text-right">{{data.rcrkpi_ShoppersShare[0].value[1]}}</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="padding-20">{{Label.getContent('All Shoppers')}}</p>
-                                    </td>
-                                    <td class="td-info">
-                                        <p class="text-right">{{data.rcrkpi_ShoppersShare[3].value[0]}}</p>
-                                    </td>
-                                    <td class="td-warning">
-                                        <p class="text-right">{{data.rcrkpi_ShoppersShare[3].value[1]}}</p>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div> -->
                 <!--retailer report end-->
 
                 <!--market report start-->
