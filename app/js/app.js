@@ -31,6 +31,7 @@
 	'directives/TE_RCR_RetailerUrbanShopper',
 	'directives/TE_RCR_RetailerRuralVolume',
 	'directives/TE_RCR_RetailerUrbanVolume',
+	'directives/TE_RCR_RetailerKey',
 	'angularRoute',
 	'angularXeditable',
 	'angularBootstrap',

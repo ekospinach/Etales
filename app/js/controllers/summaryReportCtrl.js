@@ -1676,15 +1676,15 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    }
 		    var showRetailerKey=function(){
 		    	switching('showRetailerKey');
-		    	var url='/RCR-keyPerformanceIndicators/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
-		    	$http({
-		    		method:'GET',
-		    		url:url
-		    	}).then(function(data){
-					$scope.data=data.data[0];
-		    	},function(){
-		    		console.log('fail');
-		    	})
+		   //  	var url='/RCR-keyPerformanceIndicators/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+		   //  	$http({
+		   //  		method:'GET',
+		   //  		url:url
+		   //  	}).then(function(data){
+					// $scope.data=data.data[0];
+		   //  	},function(){
+		   //  		console.log('fail');
+		   //  	})
 		    }
 
 		    $scope.openProductModal=function(brandName,type){

@@ -7759,7 +7759,7 @@ exports.getRCR_sharesCrossSegment=function(req,res,next){
     var data={
         'seminar':req.params.seminar,
         'period':req.params.period,
-        'producerID':req.params.producerID
+        'retailerID':req.params.retailerID
     };
     RCR_sharesCrossSegment.find(data,function(err,docs){
         if(docs){
