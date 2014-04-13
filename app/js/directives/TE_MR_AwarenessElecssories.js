@@ -43,14 +43,14 @@ define(['directives', 'services'], function(directives){
                             count++;
                         }
                     }
-                    scope.chart1Series=[{
+                    scope.awarenessElecssories1Series=[{
                         name:'Drop',data:scope.dropRural,color:'#D9534F'
                     },{
                         name:'Increase',data:scope.increaseRural,color:'#5CB85C'
                     },{
                         name:'Value',data:scope.valueRural,color:'#DDDDDD'
                     }];
-                    scope.chart1Config={
+                    scope.awarenessElecssories1Config={
                         options:{
                             chart:{type:'bar'},
                             plotOptions:{series:{stacking:'normal'}},
@@ -58,17 +58,17 @@ define(['directives', 'services'], function(directives){
                             yAxis:{title:{text:''}
                         }
                     },
-                        series:scope.chart1Series,
+                        series:scope.awarenessElecssories1Series,
                         title:{text:Label.getContent('Rural')}
                     }
-                    scope.chart2Series=[{
+                    scope.awarenessElecssories2Series=[{
                         name:'Drop',data:scope.dropUrban,color:'#D9534F'
                     },{
                         name:'Increase',data:scope.increaseUrban,color:'#5CB85C'
                     },{
                         name:'Value',data:scope.valueUrban,color:'#DDDDDD'
                     }];
-                    scope.chart2Config={
+                    scope.awarenessElecssories2Config={
                         options:{
                             chart:{type:'bar'},
                             plotOptions:{series:{stacking:'normal'}},
@@ -76,7 +76,7 @@ define(['directives', 'services'], function(directives){
                             yAxis:{title:{text:''}
                         }
                     },
-                        series:scope.chart2Series,
+                        series:scope.awarenessElecssories2Series,
                         title:{text:Label.getContent('Urban')}
                     }
                 }

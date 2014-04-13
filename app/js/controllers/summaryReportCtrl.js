@@ -432,14 +432,10 @@ define(['app','socketIO','routingConfig'], function(app) {
 
 			var showAwarenessElecssories=function(){
 				switching('showAwarenessElecssories');
-				// $scope.valueRural=new Array();$scope.valueUrban=new Array();$scope.dropRural=new Array();$scope.dropUrban=new Array();$scope.increaseRural=new Array();$scope.increaseUrban=new Array();
-				// loadAwareness(1);
 			}
 
 			var showAwarenessHealthBeauties=function(){
 				switching('showAwarenessHealthBeauties');
-				// $scope.valueRural=new Array();$scope.valueUrban=new Array();$scope.dropRural=new Array();$scope.dropUrban=new Array();$scope.increaseRural=new Array();$scope.increaseUrban=new Array();
-				// loadAwareness(2);
 			}
 
 			var loadBrandPerceptions=function(category,market){
@@ -490,31 +486,31 @@ define(['app','socketIO','routingConfig'], function(app) {
 
 			var showRuralElecssoriesBrand=function(){
 				switching('showRuralElecssoriesBrand');
-				$scope.xTitle1="Easy of Use";
-				$scope.yTitle1="Quality";
-				$scope.yTitle2="Price Appeal";
-				loadBrandPerceptions(1,2);
+				// $scope.xTitle1="Easy of Use";
+				// $scope.yTitle1="Quality";
+				// $scope.yTitle2="Price Appeal";
+				// loadBrandPerceptions(1,2);
 			}
 			var showUrbanElecssoriesBrand=function(){
 				switching('showUrbanElecssoriesBrand');
-				$scope.xTitle1="Easy of Use";
-				$scope.yTitle1="Quality";
-				$scope.yTitle2="Price Appeal";
-				loadBrandPerceptions(1,1);
+				// $scope.xTitle1="Easy of Use";
+				// $scope.yTitle1="Quality";
+				// $scope.yTitle2="Price Appeal";
+				// loadBrandPerceptions(1,1);
 			}
 			var showRuralHealthBeautiesBrand=function(){
 				switching('showRuralHealthBeautiesBrand');
-				$scope.xTitle1="Performance";
-				$scope.yTitle1="Gentleness";
-				$scope.yTitle2="Price Appeal";
-				loadBrandPerceptions(2,2);
+				// $scope.xTitle1="Performance";
+				// $scope.yTitle1="Gentleness";
+				// $scope.yTitle2="Price Appeal";
+				// loadBrandPerceptions(2,2);
 			}
 			var showUrbanHealthBeautiesBrand=function(){
 				switching('showUrbanHealthBeautiesBrand');
-				$scope.xTitle1="Performance";
-				$scope.yTitle1="Gentleness";
-				$scope.yTitle2="Price Appeal";
-				loadBrandPerceptions(2,1);
+				// $scope.xTitle1="Performance";
+				// $scope.yTitle1="Gentleness";
+				// $scope.yTitle2="Price Appeal";
+				// loadBrandPerceptions(2,1);
 			}
 			var showRetailerPerceptions=function(){
 				switching('showRetailerPerceptions');
@@ -847,15 +843,9 @@ define(['app','socketIO','routingConfig'], function(app) {
 
 			var showBMElecssories=function(){
 				switching('showBMElecssories');
-				$scope.player1s=new Array();$scope.player2s=new Array();$scope.player3s=new Array();$scope.player5s=new Array();$scope.player6s=new Array();
-				$scope.nameColor='#DFF0D8';//绿
-				loadRetailerPrice(1);
 			}
 			var showBMHealthBeauties=function(){
 				switching('showBMHealthBeauties');
-				$scope.player1s=new Array();$scope.player2s=new Array();$scope.player3s=new Array();$scope.player5s=new Array();$scope.player6s=new Array();
-				$scope.nameColor='#F2DEDE'//红
-				loadRetailerPrice(2);
 			}
 
 			var loadPromotion=function(category){
@@ -894,356 +884,28 @@ define(['app','socketIO','routingConfig'], function(app) {
 
 			var showPromotionElecssories=function(){
 				switching('showPromotionElecssories');
-				$scope.player1s=new Array();$scope.player2s=new Array();$scope.player3s=new Array();$scope.player5s=new Array();$scope.player6s=new Array();
-				$scope.nameColor='#DFF0D8';//绿
-				loadPromotion(1);
 			}
 			var showPromotionHealthBeauties=function(){
 				switching('showPromotionHealthBeauties');
-				$scope.player1s=new Array();$scope.player2s=new Array();$scope.player3s=new Array();$scope.player5s=new Array();$scope.player6s=new Array();
-				$scope.nameColor='#F2DEDE'//红
-				loadPromotion(2);
 			}
 
 			var showSupplierIntelligence=function(category){
 				switching('showSupplierIntelligence');
-				var myData=new Array();
-				var url='/getMR-suppliersIntelligence/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1);
-				$http({
-					method:'GET',
-					url:url
-				}).then(function(data){
-					myData.push({
-						'AdvertisingOnline_1e':data.data[0].supplierInfo[0].categoryInfo[0].advertisingOnLine,
-						'AdvertisingOnline_2e':data.data[0].supplierInfo[1].categoryInfo[0].advertisingOnLine,
-						'AdvertisingOnline_3e':data.data[0].supplierInfo[2].categoryInfo[0].advertisingOnLine,
-						'AdvertisingOnline_1h':data.data[0].supplierInfo[0].categoryInfo[1].advertisingOnLine,
-						'AdvertisingOnline_2h':data.data[0].supplierInfo[1].categoryInfo[1].advertisingOnLine,
-						'AdvertisingOnline_3h':data.data[0].supplierInfo[2].categoryInfo[1].advertisingOnLine,
-						'AdvertisingOffline_1e':data.data[0].supplierInfo[0].categoryInfo[0].advertisingOffLine,
-						'AdvertisingOffline_2e':data.data[0].supplierInfo[1].categoryInfo[0].advertisingOffLine,
-						'AdvertisingOffline_3e':data.data[0].supplierInfo[2].categoryInfo[0].advertisingOffLine,
-						'AdvertisingOffline_1h':data.data[0].supplierInfo[0].categoryInfo[1].advertisingOffLine,
-						'AdvertisingOffline_2h':data.data[0].supplierInfo[1].categoryInfo[1].advertisingOffLine,
-						'AdvertisingOffline_3h':data.data[0].supplierInfo[2].categoryInfo[1].advertisingOffLine,
-						'OnLineVisibility_1e':data.data[0].supplierInfo[0].categoryInfo[0].onLineVisibility,
-						'OnLineVisibility_2e':data.data[0].supplierInfo[1].categoryInfo[0].onLineVisibility,
-						'OnLineVisibility_3e':data.data[0].supplierInfo[2].categoryInfo[0].onLineVisibility,
-						'OnLineVisibility_1h':data.data[0].supplierInfo[0].categoryInfo[1].onLineVisibility,
-						'OnLineVisibility_2h':data.data[0].supplierInfo[1].categoryInfo[1].onLineVisibility,
-						'OnLineVisibility_3h':data.data[0].supplierInfo[2].categoryInfo[1].onLineVisibility,
-						'OnLineOther_1e':data.data[0].supplierInfo[0].categoryInfo[0].onLineOther,
-						'OnLineOther_2e':data.data[0].supplierInfo[1].categoryInfo[0].onLineOther,
-						'OnLineOther_3e':data.data[0].supplierInfo[2].categoryInfo[0].onLineOther,
-						'OnLineOther_1h':data.data[0].supplierInfo[0].categoryInfo[1].onLineOther,
-						'OnLineOther_2h':data.data[0].supplierInfo[1].categoryInfo[1].onLineOther,
-						'OnLineOther_3h':data.data[0].supplierInfo[2].categoryInfo[1].onLineOther,
-						'TechnologyLevel_1e':data.data[0].supplierInfo[0].categoryInfo[0].acquiredTechnologyLevel,
-						'TechnologyLevel_2e':data.data[0].supplierInfo[1].categoryInfo[0].acquiredTechnologyLevel,
-						'TechnologyLevel_3e':data.data[0].supplierInfo[2].categoryInfo[0].acquiredTechnologyLevel,
-						'TechnologyLevel_1h':data.data[0].supplierInfo[0].categoryInfo[1].acquiredTechnologyLevel,
-						'TechnologyLevel_2h':data.data[0].supplierInfo[1].categoryInfo[1].acquiredTechnologyLevel,
-						'TechnologyLevel_3h':data.data[0].supplierInfo[2].categoryInfo[1].acquiredTechnologyLevel,
-						'DesignLevel_1e':data.data[0].supplierInfo[0].categoryInfo[0].acquiredDesignLevel,
-						'DesignLevel_2e':data.data[0].supplierInfo[1].categoryInfo[0].acquiredDesignLevel,
-						'DesignLevel_3e':data.data[0].supplierInfo[2].categoryInfo[0].acquiredDesignLevel,
-						'DesignLevel_1h':data.data[0].supplierInfo[0].categoryInfo[1].acquiredDesignLevel,
-						'DesignLevel_2h':data.data[0].supplierInfo[1].categoryInfo[1].acquiredDesignLevel,
-						'DesignLevel_3h':data.data[0].supplierInfo[2].categoryInfo[1].acquiredDesignLevel,
-						'Capacity_1e':data.data[0].supplierInfo[0].categoryInfo[0].productionCapacityAvailable,
-						'Capacity_2e':data.data[0].supplierInfo[1].categoryInfo[0].productionCapacityAvailable,
-						'Capacity_3e':data.data[0].supplierInfo[2].categoryInfo[0].productionCapacityAvailable,
-						'Capacity_1h':data.data[0].supplierInfo[0].categoryInfo[1].productionCapacityAvailable,
-						'Capacity_2h':data.data[0].supplierInfo[1].categoryInfo[1].productionCapacityAvailable,
-						'Capacity_3h':data.data[0].supplierInfo[2].categoryInfo[1].productionCapacityAvailable,
-						'UtilizationRate_1e':data.data[0].supplierInfo[0].categoryInfo[0].capacityUtilisationRate,
-						'UtilizationRate_2e':data.data[0].supplierInfo[1].categoryInfo[0].capacityUtilisationRate,
-						'UtilizationRate_3e':data.data[0].supplierInfo[2].categoryInfo[0].capacityUtilisationRate,
-						'UtilizationRate_1h':data.data[0].supplierInfo[0].categoryInfo[1].capacityUtilisationRate,
-						'UtilizationRate_2h':data.data[0].supplierInfo[1].categoryInfo[1].capacityUtilisationRate,
-						'UtilizationRate_3h':data.data[0].supplierInfo[2].categoryInfo[1].capacityUtilisationRate,
-						'FlexibilityMax_1e':data.data[0].supplierInfo[0].categoryInfo[0].productionplanningFlexibility,
-						'FlexibilityMax_2e':data.data[0].supplierInfo[1].categoryInfo[0].productionplanningFlexibility,
-						'FlexibilityMax_3e':data.data[0].supplierInfo[2].categoryInfo[0].productionplanningFlexibility,
-						'FlexibilityMax_1h':data.data[0].supplierInfo[0].categoryInfo[1].productionplanningFlexibility,
-						'FlexibilityMax_2h':data.data[0].supplierInfo[1].categoryInfo[1].productionplanningFlexibility,
-						'FlexibilityMax_3h':data.data[0].supplierInfo[2].categoryInfo[1].productionplanningFlexibility,
-						'FlexibilityMin_1e':data.data[0].supplierInfo[0].categoryInfo[0].productionplanningFlexibility,
-						'FlexibilityMin_2e':data.data[0].supplierInfo[1].categoryInfo[0].productionplanningFlexibility,
-						'FlexibilityMin_3e':data.data[0].supplierInfo[2].categoryInfo[0].productionplanningFlexibility,
-						'FlexibilityMin_1h':data.data[0].supplierInfo[0].categoryInfo[1].productionplanningFlexibility,
-						'FlexibilityMin_2h':data.data[0].supplierInfo[1].categoryInfo[1].productionplanningFlexibility,
-						'FlexibilityMin_3h':data.data[0].supplierInfo[2].categoryInfo[1].productionplanningFlexibility,
-						'TradeSupport_1e':data.data[0].supplierInfo[0].categoryInfo[0].actualTradeSupport,
-						'TradeSupport_2e':data.data[0].supplierInfo[1].categoryInfo[0].actualTradeSupport,
-						'TradeSupport_3e':data.data[0].supplierInfo[2].categoryInfo[0].actualTradeSupport,
-						'TradeSupport_1h':data.data[0].supplierInfo[0].categoryInfo[1].actualTradeSupport,
-						'TradeSupport_2h':data.data[0].supplierInfo[1].categoryInfo[1].actualTradeSupport,
-						'TradeSupport_3h':data.data[0].supplierInfo[2].categoryInfo[1].actualTradeSupport,
-						'Negotiated_1e':data.data[0].supplierInfo[0].categoryInfo[0].negotiatedTradeSupport,
-						'Negotiated_2e':data.data[0].supplierInfo[1].categoryInfo[0].negotiatedTradeSupport,
-						'Negotiated_3e':data.data[0].supplierInfo[2].categoryInfo[0].negotiatedTradeSupport,
-						'Negotiated_1h':data.data[0].supplierInfo[0].categoryInfo[1].negotiatedTradeSupport,
-						'Negotiated_2h':data.data[0].supplierInfo[1].categoryInfo[1].negotiatedTradeSupport,
-						'Negotiated_3h':data.data[0].supplierInfo[2].categoryInfo[1].negotiatedTradeSupport,
-					});
-					$scope.data=myData[0];
-					console.log($scope.data);
-				},function(){
-					console.log('fail');
-				})
 			}
 			var showRetailerIntelligence=function(){
 				switching('showRetailerIntelligence');
-				$scope.data=new Array();$scope.variants=new Array();$scope.player1es=new Array();$scope.player2es=new Array();$scope.player3es=new Array();$scope.player5es=new Array();$scope.player6es=new Array();$scope.player1hs=new Array();$scope.player2hs=new Array();$scope.player3hs=new Array();$scope.player5hs=new Array();$scope.player6hs=new Array();
-				var url='/getMR-retailersIntelligence/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1);
-				$http({
-					method:'GET',
-					url:url
-				}).then(function(data){
-					data.data[0].retailerInfo[0].storeServiceLevel[2]=data.data[0].retailerInfo[1].storeServiceLevel[0];
-					data.data[0].retailerInfo[0].storeServiceLevel[3]=data.data[0].retailerInfo[1].storeServiceLevel[1];
-					data.data[0].retailerInfo[0].onlineAdvertising[2]=data.data[0].retailerInfo[1].onlineAdvertising[0];
-					data.data[0].retailerInfo[0].onlineAdvertising[3]=data.data[0].retailerInfo[1].onlineAdvertising[1];
-					data.data[0].retailerInfo[0].offlineAdvertising[2]=data.data[0].retailerInfo[1].offlineAdvertising[0];
-					data.data[0].retailerInfo[0].offlineAdvertising[3]=data.data[0].retailerInfo[1].offlineAdvertising[1];
-					data.data[0].retailerInfo[0].localAdvertising[2]=data.data[0].retailerInfo[1].localAdvertising[0];
-					data.data[0].retailerInfo[0].localAdvertising[3]=data.data[0].retailerInfo[1].localAdvertising[1];
-					$scope.data.push({'storeServiceLevel':data.data[0].retailerInfo[0].storeServiceLevel,'onlineAdvertising':data.data[0].retailerInfo[0].onlineAdvertising,'offlineAdvertising':data.data[0].retailerInfo[0].offlineAdvertising,'localAdvertising':data.data[0].retailerInfo[0].localAdvertising});
-					for(var i=0;i<data.data[0].retailerInfo[0].variantInfo.length;i++){
-						var variant=_.find(data.data[0].retailerInfo[1].variantInfo,function(obj){
-							return (obj.variantName==data.data[0].retailerInfo[0].variantInfo[i].variantName&&obj.parentBrandName==data.data[0].retailerInfo[0].variantInfo[i].parentBrandName);
-						})
-						if(variant!=undefined){
-							data.data[0].retailerInfo[0].variantInfo[i].shelfSpace[2]=variant.shelfSpace[0];
-							data.data[0].retailerInfo[0].variantInfo[i].shelfSpace[3]=variant.shelfSpace[1];
-						}else{
-							data.data[0].retailerInfo[0].variantInfo[i].shelfSpace[2]=0;
-							data.data[0].retailerInfo[0].variantInfo[i].shelfSpace[3]=0;
-						}
-						$scope.variants.push(data.data[0].retailerInfo[0].variantInfo[i]);
-					}
-					for(var i=0;i<data.data[0].retailerInfo[1].variantInfo.length;i++){
-						var variant=_.find($scope.variants,function(obj){
-							return (obj.variantName==data.data[0].retailerInfo[1].variantInfo[i].variantName&&obj.parentBrandName==data.data[0].retailerInfo[1].variantInfo[i].parentBrandName);
-						});
-						if(variant==undefined){
-							data.data[0].retailerInfo[1].variantInfo[i].shelfSpace[2]=data.data[0].retailerInfo[1].variantInfo[i].shelfSpace[0];
-							data.data[0].retailerInfo[1].variantInfo[i].shelfSpace[3]=data.data[0].retailerInfo[1].variantInfo[i].shelfSpace[1];
-							data.data[0].retailerInfo[1].variantInfo[i].shelfSpace[0]=0;
-							data.data[0].retailerInfo[1].variantInfo[i].shelfSpace[1]=0;
-							$scope.variants.push(data.data[0].retailerInfo[1].variantInfo[i]);
-						}
-					}
-					for(var i=0;i<$scope.variants.length;i++){
-						switch($scope.variants[i].parentCompanyID){
-							case 1:if($scope.variants[i].parentCategoryID==1){
-								$scope.player1es.push($scope.variants[i]);
-							}else{
-								$scope.player1hs.push($scope.variants[i]);
-							}break;
-							case 2:if($scope.variants[i].parentCategoryID==1){
-								$scope.player2es.push($scope.variants[i]);
-							}else{
-								$scope.player2hs.push($scope.variants[i]);
-							}break;
-							case 3:if($scope.variants[i].parentCategoryID==1){
-								$scope.player3es.push($scope.variants[i]);
-							}else{
-								$scope.player3hs.push($scope.variants[i]);
-							}break;
-							case 5:if($scope.variants[i].parentCategoryID==1){
-								$scope.player5es.push($scope.variants[i]);
-							}else{
-								$scope.player5hs.push($scope.variants[i]);
-							}break;
-							case 6:if($scope.variants[i].parentCategoryID==1){
-								$scope.player6es.push($scope.variants[i]);
-							}else{
-								$scope.player6hs.push($scope.variants[i]);
-							}break;
-						}
-					}
-				},function(){
-					console.log('fail');
-				})
 			}
 			var showForecastsConsumer=function(){
 				switching('showForecastsConsumer');
-				var url='/getMR-forecasts/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1);
-				$http({
-					method:'GET',
-					url:url
-				}).then(function(data){
-					$scope.mySeries1=[{
-						'name':Label.getContent('Price Sensitive'),'color':'#329444',
-						'data':[[1,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[0].periodInfo[0].value[1],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[0].periodInfo[0].value[1]],[2,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[0].periodInfo[1].value[1],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[0].periodInfo[1].value[1]],[3,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[0].periodInfo[2].value[1],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[0].periodInfo[2].value[1]],[4,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[0].periodInfo[3].value[1],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[0].periodInfo[3].value[1]],[5,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[0].periodInfo[4].value[1],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[0].periodInfo[4].value[1]]]
-					},{
-						'name':Label.getContent('Value For Money'),'color':'#F6B920',
-						'data':[[1,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[1].periodInfo[0].value[1],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[1].periodInfo[0].value[1]],[2,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[1].periodInfo[1].value[1],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[1].periodInfo[1].value[1]],[3,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[1].periodInfo[2].value[1],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[1].periodInfo[2].value[1]],[4,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[1].periodInfo[3].value[1],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[1].periodInfo[3].value[1]],[5,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[1].periodInfo[4].value[1],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[1].periodInfo[4].value[1]]]
-					},{
-						'name':Label.getContent('Fashion'),'color':'#B11E22',
-						'data':[[1,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[2].periodInfo[0].value[1],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[2].periodInfo[0].value[1]],[2,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[2].periodInfo[1].value[1],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[2].periodInfo[1].value[1]],[3,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[2].periodInfo[2].value[1],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[2].periodInfo[2].value[1]],[4,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[2].periodInfo[3].value[1],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[2].periodInfo[3].value[1]],[5,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[2].periodInfo[4].value[1],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[2].periodInfo[4].value[1]]]
-					},{
-						'name':Label.getContent('Freaks'),'color':'#3257A7',
-						'data':[[1,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[3].periodInfo[0].value[1],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[3].periodInfo[0].value[1]],[2,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[3].periodInfo[1].value[1],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[3].periodInfo[1].value[1]],[3,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[3].periodInfo[2].value[1],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[3].periodInfo[2].value[1]],[4,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[3].periodInfo[3].value[1],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[3].periodInfo[3].value[1]],[5,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[3].periodInfo[4].value[1],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[3].periodInfo[4].value[1]]]
-					}];
-					$scope.mySeries2=[{
-						'name':Label.getContent('Price Sensitive'),'color':'#329444',
-						'data':[[1,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[0].periodInfo[0].value[0],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[0].periodInfo[0].value[0]],[2,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[0].periodInfo[1].value[0],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[0].periodInfo[1].value[0]],[3,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[0].periodInfo[2].value[0],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[0].periodInfo[2].value[0]],[4,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[0].periodInfo[3].value[0],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[0].periodInfo[3].value[0]],[5,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[0].periodInfo[4].value[0],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[0].periodInfo[4].value[0]]]
-					},{
-						'name':Label.getContent('Value For Money'),'color':'#F6B920',
-						'data':[[1,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[1].periodInfo[0].value[0],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[1].periodInfo[0].value[0]],[2,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[1].periodInfo[1].value[0],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[1].periodInfo[1].value[0]],[3,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[1].periodInfo[2].value[0],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[1].periodInfo[2].value[0]],[4,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[1].periodInfo[3].value[0],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[1].periodInfo[3].value[0]],[5,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[1].periodInfo[4].value[0],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[1].periodInfo[4].value[0]]]
-					},{
-						'name':Label.getContent('Fashion'),'color':'#B11E22',
-						'data':[[1,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[2].periodInfo[0].value[0],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[2].periodInfo[0].value[0]],[2,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[2].periodInfo[1].value[0],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[2].periodInfo[1].value[0]],[3,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[2].periodInfo[2].value[0],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[2].periodInfo[2].value[0]],[4,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[2].periodInfo[3].value[0],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[2].periodInfo[3].value[0]],[5,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[2].periodInfo[4].value[0],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[2].periodInfo[4].value[0]]]
-					},{
-						'name':Label.getContent('Freaks'),'color':'#3257A7',
-						'data':[[1,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[3].periodInfo[0].value[0],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[3].periodInfo[0].value[0]],[2,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[3].periodInfo[1].value[0],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[3].periodInfo[1].value[0]],[3,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[3].periodInfo[2].value[0],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[3].periodInfo[2].value[0]],[4,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[3].periodInfo[3].value[0],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[3].periodInfo[3].value[0]],[5,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[3].periodInfo[4].value[0],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[3].periodInfo[4].value[0]]]
-					}];
-					$scope.mySeries3=[{
-						'name':Label.getContent('Price Sensitive'),'color':'#329444',
-						'data':[[1,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[0].periodInfo[0].value[1],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[0].periodInfo[0].value[1]],[2,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[0].periodInfo[1].value[1],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[0].periodInfo[1].value[1]],[3,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[0].periodInfo[2].value[1],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[0].periodInfo[2].value[1]],[4,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[0].periodInfo[3].value[1],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[0].periodInfo[3].value[1]],[5,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[0].periodInfo[4].value[1],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[0].periodInfo[4].value[1]]]
-					},{
-						'name':Label.getContent('Value For Money'),'color':'#F6B920',
-						'data':[[1,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[1].periodInfo[0].value[1],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[1].periodInfo[0].value[1]],[2,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[1].periodInfo[1].value[1],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[1].periodInfo[1].value[1]],[3,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[1].periodInfo[2].value[1],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[1].periodInfo[2].value[1]],[4,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[1].periodInfo[3].value[1],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[1].periodInfo[3].value[1]],[5,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[1].periodInfo[4].value[1],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[1].periodInfo[4].value[1]]]
-					},{
-						'name':Label.getContent('Health Conscious'),'color':'#B11E22',
-						'data':[[1,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[2].periodInfo[0].value[1],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[2].periodInfo[0].value[1]],[2,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[2].periodInfo[1].value[1],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[2].periodInfo[1].value[1]],[3,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[2].periodInfo[2].value[1],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[2].periodInfo[2].value[1]],[4,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[2].periodInfo[3].value[1],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[2].periodInfo[3].value[1]],[5,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[2].periodInfo[4].value[1],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[2].periodInfo[4].value[1]]]
-					},{
-						'name':Label.getContent('Impatient'),'color':'#3257A7',
-						'data':[[1,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[3].periodInfo[0].value[1],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[3].periodInfo[0].value[1]],[2,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[3].periodInfo[1].value[1],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[3].periodInfo[1].value[1]],[3,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[3].periodInfo[2].value[1],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[3].periodInfo[2].value[1]],[4,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[3].periodInfo[3].value[1],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[3].periodInfo[3].value[1]],[5,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[3].periodInfo[4].value[1],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[3].periodInfo[4].value[1]]]
-					}];
-					$scope.mySeries4=[{
-						'name':Label.getContent('Price Sensitive'),'color':'#329444',
-						'data':[[1,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[0].periodInfo[0].value[0],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[0].periodInfo[0].value[0]],[2,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[0].periodInfo[1].value[0],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[0].periodInfo[1].value[0]],[3,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[0].periodInfo[2].value[0],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[0].periodInfo[2].value[0]],[4,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[0].periodInfo[3].value[0],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[0].periodInfo[3].value[0]],[5,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[0].periodInfo[4].value[0],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[0].periodInfo[4].value[0]]]
-					},{
-						'name':Label.getContent('Value For Money'),'color':'#F6B920',
-						'data':[[1,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[1].periodInfo[0].value[0],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[1].periodInfo[0].value[0]],[2,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[1].periodInfo[1].value[0],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[1].periodInfo[1].value[0]],[3,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[1].periodInfo[2].value[0],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[1].periodInfo[2].value[0]],[4,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[1].periodInfo[3].value[0],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[1].periodInfo[3].value[0]],[5,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[1].periodInfo[4].value[0],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[1].periodInfo[4].value[0]]]
-					},{
-						'name':Label.getContent('Health Conscious'),'color':'#B11E22',
-						'data':[[1,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[2].periodInfo[0].value[0],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[2].periodInfo[0].value[0]],[2,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[2].periodInfo[1].value[0],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[2].periodInfo[1].value[0]],[3,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[2].periodInfo[2].value[0],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[2].periodInfo[2].value[0]],[4,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[2].periodInfo[3].value[0],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[2].periodInfo[3].value[0]],[5,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[2].periodInfo[4].value[0],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[2].periodInfo[4].value[0]]]
-					},{
-						'name':Label.getContent('Impatient'),'color':'#3257A7',
-						'data':[[1,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[3].periodInfo[0].value[0],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[3].periodInfo[0].value[0]],[2,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[3].periodInfo[1].value[0],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[3].periodInfo[1].value[0]],[3,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[3].periodInfo[2].value[0],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[3].periodInfo[2].value[0]],[4,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[3].periodInfo[3].value[0],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[3].periodInfo[3].value[0]],[5,data.data[0].minConsumerSegmentsImportance[1].segmentInfo[3].periodInfo[4].value[0],data.data[0].maxConsumerSegmentsImportance[1].segmentInfo[3].periodInfo[4].value[0]]]
-					}];
-					$scope.segmentYTitle=Label.getContent('Segment Size')+'(%)';
-					$scope.segmentXTitle=Label.getContent('Period');
-					$scope.title1=Label.getContent('Elecssories')+'-'+Label.getContent('Rural');
-					$scope.title2=Label.getContent('Elecssories')+'-'+Label.getContent('Urban');
-					$scope.title3=Label.getContent('HealthBeauties')+'-'+Label.getContent('Rural');
-					$scope.title4=Label.getContent('HealthBeauties')+'-'+Label.getContent('Urban');
-					$scope.myModel='Consumer Segment Size';
-				},function(){
-					console.log('fail');
-				})
 			}
 			var showForecastsShopper=function(){
 				switching('showForecastsShopper');
-				var url='/getMR-forecasts/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1);
-				$http({
-					method:'GET',
-					url:url
-				}).then(function(data){
-					$scope.mySeries1=[{
-						'name':Label.getContent('B&M Only'),'color':'#3257A7',
-						'data':[[1,data.data[0].minShopperSegmentsImportance[0].shopperInfo[0].periodInfo[0].value[1],data.data[0].maxShopperSegmentsImportance[0].shopperInfo[0].periodInfo[0].value[1]],[2,data.data[0].minShopperSegmentsImportance[0].shopperInfo[0].periodInfo[1].value[1],data.data[0].maxShopperSegmentsImportance[0].shopperInfo[0].periodInfo[1].value[1]],[3,data.data[0].minShopperSegmentsImportance[0].shopperInfo[0].periodInfo[2].value[1],data.data[0].maxShopperSegmentsImportance[0].shopperInfo[0].periodInfo[2].value[1]],[4,data.data[0].minShopperSegmentsImportance[0].shopperInfo[0].periodInfo[3].value[1],data.data[0].maxShopperSegmentsImportance[0].shopperInfo[0].periodInfo[3].value[1]],[5,data.data[0].minShopperSegmentsImportance[0].shopperInfo[0].periodInfo[4].value[1],data.data[0].maxShopperSegmentsImportance[0].shopperInfo[0].periodInfo[4].value[1]]]
-					},{
-						'name':Label.getContent('Online Only'),'color':'#B11E22',
-						'data':[[1,data.data[0].minShopperSegmentsImportance[0].shopperInfo[1].periodInfo[0].value[1],data.data[0].maxShopperSegmentsImportance[0].shopperInfo[1].periodInfo[0].value[1]],[2,data.data[0].minShopperSegmentsImportance[0].shopperInfo[1].periodInfo[1].value[1],data.data[0].maxShopperSegmentsImportance[0].shopperInfo[1].periodInfo[1].value[1]],[3,data.data[0].minShopperSegmentsImportance[0].shopperInfo[1].periodInfo[2].value[1],data.data[0].maxShopperSegmentsImportance[0].shopperInfo[1].periodInfo[2].value[1]],[4,data.data[0].minShopperSegmentsImportance[0].shopperInfo[1].periodInfo[3].value[1],data.data[0].maxShopperSegmentsImportance[0].shopperInfo[1].periodInfo[3].value[1]],[5,data.data[0].minShopperSegmentsImportance[0].shopperInfo[1].periodInfo[4].value[1],data.data[0].maxShopperSegmentsImportance[0].shopperInfo[1].periodInfo[4].value[1]]]
-					},{
-						'name':Label.getContent('Mixed'),'color':'#F6B920',
-						'data':[[1,data.data[0].minShopperSegmentsImportance[0].shopperInfo[2].periodInfo[0].value[1],data.data[0].maxShopperSegmentsImportance[0].shopperInfo[2].periodInfo[0].value[1]],[2,data.data[0].minShopperSegmentsImportance[0].shopperInfo[2].periodInfo[1].value[1],data.data[0].maxShopperSegmentsImportance[0].shopperInfo[2].periodInfo[1].value[1]],[3,data.data[0].minShopperSegmentsImportance[0].shopperInfo[2].periodInfo[2].value[1],data.data[0].maxShopperSegmentsImportance[0].shopperInfo[2].periodInfo[2].value[1]],[4,data.data[0].minShopperSegmentsImportance[0].shopperInfo[2].periodInfo[3].value[1],data.data[0].maxShopperSegmentsImportance[0].shopperInfo[2].periodInfo[3].value[1]],[5,data.data[0].minShopperSegmentsImportance[0].shopperInfo[2].periodInfo[4].value[1],data.data[0].maxShopperSegmentsImportance[0].shopperInfo[2].periodInfo[4].value[1]]]
-					}];
-					$scope.mySeries2=[{
-						'name':Label.getContent('B&M Only'),'color':'#3257A7',
-						'data':[[1,data.data[0].minShopperSegmentsImportance[0].shopperInfo[0].periodInfo[0].value[0],data.data[0].maxShopperSegmentsImportance[0].shopperInfo[0].periodInfo[0].value[0]],[2,data.data[0].minShopperSegmentsImportance[0].shopperInfo[0].periodInfo[1].value[0],data.data[0].maxShopperSegmentsImportance[0].shopperInfo[0].periodInfo[1].value[0]],[3,data.data[0].minShopperSegmentsImportance[0].shopperInfo[0].periodInfo[2].value[0],data.data[0].maxShopperSegmentsImportance[0].shopperInfo[0].periodInfo[2].value[0]],[4,data.data[0].minShopperSegmentsImportance[0].shopperInfo[0].periodInfo[3].value[0],data.data[0].maxShopperSegmentsImportance[0].shopperInfo[0].periodInfo[3].value[0]],[5,data.data[0].minShopperSegmentsImportance[0].shopperInfo[0].periodInfo[4].value[0],data.data[0].maxShopperSegmentsImportance[0].shopperInfo[0].periodInfo[4].value[0]]]
-					},{
-						'name':Label.getContent('Online Only'),'color':'#B11E22',
-						'data':[[1,data.data[0].minShopperSegmentsImportance[0].shopperInfo[1].periodInfo[0].value[0],data.data[0].maxShopperSegmentsImportance[0].shopperInfo[1].periodInfo[0].value[0]],[2,data.data[0].minShopperSegmentsImportance[0].shopperInfo[1].periodInfo[1].value[0],data.data[0].maxShopperSegmentsImportance[0].shopperInfo[1].periodInfo[1].value[0]],[3,data.data[0].minShopperSegmentsImportance[0].shopperInfo[1].periodInfo[2].value[0],data.data[0].maxShopperSegmentsImportance[0].shopperInfo[1].periodInfo[2].value[0]],[4,data.data[0].minShopperSegmentsImportance[0].shopperInfo[1].periodInfo[3].value[0],data.data[0].maxShopperSegmentsImportance[0].shopperInfo[1].periodInfo[3].value[0]],[5,data.data[0].minShopperSegmentsImportance[0].shopperInfo[1].periodInfo[4].value[0],data.data[0].maxShopperSegmentsImportance[0].shopperInfo[1].periodInfo[4].value[0]]]
-					},{
-						'name':Label.getContent('Mixed'),'color':'#F6B920',
-						'data':[[1,data.data[0].minShopperSegmentsImportance[0].shopperInfo[2].periodInfo[0].value[0],data.data[0].maxShopperSegmentsImportance[0].shopperInfo[2].periodInfo[0].value[0]],[2,data.data[0].minShopperSegmentsImportance[0].shopperInfo[2].periodInfo[1].value[0],data.data[0].maxShopperSegmentsImportance[0].shopperInfo[2].periodInfo[1].value[0]],[3,data.data[0].minShopperSegmentsImportance[0].shopperInfo[2].periodInfo[2].value[0],data.data[0].maxShopperSegmentsImportance[0].shopperInfo[2].periodInfo[2].value[0]],[4,data.data[0].minShopperSegmentsImportance[0].shopperInfo[2].periodInfo[3].value[0],data.data[0].maxShopperSegmentsImportance[0].shopperInfo[2].periodInfo[3].value[0]],[5,data.data[0].minShopperSegmentsImportance[0].shopperInfo[2].periodInfo[4].value[0],data.data[0].maxShopperSegmentsImportance[0].shopperInfo[2].periodInfo[4].value[0]]]
-					}];
-					$scope.mySeries3=[{
-						'name':Label.getContent('B&M Only'),'color':'#3257A7',
-						'data':[[1,data.data[0].minShopperSegmentsImportance[1].shopperInfo[0].periodInfo[0].value[1],data.data[0].maxShopperSegmentsImportance[1].shopperInfo[0].periodInfo[0].value[1]],[2,data.data[0].minShopperSegmentsImportance[1].shopperInfo[0].periodInfo[1].value[1],data.data[0].maxShopperSegmentsImportance[1].shopperInfo[0].periodInfo[1].value[1]],[3,data.data[0].minShopperSegmentsImportance[1].shopperInfo[0].periodInfo[2].value[1],data.data[0].maxShopperSegmentsImportance[1].shopperInfo[0].periodInfo[2].value[1]],[4,data.data[0].minShopperSegmentsImportance[1].shopperInfo[0].periodInfo[3].value[1],data.data[0].maxShopperSegmentsImportance[1].shopperInfo[0].periodInfo[3].value[1]],[5,data.data[0].minShopperSegmentsImportance[1].shopperInfo[0].periodInfo[4].value[1],data.data[0].maxShopperSegmentsImportance[1].shopperInfo[0].periodInfo[4].value[1]]]
-					},{
-						'name':Label.getContent('Online Only'),'color':'#B11E22',
-						'data':[[1,data.data[0].minShopperSegmentsImportance[1].shopperInfo[1].periodInfo[0].value[1],data.data[0].maxShopperSegmentsImportance[1].shopperInfo[1].periodInfo[0].value[1]],[2,data.data[0].minShopperSegmentsImportance[1].shopperInfo[1].periodInfo[1].value[1],data.data[0].maxShopperSegmentsImportance[1].shopperInfo[1].periodInfo[1].value[1]],[3,data.data[0].minShopperSegmentsImportance[1].shopperInfo[1].periodInfo[2].value[1],data.data[0].maxShopperSegmentsImportance[1].shopperInfo[1].periodInfo[2].value[1]],[4,data.data[0].minShopperSegmentsImportance[1].shopperInfo[1].periodInfo[3].value[1],data.data[0].maxShopperSegmentsImportance[1].shopperInfo[1].periodInfo[3].value[1]],[5,data.data[0].minShopperSegmentsImportance[1].shopperInfo[1].periodInfo[4].value[1],data.data[0].maxShopperSegmentsImportance[1].shopperInfo[1].periodInfo[4].value[1]]]
-					},{
-						'name':Label.getContent('Mixed'),'color':'#F6B920',
-						'data':[[1,data.data[0].minShopperSegmentsImportance[1].shopperInfo[2].periodInfo[0].value[1],data.data[0].maxShopperSegmentsImportance[1].shopperInfo[2].periodInfo[0].value[1]],[2,data.data[0].minShopperSegmentsImportance[1].shopperInfo[2].periodInfo[1].value[1],data.data[0].maxShopperSegmentsImportance[1].shopperInfo[2].periodInfo[1].value[1]],[3,data.data[0].minShopperSegmentsImportance[1].shopperInfo[2].periodInfo[2].value[1],data.data[0].maxShopperSegmentsImportance[1].shopperInfo[2].periodInfo[2].value[1]],[4,data.data[0].minShopperSegmentsImportance[1].shopperInfo[2].periodInfo[3].value[1],data.data[0].maxShopperSegmentsImportance[1].shopperInfo[2].periodInfo[3].value[1]],[5,data.data[0].minShopperSegmentsImportance[1].shopperInfo[2].periodInfo[4].value[1],data.data[0].maxShopperSegmentsImportance[1].shopperInfo[2].periodInfo[4].value[1]]]
-					}];
-					$scope.mySeries4=[{
-						'name':Label.getContent('B&M Only'),'color':'#3257A7',
-						'data':[[1,data.data[0].minShopperSegmentsImportance[1].shopperInfo[0].periodInfo[0].value[0],data.data[0].maxShopperSegmentsImportance[1].shopperInfo[0].periodInfo[0].value[0]],[2,data.data[0].minShopperSegmentsImportance[1].shopperInfo[0].periodInfo[1].value[0],data.data[0].maxShopperSegmentsImportance[1].shopperInfo[0].periodInfo[1].value[0]],[3,data.data[0].minShopperSegmentsImportance[1].shopperInfo[0].periodInfo[2].value[0],data.data[0].maxShopperSegmentsImportance[1].shopperInfo[0].periodInfo[2].value[0]],[4,data.data[0].minShopperSegmentsImportance[1].shopperInfo[0].periodInfo[3].value[0],data.data[0].maxShopperSegmentsImportance[1].shopperInfo[0].periodInfo[3].value[0]],[5,data.data[0].minShopperSegmentsImportance[1].shopperInfo[0].periodInfo[4].value[0],data.data[0].maxShopperSegmentsImportance[1].shopperInfo[0].periodInfo[4].value[0]]]
-					},{
-						'name':Label.getContent('Online Only'),'color':'#B11E22',
-						'data':[[1,data.data[0].minShopperSegmentsImportance[1].shopperInfo[1].periodInfo[0].value[0],data.data[0].maxShopperSegmentsImportance[1].shopperInfo[1].periodInfo[0].value[0]],[2,data.data[0].minShopperSegmentsImportance[1].shopperInfo[1].periodInfo[1].value[0],data.data[0].maxShopperSegmentsImportance[1].shopperInfo[1].periodInfo[1].value[0]],[3,data.data[0].minShopperSegmentsImportance[1].shopperInfo[1].periodInfo[2].value[0],data.data[0].maxShopperSegmentsImportance[1].shopperInfo[1].periodInfo[2].value[0]],[4,data.data[0].minShopperSegmentsImportance[1].shopperInfo[1].periodInfo[3].value[0],data.data[0].maxShopperSegmentsImportance[1].shopperInfo[1].periodInfo[3].value[0]],[5,data.data[0].minShopperSegmentsImportance[1].shopperInfo[1].periodInfo[4].value[0],data.data[0].maxShopperSegmentsImportance[1].shopperInfo[1].periodInfo[4].value[0]]]
-					},{
-						'name':Label.getContent('Mixed'),'color':'#F6B920',
-						'data':[[1,data.data[0].minShopperSegmentsImportance[1].shopperInfo[2].periodInfo[0].value[0],data.data[0].maxShopperSegmentsImportance[1].shopperInfo[2].periodInfo[0].value[0]],[2,data.data[0].minShopperSegmentsImportance[1].shopperInfo[2].periodInfo[1].value[0],data.data[0].maxShopperSegmentsImportance[1].shopperInfo[2].periodInfo[1].value[0]],[3,data.data[0].minShopperSegmentsImportance[1].shopperInfo[2].periodInfo[2].value[0],data.data[0].maxShopperSegmentsImportance[1].shopperInfo[2].periodInfo[2].value[0]],[4,data.data[0].minShopperSegmentsImportance[1].shopperInfo[2].periodInfo[3].value[0],data.data[0].maxShopperSegmentsImportance[1].shopperInfo[2].periodInfo[3].value[0]],[5,data.data[0].minShopperSegmentsImportance[1].shopperInfo[2].periodInfo[4].value[0],data.data[0].maxShopperSegmentsImportance[1].shopperInfo[2].periodInfo[4].value[0]]]
-					}];
-					$scope.segmentYTitle=Label.getContent('Segment Size')+'(%)';
-					$scope.segmentXTitle=Label.getContent('Period');
-					$scope.title1=Label.getContent('Elecssories')+'-'+Label.getContent('Rural');
-					$scope.title2=Label.getContent('Elecssories')+'-'+Label.getContent('Urban');
-					$scope.title3=Label.getContent('HealthBeauties')+'-'+Label.getContent('Rural');
-					$scope.title4=Label.getContent('HealthBeauties')+'-'+Label.getContent('Urban');
-					$scope.myModel='Shopper Segment Size';
-				},function(){
-					console.log('fail');
-				})
 			}
 			var showForecastsCategory=function(){
 				switching('showForecastsCategory');
-				var url='/getMR-forecasts/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1);
-				$http({
-					method:'GET',
-					url:url
-				}).then(function(data){
-					$scope.forecastSeries=[{
-						'name':Label.getContent('Elecssories')+'/'+Label.getContent('Rural'),'color':'#329444',
-						'data':[[1,data.data[0].minTotalVolume[0].periodInfo[0].value[1],data.data[0].maxTotalVolume[0].periodInfo[0].value[1]],[2,data.data[0].minTotalVolume[0].periodInfo[1].value[1],data.data[0].maxTotalVolume[0].periodInfo[1].value[1]],[3,data.data[0].minTotalVolume[0].periodInfo[2].value[1],data.data[0].maxTotalVolume[0].periodInfo[2].value[1]],[4,data.data[0].minTotalVolume[0].periodInfo[3].value[1],data.data[0].maxTotalVolume[0].periodInfo[3].value[1]],[5,data.data[0].minTotalVolume[0].periodInfo[4].value[1],data.data[0].maxTotalVolume[0].periodInfo[4].value[1]]]
-					},{
-						'name':Label.getContent('Elecssories')+'/'+Label.getContent('Urban'),'color':'#F6B920',
-						'data':[[1,data.data[0].minTotalVolume[0].periodInfo[0].value[0],data.data[0].maxTotalVolume[0].periodInfo[0].value[0]],[2,data.data[0].minTotalVolume[0].periodInfo[1].value[0],data.data[0].maxTotalVolume[0].periodInfo[1].value[0]],[3,data.data[0].minTotalVolume[0].periodInfo[2].value[0],data.data[0].maxTotalVolume[0].periodInfo[2].value[0]],[4,data.data[0].minTotalVolume[0].periodInfo[3].value[0],data.data[0].maxTotalVolume[0].periodInfo[3].value[0]],[5,data.data[0].minTotalVolume[0].periodInfo[4].value[0],data.data[0].maxTotalVolume[0].periodInfo[4].value[0]]]	
-					},{
-						'name':Label.getContent('HealthBeauties')+'/'+Label.getContent('Rural'),'color':'#B11E22',
-						'data':[[1,data.data[0].minTotalVolume[1].periodInfo[0].value[1],data.data[0].maxTotalVolume[1].periodInfo[0].value[1]],[2,data.data[0].minTotalVolume[1].periodInfo[1].value[1],data.data[0].maxTotalVolume[1].periodInfo[1].value[1]],[3,data.data[0].minTotalVolume[1].periodInfo[2].value[1],data.data[0].maxTotalVolume[1].periodInfo[2].value[1]],[4,data.data[0].minTotalVolume[1].periodInfo[3].value[1],data.data[0].maxTotalVolume[1].periodInfo[3].value[1]],[5,data.data[0].minTotalVolume[1].periodInfo[4].value[1],data.data[0].maxTotalVolume[1].periodInfo[4].value[1]]]
-					},{
-						'name':Label.getContent('HealthBeauties')+'/'+Label.getContent('Urban'),'color':'#3257A7',
-						'data':[[1,data.data[0].minTotalVolume[1].periodInfo[0].value[0],data.data[0].maxTotalVolume[1].periodInfo[0].value[0]],[2,data.data[0].minTotalVolume[1].periodInfo[1].value[0],data.data[0].maxTotalVolume[1].periodInfo[1].value[0]],[3,data.data[0].minTotalVolume[1].periodInfo[2].value[0],data.data[0].maxTotalVolume[1].periodInfo[2].value[0]],[4,data.data[0].minTotalVolume[1].periodInfo[3].value[0],data.data[0].maxTotalVolume[1].periodInfo[3].value[0]],[5,data.data[0].minTotalVolume[1].periodInfo[4].value[0],data.data[0].maxTotalVolume[1].periodInfo[4].value[0]]]
-					}];
-					$scope.segmentYTitle=Label.getContent('Sales Volume')+'(units mln)';
-					$scope.segmentXTitle=Label.getContent('Period');
-					$scope.myModel='ForecastsCategory';
-				},function(){
-					console.log('fail');
-				})
 			}
 			var showForecastsInternet=function(){
 				switching('showForecastsInternet');
-				var url='/getMR-forecasts/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1);
-				$http({
-					method:'GET',
-					url:url
-				}).then(function(data){
-					$scope.forecastSeries=[{
-						'name':Label.getContent('Rural'),'color':'#3257A7',
-						'data':[[1,data.data[0].minInternetPenetrationRate[0].value[1],data.data[0].maxInternetPenetrationRate[0].value[1]],[2,data.data[0].minInternetPenetrationRate[1].value[1],data.data[0].maxInternetPenetrationRate[1].value[1]],[3,data.data[0].minInternetPenetrationRate[2].value[1],data.data[0].maxInternetPenetrationRate[2].value[1]],[4,data.data[0].minInternetPenetrationRate[3].value[1],data.data[0].maxInternetPenetrationRate[3].value[1]],[5,data.data[0].minInternetPenetrationRate[4].value[1],data.data[0].maxInternetPenetrationRate[4].value[1]]]
-					},{
-						'name':Label.getContent('Urban'),'color':'#B11E22',
-						'data':[[1,data.data[0].minInternetPenetrationRate[0].value[0],data.data[0].maxInternetPenetrationRate[0].value[0]],[2,data.data[0].minInternetPenetrationRate[1].value[0],data.data[0].maxInternetPenetrationRate[1].value[0]],[3,data.data[0].minInternetPenetrationRate[2].value[0],data.data[0].maxInternetPenetrationRate[2].value[0]],[4,data.data[0].minInternetPenetrationRate[3].value[0],data.data[0].maxInternetPenetrationRate[3].value[0]],[5,data.data[0].minInternetPenetrationRate[4].value[0],data.data[0].maxInternetPenetrationRate[4].value[0]]]
-					}];
-					$scope.segmentYTitle=Label.getContent('Penetration Level')+'(%)';
-					$scope.segmentXTitle=Label.getContent('Period');
-					$scope.myModel='ForecastsInternet';
-					
-				},function(){
-					console.log('fail');
-				})
 			}
 		    //load Function
 		    $scope.switching=switching;
