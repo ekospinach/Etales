@@ -614,12 +614,12 @@ define(['app','socketIO','routingConfig'], function(app) {
 
 			var showRuralElecssoriesConsumerShare=function(){
 				switching('showRuralElecssoriesConsumerShare');
-				$scope.consumerShare=true;
-				$scope.player1s=new Array();$scope.player2s=new Array();$scope.player3s=new Array();$scope.player5s=new Array();$scope.player6s=new Array();
-				var url='/getMR-sharesCrossSegment/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1);
-				loadMarketConsumer(url,1,2);
-				$scope.nameColor='#DFF0D8';//绿
-				$scope.valueColor='#D9EDF7';//蓝
+				// $scope.consumerShare=true;
+				// $scope.player1s=new Array();$scope.player2s=new Array();$scope.player3s=new Array();$scope.player5s=new Array();$scope.player6s=new Array();
+				// var url='/getMR-sharesCrossSegment/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1);
+				// loadMarketConsumer(url,1,2);
+				// $scope.nameColor='#DFF0D8';//绿
+				// $scope.valueColor='#D9EDF7';//蓝
 			}
 			var showUrbanElecssoriesConsumerShare=function(){
 				switching('showUrbanElecssoriesConsumerShare');

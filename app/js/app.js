@@ -53,6 +53,8 @@
 	'directives/TE_MR_bMHealthBeauties',
 	'directives/TE_MR_promotionElecssories',
 	'directives/TE_MR_promotionHealthBeauties',
+	'directives/TE_MR_ruralElecssoriesConsumerSales',
+	'directives/TE_MR_ruralElecssoriesConsumerShare',
 	'angularRoute',
 	'angularXeditable',
 	'angularBootstrap',
