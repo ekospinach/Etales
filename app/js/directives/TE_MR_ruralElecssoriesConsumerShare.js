@@ -1,13 +1,13 @@
 define(['directives', 'services'], function(directives){
 
-    directives.directive('marketRuralElecssoriesConsumerSales', ['Label','SeminarInfo','$http','PeriodInfo','$q', function(Label, SeminarInfo, $http, PeriodInfo, $q){
+    directives.directive('marketRuralElecssoriesConsumerShare', ['Label','SeminarInfo','$http','PeriodInfo','$q', function(Label, SeminarInfo, $http, PeriodInfo, $q){
         return {
             scope : {
                 isPageShown : '=',
                 isPageLoading : '='
             },
             restrict : 'E',
-            templateUrl : '../../partials/singleReportTemplate/MR_ruralElecssoriesConsumerSales.html',            
+            templateUrl : '../../partials/singleReportTemplate/MR_ruralElecssoriesConsumerShare.html',            
             //templateUrl : '../../partials/singleReportTemplate/MR_brand.html',            
             link : function(scope, element, attrs){                                                                
                 var initializePage = function(){

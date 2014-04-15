@@ -1,13 +1,14 @@
 define(['directives', 'services'], function(directives){
 
-    directives.directive('marketRuralHealthBeautiesConsumerSales', ['Label','SeminarInfo','$http','PeriodInfo','$q', function(Label, SeminarInfo, $http, PeriodInfo, $q){
+    directives.directive('marketRuralHealthBeautiesConsumerShare', ['Label','SeminarInfo','$http','PeriodInfo','$q', function(Label, SeminarInfo, $http, PeriodInfo, $q){
         return {
             scope : {
                 isPageShown : '=',
                 isPageLoading : '='
             },
             restrict : 'E',
-            templateUrl : '../../partials/singleReportTemplate/MR_ruralHealthBeautiesConsumerSales.html',                        
+            templateUrl : '../../partials/singleReportTemplate/MR_ruralHealthBeautiesConsumerShare.html',            
+            //templateUrl : '../../partials/singleReportTemplate/MR_brand.html',            
             link : function(scope, element, attrs){                                                                
                 var initializePage = function(){
                     scope.isPageLoading = true;
@@ -59,7 +60,7 @@ define(['directives', 'services'], function(directives){
 
                 var getResult =function(){
                     scope.quality1s=new Array();scope.quality2s=new Array();scope.quality3s=new Array();scope.quality5s=new Array();scope.quality6s=new Array();scope.price1s=new Array();scope.price2s=new Array();scope.price3s=new Array();scope.price5s=new Array();scope.price6s=new Array();
-                    var url='/getMR-salesCrossSegment/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1);
+                    var url='/getMR-sharesCrossSegment/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1);
                     $http({
                         method:'GET',
                         url:url,
@@ -76,7 +77,7 @@ define(['directives', 'services'], function(directives){
 
                 var organiseArray = function(data){
                     var deferred = $q.defer();
-                    scope.consumerShare=false;
+                    scope.consumerShare=true;
                     scope.player1s=new Array();scope.player2s=new Array();scope.player3s=new Array();scope.player5s=new Array();scope.player6s=new Array();
                     loadMarketConsumer(data,2,2);
                     scope.nameColor='#F2DEDE'//红

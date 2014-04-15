@@ -7,8 +7,7 @@ define(['directives', 'services'], function(directives){
                 isPageLoading : '='
             },
             restrict : 'E',
-            templateUrl : '../../partials/singleReportTemplate/MR_ruralElecssoriesConsumerSales.html',            
-            //templateUrl : '../../partials/singleReportTemplate/MR_brand.html',            
+            templateUrl : '../../partials/singleReportTemplate/MR_ruralElecssoriesConsumerSales.html',                        
             link : function(scope, element, attrs){                                                                
                 var initializePage = function(){
                     scope.isPageLoading = true;
