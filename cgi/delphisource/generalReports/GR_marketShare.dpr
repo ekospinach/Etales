@@ -5,6 +5,9 @@ uses
   SysUtils,Windows,Classes, superobject, HCD_SystemDefinitions, System.TypInfo, inifiles,
   CgiCommonFunction;
 
+type
+  TShoppersKinds = set of TShoppersKind;
+
 var
   DataDirectory : string;
   sListData: tStrings;
@@ -16,22 +19,60 @@ var
   vReadRes : Integer;
   oJsonFile : ISuperObject;
 
-  function actorMarketInfoSchema(actorID: Integer; catID : Integer; marketID : Integer; binaryReport : TGR_SharesOfMarket):
+  function actorShopperInfoSchema(actorID: Integer; catID : Integer; marketID : Integer; segmentID : Integer; Shopper : TShoppersKind; binaryReport : TGR_SharesOfMarket):ISuperObject;
+  var
+    jo : ISuperObject;
+    ShopperStr : string;    
+  begin
+    jo := SO;
+    case Shopper of
+       BMS: ShopperStr := 'BMS'; 
+       NETIZENS: ShopperStr := 'NETIZENS';   
+       MIXED: ShopperStr := 'MIXED';  
+       ALLSHOPPERS: ShopperStr := 'ALLSHOPPERS'; 
+       else
+        ShopperStr := 'wrong';
+    end;
+
+    jo.S['shopperKind'] := ShopperStr;
+    jo.D['grsom_MarketShareValue'] := binaryReport.grsom_MarketShareValue[actorID, marketID, catID, segmentID, Shopper];
+    jo.D['grsom_MarketShareVolume'] := binaryReport.grsom_MarketShareVolume[actorID, marketID, catID, segmentID, Shopper];
+    jo.D['grsom_MarketShareValueChange'] := binaryReport.grsom_MarketShareValueChange[actorID, marketID, catID, segmentID, Shopper];
+    jo.D['grsom_MarketShareVolumeChange'] := binaryReport.grsom_MarketShareVolumeChange[actorID, marketID, catID, segmentID, Shopper];
+
+    result := jo;
+  end;
+
+  function actorSegmentInfoSchema(actorID: Integer; catID : Integer; marketID : Integer; segmentID : Integer; binaryReport : TGR_SharesOfMarket):ISuperObject;
+  var
+    jo : ISuperObject;
+    Shopper : TShoppersKind;
+    Shoppers : TShoppersKinds;
+  begin
+    jo := SO;
+    jo.I['segmentID'] := segmentID;
+    jo.O['actorShopperInfo'] := SA([]);
+    for Shopper in Shoppers do
+      jo.A['actorShopperInfo'].Add( actorShopperInfoSchema(actorID, catID, marketID, segmentID, Shopper, binaryReport) );
+
+    result := jo;
+  end;
+
+  function actorMarketInfoSchema(actorID: Integer; catID : Integer; marketID : Integer; binaryReport : TGR_SharesOfMarket):ISuperObject;
   var
     jo : ISuperObject;
     segmentID : Integer;
   begin
     jo := SO;
     jo.I['marketID'] := marketID;
-    jo.O['actorMarketInfo'] := SA([]);
-    for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do
-      jo.A['actorMarketInfo'].Add( actorMarketInfoSchema(actorID, catID, marketID, binaryReport) );
+    jo.O['actorSegmentInfo'] := SA([]);
+    for segmentID := Low(TSegmentsTotal) to High(TSegmentsTotal) do
+      jo.A['actorSegmentInfo'].Add( actorSegmentInfoSchema(actorID, catID, marketID, segmentID, binaryReport) );
 
     result := jo;  
-
   end;
 
-  function actorCategoryInfoSchema(actorID : Integer; catID : integer; binaryReport : TGR_PerformanceHighlights): ISuperObject;
+  function actorCategoryInfoSchema(actorID : Integer; catID : integer; binaryReport : TGR_SharesOfMarket): ISuperObject;
   var
     jo : ISuperObject;
     marketID : integer;
@@ -44,7 +85,6 @@ var
 
     result := jo;
   end;
-
 
   function actorInfoSchema(actorID : Integer; binaryReport : TGR_SharesOfMarket): ISuperObject;
   var
