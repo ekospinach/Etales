@@ -90,48 +90,6 @@ define(['app','socketIO','routingConfig'], function(app) {
 					case 'showForecastsInternet':$scope.ForecastsInternet=true;break;
 		    	}
 		    }
-
-		    $scope.switching = switching;
-
-		    var showPerformance=function(){
-		    	switching('showPerformance');
-		    }
-
-		    var showMarketShare=function(){
-		    	switching('showMarketShare');    	
-		    }
-
-		    var showMarketSales=function(){
-		    	switching('showMarketSales');
-		    }
-
-		    var showSegment=function(){
-		    	switching('showSegment');
-		    }
-
-		    var showCross=function(){
-		    	switching('showCross');
-		    }
-
-		    var showProduct=function(){
-		    	switching('showProduct');
-		    }
-
-		    var showEMallPrices=function(){
-		    	switching('showEMallPrices');
-		    }
-
-		    var showProducerConsolidate=function(){
-		    	switching('showProducerConsolidate');
-		    }
-
-		    var loadValue=function(data,name,num){
-		    	var array=_.find(data,function(obj){
-		    		return (obj.brandName==name);
-		    	});
-		    	return array.value[num];
-		    }
-
 		    var loadVariantValue=function(data,brandName,variantName,num){
 		    	var array=_.find(data,function(obj){
 		    		return (obj.variantName==variantName&&obj.parentBrandName==brandName);
@@ -139,94 +97,236 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    	return array.value[num];
 		    }
 
+		    var showPerformance=function(){
+		    	switching('showPerformance');
+		    }
 
-		    var showProducerBMBusiness=function(){
+		    $scope.showMarketShare=function(){
+		    	switching('showMarketShare');    	
+		    }
+
+		    $scope.showMarketSales=function(){
+		    	switching('showMarketSales');
+		    }
+
+		    $scope.showSegment=function(){
+		    	switching('showSegment');
+		    }
+
+		    $scope.showCross=function(){
+		    	switching('showCross');
+		    }
+
+		    $scope.showProduct=function(){
+		    	switching('showProduct');
+		    }
+
+		    $scope.showEMallPrices=function(){
+		    	switching('showEMallPrices');
+		    }
+
+		    $scope.showProducerConsolidate=function(){
+		    	switching('showProducerConsolidate');
+		    }
+
+		    $scope.showProducerBMBusiness=function(){
 		    	switching('showProducerBMBusiness');
 		    }
 
-		    var showProducerOnlineBusiness=function(){
+		    $scope.showProducerOnlineBusiness=function(){
 		    	switching('showProducerOnlineBusiness');
 		    }
 
-		    var showProducerProfitability=function(){
+		    $scope.showProducerProfitability=function(){
 		    	switching('showProducerProfitability');
 		    }
 
-		    var showProducerNegotiations=function(){
+		    $scope.showProducerNegotiations=function(){
 		    	switching('showProducerNegotiations');
 		    }
 
-		    var showElecssoriesConsumer=function(){
+		    $scope.showElecssoriesConsumer=function(){
 		    	switching('showElecssoriesConsumer');
 		    }
 
-		    var showElecssoriesShopper=function(){
+		    $scope.showElecssoriesShopper=function(){
 		    	switching('showElecssoriesShopper');
 		    }
 
-		    var showElecssoriesVolume=function(){
+		    $scope.showElecssoriesVolume=function(){
 		    	switching('showElecssoriesVolume');
 		    }
 
-		    var showHealthBeautiesConsumer=function(){
+		    $scope.showHealthBeautiesConsumer=function(){
 		    	switching('showHealthBeautiesConsumer');
 		    }
 
-		    var showHealthBeautiesShopper=function(){
+		    $scope.showHealthBeautiesShopper=function(){
 		    	switching('showHealthBeautiesShopper');
 		    }
 		    
-		    var showHealthBeautiesVolume=function(){
+		    $scope.showHealthBeautiesVolume=function(){
 		    	switching('showHealthBeautiesVolume');
 		    }
 		    
-		    var showProducerKey=function(){
+		    $scope.showProducerKey=function(){
 		    	switching('showProducerKey');
 		    }
 
-		    var showRetailerConsolidate=function(){
+		    $scope.showRetailerConsolidate=function(){
 		    	switching('showRetailerConsolidate');
 		    }
 
-		    var showRetailerRuralProfit=function(){
+		    $scope.showRetailerRuralProfit=function(){
 		    	switching('showRetailerRuralProfit');
 		    }
-		    var showRetailerUrbanProfit=function(){
+		    $scope.showRetailerUrbanProfit=function(){
 		    	switching('showRetailerUrbanProfit');
 		    }
-		    var showRetailerProfitability=function(){
+		    $scope.showRetailerProfitability=function(){
 		    	switching('showRetailerProfitability');
 		    }
 
-		    var showRetailerNegotiations=function(){
+		    $scope.showRetailerNegotiations=function(){
 		    	switching('showRetailerNegotiations');
 		    }
 
-		    var showRuralConsumer=function(){
+		    $scope.showRuralConsumer=function(){
 		    	switching('showRuralConsumer');
 		    }
-		    var showRuralShopper=function(){
+		    $scope.showRuralShopper=function(){
 		    	switching('showRuralShopper');
 		    }
-		    var showRuralVolume=function(){
+		    $scope.showRuralVolume=function(){
 		    	switching('showRuralVolume');
 		    
 		    }
-		    var showUrbanConsumer=function(){
+		    $scope.showUrbanConsumer=function(){
 		    	switching('showUrbanConsumer');
 		    }
-		    var showUrbanShopper=function(){
+		    $scope.showUrbanShopper=function(){
 		    	switching('showUrbanShopper');
 		    }
-		    var showUrbanVolume=function(){
+		    $scope.showUrbanVolume=function(){
 		    	switching('showUrbanVolume');
 
 		    }
-		    var showRetailerKey=function(){
+		    $scope.showRetailerKey=function(){
 		    	switching('showRetailerKey');
 		    }
 
-		    $scope.openProductModal=function(brandName,type){
+			$scope.showAwarenessElecssories=function(){
+				switching('showAwarenessElecssories');
+			}
+
+			$scope.showAwarenessHealthBeauties=function(){
+				switching('showAwarenessHealthBeauties');
+			}
+
+
+			$scope.showRuralElecssoriesBrand=function(){
+				switching('showRuralElecssoriesBrand');
+			}
+			$scope.showUrbanElecssoriesBrand=function(){
+				switching('showUrbanElecssoriesBrand');
+			}
+			$scope.showRuralHealthBeautiesBrand=function(){
+				switching('showRuralHealthBeautiesBrand');
+			}
+			$scope.showUrbanHealthBeautiesBrand=function(){
+				switching('showUrbanHealthBeautiesBrand');
+			}
+			$scope.showRetailerPerceptions=function(){
+				switching('showRetailerPerceptions');
+			}
+
+			$scope.showRuralElecssoriesConsumerShare=function(){
+				switching('showRuralElecssoriesConsumerShare');
+			}
+			$scope.showUrbanElecssoriesConsumerShare=function(){
+				switching('showUrbanElecssoriesConsumerShare');
+			}
+			$scope.showRuralHealthBeautiesConsumerShare=function(){
+				switching('showRuralHealthBeautiesConsumerShare');
+			}
+			$scope.showUrbanHealthBeautiesConsumerShare=function(){
+				switching('showUrbanHealthBeautiesConsumerShare');
+			}
+
+
+			$scope.showRuralElecssoriesConsumerSales=function(){
+				switching('showRuralElecssoriesConsumerSales');
+			}
+			$scope.showUrbanElecssoriesConsumerSales=function(){
+				switching('showUrbanElecssoriesConsumerSales');
+			}
+			$scope.showRuralHealthBeautiesConsumerSales=function(){
+				switching('showRuralHealthBeautiesConsumerSales');
+			}
+			$scope.showUrbanHealthBeautiesConsumerSales=function(){
+				switching('showUrbanHealthBeautiesConsumerSales');
+			}
+			$scope.showRuralElecssoriesShopperShare=function(){
+				switching('showRuralElecssoriesShopperShare');
+			}
+			$scope.showUrbanElecssoriesShopperShare=function(){
+				switching('showUrbanElecssoriesShopperShare');
+			}
+			$scope.showRuralHealthBeautiesShopperShare=function(){
+				switching('showRuralHealthBeautiesShopperShare');
+			}
+			$scope.showUrbanHealthBeautiesShopperShare=function(){
+				switching('showUrbanHealthBeautiesShopperShare');
+			}
+
+			$scope.showRuralElecssoriesShopperSales=function(){
+				switching('showRuralElecssoriesShopperSales');
+			}
+			$scope.showUrbanElecssoriesShopperSales=function(){
+				switching('showUrbanElecssoriesShopperSales');
+			}
+			$scope.showRuralHealthBeautiesShopperSales=function(){
+				switching('showRuralHealthBeautiesShopperSales');
+			}
+			$scope.showUrbanHealthBeautiesShopperSales=function(){
+				switching('showUrbanHealthBeautiesShopperSales');
+			}
+
+			$scope.showBMElecssories=function(){
+				switching('showBMElecssories');
+			}
+			$scope.showBMHealthBeauties=function(){
+				switching('showBMHealthBeauties');
+			}
+
+			$scope.showPromotionElecssories=function(){
+				switching('showPromotionElecssories');
+			}
+			$scope.showPromotionHealthBeauties=function(){
+				switching('showPromotionHealthBeauties');
+			}
+
+			$scope.showSupplierIntelligence=function(){
+				switching('showSupplierIntelligence');
+			}
+			$scope.showRetailerIntelligence=function(){
+				switching('showRetailerIntelligence');
+			}
+			$scope.showForecastsConsumer=function(){
+				switching('showForecastsConsumer');
+			}
+			$scope.showForecastsShopper=function(){
+				switching('showForecastsShopper');
+			}
+			$scope.showForecastsCategory=function(){
+				switching('showForecastsCategory');
+			}
+			$scope.showForecastsInternet=function(){
+				switching('showForecastsInternet');
+			}
+
+			//modal
+			$scope.openProductModal=function(brandName,type){
 				var num=0;
 				$scope.variants=new Array();
 				$scope.brandName=brandName;
@@ -359,187 +459,9 @@ define(['app','socketIO','routingConfig'], function(app) {
 				$scope.retailerProductModal=false;	
 			}
 
-			var showAwarenessElecssories=function(){
-				switching('showAwarenessElecssories');
-			}
-
-			var showAwarenessHealthBeauties=function(){
-				switching('showAwarenessHealthBeauties');
-			}
-
-
-			var showRuralElecssoriesBrand=function(){
-				switching('showRuralElecssoriesBrand');
-			}
-			var showUrbanElecssoriesBrand=function(){
-				switching('showUrbanElecssoriesBrand');
-			}
-			var showRuralHealthBeautiesBrand=function(){
-				switching('showRuralHealthBeautiesBrand');
-			}
-			var showUrbanHealthBeautiesBrand=function(){
-				switching('showUrbanHealthBeautiesBrand');
-			}
-			var showRetailerPerceptions=function(){
-				switching('showRetailerPerceptions');
-			}
-
-			var showRuralElecssoriesConsumerShare=function(){
-				switching('showRuralElecssoriesConsumerShare');
-			}
-			var showUrbanElecssoriesConsumerShare=function(){
-				switching('showUrbanElecssoriesConsumerShare');
-			}
-			var showRuralHealthBeautiesConsumerShare=function(){
-				switching('showRuralHealthBeautiesConsumerShare');
-			}
-			var showUrbanHealthBeautiesConsumerShare=function(){
-				switching('showUrbanHealthBeautiesConsumerShare');
-			}
-
-
-			var showRuralElecssoriesConsumerSales=function(){
-				switching('showRuralElecssoriesConsumerSales');
-			}
-			var showUrbanElecssoriesConsumerSales=function(){
-				switching('showUrbanElecssoriesConsumerSales');
-			}
-			var showRuralHealthBeautiesConsumerSales=function(){
-				switching('showRuralHealthBeautiesConsumerSales');
-			}
-			var showUrbanHealthBeautiesConsumerSales=function(){
-				switching('showUrbanHealthBeautiesConsumerSales');
-			}
-			var showRuralElecssoriesShopperShare=function(){
-				switching('showRuralElecssoriesShopperShare');
-			}
-			var showUrbanElecssoriesShopperShare=function(){
-				switching('showUrbanElecssoriesShopperShare');
-			}
-			var showRuralHealthBeautiesShopperShare=function(){
-				switching('showRuralHealthBeautiesShopperShare');
-			}
-			var showUrbanHealthBeautiesShopperShare=function(){
-				switching('showUrbanHealthBeautiesShopperShare');
-			}
-
-			var showRuralElecssoriesShopperSales=function(){
-				switching('showRuralElecssoriesShopperSales');
-			}
-			var showUrbanElecssoriesShopperSales=function(){
-				switching('showUrbanElecssoriesShopperSales');
-			}
-			var showRuralHealthBeautiesShopperSales=function(){
-				switching('showRuralHealthBeautiesShopperSales');
-			}
-			var showUrbanHealthBeautiesShopperSales=function(){
-				switching('showUrbanHealthBeautiesShopperSales');
-			}
-
-			var showBMElecssories=function(){
-				switching('showBMElecssories');
-			}
-			var showBMHealthBeauties=function(){
-				switching('showBMHealthBeauties');
-			}
-
-			var showPromotionElecssories=function(){
-				switching('showPromotionElecssories');
-			}
-			var showPromotionHealthBeauties=function(){
-				switching('showPromotionHealthBeauties');
-			}
-
-			var showSupplierIntelligence=function(){
-				switching('showSupplierIntelligence');
-			}
-			var showRetailerIntelligence=function(){
-				switching('showRetailerIntelligence');
-			}
-			var showForecastsConsumer=function(){
-				switching('showForecastsConsumer');
-			}
-			var showForecastsShopper=function(){
-				switching('showForecastsShopper');
-			}
-			var showForecastsCategory=function(){
-				switching('showForecastsCategory');
-			}
-			var showForecastsInternet=function(){
-				switching('showForecastsInternet');
-			}
-		    //load Function
-		    $scope.switching=switching;
-		    $scope.loadValue=loadValue;
 		    $scope.loadVariantValue=loadVariantValue;
-		    //general report
+		    $scope.switching=switching;
 		    $scope.showPerformance=showPerformance;
-		    $scope.showMarketShare=showMarketShare;
-		    $scope.showMarketSales=showMarketSales;
-		    $scope.showSegment=showSegment;
-		    $scope.showCross=showCross;
-		    $scope.showProduct=showProduct;
-		  	$scope.showEMallPrices=showEMallPrices;
-		  	//producer report	
-			$scope.showProducerConsolidate=showProducerConsolidate;
-			$scope.showProducerBMBusiness=showProducerBMBusiness;
-			$scope.showProducerOnlineBusiness=showProducerOnlineBusiness;
-			$scope.showProducerProfitability=showProducerProfitability;
-			$scope.showProducerNegotiations=showProducerNegotiations;
-			$scope.showElecssoriesConsumer=showElecssoriesConsumer;
-			$scope.showElecssoriesShopper=showElecssoriesShopper;
-			$scope.showElecssoriesVolume=showElecssoriesVolume;
-			$scope.showHealthBeautiesConsumer=showHealthBeautiesConsumer;
-			$scope.showHealthBeautiesShopper=showHealthBeautiesShopper;
-			$scope.showHealthBeautiesVolume=showHealthBeautiesVolume;
-			$scope.showProducerKey=showProducerKey;
-			//retailer report
-			$scope.showRetailerConsolidate=showRetailerConsolidate;
-			$scope.showRetailerRuralProfit=showRetailerRuralProfit;
-			$scope.showRetailerUrbanProfit=showRetailerUrbanProfit;
-			$scope.showRetailerProfitability=showRetailerProfitability;
-			$scope.showRetailerNegotiations=showRetailerNegotiations;
-			$scope.showRuralConsumer=showRuralConsumer;
-			$scope.showRuralShopper=showRuralShopper;
-			$scope.showRuralVolume=showRuralVolume;
-			$scope.showUrbanConsumer=showUrbanConsumer;
-			$scope.showUrbanShopper=showUrbanShopper;
-			$scope.showUrbanVolume=showUrbanVolume;
-			$scope.showRetailerKey=showRetailerKey;
-			//market report			
-			$scope.showAwarenessElecssories=showAwarenessElecssories;
-			$scope.showAwarenessHealthBeauties=showAwarenessHealthBeauties;
-			$scope.showRuralElecssoriesBrand=showRuralElecssoriesBrand;
-			$scope.showUrbanElecssoriesBrand=showUrbanElecssoriesBrand;
-			$scope.showRuralHealthBeautiesBrand=showRuralHealthBeautiesBrand;
-			$scope.showUrbanHealthBeautiesBrand=showUrbanHealthBeautiesBrand;
-			$scope.showRetailerPerceptions=showRetailerPerceptions;
-			$scope.showRuralElecssoriesConsumerShare=showRuralElecssoriesConsumerShare;
-			$scope.showUrbanElecssoriesConsumerShare=showUrbanElecssoriesConsumerShare;
-			$scope.showRuralHealthBeautiesConsumerShare=showRuralHealthBeautiesConsumerShare;
-			$scope.showUrbanHealthBeautiesConsumerShare=showUrbanHealthBeautiesConsumerShare;
-			$scope.showRuralElecssoriesConsumerSales=showRuralElecssoriesConsumerSales;
-			$scope.showUrbanElecssoriesConsumerSales=showUrbanElecssoriesConsumerSales;
-			$scope.showRuralHealthBeautiesConsumerSales=showRuralHealthBeautiesConsumerSales;
-			$scope.showUrbanHealthBeautiesConsumerSales=showUrbanHealthBeautiesConsumerSales;
-			$scope.showRuralElecssoriesShopperShare=showRuralElecssoriesShopperShare;
-			$scope.showUrbanElecssoriesShopperShare=showUrbanElecssoriesShopperShare;
-			$scope.showRuralHealthBeautiesShopperShare=showRuralHealthBeautiesShopperShare;
-			$scope.showUrbanHealthBeautiesShopperShare=showUrbanHealthBeautiesShopperShare;
-			$scope.showRuralElecssoriesShopperSales=showRuralElecssoriesShopperSales;
-			$scope.showUrbanElecssoriesShopperSales=showUrbanElecssoriesShopperSales;
-			$scope.showRuralHealthBeautiesShopperSales=showRuralHealthBeautiesShopperSales;
-			$scope.showUrbanHealthBeautiesShopperSales=showUrbanHealthBeautiesShopperSales;
-		    $scope.showBMElecssories=showBMElecssories;
-		    $scope.showBMHealthBeauties=showBMHealthBeauties;
-		    $scope.showPromotionElecssories=showPromotionElecssories;
-		    $scope.showPromotionHealthBeauties=showPromotionHealthBeauties;
-		    $scope.showSupplierIntelligence=showSupplierIntelligence;
-		    $scope.showRetailerIntelligence=showRetailerIntelligence;
-		    $scope.showForecastsConsumer=showForecastsConsumer;
-		    $scope.showForecastsShopper=showForecastsShopper;
-		    $scope.showForecastsCategory=showForecastsCategory;
-		    $scope.showForecastsInternet=showForecastsInternet;
 		  	showPerformance();
 	}]);
 
