@@ -65,7 +65,6 @@ define(['directives', 'services'], function(directives){
                 }
 
                 scope.$watch('isPageShown', function(newValue, oldValue){
-                    console.log('watch in the TE_GR_performance fire, new value: ' + newValue + ', oldValue: '+ oldValue);
                     if(newValue==true) {
                         initializePage();
                     }

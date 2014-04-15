@@ -1,0 +1,693 @@
+<div class="panel panel-primary my-panel-danger" ng-show='isResultShown'>
+    <div class="panel-heading">
+        <h3 class="panel-title text-center" popover="{{Label.getContent('Supplier Intelligence Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
+            {{Label.getContent('Supplier Intelligence')}}
+        </h3>
+    </div>
+    <table class="table table-condensed table-bordered table-danger">
+        <thead>
+            <tr>
+                <th></th>
+                <th colspan="3">
+                    <p class="text-center">{{Label.getContent('Elecssories')}}</p>
+                </th>
+                <th colspan="3">
+                    <p class="text-center">{{Label.getContent('HealthBeauties')}}</p>
+                </th>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Supplier')}} 1</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Supplier')}} 2</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Supplier')}} 3</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Supplier')}} 1</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Supplier')}} 2</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Supplier')}} 3</p>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th colspan="7">
+                    <p>{{Label.getContent('Advertising')}}($mln)</p>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-10">{{Label.getContent('Offline')}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.AdvertisingOffline_1e[2]}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.AdvertisingOffline_2e[2]}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.AdvertisingOffline_3e[2]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.AdvertisingOffline_1h[2]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.AdvertisingOffline_2h[2]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.AdvertisingOffline_3h[2]}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-20">{{Label.getContent('Rural')}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.AdvertisingOffline_1e[1]}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.AdvertisingOffline_2e[1]}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.AdvertisingOffline_3e[1]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.AdvertisingOffline_1h[1]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.AdvertisingOffline_2h[1]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.AdvertisingOffline_3h[1]}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-20">{{Label.getContent('Urban')}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.AdvertisingOffline_1e[0]}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.AdvertisingOffline_2e[0]}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.AdvertisingOffline_3e[0]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.AdvertisingOffline_1h[0]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.AdvertisingOffline_2h[0]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.AdvertisingOffline_3h[0]}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-10">{{Label.getContent('Online')}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.AdvertisingOnline_1e}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.AdvertisingOnline_2e}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.AdvertisingOnline_3e}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.AdvertisingOnline_1h}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.AdvertisingOnline_2h}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.AdvertisingOnline_3h}}</p>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="7">
+                    <p>{{Label.getContent('Trade Support')}}($mln)</p>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-10">
+                        {{Label.getContent('Actual')}}
+                    </p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.TradeSupport_1e[2].value[2]}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.TradeSupport_2e[2].value[2]}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.TradeSupport_3e[2].value[2]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TradeSupport_1h[2].value[2]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TradeSupport_2h[2].value[2]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TradeSupport_3h[2].value[2]}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-20">
+                        {{Label.getContent('Rural')}}
+                    </p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.TradeSupport_1e[2].value[1]}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.TradeSupport_2e[2].value[1]}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.TradeSupport_3e[2].value[1]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TradeSupport_1h[2].value[1]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TradeSupport_2h[2].value[1]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TradeSupport_3h[2].value[1]}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-30">
+                        {{Label.getContent('Retailer')}} 1
+                    </p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.TradeSupport_1e[0].value[1]}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.TradeSupport_2e[0].value[1]}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.TradeSupport_3e[0].value[1]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TradeSupport_1h[0].value[1]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TradeSupport_2h[0].value[1]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TradeSupport_3h[0].value[1]}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-30">
+                        {{Label.getContent('Retailer')}} 2
+                    </p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.TradeSupport_1e[1].value[1]}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.TradeSupport_2e[1].value[1]}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.TradeSupport_3e[1].value[1]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TradeSupport_1h[1].value[1]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TradeSupport_2h[1].value[1]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TradeSupport_3h[1].value[1]}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-20">
+                        {{Label.getContent('Urban')}}
+                    </p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.TradeSupport_1e[2].value[0]}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.TradeSupport_2e[2].value[0]}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.TradeSupport_3e[2].value[0]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TradeSupport_1h[2].value[0]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TradeSupport_2h[2].value[0]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TradeSupport_3h[2].value[0]}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-30">
+                        {{Label.getContent('Retailer')}} 1
+                    </p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.TradeSupport_1e[0].value[0]}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.TradeSupport_2e[0].value[0]}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.TradeSupport_3e[0].value[0]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TradeSupport_1h[0].value[0]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TradeSupport_2h[0].value[0]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TradeSupport_3h[0].value[0]}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-30">
+                        {{Label.getContent('Retailer')}} 2
+                    </p>
+                    <td class="td-success">
+                    <p class="text-right">{{data.TradeSupport_1e[1].value[0]}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.TradeSupport_2e[1].value[0]}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.TradeSupport_3e[1].value[0]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TradeSupport_1h[1].value[0]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TradeSupport_2h[1].value[0]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TradeSupport_3h[1].value[0]}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-10">
+                        {{Label.getContent('Negotiated')}}
+                    </p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.Negotiated_1e[2].value[2]}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.Negotiated_2e[2].value[2]}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.Negotiated_3e[2].value[2]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.Negotiated_1h[2].value[2]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.Negotiated_2h[2].value[2]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.Negotiated_3h[2].value[2]}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-20">
+                        {{Label.getContent('Rural')}}
+                    </p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.Negotiated_1e[2].value[1]}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.Negotiated_2e[2].value[1]}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.Negotiated_3e[2].value[1]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.Negotiated_1h[2].value[1]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.Negotiated_2h[2].value[1]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.Negotiated_3h[2].value[1]}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-30">
+                        {{Label.getContent('Retailer')}} 1
+                    </p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.Negotiated_1e[0].value[1]}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.Negotiated_2e[0].value[1]}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.Negotiated_3e[0].value[1]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.Negotiated_1h[0].value[1]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.Negotiated_2h[0].value[1]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.Negotiated_3h[0].value[1]}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-30">
+                        {{Label.getContent('Retailer')}} 2
+                    </p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.Negotiated_1e[1].value[1]}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.Negotiated_2e[1].value[1]}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.Negotiated_3e[1].value[1]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.Negotiated_1h[1].value[1]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.Negotiated_2h[1].value[1]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.Negotiated_3h[1].value[1]}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-20">
+                        {{Label.getContent('Urban')}}
+                    </p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.Negotiated_1e[2].value[0]}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.Negotiated_2e[2].value[0]}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.Negotiated_3e[2].value[0]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.Negotiated_1h[2].value[0]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.Negotiated_2h[2].value[0]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.Negotiated_3h[2].value[0]}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-30">
+                        {{Label.getContent('Retailer')}} 1
+                    </p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.Negotiated_1e[0].value[0]}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.Negotiated_2e[0].value[0]}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.Negotiated_3e[0].value[0]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.Negotiated_1h[0].value[0]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.Negotiated_2h[0].value[0]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.Negotiated_3h[0].value[0]}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-30">
+                        {{Label.getContent('Retailer')}} 2
+                    </p>
+                    <td class="td-success">
+                    <p class="text-right">{{data.Negotiated_1e[1].value[0]}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.Negotiated_2e[1].value[0]}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.Negotiated_3e[1].value[0]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.Negotiated_1h[1].value[0]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.Negotiated_2h[1].value[0]}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.Negotiated_3h[1].value[0]}}</p>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="7">
+                    <p>{{Label.getContent('Online Investments')}}($mln)</p>
+                </th>
+
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-10">{{Label.getContent('Visibility')}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.OnLineVisibility_1e}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.OnLineVisibility_2e}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.OnLineVisibility_3e}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.OnLineVisibility_1h}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.OnLineVisibility_2h}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.OnLineVisibility_3h}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-10">{{Label.getContent('Other')}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.OnLineOther_1e}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.OnLineOther_2e}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.OnLineOther_3e}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.OnLineOther_1h}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.OnLineOther_2h}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.OnLineOther_3h}}</p>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="7">
+                    <p>{{Label.getContent('Assets')}}</p>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-10">{{Label.getContent('Technology Level')}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.TechnologyLevel_1e}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.TechnologyLevel_2e}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.TechnologyLevel_3e}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TechnologyLevel_1h}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TechnologyLevel_2h}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TechnologyLevel_3h}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-10">{{Label.getContent('Design Level')}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.DesignLevel_1e}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.DesignLevel_2e}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.DesignLevel_3e}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.DesignLevel_1h}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.DesignLevel_2h}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.DesignLevel_3h}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="7">
+                    <p class="padding-10">{{Label.getContent('Production')}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-20">{{Label.getContent('Capacity')}}(units mln)</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.Capacity_1e}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.Capacity_2e}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.Capacity_3e}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.Capacity_1h}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.Capacity_2h}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.Capacity_3h}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-20">{{Label.getContent('Utilization Rate')}}(%)</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.UtilizationRate_1e}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.UtilizationRate_2e}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.UtilizationRate_3e}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.UtilizationRate_1h}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.UtilizationRate_2h}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.UtilizationRate_3h}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-20">{{Label.getContent('Flexibility')}}(%)</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.FlexibilityMin_1e}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.FlexibilityMin_2e}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.FlexibilityMin_3e}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.FlexibilityMin_1h}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.FlexibilityMin_2h}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.FlexibilityMin_3h}}</p>
+                </td>
+            </tr>
+            <tr ng-show='false'>
+                <td>
+                    <p class="padding-20">{{Label.getContent('Flexibility')}}({{Label.getContent('max')}})(%)</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.FlexibilityMax_1e}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.FlexibilityMax_2e}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.FlexibilityMax_3e}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.FlexibilityMax_1h}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.FlexibilityMax_2h}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.FlexibilityMax_3h}}</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

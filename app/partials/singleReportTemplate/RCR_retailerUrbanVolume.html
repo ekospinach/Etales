@@ -1,239 +1,239 @@
-<div class="panel mypanel-success panel-primary" ng-show='isResultShown'>
-                        <div class="panel-heading">
-                            <h3 class="panel-title text-center" popover="{{Label.getContent('Volume Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Urban')}} {{Label.getContent('Situation Report')}}-{{Label.getContent('Volume')}}</h3>
-                        </div>
-                        <table class="table table-condensed table-bordered table-success">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        <p>(units mln)</p>
-                                    </th>
-                                    <th>
-                                        <p class="text-center">{{Label.getContent('Initial Inventory')}}</p>
-                                    </th>
-                                    <th>
-                                        <p class="text-center">{{Label.getContent('Ordered Volume')}}</p>
-                                    </th>
-                                    <th>
-                                        <p class="text-center">{{Label.getContent('Sales Volume')}}</p>
-                                    </th>
-                                    <th>
-                                        <p class="text-center">{{Label.getContent('Discontinued Goods Volume')}}</p>
-                                    </th>
-                                    <th>
-                                        <p class="text-center">{{Label.getContent('Closing Inventory')}}</p>
-                                    </th>
-                                </tr>
-                                <tr class="success">
-                                    <td colspan="6">
-                                        <p>{{Label.getContent('Elecssories')}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="success" ng-show='product1es.length>=1'>
-                                    <td colspan="6">
-                                        <p class="padding-20">{{Label.getContent('Supplier')}} 1</p>
-                                    </td>
-                                </tr>
-                                <tr class="success" ng-repeat='product1e in product1es'>
-                                    <td>
-                                        <p class="padding-40">{{product1e.fullName}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product1e.initial}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product1e.production}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product1e.sales}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product1e.discontinued}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product1e.closing}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="success" ng-show='product2es.length>=1'>
-                                    <td colspan="6">
-                                        <p class="padding-20">{{Label.getContent('Supplier')}} 2</p>
-                                    </td>
-                                </tr>
-                                <tr class="success" ng-repeat='product2e in product2es'>
-                                    <td>
-                                        <p class="padding-40">{{product2e.fullName}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product2e.initial}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product2e.production}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product2e.sales}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product2e.discontinued}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product2e.closing}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="success" ng-show='product3es.length>=1'>
-                                    <td colspan="6">
-                                        <p class="padding-20">{{Label.getContent('Supplier')}} 3</p>
-                                    </td>
-                                </tr>
-                                <tr class="success" ng-repeat='product3e in product3es'>
-                                    <td>
-                                        <p class="padding-40">{{product3e.fullName}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product3e.initial}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product3e.production}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product3e.sales}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product3e.discontinued}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product3e.closing}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="success" ng-show='product4es.length>=1'>
-                                    <td colspan="6">
-                                        <p class="padding-20">{{Label.getContent('Private Label')}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="success" ng-repeat='product4e in product4es'>
-                                    <td>
-                                        <p class="padding-40">{{product4e.fullName}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product4e.initial}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product4e.production}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product4e.sales}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product4e.discontinued}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product4e.closing}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger">
-                                    <td colspan="6">
-                                        <p>{{Label.getContent('HealthBeauties')}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger" ng-show='product1hs.length>=1'>
-                                    <td colspan="6">
-                                        <p class="padding-20">{{Label.getContent('Supplier')}} 1</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger" ng-repeat='product1h in product1hs'>
-                                    <td>
-                                        <p class="padding-40">{{product1h.fullName}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product1h.initial}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product1h.production}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product1h.sales}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product1h.discontinued}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product1h.closing}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger" ng-show='product2hs.length>=1'>
-                                    <td colspan="6">
-                                        <p class="padding-20">{{Label.getContent('Supplier')}} 2</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger" ng-repeat='product2h in product2hs'>
-                                    <td>
-                                        <p class="padding-40">{{product2h.fullName}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product2h.initial}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product2h.production}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product2h.sales}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product2h.discontinued}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product2h.closing}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger" ng-show='product3hs.length>=1'>
-                                    <td colspan="6">
-                                        <p class="padding-20">{{Label.getContent('Supplier')}} 3</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger" ng-repeat='product3h in product3hs'>
-                                    <td>
-                                        <p class="padding-40">{{product3h.fullName}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product3h.initial}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product3h.production}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product3h.sales}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product3h.discontinued}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product3h.closing}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger" ng-show='product4hs.length>=1'>
-                                    <td colspan="6">
-                                        <p class="padding-20">{{Label.getContent('Private Label')}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger" ng-repeat='product4h in product4hs'>
-                                    <td>
-                                        <p class="padding-40">{{product4h.fullName}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product4h.initial}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product4h.production}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product4h.sales}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product4h.discontinued}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{product4h.closing}}</p>
-                                    </td>
-                                </tr>
-                            </thead>
-                        </table> 
+<div class="panel my-panel-success panel-primary" ng-show='isResultShown'>
+    <div class="panel-heading">
+        <h3 class="panel-title text-center" popover="{{Label.getContent('Volume Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Urban')}} {{Label.getContent('Situation Report')}}-{{Label.getContent('Volume')}}</h3>
+    </div>
+    <table class="table table-condensed table-bordered table-success">
+        <thead>
+            <tr>
+                <th>
+                    <p>(units mln)</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Initial Inventory')}}</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Ordered Volume')}}</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Sales Volume')}}</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Discontinued Goods Volume')}}</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Closing Inventory')}}</p>
+                </th>
+            </tr>
+            <tr class="success">
+                <td colspan="6">
+                    <p>{{Label.getContent('Elecssories')}}</p>
+                </td>
+            </tr>
+            <tr class="success" ng-show='product1es.length>=1'>
+                <td colspan="6">
+                    <p class="padding-20">{{Label.getContent('Supplier')}} 1</p>
+                </td>
+            </tr>
+            <tr class="success" ng-repeat='product1e in product1es'>
+                <td>
+                    <p class="padding-40">{{product1e.fullName}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product1e.initial}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product1e.production}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product1e.sales}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product1e.discontinued}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product1e.closing}}</p>
+                </td>
+            </tr>
+            <tr class="success" ng-show='product2es.length>=1'>
+                <td colspan="6">
+                    <p class="padding-20">{{Label.getContent('Supplier')}} 2</p>
+                </td>
+            </tr>
+            <tr class="success" ng-repeat='product2e in product2es'>
+                <td>
+                    <p class="padding-40">{{product2e.fullName}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product2e.initial}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product2e.production}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product2e.sales}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product2e.discontinued}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product2e.closing}}</p>
+                </td>
+            </tr>
+            <tr class="success" ng-show='product3es.length>=1'>
+                <td colspan="6">
+                    <p class="padding-20">{{Label.getContent('Supplier')}} 3</p>
+                </td>
+            </tr>
+            <tr class="success" ng-repeat='product3e in product3es'>
+                <td>
+                    <p class="padding-40">{{product3e.fullName}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product3e.initial}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product3e.production}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product3e.sales}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product3e.discontinued}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product3e.closing}}</p>
+                </td>
+            </tr>
+            <tr class="success" ng-show='product4es.length>=1'>
+                <td colspan="6">
+                    <p class="padding-20">{{Label.getContent('Private Label')}}</p>
+                </td>
+            </tr>
+            <tr class="success" ng-repeat='product4e in product4es'>
+                <td>
+                    <p class="padding-40">{{product4e.fullName}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product4e.initial}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product4e.production}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product4e.sales}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product4e.discontinued}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product4e.closing}}</p>
+                </td>
+            </tr>
+            <tr class="danger">
+                <td colspan="6">
+                    <p>{{Label.getContent('HealthBeauties')}}</p>
+                </td>
+            </tr>
+            <tr class="danger" ng-show='product1hs.length>=1'>
+                <td colspan="6">
+                    <p class="padding-20">{{Label.getContent('Supplier')}} 1</p>
+                </td>
+            </tr>
+            <tr class="danger" ng-repeat='product1h in product1hs'>
+                <td>
+                    <p class="padding-40">{{product1h.fullName}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product1h.initial}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product1h.production}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product1h.sales}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product1h.discontinued}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product1h.closing}}</p>
+                </td>
+            </tr>
+            <tr class="danger" ng-show='product2hs.length>=1'>
+                <td colspan="6">
+                    <p class="padding-20">{{Label.getContent('Supplier')}} 2</p>
+                </td>
+            </tr>
+            <tr class="danger" ng-repeat='product2h in product2hs'>
+                <td>
+                    <p class="padding-40">{{product2h.fullName}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product2h.initial}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product2h.production}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product2h.sales}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product2h.discontinued}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product2h.closing}}</p>
+                </td>
+            </tr>
+            <tr class="danger" ng-show='product3hs.length>=1'>
+                <td colspan="6">
+                    <p class="padding-20">{{Label.getContent('Supplier')}} 3</p>
+                </td>
+            </tr>
+            <tr class="danger" ng-repeat='product3h in product3hs'>
+                <td>
+                    <p class="padding-40">{{product3h.fullName}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product3h.initial}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product3h.production}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product3h.sales}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product3h.discontinued}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product3h.closing}}</p>
+                </td>
+            </tr>
+            <tr class="danger" ng-show='product4hs.length>=1'>
+                <td colspan="6">
+                    <p class="padding-20">{{Label.getContent('Private Label')}}</p>
+                </td>
+            </tr>
+            <tr class="danger" ng-repeat='product4h in product4hs'>
+                <td>
+                    <p class="padding-40">{{product4h.fullName}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product4h.initial}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product4h.production}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product4h.sales}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product4h.discontinued}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{product4h.closing}}</p>
+                </td>
+            </tr>
+        </thead>
+    </table> 
 </div>

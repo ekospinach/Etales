@@ -1,0 +1,127 @@
+define(['directives', 'services'], function(directives){
+
+    directives.directive('marketSupplierIntelligence', ['Label','SeminarInfo','$http','PeriodInfo','$q', function(Label, SeminarInfo, $http, PeriodInfo, $q){
+        return {
+            scope : {
+                isPageShown : '=',
+                isPageLoading : '='
+            },
+            restrict : 'E',
+            templateUrl : '../../partials/singleReportTemplate/MR_supplierIntelligence.html',            
+            link : function(scope, element, attrs){                                                                
+                var initializePage = function(){
+                    scope.isPageLoading = true;
+                    scope.isResultShown = false;                    
+                    scope.Label = Label;
+                    getResult();                    
+                }
+
+                var getResult =function(){
+                    var url='/getMR-suppliersIntelligence/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1);
+                    $http({
+                        method:'GET',
+                        url:url,
+                        //tracker: scope.loadingTracker
+                    }).then(function(data){   
+                        return organiseArray(data);
+                    }).then(function(data){
+                        scope.isResultShown = true;
+                        scope.isPageLoading = false;                                                                         
+                    },function(){
+                        console.log('fail');
+                    });
+                }
+
+                var organiseArray = function(data){
+                    var deferred = $q.defer();
+                    var myData=new Array();
+                    myData.push({
+                        'AdvertisingOnline_1e':data.data[0].supplierInfo[0].categoryInfo[0].advertisingOnLine,
+                        'AdvertisingOnline_2e':data.data[0].supplierInfo[1].categoryInfo[0].advertisingOnLine,
+                        'AdvertisingOnline_3e':data.data[0].supplierInfo[2].categoryInfo[0].advertisingOnLine,
+                        'AdvertisingOnline_1h':data.data[0].supplierInfo[0].categoryInfo[1].advertisingOnLine,
+                        'AdvertisingOnline_2h':data.data[0].supplierInfo[1].categoryInfo[1].advertisingOnLine,
+                        'AdvertisingOnline_3h':data.data[0].supplierInfo[2].categoryInfo[1].advertisingOnLine,
+                        'AdvertisingOffline_1e':data.data[0].supplierInfo[0].categoryInfo[0].advertisingOffLine,
+                        'AdvertisingOffline_2e':data.data[0].supplierInfo[1].categoryInfo[0].advertisingOffLine,
+                        'AdvertisingOffline_3e':data.data[0].supplierInfo[2].categoryInfo[0].advertisingOffLine,
+                        'AdvertisingOffline_1h':data.data[0].supplierInfo[0].categoryInfo[1].advertisingOffLine,
+                        'AdvertisingOffline_2h':data.data[0].supplierInfo[1].categoryInfo[1].advertisingOffLine,
+                        'AdvertisingOffline_3h':data.data[0].supplierInfo[2].categoryInfo[1].advertisingOffLine,
+                        'OnLineVisibility_1e':data.data[0].supplierInfo[0].categoryInfo[0].onLineVisibility,
+                        'OnLineVisibility_2e':data.data[0].supplierInfo[1].categoryInfo[0].onLineVisibility,
+                        'OnLineVisibility_3e':data.data[0].supplierInfo[2].categoryInfo[0].onLineVisibility,
+                        'OnLineVisibility_1h':data.data[0].supplierInfo[0].categoryInfo[1].onLineVisibility,
+                        'OnLineVisibility_2h':data.data[0].supplierInfo[1].categoryInfo[1].onLineVisibility,
+                        'OnLineVisibility_3h':data.data[0].supplierInfo[2].categoryInfo[1].onLineVisibility,
+                        'OnLineOther_1e':data.data[0].supplierInfo[0].categoryInfo[0].onLineOther,
+                        'OnLineOther_2e':data.data[0].supplierInfo[1].categoryInfo[0].onLineOther,
+                        'OnLineOther_3e':data.data[0].supplierInfo[2].categoryInfo[0].onLineOther,
+                        'OnLineOther_1h':data.data[0].supplierInfo[0].categoryInfo[1].onLineOther,
+                        'OnLineOther_2h':data.data[0].supplierInfo[1].categoryInfo[1].onLineOther,
+                        'OnLineOther_3h':data.data[0].supplierInfo[2].categoryInfo[1].onLineOther,
+                        'TechnologyLevel_1e':data.data[0].supplierInfo[0].categoryInfo[0].acquiredTechnologyLevel,
+                        'TechnologyLevel_2e':data.data[0].supplierInfo[1].categoryInfo[0].acquiredTechnologyLevel,
+                        'TechnologyLevel_3e':data.data[0].supplierInfo[2].categoryInfo[0].acquiredTechnologyLevel,
+                        'TechnologyLevel_1h':data.data[0].supplierInfo[0].categoryInfo[1].acquiredTechnologyLevel,
+                        'TechnologyLevel_2h':data.data[0].supplierInfo[1].categoryInfo[1].acquiredTechnologyLevel,
+                        'TechnologyLevel_3h':data.data[0].supplierInfo[2].categoryInfo[1].acquiredTechnologyLevel,
+                        'DesignLevel_1e':data.data[0].supplierInfo[0].categoryInfo[0].acquiredDesignLevel,
+                        'DesignLevel_2e':data.data[0].supplierInfo[1].categoryInfo[0].acquiredDesignLevel,
+                        'DesignLevel_3e':data.data[0].supplierInfo[2].categoryInfo[0].acquiredDesignLevel,
+                        'DesignLevel_1h':data.data[0].supplierInfo[0].categoryInfo[1].acquiredDesignLevel,
+                        'DesignLevel_2h':data.data[0].supplierInfo[1].categoryInfo[1].acquiredDesignLevel,
+                        'DesignLevel_3h':data.data[0].supplierInfo[2].categoryInfo[1].acquiredDesignLevel,
+                        'Capacity_1e':data.data[0].supplierInfo[0].categoryInfo[0].productionCapacityAvailable,
+                        'Capacity_2e':data.data[0].supplierInfo[1].categoryInfo[0].productionCapacityAvailable,
+                        'Capacity_3e':data.data[0].supplierInfo[2].categoryInfo[0].productionCapacityAvailable,
+                        'Capacity_1h':data.data[0].supplierInfo[0].categoryInfo[1].productionCapacityAvailable,
+                        'Capacity_2h':data.data[0].supplierInfo[1].categoryInfo[1].productionCapacityAvailable,
+                        'Capacity_3h':data.data[0].supplierInfo[2].categoryInfo[1].productionCapacityAvailable,
+                        'UtilizationRate_1e':data.data[0].supplierInfo[0].categoryInfo[0].capacityUtilisationRate,
+                        'UtilizationRate_2e':data.data[0].supplierInfo[1].categoryInfo[0].capacityUtilisationRate,
+                        'UtilizationRate_3e':data.data[0].supplierInfo[2].categoryInfo[0].capacityUtilisationRate,
+                        'UtilizationRate_1h':data.data[0].supplierInfo[0].categoryInfo[1].capacityUtilisationRate,
+                        'UtilizationRate_2h':data.data[0].supplierInfo[1].categoryInfo[1].capacityUtilisationRate,
+                        'UtilizationRate_3h':data.data[0].supplierInfo[2].categoryInfo[1].capacityUtilisationRate,
+                        'FlexibilityMax_1e':data.data[0].supplierInfo[0].categoryInfo[0].productionplanningFlexibility,
+                        'FlexibilityMax_2e':data.data[0].supplierInfo[1].categoryInfo[0].productionplanningFlexibility,
+                        'FlexibilityMax_3e':data.data[0].supplierInfo[2].categoryInfo[0].productionplanningFlexibility,
+                        'FlexibilityMax_1h':data.data[0].supplierInfo[0].categoryInfo[1].productionplanningFlexibility,
+                        'FlexibilityMax_2h':data.data[0].supplierInfo[1].categoryInfo[1].productionplanningFlexibility,
+                        'FlexibilityMax_3h':data.data[0].supplierInfo[2].categoryInfo[1].productionplanningFlexibility,
+                        'FlexibilityMin_1e':data.data[0].supplierInfo[0].categoryInfo[0].productionplanningFlexibility,
+                        'FlexibilityMin_2e':data.data[0].supplierInfo[1].categoryInfo[0].productionplanningFlexibility,
+                        'FlexibilityMin_3e':data.data[0].supplierInfo[2].categoryInfo[0].productionplanningFlexibility,
+                        'FlexibilityMin_1h':data.data[0].supplierInfo[0].categoryInfo[1].productionplanningFlexibility,
+                        'FlexibilityMin_2h':data.data[0].supplierInfo[1].categoryInfo[1].productionplanningFlexibility,
+                        'FlexibilityMin_3h':data.data[0].supplierInfo[2].categoryInfo[1].productionplanningFlexibility,
+                        'TradeSupport_1e':data.data[0].supplierInfo[0].categoryInfo[0].actualTradeSupport,
+                        'TradeSupport_2e':data.data[0].supplierInfo[1].categoryInfo[0].actualTradeSupport,
+                        'TradeSupport_3e':data.data[0].supplierInfo[2].categoryInfo[0].actualTradeSupport,
+                        'TradeSupport_1h':data.data[0].supplierInfo[0].categoryInfo[1].actualTradeSupport,
+                        'TradeSupport_2h':data.data[0].supplierInfo[1].categoryInfo[1].actualTradeSupport,
+                        'TradeSupport_3h':data.data[0].supplierInfo[2].categoryInfo[1].actualTradeSupport,
+                        'Negotiated_1e':data.data[0].supplierInfo[0].categoryInfo[0].negotiatedTradeSupport,
+                        'Negotiated_2e':data.data[0].supplierInfo[1].categoryInfo[0].negotiatedTradeSupport,
+                        'Negotiated_3e':data.data[0].supplierInfo[2].categoryInfo[0].negotiatedTradeSupport,
+                        'Negotiated_1h':data.data[0].supplierInfo[0].categoryInfo[1].negotiatedTradeSupport,
+                        'Negotiated_2h':data.data[0].supplierInfo[1].categoryInfo[1].negotiatedTradeSupport,
+                        'Negotiated_3h':data.data[0].supplierInfo[2].categoryInfo[1].negotiatedTradeSupport,
+                    });
+                    scope.data=myData[0];
+                    deferred.resolve({msg:'Array is ready.'});                    
+                    return deferred.promise;
+                }
+
+
+                scope.$watch('isPageShown', function(newValue, oldValue){
+                    if(newValue==true) {
+                        initializePage();
+                    }
+                })
+
+            }
+        }
+    }])
+})

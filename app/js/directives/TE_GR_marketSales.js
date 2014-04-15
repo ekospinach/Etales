@@ -90,7 +90,7 @@ define(['directives', 'services'], function(directives){
                         }
                     }
 
-                    scope.chart1Series = [                 
+                    scope.marketSales1Series = [                 
                         {"name": Label.getContent('Producer')+' 1', "data": [scope.totals[0][0],0,scope.rurals[0][0],scope.urbans[0][0],0,scope.prices[0][0],scope.values[0][0],scope.fashions[0][0],scope.freakss[0][0],0,scope.bms[0][0],scope.onlines[0][0],scope.mixeds[0][0]], type: "column",color:'#3257A7'},
                         {"name": Label.getContent('Producer')+' 2', "data": [scope.totals[0][1],0,scope.rurals[0][1],scope.urbans[0][1],0,scope.prices[0][1],scope.values[0][1],scope.fashions[0][1],scope.freakss[0][1],0,scope.bms[0][1],scope.onlines[0][1],scope.mixeds[0][1]], type: "column",color:'#B11E22'},
                         {"name": Label.getContent('Producer')+' 3', "data": [scope.totals[0][2],0,scope.rurals[0][2],scope.urbans[0][2],0,scope.prices[0][2],scope.values[0][2],scope.fashions[0][2],scope.freakss[0][2],0,scope.bms[0][2],scope.onlines[0][2],scope.mixeds[0][2]], type: "column",color:'#F6B920'},
@@ -113,7 +113,7 @@ define(['directives', 'services'], function(directives){
                         [scope.totalChanges[0][5],0,scope.ruralChanges[0][5],scope.urbanChanges[0][5],0,scope.priceChanges[0][5],scope.valueChanges[0][5],scope.fashionChanges[0][5],scope.freaksChanges[0][5],0,scope.bmChanges[0][5],scope.onlineChanges[0][5],scope.mixedChanges[0][5]]
                     ];
 
-                    scope.chart1Config = {
+                    scope.marketSales1Config = {
                         options: {
                             xAxis: {
                                 categories: [Label.getContent('Total'), '', Label.getContent('Rural'), Label.getContent('Urban'), '', Label.getContent('Price Sensitive'),Label.getContent('Value for Money'),Label.getContent('Fashion'),Label.getContent('Freaks'),'',Label.getContent('B&M Only'),Label.getContent('Online Only'),Label.getContent('Mixed')]
@@ -138,7 +138,7 @@ define(['directives', 'services'], function(directives){
                                 }
                             }
                         },
-                        series: scope.chart1Series,
+                        series: scope.marketSales1Series,
                         title: {
                             text: Label.getContent('Elecssories')+' - '+Label.getContent('Volume Sales')
                         },
@@ -148,7 +148,7 @@ define(['directives', 'services'], function(directives){
                         loading: false
                     }
 
-                    scope.chart2Series = [
+                    scope.marketSales2Series = [
                         {"name": Label.getContent('Producer')+' 1', "data": [scope.totals[1][0],0,scope.rurals[1][0],scope.urbans[1][0],0,scope.prices[1][0],scope.values[1][0],scope.fashions[1][0],scope.freakss[1][0],0,scope.bms[1][0],scope.onlines[1][0],scope.mixeds[1][0]], type: "column",color:'#3257A7'},
                         {"name": Label.getContent('Producer')+' 2', "data": [scope.totals[1][1],0,scope.rurals[1][1],scope.urbans[1][1],0,scope.prices[1][1],scope.values[1][1],scope.fashions[1][1],scope.freakss[1][1],0,scope.bms[1][1],scope.onlines[1][1],scope.mixeds[1][1]], type: "column",color:'#B11E22'},
                         {"name": Label.getContent('Producer')+' 3', "data": [scope.totals[1][2],0,scope.rurals[1][2],scope.urbans[1][2],0,scope.prices[1][2],scope.values[1][2],scope.fashions[1][2],scope.freakss[1][2],0,scope.bms[1][2],scope.onlines[1][2],scope.mixeds[1][2]], type: "column",color:'#F6B920'},
@@ -172,7 +172,7 @@ define(['directives', 'services'], function(directives){
                     ];
 
 
-                    scope.chart2Config = {
+                    scope.marketSales2Config = {
                         options: {
                             xAxis: {
                                 categories: [Label.getContent('Total'), '', Label.getContent('Rural'), Label.getContent('Urban'), '', Label.getContent('Price Sensitive'),Label.getContent('Value for Money'),Label.getContent('Fashion'),Label.getContent('Freaks'),'',Label.getContent('B&M Only'),Label.getContent('Online Only'),Label.getContent('Mixed')]
@@ -197,7 +197,7 @@ define(['directives', 'services'], function(directives){
                                 }
                             }
                         },
-                        series: scope.chart2Series,
+                        series: scope.marketSales2Series,
                         title: {
                             text: Label.getContent('Elecssories')+' - '+Label.getContent('Value Sales')
                         },
@@ -207,7 +207,7 @@ define(['directives', 'services'], function(directives){
                         loading: false
                     }
 
-                    scope.chart3Series = [
+                    scope.marketSales3Series = [
                         {"name": Label.getContent('Producer')+' 1', "data": [scope.totals[2][0],0,scope.rurals[2][0],scope.urbans[2][0],0,scope.prices[2][0],scope.values[2][0],scope.fashions[2][0],scope.freakss[2][0],0,scope.bms[2][0],scope.onlines[2][0],scope.mixeds[2][0]], type: "column",color:'#3257A7'},
                         {"name": Label.getContent('Producer')+' 2', "data": [scope.totals[2][1],0,scope.rurals[2][1],scope.urbans[2][1],0,scope.prices[2][1],scope.values[2][1],scope.fashions[2][1],scope.freakss[2][1],0,scope.bms[2][1],scope.onlines[2][1],scope.mixeds[2][1]], type: "column",color:'#B11E22'},
                         {"name": Label.getContent('Producer')+' 3', "data": [scope.totals[2][2],0,scope.rurals[2][2],scope.urbans[2][2],0,scope.prices[2][2],scope.values[2][2],scope.fashions[2][2],scope.freakss[2][2],0,scope.bms[2][2],scope.onlines[2][2],scope.mixeds[2][2]], type: "column",color:'#F6B920'},
@@ -230,7 +230,7 @@ define(['directives', 'services'], function(directives){
                         [scope.totalChanges[2][5],0,scope.ruralChanges[2][5],scope.urbanChanges[2][5],0,scope.priceChanges[2][5],scope.valueChanges[2][5],scope.fashionChanges[2][5],scope.freaksChanges[2][5],0,scope.bmChanges[2][5],scope.onlineChanges[2][5],scope.mixedChanges[2][5]]
                     ];
 
-                    scope.chart3Config = {
+                    scope.marketSales3Config = {
                         options: {
                             xAxis: {
                                 categories: [Label.getContent('Total'), '', Label.getContent('Rural'), Label.getContent('Urban'), '', Label.getContent('Price Sensitive'),Label.getContent('Value for Money'),Label.getContent('Fashion'),Label.getContent('Freaks'),'',Label.getContent('B&M Only'),Label.getContent('Online Only'),Label.getContent('Mixed')]
@@ -255,7 +255,7 @@ define(['directives', 'services'], function(directives){
                                 }
                             }
                         },
-                        series: scope.chart3Series,
+                        series: scope.marketSales3Series,
                         title: {
                             text: Label.getContent('HealthBeauties')+' - '+Label.getContent('Volume Sales')
                         },
@@ -265,7 +265,7 @@ define(['directives', 'services'], function(directives){
                         loading: false
                     }
 
-                    scope.chart4Series = [
+                    scope.marketSales4Series = [
                         {"name": Label.getContent('Producer')+' 1', "data": [scope.totals[3][0],0,scope.rurals[3][0],scope.urbans[3][0],0,scope.prices[3][0],scope.values[3][0],scope.fashions[3][0],scope.freakss[3][0],0,scope.bms[3][0],scope.onlines[3][0],scope.mixeds[3][0]], type: "column",color:'#3257A7'},
                         {"name": Label.getContent('Producer')+' 2', "data": [scope.totals[3][1],0,scope.rurals[3][1],scope.urbans[3][1],0,scope.prices[3][1],scope.values[3][1],scope.fashions[3][1],scope.freakss[3][1],0,scope.bms[3][1],scope.onlines[3][1],scope.mixeds[3][1]], type: "column",color:'#B11E22'},
                         {"name": Label.getContent('Producer')+' 3', "data": [scope.totals[3][2],0,scope.rurals[3][2],scope.urbans[3][2],0,scope.prices[3][2],scope.values[3][2],scope.fashions[3][2],scope.freakss[3][2],0,scope.bms[3][2],scope.onlines[3][2],scope.mixeds[3][2]], type: "column",color:'#F6B920'},
@@ -287,7 +287,7 @@ define(['directives', 'services'], function(directives){
                         [scope.totalChanges[3][5],0,scope.ruralChanges[3][5],scope.urbanChanges[3][5],0,scope.priceChanges[3][5],scope.valueChanges[3][5],scope.fashionChanges[3][5],scope.freaksChanges[3][5],0,scope.bmChanges[3][5],scope.onlineChanges[3][5],scope.mixedChanges[3][5]]
                     ];
 
-                    scope.chart4Config = {
+                    scope.marketSales4Config = {
                         options: {
                             xAxis: {
                                 categories: [Label.getContent('Total'), '', Label.getContent('Rural'), Label.getContent('Urban'), '', Label.getContent('Price Sensitive'),Label.getContent('Value for Money'),Label.getContent('Fashion'),Label.getContent('Freaks'),'',Label.getContent('B&M Only'),Label.getContent('Online Only'),Label.getContent('Mixed')]
@@ -312,7 +312,7 @@ define(['directives', 'services'], function(directives){
                                 }
                             }
                         },
-                        series: scope.chart4Series,
+                        series: scope.marketSales4Series,
                         title: {
                             text: Label.getContent('HealthBeauties')+' - '+Label.getContent('Value Sales')
                         },

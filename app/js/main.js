@@ -64,7 +64,7 @@
 			'labelRenderer':['jqplot','jquery'],
 			'textRenderer':['jqplot','jquery'],
 			'tree':['jquery'],
-			'highcharts':['jquery','angular','highchart'],
+			'highchartMore':['jquery','highchart'],
 			'bootstrapswitch' : ['jquery'],
 			'angularBootstrapSwitch':['angular','jquery','bootstrapswitch'],
 //			'angularPromiseTracker':['angular']

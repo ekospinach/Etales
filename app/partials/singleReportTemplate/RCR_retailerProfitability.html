@@ -1,592 +1,592 @@
-<div class="panel mypanel-success panel-primary" ng-show='isResultShown'>
-                        <div class="panel-heading">
-                            <h3 class="panel-title text-center" popover="{{Label.getContent('Profitability by Channel Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Financial Results')}}-{{Label.getContent('Profitability by Channel')}}</h3>
-                        </div>
-                        <table class="table table-condensed table-bordered table-success">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th colspan="6">
-                                        <p class="text-center">{{Label.getContent('Suppliers')}}</p>
-                                    </th>
-                                    <th colspan="2">
-                                        <p class="text-center">{{Label.getContent('Private Label')}}</p>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th></th>
-                                    <th colspan="2">
-                                        <p class="text-center">{{Label.getContent('Supplier')}} 1</p>
-                                    </th>
-                                    <th colspan="2">
-                                        <p class="text-center">{{Label.getContent('Supplier')}} 2</p>
-                                    </th>
-                                    <th colspan="2">
-                                        <p class="text-center">{{Label.getContent('Supplier')}} 3</p>
-                                    </th>
-                                    <th colspan="2"></th>
-                                </tr>
-                                <tr>
-                                    <th></th>
-                                    <th>
-                                        <p class="text-center">{{Label.getContent('Rural')}}</p>
-                                    </th>
-                                    <th>
-                                        <p class="text-center">{{Label.getContent('Urban')}}</p>
-                                    </th>
-                                    <th>
-                                        <p class="text-center">{{Label.getContent('Rural')}}</p>
-                                    </th>
-                                    <th>
-                                        <p class="text-center">{{Label.getContent('Urban')}}</p>
-                                    </th>
-                                    <th>
-                                        <p class="text-center">{{Label.getContent('Rural')}}</p>
-                                    </th>
-                                    <th>
-                                        <p class="text-center">{{Label.getContent('Urban')}}</p>
-                                    </th>
-                                    <th>
-                                        <p class="text-center">{{Label.getContent('Rural')}}</p>
-                                    </th>
-                                    <th>
-                                        <p class="text-center">{{Label.getContent('Urban')}}</p>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="success">
-                                    <td colspan="9">
-                                        <p>{{Label.getContent('Elecssories')}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="success">
-                                    <td>
-                                        <p class="padding-20">{{Label.getContent('Shelf Space')}}(%)</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{ShelfSpaces[0].marketInfo[1].factoriesInfo[0].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{ShelfSpaces[0].marketInfo[0].factoriesInfo[0].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{ShelfSpaces[0].marketInfo[1].factoriesInfo[1].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{ShelfSpaces[0].marketInfo[0].factoriesInfo[1].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{ShelfSpaces[0].marketInfo[1].factoriesInfo[2].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{ShelfSpaces[0].marketInfo[0].factoriesInfo[2].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{ShelfSpaces[0].marketInfo[1].factoriesInfo[3].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{ShelfSpaces[0].marketInfo[0].factoriesInfo[3].value}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="success">
-                                    <td>
-                                        <p class="padding-20">{{Label.getContent('Sales')}}($mln)</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSales[0].marketInfo[1].factoriesInfo[0].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSales[0].marketInfo[0].factoriesInfo[0].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSales[0].marketInfo[1].factoriesInfo[1].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSales[0].marketInfo[0].factoriesInfo[1].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSales[0].marketInfo[1].factoriesInfo[2].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSales[0].marketInfo[0].factoriesInfo[2].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSales[0].marketInfo[1].factoriesInfo[3].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSales[0].marketInfo[0].factoriesInfo[3].value}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="success">
-                                    <td>
-                                        <p class="padding-20">{{Label.getContent('Sales Per 1% of Shelf Space')}}($mln)</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSalesPerShelfSpaces[0].marketInfo[1].factoriesInfo[0].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSalesPerShelfSpaces[0].marketInfo[0].factoriesInfo[0].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSalesPerShelfSpaces[0].marketInfo[1].factoriesInfo[1].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSalesPerShelfSpaces[0].marketInfo[0].factoriesInfo[1].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSalesPerShelfSpaces[0].marketInfo[1].factoriesInfo[2].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSalesPerShelfSpaces[0].marketInfo[0].factoriesInfo[2].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSalesPerShelfSpaces[0].marketInfo[1].factoriesInfo[3].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSalesPerShelfSpaces[0].marketInfo[0].factoriesInfo[3].value}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="success">
-                                    <td>
-                                        <p class="text-right">{{Label.getContent('Share of Value Sales')}}(%)</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSalesShares[0].marketInfo[1].factoriesInfo[0].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSalesShares[0].marketInfo[0].factoriesInfo[0].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSalesShares[0].marketInfo[1].factoriesInfo[1].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSalesShares[0].marketInfo[0].factoriesInfo[1].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSalesShares[0].marketInfo[1].factoriesInfo[2].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSalesShares[0].marketInfo[0].factoriesInfo[2].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSalesShares[0].marketInfo[1].factoriesInfo[3].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSalesShares[0].marketInfo[0].factoriesInfo[3].value}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="success">
-                                    <td>
-                                        <p class="padding-20">{{Label.getContent('Gross Contribution')}}($mln)</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributions[0].marketInfo[1].factoriesInfo[0].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributions[0].marketInfo[0].factoriesInfo[0].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributions[0].marketInfo[1].factoriesInfo[1].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributions[0].marketInfo[0].factoriesInfo[1].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributions[0].marketInfo[1].factoriesInfo[2].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributions[0].marketInfo[0].factoriesInfo[2].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributions[0].marketInfo[1].factoriesInfo[3].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributions[0].marketInfo[0].factoriesInfo[3].value}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="success">
-                                    <td>
-                                        <p class="padding-20">{{Label.getContent('Gross Contribution Per 1% of Shelf Space')}}($mln)</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionPerShelfSpaces[0].marketInfo[1].factoriesInfo[0].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionPerShelfSpaces[0].marketInfo[0].factoriesInfo[0].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionPerShelfSpaces[0].marketInfo[1].factoriesInfo[1].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionPerShelfSpaces[0].marketInfo[0].factoriesInfo[1].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionPerShelfSpaces[0].marketInfo[1].factoriesInfo[2].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionPerShelfSpaces[0].marketInfo[0].factoriesInfo[2].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionPerShelfSpaces[0].marketInfo[1].factoriesInfo[3].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionPerShelfSpaces[0].marketInfo[0].factoriesInfo[3].value}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="success">
-                                    <td>
-                                        <p class="text-right">{{Label.getContent('As % of Value Sales')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionMargins[0].marketInfo[1].factoriesInfo[0].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionMargins[0].marketInfo[0].factoriesInfo[0].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionMargins[0].marketInfo[1].factoriesInfo[1].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionMargins[0].marketInfo[0].factoriesInfo[1].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionMargins[0].marketInfo[1].factoriesInfo[2].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionMargins[0].marketInfo[0].factoriesInfo[2].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionMargins[0].marketInfo[1].factoriesInfo[3].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionMargins[0].marketInfo[0].factoriesInfo[3].value}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="success">
-                                    <td>
-                                        <p class="text-right">{{Label.getContent('Share of Gross Contribution')}}(%)</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionShares[0].marketInfo[1].factoriesInfo[0].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionShares[0].marketInfo[0].factoriesInfo[0].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionShares[0].marketInfo[1].factoriesInfo[1].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionShares[0].marketInfo[0].factoriesInfo[1].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionShares[0].marketInfo[1].factoriesInfo[2].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionShares[0].marketInfo[0].factoriesInfo[2].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionShares[0].marketInfo[1].factoriesInfo[3].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionShares[0].marketInfo[0].factoriesInfo[3].value}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="success">
-                                    <td>
-                                        <p class="padding-20">{{Label.getContent('Terms of Payment')}}({{Label.getContent('days')}})</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{PaymentTerms[0].marketInfo[1].factoriesInfo[0].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{PaymentTerms[0].marketInfo[0].factoriesInfo[0].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{PaymentTerms[0].marketInfo[1].factoriesInfo[1].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{PaymentTerms[0].marketInfo[0].factoriesInfo[1].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{PaymentTerms[0].marketInfo[1].factoriesInfo[2].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{PaymentTerms[0].marketInfo[0].factoriesInfo[2].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{PaymentTerms[0].marketInfo[1].factoriesInfo[3].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{PaymentTerms[0].marketInfo[0].factoriesInfo[3].value}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger">
-                                    <td colspan="9">
-                                        <p>{{Label.getContent('HealthBeauties')}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger">
-                                    <td>
-                                        <p class="padding-20">{{Label.getContent('Shelf Space')}}(%)</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{ShelfSpaces[1].marketInfo[1].factoriesInfo[0].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{ShelfSpaces[1].marketInfo[0].factoriesInfo[0].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{ShelfSpaces[1].marketInfo[1].factoriesInfo[1].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{ShelfSpaces[1].marketInfo[0].factoriesInfo[1].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{ShelfSpaces[1].marketInfo[1].factoriesInfo[2].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{ShelfSpaces[1].marketInfo[0].factoriesInfo[2].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{ShelfSpaces[1].marketInfo[1].factoriesInfo[3].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{ShelfSpaces[1].marketInfo[0].factoriesInfo[3].value}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger">
-                                    <td>
-                                        <p class="padding-20">{{Label.getContent('Sales')}}($mln)</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSales[1].marketInfo[1].factoriesInfo[0].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSales[1].marketInfo[0].factoriesInfo[0].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSales[1].marketInfo[1].factoriesInfo[1].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSales[1].marketInfo[0].factoriesInfo[1].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSales[1].marketInfo[1].factoriesInfo[2].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSales[1].marketInfo[0].factoriesInfo[2].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSales[1].marketInfo[1].factoriesInfo[3].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSales[1].marketInfo[0].factoriesInfo[3].value}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger">
-                                    <td>
-                                        <p class="padding-20">{{Label.getContent('Sales Per 1% of Shelf Space')}}($mln)</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSalesPerShelfSpaces[1].marketInfo[1].factoriesInfo[0].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSalesPerShelfSpaces[1].marketInfo[0].factoriesInfo[0].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSalesPerShelfSpaces[1].marketInfo[1].factoriesInfo[1].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSalesPerShelfSpaces[1].marketInfo[0].factoriesInfo[1].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSalesPerShelfSpaces[1].marketInfo[1].factoriesInfo[2].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSalesPerShelfSpaces[1].marketInfo[0].factoriesInfo[2].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSalesPerShelfSpaces[1].marketInfo[1].factoriesInfo[3].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSalesPerShelfSpaces[1].marketInfo[0].factoriesInfo[3].value}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger">
-                                    <td>
-                                        <p class="text-right">{{Label.getContent('Share of Value Sales')}}(%)</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSalesShares[1].marketInfo[1].factoriesInfo[0].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSalesShares[1].marketInfo[0].factoriesInfo[0].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSalesShares[1].marketInfo[1].factoriesInfo[1].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSalesShares[1].marketInfo[0].factoriesInfo[1].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSalesShares[1].marketInfo[1].factoriesInfo[2].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSalesShares[1].marketInfo[0].factoriesInfo[2].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSalesShares[1].marketInfo[1].factoriesInfo[3].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{NetSalesShares[1].marketInfo[0].factoriesInfo[3].value}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger">
-                                    <td>
-                                        <p class="padding-20">{{Label.getContent('Gross Contribution')}}($mln)</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributions[1].marketInfo[1].factoriesInfo[0].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributions[1].marketInfo[0].factoriesInfo[0].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributions[1].marketInfo[1].factoriesInfo[1].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributions[1].marketInfo[0].factoriesInfo[1].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributions[1].marketInfo[1].factoriesInfo[2].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributions[1].marketInfo[0].factoriesInfo[2].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributions[1].marketInfo[1].factoriesInfo[3].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributions[1].marketInfo[0].factoriesInfo[3].value}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger">
-                                    <td>
-                                        <p class="padding-20">{{Label.getContent('Gross Contribution Per 1% of Shelf Space')}}($mln)</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionPerShelfSpaces[1].marketInfo[1].factoriesInfo[0].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionPerShelfSpaces[1].marketInfo[0].factoriesInfo[0].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionPerShelfSpaces[1].marketInfo[1].factoriesInfo[1].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionPerShelfSpaces[1].marketInfo[0].factoriesInfo[1].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionPerShelfSpaces[1].marketInfo[1].factoriesInfo[2].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionPerShelfSpaces[1].marketInfo[0].factoriesInfo[2].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionPerShelfSpaces[1].marketInfo[1].factoriesInfo[3].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionPerShelfSpaces[1].marketInfo[0].factoriesInfo[3].value}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger">
-                                    <td>
-                                        <p class="text-right">{{Label.getContent('As % of Value Sales')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionMargins[1].marketInfo[1].factoriesInfo[0].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionMargins[1].marketInfo[0].factoriesInfo[0].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionMargins[1].marketInfo[1].factoriesInfo[1].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionMargins[1].marketInfo[0].factoriesInfo[1].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionMargins[1].marketInfo[1].factoriesInfo[2].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionMargins[1].marketInfo[0].factoriesInfo[2].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionMargins[1].marketInfo[1].factoriesInfo[3].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionMargins[1].marketInfo[0].factoriesInfo[3].value}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger">
-                                    <td>
-                                        <p class="text-right">{{Label.getContent('Share of Gross Contribution')}}(%)</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionShares[1].marketInfo[1].factoriesInfo[0].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionShares[1].marketInfo[0].factoriesInfo[0].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionShares[1].marketInfo[1].factoriesInfo[1].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionShares[1].marketInfo[0].factoriesInfo[1].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionShares[1].marketInfo[1].factoriesInfo[2].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionShares[1].marketInfo[0].factoriesInfo[2].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionShares[1].marketInfo[1].factoriesInfo[3].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{GrossContributionShares[1].marketInfo[0].factoriesInfo[3].value}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger">
-                                    <td>
-                                        <p class="padding-20">{{Label.getContent('Terms of Payment')}}({{Label.getContent('days')}})</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{PaymentTerms[1].marketInfo[1].factoriesInfo[0].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{PaymentTerms[1].marketInfo[0].factoriesInfo[0].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{PaymentTerms[1].marketInfo[1].factoriesInfo[1].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{PaymentTerms[1].marketInfo[0].factoriesInfo[1].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{PaymentTerms[1].marketInfo[1].factoriesInfo[2].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{PaymentTerms[1].marketInfo[0].factoriesInfo[2].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{PaymentTerms[1].marketInfo[1].factoriesInfo[3].value}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{PaymentTerms[1].marketInfo[0].factoriesInfo[3].value}}</p>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+<div class="panel my-panel-success panel-primary" ng-show='isResultShown'>
+    <div class="panel-heading">
+        <h3 class="panel-title text-center" popover="{{Label.getContent('Profitability by Channel Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Financial Results')}}-{{Label.getContent('Profitability by Channel')}}</h3>
+    </div>
+    <table class="table table-condensed table-bordered table-success">
+        <thead>
+            <tr>
+                <th></th>
+                <th colspan="6">
+                    <p class="text-center">{{Label.getContent('Suppliers')}}</p>
+                </th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Private Label')}}</p>
+                </th>
+            </tr>
+            <tr>
+                <th></th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Supplier')}} 1</p>
+                </th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Supplier')}} 2</p>
+                </th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Supplier')}} 3</p>
+                </th>
+                <th colspan="2"></th>
+            </tr>
+            <tr>
+                <th></th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="success">
+                <td colspan="9">
+                    <p>{{Label.getContent('Elecssories')}}</p>
+                </td>
+            </tr>
+            <tr class="success">
+                <td>
+                    <p class="padding-20">{{Label.getContent('Shelf Space')}}(%)</p>
+                </td>
+                <td>
+                    <p class="text-right">{{ShelfSpaces[0].marketInfo[1].factoriesInfo[0].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{ShelfSpaces[0].marketInfo[0].factoriesInfo[0].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{ShelfSpaces[0].marketInfo[1].factoriesInfo[1].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{ShelfSpaces[0].marketInfo[0].factoriesInfo[1].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{ShelfSpaces[0].marketInfo[1].factoriesInfo[2].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{ShelfSpaces[0].marketInfo[0].factoriesInfo[2].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{ShelfSpaces[0].marketInfo[1].factoriesInfo[3].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{ShelfSpaces[0].marketInfo[0].factoriesInfo[3].value}}</p>
+                </td>
+            </tr>
+            <tr class="success">
+                <td>
+                    <p class="padding-20">{{Label.getContent('Sales')}}($mln)</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSales[0].marketInfo[1].factoriesInfo[0].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSales[0].marketInfo[0].factoriesInfo[0].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSales[0].marketInfo[1].factoriesInfo[1].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSales[0].marketInfo[0].factoriesInfo[1].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSales[0].marketInfo[1].factoriesInfo[2].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSales[0].marketInfo[0].factoriesInfo[2].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSales[0].marketInfo[1].factoriesInfo[3].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSales[0].marketInfo[0].factoriesInfo[3].value}}</p>
+                </td>
+            </tr>
+            <tr class="success">
+                <td>
+                    <p class="padding-20">{{Label.getContent('Sales Per 1% of Shelf Space')}}($mln)</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSalesPerShelfSpaces[0].marketInfo[1].factoriesInfo[0].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSalesPerShelfSpaces[0].marketInfo[0].factoriesInfo[0].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSalesPerShelfSpaces[0].marketInfo[1].factoriesInfo[1].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSalesPerShelfSpaces[0].marketInfo[0].factoriesInfo[1].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSalesPerShelfSpaces[0].marketInfo[1].factoriesInfo[2].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSalesPerShelfSpaces[0].marketInfo[0].factoriesInfo[2].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSalesPerShelfSpaces[0].marketInfo[1].factoriesInfo[3].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSalesPerShelfSpaces[0].marketInfo[0].factoriesInfo[3].value}}</p>
+                </td>
+            </tr>
+            <tr class="success">
+                <td>
+                    <p class="text-right">{{Label.getContent('Share of Value Sales')}}(%)</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSalesShares[0].marketInfo[1].factoriesInfo[0].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSalesShares[0].marketInfo[0].factoriesInfo[0].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSalesShares[0].marketInfo[1].factoriesInfo[1].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSalesShares[0].marketInfo[0].factoriesInfo[1].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSalesShares[0].marketInfo[1].factoriesInfo[2].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSalesShares[0].marketInfo[0].factoriesInfo[2].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSalesShares[0].marketInfo[1].factoriesInfo[3].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSalesShares[0].marketInfo[0].factoriesInfo[3].value}}</p>
+                </td>
+            </tr>
+            <tr class="success">
+                <td>
+                    <p class="padding-20">{{Label.getContent('Gross Contribution')}}($mln)</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributions[0].marketInfo[1].factoriesInfo[0].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributions[0].marketInfo[0].factoriesInfo[0].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributions[0].marketInfo[1].factoriesInfo[1].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributions[0].marketInfo[0].factoriesInfo[1].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributions[0].marketInfo[1].factoriesInfo[2].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributions[0].marketInfo[0].factoriesInfo[2].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributions[0].marketInfo[1].factoriesInfo[3].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributions[0].marketInfo[0].factoriesInfo[3].value}}</p>
+                </td>
+            </tr>
+            <tr class="success">
+                <td>
+                    <p class="padding-20">{{Label.getContent('Gross Contribution Per 1% of Shelf Space')}}($mln)</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionPerShelfSpaces[0].marketInfo[1].factoriesInfo[0].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionPerShelfSpaces[0].marketInfo[0].factoriesInfo[0].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionPerShelfSpaces[0].marketInfo[1].factoriesInfo[1].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionPerShelfSpaces[0].marketInfo[0].factoriesInfo[1].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionPerShelfSpaces[0].marketInfo[1].factoriesInfo[2].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionPerShelfSpaces[0].marketInfo[0].factoriesInfo[2].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionPerShelfSpaces[0].marketInfo[1].factoriesInfo[3].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionPerShelfSpaces[0].marketInfo[0].factoriesInfo[3].value}}</p>
+                </td>
+            </tr>
+            <tr class="success">
+                <td>
+                    <p class="text-right">{{Label.getContent('As % of Value Sales')}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionMargins[0].marketInfo[1].factoriesInfo[0].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionMargins[0].marketInfo[0].factoriesInfo[0].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionMargins[0].marketInfo[1].factoriesInfo[1].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionMargins[0].marketInfo[0].factoriesInfo[1].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionMargins[0].marketInfo[1].factoriesInfo[2].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionMargins[0].marketInfo[0].factoriesInfo[2].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionMargins[0].marketInfo[1].factoriesInfo[3].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionMargins[0].marketInfo[0].factoriesInfo[3].value}}</p>
+                </td>
+            </tr>
+            <tr class="success">
+                <td>
+                    <p class="text-right">{{Label.getContent('Share of Gross Contribution')}}(%)</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionShares[0].marketInfo[1].factoriesInfo[0].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionShares[0].marketInfo[0].factoriesInfo[0].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionShares[0].marketInfo[1].factoriesInfo[1].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionShares[0].marketInfo[0].factoriesInfo[1].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionShares[0].marketInfo[1].factoriesInfo[2].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionShares[0].marketInfo[0].factoriesInfo[2].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionShares[0].marketInfo[1].factoriesInfo[3].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionShares[0].marketInfo[0].factoriesInfo[3].value}}</p>
+                </td>
+            </tr>
+            <tr class="success">
+                <td>
+                    <p class="padding-20">{{Label.getContent('Terms of Payment')}}({{Label.getContent('days')}})</p>
+                </td>
+                <td>
+                    <p class="text-right">{{PaymentTerms[0].marketInfo[1].factoriesInfo[0].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{PaymentTerms[0].marketInfo[0].factoriesInfo[0].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{PaymentTerms[0].marketInfo[1].factoriesInfo[1].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{PaymentTerms[0].marketInfo[0].factoriesInfo[1].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{PaymentTerms[0].marketInfo[1].factoriesInfo[2].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{PaymentTerms[0].marketInfo[0].factoriesInfo[2].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{PaymentTerms[0].marketInfo[1].factoriesInfo[3].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{PaymentTerms[0].marketInfo[0].factoriesInfo[3].value}}</p>
+                </td>
+            </tr>
+            <tr class="danger">
+                <td colspan="9">
+                    <p>{{Label.getContent('HealthBeauties')}}</p>
+                </td>
+            </tr>
+            <tr class="danger">
+                <td>
+                    <p class="padding-20">{{Label.getContent('Shelf Space')}}(%)</p>
+                </td>
+                <td>
+                    <p class="text-right">{{ShelfSpaces[1].marketInfo[1].factoriesInfo[0].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{ShelfSpaces[1].marketInfo[0].factoriesInfo[0].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{ShelfSpaces[1].marketInfo[1].factoriesInfo[1].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{ShelfSpaces[1].marketInfo[0].factoriesInfo[1].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{ShelfSpaces[1].marketInfo[1].factoriesInfo[2].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{ShelfSpaces[1].marketInfo[0].factoriesInfo[2].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{ShelfSpaces[1].marketInfo[1].factoriesInfo[3].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{ShelfSpaces[1].marketInfo[0].factoriesInfo[3].value}}</p>
+                </td>
+            </tr>
+            <tr class="danger">
+                <td>
+                    <p class="padding-20">{{Label.getContent('Sales')}}($mln)</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSales[1].marketInfo[1].factoriesInfo[0].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSales[1].marketInfo[0].factoriesInfo[0].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSales[1].marketInfo[1].factoriesInfo[1].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSales[1].marketInfo[0].factoriesInfo[1].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSales[1].marketInfo[1].factoriesInfo[2].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSales[1].marketInfo[0].factoriesInfo[2].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSales[1].marketInfo[1].factoriesInfo[3].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSales[1].marketInfo[0].factoriesInfo[3].value}}</p>
+                </td>
+            </tr>
+            <tr class="danger">
+                <td>
+                    <p class="padding-20">{{Label.getContent('Sales Per 1% of Shelf Space')}}($mln)</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSalesPerShelfSpaces[1].marketInfo[1].factoriesInfo[0].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSalesPerShelfSpaces[1].marketInfo[0].factoriesInfo[0].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSalesPerShelfSpaces[1].marketInfo[1].factoriesInfo[1].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSalesPerShelfSpaces[1].marketInfo[0].factoriesInfo[1].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSalesPerShelfSpaces[1].marketInfo[1].factoriesInfo[2].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSalesPerShelfSpaces[1].marketInfo[0].factoriesInfo[2].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSalesPerShelfSpaces[1].marketInfo[1].factoriesInfo[3].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSalesPerShelfSpaces[1].marketInfo[0].factoriesInfo[3].value}}</p>
+                </td>
+            </tr>
+            <tr class="danger">
+                <td>
+                    <p class="text-right">{{Label.getContent('Share of Value Sales')}}(%)</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSalesShares[1].marketInfo[1].factoriesInfo[0].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSalesShares[1].marketInfo[0].factoriesInfo[0].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSalesShares[1].marketInfo[1].factoriesInfo[1].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSalesShares[1].marketInfo[0].factoriesInfo[1].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSalesShares[1].marketInfo[1].factoriesInfo[2].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSalesShares[1].marketInfo[0].factoriesInfo[2].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSalesShares[1].marketInfo[1].factoriesInfo[3].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{NetSalesShares[1].marketInfo[0].factoriesInfo[3].value}}</p>
+                </td>
+            </tr>
+            <tr class="danger">
+                <td>
+                    <p class="padding-20">{{Label.getContent('Gross Contribution')}}($mln)</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributions[1].marketInfo[1].factoriesInfo[0].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributions[1].marketInfo[0].factoriesInfo[0].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributions[1].marketInfo[1].factoriesInfo[1].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributions[1].marketInfo[0].factoriesInfo[1].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributions[1].marketInfo[1].factoriesInfo[2].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributions[1].marketInfo[0].factoriesInfo[2].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributions[1].marketInfo[1].factoriesInfo[3].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributions[1].marketInfo[0].factoriesInfo[3].value}}</p>
+                </td>
+            </tr>
+            <tr class="danger">
+                <td>
+                    <p class="padding-20">{{Label.getContent('Gross Contribution Per 1% of Shelf Space')}}($mln)</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionPerShelfSpaces[1].marketInfo[1].factoriesInfo[0].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionPerShelfSpaces[1].marketInfo[0].factoriesInfo[0].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionPerShelfSpaces[1].marketInfo[1].factoriesInfo[1].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionPerShelfSpaces[1].marketInfo[0].factoriesInfo[1].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionPerShelfSpaces[1].marketInfo[1].factoriesInfo[2].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionPerShelfSpaces[1].marketInfo[0].factoriesInfo[2].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionPerShelfSpaces[1].marketInfo[1].factoriesInfo[3].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionPerShelfSpaces[1].marketInfo[0].factoriesInfo[3].value}}</p>
+                </td>
+            </tr>
+            <tr class="danger">
+                <td>
+                    <p class="text-right">{{Label.getContent('As % of Value Sales')}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionMargins[1].marketInfo[1].factoriesInfo[0].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionMargins[1].marketInfo[0].factoriesInfo[0].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionMargins[1].marketInfo[1].factoriesInfo[1].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionMargins[1].marketInfo[0].factoriesInfo[1].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionMargins[1].marketInfo[1].factoriesInfo[2].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionMargins[1].marketInfo[0].factoriesInfo[2].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionMargins[1].marketInfo[1].factoriesInfo[3].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionMargins[1].marketInfo[0].factoriesInfo[3].value}}</p>
+                </td>
+            </tr>
+            <tr class="danger">
+                <td>
+                    <p class="text-right">{{Label.getContent('Share of Gross Contribution')}}(%)</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionShares[1].marketInfo[1].factoriesInfo[0].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionShares[1].marketInfo[0].factoriesInfo[0].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionShares[1].marketInfo[1].factoriesInfo[1].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionShares[1].marketInfo[0].factoriesInfo[1].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionShares[1].marketInfo[1].factoriesInfo[2].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionShares[1].marketInfo[0].factoriesInfo[2].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionShares[1].marketInfo[1].factoriesInfo[3].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{GrossContributionShares[1].marketInfo[0].factoriesInfo[3].value}}</p>
+                </td>
+            </tr>
+            <tr class="danger">
+                <td>
+                    <p class="padding-20">{{Label.getContent('Terms of Payment')}}({{Label.getContent('days')}})</p>
+                </td>
+                <td>
+                    <p class="text-right">{{PaymentTerms[1].marketInfo[1].factoriesInfo[0].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{PaymentTerms[1].marketInfo[0].factoriesInfo[0].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{PaymentTerms[1].marketInfo[1].factoriesInfo[1].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{PaymentTerms[1].marketInfo[0].factoriesInfo[1].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{PaymentTerms[1].marketInfo[1].factoriesInfo[2].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{PaymentTerms[1].marketInfo[0].factoriesInfo[2].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{PaymentTerms[1].marketInfo[1].factoriesInfo[3].value}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{PaymentTerms[1].marketInfo[0].factoriesInfo[3].value}}</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>

@@ -1,745 +1,745 @@
-<div class="panel mypanel-success panel-primary" ng-show='isResultShown'>
-                        <div class="panel-heading">
-                            <h3 class="panel-title text-center" popover="{{Label.getContent('Market Shares by Consumer Segment Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
-                                {{Label.getContent('Urban')}} {{Label.getContent('Situation Report')}}-{{Label.getContent('Market Shares by Consumer Segment')}}
-                            </h3>
-                        </div>
-                        <table class="table table-condensed table-bordered table-success">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th colspan="2">
-                                        <p class="text-center">{{Label.getContent('Price Sensitive')}}</p>
-                                    </th>
-                                    <th colspan="2">
-                                        <p class="text-center">{{Label.getContent('Value for Money')}}</p>
-                                    </th>
-                                    <th colspan="2">
-                                        <p class="text-center">{{Label.getContent('Fashion')}}</p>
-                                    </th>
-                                    <th colspan="2">
-                                        <p class="text-center">{{Label.getContent('Freaks')}}</p>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Change')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Change')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Change')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Change')}}</p>
-                                    </td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="success">
-                                    <td colspan="9">
-                                        <p>{{Label.getContent('Elecssories')}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="success" ng-show='eleVolume1s.length>=1'>
-                                    <td colspan="9">
-                                        <p class="padding-20">{{Label.getContent('Supplier')}} 1</p>
-                                    </td>
-                                </tr>
-                                <tr class="success" ng-repeat='eleVolume1 in eleVolume1s'>
-                                    <td>
-                                        <p class="padding-40">{{eleVolume1.fullName}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleVolume1.priceShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleVolume1.priceChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleVolume1.moneyShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleVolume1.moneyChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleVolume1.fashionShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleVolume1.fashionChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleVolume1.freaksShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleVolume1.freaksChange}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="success" ng-show='eleVolume2s.length>=1'>
-                                    <td colspan="9">
-                                        <p class="padding-20">{{Label.getContent('Supplier')}} 2</p>
-                                    </td>
-                                </tr>
-                                <tr class="success" ng-repeat='eleVolume2 in eleVolume2s'>
-                                    <td>
-                                        <p class="padding-40">{{eleVolume2.fullName}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleVolume2.priceShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleVolume2.priceChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleVolume2.moneyShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleVolume2.moneyChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleVolume2.fashionShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleVolume2.fashionChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleVolume2.freaksShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleVolume2.freaksChange}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="success" ng-show='eleVolume3s.length>=1'>
-                                    <td colspan="9">
-                                        <p class="padding-20">{{Label.getContent('Supplier')}} 3</p>
-                                    </td>
-                                </tr>
-                                <tr class="success" ng-repeat='eleVolume3 in eleVolume3s'>
-                                    <td>
-                                        <p class="padding-40">{{eleVolume3.fullName}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleVolume3.priceShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleVolume3.priceChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleVolume3.moneyShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleVolume3.moneyChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleVolume3.fashionShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleVolume3.fashionChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleVolume3.freaksShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleVolume3.freaksChange}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="success" ng-show='eleVolume4s.length>=1'>
-                                    <td colspan="9">
-                                        <p class="padding-20">{{Label.getContent('Private Label')}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="success" ng-repeat='eleVolume4 in eleVolume4s'>
-                                    <td>
-                                        <p class="padding-40">{{eleVolume4.fullName}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleVolume4.priceShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleVolume4.priceChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleVolume4.moneyShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleVolume4.moneyChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleVolume4.fashionShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleVolume4.fashionChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleVolume4.freaksShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleVolume4.freaksChange}}</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th></th>
-                                    <th colspan="2">
-                                        <p class="text-center">{{Label.getContent('Price Sensitive')}}</p>
-                                    </th>
-                                    <th colspan="2">
-                                        <p class="text-center">{{Label.getContent('Value for Money')}}</p>
-                                    </th>
-                                    <th colspan="2">
-                                        <p class="text-center">{{Label.getContent('Fashion')}}</p>
-                                    </th>
-                                    <th colspan="2">
-                                        <p class="text-center">{{Label.getContent('Freaks')}}</p>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Change')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Change')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Change')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Change')}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger">
-                                    <td colspan="9">
-                                        <p>{{Label.getContent('HealthBeauties')}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger" ng-show='heaVolume1s.length>=1'>
-                                    <td colspan="9">
-                                        <p class="padding-20">{{Label.getContent('Supplier')}} 1</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger" ng-repeat='heaVolume1 in heaVolume1s'>
-                                    <td>
-                                        <p class="padding-40">{{heaVolume1.fullName}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaVolume1.priceShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaVolume1.priceChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaVolume1.moneyShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaVolume1.moneyChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaVolume1.fashionShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaVolume1.fashionChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaVolume1.freaksShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaVolume1.freaksChange}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger" ng-show='heaVolume2s.length>=1'>
-                                    <td colspan="9">
-                                        <p class="padding-20">{{Label.getContent('Supplier')}} 2</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger" ng-repeat='heaVolume2 in heaVolume2s'>
-                                    <td>
-                                        <p class="padding-40">{{heaVolume2.fullName}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaVolume2.priceShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaVolume2.priceChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaVolume2.moneyShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaVolume2.moneyChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaVolume2.fashionShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaVolume2.fashionChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaVolume2.freaksShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaVolume2.freaksChange}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger" ng-show='heaVolume3s.length>=1'>
-                                    <td colspan="9">
-                                        <p class="padding-20">{{Label.getContent('Supplier')}} 3</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger" ng-repeat='heaVolume3 in heaVolume3s'>
-                                    <td>
-                                        <p class="padding-40">{{heaVolume3.fullName}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaVolume3.priceShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaVolume3.priceChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaVolume3.moneyShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaVolume3.moneyChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaVolume3.fashionShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaVolume3.fashionChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaVolume3.freaksShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaVolume3.freaksChange}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger" ng-show='heaVolume4s.length>=1'>
-                                    <td colspan="9">
-                                        <p class="padding-20">{{Label.getContent('Private Label')}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger" ng-repeat='heaVolume4 in heaVolume4s'>
-                                    <td>
-                                        <p class="padding-40">{{heaVolume4.fullName}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaVolume4.priceShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaVolume4.priceChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaVolume4.moneyShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaVolume4.moneyChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaVolume4.fashionShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaVolume4.fashionChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaVolume4.freaksShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaVolume4.freaksChange}}</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th></th>
-                                    <th colspan="2">
-                                        <p class="text-center">{{Label.getContent('Price Sensitive')}}</p>
-                                    </th>
-                                    <th colspan="2">
-                                        <p class="text-center">{{Label.getContent('Value for Money')}}</p>
-                                    </th>
-                                    <th colspan="2">
-                                        <p class="text-center">{{Label.getContent('Fashion')}}</p>
-                                    </th>
-                                    <th colspan="2">
-                                        <p class="text-center">{{Label.getContent('Freaks')}}</p>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Value Share')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Change')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Value Share')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Change')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Value Share')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Change')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Value Share')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Change')}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="success">
-                                    <td colspan="9">
-                                        <p>{{Label.getContent('Elecssories')}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="success" ng-show='eleValue1s.length>=1'>
-                                    <td colspan="9">
-                                        <p class="padding-20">{{Label.getContent('Supplier')}} 1</p>
-                                    </td>
-                                </tr>
-                                <tr class="success" ng-repeat='eleValue1 in eleValue1s'>
-                                    <td>
-                                        <p class="padding-40">{{eleValue1.fullName}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleValue1.priceShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleValue1.priceChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleValue1.moneyShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleValue1.moneyChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleValue1.fashionShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleValue1.fashionChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleValue1.freaksShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleValue1.freaksChange}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="success" ng-show='eleValue2s.length>=1'>
-                                    <td colspan="9">
-                                        <p class="padding-20">{{Label.getContent('Supplier')}} 2</p>
-                                    </td>
-                                </tr>
-                                <tr class="success" ng-repeat='eleValue2 in eleValue2s'>
-                                    <td>
-                                        <p class="padding-40">{{eleValue2.fullName}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleValue2.priceShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleValue2.priceChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleValue2.moneyShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleValue2.moneyChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleValue2.fashionShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleValue2.fashionChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleValue2.freaksShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleValue2.freaksChange}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="success" ng-show='eleValue3s.length>=1'>
-                                    <td colspan="9">
-                                        <p class="padding-20">{{Label.getContent('Supplier')}} 3</p>
-                                    </td>
-                                </tr>
-                                <tr class="success" ng-repeat='eleValue3 in eleValue3s'>
-                                    <td>
-                                        <p class="padding-40">{{eleValue3.fullName}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleValue3.priceShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleValue3.priceChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleValue3.moneyShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleValue3.moneyChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleValue3.fashionShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleValue3.fashionChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleValue3.freaksShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleValue3.freaksChange}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="success" ng-show='eleValue4s.length>=1'>
-                                    <td colspan="9">
-                                        <p class="padding-20">{{Label.getContent('Private Label')}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="success" ng-repeat='eleValue4 in eleValue4s'>
-                                    <td>
-                                        <p class="padding-40">{{eleValue4.fullName}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleValue4.priceShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleValue4.priceChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleValue4.moneyShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleValue4.moneyChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleValue4.fashionShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleValue4.fashionChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleValue4.freaksShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{eleValue4.freaksChange}}</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th></th>
-                                    <th colspan="2">
-                                        <p class="text-center">{{Label.getContent('Price Sensitive')}}</p>
-                                    </th>
-                                    <th colspan="2">
-                                        <p class="text-center">{{Label.getContent('Value for Money')}}</p>
-                                    </th>
-                                    <th colspan="2">
-                                        <p class="text-center">{{Label.getContent('Fashion')}}</p>
-                                    </th>
-                                    <th colspan="2">
-                                        <p class="text-center">{{Label.getContent('Freaks')}}</p>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Change')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Change')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Change')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Volume Share')}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-center">{{Label.getContent('Change')}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger">
-                                    <td colspan="9">
-                                        <p>{{Label.getContent('HealthBeauties')}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger" ng-show='heaValue1s.length>=1'>
-                                    <td colspan="9">
-                                        <p class="padding-20">{{Label.getContent('Supplier')}} 1</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger" ng-repeat='heaValue1 in heaValue1s'>
-                                    <td>
-                                        <p class="padding-40">{{heaValue1.fullName}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaValue1.priceShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaValue1.priceChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaValue1.moneyShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaValue1.moneyChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaValue1.fashionShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaValue1.fashionChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaValue1.freaksShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaValue1.freaksChange}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger" ng-show='heaValue2s.length>=1'>
-                                    <td colspan="9">
-                                        <p class="padding-20">{{Label.getContent('Supplier')}} 2</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger" ng-repeat='heaValue2 in heaValue2s'>
-                                    <td>
-                                        <p class="padding-40">{{heaValue2.fullName}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaValue2.priceShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaValue2.priceChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaValue2.moneyShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaValue2.moneyChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaValue2.fashionShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaValue2.fashionChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaValue2.freaksShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaValue2.freaksChange}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger" ng-show='heaValue3s.length>=1'>
-                                    <td colspan="9">
-                                        <p class="padding-20">{{Label.getContent('Supplier')}} 3</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger" ng-repeat='heaValue3 in heaValue3s'>
-                                    <td>
-                                        <p class="padding-40">{{heaValue3.fullName}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaValue3.priceShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaValue3.priceChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaValue3.moneyShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaValue3.moneyChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaValue3.fashionShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaValue3.fashionChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaValue3.freaksShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaValue3.freaksChange}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger" ng-show='heaValue4s.length>=1'>
-                                    <td colspan="9">
-                                        <p class="padding-20">{{Label.getContent('Private Label')}}</p>
-                                    </td>
-                                </tr>
-                                <tr class="danger" ng-repeat='heaValue4 in heaValue4s'>
-                                    <td>
-                                        <p class="padding-40">{{heaValue4.fullName}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaValue4.priceShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaValue4.priceChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaValue4.moneyShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaValue4.moneyChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaValue4.fashionShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaValue4.fashionChange}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaValue4.freaksShare}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-right">{{heaValue4.freaksChange}}</p>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+<div class="panel my-panel-success panel-primary" ng-show='isResultShown'>
+    <div class="panel-heading">
+        <h3 class="panel-title text-center" popover="{{Label.getContent('Market Shares by Consumer Segment Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
+            {{Label.getContent('Urban')}} {{Label.getContent('Situation Report')}}-{{Label.getContent('Market Shares by Consumer Segment')}}
+        </h3>
+    </div>
+    <table class="table table-condensed table-bordered table-success">
+        <thead>
+            <tr>
+                <th></th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Price Sensitive')}}</p>
+                </th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Value for Money')}}</p>
+                </th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Fashion')}}</p>
+                </th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Freaks')}}</p>
+                </th>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="success">
+                <td colspan="9">
+                    <p>{{Label.getContent('Elecssories')}}</p>
+                </td>
+            </tr>
+            <tr class="success" ng-show='eleVolume1s.length>=1'>
+                <td colspan="9">
+                    <p class="padding-20">{{Label.getContent('Supplier')}} 1</p>
+                </td>
+            </tr>
+            <tr class="success" ng-repeat='eleVolume1 in eleVolume1s'>
+                <td>
+                    <p class="padding-40">{{eleVolume1.fullName}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleVolume1.priceShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleVolume1.priceChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleVolume1.moneyShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleVolume1.moneyChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleVolume1.fashionShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleVolume1.fashionChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleVolume1.freaksShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleVolume1.freaksChange}}</p>
+                </td>
+            </tr>
+            <tr class="success" ng-show='eleVolume2s.length>=1'>
+                <td colspan="9">
+                    <p class="padding-20">{{Label.getContent('Supplier')}} 2</p>
+                </td>
+            </tr>
+            <tr class="success" ng-repeat='eleVolume2 in eleVolume2s'>
+                <td>
+                    <p class="padding-40">{{eleVolume2.fullName}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleVolume2.priceShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleVolume2.priceChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleVolume2.moneyShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleVolume2.moneyChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleVolume2.fashionShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleVolume2.fashionChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleVolume2.freaksShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleVolume2.freaksChange}}</p>
+                </td>
+            </tr>
+            <tr class="success" ng-show='eleVolume3s.length>=1'>
+                <td colspan="9">
+                    <p class="padding-20">{{Label.getContent('Supplier')}} 3</p>
+                </td>
+            </tr>
+            <tr class="success" ng-repeat='eleVolume3 in eleVolume3s'>
+                <td>
+                    <p class="padding-40">{{eleVolume3.fullName}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleVolume3.priceShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleVolume3.priceChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleVolume3.moneyShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleVolume3.moneyChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleVolume3.fashionShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleVolume3.fashionChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleVolume3.freaksShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleVolume3.freaksChange}}</p>
+                </td>
+            </tr>
+            <tr class="success" ng-show='eleVolume4s.length>=1'>
+                <td colspan="9">
+                    <p class="padding-20">{{Label.getContent('Private Label')}}</p>
+                </td>
+            </tr>
+            <tr class="success" ng-repeat='eleVolume4 in eleVolume4s'>
+                <td>
+                    <p class="padding-40">{{eleVolume4.fullName}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleVolume4.priceShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleVolume4.priceChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleVolume4.moneyShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleVolume4.moneyChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleVolume4.fashionShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleVolume4.fashionChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleVolume4.freaksShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleVolume4.freaksChange}}</p>
+                </td>
+            </tr>
+            <tr>
+                <th></th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Price Sensitive')}}</p>
+                </th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Value for Money')}}</p>
+                </th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Fashion')}}</p>
+                </th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Freaks')}}</p>
+                </th>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                </td>
+            </tr>
+            <tr class="danger">
+                <td colspan="9">
+                    <p>{{Label.getContent('HealthBeauties')}}</p>
+                </td>
+            </tr>
+            <tr class="danger" ng-show='heaVolume1s.length>=1'>
+                <td colspan="9">
+                    <p class="padding-20">{{Label.getContent('Supplier')}} 1</p>
+                </td>
+            </tr>
+            <tr class="danger" ng-repeat='heaVolume1 in heaVolume1s'>
+                <td>
+                    <p class="padding-40">{{heaVolume1.fullName}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaVolume1.priceShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaVolume1.priceChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaVolume1.moneyShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaVolume1.moneyChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaVolume1.fashionShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaVolume1.fashionChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaVolume1.freaksShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaVolume1.freaksChange}}</p>
+                </td>
+            </tr>
+            <tr class="danger" ng-show='heaVolume2s.length>=1'>
+                <td colspan="9">
+                    <p class="padding-20">{{Label.getContent('Supplier')}} 2</p>
+                </td>
+            </tr>
+            <tr class="danger" ng-repeat='heaVolume2 in heaVolume2s'>
+                <td>
+                    <p class="padding-40">{{heaVolume2.fullName}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaVolume2.priceShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaVolume2.priceChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaVolume2.moneyShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaVolume2.moneyChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaVolume2.fashionShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaVolume2.fashionChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaVolume2.freaksShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaVolume2.freaksChange}}</p>
+                </td>
+            </tr>
+            <tr class="danger" ng-show='heaVolume3s.length>=1'>
+                <td colspan="9">
+                    <p class="padding-20">{{Label.getContent('Supplier')}} 3</p>
+                </td>
+            </tr>
+            <tr class="danger" ng-repeat='heaVolume3 in heaVolume3s'>
+                <td>
+                    <p class="padding-40">{{heaVolume3.fullName}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaVolume3.priceShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaVolume3.priceChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaVolume3.moneyShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaVolume3.moneyChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaVolume3.fashionShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaVolume3.fashionChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaVolume3.freaksShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaVolume3.freaksChange}}</p>
+                </td>
+            </tr>
+            <tr class="danger" ng-show='heaVolume4s.length>=1'>
+                <td colspan="9">
+                    <p class="padding-20">{{Label.getContent('Private Label')}}</p>
+                </td>
+            </tr>
+            <tr class="danger" ng-repeat='heaVolume4 in heaVolume4s'>
+                <td>
+                    <p class="padding-40">{{heaVolume4.fullName}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaVolume4.priceShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaVolume4.priceChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaVolume4.moneyShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaVolume4.moneyChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaVolume4.fashionShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaVolume4.fashionChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaVolume4.freaksShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaVolume4.freaksChange}}</p>
+                </td>
+            </tr>
+            <tr>
+                <th></th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Price Sensitive')}}</p>
+                </th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Value for Money')}}</p>
+                </th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Fashion')}}</p>
+                </th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Freaks')}}</p>
+                </th>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Value Share')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Value Share')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Value Share')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Value Share')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                </td>
+            </tr>
+            <tr class="success">
+                <td colspan="9">
+                    <p>{{Label.getContent('Elecssories')}}</p>
+                </td>
+            </tr>
+            <tr class="success" ng-show='eleValue1s.length>=1'>
+                <td colspan="9">
+                    <p class="padding-20">{{Label.getContent('Supplier')}} 1</p>
+                </td>
+            </tr>
+            <tr class="success" ng-repeat='eleValue1 in eleValue1s'>
+                <td>
+                    <p class="padding-40">{{eleValue1.fullName}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleValue1.priceShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleValue1.priceChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleValue1.moneyShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleValue1.moneyChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleValue1.fashionShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleValue1.fashionChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleValue1.freaksShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleValue1.freaksChange}}</p>
+                </td>
+            </tr>
+            <tr class="success" ng-show='eleValue2s.length>=1'>
+                <td colspan="9">
+                    <p class="padding-20">{{Label.getContent('Supplier')}} 2</p>
+                </td>
+            </tr>
+            <tr class="success" ng-repeat='eleValue2 in eleValue2s'>
+                <td>
+                    <p class="padding-40">{{eleValue2.fullName}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleValue2.priceShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleValue2.priceChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleValue2.moneyShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleValue2.moneyChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleValue2.fashionShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleValue2.fashionChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleValue2.freaksShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleValue2.freaksChange}}</p>
+                </td>
+            </tr>
+            <tr class="success" ng-show='eleValue3s.length>=1'>
+                <td colspan="9">
+                    <p class="padding-20">{{Label.getContent('Supplier')}} 3</p>
+                </td>
+            </tr>
+            <tr class="success" ng-repeat='eleValue3 in eleValue3s'>
+                <td>
+                    <p class="padding-40">{{eleValue3.fullName}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleValue3.priceShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleValue3.priceChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleValue3.moneyShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleValue3.moneyChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleValue3.fashionShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleValue3.fashionChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleValue3.freaksShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleValue3.freaksChange}}</p>
+                </td>
+            </tr>
+            <tr class="success" ng-show='eleValue4s.length>=1'>
+                <td colspan="9">
+                    <p class="padding-20">{{Label.getContent('Private Label')}}</p>
+                </td>
+            </tr>
+            <tr class="success" ng-repeat='eleValue4 in eleValue4s'>
+                <td>
+                    <p class="padding-40">{{eleValue4.fullName}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleValue4.priceShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleValue4.priceChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleValue4.moneyShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleValue4.moneyChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleValue4.fashionShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleValue4.fashionChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleValue4.freaksShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{eleValue4.freaksChange}}</p>
+                </td>
+            </tr>
+            <tr>
+                <th></th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Price Sensitive')}}</p>
+                </th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Value for Money')}}</p>
+                </th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Fashion')}}</p>
+                </th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Freaks')}}</p>
+                </th>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                </td>
+            </tr>
+            <tr class="danger">
+                <td colspan="9">
+                    <p>{{Label.getContent('HealthBeauties')}}</p>
+                </td>
+            </tr>
+            <tr class="danger" ng-show='heaValue1s.length>=1'>
+                <td colspan="9">
+                    <p class="padding-20">{{Label.getContent('Supplier')}} 1</p>
+                </td>
+            </tr>
+            <tr class="danger" ng-repeat='heaValue1 in heaValue1s'>
+                <td>
+                    <p class="padding-40">{{heaValue1.fullName}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaValue1.priceShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaValue1.priceChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaValue1.moneyShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaValue1.moneyChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaValue1.fashionShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaValue1.fashionChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaValue1.freaksShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaValue1.freaksChange}}</p>
+                </td>
+            </tr>
+            <tr class="danger" ng-show='heaValue2s.length>=1'>
+                <td colspan="9">
+                    <p class="padding-20">{{Label.getContent('Supplier')}} 2</p>
+                </td>
+            </tr>
+            <tr class="danger" ng-repeat='heaValue2 in heaValue2s'>
+                <td>
+                    <p class="padding-40">{{heaValue2.fullName}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaValue2.priceShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaValue2.priceChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaValue2.moneyShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaValue2.moneyChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaValue2.fashionShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaValue2.fashionChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaValue2.freaksShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaValue2.freaksChange}}</p>
+                </td>
+            </tr>
+            <tr class="danger" ng-show='heaValue3s.length>=1'>
+                <td colspan="9">
+                    <p class="padding-20">{{Label.getContent('Supplier')}} 3</p>
+                </td>
+            </tr>
+            <tr class="danger" ng-repeat='heaValue3 in heaValue3s'>
+                <td>
+                    <p class="padding-40">{{heaValue3.fullName}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaValue3.priceShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaValue3.priceChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaValue3.moneyShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaValue3.moneyChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaValue3.fashionShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaValue3.fashionChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaValue3.freaksShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaValue3.freaksChange}}</p>
+                </td>
+            </tr>
+            <tr class="danger" ng-show='heaValue4s.length>=1'>
+                <td colspan="9">
+                    <p class="padding-20">{{Label.getContent('Private Label')}}</p>
+                </td>
+            </tr>
+            <tr class="danger" ng-repeat='heaValue4 in heaValue4s'>
+                <td>
+                    <p class="padding-40">{{heaValue4.fullName}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaValue4.priceShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaValue4.priceChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaValue4.moneyShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaValue4.moneyChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaValue4.fashionShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaValue4.fashionChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaValue4.freaksShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{heaValue4.freaksChange}}</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>

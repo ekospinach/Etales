@@ -1,0 +1,8 @@
+<div class="panel panel-primary my-panel-danger" ng-show='isResultShown'>
+    <div class="panel-heading">
+        <h3 class="panel-title text-center" popover="{{Label.getContent('Internet Penetration Rates Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
+            {{Label.getContent('Two-Period Ahead Forecasts')}}-{{Label.getContent('Internet Penetration Rates')}}
+        </h3>
+    </div>
+    <div id='forecastInternet' style='width:810px;height:600px' ng-model='myModel' forecast-internet></div>
+</div>

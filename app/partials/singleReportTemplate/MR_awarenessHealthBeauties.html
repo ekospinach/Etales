@@ -1,0 +1,9 @@
+<div class="panel panel-primary my-panel-danger" ng-show='isResultShown'>
+    <div class="panel-heading">
+        <h3 class="panel-title text-center" popover="{{Label.getContent('Awareness Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
+            {{Label.getContent('Awareness')}}-{{Label.getContent('HealthBeauties')}}
+        </h3>
+    </div>
+    <highchart id="awarenessHealthBeauties1" config="awarenessHealthBeauties1Config" class="span9" style="height:600px;width:810px;"></highchart>
+    <highchart id="awarenessHealthBeauties2" config="awarenessHealthBeauties2Config" class="span9" style="height:600px;width:810px;"></highchart>
+</div>

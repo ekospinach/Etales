@@ -71,13 +71,13 @@ define(['directives', 'services'], function(directives){
                         scope.freakses[3].push(data.data[0].categoryInfo[1].marketInfo[1].segmentInfo[3].shopperInfo[i].grcss_CrossSegmentsVolumes);
                     }
                                         
-                    scope.chart1Series = [                 
+                    scope.crossSegment1Series = [                 
                         {"name": Label.getContent('B&M Only'), "data": [scope.priceSensitives[0][0],scope.valueForMoneies[0][0],scope.fashions[0][0],scope.freakses[0][0]], type: "column",color:'#D9534F'},
                         {"name": Label.getContent('Online Only'), "data": [scope.priceSensitives[0][1],scope.valueForMoneies[0][1],scope.fashions[0][1],scope.freakses[0][1]], type: "column",color:'#428BCA'},
                         {"name": Label.getContent('Mixed'), "data": [scope.priceSensitives[0][2],scope.valueForMoneies[0][2],scope.fashions[0][2],scope.freakses[0][2]], type: "column",color:'#5CB85C'},
                     ];
 
-                    scope.chart1Config = {
+                    scope.crossSegment1Config = {
                         options: {
                             xAxis: {
                                 categories: [Label.getContent('Price Sensitive'), Label.getContent('Value for Money'), Label.getContent('Fashion'), Label.getContent('Freaks')]
@@ -94,7 +94,7 @@ define(['directives', 'services'], function(directives){
                                 }
                             }
                         },
-                        series: scope.chart1Series,
+                        series: scope.crossSegment1Series,
                         title: {
                             text: Label.getContent('Elecssories')+' - '+Label.getContent('Urban')
                         },
@@ -104,13 +104,13 @@ define(['directives', 'services'], function(directives){
                         loading: false
                     }
 
-                    scope.chart2Series = [                 
+                    scope.crossSegment2Series = [                 
                         {"name": Label.getContent('B&M Only'), "data": [scope.priceSensitives[1][0],scope.valueForMoneies[1][0],scope.fashions[1][0],scope.freakses[1][0]], type: "column",color:'#D9534F'},
                         {"name": Label.getContent('Online Only'), "data": [scope.priceSensitives[1][1],scope.valueForMoneies[1][1],scope.fashions[1][1],scope.freakses[1][1]], type: "column",color:'#428BCA'},
                         {"name": Label.getContent('Mixed'), "data": [scope.priceSensitives[1][2],scope.valueForMoneies[1][2],scope.fashions[1][2],scope.freakses[1][2]], type: "column",color:'#5CB85C'},
                     ];
 
-                    scope.chart2Config = {
+                    scope.crossSegment2Config = {
                         options: {
                             xAxis: {
                                 categories: [Label.getContent('Price Sensitive'), Label.getContent('Value for Money'), Label.getContent('Fashion'), Label.getContent('Freaks')]
@@ -127,7 +127,7 @@ define(['directives', 'services'], function(directives){
                                 }
                             }
                         },
-                        series: scope.chart2Series,
+                        series: scope.crossSegment2Series,
                         title: {
                             text: Label.getContent('Elecssories')+' - '+Label.getContent('Rural')
                         },
@@ -137,13 +137,13 @@ define(['directives', 'services'], function(directives){
                         loading: false
                     }
 
-                    scope.chart3Series = [                 
+                    scope.crossSegment3Series = [                 
                         {"name": Label.getContent('B&M Only'), "data": [scope.priceSensitives[2][0],scope.valueForMoneies[2][0],scope.fashions[2][0],scope.freakses[2][0]], type: "column",color:'#D9534F'},
                         {"name": Label.getContent('Online Only'), "data": [scope.priceSensitives[2][1],scope.valueForMoneies[2][1],scope.fashions[2][1],scope.freakses[2][1]], type: "column",color:'#428BCA'},
                         {"name": Label.getContent('Mixed'), "data": [scope.priceSensitives[2][2],scope.valueForMoneies[2][2],scope.fashions[2][2],scope.freakses[2][2]], type: "column",color:'#5CB85C'},
                     ];
 
-                    scope.chart3Config = {
+                    scope.crossSegment3Config = {
                         options: {
                             xAxis: {
                                 categories: [Label.getContent('Price Sensitive'), Label.getContent('Value for Money'), Label.getContent('Fashion'), Label.getContent('Freaks')]
@@ -160,7 +160,7 @@ define(['directives', 'services'], function(directives){
                                 }
                             }
                         },
-                        series: scope.chart3Series,
+                        series: scope.crossSegment3Series,
                         title: {
                             text: Label.getContent('HealthBeauties')+' - '+Label.getContent('Urban')
                         },
@@ -170,13 +170,13 @@ define(['directives', 'services'], function(directives){
                         loading: false
                     }
 
-                    scope.chart4Series = [                 
+                    scope.crossSegment4Series = [                 
                         {"name": Label.getContent('B&M Only'), "data": [scope.priceSensitives[3][0],scope.valueForMoneies[3][0],scope.fashions[3][0],scope.freakses[3][0]], type: "column",color:'#D9534F'},
                         {"name": Label.getContent('Online Only'), "data": [scope.priceSensitives[3][1],scope.valueForMoneies[3][1],scope.fashions[3][1],scope.freakses[3][1]], type: "column",color:'#428BCA'},
                         {"name": Label.getContent('Mixed'), "data": [scope.priceSensitives[3][2],scope.valueForMoneies[3][2],scope.fashions[3][2],scope.freakses[3][2]], type: "column",color:'#5CB85C'},
                     ];
 
-                    scope.chart4Config = {
+                    scope.crossSegment4Config = {
                         options: {
                             xAxis: {
                                 categories: [Label.getContent('Price Sensitive'), Label.getContent('Value for Money'), Label.getContent('Fashion'), Label.getContent('Freaks')]
@@ -193,7 +193,7 @@ define(['directives', 'services'], function(directives){
                                 }
                             }
                         },
-                        series: scope.chart4Series,
+                        series: scope.crossSegment4Series,
                         title: {
                             text: Label.getContent('HealthBeauties')+' - '+Label.getContent('Rural')
                         },
