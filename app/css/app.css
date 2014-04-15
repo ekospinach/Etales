@@ -223,3 +223,43 @@ table tr td p,table tr th p{
 .margin-row-10{
   margin: 10px 0;
 }
+.popover-content{
+    color: #333333;
+}
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > td {
+  border: 1px solid #428BCA;
+  border-right: none;
+}
+.my-panel-success > .panel-heading {
+    background-color: #5CB85C;
+}
+.my-panel-danger > .panel-heading {
+    background-color: #D9534F;
+}
+.tr-info{
+    background-color: #428BCA;
+    color: #FFFFFF;
+}
+.td-info{
+    background-color: #D9EDF7;
+}
+.td-warning{
+    background-color: #FCF8E3;
+}
+.td-success{
+    background-color: #DFF0D8;
+}
+.td-danger{
+    background-color: #F2DEDE;
+}
+.col-md-9{
+    width: 74%;
+}
+.col-md-3{
+    width: 26%;
+}

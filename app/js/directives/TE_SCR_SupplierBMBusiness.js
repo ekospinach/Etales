@@ -114,6 +114,76 @@ define(['directives', 'services'], function(directives){
 			    	}
 			    }
 
+			    scope.openProductModal=function(brandName,type){
+                    var num=0;
+                    scope.variants=new Array();
+                    scope.brandName=brandName;
+                    scope.productModal=true;
+                    if(type="BM"){
+                        scope.BMShow=true;
+                        scope.OLShow=false;
+                        num=0;
+                    }else{
+                        scope.BMShow=false;
+                        scope.OLShow=true;
+                        num=1;
+                    }
+                    var url='/SCR-consolidatedProfitAndLoss/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+                    $http({
+                        method:'GET',
+                        url:url
+                    }).then(function(data){
+                        for(var i=0;i<data.data[0].scrv_Sales.length;i++){
+                            if(data.data[0].scrv_Sales[i].parentBrandName==brandName){
+                                var variantName=data.data[0].scrv_Sales[i].variantName;
+                                var Sales=data.data[0].scrv_Sales[i].value[num];
+                                var SalesChange=loadVariantValue(data.data[0].scrv_SalesChange,brandName,variantName,num);
+                                var SalesShareInCategory=loadVariantValue(data.data[0].scrv_SalesShareInCategory,brandName,variantName,num);
+                                var MaterialCosts=loadVariantValue(data.data[0].scrv_MaterialCosts,brandName,variantName,num);
+                                var CostOfGoodsSold=loadVariantValue(data.data[0].scrv_CostOfGoodsSold,brandName,variantName,num);
+                                var DiscontinuedGoodsCost=loadVariantValue(data.data[0].scrv_DiscontinuedGoodsCost,brandName,variantName,num);
+                                var InventoryHoldingCost=loadVariantValue(data.data[0].scrv_InventoryHoldingCost,brandName,variantName,num);
+                                var GrossProfit=loadVariantValue(data.data[0].scrv_GrossProfit,brandName,variantName,num);
+                                var GrossProfitChange=loadVariantValue(data.data[0].scrv_GrossProfitChange,brandName,variantName,num);
+                                var GrossProfitMargin=loadVariantValue(data.data[0].scrv_GrossProfitMargin,brandName,variantName,num);
+                                var GrossProfitMarginShare=loadVariantValue(data.data[0].scrv_GrossProfitMarginShare,brandName,variantName,num);
+                                var TradeAndMarketing=loadVariantValue(data.data[0].scrv_TradeAndMarketing,brandName,variantName,num);
+                                var AdvertisingOnLine=loadVariantValue(data.data[0].scrv_AdvertisingOnLine,brandName,variantName,num);
+                                var AdvertisingOffLine=loadVariantValue(data.data[0].scrv_AdvertisingOffLine,brandName,variantName,num);
+                                var TradeSupport=loadVariantValue(data.data[0].scrv_TradeSupport,brandName,variantName,num);
+                                var TradeAndMarketingAsPercentageOfSales=loadVariantValue(data.data[0].scrv_TradeAndMarketingAsPercentageOfSales,brandName,variantName,num);
+                                var TradeAndMarketingShareInCategory=loadVariantValue(data.data[0].scrv_TradeAndMarketingShareInCategory,brandName,variantName,num);
+                                var GeneralExpenses=loadVariantValue(data.data[0].scrv_GeneralExpenses,brandName,variantName,num);
+                                var Amortisation=loadVariantValue(data.data[0].scrv_Amortisation,brandName,variantName,num);
+                                var OperatingProfit=loadVariantValue(data.data[0].scrv_OperatingProfit,brandName,variantName,num);
+                                var OperatingProfitChange=loadVariantValue(data.data[0].scrv_OperatingProfitChange,brandName,variantName,num);
+                                var OperatingProfitMargin=loadVariantValue(data.data[0].scrv_OperatingProfitMargin,brandName,variantName,num);
+                                var OperatingProfitShareInCategory=loadVariantValue(data.data[0].scrv_OperatingProfitShareInCategory,brandName,variantName,num);
+                                var Interest=loadVariantValue(data.data[0].scrv_Interest,brandName,variantName,num);
+                                var Taxes=loadVariantValue(data.data[0].scrv_Taxes,brandName,variantName,num);
+                                var ExceptionalItems=loadVariantValue(data.data[0].scrv_ExceptionalItems,brandName,variantName,num);
+                                var NetProfit=loadVariantValue(data.data[0].scrv_NetProfit,brandName,variantName,num);
+                                var NetProfitChange=loadVariantValue(data.data[0].scrv_NetProfitChange,brandName,variantName,num);
+                                var NetProfitMargin=loadVariantValue(data.data[0].scrv_NetProfitMargin,brandName,variantName,num);
+                                var NetProfitShareInCategory=loadVariantValue(data.data[0].scrv_NetProfitShareInCategory,brandName,variantName,num);
+                                scope.variants.push({'variantName':variantName,'Sales':Sales,'SalesChange':SalesChange,'SalesShareInCategory':SalesShareInCategory,'MaterialCosts':MaterialCosts,'CostOfGoodsSold':CostOfGoodsSold,'DiscontinuedGoodsCost':DiscontinuedGoodsCost,'InventoryHoldingCost':InventoryHoldingCost,'GrossProfit':GrossProfit,
+                                'GrossProfitChange':GrossProfitChange,'TradeAndMarketing':TradeAndMarketing,'AdvertisingOnLine':AdvertisingOnLine,'AdvertisingOffLine':AdvertisingOffLine,'TradeAndMarketingAsPercentageOfSales':TradeAndMarketingAsPercentageOfSales,'TradeAndMarketingShareInCategory':TradeAndMarketingShareInCategory,
+                                'GeneralExpenses':GeneralExpenses,'Amortisation':Amortisation,'OperatingProfit':OperatingProfit,'OperatingProfitChange':OperatingProfitChange,'OperatingProfitMargin':OperatingProfitMargin,'OperatingProfitMargin':OperatingProfitMargin,'OperatingProfitShareInCategory':OperatingProfitShareInCategory,
+                                'Interest':Interest,'Taxes':Taxes,'ExceptionalItems':ExceptionalItems,'NetProfit':NetProfit,'NetProfitChange':NetProfitChange,'NetProfitMargin':NetProfitMargin,'NetProfitShareInCategory':NetProfitShareInCategory,'GrossProfitMargin':GrossProfitMargin,'GrossProfitMarginShare':GrossProfitMarginShare,'TradeSupport':TradeSupport});
+                            }
+                        }
+                    },function(){
+                        console.log('fail');
+                    })
+                }
+                scope.productOpts = {
+                    backdropFade: true,
+                    dialogFade:true
+                };
+                scope.closeProductModal=function(){
+                    scope.productModal=false;  
+                }
+
                 var getResult =function(){
                     var url='/SCR-consolidatedProfitAndLoss/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
 			    	$http({
@@ -141,7 +211,6 @@ define(['directives', 'services'], function(directives){
                 }
 
                 scope.$watch('isPageShown', function(newValue, oldValue){
-                    console.log('watch in the TE_GR_performance fire, new value: ' + newValue + ', oldValue: '+ oldValue);
                     if(newValue==true) {
                         initializePage();
                     }

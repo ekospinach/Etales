@@ -24,6 +24,76 @@ define(['directives', 'services'], function(directives){
                     return array.value[num];
                 }
 
+                var loadVariantValue=function(data,brandName,variantName,num){
+                    var array=_.find(data,function(obj){
+                        return (obj.variantName==variantName&&obj.parentBrandName==brandName);
+                    });
+                    return array.value[num];
+                }
+
+                scope.openRetailerProductModal=function(brandName,type){
+                    scope.retailerProductModal=true;
+                    var num=0;
+                    scope.variants=new Array();
+                    scope.brandName=brandName;
+                    if(type=="Rural"){
+                        num=1;
+                    }else{
+                        num=0;
+                    }
+                    var url='/RCR-consolidatedProfitAndLoss/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+                    $http({
+                        method:'GET',
+                        url:url
+                    }).then(function(data){
+                        for(var i=0;i<data.data[0].rcrv_Sales.length;i++){
+                            if(data.data[0].rcrv_Sales[i].parentBrandName==brandName){
+                                var variantName=data.data[0].rcrv_Sales[i].variantName;
+                                var Sales=data.data[0].rcrv_Sales[i].value[num];
+                                var PromotionsCost=loadVariantValue(data.data[0].rcrv_PromotionsCost,brandName,variantName,num);
+                                var OtherCompensation=loadVariantValue(data.data[0].rcrv_OtherCompensation,brandName,variantName,num);
+                                var NetSales=loadVariantValue(data.data[0].rcrv_NetSales,brandName,variantName,num);
+                                var NetSalesChange=loadVariantValue(data.data[0].rcrv_NetSalesChange,brandName,variantName,num);
+                                var NetSalesShareInCategory=loadVariantValue(data.data[0].rcrv_NetSalesShareInCategory,brandName,variantName,num);
+                                var CostOfGoodsSold=loadVariantValue(data.data[0].rcrv_CostOfGoodsSold,brandName,variantName,num);
+                                var ValueOfQuantityDiscounts=loadVariantValue(data.data[0].rcrv_ValueOfQuantityDiscounts,brandName,variantName,num);
+                                var ValueOfPerformanceBonus=loadVariantValue(data.data[0].rcrv_ValueOfPerformanceBonus,brandName,variantName,num);
+                                var DiscontinuedGoodsCost=loadVariantValue(data.data[0].rcrv_DiscontinuedGoodsCost,brandName,variantName,num);
+                                var InventoryHoldingCost=loadVariantValue(data.data[0].rcrv_InventoryHoldingCost,brandName,variantName,num);
+                                var GrossProfit=loadVariantValue(data.data[0].rcrv_GrossProfit,brandName,variantName,num);
+                                var GrossProfitChange=loadVariantValue(data.data[0].rcrv_GrossProfitChange,brandName,variantName,num);
+                                var GrossProfitMargin=loadVariantValue(data.data[0].rcrv_GrossProfitMargin,brandName,variantName,num);
+                                var GrossProfitShareInCategory=loadVariantValue(data.data[0].rcrv_GrossProfitShareInCategory,brandName,variantName,num);
+                                var GeneralExpenses=loadVariantValue(data.data[0].rcrv_GeneralExpenses,brandName,variantName,num);
+                                var OperatingProfit=loadVariantValue(data.data[0].rcrv_OperatingProfit,brandName,variantName,num);
+                                var OperatingProfitChange=loadVariantValue(data.data[0].rcrv_OperatingProfitChange,brandName,variantName,num);
+                                var OperatingProfitMargin=loadVariantValue(data.data[0].rcrv_OperatingProfitMargin,brandName,variantName,num);
+                                var OperatingProfitMarginShareInCategory=loadVariantValue(data.data[0].rcrv_OperatingProfitMarginShareInCategory,brandName,variantName,num);
+                                var Interest=loadVariantValue(data.data[0].rcrv_Interest,brandName,variantName,num);
+                                var Taxes=loadVariantValue(data.data[0].rcrv_Taxes,brandName,variantName,num);
+                                var ExceptionalItems=loadVariantValue(data.data[0].rcrv_ExceptionalItems,brandName,variantName,num);
+                                var NetProfit=loadVariantValue(data.data[0].rcrv_NetProfit,brandName,variantName,num);
+                                var NetProfitChange=loadVariantValue(data.data[0].rcrv_NetProfitChange,brandName,variantName,num);
+                                var NetProfitMargin=loadVariantValue(data.data[0].rcrv_NetProfitMargin,brandName,variantName,num);
+                                var NetProfitShareInCategory=loadVariantValue(data.data[0].rcrv_NetProfitShareInCategory,brandName,variantName,num);
+                                scope.variants.push({'variantName':variantName,'Sales':Sales,'PromotionsCost':PromotionsCost,'OtherCompensation':OtherCompensation,'NetSales':NetSales,'NetSalesChange':NetSalesChange,'NetSalesShareInCategory':NetSalesShareInCategory,
+                                    'CostOfGoodsSold':CostOfGoodsSold,'ValueOfQuantityDiscounts':ValueOfQuantityDiscounts,'ValueOfPerformanceBonus':ValueOfPerformanceBonus,'DiscontinuedGoodsCost':DiscontinuedGoodsCost,'InventoryHoldingCost':InventoryHoldingCost,'GrossProfit':GrossProfit,
+                                    'GrossProfitChange':GrossProfitChange,'GrossProfitMargin':GrossProfitMargin,'GrossProfitShareInCategory':GrossProfitShareInCategory,'GeneralExpenses':GeneralExpenses,'OperatingProfit':OperatingProfit,'OperatingProfitChange':OperatingProfitChange,'OperatingProfitMargin':OperatingProfitMargin,
+                                    'Interest':Interest,'Taxes':Taxes,'ExceptionalItems':ExceptionalItems,'NetProfit':NetProfit,'NetProfitChange':NetProfitChange,'NetProfitMargin':NetProfitMargin,'NetProfitShareInCategory':NetProfitShareInCategory,'OperatingProfitMarginShareInCategory':OperatingProfitMarginShareInCategory});
+                            }
+                        }
+                    },function(){
+                        console.log('fail');
+                    })
+                }
+                scope.retailerProductOpts = {
+                    backdropFade: true,
+                    dialogFade:true
+                };
+                scope.closeRetailerProductModal=function(){
+                    scope.retailerProductModal=false;  
+                }
+
                 var loadRetailerTotal=function(data){
                     scope.Sales=data.data[0].rcrpl_Sales;
                     scope.PromotionsCost=data.data[0].rcrpl_PromotionsCost;
@@ -128,7 +198,6 @@ define(['directives', 'services'], function(directives){
                 }
 
                 scope.$watch('isPageShown', function(newValue, oldValue){
-                    console.log('watch in the TE_GR_performance fire, new value: ' + newValue + ', oldValue: '+ oldValue);
                     if(newValue==true) {
                         initializePage();
                     }
