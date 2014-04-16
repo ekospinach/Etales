@@ -69,6 +69,7 @@
 	'directives/TE_MR_ruralHealthBeautiesShopperShare',
 	'directives/TE_MR_urbanHealthBeautiesShopperSales',
 	'directives/TE_MR_urbanHealthBeautiesShopperShare',
+	'directives/TE_SD_productPortfolioManagement',
 	'angularRoute',
 	'angularXeditable',
 	'angularBootstrap',
