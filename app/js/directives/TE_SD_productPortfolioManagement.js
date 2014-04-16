@@ -21,6 +21,7 @@ define(['directives', 'services'], function(directives){
                     scope.setBrandName=setBrandName;
                     scope.loadAllBrand=loadAllBrand;
                     scope.showbubleMsg=showbubleMsg;
+                    scope.closeProductModal=closeProductModal;
                     scope.currentPeriod=PeriodInfo.getCurrentPeriod();
                     scope.packs = [{
                         value: 1, text: Label.getContent('ECONOMY')
@@ -428,7 +429,7 @@ define(['directives', 'services'], function(directives){
                     scope.productModal = true;
                     setAddNewBrand();
                 };
-                scope.closeProductModal = function () {
+                var closeProductModal = function () {
                     scope.productModal = false;
                     ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
                         scope.pageBase = base; 
