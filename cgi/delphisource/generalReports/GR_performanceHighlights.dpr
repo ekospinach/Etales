@@ -131,6 +131,7 @@ begin
 
     try
       WriteLn('Content-type: application/json');
+     // WriteLn('Content-type: text/html\n\n');
 
       sValue := getVariable('REQUEST_METHOD');
       if sValue='GET' then

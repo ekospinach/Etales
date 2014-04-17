@@ -16,13 +16,15 @@ var SCR_keyPerformanceIndicatorsSchema = mongoose.Schema({
     scrkpi_MarketingEffectiveness     : [categoryInfoSchema],
     scrkpi_ChannelSalesValueShare     : [categoryInfoSchema],
     scrkpi_ChannelSalesVolumeShare    : [categoryInfoSchema],
-    scrkpi_ShoppersShare              : [categoryInfoSchema]
+    scrkpi_ShoppersShare              : [categoryInfoSchema],
+    //scrkpi_PortfolioStrength          : [categoryInfoSchema]
 })
 
 var categoryInfoSchema = mongoose.Schema({
     categoryID : Number,
     value : [Number], ////0-traditional, 1-Internet, 2-Total
 })
+
 var SCR_keyPerformanceIndicators=mongoose.model('SCR_keyPerformanceIndicators',SCR_keyPerformanceIndicatorsSchema);
 
 exports.addSCR_keyPerformanceIndicators=function(req,res,next){

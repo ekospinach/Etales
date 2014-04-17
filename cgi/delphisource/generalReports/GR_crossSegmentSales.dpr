@@ -3,7 +3,7 @@
 
 uses
   SysUtils,Windows,Classes, superobject, HCD_SystemDefinitions, System.TypInfo, inifiles,
-  CgiCommonFunction in 'CgiCommonFunction.pas';
+  CgiCommonFunction;
 
 var
   DataDirectory : string;
@@ -16,40 +16,68 @@ var
   vReadRes : Integer;
   oJsonFile : ISuperObject;
 
-  function actorCategoryInfoSchema(actorID : Integer; catID : integer; binaryReport : TGR_PerformanceHighlights): ISuperObject;
+ function shopperInfoSchema(catID : Integer; marketID : Integer; segmentID : Integer; Shopper : TShoppersKind; binaryReport : TGR_CrossSegmentSales):ISuperObject;
   var
     jo : ISuperObject;
+    ShopperStr : string;    
+    valueLeaders : TSegmentVariantLeaders;
+    volumeLeaders : TSegmentVariantLeaders;
+    i : Integer;
   begin
     jo := SO;
-    jo.I['categoryID'] := catID;
-    jo.D['grph_SalesVolume'] := binaryReport.grph_SalesVolume[actorID, catID];
-    jo.D['grph_NetSalesValue'] := binaryReport.grph_NetSalesValue[actorID, catID];    
+    case Shopper of
+       BMS: ShopperStr := 'BMS'; 
+       NETIZENS: ShopperStr := 'NETIZENS';   
+       MIXED: ShopperStr := 'MIXED';  
+       ALLSHOPPERS: ShopperStr := 'ALLSHOPPERS'; 
+       else
+        ShopperStr := 'wrong';
+    end;
 
-    jo.D['grph_ValueMarketShare'] := binaryReport.grph_ValueMarketShare[actorID, catID];
-    jo.D['grph_VolumeMarketShare'] := binaryReport.grph_VolumeMarketShare[actorID, catID];
+    jo.S['shopperKind'] := ShopperStr;
+    jo.D['grcss_CrossSegmentsNetValues'] := binaryReport.grcss_CrossSegmentsNetSalesValue[marketID, catID, segmentID, Shopper];
+    jo.D['grcss_CrossSegmentsVolumes'] := binaryReport.grcss_CrossSegmentsVolume[marketID, catID, segmentID, Shopper];
+    result := jo;
+  end;
 
-    jo.D['grph_NetSalesValueChange'] := binaryReport.grph_NetSalesValueChange[actorID, catID];
-    jo.D['grph_ValueMarketShareChange'] := binaryReport.grph_ValueMarketShareChange[actorID, catID];
-    jo.D['grph_VolumeMarketShareChange'] := binaryReport.grph_VolumeMarketShareChange[actorID, catID];
-    jo.D['grph_SalesVolumeChange'] := binaryReport.grph_SalesVolumeChange[actorID, catID];
+  function segmentInfoSchema(catID : Integer; marketID : Integer; segmentID : Integer; binaryReport : TGR_CrossSegmentSales):ISuperObject;
+  var
+    jo : ISuperObject;
+    Shopper : TShoppersKind;
+  begin
+    jo := SO;
+    jo.I['segmentID'] := segmentID;
+    jo.O['shopperInfo'] := SA([]);
+    for shopper := Low(TShoppersKind) to High(TShoppersKind) do
+      jo.A['shopperInfo'].Add( shopperInfoSchema(catID, marketID, segmentID, Shopper, binaryReport) );
 
     result := jo;
   end;
 
-
-  function actorInfoSchema(actorID : Integer; binaryReport : TGR_PerformanceHighlights): ISuperObject;
+  function marketInfoSchema(catID : Integer; marketID : Integer; binaryReport : TGR_CrossSegmentSales):ISuperObject;
   var
-    jo: ISuperObject;
-    I, cat: Integer;
+    jo : ISuperObject;
+    segmentID : Integer;
   begin
     jo := SO;
-    jo.I['actorID'] := actorID;
-    jo.D['grph_OperatingProfit'] := binaryReport.grph_OperatingProfit[actorID];
-    jo.D['grph_OperatingProfitChange'] := binaryReport.grph_OperatingProfitChange[actorID];
-    jo.D['grph_CumulativeInvestment'] := binaryReport.grph_CumulativeInvestment[actorID];
-    jo.O['actorCategoryInfo'] := SA([]);
-    for cat := Low(TCategoriesTotal) to High(TCategoriesTotal) do
-      jo.A['actorCategoryInfo'].Add( actorCategoryInfoSchema(actorID, cat, binaryReport) );
+    jo.I['marketID'] := marketID;
+    jo.O['segmentInfo'] := SA([]);
+    for segmentID := Low(TSegmentsTotal) to High(TSegmentsTotal) do
+      jo.A['segmentInfo'].Add( segmentInfoSchema(catID, marketID, segmentID, binaryReport) );
+
+    result := jo;  
+  end;
+
+  function categoryInfoSchema(catID : Integer; binaryReport : TGR_CrossSegmentSales):ISuperObject;
+  var
+    jo : ISuperObject;
+    marketID : Integer;
+  begin
+    jo := SO;
+    jo.I['categoryID'] := catID;
+    jo.O['marketInfo'] := SA([]);
+    for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do
+      jo.A['marketInfo'].add( marketInfoSchema(catID, marketID, binaryReport) );
 
     result := jo;
   end;
@@ -57,14 +85,14 @@ var
   procedure makeJson();
   var
     s_str : string;
-    actorID : Integer;
+    catID : Integer;
   begin
     oJsonFile := SO;
     oJsonFile.S['seminar'] := currentSeminar;
     oJsonFile.I['period'] := currentPeriod;
-    oJsonFile.O['actorInfo'] := SA([]);
-    for actorID := Low(TActors) to High(TActors) do
-      oJsonFile.A['actorInfo'].Add( actorInfoSchema(actorID, currentResult.r_GeneralReport.gr_PerformanceHighlights) );
+    oJsonFile.O['categoryInfo'] := SA([]);
+    for catID := Low(TCategoriesTotal) to High(TCategoriesTotal) do
+      oJsonFile.A['categoryInfo'].Add( categoryInfoSchema(catID, currentResult.r_GeneralReport.GR_crossSegmentSales) );
 
     //for debug used
     s_str := 'out' + '.json';
@@ -109,4 +137,3 @@ begin
       sListData.Free;
     end;
 end.
-

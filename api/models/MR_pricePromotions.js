@@ -25,6 +25,7 @@ var accountInfoSchema = mongoose.Schema({
     promoRate   : [Number], //0-Urban, 1-Rural, { saved as a decimal  }//Length
 })
 
+
 var MR_pricePromotions=mongoose.model('MR_pricePromotions',MR_pricePromotionsSchema);
 
 exports.addMR_pricePromotions=function(req,res,next){

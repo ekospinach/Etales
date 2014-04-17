@@ -27,6 +27,8 @@ var variantInfoSchema = mongoose.Schema({
     parentCategoryID                     : Number,
     parentCompanyID                      : Number, //TActors : 1~(4+3) 
     shelfSpace                           : [Number], //0-Urban, 1-Rural
+    previousShelfSpace                   : [Number],
+    shelfSpaceChange                     : [Number]
 })
 
 

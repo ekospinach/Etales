@@ -19,6 +19,24 @@ var brandInfoSchema = mongoose.Schema({
     latestAwareness              : [Number] //0-Urban, 1-Rural
 })
 
+//New schema, 2014-Apr-17th
+// var MR_awarenessEvolutionSchema = mongoose.Schema({
+//     period : Number,
+//     seminar : String,
+//     brandInfo : [brandMarketInfo],
+// })
+
+// var brandMarketInfo = mongoose.Schema({
+//     brandName                            : String,
+//     parentCategoryID                     : Number,
+//     parentCompanyID                      : Number, 
+//     marketID : Number, //1-Urban, 2-Rural
+//     previousAwareness                    : Number,
+//     latestAwareness              : Number
+// })
+
+
+
 var MR_awarenessEvolution=mongoose.model('MR_awarenessEvolution',MR_awarenessEvolutionSchema);
 
 exports.addMR_awarenessEvolution=function(req,res,next){

@@ -22,6 +22,22 @@ var marketInfoSchema = mongoose.Schema({
     latestPerception                     : [Number], //0-Price, 1-Convenience
     perceptionChange                     : [Number]  //0-Price, 1-Convenience    
 })
+
+//New Schema
+// var MR_retailerPerceptionEvolutionSchema = mongoose.Schema({
+//     period : Number,
+//     seminar : String,
+//     storeInfo : [storePerceptionInfoSchema],
+// })
+
+// var storePerceptionInfoSchema = mongoose.Schema({
+//     storeID : Number, //AllStoresMax  = BMRetsMax(3) + ProsMaxPlus(4); { all B&M and four E-malls }
+//     marketID : Number, //1-Urban, 2-Rural
+//     previousPerception                   : [Number], //0-Price, 1-Convenience
+//     latestPerception                     : [Number], //0-Price, 1-Convenience
+//     perceptionChange                     : [Number]  //0-Price, 1-Convenience    
+// })
+
 var MR_retailerPerceptionEvolution=mongoose.model('MR_retailerPerceptionEvolution',MR_retailerPerceptionEvolutionSchema);
 
 exports.addMR_retailerPerceptionEvolution=function(req,res,next){

@@ -5,9 +5,6 @@ uses
   SysUtils,Windows,Classes, superobject, HCD_SystemDefinitions, System.TypInfo, inifiles,
   CgiCommonFunction;
 
-type
-  TShoppersKinds = set of TShoppersKind;
-
 var
   DataDirectory : string;
   sListData: tStrings;
@@ -47,12 +44,11 @@ var
   var
     jo : ISuperObject;
     Shopper : TShoppersKind;
-    Shoppers : TShoppersKinds;
   begin
     jo := SO;
     jo.I['segmentID'] := segmentID;
     jo.O['actorShopperInfo'] := SA([]);
-    for Shopper in Shoppers do
+    for Shopper := Low(TShoppersKind) to High(TShoppersKind) do
       jo.A['actorShopperInfo'].Add( actorShopperInfoSchema(actorID, catID, marketID, segmentID, Shopper, binaryReport) );
 
     result := jo;

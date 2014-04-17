@@ -3,7 +3,7 @@
 
 uses
   SysUtils,Windows,Classes, superobject, HCD_SystemDefinitions, System.TypInfo, inifiles,
-  CgiCommonFunction in 'CgiCommonFunction.pas';
+  CgiCommonFunction;
 
 var
   DataDirectory : string;
@@ -16,40 +16,56 @@ var
   vReadRes : Integer;
   oJsonFile : ISuperObject;
 
-  function actorCategoryInfoSchema(actorID : Integer; catID : integer; binaryReport : TGR_PerformanceHighlights): ISuperObject;
-  var
+  function variantInfoSchema(variant : TVariantCharacteristics):ISuperObject;
+  var 
     jo : ISuperObject;
   begin
     jo := SO;
-    jo.I['categoryID'] := catID;
-    jo.D['grph_SalesVolume'] := binaryReport.grph_SalesVolume[actorID, catID];
-    jo.D['grph_NetSalesValue'] := binaryReport.grph_NetSalesValue[actorID, catID];    
+    jo.I['varID'] := variant.vc_VariantID;
+    jo.S['varName'] := variant.vc_VariantName;
+    jo.I['parentBrandID'] := variant.vc_ParentBrandID;
+    jo.S['parentBrandName'] := variant.vc_ParentBrandName;
 
-    jo.D['grph_ValueMarketShare'] := binaryReport.grph_ValueMarketShare[actorID, catID];
-    jo.D['grph_VolumeMarketShare'] := binaryReport.grph_VolumeMarketShare[actorID, catID];
+    case (variant.vc_PackFormat) of
+      ECONOMY:  jo.S['packFormat'] := 'ECONOMY';
+      STANDARD: jo.S['packFormat'] := 'STANDARD';
+      PREMIUM: jo.S['packFormat'] := 'PREMIUM';
+      else
+        jo.S['packFormat'] := 'Wrong';
+      end;
 
-    jo.D['grph_NetSalesValueChange'] := binaryReport.grph_NetSalesValueChange[actorID, catID];
-    jo.D['grph_ValueMarketShareChange'] := binaryReport.grph_ValueMarketShareChange[actorID, catID];
-    jo.D['grph_VolumeMarketShareChange'] := binaryReport.grph_VolumeMarketShareChange[actorID, catID];
-    jo.D['grph_SalesVolumeChange'] := binaryReport.grph_SalesVolumeChange[actorID, catID];
+    jo.O['vc_composition'] := SA([]);
+    jo.A['vc_composition'].D[0] := variant.vc_Composition[1];
+    jo.A['vc_composition'].D[1] := variant.vc_Composition[2];
+    jo.A['vc_composition'].D[2] := variant.vc_Composition[3];
 
     result := jo;
   end;
 
-
-  function actorInfoSchema(actorID : Integer; binaryReport : TGR_PerformanceHighlights): ISuperObject;
+  function categoryInfoSchema(catID : Integer; binaryReport : TGR_ProductPortfolio):ISuperObject;
   var
-    jo: ISuperObject;
-    I, cat: Integer;
+    jo : ISuperObject;
+    owner, brand, variant : Integer;
+    variantInfo : TVariantCharacteristics;
   begin
     jo := SO;
-    jo.I['actorID'] := actorID;
-    jo.D['grph_OperatingProfit'] := binaryReport.grph_OperatingProfit[actorID];
-    jo.D['grph_OperatingProfitChange'] := binaryReport.grph_OperatingProfitChange[actorID];
-    jo.D['grph_CumulativeInvestment'] := binaryReport.grph_CumulativeInvestment[actorID];
-    jo.O['actorCategoryInfo'] := SA([]);
-    for cat := Low(TCategoriesTotal) to High(TCategoriesTotal) do
-      jo.A['actorCategoryInfo'].Add( actorCategoryInfoSchema(actorID, cat, binaryReport) );
+    jo.I['categoryID'] := catID;
+    jo.O['variantInfo'] := SA([]);
+
+    for owner := Low(TBrandOwners) to High(TBrandOwners) do
+    begin
+      for brand := Low(TProBrands) to High(TProBrands) do
+      begin
+        for variant := Low(TOneBrandVariants) to High(TOneBrandVariants) do 
+        begin
+          variantInfo := binaryReport.grpp_VariantsCharacteristics[catID, owner, brand, variant];
+          if(variantInfo.vc_VariantName <> '') then
+          begin
+            jo.A['variantInfo'].add( variantInfoSchema( variantInfo ));
+          end;                        
+        end;    
+      end;  
+    end;
 
     result := jo;
   end;
@@ -57,14 +73,14 @@ var
   procedure makeJson();
   var
     s_str : string;
-    actorID : Integer;
+    catID : Integer;
   begin
     oJsonFile := SO;
     oJsonFile.S['seminar'] := currentSeminar;
     oJsonFile.I['period'] := currentPeriod;
-    oJsonFile.O['actorInfo'] := SA([]);
-    for actorID := Low(TActors) to High(TActors) do
-      oJsonFile.A['actorInfo'].Add( actorInfoSchema(actorID, currentResult.r_GeneralReport.gr_PerformanceHighlights) );
+    oJsonFile.O['categoryInfo'] := SA([]);
+    for catID := Low(TCategories) to High(TCategories) do
+      oJsonFile.A['categoryInfo'].Add( categoryInfoSchema(catID, currentResult.r_GeneralReport.GR_productPortfolio) );
 
     //for debug used
     s_str := 'out' + '.json';

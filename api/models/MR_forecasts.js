@@ -60,16 +60,10 @@ var shopperInfoSchema = mongoose.Schema({
     periodInfo : [periodInfoSchema],
 })
 
-
-
-
 var categoryInfoSchema = mongoose.Schema({
     categoryID : Number, //1~2
     periodInfo : [periodInfoSchema],    
 })
-
-
-
 
 var periodInfoSchema = mongoose.Schema({
     period : Number, //-2,-1,0,1,2
