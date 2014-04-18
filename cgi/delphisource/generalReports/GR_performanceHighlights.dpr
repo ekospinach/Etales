@@ -3,7 +3,7 @@
 
 uses
   SysUtils,Windows,Classes, superobject, HCD_SystemDefinitions, System.TypInfo, inifiles,
-  CgiCommonFunction in 'CgiCommonFunction.pas';
+  CgiCommonFunction;
 
 var
   DataDirectory : string;
@@ -36,6 +36,47 @@ var
     result := jo;
   end;
 
+  //TActiveActors : 1~(3+2)
+  //TActors : 1~(4+3)
+  function ActorToActiveActors(ActorID : Integer): Integer;
+  var 
+    activeActorID : integer;
+  begin
+    case (ActorID) of
+      1 : 
+      begin
+        activeActorID := 1;
+      end;
+      2 : 
+      begin
+        activeActorID := 2;
+      end;
+      3 : 
+      begin
+        activeActorID := 3;
+      end;
+      4 : 
+      begin
+        activeActorID := -1; 
+      end;
+      5 : 
+      begin
+        activeActorID := 4;        
+      end;
+      6 :
+      begin
+        activeActorID := 5;
+      end;
+      7 :
+      begin
+        activeActorID := -1;
+      end;
+      else
+        activeActorID := -1;
+      end;
+
+      result := activeActorID;
+  end;
 
   function actorInfoSchema(actorID : Integer; binaryReport : TGR_PerformanceHighlights): ISuperObject;
   var
@@ -44,9 +85,20 @@ var
   begin
     jo := SO;
     jo.I['actorID'] := actorID;
-    jo.D['grph_OperatingProfit'] := binaryReport.grph_OperatingProfit[actorID];
-    jo.D['grph_OperatingProfitChange'] := binaryReport.grph_OperatingProfitChange[actorID];
-    jo.D['grph_CumulativeInvestment'] := binaryReport.grph_CumulativeInvestment[actorID];
+
+    if ActorToActiveActors(actorID) <> -1 then
+    begin
+      jo.D['grph_OperatingProfit'] := binaryReport.grph_OperatingProfit[ActorToActiveActors(actorID)];
+      jo.D['grph_OperatingProfitChange'] := binaryReport.grph_OperatingProfitChange[ActorToActiveActors(actorID)];
+      jo.D['grph_CumulativeInvestment'] := binaryReport.grph_CumulativeInvestment[ActorToActiveActors(actorID)];      
+    end
+    else
+    begin
+      jo.D['grph_OperatingProfit'] := -1;
+      jo.D['grph_OperatingProfitChange'] := -1;
+      jo.D['grph_CumulativeInvestment'] := -1;
+    end;
+    
     jo.O['actorCategoryInfo'] := SA([]);
     for cat := Low(TCategoriesTotal) to High(TCategoriesTotal) do
       jo.A['actorCategoryInfo'].Add( actorCategoryInfoSchema(actorID, cat, binaryReport) );
@@ -79,6 +131,7 @@ begin
 
     try
       WriteLn('Content-type: application/json');
+     // WriteLn('Content-type: text/html\n\n');
 
       sValue := getVariable('REQUEST_METHOD');
       if sValue='GET' then

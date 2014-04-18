@@ -41,6 +41,38 @@ var producerInfoSchema = mongoose.Schema({
     value : Number,
 })
 
+// new Schema, 2014-Apr-17th:
+// var RCR_negotiationsSchema = mongoose.Schema({
+//     period : Number,
+//     seminar : String,
+//     retailerID  : Number, //TBMRetailers : 1~3 (BMRetsMax)
+
+//     vnd_QuantityDiscount  : {
+//         discount_MinimumVolume : [variantNegotiationsDetails],
+//         discount_Rate          : [variantNegotiationsDetails],
+//     },
+//     vnd_TargetBonus       : {
+//         bonus_TargetVolume : [variantNegotiationsDetails],
+//         bonus_Rate         : [variantNegotiationsDetails],
+//         bonus_Value        : [variantNegotiationsDetails],       
+//     },
+//     vnd_PaymentTerms      : [variantNegotiationsDetails],
+//     vnd_OtherCompensation : [variantNegotiationsDetails],
+//     vnd_ContractHonoured  : [variantNegotiationsDetails] 
+// })
+
+// var variantNegotiationsDetails = mongoose.Schema({
+//     variantName       : String,
+//     parentBrandName   : String,
+//     parentCategoryID : Number,
+//     producerID       : Number,
+//     // TAllProducers : 1~4
+//     // Again, the rows for Supplier_4 brands should only be added if he was ACTIVE player     
+//     value : Number
+// })
+
+
+
 var RCR_negotiations=mongoose.model('RCR_negotiations',RCR_negotiationsSchema);
 
 exports.addRCR_negotiations=function(req,res,next){

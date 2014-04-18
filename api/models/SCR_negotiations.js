@@ -7,7 +7,6 @@ var mongoose = require('mongoose'),
 
 //TActiveActors : 1~(3+2)
 //TActors : 1~(4+3)
-
 var SCR_negotiationsSchema = mongoose.Schema({
 	period : Number,
     seminar : String,
@@ -37,6 +36,38 @@ var modernRetailerInfoSchema = mongoose.Schema({
     modernRetailerID : Number, // 1 or 2
     value : Number,
 })
+
+// New schema, 2014-Apr-17th:
+// var SCR_negotiationsSchema = mongoose.Schema({
+//     period : Number,
+//     seminar : String,
+//     producerID  : Number, //TAllProducer : 1~4 (ProsMaxPlus)
+//     vnd_QuantityDiscount  : {
+//         discount_MinimumVolume : [negotiationDetailsSchema],
+//         discount_Rate          : [negotiationDetailsSchema],
+//     },
+//     vnd_TargetBonus       : {
+//         bonus_TargetVolume : [negotiationDetailsSchema],
+//         bonus_Rate         : [negotiationDetailsSchema],
+//         bonus_Value        : [negotiationDetailsSchema],        
+//     },
+//     vnd_PaymentTerms      : [negotiationDetailsSchema],
+//     vnd_OtherCompensation : [negotiationDetailsSchema],
+//     vnd_ContractHonoured  : [negotiationDetailsSchema]  
+// })
+
+// var negotiationDetailsSchema = mongoose.Schema({
+//     variantName       : String,
+//     parentBrandName   : String,
+//     parentCategoryID : Number,
+//     modernRetailerID : Number, //1-Retailer 1, 2-Retailer 2
+//     value : Number
+// })
+
+
+
+
+
 
 var SCR_negotiations=mongoose.model('SCR_negotiations',SCR_negotiationsSchema);
 

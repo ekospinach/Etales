@@ -5,6 +5,105 @@ uses
   SysUtils,Windows,Classes, superobject, HCD_SystemDefinitions, System.TypInfo, inifiles,
   CgiCommonFunction;
 
+const
+    scrpl_Sales                                = 100;
+    scrpl_SalesChange                          = 101;
+    scrpl_MaterialCosts                        = 102;
+    scrpl_CostOfGoodsSold                      = 103;
+    scrpl_DiscontinuedGoodsCost                = 104;
+    scrpl_InventoryHoldingCost                 = 105;
+    scrpl_GrossProfit                          = 106;
+    scrpl_GrossProfitChange                    = 107;
+    scrpl_GrossProfitMargin                    = 108;
+    scrpl_TradeAndMarketing                    = 109;
+    scrpl_TradeAndMarketingAsPercentageOfSales = 110;
+    scrpl_GeneralExpenses                      = 111;
+    scrpl_Amortisation                         = 112;
+    scrpl_OperatingProfit                      = 113;
+    scrpl_OperatingProfitChange                = 114;
+    scrpl_OperatingProfitMargin                = 115;
+    scrpl_Interest                             = 116;
+    scrpl_Taxes                                = 117;
+    scrpl_ExceptionalItems                     = 118;
+    scrpl_NetProfit                            = 119;
+    scrpl_NetProfitChange                      = 120;
+    scrpl_NetProfitMargin                      = 121;
+    {---  Additional, used on the next two tables ( P&L per brand in B&M and onLine ) for the first columns --- }
+    scrpl_AdvertisingOnLine                    = 122;
+    scrpl_AdvertisingOffLine                   = 123;
+    scrpl_TradeSupport                         = 124;
+
+    scrv_Sales                                 = 200;
+    scrv_SalesChange                           = 201;
+    scrv_SalesShareInCategory                  = 202;
+    scrv_MaterialCosts                         = 203;
+    scrv_CostOfGoodsSold                       = 204;
+    scrv_DiscontinuedGoodsCost                 = 205;
+    scrv_InventoryHoldingCost                  = 206;
+    scrv_GrossProfit                           = 207;
+    scrv_GrossProfitChange                     = 208;
+    scrv_GrossProfitMargin                     = 209;
+    scrv_GrossProfitShareInCategory            = 210;
+    scrv_TradeSupport                          = 211;
+    scrv_EMallSupport                          = 212;
+    scrv_TradeAndMarketing                     = 213;
+    scrv_AdvertisingOnLine                     = 214;
+    scrv_AdvertisingOffLine                    = 215;
+    scrv_TradeAndMarketingAsPercentageOfSales  = 216;
+    scrv_TradeAndMarketingShareInCategory      = 217;
+    scrv_GeneralExpenses                       = 218;
+    scrv_Amortisation                          = 219;
+    scrv_OperatingProfit                       = 220;
+    scrv_OperatingProfitChange                 = 221;
+    scrv_OperatingProfitMargin                 = 222;
+    scrv_OperatingProfitShareInCategory        = 223;
+    scrv_Interest                              = 224;
+    scrv_Taxes                                 = 225;
+    scrv_ExceptionalItems                      = 226;
+    scrv_NetProfit                             = 227;
+    scrv_NetProfitChange                       = 228;
+    scrv_NetProfitMargin                       = 229;
+    scrv_NetProfitShareInCategory              = 230;
+
+    scrb_Sales                                 = 300;
+    scrb_SalesChange                           = 301;
+    scrb_SalesShareInCategory                  = 302;
+    scrb_MaterialCosts                         = 303;
+    scrb_CostOfGoodsSold                       = 304;
+    scrb_DiscontinuedGoodsCost                 = 305;
+    scrb_InventoryHoldingCost                  = 306;
+    scrb_GrossProfit                           = 307;
+    scrb_GrossProfitChange                     = 308;
+    scrb_GrossProfitMargin                     = 309;
+    scrb_GrossProfitShareInCategory            = 310;
+    scrb_TradeSupport                          = 311;
+    scrb_EMallSupport                          = 312;
+    scrb_TradeAndMarketing                     = 313;
+    scrb_AdvertisingOnLine                     = 314;
+    scrb_AdvertisingOffLine                    = 315;
+    scrb_TradeAndMarketingAsPercentageOfSales  = 316;
+    scrb_TradeAndMarketingShareInCategory      = 317;
+    scrb_GeneralExpenses                       = 318;
+    scrb_Amortisation                          = 319;
+    scrb_OperatingProfit                       = 320;
+    scrb_OperatingProfitChange                 = 321;
+    scrb_OperatingProfitMargin                 = 322;
+    scrb_OperatingProfitShareInCategory        = 323;
+    scrb_Interest                              = 324;
+    scrb_Taxes                                 = 325;
+    scrb_ExceptionalItems                      = 326;
+    scrb_NetProfit                             = 327;
+    scrb_NetProfitChange                       = 328;
+    scrb_NetProfitMargin                       = 329;
+    scrb_NetProfitShareInCategory              = 330;
+
+
+
+
+
+type
+  TDevisionData = array[TProducerDivisions] of Single;
+
 var
   DataDirectory : string;
   sListData: tStrings;
@@ -18,54 +117,141 @@ var
   vReadRes : Integer;
   oJsonFile : ISuperObject;
 
-  function variantInfoSchema(brandName : String; variantName : String; parentCategoryID : integer; field : array[TProducerDevisions] of single):
-  var 
-    jo : ISuperObject;
-  begin    
-    jo := SO;
-    jo.S['variantName'] := variantName;
-    jo.S['parentBrandName'] := brandName;
-    jo.I['parentCategoryID'] := parentCategoryID;
-    jo.O['value'] := SA([]);
-    jo.A['value'].D[0] := field[TRADITIONAL];
-    jo.A['value'].D[1] := field[INTERNET];
-    jo.A['value'].D[2] := field[TOTAL];
+  function brandInfoSchema(fieldIdx : integer; catID : integer; brand : TSCR_OneBrand): ISuperObject;
+  var
+     jo : ISuperObject;
+  begin
+     jo := SO;
+     jo.S['brandName'] := brand.scrb_BrandName;
+     jo.I['parentCategoryID'] := catID;
+     jo.O['value'] := SA([]);
 
-    result := jo;
+     case (fieldIdx) of
+       scrb_Sales:                          begin jo.A['value'].D[0] := brand.scrb_Sales[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_Sales[INTERNET];    jo.A['value'].D[2] := brand.scrb_Sales[TOTAL]; end;
+       scrb_SalesChange:                    begin jo.A['value'].D[0] := brand.scrb_SalesChange[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_SalesChange[INTERNET];    jo.A['value'].D[2] := brand.scrb_SalesChange[TOTAL]; end;
+       scrb_SalesShareInCategory:           begin jo.A['value'].D[0] := brand.scrb_SalesShareInCategory[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_SalesShareInCategory[INTERNET];    jo.A['value'].D[2] := brand.scrb_SalesShareInCategory[TOTAL]; end;
+       scrb_MaterialCosts:                  begin jo.A['value'].D[0] := brand.scrb_MaterialCosts[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_MaterialCosts[INTERNET];    jo.A['value'].D[2] := brand.scrb_MaterialCosts[TOTAL]; end;
+       scrb_CostOfGoodsSold:                begin jo.A['value'].D[0] := brand.scrb_CostOfGoodsSold[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_CostOfGoodsSold[INTERNET];    jo.A['value'].D[2] := brand.scrb_CostOfGoodsSold[TOTAL]; end;
+       scrb_DiscontinuedGoodsCost:          begin jo.A['value'].D[0] := brand.scrb_DiscontinuedGoodsCost[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_DiscontinuedGoodsCost[INTERNET];    jo.A['value'].D[2] := brand.scrb_DiscontinuedGoodsCost[TOTAL]; end;
+       scrb_InventoryHoldingCost:           begin jo.A['value'].D[0] := brand.scrb_InventoryHoldingCost[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_InventoryHoldingCost[INTERNET];    jo.A['value'].D[2] := brand.scrb_InventoryHoldingCost[TOTAL]; end;
+       scrb_GrossProfit:                    begin jo.A['value'].D[0] := brand.scrb_GrossProfit[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_GrossProfit[INTERNET];    jo.A['value'].D[2] := brand.scrb_GrossProfit[TOTAL]; end;
+       scrb_GrossProfitChange:              begin jo.A['value'].D[0] := brand.scrb_GrossProfitChange[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_GrossProfitChange[INTERNET];    jo.A['value'].D[2] := brand.scrb_GrossProfitChange[TOTAL]; end;
+       scrb_GrossProfitMargin:              begin jo.A['value'].D[0] := brand.scrb_GrossProfitMargin[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_GrossProfitMargin[INTERNET];    jo.A['value'].D[2] := brand.scrb_GrossProfitMargin[TOTAL]; end;
+       scrb_GrossProfitShareInCategory:     begin jo.A['value'].D[0] := brand.scrb_GrossProfitShareInCategory[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_GrossProfitShareInCategory[INTERNET];    jo.A['value'].D[2] := brand.scrb_GrossProfitShareInCategory[TOTAL]; end;
+       scrb_TradeSupport:                   begin jo.A['value'].D[0] := brand.scrb_TradeSupport[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_TradeSupport[INTERNET];    jo.A['value'].D[2] := brand.scrb_TradeSupport[TOTAL]; end;
+       scrb_EMallSupport:                   begin jo.A['value'].D[0] := brand.scrb_EMallSupport[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_EMallSupport[INTERNET];    jo.A['value'].D[2] := brand.scrb_EMallSupport[TOTAL]; end;  
+       scrb_TradeAndMarketing:              begin jo.A['value'].D[0] := brand.scrb_TradeAndMarketing[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_TradeAndMarketing[INTERNET];    jo.A['value'].D[2] := brand.scrb_TradeAndMarketing[TOTAL]; end;
+       scrb_AdvertisingOnLine:              begin jo.A['value'].D[0] := brand.scrb_AdvertisingOnLine[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_AdvertisingOnLine[INTERNET];    jo.A['value'].D[2] := brand.scrb_AdvertisingOnLine[TOTAL]; end;
+       scrb_AdvertisingOffLine:             begin jo.A['value'].D[0] := brand.scrb_AdvertisingOffLine[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_AdvertisingOffLine[INTERNET];    jo.A['value'].D[2] := brand.scrb_AdvertisingOffLine[TOTAL]; end;
+       scrb_TradeAndMarketingAsPercentageOfSales: begin jo.A['value'].D[0] := brand.scrb_TradeAndMarketingAsPercentageOfSales[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_TradeAndMarketingAsPercentageOfSales[INTERNET];    jo.A['value'].D[2] := brand.scrb_TradeAndMarketingAsPercentageOfSales[TOTAL]; end;
+       scrb_TradeAndMarketingShareInCategory: begin jo.A['value'].D[0] := brand.scrb_TradeAndMarketingShareInCategory[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_TradeAndMarketingShareInCategory[INTERNET];    jo.A['value'].D[2] := brand.scrb_TradeAndMarketingShareInCategory[TOTAL]; end;
+       scrb_GeneralExpenses:                begin jo.A['value'].D[0] := brand.scrb_GeneralExpenses[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_GeneralExpenses[INTERNET];    jo.A['value'].D[2] := brand.scrb_GeneralExpenses[TOTAL]; end;
+       scrb_Amortisation:                   begin jo.A['value'].D[0] := brand.scrb_Amortisation[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_Amortisation[INTERNET];    jo.A['value'].D[2] := brand.scrb_Amortisation[TOTAL]; end;
+       scrb_OperatingProfit:                begin jo.A['value'].D[0] := brand.scrb_OperatingProfit[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_OperatingProfit[INTERNET];    jo.A['value'].D[2] := brand.scrb_OperatingProfit[TOTAL]; end;
+       scrb_OperatingProfitChange:          begin jo.A['value'].D[0] := brand.scrb_OperatingProfitChange[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_OperatingProfitChange[INTERNET];    jo.A['value'].D[2] := brand.scrb_OperatingProfitChange[TOTAL]; end;
+       scrb_OperatingProfitMargin:          begin jo.A['value'].D[0] := brand.scrb_OperatingProfitMargin[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_OperatingProfitMargin[INTERNET];    jo.A['value'].D[2] := brand.scrb_OperatingProfitMargin[TOTAL]; end;
+       scrb_OperatingProfitShareInCategory: begin jo.A['value'].D[0] := brand.scrb_OperatingProfitShareInCategory[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_OperatingProfitShareInCategory[INTERNET];    jo.A['value'].D[2] := brand.scrb_OperatingProfitShareInCategory[TOTAL]; end;
+       scrb_Interest:                       begin jo.A['value'].D[0] := brand.scrb_Interest[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_Interest[INTERNET];    jo.A['value'].D[2] := brand.scrb_Interest[TOTAL]; end;
+       scrb_Taxes:                          begin jo.A['value'].D[0] := brand.scrb_Taxes[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_Taxes[INTERNET];    jo.A['value'].D[2] := brand.scrb_Taxes[TOTAL]; end;
+       scrb_ExceptionalItems:               begin jo.A['value'].D[0] := brand.scrb_ExceptionalItems[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_ExceptionalItems[INTERNET];    jo.A['value'].D[2] := brand.scrb_ExceptionalItems[TOTAL]; end;
+       scrb_NetProfit:                      begin jo.A['value'].D[0] := brand.scrb_NetProfit[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_NetProfit[INTERNET];    jo.A['value'].D[2] := brand.scrb_NetProfit[TOTAL]; end;
+       scrb_NetProfitChange:                begin jo.A['value'].D[0] := brand.scrb_NetProfitChange[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_NetProfitChange[INTERNET];    jo.A['value'].D[2] := brand.scrb_NetProfitChange[TOTAL]; end;
+       scrb_NetProfitMargin:                begin jo.A['value'].D[0] := brand.scrb_NetProfitMargin[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_NetProfitMargin[INTERNET];    jo.A['value'].D[2] := brand.scrb_NetProfitMargin[TOTAL]; end;  
+       scrb_NetProfitShareInCategory:       begin jo.A['value'].D[0] := brand.scrb_NetProfitShareInCategory[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_NetProfitShareInCategory[INTERNET];    jo.A['value'].D[2] := brand.scrb_NetProfitShareInCategory[TOTAL]; end;
+     end;
+     result := jo;
   end;
 
-  function brandInfoSchema(brandName : String; parentCategoryID : integer; field : array[TProducerDevisions] of single):
-  var 
-    jo : ISuperObject;
-  begin    
-    jo := SO;
-    jo.S['brandName'] := brandName;
-    jo.I['parentCategoryID'] := parentCategoryID;
-    jo.O['value'] := SA([]);
-    jo.A['value'].D[0] := field[TRADITIONAL];
-    jo.A['value'].D[1] := field[INTERNET];
-    jo.A['value'].D[2] := field[TOTAL];
+  function variantInfoSchema(fieldIdx : integer; catID : integer; variant : TSCR_OneVariant): ISuperObject;
+  var
+     jo : ISuperObject;
+  begin
+     jo := SO;
+     jo.S['variantName'] := variant.scrv_VariantName;
+     jo.S['parentBrandName'] := variant.scrv_ParentBrandName;
+     jo.I['parentCategoryID'] := catID;
+     jo.O['value'] := SA([]);
 
-    result := jo;
+     case (fieldIdx) of
+       scrv_Sales:                          begin jo.A['value'].D[0] := variant.scrv_Sales[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_Sales[INTERNET];    jo.A['value'].D[2] := variant.scrv_Sales[TOTAL]; end;
+       scrv_SalesChange:                    begin jo.A['value'].D[0] := variant.scrv_SalesChange[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_SalesChange[INTERNET];    jo.A['value'].D[2] := variant.scrv_SalesChange[TOTAL]; end;
+       scrv_SalesShareInCategory:           begin jo.A['value'].D[0] := variant.scrv_SalesShareInCategory[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_SalesShareInCategory[INTERNET];    jo.A['value'].D[2] := variant.scrv_SalesShareInCategory[TOTAL]; end;
+       scrv_MaterialCosts:                  begin jo.A['value'].D[0] := variant.scrv_MaterialCosts[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_MaterialCosts[INTERNET];    jo.A['value'].D[2] := variant.scrv_MaterialCosts[TOTAL]; end;
+       scrv_CostOfGoodsSold:                begin jo.A['value'].D[0] := variant.scrv_CostOfGoodsSold[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_CostOfGoodsSold[INTERNET];    jo.A['value'].D[2] := variant.scrv_CostOfGoodsSold[TOTAL]; end;
+       scrv_DiscontinuedGoodsCost:          begin jo.A['value'].D[0] := variant.scrv_DiscontinuedGoodsCost[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_DiscontinuedGoodsCost[INTERNET];    jo.A['value'].D[2] := variant.scrv_DiscontinuedGoodsCost[TOTAL]; end;
+       scrv_InventoryHoldingCost:           begin jo.A['value'].D[0] := variant.scrv_InventoryHoldingCost[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_InventoryHoldingCost[INTERNET];    jo.A['value'].D[2] := variant.scrv_InventoryHoldingCost[TOTAL]; end;
+       scrv_GrossProfit:                    begin jo.A['value'].D[0] := variant.scrv_GrossProfit[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_GrossProfit[INTERNET];    jo.A['value'].D[2] := variant.scrv_GrossProfit[TOTAL]; end;
+       scrv_GrossProfitChange:              begin jo.A['value'].D[0] := variant.scrv_GrossProfitChange[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_GrossProfitChange[INTERNET];    jo.A['value'].D[2] := variant.scrv_GrossProfitChange[TOTAL]; end;
+       scrv_GrossProfitMargin:              begin jo.A['value'].D[0] := variant.scrv_GrossProfitMargin[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_GrossProfitMargin[INTERNET];    jo.A['value'].D[2] := variant.scrv_GrossProfitMargin[TOTAL]; end;
+       scrv_GrossProfitShareInCategory:     begin jo.A['value'].D[0] := variant.scrv_GrossProfitShareInCategory[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_GrossProfitShareInCategory[INTERNET];    jo.A['value'].D[2] := variant.scrv_GrossProfitShareInCategory[TOTAL]; end;
+       scrv_TradeSupport:                   begin jo.A['value'].D[0] := variant.scrv_TradeSupport[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_TradeSupport[INTERNET];    jo.A['value'].D[2] := variant.scrv_TradeSupport[TOTAL]; end;
+       scrv_EMallSupport:                   begin jo.A['value'].D[0] := variant.scrv_EMallSupport[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_EMallSupport[INTERNET];    jo.A['value'].D[2] := variant.scrv_EMallSupport[TOTAL]; end;  
+       scrv_TradeAndMarketing:              begin jo.A['value'].D[0] := variant.scrv_TradeAndMarketing[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_TradeAndMarketing[INTERNET];    jo.A['value'].D[2] := variant.scrv_TradeAndMarketing[TOTAL]; end;
+       scrv_AdvertisingOnLine:              begin jo.A['value'].D[0] := variant.scrv_AdvertisingOnLine[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_AdvertisingOnLine[INTERNET];    jo.A['value'].D[2] := variant.scrv_AdvertisingOnLine[TOTAL]; end;
+       scrv_AdvertisingOffLine:             begin jo.A['value'].D[0] := variant.scrv_AdvertisingOffLine[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_AdvertisingOffLine[INTERNET];    jo.A['value'].D[2] := variant.scrv_AdvertisingOffLine[TOTAL]; end;
+       scrv_TradeAndMarketingAsPercentageOfSales: begin jo.A['value'].D[0] := variant.scrv_TradeAndMarketingAsPercentageOfSales[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_TradeAndMarketingAsPercentageOfSales[INTERNET];    jo.A['value'].D[2] := variant.scrv_TradeAndMarketingAsPercentageOfSales[TOTAL]; end;
+       scrv_TradeAndMarketingShareInCategory: begin jo.A['value'].D[0] := variant.scrv_TradeAndMarketingShareInCategory[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_TradeAndMarketingShareInCategory[INTERNET];    jo.A['value'].D[2] := variant.scrv_TradeAndMarketingShareInCategory[TOTAL]; end;
+       scrv_GeneralExpenses:                begin jo.A['value'].D[0] := variant.scrv_GeneralExpenses[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_GeneralExpenses[INTERNET];    jo.A['value'].D[2] := variant.scrv_GeneralExpenses[TOTAL]; end;
+       scrv_Amortisation:                   begin jo.A['value'].D[0] := variant.scrv_Amortisation[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_Amortisation[INTERNET];    jo.A['value'].D[2] := variant.scrv_Amortisation[TOTAL]; end;
+       scrv_OperatingProfit:                begin jo.A['value'].D[0] := variant.scrv_OperatingProfit[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_OperatingProfit[INTERNET];    jo.A['value'].D[2] := variant.scrv_OperatingProfit[TOTAL]; end;
+       scrv_OperatingProfitChange:          begin jo.A['value'].D[0] := variant.scrv_OperatingProfitChange[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_OperatingProfitChange[INTERNET];    jo.A['value'].D[2] := variant.scrv_OperatingProfitChange[TOTAL]; end;
+       scrv_OperatingProfitMargin:          begin jo.A['value'].D[0] := variant.scrv_OperatingProfitMargin[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_OperatingProfitMargin[INTERNET];    jo.A['value'].D[2] := variant.scrv_OperatingProfitMargin[TOTAL]; end;
+       scrv_OperatingProfitShareInCategory: begin jo.A['value'].D[0] := variant.scrv_OperatingProfitShareInCategory[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_OperatingProfitShareInCategory[INTERNET];    jo.A['value'].D[2] := variant.scrv_OperatingProfitShareInCategory[TOTAL]; end;
+       scrv_Interest:                       begin jo.A['value'].D[0] := variant.scrv_Interest[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_Interest[INTERNET];    jo.A['value'].D[2] := variant.scrv_Interest[TOTAL]; end;
+       scrv_Taxes:                          begin jo.A['value'].D[0] := variant.scrv_Taxes[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_Taxes[INTERNET];    jo.A['value'].D[2] := variant.scrv_Taxes[TOTAL]; end;
+       scrv_ExceptionalItems:               begin jo.A['value'].D[0] := variant.scrv_ExceptionalItems[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_ExceptionalItems[INTERNET];    jo.A['value'].D[2] := variant.scrv_ExceptionalItems[TOTAL]; end;
+       scrv_NetProfit:                      begin jo.A['value'].D[0] := variant.scrv_NetProfit[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_NetProfit[INTERNET];    jo.A['value'].D[2] := variant.scrv_NetProfit[TOTAL]; end;
+       scrv_NetProfitChange:                begin jo.A['value'].D[0] := variant.scrv_NetProfitChange[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_NetProfitChange[INTERNET];    jo.A['value'].D[2] := variant.scrv_NetProfitChange[TOTAL]; end;
+       scrv_NetProfitMargin:                begin jo.A['value'].D[0] := variant.scrv_NetProfitMargin[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_NetProfitMargin[INTERNET];    jo.A['value'].D[2] := variant.scrv_NetProfitMargin[TOTAL]; end;  
+       scrv_NetProfitShareInCategory:       begin jo.A['value'].D[0] := variant.scrv_NetProfitShareInCategory[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_NetProfitShareInCategory[INTERNET];    jo.A['value'].D[2] := variant.scrv_NetProfitShareInCategory[TOTAL]; end;
+     end;
+
+     result := jo;
   end;
 
-  function categoryInfoSchema(catID : Integer; traditional : single; internet : single; total : single):
+  function categoryDivisionsInfoSchema(fieldIdx : Integer; catID : Integer; divisions : TSCR_CategoryProfitAndLoss):ISuperObject;
   var
     jo : ISuperObject;
   begin
     jo := SO;
     jo.I['categoryID'] := catID;
     jo.O['value'] := SA([]);
-    jo.A['value'].D[0] := traditional;
-    jo.A['value'].D[1] := internet;
-    jo.A['value'].D[2] := total;
+
+    case (fieldIdx) of
+      scrpl_Sales :  begin                 jo.A['value'].D[0] := divisions[TRADITIONAL].scrpl_Sales; jo.A['value'].D[1] := divisions[INTERNET].scrpl_Sales; jo.A['value'].D[2] := divisions[TOTAL].scrpl_Sales;  end;
+      scrpl_SalesChange : begin            jo.A['value'].D[0] := divisions[TRADITIONAL].scrpl_SalesChange; jo.A['value'].D[1] := divisions[INTERNET].scrpl_SalesChange; jo.A['value'].D[2] := divisions[TOTAL].scrpl_SalesChange; end;
+      scrpl_MaterialCosts: begin           jo.A['value'].D[0] := divisions[TRADITIONAL].scrpl_MaterialCosts;  jo.A['value'].D[1] := divisions[INTERNET].scrpl_MaterialCosts; jo.A['value'].D[2] := divisions[TOTAL].scrpl_MaterialCosts;    end;
+      scrpl_CostOfGoodsSold: begin         jo.A['value'].D[0] := divisions[TRADITIONAL].scrpl_CostOfGoodsSold;  jo.A['value'].D[1] := divisions[INTERNET].scrpl_CostOfGoodsSold; jo.A['value'].D[2] := divisions[TOTAL].scrpl_CostOfGoodsSold;    end;
+      scrpl_DiscontinuedGoodsCost:begin    jo.A['value'].D[0] := divisions[TRADITIONAL].scrpl_DiscontinuedGoodsCost;  jo.A['value'].D[1] := divisions[INTERNET].scrpl_DiscontinuedGoodsCost;jo.A['value'].D[2] := divisions[TOTAL].scrpl_DiscontinuedGoodsCost;    end;
+      scrpl_InventoryHoldingCost: begin    jo.A['value'].D[0] := divisions[TRADITIONAL].scrpl_InventoryHoldingCost;  jo.A['value'].D[1] := divisions[INTERNET].scrpl_InventoryHoldingCost;jo.A['value'].D[2] := divisions[TOTAL].scrpl_InventoryHoldingCost;    end;
+      scrpl_GrossProfit: begin             jo.A['value'].D[0] := divisions[TRADITIONAL].scrpl_GrossProfit;            jo.A['value'].D[1] := divisions[INTERNET].scrpl_GrossProfit;jo.A['value'].D[2] := divisions[TOTAL].scrpl_GrossProfit;   end;        
+      scrpl_GrossProfitChange : begin      jo.A['value'].D[0] := divisions[TRADITIONAL].scrpl_GrossProfitChange;      jo.A['value'].D[1] := divisions[INTERNET].scrpl_GrossProfitChange;jo.A['value'].D[2] := divisions[TOTAL].scrpl_GrossProfitChange;    end;
+      scrpl_GrossProfitMargin : begin      jo.A['value'].D[0] := divisions[TRADITIONAL].scrpl_GrossProfitMargin;      jo.A['value'].D[1] := divisions[INTERNET].scrpl_GrossProfitMargin;jo.A['value'].D[2] := divisions[TOTAL].scrpl_GrossProfitMargin;    end;
+      scrpl_TradeAndMarketing : begin      jo.A['value'].D[0] := divisions[TRADITIONAL].scrpl_TradeAndMarketing;      jo.A['value'].D[1] := divisions[INTERNET].scrpl_TradeAndMarketing;jo.A['value'].D[2] := divisions[TOTAL].scrpl_TradeAndMarketing;    end;
+      scrpl_TradeAndMarketingAsPercentageOfSales : begin jo.A['value'].D[0] := divisions[TRADITIONAL].scrpl_TradeAndMarketingAsPercentageOfSales;  jo.A['value'].D[1] := divisions[INTERNET].scrpl_TradeAndMarketingAsPercentageOfSales;jo.A['value'].D[2] := divisions[TOTAL].scrpl_TradeAndMarketingAsPercentageOfSales;    end;
+      scrpl_GeneralExpenses : begin        jo.A['value'].D[0] := divisions[TRADITIONAL].scrpl_GeneralExpenses;        jo.A['value'].D[1] := divisions[INTERNET].scrpl_GeneralExpenses;   jo.A['value'].D[2] := divisions[TOTAL].scrpl_GeneralExpenses;    end;
+      scrpl_Amortisation : begin           jo.A['value'].D[0] := divisions[TRADITIONAL].scrpl_Amortisation;           jo.A['value'].D[1] := divisions[INTERNET].scrpl_Amortisation;   jo.A['value'].D[2] := divisions[TOTAL].scrpl_Amortisation;    end;
+      scrpl_OperatingProfit : begin        jo.A['value'].D[0] := divisions[TRADITIONAL].scrpl_OperatingProfit;        jo.A['value'].D[1] := divisions[INTERNET].scrpl_OperatingProfit;   jo.A['value'].D[2] := divisions[TOTAL].scrpl_OperatingProfit;    end;
+      scrpl_OperatingProfitChange  : begin jo.A['value'].D[0] := divisions[TRADITIONAL].scrpl_OperatingProfitChange;  jo.A['value'].D[1] := divisions[INTERNET].scrpl_OperatingProfitChange;   jo.A['value'].D[2] := divisions[TOTAL].scrpl_OperatingProfitChange;    end;
+      scrpl_OperatingProfitMargin  : begin jo.A['value'].D[0] := divisions[TRADITIONAL].scrpl_OperatingProfitMargin;  jo.A['value'].D[1] := divisions[INTERNET].scrpl_OperatingProfitMargin;   jo.A['value'].D[2] := divisions[TOTAL].scrpl_OperatingProfitMargin;    end;
+      scrpl_Interest : begin               jo.A['value'].D[0] := divisions[TRADITIONAL].scrpl_Interest;               jo.A['value'].D[1] := divisions[INTERNET].scrpl_Interest;   jo.A['value'].D[2] := divisions[TOTAL].scrpl_Interest;    end;
+      scrpl_Taxes : begin                  jo.A['value'].D[0] := divisions[TRADITIONAL].scrpl_Taxes;                  jo.A['value'].D[1] := divisions[INTERNET].scrpl_Taxes;   jo.A['value'].D[2] := divisions[TOTAL].scrpl_Taxes;    end;
+      scrpl_ExceptionalItems : begin       jo.A['value'].D[0] := divisions[TRADITIONAL].scrpl_ExceptionalItems;       jo.A['value'].D[1] := divisions[INTERNET].scrpl_ExceptionalItems;   jo.A['value'].D[2] := divisions[TOTAL].scrpl_ExceptionalItems;    end;
+      scrpl_NetProfit : begin              jo.A['value'].D[0] := divisions[TRADITIONAL].scrpl_NetProfit;              jo.A['value'].D[1] := divisions[INTERNET].scrpl_NetProfit;   jo.A['value'].D[2] := divisions[TOTAL].scrpl_NetProfit;    end;
+      scrpl_NetProfitChange : begin        jo.A['value'].D[0] := divisions[TRADITIONAL].scrpl_NetProfitChange;        jo.A['value'].D[1] := divisions[INTERNET].scrpl_NetProfitChange;   jo.A['value'].D[2] := divisions[TOTAL].scrpl_NetProfitChange;    end;
+      scrpl_NetProfitMargin : begin        jo.A['value'].D[0] := divisions[TRADITIONAL].scrpl_NetProfitMargin;        jo.A['value'].D[1] := divisions[INTERNET].scrpl_NetProfitMargin;   jo.A['value'].D[2] := divisions[TOTAL].scrpl_NetProfitMargin;    end;
+      scrpl_AdvertisingOnLine : begin      jo.A['value'].D[0] := divisions[TRADITIONAL].scrpl_AdvertisingOnLine;      jo.A['value'].D[1] := divisions[INTERNET].scrpl_AdvertisingOnLine;   jo.A['value'].D[2] := divisions[TOTAL].scrpl_AdvertisingOnLine;   end;
+      scrpl_AdvertisingOffLine : begin     jo.A['value'].D[0] := divisions[TRADITIONAL].scrpl_AdvertisingOffLine;     jo.A['value'].D[1] := divisions[INTERNET].scrpl_AdvertisingOffLine;   jo.A['value'].D[2] := divisions[TOTAL].scrpl_AdvertisingOffLine;    end;
+      scrpl_TradeSupport : begin           jo.A['value'].D[0] := divisions[TRADITIONAL].scrpl_TradeSupport;           jo.A['value'].D[1] := divisions[INTERNET].scrpl_TradeSupport;   jo.A['value'].D[2] := divisions[TOTAL].scrpl_TradeSupport;    end;
+    end;
+         
     result := jo;
   end;
 
   procedure makeJson();
   var
     s_str : string;
-    actorID : Integer;
+    actorID,catID,brandCount,variantCount : Integer;
   begin
     oJsonFile := SO;
     oJsonFile.S['seminar'] := currentSeminar;
@@ -102,14 +288,31 @@ var
 
     for catID := Low(TCategoriesTotal) to High(TCategoriesTotal) do
     begin
-      oJsonFile.A['scrpl_Sales'].Add( categoryInfoSchema(catID, currentResult.r_SuppliersConfidentiaReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID,TRADITIONAL].scrpl_Sales,
-                                      categoryInfoSchema(catID, currentResult.r_SuppliersConfidentiaReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID,INTERNET].scrpl_Sales,
-                                      categoryInfoSchema(catID, currentResult.r_SuppliersConfidentiaReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID,TOTAL].scrpl_Sales,) );
-      {--
-      
-      ...Need test with binary file first...
-
-      --}
+      oJsonFile.A['scrpl_Sales'].Add(categoryDivisionsInfoSchema(scrpl_Sales, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID]));
+      oJsonFile.A['scrpl_SalesChange'].Add(categoryDivisionsInfoSchema(scrpl_SalesChange, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID]));
+      oJsonFile.A['scrpl_MaterialCosts'].Add(categoryDivisionsInfoSchema(scrpl_MaterialCosts, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID]));
+      oJsonFile.A['scrpl_CostOfGoodsSold'].Add(categoryDivisionsInfoSchema(scrpl_CostOfGoodsSold, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID]));
+      oJsonFile.A['scrpl_DiscontinuedGoodsCost'].Add(categoryDivisionsInfoSchema(scrpl_DiscontinuedGoodsCost, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID]));
+      oJsonFile.A['scrpl_InventoryHoldingCost'].Add(categoryDivisionsInfoSchema(scrpl_InventoryHoldingCost, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID]));
+      oJsonFile.A['scrpl_GrossProfit'].Add(categoryDivisionsInfoSchema(scrpl_GrossProfit, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID]));
+      oJsonFile.A['scrpl_GrossProfitChange'].Add(categoryDivisionsInfoSchema(scrpl_GrossProfitChange, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID]));
+      oJsonFile.A['scrpl_GrossProfitMargin'].Add(categoryDivisionsInfoSchema(scrpl_GrossProfitMargin, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID]));
+      oJsonFile.A['scrpl_TradeAndMarketing'].Add(categoryDivisionsInfoSchema(scrpl_TradeAndMarketing, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID]));
+      oJsonFile.A['scrpl_TradeAndMarketingAsPercentageOfSales'].Add(categoryDivisionsInfoSchema(scrpl_TradeAndMarketingAsPercentageOfSales, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID]));
+      oJsonFile.A['scrpl_GeneralExpenses'].Add(categoryDivisionsInfoSchema(scrpl_GeneralExpenses, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID]));
+      oJsonFile.A['scrpl_Amortisation'].Add(categoryDivisionsInfoSchema(scrpl_Amortisation, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID]));
+      oJsonFile.A['scrpl_OperatingProfit'].Add(categoryDivisionsInfoSchema(scrpl_OperatingProfit, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID]));
+      oJsonFile.A['scrpl_OperatingProfitChange'].Add(categoryDivisionsInfoSchema(scrpl_OperatingProfitChange, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID]));
+      oJsonFile.A['scrpl_OperatingProfitMargin'].Add(categoryDivisionsInfoSchema(scrpl_OperatingProfitMargin, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID]));
+      oJsonFile.A['scrpl_Interest'].Add(categoryDivisionsInfoSchema(scrpl_Interest, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID]));
+      oJsonFile.A['scrpl_Taxes'].Add(categoryDivisionsInfoSchema(scrpl_Taxes, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID]));
+      oJsonFile.A['scrpl_ExceptionalItems'].Add(categoryDivisionsInfoSchema(scrpl_ExceptionalItems, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID]));
+      oJsonFile.A['scrpl_NetProfit'].Add(categoryDivisionsInfoSchema(scrpl_NetProfit, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID]));
+      oJsonFile.A['scrpl_NetProfitChange'].Add(categoryDivisionsInfoSchema(scrpl_NetProfitChange, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID]));
+      oJsonFile.A['scrpl_NetProfitMargin'].Add(categoryDivisionsInfoSchema(scrpl_NetProfitMargin, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID]));
+      oJsonFile.A['scrpl_AdvertisingOnLine'].Add(categoryDivisionsInfoSchema(scrpl_AdvertisingOnLine, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID]));
+      oJsonFile.A['scrpl_AdvertisingOffLine'].Add(categoryDivisionsInfoSchema(scrpl_AdvertisingOffLine, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID]));
+      oJsonFile.A['scrpl_TradeSupport'].Add(categoryDivisionsInfoSchema(scrpl_TradeSupport, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID]));
     end;
 
 
@@ -145,14 +348,35 @@ var
     begin
         for brandCount := Low(TProBrands) to High(TProBrands) do
         begin
-          if currentResult.r_SuppliersConfidentiaReports[currentProducer].scr_Brands[catID, brandCount].scrb_BrandName <> '' then
+          //Check if Brand exist
+          if currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount].scrb_BrandName <> '' then
           begin
-            oJsonFile.A['scrb_Sales'].Add( brandInfoSchema(currentResult.r_SuppliersConfidentiaReports[currentProducer].scr_Brands[catID, brandCount].scrb_BrandName, catID, currentResult.r_SuppliersConfidentiaReports[currentProducer].scr_Brands[catID, brandCount].scrb_Sales) );
-            {--
-            
-            ...Need test with binary file first...
-
-            --}              
+            oJsonFile.A['scrb_Sales'].Add( brandInfoSchema(scrb_Sales, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount] ) );
+            oJsonFile.A['scrb_SalesChange'].Add( brandInfoSchema(scrb_SalesChange, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount] ) );
+            oJsonFile.A['scrb_SalesShareInCategory'].Add( brandInfoSchema(scrb_SalesShareInCategory, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount] ) );
+            oJsonFile.A['scrb_CostOfGoodsSold'].Add( brandInfoSchema(scrb_CostOfGoodsSold, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount] ) );
+            oJsonFile.A['scrb_DiscontinuedGoodsCost'].Add( brandInfoSchema(scrb_DiscontinuedGoodsCost, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount] ) );
+            oJsonFile.A['scrb_InventoryHoldingCost'].Add( brandInfoSchema(scrb_InventoryHoldingCost, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount] ) );
+            oJsonFile.A['scrb_GrossProfit'].Add( brandInfoSchema(scrb_GrossProfit, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount] ) );
+            oJsonFile.A['scrb_GrossProfitChange'].Add( brandInfoSchema(scrb_GrossProfitChange, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount] ) );
+            oJsonFile.A['scrb_TradeAndMarketing'].Add( brandInfoSchema(scrb_TradeAndMarketing, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount] ) );
+            oJsonFile.A['scrb_AdvertisingOnLine'].Add( brandInfoSchema(scrb_AdvertisingOnLine, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount] ) );
+            oJsonFile.A['scrb_AdvertisingOffLine'].Add( brandInfoSchema(scrb_AdvertisingOffLine, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount] ) );
+            oJsonFile.A['scrb_TradeAndMarketingAsPercentageOfSales'].Add( brandInfoSchema(scrb_TradeAndMarketingAsPercentageOfSales, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount] ) );
+            oJsonFile.A['scrb_TradeAndMarketingShareInCategory'].Add( brandInfoSchema(scrb_TradeAndMarketingShareInCategory, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount] ) );
+            oJsonFile.A['scrb_GeneralExpenses'].Add( brandInfoSchema(scrb_GeneralExpenses, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount] ) );
+            oJsonFile.A['scrb_Amortisation'].Add( brandInfoSchema(scrb_Amortisation, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount] ) );
+            oJsonFile.A['scrb_OperatingProfit'].Add( brandInfoSchema(scrb_OperatingProfit, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount] ) );
+            oJsonFile.A['scrb_OperatingProfitChange'].Add( brandInfoSchema(scrb_OperatingProfitChange, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount] ) );
+            oJsonFile.A['scrb_OperatingProfitMargin'].Add( brandInfoSchema(scrb_OperatingProfitMargin, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount] ) );
+            oJsonFile.A['scrb_OperatingProfitShareInCategory'].Add( brandInfoSchema(scrb_OperatingProfitShareInCategory, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount] ) );
+            oJsonFile.A['scrb_Interest'].Add( brandInfoSchema(scrb_Interest, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount] ) );
+            oJsonFile.A['scrb_Taxes'].Add( brandInfoSchema(scrb_Taxes, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount] ) );
+            oJsonFile.A['scrb_ExceptionalItems'].Add( brandInfoSchema(scrb_ExceptionalItems, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount] ) );
+            oJsonFile.A['scrb_NetProfit'].Add( brandInfoSchema(scrb_NetProfit, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount] ) );
+            oJsonFile.A['scrb_NetProfitChange'].Add( brandInfoSchema(scrb_NetProfitChange, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount] ) );
+            oJsonFile.A['scrb_NetProfitMargin'].Add( brandInfoSchema(scrb_NetProfitMargin, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount] ) );
+            oJsonFile.A['scrb_NetProfitShareInCategory'].Add( brandInfoSchema(scrb_NetProfitShareInCategory, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount] ) );
           end;       
         end;      
     end;
@@ -191,20 +415,36 @@ var
         begin
           for variantCount := Low(TOneBrandVariants) to High(TOneBrandVariants) do
           begin
-            if (currentResult.r_SuppliersConfidentiaReports[currentProducer].scr_Brands[catID, brandCount].scrb_BrandName <> '') AND (currentResult.r_SuppliersConfidentiaReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount].scrv_VariantName <> '') then
+            if (currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount].scrb_BrandName <> '') AND (currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount].scrv_VariantName <> '') then
             begin
-              oJsonFile.A['scrb_Sales'].Add( brandInfoSchema(currentResult.r_SuppliersConfidentiaReports[currentProducer].scr_Brands[catID, brandCount].scrb_BrandName, 
-                                                             currentResult.r_SuppliersConfidentiaReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount].scrv_VariantName,
-                                                             catID, 
-                                                             currentResult.r_SuppliersConfidentiaReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount].scrv_Sales );
-            {--
-            
-            ...Need test with binary file first...
-
-            --}                            
+              oJsonFile.A['scrv_Sales'].Add( variantInfoSchema(scrv_Sales, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount] ) );
+              oJsonFile.A['scrv_SalesChange'].Add( variantInfoSchema(scrv_SalesChange, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount] ) );
+              oJsonFile.A['scrv_SalesShareInCategory'].Add( variantInfoSchema(scrv_SalesShareInCategory, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount] ) );
+              oJsonFile.A['scrv_CostOfGoodsSold'].Add( variantInfoSchema(scrv_CostOfGoodsSold, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount] ) );
+              oJsonFile.A['scrv_DiscontinuedGoodsCost'].Add( variantInfoSchema(scrv_DiscontinuedGoodsCost, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount] ) );
+              oJsonFile.A['scrv_InventoryHoldingCost'].Add( variantInfoSchema(scrv_InventoryHoldingCost, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount] ) );
+              oJsonFile.A['scrv_GrossProfit'].Add( variantInfoSchema(scrv_GrossProfit, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount] ) );
+              oJsonFile.A['scrv_GrossProfitChange'].Add( variantInfoSchema(scrv_GrossProfitChange, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount] ) );
+              oJsonFile.A['scrv_TradeAndMarketing'].Add( variantInfoSchema(scrv_TradeAndMarketing, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount] ) );
+              oJsonFile.A['scrv_AdvertisingOnLine'].Add( variantInfoSchema(scrv_AdvertisingOnLine, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount] ) );
+              oJsonFile.A['scrv_AdvertisingOffLine'].Add( variantInfoSchema(scrv_AdvertisingOffLine, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount] ) );
+              oJsonFile.A['scrv_TradeAndMarketingAsPercentageOfSales'].Add( variantInfoSchema(scrv_TradeAndMarketingAsPercentageOfSales, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount] ) );
+              oJsonFile.A['scrv_TradeAndMarketingShareInCategory'].Add( variantInfoSchema(scrv_TradeAndMarketingShareInCategory, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount] ) );
+              oJsonFile.A['scrv_GeneralExpenses'].Add( variantInfoSchema(scrv_GeneralExpenses, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount] ) );
+              oJsonFile.A['scrv_Amortisation'].Add( variantInfoSchema(scrv_Amortisation, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount] ) );
+              oJsonFile.A['scrv_OperatingProfit'].Add( variantInfoSchema(scrv_OperatingProfit, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount] ) );
+              oJsonFile.A['scrv_OperatingProfitChange'].Add( variantInfoSchema(scrv_OperatingProfitChange, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount] ) );
+              oJsonFile.A['scrv_OperatingProfitMargin'].Add( variantInfoSchema(scrv_OperatingProfitMargin, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount] ) );
+              oJsonFile.A['scrv_OperatingProfitShareInCategory'].Add( variantInfoSchema(scrv_OperatingProfitShareInCategory, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount] ) );
+              oJsonFile.A['scrv_Interest'].Add( variantInfoSchema(scrv_Interest, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount] ) );
+              oJsonFile.A['scrv_Taxes'].Add( variantInfoSchema(scrv_Taxes, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount] ) );
+              oJsonFile.A['scrv_ExceptionalItems'].Add( variantInfoSchema(scrv_ExceptionalItems, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount] ) );
+              oJsonFile.A['scrv_NetProfit'].Add( variantInfoSchema(scrv_NetProfit, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount] ) );
+              oJsonFile.A['scrv_NetProfitChange'].Add( variantInfoSchema(scrv_NetProfitChange, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount] ) );
+              oJsonFile.A['scrv_NetProfitMargin'].Add( variantInfoSchema(scrv_NetProfitMargin, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount] ) );
+              oJsonFile.A['scrv_NetProfitShareInCategory'].Add( variantInfoSchema(scrv_NetProfitShareInCategory, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount] ) );
             end;
           end;
-
         end;      
     end;    
 

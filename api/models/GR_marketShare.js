@@ -46,7 +46,7 @@ var actorSegmentInfoSchema = mongoose.Schema({
 })
 
 var actorShopperInfoSchema = mongoose.Schema({
-    shoperKind : String, // BMS, NETIZENS, MIXED, ALLSHOPPERS
+    shopperKind : String, // BMS, NETIZENS, MIXED, ALLSHOPPERS
     grsom_MarketShareValue         : Number, //CategoryID : 1~3
     grsom_MarketShareVolume        : Number, //CategoryID : 1~2
     grsom_MarketShareValueChange   : Number, //CategoryID : 1~3

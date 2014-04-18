@@ -33,6 +33,33 @@ var variantInfoSchema = mongoose.Schema({
     value : [Number], //0-Urban, 1-Rural, 2-Total
 
 })
+
+//New Schema, 2014-Apr-17th
+// var RCR_inventoryVolumesSchema = mongoose.Schema({
+//     period : Number,
+//     seminar : String,
+//     retailerID  : Number, //TBMRetailers : 1~3 (BMRetsMax)
+//     rcrviv_Initial          : [variantInventoryVolumeDetailSchema],
+//     rcrviv_Purchase         : [variantInventoryVolumeDetailSchema],
+//     rcrviv_Sales            : [variantInventoryVolumeDetailSchema],
+//     rcrviv_Discontinued     : [variantInventoryVolumeDetailSchema],
+//     rcrviv_Closing          : [variantInventoryVolumeDetailSchema]
+// })
+
+// var variantInventoryVolumeDetailSchema = mongoose.Schema({
+//     variantName       : String,
+//     parentBrandName   : String,
+//     parentCategoryID : Number,
+//     parentCompany  : Number,
+//     marketID       : Number, //1-Urban, 2-Rural, 3-Total
+//     // { use ParentCompany to filter which variants should be displayed.             }
+//     // { For Retailer 1 allowed set is [1, 2, 3, 5]                                  }
+//     // { For Retailer 2 allowed set is [1, 2, 3, 6]                                  }
+//     // { For Retailer 3 allowed set is [1, 2, 3] (no private labels at TT            }
+//     // { Should Supplier 4 become ACTIVE, then [4] must be added to all allowed sets }    
+//     value : Number
+// })
+
 var RCR_inventoryVolumes=mongoose.model('RCR_inventoryVolumes',RCR_inventoryVolumesSchema);
 
 exports.addRCR_inventoryVolumes=function(req,res,next){

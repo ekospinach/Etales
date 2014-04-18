@@ -114,6 +114,121 @@ var variantInfoSchema = mongoose.Schema({
     value                                : [Number], //0-Urban, 1-Rural, 2-Total
 })
 
+// New Schema, 2014-Apr-17:
+// var RCR_consolidatedProfitAndLossSchema = mongoose.Schema({
+//     period : Number,
+//     seminar : String,
+//     retailerID  : Number, //TBMRetailers : 1~3 (BMRetsMax)
+
+//     //Consolidated Profit & Loss statement, retailers
+//     rcrpl_Sales                         : [quarterInfoSchema],
+//     rcrpl_PromotionsCost                : [quarterInfoSchema],
+//     rcrpl_OtherCompensation             : [quarterInfoSchema],
+//     rcrpl_NetSales                      : [quarterInfoSchema],
+//     rcrpl_NetSalesChange                : [quarterInfoSchema],
+//     rcrpl_CostOfGoodsSold               : [quarterInfoSchema],
+//     rcrpl_ValueOfQuantityDiscounts      : [quarterInfoSchema],
+//     rcrpl_ValueOfPerformanceBonus       : [quarterInfoSchema],
+//     rcrpl_DiscontinuedGoodsCost         : [quarterInfoSchema],
+//     rcrpl_InventoryHoldingCost          : [quarterInfoSchema],
+//     rcrpl_GrossProfit                   : [quarterInfoSchema],
+//     rcrpl_GrossProfitChange             : [quarterInfoSchema],
+//     rcrpl_GrossProfitMargin             : [quarterInfoSchema],
+//     rcrpl_GeneralExpenses               : [quarterInfoSchema],
+//     rcrpl_OperatingProfit               : [quarterInfoSchema],
+//     rcrpl_OperatingProfitChange         : [quarterInfoSchema],
+//     rcrpl_OperatingProfitMargin         : [quarterInfoSchema],
+//     rcrpl_Interest                      : [quarterInfoSchema],
+//     rcrpl_Taxes                         : [quarterInfoSchema],
+//     rcrpl_ExceptionalItems              : [quarterInfoSchema],
+//     rcrpl_NetProfit                     : [quarterInfoSchema],
+//     rcrpl_NetProfitChange               : [quarterInfoSchema],
+//     rcrpl_NetProfitMargin               : [quarterInfoSchema],
+
+//     //P&L per brand in B&M and onLine
+//     rcrb_Sales                         : [brandMarketInfoSchema],
+//     rcrb_PromotionsCost                : [brandMarketInfoSchema],
+//     rcrb_OtherCompensation             : [brandMarketInfoSchema],
+//     rcrb_NetSales                      : [brandMarketInfoSchema],
+//     rcrb_NetSalesChange                : [brandMarketInfoSchema],
+//     rcrb_NetSalesShareInCategory       : [brandMarketInfoSchema],
+//     rcrb_CostOfGoodsSold               : [brandMarketInfoSchema],
+//     rcrb_ValueOfQuantityDiscounts      : [brandMarketInfoSchema],
+//     rcrb_ValueOfPerformanceBonus       : [brandMarketInfoSchema],
+//     rcrb_DiscontinuedGoodsCost         : [brandMarketInfoSchema],
+//     rcrb_InventoryHoldingCost          : [brandMarketInfoSchema],
+//     rcrb_GrossProfit                   : [brandMarketInfoSchema],
+//     rcrb_GrossProfitChange             : [brandMarketInfoSchema],
+//     rcrb_GrossProfitMargin             : [brandMarketInfoSchema],
+//     rcrb_GrossProfitShareInCategory    : [brandMarketInfoSchema],
+//     rcrb_GeneralExpenses               : [brandMarketInfoSchema],
+//     rcrb_OperatingProfit               : [brandMarketInfoSchema],
+//     rcrb_OperatingProfitChange         : [brandMarketInfoSchema],
+//     rcrb_OperatingProfitMargin         : [brandMarketInfoSchema],
+//     rcrb_OperatingProfitMarginShareInCategory: [brandMarketInfoSchema],
+//     rcrb_Interest                      : [brandMarketInfoSchema],
+//     rcrb_Taxes                         : [brandMarketInfoSchema],
+//     rcrb_ExceptionalItems              : [brandMarketInfoSchema],
+//     rcrb_NetProfit                     : [brandMarketInfoSchema],
+//     rcrb_NetProfitChange               : [brandMarketInfoSchema],
+//     rcrb_NetProfitMargin               : [brandMarketInfoSchema],
+//     rcrb_NetProfitShareInCategory      : [brandMarketInfoSchema],
+
+//     ////P&L per variant in B&M and onLine
+//     rcrv_Sales                         : [variantMarketInfoSchema],
+//     rcrv_PromotionsCost                : [variantMarketInfoSchema],
+//     rcrv_OtherCompensation             : [variantMarketInfoSchema],
+//     rcrv_NetSales                      : [variantMarketInfoSchema],
+//     rcrv_NetSalesChange                : [variantMarketInfoSchema],
+//     rcrv_NetSalesShareInCategory       : [variantMarketInfoSchema],
+//     rcrv_CostOfGoodsSold               : [variantMarketInfoSchema],
+//     rcrv_ValueOfQuantityDiscounts      : [variantMarketInfoSchema],
+//     rcrv_ValueOfPerformanceBonus       : [variantMarketInfoSchema],
+//     rcrv_DiscontinuedGoodsCost         : [variantMarketInfoSchema],
+//     rcrv_InventoryHoldingCost          : [variantMarketInfoSchema],
+//     rcrv_GrossProfit                   : [variantMarketInfoSchema],
+//     rcrv_GrossProfitChange             : [variantMarketInfoSchema],
+//     rcrv_GrossProfitMargin             : [variantMarketInfoSchema],
+//     rcrv_GrossProfitShareInCategory    : [variantMarketInfoSchema],
+//     rcrv_GeneralExpenses               : [variantMarketInfoSchema],
+//     rcrv_OperatingProfit               : [variantMarketInfoSchema],
+//     rcrv_OperatingProfitChange         : [variantMarketInfoSchema],
+//     rcrv_OperatingProfitMargin         : [variantMarketInfoSchema],
+//     rcrv_OperatingProfitMarginShareInCategory:[variantMarketInfoSchema],
+//     rcrv_Interest                      : [variantMarketInfoSchema],
+//     rcrv_Taxes                         : [variantMarketInfoSchema],
+//     rcrv_ExceptionalItems              : [variantMarketInfoSchema],
+//     rcrv_NetProfit                     : [variantMarketInfoSchema],
+//     rcrv_NetProfitChange               : [variantMarketInfoSchema],
+//     rcrv_NetProfitMargin               : [variantMarketInfoSchema],
+//     rcrv_NetProfitShareInCategory      : [variantMarketInfoSchema],
+// })
+
+// //Quarter stand for One market - One category
+// var quarterInfoSchema = mongoose.Schema({
+//     categoryID : Number, //TCategoriesTotal : 1~3 
+//     marketID : Number, //TMarketsTotal : 1~3
+//     value : Number, //0-Urban, 1-Rural, 2-Total
+// })
+
+// var brandMarketInfoSchema = mongoose.Schema({
+//     brandName                            : String,
+//     parentCategoryID                     : Number,
+//     parentCompanyID                      : Number, //TActors : 1~(4+3) 
+//     marketID                             : Number,  //TMarketsTotal : 1~3  
+//     value                                : Number
+// })
+
+// var variantMarketInfoSchema = mongoose.Schema({
+//     variantName                          : String,
+//     parentBrandName                      : String,
+//     parentCategoryID                     : Number,
+//     parentCompanyID                      : Number, //TActors : 1~(4+3) 
+//     marketID                             : Number,  //TMarketsTotal : 1~3      
+//     value                                : Number, //0-Urban, 1-Rural, 2-Total
+// })
+
+
 var RCR_consolidatedProfitAndLoss=mongoose.model('RCR_consolidatedProfitAndLoss',RCR_consolidatedProfitAndLossSchema);
 
 exports.addRCR_consolidatedProfitAndLoss=function(req,res,next){

@@ -53,6 +53,53 @@ var shopperInfoSchema = mongoose.Schema({
     value : Number,
 })
 
+//New schema, 2014-Apr-17th
+// var RCR_sharesCrossSegmentSchema = mongoose.Schema({
+//     period : Number,
+//     seminar : String,
+//     retailerID  : Number, //TBMRetailers : 1~3 (BMRetsMax)
+//     absoluteValue     : [variantCrossSegmentDetail],
+//     valueChange       : [variantCrossSegmentDetail],
+//     absoluteVolume    : [variantCrossSegmentDetail],
+//     volumeChange      : [variantCrossSegmentDetail]
+// })
+
+// var variantCrossSegmentDetail = mongoose.Schema({
+//     variantName       : String,
+//     parentBrandName   : String,
+//     parentCategoryID  : Number,
+//     parentCompanyID   : Number,
+//     marketID : Number //TMarkets : 1~2
+//     segmentInfo : [segmentInfoSchema]
+// })
+
+// var segmentInfoSchema = mongoose.Schema({
+//     segmentID : Number, //TSegmentsTotal : 1~(4+1),
+//     /*
+//         Elecssories:
+//         1-PriceSensitive
+//         2-Value for Money
+//         3-Fashion
+//         4-Freaks
+//         5-Total
+
+//         HealthBeauties:
+//         1-PriceSensitive
+//         2-Value for Money
+//         3-Health Conscious
+//         4-Impatient      
+//         5-Total
+//     */
+//     shopperInfo : [shopperInfoSchema]
+// })
+
+// var shopperInfoSchema = mongoose.Schema({
+//     shoperKind : String, // BMS, NETIZENS, MIXED, ALLSHOPPERS
+//     value : Number,
+// })
+
+
+
 var RCR_sharesCrossSegment=mongoose.model('RCR_sharesCrossSegment',RCR_sharesCrossSegmentSchema);
 
 exports.addRCR_sharesCrossSegment=function(req,res,next){

@@ -39,6 +39,8 @@ Const
   E_MallS             = 8;                 { Amalgam of all four on-line stores run by producers }
   Admin_ID            = 9;
 
+  PL_PROD             = Prod_4_ID + 1;
+
   IDM                = 10;
 
   {--- Limits ----------------------------------------------------------------------------------------------------------------}
@@ -141,6 +143,8 @@ Const
   EXOExtension             = '.EXO';
 
   DefaultTOP               = 60;
+
+  ForecastError            = 0.05;
 
   Precision          = 1.0E-6;
   DoublePrecision    = 1.0E-12;

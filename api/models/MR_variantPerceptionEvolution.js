@@ -25,6 +25,26 @@ var marketInfoSchema = mongoose.Schema({
     latestPerception                     : [Number], //0-EasyOfUse(Performance), 1-Quality(Gentleness), 2-Price Appeal
     perceptionChange                     : [Number]  //0-EasyOfUse(Performance), 1-Quality(Gentleness), 2-Price Appeal    
 })
+
+//New Schema
+// var MR_variantPerceptionEvolutionSchema = mongoose.Schema({
+//     period : Number,
+//     seminar : String,
+//     variantInfo : [variantPerceptionInfoSchema],
+// })
+
+// var variantPerceptionInfoSchema = mongoose.Schema({
+//     variantName                          : String,
+//     parentBrandName                      : String,
+//     parentCategoryID                     : Number,
+//     parentCompanyID                      : Number, //TActors : 1~(4+3) 
+//     marketID                             : Number, //TMarkets : 1~2
+//     previousPerception                   : [Number], //0-EasyOfUse(Performance), 1-Quality(Gentleness), 2-Price Appeal
+//     latestPerception                     : [Number], //0-EasyOfUse(Performance), 1-Quality(Gentleness), 2-Price Appeal
+//     perceptionChange                     : [Number]  //0-EasyOfUse(Performance), 1-Quality(Gentleness), 2-Price Appeal    
+// })
+
+
 var MR_variantPerceptionEvolution=mongoose.model('MR_variantPerceptionEvolution',MR_variantPerceptionEvolutionSchema);
 
 exports.addMR_variantPerceptionEvolution=function(req,res,next){

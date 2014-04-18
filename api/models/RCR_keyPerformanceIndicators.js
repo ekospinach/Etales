@@ -13,22 +13,50 @@ var RCR_keyPerformanceIndicatorsSchema = mongoose.Schema({
     seminar : String,
     retailerID  : Number, //TBMRetailers : 1~3 (BMRetsMax)
     
-    rcrkpi_VolumeRotationIndex        : [categoryInfoSchema],
-    rcrkpi_ValueRotationIndex         : [categoryInfoSchema],
-    rcrkpi_ProfitabilityIndex         : [categoryInfoSchema],
-    rcrkpi_StockCover                 : [categoryInfoSchema],
+    rcrkpi_VolumeRotationIndex        : [quarterInfoSchema],
+    rcrkpi_ValueRotationIndex         : [quarterInfoSchema],
+    rcrkpi_ProfitabilityIndex         : [quarterInfoSchema],
+    rcrkpi_StockCover                 : [quarterInfoSchema],
     rcrkpi_ShoppersShare              : [shoperInfoSchema],
 })
 
-var categoryInfoSchema = mongoose.Schema({
+var quarterInfoSchema = mongoose.Schema({
     categoryID : Number,
-    value : [Number], //0-Urban, 1-Rural, 2-Total
+    marketID : Number, //1-Urban, 2-Rural, 3-Total
+    value : [Number], 
 })
 
 var shoperInfoSchema = mongoose.Schema({
     shoperKind : String, // BMS, NETIZENS, MIXED, ALLSHOPPERS})
-    categoryInfo : [categoryInfoSchema]
+    categoryInfo : [quarterInfoSchema]
 })
+
+//New Schema, 2014-Apr-17th
+// var RCR_keyPerformanceIndicatorsSchema = mongoose.Schema({
+//     period : Number,
+//     seminar : String,
+//     retailerID  : Number, //TBMRetailers : 1~3 (BMRetsMax)
+    
+//     rcrkpi_VolumeRotationIndex        : [quarterInfoSchema],
+//     rcrkpi_ValueRotationIndex         : [quarterInfoSchema],
+//     rcrkpi_ProfitabilityIndex         : [quarterInfoSchema],
+//     rcrkpi_StockCover                 : [quarterInfoSchema],
+//     rcrkpi_ShoppersShare              : [shoperInfoSchema],
+// })
+
+// var quarterInfoSchema = mongoose.Schema({
+//     categoryID : Number,
+//     marketID : Number, //1-Urban, 2-Rural, 3-Total
+//     value : [Number], 
+// })
+
+// var shoperInfoSchema = mongoose.Schema({
+//     shoperKind : String, // BMS, NETIZENS, MIXED, ALLSHOPPERS})
+//     categoryInfo : [quarterInfoSchema]
+// })
+
+
+
 var RCR_keyPerformanceIndicators=mongoose.model('RCR_keyPerformanceIndicators',RCR_keyPerformanceIndicatorsSchema);
 
 exports.addRCR_keyPerformanceIndicators=function(req,res,next){

@@ -344,12 +344,12 @@ Type
   TCategoriesDeals = array[TCategories] of TCategoryDeal;
 
   TOnePairDeal = record
-                   neg_RetailerID          : TModernRetailers;
+                   neg_RetailerID          : TBMRetailers;
                    neg_ProducerID          : TAllProducers;
                    neg_CategoriesDeals     : TCategoriesDeals;
                  end;
 
-  TAllDeals = array[TAllProducers, TModernRetailers] of TOnePairDeal;
+  TAllDeals = array[TAllProducers, TBMRetailers] of TOnePairDeal;
 
   TNegotiationsFile = file of TAllDeals;
 

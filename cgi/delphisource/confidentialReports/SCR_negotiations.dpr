@@ -3,7 +3,17 @@
 
 uses
   SysUtils,Windows,Classes, superobject, HCD_SystemDefinitions, System.TypInfo, inifiles,
-  CgiCommonFunction in 'CgiCommonFunction.pas';
+  CgiCommonFunction;
+
+const
+  discount_MinimumVolume = 100;
+  discount_Rate = 101;
+  bonus_TargetVolume = 102;
+  bonus_Rate = 103;
+  bonus_Value = 104;
+  vnd_PaymentTerms = 105;
+  vnd_OtherCompensation = 106;
+  vnd_ContractHonoured = 107;
 
 var
   DataDirectory : string;
@@ -12,44 +22,31 @@ var
 
   currentResult : TAllResults;
   currentPeriod : TPeriodNumber;
+  currentProducer : TAllProducers;
   currentSeminar : string;
   vReadRes : Integer;
   oJsonFile : ISuperObject;
 
-  function actorCategoryInfoSchema(actorID : Integer; catID : integer; binaryReport : TGR_PerformanceHighlights): ISuperObject;
-  var
+  function variantInfoSchema(fieldIdx : Integer; catID : Integer; brandCount : Integer; variantCount : Integer; bmRetailerID : Integer; variant : TVariantNegotiationsDetails):ISuperObject;
+  var 
     jo : ISuperObject;
   begin
     jo := SO;
-    jo.I['categoryID'] := catID;
-    jo.D['grph_SalesVolume'] := binaryReport.grph_SalesVolume[actorID, catID];
-    jo.D['grph_NetSalesValue'] := binaryReport.grph_NetSalesValue[actorID, catID];    
+    jo.S['variantName'] := variant.vnd_VariantName;
+    jo.S['parentBrandName'] := variant.vnd_ParentBrandName;
+    jo.I['parentCategoryID'] := catID;
+    jo.I['modernRetailerID'] := bmRetailerID;
 
-    jo.D['grph_ValueMarketShare'] := binaryReport.grph_ValueMarketShare[actorID, catID];
-    jo.D['grph_VolumeMarketShare'] := binaryReport.grph_VolumeMarketShare[actorID, catID];
-
-    jo.D['grph_NetSalesValueChange'] := binaryReport.grph_NetSalesValueChange[actorID, catID];
-    jo.D['grph_ValueMarketShareChange'] := binaryReport.grph_ValueMarketShareChange[actorID, catID];
-    jo.D['grph_VolumeMarketShareChange'] := binaryReport.grph_VolumeMarketShareChange[actorID, catID];
-    jo.D['grph_SalesVolumeChange'] := binaryReport.grph_SalesVolumeChange[actorID, catID];
-
-    result := jo;
-  end;
-
-
-  function actorInfoSchema(actorID : Integer; binaryReport : TGR_PerformanceHighlights): ISuperObject;
-  var
-    jo: ISuperObject;
-    I, cat: Integer;
-  begin
-    jo := SO;
-    jo.I['actorID'] := actorID;
-    jo.D['grph_OperatingProfit'] := binaryReport.grph_OperatingProfit[actorID];
-    jo.D['grph_OperatingProfitChange'] := binaryReport.grph_OperatingProfitChange[actorID];
-    jo.D['grph_CumulativeInvestment'] := binaryReport.grph_CumulativeInvestment[actorID];
-    jo.O['actorCategoryInfo'] := SA([]);
-    for cat := Low(TCategoriesTotal) to High(TCategoriesTotal) do
-      jo.A['actorCategoryInfo'].Add( actorCategoryInfoSchema(actorID, cat, binaryReport) );
+    case (fieldIdx) of
+      discount_MinimumVolume: begin jo.D['value'] := variant.vnd_QuantityDiscount.discount_MinimumVolume; end;
+      discount_Rate: begin jo.D['value'] := variant.vnd_QuantityDiscount.discount_Rate; end;
+      bonus_TargetVolume: begin jo.D['value'] := variant.vnd_TargetBonus.bonus_TargetVolume; end;
+      bonus_Rate: begin jo.D['value'] := variant.vnd_TargetBonus.bonus_Rate; end;
+      bonus_Value: begin jo.D['value'] := variant.vnd_TargetBonus.bonus_Value; end;
+      vnd_PaymentTerms: begin jo.D['value'] := variant.vnd_PaymentTerms; end;
+      vnd_OtherCompensation: begin jo.D['value'] := variant.vnd_OtherCompensation; end;
+      vnd_ContractHonoured: begin jo.B['value'] := variant.vnd_ContractHonoured; end;
+    end;
 
     result := jo;
   end;
@@ -57,14 +54,54 @@ var
   procedure makeJson();
   var
     s_str : string;
-    actorID : Integer;
+    actorID,catID,brandCount,variantCount,bmRetailerID : Integer;
+    joBonusDetails, joDiscountDetails : ISuperObject;
   begin
     oJsonFile := SO;
     oJsonFile.S['seminar'] := currentSeminar;
     oJsonFile.I['period'] := currentPeriod;
-    oJsonFile.O['actorInfo'] := SA([]);
-    for actorID := Low(TActors) to High(TActors) do
-      oJsonFile.A['actorInfo'].Add( actorInfoSchema(actorID, currentResult.r_GeneralReport.gr_PerformanceHighlights) );
+    oJsonFile.I['producerID'] := currentProducer;
+
+    joBonusDetails := SO;
+    joBonusDetails.O['bonus_TargetVolume'] := SA([]);
+    joBonusDetails.O['bonus_Rate'] := SA([]);
+    joBonusDetails.O['bonus_Value'] := SA([]);
+    joDiscountDetails := SO;
+    joDiscountDetails.O['discount_MinimumVolume'] := SA([]);
+    joDiscountDetails.O['discount_Rate'] := SA([]);    
+    oJsonFile.O['vnd_PaymentTerms'] := SA([]);
+    oJsonFile.O['vnd_OtherCompensation'] := SA([]);
+    oJsonFile.O['vnd_ContractHonoured'] := SA([]);
+
+    for catID :=  Low(TCategories) to High(TCategories) do 
+    begin
+      for brandCount := Low(TProBrands) to High(TProBrands) do 
+      begin
+        for variantCount := Low(TOneBrandVariants) to High(TOneBrandVariants) do
+        begin
+          for bmRetailerID := Low(TBMRetailers) to High(TBMRetailers) do
+          begin
+            if(currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Negotiations[catID, bmRetailerID , brandCount, variantCount].vnd_VariantName <> '') AND (currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Negotiations[catID, bmRetailerID , brandCount, variantCount].vnd_ParentBrandName <> '') then
+            begin
+              joBonusDetails.A['bonus_TargetVolume'].Add( variantInfoSchema(bonus_TargetVolume, catID, brandCount, variantCount, bmRetailerID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Negotiations[catID, bmRetailerID , brandCount, variantCount]) );
+              joBonusDetails.A['bonus_Rate'].Add( variantInfoSchema(bonus_Rate, catID, brandCount, variantCount, bmRetailerID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Negotiations[catID, bmRetailerID , brandCount, variantCount]) );
+              joBonusDetails.A['bonus_Value'].Add( variantInfoSchema(bonus_Value, catID, brandCount, variantCount, bmRetailerID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Negotiations[catID, bmRetailerID , brandCount, variantCount]) );
+
+              joDiscountDetails.A['discount_MinimumVolume'].Add(variantInfoSchema(discount_MinimumVolume, catID, brandCount, variantCount, bmRetailerID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Negotiations[catID, bmRetailerID , brandCount, variantCount]) );
+              joDiscountDetails.A['discount_Rate'].Add(variantInfoSchema(discount_Rate, catID, brandCount, variantCount, bmRetailerID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Negotiations[catID, bmRetailerID , brandCount, variantCount]) );
+
+              joDiscountDetails.A['vnd_PaymentTerms'].Add(variantInfoSchema(vnd_PaymentTerms, catID, brandCount, variantCount, bmRetailerID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Negotiations[catID, bmRetailerID , brandCount, variantCount]) );
+              joDiscountDetails.A['vnd_OtherCompensation'].Add(variantInfoSchema(vnd_OtherCompensation, catID, brandCount, variantCount, bmRetailerID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Negotiations[catID, bmRetailerID , brandCount, variantCount]) );
+              joDiscountDetails.A['vnd_ContractHonoured'].Add(variantInfoSchema(vnd_ContractHonoured, catID, brandCount, variantCount, bmRetailerID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Negotiations[catID, bmRetailerID , brandCount, variantCount]) );
+            end;            
+          end;
+        end;      
+      end;          
+    end;
+    
+
+    oJsonFile.O['vnd_TargetBonus'] := joBonusDetails;
+    oJsonFile.O['vnd_QuantityDiscount'] := joDiscountDetails;
 
     //for debug used
     s_str := 'out' + '.json';
@@ -86,9 +123,10 @@ begin
           sValue := getVariable('QUERY_STRING');
           Explode(sValue, sListData);
           LoadConfigIni(DataDirectory, getSeminar(sListData));
-          // initialize globals
+          //initialise GET request parameters
           currentSeminar := getSeminar(sListData);
           currentPeriod := getPeriod(sListData);
+          currentProducer := getProducerID(sListData);
           {** Read results file **}
           vReadRes := ReadResults(currentPeriod, currentSeminar, DataDirectory,currentResult); // read Results file
 
@@ -109,4 +147,3 @@ begin
       sListData.Free;
     end;
 end.
-

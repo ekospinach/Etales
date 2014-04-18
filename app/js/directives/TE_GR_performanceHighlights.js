@@ -8,8 +8,7 @@ define(['directives', 'services'], function(directives){
             },
             restrict : 'E',
             templateUrl : '../../partials/singleReportTemplate/GR_PerformanceHighlights.html',            
-            link : function(scope, element, attrs){                   
-                                             
+            link : function(scope, element, attrs){                                                                
                 var initializePage = function(){
                     console.log('initializePage some small...');                    
                     scope.isPageLoading = true;
