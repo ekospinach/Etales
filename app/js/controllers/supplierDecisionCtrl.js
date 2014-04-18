@@ -14,15 +14,20 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    })
 
 		    var switching=function(type){
-		    	$scope.ProductPortfolioManagement=false;
+		    	$scope.ProductPortfolioManagement=$scope.BMListPrices=false;
 		    	switch(type){
 		    		case 'showProductPortfolioManagement':$scope.ProductPortfolioManagement=true;break;
+		    		case 'showBMListPrices':$scope.BMListPrices=true;break;
 		    	}
 		    }
 
 	    	var showProductPortfolioManagement=function(){
 	    		switching('showProductPortfolioManagement');
 	    		console.log('hi');
+	    	}
+
+	    	scope.showBMListPrices=function(){
+	    		switching('showBMListPrices');
 	    	}
 
 	    	$scope.switching=switching;

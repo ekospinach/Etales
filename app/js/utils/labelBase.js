@@ -796,6 +796,8 @@ var getLabelBase = function(){
 		{id:'Product Portfolio Management Info',  ENG:'<p>This decision form allows supplier to manage their product portfolio. More specifically, supplier can decide to discontinue specific SKUs, add new brands/variants, add new variants under existing brands and modify the specifications of variants in supplier’s Elecssories portfolio. The product portfolio from the last period appears by default.</p>',  CHN:'',  RUS:''},
 		{id:'Product Portfolio Management',  ENG:'Product Portfolio Management',  CHN:'产品组合管理',  RUS:''},
 		{id:'B&M List Prices',  ENG:'B&M List Prices',  CHN:'价格列表',  RUS:''},
+		{id:'B&M List Prices Pop Info',  ENG:'B&M List Prices Info',  CHN:'B&M List Prices介绍',  RUS:''},
+		{id:'B&M List Prices Info',  ENG:'This decision form allows supplier to decide the B&M List prices for the SKUs in supplier’s Elecssories portfolio. The list prices from previous period are shown by default and the supplier can change it. All the changes are highlighted in red. If the decisions are not validated within the deadline, those from the previous period are entered with the old list prices adjusted for inflation.',  CHN:'介绍',  RUS:''},
 		{id:'Negotiation Agreements',  ENG:'Negotiation Agreements',  CHN:'谈判协议',  RUS:''},
 		{id:'Production Volumes',  ENG:'Production Volumes',  CHN:'产量',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},

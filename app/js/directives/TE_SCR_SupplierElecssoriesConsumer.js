@@ -22,56 +22,47 @@ define(['directives', 'services'], function(directives){
                     scope.urban1s=new Array();
                     scope.rural2s=new Array();
                     scope.urban2s=new Array();
-                    var varName,brandName,priceShare,priceChange,moneyShare,moneyChange,fashionShare,fashionChange,freaksShare,freaksChange;
+                    var varName,brandName,marketID,priceShare,priceChange,moneyShare,moneyChange,fashionShare,fashionChange,freaksShare,freaksChange;
                     for(var i=0;i<data.data[0].absoluteValue.length;i++){
                         if(data.data[0].absoluteValue[i].parentCategoryID==category){
                             varName=data.data[0].absoluteValue[i].variantName;
                             brandName=data.data[0].absoluteValue[i].parentBrandName;
-                            priceShare=data.data[0].absoluteValue[i].marketInfo[0].segmentInfo[0].shopperInfo[3].value;
-                            moneyShare=data.data[0].absoluteValue[i].marketInfo[0].segmentInfo[1].shopperInfo[3].value;
-                            fashionShare=data.data[0].absoluteValue[i].marketInfo[0].segmentInfo[2].shopperInfo[3].value;
-                            freaksShare=data.data[0].absoluteValue[i].marketInfo[0].segmentInfo[3].shopperInfo[3].value;
-                            var Changes=_.find(data.data[0].valueChange,function(obj){
-                                return(obj.variantName==varName&&obj.parentBrandName==brandName);
+                            priceValueShare=data.data[0].absoluteValue[i].segmentInfo[0].shopperInfo[3].value;
+                            moneyValueShare=data.data[0].absoluteValue[i].segmentInfo[1].shopperInfo[3].value;
+                            fashionValueShare=data.data[0].absoluteValue[i].segmentInfo[2].shopperInfo[3].value;
+                            freaksValueShare=data.data[0].absoluteValue[i].segmentInfo[3].shopperInfo[3].value;
+                            marketID=data.data[0].absoluteValue[i].marketID;
+                            var ValueChanges=_.find(data.data[0].valueChange,function(obj){
+                                return(obj.variantName==varName&&obj.parentBrandName==brandName&&obj.marketID==marketID);
                             });
-                            priceChange=Changes.marketInfo[0].segmentInfo[0].shopperInfo[3].value;
-                            moneyChange=Changes.marketInfo[0].segmentInfo[1].shopperInfo[3].value;
-                            fashionChange=Changes.marketInfo[0].segmentInfo[2].shopperInfo[3].value;
-                            freaksChange=Changes.marketInfo[0].segmentInfo[3].shopperInfo[3].value;
-                            scope.urban1s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
-                            priceShare=data.data[0].absoluteValue[i].marketInfo[1].segmentInfo[0].shopperInfo[3].value;
-                            moneyShare=data.data[0].absoluteValue[i].marketInfo[1].segmentInfo[1].shopperInfo[3].value;
-                            fashionShare=data.data[0].absoluteValue[i].marketInfo[1].segmentInfo[2].shopperInfo[3].value;
-                            freaksShare=data.data[0].absoluteValue[i].marketInfo[1].segmentInfo[3].shopperInfo[3].value;
-                            priceChange=Changes.marketInfo[1].segmentInfo[0].shopperInfo[3].value;
-                            moneyChange=Changes.marketInfo[1].segmentInfo[1].shopperInfo[3].value;
-                            fashionChange=Changes.marketInfo[1].segmentInfo[2].shopperInfo[3].value;
-                            freaksChange=Changes.marketInfo[1].segmentInfo[3].shopperInfo[3].value;
-                            scope.rural1s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
+                            priceValueChange=ValueChanges.segmentInfo[0].shopperInfo[3].value;
+                            moneyValueChange=ValueChanges.segmentInfo[1].shopperInfo[3].value;
+                            fashionValueChange=ValueChanges.segmentInfo[2].shopperInfo[3].value;
+                            freaksValueChange=ValueChanges.segmentInfo[3].shopperInfo[3].value;
                             var Volumes=_.find(data.data[0].absoluteVolume,function(obj){
-                                return(obj.variantName==varName&&obj.parentBrandName==brandName);
+                                return(obj.variantName==varName&&obj.parentBrandName==brandName&&obj.marketID==marketID);
                             });
-                            var Changes=_.find(data.data[0].volumeChange,function(obj){
-                                return(obj.variantName==varName&&obj.parentBrandName==brandName);
+                            var VolumesChanges=_.find(data.data[0].volumeChange,function(obj){
+                                return(obj.variantName==varName&&obj.parentBrandName==brandName&&obj.marketID==marketID);
                             });
-                            priceShare=Volumes.marketInfo[0].segmentInfo[0].shopperInfo[3].value;
-                            moneyShare=Volumes.marketInfo[0].segmentInfo[1].shopperInfo[3].value;
-                            fashionShare=Volumes.marketInfo[0].segmentInfo[2].shopperInfo[3].value;
-                            freaksShare=Volumes.marketInfo[0].segmentInfo[3].shopperInfo[3].value;
-                            priceChange=Changes.marketInfo[0].segmentInfo[0].shopperInfo[3].value;
-                            moneyChange=Changes.marketInfo[0].segmentInfo[1].shopperInfo[3].value;
-                            fashionChange=Changes.marketInfo[0].segmentInfo[2].shopperInfo[3].value;
-                            freaksChange=Changes.marketInfo[0].segmentInfo[3].shopperInfo[3].value;
-                            scope.urban2s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
-                            priceShare=Volumes.marketInfo[1].segmentInfo[0].shopperInfo[3].value;
-                            moneyShare=Volumes.marketInfo[1].segmentInfo[1].shopperInfo[3].value;
-                            fashionShare=Volumes.marketInfo[1].segmentInfo[2].shopperInfo[3].value;
-                            freaksShare=Volumes.marketInfo[1].segmentInfo[3].shopperInfo[3].value;
-                            priceChange=Changes.marketInfo[1].segmentInfo[0].shopperInfo[3].value;
-                            moneyChange=Changes.marketInfo[1].segmentInfo[1].shopperInfo[3].value;
-                            fashionChange=Changes.marketInfo[1].segmentInfo[2].shopperInfo[3].value;
-                            freaksChange=Changes.marketInfo[1].segmentInfo[3].shopperInfo[3].value;
-                            scope.rural2s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
+                            priceVolumeShare=Volumes.segmentInfo[0].shopperInfo[3].value;
+                            moneyVolumeShare=Volumes.segmentInfo[1].shopperInfo[3].value;
+                            fashionVolumeShare=Volumes.segmentInfo[2].shopperInfo[3].value;
+                            freaksVolumeShare=Volumes.segmentInfo[3].shopperInfo[3].value;
+                            priceVolumeChange=VolumesChanges.segmentInfo[0].shopperInfo[3].value;
+                            moneyVolumeChange=VolumesChanges.segmentInfo[1].shopperInfo[3].value;
+                            fashionVolumeChange=VolumesChanges.segmentInfo[2].shopperInfo[3].value;
+                            freaksVolumeChange=VolumesChanges.segmentInfo[3].shopperInfo[3].value;
+                            switch(marketID){
+                                case 1:
+                                    scope.urban1s.push({'fullName':brandName+varName,'priceVolumeShare':priceVolumeShare,'priceVolumeChange':priceVolumeChange,'moneyVolumeShare':moneyVolumeShare,'moneyVolumeChange':moneyVolumeChange,'fashionVolumeShare':fashionVolumeShare,'fashionVolumeChange':fashionVolumeChange,'freaksVolumeShare':freaksVolumeShare,'freaksVolumeChange':freaksVolumeChange});
+                                    scope.urban2s.push({'fullName':brandName+varName,'priceValueShare':priceValueShare,'priceValueChange':priceValueChange,'moneyValueShare':moneyValueShare,'moneyValueChange':moneyValueChange,'fashionValueShare':fashionValueShare,'fashionValueChange':fashionValueChange,'freaksValueShare':freaksValueShare,'freaksValueChange':freaksValueChange});
+                                break;
+                                case 2:
+                                    scope.rural1s.push({'fullName':brandName+varName,'priceVolumeShare':priceVolumeShare,'priceVolumeChange':priceVolumeChange,'moneyVolumeShare':moneyVolumeShare,'moneyVolumeChange':moneyVolumeChange,'fashionVolumeShare':fashionVolumeShare,'fashionVolumeChange':fashionVolumeChange,'freaksVolumeShare':freaksVolumeShare,'freaksVolumeChange':freaksVolumeChange});
+                                    scope.rural2s.push({'fullName':brandName+varName,'priceValueShare':priceValueShare,'priceValueChange':priceValueChange,'moneyValueShare':moneyValueShare,'moneyValueChange':moneyValueChange,'fashionValueShare':fashionValueShare,'fashionValueChange':fashionValueChange,'freaksValueShare':freaksValueShare,'freaksValueChange':freaksValueChange});
+                                break;
+                            }
                         }
                     }
                 }

@@ -1,0 +1,106 @@
+<div class='panel panel-primary my-success-panel' ng-show='isResultShown'>
+	<div class="panel-heading">
+        <h3 class="panel-title text-center" popover="{{Label.getContent('B&M List Prices Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
+            {{Label.getContent('B&M List Prices')}}
+        </h3>
+    </div>
+    <table class="table table-condensed table-bordered table-success">
+    	<thead>
+    		<tr>
+    			<th colspan="2"></th>
+    			<th>
+    				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Pack Format Info')}}" popover-title="{{Label.getContent('Pack Format')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Pack Format')}}<span style="color:red">*</span></p>
+    			</th>
+    			<th>
+    				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Technology Level Info')}}" popover-title="{{Label.getContent('Technology Level')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Technology Level')}}<span style="color:red">*</span></p>
+    			</th>
+    			<th>
+    				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Design Level Info')}}" popover-title="{{Label.getContent('Design Level')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Design Level')}}<span style="color:red">*</span></p>
+    			</th>
+    			<th>
+    				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Quality-of-Raw-Materials Info')}}" popover-title="{{Label.getContent('Quality-of-Raw-Materials')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Quality-of-Raw-Materials')}}<span style="color:red">*</span></p>
+    			</th>
+    			<th>
+    				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('B&M List Prices Pop Info')}}" popover-title="{{Label.getContent('B&M List Prices')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('B&M List Prices')}}<span style="color:red">*</span></p>
+    			</th>
+    		</tr>
+    		<tr class="success">
+    			<td colspan="7">
+    				<p>{{Label.getContent('Brand')}}</p>
+    			</td>
+    		</tr>
+    	</thead>
+    	<tbody>
+    		<tr class="success" ng-repeat='producte in productes'>
+    			<td>
+    				<p class="padding-20">{{producte.parentBrandName}}</p>
+    			</td>
+    			<td>
+    				<p class="text-center">{{producte.parentBrandName}}{{producte.varName}}</p>
+    			</td>
+    			<td>
+    				<p class="text-right">{{selectPacks('Elecssories',producte.parentBrandName,producte.varName)}}</p>
+    			</td>
+    			<td>
+    				<p class="text-right">{{ producte.composition[1] || 0 }}</p>
+    			</td>
+    			<td>
+    				<p class="text-right">{{ producte.composition[0] || 0 }}</p>
+    			</td>
+    			<td>
+    				<p class="text-right">{{ producte.composition[2] || 0 }}</p>
+    			</td>
+    			<td>
+    				<a href="#" editable-text="producte.nextPriceBM" onbeforesave="checkCurrentBM(category,producte.parentBrandName,producte.varName,'nextPriceBM','0',$index,$data)" onaftersave="updateProducerDecision(category,producte.parentBrandName,producte.varName,'nextPriceBM','0',$index)" ng-show="producte.dateOfBirth==currentPeriod)">
+    					<p class="text-right">{{ producte.nextPriceBM || 0 }}</p>
+    				</a>
+    				<p ng-show='producte.dateOfBirth!=currentPeriod' class="text-right">{{ producte.nextPriceBM }}</p>
+    			</td>
+    		</tr>
+    		<tr>
+    			<th colspan="2"></th>
+    			<th>
+    				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Pack Format Info')}}" popover-title="{{Label.getContent('Pack Format')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Pack Format')}}<span style="color:red">*</span></p>
+    			</th>
+    			<th>
+    				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Technology Level Info')}}" popover-title="{{Label.getContent('Technology Level')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Technology Level')}}<span style="color:red">*</span></p>
+    			</th>
+    			<th>
+    				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Active agent Info')}}" popover-title="{{Label.getContent('Active agent')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Active agent')}}<span style="color:red">*</span></p>
+    			</th>
+    			<th>
+    				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Smoothener Level Info')}}" popover-title="{{Label.getContent('Smoothener Level')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Smoothener Level')}}<span style="color:red">*</span></p>
+    			</th>
+    			<th>
+    				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('B&M List Prices Pop Info')}}" popover-title="{{Label.getContent('B&M List Prices')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('B&M List Prices')}}<span style="color:red">*</span></p>
+    			</th>
+    		</tr>
+    		<tr>
+    			<td>
+    				<p class="padding-20">{{producth.parentBrandName}}</p>
+    			</td>
+    			<td>
+    				<p class="text-center">{{producth.parentBrandName}}{{producth.varName}}</p>
+    			</td>
+    			<td>
+    				<p class="text-right">{{selectPacks('Elecssories',producth.parentBrandName,producth.varName)}}</p>
+    			</td>
+    			<td>
+    				<p class="text-right">{{ producth.composition[1] || 0 }}</p>
+    			</td>
+    			<td>
+    				<p class="text-right">{{ producth.composition[0] || 0 }}</p>
+    			</td>
+    			<td>
+    				<p class="text-right">{{ producth.composition[2] || 0 }}</p>
+    			</td>
+    			<td>
+    				<a href="#" editable-text="producth.nextPriceBM" onbeforesave="checkCurrentBM(category,producth.parentBrandName,producth.varName,'nextPriceBM','0',$index,$data)" onaftersave="updateProducerDecision(category,producth.parentBrandName,producth.varName,'nextPriceBM','0',$index)" ng-show="producth.dateOfBirth==currentPeriod)">
+    					<p class="text-right">{{ producth.nextPriceBM || 0 }}</p>
+    				</a>
+    				<p ng-show='producth.dateOfBirth!=currentPeriod' class="text-right">{{ producth.nextPriceBM }}</p>
+    			</td>
+    		</tr>
+    	</tbody>
+    </table>
+</div>
