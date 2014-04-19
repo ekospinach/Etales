@@ -20,81 +20,61 @@ define(['directives', 'services'], function(directives){
 
                 var loadRetailerShooper=function(data,category,market){
                     for(var i=0;i<data.data[0].absoluteValue.length;i++){
-                        if(data.data[0].absoluteValue[i].parentCategoryID==category){
-                            for(var j=0;j<data.data[0].absoluteValue[i].marketInfo.length;j++){
-                                if(data.data[0].absoluteValue[i].marketInfo[j].marketID==market){
-                                    var varName=data.data[0].absoluteValue[i].variantName;
-                                    var brandName=data.data[0].absoluteValue[i].parentBrandName;
-                                    var bmShare=data.data[0].absoluteValue[i].marketInfo[j].segmentInfo[4].shopperInfo[0].value;
-                                    var onlineShare=data.data[0].absoluteValue[i].marketInfo[j].segmentInfo[4].shopperInfo[1].value;
-                                    var mixedShare=data.data[0].absoluteValue[i].marketInfo[j].segmentInfo[4].shopperInfo[2].value;
-                                    var Changes=_.find(data.data[0].valueChange,function(obj){
-                                        return(obj.variantName==varName&&obj.parentBrandName==brandName);
-                                    });
-                                    var bmChange=Changes.marketInfo[j].segmentInfo[4].shopperInfo[0].value;
-                                    var onlineChange=Changes.marketInfo[j].segmentInfo[4].shopperInfo[1].value;
-                                    var mixedChange=Changes.marketInfo[j].segmentInfo[4].shopperInfo[2].value;
-                                    switch(data.data[0].absoluteValue[i].parentCompanyID){
-                                        case 1:if(category==1){
-                                            scope.eleValue1s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
-                                        }else{
-                                            scope.heaValue1s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
-                                        }break;
-                                        case 2:if(category==1){
-                                            scope.eleValue2s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
-                                        }else{
-                                            scope.heaValue2s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
-                                        }break;
-                                        case 3:if(category==1){
-                                            scope.eleValue3s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
-                                        }else{
-                                            scope.heaValue3s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
-                                        }break;
-                                        case 4:break;
-                                        case 5:
-                                        case 6:if(category==1){
-                                            scope.eleValue4s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
-                                        }else{
-                                            scope.heaValue4s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
-                                        }break;
-                                    }
-                                    var Volumes=_.find(data.data[0].absoluteVolume,function(obj){
-                                        return(obj.variantName==varName&&obj.parentBrandName==brandName);
-                                    });
-                                    var Changes=_.find(data.data[0].volumeChange,function(obj){
-                                        return(obj.variantName==varName&&obj.parentBrandName==brandName);
-                                    });
-                                    var bmShare=Volumes.marketInfo[j].segmentInfo[4].shopperInfo[0].value;
-                                    var onlineShare=Volumes.marketInfo[j].segmentInfo[4].shopperInfo[1].value;
-                                    var mixedShare=Volumes.marketInfo[j].segmentInfo[4].shopperInfo[2].value;
-                                    var bmChange=Changes.marketInfo[j].segmentInfo[4].shopperInfo[0].value;
-                                    var onlineChange=Changes.marketInfo[j].segmentInfo[4].shopperInfo[1].value;
-                                    var mixedChange=Changes.marketInfo[j].segmentInfo[4].shopperInfo[2].value;
-                                    switch(data.data[0].absoluteValue[i].parentCompanyID){
-                                        case 1:if(category==1){
-                                            scope.eleVolume1s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
-                                        }else{
-                                            scope.heaVolume1s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
-                                        }break;
-                                        case 2:if(category==1){
-                                            scope.eleVolume2s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
-                                        }else{
-                                            scope.heaVolume2s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
-                                        }break;
-                                        case 3:if(category==1){
-                                            scope.eleVolume3s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
-                                        }else{
-                                            scope.heaVolume3s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
-                                        }break;
-                                        case 4:break;
-                                        case 5:
-                                        case 6:if(category==1){
-                                            scope.eleVolume4s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
-                                        }else{
-                                            scope.heaVolume4s.push({'fullName':brandName+varName,'bmShare':bmShare,'bmChange':bmChange,'onlineShare':onlineShare,'onlineChange':onlineChange,'mixedShare':mixedShare,'mixedChange':mixedChange});
-                                        }break;
-                                    }
-                                }
+                        if(data.data[0].absoluteValue[i].parentCategoryID==category&&data.data[0].absoluteValue[i].marketID==market){
+                            var varName=data.data[0].absoluteValue[i].variantName;
+                            var brandName=data.data[0].absoluteValue[i].parentBrandName;
+                            var bmValueShare=data.data[0].absoluteValue[i].segmentInfo[4].shopperInfo[0].value;
+                            var onlineValueShare=data.data[0].absoluteValue[i].segmentInfo[4].shopperInfo[1].value;
+                            var mixedValueShare=data.data[0].absoluteValue[i].segmentInfo[4].shopperInfo[2].value;
+                            var valueChanges=_.find(data.data[0].valueChange,function(obj){
+                                return(obj.variantName==varName&&obj.parentBrandName==brandName&&obj.marketID==market);
+                            });
+                            var bmValueChange=valueChanges.segmentInfo[4].shopperInfo[0].value;
+                            var onlineValueChange=valueChanges.segmentInfo[4].shopperInfo[1].value;
+                            var mixedValueChange=valueChanges.segmentInfo[4].shopperInfo[2].value;
+                            var Volumes=_.find(data.data[0].absoluteVolume,function(obj){
+                                return(obj.variantName==varName&&obj.parentBrandName==brandName);
+                            });
+                            var volumeChanges=_.find(data.data[0].volumeChange,function(obj){
+                                return(obj.variantName==varName&&obj.parentBrandName==brandName);
+                            });
+                            var bmVolumeShare=Volumes.segmentInfo[4].shopperInfo[0].value;
+                            var onlineVolumeShare=Volumes.segmentInfo[4].shopperInfo[1].value;
+                            var mixedVolumeShare=Volumes.segmentInfo[4].shopperInfo[2].value;
+                            var bmVolumeChange=volumeChanges.segmentInfo[4].shopperInfo[0].value;
+                            var onlineVolumeChange=volumeChanges.segmentInfo[4].shopperInfo[1].value;
+                            var mixedVolumeChange=volumeChanges.segmentInfo[4].shopperInfo[2].value;
+                            switch(data.data[0].absoluteValue[i].parentCompanyID){
+                                case 1:if(category==1){
+                                    scope.eleValue1s.push({'fullName':brandName+varName,'bmValueShare':bmValueShare,'bmValueChange':bmValueChange,'onlineValueShare':onlineValueShare,'onlineValueChange':onlineValueChange,'mixedValueShare':mixedValueShare,'mixedValueChange':mixedValueChange});
+                                    scope.eleVolume1s.push({'fullName':brandName+varName,'bmVolumeShare':bmVolumeShare,'bmVolumeChange':bmVolumeChange,'onlineVolumeShare':onlineVolumeShare,'onlineVolumeChange':onlineVolumeChange,'mixedVolumeShare':mixedVolumeShare,'mixedVolumeChange':mixedVolumeChange});
+                                }else{
+                                    scope.heaValue1s.push({'fullName':brandName+varName,'bmValueShare':bmValueShare,'bmValueChange':bmValueChange,'onlineValueShare':onlineValueShare,'onlineValueChange':onlineValueChange,'mixedValueShare':mixedValueShare,'mixedValueChange':mixedValueChange});
+                                    scope.heaVolume1s.push({'fullName':brandName+varName,'bmVolumeShare':bmVolumeShare,'bmVolumeChange':bmVolumeChange,'onlineVolumeShare':onlineVolumeShare,'onlineVolumeChange':onlineVolumeChange,'mixedVolumeShare':mixedVolumeShare,'mixedVolumeChange':mixedVolumeChange});
+                                }break;
+                                case 2:if(category==1){
+                                    scope.eleValue2s.push({'fullName':brandName+varName,'bmValueShare':bmValueShare,'bmValueChange':bmValueChange,'onlineValueShare':onlineValueShare,'onlineValueChange':onlineValueChange,'mixedValueShare':mixedValueShare,'mixedValueChange':mixedValueChange});
+                                    scope.eleVolume2s.push({'fullName':brandName+varName,'bmVolumeShare':bmVolumeShare,'bmVolumeChange':bmVolumeChange,'onlineVolumeShare':onlineVolumeShare,'onlineVolumeChange':onlineVolumeChange,'mixedVolumeShare':mixedVolumeShare,'mixedVolumeChange':mixedVolumeChange});
+                                }else{
+                                    scope.heaValue2s.push({'fullName':brandName+varName,'bmValueShare':bmValueShare,'bmValueChange':bmValueChange,'onlineValueShare':onlineValueShare,'onlineValueChange':onlineValueChange,'mixedValueShare':mixedValueShare,'mixedValueChange':mixedValueChange});
+                                    scope.heaVolume2s.push({'fullName':brandName+varName,'bmVolumeShare':bmVolumeShare,'bmVolumeChange':bmVolumeChange,'onlineVolumeShare':onlineVolumeShare,'onlineVolumeChange':onlineVolumeChange,'mixedVolumeShare':mixedVolumeShare,'mixedVolumeChange':mixedVolumeChange});
+                                }break;
+                                case 3:if(category==1){
+                                    scope.eleValue3s.push({'fullName':brandName+varName,'bmValueShare':bmValueShare,'bmValueChange':bmValueChange,'onlineValueShare':onlineValueShare,'onlineValueChange':onlineValueChange,'mixedValueShare':mixedValueShare,'mixedValueChange':mixedValueChange});
+                                    scope.eleVolume3s.push({'fullName':brandName+varName,'bmVolumeShare':bmVolumeShare,'bmVolumeChange':bmVolumeChange,'onlineVolumeShare':onlineVolumeShare,'onlineVolumeChange':onlineVolumeChange,'mixedVolumeShare':mixedVolumeShare,'mixedVolumeChange':mixedVolumeChange});
+                                }else{
+                                    scope.heaValue3s.push({'fullName':brandName+varName,'bmValueShare':bmValueShare,'bmValueChange':bmValueChange,'onlineValueShare':onlineValueShare,'onlineValueChange':onlineValueChange,'mixedValueShare':mixedValueShare,'mixedValueChange':mixedValueChange});
+                                    scope.heaVolume3s.push({'fullName':brandName+varName,'bmVolumeShare':bmVolumeShare,'bmVolumeChange':bmVolumeChange,'onlineVolumeShare':onlineVolumeShare,'onlineVolumeChange':onlineVolumeChange,'mixedVolumeShare':mixedVolumeShare,'mixedVolumeChange':mixedVolumeChange});
+                                }break;
+                                case 4:break;
+                                case 5:
+                                case 6:if(category==1){
+                                    scope.eleValue4s.push({'fullName':brandName+varName,'bmValueShare':bmValueShare,'bmValueChange':bmValueChange,'onlineValueShare':onlineValueShare,'onlineValueChange':onlineValueChange,'mixedValueShare':mixedValueShare,'mixedValueChange':mixedValueChange});
+                                    scope.eleVolume4s.push({'fullName':brandName+varName,'bmVolumeShare':bmVolumeShare,'bmVolumeChange':bmVolumeChange,'onlineVolumeShare':onlineVolumeShare,'onlineVolumeChange':onlineVolumeChange,'mixedVolumeShare':mixedVolumeShare,'mixedVolumeChange':mixedVolumeChange});
+                                }else{
+                                    scope.heaValue4s.push({'fullName':brandName+varName,'bmValueShare':bmValueShare,'bmValueChange':bmValueChange,'onlineValueShare':onlineValueShare,'onlineValueChange':onlineValueChange,'mixedValueShare':mixedValueShare,'mixedValueChange':mixedValueChange});
+                                    scope.heaVolume4s.push({'fullName':brandName+varName,'bmVolumeShare':bmVolumeShare,'bmVolumeChange':bmVolumeChange,'onlineVolumeShare':onlineVolumeShare,'onlineVolumeChange':onlineVolumeChange,'mixedVolumeShare':mixedVolumeShare,'mixedVolumeChange':mixedVolumeChange});
+                                }break;
                             }
                         }
                     }

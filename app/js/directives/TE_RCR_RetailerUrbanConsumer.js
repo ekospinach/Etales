@@ -20,85 +20,66 @@ define(['directives', 'services'], function(directives){
 
                 var loadRetailerConsumer=function(data,category,market){
                     for(var i=0;i<data.data[0].absoluteValue.length;i++){
-                        if(data.data[0].absoluteValue[i].parentCategoryID==category){
-                            for(var j=0;j<data.data[0].absoluteValue[i].marketInfo.length;j++){
-                                if(data.data[0].absoluteValue[i].marketInfo[j].marketID==market){
-                                    var varName=data.data[0].absoluteValue[i].variantName;
-                                    var brandName=data.data[0].absoluteValue[i].parentBrandName;
-                                    var priceShare=data.data[0].absoluteValue[i].marketInfo[j].segmentInfo[0].shopperInfo[3].value;
-                                    var moneyShare=data.data[0].absoluteValue[i].marketInfo[j].segmentInfo[1].shopperInfo[3].value;
-                                    var fashionShare=data.data[0].absoluteValue[i].marketInfo[j].segmentInfo[2].shopperInfo[3].value;
-                                    var freaksShare=data.data[0].absoluteValue[i].marketInfo[j].segmentInfo[3].shopperInfo[3].value;
-                                    var Changes=_.find(data.data[0].valueChange,function(obj){
-                                        return(obj.variantName==varName&&obj.parentBrandName==brandName);
-                                    });
-                                    var priceChange=Changes.marketInfo[j].segmentInfo[0].shopperInfo[3].value;
-                                    var moneyChange=Changes.marketInfo[j].segmentInfo[1].shopperInfo[3].value;
-                                    var fashionChange=Changes.marketInfo[j].segmentInfo[2].shopperInfo[3].value;
-                                    var freaksChange=Changes.marketInfo[j].segmentInfo[3].shopperInfo[3].value;
-                                    switch(data.data[0].absoluteValue[i].parentCompanyID){
-                                        case 1:if(category==1){
-                                            scope.eleValue1s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
-                                        }else{
-                                            scope.heaValue1s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
-                                        }break;
-                                        case 2:if(category==1){
-                                            scope.eleValue2s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
-                                        }else{
-                                            scope.heaValue2s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
-                                        }break;
-                                        case 3:if(category==1){
-                                            scope.eleValue3s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
-                                        }else{
-                                            scope.heaValue3s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
-                                        }break;
-                                        case 4:break;
-                                        case 5:
-                                        case 6:if(category==1){
-                                            scope.eleValue4s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
-                                        }else{
-                                            scope.heaValue4s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
-                                        }break;
-                                    }
-                                    var Volumes=_.find(data.data[0].absoluteVolume,function(obj){
-                                        return(obj.variantName==varName&&obj.parentBrandName==brandName);
-                                    });
-                                    var Changes=_.find(data.data[0].volumeChange,function(obj){
-                                        return(obj.variantName==varName&&obj.parentBrandName==brandName);
-                                    });
-                                    priceShare=Volumes.marketInfo[j].segmentInfo[0].shopperInfo[3].value;
-                                    moneyShare=Volumes.marketInfo[j].segmentInfo[1].shopperInfo[3].value;
-                                    fashionShare=Volumes.marketInfo[j].segmentInfo[2].shopperInfo[3].value;
-                                    freaksShare=Volumes.marketInfo[j].segmentInfo[3].shopperInfo[3].value;
-                                    priceChange=Changes.marketInfo[j].segmentInfo[0].shopperInfo[3].value;
-                                    moneyChange=Changes.marketInfo[j].segmentInfo[1].shopperInfo[3].value;
-                                    fashionChange=Changes.marketInfo[j].segmentInfo[2].shopperInfo[3].value;
-                                    freaksChange=Changes.marketInfo[j].segmentInfo[3].shopperInfo[3].value;
-                                    switch(data.data[0].absoluteValue[i].parentCompanyID){
-                                        case 1:if(category==1){
-                                            scope.eleVolume1s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
-                                        }else{
-                                            scope.heaVolume1s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
-                                        }break;
-                                        case 2:if(category==1){
-                                            scope.eleVolume2s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
-                                        }else{
-                                            scope.heaVolume2s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
-                                        }break;
-                                        case 3:if(category==1){
-                                            scope.eleVolume3s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
-                                        }else{
-                                            scope.heaVolume3s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
-                                        }break;
-                                        case 4:break;
-                                        case 5:
-                                        case 6:if(category==1){
-                                            scope.eleVolume4s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
-                                        }else{
-                                            scope.heaVolume4s.push({'fullName':brandName+varName,'priceShare':priceShare,'priceChange':priceChange,'moneyShare':moneyShare,'moneyChange':moneyChange,'fashionShare':fashionShare,'fashionChange':fashionChange,'freaksShare':freaksShare,'freaksChange':freaksChange});
-                                        }break;
-                                    }
-                                }
+                        if(data.data[0].absoluteValue[i].parentCategoryID==category&&data.data[0].absoluteValue[i].marketID==market){
+                            var varName=data.data[0].absoluteValue[i].variantName;
+                            var brandName=data.data[0].absoluteValue[i].parentBrandName;
+                            var priceValueShare=data.data[0].absoluteValue[i].segmentInfo[0].shopperInfo[3].value;
+                            var moneyValueShare=data.data[0].absoluteValue[i].segmentInfo[1].shopperInfo[3].value;
+                            var fashionValueShare=data.data[0].absoluteValue[i].segmentInfo[2].shopperInfo[3].value;
+                            var freaksValueShare=data.data[0].absoluteValue[i].segmentInfo[3].shopperInfo[3].value;
+                            var valueChanges=_.find(data.data[0].valueChange,function(obj){
+                                return(obj.variantName==varName&&obj.parentBrandName==brandName&&obj.marketID==market);
+                            });
+                            var priceValueChange=valueChanges.segmentInfo[0].shopperInfo[3].value;
+                            var moneyValueChange=valueChanges.segmentInfo[1].shopperInfo[3].value;
+                            var fashionValueChange=valueChanges.segmentInfo[2].shopperInfo[3].value;
+                            var freaksValueChange=valueChanges.segmentInfo[3].shopperInfo[3].value;
+                            var Volumes=_.find(data.data[0].absoluteVolume,function(obj){
+                                return(obj.variantName==varName&&obj.parentBrandName==brandName&&obj.marketID==market);
+                            });
+                            var volumeChanges=_.find(data.data[0].volumeChange,function(obj){
+                                return(obj.variantName==varName&&obj.parentBrandName==brandName&&obj.marketID==market);
+                            });
+                            priceVolumeShare=Volumes.segmentInfo[0].shopperInfo[3].value;
+                            moneyVolumeShare=Volumes.segmentInfo[1].shopperInfo[3].value;
+                            fashionVolumeShare=Volumes.segmentInfo[2].shopperInfo[3].value;
+                            freaksVolumeShare=Volumes.segmentInfo[3].shopperInfo[3].value;
+                            priceVolumeChange=volumeChanges.segmentInfo[0].shopperInfo[3].value;
+                            moneyVolumeChange=volumeChanges.segmentInfo[1].shopperInfo[3].value;
+                            fashionVolumeChange=volumeChanges.segmentInfo[2].shopperInfo[3].value;
+                            freaksVolumeChange=volumeChanges.segmentInfo[3].shopperInfo[3].value;
+
+                            switch(data.data[0].absoluteValue[i].parentCompanyID){
+                                case 1:if(category==1){
+                                    scope.eleValue1s.push({'fullName':brandName+varName,'priceValueShare':priceValueShare,'priceValueChange':priceValueChange,'moneyValueShare':moneyValueShare,'moneyValueChange':moneyValueChange,'fashionValueShare':fashionValueShare,'fashionValueChange':fashionValueChange,'freaksValueShare':freaksValueShare,'freaksValueChange':freaksValueChange});
+                                    scope.eleVolume1s.push({'fullName':brandName+varName,'priceVolumeShare':priceVolumeShare,'priceVolumeChange':priceVolumeChange,'moneyVolumeShare':moneyVolumeShare,'moneyVolumeChange':moneyVolumeChange,'fashionVolumeShare':fashionVolumeShare,'fashionVolumeChange':fashionVolumeChange,'freaksVolumeShare':freaksVolumeShare,'freaksVolumeChange':freaksVolumeChange});
+                                }else{
+                                    scope.heaValue1s.push({'fullName':brandName+varName,'priceValueShare':priceValueShare,'priceValueChange':priceValueChange,'moneyValueShare':moneyValueShare,'moneyValueChange':moneyValueChange,'fashionValueShare':fashionValueShare,'fashionValueChange':fashionValueChange,'freaksValueShare':freaksValueShare,'freaksValueChange':freaksValueChange});
+                                    scope.heaVolume1s.push({'fullName':brandName+varName,'priceVolumeShare':priceVolumeShare,'priceVolumeChange':priceVolumeChange,'moneyVolumeShare':moneyVolumeShare,'moneyVolumeChange':moneyVolumeChange,'fashionVolumeShare':fashionVolumeShare,'fashionVolumeChange':fashionVolumeChange,'freaksVolumeShare':freaksVolumeShare,'freaksVolumeChange':freaksVolumeChange});
+                                }break;
+                                case 2:if(category==1){
+                                    scope.eleValue2s.push({'fullName':brandName+varName,'priceValueShare':priceValueShare,'priceValueChange':priceValueChange,'moneyValueShare':moneyValueShare,'moneyValueChange':moneyValueChange,'fashionValueShare':fashionValueShare,'fashionValueChange':fashionValueChange,'freaksValueShare':freaksValueShare,'freaksValueChange':freaksValueChange});
+                                    scope.eleVolume2s.push({'fullName':brandName+varName,'priceVolumeShare':priceVolumeShare,'priceVolumeChange':priceVolumeChange,'moneyVolumeShare':moneyVolumeShare,'moneyVolumeChange':moneyVolumeChange,'fashionVolumeShare':fashionVolumeShare,'fashionVolumeChange':fashionVolumeChange,'freaksVolumeShare':freaksVolumeShare,'freaksVolumeChange':freaksVolumeChange});
+                                }else{
+                                    scope.heaValue2s.push({'fullName':brandName+varName,'priceValueShare':priceValueShare,'priceValueChange':priceValueChange,'moneyValueShare':moneyValueShare,'moneyValueChange':moneyValueChange,'fashionValueShare':fashionValueShare,'fashionValueChange':fashionValueChange,'freaksValueShare':freaksValueShare,'freaksValueChange':freaksValueChange});
+                                    scope.heaVolume2s.push({'fullName':brandName+varName,'priceVolumeShare':priceVolumeShare,'priceVolumeChange':priceVolumeChange,'moneyVolumeShare':moneyVolumeShare,'moneyVolumeChange':moneyVolumeChange,'fashionVolumeShare':fashionVolumeShare,'fashionVolumeChange':fashionVolumeChange,'freaksVolumeShare':freaksVolumeShare,'freaksVolumeChange':freaksVolumeChange});
+                                }break;
+                                case 3:if(category==1){
+                                    scope.eleValue3s.push({'fullName':brandName+varName,'priceValueShare':priceValueShare,'priceValueChange':priceValueChange,'moneyValueShare':moneyValueShare,'moneyValueChange':moneyValueChange,'fashionValueShare':fashionValueShare,'fashionValueChange':fashionValueChange,'freaksValueShare':freaksValueShare,'freaksValueChange':freaksValueChange});
+                                    scope.eleVolume3s.push({'fullName':brandName+varName,'priceVolumeShare':priceVolumeShare,'priceVolumeChange':priceVolumeChange,'moneyVolumeShare':moneyVolumeShare,'moneyVolumeChange':moneyVolumeChange,'fashionVolumeShare':fashionVolumeShare,'fashionVolumeChange':fashionVolumeChange,'freaksVolumeShare':freaksVolumeShare,'freaksVolumeChange':freaksVolumeChange});
+                                }else{
+                                    scope.heaValue3s.push({'fullName':brandName+varName,'priceValueShare':priceValueShare,'priceValueChange':priceValueChange,'moneyValueShare':moneyValueShare,'moneyValueChange':moneyValueChange,'fashionValueShare':fashionValueShare,'fashionValueChange':fashionValueChange,'freaksValueShare':freaksValueShare,'freaksValueChange':freaksValueChange});
+                                    scope.heaVolume3s.push({'fullName':brandName+varName,'priceVolumeShare':priceVolumeShare,'priceVolumeChange':priceVolumeChange,'moneyVolumeShare':moneyVolumeShare,'moneyVolumeChange':moneyVolumeChange,'fashionVolumeShare':fashionVolumeShare,'fashionVolumeChange':fashionVolumeChange,'freaksVolumeShare':freaksVolumeShare,'freaksVolumeChange':freaksVolumeChange});
+                                }break;
+                                case 4:break;
+                                case 5:
+                                case 6:if(category==1){
+                                    scope.eleValue4s.push({'fullName':brandName+varName,'priceValueShare':priceValueShare,'priceValueChange':priceValueChange,'moneyValueShare':moneyValueShare,'moneyValueChange':moneyValueChange,'fashionValueShare':fashionValueShare,'fashionValueChange':fashionValueChange,'freaksValueShare':freaksValueShare,'freaksValueChange':freaksValueChange});
+                                    scope.eleVolume4s.push({'fullName':brandName+varName,'priceVolumeShare':priceVolumeShare,'priceVolumeChange':priceVolumeChange,'moneyVolumeShare':moneyVolumeShare,'moneyVolumeChange':moneyVolumeChange,'fashionVolumeShare':fashionVolumeShare,'fashionVolumeChange':fashionVolumeChange,'freaksVolumeShare':freaksVolumeShare,'freaksVolumeChange':freaksVolumeChange});
+                                }else{
+                                    scope.heaValue4s.push({'fullName':brandName+varName,'priceValueShare':priceValueShare,'priceValueChange':priceValueChange,'moneyValueShare':moneyValueShare,'moneyValueChange':moneyValueChange,'fashionValueShare':fashionValueShare,'fashionValueChange':fashionValueChange,'freaksValueShare':freaksValueShare,'freaksValueChange':freaksValueChange});
+                                    scope.heaVolume4s.push({'fullName':brandName+varName,'priceVolumeShare':priceVolumeShare,'priceVolumeChange':priceVolumeChange,'moneyVolumeShare':moneyVolumeShare,'moneyVolumeChange':moneyVolumeChange,'fashionVolumeShare':fashionVolumeShare,'fashionVolumeChange':fashionVolumeChange,'freaksVolumeShare':freaksVolumeShare,'freaksVolumeChange':freaksVolumeChange});
+                                }break;
                             }
                         }
                     }
