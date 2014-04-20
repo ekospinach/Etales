@@ -18,30 +18,30 @@ define(['directives', 'services'], function(directives){
 
                 var loadMarketShopper=function(data,category,market){
                     for(var i=0;i<data.data[0].absoluteValue.length;i++){
-                        if(data.data[0].absoluteValue[i].parentCategoryID==category){
+                        if(data.data[0].absoluteValue[i].parentCategoryID==category&&data.data[0].absoluteValue[i].marketID==market){
                             var variantName=data.data[0].absoluteValue[i].variantName;
                             var brandName=data.data[0].absoluteValue[i].parentBrandName;
-                            var bmValue=data.data[0].absoluteValue[i].marketInfo[market-1].segmentInfo[4].shopperInfo[0].value;
-                            var onlineValue=data.data[0].absoluteValue[i].marketInfo[market-1].segmentInfo[4].shopperInfo[1].value;
-                            var mixedValue=data.data[0].absoluteValue[i].marketInfo[market-1].segmentInfo[4].shopperInfo[2].value;
+                            var bmValue=data.data[0].absoluteValue[i].segmentInfo[4].shopperInfo[0].value;
+                            var onlineValue=data.data[0].absoluteValue[i].segmentInfo[4].shopperInfo[1].value;
+                            var mixedValue=data.data[0].absoluteValue[i].segmentInfo[4].shopperInfo[2].value;
                             var Changes=_.find(data.data[0].valueChange,function(obj){
-                                return (obj.parentBrandName==brandName&&obj.variantName==variantName);
+                                return (obj.parentBrandName==brandName&&obj.variantName==variantName&&obj.marketID==market);
                             });
-                            var bmValueChange=Changes.marketInfo[market-1].segmentInfo[4].shopperInfo[0].value;
-                            var onlineValueChange=Changes.marketInfo[market-1].segmentInfo[4].shopperInfo[1].value;
-                            var mixedValueChange=Changes.marketInfo[market-1].segmentInfo[4].shopperInfo[2].value;
+                            var bmValueChange=Changes.segmentInfo[4].shopperInfo[0].value;
+                            var onlineValueChange=Changes.segmentInfo[4].shopperInfo[1].value;
+                            var mixedValueChange=Changes.segmentInfo[4].shopperInfo[2].value;
                             var Volumes=_.find(data.data[0].absoluteVolume,function(obj){
-                                return (obj.parentBrandName==brandName&&obj.variantName==variantName);
+                                return (obj.parentBrandName==brandName&&obj.variantName==variantName&&obj.marketID==market);
                             });
                             var VolumeChanges=_.find(data.data[0].volumeChange,function(obj){
-                                return (obj.parentBrandName==brandName&&obj.variantName==variantName);
+                                return (obj.parentBrandName==brandName&&obj.variantName==variantName&&obj.marketID==market);
                             });
-                            var bmVolume=Volumes.marketInfo[market-1].segmentInfo[4].shopperInfo[0].value;
-                            var onlineVolume=Volumes.marketInfo[market-1].segmentInfo[4].shopperInfo[1].value;
-                            var mixedVolume=Volumes.marketInfo[market-1].segmentInfo[4].shopperInfo[2].value;
-                            var bmVolumeChange=VolumeChanges.marketInfo[market-1].segmentInfo[4].shopperInfo[0].value;
-                            var onlineVolumeChange=VolumeChanges.marketInfo[market-1].segmentInfo[4].shopperInfo[1].value;
-                            var mixedVolumeChange=VolumeChanges.marketInfo[market-1].segmentInfo[4].shopperInfo[2].value;
+                            var bmVolume=Volumes.segmentInfo[4].shopperInfo[0].value;
+                            var onlineVolume=Volumes.segmentInfo[4].shopperInfo[1].value;
+                            var mixedVolume=Volumes.segmentInfo[4].shopperInfo[2].value;
+                            var bmVolumeChange=VolumeChanges.segmentInfo[4].shopperInfo[0].value;
+                            var onlineVolumeChange=VolumeChanges.segmentInfo[4].shopperInfo[1].value;
+                            var mixedVolumeChange=VolumeChanges.segmentInfo[4].shopperInfo[2].value;
                             switch(data.data[0].absoluteValue[i].parentCompanyID){
                                 case 1:scope.player1s.push({'fullName':brandName+variantName,'bmValue':bmValue,'bmValueChange':bmValueChange,'bmVolume':bmVolume,'bmVolumeChange':bmVolumeChange,'onlineValue':onlineValue,'onlineValueChange':onlineValueChange,'onlineVolume':onlineVolume,'onlineVolumeChange':onlineVolumeChange,'mixedValue':mixedValue,'mixedValueChange':mixedValueChange,'mixedVolume':mixedVolume,'mixedVolumeChange':mixedVolumeChange});break;
                                 case 2:scope.player2s.push({'fullName':brandName+variantName,'bmValue':bmValue,'bmValueChange':bmValueChange,'bmVolume':bmVolume,'bmVolumeChange':bmVolumeChange,'onlineValue':onlineValue,'onlineValueChange':onlineValueChange,'onlineVolume':onlineVolume,'onlineVolumeChange':onlineVolumeChange,'mixedValue':mixedValue,'mixedValueChange':mixedValueChange,'mixedVolume':mixedVolume,'mixedVolumeChange':mixedVolumeChange});break;
