@@ -17,7 +17,7 @@ var SCR_keyPerformanceIndicatorsSchema = mongoose.Schema({
     scrkpi_ChannelSalesValueShare     : [categoryInfoSchema],
     scrkpi_ChannelSalesVolumeShare    : [categoryInfoSchema],
     scrkpi_ShoppersShare              : [categoryInfoSchema],
-    //scrkpi_PortfolioStrength          : [categoryInfoSchema]
+    scrkpi_PortfolioStrength          : [categoryInfoSchema]
 })
 
 var categoryInfoSchema = mongoose.Schema({
@@ -73,6 +73,16 @@ exports.addSCR_keyPerformanceIndicators=function(req,res,next){
             value:[70,80,90]
         }],
         scrkpi_ShoppersShare              : [{
+            categoryID:1,
+            value:[10,20,30]
+        },{
+            categoryID:2,
+            value:[40,50,60]
+        },{
+            categoryID:3,
+            value:[70,80,90]
+        }],
+        scrkpi_PortfolioStrength          : [{
             categoryID:1,
             value:[10,20,30]
         },{
