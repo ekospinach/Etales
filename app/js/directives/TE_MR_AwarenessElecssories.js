@@ -17,7 +17,6 @@ define(['directives', 'services'], function(directives){
                 }
 
                 var loadAwareness=function(data,category,market){
-                    console.log('hi');
                     scope.brandNames=new Array();
                     var count=0;
                     for(var i=0;i<data.data[0].brandInfo.length;i++){
@@ -49,7 +48,6 @@ define(['directives', 'services'], function(directives){
                             count++;
                         }
                     }
-                    console.log
                     switch(market){
                         case 1:
                         scope.awarenessElecssories1Series=[{
