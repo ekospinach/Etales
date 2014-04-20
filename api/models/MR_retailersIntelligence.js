@@ -38,6 +38,8 @@ var variantInfoSchema = mongoose.Schema({
 //     offlineAdvertising : Number,
 //     localAdvertising : [Number], //0-Urban, 1-Rural               
 // })
+
+
 var MR_retailersIntelligence=mongoose.model('MR_retailersIntelligence',MR_retailersIntelligenceSchema);
 
 exports.addMR_retailersIntelligence=function(req,res,next){

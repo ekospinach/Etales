@@ -3,7 +3,14 @@
 
 uses
   SysUtils,Windows,Classes, superobject, HCD_SystemDefinitions, System.TypInfo, inifiles,
-  CgiCommonFunction in 'CgiCommonFunction.pas';
+  CgiCommonFunction;
+
+const
+  rcrviv_Initial          = 100;
+  rcrviv_Purchase       = 101;
+  rcrviv_Sales            = 102;
+  rcrviv_Discontinued     = 103;
+  rcrviv_Closing          = 104;
 
 var
   DataDirectory : string;
@@ -12,59 +19,67 @@ var
 
   currentResult : TAllResults;
   currentPeriod : TPeriodNumber;
+  currentRetailer : TBMRetailers;
   currentSeminar : string;
   vReadRes : Integer;
   oJsonFile : ISuperObject;
 
-  function actorCategoryInfoSchema(actorID : Integer; catID : integer; binaryReport : TGR_PerformanceHighlights): ISuperObject;
+  function variantInfoSchema(fieldIdx : integer; catID : integer; marketID : integer; variant : TRCR_VariantInventoryVolume): ISuperObject;
   var
-    jo : ISuperObject;
+     jo : ISuperObject;
   begin
-    jo := SO;
-    jo.I['categoryID'] := catID;
-    jo.D['grph_SalesVolume'] := binaryReport.grph_SalesVolume[actorID, catID];
-    jo.D['grph_NetSalesValue'] := binaryReport.grph_NetSalesValue[actorID, catID];    
+     jo := SO;
+     jo.S['variantName'] := variant.rcrviv_VariantName;
+     jo.S['parentBrandName'] := variant.rcrviv_ParentBrandName;
+     jo.I['parentCategoryID'] := catID;
+     jo.I['parentCompany'] := variant.rcrviv_ParentCompany;
+     jo.I['marketID'] := marketID;
 
-    jo.D['grph_ValueMarketShare'] := binaryReport.grph_ValueMarketShare[actorID, catID];
-    jo.D['grph_VolumeMarketShare'] := binaryReport.grph_VolumeMarketShare[actorID, catID];
-
-    jo.D['grph_NetSalesValueChange'] := binaryReport.grph_NetSalesValueChange[actorID, catID];
-    jo.D['grph_ValueMarketShareChange'] := binaryReport.grph_ValueMarketShareChange[actorID, catID];
-    jo.D['grph_VolumeMarketShareChange'] := binaryReport.grph_VolumeMarketShareChange[actorID, catID];
-    jo.D['grph_SalesVolumeChange'] := binaryReport.grph_SalesVolumeChange[actorID, catID];
-
-    result := jo;
-  end;
-
-
-  function actorInfoSchema(actorID : Integer; binaryReport : TGR_PerformanceHighlights): ISuperObject;
-  var
-    jo: ISuperObject;
-    I, cat: Integer;
-  begin
-    jo := SO;
-    jo.I['actorID'] := actorID;
-    jo.D['grph_OperatingProfit'] := binaryReport.grph_OperatingProfit[actorID];
-    jo.D['grph_OperatingProfitChange'] := binaryReport.grph_OperatingProfitChange[actorID];
-    jo.D['grph_CumulativeInvestment'] := binaryReport.grph_CumulativeInvestment[actorID];
-    jo.O['actorCategoryInfo'] := SA([]);
-    for cat := Low(TCategoriesTotal) to High(TCategoriesTotal) do
-      jo.A['actorCategoryInfo'].Add( actorCategoryInfoSchema(actorID, cat, binaryReport) );
-
-    result := jo;
+     case (fieldIdx) of
+       rcrviv_Initial:   begin jo.D['value'] := variant.rcrviv_Initial; end;
+       rcrviv_Purchase:   begin jo.D['value'] := variant.rcrviv_Purchase; end;
+       rcrviv_Sales:   begin jo.D['value'] := variant.rcrviv_Sales; end;
+       rcrviv_Discontinued:   begin jo.D['value'] := variant.rcrviv_Discontinued; end;
+       rcrviv_Closing:   begin jo.D['value'] := variant.rcrviv_Closing; end;
+     end;
+     result := jo;
   end;
 
   procedure makeJson();
   var
     s_str : string;
-    actorID : Integer;
+    actorID,catID,brandID,VariantID, marketID : Integer;
+    tempVariant : TRCR_variantInventoryVolume;
   begin
     oJsonFile := SO;
     oJsonFile.S['seminar'] := currentSeminar;
     oJsonFile.I['period'] := currentPeriod;
-    oJsonFile.O['actorInfo'] := SA([]);
-    for actorID := Low(TActors) to High(TActors) do
-      oJsonFile.A['actorInfo'].Add( actorInfoSchema(actorID, currentResult.r_GeneralReport.gr_PerformanceHighlights) );
+    oJsonFile.I['retailerID'] := currentRetailer;
+
+    oJsonFile.O['rcrviv_Initial'] := SA([]);
+    oJsonFile.O['rcrviv_Purchase'] := SA([]);
+    oJsonFile.O['rcrviv_Sales'] := SA([]);
+    oJsonFile.O['rcrviv_Discontinued'] := SA([]);
+    oJsonFile.O['rcrviv_Closing'] := SA([]);
+
+    for catID := Low(TCategories) to High(TCategories) do
+    begin
+      for marketID := Low(TMarkets) to High(TMarkets) do
+      begin
+        for variantID := Low(TVariants) to High(TVariants) do 
+        begin
+          tempVariant = currentResult.r_RetailersConfidentialReports[currentRetailer].RCR_inventoryVolumes[marketID, catID, variantID];
+          if (tempVariant.rcrviv_VariantName <> '') AND (tempVariant.rcrviv_ParentBrandName <> '') then
+          begin
+            oJsonFile.A['rcrviv_Initial'].Add( variantInfoSchema(rcrviv_Initial, catID, marketID, tempVariant );
+            oJsonFile.A['rcrviv_Purchase'].Add( variantInfoSchema(rcrviv_Purchase, catID, marketID, tempVariant );
+            oJsonFile.A['rcrviv_Sales'].Add( variantInfoSchema(rcrviv_Sales, catID, marketID, tempVariant );
+            oJsonFile.A['rcrviv_Discontinued'].Add( variantInfoSchema(rcrviv_Discontinued, catID, marketID, tempVariant );
+            oJsonFile.A['rcrviv_Closing'].Add( variantInfoSchema(rcrviv_Closing, catID, marketID, tempVariant );
+          end;            
+        end;  
+      end;
+    end;    
 
     //for debug used
     s_str := 'out' + '.json';
@@ -86,9 +101,10 @@ begin
           sValue := getVariable('QUERY_STRING');
           Explode(sValue, sListData);
           LoadConfigIni(DataDirectory, getSeminar(sListData));
-          // initialize globals
+          //initialise GET request parameters
           currentSeminar := getSeminar(sListData);
           currentPeriod := getPeriod(sListData);
+          currentRetailer := getRetailerID(sListData);
           {** Read results file **}
           vReadRes := ReadResults(currentPeriod, currentSeminar, DataDirectory,currentResult); // read Results file
 

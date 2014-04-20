@@ -1,0 +1,144 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{3A6D3538-5BFF-4628-A6CD-48D4B2A0F0D8}</ProjectGuid>
+		</PropertyGroup>
+		<ItemGroup>
+			<Projects Include="MR_awarenessEvolution.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="MR_forecasts.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="MR_netMarketPrices.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="MR_pricePromotions.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="MR_retailersIntelligence.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="MR_salesCrossSegment.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="MR_sharesCrossSegment.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="MR_suppliersIntelligence.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="MR_variantPerceptionEvolution.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="MR_retailerPerceptionEvolution.dproj">
+				<Dependencies/>
+			</Projects>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Default.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Default.Personality/>
+			</BorlandProject>
+		</ProjectExtensions>
+		<Target Name="MR_awarenessEvolution">
+			<MSBuild Projects="MR_awarenessEvolution.dproj"/>
+		</Target>
+		<Target Name="MR_awarenessEvolution:Clean">
+			<MSBuild Projects="MR_awarenessEvolution.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="MR_awarenessEvolution:Make">
+			<MSBuild Projects="MR_awarenessEvolution.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="MR_forecasts">
+			<MSBuild Projects="MR_forecasts.dproj"/>
+		</Target>
+		<Target Name="MR_forecasts:Clean">
+			<MSBuild Projects="MR_forecasts.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="MR_forecasts:Make">
+			<MSBuild Projects="MR_forecasts.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="MR_netMarketPrices">
+			<MSBuild Projects="MR_netMarketPrices.dproj"/>
+		</Target>
+		<Target Name="MR_netMarketPrices:Clean">
+			<MSBuild Projects="MR_netMarketPrices.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="MR_netMarketPrices:Make">
+			<MSBuild Projects="MR_netMarketPrices.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="MR_pricePromotions">
+			<MSBuild Projects="MR_pricePromotions.dproj"/>
+		</Target>
+		<Target Name="MR_pricePromotions:Clean">
+			<MSBuild Projects="MR_pricePromotions.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="MR_pricePromotions:Make">
+			<MSBuild Projects="MR_pricePromotions.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="MR_retailersIntelligence">
+			<MSBuild Projects="MR_retailersIntelligence.dproj"/>
+		</Target>
+		<Target Name="MR_retailersIntelligence:Clean">
+			<MSBuild Projects="MR_retailersIntelligence.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="MR_retailersIntelligence:Make">
+			<MSBuild Projects="MR_retailersIntelligence.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="MR_salesCrossSegment">
+			<MSBuild Projects="MR_salesCrossSegment.dproj"/>
+		</Target>
+		<Target Name="MR_salesCrossSegment:Clean">
+			<MSBuild Projects="MR_salesCrossSegment.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="MR_salesCrossSegment:Make">
+			<MSBuild Projects="MR_salesCrossSegment.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="MR_sharesCrossSegment">
+			<MSBuild Projects="MR_sharesCrossSegment.dproj"/>
+		</Target>
+		<Target Name="MR_sharesCrossSegment:Clean">
+			<MSBuild Projects="MR_sharesCrossSegment.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="MR_sharesCrossSegment:Make">
+			<MSBuild Projects="MR_sharesCrossSegment.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="MR_suppliersIntelligence">
+			<MSBuild Projects="MR_suppliersIntelligence.dproj"/>
+		</Target>
+		<Target Name="MR_suppliersIntelligence:Clean">
+			<MSBuild Projects="MR_suppliersIntelligence.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="MR_suppliersIntelligence:Make">
+			<MSBuild Projects="MR_suppliersIntelligence.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="MR_variantPerceptionEvolution">
+			<MSBuild Projects="MR_variantPerceptionEvolution.dproj"/>
+		</Target>
+		<Target Name="MR_variantPerceptionEvolution:Clean">
+			<MSBuild Projects="MR_variantPerceptionEvolution.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="MR_variantPerceptionEvolution:Make">
+			<MSBuild Projects="MR_variantPerceptionEvolution.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="MR_retailerPerceptionEvolution">
+			<MSBuild Projects="MR_retailerPerceptionEvolution.dproj"/>
+		</Target>
+		<Target Name="MR_retailerPerceptionEvolution:Clean">
+			<MSBuild Projects="MR_retailerPerceptionEvolution.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="MR_retailerPerceptionEvolution:Make">
+			<MSBuild Projects="MR_retailerPerceptionEvolution.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="Build">
+			<CallTarget Targets="MR_awarenessEvolution;MR_forecasts;MR_netMarketPrices;MR_pricePromotions;MR_retailersIntelligence;MR_salesCrossSegment;MR_sharesCrossSegment;MR_suppliersIntelligence;MR_variantPerceptionEvolution;MR_retailerPerceptionEvolution"/>
+		</Target>
+		<Target Name="Clean">
+			<CallTarget Targets="MR_awarenessEvolution:Clean;MR_forecasts:Clean;MR_netMarketPrices:Clean;MR_pricePromotions:Clean;MR_retailersIntelligence:Clean;MR_salesCrossSegment:Clean;MR_sharesCrossSegment:Clean;MR_suppliersIntelligence:Clean;MR_variantPerceptionEvolution:Clean;MR_retailerPerceptionEvolution:Clean"/>
+		</Target>
+		<Target Name="Make">
+			<CallTarget Targets="MR_awarenessEvolution:Make;MR_forecasts:Make;MR_netMarketPrices:Make;MR_pricePromotions:Make;MR_retailersIntelligence:Make;MR_salesCrossSegment:Make;MR_sharesCrossSegment:Make;MR_suppliersIntelligence:Make;MR_variantPerceptionEvolution:Make;MR_retailerPerceptionEvolution:Make"/>
+		</Target>
+		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
+	</Project>

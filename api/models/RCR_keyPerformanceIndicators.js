@@ -47,7 +47,7 @@ var shoperInfoSchema = mongoose.Schema({
 // var quarterInfoSchema = mongoose.Schema({
 //     categoryID : Number,
 //     marketID : Number, //1-Urban, 2-Rural, 3-Total
-//     value : [Number], 
+//     value : Number, 
 // })
 
 // var shoperInfoSchema = mongoose.Schema({
