@@ -8,6 +8,7 @@ var mongoose = require('mongoose'),
 //TActiveActors : 1~(3+2)
 //TActors : 1~(4+3)
 
+//New Schema, 2014-Apr-17th
 var RCR_keyPerformanceIndicatorsSchema = mongoose.Schema({
     period : Number,
     seminar : String,
@@ -23,37 +24,13 @@ var RCR_keyPerformanceIndicatorsSchema = mongoose.Schema({
 var quarterInfoSchema = mongoose.Schema({
     categoryID : Number,
     marketID : Number, //1-Urban, 2-Rural, 3-Total
-    value : [Number], 
+    value : Number, 
 })
 
 var shoperInfoSchema = mongoose.Schema({
     shoperKind : String, // BMS, NETIZENS, MIXED, ALLSHOPPERS})
     categoryInfo : [quarterInfoSchema]
 })
-
-//New Schema, 2014-Apr-17th
-// var RCR_keyPerformanceIndicatorsSchema = mongoose.Schema({
-//     period : Number,
-//     seminar : String,
-//     retailerID  : Number, //TBMRetailers : 1~3 (BMRetsMax)
-    
-//     rcrkpi_VolumeRotationIndex        : [quarterInfoSchema],
-//     rcrkpi_ValueRotationIndex         : [quarterInfoSchema],
-//     rcrkpi_ProfitabilityIndex         : [quarterInfoSchema],
-//     rcrkpi_StockCover                 : [quarterInfoSchema],
-//     rcrkpi_ShoppersShare              : [shoperInfoSchema],
-// })
-
-// var quarterInfoSchema = mongoose.Schema({
-//     categoryID : Number,
-//     marketID : Number, //1-Urban, 2-Rural, 3-Total
-//     value : [Number], 
-// })
-
-// var shoperInfoSchema = mongoose.Schema({
-//     shoperKind : String, // BMS, NETIZENS, MIXED, ALLSHOPPERS})
-//     categoryInfo : [quarterInfoSchema]
-// })
 
 
 
@@ -64,94 +41,309 @@ exports.addRCR_keyPerformanceIndicators=function(req,res,next){
         period : 0,
         seminar : 'MAY',
         retailerID  : 1, //TBMRetailers : 1~3 (BMRetsMax)
-        
         rcrkpi_VolumeRotationIndex        : [{
             categoryID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
         },{
             categoryID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
         },{
             categoryID:3,
-            value:[70,80,90]
+            marketID:1,
+            value:70
+        },{
+            categoryID:1,
+            marketID:2,
+            value:20
+        },{
+            categoryID:2,
+            marketID:2,
+            value:50
+        },{
+            categoryID:3,
+            marketID:2,
+            value:80
+        },{
+            categoryID:1,
+            marketID:3,
+            value:30
+        },{
+            categoryID:2,
+            marketID:3,
+            value:60
+        },{
+            categoryID:3,
+            marketID:3,
+            value:90
         }],
         rcrkpi_ValueRotationIndex         : [{
             categoryID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
         },{
             categoryID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
         },{
             categoryID:3,
-            value:[70,80,90]
+            marketID:1,
+            value:70
+        },{
+            categoryID:1,
+            marketID:2,
+            value:20
+        },{
+            categoryID:2,
+            marketID:2,
+            value:50
+        },{
+            categoryID:3,
+            marketID:2,
+            value:80
+        },{
+            categoryID:1,
+            marketID:3,
+            value:30
+        },{
+            categoryID:2,
+            marketID:3,
+            value:60
+        },{
+            categoryID:3,
+            marketID:3,
+            value:90
         }],
         rcrkpi_ProfitabilityIndex         : [{
             categoryID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
         },{
             categoryID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
         },{
             categoryID:3,
-            value:[70,80,90]
+            marketID:1,
+            value:70
+        },{
+            categoryID:1,
+            marketID:2,
+            value:20
+        },{
+            categoryID:2,
+            marketID:2,
+            value:50
+        },{
+            categoryID:3,
+            marketID:2,
+            value:80
+        },{
+            categoryID:1,
+            marketID:3,
+            value:30
+        },{
+            categoryID:2,
+            marketID:3,
+            value:60
+        },{
+            categoryID:3,
+            marketID:3,
+            value:90
         }],
         rcrkpi_StockCover                 : [{
             categoryID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
         },{
             categoryID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
         },{
             categoryID:3,
-            value:[70,80,90]
+            marketID:1,
+            value:70
+        },{
+            categoryID:1,
+            marketID:2,
+            value:20
+        },{
+            categoryID:2,
+            marketID:2,
+            value:50
+        },{
+            categoryID:3,
+            marketID:2,
+            value:80
+        },{
+            categoryID:1,
+            marketID:3,
+            value:30
+        },{
+            categoryID:2,
+            marketID:3,
+            value:60
+        },{
+            categoryID:3,
+            marketID:3,
+            value:90
         }],
         rcrkpi_ShoppersShare              : [{
             shoperKind:'BMS',
             categoryInfo:[{
                 categoryID:1,
-                value:[10,20,30]
+                marketID:1,
+                value:10
             },{
                 categoryID:2,
-                value:[40,50,60]
+                marketID:1,
+                value:40
             },{
                 categoryID:3,
-                value:[70,80,90]
+                marketID:1,
+                value:70
+            },{
+                categoryID:1,
+                marketID:2,
+                value:20
+            },{
+                categoryID:2,
+                marketID:2,
+                value:50
+            },{
+                categoryID:3,
+                marketID:2,
+                value:80
+            },{
+                categoryID:1,
+                marketID:3,
+                value:30
+            },{
+                categoryID:2,
+                marketID:3,
+                value:60
+            },{
+                categoryID:3,
+                marketID:3,
+                value:90
             }]
         },{
             shoperKind:'NETIZENS',
             categoryInfo:[{
                 categoryID:1,
-                value:[10,20,30]
+                marketID:1,
+                value:10
             },{
                 categoryID:2,
-                value:[40,50,60]
+                marketID:1,
+                value:40
             },{
                 categoryID:3,
-                value:[70,80,90]
+                marketID:1,
+                value:70
+            },{
+                categoryID:1,
+                marketID:2,
+                value:20
+            },{
+                categoryID:2,
+                marketID:2,
+                value:50
+            },{
+                categoryID:3,
+                marketID:2,
+                value:80
+            },{
+                categoryID:1,
+                marketID:3,
+                value:30
+            },{
+                categoryID:2,
+                marketID:3,
+                value:60
+            },{
+                categoryID:3,
+                marketID:3,
+                value:90
             }]
         },{
             shoperKind:'MIXED',
             categoryInfo:[{
                 categoryID:1,
-                value:[10,20,30]
+                marketID:1,
+                value:10
             },{
                 categoryID:2,
-                value:[40,50,60]
+                marketID:1,
+                value:40
             },{
                 categoryID:3,
-                value:[70,80,90]
+                marketID:1,
+                value:70
+            },{
+                categoryID:1,
+                marketID:2,
+                value:20
+            },{
+                categoryID:2,
+                marketID:2,
+                value:50
+            },{
+                categoryID:3,
+                marketID:2,
+                value:80
+            },{
+                categoryID:1,
+                marketID:3,
+                value:30
+            },{
+                categoryID:2,
+                marketID:3,
+                value:60
+            },{
+                categoryID:3,
+                marketID:3,
+                value:90
             }]
         },{
             shoperKind:'ALLSHOPPERS',
             categoryInfo:[{
                 categoryID:1,
-                value:[10,20,30]
+                marketID:1,
+                value:10
             },{
                 categoryID:2,
-                value:[40,50,60]
+                marketID:1,
+                value:40
             },{
                 categoryID:3,
-                value:[70,80,90]
+                marketID:1,
+                value:70
+            },{
+                categoryID:1,
+                marketID:2,
+                value:20
+            },{
+                categoryID:2,
+                marketID:2,
+                value:50
+            },{
+                categoryID:3,
+                marketID:2,
+                value:80
+            },{
+                categoryID:1,
+                marketID:3,
+                value:30
+            },{
+                categoryID:2,
+                marketID:3,
+                value:60
+            },{
+                categoryID:3,
+                marketID:3,
+                value:90
             }]
         }]
     });
