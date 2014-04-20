@@ -5,35 +5,35 @@ var mongoose = require('mongoose'),
 	request = require('request'),
 	q = require('q');
 
-var MR_awarenessEvolutionSchema = mongoose.Schema({
-    period : Number,
-    seminar : String,
-    brandInfo : [brandInfoSchema],
-})
-
-var brandInfoSchema = mongoose.Schema({
-    brandName                            : String,
-    parentCategoryID                     : Number,
-    parentCompanyID                      : Number, 
-    previousAwareness                    : [Number], //0-Urban, 1-Rural
-    latestAwareness              : [Number] //0-Urban, 1-Rural
-})
-
-//New schema, 2014-Apr-17th
 // var MR_awarenessEvolutionSchema = mongoose.Schema({
 //     period : Number,
 //     seminar : String,
-//     brandInfo : [brandMarketInfo],
+//     brandInfo : [brandInfoSchema],
 // })
 
-// var brandMarketInfo = mongoose.Schema({
+// var brandInfoSchema = mongoose.Schema({
 //     brandName                            : String,
 //     parentCategoryID                     : Number,
 //     parentCompanyID                      : Number, 
-//     marketID : Number, //1-Urban, 2-Rural
-//     previousAwareness                    : Number,
-//     latestAwareness              : Number
+//     previousAwareness                    : [Number], //0-Urban, 1-Rural
+//     latestAwareness              : [Number] //0-Urban, 1-Rural
 // })
+
+//New schema, 2014-Apr-17th
+var MR_awarenessEvolutionSchema = mongoose.Schema({
+    period : Number,
+    seminar : String,
+    brandInfo : [brandMarketInfo],
+})
+
+var brandMarketInfo = mongoose.Schema({
+    brandName                            : String,
+    parentCategoryID                     : Number,
+    parentCompanyID                      : Number, 
+    marketID : Number, //1-Urban, 2-Rural
+    previousAwareness                    : Number,
+    latestAwareness              : Number
+})
 
 
 
@@ -47,62 +47,142 @@ exports.addMR_awarenessEvolution=function(req,res,next){
             brandName: 'ELAN1',
             parentCategoryID: 1,
             parentCompanyID: 1, 
-            previousAwareness: [10,20], //0-Urban, 1-Rural
-            latestAwareness: [15,15]
+            marketID:1,
+            previousAwareness: 10, //0-Urban, 1-Rural
+            latestAwareness: 15
         },{
             brandName: 'HLAN1',
             parentCategoryID: 2,
-            parentCompanyID: 1, 
-            previousAwareness: [10,20], //0-Urban, 1-Rural
-            latestAwareness: [6,14]
+            parentCompanyID: 1,
+            marketID:1,
+            previousAwareness: 10, //0-Urban, 1-Rural
+            latestAwareness: 6
         },{
             brandName: 'EMOD2',
             parentCategoryID: 1,
             parentCompanyID: 2, 
-            previousAwareness: [15,25], //0-Urban, 1-Rural
-            latestAwareness: [25,30]
+            marketID:1,
+            previousAwareness: 15, //0-Urban, 1-Rural
+            latestAwareness: 25
         },{
             brandName: 'HMOD2',
             parentCategoryID: 2,
             parentCompanyID: 2, 
-            previousAwareness: [15,25], //0-Urban, 1-Rural
-            latestAwareness: [20,30]
+            marketID:1,
+            previousAwareness: 25, //0-Urban, 1-Rural
+            latestAwareness: 30
         },{
             brandName: 'ETAE3',
             parentCategoryID: 1,
             parentCompanyID: 3, 
-            previousAwareness: [10,20], //0-Urban, 1-Rural
-            latestAwareness: [6,14]
+            marketID:1,
+            previousAwareness: 20, //0-Urban, 1-Rural
+            latestAwareness:14
         },{
             brandName: 'HWAN3',
             parentCategoryID: 2,
             parentCompanyID: 3, 
-            previousAwareness: [10,20], //0-Urban, 1-Rural
-            latestAwareness: [7,17]
+            marketID:1,
+            previousAwareness: 20, //0-Urban, 1-Rural
+            latestAwareness:17
         },{
             brandName: 'ELAN5',
             parentCategoryID: 1,
             parentCompanyID: 5, 
-            previousAwareness: [20,30], //0-Urban, 1-Rural
-            latestAwareness: [35,45]
+            marketID:1,
+            previousAwareness: 30, //0-Urban, 1-Rural
+            latestAwareness: 45
         },{
             brandName: 'HSAN5',
             parentCategoryID: 2,
             parentCompanyID: 5, 
-            previousAwareness: [15,25], //0-Urban, 1-Rural
-            latestAwareness: [20,25]
+            marketID:1,
+            previousAwareness: 25, //0-Urban, 1-Rural
+            latestAwareness: 25
         },{
             brandName: 'ELAN6',
             parentCategoryID: 1,
             parentCompanyID: 6, 
-            previousAwareness: [35,27], //0-Urban, 1-Rural
-            latestAwareness: [17,15]
+            marketID:1,
+            previousAwareness: 27, //0-Urban, 1-Rural
+            latestAwareness: 15
         },{
             brandName: 'HGAN6',
             parentCategoryID: 2,
             parentCompanyID: 6, 
-            previousAwareness: [20,30], //0-Urban, 1-Rural
-            latestAwareness: [22,35]
+            marketID:1,
+            previousAwareness: 30, //0-Urban, 1-Rural
+            latestAwareness: 35
+        },{
+            brandName: 'ELAN1',
+            parentCategoryID: 1,
+            parentCompanyID: 1, 
+            marketID:2,
+            previousAwareness: 20, //0-Urban, 1-Rural
+            latestAwareness: 15
+        },{
+            brandName: 'HLAN1',
+            parentCategoryID: 2,
+            parentCompanyID: 1, 
+            marketID:2,
+            previousAwareness: 20, //0-Urban, 1-Rural
+            latestAwareness: 14
+        },{
+            brandName: 'EMOD2',
+            parentCategoryID: 1,
+            parentCompanyID: 2, 
+            marketID:2,
+            previousAwareness: 25, //0-Urban, 1-Rural
+            latestAwareness: 30
+        },{
+            brandName: 'HMOD2',
+            parentCategoryID: 2,
+            parentCompanyID: 2, 
+            marketID:2,
+            previousAwareness: 25, //0-Urban, 1-Rural
+            latestAwareness: 30
+        },{
+            brandName: 'ETAE3',
+            parentCategoryID: 1,
+            parentCompanyID: 3, 
+            marketID:2,
+            previousAwareness: 20, //0-Urban, 1-Rural
+            latestAwareness: 14
+        },{
+            brandName: 'HWAN3',
+            parentCategoryID: 2,
+            parentCompanyID: 3, 
+            marketID:2,
+            previousAwareness: 20, //0-Urban, 1-Rural
+            latestAwareness: 17
+        },{
+            brandName: 'ELAN5',
+            parentCategoryID: 1,
+            parentCompanyID: 5, 
+            marketID:2,
+            previousAwareness: 30, //0-Urban, 1-Rural
+            latestAwareness: 45
+        },{
+            brandName: 'HSAN5',
+            parentCategoryID: 2,
+            parentCompanyID: 5, 
+            marketID:2,
+            previousAwareness: 25, //0-Urban, 1-Rural
+            latestAwareness: 25
+        },{
+            brandName: 'ELAN6',
+            parentCategoryID: 1,
+            parentCompanyID: 6, 
+            marketID:2,
+            previousAwareness: 27, //0-Urban, 1-Rural
+            latestAwareness: 15
+        },{
+            brandName: 'HGAN6',
+            parentCategoryID: 2,
+            parentCompanyID: 6, 
+            marketID:2,
+            previousAwareness: 30, //0-Urban, 1-Rural
+            latestAwareness: 35
         }]
     });
     newMR_awarenessEvolution.save(function(err) {

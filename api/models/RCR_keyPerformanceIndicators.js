@@ -9,7 +9,7 @@ var mongoose = require('mongoose'),
 //TActors : 1~(4+3)
 
 var RCR_keyPerformanceIndicatorsSchema = mongoose.Schema({
-	period : Number,
+    period : Number,
     seminar : String,
     retailerID  : Number, //TBMRetailers : 1~3 (BMRetsMax)
     
