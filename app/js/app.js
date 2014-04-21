@@ -88,7 +88,6 @@
 	'highchart',
 	'highchartMore',
 	'angularHighcharts',
-	'angularBootstrapSwitch'
 	], function (angular, filters, services,directives,bootstrap, controllers) {
 		'use strict';
 		return angular.module('myApp', [
@@ -102,7 +101,6 @@
 			'chieffancypants.loadingBar',
 			'ngCookies',
 			'highcharts-ng',
-			'frapontillo.bootstrap-switch'
 		]).run(function(editableOptions){
 			editableOptions.theme = 'bs3';
 		}).run(['$rootScope', '$location','Auth','$http', function ($rootScope, $location, Auth, $http) {		    

@@ -3,7 +3,18 @@
 
 uses
   SysUtils,Windows,Classes, superobject, HCD_SystemDefinitions, System.TypInfo, inifiles,
-  CgiCommonFunction in 'CgiCommonFunction.pas';
+  CgiCommonFunction;
+
+const
+    rcrps_ShelfSpace                     = 100;
+    rcrps_NetSales                       = 101;
+    rcrps_NetSalesPerShelfSpace          = 102;
+    rcrps_NetSalesShare                  = 103;
+    rcrps_GrossContribution              = 104;
+    rcrps_GrossContributionPerShelfSpace = 105;
+    rcrps_GrossContributionMargin        = 106;
+    rcrps_GrossContributionShare         = 107;
+    rcrps_PaymentTerms                   = 108;
 
 var
   DataDirectory : string;
@@ -12,65 +23,78 @@ var
 
   currentResult : TAllResults;
   currentPeriod : TPeriodNumber;
+  currentRetailer : TBMRetailers;  
   currentSeminar : string;
   vReadRes : Integer;
   oJsonFile : ISuperObject;
 
-  function actorMarketInfoSchema(actorID: Integer; catID : Integer; marketID : Integer; binaryReport : TGR_SharesOfMarket):
+  function factoryInfoSchema(fieldIdx : Integer; catID : Integer; marketID : integer; factoryID : integer; factoryInfo : TRCR_ProfitabilityByOneSupplier):ISuperObject;
   var
     jo : ISuperObject;
-    segmentID : Integer;
-  begin
-    jo := SO;
-    jo.I['marketID'] := marketID;
-    jo.O['actorMarketInfo'] := SA([]);
-    for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do
-      jo.A['actorMarketInfo'].Add( actorMarketInfoSchema(actorID, catID, marketID, binaryReport) );
-
-    result := jo;  
-
-  end;
-
-  function actorCategoryInfoSchema(actorID : Integer; catID : integer; binaryReport : TGR_PerformanceHighlights): ISuperObject;
-  var
-    jo : ISuperObject;
-    marketID : integer;
   begin
     jo := SO;
     jo.I['categoryID'] := catID;
-    jo.O['actorMarketInfo'] := SA([]);
-    for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do
-      jo.A['actorMarketInfo'].Add( actorMarketInfoSchema(actorID, catID, marketID, binaryReport) );
+    jo.I['marketID'] := marketID;
+    jo.I['factoryID'] := factoryID;
 
-    result := jo;
-  end;
-
-
-  function actorInfoSchema(actorID : Integer; binaryReport : TGR_SharesOfMarket): ISuperObject;
-  var
-    jo: ISuperObject;
-    cat: Integer;
-  begin
-    jo := SO;
-    jo.I['actorID'] := actorID;
-    jo.O['actorCategoryInfo'] := SA([]);
-    for cat := Low(TCategoriesTotal) to High(TCategoriesTotal) do
-      jo.A['actorCategoryInfo'].Add( actorCategoryInfoSchema(actorID, cat, binaryReport) );
-
+    case (fieldIdx) of
+      rcrps_ShelfSpace : begin jo.D['value'] := factoryInfo.rcrps_ShelfSpace; end;
+      rcrps_NetSales : begin jo.D['value'] := factoryInfo.rcrps_NetSales; end;
+      rcrps_NetSalesPerShelfSpace : begin jo.D['value'] := factoryInfo.rcrps_NetSalesPerShelfSpace; end;
+      rcrps_NetSalesShare : begin jo.D['value'] := factoryInfo.rcrps_NetSalesShare; end;
+      rcrps_GrossContribution : begin jo.D['value'] := factoryInfo.rcrps_GrossContribution; end;
+      rcrps_GrossContributionPerShelfSpace : begin jo.D['value'] := factoryInfo.rcrps_GrossContributionPerShelfSpace; end;
+      rcrps_GrossContributionMargin : begin jo.D['value'] := factoryInfo.rcrps_GrossContributionMargin; end;
+      rcrps_GrossContributionShare : begin jo.D['value'] := factoryInfo.rcrps_GrossContributionShare; end;
+      rcrps_PaymentTerms : begin jo.D['value'] := factoryInfo.rcrps_PaymentTerms; end;
+    end;
+         
     result := jo;
   end;
 
   procedure makeJson();
   var
     s_str : string;
-    actorID : Integer;
+    actorID,catID,brandID,variantID,marketID,factoryID : Integer;
+    tempQuarterInfo : TRCR_QuarterProfitAndLoss;
+    tempBrandMarketInfo : TRCR_OneBrand;
+    tempVariantMarketInfo : TRCR_OneVariant;
+    tempProfitInfo : TRCR_ProfitabilityByOneSupplier;
   begin
     oJsonFile := SO;
     oJsonFile.S['seminar'] := currentSeminar;
     oJsonFile.I['period'] := currentPeriod;
-    oJsonFile.O['actorInfo'] := SA([]);
-    for actorID := Low(TActors) to High(TActors) do
-      oJsonFile.A['actorInfo'].Add( actorInfoSchema(actorID, currentResult.r_GeneralReport.gr_SharesOfMarket) );
+    oJsonFile.I['retailerID'] := currentRetailer;
+
+    oJsonFile.O['rcrps_ShelfSpace'] := SA([]);
+    oJsonFile.O['rcrps_NetSales'] := SA([]);
+    oJsonFile.O['rcrps_NetSalesPerShelfSpace'] := SA([]);
+    oJsonFile.O['rcrps_NetSalesShare'] := SA([]);
+    oJsonFile.O['rcrps_GrossContribution'] := SA([]);
+    oJsonFile.O['rcrps_GrossContributionPerShelfSpace'] := SA([]);
+    oJsonFile.O['rcrps_GrossContributionMargin'] := SA([]);
+    oJsonFile.O['rcrps_GrossContributionShare'] := SA([]);
+    oJsonFile.O['rcrps_PaymentTerms'] := SA([]);
+
+    for catID := Low(TCategories) to High(TCategories) do
+    begin
+      for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do
+      begin
+        for factoryID := Low(TFactories) to High(TFactories) do 
+        begin
+          tempProfitInfo := currentResult.r_RetailersConfidentialReports[currentRetailer].RCR_profitabilityBySuppliers[marketID, catID, factoryID];
+          oJsonFile.A['rcrps_ShelfSpace'].Add( factoryInfoSchema(rcrps_ShelfSpace, catID, marketID, factoryID, tempProfitInfo) );          
+          oJsonFile.A['rcrps_NetSales'].Add( factoryInfoSchema(rcrps_NetSales, catID, marketID, factoryID, tempProfitInfo) );          
+          oJsonFile.A['rcrps_NetSalesPerShelfSpace'].Add( factoryInfoSchema(rcrps_NetSalesPerShelfSpace, catID, marketID, factoryID, tempProfitInfo) );          
+          oJsonFile.A['rcrps_NetSalesShare'].Add( factoryInfoSchema(rcrps_NetSalesShare, catID, marketID, factoryID, tempProfitInfo) );          
+          oJsonFile.A['rcrps_GrossContribution'].Add( factoryInfoSchema(rcrps_GrossContribution, catID, marketID, factoryID, tempProfitInfo) );          
+          oJsonFile.A['rcrps_GrossContributionPerShelfSpace'].Add( factoryInfoSchema(rcrps_GrossContributionPerShelfSpace, catID, marketID, factoryID, tempProfitInfo) );          
+          oJsonFile.A['rcrps_GrossContributionMargin'].Add( factoryInfoSchema(rcrps_GrossContributionMargin, catID, marketID, factoryID, tempProfitInfo) );          
+          oJsonFile.A['rcrps_GrossContributionShare'].Add( factoryInfoSchema(rcrps_GrossContributionShare, catID, marketID, factoryID, tempProfitInfo) );          
+          oJsonFile.A['rcrps_PaymentTerms'].Add( factoryInfoSchema(rcrps_PaymentTerms, catID, marketID, factoryID, tempProfitInfo) );          
+        end;
+      end;
+    end;
 
     //for debug used
     s_str := 'out' + '.json';
@@ -92,9 +116,10 @@ begin
           sValue := getVariable('QUERY_STRING');
           Explode(sValue, sListData);
           LoadConfigIni(DataDirectory, getSeminar(sListData));
-          // initialize globals
+          //initialise GET request parameters
           currentSeminar := getSeminar(sListData);
           currentPeriod := getPeriod(sListData);
+          currentRetailer := getRetailerID(sListData);
           {** Read results file **}
           vReadRes := ReadResults(currentPeriod, currentSeminar, DataDirectory,currentResult); // read Results file
 

@@ -122,6 +122,141 @@ var variantMarketInfoSchema = mongoose.Schema({
 
 var RCR_consolidatedProfitAndLoss=mongoose.model('RCR_consolidatedProfitAndLoss',RCR_consolidatedProfitAndLossSchema);
 
+exports.addReports = function(options){
+    var deferred = q.defer();
+    var startFrom = options.startFrom,
+    endWith = options.endWith;
+
+   (function sendRequest(currentPeriod){        
+      var reqOptions = {
+          hostname: options.cgiHost,
+          port: options.cgiPort,
+          path: options.cgiPath + '?period=' + currentPeriod + '&seminar=' + options.seminar + '&retailerID=' + options.retailerID
+      };
+
+      http.get(reqOptions, function(response) { 
+        var data = '';
+        response.setEncoding('utf8');
+        response.on('data', function(chunk){
+          data += chunk;
+        }).on('end', function(){
+          if ( response.statusCode === (404 || 500) ) 
+            deferred.reject({msg:'Get 404||500 error from CGI server, reqOptions:' + JSON.stringify(reqOptions)});
+          else {
+            try {
+              var singleReport = JSON.parse(data);
+            } catch(e) {
+              deferred.reject({msg: 'cannot parse JSON data from CGI:' + data, options:options});
+            }
+          }      
+          if (!singleReport) return; 
+
+          RCR_consolidatedProfitAndLoss.update({seminar    : singleReport.seminar, 
+                                            period     : singleReport.period,
+                                            retailerID : singleReport.retailerID},
+                                {
+                                rcrpl_Sales                               : singleReport.rcrpl_Sales,                   
+                                rcrpl_PromotionsCost                      : singleReport.rcrpl_PromotionsCost,          
+                                rcrpl_OtherCompensation                   : singleReport.rcrpl_OtherCompensation,       
+                                rcrpl_NetSales                            : singleReport.rcrpl_NetSales,                
+                                rcrpl_NetSalesChange                      : singleReport.rcrpl_NetSalesChange,          
+                                rcrpl_CostOfGoodsSold                     : singleReport.rcrpl_CostOfGoodsSold,         
+                                rcrpl_ValueOfQuantityDiscounts            : singleReport.rcrpl_ValueOfQuantityDiscounts,
+                                rcrpl_ValueOfPerformanceBonus             : singleReport.rcrpl_ValueOfPerformanceBonus, 
+                                rcrpl_DiscontinuedGoodsCost               : singleReport.rcrpl_DiscontinuedGoodsCost,   
+                                rcrpl_InventoryHoldingCost                : singleReport.rcrpl_InventoryHoldingCost,    
+                                rcrpl_GrossProfit                         : singleReport.rcrpl_GrossProfit,             
+                                rcrpl_GrossProfitChange                   : singleReport.rcrpl_GrossProfitChange,       
+                                rcrpl_GrossProfitMargin                   : singleReport.rcrpl_GrossProfitMargin,       
+                                rcrpl_GeneralExpenses                     : singleReport.rcrpl_GeneralExpenses,         
+                                rcrpl_OperatingProfit                     : singleReport.rcrpl_OperatingProfit,         
+                                rcrpl_OperatingProfitChange               : singleReport.rcrpl_OperatingProfitChange,   
+                                rcrpl_OperatingProfitMargin               : singleReport.rcrpl_OperatingProfitMargin,   
+                                rcrpl_Interest                            : singleReport.rcrpl_Interest,                
+                                rcrpl_Taxes                               : singleReport.rcrpl_Taxes,                   
+                                rcrpl_ExceptionalItems                    : singleReport.rcrpl_ExceptionalItems,        
+                                rcrpl_NetProfit                           : singleReport.rcrpl_NetProfit,               
+                                rcrpl_NetProfitChange                     : singleReport.rcrpl_NetProfitChange,         
+                                rcrpl_NetProfitMargin                     : singleReport.rcrpl_NetProfitMargin,         
+
+                                //P&L per brand in B&M and onLine
+                                rcrb_Sales                                : singleReport.rcrb_Sales,                              
+                                rcrb_PromotionsCost                       : singleReport.rcrb_PromotionsCost,                      
+                                rcrb_OtherCompensation                    : singleReport.rcrb_OtherCompensation,                   
+                                rcrb_NetSales                             : singleReport.rcrb_NetSales,                            
+                                rcrb_NetSalesChange                       : singleReport.rcrb_NetSalesChange,                      
+                                rcrb_NetSalesShareInCategory              : singleReport.rcrb_NetSalesShareInCategory,             
+                                rcrb_CostOfGoodsSold                      : singleReport.rcrb_CostOfGoodsSold,                     
+                                rcrb_ValueOfQuantityDiscounts             : singleReport.rcrb_ValueOfQuantityDiscounts,            
+                                rcrb_ValueOfPerformanceBonus              : singleReport.rcrb_ValueOfPerformanceBonus,             
+                                rcrb_DiscontinuedGoodsCost                : singleReport.rcrb_DiscontinuedGoodsCost,               
+                                rcrb_InventoryHoldingCost                 : singleReport.rcrb_InventoryHoldingCost,                
+                                rcrb_GrossProfit                          : singleReport.rcrb_GrossProfit,                         
+                                rcrb_GrossProfitChange                    : singleReport.rcrb_GrossProfitChange,                   
+                                rcrb_GrossProfitMargin                    : singleReport.rcrb_GrossProfitMargin,                   
+                                rcrb_GrossProfitShareInCategory           : singleReport.rcrb_GrossProfitShareInCategory,          
+                                rcrb_GeneralExpenses                      : singleReport.rcrb_GeneralExpenses,                     
+                                rcrb_OperatingProfit                      : singleReport.rcrb_OperatingProfit,                    
+                                rcrb_OperatingProfitChange                : singleReport.rcrb_OperatingProfitChange,               
+                                rcrb_OperatingProfitMargin                : singleReport.rcrb_OperatingProfitMargin,               
+                                rcrb_OperatingProfitMarginShareInCategory : singleReport.rcrb_OperatingProfitMarginShareInCategory,
+                                rcrb_Interest                             : singleReport.rcrb_Interest,                            
+                                rcrb_Taxes                                : singleReport.rcrb_Taxes,                               
+                                rcrb_ExceptionalItems                     : singleReport.rcrb_ExceptionalItems,                    
+                                rcrb_NetProfit                            : singleReport.rcrb_NetProfit,                           
+                                rcrb_NetProfitChange                      : singleReport.rcrb_NetProfitChange,                     
+                                rcrb_NetProfitMargin                      : singleReport.rcrb_NetProfitMargin,                     
+                                rcrb_NetProfitShareInCategory             : singleReport.rcrb_NetProfitShareInCategory,            
+
+                                ////P&L per variant in B&M and onLine
+                                rcrv_Sales                                : singleReport.rcrv_Sales,                                
+                                rcrv_PromotionsCost                       : singleReport.rcrv_PromotionsCost,                       
+                                rcrv_OtherCompensation                    : singleReport.rcrv_OtherCompensation,                    
+                                rcrv_NetSales                             : singleReport.rcrv_NetSales,                             
+                                rcrv_NetSalesChange                       : singleReport.rcrv_NetSalesChange,                       
+                                rcrv_NetSalesShareInCategory              : singleReport.rcrv_NetSalesShareInCategory,              
+                                rcrv_CostOfGoodsSold                      : singleReport.rcrv_CostOfGoodsSold,                      
+                                rcrv_ValueOfQuantityDiscounts             : singleReport.rcrv_ValueOfQuantityDiscounts,             
+                                rcrv_ValueOfPerformanceBonus              : singleReport.rcrv_ValueOfPerformanceBonus,              
+                                rcrv_DiscontinuedGoodsCost                : singleReport.rcrv_DiscontinuedGoodsCost,                
+                                rcrv_InventoryHoldingCost                 : singleReport.rcrv_InventoryHoldingCost,                 
+                                rcrv_GrossProfit                          : singleReport.rcrv_GrossProfit,                          
+                                rcrv_GrossProfitChange                    : singleReport.rcrv_GrossProfitChange,                   
+                                rcrv_GrossProfitMargin                    : singleReport.rcrv_GrossProfitMargin,                    
+                                rcrv_GrossProfitShareInCategory           : singleReport.rcrv_GrossProfitShareInCategory,           
+                                rcrv_GeneralExpenses                      : singleReport.rcrv_GeneralExpenses,                      
+                                rcrv_OperatingProfit                      : singleReport.rcrv_OperatingProfit,                      
+                                rcrv_OperatingProfitChange                : singleReport.rcrv_OperatingProfitChange,                
+                                rcrv_OperatingProfitMargin                : singleReport.rcrv_OperatingProfitMargin,                
+                                rcrv_OperatingProfitMarginShareInCategory : singleReport. rcrv_OperatingProfitMarginShareInCategory,
+                                rcrv_Interest                             : singleReport.rcrv_Interest,                             
+                                rcrv_Taxes                                : singleReport.rcrv_Taxes,                                
+                                rcrv_ExceptionalItems                     : singleReport.rcrv_ExceptionalItems,                     
+                                rcrv_NetProfit                            : singleReport.rcrv_NetProfit,                            
+                                rcrv_NetProfitChange                      : singleReport.rcrv_NetProfitChange,                      
+                                rcrv_NetProfitMargin                      : singleReport.rcrv_NetProfitMargin,                      
+                                rcrv_NetProfitShareInCategory             : singleReport.rcrv_NetProfitShareInCategory,             
+                                },
+                                {upsert: true},
+                                function(err, numberAffected, raw){
+                                  if(err) deferred.reject({msg:err, options: options});                                  
+                                  currentPeriod--;
+                                  if (currentPeriod >= startFrom) {
+                                     sendRequest(currentPeriod);
+                                  } else {
+                                     deferred.resolve({msg: options.schemaName + ' (seminar:' + options.seminar + ', retailer:' + options.retailerID+ ') import done. from period ' + startFrom + ' to ' + endWith, options: options});
+                                  }
+                                });   
+
+        });
+      }).on('error', function(e){
+        deferred.reject({msg:'errorFrom add ' + options.schemaName + ': ' + e.message + ', requestOptions:' + JSON.stringify(reqOptions),options: options});
+      });
+    })(endWith);
+
+    return deferred.promise;
+}
+
 exports.addRCR_consolidatedProfitAndLoss=function(req,res,next){
     var newRCR_consolidatedProfitAndLoss=RCR_consolidatedProfitAndLoss({
         period : 0,

@@ -54,6 +54,69 @@ var shopperInfoSchema = mongoose.Schema({
 
 var SCR_sharesCrossSegment=mongoose.model('SCR_sharesCrossSegment',SCR_sharesCrossSegmentSchema);
 
+exports.addReports = function(options){
+    var deferred = q.defer();
+    var startFrom = options.startFrom,
+    endWith = options.endWith;
+
+   (function sendRequest(currentPeriod){        
+      var reqOptions = {
+          hostname: options.cgiHost,
+          port: options.cgiPort,
+          path: options.cgiPath + '?period=' + currentPeriod + '&seminar=' + options.seminar + '&producerID=' + options.producerID
+      };
+
+      http.get(reqOptions, function(response) { 
+        var data = '';
+        response.setEncoding('utf8');
+        response.on('data', function(chunk){
+          data += chunk;
+        }).on('end', function(){
+          //ask Oleg to fix here, should return 404 when result beyound the existed period.
+          //console.log('response statusCode from CGI(' + options.cgiPath + ') for period ' + currentPeriod + ': ' + response.statusCode);
+          if ( response.statusCode === (404 || 500) ) 
+            deferred.reject({msg:'Get 404||500 error from CGI server, reqOptions:' + JSON.stringify(reqOptions)});
+          else {
+            try {
+              var singleReport = JSON.parse(data);
+            } catch(e) {
+              deferred.reject({msg: 'cannot parse JSON data from CGI:' + data, options:options});
+            }
+          }      
+          if (!singleReport) return; 
+         // console.log(util.inspect(singleReport, {depth:null}));
+
+          SCR_sharesCrossSegment.update({seminar    : singleReport.seminar, 
+                                            period     : singleReport.period,
+                                            producerID : singleReport.producerID},
+                                {
+                                absoluteValue     : absoluteValue,
+                                valueChange       : valueChange,   
+                                absoluteVolume    : absoluteVolume,
+                                volumeChange      : volumeChange,  
+                                },
+                                {upsert: true},
+                                function(err, numberAffected, raw){
+                                  if(err) deferred.reject({msg:err, options: options});                                  
+                                  currentPeriod--;
+                                  if (currentPeriod >= startFrom) {
+                                     sendRequest(currentPeriod);
+                                  } else {
+                                     deferred.resolve({msg: options.schemaName + ' (seminar:' + options.seminar + ', producer:' + options.producerID+ ') import done. from period ' + startFrom + ' to ' + endWith, options: options});
+                                  }
+                                });   
+
+        });
+      }).on('error', function(e){
+        deferred.reject({msg:'errorFrom add ' + options.schemaName + ': ' + e.message + ', requestOptions:' + JSON.stringify(reqOptions),options: options});
+      });
+    })(endWith);
+
+    return deferred.promise;
+}
+
+
+
 exports.addSCR_sharesCrossSegment=function(req,res,next){
     var newSCR_sharesCrossSegment=SCR_sharesCrossSegment({
         period : 0,

@@ -43,7 +43,8 @@ var
       bonus_TargetVolume: begin jo.D['value'] := variant.vnd_TargetBonus.bonus_TargetVolume; end;
       bonus_Rate: begin jo.D['value'] := variant.vnd_TargetBonus.bonus_Rate; end;
       bonus_Value: begin jo.D['value'] := variant.vnd_TargetBonus.bonus_Value; end;
-      vnd_PaymentTerms: begin jo.D['value'] := variant.vnd_PaymentTerms; end;
+
+      vnd_PaymentTerms: begin jo.I['value'] := variant.vnd_PaymentTerms; end;
       vnd_OtherCompensation: begin jo.D['value'] := variant.vnd_OtherCompensation; end;
       vnd_ContractHonoured: begin jo.B['value'] := variant.vnd_ContractHonoured; end;
     end;
@@ -56,6 +57,7 @@ var
     s_str : string;
     actorID,catID,brandCount,variantCount,bmRetailerID : Integer;
     joBonusDetails, joDiscountDetails : ISuperObject;
+    tempVariant : TVariantNegotiationsDetails;
   begin
     oJsonFile := SO;
     oJsonFile.S['seminar'] := currentSeminar;
@@ -68,7 +70,7 @@ var
     joBonusDetails.O['bonus_Value'] := SA([]);
     joDiscountDetails := SO;
     joDiscountDetails.O['discount_MinimumVolume'] := SA([]);
-    joDiscountDetails.O['discount_Rate'] := SA([]);    
+    joDiscountDetails.O['discount_Rate'] := SA([]);
     oJsonFile.O['vnd_PaymentTerms'] := SA([]);
     oJsonFile.O['vnd_OtherCompensation'] := SA([]);
     oJsonFile.O['vnd_ContractHonoured'] := SA([]);
@@ -81,19 +83,20 @@ var
         begin
           for bmRetailerID := Low(TBMRetailers) to High(TBMRetailers) do
           begin
-            if(currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Negotiations[catID, bmRetailerID , brandCount, variantCount].vnd_VariantName <> '') AND (currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Negotiations[catID, bmRetailerID , brandCount, variantCount].vnd_ParentBrandName <> '') then
+            tempVariant := currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Negotiations[catID, bmRetailerID , brandCount, variantCount];
+            if(tempVariant.vnd_VariantName <> '') AND (tempVariant.vnd_ParentBrandName <> '') then
             begin
-              joBonusDetails.A['bonus_TargetVolume'].Add( variantInfoSchema(bonus_TargetVolume, catID, brandCount, variantCount, bmRetailerID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Negotiations[catID, bmRetailerID , brandCount, variantCount]) );
-              joBonusDetails.A['bonus_Rate'].Add( variantInfoSchema(bonus_Rate, catID, brandCount, variantCount, bmRetailerID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Negotiations[catID, bmRetailerID , brandCount, variantCount]) );
-              joBonusDetails.A['bonus_Value'].Add( variantInfoSchema(bonus_Value, catID, brandCount, variantCount, bmRetailerID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Negotiations[catID, bmRetailerID , brandCount, variantCount]) );
+               joBonusDetails.A['bonus_TargetVolume'].Add( variantInfoSchema(bonus_TargetVolume, catID, brandCount, variantCount, bmRetailerID, tempVariant) );
+               joBonusDetails.A['bonus_Rate'].Add( variantInfoSchema(bonus_Rate, catID, brandCount, variantCount, bmRetailerID, tempVariant) );
+               joBonusDetails.A['bonus_Value'].Add( variantInfoSchema(bonus_Value, catID, brandCount, variantCount, bmRetailerID, tempVariant) );
 
-              joDiscountDetails.A['discount_MinimumVolume'].Add(variantInfoSchema(discount_MinimumVolume, catID, brandCount, variantCount, bmRetailerID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Negotiations[catID, bmRetailerID , brandCount, variantCount]) );
-              joDiscountDetails.A['discount_Rate'].Add(variantInfoSchema(discount_Rate, catID, brandCount, variantCount, bmRetailerID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Negotiations[catID, bmRetailerID , brandCount, variantCount]) );
+               joDiscountDetails.A['discount_MinimumVolume'].Add(variantInfoSchema(discount_MinimumVolume, catID, brandCount, variantCount, bmRetailerID, tempVariant) );
+               joDiscountDetails.A['discount_Rate'].Add(variantInfoSchema(discount_Rate, catID, brandCount, variantCount, bmRetailerID, tempVariant) );
 
-              joDiscountDetails.A['vnd_PaymentTerms'].Add(variantInfoSchema(vnd_PaymentTerms, catID, brandCount, variantCount, bmRetailerID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Negotiations[catID, bmRetailerID , brandCount, variantCount]) );
-              joDiscountDetails.A['vnd_OtherCompensation'].Add(variantInfoSchema(vnd_OtherCompensation, catID, brandCount, variantCount, bmRetailerID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Negotiations[catID, bmRetailerID , brandCount, variantCount]) );
-              joDiscountDetails.A['vnd_ContractHonoured'].Add(variantInfoSchema(vnd_ContractHonoured, catID, brandCount, variantCount, bmRetailerID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Negotiations[catID, bmRetailerID , brandCount, variantCount]) );
-            end;            
+              oJsonFile.A['vnd_PaymentTerms'].Add(variantInfoSchema(vnd_PaymentTerms, catID, brandCount, variantCount, bmRetailerID, tempVariant) );
+              oJsonFile.A['vnd_OtherCompensation'].Add(variantInfoSchema(vnd_OtherCompensation, catID, brandCount, variantCount, bmRetailerID, tempVariant) );
+               oJsonFile.A['vnd_ContractHonoured'].Add(variantInfoSchema(vnd_ContractHonoured, catID, brandCount, variantCount, bmRetailerID, tempVariant) );
+           end;
           end;
         end;      
       end;          

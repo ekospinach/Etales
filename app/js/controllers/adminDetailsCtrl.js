@@ -1,16 +1,17 @@
 define(['app','socketIO'], function(app) {
 
 	app.controller('adminDetailsCtrl',['$scope', '$http','$rootScope','SeminarInfo', function($scope, $http,$rootScope, SeminarInfo) {
-		$rootScope.loginCss="";
-	    $rootScope.loginFooter="bs-footer";
-	    $rootScope.loginLink="footer-links";
-	    $rootScope.loginDiv="container";
+		$rootScope.loginCss    = "";
+	    $rootScope.loginFooter = "bs-footer";
+	    $rootScope.loginLink   = "footer-links";
+	    $rootScope.loginDiv    = "container";
 
 		var socket = io.connect('http://localhost');
 		socket.on('AdminProcessLog', function(data){
 			$scope.isInitializeMessageShown = true;			
-			if(data.msg != ''){ $scope.initializeMessage.push(data.msg); }
-			
+			if(data.msg != ''){ $scope.initializeMessage.push(data.msg); }			
+
+			console.log('scoketIO:'+data.msg);
 		}).on('PassiveProcessLog', function(data){
 			$scope.isKernelMessageShown = true;
 			if(data.msg != ''){ $scope.kernelMessage.push(data.msg); }
@@ -24,6 +25,7 @@ define(['app','socketIO'], function(app) {
 			$scope.isMessageShown = false;
 			console.log($scope.seminar);
 		}
+
 		initializePage();
 	
 	    $scope.$watch('seminar.traceActive', function() {
@@ -77,18 +79,18 @@ define(['app','socketIO'], function(app) {
 			$scope.isInitializeConfirmInfoShown = false;
 			$scope.isActive = false;
 			var postData = {
-				seminar : seminar.seminarCode,
-			    simulationSpan : seminar.simulationSpan,
-			    traceActive : seminar.traceActive,
-			    traditionalTradeActive : seminar.traditionalTradeActive,
-			    EMallActive : seminar.EMallActive,
-			    virtualSupplierActive : seminar.virtualSupplierActive,
-			    independentMarkets : seminar.independentMarkets,
-			    forceNextDecisionsOverwrite : seminar.forceNextDecisionsOverwrite,
-				market1ID : seminar.market1ID,
-				market2ID : seminar.market2ID,
-				category1ID : seminar.category1ID,
-				category2ID : seminar.category2ID			
+				seminar                    : seminar.seminarCode,
+			    simulationSpan             : seminar.simulationSpan,
+			    traceActive                : seminar.traceActive,
+			    traditionalTradeActive     : seminar.traditionalTradeActive,
+			    EMallActive                : seminar.EMallActive,
+			    virtualSupplierActive      : seminar.virtualSupplierActive,
+			    independentMarkets         : seminar.independentMarkets,
+			    forceNextDecisionsOverwrite: seminar.forceNextDecisionsOverwrite,
+				market1ID                  : seminar.market1ID,
+				market2ID                  : seminar.market2ID,
+				category1ID                : seminar.category1ID,
+				category2ID                : seminar.category2ID			
 			}
 
 			$http({method:'POST', url:'/initialiseSeminar', data:postData}).then(function(res){
@@ -117,6 +119,11 @@ define(['app','socketIO'], function(app) {
 				$scope.isActive = true;				
 			})
 		}
+
+		$scope.importReport = function(seminar) {
+			// body...
+		}
+
 
 		$scope.openInitializeModal = function(){
 			$scope.isInitializeConfirmInfoShown = true;
