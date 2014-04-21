@@ -66,7 +66,7 @@ exports.addReports = function(options){
 
          productPortfolio.update({seminar: singleReport.seminar, 
                               period: singleReport.period},
-                              {categoryInfo: singleReport.actorInfo},
+                              {categoryInfo: singleReport.categoryInfo},
                                 {upsert: true},
                                 function(err, numberAffected, raw){
                                   if(err) deferred.reject({msg:err, options: options});                                  
