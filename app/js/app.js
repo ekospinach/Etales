@@ -70,6 +70,7 @@
 	'directives/TE_MR_urbanHealthBeautiesShopperSales',
 	'directives/TE_MR_urbanHealthBeautiesShopperShare',
 	'directives/TE_SD_productPortfolioManagement',
+	'directives/TE_SD_bMListPrices',
 	'angularRoute',
 	'angularXeditable',
 	'angularBootstrap',

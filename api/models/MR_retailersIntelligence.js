@@ -55,49 +55,65 @@ exports.addMR_retailersIntelligence=function(req,res,next){
                 parentBrandName: 'ELAN1',
                 parentCategoryID: 1,
                 parentCompanyID: 1, //TActors : 1~(4+3) 
-                shelfSpace: [20,30]
+                shelfSpace: [20,30],
+                previousShelfSpace:[25,35],
+                shelfSpaceChange:[30,40]
             },{
                 variantName: '_B',
                 parentBrandName: 'HLAN1',
                 parentCategoryID: 2,
                 parentCompanyID: 1, //TActors : 1~(4+3) 
-                shelfSpace: [20,30]
+                shelfSpace: [20,30],
+                previousShelfSpace:[25,35],
+                shelfSpaceChange:[30,40]
             },{
                 variantName: '_C',
                 parentBrandName: 'ELAN2',
                 parentCategoryID: 1,
                 parentCompanyID: 2, //TActors : 1~(4+3) 
-                shelfSpace: [20,30]
+                shelfSpace: [20,30],
+                previousShelfSpace:[25,35],
+                shelfSpaceChange:[30,40]
             },{
                 variantName: '_D',
                 parentBrandName: 'HLAN2',
                 parentCategoryID: 2,
                 parentCompanyID: 2, //TActors : 1~(4+3) 
-                shelfSpace: [20,30]
+                shelfSpace: [20,30],
+                previousShelfSpace:[25,35],
+                shelfSpaceChange:[30,40]
             },{
                 variantName: '_E',
                 parentBrandName: 'ELAN3',
                 parentCategoryID: 1,
                 parentCompanyID: 3, //TActors : 1~(4+3) 
-                shelfSpace: [20,30]
+                shelfSpace: [20,30],
+                previousShelfSpace:[25,35],
+                shelfSpaceChange:[30,40]
             },{
                 variantName: '_F',
                 parentBrandName: 'HLAN3',
                 parentCategoryID: 2,
                 parentCompanyID: 3, //TActors : 1~(4+3) 
-                shelfSpace: [20,30]
+                shelfSpace: [20,30],
+                previousShelfSpace:[25,35],
+                shelfSpaceChange:[30,40]
             },{
                 variantName: '_G',
                 parentBrandName: 'ELAN5',
                 parentCategoryID: 1,
                 parentCompanyID: 5, //TActors : 1~(4+3) 
-                shelfSpace: [20,30]
+                shelfSpace: [20,30],
+                previousShelfSpace:[25,35],
+                shelfSpaceChange:[30,40]
             },{
                 variantName: '_H',
                 parentBrandName: 'HLAN5',
                 parentCategoryID: 2,
                 parentCompanyID: 5, //TActors : 1~(4+3) 
-                shelfSpace: [20,30]
+                shelfSpace: [20,30],
+                previousShelfSpace:[25,35],
+                shelfSpaceChange:[30,40]
             }]
         },{
             retailerID : 2, //1~3     
@@ -110,49 +126,65 @@ exports.addMR_retailersIntelligence=function(req,res,next){
                 parentBrandName: 'ELAN1',
                 parentCategoryID: 1,
                 parentCompanyID: 1, //TActors : 1~(4+3) 
-                shelfSpace: [30,30]
+                shelfSpace: [30,30],
+                previousShelfSpace:[25,35],
+                shelfSpaceChange:[30,40]
             },{
                 variantName: '_C',
                 parentBrandName: 'HLAN1',
                 parentCategoryID: 2,
                 parentCompanyID: 1, //TActors : 1~(4+3) 
-                shelfSpace: [30,30]
+                shelfSpace: [30,30],
+                previousShelfSpace:[25,35],
+                shelfSpaceChange:[30,40]
             },{
                 variantName: '_C',
                 parentBrandName: 'ELAN2',
                 parentCategoryID: 1,
                 parentCompanyID: 2, //TActors : 1~(4+3) 
-                shelfSpace: [30,30]
+                shelfSpace: [30,30],
+                previousShelfSpace:[25,35],
+                shelfSpaceChange:[30,40]
             },{
                 variantName: '_E',
                 parentBrandName: 'HLAN2',
                 parentCategoryID: 2,
                 parentCompanyID: 2, //TActors : 1~(4+3) 
-                shelfSpace: [30,30]
+                shelfSpace: [30,30],
+                previousShelfSpace:[25,35],
+                shelfSpaceChange:[30,40]
             },{
                 variantName: '_F',
                 parentBrandName: 'ELAN3',
                 parentCategoryID: 1,
                 parentCompanyID: 3, //TActors : 1~(4+3) 
-                shelfSpace: [30,30]
+                shelfSpace: [30,30],
+                previousShelfSpace:[25,35],
+                shelfSpaceChange:[30,40]
             },{
                 variantName: '_F',
                 parentBrandName: 'HLAN3',
                 parentCategoryID: 2,
                 parentCompanyID: 3, //TActors : 1~(4+3) 
-                shelfSpace: [30,30]
+                shelfSpace: [30,30],
+                previousShelfSpace:[25,35],
+                shelfSpaceChange:[30,40]
             },{
                 variantName: '_G',
                 parentBrandName: 'ELAN6',
                 parentCategoryID: 1,
                 parentCompanyID: 6, //TActors : 1~(4+3) 
-                shelfSpace: [30,30]
+                shelfSpace: [30,30],
+                previousShelfSpace:[25,35],
+                shelfSpaceChange:[30,40]
             },{
                 variantName: '_H',
                 parentBrandName: 'HLAN6',
                 parentCategoryID: 2,
                 parentCompanyID: 6, //TActors : 1~(4+3) 
-                shelfSpace: [30,30]
+                shelfSpace: [30,30],
+                previousShelfSpace:[25,35],
+                shelfSpaceChange:[30,40]
             }]
         },{}]
     });

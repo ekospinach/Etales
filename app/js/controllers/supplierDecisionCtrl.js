@@ -23,11 +23,11 @@ define(['app','socketIO','routingConfig'], function(app) {
 
 	    	var showProductPortfolioManagement=function(){
 	    		switching('showProductPortfolioManagement');
-	    		console.log('hi');
 	    	}
 
-	    	scope.showBMListPrices=function(){
+	    	$scope.showBMListPrices=function(){
 	    		switching('showBMListPrices');
+	    		console.log('hi');
 	    	}
 
 	    	$scope.switching=switching;
