@@ -1,0 +1,62 @@
+<style TYPE="text/css">
+
+    .table-bordered > thead > tr > th,
+    .table-bordered > tbody > tr > th,
+    .table-bordered > tfoot > tr > th,
+    .table-bordered > thead > tr > td,
+    .table-bordered > tbody > tr > td,
+    .table-bordered > tfoot > tr > td {
+      border: 1px solid #428BCA;
+      border-right: none;
+    }
+    @media (min-width: 1200px) {
+      /* Widen the fixed sidebar again */
+      .bs-docs-sidebar.affix-bottom,
+      .bs-docs-sidebar.affix {
+        width: 25%;
+      }
+    }
+
+    .my-super-awesome-loading-box {
+      padding: 10px;
+      text-align: center;
+      border: 0px solid gray;
+      background: #EFEFEF;
+    }
+
+</style>
+
+<div class="my-super-awesome-loading-box" ng-show="isPageLoading">Loading...</div>
+
+<div class="container bs-docs-container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="bs-docs-section">
+                <supplier-product-portfolio-management ng-show='ProductPortfolioManagement' is-page-shown='ProductPortfolioManagement' is-page-loading='isPageLoading'></supplier-product-portfolio-management>
+                <supplier-b-m-list-prices ng-show='BMListPrices' is-page-shown='BMListPrices' is-page-loading='isPageLoading'></supplier-b-m-list-prices>
+                <supplier-production-volume ng-show='ProductionVolume' is-page-shown='ProductionVolume' is-page-loading='isPageLoading'></supplier-production-volume>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="bs-docs-sidebar hidden-print" affix='200' role="complementary" angular-bootstrap>
+                <ul class="nav bs-docs-sidenav">
+                    <li class="active">
+                        <a href="/#/supplierDecision" style="color:#428BCA" ng-click="showProductPortfolioManagement()">{{Label.getContent('Product Portfolio Management')}}</a>
+                    </li>
+                    <li class="">
+                        <a href="/#/supplierDecision" style="color:#428BCA" ng-click='showBMListPrices()'>{{Label.getContent('B&M List Prices')}}</a>
+                    </li>
+                    <li class="">
+                        <a href="/#/supplierDecision" style="color:#428BCA" ng-click='showNegotiation()'>{{Label.getContent('Negotiation Agreements')}}</a>
+                    </li>
+                    <li class="">
+                        <a href="/#/supplierDecision" style="color:#428BCA" ng-click='showProductionVolume()'>{{Label.getContent('Production Volumes')}}</a>
+                    </li>
+                    <li class="">
+                        <a href="/#/supplierDecision" style="color:#428BCA" ng-click='showCross()'>{{Label.getContent('Cross-Segment Sales Volumes')}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

@@ -46,7 +46,6 @@
 			{{ seminar.facilitator[0].password || 'empty' }}
 		</a>
 	</p>				
-
 	<div class="page-header">
 		<h3>Initialise
 			<small>
@@ -61,59 +60,33 @@
 	<p>Simulation span : <a href="#" editable-text="seminar.simulationSpan" onaftersave="parameterChanged())">
 			{{ seminar.simulationSpan}}
 		</a></p>
-	<p>Trace active : <input bs-switch
+
+	<p> 
+		<input
 	    ng-model="seminar.traceActive"
-	    type="checkbox"
-	    switch-active="{{ isActive }}"
-	    switch-on-label="ON"
-	    switch-off-label="OFF"
-	    switch-animate="true"
-	    switch-size="small"></p>
-	<p>Traditional trade active : <input
-	    bs-switch
+	    type="checkbox"> Trace active</p>
+
+	<p>
+		<input
 	    ng-model="seminar.traditionalTradeActive"
-	    type="checkbox"
-	    switch-active="{{ isActive }}"
-	    switch-on-label="ON"
-	    switch-off-label="OFF"
-	    switch-animate="true"
-	    switch-size="small"></p>
-	<p>E-Mall active : <input
-	    bs-switch
+	    type="checkbox"> Traditional trade active</p>
+	<p>
+		<input
 	    ng-model="seminar.EMallActive"
-	    type="checkbox"
-	    switch-active="{{ isActive }}"
-	    switch-on-label="ON"
-	    switch-off-label="OFF"
-	    switch-animate="true"
-	    switch-size="small"></p>
-	<p>Virtual supplier active : <input
-	    bs-switch
+	    type="checkbox"> E-Mall active</p>
+	<p>
+		<input
 	    ng-model="seminar.virtualSupplierActive"
-	    type="checkbox"
-	    switch-active="{{ isActive }}"
-	    switch-on-label="ON"
-	    switch-off-label="OFF"
-	    switch-animate="true"
-	    switch-size="small"></p>
-	<p>Independent markets : <input
-	    bs-switch
+	    type="checkbox"> Virtual supplier active</p>
+	<p>
+		<input
 	    ng-model="seminar.independentMarkets"
-	    type="checkbox"
-	    switch-active="{{ isActive }}"
-	    switch-on-label="ON"
-	    switch-off-label="OFF"
-	    switch-animate="true"
-	    switch-size="small"></p>
-	<p>Force next decisions overwrite : <input
-	    bs-switch
+	    type="checkbox"> Independent markets</p>
+	<p>
+		<input
 	    ng-model="seminar.forceNextDecisionsOverwrite"
-	    type="checkbox"
-	    switch-active="{{ isActive }}"
-	    switch-on-label="ON"
-	    switch-off-label="OFF"
-	    switch-animate="true"
-	    switch-size="small"></p>
+	    type="checkbox"> Force next decisions overwrite</p>
+
 	<pre ng-show="isInitializeMessageShown"><p data-ng-repeat="message in initializeMessage">{{message}}</p></pre>
 	<div class="alert alert-danger fade in" ng-show="isInitializeConfirmInfoShown">
 	  <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>

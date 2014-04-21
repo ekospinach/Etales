@@ -18,23 +18,23 @@ define(['directives', 'services'], function(directives){
                     getResult();                    
                 }
 
-                var loadVariantValue=function(data,brandName,variantName,num){
+                var loadVariantValue=function(data,brandName,variantName,market){
                     var array=_.find(data,function(obj){
-                        return (obj.variantName==variantName&&obj.parentBrandName==brandName);
+                        return (obj.variantName==variantName&&obj.parentBrandName==brandName&&obj.marketID==market);
                     });
-                    return array.value[num];
+                    return array.value;
                 }
 
                 var loadretailerVolume=function(data,category,market){
                     for(var i=0;i<data.data[0].rcrviv_Initial.length;i++){
-                        if(data.data[0].rcrviv_Initial[i].parentCategoryID==category){
+                        if(data.data[0].rcrviv_Initial[i].parentCategoryID==category&&data.data[0].rcrviv_Initial[i].marketID==market){
                             var varName=data.data[0].rcrviv_Initial[i].variantName;
                             var brandName=data.data[0].rcrviv_Initial[i].parentBrandName;
-                            var initial=data.data[0].rcrviv_Initial[i].value[market-1];
-                            var production=loadVariantValue(data.data[0].rcrviv_Purchase,brandName,varName,market-1);
-                            var sales=loadVariantValue(data.data[0].rcrviv_Sales,brandName,varName,market-1);
-                            var discontinued=loadVariantValue(data.data[0].rcrviv_Discontinued,brandName,varName,market-1);
-                            var closing=loadVariantValue(data.data[0].rcrviv_Closing,brandName,varName,market-1);
+                            var initial=data.data[0].rcrviv_Initial[i].value;
+                            var production=loadVariantValue(data.data[0].rcrviv_Purchase,brandName,varName,market);
+                            var sales=loadVariantValue(data.data[0].rcrviv_Sales,brandName,varName,market);
+                            var discontinued=loadVariantValue(data.data[0].rcrviv_Discontinued,brandName,varName,market);
+                            var closing=loadVariantValue(data.data[0].rcrviv_Closing,brandName,varName,market);
                             switch(data.data[0].rcrviv_Initial[i].parentCompany){
                                 case 1:if(category==1){
                                     scope.product1es.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing});
@@ -46,7 +46,7 @@ define(['directives', 'services'], function(directives){
                                 }else{
                                     scope.product2hs.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing});
                                 }break;
-                                    case 3:if(category==1){
+                                case 3:if(category==1){
                                     scope.product3es.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing});
                                 }else{
                                     scope.product3hs.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing});
@@ -61,6 +61,7 @@ define(['directives', 'services'], function(directives){
                             }
                         }
                     }
+                    console.log(scope.product3es);
                 }
 
                 var getResult =function(){

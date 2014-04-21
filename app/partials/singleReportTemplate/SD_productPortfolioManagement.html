@@ -1,0 +1,211 @@
+<div class="pull-right" style="width:400px">
+	<progress percent="percentageExpend" class="progress-primary"></progress>
+	<small>
+		<em>{{Label.getContent('Available Budget')}}:<strong>{{surplusExpend.toFixed(2)}}</strong></em>
+	</small>
+	<progress percent="elePercentageProduction" class="progress-suceess"></progress>
+	<small>
+		<em>{{Label.getContent('Elecssories')}} {{Label.getContent('Producer Available Capacity')}}: <strong>{{eleSurplusProduction.toFixed(2)}}</strong></em>
+	</small>
+	<progress percent="heaPercentageProduction" class="progress-danger"></progress>
+	<small>
+		<em>{{Label.getContent('HealthBeauties')}} {{Label.getContent('Producer Available Capacity')}}: <strong>{{heaSurplusProduction.toFixed(2)}}</strong></em>
+	</small>
+</div>
+<div style="clear:both;padding:1px 0" ng-show='isResultShown'></div>
+<div class='panel panel-primary my-success-panel' ng-show='isResultShown'>
+	<div class="panel-heading">
+        <h3 class="panel-title text-center" popover="{{Label.getContent('Product Portfolio Management Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
+            {{Label.getContent('Product Portfolio Management')}}
+        </h3>
+    </div>
+
+    <table class="table table-condensed table-bordered table-success">
+    	<thead>
+    		<tr>
+    			<th colspan="2"></th>
+    			<th>
+    				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Pack Format Info')}}" popover-title="{{Label.getContent('Pack Format')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Pack Format')}}<span style="color:red">*</span></p>
+    			</th>
+    			<th>
+    				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Technology Level Info')}}" popover-title="{{Label.getContent('Technology Level')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Technology Level')}}<span style="color:red">*</span></p>
+    			</th>
+    			<th>
+    				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Design Level Info')}}" popover-title="{{Label.getContent('Design Level')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Design Level')}}<span style="color:red">*</span></p>
+    			</th>
+    			<th>
+    				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Quality-of-Raw-Materials Info')}}" popover-title="{{Label.getContent('Quality-of-Raw-Materials')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Quality-of-Raw-Materials')}}<span style="color:red">*</span></p>
+    			</th>
+    		</tr>
+    		<tr class="success">
+    			<td colspan="6">
+    				<p>{{Label.getContent('Brand')}}</p>
+    			</td>
+    		</tr>
+    	</thead>
+    	<tbody>
+    		<tr class="success" ng-repeat='producte in productes'>
+    			<td>
+    				<p class="padding-20">{{producte.parentBrandName}}</p>
+    			</td>
+    			<td>
+    				<div style="clear:both"></div>
+    				<button type="button" class="btn btn-danger btn-xs pull-right" ng-show="(producte.dateOfBirth==currentPeriod)" ng-click="deleteProduct('Elecssories',producte.parentBrandName,producte.varName)">{{Label.getContent('Delete')}}</button>
+    				<p class="text-center">{{producte.parentBrandName}}{{producte.varName}}</p>
+    			</td>
+    			<td>
+    				<a href="#" editable-select="producte.packFormat" e-ng-options="p.value as p.text for p in packs" onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'packFormat','0',$index)">
+    					<p class="text-right">{{selectPacks('Elecssories',producte.parentBrandName,producte.varName)}}</p>
+    				</a>
+    			</td>
+    			<td>
+    				<a href="#" editable-text="producte.composition[1]" onbeforesave="checkTechnology('Elecssories',producte.parentBrandName,producte.varName,'composition','1',$index,$data)" onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'composition','1',$index)">
+    					<p class="text-right">{{ producte.composition[1] || 0 }}</p>
+    				</a>
+    			</td>
+    			<td>
+    				<a href="#" editable-text="producte.composition[0]" onbeforesave="checkDesign('Elecssories',producte.parentBrandName,producte.varName,'composition','0',$index,$data)" onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'composition','0',$index)">
+    					<p class="text-right">{{ producte.composition[0] || 0 }}</p>
+    				</a>
+    			</td>
+    			<td>
+    				<a href="#" editable-text="producte.composition[2]" onbeforesave="checkRMQ('Elecssories',producte.parentBrandName,producte.varName,'composition','2',$index,$data)" onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'composition','2',$index)">
+    					<p class="text-right">{{ producte.composition[2] || 0 }}</p>
+    				</a>
+    			</td>
+    		</tr>
+    		<tr>
+    			<th colspan="2"></th>
+    			<th>
+    				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Pack Format Info')}}" popover-title="{{Label.getContent('Pack Format')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Pack Format')}}<span style="color:red">*</span></p>
+    			</th>
+    			<th>
+    				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Technology Level Info')}}" popover-title="{{Label.getContent('Technology Level')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Technology Level')}}<span style="color:red">*</span></p>
+    			</th>
+    			<th>
+    				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Active agent Info')}}" popover-title="{{Label.getContent('Active agent')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Active agent')}}<span style="color:red">*</span></p>
+    			</th>
+    			<th>
+    				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Smoothener Level Info')}}" popover-title="{{Label.getContent('Smoothener Level')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Smoothener Level')}}<span style="color:red">*</span></p>
+    			</th>
+    		</tr>
+    		<tr class="danger">
+    			<td colspan="6">
+    				<p>{{Label.getContent('Brand')}}</p>
+    			</td>
+    		</tr>
+    		<tr class="danger" ng-repeat='producth in producths'>
+    			<td>
+    				<p class="padding-20">{{producth.parentBrandName}}</p>
+    			</td>
+    			<td>
+    				<div style="clear:both"></div>
+    				<button type="button" class="btn btn-danger btn-xs pull-right" ng-show="(producth.dateOfBirth==currentPeriod)" ng-click="deleteProduct('HealthBeauty',producth.parentBrandName,producth.varName)">{{Label.getContent('Delete')}}</button>
+    				<p class="text-center">{{producth.parentBrandName}}{{producth.varName}}</p>
+    				<div style="clear:both"></div>
+    			</td>
+    			<td>
+    				<a href="#" editable-select="producth.packFormat" e-ng-options="p.value as p.text for p in packs" onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'packFormat','0',$index)">
+    					<p class="text-right">{{selectPacks('HealthBeauty',producth.parentBrandName,producth.varName)}}</p>
+    				</a>
+    			</td>
+    			<td>
+    				<a href="#" editable-text="producth.composition[1]" onbeforesave="checkTechnology('HealthBeauty',producth.parentBrandName,producth.varName,'composition','1',$index,$data)" onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'composition','1',$index)">
+    					<p class="text-right">{{ producth.composition[1] || 0 }}</p>
+    				</a>
+    			</td>
+    			<td>
+    				<a href="#" editable-text="producth.composition[0]" onbeforesave="checkDesign('HealthBeauty',producth.parentBrandName,producth.varName,'composition','0',$index,$data)" onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'composition','0',$index)">
+    					<p class="text-right">{{ producth.composition[0] || 0 }}</p>
+    				</a>
+    			</td>
+    			<td>
+    				<a href="#" editable-text="producth.composition[2]" onbeforesave="checkRMQ('HealthBeauty',producth.parentBrandName,producth.varName,'composition','2',$index,$data)" onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'composition','2',$index)">
+    					<p class="text-right">{{ producth.composition[2] || 0 }}</p>
+    				</a>
+    			</td>
+    		</tr>
+    	</tbody>
+    </table>
+</div>
+<div ng-show='isResultShown'>
+	<a ng-click="openProductModal()" ng-disabled="isReady" class="btn btn-default">{{Label.getContent('New Product')}}</a>
+</div>
+<!--dialog start-->
+<div modal="productModal" class="hide" close="closeProductModal()" options="productModalOpts">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeProductModal()">&times;</button>
+				<h4>{{Label.getContent('New Product')}}</h4>
+			</div>
+		    <form method="POST" name="myForm">
+		        <div class="modal-body">
+		          	<div class="control-group">
+		            	<tabset>
+		              		<tab heading="{{Label.getContent('Launch New Brand')}}" select="setAddNewBrand()">
+		                		<div class="form">
+		                  			<div class="form-group">
+		                    			<label for="lauchNewCategory">{{Label.getContent('Choose Catagory')}}:</label>
+		                    			<select class="form-control" ng-model="lauchNewCategory" ng-change="setBrandName(lauchNewCategory)">
+		                      				<option value="1">{{Label.getContent('Elecssories')}}</option>
+		                      				<option value="2">{{Label.getContent('HealthBeauty')}}</option>
+		                    			</select>
+		                    		</div>
+			                    	<div class="form-group" ng-class="{'has-error': myForm.newBrandName.$invalid}">
+			                    		<label for="lauchNewBrandName">{{Label.getContent('Enter New Brand Name')}}:</label>
+			                    		<div class="input-group">
+			                    			<span class="input-group-addon">{{brandFirstName}}</span>
+			                    			<input type="text"  class="form-control" ng-model="lauchNewBrandName" name="newBrandName" ng-maxlength="4" required>
+			                    			<span class="input-group-addon">{{brandLastName}}</span>
+			                    		</div>
+			                    	</div>
+			                    	<div class="form-group" ng-class="{'has-error':myForm.lauchVarName.$invalid}">
+			                    		<label for="lauchNewVarName">{{Label.getContent('Enter New Variant Name')}}:</label>
+			                    		<div class="input-group">
+			                    			<span class="input-group-addon">_</span>
+			                    			<input type="text" name="lauchVarName" class="form-control" ng-model="lauchNewVarName" ng-maxlength="4" required>
+			                    		</div>
+			                    	</div>
+		                    	</div>
+		              		</tab>
+		              		<tab heading="{{Label.getContent('Under Existed Brand')}}" select="setAddNewProUnderBrand()">
+		              			<div class="form">
+		              				<div class="form-group">
+		              					<label for="addNewCategory">{{Label.getContent('Choose Catagory')}}:</label>
+		              					<select class="form-control" ng-model="addNewCategory" ng-change="loadAllBrand(addNewCategory)">
+		              						<option value="1">{{Label.getContent('Elecssories')}}</option>
+		              						<option value="2">{{Label.getContent('HealthBeauty')}}</option>
+		              					</select>
+		              				</div>
+		              				<div class="form-group">
+		              					<label for="addChooseBrand">{{Label.getContent('Choose Brand')}}:</label>
+		              					<select class="form-control" ng-model="addChooseBrand" >
+		              						<option ng-repeat="allBrand in allBrands" value="{{allBrand.BrandID}}">{{allBrand.BrandName}}</option>
+		              					</select>
+		              				</div>
+		              				<div class="form-group" ng-class="{'has-error':myForm.addVarName.$invalid}">
+		              					<label for="addNewVarName">{{Label.getContent('Enter New Variant Name')}}:</label>
+		              					<div class="input-group">
+		              						<span class="input-group-addon">_</span>
+		              						<input type="text" name="addVarName" class="form-control" ng-model="addNewVarName" ng-maxlength="4" required>
+		              					</div>
+		              				</div>
+		              			</div>
+		              		</tab>
+		              	</tabset>
+		            </div>
+		            <div class="{{bubleClassName}}" ng-show='true'>
+		            	<strong>{{bubleTitle}}</strong>{{bubleMsg}}
+		            </div>  
+		        </div>
+		        <div class="modal-footer">
+		        	<input type="button" ng-click="addNewProduct(parameter)" ng-show='newBrand' class="btn btn-primary" value="{{Label.getContent('Add')}}" ng-disabled="((myForm.lauchVarName.$invalid)||(myForm.newBrandName.$invalid))"/>
+		        	<input type="button" ng-show="newVariant" ng-click="addNewProduct(parameter)" class="btn btn-primary" value="{{Label.getContent('Add')}}" ng-disabled="(myForm.addVarName.$invalid)">
+		        	<input type="button" class="btn btn-default" ng-click="closeProductModal()" value="{{Label.getContent('Cancel')}}">
+		        </div>
+		    </form>
+    	</div>
+  	</div>
+</div>
+<!--dialog end-->

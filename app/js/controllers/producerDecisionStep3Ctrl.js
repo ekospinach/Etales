@@ -26,14 +26,14 @@ define(['app'], function(app) {
 			var promiseStep1=function(){
 				var d=$q.defer();
 				d.notify(Label.getContent('start to show view'));
-					$scope.checkData=checkData;
-					$scope.showView=showView;
-					$scope.loadSelectCategroy=loadSelectCategroy;
-					$scope.updateProducerDecision=updateProducerDecision;
-					$scope.getBrandMoreInfo=getBrandMoreInfo;
-					$scope.closeInfo=closeInfo;
-					$scope.getPrevious=getPrevious;
-					$scope.getNext=getNext;
+					$scope.checkData              = checkData;
+					$scope.showView               = showView;
+					$scope.loadSelectCategroy     = loadSelectCategroy;
+					$scope.updateProducerDecision = updateProducerDecision;
+					$scope.getBrandMoreInfo       = getBrandMoreInfo;
+					$scope.closeInfo              = closeInfo;
+					$scope.getPrevious            = getPrevious;
+					$scope.getNext                = getNext;
 					if($rootScope.user.role==8){
 						//Facilitator
 						$scope.facilitatorShow=true;

@@ -5,468 +5,1114 @@ var mongoose = require('mongoose'),
 	request = require('request'),
 	q = require('q');
 
+// New Schema, 2014-Apr-17:
 var RCR_consolidatedProfitAndLossSchema = mongoose.Schema({
     period : Number,
     seminar : String,
     retailerID  : Number, //TBMRetailers : 1~3 (BMRetsMax)
 
     //Consolidated Profit & Loss statement, retailers
-    rcrpl_Sales                         : [categoryInfoSchema],
-    rcrpl_PromotionsCost                : [categoryInfoSchema],
-    rcrpl_OtherCompensation             : [categoryInfoSchema],
-    rcrpl_NetSales                      : [categoryInfoSchema],
-    rcrpl_NetSalesChange                : [categoryInfoSchema],
-    rcrpl_CostOfGoodsSold               : [categoryInfoSchema],
-    rcrpl_ValueOfQuantityDiscounts      : [categoryInfoSchema],
-    rcrpl_ValueOfPerformanceBonus       : [categoryInfoSchema],
-    rcrpl_DiscontinuedGoodsCost         : [categoryInfoSchema],
-    rcrpl_InventoryHoldingCost          : [categoryInfoSchema],
-    rcrpl_GrossProfit                   : [categoryInfoSchema],
-    rcrpl_GrossProfitChange             : [categoryInfoSchema],
-    rcrpl_GrossProfitMargin             : [categoryInfoSchema],
-    rcrpl_GeneralExpenses               : [categoryInfoSchema],
-    rcrpl_OperatingProfit               : [categoryInfoSchema],
-    rcrpl_OperatingProfitChange         : [categoryInfoSchema],
-    rcrpl_OperatingProfitMargin         : [categoryInfoSchema],
-    rcrpl_Interest                      : [categoryInfoSchema],
-    rcrpl_Taxes                         : [categoryInfoSchema],
-    rcrpl_ExceptionalItems              : [categoryInfoSchema],
-    rcrpl_NetProfit                     : [categoryInfoSchema],
-    rcrpl_NetProfitChange               : [categoryInfoSchema],
-    rcrpl_NetProfitMargin               : [categoryInfoSchema],
+    rcrpl_Sales                         : [quarterInfoSchema],
+    rcrpl_PromotionsCost                : [quarterInfoSchema],
+    rcrpl_OtherCompensation             : [quarterInfoSchema],
+    rcrpl_NetSales                      : [quarterInfoSchema],
+    rcrpl_NetSalesChange                : [quarterInfoSchema],
+    rcrpl_CostOfGoodsSold               : [quarterInfoSchema],
+    rcrpl_ValueOfQuantityDiscounts      : [quarterInfoSchema],
+    rcrpl_ValueOfPerformanceBonus       : [quarterInfoSchema],
+    rcrpl_DiscontinuedGoodsCost         : [quarterInfoSchema],
+    rcrpl_InventoryHoldingCost          : [quarterInfoSchema],
+    rcrpl_GrossProfit                   : [quarterInfoSchema],
+    rcrpl_GrossProfitChange             : [quarterInfoSchema],
+    rcrpl_GrossProfitMargin             : [quarterInfoSchema],
+    rcrpl_GeneralExpenses               : [quarterInfoSchema],
+    rcrpl_OperatingProfit               : [quarterInfoSchema],
+    rcrpl_OperatingProfitChange         : [quarterInfoSchema],
+    rcrpl_OperatingProfitMargin         : [quarterInfoSchema],
+    rcrpl_Interest                      : [quarterInfoSchema],
+    rcrpl_Taxes                         : [quarterInfoSchema],
+    rcrpl_ExceptionalItems              : [quarterInfoSchema],
+    rcrpl_NetProfit                     : [quarterInfoSchema],
+    rcrpl_NetProfitChange               : [quarterInfoSchema],
+    rcrpl_NetProfitMargin               : [quarterInfoSchema],
 
     //P&L per brand in B&M and onLine
-    rcrb_Sales                         : [brandInfoSchema],
-    rcrb_PromotionsCost                : [brandInfoSchema],
-    rcrb_OtherCompensation             : [brandInfoSchema],
-    rcrb_NetSales                      : [brandInfoSchema],
-    rcrb_NetSalesChange                : [brandInfoSchema],
-    rcrb_NetSalesShareInCategory       : [brandInfoSchema],
-    rcrb_CostOfGoodsSold               : [brandInfoSchema],
-    rcrb_ValueOfQuantityDiscounts      : [brandInfoSchema],
-    rcrb_ValueOfPerformanceBonus       : [brandInfoSchema],
-    rcrb_DiscontinuedGoodsCost         : [brandInfoSchema],
-    rcrb_InventoryHoldingCost          : [brandInfoSchema],
-    rcrb_GrossProfit                   : [brandInfoSchema],
-    rcrb_GrossProfitChange             : [brandInfoSchema],
-    rcrb_GrossProfitMargin             : [brandInfoSchema],
-    rcrb_GrossProfitShareInCategory    : [brandInfoSchema],
-    rcrb_GeneralExpenses               : [brandInfoSchema],
-    rcrb_OperatingProfit               : [brandInfoSchema],
-    rcrb_OperatingProfitChange         : [brandInfoSchema],
-    rcrb_OperatingProfitMargin         : [brandInfoSchema],
-    rcrb_OperatingProfitMarginShareInCategory: [brandInfoSchema],
-    rcrb_Interest                      : [brandInfoSchema],
-    rcrb_Taxes                         : [brandInfoSchema],
-    rcrb_ExceptionalItems              : [brandInfoSchema],
-    rcrb_NetProfit                     : [brandInfoSchema],
-    rcrb_NetProfitChange               : [brandInfoSchema],
-    rcrb_NetProfitMargin               : [brandInfoSchema],
-    rcrb_NetProfitShareInCategory      : [brandInfoSchema],
+    rcrb_Sales                         : [brandMarketInfoSchema],
+    rcrb_PromotionsCost                : [brandMarketInfoSchema],
+    rcrb_OtherCompensation             : [brandMarketInfoSchema],
+    rcrb_NetSales                      : [brandMarketInfoSchema],
+    rcrb_NetSalesChange                : [brandMarketInfoSchema],
+    rcrb_NetSalesShareInCategory       : [brandMarketInfoSchema],
+    rcrb_CostOfGoodsSold               : [brandMarketInfoSchema],
+    rcrb_ValueOfQuantityDiscounts      : [brandMarketInfoSchema],
+    rcrb_ValueOfPerformanceBonus       : [brandMarketInfoSchema],
+    rcrb_DiscontinuedGoodsCost         : [brandMarketInfoSchema],
+    rcrb_InventoryHoldingCost          : [brandMarketInfoSchema],
+    rcrb_GrossProfit                   : [brandMarketInfoSchema],
+    rcrb_GrossProfitChange             : [brandMarketInfoSchema],
+    rcrb_GrossProfitMargin             : [brandMarketInfoSchema],
+    rcrb_GrossProfitShareInCategory    : [brandMarketInfoSchema],
+    rcrb_GeneralExpenses               : [brandMarketInfoSchema],
+    rcrb_OperatingProfit               : [brandMarketInfoSchema],
+    rcrb_OperatingProfitChange         : [brandMarketInfoSchema],
+    rcrb_OperatingProfitMargin         : [brandMarketInfoSchema],
+    rcrb_OperatingProfitMarginShareInCategory: [brandMarketInfoSchema],
+    rcrb_Interest                      : [brandMarketInfoSchema],
+    rcrb_Taxes                         : [brandMarketInfoSchema],
+    rcrb_ExceptionalItems              : [brandMarketInfoSchema],
+    rcrb_NetProfit                     : [brandMarketInfoSchema],
+    rcrb_NetProfitChange               : [brandMarketInfoSchema],
+    rcrb_NetProfitMargin               : [brandMarketInfoSchema],
+    rcrb_NetProfitShareInCategory      : [brandMarketInfoSchema],
 
     ////P&L per variant in B&M and onLine
-    rcrv_Sales                         : [variantInfoSchema],
-    rcrv_PromotionsCost                : [variantInfoSchema],
-    rcrv_OtherCompensation             : [variantInfoSchema],
-    rcrv_NetSales                      : [variantInfoSchema],
-    rcrv_NetSalesChange                : [variantInfoSchema],
-    rcrv_NetSalesShareInCategory       : [variantInfoSchema],
-    rcrv_CostOfGoodsSold               : [variantInfoSchema],
-    rcrv_ValueOfQuantityDiscounts      : [variantInfoSchema],
-    rcrv_ValueOfPerformanceBonus       : [variantInfoSchema],
-    rcrv_DiscontinuedGoodsCost         : [variantInfoSchema],
-    rcrv_InventoryHoldingCost          : [variantInfoSchema],
-    rcrv_GrossProfit                   : [variantInfoSchema],
-    rcrv_GrossProfitChange             : [variantInfoSchema],
-    rcrv_GrossProfitMargin             : [variantInfoSchema],
-    rcrv_GrossProfitShareInCategory    : [variantInfoSchema],
-    rcrv_GeneralExpenses               : [variantInfoSchema],
-    rcrv_OperatingProfit               : [variantInfoSchema],
-    rcrv_OperatingProfitChange         : [variantInfoSchema],
-    rcrv_OperatingProfitMargin         : [variantInfoSchema],
-    rcrv_OperatingProfitMarginShareInCategory:[variantInfoSchema],
-    rcrv_Interest                      : [variantInfoSchema],
-    rcrv_Taxes                         : [variantInfoSchema],
-    rcrv_ExceptionalItems              : [variantInfoSchema],
-    rcrv_NetProfit                     : [variantInfoSchema],
-    rcrv_NetProfitChange               : [variantInfoSchema],
-    rcrv_NetProfitMargin               : [variantInfoSchema],
-    rcrv_NetProfitShareInCategory      : [variantInfoSchema],
+    rcrv_Sales                         : [variantMarketInfoSchema],
+    rcrv_PromotionsCost                : [variantMarketInfoSchema],
+    rcrv_OtherCompensation             : [variantMarketInfoSchema],
+    rcrv_NetSales                      : [variantMarketInfoSchema],
+    rcrv_NetSalesChange                : [variantMarketInfoSchema],
+    rcrv_NetSalesShareInCategory       : [variantMarketInfoSchema],
+    rcrv_CostOfGoodsSold               : [variantMarketInfoSchema],
+    rcrv_ValueOfQuantityDiscounts      : [variantMarketInfoSchema],
+    rcrv_ValueOfPerformanceBonus       : [variantMarketInfoSchema],
+    rcrv_DiscontinuedGoodsCost         : [variantMarketInfoSchema],
+    rcrv_InventoryHoldingCost          : [variantMarketInfoSchema],
+    rcrv_GrossProfit                   : [variantMarketInfoSchema],
+    rcrv_GrossProfitChange             : [variantMarketInfoSchema],
+    rcrv_GrossProfitMargin             : [variantMarketInfoSchema],
+    rcrv_GrossProfitShareInCategory    : [variantMarketInfoSchema],
+    rcrv_GeneralExpenses               : [variantMarketInfoSchema],
+    rcrv_OperatingProfit               : [variantMarketInfoSchema],
+    rcrv_OperatingProfitChange         : [variantMarketInfoSchema],
+    rcrv_OperatingProfitMargin         : [variantMarketInfoSchema],
+    rcrv_OperatingProfitMarginShareInCategory:[variantMarketInfoSchema],
+    rcrv_Interest                      : [variantMarketInfoSchema],
+    rcrv_Taxes                         : [variantMarketInfoSchema],
+    rcrv_ExceptionalItems              : [variantMarketInfoSchema],
+    rcrv_NetProfit                     : [variantMarketInfoSchema],
+    rcrv_NetProfitChange               : [variantMarketInfoSchema],
+    rcrv_NetProfitMargin               : [variantMarketInfoSchema],
+    rcrv_NetProfitShareInCategory      : [variantMarketInfoSchema],
 })
 
-var categoryInfoSchema = mongoose.Schema({
+//Quarter stand for One market - One category
+var quarterInfoSchema = mongoose.Schema({
     categoryID : Number, //TCategoriesTotal : 1~3 
-    value : [Number], //0-Urban, 1-Rural, 2-Total
+    marketID : Number, //TMarketsTotal : 1~3
+    value : Number, //0-Urban, 1-Rural, 2-Total
 })
 
-var brandInfoSchema = mongoose.Schema({
+var brandMarketInfoSchema = mongoose.Schema({
     brandName                            : String,
     parentCategoryID                     : Number,
     parentCompanyID                      : Number, //TActors : 1~(4+3) 
-    value                                : [Number], //0-Urban, 1-Rural, 2-Total
+    marketID                             : Number,  //TMarketsTotal : 1~3  
+    value                                : Number
 })
 
-var variantInfoSchema = mongoose.Schema({
+var variantMarketInfoSchema = mongoose.Schema({
     variantName                          : String,
     parentBrandName                      : String,
     parentCategoryID                     : Number,
     parentCompanyID                      : Number, //TActors : 1~(4+3) 
-    value                                : [Number], //0-Urban, 1-Rural, 2-Total
+    marketID                             : Number,  //TMarketsTotal : 1~3      
+    value                                : Number, //0-Urban, 1-Rural, 2-Total
 })
-
-// New Schema, 2014-Apr-17:
-// var RCR_consolidatedProfitAndLossSchema = mongoose.Schema({
-//     period : Number,
-//     seminar : String,
-//     retailerID  : Number, //TBMRetailers : 1~3 (BMRetsMax)
-
-//     //Consolidated Profit & Loss statement, retailers
-//     rcrpl_Sales                         : [quarterInfoSchema],
-//     rcrpl_PromotionsCost                : [quarterInfoSchema],
-//     rcrpl_OtherCompensation             : [quarterInfoSchema],
-//     rcrpl_NetSales                      : [quarterInfoSchema],
-//     rcrpl_NetSalesChange                : [quarterInfoSchema],
-//     rcrpl_CostOfGoodsSold               : [quarterInfoSchema],
-//     rcrpl_ValueOfQuantityDiscounts      : [quarterInfoSchema],
-//     rcrpl_ValueOfPerformanceBonus       : [quarterInfoSchema],
-//     rcrpl_DiscontinuedGoodsCost         : [quarterInfoSchema],
-//     rcrpl_InventoryHoldingCost          : [quarterInfoSchema],
-//     rcrpl_GrossProfit                   : [quarterInfoSchema],
-//     rcrpl_GrossProfitChange             : [quarterInfoSchema],
-//     rcrpl_GrossProfitMargin             : [quarterInfoSchema],
-//     rcrpl_GeneralExpenses               : [quarterInfoSchema],
-//     rcrpl_OperatingProfit               : [quarterInfoSchema],
-//     rcrpl_OperatingProfitChange         : [quarterInfoSchema],
-//     rcrpl_OperatingProfitMargin         : [quarterInfoSchema],
-//     rcrpl_Interest                      : [quarterInfoSchema],
-//     rcrpl_Taxes                         : [quarterInfoSchema],
-//     rcrpl_ExceptionalItems              : [quarterInfoSchema],
-//     rcrpl_NetProfit                     : [quarterInfoSchema],
-//     rcrpl_NetProfitChange               : [quarterInfoSchema],
-//     rcrpl_NetProfitMargin               : [quarterInfoSchema],
-
-//     //P&L per brand in B&M and onLine
-//     rcrb_Sales                         : [brandMarketInfoSchema],
-//     rcrb_PromotionsCost                : [brandMarketInfoSchema],
-//     rcrb_OtherCompensation             : [brandMarketInfoSchema],
-//     rcrb_NetSales                      : [brandMarketInfoSchema],
-//     rcrb_NetSalesChange                : [brandMarketInfoSchema],
-//     rcrb_NetSalesShareInCategory       : [brandMarketInfoSchema],
-//     rcrb_CostOfGoodsSold               : [brandMarketInfoSchema],
-//     rcrb_ValueOfQuantityDiscounts      : [brandMarketInfoSchema],
-//     rcrb_ValueOfPerformanceBonus       : [brandMarketInfoSchema],
-//     rcrb_DiscontinuedGoodsCost         : [brandMarketInfoSchema],
-//     rcrb_InventoryHoldingCost          : [brandMarketInfoSchema],
-//     rcrb_GrossProfit                   : [brandMarketInfoSchema],
-//     rcrb_GrossProfitChange             : [brandMarketInfoSchema],
-//     rcrb_GrossProfitMargin             : [brandMarketInfoSchema],
-//     rcrb_GrossProfitShareInCategory    : [brandMarketInfoSchema],
-//     rcrb_GeneralExpenses               : [brandMarketInfoSchema],
-//     rcrb_OperatingProfit               : [brandMarketInfoSchema],
-//     rcrb_OperatingProfitChange         : [brandMarketInfoSchema],
-//     rcrb_OperatingProfitMargin         : [brandMarketInfoSchema],
-//     rcrb_OperatingProfitMarginShareInCategory: [brandMarketInfoSchema],
-//     rcrb_Interest                      : [brandMarketInfoSchema],
-//     rcrb_Taxes                         : [brandMarketInfoSchema],
-//     rcrb_ExceptionalItems              : [brandMarketInfoSchema],
-//     rcrb_NetProfit                     : [brandMarketInfoSchema],
-//     rcrb_NetProfitChange               : [brandMarketInfoSchema],
-//     rcrb_NetProfitMargin               : [brandMarketInfoSchema],
-//     rcrb_NetProfitShareInCategory      : [brandMarketInfoSchema],
-
-//     ////P&L per variant in B&M and onLine
-//     rcrv_Sales                         : [variantMarketInfoSchema],
-//     rcrv_PromotionsCost                : [variantMarketInfoSchema],
-//     rcrv_OtherCompensation             : [variantMarketInfoSchema],
-//     rcrv_NetSales                      : [variantMarketInfoSchema],
-//     rcrv_NetSalesChange                : [variantMarketInfoSchema],
-//     rcrv_NetSalesShareInCategory       : [variantMarketInfoSchema],
-//     rcrv_CostOfGoodsSold               : [variantMarketInfoSchema],
-//     rcrv_ValueOfQuantityDiscounts      : [variantMarketInfoSchema],
-//     rcrv_ValueOfPerformanceBonus       : [variantMarketInfoSchema],
-//     rcrv_DiscontinuedGoodsCost         : [variantMarketInfoSchema],
-//     rcrv_InventoryHoldingCost          : [variantMarketInfoSchema],
-//     rcrv_GrossProfit                   : [variantMarketInfoSchema],
-//     rcrv_GrossProfitChange             : [variantMarketInfoSchema],
-//     rcrv_GrossProfitMargin             : [variantMarketInfoSchema],
-//     rcrv_GrossProfitShareInCategory    : [variantMarketInfoSchema],
-//     rcrv_GeneralExpenses               : [variantMarketInfoSchema],
-//     rcrv_OperatingProfit               : [variantMarketInfoSchema],
-//     rcrv_OperatingProfitChange         : [variantMarketInfoSchema],
-//     rcrv_OperatingProfitMargin         : [variantMarketInfoSchema],
-//     rcrv_OperatingProfitMarginShareInCategory:[variantMarketInfoSchema],
-//     rcrv_Interest                      : [variantMarketInfoSchema],
-//     rcrv_Taxes                         : [variantMarketInfoSchema],
-//     rcrv_ExceptionalItems              : [variantMarketInfoSchema],
-//     rcrv_NetProfit                     : [variantMarketInfoSchema],
-//     rcrv_NetProfitChange               : [variantMarketInfoSchema],
-//     rcrv_NetProfitMargin               : [variantMarketInfoSchema],
-//     rcrv_NetProfitShareInCategory      : [variantMarketInfoSchema],
-// })
-
-// //Quarter stand for One market - One category
-// var quarterInfoSchema = mongoose.Schema({
-//     categoryID : Number, //TCategoriesTotal : 1~3 
-//     marketID : Number, //TMarketsTotal : 1~3
-//     value : Number, //0-Urban, 1-Rural, 2-Total
-// })
-
-// var brandMarketInfoSchema = mongoose.Schema({
-//     brandName                            : String,
-//     parentCategoryID                     : Number,
-//     parentCompanyID                      : Number, //TActors : 1~(4+3) 
-//     marketID                             : Number,  //TMarketsTotal : 1~3  
-//     value                                : Number
-// })
-
-// var variantMarketInfoSchema = mongoose.Schema({
-//     variantName                          : String,
-//     parentBrandName                      : String,
-//     parentCategoryID                     : Number,
-//     parentCompanyID                      : Number, //TActors : 1~(4+3) 
-//     marketID                             : Number,  //TMarketsTotal : 1~3      
-//     value                                : Number, //0-Urban, 1-Rural, 2-Total
-// })
 
 
 var RCR_consolidatedProfitAndLoss=mongoose.model('RCR_consolidatedProfitAndLoss',RCR_consolidatedProfitAndLossSchema);
+
+exports.addReports = function(options){
+    var deferred = q.defer();
+    var startFrom = options.startFrom,
+    endWith = options.endWith;
+
+   (function sendRequest(currentPeriod){        
+      var reqOptions = {
+          hostname: options.cgiHost,
+          port: options.cgiPort,
+          path: options.cgiPath + '?period=' + currentPeriod + '&seminar=' + options.seminar + '&retailerID=' + options.retailerID
+      };
+
+      http.get(reqOptions, function(response) { 
+        var data = '';
+        response.setEncoding('utf8');
+        response.on('data', function(chunk){
+          data += chunk;
+        }).on('end', function(){
+          if ( response.statusCode === (404 || 500) ) 
+            deferred.reject({msg:'Get 404||500 error from CGI server, reqOptions:' + JSON.stringify(reqOptions)});
+          else {
+            try {
+              var singleReport = JSON.parse(data);
+            } catch(e) {
+              deferred.reject({msg: 'cannot parse JSON data from CGI:' + data, options:options});
+            }
+          }      
+          if (!singleReport) return; 
+
+          RCR_consolidatedProfitAndLoss.update({seminar    : singleReport.seminar, 
+                                            period     : singleReport.period,
+                                            retailerID : singleReport.retailerID},
+                                {
+                                rcrpl_Sales                               : singleReport.rcrpl_Sales,                   
+                                rcrpl_PromotionsCost                      : singleReport.rcrpl_PromotionsCost,          
+                                rcrpl_OtherCompensation                   : singleReport.rcrpl_OtherCompensation,       
+                                rcrpl_NetSales                            : singleReport.rcrpl_NetSales,                
+                                rcrpl_NetSalesChange                      : singleReport.rcrpl_NetSalesChange,          
+                                rcrpl_CostOfGoodsSold                     : singleReport.rcrpl_CostOfGoodsSold,         
+                                rcrpl_ValueOfQuantityDiscounts            : singleReport.rcrpl_ValueOfQuantityDiscounts,
+                                rcrpl_ValueOfPerformanceBonus             : singleReport.rcrpl_ValueOfPerformanceBonus, 
+                                rcrpl_DiscontinuedGoodsCost               : singleReport.rcrpl_DiscontinuedGoodsCost,   
+                                rcrpl_InventoryHoldingCost                : singleReport.rcrpl_InventoryHoldingCost,    
+                                rcrpl_GrossProfit                         : singleReport.rcrpl_GrossProfit,             
+                                rcrpl_GrossProfitChange                   : singleReport.rcrpl_GrossProfitChange,       
+                                rcrpl_GrossProfitMargin                   : singleReport.rcrpl_GrossProfitMargin,       
+                                rcrpl_GeneralExpenses                     : singleReport.rcrpl_GeneralExpenses,         
+                                rcrpl_OperatingProfit                     : singleReport.rcrpl_OperatingProfit,         
+                                rcrpl_OperatingProfitChange               : singleReport.rcrpl_OperatingProfitChange,   
+                                rcrpl_OperatingProfitMargin               : singleReport.rcrpl_OperatingProfitMargin,   
+                                rcrpl_Interest                            : singleReport.rcrpl_Interest,                
+                                rcrpl_Taxes                               : singleReport.rcrpl_Taxes,                   
+                                rcrpl_ExceptionalItems                    : singleReport.rcrpl_ExceptionalItems,        
+                                rcrpl_NetProfit                           : singleReport.rcrpl_NetProfit,               
+                                rcrpl_NetProfitChange                     : singleReport.rcrpl_NetProfitChange,         
+                                rcrpl_NetProfitMargin                     : singleReport.rcrpl_NetProfitMargin,         
+
+                                //P&L per brand in B&M and onLine
+                                rcrb_Sales                                : singleReport.rcrb_Sales,                              
+                                rcrb_PromotionsCost                       : singleReport.rcrb_PromotionsCost,                      
+                                rcrb_OtherCompensation                    : singleReport.rcrb_OtherCompensation,                   
+                                rcrb_NetSales                             : singleReport.rcrb_NetSales,                            
+                                rcrb_NetSalesChange                       : singleReport.rcrb_NetSalesChange,                      
+                                rcrb_NetSalesShareInCategory              : singleReport.rcrb_NetSalesShareInCategory,             
+                                rcrb_CostOfGoodsSold                      : singleReport.rcrb_CostOfGoodsSold,                     
+                                rcrb_ValueOfQuantityDiscounts             : singleReport.rcrb_ValueOfQuantityDiscounts,            
+                                rcrb_ValueOfPerformanceBonus              : singleReport.rcrb_ValueOfPerformanceBonus,             
+                                rcrb_DiscontinuedGoodsCost                : singleReport.rcrb_DiscontinuedGoodsCost,               
+                                rcrb_InventoryHoldingCost                 : singleReport.rcrb_InventoryHoldingCost,                
+                                rcrb_GrossProfit                          : singleReport.rcrb_GrossProfit,                         
+                                rcrb_GrossProfitChange                    : singleReport.rcrb_GrossProfitChange,                   
+                                rcrb_GrossProfitMargin                    : singleReport.rcrb_GrossProfitMargin,                   
+                                rcrb_GrossProfitShareInCategory           : singleReport.rcrb_GrossProfitShareInCategory,          
+                                rcrb_GeneralExpenses                      : singleReport.rcrb_GeneralExpenses,                     
+                                rcrb_OperatingProfit                      : singleReport.rcrb_OperatingProfit,                    
+                                rcrb_OperatingProfitChange                : singleReport.rcrb_OperatingProfitChange,               
+                                rcrb_OperatingProfitMargin                : singleReport.rcrb_OperatingProfitMargin,               
+                                rcrb_OperatingProfitMarginShareInCategory : singleReport.rcrb_OperatingProfitMarginShareInCategory,
+                                rcrb_Interest                             : singleReport.rcrb_Interest,                            
+                                rcrb_Taxes                                : singleReport.rcrb_Taxes,                               
+                                rcrb_ExceptionalItems                     : singleReport.rcrb_ExceptionalItems,                    
+                                rcrb_NetProfit                            : singleReport.rcrb_NetProfit,                           
+                                rcrb_NetProfitChange                      : singleReport.rcrb_NetProfitChange,                     
+                                rcrb_NetProfitMargin                      : singleReport.rcrb_NetProfitMargin,                     
+                                rcrb_NetProfitShareInCategory             : singleReport.rcrb_NetProfitShareInCategory,            
+
+                                ////P&L per variant in B&M and onLine
+                                rcrv_Sales                                : singleReport.rcrv_Sales,                                
+                                rcrv_PromotionsCost                       : singleReport.rcrv_PromotionsCost,                       
+                                rcrv_OtherCompensation                    : singleReport.rcrv_OtherCompensation,                    
+                                rcrv_NetSales                             : singleReport.rcrv_NetSales,                             
+                                rcrv_NetSalesChange                       : singleReport.rcrv_NetSalesChange,                       
+                                rcrv_NetSalesShareInCategory              : singleReport.rcrv_NetSalesShareInCategory,              
+                                rcrv_CostOfGoodsSold                      : singleReport.rcrv_CostOfGoodsSold,                      
+                                rcrv_ValueOfQuantityDiscounts             : singleReport.rcrv_ValueOfQuantityDiscounts,             
+                                rcrv_ValueOfPerformanceBonus              : singleReport.rcrv_ValueOfPerformanceBonus,              
+                                rcrv_DiscontinuedGoodsCost                : singleReport.rcrv_DiscontinuedGoodsCost,                
+                                rcrv_InventoryHoldingCost                 : singleReport.rcrv_InventoryHoldingCost,                 
+                                rcrv_GrossProfit                          : singleReport.rcrv_GrossProfit,                          
+                                rcrv_GrossProfitChange                    : singleReport.rcrv_GrossProfitChange,                   
+                                rcrv_GrossProfitMargin                    : singleReport.rcrv_GrossProfitMargin,                    
+                                rcrv_GrossProfitShareInCategory           : singleReport.rcrv_GrossProfitShareInCategory,           
+                                rcrv_GeneralExpenses                      : singleReport.rcrv_GeneralExpenses,                      
+                                rcrv_OperatingProfit                      : singleReport.rcrv_OperatingProfit,                      
+                                rcrv_OperatingProfitChange                : singleReport.rcrv_OperatingProfitChange,                
+                                rcrv_OperatingProfitMargin                : singleReport.rcrv_OperatingProfitMargin,                
+                                rcrv_OperatingProfitMarginShareInCategory : singleReport. rcrv_OperatingProfitMarginShareInCategory,
+                                rcrv_Interest                             : singleReport.rcrv_Interest,                             
+                                rcrv_Taxes                                : singleReport.rcrv_Taxes,                                
+                                rcrv_ExceptionalItems                     : singleReport.rcrv_ExceptionalItems,                     
+                                rcrv_NetProfit                            : singleReport.rcrv_NetProfit,                            
+                                rcrv_NetProfitChange                      : singleReport.rcrv_NetProfitChange,                      
+                                rcrv_NetProfitMargin                      : singleReport.rcrv_NetProfitMargin,                      
+                                rcrv_NetProfitShareInCategory             : singleReport.rcrv_NetProfitShareInCategory,             
+                                },
+                                {upsert: true},
+                                function(err, numberAffected, raw){
+                                  if(err) deferred.reject({msg:err, options: options});                                  
+                                  currentPeriod--;
+                                  if (currentPeriod >= startFrom) {
+                                     sendRequest(currentPeriod);
+                                  } else {
+                                     deferred.resolve({msg: options.schemaName + ' (seminar:' + options.seminar + ', retailer:' + options.retailerID+ ') import done. from period ' + startFrom + ' to ' + endWith, options: options});
+                                  }
+                                });   
+
+        });
+      }).on('error', function(e){
+        deferred.reject({msg:'errorFrom add ' + options.schemaName + ': ' + e.message + ', requestOptions:' + JSON.stringify(reqOptions),options: options});
+      });
+    })(endWith);
+
+    return deferred.promise;
+}
 
 exports.addRCR_consolidatedProfitAndLoss=function(req,res,next){
     var newRCR_consolidatedProfitAndLoss=RCR_consolidatedProfitAndLoss({
         period : 0,
         seminar : 'MAY',
         retailerID  : 1, //TBMRetailers : 1~3 (BMRetsMax)
-
         //Consolidated Profit & Loss statement, retailers
         rcrpl_Sales                         : [{
             categoryID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            categoryID:1,
+            marketID:2,
+            value:20
+        },{
+            categoryID:1,
+            marketID:3,
+            value:30
         },{
             categoryID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            categoryID:2,
+            marketID:2,
+            value:50
+        },{
+            categoryID:2,
+            marketID:3,
+            value:60
         },{
             categoryID:3,
-            value:[75,85,95]
+            marketID:1,
+            value:70
+        },{
+            categoryID:3,
+            marketID:2,
+            value:80
+        },{
+            categoryID:3,
+            marketID:3,
+            value:90
         }],
         rcrpl_PromotionsCost                : [{
             categoryID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            categoryID:1,
+            marketID:2,
+            value:20
+        },{
+            categoryID:1,
+            marketID:3,
+            value:30
         },{
             categoryID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            categoryID:2,
+            marketID:2,
+            value:50
+        },{
+            categoryID:2,
+            marketID:3,
+            value:60
         },{
             categoryID:3,
-            value:[75,85,95]
+            marketID:1,
+            value:70
+        },{
+            categoryID:3,
+            marketID:2,
+            value:80
+        },{
+            categoryID:3,
+            marketID:3,
+            value:90
         }],
         rcrpl_OtherCompensation             : [{
             categoryID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            categoryID:1,
+            marketID:2,
+            value:20
+        },{
+            categoryID:1,
+            marketID:3,
+            value:30
         },{
             categoryID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            categoryID:2,
+            marketID:2,
+            value:50
+        },{
+            categoryID:2,
+            marketID:3,
+            value:60
         },{
             categoryID:3,
-            value:[75,85,95]
+            marketID:1,
+            value:70
+        },{
+            categoryID:3,
+            marketID:2,
+            value:80
+        },{
+            categoryID:3,
+            marketID:3,
+            value:90
         }],
         rcrpl_NetSales                      : [{
             categoryID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            categoryID:1,
+            marketID:2,
+            value:20
+        },{
+            categoryID:1,
+            marketID:3,
+            value:30
         },{
             categoryID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            categoryID:2,
+            marketID:2,
+            value:50
+        },{
+            categoryID:2,
+            marketID:3,
+            value:60
         },{
             categoryID:3,
-            value:[75,85,95]
+            marketID:1,
+            value:70
+        },{
+            categoryID:3,
+            marketID:2,
+            value:80
+        },{
+            categoryID:3,
+            marketID:3,
+            value:90
         }],
         rcrpl_NetSalesChange                : [{
             categoryID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            categoryID:1,
+            marketID:2,
+            value:20
+        },{
+            categoryID:1,
+            marketID:3,
+            value:30
         },{
             categoryID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            categoryID:2,
+            marketID:2,
+            value:50
+        },{
+            categoryID:2,
+            marketID:3,
+            value:60
         },{
             categoryID:3,
-            value:[75,85,95]
+            marketID:1,
+            value:70
+        },{
+            categoryID:3,
+            marketID:2,
+            value:80
+        },{
+            categoryID:3,
+            marketID:3,
+            value:90
         }],
         rcrpl_CostOfGoodsSold               : [{
             categoryID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            categoryID:1,
+            marketID:2,
+            value:20
+        },{
+            categoryID:1,
+            marketID:3,
+            value:30
         },{
             categoryID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            categoryID:2,
+            marketID:2,
+            value:50
+        },{
+            categoryID:2,
+            marketID:3,
+            value:60
         },{
             categoryID:3,
-            value:[75,85,95]
+            marketID:1,
+            value:70
+        },{
+            categoryID:3,
+            marketID:2,
+            value:80
+        },{
+            categoryID:3,
+            marketID:3,
+            value:90
         }],
         rcrpl_ValueOfQuantityDiscounts      : [{
             categoryID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            categoryID:1,
+            marketID:2,
+            value:20
+        },{
+            categoryID:1,
+            marketID:3,
+            value:30
         },{
             categoryID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            categoryID:2,
+            marketID:2,
+            value:50
+        },{
+            categoryID:2,
+            marketID:3,
+            value:60
         },{
             categoryID:3,
-            value:[75,85,95]
+            marketID:1,
+            value:70
+        },{
+            categoryID:3,
+            marketID:2,
+            value:80
+        },{
+            categoryID:3,
+            marketID:3,
+            value:90
         }],
         rcrpl_ValueOfPerformanceBonus       : [{
             categoryID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            categoryID:1,
+            marketID:2,
+            value:20
+        },{
+            categoryID:1,
+            marketID:3,
+            value:30
         },{
             categoryID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            categoryID:2,
+            marketID:2,
+            value:50
+        },{
+            categoryID:2,
+            marketID:3,
+            value:60
         },{
             categoryID:3,
-            value:[75,85,95]
+            marketID:1,
+            value:70
+        },{
+            categoryID:3,
+            marketID:2,
+            value:80
+        },{
+            categoryID:3,
+            marketID:3,
+            value:90
         }],
         rcrpl_DiscontinuedGoodsCost         : [{
             categoryID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            categoryID:1,
+            marketID:2,
+            value:20
+        },{
+            categoryID:1,
+            marketID:3,
+            value:30
         },{
             categoryID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            categoryID:2,
+            marketID:2,
+            value:50
+        },{
+            categoryID:2,
+            marketID:3,
+            value:60
         },{
             categoryID:3,
-            value:[75,85,95]
+            marketID:1,
+            value:70
+        },{
+            categoryID:3,
+            marketID:2,
+            value:80
+        },{
+            categoryID:3,
+            marketID:3,
+            value:90
         }],
         rcrpl_InventoryHoldingCost          : [{
             categoryID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            categoryID:1,
+            marketID:2,
+            value:20
+        },{
+            categoryID:1,
+            marketID:3,
+            value:30
         },{
             categoryID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            categoryID:2,
+            marketID:2,
+            value:50
+        },{
+            categoryID:2,
+            marketID:3,
+            value:60
         },{
             categoryID:3,
-            value:[75,85,95]
+            marketID:1,
+            value:70
+        },{
+            categoryID:3,
+            marketID:2,
+            value:80
+        },{
+            categoryID:3,
+            marketID:3,
+            value:90
         }],
         rcrpl_GrossProfit                   : [{
             categoryID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            categoryID:1,
+            marketID:2,
+            value:20
+        },{
+            categoryID:1,
+            marketID:3,
+            value:30
         },{
             categoryID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            categoryID:2,
+            marketID:2,
+            value:50
+        },{
+            categoryID:2,
+            marketID:3,
+            value:60
         },{
             categoryID:3,
-            value:[75,85,95]
+            marketID:1,
+            value:70
+        },{
+            categoryID:3,
+            marketID:2,
+            value:80
+        },{
+            categoryID:3,
+            marketID:3,
+            value:90
         }],
         rcrpl_GrossProfitChange             : [{
             categoryID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            categoryID:1,
+            marketID:2,
+            value:20
+        },{
+            categoryID:1,
+            marketID:3,
+            value:30
         },{
             categoryID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            categoryID:2,
+            marketID:2,
+            value:50
+        },{
+            categoryID:2,
+            marketID:3,
+            value:60
         },{
             categoryID:3,
-            value:[75,85,95]
+            marketID:1,
+            value:70
+        },{
+            categoryID:3,
+            marketID:2,
+            value:80
+        },{
+            categoryID:3,
+            marketID:3,
+            value:90
         }],
         rcrpl_GrossProfitMargin             : [{
             categoryID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            categoryID:1,
+            marketID:2,
+            value:20
+        },{
+            categoryID:1,
+            marketID:3,
+            value:30
         },{
             categoryID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            categoryID:2,
+            marketID:2,
+            value:50
+        },{
+            categoryID:2,
+            marketID:3,
+            value:60
         },{
             categoryID:3,
-            value:[75,85,95]
+            marketID:1,
+            value:70
+        },{
+            categoryID:3,
+            marketID:2,
+            value:80
+        },{
+            categoryID:3,
+            marketID:3,
+            value:90
         }],
         rcrpl_GeneralExpenses               : [{
             categoryID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            categoryID:1,
+            marketID:2,
+            value:20
+        },{
+            categoryID:1,
+            marketID:3,
+            value:30
         },{
             categoryID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            categoryID:2,
+            marketID:2,
+            value:50
+        },{
+            categoryID:2,
+            marketID:3,
+            value:60
         },{
             categoryID:3,
-            value:[75,85,95]
+            marketID:1,
+            value:70
+        },{
+            categoryID:3,
+            marketID:2,
+            value:80
+        },{
+            categoryID:3,
+            marketID:3,
+            value:90
         }],
         rcrpl_OperatingProfit               : [{
             categoryID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            categoryID:1,
+            marketID:2,
+            value:20
+        },{
+            categoryID:1,
+            marketID:3,
+            value:30
         },{
             categoryID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            categoryID:2,
+            marketID:2,
+            value:50
+        },{
+            categoryID:2,
+            marketID:3,
+            value:60
         },{
             categoryID:3,
-            value:[75,85,95]
+            marketID:1,
+            value:70
+        },{
+            categoryID:3,
+            marketID:2,
+            value:80
+        },{
+            categoryID:3,
+            marketID:3,
+            value:90
         }],
         rcrpl_OperatingProfitChange         : [{
             categoryID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            categoryID:1,
+            marketID:2,
+            value:20
+        },{
+            categoryID:1,
+            marketID:3,
+            value:30
         },{
             categoryID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            categoryID:2,
+            marketID:2,
+            value:50
+        },{
+            categoryID:2,
+            marketID:3,
+            value:60
         },{
             categoryID:3,
-            value:[75,85,95]
+            marketID:1,
+            value:70
+        },{
+            categoryID:3,
+            marketID:2,
+            value:80
+        },{
+            categoryID:3,
+            marketID:3,
+            value:90
         }],
         rcrpl_OperatingProfitMargin         : [{
             categoryID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            categoryID:1,
+            marketID:2,
+            value:20
+        },{
+            categoryID:1,
+            marketID:3,
+            value:30
         },{
             categoryID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            categoryID:2,
+            marketID:2,
+            value:50
+        },{
+            categoryID:2,
+            marketID:3,
+            value:60
         },{
             categoryID:3,
-            value:[75,85,95]
+            marketID:1,
+            value:70
+        },{
+            categoryID:3,
+            marketID:2,
+            value:80
+        },{
+            categoryID:3,
+            marketID:3,
+            value:90
         }],
         rcrpl_Interest                      : [{
             categoryID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            categoryID:1,
+            marketID:2,
+            value:20
+        },{
+            categoryID:1,
+            marketID:3,
+            value:30
         },{
             categoryID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            categoryID:2,
+            marketID:2,
+            value:50
+        },{
+            categoryID:2,
+            marketID:3,
+            value:60
         },{
             categoryID:3,
-            value:[75,85,95]
+            marketID:1,
+            value:70
+        },{
+            categoryID:3,
+            marketID:2,
+            value:80
+        },{
+            categoryID:3,
+            marketID:3,
+            value:90
         }],
         rcrpl_Taxes                         : [{
             categoryID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            categoryID:1,
+            marketID:2,
+            value:20
+        },{
+            categoryID:1,
+            marketID:3,
+            value:30
         },{
             categoryID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            categoryID:2,
+            marketID:2,
+            value:50
+        },{
+            categoryID:2,
+            marketID:3,
+            value:60
         },{
             categoryID:3,
-            value:[75,85,95]
+            marketID:1,
+            value:70
+        },{
+            categoryID:3,
+            marketID:2,
+            value:80
+        },{
+            categoryID:3,
+            marketID:3,
+            value:90
         }],
         rcrpl_ExceptionalItems              : [{
             categoryID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            categoryID:1,
+            marketID:2,
+            value:20
+        },{
+            categoryID:1,
+            marketID:3,
+            value:30
         },{
             categoryID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            categoryID:2,
+            marketID:2,
+            value:50
+        },{
+            categoryID:2,
+            marketID:3,
+            value:60
         },{
             categoryID:3,
-            value:[75,85,95]
+            marketID:1,
+            value:70
+        },{
+            categoryID:3,
+            marketID:2,
+            value:80
+        },{
+            categoryID:3,
+            marketID:3,
+            value:90
         }],
         rcrpl_NetProfit                     : [{
             categoryID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            categoryID:1,
+            marketID:2,
+            value:20
+        },{
+            categoryID:1,
+            marketID:3,
+            value:30
         },{
             categoryID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            categoryID:2,
+            marketID:2,
+            value:50
+        },{
+            categoryID:2,
+            marketID:3,
+            value:60
         },{
             categoryID:3,
-            value:[75,85,95]
+            marketID:1,
+            value:70
+        },{
+            categoryID:3,
+            marketID:2,
+            value:80
+        },{
+            categoryID:3,
+            marketID:3,
+            value:90
         }],
         rcrpl_NetProfitChange                : [{
             categoryID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            categoryID:1,
+            marketID:2,
+            value:20
+        },{
+            categoryID:1,
+            marketID:3,
+            value:30
         },{
             categoryID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            categoryID:2,
+            marketID:2,
+            value:50
+        },{
+            categoryID:2,
+            marketID:3,
+            value:60
         },{
             categoryID:3,
-            value:[75,85,95]
+            marketID:1,
+            value:70
+        },{
+            categoryID:3,
+            marketID:2,
+            value:80
+        },{
+            categoryID:3,
+            marketID:3,
+            value:90
         }],
         rcrpl_NetProfitMargin               : [{
             categoryID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            categoryID:1,
+            marketID:2,
+            value:20
+        },{
+            categoryID:1,
+            marketID:3,
+            value:30
         },{
             categoryID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            categoryID:2,
+            marketID:2,
+            value:50
+        },{
+            categoryID:2,
+            marketID:3,
+            value:60
         },{
             categoryID:3,
-            value:[75,85,95]
+            marketID:1,
+            value:70
+        },{
+            categoryID:3,
+            marketID:2,
+            value:80
+        },{
+            categoryID:3,
+            marketID:3,
+            value:90
         }],
 
         //P&L per brand in B&M and onLine
@@ -474,568 +1120,1972 @@ exports.addRCR_consolidatedProfitAndLoss=function(req,res,next){
             brandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:20
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:30
         },{
             brandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:50
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:60
         },{
             brandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[35,45,55]
+            marketID:1,
+            value:35
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:45
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:55
         },{
             brandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,75,85]
+            marketID:1,
+            value:65
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:75
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:85
         }],
         rcrb_PromotionsCost                : [{
             brandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:20
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:30
         },{
             brandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:50
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:60
         },{
             brandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[35,45,55]
+            marketID:1,
+            value:35
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:45
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:55
         },{
             brandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,75,85]
+            marketID:1,
+            value:65
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:75
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:85
         }],
         rcrb_OtherCompensation             : [{
             brandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:20
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:30
         },{
             brandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:50
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:60
         },{
             brandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[35,45,55]
+            marketID:1,
+            value:35
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:45
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:55
         },{
             brandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,75,85]
+            marketID:1,
+            value:65
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:75
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:85
         }],
         rcrb_NetSales                      : [{
             brandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:20
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:30
         },{
             brandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:50
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:60
         },{
             brandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[35,45,55]
+            marketID:1,
+            value:35
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:45
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:55
         },{
             brandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,75,85]
+            marketID:1,
+            value:65
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:75
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:85
         }],
         rcrb_NetSalesChange                : [{
             brandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:20
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:30
         },{
             brandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:50
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:60
         },{
             brandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[35,45,55]
+            marketID:1,
+            value:35
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:45
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:55
         },{
             brandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,75,85]
+            marketID:1,
+            value:65
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:75
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:85
         }],
         rcrb_NetSalesShareInCategory       : [{
             brandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:20
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:30
         },{
             brandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:50
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:60
         },{
             brandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[35,45,55]
+            marketID:1,
+            value:35
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:45
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:55
         },{
             brandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,75,85]
+            marketID:1,
+            value:65
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:75
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:85
         }],
         rcrb_CostOfGoodsSold               : [{
             brandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:20
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:30
         },{
             brandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:50
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:60
         },{
             brandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[35,45,55]
+            marketID:1,
+            value:35
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:45
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:55
         },{
             brandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,75,85]
+            marketID:1,
+            value:65
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:75
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:85
         }],
         rcrb_ValueOfQuantityDiscounts      : [{
             brandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:20
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:30
         },{
             brandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:50
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:60
         },{
             brandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[35,45,55]
+            marketID:1,
+            value:35
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:45
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:55
         },{
             brandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,75,85]
+            marketID:1,
+            value:65
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:75
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:85
         }],
         rcrb_ValueOfPerformanceBonus       : [{
             brandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:20
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:30
         },{
             brandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:50
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:60
         },{
             brandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[35,45,55]
+            marketID:1,
+            value:35
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:45
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:55
         },{
             brandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,75,85]
+            marketID:1,
+            value:65
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:75
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:85
         }],
         rcrb_DiscontinuedGoodsCost         : [{
             brandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:20
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:30
         },{
             brandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:50
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:60
         },{
             brandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[35,45,55]
+            marketID:1,
+            value:35
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:45
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:55
         },{
             brandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,75,85]
+            marketID:1,
+            value:65
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:75
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:85
         }],
         rcrb_InventoryHoldingCost          : [{
             brandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:20
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:30
         },{
             brandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:50
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:60
         },{
             brandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[35,45,55]
+            marketID:1,
+            value:35
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:45
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:55
         },{
             brandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,75,85]
+            marketID:1,
+            value:65
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:75
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:85
         }],
         rcrb_GrossProfit                   : [{
             brandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:20
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:30
         },{
             brandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:50
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:60
         },{
             brandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[35,45,55]
+            marketID:1,
+            value:35
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:45
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:55
         },{
             brandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,75,85]
+            marketID:1,
+            value:65
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:75
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:85
         }],
         rcrb_GrossProfitChange             : [{
             brandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:20
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:30
         },{
             brandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:50
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:60
         },{
             brandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[35,45,55]
+            marketID:1,
+            value:35
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:45
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:55
         },{
             brandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,75,85]
+            marketID:1,
+            value:65
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:75
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:85
         }],
         rcrb_GrossProfitMargin             : [{
             brandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:20
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:30
         },{
             brandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:50
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:60
         },{
             brandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[35,45,55]
+            marketID:1,
+            value:35
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:45
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:55
         },{
             brandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,75,85]
+            marketID:1,
+            value:65
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:75
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:85
         }],
         rcrb_GrossProfitShareInCategory    : [{
             brandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:20
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:30
         },{
             brandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:50
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:60
         },{
             brandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[35,45,55]
+            marketID:1,
+            value:35
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:45
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:55
         },{
             brandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,75,85]
+            marketID:1,
+            value:65
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:75
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:85
         }],
         rcrb_GeneralExpenses               : [{
             brandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:20
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:30
         },{
             brandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:50
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:60
         },{
             brandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[35,45,55]
+            marketID:1,
+            value:35
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:45
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:55
         },{
             brandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,75,85]
+            marketID:1,
+            value:65
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:75
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:85
         }],
         rcrb_OperatingProfit               : [{
             brandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:20
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:30
         },{
             brandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:50
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:60
         },{
             brandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[35,45,55]
+            marketID:1,
+            value:35
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:45
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:55
         },{
             brandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,75,85]
+            marketID:1,
+            value:65
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:75
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:85
         }],
         rcrb_OperatingProfitChange          : [{
             brandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:20
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:30
         },{
             brandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:50
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:60
         },{
             brandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[35,45,55]
+            marketID:1,
+            value:35
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:45
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:55
         },{
             brandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,75,85]
+            marketID:1,
+            value:65
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:75
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:85
         }],
         rcrb_OperatingProfitMargin         : [{
             brandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:20
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:30
         },{
             brandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:50
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:60
         },{
             brandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[35,45,55]
+            marketID:1,
+            value:35
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:45
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:55
         },{
             brandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,75,85]
+            marketID:1,
+            value:65
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:75
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:85
         }],
         rcrb_OperatingProfitMarginShareInCategory         : [{
             brandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:20
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:30
         },{
             brandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:50
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:60
         },{
             brandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[35,45,55]
+            marketID:1,
+            value:35
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:45
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:55
         },{
             brandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,75,85]
+            marketID:1,
+            value:65
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:75
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:85
         }],
         rcrb_Interest                      : [{
             brandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:20
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:30
         },{
             brandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:50
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:60
         },{
             brandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[35,45,55]
+            marketID:1,
+            value:35
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:45
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:55
         },{
             brandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,75,85]
+            marketID:1,
+            value:65
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:75
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:85
         }],
         rcrb_Taxes                         : [{
             brandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:20
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:30
         },{
             brandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:50
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:60
         },{
             brandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[35,45,55]
+            marketID:1,
+            value:35
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:45
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:55
         },{
             brandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,75,85]
+            marketID:1,
+            value:65
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:75
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:85
         }],
         rcrb_ExceptionalItems              : [{
             brandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:20
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:30
         },{
             brandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:50
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:60
         },{
             brandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[35,45,55]
+            marketID:1,
+            value:35
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:45
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:55
         },{
             brandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,75,85]
+            marketID:1,
+            value:65
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:75
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:85
         }],
         rcrb_NetProfit                     : [{
             brandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:20
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:30
         },{
             brandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:50
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:60
         },{
             brandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[35,45,55]
+            marketID:1,
+            value:35
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:45
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:55
         },{
             brandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,75,85]
+            marketID:1,
+            value:65
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:75
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:85
         }],
         rcrb_NetProfitChange                : [{
             brandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:20
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:30
         },{
             brandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:50
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:60
         },{
             brandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[35,45,55]
+            marketID:1,
+            value:35
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:45
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:55
         },{
             brandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,75,85]
+            marketID:1,
+            value:65
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:75
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:85
         }],
         rcrb_NetProfitMargin               : [{
             brandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:20
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:30
         },{
             brandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:50
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:60
         },{
             brandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[35,45,55]
+            marketID:1,
+            value:35
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:45
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:55
         },{
             brandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,75,85]
+            marketID:1,
+            value:65
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:75
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:85
         }],
         rcrb_NetProfitShareInCategory      : [{
             brandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[10,20,30]
+            marketID:1,
+            value:10
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:20
+        },{
+            brandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:30
         },{
             brandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[40,50,60]
+            marketID:1,
+            value:40
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:50
+        },{
+            brandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:60
         },{
             brandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[35,45,55]
+            marketID:1,
+            value:35
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:45
+        },{
+            brandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:55
         },{
             brandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,75,85]
+            marketID:1,
+            value:65
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:75
+        },{
+            brandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:85
         }],
 
         ////P&L per variant in B&M and onLine
@@ -1044,676 +3094,2296 @@ exports.addRCR_consolidatedProfitAndLoss=function(req,res,next){
             parentBrandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[35,45,55]
+            marketID:1,
+            value:35,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:45,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:55
         },{
             variantName:'_A',
             parentBrandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[55,65,75]
+            marketID:1,
+            value:55
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:65
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[95,85,75]
+            marketID:1,
+            value:95
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:85
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,55,45]
+            marketID:1,
+            value:65
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:55
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:45
         }],
         rcrv_PromotionsCost                : [{
             variantName:'_A',
             parentBrandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[35,45,55]
+            marketID:1,
+            value:35,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:45,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:55
         },{
             variantName:'_A',
             parentBrandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[55,65,75]
+            marketID:1,
+            value:55
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:65
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[95,85,75]
+            marketID:1,
+            value:95
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:85
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,55,45]
+            marketID:1,
+            value:65
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:55
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:45
         }],
         rcrv_OtherCompensation             : [{
             variantName:'_A',
             parentBrandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[35,45,55]
+            marketID:1,
+            value:35,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:45,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:55
         },{
             variantName:'_A',
             parentBrandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[55,65,75]
+            marketID:1,
+            value:55
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:65
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[95,85,75]
+            marketID:1,
+            value:95
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:85
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,55,45]
+            marketID:1,
+            value:65
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:55
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:45
         }],
         rcrv_NetSales                      : [{
             variantName:'_A',
             parentBrandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[35,45,55]
+            marketID:1,
+            value:35,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:45,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:55
         },{
             variantName:'_A',
             parentBrandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[55,65,75]
+            marketID:1,
+            value:55
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:65
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[95,85,75]
+            marketID:1,
+            value:95
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:85
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,55,45]
+            marketID:1,
+            value:65
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:55
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:45
         }],
         rcrv_NetSalesChange                : [{
             variantName:'_A',
             parentBrandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[35,45,55]
+            marketID:1,
+            value:35,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:45,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:55
         },{
             variantName:'_A',
             parentBrandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[55,65,75]
+            marketID:1,
+            value:55
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:65
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[95,85,75]
+            marketID:1,
+            value:95
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:85
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,55,45]
+            marketID:1,
+            value:65
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:55
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:45
         }],
         rcrv_NetSalesShareInCategory       : [{
             variantName:'_A',
             parentBrandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[35,45,55]
+            marketID:1,
+            value:35,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:45,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:55
         },{
             variantName:'_A',
             parentBrandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[55,65,75]
+            marketID:1,
+            value:55
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:65
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[95,85,75]
+            marketID:1,
+            value:95
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:85
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,55,45]
+            marketID:1,
+            value:65
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:55
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:45
         }],
         rcrv_CostOfGoodsSold               : [{
             variantName:'_A',
             parentBrandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[35,45,55]
+            marketID:1,
+            value:35,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:45,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:55
         },{
             variantName:'_A',
             parentBrandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[55,65,75]
+            marketID:1,
+            value:55
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:65
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[95,85,75]
+            marketID:1,
+            value:95
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:85
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,55,45]
+            marketID:1,
+            value:65
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:55
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:45
         }],
         rcrv_ValueOfQuantityDiscounts      : [{
             variantName:'_A',
             parentBrandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[35,45,55]
+            marketID:1,
+            value:35,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:45,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:55
         },{
             variantName:'_A',
             parentBrandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[55,65,75]
+            marketID:1,
+            value:55
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:65
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[95,85,75]
+            marketID:1,
+            value:95
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:85
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,55,45]
+            marketID:1,
+            value:65
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:55
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:45
         }],
         rcrv_ValueOfPerformanceBonus       : [{
             variantName:'_A',
             parentBrandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[35,45,55]
+            marketID:1,
+            value:35,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:45,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:55
         },{
             variantName:'_A',
             parentBrandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[55,65,75]
+            marketID:1,
+            value:55
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:65
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[95,85,75]
+            marketID:1,
+            value:95
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:85
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,55,45]
+            marketID:1,
+            value:65
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:55
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:45
         }],
         rcrv_DiscontinuedGoodsCost         : [{
             variantName:'_A',
             parentBrandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[35,45,55]
+            marketID:1,
+            value:35,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:45,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:55
         },{
             variantName:'_A',
             parentBrandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[55,65,75]
+            marketID:1,
+            value:55
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:65
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[95,85,75]
+            marketID:1,
+            value:95
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:85
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,55,45]
+            marketID:1,
+            value:65
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:55
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:45
         }],
         rcrv_InventoryHoldingCost          : [{
             variantName:'_A',
             parentBrandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[35,45,55]
+            marketID:1,
+            value:35,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:45,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:55
         },{
             variantName:'_A',
             parentBrandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[55,65,75]
+            marketID:1,
+            value:55
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:65
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[95,85,75]
+            marketID:1,
+            value:95
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:85
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,55,45]
+            marketID:1,
+            value:65
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:55
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:45
         }],
         rcrv_GrossProfit                   : [{
             variantName:'_A',
             parentBrandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[35,45,55]
+            marketID:1,
+            value:35,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:45,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:55
         },{
             variantName:'_A',
             parentBrandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[55,65,75]
+            marketID:1,
+            value:55
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:65
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[95,85,75]
+            marketID:1,
+            value:95
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:85
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,55,45]
+            marketID:1,
+            value:65
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:55
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:45
         }],
         rcrv_GrossProfitChange             : [{
             variantName:'_A',
             parentBrandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[35,45,55]
+            marketID:1,
+            value:35,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:45,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:55
         },{
             variantName:'_A',
             parentBrandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[55,65,75]
+            marketID:1,
+            value:55
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:65
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[95,85,75]
+            marketID:1,
+            value:95
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:85
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,55,45]
+            marketID:1,
+            value:65
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:55
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:45
         }],
         rcrv_GrossProfitMargin             : [{
             variantName:'_A',
             parentBrandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[35,45,55]
+            marketID:1,
+            value:35,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:45,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:55
         },{
             variantName:'_A',
             parentBrandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[55,65,75]
+            marketID:1,
+            value:55
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:65
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[95,85,75]
+            marketID:1,
+            value:95
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:85
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,55,45]
+            marketID:1,
+            value:65
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:55
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:45
         }],
         rcrv_GrossProfitShareInCategory    : [{
             variantName:'_A',
             parentBrandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[35,45,55]
+            marketID:1,
+            value:35,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:45,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:55
         },{
             variantName:'_A',
             parentBrandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[55,65,75]
+            marketID:1,
+            value:55
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:65
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[95,85,75]
+            marketID:1,
+            value:95
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:85
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,55,45]
+            marketID:1,
+            value:65
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:55
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:45
         }],
         rcrv_GeneralExpenses               : [{
             variantName:'_A',
             parentBrandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[35,45,55]
+            marketID:1,
+            value:35,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:45,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:55
         },{
             variantName:'_A',
             parentBrandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[55,65,75]
+            marketID:1,
+            value:55
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:65
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[95,85,75]
+            marketID:1,
+            value:95
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:85
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,55,45]
+            marketID:1,
+            value:65
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:55
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:45
         }],
         rcrv_OperatingProfit               : [{
             variantName:'_A',
             parentBrandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[35,45,55]
+            marketID:1,
+            value:35,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:45,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:55
         },{
             variantName:'_A',
             parentBrandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[55,65,75]
+            marketID:1,
+            value:55
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:65
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[95,85,75]
+            marketID:1,
+            value:95
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:85
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,55,45]
+            marketID:1,
+            value:65
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:55
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:45
         }],
         rcrv_OperatingProfitChange          : [{
             variantName:'_A',
             parentBrandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[35,45,55]
+            marketID:1,
+            value:35,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:45,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:55
         },{
             variantName:'_A',
             parentBrandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[55,65,75]
+            marketID:1,
+            value:55
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:65
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[95,85,75]
+            marketID:1,
+            value:95
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:85
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,55,45]
+            marketID:1,
+            value:65
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:55
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:45
         }],
         rcrv_OperatingProfitMargin         : [{
             variantName:'_A',
             parentBrandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[35,45,55]
+            marketID:1,
+            value:35,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:45,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:55
         },{
             variantName:'_A',
             parentBrandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[55,65,75]
+            marketID:1,
+            value:55
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:65
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[95,85,75]
+            marketID:1,
+            value:95
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:85
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,55,45]
+            marketID:1,
+            value:65
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:55
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:45
         }],
         rcrv_OperatingProfitMarginShareInCategory         : [{
             variantName:'_A',
             parentBrandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[35,45,55]
+            marketID:1,
+            value:35,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:45,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:55
         },{
             variantName:'_A',
             parentBrandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[55,65,75]
+            marketID:1,
+            value:55
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:65
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[95,85,75]
+            marketID:1,
+            value:95
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:85
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,55,45]
+            marketID:1,
+            value:65
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:55
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:45
         }],
         rcrv_Interest                      : [{
             variantName:'_A',
             parentBrandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[35,45,55]
+            marketID:1,
+            value:35,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:45,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:55
         },{
             variantName:'_A',
             parentBrandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[55,65,75]
+            marketID:1,
+            value:55
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:65
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[95,85,75]
+            marketID:1,
+            value:95
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:85
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,55,45]
+            marketID:1,
+            value:65
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:55
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:45
         }],
         rcrv_Taxes                         : [{
             variantName:'_A',
             parentBrandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[35,45,55]
+            marketID:1,
+            value:35,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:45,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:55
         },{
             variantName:'_A',
             parentBrandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[55,65,75]
+            marketID:1,
+            value:55
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:65
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[95,85,75]
+            marketID:1,
+            value:95
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:85
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,55,45]
+            marketID:1,
+            value:65
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:55
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:45
         }],
         rcrv_ExceptionalItems              : [{
             variantName:'_A',
             parentBrandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[35,45,55]
+            marketID:1,
+            value:35,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:45,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:55
         },{
             variantName:'_A',
             parentBrandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[55,65,75]
+            marketID:1,
+            value:55
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:65
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[95,85,75]
+            marketID:1,
+            value:95
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:85
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,55,45]
+            marketID:1,
+            value:65
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:55
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:45
         }],
         rcrv_NetProfit                     : [{
             variantName:'_A',
             parentBrandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[35,45,55]
+            marketID:1,
+            value:35,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:45,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:55
         },{
             variantName:'_A',
             parentBrandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[55,65,75]
+            marketID:1,
+            value:55
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:65
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[95,85,75]
+            marketID:1,
+            value:95
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:85
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,55,45]
+            marketID:1,
+            value:65
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:55
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:45
         }],
         rcrv_NetProfitChange                : [{
             variantName:'_A',
             parentBrandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[35,45,55]
+            marketID:1,
+            value:35,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:45,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:55
         },{
             variantName:'_A',
             parentBrandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[55,65,75]
+            marketID:1,
+            value:55
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:65
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[95,85,75]
+            marketID:1,
+            value:95
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:85
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,55,45]
+            marketID:1,
+            value:65
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:55
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:45
         }],
         rcrv_NetProfitMargin               : [{
             variantName:'_A',
             parentBrandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[35,45,55]
+            marketID:1,
+            value:35,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:45,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:55
         },{
             variantName:'_A',
             parentBrandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[55,65,75]
+            marketID:1,
+            value:55
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:65
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[95,85,75]
+            marketID:1,
+            value:95
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:85
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,55,45]
+            marketID:1,
+            value:65
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:55
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:45
         }],
         rcrv_NetProfitShareInCategory      : [{
             variantName:'_A',
             parentBrandName:'ELAN1',
             parentCategoryID:1,
             parentCompanyID:1,
-            value:[35,45,55]
+            marketID:1,
+            value:35,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:2,
+            value:45,
+        },{
+            variantName:'_A',
+            parentBrandName:'ELAN1',
+            parentCategoryID:1,
+            parentCompanyID:1,
+            marketID:3,
+            value:55
         },{
             variantName:'_A',
             parentBrandName:'ETALE2',
             parentCategoryID:1,
             parentCompanyID:2,
-            value:[55,65,75]
+            marketID:1,
+            value:55
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:2,
+            value:65
+        },{
+            variantName:'_A',
+            parentBrandName:'ETALE2',
+            parentCategoryID:1,
+            parentCompanyID:2,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HLAN3',
             parentCategoryID:2,
             parentCompanyID:3,
-            value:[95,85,75]
+            marketID:1,
+            value:95
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:2,
+            value:85
+        },{
+            variantName:'_C',
+            parentBrandName:'HLAN3',
+            parentCategoryID:2,
+            parentCompanyID:3,
+            marketID:3,
+            value:75
         },{
             variantName:'_C',
             parentBrandName:'HTTP1',
             parentCategoryID:2,
             parentCompanyID:1,
-            value:[65,55,45]
-        }],
+            marketID:1,
+            value:65
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:2,
+            value:55
+        },{
+            variantName:'_C',
+            parentBrandName:'HTTP1',
+            parentCategoryID:2,
+            parentCompanyID:1,
+            marketID:3,
+            value:45
+        }]
     });
     newRCR_consolidatedProfitAndLoss.save(function(err) {
         if(!err){

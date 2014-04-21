@@ -69,6 +69,9 @@
 	'directives/TE_MR_ruralHealthBeautiesShopperShare',
 	'directives/TE_MR_urbanHealthBeautiesShopperSales',
 	'directives/TE_MR_urbanHealthBeautiesShopperShare',
+	'directives/TE_SD_productPortfolioManagement',
+	'directives/TE_SD_bMListPrices',
+	'directives/TE_SD_productionVolume',
 	'angularRoute',
 	'angularXeditable',
 	'angularBootstrap',
@@ -85,7 +88,6 @@
 	'highchart',
 	'highchartMore',
 	'angularHighcharts',
-	'angularBootstrapSwitch'
 	], function (angular, filters, services,directives,bootstrap, controllers) {
 		'use strict';
 		return angular.module('myApp', [
@@ -99,7 +101,6 @@
 			'chieffancypants.loadingBar',
 			'ngCookies',
 			'highcharts-ng',
-			'frapontillo.bootstrap-switch'
 		]).run(function(editableOptions){
 			editableOptions.theme = 'bs3';
 		}).run(['$rootScope', '$location','Auth','$http', function ($rootScope, $location, Auth, $http) {		    

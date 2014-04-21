@@ -19,7 +19,6 @@
 			angularXeditable: 		'../bower_components/angular-xeditable/dist/js/xeditable',
 			socketIO: 				'../bower_components/socket.io-client/dist/socket.io',
 			jquery: 				'../bower_components/jquery/dist/jquery',
-			bootstrapswitch: 		'../bower_components/bootstrap-switch/dist/js/bootstrap-switch',
 			require: 				'../bower_components/requirejs/require',
 			underscore: 			'../bower_components/underscore/underscore',
 			bootstrap: 				'../bower_components/bootstrap/dist/js/bootstrap',
@@ -40,34 +39,32 @@
 			angularHighcharts:      '../bower_components/highcharts-ng/src/highcharts-ng',
 			highchartMore:          '../bower_components/highcharts/highcharts-more',
 			//Bootstrap switch interface for admin module, handle initialize parameter configure 
+			bootstrapswitch: 		'../bower_components/bootstrap-switch/dist/js/bootstrap-switch',
 			angularBootstrapSwitch: '../bower_components/angular-bootstrap-switch/dist/angular-bootstrap-switch'
-			//angular promise tracker is used for adding loading spinner by track general promise or request 
-			//angularPromiseTracker:  '../bower_components/angular-promise-tracker/promise-tracker'
 		},
 		baseUrl: 'js',
 		shim: {
-			'angular' : {'exports' : 'angular'},
-			'angularRoute': ['angular'],
-			'angularResource':['angular'],
-			'angularCookies': ['angular'],
-			'angularMocks': {
-				deps:['angular'],
-				'exports':'angular.mock'
+			'angular'           : {'exports' : 'angular'},
+			'angularRoute'      : ['angular'],
+			'angularResource'   :['angular'],
+			'angularCookies'    : ['angular'],
+			'angularMocks'      : {
+				deps            :['angular'],
+				'exports'       :'angular.mock'
 			},
-			'angularXeditable': ['angular'],
-			'bootstrap':['jquery'],
-			'angularBootstrap':['jquery','bootstrap','angular'],
+			'angularXeditable'  : ['angular'],
+			'bootstrap'         :['jquery'],
+			'angularBootstrap'  :['jquery','bootstrap','angular'],
 			'angularLoadingBar' : ['angular'],
-			'jqplot':['jquery'],
-			'jqxgrid':['jquery'],
-			'bubbleRenderer':['jqplot','jquery'],
-			'labelRenderer':['jqplot','jquery'],
-			'textRenderer':['jqplot','jquery'],
-			'tree':['jquery'],
-			'highchartMore':['jquery','highchart'],
-			'bootstrapswitch' : ['jquery'],
-			'angularBootstrapSwitch':['angular','jquery','bootstrapswitch'],
-//			'angularPromiseTracker':['angular']
+			'jqplot'            :['jquery'],
+			'jqxgrid'           :['jquery'],
+			'bubbleRenderer'    :['jqplot','jquery'],
+			'labelRenderer'     :['jqplot','jquery'],
+			'textRenderer'      :['jqplot','jquery'],
+			'tree'              :['jquery'],
+			'highchartMore'     :['jquery','highchart'],
+			'angularHighcharts' :['angular'],
+			'placeholder'       :['angular']
 		},
 		priority: [
 			"angular"
@@ -124,8 +121,7 @@
 	require([
 		'angular',
 		'app',
-		'routes',
-		'bootstrapswitch',
+		'routes'
 	], function(angular, app, routes) {
 		'use strict';
 		var $html = angular.element(document.getElementsByTagName('html')[0]);

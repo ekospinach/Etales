@@ -33,74 +33,25 @@ define(['directives', 'services'], function(directives){
                     });
                 }
 
-                var loadNegotiations=function(data,category,retailer,i,j){
+                var loadValue=function(data,varName,brandName,retailer){
+                    var results=_.find(data,function(obj){
+                        return(obj.variantName==varName&&obj.parentBrandName==brandName&&obj.modernRetailerID==retailer);
+                    })
+                    return results.value;
+                }
+
+                var loadNegotiations=function(data,category,retailer,i){
                     var varName,brandName,discount_MinimumVolume,discount_Rate,bonus_TargetVolume,bonus_Rate,bonus_Value,vnd_PaymentTerm,vnd_OtherCompensation,vnd_ContractHonoured;
                     brandName=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].parentBrandName;
                     varName=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].variantName;
-                    discount_MinimumVolume=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerInfo[j].value;
-                    var discount_Rates=_.find(data.data[0].vnd_QuantityDiscount.discount_Rate,function(obj){
-                        return(obj.variantName==varName&&obj.parentBrandName==brandName);
-                    });
-                    for(var k=0;k<discount_Rates.modernRetailerInfo.length;k++){
-                        if(discount_Rates.modernRetailerInfo[k].modernRetailerID==retailer){
-                            discount_Rate=discount_Rates.modernRetailerInfo[k].value;
-                            break;
-                        }
-                    }
-                    var bonus_TargetVolumes=_.find(data.data[0].vnd_TargetBonus.bonus_TargetVolume,function(obj){
-                        return(obj.variantName==varName&&obj.parentBrandName==brandName);
-                    });
-                    for(var k=0;k<bonus_TargetVolumes.modernRetailerInfo.length;k++){
-                        if(bonus_TargetVolumes.modernRetailerInfo[k].modernRetailerID==retailer){
-                            bonus_TargetVolume=bonus_TargetVolumes.modernRetailerInfo[k].value;
-                            break;
-                        }
-                    }
-                    var bonus_Rates=_.find(data.data[0].vnd_TargetBonus.bonus_TargetVolume,function(obj){
-                        return(obj.variantName==varName&&obj.parentBrandName==brandName);
-                    });
-                    for(var k=0;k<bonus_Rates.modernRetailerInfo.length;k++){
-                        if(bonus_Rates.modernRetailerInfo[k].modernRetailerID==retailer){
-                            bonus_Rate=bonus_Rates.modernRetailerInfo[k].value;
-                            break;
-                        }
-                    }
-                    var bonus_Values=_.find(data.data[0].vnd_TargetBonus.bonus_TargetVolume,function(obj){
-                        return(obj.variantName==varName&&obj.parentBrandName==brandName);
-                    });
-                    for(var k=0;k<bonus_Values.modernRetailerInfo.length;k++){
-                        if(bonus_Values.modernRetailerInfo[k].modernRetailerID==retailer){
-                            bonus_Value=bonus_Values.modernRetailerInfo[k].value;
-                            break;
-                        }
-                    }
-                    var vnd_PaymentTerms=_.find(data.data[0].vnd_PaymentTerms,function(obj){
-                        return(obj.variantName==varName&&obj.parentBrandName==brandName);
-                    });
-                    for(var k=0;k<vnd_PaymentTerms.modernRetailerInfo.length;k++){
-                        if(vnd_PaymentTerms.modernRetailerInfo[k].modernRetailerID==retailer){
-                            vnd_PaymentTerm=vnd_PaymentTerms.modernRetailerInfo[k].value;
-                            break;
-                        }
-                    }
-                    var vnd_OtherCompensations=_.find(data.data[0].vnd_OtherCompensation,function(obj){
-                        return(obj.variantName==varName&&obj.parentBrandName==brandName);
-                    });
-                    for(var k=0;k<vnd_OtherCompensations.modernRetailerInfo.length;k++){
-                        if(vnd_OtherCompensations.modernRetailerInfo[k].modernRetailerID==retailer){
-                            vnd_OtherCompensation=vnd_OtherCompensations.modernRetailerInfo[k].value;
-                            break;
-                        }
-                    }
-                    var vnd_ContractHonoureds=_.find(data.data[0].vnd_ContractHonoured,function(obj){
-                        return(obj.variantName==varName&&obj.parentBrandName==brandName);
-                    });
-                    for(var k=0;k<vnd_ContractHonoureds.modernRetailerInfo.length;k++){
-                        if(vnd_ContractHonoureds.modernRetailerInfo[k].modernRetailerID==retailer){
-                            vnd_ContractHonoured=vnd_ContractHonoureds.modernRetailerInfo[k].value;
-                            break;
-                        }
-                    }
+                    discount_MinimumVolume=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].value;
+                    discount_Rate=loadValue(data.data[0].vnd_QuantityDiscount.discount_Rate,varName,brandName,retailer);
+                    bonus_TargetVolume=loadValue(data.data[0].vnd_TargetBonus.bonus_TargetVolume,varName,brandName,retailer);
+                    bonus_Rate=loadValue(data.data[0].vnd_TargetBonus.bonus_Rate,varName,brandName,retailer);
+                    bonus_Value=loadValue(data.data[0].vnd_TargetBonus.bonus_Value,varName,brandName,retailer);
+                    vnd_PaymentTerm=loadValue(data.data[0].vnd_PaymentTerms,varName,brandName,retailer);
+                    vnd_OtherCompensation=loadValue(data.data[0].vnd_OtherCompensation,varName,brandName,retailer);
+                    vnd_ContractHonoured=loadValue(data.data[0].vnd_ContractHonoured,varName,brandName,retailer);
                     if(vnd_ContractHonoured==1){
                         vnd_ContractHonoured="yes";
                     }else{
@@ -143,18 +94,14 @@ define(['directives', 'services'], function(directives){
 
                     for(var i=0;i<data.data[0].vnd_QuantityDiscount.discount_MinimumVolume.length;i++){
                         if(data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].parentCategoryID==1){
-                            for(var j=0;j<data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerInfo.length;j++){
-                                switch(data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerInfo[j].modernRetailerID){
-                                    case 1:loadNegotiations(data,1,1,i,j);break;
-                                    case 2:loadNegotiations(data,1,2,i,j);break;
-                                }
+                            switch(data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerID){
+                                case 1:loadNegotiations(data,1,1,i);break;
+                                case 2:loadNegotiations(data,1,2,i);break;
                             }
                         }else{
-                            for(var j=0;j<data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerInfo.length;j++){
-                                switch(data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerInfo[j].modernRetailerID){
-                                    case 1:loadNegotiations(data,2,1,i,j);break;
-                                    case 2:loadNegotiations(data,2,2,i,j);break;
-                                }
+                            switch(data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].modernRetailerID){
+                                case 1:loadNegotiations(data,2,1,i);break;
+                                case 2:loadNegotiations(data,2,2,i);break;
                             }
                         }
                     }

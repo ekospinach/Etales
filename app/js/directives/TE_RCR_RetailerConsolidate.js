@@ -34,32 +34,58 @@ define(['directives', 'services'], function(directives){
                     });
                 }
 
+                var loadValue=function(data){
+                    var array=new Array();
+                    for(var i=0;i<3;i++){
+                        array[i]=new Array();
+                    }
+                    for(var i=0;i<data.length;i++){
+                        switch(data[i].categoryID){
+                            case 1:
+                                if(data[i].marketID==1)array[0][0]=data[i].value;
+                                if(data[i].marketID==2)array[0][1]=data[i].value;
+                                if(data[i].marketID==3)array[0][2]=data[i].value;
+                            break;
+                            case 2:
+                                if(data[i].marketID==1)array[1][0]=data[i].value;
+                                if(data[i].marketID==2)array[1][1]=data[i].value;
+                                if(data[i].marketID==3)array[1][2]=data[i].value;
+                            break;
+                            case 3:
+                                if(data[i].marketID==1)array[2][0]=data[i].value;
+                                if(data[i].marketID==2)array[2][1]=data[i].value;
+                                if(data[i].marketID==3)array[2][2]=data[i].value;
+                            break;
+                        }
+                    }
+                    return array;
+                }
+
                 var organiseArray = function(data){
                     var deferred = $q.defer();
-                    scope.Sales=data.data[0].rcrpl_Sales;
-                    scope.PromotionsCost=data.data[0].rcrpl_PromotionsCost;
-                    scope.OtherCompensation=data.data[0].rcrpl_OtherCompensation;
-                    scope.NetSales=data.data[0].rcrpl_NetSales;
-                    scope.NetSalesChange=data.data[0].rcrpl_NetSalesChange;
-                    scope.CostOfGoodsSold=data.data[0].rcrpl_CostOfGoodsSold;
-                    scope.ValueOfQuantityDiscounts=data.data[0].rcrpl_ValueOfQuantityDiscounts;
-                    scope.ValueOfPerformanceBonus=data.data[0].rcrpl_ValueOfPerformanceBonus;
-                    scope.DiscontinuedGoodsCost=data.data[0].rcrpl_DiscontinuedGoodsCost;
-                    scope.InventoryHoldingCost=data.data[0].rcrpl_InventoryHoldingCost;
-                    scope.GrossProfit=data.data[0].rcrpl_GrossProfit;
-                    scope.GrossProfitChange=data.data[0].rcrpl_GrossProfitChange;
-                    scope.GrossProfitMargin=data.data[0].rcrpl_GrossProfitMargin;
-                    scope.GeneralExpenses=data.data[0].rcrpl_GeneralExpenses;
-                    scope.OperatingProfit=data.data[0].rcrpl_OperatingProfit;
-                    scope.OperatingProfitChange=data.data[0].rcrpl_OperatingProfitChange;
-                    scope.OperatingProfitMargin=data.data[0].rcrpl_OperatingProfitMargin;
-                    scope.Interest=data.data[0].rcrpl_Interest;
-                    scope.Taxes=data.data[0].rcrpl_Taxes;
-                    scope.ExceptionalItems=data.data[0].rcrpl_ExceptionalItems;
-                    scope.NetProfit=data.data[0].rcrpl_NetProfit;
-                    scope.NetProfitChange=data.data[0].rcrpl_NetProfitChange;
-                    scope.NetProfitMargin=data.data[0].rcrpl_NetProfitMargin;
-                
+                    scope.Sales=loadValue(data.data[0].rcrpl_Sales);
+                    scope.PromotionsCost=loadValue(data.data[0].rcrpl_PromotionsCost);
+                    scope.OtherCompensation=loadValue(data.data[0].rcrpl_OtherCompensation);
+                    scope.NetSales=loadValue(data.data[0].rcrpl_NetSales);
+                    scope.NetSalesChange=loadValue(data.data[0].rcrpl_NetSalesChange);
+                    scope.CostOfGoodsSold=loadValue(data.data[0].rcrpl_CostOfGoodsSold);
+                    scope.ValueOfQuantityDiscounts=loadValue(data.data[0].rcrpl_ValueOfQuantityDiscounts);
+                    scope.ValueOfPerformanceBonus=loadValue(data.data[0].rcrpl_ValueOfPerformanceBonus);
+                    scope.DiscontinuedGoodsCost=loadValue(data.data[0].rcrpl_DiscontinuedGoodsCost);
+                    scope.InventoryHoldingCost=loadValue(data.data[0].rcrpl_InventoryHoldingCost);
+                    scope.GrossProfit=loadValue(data.data[0].rcrpl_GrossProfit);
+                    scope.GrossProfitChange=loadValue(data.data[0].rcrpl_GrossProfitChange);
+                    scope.GrossProfitMargin=loadValue(data.data[0].rcrpl_GrossProfitMargin);
+                    scope.GeneralExpenses=loadValue(data.data[0].rcrpl_GeneralExpenses);
+                    scope.OperatingProfit=loadValue(data.data[0].rcrpl_OperatingProfit);
+                    scope.OperatingProfitChange=loadValue(data.data[0].rcrpl_OperatingProfitChange);
+                    scope.OperatingProfitMargin=loadValue(data.data[0].rcrpl_OperatingProfitMargin);
+                    scope.Interest=loadValue(data.data[0].rcrpl_Interest);
+                    scope.Taxes=loadValue(data.data[0].rcrpl_Taxes);
+                    scope.ExceptionalItems=loadValue(data.data[0].rcrpl_ExceptionalItems);
+                    scope.NetProfit=loadValue(data.data[0].rcrpl_NetProfit);
+                    scope.NetProfitChange=loadValue(data.data[0].rcrpl_NetProfitChange);
+                    scope.NetProfitMargin=loadValue(data.data[0].rcrpl_NetProfitMargin);
                     deferred.resolve({msg:'Array is ready.'});                    
                     return deferred.promise;
                 }

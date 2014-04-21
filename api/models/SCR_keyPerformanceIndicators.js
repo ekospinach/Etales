@@ -17,7 +17,7 @@ var SCR_keyPerformanceIndicatorsSchema = mongoose.Schema({
     scrkpi_ChannelSalesValueShare     : [categoryInfoSchema],
     scrkpi_ChannelSalesVolumeShare    : [categoryInfoSchema],
     scrkpi_ShoppersShare              : [categoryInfoSchema],
-    //scrkpi_PortfolioStrength          : [categoryInfoSchema]
+    scrkpi_PortfolioStrength          : [categoryInfoSchema]
 })
 
 var categoryInfoSchema = mongoose.Schema({
@@ -26,6 +26,70 @@ var categoryInfoSchema = mongoose.Schema({
 })
 
 var SCR_keyPerformanceIndicators=mongoose.model('SCR_keyPerformanceIndicators',SCR_keyPerformanceIndicatorsSchema);
+
+exports.addReports = function(options){
+    var deferred = q.defer();
+    var startFrom = options.startFrom,
+    endWith = options.endWith;
+
+   (function sendRequest(currentPeriod){        
+      var reqOptions = {
+          hostname: options.cgiHost,
+          port: options.cgiPort,
+          path: options.cgiPath + '?period=' + currentPeriod + '&seminar=' + options.seminar + '&producerID=' + options.producerID
+      };
+
+      http.get(reqOptions, function(response) { 
+        var data = '';
+        response.setEncoding('utf8');
+        response.on('data', function(chunk){
+          data += chunk;
+        }).on('end', function(){
+          //ask Oleg to fix here, should return 404 when result beyound the existed period.
+          //console.log('response statusCode from CGI(' + options.cgiPath + ') for period ' + currentPeriod + ': ' + response.statusCode);
+          if ( response.statusCode === (404 || 500) ) 
+            deferred.reject({msg:'Get 404||500 error from CGI server, reqOptions:' + JSON.stringify(reqOptions)});
+          else {
+            try {
+              var singleReport = JSON.parse(data);
+            } catch(e) {
+              deferred.reject({msg: 'cannot parse JSON data from CGI:' + data, options:options});
+            }
+          }      
+          if (!singleReport) return; 
+         // console.log(util.inspect(singleReport, {depth:null}));
+
+          SCR_keyPerformanceIndicators.update({seminar    : singleReport.seminar, 
+                                            period     : singleReport.period,
+                                            producerID : singleReport.producerID},
+                                {
+                                scrkpi_TradeSpendingEffectiveness : singleReport.scrkpi_TradeSpendingEffectiveness,
+                                scrkpi_MarketingEffectiveness     : singleReport.scrkpi_MarketingEffectiveness,    
+                                scrkpi_ChannelSalesValueShare     : singleReport.scrkpi_ChannelSalesValueShare,    
+                                scrkpi_ChannelSalesVolumeShare    : singleReport.scrkpi_ChannelSalesVolumeShare,   
+                                scrkpi_ShoppersShare              : singleReport.scrkpi_ShoppersShare,             
+                                scrkpi_PortfolioStrength          : singleReport.scrkpi_PortfolioStrength            
+                                },
+                                {upsert: true},
+                                function(err, numberAffected, raw){
+                                  if(err) deferred.reject({msg:err, options: options});                                  
+                                  currentPeriod--;
+                                  if (currentPeriod >= startFrom) {
+                                     sendRequest(currentPeriod);
+                                  } else {
+                                     deferred.resolve({msg: options.schemaName + ' (seminar:' + options.seminar + ', producer:' + options.producerID+ ') import done. from period ' + startFrom + ' to ' + endWith, options: options});
+                                  }
+                                });   
+
+        });
+      }).on('error', function(e){
+        deferred.reject({msg:'errorFrom add ' + options.schemaName + ': ' + e.message + ', requestOptions:' + JSON.stringify(reqOptions),options: options});
+      });
+    })(endWith);
+
+    return deferred.promise;
+}
+
 
 exports.addSCR_keyPerformanceIndicators=function(req,res,next){
     var newSCR_keyPerformanceIndicators=SCR_keyPerformanceIndicators({
@@ -73,6 +137,16 @@ exports.addSCR_keyPerformanceIndicators=function(req,res,next){
             value:[70,80,90]
         }],
         scrkpi_ShoppersShare              : [{
+            categoryID:1,
+            value:[10,20,30]
+        },{
+            categoryID:2,
+            value:[40,50,60]
+        },{
+            categoryID:3,
+            value:[70,80,90]
+        }],
+        scrkpi_PortfolioStrength          : [{
             categoryID:1,
             value:[10,20,30]
         },{

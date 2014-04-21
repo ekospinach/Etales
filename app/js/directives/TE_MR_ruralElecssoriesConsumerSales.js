@@ -18,34 +18,34 @@ define(['directives', 'services'], function(directives){
 
                 var loadMarketConsumer=function(data,category,market){
                     for(var i=0;i<data.data[0].absoluteValue.length;i++){
-                        if(data.data[0].absoluteValue[i].parentCategoryID==category){
+                        if(data.data[0].absoluteValue[i].parentCategoryID==category&&data.data[0].absoluteValue[i].marketID==market){
                             var variantName=data.data[0].absoluteValue[i].variantName;
                             var brandName=data.data[0].absoluteValue[i].parentBrandName;
-                            var priceValue=data.data[0].absoluteValue[i].marketInfo[market-1].segmentInfo[0].shopperInfo[3].value;
-                            var moneyValue=data.data[0].absoluteValue[i].marketInfo[market-1].segmentInfo[1].shopperInfo[3].value;
-                            var fashionValue=data.data[0].absoluteValue[i].marketInfo[market-1].segmentInfo[2].shopperInfo[3].value;
-                            var freaksValue=data.data[0].absoluteValue[i].marketInfo[market-1].segmentInfo[3].shopperInfo[3].value;
+                            var priceValue=data.data[0].absoluteValue[i].segmentInfo[0].shopperInfo[3].value;
+                            var moneyValue=data.data[0].absoluteValue[i].segmentInfo[1].shopperInfo[3].value;
+                            var fashionValue=data.data[0].absoluteValue[i].segmentInfo[2].shopperInfo[3].value;
+                            var freaksValue=data.data[0].absoluteValue[i].segmentInfo[3].shopperInfo[3].value;
                             var Changes=_.find(data.data[0].valueChange,function(obj){
-                                return (obj.parentBrandName==brandName&&obj.variantName==variantName);
+                                return (obj.parentBrandName==brandName&&obj.variantName==variantName&&obj.marketID==market);
                             });
-                            var priceValueChange=Changes.marketInfo[market-1].segmentInfo[0].shopperInfo[3].value;
-                            var moneyValueChange=Changes.marketInfo[market-1].segmentInfo[1].shopperInfo[3].value;
-                            var fashionValueChange=Changes.marketInfo[market-1].segmentInfo[2].shopperInfo[3].value;
-                            var freaksValueChange=Changes.marketInfo[market-1].segmentInfo[3].shopperInfo[3].value;
+                            var priceValueChange=Changes.segmentInfo[0].shopperInfo[3].value;
+                            var moneyValueChange=Changes.segmentInfo[1].shopperInfo[3].value;
+                            var fashionValueChange=Changes.segmentInfo[2].shopperInfo[3].value;
+                            var freaksValueChange=Changes.segmentInfo[3].shopperInfo[3].value;
                             var Volumes=_.find(data.data[0].absoluteVolume,function(obj){
-                                return (obj.parentBrandName==brandName&&obj.variantName==variantName);
+                                return (obj.parentBrandName==brandName&&obj.variantName==variantName&&obj.marketID==market);
                             });
                             var VolumeChanges=_.find(data.data[0].volumeChange,function(obj){
-                                return (obj.parentBrandName==brandName&&obj.variantName==variantName);
+                                return (obj.parentBrandName==brandName&&obj.variantName==variantName&&obj.marketID==market);
                             });
-                            var priceVolume=Volumes.marketInfo[market-1].segmentInfo[0].shopperInfo[3].value;
-                            var moneyVolume=Volumes.marketInfo[market-1].segmentInfo[1].shopperInfo[3].value;
-                            var fashionVolume=Volumes.marketInfo[market-1].segmentInfo[2].shopperInfo[3].value;
-                            var freaksVolume=Volumes.marketInfo[market-1].segmentInfo[3].shopperInfo[3].value;
-                            var priceVolumeChange=VolumeChanges.marketInfo[market-1].segmentInfo[0].shopperInfo[3].value;
-                            var moneyVolumeChange=VolumeChanges.marketInfo[market-1].segmentInfo[1].shopperInfo[3].value;
-                            var fashionVolumeChange=VolumeChanges.marketInfo[market-1].segmentInfo[2].shopperInfo[3].value;
-                            var freaksVolumeChange=VolumeChanges.marketInfo[market-1].segmentInfo[3].shopperInfo[3].value;
+                            var priceVolume=Volumes.segmentInfo[0].shopperInfo[3].value;
+                            var moneyVolume=Volumes.segmentInfo[1].shopperInfo[3].value;
+                            var fashionVolume=Volumes.segmentInfo[2].shopperInfo[3].value;
+                            var freaksVolume=Volumes.segmentInfo[3].shopperInfo[3].value;
+                            var priceVolumeChange=VolumeChanges.segmentInfo[0].shopperInfo[3].value;
+                            var moneyVolumeChange=VolumeChanges.segmentInfo[1].shopperInfo[3].value;
+                            var fashionVolumeChange=VolumeChanges.segmentInfo[2].shopperInfo[3].value;
+                            var freaksVolumeChange=VolumeChanges.segmentInfo[3].shopperInfo[3].value;
                             switch(data.data[0].absoluteValue[i].parentCompanyID){
                                 case 1:scope.player1s.push({'fullName':brandName+variantName,'priceValue':priceValue,'priceValueChange':priceValueChange,'priceVolume':priceVolume,'priceVolumeChange':priceVolumeChange,'moneyValue':moneyValue,'moneyValueChange':moneyValueChange,'moneyVolume':moneyVolume,'moneyVolumeChange':moneyVolumeChange,'fashionValue':fashionValue,'fashionValueChange':fashionValueChange,'fashionVolume':fashionVolume,'fashionVolumeChange':fashionVolumeChange,'freaksValue':freaksValue,'freaksValueChange':freaksValueChange,'freaksVolume':freaksVolume,'freaksVolumeChange':freaksVolumeChange});break;
                                 case 2:scope.player2s.push({'fullName':brandName+variantName,'priceValue':priceValue,'priceValueChange':priceValueChange,'priceVolume':priceVolume,'priceVolumeChange':priceVolumeChange,'moneyValue':moneyValue,'moneyValueChange':moneyValueChange,'moneyVolume':moneyVolume,'moneyVolumeChange':moneyVolumeChange,'fashionValue':fashionValue,'fashionValueChange':fashionValueChange,'fashionVolume':fashionVolume,'fashionVolumeChange':fashionVolumeChange,'freaksValue':freaksValue,'freaksValueChange':freaksValueChange,'freaksVolume':freaksVolume,'freaksVolumeChange':freaksVolumeChange});break;

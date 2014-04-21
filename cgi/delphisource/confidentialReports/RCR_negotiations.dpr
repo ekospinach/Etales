@@ -93,9 +93,9 @@ var
               joDiscountDetails.A['discount_MinimumVolume'].Add(variantInfoSchema(discount_MinimumVolume, catID, producerID, tempVariant) );
               joDiscountDetails.A['discount_Rate'].Add(variantInfoSchema(discount_Rate, catID, producerID, tempVariant) );
 
-              joDiscountDetails.A['vnd_PaymentTerms'].Add(variantInfoSchema(vnd_PaymentTerms, catID, producerID, tempVariant) );
-              joDiscountDetails.A['vnd_OtherCompensation'].Add(variantInfoSchema(vnd_OtherCompensation, catID, producerID, tempVariant) );
-              joDiscountDetails.A['vnd_ContractHonoured'].Add(variantInfoSchema(vnd_ContractHonoured, catID, producerID, tempVariant) );
+              oJsonFile.A['vnd_PaymentTerms'].Add(variantInfoSchema(vnd_PaymentTerms, catID, producerID, tempVariant) );
+              oJsonFile.A['vnd_OtherCompensation'].Add(variantInfoSchema(vnd_OtherCompensation, catID, producerID, tempVariant) );
+              oJsonFile.A['vnd_ContractHonoured'].Add(variantInfoSchema(vnd_ContractHonoured, catID, producerID, tempVariant) );
             end;            
           end;
         end;      

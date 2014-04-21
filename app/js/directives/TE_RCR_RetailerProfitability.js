@@ -34,17 +34,64 @@ define(['directives', 'services'], function(directives){
                     });
                 }
 
+                var loadValue=function(data){
+                    var factoriesInfo=new Array();
+                    var marketInfo=new Array();
+                    var array=new Array();
+                    for(var i=0;i<data.length;i++){
+                        if(data[i].categoryID==1&&data[i].marketID==1){
+                            factoriesInfo[data[i].factoriesID-1]=data[i].value;
+                        }
+                    }
+                    marketInfo.push({'factoriesInfo':factoriesInfo});
+                    for(var i=0;i<data[i].length;i++){
+                        if(data[i].categoryID==1&&data[i].marketID==2){
+                            factoriesInfo[data[i].factoriesID-1]=data[i].value;
+                        }
+                    }
+                    marketInfo.push({'factoriesInfo':factoriesInfo});
+                    for(var i=0;i<data[i].length;i++){
+                        if(data[i].categoryID==1&&data[i].marketID==3){
+                            factoriesInfo[data[i].factoriesID-1]=data[i].value;
+                        }
+                    }
+                    marketInfo.push({'factoriesInfo':factoriesInfo});
+                    array.push({'marketInfo':marketInfo});
+                    marketInfo=new Array();
+                    for(var i=0;i<data[i].length;i++){
+                        if(data[i].categoryID==2&&data[i].marketID==1){
+                            factoriesInfo[data[i].factoriesID-1]=data[i].value;
+                        }
+                    }
+                    marketInfo.push({'factoriesInfo':factoriesInfo});
+                    for(var i=0;i<data[i].length;i++){
+                        if(data[i].categoryID==2&&data[i].marketID==2){
+                            factoriesInfo[data[i].factoriesID-1]=data[i].value;
+                        }
+                    }
+                    marketInfo.push({'factoriesInfo':factoriesInfo});
+                    for(var i=0;i<data[i].length;i++){
+                        if(data[i].categoryID==2&&data[i].marketID==3){
+                            factoriesInfo[data[i].factoriesID-1]=data[i].value;
+                        }
+                    }
+                    marketInfo.push({'factoriesInfo':factoriesInfo});
+                    array.push({'marketInfo':marketInfo});
+                    console.log(array);
+                    return array;
+                }
+
                 var organiseArray = function(data){
                     var deferred = $q.defer();
-                    scope.ShelfSpaces=data.data[0].rcrps_ShelfSpace;
-                    scope.NetSales=data.data[0].rcrps_NetSales;
-                    scope.NetSalesPerShelfSpaces=data.data[0].rcrps_NetSalesPerShelfSpace;
-                    scope.NetSalesShares=data.data[0].rcrps_NetSalesShare;
-                    scope.GrossContributions=data.data[0].rcrps_GrossContribution ;
-                    scope.GrossContributionPerShelfSpaces=data.data[0].rcrps_GrossContributionPerShelfSpace;
-                    scope.GrossContributionMargins=data.data[0].rcrps_GrossContributionMargin;
-                    scope.GrossContributionShares=data.data[0].rcrps_GrossContributionShare;
-                    scope.PaymentTerms=data.data[0].rcrps_PaymentTerms;
+                    scope.ShelfSpaces=loadValue(data.data[0].rcrps_ShelfSpace);
+                    scope.NetSales=loadValue(data.data[0].rcrps_NetSales);
+                    scope.NetSalesPerShelfSpaces=loadValue(data.data[0].rcrps_NetSalesPerShelfSpace);
+                    scope.NetSalesShares=loadValue(data.data[0].rcrps_NetSalesShare);
+                    scope.GrossContributions=loadValue(data.data[0].rcrps_GrossContribution );
+                    scope.GrossContributionPerShelfSpaces=loadValue(data.data[0].rcrps_GrossContributionPerShelfSpace);
+                    scope.GrossContributionMargins=loadValue(data.data[0].rcrps_GrossContributionMargin);
+                    scope.GrossContributionShares=loadValue(data.data[0].rcrps_GrossContributionShare);
+                    scope.PaymentTerms=loadValue(data.data[0].rcrps_PaymentTerms);
                 
                     deferred.resolve({msg:'Array is ready.'});                    
                     return deferred.promise;

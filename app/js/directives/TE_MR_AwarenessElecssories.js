@@ -16,68 +16,77 @@ define(['directives', 'services'], function(directives){
                     getResult();                    
                 }
 
-                var loadAwareness=function(data,category){
+                var loadAwareness=function(data,category,market){
                     scope.brandNames=new Array();
                     var count=0;
                     for(var i=0;i<data.data[0].brandInfo.length;i++){
-                        if(data.data[0].brandInfo[i].parentCategoryID==category){
+                        if(data.data[0].brandInfo[i].parentCategoryID==category&&data.data[0].brandInfo[i].marketID==market){
                             scope.brandNames[count]=data.data[0].brandInfo[i].brandName;
-                            if(data.data[0].brandInfo[i].latestAwareness[1]>=data.data[0].brandInfo[i].previousAwareness[1]){
-                                scope.valueRural[count]=data.data[0].brandInfo[i].previousAwareness[1];
-                                scope.increaseRural[count]=data.data[0].brandInfo[i].latestAwareness[1]-data.data[0].brandInfo[i].previousAwareness[1];
-                                scope.dropRural[count]=0;
-                            }else{
-                                scope.valueRural[count]=data.data[0].brandInfo[i].latestAwareness[1];
-                                scope.dropRural[count]=data.data[0].brandInfo[i].previousAwareness[1]-data.data[0].brandInfo[i].latestAwareness[1];
-                                scope.increaseRural[count]=0;
-                            }
-                            if(data.data[0].brandInfo[i].latestAwareness[0]>=data.data[0].brandInfo[i].previousAwareness[0]){
-                                scope.valueUrban[count]=data.data[0].brandInfo[i].previousAwareness[0];
-                                scope.increaseUrban[count]=data.data[0].brandInfo[i].latestAwareness[0]-data.data[0].brandInfo[i].previousAwareness[0];
-                                scope.dropUrban[count]=0;
-                            }else{
-                                scope.valueUrban[count]=data.data[0].brandInfo[i].latestAwareness[0];
-                                scope.dropUrban[count]=data.data[0].brandInfo[i].previousAwareness[0]-data.data[0].brandInfo[i].latestAwareness[0];
-                                scope.increaseUrban[count]=0;
+                            switch(market){
+                                case 1:
+                                if(data.data[0].brandInfo[i].latestAwareness>=data.data[0].brandInfo[i].previousAwareness){
+                                    scope.valueRural[count]=data.data[0].brandInfo[i].previousAwareness;
+                                    scope.increaseRural[count]=data.data[0].brandInfo[i].latestAwareness-data.data[0].brandInfo[i].previousAwareness;
+                                    scope.dropRural[count]=0;
+                                }else{
+                                    scope.valueRural[count]=data.data[0].brandInfo[i].latestAwareness;
+                                    scope.dropRural[count]=data.data[0].brandInfo[i].previousAwareness-data.data[0].brandInfo[i].latestAwareness;
+                                    scope.increaseRural[count]=0;
+                                };break;
+                                case 2:
+                                if(data.data[0].brandInfo[i].latestAwareness>=data.data[0].brandInfo[i].previousAwareness){
+                                    scope.valueUrban[count]=data.data[0].brandInfo[i].previousAwareness;
+                                    scope.increaseUrban[count]=data.data[0].brandInfo[i].latestAwareness-data.data[0].brandInfo[i].previousAwareness;
+                                    scope.dropUrban[count]=0;
+                                }else{
+                                    scope.valueUrban[count]=data.data[0].brandInfo[i].latestAwareness;
+                                    scope.dropUrban[count]=data.data[0].brandInfo[i].previousAwareness-data.data[0].brandInfo[i].latestAwareness;
+                                    scope.increaseUrban[count]=0;
+                                };break;
+
                             }
                             count++;
                         }
                     }
-                    scope.awarenessElecssories1Series=[{
-                        name:'Drop',data:scope.dropRural,color:'#D9534F'
-                    },{
-                        name:'Increase',data:scope.increaseRural,color:'#5CB85C'
-                    },{
-                        name:'Value',data:scope.valueRural,color:'#DDDDDD'
-                    }];
-                    scope.awarenessElecssories1Config={
-                        options:{
-                            chart:{type:'bar'},
-                            plotOptions:{series:{stacking:'normal'}},
-                            xAxis:{categories:scope.brandNames},
-                            yAxis:{title:{text:''}
-                        }
-                    },
-                        series:scope.awarenessElecssories1Series,
-                        title:{text:Label.getContent('Rural')}
-                    }
-                    scope.awarenessElecssories2Series=[{
-                        name:'Drop',data:scope.dropUrban,color:'#D9534F'
-                    },{
-                        name:'Increase',data:scope.increaseUrban,color:'#5CB85C'
-                    },{
-                        name:'Value',data:scope.valueUrban,color:'#DDDDDD'
-                    }];
-                    scope.awarenessElecssories2Config={
-                        options:{
-                            chart:{type:'bar'},
-                            plotOptions:{series:{stacking:'normal'}},
-                            xAxis:{categories:scope.brandNames},
-                            yAxis:{title:{text:''}
-                        }
-                    },
-                        series:scope.awarenessElecssories2Series,
-                        title:{text:Label.getContent('Urban')}
+                    switch(market){
+                        case 1:
+                        scope.awarenessElecssories1Series=[{
+                            name:'Drop',data:scope.dropRural,color:'#D9534F'
+                        },{
+                            name:'Increase',data:scope.increaseRural,color:'#5CB85C'
+                        },{
+                            name:'Value',data:scope.valueRural,color:'#DDDDDD'
+                        }];
+                        scope.awarenessElecssories1Config={
+                            options:{
+                                chart:{type:'bar'},
+                                plotOptions:{series:{stacking:'normal'}},
+                                xAxis:{categories:scope.brandNames},
+                                yAxis:{title:{text:''}
+                            }
+                        },
+                            series:scope.awarenessElecssories1Series,
+                            title:{text:Label.getContent('Rural')}
+                        };break;
+                        case 2:
+                        scope.awarenessElecssories2Series=[{
+                            name:'Drop',data:scope.dropUrban,color:'#D9534F'
+                        },{
+                            name:'Increase',data:scope.increaseUrban,color:'#5CB85C'
+                        },{
+                            name:'Value',data:scope.valueUrban,color:'#DDDDDD'
+                        }];
+                        scope.awarenessElecssories2Config={
+                            options:{
+                                chart:{type:'bar'},
+                                plotOptions:{series:{stacking:'normal'}},
+                                xAxis:{categories:scope.brandNames},
+                                yAxis:{title:{text:''}
+                            }
+                        },
+                            series:scope.awarenessElecssories2Series,
+                            title:{text:Label.getContent('Urban')}
+                        };break;
                     }
                 }
 
@@ -100,7 +109,8 @@ define(['directives', 'services'], function(directives){
                 var organiseArray = function(data){
                     var deferred = $q.defer();
                     scope.valueRural=new Array();scope.valueUrban=new Array();scope.dropRural=new Array();scope.dropUrban=new Array();scope.increaseRural=new Array();scope.increaseUrban=new Array();
-                    loadAwareness(data,1);
+                    loadAwareness(data,1,1);
+                    loadAwareness(data,1,2);
                     deferred.resolve({msg:'Array is ready.'});                    
                     return deferred.promise;
                 }
