@@ -15,8 +15,8 @@
 <div style="clear:both;padding:1px 0" ng-show='isResultShown'></div>
 <div class='panel panel-primary my-success-panel' ng-show='isResultShown'>
 	<div class="panel-heading">
-        <h3 class="panel-title text-center" popover="{{Label.getContent('B&M List Prices Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
-            {{Label.getContent('B&M List Prices')}}
+        <h3 class="panel-title text-center" popover="{{Label.getContent('Production Volume Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
+            {{Label.getContent('Production Volume')}}
         </h3>
     </div>
     <table class="table table-condensed table-bordered table-success">
@@ -36,7 +36,7 @@
     				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Quality-of-Raw-Materials Info')}}" popover-title="{{Label.getContent('Quality-of-Raw-Materials')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Quality-of-Raw-Materials')}}<span style="color:red">*</span></p>
     			</th>
     			<th>
-    				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('B&M List Prices Pop Info')}}" popover-title="{{Label.getContent('B&M List Prices')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('B&M List Prices')}}<span style="color:red">*</span></p>
+    				<p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Production Volume Info')}}" popover-title="{{Label.getContent('Production Volume')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Production Volume')}}<span style="color:red">*</span></p>
     			</th>
     		</tr>
     		<tr class="success">
@@ -66,8 +66,8 @@
     				<p class="text-right">{{ producte.composition[2] || 0 }}</p>
     			</td>
     			<td>
-    				<a href="#" editable-text="producte.nextPriceBM" onbeforesave="checkNextPriceBM('Elecssories',producte.parentBrandName,producte.varName,'nextPriceBM','0',$index,$data)" onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'nextPriceBM','0',$index)">
-    					<p class="text-right">{{ producte.nextPriceBM || 0 }}</p>
+    				<a href="#" editable-text="producte.production" onbeforesave="checkProduction('Elecssories',producte.parentBrandName,producte.varName,'production','0',$index,$data)" onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'production','0',$index)">
+    					<p class="text-right">{{ producte.production || 0 }}</p>
     				</a>
     			</td>
     		</tr>
@@ -86,7 +86,7 @@
     				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Smoothener Level Info')}}" popover-title="{{Label.getContent('Smoothener Level')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Smoothener Level')}}<span style="color:red">*</span></p>
     			</th>
     			<th>
-    				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('B&M List Prices Pop Info')}}" popover-title="{{Label.getContent('B&M List Prices')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('B&M List Prices')}}<span style="color:red">*</span></p>
+    				<p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Production Volume Info')}}" popover-title="{{Label.getContent('Production Volume')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Production Volume')}}<span style="color:red">*</span></p>
     			</th>
     		</tr>
             <tr class="danger">
@@ -114,9 +114,9 @@
     				<p class="text-right">{{ producth.composition[2] || 0 }}</p>
     			</td>
     			<td>
-    				<a href="#" editable-text="producth.nextPriceBM" onbeforesave="checkNextPriceBM('HealthBeauty',producth.parentBrandName,producth.varName,'nextPriceBM','0',$index,$data)" onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'nextPriceBM','0',$index)">
-    					<p class="text-right">{{ producth.nextPriceBM || 0 }}</p>
-    				</a>
+    				<a href="#" editable-text="producth.production" onbeforesave="checkProduction('HealthBeauty',producth.parentBrandName,producth.varName,'production','0',$index,$data)" onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'production','0',$index)">
+                        <p class="text-right">{{ producth.production || 0 }}</p>
+                    </a>
     			</td>
     		</tr>
     	</tbody>

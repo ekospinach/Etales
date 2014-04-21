@@ -202,7 +202,7 @@ define(['directives', 'services'], function(directives){
                     }
                 }
 
-                scope.selectPacks = function(category,parentBrandName,varName) {
+                var selectPacks = function(category,parentBrandName,varName) {
                     var selected,postion=-1;
                     if(category=="Elecssories"){
                         for(var i=0;i<scope.productes.length;i++){
@@ -572,6 +572,7 @@ define(['directives', 'services'], function(directives){
                     }).then(function(){
                         scope.isResultShown = true;
                         scope.isPageLoading = false;  
+                        scope.selectPacks=selectPacks;
                     },function(data){
                         d.reject(Label.getContent('showView fail'));
                     }); 
