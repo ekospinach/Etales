@@ -10,7 +10,6 @@ var mongoose = require('mongoose'),
 //TActors : 1~(4+3)
 //TBrandOwener : 1~6 (Prod_1_ID...Ret_2_ID)
 //TAllProducer : 1~4 (ProsMaxPlus)
-
 var performanceHighlightsSchema = mongoose.Schema({
 	period : Number,
     seminar : String,
@@ -50,6 +49,7 @@ var actorCategoryInfoSchema = mongoose.Schema({
 })
 
 var performanceHighlights=mongoose.model('performanceHighlights',performanceHighlightsSchema);
+
 
 exports.addPerformanceHighlights=function(req,res,next){
     var newPerformanceHighlights=new performanceHighlights({

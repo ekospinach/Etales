@@ -16,34 +16,46 @@ var
   vReadRes : Integer;
   oJsonFile : ISuperObject;
 
-  function brandInfoSchema(catID : Integer; marketID : Integer; brand: TMR_BrandAwareness):ISuperObject;
+  function variantInfoSchema(catID: Integer; variant : TMR_VariantShelfSpace):ISuperObject;
   var
     jo : ISuperObject;
-  begin    
+    marketID : Integer;
+  begin
     jo := SO;
-    jo.S['brandName'] := brand.mrba_BrandName;
+    jo.S['variantName'] := variant.mrssv_VariantName;
+    jo.S['parentBrandName'] := variant.mrssv_ParentBrandName;
     jo.I['parentCategoryID'] := catID;
-    jo.I['parentCompanyID'] := brand.mrba_ParentCompanyID;
-    jo.I['marketID'] := marketID;
-    jo.D['previousAwareness'] := brand.mrba_PreviousAwareness;
-    jo.D['latestAwareness'] := brand.mrba_LatestAwareness;
+    jo.I['parentCompanyID'] := variant.mrssv_parentCompanyID;
 
-    result := jo;
+    jo.O['shelfSpace'] := SA([]);
+    jo.O['previousShelfSpace'] := SA([]);
+    jo.O['shelfSpaceChange'] := SA([]);
+
+    for marketID := Low(TMarkets) to High(TMarkets) do 
+    begin
+      jo.A['shelfSpace'].D[marketID-1] := variant.mrssv_LatestShelfSpace[marketID];
+      jo.A['previousShelfSpace'].D[marketID-1] := variant.mrssv_PreviousShelfSpace[marketID];
+      jo.A['shelfSpaceChange'].D[marketID-1] := variant.mrssv_ShelfSpaceChange[marketID];      
+    end;
+    
+    result:= jo;
   end;
-
 
   function retailerInfoSchema(retailerID : Integer; retailerInfo : TMR_RetailerInvestments):ISuperObject;
   var
     jo : ISuperObject;
+    marketID,catID,variantID : Integer;
+    tempVariant : TMR_VariantShelfSpace;
   begin
     jo := SO;
     jo.I['retailerID'] := retailerID;
     jo.O['storeServiceLevel'] := SA([]);
     jo.O['onlineAdvertising'] := SA([]);
     jo.O['offlineAdvertising'] := SA([]);
+    jo.O['localAdvertising'] := SA([]);
 
 
-    for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do 
+    for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do
     begin
       case (retailerInfo.mrri_StoreServiceLevel[marketID]) of
         SL_BASE: begin jo.A['storeServiceLevel'].S[marketID-1]:='BASE'; end;
@@ -52,22 +64,29 @@ var
         SL_ENHANCED:begin jo.A['storeServiceLevel'].S[marketID-1]:='ENHANCED'; end;
         SL_PREMIUM:begin jo.A['storeServiceLevel'].S[marketID-1]:='PREMIUM'; end;
       end;
-    jo.A['onlineAdvertising'].D[marketID-1] := retailerInfo.mrri_onlineAdvertising[marketID];
-    jo.A['offlineAdvertising'].D[marketID-1] := retailerInfo.mrri_offlineAdvertising[marketID];
-    jo.A['localAdvertising'].D[marketID-1] := retailerInfo.mrri_localAdvertising[marketID];
-
-
-        
+      jo.A['onlineAdvertising'].D[marketID-1] := retailerInfo.mrri_onlineAdvertising[marketID];
+      jo.A['offlineAdvertising'].D[marketID-1] := retailerInfo.mrri_offlineAdvertising[marketID];
+      jo.A['localAdvertising'].D[marketID-1] := retailerInfo.mrri_localAdvertising[marketID];
     end;
 
-    storeServiceLevel : [String], //0-Urban, 1-Rural,//SL_BASE, SL_FAIR, SL_MEDIUM, SL_ENHANCED, SL_PREMIUM
-    onlineAdvertising : [Number], //0-Urban, 1-Rural
-    offlineAdvertising : [Number], //0-Urban, 1-Rural
-    localAdvertising : [Number],
 
+    jo.O['variantInfo'] := SA([]);
+    for catID := low(TCategories) to High(TCategories) do
+    begin
+      for variantID := Low(TVariants) to High(TVariants) do
+      begin
+        tempVariant := retailerInfo.mrri_ShelfSpaceAllocation[catID, variantID];
+        if (tempVariant.mrssv_VariantName <>'') AND (tempVariant.mrssv_ParentBrandName <> '') then
+        begin
+          jo.A['variantInfo'].Add( variantInfoSchema(catID, tempVariant) );
+        end;
+      end;
+    end;
 
     result := jo;
   end;
+
+
   procedure makeJson();
   var
     s_str : string;
@@ -79,25 +98,9 @@ var
     oJsonFile.I['period'] := currentPeriod;
 
     oJsonFile.O['retailerInfo'] := SA([]);
-    for retailerID := Low(TBMRetailer) to High(TBMRetailer) do 
+    for retailerID := Low(TBMRetailers) to High(TBMRetailers) do
     begin
       oJsonFile.A['retailerInfo'].Add( retailerInfoSchema(retailerID, currentResult.r_MarketResearch.mr_RetailersIntelligence[retailerID]) );
-    end;
-
-
-    for catID := Low(TCategories) to High(TCategories) do
-    begin
-      for marketID := Low(TMarkets) to High(TMarkets) do
-      begin
-        for brandID := Low(TBrands) to High(TBrands) do 
-        begin
-          tempBrand := currentResult.r_MarketResearch.mr_AwarenessEvolution[marketID, catID, brandID];
-          if (tempBrand.mrba_BrandName<> '') then 
-          begin
-             oJsonFile.A['brandInfo'].Add( brandInfoSchema(catID, marketID, tempBrand) );                      
-          end;          
-        end;
-      end;
     end;
 
     //for debug used

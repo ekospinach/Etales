@@ -1,9 +1,13 @@
-﻿program MR_awarenessEvolution;
-
+﻿program MR_suppliersIntelligence;
 
 uses
   SysUtils,Windows,Classes, superobject, HCD_SystemDefinitions, System.TypInfo, inifiles,
   CgiCommonFunction;
+
+const
+    actualTradeSupport            = 100;
+    negotiatedTradeSupport        = 101;
+
 
 var
   DataDirectory : string;
@@ -16,46 +20,88 @@ var
   vReadRes : Integer;
   oJsonFile : ISuperObject;
 
-  function brandInfoSchema(catID : Integer; marketID : Integer; brand: TMR_BrandAwareness):ISuperObject;
+  function retailerInfoSchema(fieldIdx:Integer; retailerID:Integer; supplierInfo : TMR_SupplierInvestments):ISuperObject;
+  var
+    jo:ISuperObject;
+    marketID :Integer;
+  begin
+    jo := SO;
+    jo.I['BMretailerID'] := retailerID;
+    jo.O['value'] := SA([]);
+    for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do
+    begin
+      case (fieldIdx) of
+          actualTradeSupport: jo.A['value'].D[marketID-1] := supplierInfo.mrsi_ActualTradeSupport[marketID, retailerID];
+          negotiatedTradeSupport: jo.A['value'].D[marketID-1] := supplierInfo.mrsi_negotiatedTradeSupport[marketID, retailerID];
+      end;  
+    end;
+
+    result := jo;
+  end;
+
+  function supplierInfoSchema(catID : Integer; supplierInfo : TMR_SupplierInvestments):ISuperObject;
   var
     jo : ISuperObject;
-  begin    
+    marketId : integer;
+    retailerID : Integer;
+  begin
     jo := SO;
-    jo.S['brandName'] := brand.mrba_BrandName;
-    jo.I['parentCategoryID'] := catID;
-    jo.I['parentCompanyID'] := brand.mrba_ParentCompanyID;
-    jo.I['marketID'] := marketID;
-    jo.D['previousAwareness'] := brand.mrba_PreviousAwareness;
-    jo.D['latestAwareness'] := brand.mrba_LatestAwareness;
+    jo.I['categoryID'] := catID;
+    jo.D['advertisingOnLine'] := supplierInfo.mrsi_advertisingOnLine;
+    jo.D['onLineVisibility'] := supplierInfo.mrsi_OnLine_Visibility;
+    jo.D['onLineOther'] := supplierInfo.mrsi_onLine_Other;
+    jo.D['acquiredTechnologyLevel'] := supplierInfo.mrsi_AcquiredTechnologyLevel;
+    jo.D['acquiredDesignLevel'] := supplierInfo.mrsi_AcquiredDesignLevel;
+    jo.D['productionCapacityAvailable'] := supplierInfo.mrsi_ProductionCapacityAvailable;
+    jo.D['capacityUtilisationRate'] := supplierInfo.mrsi_capacityUtilisationRate;
+    jo.D['productionplanningFlexibility'] := supplierInfo.mrsi_ProductionplanningFlexibility;        
 
+    jo.O['adverwtisingOffLine'] := SA([]);
+    jo.O['actualTradeSupport'] := SA([]);
+    jo.O['negotiatedTradeSupport'] := SA([]);
+    for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do 
+    begin
+      jo.A['adverwtisingOffLine'].D[marketID-1] := supplierInfo.mrsi_AdvertisingOffLine[marketID];
+    end;
+
+    for retailerID := Low(TBMRetailers) to High(TBMRetailers) do 
+    begin
+      jo.A['actualTradeSupport'].Add( retailerInfoSchema(actualTradeSupport, retailerID, supplierInfo) );
+      jo.A['negotiatedTradeSupport'].Add( retailerInfoSchema(negotiatedTradeSupport, retailerID, supplierInfo) );      
+    end;
+
+    result := jo;
+  end;
+
+  function suppliersInfoSchema(supplierID : Integer; suppliersInfo : TMR_SuppliersIntelligence ): ISuperObject;
+  var
+    jo : ISuperObject;
+    catID : integer;
+  begin
+    jo := SO;
+    jo.I['supplierID'] := supplierID;
+    jo.O['categoryInfo'] := SA([]);
+    for catID := Low(TCategoriesTotal) to High(TCategoriesTotal) do
+    begin
+      jo.A['categoryInfo'].Add( supplierInfoSchema(catID, suppliersInfo[catID, supplierID]) );
+    end;
     result := jo;
   end;
 
   procedure makeJson();
   var
     s_str : string;
-    catID,marketID,brandID : Integer;
+    catID,marketID,brandID, supplierID: Integer;
     tempBrand:TMR_BrandAwareness;
   begin
     oJsonFile := SO;
     oJsonFile.S['seminar'] := currentSeminar;
     oJsonFile.I['period'] := currentPeriod;
 
-
-    oJsonFile.O['brandInfo'] := SA([]);
-    for catID := Low(TCategories) to High(TCategories) do
+    oJsonFile.O['supplierInfo'] := SA([]);
+    for supplierID := Low(TProducersPlus) to High(TProducersPlus) do
     begin
-      for marketID := Low(TMarkets) to High(TMarkets) do
-      begin
-        for brandID := Low(TBrands) to High(TBrands) do 
-        begin
-          tempBrand := currentResult.r_MarketResearch.mr_AwarenessEvolution[marketID, catID, brandID];
-          if (tempBrand.mrba_BrandName<> '') then 
-          begin
-             oJsonFile.A['brandInfo'].Add( brandInfoSchema(catID, marketID, tempBrand) );                      
-          end;          
-        end;
-      end;
+        oJsonFile.A['supplierInfo'].Add( suppliersInfoSchema(supplierID, currentResult.r_MarketResearch.mr_SuppliersIntelligence) );
     end;
 
     //for debug used

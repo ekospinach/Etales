@@ -118,6 +118,11 @@ define(['app','socketIO'], function(app) {
 			})
 		}
 
+		$scope.importReport = function(seminar) {
+			// body...
+		}
+
+		
 		$scope.openInitializeModal = function(){
 			$scope.isInitializeConfirmInfoShown = true;
 		}

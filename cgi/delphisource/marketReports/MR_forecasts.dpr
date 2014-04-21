@@ -41,7 +41,6 @@ var
     oJsonFile.S['seminar'] := currentSeminar;
     oJsonFile.I['period'] := currentPeriod;
 
-
     oJsonFile.O['brandInfo'] := SA([]);
     for catID := Low(TCategories) to High(TCategories) do
     begin

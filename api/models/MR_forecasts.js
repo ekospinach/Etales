@@ -49,7 +49,6 @@ var segmentInfoSchema = mongoose.Schema({
 })
 
 
-
 var categoryShopperInfoSchema = mongoose.Schema({
     categoryID : Number, //1~2
     shopperInfo : [shopperInfoSchema]

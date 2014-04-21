@@ -25,7 +25,7 @@ var
 
 
 
-  function ShopperInfoSchema(fieldIdx: Integer; catID : Integer; brandID : Integer; variantID : integer; marketID : Integer; segmentID : Integer; shopper : TShoppersKind; variant : TVariantCrossSegmentDetails):ISuperObject;
+  function ShopperInfoSchema(fieldIdx: Integer; shopper : TShoppersKind; variant : TVariantCrossSegmentDetails):ISuperObject;
   var
     jo : ISuperObject;
     ShopperStr : string;    
@@ -51,7 +51,7 @@ var
     result := jo;
   end;
 
-  function segmentInfoSchema(fieldIdx: Integer; catID : Integer; brandID : Integer; variantID : integer; marketID : Integer; segmentID : Integer; variant : TVariantCrossSegmentDetails):ISuperObject;
+  function segmentInfoSchema(fieldIdx: Integer; segmentID : Integer; variant : TVariantCrossSegmentDetails):ISuperObject;
   var
     jo : ISuperObject;
     Shopper : TShoppersKind;
@@ -60,12 +60,12 @@ var
     jo.I['segmentID'] := segmentID;
     jo.O['shopperInfo'] := SA([]);
     for Shopper := Low(TShoppersKind) to High(TShoppersKind) do
-      jo.A['shopperInfo'].Add( ShopperInfoSchema(fieldIdx, catID, brandID, variantID, marketID, segmentID, Shopper, variant) );
+      jo.A['shopperInfo'].Add( ShopperInfoSchema(fieldIdx, Shopper, variant) );
 
     result := jo;
   end;
 
-  function variantInfoSchema(fieldIdx : Integer; catID : Integer; brandID : Integer; variantID : Integer; marketID : Integer; variant : TVariantCrossSegmentDetails):ISuperObject;
+  function variantInfoSchema(fieldIdx : Integer; catID : Integer; marketID : Integer; variant : TVariantCrossSegmentDetails):ISuperObject;
   var 
     jo : ISuperObject;
     segmentID : integer;
@@ -79,7 +79,7 @@ var
     jo.O['segmentInfo'] := SA([]);
     for segmentID := Low(TSegmentsTotal) to High(TSegmentsTotal) do 
     begin
-      jo.A['segmentInfo'].Add( segmentInfoSchema(fieldIdx, catID, brandID, variantID, marketID, segmentID, variant) );
+      jo.A['segmentInfo'].Add( segmentInfoSchema(fieldIdx, segmentID, variant) );
     end;
 
     result := jo;
@@ -102,24 +102,24 @@ var
 
     for catID :=  Low(TCategories) to High(TCategories) do 
     begin
-      for brandCount := Low(TProBrands) to High(TProBrands) do 
+      for brandCount := Low(TBrands) to High(TBrands) do 
       begin
         for variantCount := Low(TOneBrandVariants) to High(TOneBrandVariants) do
         begin
           for marketID := Low(TMarkets) to High(TMarkets) do
           begin
-            if(currentResult.r_SuppliersConfidentialReports[currentProducer].scr_SharesByConsumerSegment[catID, marketID , brandCount, variantCount].vsd_VariantName <> '') AND (currentResult.r_SuppliersConfidentialReports[currentProducer].scr_SharesByConsumerSegment[catID, marketID , brandCount, variantCount].vsd_ParentBrandName <> '') then
+            tempVariant := currentResult.r_MarketResearch.mr_sharesByShopperSegment[marketID, catID, brandCount, variantCount];
+            if (tempVariant.vsd_ParentCompanyID = currentProducer) AND (tempVariant.vsd_VariantName <> '') AND (tempVariant.vsd_ParentBrandName <> '') then
             begin
-                oJsonFile.A['absoluteValue'].Add( variantInfoSchema(vsd_absoluteValue, catID, brandCount, variantCount, marketID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_SharesByConsumerSegment[catID, marketID , brandCount, variantCount]) );
-                oJsonFile.A['absoluteVolume'].Add( variantInfoSchema(vsd_absoluteVolume, catID, brandCount, variantCount, marketID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_SharesByConsumerSegment[catID, marketID , brandCount, variantCount]) );
-                oJsonFile.A['valueChange'].Add( variantInfoSchema(vsd_valueChange, catID, brandCount, variantCount, marketID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_SharesByConsumerSegment[catID, marketID , brandCount, variantCount]) );
-                oJsonFile.A['volumeChange'].Add( variantInfoSchema(vsd_volumeChange, catID, brandCount, variantCount, marketID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_SharesByConsumerSegment[catID, marketID , brandCount, variantCount]) );
+                oJsonFile.A['absoluteValue'].Add( variantInfoSchema(vsd_absoluteValue, catID, marketID, tempVariant) );
+                oJsonFile.A['absoluteVolume'].Add( variantInfoSchema(vsd_absoluteVolume, catID, marketID, tempVariant );
+                oJsonFile.A['valueChange'].Add( variantInfoSchema(vsd_valueChange, catID, marketID, tempVariant );
+                oJsonFile.A['volumeChange'].Add( variantInfoSchema(vsd_volumeChange, catID, marketID, tempVariant );
             end;            
           end;
         end;      
       end;          
     end;
-
 
     //for debug used
     s_str := 'out' + '.json';
