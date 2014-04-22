@@ -65,7 +65,7 @@
 			'tree':['jquery'],
 			'highchartMore':['jquery','highchart'],
 			'bootstrapswitch' : ['jquery'],
-			'angularHighcharts' :['angular'],
+			'angularHighcharts' :['angular','highchart'],
 			'angularBootstrapSwitch':['angular','jquery','bootstrapswitch'],
 //			'angularPromiseTracker':['angular']
 		},
