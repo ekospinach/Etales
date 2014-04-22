@@ -46,6 +46,8 @@ define(['directives', 'services'], function(directives){
                     scope.tradeProfits=data.data[0].scrcp_TradeProfit;   
                     scope.tradeProfitShares=data.data[0].scrcp_TradeProfitShare;	
                 
+                    console.log(scope.volumeOrdereds);
+
                     deferred.resolve({msg:'Array is ready.'});                    
                     return deferred.promise;
                 }
