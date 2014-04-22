@@ -52,7 +52,7 @@ var SCR_consolidatedProfitAndLossSchema = mongoose.Schema({
     scrb_GrossProfitChange                    : [brandInfoSchema],
     //add to the report
     scrb_GrossProfitMargin                    : [brandInfoSchema],
-    scrb_GrossProfitMarginShare               : [brandInfoSchema],    
+    scrb_GrossProfitShareInCategory               : [brandInfoSchema],    
     scrb_TradeAndMarketing                    : [brandInfoSchema],
     scrb_AdvertisingOnLine                    : [brandInfoSchema],
     scrb_AdvertisingOffLine                   : [brandInfoSchema],
@@ -86,7 +86,7 @@ var SCR_consolidatedProfitAndLossSchema = mongoose.Schema({
     scrv_GrossProfitChange                    : [variantInfoSchema],
     //add to the report
     scrv_GrossProfitMargin                    : [variantInfoSchema],
-    scrv_GrossProfitMarginShare               : [variantInfoSchema],    
+    scrv_GrossProfitShareInCategory               : [variantInfoSchema],    
     scrv_TradeAndMarketing                    : [variantInfoSchema],
     scrv_AdvertisingOnLine                    : [variantInfoSchema],
     scrv_AdvertisingOffLine                   : [variantInfoSchema],
@@ -200,7 +200,7 @@ exports.addReports = function(options){
                                 scrb_GrossProfit                          : singleReport.scrb_GrossProfit,                         
                                 scrb_GrossProfitChange                    : singleReport.scrb_GrossProfitChange,                   
                                 scrb_GrossProfitMargin                    : singleReport.scrb_GrossProfitMargin,                   
-                                scrb_GrossProfitMarginShare               : singleReport.scrb_GrossProfitMarginShare,              
+                                scrb_GrossProfitShareInCategory               : singleReport.scrb_GrossProfitShareInCategory,              
                                 scrb_TradeAndMarketing                    : singleReport.scrb_TradeAndMarketing,                   
                                 scrb_AdvertisingOnLine                    : singleReport.scrb_AdvertisingOnLine,                   
                                 scrb_AdvertisingOffLine                   : singleReport.scrb_AdvertisingOffLine,                  
@@ -231,7 +231,7 @@ exports.addReports = function(options){
                                 scrv_GrossProfit                          : singleReport.scrv_GrossProfit,                         
                                 scrv_GrossProfitChange                    : singleReport.scrv_GrossProfitChange,                   
                                 scrv_GrossProfitMargin                    : singleReport.scrv_GrossProfitMargin,                   
-                                scrv_GrossProfitMarginShare               : singleReport.scrv_GrossProfitMarginShare,              
+                                scrv_GrossProfitShareInCategory               : singleReport.scrv_GrossProfitShareInCategory,              
                                 scrv_TradeAndMarketing                    : singleReport.scrv_TradeAndMarketing,                   
                                 scrv_AdvertisingOnLine                    : singleReport.scrv_AdvertisingOnLine,                   
                                 scrv_AdvertisingOffLine                   : singleReport.scrv_AdvertisingOffLine,                  
@@ -647,7 +647,7 @@ exports.addSCR_consolidatedProfitAndLoss=function(req,res,next){
             parentCategoryID:2,
             value:[40,50,60]
         }],
-        scrb_GrossProfitMarginShare               : [{
+        scrb_GrossProfitShareInCategory               : [{
             brandName:'ELAN1',
             parentCategoryID:1,
             value:[90,80,70]
@@ -939,7 +939,7 @@ exports.addSCR_consolidatedProfitAndLoss=function(req,res,next){
             parentCategoryID:2,
             value:[45,55,65]
         }],
-        scrv_GrossProfitMarginShare               : [{
+        scrv_GrossProfitShareInCategory               : [{
             variantName:'_A',
             parentBrandName:'ELAN1',
             parentCategoryID:1,

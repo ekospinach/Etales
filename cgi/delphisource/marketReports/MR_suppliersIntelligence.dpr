@@ -54,14 +54,14 @@ var
     jo.D['acquiredDesignLevel'] := supplierInfo.mrsi_AcquiredDesignLevel;
     jo.D['productionCapacityAvailable'] := supplierInfo.mrsi_ProductionCapacityAvailable;
     jo.D['capacityUtilisationRate'] := supplierInfo.mrsi_capacityUtilisationRate;
-    jo.D['productionplanningFlexibility'] := supplierInfo.mrsi_ProductionplanningFlexibility;        
+    jo.D['productionplanningFlexibility'] := supplierInfo.mrsi_ProductionplanningFlexibility;
 
-    jo.O['adverwtisingOffLine'] := SA([]);
+    jo.O['advertisingOffLine'] := SA([]);
     jo.O['actualTradeSupport'] := SA([]);
     jo.O['negotiatedTradeSupport'] := SA([]);
-    for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do 
+    for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do
     begin
-      jo.A['adverwtisingOffLine'].D[marketID-1] := supplierInfo.mrsi_AdvertisingOffLine[marketID];
+      jo.A['advertisingOffLine'].D[marketID-1] := supplierInfo.mrsi_AdvertisingOffLine[marketID];
     end;
 
     for retailerID := Low(TBMRetailers) to High(TBMRetailers) do 
