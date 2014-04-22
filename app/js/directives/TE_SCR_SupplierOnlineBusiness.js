@@ -50,7 +50,7 @@ define(['directives', 'services'], function(directives){
                                 var GrossProfit=loadVariantValue(data.data[0].scrv_GrossProfit,brandName,variantName,num);
                                 var GrossProfitChange=loadVariantValue(data.data[0].scrv_GrossProfitChange,brandName,variantName,num);
                                 var GrossProfitMargin=loadVariantValue(data.data[0].scrv_GrossProfitMargin,brandName,variantName,num);
-                                var GrossProfitMarginShare=loadVariantValue(data.data[0].scrv_GrossProfitMarginShare,brandName,variantName,num);
+                                var GrossProfitMarginShare=loadVariantValue(data.data[0].scrv_GrossProfitShareInCategory,brandName,variantName,num);
                                 var TradeAndMarketing=loadVariantValue(data.data[0].scrv_TradeAndMarketing,brandName,variantName,num);
                                 var AdvertisingOnLine=loadVariantValue(data.data[0].scrv_AdvertisingOnLine,brandName,variantName,num);
                                 var AdvertisingOffLine=loadVariantValue(data.data[0].scrv_AdvertisingOffLine,brandName,variantName,num);
@@ -150,7 +150,7 @@ define(['directives', 'services'], function(directives){
 				    		var GrossProfit=loadValue(data.data[0].scrb_GrossProfit,brandName,num);
 				    		var GrossProfitChange=loadValue(data.data[0].scrb_GrossProfitChange,brandName,num);
 				    		var GrossProfitMargin=loadValue(data.data[0].scrb_GrossProfitMargin,brandName,num);
-				    		var GrossProfitMarginShare=loadValue(data.data[0].scrb_GrossProfitMarginShare,brandName,num);
+				    		var GrossProfitMarginShare=loadValue(data.data[0].scrb_GrossProfitShareInCategory,brandName,num);
 				    		var TradeAndMarketing=loadValue(data.data[0].scrb_TradeAndMarketing,brandName,num);
 				    		var AdvertisingOnLine=loadValue(data.data[0].scrb_AdvertisingOnLine,brandName,num);
 				    		var AdvertisingOffLine=loadValue(data.data[0].scrb_AdvertisingOffLine,brandName,num);
