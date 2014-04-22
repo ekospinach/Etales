@@ -21,7 +21,11 @@ define(['directives', 'services'], function(directives){
                     var array=_.find(data,function(obj){
                         return (obj.brandName==name&&obj.marketID==num);
                     });
-                    return array.value;
+                    if(array!=undefined){
+                        return array.value;
+                    }else{
+                        return 0;
+                    }
                 }
 
                 var loadVariantValue=function(data,brandName,variantName,num){
