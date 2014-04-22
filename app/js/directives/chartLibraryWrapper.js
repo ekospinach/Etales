@@ -143,7 +143,7 @@ define(['directives'], function(directives){
                     },  
                     tooltip: {
                         formatter: function() {
-                            var s = '<p>'+this.point.z+'</p>'+'<p>('+this.point.x+','+this.point.y+')</p>';
+                            var s = '<p>'+this.point.z+'</p>'+'<p>('+this.point.x.toFixed(2)+','+this.point.y.toFixed(2)+')</p>';
                             return s;
                         },
                         shared: false,
@@ -174,7 +174,7 @@ define(['directives'], function(directives){
                     },  
                     tooltip: {
                         formatter: function() {
-                            var s = '<p>'+this.point.z+'</p>'+'<p>('+this.point.y+')</p>';
+                            var s = '<p>'+this.point.z+'</p>'+'<p>('+this.point.y.toFixed(2)+')</p>';
                             return s;
                         },
                         shared: false,
@@ -205,7 +205,7 @@ define(['directives'], function(directives){
                     },  
                     tooltip: {
                         formatter: function() {
-                            var s = '<p>'+this.point.z+'</p>'+'<p>('+this.point.x+','+this.point.y+')</p>';
+                            var s = '<p>'+this.point.z+'</p>'+'<p>('+this.point.x.toFixed(2)+','+this.point.y.toFixed(2)+')</p>';
                             return s;
                         },
                         shared: false,
@@ -236,7 +236,7 @@ define(['directives'], function(directives){
                     },  
                     tooltip: {
                         formatter: function() {
-                            var s = '<p>'+this.point.z+'</p>'+'<p>('+this.point.y+')</p>';
+                            var s = '<p>'+this.point.z+'</p>'+'<p>('+this.point.y.toFixed(2)+')</p>';
                             return s;
                         },
                         shared: false,
@@ -267,7 +267,7 @@ define(['directives'], function(directives){
                     },  
                     tooltip: {
                         formatter: function() {
-                            var s = '<p>'+this.point.z+'</p>'+'<p>('+this.point.x+','+this.point.y+')</p>';
+                            var s = '<p>'+this.point.z+'</p>'+'<p>('+this.point.x.toFixed(2)+','+this.point.y.toFixed(2)+')</p>';
                             return s;
                         },
                         shared: false,
@@ -298,7 +298,7 @@ define(['directives'], function(directives){
                     },  
                     tooltip: {
                         formatter: function() {
-                            var s = '<p>'+this.point.z+'</p>'+'<p>('+this.point.y+')</p>';
+                            var s = '<p>'+this.point.z+'</p>'+'<p>('+this.point.y.toFixed(2)+')</p>';
                             return s;
                         },
                         shared: false,
@@ -329,7 +329,7 @@ define(['directives'], function(directives){
                     },  
                     tooltip: {
                         formatter: function() {
-                            var s = '<p>'+this.point.z+'</p>'+'<p>('+this.point.x+','+this.point.y+')</p>';
+                            var s = '<p>'+this.point.z+'</p>'+'<p>('+this.point.x.toFixed(2)+','+this.point.y.toFixed(2)+')</p>';
                             return s;
                         },
                         shared: false,
@@ -360,7 +360,7 @@ define(['directives'], function(directives){
                     },  
                     tooltip: {
                         formatter: function() {
-                            var s = '<p>'+this.point.z+'</p>'+'<p>('+this.point.y+')</p>';
+                            var s = '<p>'+this.point.z+'</p>'+'<p>('+this.point.y.toFixed(2)+')</p>';
                             return s;
                         },
                         shared: false,
@@ -391,7 +391,7 @@ define(['directives'], function(directives){
                     },  
                     tooltip: {
                         formatter: function() {
-                            var s = '<p>'+this.series.name+'</p>'+'<p>('+this.point.x+','+this.point.y+')</p>';
+                            var s = '<p>'+this.series.name+'</p>'+'<p>('+this.point.x.toFixed(2)+','+this.point.y.toFixed(2)+')</p>';
                             return s;
                         },
                         shared: false,
@@ -422,7 +422,7 @@ define(['directives'], function(directives){
                     }, 
                     tooltip: {
                         formatter: function() {
-                            var s = '<p>'+this.series.name+'</p>'+'<p>('+this.point.x+','+this.point.y+')</p>';
+                            var s = '<p>'+this.series.name+'</p>'+'<p>('+this.point.x.toFixed(2)+','+this.point.y.toFixed(2)+')</p>';
                             return s;
                         },
                         shared: false,
