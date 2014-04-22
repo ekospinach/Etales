@@ -26,7 +26,7 @@ var categoryInfoSchema = mongoose.Schema({
     productionCapacityAvailable   : Number,
     capacityUtilisationRate       : Number,
     productionplanningFlexibility : Number,    
-    adverwtisingOffLine            : [Number], //0-Urban, 1-Rural, 2-Total
+    advertisingOffLine            : [Number], //0-Urban, 1-Rural, 2-Total
     actualTradeSupport            : [BMretailerInfoSchema], //BMRetsMax = 3
     negotiatedTradeSupport        : [BMretailerInfoSchema]
 })
