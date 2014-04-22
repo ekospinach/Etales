@@ -559,35 +559,50 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
         {"name": "My Super Column", "data": [1, 1, 2, 3, 2], type: "column"}
     ];
 
-	$scope.chartConfig = {
-        options: {
-            chart: {
-                type: 'areaspline'
-            },
-            plotOptions: {
-                series: {
-                    stacking: 'percent'
+	// $scope.chartConfig = {
+ //        options: {
+ //            chart: {
+ //                type: 'areaspline'
+ //            },
+ //            plotOptions: {
+ //                series: {
+ //                    stacking: 'percent'
+ //                }
+ //            },
+ //            tooltip: {
+	//         	shared: false,
+	//         	useHTML: true,
+	//         	headerFormat: '<small style="color: {series.color}>{series.name}</small><table>',
+	//         	pointFormat: '<tr><td style="color: {series.color}">{series.name}: </td>' +
+	//         	'<td style="text-align: right"><b>{point.y} EUR</b></td></tr>',
+	//         	footerFormat: '</table>',
+	//         	valueDecimals: 2
+	//         }
+ //        },
+ //        series: $scope.chartSeries,
+ //        title: {
+ //            text: 'Hello'
+ //        },
+ //        credits: {
+ //            enabled: true
+ //        },
+ //        loading: false
+ //    }
+        $scope.chartConfig = {
+            options: {
+                chart: {
+                    type: 'bar'
                 }
             },
-            tooltip: {
-	        	shared: false,
-	        	useHTML: true,
-	        	headerFormat: '<small style="color: {series.color}>{series.name}</small><table>',
-	        	pointFormat: '<tr><td style="color: {series.color}">{series.name}: </td>' +
-	        	'<td style="text-align: right"><b>{point.y} EUR</b></td></tr>',
-	        	footerFormat: '</table>',
-	        	valueDecimals: 2
-	        }
-        },
-        series: $scope.chartSeries,
-        title: {
-            text: 'Hello'
-        },
-        credits: {
-            enabled: true
-        },
-        loading: false
-    }
+            series: [{
+                data: [10, 15, 12, 8, 7]
+            }],
+            title: {
+                text: 'Hello'
+            },
+
+            loading: false
+        }
 		// $scope.Label = Label;
 	}]);
 
