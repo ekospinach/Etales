@@ -325,124 +325,135 @@ define(['directives'], function(directives){
     .directive('urbanHealthBeautiesBrand1',function(){
         return function(scope,elem,attrs){
             scope.$watch(attrs.ngModel, function(v){
-                $('#highchart7').empty();
-                $('#highchart7').highcharts({
-                    chart: {
-                        type: 'bubble',
-                        zoomType: 'xy'
-                    },
-                    title: {
-                        text: ''
-                    },
-                    xAxis: {
-                        title:{text:scope.xTitle1}
-                    },
-                    yAxis:{
-                        title:{text:scope.yTitle1}
-                    },  
-                    tooltip: {
-                        formatter: function() {
-                            var s = '<p>'+this.point.z+'</p>'+'<p>('+this.point.x.toFixed(2)+','+this.point.y.toFixed(2)+')</p>';
-                            return s;
+                if($('#highchart7')!=undefined){
+                    $('#highchart7').empty();
+                    $('#highchart7').highcharts({
+                        chart: {
+                            type: 'bubble',
+                            zoomType: 'xy'
                         },
-                        shared: false,
-                        useHTML: true
-                    },                      
-                    series: scope.mySeries1     
-                });
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            title:{text:scope.xTitle1}
+                        },
+                        yAxis:{
+                            title:{text:scope.yTitle1}
+                        },  
+                        tooltip: {
+                            formatter: function() {
+                                var s = '<p>'+this.point.z+'</p>'+'<p>('+this.point.x.toFixed(2)+','+this.point.y.toFixed(2)+')</p>';
+                                return s;
+                            },
+                            shared: false,
+                            useHTML: true
+                        },                      
+                        series: scope.mySeries1     
+                    });
+                }
             });   
         }
     })
     .directive('urbanHealthBeautiesBrand2',function(){
         return function(scope,elem,attrs){
             scope.$watch(attrs.ngModel, function(v){
-                $('#highchart8').empty();
-                $('#highchart8').highcharts({
-                    chart: {
-                        type: 'bubble',
-                        zoomType: 'xy'
-                    },
-                    title: {
-                        text: ''
-                    },
-                    xAxis: {
-                        categories: ['','']
-                    }, 
-                    yAxis:{
-                        title:{text:scope.yTitle2}
-                    },  
-                    tooltip: {
-                        formatter: function() {
-                            var s = '<p>'+this.point.z+'</p>'+'<p>('+this.point.y.toFixed(2)+')</p>';
-                            return s;
+                if($('#highchart8')!=undefined){
+                    $('#highchart8').empty();
+                    $('#highchart8').highcharts({
+                        chart: {
+                            type: 'bubble',
+                            zoomType: 'xy'
                         },
-                        shared: false,
-                        useHTML: true
-                     },                      
-                    series: scope.mySeries2     
-                });
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: ['','']
+                        }, 
+                        yAxis:{
+                            title:{text:scope.yTitle2}
+                        },  
+                        tooltip: {
+                            formatter: function() {
+                                var s = '<p>'+this.point.z+'</p>'+'<p>('+this.point.y.toFixed(2)+')</p>';
+                                return s;
+                            },
+                            shared: false,
+                            useHTML: true
+                         },                      
+                        series: scope.mySeries2     
+                    }); 
+                }
+                
             });
         }
     })
     .directive('retailerPerceptions1',function(){
         return function(scope,elem,attrs){
             scope.$watch(attrs.ngModel, function(v){
-                $('#highchart9').empty();
-                $('#highchart9').highcharts({
-                    chart: {
-                        type: 'bubble',
-                        zoomType: 'xy'
-                    },
-                    title: {
-                        text: ''
-                    },
-                    xAxis: {
-                        title:{text:scope.xTitle3}
-                    },
-                    yAxis:{
-                        title:{text:scope.yTitle3}
-                    },  
-                    tooltip: {
-                        formatter: function() {
-                            var s = '<p>'+this.series.name+'</p>'+'<p>('+this.point.x.toFixed(2)+','+this.point.y.toFixed(2)+')</p>';
-                            return s;
+                if($('#highchart9')!=undefined){
+                    $('#highchart9').empty();
+                    $('#highchart9').highcharts({
+                        chart: {
+                            type: 'bubble',
+                            zoomType: 'xy'
                         },
-                        shared: false,
-                        useHTML: true
-                    },                      
-                    series: scope.retailerPerceptionsSeries1     
-                });
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            title:{text:scope.xTitle3}
+                        },
+                        yAxis:{
+                            title:{text:scope.yTitle3}
+                        },  
+                        tooltip: {
+                            formatter: function() {
+                                var s = '<p>'+this.series.name+'</p>'+'<p>('+this.point.x.toFixed(2)+','+this.point.y.toFixed(2)+')</p>';
+                                return s;
+                            },
+                            shared: false,
+                            useHTML: true
+                        },                      
+                        series: scope.retailerPerceptionsSeries1     
+                    });
+                }
+                
             });   
         }
     })
     .directive('retailerPerceptions2',function(){
         return function(scope,elem,attrs){
             scope.$watch(attrs.ngModel, function(v){
-                $('#highchart10').empty();
-                $('#highchart10').highcharts({
-                    chart: {
-                        type: 'bubble',
-                        zoomType: 'xy'
-                    },
-                    title: {
-                        text: ''
-                    },
-                    xAxis: {
-                        title:{text:scope.xTitle3}
-                    },
-                    yAxis:{
-                        title:{text:scope.yTitle3}
-                    }, 
-                    tooltip: {
-                        formatter: function() {
-                            var s = '<p>'+this.series.name+'</p>'+'<p>('+this.point.x.toFixed(2)+','+this.point.y.toFixed(2)+')</p>';
-                            return s;
+                if($('#highchart10')!=undefined){
+                    $('#highchart10').empty();
+                    $('#highchart10').highcharts({
+                        chart: {
+                            type: 'bubble',
+                            zoomType: 'xy'
                         },
-                        shared: false,
-                        useHTML: true
-                    },                      
-                    series: scope.retailerPerceptionsSeries2     
-                });
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            title:{text:scope.xTitle3}
+                        },
+                        yAxis:{
+                            title:{text:scope.yTitle3}
+                        }, 
+                        tooltip: {
+                            formatter: function() {
+                                var s = '<p>'+this.series.name+'</p>'+'<p>('+this.point.x.toFixed(2)+','+this.point.y.toFixed(2)+')</p>';
+                                return s;
+                            },
+                            shared: false,
+                            useHTML: true
+                        },                      
+                        series: scope.retailerPerceptionsSeries2     
+                    });
+                }
+                
             });   
         }
     })
@@ -450,243 +461,269 @@ define(['directives'], function(directives){
     .directive('forecastsConsumer1',function(){
         return function(scope,elem,attrs){
             scope.$watch(attrs.ngModel,function(v){
-                $('#segment1').empty();
-                $('#segment1').highcharts({
-                    chart: {
-                        type: 'arearange',
-                        zoomType: 'x'
-                    },
-                    title: {
-                        text: scope.title1
-                    },
-                    xAxis: {
-                        title:{text:scope.segmentXTitle},categories:['','-3','-2','-1','+1','+2']
-                    },
-                    yAxis:{
-                        title:{text:scope.segmentYTitle}
-                        
-                    }, 
-                    tooltip: {
-                        crosshairs: true
-                    },                     
-                    series: scope.forecastsConsumerSeries1     
-                });
+                if($('#segment1')!=undefined){
+                    $('#segment1').empty();
+                    $('#segment1').highcharts({
+                        chart: {
+                            type: 'arearange',
+                            zoomType: 'x'
+                        },
+                        title: {
+                            text: scope.title1
+                        },
+                        xAxis: {
+                            title:{text:scope.segmentXTitle},categories:['','-3','-2','-1','+1','+2']
+                        },
+                        yAxis:{
+                            title:{text:scope.segmentYTitle}
+                            
+                        }, 
+                        tooltip: {
+                            crosshairs: true
+                        },                     
+                        series: scope.forecastsConsumerSeries1     
+                    });
+                }
+                
             });
         }
     })
     .directive('forecastsConsumer2',function(){
         return function(scope,elem,attrs){
             scope.$watch(attrs.ngModel,function(v){
-                $('#segment2').empty();
-                $('#segment2').highcharts({
-                    chart: {
-                        type: 'arearange',
-                        zoomType: 'x'
-                    },
-                    title: {
-                        text: scope.title2
-                    },
-                    xAxis: {
-                        title:{text:scope.segmentXTitle},categories:['','-3','-2','-1','+1','+2']
-                    },
-                    yAxis:{
-                        title:{text:scope.segmentYTitle}
-                        
-                    }, 
-                    tooltip: {
-                        crosshairs: true
-                    },                     
-                    series: scope.forecastsConsumerSeries2     
-                });
+                if($('#segment2')!=undefined){
+                    $('#segment2').empty();
+                    $('#segment2').highcharts({
+                        chart: {
+                            type: 'arearange',
+                            zoomType: 'x'
+                        },
+                        title: {
+                            text: scope.title2
+                        },
+                        xAxis: {
+                            title:{text:scope.segmentXTitle},categories:['','-3','-2','-1','+1','+2']
+                        },
+                        yAxis:{
+                            title:{text:scope.segmentYTitle}
+                            
+                        }, 
+                        tooltip: {
+                            crosshairs: true
+                        },                     
+                        series: scope.forecastsConsumerSeries2     
+                    });
+                }
+                
             });
         }
     })
     .directive('forecastsConsumer3',function(){
         return function(scope,elem,attrs){
             scope.$watch(attrs.ngModel,function(v){
-                $('#segment3').empty();
-                $('#segment3').highcharts({
-                    chart: {
-                        type: 'arearange',
-                        zoomType: 'x'
-                    },
-                    title: {
-                        text: scope.title3
-                    },
-                    xAxis: {
-                        title:{text:scope.segmentXTitle},categories:['','-3','-2','-1','+1','+2']
-                    },
-                    yAxis:{
-                        title:{text:scope.segmentYTitle}
-                        
-                    }, 
-                    tooltip: {
-                        crosshairs: true
-                    },                     
-                    series: scope.forecastsConsumerSeries3     
-                });
+                if($('#segment3')!=undefined){
+                    $('#segment3').empty();
+                    $('#segment3').highcharts({
+                        chart: {
+                            type: 'arearange',
+                            zoomType: 'x'
+                        },
+                        title: {
+                            text: scope.title3
+                        },
+                        xAxis: {
+                            title:{text:scope.segmentXTitle},categories:['','-3','-2','-1','+1','+2']
+                        },
+                        yAxis:{
+                            title:{text:scope.segmentYTitle}
+                            
+                        }, 
+                        tooltip: {
+                            crosshairs: true
+                        },                     
+                        series: scope.forecastsConsumerSeries3     
+                    }); 
+                }
+                
             });
         }
     })
     .directive('forecastsConsumer4',function(){
         return function(scope,elem,attrs){
             scope.$watch(attrs.ngModel,function(v){
-                $('#segment4').empty();
-                $('#segment4').highcharts({
-                    chart: {
-                        type: 'arearange',
-                        zoomType: 'x'
-                    },
-                    title: {
-                        text: scope.title4
-                    },
-                    xAxis: {
-                        title:{text:scope.segmentXTitle},categories:['','-3','-2','-1','+1','+2']
-                    },
-                    yAxis:{
-                        title:{text:scope.segmentYTitle}
-                        
-                    }, 
-                    tooltip: {
-                        crosshairs: true
-                    },                     
-                    series: scope.forecastsConsumerSeries4     
-                });
+                if($('#segment4')!=undefined){
+                    $('#segment4').empty();
+                    $('#segment4').highcharts({
+                        chart: {
+                            type: 'arearange',
+                            zoomType: 'x'
+                        },
+                        title: {
+                            text: scope.title4
+                        },
+                        xAxis: {
+                            title:{text:scope.segmentXTitle},categories:['','-3','-2','-1','+1','+2']
+                        },
+                        yAxis:{
+                            title:{text:scope.segmentYTitle}
+                            
+                        }, 
+                        tooltip: {
+                            crosshairs: true
+                        },                     
+                        series: scope.forecastsConsumerSeries4     
+                    });
+                }
+                
             });
         }
     })
     .directive('forecastsShopper1',function(){
         return function(scope,elem,attrs){
             scope.$watch(attrs.ngModel,function(v){
-                $('#segment5').empty();
-                $('#segment5').highcharts({
-                    chart: {
-                        type: 'arearange',
-                        zoomType: 'x'
-                    },
-                    title: {
-                        text: scope.title1
-                    },
-                    xAxis: {
-                        title:{text:scope.segmentXTitle},categories:['','-3','-2','-1','+1','+2']
-                    },
-                    yAxis:{
-                        title:{text:scope.segmentYTitle}
-                        
-                    }, 
-                    tooltip: {
-                        crosshairs: true
-                    },                     
-                    series: scope.forecastsShopperSeries1     
-                });
+                if($('#segment5')!=undefined){
+                    $('#segment5').empty();
+                    $('#segment5').highcharts({
+                        chart: {
+                            type: 'arearange',
+                            zoomType: 'x'
+                        },
+                        title: {
+                            text: scope.title1
+                        },
+                        xAxis: {
+                            title:{text:scope.segmentXTitle},categories:['','-3','-2','-1','+1','+2']
+                        },
+                        yAxis:{
+                            title:{text:scope.segmentYTitle}
+                            
+                        }, 
+                        tooltip: {
+                            crosshairs: true
+                        },                     
+                        series: scope.forecastsShopperSeries1     
+                    });
+                } 
             });
         }
     })
     .directive('forecastsShopper2',function(){
         return function(scope,elem,attrs){
             scope.$watch(attrs.ngModel,function(v){
-                $('#segment6').empty();
-                $('#segment6').highcharts({
-                    chart: {
-                        type: 'arearange',
-                        zoomType: 'x'
-                    },
-                    title: {
-                        text: scope.title2
-                    },
-                    xAxis: {
-                        title:{text:scope.segmentXTitle},categories:['','-3','-2','-1','+1','+2']
-                    },
-                    yAxis:{
-                        title:{text:scope.segmentYTitle}
-                        
-                    }, 
-                    tooltip: {
-                        crosshairs: true
-                    },                     
-                    series: scope.forecastsShopperSeries2     
-                });
+                if($('#segment6')!=undefined){
+                    $('#segment6').empty();
+                    $('#segment6').highcharts({
+                        chart: {
+                            type: 'arearange',
+                            zoomType: 'x'
+                        },
+                        title: {
+                            text: scope.title2
+                        },
+                        xAxis: {
+                            title:{text:scope.segmentXTitle},categories:['','-3','-2','-1','+1','+2']
+                        },
+                        yAxis:{
+                            title:{text:scope.segmentYTitle}
+                            
+                        }, 
+                        tooltip: {
+                            crosshairs: true
+                        },                     
+                        series: scope.forecastsShopperSeries2     
+                    });
+                }
+                
             });
         }
     })
     .directive('forecastsShopper3',function(){
         return function(scope,elem,attrs){
             scope.$watch(attrs.ngModel,function(v){
-                $('#segment7').empty();
-                $('#segment7').highcharts({
-                    chart: {
-                        type: 'arearange',
-                        zoomType: 'x'
-                    },
-                    title: {
-                        text: scope.title3
-                    },
-                    xAxis: {
-                        title:{text:scope.segmentXTitle},categories:['','-3','-2','-1','+1','+2']
-                    },
-                    yAxis:{
-                        title:{text:scope.segmentYTitle}
-                        
-                    }, 
-                    tooltip: {
-                        crosshairs: true
-                    },                     
-                    series: scope.forecastsShopperSeries3     
-                });
+                if($('#segment7')!=undefined){
+                    $('#segment7').empty();
+                    $('#segment7').highcharts({
+                        chart: {
+                            type: 'arearange',
+                            zoomType: 'x'
+                        },
+                        title: {
+                            text: scope.title3
+                        },
+                        xAxis: {
+                            title:{text:scope.segmentXTitle},categories:['','-3','-2','-1','+1','+2']
+                        },
+                        yAxis:{
+                            title:{text:scope.segmentYTitle}
+                            
+                        }, 
+                        tooltip: {
+                            crosshairs: true
+                        },                     
+                        series: scope.forecastsShopperSeries3     
+                    });
+                }
+                
             });
         }
     })
     .directive('forecastsShopper4',function(){
         return function(scope,elem,attrs){
             scope.$watch(attrs.ngModel,function(v){
-                $('#segment8').empty();
-                $('#segment8').highcharts({
-                    chart: {
-                        type: 'arearange',
-                        zoomType: 'x'
-                    },
-                    title: {
-                        text: scope.title4
-                    },
-                    xAxis: {
-                        title:{text:scope.segmentXTitle},categories:['','-3','-2','-1','+1','+2']
-                    },
-                    yAxis:{
-                        title:{text:scope.segmentYTitle}
-                        
-                    }, 
-                    tooltip: {
-                        crosshairs: true
-                    },                     
-                    series: scope.forecastsShopperSeries4     
-                });
+                if($('#segment8')!=undefined){
+                    $('#segment8').empty();
+                    $('#segment8').highcharts({
+                        chart: {
+                            type: 'arearange',
+                            zoomType: 'x'
+                        },
+                        title: {
+                            text: scope.title4
+                        },
+                        xAxis: {
+                            title:{text:scope.segmentXTitle},categories:['','-3','-2','-1','+1','+2']
+                        },
+                        yAxis:{
+                            title:{text:scope.segmentYTitle}
+                            
+                        }, 
+                        tooltip: {
+                            crosshairs: true
+                        },                     
+                        series: scope.forecastsShopperSeries4     
+                    });
+                }
+                
             });
         }
     })
     .directive('forecastCategory',function(){
         return function(scope,elem,attrs){
             scope.$watch(attrs.ngModel,function(v){
-                $('#forecastCategory').empty();
-                $('#forecastCategory').highcharts({
-                    chart: {
-                        type: 'arearange',
-                        zoomType: 'x'
-                    },
-                    title: {
-                        text: ''
-                    },
-                    xAxis: {
-                        title:{text:scope.segmentXTitle},categories:['','-3','-2','-1','+1','+2']
-                    },
-                    yAxis:{
-                        title:{text:scope.segmentYTitle}
-                        
-                    }, 
-                    tooltip: {
-                        crosshairs: true
-                    },                     
-                    series: scope.forecastCategorySeries     
-                });
+                if($('#forecastCategory')!=undefined){
+                    $('#forecastCategory').empty();
+                    $('#forecastCategory').highcharts({
+                        chart: {
+                            type: 'arearange',
+                            zoomType: 'x'
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            title:{text:scope.segmentXTitle},categories:['','-3','-2','-1','+1','+2']
+                        },
+                        yAxis:{
+                            title:{text:scope.segmentYTitle}
+                            
+                        }, 
+                        tooltip: {
+                            crosshairs: true
+                        },                     
+                        series: scope.forecastCategorySeries     
+                    });
+                }
+                
             });
         }
     })
@@ -694,27 +731,30 @@ define(['directives'], function(directives){
     .directive('forecastInternet',function(){
         return function(scope,elem,attrs){
             scope.$watch(attrs.ngModel,function(v){
-                $('#forecastInternet').empty();
-                $('#forecastInternet').highcharts({
-                    chart: {
-                        type: 'arearange',
-                        zoomType: 'x'
-                    },
-                    title: {
-                        text: ''
-                    },
-                    xAxis: {
-                        title:{text:scope.segmentXTitle},categories:['','-3','-2','-1','+1','+2']
-                    },
-                    yAxis:{
-                        title:{text:scope.segmentYTitle}
-                        
-                    }, 
-                    tooltip: {
-                        crosshairs: true
-                    },                     
-                    series: scope.forecastInternetSeries     
-                });
+                if($('#forecastInternet')!=undefined){
+                    $('#forecastInternet').empty();
+                    $('#forecastInternet').highcharts({
+                        chart: {
+                            type: 'arearange',
+                            zoomType: 'x'
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            title:{text:scope.segmentXTitle},categories:['','-3','-2','-1','+1','+2']
+                        },
+                        yAxis:{
+                            title:{text:scope.segmentYTitle}
+                            
+                        }, 
+                        tooltip: {
+                            crosshairs: true
+                        },                     
+                        series: scope.forecastInternetSeries     
+                    });
+                }
+                
             });
         }
     })
