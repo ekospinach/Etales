@@ -44,7 +44,7 @@ define(['directives', 'services'], function(directives){
                     scope.producer3hs=new Array();
 
                     for(var i=0;i<data.data[0].categoryInfo[0].variantInfo.length;i++){
-                        switch(data.data[0].categoryInfo[0].variantInfo[i].varName.substring(data.data[0].categoryInfo[0].variantInfo[i].varName.length-1)){
+                        switch(data.data[0].categoryInfo[0].variantInfo[i].parentBrandName.substring(data.data[0].categoryInfo[0].variantInfo[i].parentBrandName.length-1)){
                             case '1':scope.producer1es.push(data.data[0].categoryInfo[0].variantInfo[i]);break;
                             case '2':scope.producer2es.push(data.data[0].categoryInfo[0].variantInfo[i]);break;
                             case '3':scope.producer3es.push(data.data[0].categoryInfo[0].variantInfo[i]);break;
@@ -52,7 +52,7 @@ define(['directives', 'services'], function(directives){
                         }
                     }
                     for(var i=0;i<data.data[0].categoryInfo[1].variantInfo.length;i++){
-                        switch(data.data[0].categoryInfo[1].variantInfo[i].varName.substring(data.data[0].categoryInfo[1].variantInfo[i].varName.length-1)){
+                        switch(data.data[0].categoryInfo[1].variantInfo[i].parentBrandName.substring(data.data[0].categoryInfo[1].variantInfo[i].parentBrandName.length-1)){
                             case '1':scope.producer1hs.push(data.data[0].categoryInfo[1].variantInfo[i]);break;
                             case '2':scope.producer2hs.push(data.data[0].categoryInfo[1].variantInfo[i]);break;
                             case '3':scope.producer3hs.push(data.data[0].categoryInfo[1].variantInfo[i]);break;
