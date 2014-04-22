@@ -425,6 +425,7 @@ exports.initializeSeminar = function(options){
 				seminar.findOne({seminarCode:options.seminar},function(err,doc){
 					if(err){ deferred.reject({msg:err}); } 
 					if(!doc){ deferred.reject({msg:'cannot find matched seminar : ' + options.seminar}); } 
+
 				    doc.simulationSpan = options.simulationSpan;
 				    doc.traceActive = options.traceActive;
 				    doc.traditionalTradeActive = options.traditionalTradeActive;
@@ -438,7 +439,7 @@ exports.initializeSeminar = function(options){
 					doc.category2ID = options.category2ID;
 					doc.save(function(err,doc,numberAffected){
 						if(err){ deferred.reject({msg:err}); }
-						deferred.resolve({msg:'Initialize complete: '+ data})
+						deferred.resolve({msg:data})
 					});				
   		   	    });					
 			}

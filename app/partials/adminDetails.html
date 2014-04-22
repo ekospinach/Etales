@@ -2,7 +2,7 @@
 	<div class="page-header">
 		<h3>{{seminar.seminarCode}}, Basic information
 			<small>
-			 	More details about each seminar...					 	
+			 						 	
 			</small>
 		</h3>
 	</div>        		
@@ -47,9 +47,9 @@
 		</a>
 	</p>				
 	<div class="page-header">
-		<h3>Initialise
+		<h3>Initialize
 			<small>
-			 	More details about each seminar...					 	
+			 	modify parameters, click button to initialize the simulation data					 	
 			</small>
 		</h3>
 	</div>   
@@ -88,6 +88,7 @@
 	    type="checkbox"> Force next decisions overwrite</p>
 
 	<pre ng-show="isInitializeMessageShown"><p data-ng-repeat="message in initializeMessage">{{message}}</p></pre>
+
 	<div class="alert alert-danger fade in" ng-show="isInitializeConfirmInfoShown">
 	  <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
 	  <h4>Warning! Initialise confirmation</h4>

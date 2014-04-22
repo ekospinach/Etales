@@ -12,8 +12,8 @@ exports.initialiseSeminar = function(io){
 			cgiHost                    : conf.cgi.host, 
 			cgiPort                    : conf.cgi.port,			
 			//cgiPath                  : conf.cgi.path_initialize, 
-			cgiPath                    : conf.cgi.path_GR_performanceHighlights,
-			schemaName                 : 'GR_performanceHighlights',
+			cgiPath                    : conf.cgi.path_initialize,
+			schemaName                 : 'Initialize.DLL',
 
 		    simulationSpan             : req.body.simulationSpan,
 		    traceActive                : req.body.traceActive,
@@ -27,10 +27,19 @@ exports.initialiseSeminar = function(io){
 			category1ID                : req.body.category1ID,
 			category2ID                : req.body.category2ID			
 		}	
-		console.log('cgipath:' + util.inspect(conf.cgi, {depth:null}));
 
-		//Import General reports
-		require('./models/GR_performanceHighlights.js').addReports(options).then(function(result){
+        io.sockets.emit('AdminProcessLog', { msg: 'Create separated folder for binary files of seminar : '+ req.body.seminar, isError: false }); 
+       	io.sockets.emit('AdminProcessLog', { msg: 'Start calling Initialize.DLL...', isError: false });                             
+		require('./models/seminar.js').initializeSeminar(options).then(function(result){
+            io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });                             
+            options.producerID = '1';
+            options.cgiPath = conf.cgi.path_producerDecision;
+
+		//Import General reports		
+			options.cgiPath = conf.cgi.path_GR_performanceHighlights;
+			options.schemaName = 'GR_performanceHighlights';		
+			return require('./models/GR_performanceHighlights.js').addReports(options);
+		}).then(function(result){	   
 			io.sockets.emit('AdminProcessLog', {msg: result.msg, isError:false });
 
 			options.cgiPath = conf.cgi.path_GR_crossSegmentSales;
@@ -374,7 +383,7 @@ exports.initialiseSeminar = function(io){
 			options.schemaName = 'MR_variantPerceptionEvolution';
 			return require('./models/MR_variantPerceptionEvolution.js').addReports(options);			
 		}).then(function(result){ 
-            io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	
+             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	
 
             res.send(200, 'Initialization done.');
 		}, function(error){ //log the error

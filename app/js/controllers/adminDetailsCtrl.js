@@ -9,7 +9,13 @@ define(['app','socketIO'], function(app) {
 		var socket = io.connect('http://localhost');
 		socket.on('AdminProcessLog', function(data){
 			$scope.isInitializeMessageShown = true;			
-			if(data.msg != ''){ $scope.initializeMessage.push(data.msg); }			
+			if(data.msg != ''){ 
+				if(!$scope.initializeMessage){
+					$scope.initializeMessage = [];
+				}
+				$scope.initializeMessage.push(data.msg); 					
+
+			}			
 
 			console.log('scoketIO:'+data.msg);
 		}).on('PassiveProcessLog', function(data){
