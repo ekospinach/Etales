@@ -72,10 +72,10 @@ var
   begin
     jo := SO;
     jo.I['categoryID'] := catID;
-    jo.O['makretInfo'] := SA([]);
+    jo.O['marketInfo'] := SA([]);
     for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do
     begin
-      jo.A['makretInfo'].Add( marketInfoSchema(fieldIdx, catID, marketID, binaryReprot) );      
+      jo.A['marketInfo'].Add( marketInfoSchema(fieldIdx, catID, marketID, binaryReprot) );      
     end;
 
     result := jo;

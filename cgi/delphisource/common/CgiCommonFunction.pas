@@ -13,6 +13,7 @@ uses
 {$I 'ET1_Common_Types.INC'}
 {$I 'ET1_Results_Types.INC'}
 {$I 'ET1_FILES_NAMES.INC'}
+{$I 'ET1_Runtime_Codes.INC'}
 
 const
   dummyNo = 0;
@@ -24,6 +25,13 @@ function getSeminar(sListData : TStrings): string;
 function getPeriod(sListData : TStrings): Integer;
 function getProducerID(sListData : TStrings): Integer;
 function getRetailerID(sListData : TStrings) : Integer;
+
+Function RunOnePeriod( ConfigInfo : TConfigurationRecord; PeriodNow : TPeriodNumber ) : LongWord;
+Function InitialiseFiles( ConfigInfo : TConfigurationRecord ) : LongWord;
+Function MakePassivePlayersDecisions( ConfigInfo     : TConfigurationRecord;
+                                      PeriodNow      : TPeriodNumber;
+                                      IgnoreExisting : boolean ) : LongWord;
+
 
 
 function getVariable(name : string):string;
@@ -149,6 +157,14 @@ begin
     ini.Free;
   end;
 end;
+
+Function RunOnePeriod( ConfigInfo : TConfigurationRecord; PeriodNow : TPeriodNumber ) : LongWord; external 'ET1_Kernel.DLL';
+
+Function InitialiseFiles( ConfigInfo : TConfigurationRecord ) : LongWord;                         external 'ET1_Initialisation.DLL';
+
+Function MakePassivePlayersDecisions( ConfigInfo     : TConfigurationRecord;
+                                      PeriodNow      : TPeriodNumber;
+                                      IgnoreExisting : boolean ) : LongWord;                      external 'ET1_PassiveDecisions.DLL';
 
 
 end.

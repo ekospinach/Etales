@@ -28,14 +28,14 @@ var
   vReadRes : Integer;
   oJsonFile : ISuperObject;
 
-  function factoryInfoSchema(fieldIdx : Integer; catID : Integer; marketID : integer; factoryID : integer; factoryInfo : TRCR_ProfitabilityByOneSupplier):ISuperObject;
+  function factoryInfoSchema(fieldIdx : Integer; catID : Integer; marketID : integer; factoriesID : integer; factoryInfo : TRCR_ProfitabilityByOneSupplier):ISuperObject;
   var
     jo : ISuperObject;
   begin
     jo := SO;
     jo.I['categoryID'] := catID;
     jo.I['marketID'] := marketID;
-    jo.I['factoryID'] := factoryID;
+    jo.I['factoriesID'] := factoriesID;
 
     case (fieldIdx) of
       rcrps_ShelfSpace : begin jo.D['value'] := factoryInfo.rcrps_ShelfSpace; end;
@@ -55,7 +55,7 @@ var
   procedure makeJson();
   var
     s_str : string;
-    actorID,catID,brandID,variantID,marketID,factoryID : Integer;
+    actorID,catID,brandID,variantID,marketID,factoriesID : Integer;
     tempQuarterInfo : TRCR_QuarterProfitAndLoss;
     tempBrandMarketInfo : TRCR_OneBrand;
     tempVariantMarketInfo : TRCR_OneVariant;
@@ -80,18 +80,18 @@ var
     begin
       for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do
       begin
-        for factoryID := Low(TFactories) to High(TFactories) do 
+        for factoriesID := Low(TFactories) to High(TFactories) do 
         begin
-          tempProfitInfo := currentResult.r_RetailersConfidentialReports[currentRetailer].RCR_profitabilityBySuppliers[marketID, catID, factoryID];
-          oJsonFile.A['rcrps_ShelfSpace'].Add( factoryInfoSchema(rcrps_ShelfSpace, catID, marketID, factoryID, tempProfitInfo) );          
-          oJsonFile.A['rcrps_NetSales'].Add( factoryInfoSchema(rcrps_NetSales, catID, marketID, factoryID, tempProfitInfo) );          
-          oJsonFile.A['rcrps_NetSalesPerShelfSpace'].Add( factoryInfoSchema(rcrps_NetSalesPerShelfSpace, catID, marketID, factoryID, tempProfitInfo) );          
-          oJsonFile.A['rcrps_NetSalesShare'].Add( factoryInfoSchema(rcrps_NetSalesShare, catID, marketID, factoryID, tempProfitInfo) );          
-          oJsonFile.A['rcrps_GrossContribution'].Add( factoryInfoSchema(rcrps_GrossContribution, catID, marketID, factoryID, tempProfitInfo) );          
-          oJsonFile.A['rcrps_GrossContributionPerShelfSpace'].Add( factoryInfoSchema(rcrps_GrossContributionPerShelfSpace, catID, marketID, factoryID, tempProfitInfo) );          
-          oJsonFile.A['rcrps_GrossContributionMargin'].Add( factoryInfoSchema(rcrps_GrossContributionMargin, catID, marketID, factoryID, tempProfitInfo) );          
-          oJsonFile.A['rcrps_GrossContributionShare'].Add( factoryInfoSchema(rcrps_GrossContributionShare, catID, marketID, factoryID, tempProfitInfo) );          
-          oJsonFile.A['rcrps_PaymentTerms'].Add( factoryInfoSchema(rcrps_PaymentTerms, catID, marketID, factoryID, tempProfitInfo) );          
+          tempProfitInfo := currentResult.r_RetailersConfidentialReports[currentRetailer].RCR_profitabilityBySuppliers[marketID, catID, factoriesID];
+          oJsonFile.A['rcrps_ShelfSpace'].Add( factoryInfoSchema(rcrps_ShelfSpace, catID, marketID, factoriesID, tempProfitInfo) );          
+          oJsonFile.A['rcrps_NetSales'].Add( factoryInfoSchema(rcrps_NetSales, catID, marketID, factoriesID, tempProfitInfo) );          
+          oJsonFile.A['rcrps_NetSalesPerShelfSpace'].Add( factoryInfoSchema(rcrps_NetSalesPerShelfSpace, catID, marketID, factoriesID, tempProfitInfo) );          
+          oJsonFile.A['rcrps_NetSalesShare'].Add( factoryInfoSchema(rcrps_NetSalesShare, catID, marketID, factoriesID, tempProfitInfo) );          
+          oJsonFile.A['rcrps_GrossContribution'].Add( factoryInfoSchema(rcrps_GrossContribution, catID, marketID, factoriesID, tempProfitInfo) );          
+          oJsonFile.A['rcrps_GrossContributionPerShelfSpace'].Add( factoryInfoSchema(rcrps_GrossContributionPerShelfSpace, catID, marketID, factoriesID, tempProfitInfo) );          
+          oJsonFile.A['rcrps_GrossContributionMargin'].Add( factoryInfoSchema(rcrps_GrossContributionMargin, catID, marketID, factoriesID, tempProfitInfo) );          
+          oJsonFile.A['rcrps_GrossContributionShare'].Add( factoryInfoSchema(rcrps_GrossContributionShare, catID, marketID, factoriesID, tempProfitInfo) );          
+          oJsonFile.A['rcrps_PaymentTerms'].Add( factoryInfoSchema(rcrps_PaymentTerms, catID, marketID, factoriesID, tempProfitInfo) );          
         end;
       end;
     end;

@@ -1,4 +1,8 @@
 program initialize;
+{$APPTYPE CONSOLE}
+
+{$R *.res}
+
 
 //Developed by Andrea Russo - Italy
 //email: andrusso@yahoo.com
@@ -29,12 +33,8 @@ uses
   {$ELSE}
     Windows,
   {$ENDIF}
-  Classes,HCD_SystemDefinitions,ET0_AdministratorDLLs,iniFiles;
+  Classes,HCD_SystemDefinitions,CgiCommonFunction,iniFiles;
 
-{$I 'ET0_Common_Constants.INC'}
-{$I 'ET0_Common_Types.INC'}
-{$I 'ET0_Results_Types.INC'}
-{$I 'ET0_Runtime_Codes.INC'}
 
 var
    i: integer;
@@ -47,8 +47,10 @@ var
    iSize : integer;
    DataDirectory : string;
 
-   currentConf : ET0_AdministratorDLLs.TConfigurationRecord;
+   currentConf : TConfigurationRecord;
    vTempStr : string;
+
+   aString : String;
 
    function getVariable(name:string):string;
    {$IFNDEF LINUX}
@@ -90,7 +92,7 @@ var
       end;
    end;
 
-   function initializeFileandResult(conf : ET0_AdministratorDLLs.TConfigurationRecord) : string;
+   function initializeFileandResult(conf :TConfigurationRecord) : string;
    var
       ReturnCode   : LongWord;
       PeriodNumber : TPeriodNumber;
@@ -103,24 +105,23 @@ var
         PeriodNumber := HistoryStart;
         ReturnCode := MakePassivePlayersDecisions( conf, PeriodNumber, TRUE );    //periodNumber = -3
 
-//        if ( ReturnCode = passive_PassivePlayersDecisionsRun_OK ) then
-//        begin
-//          ReturnCode := RunOnePeriod( conf, PeriodNumber );
-//          if ( ReturnCode = kernel_SimulationRun_OK ) then
-//          begin
-//            ReturnCode := MakePassivePlayersDecisions( conf, PeriodNumber, TRUE );    //periodNumber = -3
-//            if ( ReturnCode = passive_PassivePlayersDecisionsRun_OK ) then
-//            begin
-//              ReturnCode := RunOnePeriod( conf, PeriodNumber );
-//              if ( ReturnCode = kernel_SimulationRun_OK ) then
-//              begin
-//                ReturnCode := MakePassivePlayersDecisions( conf, PeriodNumber, TRUE );  //periodNumber = -3
-
-
-
+        if ( ReturnCode = passive_PassivePlayersDecisionsRun_OK ) then
+        begin
+          ReturnCode := RunOnePeriod( conf, PeriodNumber );
+          if ( ReturnCode = kernel_SimulationRun_OK ) then
+          begin
+            ReturnCode := MakePassivePlayersDecisions( conf, PeriodNumber, TRUE );    //periodNumber = -3
+            if ( ReturnCode = passive_PassivePlayersDecisionsRun_OK ) then
+            begin
+              ReturnCode := RunOnePeriod( conf, PeriodNumber );
+              if ( ReturnCode = kernel_SimulationRun_OK ) then
+              begin
+                ReturnCode := MakePassivePlayersDecisions( conf, PeriodNumber, TRUE );  //periodNumber = -3
                 if ( ReturnCode = passive_PassivePlayersDecisionsRun_OK ) then
                 begin
                   ReturnCode := RunOnePeriod( conf, PeriodNumber );
+
+
                   if ( ReturnCode = kernel_SimulationRun_OK ) then
                   begin
                     Inc( PeriodNumber );
@@ -150,22 +151,20 @@ var
                   end;
 
 
+
                 end;
 
 
 
 
-//              end;
-//            end;
-//          end;
-//        end;
+              end;
+            end;
+          end;
+        end;
 
-
-
-
-
-        sResponseData.Add('Simulation Period ' + IntToStr( PeriodNumber ) + '  Exit Code:  ' + IntToStr( ReturnCode ));
+        //sResponseData.Add('Simulation Period ' + IntToStr( PeriodNumber ) + '  Exit Code:  ' + IntToStr( ReturnCode ));
       end;
+      sResponseData.Add('Simulation Period ' + IntToStr( PeriodNumber ) + '  Exit Code:  ' + IntToStr( ReturnCode ));
 
       if (ReturnCode = kernel_SimulationRun_OK) then
       begin
@@ -203,9 +202,9 @@ var
     with currentConf do
     begin
       //Log('getCurrentConf2...' + sListData.Values['seminar']);
-      if sListData.IndexOfName('seminar') <> -1 then vSeminar  := sListData.Values['seminar'];
-      if sListData.IndexOfName('span') <> -1 then cr_SimulationSpan  := StrToInt(sListData.Values['span']);
-      if sListData.IndexOfName('isTraceActive') <> -1 then cr_TraceActive  := StrToBool(sListData.Values['isTraceActive']);
+      vSeminar  := 'NEW';
+      cr_SimulationSpan  := 6;
+      cr_TraceActive  := StrToBool(sListData.Values['isTraceActive']);
       if sListData.IndexOfName('isTraditionalTradeActive') <> -1 then cr_TraditionalTradeActive  := StrToBool(sListData.Values['isTraditionalTradeActive']);
       if sListData.IndexOfName('isEMallActive') <> -1 then cr_E_MallActive  := StrToBool(sListData.Values['isEMallActive']);
       if sListData.IndexOfName('isVirtualSupplierActive') <> -1 then cr_VirtualSupplierActive  := StrToBool(sListData.Values['isVirtualSupplierActive']);
@@ -227,7 +226,7 @@ var
       for I := 0 to Length(vSeminar)-1 do
       begin
         cr_SeminarCode[i] := vSeminar[i+1];
-      end;              
+      end;
       Log('assign currentConf complete.');
     end;
    end;
@@ -244,6 +243,8 @@ var
     end;
   end;
 
+
+
 begin
     sDati := '';
     sListData := TStringList.Create;
@@ -253,6 +254,7 @@ begin
     sListData.Clear;
     sLogList.Clear;
     LoadConfigIni();
+
   //uncomment lines below if it is necessary to save all the log history
   //    if FileExists(GetCurrentDir + '/Log.txt') then
   //    sLoglist.LoadFromFile(GetCurrentDir + '/Log.txt');
@@ -260,6 +262,30 @@ begin
   try
     WriteLn('Content-type: text/html');
     Log('Analysis request method...');
+
+    //for debug
+//    with currentConf do
+//    begin
+//      //Log('getCurrentConf2...' + sListData.Values['seminar']);
+//      cr_TraceActive                 := TRUE;
+//      cr_AdministratorFilesLocation  := 'C:\\EtalesData\\NEW';
+//      aString                        := ParamStr(0);
+//      aString                        := ExtractFilePath( aString );
+//      StrPLCopy( cr_ProgramsFilesLocation, IncludeTrailingPathDelimiter( aString ), PathLengthMax - 1 );
+//      aString := 'MAY';
+//      StrPLCopy( cr_SeminarCode, aString, SeminarCodeLength - 1 );
+//      cr_Market_1_ID                 := 1;
+//      cr_Market_2_ID                 := 2;
+//      cr_Category_1_ID               := 1;
+//      cr_Category_2_ID               := 2;
+//      cr_TraditionalTradeActive      := FALSE;
+//      cr_E_MallActive                := FALSE;
+//      cr_VirtualSupplierActive       := FALSE;
+//      cr_ForceNextDecisionsOverwrite := TRUE;
+//      Log('assign currentConf complete.');
+//    end;
+//    Writeln(initializeFileandResult(currentConf));
+
 
     sValue := getVariable('REQUEST_METHOD');
     if sValue='GET' then
@@ -272,6 +298,7 @@ begin
       Log('ListData[' + IntToStr(i) + ']: ' + sListData[i]);
 
       getCurrentConf();
+
       Writeln(initializeFileandResult(currentConf));
     end;
     Writeln;
