@@ -19,12 +19,12 @@
 			angularXeditable: 		'../bower_components/angular-xeditable/dist/js/xeditable',
 			socketIO: 				'../bower_components/socket.io-client/dist/socket.io',
 			jquery: 				'../bower_components/jquery/dist/jquery',
+			bootstrapswitch: 		'../bower_components/bootstrap-switch/dist/js/bootstrap-switch',
 			require: 				'../bower_components/requirejs/require',
 			underscore: 			'../bower_components/underscore/underscore',
 			bootstrap: 				'../bower_components/bootstrap/dist/js/bootstrap',
 			angularBootstrap:  		'../bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls',
 			routingConfig :  		'./routingConfig',
-			placeholder:  			'../bower_components/angular-placeholders/demo/assets/ui-bootstrap-tpls-0.1.0-SNAPSHOT.min',
 			//jquery-jqplot-->Map.html
 			jqplot: 				'../bower_components/jqplot/jquery.jqplot.min',
 			bubbleRenderer: 		'./map/jqplot.bubbleRenderer',
@@ -39,32 +39,35 @@
 			angularHighcharts:      '../bower_components/highcharts-ng/src/highcharts-ng',
 			highchartMore:          '../bower_components/highcharts/highcharts-more',
 			//Bootstrap switch interface for admin module, handle initialize parameter configure 
-			bootstrapswitch: 		'../bower_components/bootstrap-switch/dist/js/bootstrap-switch',
 			angularBootstrapSwitch: '../bower_components/angular-bootstrap-switch/dist/angular-bootstrap-switch'
+			//angular promise tracker is used for adding loading spinner by track general promise or request 
+			//angularPromiseTracker:  '../bower_components/angular-promise-tracker/promise-tracker'
 		},
 		baseUrl: 'js',
 		shim: {
-			'angular'           : {'exports' : 'angular'},
-			'angularRoute'      : ['angular'],
-			'angularResource'   :['angular'],
-			'angularCookies'    : ['angular'],
-			'angularMocks'      : {
-				deps            :['angular'],
-				'exports'       :'angular.mock'
+			'angular' : {'exports' : 'angular'},
+			'angularRoute': ['angular'],
+			'angularResource':['angular'],
+			'angularCookies': ['angular'],
+			'angularMocks': {
+				deps:['angular'],
+				'exports':'angular.mock'
 			},
-			'angularXeditable'  : ['angular'],
-			'bootstrap'         :['jquery'],
-			'angularBootstrap'  :['jquery','bootstrap','angular'],
+			'angularXeditable': ['angular'],
+			'bootstrap':['jquery'],
+			'angularBootstrap':['jquery','bootstrap','angular'],
 			'angularLoadingBar' : ['angular'],
-			'jqplot'            :['jquery'],
-			'jqxgrid'           :['jquery'],
-			'bubbleRenderer'    :['jqplot','jquery'],
-			'labelRenderer'     :['jqplot','jquery'],
-			'textRenderer'      :['jqplot','jquery'],
-			'tree'              :['jquery'],
-			'highchartMore'     :['jquery','highchart'],
+			'jqplot':['jquery'],
+			'jqxgrid':['jquery'],
+			'bubbleRenderer':['jqplot','jquery'],
+			'labelRenderer':['jqplot','jquery'],
+			'textRenderer':['jqplot','jquery'],
+			'tree':['jquery'],
+			'highchartMore':['jquery','highchart'],
+			'bootstrapswitch' : ['jquery'],
 			'angularHighcharts' :['angular'],
-			'placeholder'       :['angular']
+			'angularBootstrapSwitch':['angular','jquery','bootstrapswitch'],
+//			'angularPromiseTracker':['angular']
 		},
 		priority: [
 			"angular"
@@ -108,7 +111,7 @@
 	        	loadingStatusEl.innerHTML = loadingStatusEl.innerHTML += '.'; //add one more dot character
 	        	loadingModuleNameEl.innerHTML = map.name + (map.url ? ' at ' + map.url : '') ;
 	        } else {
-	        	
+
 	          //TODO later load, must have loading indicator for this then
 	        }
 	      };
@@ -121,7 +124,8 @@
 	require([
 		'angular',
 		'app',
-		'routes'
+		'routes',
+		'bootstrapswitch',
 	], function(angular, app, routes) {
 		'use strict';
 		var $html = angular.element(document.getElementsByTagName('html')[0]);
@@ -133,4 +137,3 @@
 	});
 
 }).call(this);
-

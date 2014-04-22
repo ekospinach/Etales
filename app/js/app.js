@@ -2,7 +2,6 @@
 	'angular',
 	'filters',
 	'services',
-	'placeholder',
 	'directives/basicDirectives',
 	'directives/chartLibraryWrapper',
 	'directives/TE_GR_performanceHighlights',
