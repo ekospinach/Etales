@@ -14,6 +14,20 @@ var seminarSchema = mongoose.Schema({
 	seminarDate : {type:Date, default:Date.now},
 	currentPeriod : {type:Number, default:0},
 	isInitialise : {type:Boolean, default:false}, //when user login, need check this value
+	reportPrice : {
+		awareness                    : Number,
+		brandPerceptions             : Number,
+		retailerPerceptions          : Number,
+		marketShareByConsumerSegment : Number,
+		salesByConsumberSegment      : Number,
+		marketShareByShopperSegment  : Number,
+		salesByShopperSegment        : Number,
+		BMRetailerPrices             : Number,
+		promotionIntensity           : Number,
+		supplierIntelligence         : Number,
+		retailerIntelligence         : Number,
+		forcasts                     : Number
+	},
 	producers : [producerSchema],
 	retailers : [retailerSchema],
 	facilitator : [facilitatorSchema],
@@ -39,17 +53,50 @@ var seminarSchema = mongoose.Schema({
 var producerSchema = mongoose.Schema({
 	producerID : Number, //1,2,3 
 	password : String,
-	newProductDecisionReadyPeriod : Number,
 	decisionReadyPeriod : Number,
-	members : [memberSchema]
+	members : [memberSchema],
+	//newProductDecisionReadyPeriod : Number,
+    decisionCommitStatus : [supplierDecisionCommitStatusSchema],
+	reportPurchaseStatus : [reportPurchaseStatusSchema],
 })
 
 var retailerSchema = mongoose.Schema({
 	retailerID : Number, //1,2,3
 	password : String,
-	decisionReadyPeriod : Number,
-	members : [memberSchema]	
+	//decisionReadyPeriod : Number,
+    decisionCommitStatus : [retailerDecisionCommitStatusSchema],
+	reportPurchaseStatus : [reportPurchaseStatusSchema],
 })
+
+
+var reportPurchaseStatusSchema = mongoose.Schema({
+	period                       : Number,
+	awareness                    : Boolean,
+	brandPerceptions             : Boolean,
+	retailerPerceptions          : Boolean,
+	marketShareByConsumerSegment : Boolean,
+	salesByConsumberSegment      : Boolean,
+	marketShareByShopperSegment  : Boolean,
+	salesByShopperSegment        : Boolean,
+	BMRetailerPrices             : Boolean,
+	promotionIntensity           : Boolean,
+	supplierIntelligence         : Boolean,
+	retailerIntelligence         : Boolean,
+	forcasts                     : Boolean
+})
+
+var supplierDecisionCommitStatusSchema = mongoose.Schema({
+	period : Number,
+	isPortfolioDecisionCommitted : Boolean,
+	isDecisionCommitted : Boolean,
+})
+
+
+var retailerDecisionCommitStatusSchema = mongoose.Schema({
+	period : Number,
+	isDecisionCommitted : Boolean,
+})
+
 
 var facilitatorSchema = mongoose.Schema({
 	facilitatorDescription : String,
@@ -437,6 +484,9 @@ exports.initializeSeminar = function(options){
 					doc.market2ID = options.market2ID;
 					doc.category1ID = options.category1ID;
 					doc.category2ID = options.category2ID;
+
+					doc.isInitialise = true;
+					
 					doc.save(function(err,doc,numberAffected){
 						if(err){ deferred.reject({msg:err}); }
 						deferred.resolve({msg:data})
