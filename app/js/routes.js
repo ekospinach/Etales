@@ -17,12 +17,15 @@ define(['angular',
 		'controllers/adminDetailsCtrl',
 		'controllers/homeCtrl',
 		'controllers/mapCtrl',
-		'controllers/marketReportCtrl',
+		'controllers/marketingReportCtrl',
 		'controllers/lineChartCtrl',
 		'controllers/reportCtrl',
 		'controllers/testCtrl',
 		'controllers/summaryReportCtrl',
-		'controllers/facilitatorSummaryReportCtrl',
+		'controllers/generalReportCtrl',
+		'controllers/marketReportCtrl',
+		'controllers/confidentialReportCtrl',
+		'controllers/facilitatorConfidentialReportCtrl',
 		'controllers/supplierDecisionCtrl',
 		'controllers/navbarCtrl'], function(angular, app) {
 	'use strict';
@@ -94,9 +97,9 @@ define(['angular',
 					return MapLoader();
           		}
         	}
-		}).when('/marketReport',{
-			controller:'marketReportCtrl',
-			templateUrl:'partials/marketReport.html',
+		}).when('/marketingReport',{
+			controller:'marketingReportCtrl',
+			templateUrl:'partials/marketingReport.html',
 			access:access.playerView
 		}).when('/lineChart',{
 			controller:'lineChartCtrl',
@@ -118,14 +121,26 @@ define(['angular',
 			controller:'summaryReportCtrl',
 			templateUrl:'partials/summaryReport.html',
 			access:access.playerView
-		}).when('/facilitatorSummaryReport',{
-			controller:'facilitatorSummaryReportCtrl',
-			templateUrl:'partials/facilitatorSummaryReport.html',
+		}).when('/facilitatorConfidentialReport',{
+			controller:'facilitatorConfidentialReportCtrl',
+			templateUrl:'partials/facilitatorConfidentialReport.html',
 			access:access.facilitatorView
 		}).when('/supplierDecision',{
 			templateUrl:'partials/supplierDecision.html',
 			controller:'supplierDecisionCtrl',
 			access : access.producerView			
+		}).when('/generalReport',{
+			templateUrl:'partials/generalReport.html',
+			controller:'generalReportCtrl',
+			access : access.playerView
+		}).when('/marketReport',{
+			templateUrl:'partials/marketReport.html',
+			controller:'marketReportCtrl',
+			access: access.playerView
+		}).when('/confidentialReport',{
+			templateUrl:'partials/confidentialReport.html',
+			controller:'confidentialReportCtrl',
+			access: access.playerView
 		});	
 
 		$routeProvider.otherwise({redirectTo: '/login'});

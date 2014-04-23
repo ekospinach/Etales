@@ -1,0 +1,183 @@
+<style TYPE="text/css">
+    @media (min-width: 1200px) {
+      /* Widen the fixed sidebar again */
+      .bs-docs-sidebar.affix-bottom,
+      .bs-docs-sidebar.affix {
+        width: 25%;
+      }
+    }
+</style>
+<div class="my-super-awesome-loading-box" ng-show="isPageLoading">Loading...</div>
+
+<div class="container bs-docs-container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="bs-docs-section">
+
+                <!--producer report start-->
+                    <supplier-consolidate ng-show='ProducerConsolidate' is-page-shown='ProducerConsolidate' is-page-loading='isPageLoading'></supplier-consolidate>
+
+                    <supplier-b-m-business ng-show='ProducerBMBusiness' is-page-shown='ProducerBMBusiness' is-page-loading='isPageLoading'></supplier-b-m-business>
+
+                    <supplier-online-business ng-show='ProducerOnlineBusiness' is-page-shown='ProducerOnlineBusiness' is-page-loading='isPageLoading'></supplier-online-business>
+
+                    <supplier-profitability ng-show='ProducerProfitability' is-page-shown='ProducerProfitability' is-page-loading='isPageLoading'></supplier-profitability>
+
+
+                    <supplier-negotiations ng-show='ProducerNegotiations' is-page-shown='ProducerNegotiations' is-page-loading='isPageLoading'></supplier-negotiations>
+
+                    <supplier-elecssories-consumer ng-show='ElecssoriesConsumer' is-page-shown='ElecssoriesConsumer' is-page-loading='isPageLoading'></supplier-elecssories-consumer>
+
+                    <supplier-elecssories-shopper ng-show='ElecssoriesShopper' is-page-shown='ElecssoriesShopper' is-page-loading='isPageLoading'></supplier-elecssories-shopper>
+
+                    <supplier-elecssories-volume ng-show='ElecssoriesVolume' is-page-shown='ElecssoriesVolume' is-page-loading='isPageLoading'></supplier-elecssories-volume>
+
+                    <supplier-health-beauties-consumer ng-show='HealthBeautiesConsumer' is-page-shown='HealthBeautiesConsumer' is-page-loading='isPageLoading'></supplier-health-beauties-consumer>
+
+                    <supplier-health-beauties-shopper ng-show='HealthBeautiesShopper' is-page-shown='HealthBeautiesShopper' is-page-loading='isPageLoading'></supplier-health-beauties-shopper>
+
+                    <supplier-health-beauties-volume ng-show='HealthBeautiesVolume' is-page-shown='HealthBeautiesVolume' is-page-loading='isPageLoading'></supplier-health-beauties-volume>
+
+                    <supplier-key ng-show='ProducerKey' is-page-shown='ProducerKey' is-page-loading='isPageLoading'></supplier-key>
+                <!--producer report end-->
+
+                <!--retailer report start-->
+                    <retailer-consolidate ng-show='RetailerConsolidate' is-page-shown='RetailerConsolidate' is-page-loading='isPageLoading'></retailer-consolidate>
+
+                    <retailer-rural-profit ng-show='RetailerRuralProfit' is-page-shown='RetailerRuralProfit' is-page-loading='isPageLoading'></retailer-rural-profit>
+
+                    <retailer-urban-profit ng-show='RetailerUrbanProfit' is-page-shown='RetailerUrbanProfit' is-page-loading='isPageLoading'></retailer-urban-profit>
+
+                    <retailer-profitability ng-show='RetailerProfitability' is-page-shown='RetailerProfitability' is-page-loading='isPageLoading'></retailer-profitability>
+
+                    <retailer-negotiations ng-show='RetailerNegotiations' is-page-shown='RetailerNegotiations' is-page-loading='isPageLoading'></retailer-negotiations>
+
+                    <retailer-rural-consumer ng-show='RuralConsumer' is-page-shown='RuralConsumer' is-page-loading='isPageLoading'></retailer-rural-consumer>
+
+                    <retailer-urban-consumer ng-show='UrbanConsumer' is-page-shown='UrbanConsumer' is-page-loading='isPageLoading'></retailer-urban-consumer>
+
+                    <retailer-rural-shopper ng-show='RuralShopper' is-page-shown='RuralShopper' is-page-loading='isPageLoading'></retailer-rural-shopper>
+
+                    <retailer-urban-shopper ng-show='UrbanShopper' is-page-shown='UrbanShopper' is-page-loading='isPageLoading'></retailer-urban-shopper>
+
+                    <retailer-rural-volume ng-show='RuralVolume' is-page-shown='RuralVolume' is-page-loading='isPageLoading'></retailer-rural-volume>
+
+                    <retailer-urban-volume ng-show='UrbanVolume' is-page-shown='UrbanVolume' is-page-loading='isPageLoading'></retailer-urban-volume>
+
+                    <retailer-key ng-show='RetailerKey' is-page-shown='RetailerKey' is-page-loading='isPageLoading'></retailer-key>
+                <!--retailer report end-->
+
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="bs-docs-sidebar hidden-print" affix='10' role="complementary" angular-bootstrap>
+                <ul class="nav bs-docs-sidenav">
+                    
+                    <li class="active" ng-show='producerShow'>
+                    	<a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showProducerConsolidate()'>{{Label.getContent('Financial Results')}}</a>
+                    	<ul class="nav second-sidenav">
+                    		<li class="active">
+		                        <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showProducerConsolidate()'>{{Label.getContent('Consolidated Profit & Loss Statement')}}</a>
+		                    </li>
+		                    <li class="">
+                                <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showProducerBMBusiness()'>{{Label.getContent('B&M Business Profit & Loss Statement')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showProducerOnlineBusiness()'>{{Label.getContent('Online Business Profit & Loss Statement')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showProducerProfitability()'>{{Label.getContent('Profitability by Channel')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showProducerNegotiations()'>{{Label.getContent('Last Period Negotiations')}}</a>
+                            </li>
+                    	</ul>
+                    </li>
+                    <li class="" ng-show='producerShow'>
+                        <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showElecssoriesConsumer()'>{{Label.getContent('Elecssories')}}{{Label.getContent('Situation Report')}}</a>
+                        <ul class="nav second-sidenav">
+                            <li class="">
+                                <a href="/#/confidentialReport" style="color:#5CB85C;text-decoration: line-through;" ng-click='showElecssoriesConsumer()'>{{Label.getContent('Market Shares by Consumer Segment')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/confidentialReport" style="color:#5CB85C;text-decoration: line-through;" ng-click='showElecssoriesShopper()'>{{Label.getContent('Market Shares by Shopper Segment')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showElecssoriesVolume()'>{{Label.getContent('Volume')}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="" ng-show='producerShow'>
+                        <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showHealthBeautiesConsumer()'>{{Label.getContent('HealthBeauties')}}{{Label.getContent('Situation Report')}}</a>
+                        <ul class="nav second-sidenav">
+                            <li class="">
+                                <a href="/#/confidentialReport" style="color:#5CB85C;text-decoration: line-through;" ng-click='showHealthBeautiesConsumer()'>{{Label.getContent('Market Shares by Consumer Segment')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/confidentialReport" style="color:#5CB85C;text-decoration: line-through;" ng-click='showHealthBeautiesShopper()'>{{Label.getContent('Market Shares by Shopper Segment')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showHealthBeautiesVolume()'>{{Label.getContent('Volume')}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="" ng-show='producerShow'>
+                        <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showProducerKey()'>{{Label.getContent('Key Performance Indicators')}}</a>
+                    </li>
+                    <li class="active" ng-show='retailerShow'>
+                        <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showRetailerConsolidate()'>{{Label.getContent('Financial Results')}}</a>
+                        <ul class="nav second-sidenav">
+                            <li class="active">
+                                <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showRetailerConsolidate()'>{{Label.getContent('Consolidated Profit & Loss Statement')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showRetailerRuralProfit()'>{{Label.getContent('Rural Profit & Loss Statement')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showRetailerUrbanProfit()'>{{Label.getContent('Urban Profit & Loss Statement')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showRetailerProfitability()'>{{Label.getContent('Profitability by Channel')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showRetailerNegotiations()'>{{Label.getContent('Last Period Negotiations')}}</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="" ng-show='retailerShow'>
+                        <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showRuralConsumer()'>{{Label.getContent('Rural')}}{{Label.getContent('Situation Report')}}</a>
+                        <ul class="nav second-sidenav">
+                            <li class="">
+                                <a href="/#/confidentialReport" style="color:#5CB85C;text-decoration: line-through;" ng-click='showRuralConsumer()'>{{Label.getContent('Market Shares by Consumer Segment')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/confidentialReport" style="color:#5CB85C;text-decoration: line-through;" ng-click='showRuralShopper()'>{{Label.getContent('Market Shares by Shopper Segment')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showRuralVolume()'>{{Label.getContent('Volume')}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="" ng-show='retailerShow'>
+                        <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showUrbanConsumer()'>{{Label.getContent('Urban')}}{{Label.getContent('Situation Report')}}</a>
+                        <ul class="nav second-sidenav">
+                            <li class="">
+                                <a href="/#/confidentialReport" style="color:#5CB85C;text-decoration: line-through;" ng-click='showUrbanConsumer()'>{{Label.getContent('Market Shares by Consumer Segment')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/confidentialReport" style="color:#5CB85C;text-decoration: line-through;" ng-click='showUrbanShopper()'>{{Label.getContent('Market Shares by Shopper Segment')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showUrbanVolume()'>{{Label.getContent('Volume')}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="" ng-show='retailerShow'>
+                        <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showRetailerKey()'>{{Label.getContent('Key Performance Indicators')}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

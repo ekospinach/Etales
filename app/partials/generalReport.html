@@ -1,3 +1,13 @@
+<style TYPE="text/css">
+    @media (min-width: 1200px) {
+      /* Widen the fixed sidebar again */
+      .bs-docs-sidebar.affix-bottom,
+      .bs-docs-sidebar.affix {
+        width: 25%;
+      }
+    }
+</style>
+
 <div class="my-super-awesome-loading-box" ng-show="isPageLoading">Loading...</div>
 <div class="container bs-docs-container">
     <div class="row">
@@ -21,28 +31,28 @@
             </div>
         </div>
         <div class="col-md-3">
-            <div class="bs-docs-sidebar hidden-print" affix='200' role="complementary" angular-bootstrap>
+            <div class="bs-docs-sidebar hidden-print" affix='10' role="complementary" angular-bootstrap>
                 <ul class="nav bs-docs-sidenav">
                     <li class="active">
-                        <a href="/#/summaryReport" style="color:#428BCA" ng-click="showPerformance()">{{Label.getContent('Performance Highlights')}}</a>
+                        <a href="/#/generalReport" style="color:#428BCA" ng-click="showPerformance()">{{Label.getContent('Performance Highlights')}}</a>
                     </li>
                     <li class="">
-                        <a href="/#/summaryReport" style="color:#428BCA" ng-click='showMarketShare()'>{{Label.getContent('Market Shares')}}</a>
+                        <a href="/#/generalReport" style="color:#428BCA" ng-click='showMarketShare()'>{{Label.getContent('Market Shares')}}</a>
                     </li>
                     <li class="">
-                        <a href="/#/summaryReport" style="color:#428BCA" ng-click='showMarketSales()'>{{Label.getContent('Sales')}}</a>
+                        <a href="/#/generalReport" style="color:#428BCA" ng-click='showMarketSales()'>{{Label.getContent('Sales')}}</a>
                     </li>
                     <li class="">
-                        <a href="/#/summaryReport" style="color:#428BCA" ng-click='showSegment()'>{{Label.getContent('Segment Leadership')}}</a>
+                        <a href="/#/generalReport" style="color:#428BCA" ng-click='showSegment()'>{{Label.getContent('Segment Leadership')}}</a>
                     </li>
                     <li class="">
-                        <a href="/#/summaryReport" style="color:#428BCA" ng-click='showCross()'>{{Label.getContent('Cross-Segment Sales Volumes')}}</a>
+                        <a href="/#/generalReport" style="color:#428BCA" ng-click='showCross()'>{{Label.getContent('Cross-Segment Sales Volumes')}}</a>
                     </li>
                     <li class="">
-                        <a href="/#/summaryReport" style="color:#428BCA" ng-click='showProduct()'>{{Label.getContent('Product Portfolio')}}</a>
+                        <a href="/#/generalReport" style="color:#428BCA" ng-click='showProduct()'>{{Label.getContent('Product Portfolio')}}</a>
                     </li>
                     <li class="">
-                        <a href="/#/summaryReport" style="color:#428BCA" ng-click='showEMallPrices()'>{{Label.getContent('eMall Prices and Promotion Intensity')}}</a>
+                        <a href="/#/generalReport" style="color:#428BCA" ng-click='showEMallPrices()'>{{Label.getContent('eMall Prices and Promotion Intensity')}}</a>
                     </li>
                 </ul>
             </div>

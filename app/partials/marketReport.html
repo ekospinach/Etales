@@ -1,132 +1,237 @@
-<div id="content" class="bs-header">
-    <div class="container">
-        <h1>{{Label.getContent('Market studies')}}</h1>
-        <p>{{Label.getContent('Market studies Info')}}</p>
-    </div>
-</div>
+<style TYPE="text/css">
+    @media (min-width: 1200px) {
+      /* Widen the fixed sidebar again */
+      .bs-docs-sidebar.affix-bottom,
+      .bs-docs-sidebar.affix {
+        width: 25%;
+      }
+    }
+</style>
 
-<div class="bs-old-docs">
-    <div class="container">
-        <strong>
-            {{Label.getContent('Market popInfo')}}
-        </strong>
-    </div>
-</div>
+<div class="my-super-awesome-loading-box" ng-show="isPageLoading">Loading...</div>
+
 <div class="container bs-docs-container">
     <div class="row">
-        <!--<div class="col-lg-12">
-            <div class="bs-docs-section">-->
+        <div class="col-md-9">
+            <div class="bs-docs-section">
+                <!--market report start-->
+                    <market-awareness-elecssories ng-show='AwarenessElecssories' is-page-shown='AwarenessElecssories' is-page-loading='isPageLoading'></market-awareness-elecssories>
 
-		<div class="col-lg-3" angular-bootstrap>
-			<div class="bs-sidebar hidden-print" role="complementary">
-				<ul class="nav bs-sidenav">	
-					<li class="active">
-						<a>{{Label.getContent('Market studies')}}</a>
-						<ul class="nav second-sidenav">
-							<!--<li>
-								<a ng-click="getReport(seminar,title.titleENG,period,language)">{{title.title}}</a>
-							</li>-->
+                    <market-awareness-health-beauties ng-show='AwarenessHealthBeauties' is-page-shown='AwarenessHealthBeauties' is-page-loading='isPageLoading'></market-awareness-health-beauties>
 
-							<li class="active">
-								<a ng-click="getReport(seminar,'Brand Awareness',period,language)">{{Label.getContent('Brand Awareness')}}</a>
-							</li>
-							<li class="">
-								<a ng-click="getReport(seminar,'Market Share (Volume)',period,language)">{{Label.getContent('Market Share (Volume)')}}</a>
-							</li>
-							<li class="">
-								<a ng-click="getReport(seminar,'Market Share (Value)',period,language)">{{Label.getContent('Market Share (Value)')}}</a>
-							</li>
-							<li class="" >
-								<a ng-click="getReport(seminar,'Average Net Market Price',period,language)">{{Label.getContent('Average Net Market Price')}}</a>
-							</li>
-							<li class="">
-								<a ng-click="getReport(seminar,'Brand Visibility Share',period,language)">{{Label.getContent('Brand Visibility Share')}}</a>
-							</li>
-							<li class="">
-								<a ng-click="getReport(seminar,'Consumer off-take',period,language)">{{Label.getContent('Consumer off-take')}}</a>
-							</li>
-							<li class="">
-								<a ng-click="getReport(seminar,'Retailer Perceptions',period,language)">{{Label.getContent('Retailer Perceptions')}}</a>
-							</li>
-							<li class="">
-								<a ng-click="getReport(seminar,'Shopper Behavior',period,language)">{{Label.getContent('Shopper Behavior')}}</a>
-							</li>
+                    <market-rural-elecssories-brand ng-show='RuralElecssoriesBrand' is-page-shown='RuralElecssoriesBrand' is-page-loading='isPageLoading'></market-rural-elecssories-brand>
 
-						</ul>
-					</li>	
-				</ul>
-		    </div>
-		</div>
+                    <market-urban-elecssories-brand ng-show='UrbanElecssoriesBrand' is-page-shown='UrbanElecssoriesBrand' is-page-loading='isPageLoading'></market-urban-elecssories-brand>
 
-		<div class="col-lg-9">
-			<div style="padding:10px 0;clear:both"></div>
-			
-			<div class="page-header">
-				<h3>{{Label.getContent(titleENG)}}
-					<small>
-						{{Label.getContent((titleENG+' Info'))}}
-					</small>
-				</h3>
-			</div>
+                    <market-rural-health-beauties-brand ng-show='RuralHealthBeautiesBrand' is-page-shown='RuralHealthBeautiesBrand' is-page-loading='isPageLoading'></market-rural-health-beauties-brand>
 
-			<h4 class="pull-left"><span class="label label-warning" ng-show="titleENG!='Retailer Perceptions'">{{Label.getContent(cat)}}</span></h4>
-			<h4 class="pull-left" style="margin-left:10px"><span class="label label-success">{{Label.getContent(market)}}</span></h4>
-			<h4 class="pull-left" style="margin-left:10px"><span class="label label-info">{{Label.getContent('Period')}}:{{period}}</span></h4>
-			<div style="padding:1px 0;clear:both"></div>
-			<div class="btn-group">
-				<button type="button" class="btn btn-primary dropdown-toggle" ng-show="titleENG!='Retailer Perceptions'" data-toggle="dropdown">
-			    {{Label.getContent('Category')}}<span class="caret"></span>
-			 	</button>
-			  	<ul class="dropdown-menu">
-			    	<li><a ng-click="showReport('Elecsories',market,language)">{{Label.getContent('Elecssories')}}</a></li>
-			    	<li><a ng-click="showReport('HealthBeauties',market,language)">{{Label.getContent('HealthBeauty')}}</a></li>
-			  	</ul>
-			</div>
+                    <market-urban-health-beauties-brand ng-show='UrbanHealthBeautiesBrand' is-page-shown='UrbanHealthBeautiesBrand' is-page-loading='isPageLoading'></market-urban-health-beauties-brand>
 
-			<div class="btn-group">
-			  	<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-			    {{Label.getContent('Market')}}<span class="caret"></span>
-			  	</button>
-			  	<ul class="dropdown-menu">
-			    	<li><a ng-click="showReport(cat,'Urban',language)">{{Label.getContent('Urban')}}</a></li>
-			    	<li><a ng-click="showReport(cat,'Rural',language)">{{Label.getContent('Rural')}}</a></li>
-			    	<li><a ng-click="showReport(cat,'Total',language)">{{Label.getContent('Total')}}</a></li>
-			  	</ul>
-			</div>
+                    <market-retailer-perceptions ng-show='RetailerPerceptions' is-page-shown='RetailerPerceptions' is-page-loading='isPageLoading'></market-retailer-perceptions>
 
-			<div class="btn-group">
-				<button type="button" class="btn btn-default" ng-click="getReport(seminar,titleENG,period-1,language)" ng-disabled="!previousBtn">{{Label.getContent('Previous period')}}</button>
-			</div>
-			<div class="btn-group">
-				<button type="button" ng-click="getReport(seminar,titleENG,period+1,language)" class="btn btn-default" ng-disabled="!nextBtn">{{Label.getContent('Next period')}}</button>
-			</div>
-			<!--
-			<div class="btn-group">
-			  	<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-			    {{Label.getContent('Period')}}<span class="caret"></span>
-			  	</button>
-			  	<ul class="dropdown-menu">
-			    	<li ng-repeat="newperiod in periods"><a ng-click="getReport(seminar,titleENG,newperiod,language)">{{newperiod}}</a></li>
-			  	</ul>
-			</div>-->
-			<div style="clear:both"></div> 
-		</div>
-	</div>
-	<table class="table table-bordered table-striped table-condensed">
-		<thead>
-			<tr>
-			 	<th ng-repeat="(i,col) in reportCollection.data.cols" ng-style="{'text-align':($index==0)?'left':'right'}">
-			 		<a ng-click="changeSorting(i)">{{Label.getContent(col.labelENG)}}</a>
-			 	</th>
-			</tr>		
-		</thead>
-		<tbody>
-			<tr ng-repeat="row in reportCollection.data.rows | orderBy:mySorting:sort.descending" >
-				<td ng-repeat = "value in row.c" ng-style="{'text-align':($index==0)?'left':'right'}"> {{((value.v=="Retailer 1")||(value.v=="Retailer 2")||(value.v=="Traditional Trade")||(value.v=="e-Mall"))?Label.getContent(value.v):value.v}}</td>
-			</tr>
-		</tbody>
-	</table>
+                    <market-rural-elecssories-consumer-share ng-show='RuralElecssoriesConsumerShare' is-page-shown='RuralElecssoriesConsumerShare' is-page-loading='isPageLoading'></market-rural-elecssories-consumer-share>
+
+                    <market-urban-elecssories-consumer-share ng-show='UrbanElecssoriesConsumerShare' is-page-shown='UrbanElecssoriesConsumerShare' is-page-loading='isPageLoading'></market-urban-elecssories-consumer-share>
+
+                    <market-rural-health-beauties-consumer-share ng-show='RuralHealthBeautiesConsumerShare' is-page-shown='RuralHealthBeautiesConsumerShare' is-page-loading='isPageLoading'></market-rural-health-beauties-consumer-share>
+
+                    <market-urban-health-beauties-consumer-share ng-show='UrbanHealthBeautiesConsumerShare' is-page-shown='UrbanHealthBeautiesConsumerShare' is-page-loading='isPageLoading'></market-urban-health-beauties-consumer-share>
+
+                    <market-rural-elecssories-consumer-sales ng-show='RuralElecssoriesConsumerSales' is-page-shown='RuralElecssoriesConsumerSales' is-page-loading='isPageLoading'></market-rural-elecssories-consumer-sales>
+
+                    <market-urban-elecssories-consumer-sales ng-show='UrbanElecssoriesConsumerSales' is-page-shown='UrbanElecssoriesConsumerSales' is-page-loading='isPageLoading'></market-urban-elecssories-consumer-sales>
+
+                    <market-rural-health-beauties-consumer-sales ng-show='RuralHealthBeautiesConsumerSales' is-page-shown='RuralHealthBeautiesConsumerSales' is-page-loading='isPageLoading'></market-rural-health-beauties-consumer-sales>
+
+                    <market-urban-health-beauties-consumer-sales ng-show='UrbanHealthBeautiesConsumerSales' is-page-shown='UrbanHealthBeautiesConsumerSales' is-page-loading='isPageLoading'></market-urban-health-beauties-consumer-sales>
+
+                    <market-rural-elecssories-shopper-share ng-show='RuralElecssoriesShopperShare' is-page-shown='RuralElecssoriesShopperShare' is-page-loading='isPageLoading'></market-rural-elecssories-shopper-share>
+
+                    <market-urban-elecssories-shopper-share ng-show='UrbanElecssoriesShopperShare' is-page-shown='UrbanElecssoriesShopperShare' is-page-loading='isPageLoading'></market-urban-elecssories-shopper-share>
+
+                    <market-rural-health-beauties-shopper-share ng-show='RuralHealthBeautiesShopperShare' is-page-shown='RuralHealthBeautiesShopperShare' is-page-loading='isPageLoading'></market-rural-health-beauties-shopper-share>
+
+                    <market-urban-health-beauties-shopper-share ng-show='UrbanHealthBeautiesShopperShare' is-page-shown='UrbanHealthBeautiesShopperShare' is-page-loading='isPageLoading'></market-urban-health-beauties-shopper-share>
+
+                    <market-rural-elecssories-shopper-sales ng-show='RuralElecssoriesShopperSales' is-page-shown='RuralElecssoriesShopperSales' is-page-loading='isPageLoading'></market-rural-elecssories-shopper-sales>
+
+                    <market-urban-elecssories-shopper-sales ng-show='UrbanElecssoriesShopperSales' is-page-shown='UrbanElecssoriesShopperSales' is-page-loading='isPageLoading'></market-urban-elecssories-shopper-sales>
+
+                    <market-rural-health-beauties-shopper-sales ng-show='RuralHealthBeautiesShopperSales' is-page-shown='RuralHealthBeautiesShopperSales' is-page-loading='isPageLoading'></market-rural-health-beauties-shopper-sales>
+
+                    <market-urban-health-beauties-shopper-sales ng-show='UrbanHealthBeautiesShopperSales' is-page-shown='UrbanHealthBeautiesShopperSales' is-page-loading='isPageLoading'></market-urban-health-beauties-shopper-sales>
+
+                    <market-b-m-elecssories ng-show='BMElecssories' is-page-shown='BMElecssories' is-page-loading='isPageLoading'></market-b-m-elecssories>
+
+                    <market-b-m-health-beauties ng-show='BMHealthBeauties' is-page-shown='BMHealthBeauties' is-page-loading='isPageLoading'></market-b-m-health-beauties>
+
+                    <market-promotion-elecssories ng-show='PromotionElecssories' is-page-shown='PromotionElecssories' is-page-loading='isPageLoading'></market-promotion-elecssories>
+
+                    <market-promotion-health-beauties ng-show='PromotionHealthBeauties' is-page-shown='PromotionHealthBeauties' is-page-loading='isPageLoading'></market-promotion-health-beauties>
+
+                    <market-supplier-intelligence ng-show='SupplierIntelligence' is-page-shown='SupplierIntelligence' is-page-loading='isPageLoading'></market-supplier-intelligence>
+
+                    <market-retailer-intelligence ng-show='RetailerIntelligence' is-page-shown='RetailerIntelligence' is-page-loading='isPageLoading'></market-retailer-intelligence>
+
+                    <market-forecasts-consumer ng-show='ForecastsConsumer' is-page-shown='ForecastsConsumer' is-page-loading='isPageLoading'></market-forecasts-consumer>
+                    <market-forecasts-shopper ng-show='ForecastsShopper' is-page-shown='ForecastsShopper' is-page-loading='isPageLoading'></market-forecasts-shopper>
+                    <market-forecasts-category ng-show='ForecastsCategory' is-page-shown='ForecastsCategory' is-page-loading='isPageLoading'></market-forecasts-category>
+                    <market-forecasts-internet ng-show='ForecastsInternet' is-page-shown='ForecastsInternet' is-page-loading='isPageLoading'></market-forecasts-internet>
+
+                <!--market report end-->
+
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="bs-docs-sidebar hidden-print" affix='10' role="complementary" angular-bootstrap>
+                <ul class="nav bs-docs-sidenav">
+                    
+                    <li class="active">
+                        <a href="/#/marketReport" style="color:#D9534F" ng-click='showAwarenessElecssories()'>{{Label.getContent('Awareness')}}</a>
+                        <ul class="nav second-sidenav">
+                            <li class="active">
+                                <a href="/#/marketReport" style="color:#D9534F" ng-click='showAwarenessElecssories()'>{{Label.getContent('Elecssories')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/marketReport" style="color:#D9534F" ng-click='showAwarenessHealthBeauties()'>{{Label.getContent('HealthBeauties')}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="/#/marketReport" style="color:#D9534F" ng-click='showRuralElecssoriesBrand()'>{{Label.getContent('Brand')}}{{Label.getContent('Perceptions')}}</a>
+                        <ul class="nav second-sidenav">
+                            <li class="">
+                                <a href="/#/marketReport" style="color:#D9534F" ng-click='showRuralElecssoriesBrand()'>{{Label.getContent('Elecssories')}}-{{Label.getContent('Rural')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/marketReport" style="color:#D9534F" ng-click='showUrbanElecssoriesBrand()'>{{Label.getContent('Elecssories')}}-{{Label.getContent('Urban')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/marketReport" style="color:#D9534F" ng-click='showRuralHealthBeautiesBrand()'>{{Label.getContent('HealthBeauties')}}-{{Label.getContent('Rural')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/marketReport" style="color:#D9534F" ng-click='showUrbanHealthBeautiesBrand()'>{{Label.getContent('HealthBeauties')}}-{{Label.getContent('Urban')}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="/#/marketReport" style="color:#D9534F" ng-click='showRetailerPerceptions()'>{{Label.getContent('Retailer Perceptions')}}</a>
+                    </li>
+                    <li class="">
+                        <a href="/#/marketReport" style="color:#D9534F;text-decoration: line-through;" ng-click='showRuralElecssoriesConsumerShare()'>{{Label.getContent('Market Shares by Consumer Segment')}}</a>
+                        <ul class="nav second-sidenav">
+                            <li class="">
+                                <a href="/#/marketReport" style="color:#D9534F;text-decoration: line-through;" ng-click='showRuralElecssoriesConsumerShare()'>{{Label.getContent('Elecssories')}}-{{Label.getContent('Rural')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/marketReport" style="color:#D9534F;text-decoration: line-through;" ng-click='showUrbanElecssoriesConsumerShare()'>{{Label.getContent('Elecssories')}}-{{Label.getContent('Urban')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/marketReport" style="color:#D9534F;text-decoration: line-through;" ng-click='showRuralHealthBeautiesConsumerShare()'>{{Label.getContent('HealthBeauties')}}-{{Label.getContent('Rural')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/marketReport" style="color:#D9534F;text-decoration: line-through;" ng-click='showUrbanHealthBeautiesConsumerShare()'>{{Label.getContent('HealthBeauties')}}-{{Label.getContent('Urban')}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="/#/marketReport" style="color:#D9534F;text-decoration: line-through;" ng-click='showRuralElecssoriesConsumerSales()'>{{Label.getContent('Sales by Consumer Segment')}}</a>
+                        <ul class="nav second-sidenav">
+                            <li class="">
+                                <a href="/#/marketReport" style="color:#D9534F;text-decoration: line-through;" ng-click='showRuralElecssoriesConsumerSales()'>{{Label.getContent('Elecssories')}}-{{Label.getContent('Rural')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/marketReport" style="color:#D9534F;text-decoration: line-through;" ng-click='showUrbanElecssoriesConsumerSales()'>{{Label.getContent('Elecssories')}}-{{Label.getContent('Urban')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/marketReport" style="color:#D9534F;text-decoration: line-through;" ng-click='showRuralHealthBeautiesConsumerSales()'>{{Label.getContent('HealthBeauties')}}-{{Label.getContent('Rural')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/marketReport" style="color:#D9534F;text-decoration: line-through;" ng-click='showUrbanHealthBeautiesConsumerSales()'>{{Label.getContent('HealthBeauties')}}-{{Label.getContent('Urban')}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="/#/marketReport" style="color:#D9534F;text-decoration: line-through;" ng-click='showRuralElecssoriesShopperShare()'>{{Label.getContent('Market Shares by Shopper Segment')}}</a>
+                        <ul class="nav second-sidenav">
+                            <li class="">
+                                <a href="/#/marketReport" style="color:#D9534F;text-decoration: line-through;" ng-click='showRuralElecssoriesShopperShare()'>{{Label.getContent('Elecssories')}}-{{Label.getContent('Rural')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/marketReport" style="color:#D9534F;text-decoration: line-through;" ng-click='showUrbanElecssoriesShopperShare()'>{{Label.getContent('Elecssories')}}-{{Label.getContent('Urban')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/marketReport" style="color:#D9534F;text-decoration: line-through;" ng-click='showRuralHealthBeautiesShopperShare()'>{{Label.getContent('HealthBeauties')}}-{{Label.getContent('Rural')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/marketReport" style="color:#D9534F;text-decoration: line-through;" ng-click='showUrbanHealthBeautiesShopperShare()'>{{Label.getContent('HealthBeauties')}}-{{Label.getContent('Urban')}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="/#/marketReport" style="color:#D9534F;text-decoration: line-through;" ng-click='showRuralElecssoriesShopperSales()'>{{Label.getContent('Sales by Shopper Segment')}}</a>
+                        <ul class="nav second-sidenav">
+                            <li class="">
+                                <a href="/#/marketReport" style="color:#D9534F;text-decoration: line-through;" ng-click='showRuralElecssoriesShopperSales()'>{{Label.getContent('Elecssories')}}-{{Label.getContent('Rural')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/marketReport" style="color:#D9534F;text-decoration: line-through;" ng-click='showUrbanElecssoriesShopperSales()'>{{Label.getContent('Elecssories')}}-{{Label.getContent('Urban')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/marketReport" style="color:#D9534F;text-decoration: line-through;" ng-click='showRuralHealthBeautiesShopperSales()'>{{Label.getContent('HealthBeauties')}}-{{Label.getContent('Rural')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/marketReport" style="color:#D9534F;text-decoration: line-through;" ng-click='showUrbanHealthBeautiesShopperSales()'>{{Label.getContent('HealthBeauties')}}-{{Label.getContent('Urban')}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="/#/marketReport" style="color:#D9534F" ng-click='showBMElecssories()'>{{Label.getContent('B&M Retail Prices')}}</a>
+                        <ul class="nav second-sidenav">
+                            <li class="">
+                                <a href="/#/marketReport" style="color:#D9534F" ng-click='showBMElecssories()'>{{Label.getContent('Elecssories')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/marketReport" style="color:#D9534F" ng-click='showBMHealthBeauties()'>{{Label.getContent('HealthBeauties')}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="/#/marketReport" style="color:#D9534F" ng-click='showPromotionElecssories()'>{{Label.getContent('Promotion Intensity')}}</a>
+                        <ul class="nav second-sidenav">
+                            <li class="">
+                                <a href="/#/marketReport" style="color:#D9534F" ng-click='showPromotionElecssories()'>{{Label.getContent('Elecssories')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/marketReport" style="color:#D9534F" ng-click='showPromotionHealthBeauties()'>{{Label.getContent('HealthBeauties')}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="/#/marketReport" style="color:#D9534F" ng-click='showSupplierIntelligence()'>{{Label.getContent('Supplier Intelligence')}}</a>
+                    </li>
+                    <li class="">
+                        <a href="/#/marketReport" style="color:#D9534F" ng-click='showRetailerIntelligence()'>{{Label.getContent('Retailer Intelligence')}}</a>
+                    </li>
+                    <li class="">
+                        <a href="/#/marketReport" style="color:#D9534F;text-decoration: line-through;" ng-click='showForecastsConsumer()'>{{Label.getContent('Forecasts')}}</a>
+                        <ul class="nav second-sidenav">
+                            <li class="">
+                                <a href="/#/marketReport" style="color:#D9534F;text-decoration: line-through;" ng-click='showForecastsConsumer()'>{{Label.getContent('Consumer Segment Size')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/marketReport" style="color:#D9534F;text-decoration: line-through;" ng-click='showForecastsShopper()'>{{Label.getContent('Shopper Segment Size')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/marketReport" style="color:#D9534F;text-decoration: line-through;" ng-click='showForecastsCategory()'>{{Label.getContent('Category Volume s by Market')}}</a>
+                            </li>
+                            <li class="">
+                                <a href="/#/marketReport" style="color:#D9534F;text-decoration: line-through;" ng-click='showForecastsInternet()'>{{Label.getContent('Internet Penetration Rates')}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
-
-
-
