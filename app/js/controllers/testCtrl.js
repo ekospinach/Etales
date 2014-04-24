@@ -1,6 +1,6 @@
 define(['app','socketIO','routingConfig','bootstrap'], function(app) {
 
-	app.controller('testCtrl',['$scope', '$http','$location', 'ProducerDecisionBase','$rootScope','Auth','Label', function($scope, $http,$location, ProducerDecisionBase,$rootScope,Auth,Label) {
+	app.controller('testCtrl',['$scope', '$http','$location', 'ProducerDecisionBase','$rootScope','Auth','Label', function($scope, $http,$location, ProducerDecisionBase,$rootScope,Auth,Label,WizardHandler) {
 		// You can access the scope of the controller from here
 			$rootScope.loginCss="";
 		    $rootScope.loginFooter="bs-footer";
@@ -45,6 +45,18 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
 		$scope.testExport=function(){
 			window.location = '/excel';
 		}
+
+        $scope.finished = function() {
+            alert("Wizard finished :)");
+        }
+
+        $scope.logStep = function() {
+            console.log("Step continued");
+        }
+
+        $scope.goBack = function() {
+            WizardHandler.wizard().goTo(0);
+        }
 
 		$scope.testPassive = function(period){
 		  var postData = {
