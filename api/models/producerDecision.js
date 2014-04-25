@@ -13,12 +13,20 @@ var proVarDecisionSchema = mongoose.Schema({
     dateOfBirth : Number,
     dateOfDeath : Number,
     composition : [Number], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+    discontinue : Boolean,
     production : Number,
     currentPriceBM : Number,
-    currentPriceEmall : Number,
-    discontinue : Boolean,
     nextPriceBM : Number,
-    nextPriceEmall : Number
+
+    //Modified by Hao, 2014-Apr-23
+    // currentPriceEmall : Number,
+    // nextPriceEmall : Number,
+    onlinePrice : Number,
+    onlinePlannedVolume : Number,
+    pricePromotions : {
+        promo_Frequency : Number, //range: 0~52
+        promo_Rate : Number //0~1        
+    }
 })
 
 var proBrandDecisionSchema = mongoose.Schema({
