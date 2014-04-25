@@ -72,6 +72,7 @@
 	'directives/TE_SD_bMListPrices',
 	'directives/TE_SD_productionVolume',
 	'directives/TE_SD_generalMarketing',
+	'directives/TE_SD_onlineStoreManagement',
 	'angularRoute',
 	'angularXeditable',
 	'angularBootstrap',

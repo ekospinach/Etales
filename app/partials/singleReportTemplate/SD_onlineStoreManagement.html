@@ -1,0 +1,89 @@
+<div class="pull-right" style="width:400px">
+    <progress percent="percentageExpend" class="progress-primary"></progress>
+    <small>
+        <em>{{Label.getContent('Available Budget')}}:<strong>{{surplusExpend.toFixed(2)}}</strong></em>
+    </small>
+    <progress percent="elePercentageProduction" class="progress-suceess"></progress>
+    <small>
+        <em>{{Label.getContent('Elecssories')}} {{Label.getContent('Producer Available Capacity')}}: <strong>{{eleSurplusProduction.toFixed(2)}}</strong></em>
+    </small>
+    <progress percent="heaPercentageProduction" class="progress-danger"></progress>
+    <small>
+        <em>{{Label.getContent('HealthBeauties')}} {{Label.getContent('Producer Available Capacity')}}: <strong>{{heaSurplusProduction.toFixed(2)}}</strong></em>
+    </small>
+</div>
+<div style="clear:both;padding:1px 0" ng-show='isResultShown'></div>
+<div class='panel panel-primary my-success-panel' ng-show='isResultShown'>
+	<div class="panel-heading">
+        <h3 class="panel-title text-center" popover="{{Label.getContent('Online Store Management Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
+            {{Label.getContent('Online Store Management')}}
+        </h3>
+    </div>
+    <table class="table table-condensed table-bordered table-success">
+    	<thead>
+    		<tr>
+    			<!-- <th colspan="5">{{Label.getContent('Elecssories')}}</th> -->
+                <th colspan="5"></th>
+    			<th colspan="2">
+                    <p class="text-center">{{Label.getContent('Promotions')}}</p>
+                </th>
+    		</tr>
+            <tr>
+                <th>
+                    <p class="text-center">{{Label.getContent('Brand')}}</p>
+                </th>
+                <th></th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Visibility')}}($mln)</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Order Volumes')}}(units mln)</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Prices')}}($mln)</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Frequency')}}({{Label.getContent('Days')}})</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Depth')}}(%)</p>
+                </th>
+            </tr> 
+            <tr class="success">
+                <td colspan="7">{{Label.getContent('Elecssories')}}</td>
+            </tr> 
+    	</thead>
+        <tbody ng-repeat='brande in brandes'>
+            
+                <tr class="success">
+                    <td colspan="2">
+                        <p class="padding-20">
+                            {{brande.brandName}}
+                        </p>
+                    </td>
+                    <td>
+                        <a href="#" editable-text="brande.supportEmall" onbeforesave="checkData('Elecssories',brande.brandName,'supportEmall','1',$index,$data)" onaftersave="updateProducerDecision(category,brande.brandName,'supportEmall','1',$index)">
+                            <p class="text-right">{{ brande.supportEmall || 0 }}</p>
+                        </a>
+                    </td>
+                    <td colspan="4"></td>
+                </tr>
+                <tr ng-repeat='var in brande.proVarDecision' ng-if="var.varName!=''">
+                    <td></td>
+                    <td>
+                        <p class="padding-20">{{brande.brandName}}{{var.varName}}</p>
+                    </td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                </tr>
+        </tbody>
+        <tbody>
+
+            <tr class="danger">
+                <td colspan="7">{{Label.getContent('HealthBeauties')}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
