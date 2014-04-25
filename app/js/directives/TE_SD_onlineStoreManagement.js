@@ -91,14 +91,13 @@ define(['directives', 'services'], function(directives){
                     return d.promise;
                 }
 
-                scope.updateProducerDecision=function(category,brandName,location,tep,index){
+                scope.updateBrandDecision=function(category,brandName,location,tep,index){
                     var categoryID;
                     if(category=="Elecssories"){
                         categoryID=1;
-                            if(location=="supportTraditionalTrade"||location=="advertisingOffLine"){
+                        if(location=="supportTraditionalTrade"||location=="advertisingOffLine"){
                             ProducerDecisionBase.setProducerDecisionBrand(categoryID,brandName,location,tep,scope.brandes[index][location][tep]);                           
-                        }
-                        else{
+                        }else{
                             ProducerDecisionBase.setProducerDecisionBrand(categoryID,brandName,location,tep,scope.brandes[index][location]);                                                    
                         }
                     }
@@ -111,6 +110,17 @@ define(['directives', 'services'], function(directives){
                             ProducerDecisionBase.setProducerDecisionBrand(categoryID,brandName,location,tep,scope.brandhs[index][location]);                                                    
                         }
                     }
+                }
+
+                scope.updateVariantDecision=function(category,brandName,varName,location,additionalIdx,index,value){
+                    console.log(value);
+                    var categoryID;
+                    if(category=="Elecssories"){
+                        categoryID=1;
+                    }else{
+                        categoryID=2;
+                    }
+                    ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,additionalIdx,value);                         
                 }
 
                 var showView=function(){

@@ -43,7 +43,7 @@
                     <p class="text-center">{{Label.getContent('Prices')}}($mln)</p>
                 </th>
                 <th>
-                    <p class="text-center">{{Label.getContent('Frequency')}}({{Label.getContent('Days')}})</p>
+                    <p class="text-center">{{Label.getContent('Frequency')}}({{Label.getContent('days')}})</p>
                 </th>
                 <th>
                     <p class="text-center">{{Label.getContent('Depth')}}(%)</p>
@@ -53,37 +53,89 @@
                 <td colspan="7">{{Label.getContent('Elecssories')}}</td>
             </tr> 
     	</thead>
-        <tbody ng-repeat='brande in brandes'>
-            
-                <tr class="success">
-                    <td colspan="2">
-                        <p class="padding-20">
-                            {{brande.brandName}}
-                        </p>
-                    </td>
-                    <td>
-                        <a href="#" editable-text="brande.supportEmall" onbeforesave="checkData('Elecssories',brande.brandName,'supportEmall','1',$index,$data)" onaftersave="updateProducerDecision(category,brande.brandName,'supportEmall','1',$index)">
-                            <p class="text-right">{{ brande.supportEmall || 0 }}</p>
-                        </a>
-                    </td>
-                    <td colspan="4"></td>
-                </tr>
-                <tr ng-repeat='var in brande.proVarDecision' ng-if="var.varName!=''">
-                    <td></td>
-                    <td>
-                        <p class="padding-20">{{brande.brandName}}{{var.varName}}</p>
-                    </td>
-                    <td>0</td>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                </tr>
-        </tbody>
-        <tbody>
-
-            <tr class="danger">
-                <td colspan="7">{{Label.getContent('HealthBeauties')}}</td>
+        <thead ng-repeat='brande in brandes'>
+            <tr class="success">
+                <td colspan="2">
+                    <p class="padding-20">
+                        {{brande.brandName}}
+                    </p>
+                </td>
+                <td>
+                    <a href="#" editable-text="brande.supportEmall" onbeforesave="checkData('Elecssories',brande.brandName,'supportEmall','1',$index,$data)" onaftersave="updateBrandDecision('Elecssories',brande.brandName,'supportEmall','1',$index)">
+                        <p class="text-right">{{ brande.supportEmall || 0 }}</p>
+                    </a>
+                </td>
+                <td colspan="4"></td>
             </tr>
-        </tbody>
+            <tr class="success" ng-repeat='var in brande.proVarDecision' ng-if="var.varName!=''">
+                <td></td>
+                <td>
+                    <p class="padding-20">{{brande.brandName}}{{var.varName}}</p>
+                </td>
+                <td></td>
+                <td>
+                    <a href="#" editable-text="var.onlinePlannedVolume" onaftersave="updateVariantDecision('Elecssories',brande.brandName,var.varName,'onlinePlannedVolume','0',$index,$data)">
+                        <p class="text-right">{{ var.onlinePlannedVolume || 0 }}</p>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" editable-text="var.onlinePrice" onaftersave="updateVariantDecision('Elecssories',brande.brandName,var.varName,'onlinePrice','0',$index,$data)">
+                        <p class="text-right">{{ var.onlinePrice || 0 }}</p>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" editable-text="var.pricePromotions.promo_Frequency" onaftersave="updateVariantDecision('Elecssories',brande.brandName,var.varName,'pricePromotions','0',$index,$data)">
+                        <p class="text-right">{{ var.pricePromotions.promo_Frequency || 0 }}</p>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" editable-text="var.pricePromotions.promo_Rate" onaftersave="updateVariantDecision('Elecssories',brande.brandName,var.varN,'pricePromotions','1',$index,$data)">
+                        <p class="text-right">{{ var.pricePromotions.promo_Rate || 0 }}</p>
+                    </a>
+                </td>
+            </tr>
+        </thead>
+        <thead ng-repeat='brandh in brandhs'>
+            <tr class="danger">
+                <td colspan="2">
+                    <p class="padding-20">
+                        {{brandh.brandName}}
+                    </p>
+                </td>
+                <td>
+                    <a href="#" editable-text="brandh.supportEmall" onbeforesave="checkData('HealthBeauty',brandh.brandName,'supportEmall','1',$index,$data)" onaftersave="updateBrandDecision('HealthBeauty',brandh.brandName,'supportEmall','1',$index)">
+                        <p class="text-right">{{ brandh.supportEmall || 0 }}</p>
+                    </a>
+                </td>
+                <td colspan="4"></td>
+            </tr>
+            <tr class="danger" ng-repeat='var in brandh.proVarDecision' ng-if="var.varName!=''">
+                <td></td>
+                <td>
+                    <p class="padding-20">{{brandh.brandName}}{{var.varName}}</p>
+                </td>
+                <td></td>
+                <td>
+                    <a href="#" editable-text="var.onlinePlannedVolume" onaftersave="updateVariantDecision('HealthBeauty',brandh.brandName,var.varName,'onlinePlannedVolume','0',$index,$data)">
+                        <p class="text-right">{{ var.onlinePlannedVolume || 0 }}</p>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" editable-text="var.onlinePrice" onaftersave="updateVariantDecision('HealthBeauty',brandh.brandName,var.varName,'onlinePrice','0',$index,$data)">
+                        <p class="text-right">{{ var.onlinePrice || 0 }}</p>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" editable-text="var.pricePromotions.promo_Frequency" onaftersave="updateVariantDecision('HealthBeauty',brandh.brandName,var.varName,'pricePromotions','0',$index,$data)">
+                        <p class="text-right">{{ var.pricePromotions.promo_Frequency || 0 }}</p>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" editable-text="var.pricePromotions.promo_Rate" onaftersave="updateVariantDecision('HealthBeauty',brandh.brandName,var.varN,'pricePromotions','1',$index,$data)">
+                        <p class="text-right">{{ var.pricePromotions.promo_Rate || 0 }}</p>
+                    </a>
+                </td>
+            </tr>
+        </thead>
     </table>
 </div>

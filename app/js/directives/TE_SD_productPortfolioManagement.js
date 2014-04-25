@@ -77,13 +77,17 @@ define(['directives', 'services'], function(directives){
                     nullDecision.composition=new Array(1,1,1);
                     nullDecision.production=0;
                     nullDecision.currentPriceBM=0;
-                    nullDecision.currentPriceEmall=0;
                     nullDecision.discontinue=false;
                     nullDecision.nextPriceBM=0;
-                    nullDecision.nextPriceEmall=0;
                     nullDecision.parentBrandID=0;
                     nullDecision.varName="";/*need check*/
                     nullDecision.varID=0;/*need check*/
+                    nullDecision.onlinePrice=0;
+                    nullDecision.onlinePlannedVolume=0;
+                    nullDecision.pricePromotions={
+                        promo_Frequency : 0, //range: 0~52
+                        promo_Rate : 0 //0~1        
+                    };
 
                     var newproducerDecision=new ProducerDecision();
                     newproducerDecision.packFormat="ECONOMY";
@@ -92,10 +96,14 @@ define(['directives', 'services'], function(directives){
                     newproducerDecision.composition=new Array(1,1,1);
                     newproducerDecision.production=0;
                     newproducerDecision.currentPriceBM=0;
-                    newproducerDecision.currentPriceEmall=0;
                     newproducerDecision.discontinue=false;
                     newproducerDecision.nextPriceBM=0;
-                    newproducerDecision.nextPriceEmall=0;
+                    newproducerDecision.onlinePrice=0;
+                    newproducerDecision.onlinePlannedVolume=0;
+                    newproducerDecision.pricePromotions={
+                        promo_Frequency : 0, //range: 0~52
+                        promo_Rate : 0 //0~1        
+                    };
                     var url="";
                     if(parameter=="NewBrand"){/*lauch new Brand*/
                         var proBrandsDecision=_.find(scope.pageBase.proCatDecision,function(obj){
@@ -188,7 +196,6 @@ define(['directives', 'services'], function(directives){
                                             products[count].packFormat=3;
                                         }
                                         products[count].currentPriceBM=parseFloat(products[count].currentPriceBM).toFixed(2);
-                                        products[count].currentPriceEmall=parseFloat(products[count].currentPriceEmall).toFixed(2);
                                         count++;
                                     }
                                 }
