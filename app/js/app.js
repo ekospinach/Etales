@@ -73,6 +73,8 @@
 	'directives/TE_SD_productionVolume',
 	'directives/TE_SD_generalMarketing',
 	'directives/TE_SD_onlineStoreManagement',
+	'directives/TE_SD_assetInvestments',
+	'directives/TE_RD_marketing',
 	'angularRoute',
 	'angularXeditable',
 	'angularBootstrap',

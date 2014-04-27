@@ -161,7 +161,7 @@ define(['directives', 'services'], function(directives){
                         scope.isPageLoading = false;  
                     },function(data){
                         d.reject(Label.getContent('showView fail'));
-                    }); 
+                    });
                     return d.promise;       
                 }
 

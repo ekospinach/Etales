@@ -1,0 +1,69 @@
+<style TYPE="text/css">
+
+    .table-bordered > thead > tr > th,
+    .table-bordered > tbody > tr > th,
+    .table-bordered > tfoot > tr > th,
+    .table-bordered > thead > tr > td,
+    .table-bordered > tbody > tr > td,
+    .table-bordered > tfoot > tr > td {
+      border: 1px solid #428BCA;
+      border-right: none;
+    }
+    @media (min-width: 1200px) {
+      /* Widen the fixed sidebar again */
+      .bs-docs-sidebar.affix-bottom,
+      .bs-docs-sidebar.affix {
+        width: 25%;
+      }
+    }
+
+    .my-super-awesome-loading-box {
+      padding: 10px;
+      text-align: center;
+      border: 0px solid gray;
+      background: #EFEFEF;
+    }
+
+</style>
+
+<div class="my-super-awesome-loading-box" ng-show="isPageLoading">Loading...</div>
+
+<div class="container bs-docs-container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="bs-docs-section">
+                <retailer-negotiation-agreements ng-show='NegotiationAgreements' is-page-shown='NegotiationAgreements' is-page-loading='isPageLoading'></retailer-negotiation-agreements>
+
+                <retailer-marketing ng-show='Marketing' is-page-shown='Marketing' is-page-loading='isPageLoading'></retailer-marketing>
+
+                <retailer-privateLabel-portfolio-management ng-show='PrivateLabelPortfolioManagement' is-page-shown='PrivateLabelPortfolioManagement' is-page-loading='isPageLoading'></retailer-privateLabel-portfolio-management>
+
+                <retailer-store-management ng-show='StoreManagement' is-page-shown='StoreManagement' is-page-loading='isPageLoading'></retailer-store-management>
+
+                <retailer-market-research-orders ng-show='MarketResearchOrders' is-page-shown='MarketResearchOrders' is-page-loading='isPageLoading'></retailer-market-research-orders>
+                
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="bs-docs-sidebar hidden-print" affix='200' role="complementary" angular-bootstrap>
+                <ul class="nav bs-docs-sidenav">
+                    <li class="active">
+                        <a href="/#/retailerDecision" style="color:#428BCA" ng-click="showNegotiationAgreements()">{{Label.getContent('Negotiation Agreements')}}</a>
+                    </li>
+                    <li class="">
+                        <a href="/#/retailerDecision" style="color:#428BCA" ng-click='showMarketing()'>{{Label.getContent('Marketing')}}</a>
+                    </li>
+                    <li class="">
+                        <a href="/#/retailerDecision" style="color:#428BCA" ng-click='showPrivateLabelPortfolioManagement()'>{{Label.getContent('Private Label Portfolio Management')}}</a>
+                    </li>
+                    <li class="">
+                        <a href="/#/retailerDecision" style="color:#428BCA" ng-click='showStoreManagement()'>{{Label.getContent('Store Management')}}</a>
+                    </li>
+                    <li class="">
+                        <a href="/#/retailerDecision" style="color:#428BCA" ng-click='showMarketResearchOrders()'>{{Label.getContent('Market Research Orders')}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
