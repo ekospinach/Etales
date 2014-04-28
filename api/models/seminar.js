@@ -261,6 +261,21 @@ exports.setCurrentPeriod = function(req, res, next){
 		})
 }
 
+exports.deleteSeminar = function(req, res, next){
+	seminar.findOne({seminarCode:req.body.seminarCode},function(err,doc){
+		if(err){
+			next(new Error(err));
+		}
+		if(!doc){
+			console.log("cannot find matched doc....");
+			res.send(404,'cannot find matched doc....');
+		}else{
+			doc.remove();
+			res.send(200,'delete');
+		}
+	});
+}
+
 exports.addSeminar=function(req,res,next){
 	var Newseminar = new seminar({
 		seminarCode: req.body.seminarCode,
