@@ -24,19 +24,21 @@ define(['directives', 'services'], function(directives){
                     scope.logs = [];
                     scope.logs.push('Sending GET : ' + url );
 
-
                     $http({
                         method:'GET',
                         url:url,
                         //tracker: scope.loadingTracker
-                    }).then(function(data){   
+                    }).then(function(data){ 
+                        console.log(data);
                         return organiseArray(data);
+
                     }).then(function(data){
                         if(!scope.logs){scope.logs = [];}
                         scope.logs.push(data.msg);                                            
 
                         scope.isResultShown = true;
                         scope.isPageLoading = false;                                                                         
+
                     },function(data){
                         if(!scope.logs){scope.logs = [];}
                         scope.logs.push(data.msg);                                            
@@ -45,7 +47,6 @@ define(['directives', 'services'], function(directives){
 
                 var organiseArray = function(data){
                     var deferred = $q.defer();
-
                     if(data.data[0]){
                         scope.operatingProfits=new Array();
                         scope.cumulativeInvestments=new Array();
@@ -65,16 +66,18 @@ define(['directives', 'services'], function(directives){
                         }                    
                         deferred.resolve({msg:'Array is ready.'});                    
                     } else {
-                        deferred.reject({msg:''})
+                        deferred.reject({msg:'data.data[0] is undefined'});
                     }
                     return deferred.promise;
                 }
-
+                
                 scope.$watch('isPageShown', function(newValue, oldValue){
+                    console.log('watch is actived');
                     if(newValue==true) {
                         initializePage();
                     }
                 })
+
 
             }
         }

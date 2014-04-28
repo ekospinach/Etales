@@ -1,5 +1,4 @@
-﻿program SCR_sharesCrossSegment;
-
+program SCR_sharesCrossSegment;
 
 uses
   SysUtils,Windows,Classes, superobject, HCD_SystemDefinitions, System.TypInfo, inifiles,
@@ -15,7 +14,6 @@ var
   DataDirectory : string;
   sListData: tStrings;
   sValue : string;
-
   currentResult : TAllResults;
   currentPeriod : TPeriodNumber;
   currentProducer : TAllProducers;
@@ -23,21 +21,20 @@ var
   vReadRes : Integer;
   oJsonFile : ISuperObject;
 
-
-
   function ShopperInfoSchema(fieldIdx: Integer; shopper : TShoppersKind; variant : TVariantCrossSegmentDetails):ISuperObject;
   var
     jo : ISuperObject;
-    ShopperStr : string;    
+    ShopperStr : string;
+    segmentID : integer;
   begin
     jo := SO;
     case Shopper of
-       BMS: ShopperStr := 'BMS'; 
-       NETIZENS: ShopperStr := 'NETIZENS';   
-       MIXED: ShopperStr := 'MIXED';  
-       ALLSHOPPERS: ShopperStr := 'ALLSHOPPERS'; 
-       else
-        ShopperStr := 'wrong';
+        BMS         : ShopperStr := 'BMS'; 
+        NETIZENS    : ShopperStr := 'NETIZENS';   
+        MIXED       : ShopperStr := 'MIXED';  
+        ALLSHOPPERS : ShopperStr := 'ALLSHOPPERS'; 
+    else
+        ShopperStr  := 'wrong';
     end;
 
     jo.S['shopperKind'] := ShopperStr;
@@ -89,6 +86,7 @@ var
   var
     s_str : string;
     catID,brandCount,variantCount,marketID : Integer;
+    tempVariant : TVariantCrossSegmentDetails;
   begin
     oJsonFile := SO;
     oJsonFile.S['seminar'] := currentSeminar;
@@ -102,19 +100,21 @@ var
 
     for catID :=  Low(TCategories) to High(TCategories) do 
     begin
-      for brandCount := Low(TBrands) to High(TBrands) do 
+      for brandCount := Low(TProBrands) to High(TProBrands) do 
       begin
         for variantCount := Low(TOneBrandVariants) to High(TOneBrandVariants) do
         begin
           for marketID := Low(TMarkets) to High(TMarkets) do
           begin
-            tempVariant := currentResult.r_MarketResearch.mr_sharesByShopperSegment[marketID, catID, brandCount, variantCount];
-            if (tempVariant.vsd_ParentCompanyID = currentProducer) AND (tempVariant.vsd_VariantName <> '') AND (tempVariant.vsd_ParentBrandName <> '') then
+            tempVariant := currentResult.r_SuppliersConfidentialReports[currentProducer].scr_SharesByCrossSegment[catID, marketID, brandCount, variantCount];
+            if (tempVariant.vsd_Shown = true)
+            AND (tempVariant.vsd_VariantName <> '')
+            AND (tempVariant.vsd_ParentBrandName <> '') then
             begin
                 oJsonFile.A['absoluteValue'].Add( variantInfoSchema(vsd_absoluteValue, catID, marketID, tempVariant) );
-                oJsonFile.A['absoluteVolume'].Add( variantInfoSchema(vsd_absoluteVolume, catID, marketID, tempVariant );
-                oJsonFile.A['valueChange'].Add( variantInfoSchema(vsd_valueChange, catID, marketID, tempVariant );
-                oJsonFile.A['volumeChange'].Add( variantInfoSchema(vsd_volumeChange, catID, marketID, tempVariant );
+                oJsonFile.A['absoluteVolume'].Add( variantInfoSchema(vsd_absoluteVolume, catID, marketID, tempVariant ));
+                oJsonFile.A['valueChange'].Add( variantInfoSchema(vsd_valueChange, catID, marketID, tempVariant ));
+                oJsonFile.A['volumeChange'].Add( variantInfoSchema(vsd_volumeChange, catID, marketID, tempVariant ));
             end;            
           end;
         end;      
@@ -134,7 +134,6 @@ begin
 
     try
       WriteLn('Content-type: application/json');
-
       sValue := getVariable('REQUEST_METHOD');
       if sValue='GET' then
       begin
@@ -164,4 +163,4 @@ begin
     finally
       sListData.Free;
     end;
-end.
+end.2

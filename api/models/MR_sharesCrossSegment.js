@@ -6699,6 +6699,8 @@ exports.getMR_sharesCrossSegment=function(req,res,next){
         'seminar':req.params.seminar,
         'period':req.params.period
     };
+
+    console.log(data);
     MR_sharesCrossSegment.find(data,function(err,docs){
         if(docs){
             res.send(200,docs);

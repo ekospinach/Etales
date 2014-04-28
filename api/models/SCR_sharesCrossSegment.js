@@ -90,10 +90,10 @@ exports.addReports = function(options){
                                             period     : singleReport.period,
                                             producerID : singleReport.producerID},
                                 {
-                                absoluteValue     : absoluteValue,
-                                valueChange       : valueChange,   
-                                absoluteVolume    : absoluteVolume,
-                                volumeChange      : volumeChange,  
+                                absoluteValue     : singleReport.absoluteValue,
+                                valueChange       : singleReport.valueChange,   
+                                absoluteVolume    : singleReport.absoluteVolume,
+                                volumeChange      : singleReport.volumeChange,  
                                 },
                                 {upsert: true},
                                 function(err, numberAffected, raw){
