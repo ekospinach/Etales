@@ -68,14 +68,14 @@ var
       begin
         for variantID := Low(TVariants) to High(TVariants) do 
         begin
-          tempVariant = currentResult.r_RetailersConfidentialReports[currentRetailer].RCR_inventoryVolumes[marketID, catID, variantID];
+          tempVariant := currentResult.r_RetailersConfidentialReports[currentRetailer].RCR_inventoryVolumes[marketID, catID, variantID];
           if (tempVariant.rcrviv_VariantName <> '') AND (tempVariant.rcrviv_ParentBrandName <> '') then
           begin
-            oJsonFile.A['rcrviv_Initial'].Add( variantInfoSchema(rcrviv_Initial, catID, marketID, tempVariant );
-            oJsonFile.A['rcrviv_Purchase'].Add( variantInfoSchema(rcrviv_Purchase, catID, marketID, tempVariant );
-            oJsonFile.A['rcrviv_Sales'].Add( variantInfoSchema(rcrviv_Sales, catID, marketID, tempVariant );
-            oJsonFile.A['rcrviv_Discontinued'].Add( variantInfoSchema(rcrviv_Discontinued, catID, marketID, tempVariant );
-            oJsonFile.A['rcrviv_Closing'].Add( variantInfoSchema(rcrviv_Closing, catID, marketID, tempVariant );
+            oJsonFile.A['rcrviv_Initial'].Add( variantInfoSchema(rcrviv_Initial, catID, marketID, tempVariant) );
+            oJsonFile.A['rcrviv_Purchase'].Add( variantInfoSchema(rcrviv_Purchase, catID, marketID, tempVariant) );
+            oJsonFile.A['rcrviv_Sales'].Add( variantInfoSchema(rcrviv_Sales, catID, marketID, tempVariant ));
+            oJsonFile.A['rcrviv_Discontinued'].Add( variantInfoSchema(rcrviv_Discontinued, catID, marketID, tempVariant ));
+            oJsonFile.A['rcrviv_Closing'].Add( variantInfoSchema(rcrviv_Closing, catID, marketID, tempVariant ));
           end;            
         end;  
       end;

@@ -155,6 +155,9 @@ const
   kernel_VariantsPerception_OK                       = 93432;
   kernel_BrandChoice_OK                              = 93439;
 
+  kernel_ErrorInStoresOrders                         = 93441;
+  kernel_StoresOrders_OK                             = 93449;
+
   kernel_ErrorInStoresWeight                         = 93451;
   kernel_StoresWeight_OK                             = 93452;
   kernel_ErrorInStoresWeightedPrice                  = 93453;

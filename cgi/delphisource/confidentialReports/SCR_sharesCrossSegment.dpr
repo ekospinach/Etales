@@ -21,11 +21,11 @@ var
   vReadRes : Integer;
   oJsonFile : ISuperObject;
 
-  function ShopperInfoSchema(fieldIdx: Integer; shopper : TShoppersKind; variant : TVariantCrossSegmentDetails):ISuperObject;
+  function ShopperInfoSchema(fieldIdx: Integer; segmentID : Integer; shopper : TShoppersKind; variant : TVariantCrossSegmentDetails):ISuperObject;
   var
     jo : ISuperObject;
     ShopperStr : string;
-    segmentID : integer;
+  //  segmentID : integer;
   begin
     jo := SO;
     case Shopper of
@@ -57,7 +57,7 @@ var
     jo.I['segmentID'] := segmentID;
     jo.O['shopperInfo'] := SA([]);
     for Shopper := Low(TShoppersKind) to High(TShoppersKind) do
-      jo.A['shopperInfo'].Add( ShopperInfoSchema(fieldIdx, Shopper, variant) );
+      jo.A['shopperInfo'].Add( ShopperInfoSchema(fieldIdx, segmentID, Shopper, variant) );
 
     result := jo;
   end;
@@ -112,10 +112,10 @@ var
             AND (tempVariant.vsd_ParentBrandName <> '') then
             begin
                 oJsonFile.A['absoluteValue'].Add( variantInfoSchema(vsd_absoluteValue, catID, marketID, tempVariant) );
-                oJsonFile.A['absoluteVolume'].Add( variantInfoSchema(vsd_absoluteVolume, catID, marketID, tempVariant ));
-                oJsonFile.A['valueChange'].Add( variantInfoSchema(vsd_valueChange, catID, marketID, tempVariant ));
-                oJsonFile.A['volumeChange'].Add( variantInfoSchema(vsd_volumeChange, catID, marketID, tempVariant ));
-            end;            
+//                oJsonFile.A['absoluteVolume'].Add( variantInfoSchema(vsd_absoluteVolume, catID, marketID, tempVariant ));
+//                oJsonFile.A['valueChange'].Add( variantInfoSchema(vsd_valueChange, catID, marketID, tempVariant ));
+//                oJsonFile.A['volumeChange'].Add( variantInfoSchema(vsd_volumeChange, catID, marketID, tempVariant ));
+            end;
           end;
         end;      
       end;          

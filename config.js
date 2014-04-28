@@ -65,7 +65,7 @@ module.exports = function(){
 		case 'production':
 			return {
 				cgi : {
-				  port                     : 9000,
+				  port                     : 8080,
 				  host                     : 'localhost',
 				  path_marketReport        : '/cgi-bin/marketReport.exe',
 				  path_lineChart           : '/cgi-bin/lineChart.exe',
@@ -120,7 +120,7 @@ module.exports = function(){
 
 				},
 				server : {
-				  port : 80
+				  port : 9000
 				}
 			}
 		case 'monsoul':

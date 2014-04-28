@@ -176,21 +176,25 @@ var
       end;      
    end;
 
-   function getDataDirectoryForSeminar(seminar : string) : string;
-   begin
-     if ForceDirectories(DataDirectory + seminar + '\') then
-     begin
-         Result := DataDirectory + seminar + '\';
-     end
-     else
-     begin
-         Result := DataDirectory;
-     end;
-   end;
+
 
    procedure Log(content: String);
    begin
       sLoglist.Add(FormatDateTime('[yyyy-MM-dd hh:mm:ss] ',Now) + content);
+   end;
+
+   function getDataDirectoryForSeminar(seminar : string) : string;
+   begin
+     if ForceDirectories(DataDirectory + seminar + '\') then
+     begin
+        Log('Folder ' + DataDirectory + seminar + ' doesn''t exist, force create...');
+         Result := DataDirectory + seminar + '\';
+     end
+     else
+     begin
+        Log('Return : ' + DataDirectory);
+         Result := DataDirectory;
+     end;
    end;
 
    procedure getCurrentConf();
@@ -201,9 +205,8 @@ var
    begin
     with currentConf do
     begin
-      //Log('getCurrentConf2...' + sListData.Values['seminar']);
-      vSeminar  := 'NEW';
-      cr_SimulationSpan  := 6;
+      vSeminar  := sListData.Values['seminar'];
+      cr_SimulationSpan  := StrToInt(sListData.Values['span']);
       cr_TraceActive  := StrToBool(sListData.Values['isTraceActive']);
       if sListData.IndexOfName('isTraditionalTradeActive') <> -1 then cr_TraditionalTradeActive  := StrToBool(sListData.Values['isTraditionalTradeActive']);
       if sListData.IndexOfName('isEMallActive') <> -1 then cr_E_MallActive  := StrToBool(sListData.Values['isEMallActive']);
@@ -243,8 +246,6 @@ var
     end;
   end;
 
-
-
 begin
     sDati := '';
     sListData := TStringList.Create;
@@ -262,30 +263,6 @@ begin
   try
     WriteLn('Content-type: text/html');
     Log('Analysis request method...');
-
-    //for debug
-//    with currentConf do
-//    begin
-//      //Log('getCurrentConf2...' + sListData.Values['seminar']);
-//      cr_TraceActive                 := TRUE;
-//      cr_AdministratorFilesLocation  := 'C:\\EtalesData\\NEW';
-//      aString                        := ParamStr(0);
-//      aString                        := ExtractFilePath( aString );
-//      StrPLCopy( cr_ProgramsFilesLocation, IncludeTrailingPathDelimiter( aString ), PathLengthMax - 1 );
-//      aString := 'MAY';
-//      StrPLCopy( cr_SeminarCode, aString, SeminarCodeLength - 1 );
-//      cr_Market_1_ID                 := 1;
-//      cr_Market_2_ID                 := 2;
-//      cr_Category_1_ID               := 1;
-//      cr_Category_2_ID               := 2;
-//      cr_TraditionalTradeActive      := FALSE;
-//      cr_E_MallActive                := FALSE;
-//      cr_VirtualSupplierActive       := FALSE;
-//      cr_ForceNextDecisionsOverwrite := TRUE;
-//      Log('assign currentConf complete.');
-//    end;
-//    Writeln(initializeFileandResult(currentConf));
-
 
     sValue := getVariable('REQUEST_METHOD');
     if sValue='GET' then
