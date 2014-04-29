@@ -209,6 +209,7 @@ exports.updateProducerDecision = function(io){
                                     var index=0;
                                     switch(queryCondition.behaviour){
                                         case 'addProductNewBrand':
+                                        console.log(queryCondition.value);
                                             for (var i = 0; i < doc.proCatDecision.length; i++) {
                                                 if(doc.proCatDecision[i].categoryID == queryCondition.categoryID){
                                                     for(var j=0;j<doc.proCatDecision[i].proBrandsDecision.length;j++){
@@ -222,6 +223,7 @@ exports.updateProducerDecision = function(io){
                                             };
                                             break;
                                         case 'addProductExistedBrand':
+                                        console.log(queryCondition.value);
                                             for (var i = 0; i < doc.proCatDecision.length; i++) {
                                                 if(doc.proCatDecision[i].categoryID == queryCondition.categoryID){                                    
                                                     for (var j = 0; j < doc.proCatDecision[i].proBrandsDecision.length; j++) {                                
@@ -247,14 +249,20 @@ exports.updateProducerDecision = function(io){
                                             nullVarDecision.composition=new Array(0,0,0);
                                             nullVarDecision.production=0;
                                             nullVarDecision.currentPriceBM=0;
-                                            nullVarDecision.currentPriceEmall=0;
+                                            //nullVarDecision.currentPriceEmall=0;
                                             nullVarDecision.discontinue=false;
                                             nullVarDecision.nextPriceBM=0;
-                                            nullVarDecision.nextPriceEmall=0;
+                                            //nullVarDecision.nextPriceEmall=0;
                                             nullVarDecision.parentBrandID=0;
                                             nullVarDecision.varName="";/*need check*/
                                             nullVarDecision.varID=0;/*need check*/
-
+                                            nullVarDecision.onlinePrice=0;
+                                            nullVarDecision.onlinePlannedVolume=0;
+                                            nullVarDecision.pricePromotions={
+                                                promo_Frequency : 0, //range: 0~52
+                                                promo_Rate : 0 //0~1        
+                                            };
+                                            console.log(nullVarDecision);
                                             var nullBrandDecision=new proBrandsDecision();
                                             nullBrandDecision.brandID=0;
                                             nullBrandDecision.brandName="",
@@ -326,11 +334,19 @@ exports.updateProducerDecision = function(io){
                                                                             case 2: queryCondition.value = "STANDARD";break;
                                                                             case 3: queryCondition.value = "PREMIUM";break;
                                                                         }
+                                                                        doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].packFormat = queryCondition.value;
                                                                     }
-                                                                    if(queryCondition.location=="composition"){
+                                                                    else if(queryCondition.location=="composition"){
                                                                         console.log(queryCondition.value);
                                                                         doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k][queryCondition.location][queryCondition.additionalIdx] = queryCondition.value;
                                                                         console.log(doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k][queryCondition.location][queryCondition.additionalIdx]);
+                                                                    }
+                                                                    else if(queryCondition.location=="pricePromotions"){
+                                                                        if(queryCondition.additionalIdx==0){
+                                                                            doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].pricePromotions.promo_Frequency = queryCondition.value;
+                                                                        }else{
+                                                                            doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].pricePromotions.promo_Rate = queryCondition.value;
+                                                                        }
                                                                     }
                                                                     else{ 
                                                                         doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k][queryCondition.location] = queryCondition.value;
@@ -441,7 +457,7 @@ exports.retailerGetProducerDecision=function(req,res,next){
                             result.push({
                                'composition':doc.proCatDecision[categoryID-1].proBrandsDecision[i].proVarDecision[j].composition,
                                'currentPriceBM':doc.proCatDecision[categoryID-1].proBrandsDecision[i].proVarDecision[j].currentPriceBM,
-                               'currentPriceEmall':doc.proCatDecision[categoryID-1].proBrandsDecision[i].proVarDecision[j].currentPriceEmall,
+                               //'currentPriceEmall':doc.proCatDecision[categoryID-1].proBrandsDecision[i].proVarDecision[j].currentPriceEmall,
                                'nextPriceBM':doc.proCatDecision[categoryID-1].proBrandsDecision[i].proVarDecision[j].nextPriceBM
                             });
                             break;

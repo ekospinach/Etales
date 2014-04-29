@@ -16,6 +16,74 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="bs-docs-section">
+                <div id="main_content_wrap" class="outer">
+                    <section id="main_content" class="inner main-inner ng-scope">
+                        <div class="ng-isolate-scope" on-finish="finished()">
+                            <div class="steps" ng-transclude="">
+                                <section title="Start" ng-show="selected" ng-class="{current: selected, done: completed}" class="step ng-isolate-scope current" ng-transclude="">
+                                    <h1 class="ng-scope">Start</h1>
+                                    <p class="ng-scope">Hey guys, welcome to the wizard :). If you want to check out the documentation on how to use it, <a href="https://github.com/mgonto/angular-wizard/blob/master/README.md">please click here.</a></p>
+                                    <p class="ng-scope">Otherwise, let's continue with the wizard. Please <a href="" wz-next="">click here to continue</a></p>
+                                    <input class="ng-scope" wz-next="" value="Or click here" type="submit">
+                                </section>
+                                <section title="Liking it" ng-show="selected" ng-class="{current: selected, done: completed}" class="step ng-isolate-scope ng-hide" ng-transclude="">
+                                    <h1 class="ng-scope">Liking it</h1>
+                                    <p class="ng-scope">You're now in the second step of this wizard.</p>
+                                    <p class="ng-scope">Magic things can happen here.</p>
+                                    <input class="ng-scope" wz-next="logStep()" value="Click here to continue" type="button">
+                                </section>
+                                <section title="More steps" ng-show="selected" ng-class="{current: selected, done: completed}" class="step ng-isolate-scope ng-hide" ng-transclude="">
+                                    <h1 class="ng-scope">More steps</h1>
+                                    <p class="ng-scope">Click on the bottom navigation on Liking it to go back to that step for example</p>
+                                    <input class="ng-scope" wz-next="" value="Click here to continue" type="button">
+                                </section>
+                                <section title="Even more" ng-show="selected" ng-class="{current: selected, done: completed}" class="step ng-isolate-scope ng-hide" ng-transclude="">
+                                    <h1 class="ng-scope">Even More steps</h1>
+                                    <p class="ng-scope">I can't deal with so many steps. ARGH</p>
+                                    <input class="ng-scope" wz-next="" value="Click here to continue" type="button">
+                                </section>
+                                <section title="Sup?" ng-show="selected" ng-class="{current: selected, done: completed}" class="step ng-isolate-scope ng-hide" ng-transclude="">
+                                    <h1 class="ng-scope">Sup?</h1>
+                                    <p class="ng-scope">I don't even know what to write!</p>
+                                    <input class="ng-scope" wz-next="" value="Click here to continue" type="button">
+                                </section>
+                                <section title="Finish him" ng-show="selected" ng-class="{current: selected, done: completed}" class="step ng-isolate-scope ng-hide" ng-transclude="">
+                                    <h1 class="ng-scope">Finish him</h1>
+                                    <p class="ng-scope">Finally this ends!</p>
+                                    <input class="ng-scope" wz-next="" value="Click here to end" type="button">
+                                    <input class="ng-scope" ng-click="goBack()" value="Click here to start again" type="button">
+                                </section>
+                            </div>
+                            <ul class="steps-indicator steps-6" ng-if="!hideIndicators">
+                                <!-- ngRepeat: step in steps -->
+                                <li class="ng-scope current" ng-class="{default: !step.completed &amp;&amp; !step.selected, current: step.selected &amp;&amp; !step.completed, done: step.completed &amp;&amp; !step.selected, editing: step.selected &amp;&amp; step.completed}" ng-repeat="step in steps">
+                                    <a class="ng-binding" ng-click="goTo(step)">Start</a>
+                                </li><!-- end ngRepeat: step in steps -->
+                                <li class="ng-scope default" ng-class="{default: !step.completed &amp;&amp; !step.selected, current: step.selected &amp;&amp; !step.completed, done: step.completed &amp;&amp; !step.selected, editing: step.selected &amp;&amp; step.completed}" ng-repeat="step in steps">
+                                    <a class="ng-binding" ng-click="goTo(step)">Liking it</a>
+                                </li><!-- end ngRepeat: step in steps -->
+                                <li class="ng-scope default" ng-class="{default: !step.completed &amp;&amp; !step.selected, current: step.selected &amp;&amp; !step.completed, done: step.completed &amp;&amp; !step.selected, editing: step.selected &amp;&amp; step.completed}" ng-repeat="step in steps">
+                                    <a class="ng-binding" ng-click="goTo(step)">More steps</a>
+                                </li><!-- end ngRepeat: step in steps -->
+                                <li class="ng-scope default" ng-class="{default: !step.completed &amp;&amp; !step.selected, current: step.selected &amp;&amp; !step.completed, done: step.completed &amp;&amp; !step.selected, editing: step.selected &amp;&amp; step.completed}" ng-repeat="step in steps">
+                                    <a class="ng-binding" ng-click="goTo(step)">Even more</a>
+                                </li><!-- end ngRepeat: step in steps -->
+                                <li class="ng-scope default" ng-class="{default: !step.completed &amp;&amp; !step.selected, current: step.selected &amp;&amp; !step.completed, done: step.completed &amp;&amp; !step.selected, editing: step.selected &amp;&amp; step.completed}" ng-repeat="step in steps">
+                                    <a class="ng-binding" ng-click="goTo(step)">Sup?</a>
+                                </li><!-- end ngRepeat: step in steps -->
+                                <li class="ng-scope default" ng-class="{default: !step.completed &amp;&amp; !step.selected, current: step.selected &amp;&amp; !step.completed, done: step.completed &amp;&amp; !step.selected, editing: step.selected &amp;&amp; step.completed}" ng-repeat="step in steps">
+                                    <a class="ng-binding" ng-click="goTo(step)">Finish him</a>
+                                </li><!-- end ngRepeat: step in steps -->
+                            </ul><!-- end ngIf: !hideIndicators -->
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="bs-docs-section">
                 <h1>Initialise module</h1>
                 <a class="btn btn-primary" ng-click="testInitialise()">
                 testInitialiseModule (import period -2~0 of report/chart/period+1 decision of P1/P2/P3, R1/R2, Negotiation)</a>

@@ -22,7 +22,7 @@
     <table class="table table-condensed table-bordered table-success">
     	<thead>
     		<tr>
-    			<th colspan="2"></th>
+    			<th colspan="2">{{Label.getContent('Elecssories')}}</th>
     			<th>
     				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Pack Format Info')}}" popover-title="{{Label.getContent('Pack Format')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Pack Format')}}<span style="color:red">*</span></p>
     			</th>
@@ -51,7 +51,7 @@
     				<p class="padding-20">{{producte.parentBrandName}}</p>
     			</td>
     			<td>
-    				<p class="text-center">{{producte.parentBrandName}}{{producte.varName}}</p>
+    				<p class="text-center">{{producte.varName}}</p>
     			</td>
     			<td>
     				<p class="text-right">{{selectPacks('Elecssories',producte.parentBrandName,producte.varName)}}</p>
@@ -72,7 +72,7 @@
     			</td>
     		</tr>
     		<tr>
-    			<th colspan="2"></th>
+    			<th colspan="2">{{Label.getContent('HealthBeauties')}}</th>
     			<th>
     				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Pack Format Info')}}" popover-title="{{Label.getContent('Pack Format')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Pack Format')}}<span style="color:red">*</span></p>
     			</th>
@@ -99,7 +99,7 @@
     				<p class="padding-20">{{producth.parentBrandName}}</p>
     			</td>
     			<td>
-    				<p class="text-center">{{producth.parentBrandName}}{{producth.varName}}</p>
+    				<p class="text-center">{{producth.varName}}</p>
     			</td>
     			<td>
     				<p class="text-right">{{selectPacks('HealthBeauty',producth.parentBrandName,producth.varName)}}</p>

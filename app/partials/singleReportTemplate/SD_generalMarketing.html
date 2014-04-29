@@ -1,0 +1,174 @@
+<div class="pull-right" style="width:400px">
+    <progress percent="percentageExpend" class="progress-primary"></progress>
+    <small>
+        <em>{{Label.getContent('Available Budget')}}:<strong>{{surplusExpend.toFixed(2)}}</strong></em>
+    </small>
+    <progress percent="elePercentageProduction" class="progress-suceess"></progress>
+    <small>
+        <em>{{Label.getContent('Elecssories')}} {{Label.getContent('Producer Available Capacity')}}: <strong>{{eleSurplusProduction.toFixed(2)}}</strong></em>
+    </small>
+    <progress percent="heaPercentageProduction" class="progress-danger"></progress>
+    <small>
+        <em>{{Label.getContent('HealthBeauties')}} {{Label.getContent('Producer Available Capacity')}}: <strong>{{heaSurplusProduction.toFixed(2)}}</strong></em>
+    </small>
+</div>
+<div style="clear:both;padding:1px 0" ng-show='isResultShown'></div>
+<div class='panel panel-primary my-success-panel' ng-show='isResultShown'>
+	<div class="panel-heading">
+        <h3 class="panel-title text-center" popover="{{Label.getContent('General Marketing Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
+            {{Label.getContent('General Marketing')}}
+        </h3>
+    </div>
+    <table class="table table-condensed table-bordered table-success">
+    	<thead>
+    		<tr>
+    			<!-- <th>{{Label.getContent('Elecssories')}}</th> -->
+                <th></th>
+    			<th colspan="3">
+                    <p class="text-center">{{Label.getContent('Advertising')}}($mln)</p>
+                </th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Traditional Trade Support')}}($mln)</p>
+                </th>
+    		</tr>
+            <tr>
+                <th></th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Online')}}</p>
+                </th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Offline')}}</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                </th>
+            </tr> 
+            <tr>
+                <th></th>
+                <th></th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                </th>
+                <th></th>
+                <th></th>
+            </tr>  
+    	</thead>
+        <tbody>
+            <tr class="success">
+                <th colspan="6">
+                    <p>{{Label.getContent('Elecssories')}}-{{Label.getContent('Brand')}}</p>
+                </th>
+            </tr>
+            <tr class="success" ng-repeat='brande in brandes'>
+                <td>
+                    <p class="padding-20">{{brande.brandName}}</p>
+                </td>
+                <td>
+                    <a href="#" editable-text="brande.advertisingOnLine" onbeforesave="checkData('Elecssories',brande.brandName,'advertisingOnLine','1',$index,$data)" onaftersave="updateProducerDecision('Elecssories',brande.brandName,'advertisingOnLine','1',$index)">
+                        <p class="text-right">{{ brande.advertisingOnLine || 0 }}</p>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" editable-text="brande.advertisingOffLine[1]" onbeforesave="checkData('Elecssories',brande.brandName,'advertisingOffLine','1',$index,$data)" onaftersave="updateProducerDecision('Elecssories',brande.brandName,'advertisingOffLine','1',$index)">
+                        <p class="text-right">{{ brande.advertisingOffLine[1] || 0 }}</p>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" editable-text="brande.advertisingOffLine[0]" onbeforesave="checkData('Elecssories',brande.brandName,'advertisingOffLine','0',$index,$data)" onaftersave="updateProducerDecision('Elecssories',brande.brandName,'advertisingOffLine','0',$index)">
+                        <p class="text-right">{{ brande.advertisingOffLine[0] || 0 }}
+                        </p>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" editable-text="brande.supportTraditionalTrade[1]" onbeforesave="checkData('Elecssories',brande.brandName,'supportTraditionalTrade','1',$index,$data)" onaftersave="updateProducerDecision('Elecssories',brande.brandName,'supportTraditionalTrade','1',$index)">
+                        <p class="text-right">{{ brande.supportTraditionalTrade[1] || 0 }}</p>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" editable-text="brande.supportTraditionalTrade[0]" onbeforesave="checkData('Elecssories',brande.brandName,'supportTraditionalTrade','0',$index,$data)" onaftersave="updateProducerDecision('Elecssories',brande.brandName,'supportTraditionalTrade','0',$index)">
+                        <p class="text-right">{{ brande.supportTraditionalTrade[0] || 0 }}</p>
+                    </a>
+                </td>
+            </tr>
+
+            <!-- <tr>
+                <th>{{Label.getContent('HealthBeauties')}}</th>
+                <th colspan="3">
+                    <p class="text-center">{{Label.getContent('Advertising')}}($mln)</p>
+                </th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Traditional Trade Support')}}($mln)</p>
+                </th>
+            </tr>
+            <tr>
+                <th></th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Online')}}</p>
+                </th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Offline')}}</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                </th>
+            </tr> 
+            <tr>
+                <th></th>
+                <th></th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                </th>
+                <th></th>
+                <th></th>
+            </tr>  -->
+            <tr class="danger">
+                <th colspan="6">
+                    <p>{{Label.getContent('HealthBeauties')}}-{{Label.getContent('Brand')}}</p>
+                </th>
+            </tr>
+            <tr class="danger" ng-repeat='brandh in brandhs'>
+                <td>
+                    <p class="padding-20">{{brandh.brandName}}</p>
+                </td>
+                <td>
+                    <a href="#" editable-text="brandh.advertisingOnLine" onbeforesave="checkData('HealthBeauty',brandh.brandName,'advertisingOnLine','1',$index,$data)" onaftersave="updateProducerDecision('HealthBeauty',brandh.brandName,'advertisingOnLine','1',$index)">
+                        <p class="text-right">{{ brandh.advertisingOnLine || 0 }}</p>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" editable-text="brandh.advertisingOffLine[1]" onbeforesave="checkData('HealthBeauty',brandh.brandName,'advertisingOffLine','1',$index,$data)" onaftersave="updateProducerDecision('HealthBeauty',brandh.brandName,'advertisingOffLine','1',$index)">
+                        <p class="text-right">{{ brandh.advertisingOffLine[1] || 0 }}</p>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" editable-text="brandh.advertisingOffLine[0]" onbeforesave="checkData('HealthBeauty',brandh.brandName,'advertisingOffLine','0',$index,$data)" onaftersave="updateProducerDecision('HealthBeauty',brandh.brandName,'advertisingOffLine','0',$index)">
+                        <p class="text-right">{{ brandh.advertisingOffLine[0] || 0 }}
+                        </p>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" editable-text="brandh.supportTraditionalTrade[1]" onbeforesave="checkData('HealthBeauty',brandh.brandName,'supportTraditionalTrade','1',$index,$data)" onaftersave="updateProducerDecision('HealthBeauty',brandh.brandName,'supportTraditionalTrade','1',$index)">
+                        <p class="text-right">{{ brandh.supportTraditionalTrade[1] || 0 }}</p>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" editable-text="brandh.supportTraditionalTrade[0]" onbeforesave="checkData('HealthBeauty',brandh.brandName,'supportTraditionalTrade','0',$index,$data)" onaftersave="updateProducerDecision('HealthBeauty',brandh.brandName,'supportTraditionalTrade','0',$index)">
+                        <p class="text-right">{{ brandh.supportTraditionalTrade[0] || 0 }}</p>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

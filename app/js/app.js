@@ -71,6 +71,11 @@
 	'directives/TE_SD_productPortfolioManagement',
 	'directives/TE_SD_bMListPrices',
 	'directives/TE_SD_productionVolume',
+	'directives/TE_SD_generalMarketing',
+	'directives/TE_SD_onlineStoreManagement',
+	'directives/TE_SD_assetInvestments',
+	'directives/TE_RD_marketing',
+	'directives/TE_RD_privateLabelPortfolioManagement',
 	'angularRoute',
 	'angularXeditable',
 	'angularBootstrap',
@@ -99,7 +104,7 @@
 			'ui.bootstrap',
 			'chieffancypants.loadingBar',
 			'ngCookies',
-			'highcharts-ng',
+			'highcharts-ng'
 		]).run(function(editableOptions){
 			editableOptions.theme = 'bs3';
 		}).run(['$rootScope', '$location','Auth','$http', function ($rootScope, $location, Auth, $http) {		    

@@ -88,12 +88,6 @@ define(['app','socketIO','routingConfig'], function(app) {
 					case 'showForecastsInternet':$scope.ForecastsInternet=true;break;
 		    	}
 		    }
-		    var loadVariantValue=function(data,brandName,variantName,num){
-		    	var array=_.find(data,function(obj){
-		    		return (obj.variantName==variantName&&obj.parentBrandName==brandName);
-		    	});
-		    	return array.value[num];
-		    }
 
 		    var showPerformance=function(){
 		    	switching('showPerformance');
@@ -322,8 +316,6 @@ define(['app','socketIO','routingConfig'], function(app) {
 			$scope.showForecastsInternet=function(){
 				switching('showForecastsInternet');
 			}
-
-		    $scope.loadVariantValue=loadVariantValue;
 		    $scope.switching=switching;
 		    $scope.showPerformance=showPerformance;
 		  	showPerformance();

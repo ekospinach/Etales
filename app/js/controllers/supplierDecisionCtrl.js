@@ -14,12 +14,16 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    })
 
 		    var switching=function(type){
-		    	$scope.ProductPortfolioManagement=$scope.BMListPrices=$scope.ProductionVolume=$scope.Cross=false;
+		    	$scope.ProductPortfolioManagement=$scope.BMListPrices=$scope.NegotiationAgreements=$scope.ProductionVolume=$scope.GeneralMarketing=$scope.OnlineStoreManagement=$scope.AssetInvestments=$scope.MarketResearchOrders=false;
 		    	switch(type){
 		    		case 'showProductPortfolioManagement':$scope.ProductPortfolioManagement=true;break;
 		    		case 'showBMListPrices':$scope.BMListPrices=true;break;
+		    		case 'showNegotiationAgreements':$scope.NegotiationAgreements=true;break;
 		    		case 'showProductionVolume':$scope.ProductionVolume=true;break;
-		    		case 'showCross':$scope.Cross=true;break;
+		    		case 'showGeneralMarketing':$scope.GeneralMarketing=true;break;
+		    		case 'showOnlineStoreManagement':$scope.OnlineStoreManagement=true;break;
+		    		case 'showAssetInvestments':$scope.AssetInvestments=true;break;
+		    		case 'showMarketResearchOrders':$scope.MarketResearchOrders=true;break;
 		    	}
 		    }
 
@@ -30,13 +34,29 @@ define(['app','socketIO','routingConfig'], function(app) {
 	    	$scope.showBMListPrices=function(){
 	    		switching('showBMListPrices');
 	    	}
+	    	
+	    	$scope.showNegotiationAgreements=function(){
+	    		switching('showNegotiationAgreements');
+	    	}
 
 	    	$scope.showProductionVolume=function(){
 	    		switching('showProductionVolume');
 	    	}
 
-	    	$scope.showCross=function(){
-	    		switching('showCross');
+	    	$scope.showGeneralMarketing=function(){
+	    		switching('showGeneralMarketing');
+	    	}
+
+	    	$scope.showOnlineStoreManagement=function(){
+	    		switching('showOnlineStoreManagement');
+	    	}
+
+	    	$scope.showAssetInvestments=function(){
+	    		switching('showAssetInvestments');
+	    	}
+
+	    	$scope.showMarketResearchOrders=function(){
+	    		switching('showMarketResearchOrders');
 	    	}
 
 	    	$scope.switching=switching;

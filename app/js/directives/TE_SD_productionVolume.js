@@ -17,14 +17,8 @@ define(['directives', 'services'], function(directives){
                     scope.Label = Label;
 
                     scope.currentPeriod=PeriodInfo.getCurrentPeriod();
-                    scope.packs = [{
-                        value: 1, text: Label.getContent('ECONOMY')
-                    },{
-                        value: 2, text: Label.getContent('STANDARD')
-                    },{
-                        value: 3, text: Label.getContent('PREMIUM')
-                    }]; 
-                    ProducerDecisionBase.startListenChangeFromServer(); 
+                    
+                    //ProducerDecisionBase.startListenChangeFromServer(); 
                     ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
                         scope.pageBase = base; 
                     }).then(function(){
@@ -98,7 +92,6 @@ define(['directives', 'services'], function(directives){
                                             products[count].packFormat=3;
                                         }
                                         products[count].currentPriceBM=parseFloat(products[count].currentPriceBM).toFixed(2);
-                                        products[count].currentPriceEmall=parseFloat(products[count].currentPriceEmall).toFixed(2);
                                         count++;
                                     }
                                 }
@@ -114,6 +107,13 @@ define(['directives', 'services'], function(directives){
 
                 var selectPacks = function(category,parentBrandName,varName) {
                     var selected,postion=-1;
+                    scope.packs = [{
+                        value: 1, text: Label.getContent('ECONOMY')
+                    },{
+                        value: 2, text: Label.getContent('STANDARD')
+                    },{
+                        value: 3, text: Label.getContent('PREMIUM')
+                    }]; 
                     if(category=="Elecssories"){
                         for(var i=0;i<scope.productes.length;i++){
                             if(scope.productes[i].parentBrandName==parentBrandName&&scope.productes[i].varName==varName){
@@ -237,17 +237,17 @@ define(['directives', 'services'], function(directives){
                         initializePage();
                     }
                 });
-                scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
-                    ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
-                        scope.pageBase = base; 
-                    }).then(function(){
-                        return showView();
-                    }), function(reason){
-                        console.log('from ctr: ' + reason);
-                    }, function(update){
-                        console.log('from ctr: ' + update);
-                    };
-                });
+                // scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
+                //     ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
+                //         scope.pageBase = base; 
+                //     }).then(function(){
+                //         return showView();
+                //     }), function(reason){
+                //         console.log('from ctr: ' + reason);
+                //     }, function(update){
+                //         console.log('from ctr: ' + update);
+                //     };
+                // });
 
             }
         }

@@ -1,0 +1,108 @@
+<div class="pull-right" style="width:400px" ng-show='isResultShown'>
+    <progress percent="percentageExpend" class="progress active"></progress>
+    <small>
+        <em>{{Label.getContent('Available Budget')}}:
+            <strong>{{surplusExpend.toFixed(2)}}</strong>
+        </em>
+    </small>
+</div>
+<div style="clear:both;padding:1px 0" ng-show='isResultShown'></div>
+<div class='panel panel-primary my-success-panel' ng-show='isResultShown'>
+    <div class="panel-heading">
+        <h3 class="panel-title text-center" popover="{{Label.getContent('Marketing Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
+            {{Label.getContent('Marketing')}}
+        </h3>
+    </div>
+    <table class="table table-condensed table-bordered table-success">
+        <thead>
+            <tr>
+                <th colspan="2">
+                    <p>{{Label.getContent('Advertising')}}($mln)</p>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th colspan="2">
+                    <p class="padding-20">{{Label.getContent('Online')}}</p>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-40">{{Label.getContent('Price Appeal')}}</p>
+                </td>
+                <td>
+                    <a href="#" editable-text="pageBase.onlineAdvertising[0]" onbeforesave="checkBudget('onlineAdvertising','0',$data)" onaftersave="updateRetailerDecision('onlineAdvertising','0')">
+                        <p class="text-right">{{ pageBase.onlineAdvertising[0] || 0 }}</p>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-40">{{Label.getContent('Convenience')}}</p>
+                </td>
+                <td>
+                    <a href="#" editable-text="pageBase.onlineAdvertising[1]" onbeforesave="checkBudget('onlineAdvertising','1',$data)" onaftersave="updateRetailerDecision('onlineAdvertising','1')">
+                        <p class="text-right">{{ pageBase.onlineAdvertising[1]|| 0 }}</p>
+                    </a>
+                </td>
+            </tr>
+
+            <tr>
+                <th colspan="2">
+                    <p class="padding-20">{{Label.getContent('Local')}}</p>
+                </th>
+            </tr>
+            <tr class="info">
+                <td>
+                    <p class="padding-40">{{Label.getContent('Rural')}}</p>
+                </td>
+                <td>
+                    <a href="#" editable-text="markets[1].localAdvertising[0]" onbeforesave="checkBudgeting(markets[1].marketID,'localAdvertising','postion','0',$index,$data)" onaftersave="updateMarketingDecision(markets[1].marketID,'localAdvertising','postion','0',1)">
+                        <p class="text-right">{{ markets[1].localAdvertising[0] || 0 }}
+                        </p>
+                    </a>
+                </td>
+            </tr>
+            <tr class="warning">
+                <td>
+                    <p class="padding-40">{{Label.getContent('Urban')}}</p>
+                </td>
+                <td>
+                    <a href="#" editable-text="markets[0].localAdvertising[0]" onbeforesave="checkBudgeting(markets[0].marketID,'localAdvertising','postion','0',$index,$data)" onaftersave="updateMarketingDecision(markets[0].marketID,'localAdvertising','postion','0',0)">
+                        <p class="text-right">{{ markets[0].localAdvertising[0] || 0 }}
+                        </p>
+                    </a>
+                </td>
+            </tr>
+
+            <tr>
+                <th colspan="2">
+                    <p class="padding-20">{{Label.getContent('In-Store Service Level')}}</p>
+                </th>
+            </tr>
+            <tr class="info">
+                <td>
+                    <p class="padding-40">{{Label.getContent('Rural')}}</p>
+                </td>
+                <td>
+                    <a href="#" editable-select="markets[1].serviceLevel" e-ng-options="p.value as p.text for p in packs" onaftersave="updateMarketingDecision(markets[1].marketID,'serviceLevel','postion','addtionalIdx',1)">
+                        <p class="text-right">{{ selectPacks(markets[1].marketID) }}
+                        </p>
+                    </a>
+                </td>
+            </tr>
+            <tr class="warning">
+                <td>
+                    <p class="padding-40">{{Label.getContent('Urban')}}</p>
+                </td>
+                <td>
+                    <a href="#" editable-select="markets[0].serviceLevel" e-ng-options="p.value as p.text for p in packs" onaftersave="updateMarketingDecision(markets[0].marketID,'serviceLevel','postion','addtionalIdx',0)">
+                        <p class="text-right">{{ selectPacks(markets[0].marketID) }}
+                        </p>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
