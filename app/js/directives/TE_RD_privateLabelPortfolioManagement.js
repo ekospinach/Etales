@@ -69,102 +69,78 @@ define(['directives', 'services'], function(directives){
                 }
 
                 var addNewProduct=function(parameter){
-                    var newBrand=new ProducerDecision();
-                    var nullDecision=new ProducerDecision();
-                    nullDecision.packFormat="ECONOMY";
+                    var newBrand=new RetailerDecision();
+                    var nullDecision=new RetailerDecision();
+                    nullDecision.varName="";
+                    nullDecision.varID=0;
+                    nullDecision.parentBrandID=0;
                     nullDecision.dateOfBirth=0;
                     nullDecision.dateOfDeath=0;
+                    nullDecision.packFormat="ECONOMY";
                     nullDecision.composition=new Array(1,1,1);
-                    nullDecision.production=0;
-                    nullDecision.currentPriceBM=0;
                     nullDecision.discontinue=false;
-                    nullDecision.nextPriceBM=0;
-                    nullDecision.parentBrandID=0;
-                    nullDecision.varName="";/*need check*/
-                    nullDecision.varID=0;/*need check*/
-                    nullDecision.onlinePrice=0;
-                    nullDecision.onlinePlannedVolume=0;
-                    nullDecision.pricePromotions={
-                        promo_Frequency : 0, //range: 0~52
-                        promo_Rate : 0 //0~1        
-                    };
 
-                    var newproducerDecision=new ProducerDecision();
-                    newproducerDecision.packFormat="ECONOMY";
-                    newproducerDecision.dateOfBirth=PeriodInfo.getCurrentPeriod();
-                    newproducerDecision.dateOfDeath=10;
-                    newproducerDecision.composition=new Array(1,1,1);
-                    newproducerDecision.production=0;
-                    newproducerDecision.currentPriceBM=0;
-                    newproducerDecision.discontinue=false;
-                    newproducerDecision.nextPriceBM=0;
-                    newproducerDecision.onlinePrice=0;
-                    newproducerDecision.onlinePlannedVolume=0;
-                    newproducerDecision.pricePromotions={
-                        promo_Frequency : 0, //range: 0~52
-                        promo_Rate : 0 //0~1        
-                    };
+                    var newretailerDecision=new RetailerDecision();
+                    newretailerDecision.packFormat="ECONOMY";
+                    newretailerDecision.dateOfBirth=PeriodInfo.getCurrentPeriod();
+                    newretailerDecision.dateOfDeath=10;
+                    newretailerDecision.composition=new Array(1,1,1);
+                    newretailerDecision.discontinue=false;
                     var url="";
                     if(parameter=="NewBrand"){/*lauch new Brand*/
-                        var proBrandsDecision=_.find(scope.pageBase.proCatDecision,function(obj){
+                        var retVariantDecision=_.find(scope.pageBase.retCatDecision,function(obj){
                             return (obj.categoryID==scope.lauchNewCategory);
                         });
-                        newBrand.brandID=calculateBrandID(proBrandsDecision,scope.producerID);
-                        newBrand.brandName=scope.brandFirstName+scope.lauchNewBrandName+parseInt(PlayerInfo.getPlayer());
-                        newBrand.paranetCompanyID=scope.producerID;
+                        newBrand.brandID=calculateBrandID(retVariantDecision,PlayerInfo.getPlayer());
+                        newBrand.brandName=scope.brandFirstName+scope.lauchNewBrandName+scope.brandLastName;
+                        newBrand.paranetCompanyID=PlayerInfo.getPlayer();
                         newBrand.dateOfDeath=10;
-                        newBrand.dateOfBirth=PeriodInfo.getCurrentPeriod();
-                        newBrand.advertisingOffLine=new Array(0,0);
-                        newBrand.advertisingOnLine=0;
-                        newBrand.supportEmall=0;
-                        newBrand.supportTraditionalTrade=new Array(0,0);
-                        newBrand.proVarDecision=new Array();
-                        newproducerDecision.parentBrandID=newBrand.brandID;
-                        newproducerDecision.varName='_'+scope.lauchNewVarName;/*need check*/
-                        newproducerDecision.varID=10*newBrand.brandID+1;/*need check*/
-                        //need add 2 null vars
-                        newBrand.proVarDecision.push(newproducerDecision,nullDecision,nullDecision);
-
-                        url="/checkProducerProduct/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+scope.lauchNewCategory+'/brand/'+newBrand.brandName+'/'+newproducerDecision.varName;
+                        newBrand.dateOfBirth=scope.period;
+                        newBrand.privateLabelVarDecision=new Array();
+                        newretailerDecision.parentBrandID=newBrand.brandID;
+                        newretailerDecision.varName='_'+scope.lauchNewVarName;/*need check*/
+                        newretailerDecision.varID=10*newBrand.brandID+1;/*need check*/
+                        newBrand.privateLabelVarDecision.push(newretailerDecision,nullDecision,nullDecision);
+                        
+                        url="/checkRetailerProduct/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+scope.lauchNewCategory+'/brand/'+newBrand.brandName+'/'+newretailerDecision.varName;
                         $http({
                             method:'GET',
                             url:url
                         }).then(function(data){
-                            ProducerDecisionBase.addProductNewBrand(newBrand,scope.lauchNewCategory);
+                            RetailerDecisionBase.addProductNewBrand(newBrand,scope.lauchNewCategory);
                             showbubleMsg(Label.getContent('Add new brand successful'),2);
                             closeProductModal();
                         },function(data){
                             showbubleMsg(Label.getContent('Add new brand fail')+','+Label.getContent(data.data.message),1);
                         })
                     }else{/*add new product under existed Brand*/
-                        var proBrandsDecision=_.find(scope.pageBase.proCatDecision,function(obj){
+                        var retVariantDecision=_.find(scope.pageBase.retCatDecision,function(obj){
                             return (obj.categoryID==scope.addNewCategory);
+                        }); 
+                        newretailerDecision.parentBrandID=scope.addChooseBrand;
+                        newretailerDecision.varName='_'+scope.addNewVarName;/*need check*/
+                        var privateLabelDecision=_.find(retVariantDecision.privateLabelDecision,function(obj){
+                            return (obj.brandID==newretailerDecision.parentBrandID);
                         });
-                        newproducerDecision.parentBrandID=scope.addChooseBrand;
-                        newproducerDecision.varName='_'+scope.addNewVarName;/*need check*/
-                        var proVarDecision=_.find(proBrandsDecision.proBrandsDecision,function(obj){
-                            return (obj.brandID==newproducerDecision.parentBrandID);
-                        });
-                        newproducerDecision.varID=calculateVarID(proVarDecision,newproducerDecision.parentBrandID);//121;/*need check*/
-                        var newBrandName=""; 
+                        newretailerDecision.varID=calculateVarID(privateLabelDecision,newretailerDecision.parentBrandID);//121;/*need check*/
+                        var newBrandName="";
                         for(var i=0;i<scope.allBrands.length;i++){
-                            if(scope.allBrands[i].BrandID==newproducerDecision.parentBrandID){
+                            if(scope.allBrands[i].BrandID==newretailerDecision.parentBrandID){
                                 newBrandName=scope.allBrands[i].BrandName;
                                 break;
                             }
                         }
-                        url="/checkProducerProduct/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+scope.lauchNewCategory+'/variant/'+newBrandName+'/'+newproducerDecision.varName;
-                        
+                        url="/checkRetailerProduct/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+scope.lauchNewCategory+'/variant/'+newBrandName+'/'+newretailerDecision.varName;
                         $http({
                             method:'GET',
                             url:url
                         }).then(function(data){
-                            ProducerDecisionBase.addProductExistedBrand(newproducerDecision,scope.addNewCategory,newBrandName);
+                            RetailerDecisionBase.addProductExistedBrand(newretailerDecision,scope.addNewCategory,newBrandName);
                             showbubleMsg(Label.getContent('Add new variant successful'),2);
                             closeProductModal();
                         },function(data){
                             showbubleMsg(Label.getContent('Add new variant fail')+','+Label.getContent(data.data.message),1);
-                        })
+                        });                     
                     }
                 }
 
@@ -269,10 +245,10 @@ define(['directives', 'services'], function(directives){
                         category="HealthBeauty";
                         scope.brandFirstName="H";
                     }
-                    scope.brandLastName=parseInt(PlayerInfo.getPlayer());/*need check*/
+                    scope.brandLastName=parseInt(parseInt(PlayerInfo.getPlayer()))+4;/*need check*/
                 }
                 var loadByCategroy=function(category){
-                    return _.filter(scope.pageBase.proCatDecision,function(obj){
+                    return _.filter(scope.pageBase.retCatDecision,function(obj){
                         if(category=="HealthBeauty"){
                             return (obj.categoryID==2);
                         }else{
@@ -287,12 +263,12 @@ define(['directives', 'services'], function(directives){
                     }else{
                         category="HealthBeauty";
                     }
-                    var allCatProDecisions=loadByCategroy(category);
+                    var allretCatDecisions=loadByCategroy(category);
                     var allBrands=new Array();
-                    for(var i=0;i<allCatProDecisions.length;i++){
-                        for(var j=0;j<allCatProDecisions[i].proBrandsDecision.length;j++){
-                            if(allCatProDecisions[i].proBrandsDecision[j]!=undefined&&allCatProDecisions[i].proBrandsDecision[j].brandID!=undefined&&allCatProDecisions[i].proBrandsDecision[j].brandID!=0){
-                                allBrands.push({'BrandID':allCatProDecisions[i].proBrandsDecision[j].brandID,'BrandName':allCatProDecisions[i].proBrandsDecision[j].brandName});                            
+                    for(var i=0;i<allretCatDecisions.length;i++){
+                        for(var j=0;j<allretCatDecisions[i].privateLabelDecision.length;j++){
+                            if(allretCatDecisions[i].privateLabelDecision[j]!=undefined&&allretCatDecisions[i].privateLabelDecision[j].brandID!=undefined&&allretCatDecisions[i].privateLabelDecision[j].brandID!=0){
+                                allBrands.push({'BrandID':allretCatDecisions[i].privateLabelDecision[j].brandID,'BrandName':allretCatDecisions[i].privateLabelDecision[j].brandName});
                             }
                         }   
                     }
@@ -414,8 +390,8 @@ define(['directives', 'services'], function(directives){
                 };
                 var closeProductModal = function () {
                     scope.productModal = false;
-                    ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
-                        scope.pageBase = base; 
+                    RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
+                        scope.pageBase = base;
                     }).then(function(){
                         return showView();
                     }), function(reason){
@@ -493,7 +469,7 @@ define(['directives', 'services'], function(directives){
 					return result;
 			    }
 
-                var deleteProduct=function(category,brandName,varName){
+                scope.deleteProduct=function(category,brandName,varName){
 			    	if(category=="Elecssories"){
 			    		category=1;
 			    	}else{
