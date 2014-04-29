@@ -17,7 +17,7 @@ define(['directives', 'services'], function(directives){
                     scope.Label = Label;
 
                     scope.currentPeriod=PeriodInfo.getCurrentPeriod();
-                    ProducerDecisionBase.startListenChangeFromServer(); 
+                    //ProducerDecisionBase.startListenChangeFromServer(); 
                     ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
                         scope.pageBase = base; 
                     }).then(function(){
@@ -154,17 +154,17 @@ define(['directives', 'services'], function(directives){
                         initializePage();
                     }
                 });
-                scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
-                    ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
-                        scope.pageBase = base; 
-                    }).then(function(){
-                        return showView();
-                    }), function(reason){
-                        console.log('from ctr: ' + reason);
-                    }, function(update){
-                        console.log('from ctr: ' + update);
-                    };
-                });
+                // scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
+                //     ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
+                //         scope.pageBase = base; 
+                //     }).then(function(){
+                //         return showView();
+                //     }), function(reason){
+                //         console.log('from ctr: ' + reason);
+                //     }, function(update){
+                //         console.log('from ctr: ' + update);
+                //     };
+                // });
 
             }
         }

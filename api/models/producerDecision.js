@@ -334,6 +334,7 @@ exports.updateProducerDecision = function(io){
                                                                             case 2: queryCondition.value = "STANDARD";break;
                                                                             case 3: queryCondition.value = "PREMIUM";break;
                                                                         }
+                                                                        doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].packFormat = queryCondition.value;
                                                                     }
                                                                     else if(queryCondition.location=="composition"){
                                                                         console.log(queryCondition.value);

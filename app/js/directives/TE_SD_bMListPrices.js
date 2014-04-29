@@ -24,7 +24,7 @@ define(['directives', 'services'], function(directives){
                     },{
                         value: 3, text: Label.getContent('PREMIUM')
                     }]; 
-                    ProducerDecisionBase.startListenChangeFromServer(); 
+                    //ProducerDecisionBase.startListenChangeFromServer(); 
                     ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
                         scope.pageBase = base; 
                     }).then(function(){
@@ -116,34 +116,38 @@ define(['directives', 'services'], function(directives){
 
                 var selectPacks = function(category,parentBrandName,varName) {
                     var selected,postion=-1;
-                    if(category=="Elecssories"){
-                        for(var i=0;i<scope.productes.length;i++){
-                            if(scope.productes[i].parentBrandName==parentBrandName&&scope.productes[i].varName==varName){
-                                selected = $filter('filter')(scope.packs, {value: scope.productes[i].packFormat});
-                                postion=i;
-                                break;
+                    if(scope.productes.length>1&&scope.producths.length>1){
+                        if(category=="Elecssories"){
+                            for(var i=0;i<scope.productes.length;i++){
+                                if(scope.productes[i].parentBrandName==parentBrandName&&scope.productes[i].varName==varName){
+                                    selected = $filter('filter')(scope.packs, {value: scope.productes[i].packFormat});
+                                    postion=i;
+                                    break;
+                                }
                             }
-                        }
-                        if(postion!=-1){
-                            return (scope.productes[postion].packFormat && selected.length) ? selected[0].text : Label.getContent('Not set'); 
-                        }
-                        else{
-                            return Label.getContent('Not set'); 
+                            if(postion!=-1){
+                                return (scope.productes[postion].packFormat && selected.length) ? selected[0].text : Label.getContent('Not set'); 
+                            }
+                            else{
+                                return Label.getContent('Not set'); 
+                            }
+                        }else{
+                            for(var i=0;i<scope.producths.length;i++){
+                                if(scope.producths[i].parentBrandName==parentBrandName&&scope.producths[i].varName==varName){
+                                    selected = $filter('filter')(scope.packs, {value: scope.producths[i].packFormat});
+                                    postion=i;
+                                    break;
+                                }
+                            }
+                            if(postion!=-1){
+                                return (scope.producths[postion].packFormat && selected.length) ? selected[0].text : Label.getContent('Not set'); 
+                            }
+                            else{
+                                return Label.getContent('Not set'); 
+                            }
                         }
                     }else{
-                        for(var i=0;i<scope.producths.length;i++){
-                            if(scope.producths[i].parentBrandName==parentBrandName&&scope.producths[i].varName==varName){
-                                selected = $filter('filter')(scope.packs, {value: scope.producths[i].packFormat});
-                                postion=i;
-                                break;
-                            }
-                        }
-                        if(postion!=-1){
-                            return (scope.producths[postion].packFormat && selected.length) ? selected[0].text : Label.getContent('Not set'); 
-                        }
-                        else{
-                            return Label.getContent('Not set'); 
-                        }
+                        return Label.getContent('Not sets'); 
                     }
                 }
 
@@ -239,17 +243,19 @@ define(['directives', 'services'], function(directives){
                         initializePage();
                     }
                 });
-                scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
-                    ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
-                        scope.pageBase = base; 
-                    }).then(function(){
-                        return showView();
-                    }), function(reason){
-                        console.log('from ctr: ' + reason);
-                    }, function(update){
-                        console.log('from ctr: ' + update);
-                    };
-                });
+                // scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
+                //     ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
+                //         scope.pageBase = base; 
+                //     }).then(function(){
+                //         console.log('11111');
+                //         return showView();
+                //         console.log('2222');
+                //     }), function(reason){
+                //         console.log('from ctr: ' + reason);
+                //     }, function(update){
+                //         console.log('from ctr: ' + update);
+                //     };
+                // });
 
             }
         }
