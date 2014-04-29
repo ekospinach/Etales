@@ -68,12 +68,12 @@
 			'angularHighcharts' :['angular','highchart'],
 			'angularBootstrapSwitch':['angular','jquery','bootstrapswitch'],
 //			'angularPromiseTracker':['angular']
+			'highchart' :['jquery']
 		},
 		priority: [
 			"angular"
 		],
 		waitSeconds : 2000, //2000 seconds for prod mode on bootstrap and 2 seconds for dev mode
-
 	});
 
 	//this requires dom ready to update on ui, so this function expression

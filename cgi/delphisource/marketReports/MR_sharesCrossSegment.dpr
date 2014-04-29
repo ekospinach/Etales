@@ -5,28 +5,81 @@ uses
   SysUtils,Windows,Classes, superobject, HCD_SystemDefinitions, System.TypInfo, inifiles,
   CgiCommonFunction;
 
+const
+      vsd_AbsoluteValue    = 100;
+      vsd_ValueChange      = 101;
+      vsd_AbsoluteVolume   = 102;
+      vsd_VolumeChange     = 103;
+
 var
   DataDirectory : string;
   sListData: tStrings;
   sValue : string;
-
   currentResult : TAllResults;
   currentPeriod : TPeriodNumber;
+  currentProducer : TAllProducers;
+  currentRetailer : TBMRetailers;
   currentSeminar : string;
   vReadRes : Integer;
   oJsonFile : ISuperObject;
 
-  function brandInfoSchema(catID : Integer; marketID : Integer; brand: TMR_BrandAwareness):ISuperObject;
+  function ShopperInfoSchema(fieldIdx: Integer; shopper : TShoppersKind; variant : TVariantCrossSegmentDetails):ISuperObject;
   var
     jo : ISuperObject;
-  begin    
+    ShopperStr : string;
+    segmentID : integer;
+  begin
     jo := SO;
-    jo.S['brandName'] := brand.mrba_BrandName;
+    case Shopper of
+        BMS         : ShopperStr := 'BMS'; 
+        NETIZENS    : ShopperStr := 'NETIZENS';   
+        MIXED       : ShopperStr := 'MIXED';  
+        ALLSHOPPERS : ShopperStr := 'ALLSHOPPERS'; 
+    else
+        ShopperStr  := 'wrong';
+    end;
+
+    jo.S['shopperKind'] := ShopperStr;
+    case (fieldIdx) of
+      vsd_AbsoluteValue     : begin jo.D['value'] := variant.vsd_AbsoluteValue[segmentID, shopper]; end;
+      vsd_ValueChange       : begin jo.D['value'] := variant.vsd_ValueChange[segmentID, shopper]; end;
+      vsd_AbsoluteVolume    : begin jo.D['value'] := variant.vsd_AbsoluteVolume[segmentID, shopper]; end;
+      vsd_VolumeChange      : begin jo.D['value'] := variant.vsd_VolumeChange[segmentID, shopper]; end;
+    end;
+
+    result := jo;
+  end;
+
+  function segmentInfoSchema(fieldIdx: Integer; segmentID : Integer; variant : TVariantCrossSegmentDetails):ISuperObject;
+  var
+    jo : ISuperObject;
+    Shopper : TShoppersKind;
+  begin
+    jo := SO;
+    jo.I['segmentID'] := segmentID;
+    jo.O['shopperInfo'] := SA([]);
+    for Shopper := Low(TShoppersKind) to High(TShoppersKind) do
+      jo.A['shopperInfo'].Add( ShopperInfoSchema(fieldIdx, Shopper, variant) );
+
+    result := jo;
+  end;
+
+  function variantInfoSchema(fieldIdx : Integer; catID : Integer; marketID : Integer; variant : TVariantCrossSegmentDetails):ISuperObject;
+  var 
+    jo : ISuperObject;
+    segmentID : integer;
+  begin
+    jo := SO;
+    jo.S['variantName'] := variant.vsd_VariantName;
+    jo.S['parentBrandName'] := variant.vsd_ParentBrandName;
     jo.I['parentCategoryID'] := catID;
-    jo.I['parentCompanyID'] := brand.mrba_ParentCompanyID;
     jo.I['marketID'] := marketID;
-    jo.D['previousAwareness'] := brand.mrba_PreviousAwareness;
-    jo.D['latestAwareness'] := brand.mrba_LatestAwareness;
+    
+    jo.O['segmentInfo'] := SA([]);
+    for segmentID := Low(TSegmentsTotal) to High(TSegmentsTotal) do 
+    begin
+      jo.A['segmentInfo'].Add( segmentInfoSchema(fieldIdx, segmentID, variant) );
+    end;
 
     result := jo;
   end;
@@ -34,28 +87,39 @@ var
   procedure makeJson();
   var
     s_str : string;
-    catID,marketID,brandID : Integer;
-    tempBrand:TMR_BrandAwareness;
+    catID,brandCount,variantCount,marketID : Integer;
+    tempVariant : TVariantCrossSegmentDetails;
   begin
     oJsonFile := SO;
     oJsonFile.S['seminar'] := currentSeminar;
     oJsonFile.I['period'] := currentPeriod;
 
+    oJsonFile.O['absoluteValue'] := SA([]);
+    oJsonFile.O['valueChange'] := SA([]);
+    oJsonFile.O['absoluteVolume'] := SA([]);
+    oJsonFile.O['volumeChange'] := SA([]);
 
-    oJsonFile.O['brandInfo'] := SA([]);
-    for catID := Low(TCategories) to High(TCategories) do
+    for catID :=  Low(TCategories) to High(TCategories) do 
     begin
-      for marketID := Low(TMarkets) to High(TMarkets) do
+      for brandCount := Low(TBrands) to High(TBrands) do 
       begin
-        for brandID := Low(TBrands) to High(TBrands) do 
+        for variantCount := Low(TOneBrandVariants) to High(TOneBrandVariants) do
         begin
-          tempBrand := currentResult.r_MarketResearch.mr_AwarenessEvolution[marketID, catID, brandID];
-          if (tempBrand.mrba_BrandName<> '') then 
+          for marketID := Low(TMarkets) to High(TMarkets) do
           begin
-             oJsonFile.A['brandInfo'].Add( brandInfoSchema(catID, marketID, tempBrand) );                      
-          end;          
-        end;
-      end;
+            tempVariant := currentResult.r_MarketResearch.mr_SharesByCrossSegment[ marketID,catID, brandCount, variantCount];
+            if (tempVariant.vsd_Shown = true)
+            AND (tempVariant.vsd_VariantName <> '')
+            AND (tempVariant.vsd_ParentBrandName <> '') then
+            begin
+                oJsonFile.A['absoluteValue'].Add( variantInfoSchema(vsd_absoluteValue, catID, marketID, tempVariant) );
+                oJsonFile.A['absoluteVolume'].Add( variantInfoSchema(vsd_absoluteVolume, catID, marketID, tempVariant ));
+                oJsonFile.A['valueChange'].Add( variantInfoSchema(vsd_valueChange, catID, marketID, tempVariant ));
+                oJsonFile.A['volumeChange'].Add( variantInfoSchema(vsd_volumeChange, catID, marketID, tempVariant ));
+            end;            
+          end;
+        end;      
+      end;          
     end;
 
     //for debug used
@@ -71,14 +135,13 @@ begin
 
     try
       WriteLn('Content-type: application/json');
-
       sValue := getVariable('REQUEST_METHOD');
       if sValue='GET' then
       begin
           sValue := getVariable('QUERY_STRING');
           Explode(sValue, sListData);
           LoadConfigIni(DataDirectory, getSeminar(sListData));
-          // initialize globals
+          //initialise GET request parameters
           currentSeminar := getSeminar(sListData);
           currentPeriod := getPeriod(sListData);
           {** Read results file **}
@@ -100,5 +163,4 @@ begin
     finally
       sListData.Free;
     end;
-end.
-
+end.2

@@ -15,29 +15,28 @@ var
   DataDirectory : string;
   sListData: tStrings;
   sValue : string;
-
   currentResult : TAllResults;
   currentPeriod : TPeriodNumber;
+  currentProducer : TAllProducers;
   currentRetailer : TBMRetailers;
   currentSeminar : string;
   vReadRes : Integer;
   oJsonFile : ISuperObject;
 
-
-
-  function ShopperInfoSchema(fieldIdx: Integer; shopper : TShoppersKind; variant : TVariantCrossSegmentDetails):ISuperObject;
+  function ShopperInfoSchema(fieldIdx: Integer;segmentID : Integer; shopper : TShoppersKind; variant : TVariantCrossSegmentDetails):ISuperObject;
   var
     jo : ISuperObject;
-    ShopperStr : string;    
+    ShopperStr : string;
+   // segmentID : integer;
   begin
     jo := SO;
     case Shopper of
-       BMS: ShopperStr := 'BMS'; 
-       NETIZENS: ShopperStr := 'NETIZENS';   
-       MIXED: ShopperStr := 'MIXED';  
-       ALLSHOPPERS: ShopperStr := 'ALLSHOPPERS'; 
-       else
-        ShopperStr := 'wrong';
+        BMS         : ShopperStr := 'BMS'; 
+        NETIZENS    : ShopperStr := 'NETIZENS';   
+        MIXED       : ShopperStr := 'MIXED';  
+        ALLSHOPPERS : ShopperStr := 'ALLSHOPPERS'; 
+    else
+        ShopperStr  := 'wrong';
     end;
 
     jo.S['shopperKind'] := ShopperStr;
@@ -60,7 +59,7 @@ var
     jo.I['segmentID'] := segmentID;
     jo.O['shopperInfo'] := SA([]);
     for Shopper := Low(TShoppersKind) to High(TShoppersKind) do
-      jo.A['shopperInfo'].Add( ShopperInfoSchema(fieldIdx, Shopper, variant) );
+      jo.A['shopperInfo'].Add( ShopperInfoSchema(fieldIdx,segmentID, Shopper, variant) );
 
     result := jo;
   end;
@@ -89,11 +88,12 @@ var
   var
     s_str : string;
     catID,brandCount,variantCount,marketID : Integer;
+    tempVariant : TVariantCrossSegmentDetails;
   begin
     oJsonFile := SO;
     oJsonFile.S['seminar'] := currentSeminar;
     oJsonFile.I['period'] := currentPeriod;
-    oJsonFile.I['producerID'] := currentProducer;
+    oJsonFile.I['retailerID'] := currentRetailer;
 
     oJsonFile.O['absoluteValue'] := SA([]);
     oJsonFile.O['valueChange'] := SA([]);
@@ -108,13 +108,15 @@ var
         begin
           for marketID := Low(TMarkets) to High(TMarkets) do
           begin
-            tempVariant := currentResult.r_MarketResearch.mr_SharesByShopperSegment[marketID, catID, brandCount, variantCount];
-            if (tempVariant.vsd_VariantName <> '') AND (tempVariant.vsd_ParentBrandName <> '') then
+            tempVariant := currentResult.r_RetailersConfidentialReports[currentRetailer].rcr_SharesByCrossSegment[ marketID,catID, brandCount, variantCount];
+            if (tempVariant.vsd_Shown = true)
+            AND (tempVariant.vsd_VariantName <> '')
+            AND (tempVariant.vsd_ParentBrandName <> '') then
             begin
                 oJsonFile.A['absoluteValue'].Add( variantInfoSchema(vsd_absoluteValue, catID, marketID, tempVariant) );
-                oJsonFile.A['absoluteVolume'].Add( variantInfoSchema(vsd_absoluteVolume, catID, marketID, tempVariant );
-                oJsonFile.A['valueChange'].Add( variantInfoSchema(vsd_valueChange, catID, marketID, tempVariant );
-                oJsonFile.A['volumeChange'].Add( variantInfoSchema(vsd_volumeChange, catID, marketID, tempVariant );
+                oJsonFile.A['absoluteVolume'].Add( variantInfoSchema(vsd_absoluteVolume, catID, marketID, tempVariant ));
+                oJsonFile.A['valueChange'].Add( variantInfoSchema(vsd_valueChange, catID, marketID, tempVariant ));
+                oJsonFile.A['volumeChange'].Add( variantInfoSchema(vsd_volumeChange, catID, marketID, tempVariant ));
             end;            
           end;
         end;      
@@ -134,7 +136,6 @@ begin
 
     try
       WriteLn('Content-type: application/json');
-
       sValue := getVariable('REQUEST_METHOD');
       if sValue='GET' then
       begin
@@ -164,4 +165,4 @@ begin
     finally
       sListData.Free;
     end;
-end.
+end.2

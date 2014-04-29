@@ -18,15 +18,15 @@
         You can use the "*" symbol to represent access to all roles
          */
         accessLevels : {
-            'public' : "*",
-            'producerViewOnly': ['producer'],
+            'public'           : "*",
+            'producerViewOnly' : ['producer'],
             'retailerViewOnly' : ['retailer'],
-            'producerView': ['producer','facilitator'],
-            'retailerView' : ['retailer','facilitator'],
-            'facilitatorView' : ['facilitator'],
-            'adminView' : ['admin'],
-            'playerView' : ['producer','facilitator','retailer'],
-            'PandRView':['producer','retailer']
+            'producerView'     : ['producer','facilitator'],
+            'retailerView'     : ['retailer','facilitator'],
+            'facilitatorView'  : ['facilitator'],
+            'adminView'        : ['admin'],
+            'playerView'       : ['producer','facilitator','retailer'],
+            'PandRView'        : ['producer','retailer']
         }
 
     }
@@ -44,7 +44,6 @@
 
         var bitMask = "01";
         var userRoles = {};
-
         for(var role in roles){
             var intCode = parseInt(bitMask, 2);
             userRoles[roles[role]] = intCode;

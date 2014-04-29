@@ -16,8 +16,7 @@ define(['app','socketIO'], function(app) {
 				$scope.initializeMessage.push(data.msg); 					
 
 			}			
-
-			console.log('scoketIO:'+data.msg);
+//			console.log('scoketIO:'+data.msg);
 		}).on('PassiveProcessLog', function(data){
 			$scope.isKernelMessageShown = true;
 			if(data.msg != ''){ $scope.kernelMessage.push(data.msg); }
@@ -26,17 +25,17 @@ define(['app','socketIO'], function(app) {
 			if(data.msg != ''){ $scope.kernelMessage.push(data.msg); }
 		});	        
 
-		var initializePage=function(){
-			$scope.seminar = SeminarInfo.getSelectedSeminar();
-			$scope.isMessageShown = false;
-			console.log($scope.seminar);
-		}
+		//var initializePage=function(){
+		$scope.seminar = SeminarInfo.getSelectedSeminar();
+		$scope.isMessageShown = false;
+		//	console.log($scope.seminar);
+		//}
 
-		initializePage();
+		//initializePage();
 	
-	    $scope.$watch('seminar.traceActive', function() {
-	      console.log('traceActive changeed.');
-	    });		
+	    // $scope.$watch('seminar.traceActive', function() {
+	    //   console.log('traceActive changeed.');
+	    // });		
 
 		$scope.getSeminarStatus = function(value){
 			if(value){
@@ -124,10 +123,6 @@ define(['app','socketIO'], function(app) {
 				$scope.initializeMessage.push(res.data);								
 				$scope.isActive = true;				
 			})
-		}
-
-		$scope.importReport = function(seminar) {
-			// body...
 		}
 
 

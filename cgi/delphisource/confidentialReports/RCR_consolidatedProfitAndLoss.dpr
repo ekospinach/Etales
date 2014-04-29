@@ -6,7 +6,7 @@ uses
 
 
 const
-     rcrpl_Sales                        = 100;
+    rcrpl_Sales                        = 100;
     rcrpl_PromotionsCost               = 101;
     rcrpl_OtherCompensation            = 102;
     rcrpl_NetSales                     = 103;
@@ -131,14 +131,14 @@ var
         rcrb_OperatingProfit                : begin jo.D['value'] := brand.rcrb_OperatingProfit; end;
         rcrb_OperatingProfitChange          : begin jo.D['value'] := brand.rcrb_OperatingProfitChange; end;
         rcrb_OperatingProfitMargin          : begin jo.D['value'] := brand.rcrb_OperatingProfitMargin; end;
-        rcrb_OperatingProfitShareInCategory: begin jo.D['value'] := brand.rcrb_OperatingProfitShareInCategory; end;
+        rcrb_OperatingProfitShareInCategory : begin jo.D['value'] := brand.rcrb_OperatingProfitShareInCategory; end;
         rcrb_Interest                       : begin jo.D['value'] := brand.rcrb_Interest; end;
         rcrb_Taxes                          : begin jo.D['value'] := brand.rcrb_Taxes; end;
         rcrb_ExceptionalItems               : begin jo.D['value'] := brand.rcrb_ExceptionalItems; end;
         rcrb_NetProfit                      : begin jo.D['value'] := brand.rcrb_NetProfit; end;
         rcrb_NetProfitChange                : begin jo.D['value'] := brand.rcrb_NetProfitChange; end;
         rcrb_NetProfitMargin                : begin jo.D['value'] := brand.rcrb_NetProfitMargin; end;
-        rcrb_NetProfitShareInCategory       : begin jo.D['value'] := brand.rcrb_NetProfitShareInCategory; end;      
+        rcrb_NetProfitShareInCategory       : begin jo.D['value'] := brand.rcrb_NetProfitShareInCategory; end;
      end;
 
      result := jo;
@@ -152,7 +152,7 @@ var
      jo.S['variantName'] := variant.rcrv_VariantName;
      jo.S['parentBrandName'] := variant.rcrv_ParentBrandName;
      jo.I['parentCategoryID'] := catID;
-     jo.I['parnetCompanyID'] := variant.rcrv_ParentCompanyID;     
+     jo.I['parnetCompanyID'] := variant.rcrv_ParentCompanyID;
      jo.I['marketID'] := marketID;
 
      case (fieldIdx) of

@@ -31,7 +31,8 @@ exports.initialiseSeminar = function(io){
         io.sockets.emit('AdminProcessLog', { msg: 'Create separated folder for binary files of seminar : '+ req.body.seminar, isError: false }); 
        	io.sockets.emit('AdminProcessLog', { msg: 'Start calling Initialize.DLL...', isError: false });                             
 		require('./models/seminar.js').initializeSeminar(options).then(function(result){
-            io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });                             
+            io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });      
+
             options.producerID = '1';
             options.cgiPath = conf.cgi.path_producerDecision;
 
@@ -110,12 +111,11 @@ exports.initialiseSeminar = function(io){
 		}).then(function(result){ 
             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	
 
-        //Not ready...
-		// 	options.cgiPath = conf.cgi.path_SCR_sharesCrossSegment;
-		// 	options.schemaName = 'SCR_sharesCrossSegment';
-		// 	return require('./models/SCR_sharesCrossSegment.js').addReports(options);			
-		// }).then(function(result){ 
-        //           io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	
+			options.cgiPath = conf.cgi.path_SCR_sharesCrossSegment;
+			options.schemaName = 'SCR_sharesCrossSegment';
+			return require('./models/SCR_sharesCrossSegment.js').addReports(options);			
+		}).then(function(result){ 
+            io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	
   			options.producerID = 2;
 			options.cgiPath = conf.cgi.path_SCR_channelsProfitability;
 			options.schemaName = 'SCR_channelsProfitability';
@@ -147,12 +147,12 @@ exports.initialiseSeminar = function(io){
 		}).then(function(result){ 
             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	
 
-        //Not ready...
-		// 	options.cgiPath = conf.cgi.path_SCR_sharesCrossSegment;
-		// 	options.schemaName = 'SCR_sharesCrossSegment';
-		// 	return require('./models/SCR_sharesCrossSegment.js').addReports(options);			
-		// }).then(function(result){ 
-        //           io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	
+			options.cgiPath = conf.cgi.path_SCR_sharesCrossSegment;
+			options.schemaName = 'SCR_sharesCrossSegment';
+			return require('./models/SCR_sharesCrossSegment.js').addReports(options);			
+		}).then(function(result){ 
+            io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	
+
   			options.producerID = 3;
 			options.cgiPath = conf.cgi.path_SCR_channelsProfitability;
 			options.schemaName = 'SCR_channelsProfitability';
@@ -184,12 +184,12 @@ exports.initialiseSeminar = function(io){
 		}).then(function(result){ 
             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	
 
-        //Not ready...
-		// 	options.cgiPath = conf.cgi.path_SCR_sharesCrossSegment;
-		// 	options.schemaName = 'SCR_sharesCrossSegment';
-		// 	return require('./models/SCR_sharesCrossSegment.js').addReports(options);			
-		// }).then(function(result){ 
- 	    //           io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	
+			options.cgiPath = conf.cgi.path_SCR_sharesCrossSegment;
+			options.schemaName = 'SCR_sharesCrossSegment';
+			return require('./models/SCR_sharesCrossSegment.js').addReports(options);			
+		}).then(function(result){ 
+ 	        io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	
+
   			options.producerID = 4;
 			options.cgiPath = conf.cgi.path_SCR_channelsProfitability;
 			options.schemaName = 'SCR_channelsProfitability';
@@ -221,12 +221,11 @@ exports.initialiseSeminar = function(io){
 		}).then(function(result){ 
             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	
 
-        //Not ready...
-		// 	options.cgiPath = conf.cgi.path_SCR_sharesCrossSegment;
-		// 	options.schemaName = 'SCR_sharesCrossSegment';
-		// 	return require('./models/SCR_sharesCrossSegment.js').addReports(options);			
-		// }).then(function(result){ 
- 	    //           io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	 	    
+			options.cgiPath = conf.cgi.path_SCR_sharesCrossSegment;
+			options.schemaName = 'SCR_sharesCrossSegment';
+			return require('./models/SCR_sharesCrossSegment.js').addReports(options);			
+		}).then(function(result){ 
+ 	              io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	 	    
 
 
         //Import RCR(Retailer confidential) reports
@@ -260,12 +259,12 @@ exports.initialiseSeminar = function(io){
 		}).then(function(result){ 
             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	
 
-        //Not ready
-		// 	options.cgiPath = conf.cgi.path_RCR_sharesCrossSegment;
-		// 	options.schemaName = 'RCR_sharesCrossSegment';
-		// 	return require('./models/RCR_sharesCrossSegment.js').addReports(options);			
-		// }).then(function(result){ 
-	    //           io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	
+			options.cgiPath = conf.cgi.path_RCR_sharesCrossSegment;
+			options.schemaName = 'RCR_sharesCrossSegment';
+			return require('./models/RCR_sharesCrossSegment.js').addReports(options);			
+		}).then(function(result){ 
+	        io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	
+
 	    	options.retailerID  = 2;
 			options.cgiPath = conf.cgi.path_RCR_consolidatedProfitAndLoss;
 			options.schemaName = 'RCR_consolidatedProfitAndLoss';
@@ -297,12 +296,12 @@ exports.initialiseSeminar = function(io){
 		}).then(function(result){ 
             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	
 
-        //Not ready
-		// 	options.cgiPath = conf.cgi.path_RCR_sharesCrossSegment;
-		// 	options.schemaName = 'RCR_sharesCrossSegment';
-		// 	return require('./models/RCR_sharesCrossSegment.js').addReports(options);			
-		// }).then(function(result){ 
-	    //           io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });		    
+			options.cgiPath = conf.cgi.path_RCR_sharesCrossSegment;
+			options.schemaName = 'RCR_sharesCrossSegment';
+			return require('./models/RCR_sharesCrossSegment.js').addReports(options);			
+		}).then(function(result){ 
+	        io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });		    
+
 	    	options.retailerID  = 3;
 			options.cgiPath = conf.cgi.path_RCR_consolidatedProfitAndLoss;
 			options.schemaName = 'RCR_consolidatedProfitAndLoss';
@@ -334,12 +333,11 @@ exports.initialiseSeminar = function(io){
 		}).then(function(result){ 
             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	
 
-        //Not ready
-		// 	options.cgiPath = conf.cgi.path_RCR_sharesCrossSegment;
-		// 	options.schemaName = 'RCR_sharesCrossSegment';
-		// 	return require('./models/RCR_sharesCrossSegment.js').addReports(options);			
-		// }).then(function(result){ 
-	    //           io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });		
+			options.cgiPath = conf.cgi.path_RCR_sharesCrossSegment;
+			options.schemaName = 'RCR_sharesCrossSegment';
+			return require('./models/RCR_sharesCrossSegment.js').addReports(options);			
+		}).then(function(result){ 
+	        io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });		
 
 
         //Import Market Reports
@@ -384,6 +382,19 @@ exports.initialiseSeminar = function(io){
 			return require('./models/MR_variantPerceptionEvolution.js').addReports(options);			
 		}).then(function(result){ 
              io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	
+
+			options.cgiPath = conf.cgi.path_MR_salesCrossSegment;
+			options.schemaName = 'MR_salesCrossSegment';
+			return require('./models/MR_salesCrossSegment.js').addReports(options);			
+		}).then(function(result){ 
+             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	
+
+			options.cgiPath = conf.cgi.path_MR_sharesCrossSegment;
+			options.schemaName = 'MR_sharesCrossSegment';
+			return require('./models/MR_sharesCrossSegment.js').addReports(options);			
+		}).then(function(result){ 
+             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	
+
 
             res.send(200, 'Initialization done.');
 		}, function(error){ //log the error

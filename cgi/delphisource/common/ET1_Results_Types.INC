@@ -53,7 +53,7 @@ TVariantCrossSegmentDetails = record
                                 vsd_ParentBrandID     : TBrandID;
                                 vsd_ParentBrandName   : TBrandName;
                                 vsd_ParentCompanyID   : TActors;
-                                vsd_Hidden            : boolean;    { flag used to determine if should be displayed. For instance, Private Labels of Retailer 1, should not be displayed in Retailer 2 report }
+                                vsd_Shown             : boolean;    { flag used to determine if should be displayed. For instance, Private Labels of Retailer 1, should not be displayed in Retailer 2 report }
                                 vsd_AbsoluteValue     : array[TSegmentsTotal, TShoppersKind] of single;
                                 vsd_ValueChange       : array[TSegmentsTotal, TShoppersKind] of single;
                                 vsd_AbsoluteVolume    : array[TSegmentsTotal, TShoppersKind] of single;
@@ -332,8 +332,7 @@ TSupplierConfidentialReport =
     scr_Brands                    : TSCR_SupplierBrands;
     scr_ProfitabilityByChannels   : TSCR_ChannelsProfitability;
     scr_Negotiations              : TSCR_Negotiations;
-    scr_SharesByConsumerSegment   : TSCR_CrossSegments;
-    scr_SharesByShopperSegment    : TSCR_CrossSegments;
+    scr_SharesByCrossSegment      : TSCR_CrossSegments;
     scr_InventoryVolumes          : TSCR_InventoryVolumes;
     scr_KeyPerformanceIndicators  : TSCR_KeyPerformanceIndicators;
     scr_Info                      : TSCR_AdditionalInfo;
@@ -550,8 +549,7 @@ TRetailerConfidentialReport =
     rcr_Brands                    : TRCR_RetailerBrands;
     rcr_ProfitabilityBySuppliers  : TRCR_ProfitabilityBySuppliers;
     rcr_Negotiations              : TRCR_Negotiations;
-    rcr_SharesByConsumerSegment   : TRCR_CrossSegments;
-    rcr_SharesByShopperSegment    : TRCR_CrossSegments;
+    rcr_SharesByCrossSegment      : TRCR_CrossSegments;
     rcr_InventoryVolumes          : TRCR_InventoryVolumes;
     rcr_KeyPerformanceIndicators  : TRCR_KeyPerformanceIndicators;
     rcr_Info                      : TRCR_AdditionalInfo;
@@ -586,6 +584,7 @@ TMR_VariantPerception =
     mrvp_DateOfBirth        : TTimeSpan;
     mrvp_DateOfDeath        : TTimeSpan;
     mrvp_ParentCompanyID    : TActors;
+    mrvp_Shown              : boolean;
     mrvp_PreviousPerception : array[TVariantThreePerceptions] of single;
     mrvp_LatestPerception   : array[TVariantThreePerceptions] of single;
     mrvp_PerceptionChange   : array[TVariantThreePerceptions] of single;
@@ -700,11 +699,8 @@ TMarketResearch =
     mr_VariantPerception       : TMR_VariantPerceptionEvolution;
     mr_RetailerPerception      : TMR_RetailerPerceptionEvolution;
 
-    mr_SharesByConsumerSegment : TMR_CrossSegmentsDetails;
-    mr_SalesByConsumerSegment  : TMR_CrossSegmentsDetails;
-    
-    mr_SharesByShopperSegment  : TMR_CrossSegmentsDetails;
-    mr_SalesByShopperSegment   : TMR_CrossSegmentsDetails;
+    mr_SharesByCrossSegment    : TMR_CrossSegmentsDetails;
+    mr_SalesByCrossSegment     : TMR_CrossSegmentsDetails;
 
     mr_NetMarketPrices         : TMR_NetMarketPrices;
     mr_PricePromotions         : TMR_PricePromotions;
