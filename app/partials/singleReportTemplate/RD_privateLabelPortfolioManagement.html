@@ -1,0 +1,125 @@
+<div class="pull-right" style="width:400px" ng-show='isResultShown'>
+	<progress percent="percentageExpend" class="progress-primary"></progress>
+	<small>
+		<em>{{Label.getContent('Available Budget')}}:<strong>{{surplusExpend.toFixed(2)}}</strong></em>
+	</small>
+</div>
+<div style="clear:both;padding:1px 0" ng-show='isResultShown'></div>
+<div class='panel panel-primary my-success-panel' ng-show='isResultShown'>
+	<div class="panel-heading">
+        <h3 class="panel-title text-center" popover="{{Label.getContent('Private Label Portfolio Management Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
+            {{Label.getContent('Private Label Portfolio Management')}}
+        </h3>
+    </div>
+
+    <table class="table table-condensed table-bordered table-success">
+    	<thead>
+    		<tr>
+    			<th colspan="2">{{Label.getContent('Elecssories')}}</th>
+    			<th>
+    				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Pack Format Info')}}" popover-title="{{Label.getContent('Pack Format')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Pack Format')}}<span style="color:red">*</span></p>
+    			</th>
+    			<th>
+    				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Technology Level Info')}}" popover-title="{{Label.getContent('Technology Level')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Technology Level')}}<span style="color:red">*</span></p>
+    			</th>
+    			<th>
+    				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Design Level Info')}}" popover-title="{{Label.getContent('Design Level')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Design Level')}}<span style="color:red">*</span></p>
+    			</th>
+    			<th>
+    				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Quality-of-Raw-Materials Info')}}" popover-title="{{Label.getContent('Quality-of-Raw-Materials')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Quality-of-Raw-Materials')}}<span style="color:red">*</span></p>
+    			</th>
+    		</tr>
+    		<tr class="success">
+    			<td colspan="6">
+    				<p>{{Label.getContent('Brand')}}</p>
+    			</td>
+    		</tr>
+    	</thead>
+    	<tbody>
+    		<tr class="success" ng-repeat='producte in productes'>
+    			<td>
+    				<p class="padding-20">{{producte.parentBrandName}}</p>
+    			</td>
+    			<td>
+    				<div style="clear:both"></div>
+    				<button type="button" class="btn btn-danger btn-xs pull-right" ng-show="(producte.dateOfBirth==currentPeriod)" ng-click="deleteProduct('Elecssories',producte.parentBrandName,producte.varName)">{{Label.getContent('Delete')}}</button>
+    				<p class="text-center">{{producte.varName}}</p>
+    			</td>
+    			<td>
+    				<a href="#" editable-select="producte.packFormat" e-ng-options="p.value as p.text for p in packs" onaftersave="updateRetailerDecision('Elecssories',producte.parentBrandName,producte.varName,'packFormat','0',$index,$data)">
+    					<p class="text-right">{{selectPacks('Elecssories',producte.parentBrandName,producte.varName)}}</p>
+    				</a>
+    			</td>
+    			<td>
+    				<a href="#" editable-text="producte.composition[1]" onbeforesave="checkTechnology('Elecssories',producte.parentBrandName,producte.varName,'composition','1',$index,$data)" onaftersave="updateRetailerDecision('Elecssories',producte.parentBrandName,producte.varName,'composition','1',$index,$data)">
+    					<p class="text-right">{{ producte.composition[1] || 0 }}</p>
+    				</a>
+    			</td>
+    			<td>
+    				<a href="#" editable-text="producte.composition[0]" onbeforesave="checkDesign('Elecssories',producte.parentBrandName,producte.varName,'composition','0',$index,$data)" onaftersave="updateRetailerDecision('Elecssories',producte.parentBrandName,producte.varName,'composition','0',$index,$data)">
+    					<p class="text-right">{{ producte.composition[0] || 0 }}</p>
+    				</a>
+    			</td>
+    			<td>
+    				<a href="#" editable-text="producte.composition[2]" onbeforesave="checkRMQ('Elecssories',producte.parentBrandName,producte.varName,'composition','2',$index,$data)" onaftersave="updateRetailerDecision('Elecssories',producte.parentBrandName,producte.varName,'composition','2',$index,$data)">
+    					<p class="text-right">{{ producte.composition[2] || 0 }}</p>
+    				</a>
+    			</td>
+    		</tr>
+    		<tr>
+    			<th colspan="2">{{Label.getContent('HealthBeauties')}}</th>
+    			<th>
+    				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Pack Format Info')}}" popover-title="{{Label.getContent('Pack Format')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Pack Format')}}<span style="color:red">*</span></p>
+    			</th>
+    			<th>
+    				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Technology Level Info')}}" popover-title="{{Label.getContent('Technology Level')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Technology Level')}}<span style="color:red">*</span></p>
+    			</th>
+    			<th>
+    				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Active agent Info')}}" popover-title="{{Label.getContent('Active agent')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Active agent')}}<span style="color:red">*</span></p>
+    			</th>
+    			<th>
+    				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Smoothener Level Info')}}" popover-title="{{Label.getContent('Smoothener Level')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Smoothener Level')}}<span style="color:red">*</span></p>
+    			</th>
+    		</tr>
+    		<tr class="danger">
+    			<td colspan="6">
+    				<p>{{Label.getContent('Brand')}}</p>
+    			</td>
+    		</tr>
+    		<tr class="danger" ng-repeat='producth in producths'>
+    			<td>
+    				<p class="padding-20">{{producth.parentBrandName}}</p>
+    			</td>
+    			<td>
+    				<div style="clear:both"></div>
+    				<button type="button" class="btn btn-danger btn-xs pull-right" ng-show="(producth.dateOfBirth==currentPeriod)" ng-click="deleteProduct('HealthBeauty',producth.parentBrandName,producth.varName)">{{Label.getContent('Delete')}}</button>
+    				<p class="text-center">{{producth.varName}}</p>
+    				<div style="clear:both"></div>
+    			</td>
+    			<td>
+    				<a href="#" editable-select="producth.packFormat" e-ng-options="p.value as p.text for p in packs" onaftersave="updateRetailerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'packFormat','0',$index,$data)">
+    					<p class="text-right">{{selectPacks('HealthBeauty',producth.parentBrandName,producth.varName)}}</p>
+    				</a>
+    			</td>
+    			<td>
+    				<a href="#" editable-text="producth.composition[1]" onbeforesave="checkTechnology('HealthBeauty',producth.parentBrandName,producth.varName,'composition','1',$index,$data)" onaftersave="updateRetailerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'composition','1',$index,$data)">
+    					<p class="text-right">{{ producth.composition[1] || 0 }}</p>
+    				</a>
+    			</td>
+    			<td>
+    				<a href="#" editable-text="producth.composition[0]" onbeforesave="checkDesign('HealthBeauty',producth.parentBrandName,producth.varName,'composition','0',$index,$data)" onaftersave="updateRetailerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'composition','0',$index,$data)">
+    					<p class="text-right">{{ producth.composition[0] || 0 }}</p>
+    				</a>
+    			</td>
+    			<td>
+    				<a href="#" editable-text="producth.composition[2]" onbeforesave="checkRMQ('HealthBeauty',producth.parentBrandName,producth.varName,'composition','2',$index,$data)" onaftersave="updateRetailerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'composition','2',$index,$data)">
+    					<p class="text-right">{{ producth.composition[2] || 0 }}</p>
+    				</a>
+    			</td>
+    		</tr>
+    	</tbody>
+    </table>
+</div>
+<div ng-show='isResultShown'>
+	<a ng-click="openProductModal()" ng-disabled="isReady" class="btn btn-default">{{Label.getContent('New Product')}}</a>
+</div>

@@ -75,6 +75,7 @@
 	'directives/TE_SD_onlineStoreManagement',
 	'directives/TE_SD_assetInvestments',
 	'directives/TE_RD_marketing',
+	'directives/TE_RD_privateLabelPortfolioManagement',
 	'angularRoute',
 	'angularXeditable',
 	'angularBootstrap',
