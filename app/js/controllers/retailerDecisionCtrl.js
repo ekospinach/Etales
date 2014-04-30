@@ -19,8 +19,8 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    		case 'showNegotiationAgreements':$scope.NegotiationAgreements=true;break;
 		    		case 'showMarketing':$scope.Marketing=true;break;
 		    		case 'showPrivateLabelPortfolioManagement':$scope.PrivateLabelPortfolioManagement=true;break;
-		    		case 'showMarketResearchOrders':$scope.MarketResearchOrders=true;break;
 		    		case 'showStoreManagement':$scope.StoreManagement=true;break;
+		    		case 'showMarketResearchOrders':$scope.MarketResearchOrders=true;break;
 		    	}
 		    }
 

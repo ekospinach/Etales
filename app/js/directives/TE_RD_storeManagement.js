@@ -15,13 +15,15 @@ define(['directives', 'services'], function(directives){
                     scope.isPageLoading = true;
                     scope.isResultShown = false;                    
                     scope.Label = Label;
-
+                    scope.open=open;
+                    scope.close=close;
+                    scope.showView=showView;
                     scope.currentPeriod=PeriodInfo.getCurrentPeriod();
                     RetailerDecisionBase.startListenChangeFromServer();
                     RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
                         scope.pageBase = base;
                     }).then(function(){
-                        return showView();
+                        return showView('Elecssories','Rural');
                     }), function(reason){
                         console.log('from ctr: ' + reason);
                     }, function(update){
@@ -30,17 +32,7 @@ define(['directives', 'services'], function(directives){
                 }
 
                 var loadSelectCategroy=function(market,category){
-                    if(market=="Urban"){
-                        market=1;
-                    }else if(market=="Rural"){
-                        market=2;
-                    }
-                    if(category=="Elecssories"){
-                        category=1;
-                    }else if(category=="HealthBeauty"){
-                        category=2;
-                    }
-                    var retMarketDecisions=_.filter($scope.pageBase.retMarketDecision,function(obj){
+                    var retMarketDecisions=_.filter(scope.pageBase.retMarketDecision,function(obj){
                         return (obj.marketID==market);
                     });
                     return _.filter(retMarketDecisions[0].retMarketAssortmentDecision,function(obj){
@@ -53,13 +45,7 @@ define(['directives', 'services'], function(directives){
                 Market Size =  quarterHistoryInfoSchema({seminar, period}).categoryview[当前产品的category-1].categoryMarketView[当前market-1].segmentsVolumes[4] (4 = Total, 0,1,2,3分别为该市场的4个细分市场）
                 */
                 scope.checkOrderVolume=function(category,market,brandName,varName,location,postion,addtionalIdx,value){
-                    var d=$q.defer();
-                    var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
-                    if(!filter.test(value)){
-                        d.resolve(Label.getContent('Input a number'));
-                    }
-                    var max=0;
-                        if(market=="Urban"){
+                    if(market=="Urban"){
                         market=1;
                     }else if(market=="Rural"){
                         market=2;
@@ -69,6 +55,13 @@ define(['directives', 'services'], function(directives){
                     }else if(category=="HealthBeauty"){
                         category=2;
                     }
+                    var d=$q.defer();
+                    var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
+                    if(!filter.test(value)){
+                        d.resolve(Label.getContent('Input a number'));
+                    }
+                    var max=0;
+                    
                     var url='/quarterHistoryInfo/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1);
                     $http({method:'GET',url:url}).then(function(data){
                         max=data.data.categoryView[category-1].categoryMarketView[market-1].segmentsVolumes[4];
@@ -86,11 +79,6 @@ define(['directives', 'services'], function(directives){
                 Retailer这里的两个进度条跟Producer有不同，Producer为Avaiable budeget和Avaiable capacity（根据不同category有两个不同的capacity进度条，label也要相应变化）分别是Avaiable budget和Avaiable Shelf space （根据不同市场显示两个不同的shelf space进度条，label也要相应变换）
                 */
                 scope.checkShelfSpace=function(category,market,brandName,varName,location,postion,addtionalIdx,value){
-                    var d=$q.defer(),max=0;
-                    var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
-                    if(!filter.test(value)){
-                        d.resolve(Label.getContent('Input a number'));
-                    }
                     if(market=="Urban"){
                         market=1;
                     }else if(market=="Rural"){
@@ -101,6 +89,12 @@ define(['directives', 'services'], function(directives){
                     }else if(category=="HealthBeauty"){
                         category=2;
                     }
+                    var d=$q.defer(),max=0;
+                    var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
+                    if(!filter.test(value)){
+                        d.resolve(Label.getContent('Input a number'));
+                    }
+                
                     var url="/retailerShelfSpace/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/'+market+'/'+category+'/'+brandName+'/'+varName;
                     $http({
                         method:'GET',
@@ -123,16 +117,21 @@ define(['directives', 'services'], function(directives){
                 if 该产品为Retailer自己生产的private label，则listPrice= 该产品的UnitCost（当前产品的Unitcost计算方法请求路由app.get('/productionCost’)获取，该服务还没完成）
                 */
                 scope.checkRetailerPrice=function(category,market,brandName,varName,location,postion,addtionalIdx,dateOfBirth,value){
-                    var d=$q.defer();
-                    var url="",max=0;
-                    var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
-                    if(!filter.test(value)){
-                        d.resolve(Label.getContent('Input a number'));
+                    if(market=="Urban"){
+                        market=1;
+                    }else if(market=="Rural"){
+                        market=2;
                     }
                     if(category=="Elecssories"){
                         category=1;
                     }else if(category=="HealthBeauty"){
                         category=2;
+                    }
+                    var d=$q.defer();
+                    var url="",max=0;
+                    var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
+                    if(!filter.test(value)){
+                        d.resolve(Label.getContent('Input a number'));
                     }
                     if(brandName.substring(brandName.length-1)<4){
                         //producer
@@ -170,7 +169,7 @@ define(['directives', 'services'], function(directives){
                             brandName : brandName,
                             varName : varName,
                             catID : category,
-                            userRole :  $rootScope.userRoles.retailer,                      
+                            userRole :  4,                      
                             userID : PlayerInfo.getPlayer(),
                         }   
                         $http({
@@ -231,29 +230,33 @@ define(['directives', 'services'], function(directives){
                     }else if(category=="HealthBeauty"){
                         category=2;
                     }
-                    // if(location=="pricePromotions"&&postion=="promo_Frequency"){
-                    //     RetailerDecisionBase.setRetailerDecision(category,market,brandName,varName,location,postion,value);                  
-                    // }else if(location=="pricePromotions"&&postion=="promo_Rate"){
-                    //     RetailerDecisionBase.setRetailerDecision(category,market,brandName,varName,location,postion,value/100);
-                    // }else if(location=="shelfSpace"){
-                    //     RetailerDecisionBase.setRetailerDecision(category,market,brandName,varName,location,postion,value/100);                 
-                    // }else{
-                    //     RetailerDecisionBase.setRetailerDecision(category,market,brandName,varName,location,postion,value);                   
-                    // }
-                    if(location=="pricePromotions"&&postion=="promo_Rate"||location=="shelfSpace"){
+                    if(location=="pricePromotions"&&postion=="promo_Frequency"){
+                        RetailerDecisionBase.setRetailerDecision(category,market,brandName,varName,location,postion,value);                  
+                    }else if(location=="pricePromotions"&&postion=="promo_Rate"){
                         RetailerDecisionBase.setRetailerDecision(category,market,brandName,varName,location,postion,value/100);
+                    }else if(location=="shelfSpace"){
+                        RetailerDecisionBase.setRetailerDecision(category,market,brandName,varName,location,postion,value/100);                 
                     }else{
                         RetailerDecisionBase.setRetailerDecision(category,market,brandName,varName,location,postion,value);                   
                     }
                 }
 
-
-                var showView=function(){
+                var showView=function(category,market){
                     var d=$q.defer();
-                    var categoryID=0,count=0,result=0,expend=0,categoryID=0,marketID=0;
+                    var categoryID=0,count=0,result=0,expend=0,marketID=0;
+                    scope.category=category;scope.market=market;
+                    if(category=="HealthBeauties"){
+                        category=2;
+                    }else{
+                        category=1;
+                    }
+                    if(market=="Rural"){
+                        market=2;
+                    }else{
+                        market=1;
+                    }
                     var orderProducts=new Array();
                     var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/R/'+parseInt(PlayerInfo.getPlayer());
-                    
                     $http({
                         method:'GET',
                         url:url
@@ -267,12 +270,18 @@ define(['directives', 'services'], function(directives){
                         url="/retailerExpend/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/-1/location/1';
                         return $http({
                             method:'GET',
-                            url:url,
+                            url:url
                         });
                     }).then(function(data){
                         expend=data.data.result;
                         scope.surplusExpend=abMax-expend;
                         scope.percentageExpend=(abMax-expend)/abMax*100;
+                        url="/retailerShelfSpace/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/-1/0/brandName/varName';
+                        return $http({
+                            method:'GET',
+                            url:url
+                        });
+                    }).then(function(data){
                         scope.surplusShelf=new Array();
                         scope.percentageShelf=new Array();
                         scope.surplusShelf[0]=new Array();
@@ -283,12 +292,12 @@ define(['directives', 'services'], function(directives){
                         scope.surplusShelf[0][1]=data.data.result[0][1];
                         scope.surplusShelf[1][0]=data.data.result[1][0];
                         scope.surplusShelf[1][1]=data.data.result[1][1];
-                        scope.percentageShelf[0][0]=(1-$scope.surplusShelf[0][0])*100;
-                        scope.percentageShelf[0][1]=(1-$scope.surplusShelf[0][1])*100;
-                        scope.percentageShelf[1][0]=(1-$scope.surplusShelf[1][0])*100;
-                        scope.percentageShelf[1][1]=(1-$scope.surplusShelf[1][1])*100;
-                        scope.showSurplusShelf=$scope.percentageShelf[market-1][category-1];
-                        scope.showPercentageShelf=$scope.percentageShelf[market-1][category-1];
+                        scope.percentageShelf[0][0]=(1-scope.surplusShelf[0][0])*100;
+                        scope.percentageShelf[0][1]=(1-scope.surplusShelf[0][1])*100;
+                        scope.percentageShelf[1][0]=(1-scope.surplusShelf[1][0])*100;
+                        scope.percentageShelf[1][1]=(1-scope.surplusShelf[1][1])*100;
+                        scope.showSurplusShelf=scope.percentageShelf[market-1][category-1];
+                        scope.showPercentageShelf=scope.percentageShelf[market-1][category-1];
 
                         var allRetCatDecisions=loadSelectCategroy(market,category);
                         var products=new Array();
@@ -297,7 +306,6 @@ define(['directives', 'services'], function(directives){
                                 if(allRetCatDecisions[i].retVariantDecision[j].brandID!=0&&allRetCatDecisions[i].retVariantDecision[j].variantID!=0){
                                     if(allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate>=0&&allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate<1){
                                         allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate*=100;
-                                        //allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate=parseFloat(allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate).toFixed(2);
                                     }
                                     if(allRetCatDecisions[i].retVariantDecision[j].shelfSpace>=0&&allRetCatDecisions[i].retVariantDecision[j].shelfSpace<1){
                                         allRetCatDecisions[i].retVariantDecision[j].shelfSpace*=100;
@@ -310,12 +318,6 @@ define(['directives', 'services'], function(directives){
                             }
                         }
                         scope.products=products;
-                        if(category=="Elecssories"){
-                            category=1;
-                        }
-                        if(category=="HealthBeauty"){
-                            category=2;
-                        }
                         //添加retailer load
                         url='/retailerProducts/'+parseInt(PlayerInfo.getPlayer())+'/'+PeriodInfo.getCurrentPeriod()+'/'+SeminarInfo.getSelectedSeminar()+'/'+category;
                         return $http({
@@ -367,9 +369,9 @@ define(['directives', 'services'], function(directives){
                                 }else{
                                     scope.orderProducts=orderProducts;
                                     var indexs=new Array();
-                                    for(i=0;i<$scope.orderProducts.length;i++){
-                                        for(j=0;j<$scope.products.length;j++){
-                                            if($scope.orderProducts[i].brandName==$scope.products[j].brandName&&$scope.orderProducts[i].varName==$scope.products[j].varName){
+                                    for(i=0;i<scope.orderProducts.length;i++){
+                                        for(j=0;j<scope.products.length;j++){
+                                            if(scope.orderProducts[i].brandName==scope.products[j].brandName&&scope.orderProducts[i].varName==scope.products[j].varName){
                                                 indexs.push(i);
                                             }
                                         }
@@ -381,12 +383,67 @@ define(['directives', 'services'], function(directives){
                                 }
                             })
                         })(checkurls,urls,0);
+                    }).then(function(){
                         scope.isResultShown = true;
-                        scope.isPageLoading = false; 
+                        scope.isPageLoading = false;   
                     },function(){
                         d.reject(Label.getContent('showView fail'));
-                    }); 
-                    return d.promise;      
+                    });
+                    return d.promise;
+                }
+
+                var open = function () {
+                    scope.shouldBeOpen = true;
+                };
+                var close = function () {
+                    scope.shouldBeOpen = false;
+                    RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
+                        scope.pageBase = base;
+                    }).then(function(){
+                        return showView(scope.category,scope.market);
+                    }), function(reason){
+                        console.log('from ctr: ' + reason);
+                    }, function(update){
+                        console.log('from ctr: ' + update);
+                    };
+                };
+                scope.addOrders=function(market){
+                    var ordersProducts=new Array();
+                    for(var i=0;i<scope.orderProducts.length;i++){
+                        if(scope.orderProducts[i].select){
+                            ordersProducts.push(scope.orderProducts[i]);
+                        }
+                    }
+                    for(i=0;i<ordersProducts.length;i++){
+                        ordersProducts[i].order=0,
+                        ordersProducts[i].retailerPrice=0,
+                        ordersProducts[i].shelfSpace=0,
+                        ordersProducts[i].pricePromotions={
+                            promo_Frequency:0,
+                            promo_Rate:0
+                        }
+                    }
+                    if(market=="Urban"){
+                        RetailerDecisionBase.addOrders(1,ordersProducts);
+                    }
+                    else{
+                        RetailerDecisionBase.addOrders(2,ordersProducts);
+                    }
+                    close();
+                }
+                scope.deleteOrder=function(category,market,brandName,varName){
+                    if(market=="Urban"){
+                        market=1;
+                    }else{
+                        market=2;
+                    }
+                    if(category=="Elecssories"){
+                        category=1;
+                    }else{
+                        category=2;
+                    }
+                    RetailerDecisionBase.deleteOrder(market,category,brandName,varName);
+                    close();
                 }
 
                 scope.$watch('isPageShown', function(newValue, oldValue){
@@ -398,7 +455,7 @@ define(['directives', 'services'], function(directives){
                     RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
                         scope.pageBase = base;
                     }).then(function(){
-                        return showView();
+                        return showView(scope.category,scope.market);
                     }), function(reason){
                         console.log('from ctr: ' + reason);
                     }, function(update){
