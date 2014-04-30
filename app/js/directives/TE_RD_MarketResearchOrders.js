@@ -1,13 +1,13 @@
 define(['directives', 'services'], function(directives){
 
-    directives.directive('supplierMarketResearchOrders', ['Label','SeminarInfo','$http','PeriodInfo','$q','PlayerInfo', function(Label, SeminarInfo, $http, PeriodInfo, $q,PlayerInfo){
+    directives.directive('retailerMarketResearchOrders', ['Label','SeminarInfo','$http','PeriodInfo','$q','PlayerInfo', function(Label, SeminarInfo, $http, PeriodInfo, $q,PlayerInfo){
         return {
             scope : {
                 isPageShown : '=',
                 isPageLoading : '='
             },
             restrict : 'E',
-            templateUrl : '../../partials/singleReportTemplate/SD_marketResearchOrders.html',            
+            templateUrl : '../../partials/singleReportTemplate/RD_marketResearchOrders.html',            
             link : function(scope, element, attrs){                                                                
                 var initializePage = function(){
                     scope.isPageLoading = true;
@@ -38,8 +38,8 @@ define(['directives', 'services'], function(directives){
 
                     var reportPrices=data.data.reportPrice;
                     
-                    var players=_.find(data.data.producers,function(obj){
-                        return (obj.producerID==PlayerInfo.getPlayer());
+                    var players=_.find(data.data.retailers,function(obj){
+                        return (obj.retailerID==PlayerInfo.getPlayer());
                     })
 
                     var playerStatus=_.find(players.reportPurchaseStatus,function(obj){
@@ -60,22 +60,18 @@ define(['directives', 'services'], function(directives){
                     playDatas.push({'name':'Forcasts','realName':'forcasts','reportPrice':reportPrices.forcasts,'playerStatus':playerStatus.forcasts});
 
                     scope.playDatas=playDatas;
-                    console.log(playDatas);
-
                     deferred.resolve({msg:'Array is ready.'});                    
                     return deferred.promise;
                 }
 
                 scope.submitOrder=function(){
-                    console.log(scope.playDatas);
                     var postData={
-                        player:'Producer',
+                        player:'Retailer',
                         playerID:PlayerInfo.getPlayer(),
                         period:PeriodInfo.getCurrentPeriod(),
                         seminarCode:SeminarInfo.getSelectedSeminar(),
                         data:scope.playDatas
                     }
-                    console.log(postData);
                     $http({
                         method:'POST',
                         url:'/submitOrder',

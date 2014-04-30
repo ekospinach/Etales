@@ -278,109 +278,411 @@ exports.deleteSeminar = function(req, res, next){
 
 exports.addSeminar=function(req,res,next){
 	var Newseminar = new seminar({
-		seminarCode: req.body.seminarCode,
-		seminarDescription: req.body.seminarDescription,
-		seminarDate: Date.now(),
-		currentPeriod:1,
-		isInitialise: false,
-		producers : [{
-			producerID : 1,
-			password : "110",
-			newProductDecisionReadyPeriod : 1,
-			decisionReadyPeriod : 0,
-			members : [{
-				name : "Tom",
-				description: "Tom and Jack"
-			},{
-				name : "Jack",
-				description: "Tom and Jack"			
-			}]
-		},{
-			producerID : 2,
-			password : "120",
-			newProductDecisionReadyPeriod : 1,
-			decisionReadyPeriod : 0,
-			members : [{
-				name : "Tom",
-				description: "Tom and Jack"
-			},{
-				name : "Jack",
-				description: "Tom and Jack"			
-			}]
-		},{
-			producerID : 3,
-			password : "130",
-			newProductDecisionReadyPeriod : 1,
-			decisionReadyPeriod : 0,
-			members : [{
-				name : "Tom",
-				description: "Tom and Jack"
-			},{
-				name : "Jack",
-				description: "Tom and Jack"			
-			}]
-		},{
-			producerID : 4,
-			password : "140",
-			newProductDecisionReadyPeriod : 1,
-			decisionReadyPeriod : 0,
-			members : [{
-				name : "Tom",
-				description: "Tom and Jack"
-			},{
-				name : "Jack",
-				description: "Tom and Jack"			
-			}]
-		}],
-		retailers : [{
-			retailerID : 1,
-			password : "210",
-			decisionReadyPeriod : 0,
-			members : [{
-				name : "Tom",
-				description: "Tom and Jack"
-			},{
-				name : "Jack",
-				description: "Tom and Jack"			
-			}]
-		},{
-			retailerID : 2,
-			password : "220",
-			decisionReadyPeriod : 0,
-			members : [{
-				name : "Tom",
-				description: "Tom and Jack"
-			},{
-				name : "Jack",
-				description: "Tom and Jack"			
-			}]
-		},{
-			retailerID : 3,
-			password : "230",
-			decisionReadyPeriod : 0,
-			members : [{
-				name : "Tom",
-				description: "Tom and Jack"
-			},{
-				name : "Jack",
-				description: "Tom and Jack"			
-			}]
-		},{
-			retailerID : 4,
-			password : "240",
-			decisionReadyPeriod : 0,
-			members : [{
-				name : "Tom",
-				description: "Tom and Jack"
-			},{
-				name : "Jack",
-				description: "Tom and Jack"			
-			}]
-		}],
+		seminarCode : 'June',
+		seminarDescription : 'hello', 
+		seminarDate : Date.now(),
+		currentPeriod : 1,
+		isInitialise : true, //when user login, need check this value
+		reportPrice : {
+			awareness                    : 10,
+			brandPerceptions             : 10,
+			retailerPerceptions          : 10,
+			marketShareByConsumerSegment : 10,
+			salesByConsumberSegment      : 10,
+			marketShareByShopperSegment  : 10,
+			salesByShopperSegment        : 10,
+			BMRetailerPrices             : 10,
+			promotionIntensity           : 10,
+			supplierIntelligence         : 10,
+			retailerIntelligence         : 10,
+			forcasts                     : 10
+		},
 		facilitator : [{
-			facilitatorDescription : "Help you",
-			password : "310"
-		}],
+            password : "310",
+            facilitatorDescription : "Help you"
+        }],
+	    retailers : [{
+	    	members : [{
+	    		description : "Tom and Jack",
+	    		name : "Tom"
+	    	},{
+	    		description : "Tom and Jack",
+	    		name : "Jack"
+	    	}],
+	    	password : "210",
+	    	retailerID : 1,
+	    	decisionCommitStatus : [{
+	    		period : 1,
+	    		isDecisionCommitted : false
+	    	},{
+	    		period : 0,
+	    		isDecisionCommitted : true
+	    	}],
+	    	reportPurchaseStatus : [{
+	    		period                       : 1,
+				awareness                    : true,
+				brandPerceptions             : false,
+				retailerPerceptions          : false,
+				marketShareByConsumerSegment : false,
+				salesByConsumberSegment      : false,
+				marketShareByShopperSegment  : false,
+				salesByShopperSegment        : false,
+				BMRetailerPrices             : false,
+				promotionIntensity           : false,
+				supplierIntelligence         : false,
+				retailerIntelligence         : false,
+				forcasts                     : false
+	    	},{
+	    		period                       : 0,
+				awareness                    : true,
+				brandPerceptions             : false,
+				retailerPerceptions          : false,
+				marketShareByConsumerSegment : false,
+				salesByConsumberSegment      : false,
+				marketShareByShopperSegment  : false,
+				salesByShopperSegment        : false,
+				BMRetailerPrices             : false,
+				promotionIntensity           : false,
+				supplierIntelligence         : false,
+				retailerIntelligence         : false,
+				forcasts                     : false
+	    	}]
+        },{
+	    	members : [{
+	    		description : "Tom and Jack",
+	    		name : "Tom"
+	    	},{
+	    		description : "Tom and Jack",
+	    		name : "Jack"
+	    	}],
+	    	password : "220",
+	    	retailerID : 2,
+	    	decisionCommitStatus : [{
+	    		period : 1,
+	    		isDecisionCommitted : false
+	    	},{
+	    		period : 0,
+	    		isDecisionCommitted : true
+	    	}],
+	    	reportPurchaseStatus : [{
+	    		period                       : 1,
+				awareness                    : true,
+				brandPerceptions             : false,
+				retailerPerceptions          : false,
+				marketShareByConsumerSegment : false,
+				salesByConsumberSegment      : false,
+				marketShareByShopperSegment  : false,
+				salesByShopperSegment        : false,
+				BMRetailerPrices             : false,
+				promotionIntensity           : false,
+				supplierIntelligence         : false,
+				retailerIntelligence         : false,
+				forcasts                     : false
+	    	},{
+	    		period                       : 0,
+				awareness                    : true,
+				brandPerceptions             : false,
+				retailerPerceptions          : false,
+				marketShareByConsumerSegment : false,
+				salesByConsumberSegment      : false,
+				marketShareByShopperSegment  : false,
+				salesByShopperSegment        : false,
+				BMRetailerPrices             : false,
+				promotionIntensity           : false,
+				supplierIntelligence         : false,
+				retailerIntelligence         : false,
+				forcasts                     : false
+	    	}]
+        },{
+	    	members : [{
+	    		description : "Tom and Jack",
+	    		name : "Tom"
+	    	},{
+	    		description : "Tom and Jack",
+	    		name : "Jack"
+	    	}],
+	    	password : "230",
+	    	retailerID : 3,
+	    	decisionCommitStatus : [{
+	    		period : 1,
+	    		isDecisionCommitted : false
+	    	},{
+	    		period : 0,
+	    		isDecisionCommitted : true
+	    	}],
+	    	reportPurchaseStatus : [{
+	    		period                       : 1,
+				awareness                    : true,
+				brandPerceptions             : false,
+				retailerPerceptions          : false,
+				marketShareByConsumerSegment : false,
+				salesByConsumberSegment      : false,
+				marketShareByShopperSegment  : false,
+				salesByShopperSegment        : false,
+				BMRetailerPrices             : false,
+				promotionIntensity           : false,
+				supplierIntelligence         : false,
+				retailerIntelligence         : false,
+				forcasts                     : false
+	    	},{
+	    		period                       : 0,
+				awareness                    : true,
+				brandPerceptions             : false,
+				retailerPerceptions          : false,
+				marketShareByConsumerSegment : false,
+				salesByConsumberSegment      : false,
+				marketShareByShopperSegment  : false,
+				salesByShopperSegment        : false,
+				BMRetailerPrices             : false,
+				promotionIntensity           : false,
+				supplierIntelligence         : false,
+				retailerIntelligence         : false,
+				forcasts                     : false
+	    	}]
+        },{
+	    	members : [{
+	    		description : "Tom and Jack",
+	    		name : "Tom"
+	    	},{
+	    		description : "Tom and Jack",
+	    		name : "Jack"
+	    	}],
+	    	password : "240",
+	    	retailerID : 4,
+	    	decisionCommitStatus : [{
+	    		period : 1,
+	    		isDecisionCommitted : false
+	    	},{
+	    		period : 0,
+	    		isDecisionCommitted : true
+	    	}],
+	    	reportPurchaseStatus : [{
+	    		period                       : 1,
+				awareness                    : true,
+				brandPerceptions             : false,
+				retailerPerceptions          : false,
+				marketShareByConsumerSegment : false,
+				salesByConsumberSegment      : false,
+				marketShareByShopperSegment  : false,
+				salesByShopperSegment        : false,
+				BMRetailerPrices             : false,
+				promotionIntensity           : false,
+				supplierIntelligence         : false,
+				retailerIntelligence         : false,
+				forcasts                     : false
+	    	},{
+	    		period                       : 0,
+				awareness                    : true,
+				brandPerceptions             : false,
+				retailerPerceptions          : false,
+				marketShareByConsumerSegment : false,
+				salesByConsumberSegment      : false,
+				marketShareByShopperSegment  : false,
+				salesByShopperSegment        : false,
+				BMRetailerPrices             : false,
+				promotionIntensity           : false,
+				supplierIntelligence         : false,
+				retailerIntelligence         : false,
+				forcasts                     : false
+	    	}]
+        }],
+	    producers : [{
+	    	members : [{
+	    		description : "Tom and Jack",
+	    		name : "Tom"
+	    	},{
+	    		description : "Tom and Jack",
+	    		name : "Jack"
+	    	}],
+	    	decisionReadyPeriod : 0,
+	    	password : "110",
+	    	producerID : 1,
+	    	decisionCommitStatus:[{
+	    		period : 1,
+				isPortfolioDecisionCommitted : false,
+				isDecisionCommitted : false,
+	    	},{
+	    		period : 0,
+				isPortfolioDecisionCommitted : true,
+				isDecisionCommitted : true,
+	    	}],
+	    	reportPurchaseStatus:[{
+	    		period                       : 1,
+				awareness                    : false,
+				brandPerceptions             : false,
+				retailerPerceptions          : true,
+				marketShareByConsumerSegment : false,
+				salesByConsumberSegment      : false,
+				marketShareByShopperSegment  : false,
+				salesByShopperSegment        : false,
+				BMRetailerPrices             : false,
+				promotionIntensity           : false,
+				supplierIntelligence         : false,
+				retailerIntelligence         : false,
+				forcasts                     : false
+	    	},{
+	    		period                       : 0,
+				awareness                    : false,
+				brandPerceptions             : false,
+				retailerPerceptions          : true,
+				marketShareByConsumerSegment : false,
+				salesByConsumberSegment      : false,
+				marketShareByShopperSegment  : false,
+				salesByShopperSegment        : false,
+				BMRetailerPrices             : false,
+				promotionIntensity           : false,
+				supplierIntelligence         : false,
+				retailerIntelligence         : false,
+				forcasts                     : false
+	    	}]
+	    },{
+	    	members : [{
+	    		description : "Tom and Jack",
+	    		name : "Tom"
+	    	},{
+	    		description : "Tom and Jack",
+	    		name : "Jack"
+	    	}],
+	    	decisionReadyPeriod : 0,
+	    	password : "120",
+	    	producerID : 2,
+	    	decisionCommitStatus:[{
+	    		period : 1,
+				isPortfolioDecisionCommitted : false,
+				isDecisionCommitted : false,
+	    	},{
+	    		period : 0,
+				isPortfolioDecisionCommitted : true,
+				isDecisionCommitted : true,
+	    	}],
+	    	reportPurchaseStatus:[{
+	    		period                       : 1,
+				awareness                    : false,
+				brandPerceptions             : false,
+				retailerPerceptions          : true,
+				marketShareByConsumerSegment : false,
+				salesByConsumberSegment      : false,
+				marketShareByShopperSegment  : false,
+				salesByShopperSegment        : false,
+				BMRetailerPrices             : false,
+				promotionIntensity           : false,
+				supplierIntelligence         : false,
+				retailerIntelligence         : false,
+				forcasts                     : false
+	    	},{
+	    		period                       : 0,
+				awareness                    : false,
+				brandPerceptions             : false,
+				retailerPerceptions          : true,
+				marketShareByConsumerSegment : false,
+				salesByConsumberSegment      : false,
+				marketShareByShopperSegment  : false,
+				salesByShopperSegment        : false,
+				BMRetailerPrices             : false,
+				promotionIntensity           : false,
+				supplierIntelligence         : false,
+				retailerIntelligence         : false,
+				forcasts                     : false
+	    	}]
+	    },{
+	    	members : [{
+	    		description : "Tom and Jack",
+	    		name : "Tom"
+	    	},{
+	    		description : "Tom and Jack",
+	    		name : "Jack"
+	    	}],
+	    	decisionReadyPeriod : 0,
+	    	password : "130",
+	    	producerID : 3,
+	    	decisionCommitStatus:[{
+	    		period : 1,
+				isPortfolioDecisionCommitted : false,
+				isDecisionCommitted : false,
+	    	},{
+	    		period : 0,
+				isPortfolioDecisionCommitted : true,
+				isDecisionCommitted : true,
+	    	}],
+	    	reportPurchaseStatus:[{
+	    		period                       : 1,
+				awareness                    : false,
+				brandPerceptions             : false,
+				retailerPerceptions          : true,
+				marketShareByConsumerSegment : false,
+				salesByConsumberSegment      : false,
+				marketShareByShopperSegment  : false,
+				salesByShopperSegment        : false,
+				BMRetailerPrices             : false,
+				promotionIntensity           : false,
+				supplierIntelligence         : false,
+				retailerIntelligence         : false,
+				forcasts                     : false
+	    	},{
+	    		period                       : 0,
+				awareness                    : false,
+				brandPerceptions             : false,
+				retailerPerceptions          : true,
+				marketShareByConsumerSegment : false,
+				salesByConsumberSegment      : false,
+				marketShareByShopperSegment  : false,
+				salesByShopperSegment        : false,
+				BMRetailerPrices             : false,
+				promotionIntensity           : false,
+				supplierIntelligence         : false,
+				retailerIntelligence         : false,
+				forcasts                     : false
+	    	}]
+	    },{
+	    	members : [{
+	    		description : "Tom and Jack",
+	    		name : "Tom"
+	    	},{
+	    		description : "Tom and Jack",
+	    		name : "Jack"
+	    	}],
+	    	decisionReadyPeriod : 0,
+	    	password : "140",
+	    	producerID : 4,
+	    	decisionCommitStatus:[{
+	    		period : 1,
+				isPortfolioDecisionCommitted : false,
+				isDecisionCommitted : false,
+	    	},{
+	    		period : 0,
+				isPortfolioDecisionCommitted : true,
+				isDecisionCommitted : true,
+	    	}],
+	    	reportPurchaseStatus:[{
+	    		period                       : 1,
+				awareness                    : false,
+				brandPerceptions             : false,
+				retailerPerceptions          : true,
+				marketShareByConsumerSegment : false,
+				salesByConsumberSegment      : false,
+				marketShareByShopperSegment  : false,
+				salesByShopperSegment        : false,
+				BMRetailerPrices             : false,
+				promotionIntensity           : false,
+				supplierIntelligence         : false,
+				retailerIntelligence         : false,
+				forcasts                     : false
+	    	},{
+	    		period                       : 0,
+				awareness                    : false,
+				brandPerceptions             : false,
+				retailerPerceptions          : true,
+				marketShareByConsumerSegment : false,
+				salesByConsumberSegment      : false,
+				marketShareByShopperSegment  : false,
+				salesByShopperSegment        : false,
+				BMRetailerPrices             : false,
+				promotionIntensity           : false,
+				supplierIntelligence         : false,
+				retailerIntelligence         : false,
+				forcasts                     : false
+	    	}]
+	    }],
 	    simulationSpan : 6,
 	    traceActive : true,
 	    traditionalTradeActive : false,
@@ -388,10 +690,10 @@ exports.addSeminar=function(req,res,next){
 	    virtualSupplierActive : false,
 	    independentMarkets : false,
 	    forceNextDecisionsOverwrite : false,
-		market1ID : 1,
-		market2ID : 2,
-		category1ID : 1,
-		category2ID : 2		
+	    market1ID : 1,
+	    market2ID : 2,
+	    category1ID : 1,
+	    category2ID : 2
 	});
 
 	Newseminar.save(function(err) {
@@ -399,7 +701,8 @@ exports.addSeminar=function(req,res,next){
 			res.send(200,Newseminar);
 			console.log("created new seminar:"+Newseminar);
 		} else {
-			res.send(400,"Seminar code has existed in the list, validation failed.");
+			res.send(400,err);
+			//res.send(400,"Seminar code has existed in the list, validation failed.");
 		}
 	});
 }
@@ -433,8 +736,8 @@ exports.updateSeminar=function(req,res,next){
 				case 'updateCurrentPeriod':
 					doc.currentPeriod = queryCondition.value;
 					break;
-				case 'updateActive':
-					doc.is
+				// case 'updateActive':
+				// 	doc.is
 			}
 			if(isUpdate){
 				doc.markModified('facilitator');
@@ -452,6 +755,69 @@ exports.updateSeminar=function(req,res,next){
 
 		}
 	});
+}
+
+exports.submitOrder=function(req,res,next){
+	var queryCondition={
+		seminarCode:req.body.seminarCode,
+		period:req.body.period,
+		player:req.body.player,
+		playerID:req.body.playerID,
+		data:req.body.data
+	};
+	seminar.findOne({seminarCode:queryCondition.seminarCode},function(err,doc){
+		if(err){
+			next(new Error(err));
+		}
+		if(!doc){
+			console.log("cannot find matched doc....");
+			res.send(404,'cannot find matched doc....');
+		}else{
+			var isUpdate=true;
+			switch(queryCondition.player){
+				case 'Producer':
+					for(var i=0;i<doc.producers.length;i++){
+						if(doc.producers[i].producerID==queryCondition.playerID){
+							for(var j=0;j<doc.producers[i].reportPurchaseStatus.length;j++){
+								if(doc.producers[i].reportPurchaseStatus[j].period==queryCondition.period){
+									for(var k=0;k<queryCondition.data.length;k++){
+										console.log(doc.producers[i].reportPurchaseStatus[j][queryCondition.data[k].realName]);
+										doc.producers[i].reportPurchaseStatus[j][queryCondition.data[k].realName]=queryCondition.data[k].playerStatus;
+									}
+								}
+							}
+						}
+					}
+					break;
+				case 'Retailer':
+					for(var i=0;i<doc.retailers.length;i++){
+						if(doc.retailers[i].retailerID==queryCondition.playerID){
+							for(var j=0;j<doc.retailers[i].reportPurchaseStatus.length;j++){
+								if(doc.retailers[i].reportPurchaseStatus[j].period==queryCondition.period){
+									for(var k=0;k<queryCondition.data.length;k++){
+										console.log(doc.retailers[i].reportPurchaseStatus[j][queryCondition.data[k].realName]);
+										doc.retailers[i].reportPurchaseStatus[j][queryCondition.data[k].realName]=queryCondition.data[k].playerStatus;
+									}
+								}
+							}
+						}
+					}
+					break;
+			}
+			if(isUpdate){
+				doc.markModified('facilitator');
+				doc.markModified('retailers');
+				doc.markModified('producers');
+				doc.save(function(err,doc,numberAffected){
+					if(err){
+						next(new Error(err));
+					}
+					console.log('save updated, number affected:'+numberAffected+'doc:'+doc);
+                    res.send(200, 'mission complete!');
+				});
+			}
+		}
+	})
 }
 
 exports.initializeSeminar = function(options){

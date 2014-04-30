@@ -326,6 +326,17 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
         })
     }
 
+    $scope.addSeminar=function(){
+        $http({
+            method:'POST',
+            url:'/addSeminar',
+        }).then(function(){
+            console.log('success');
+        },function(){
+            console.log('fail');
+        })
+    }
+
     $scope.addReport=function(){
     	var url="/addCrossSegmentSales";
     	$http({
