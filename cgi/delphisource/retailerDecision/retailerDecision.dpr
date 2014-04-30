@@ -31,10 +31,10 @@ uses
   {$ENDIF}
   Classes, superobject, HCD_SystemDefinitions, System.TypInfo, inifiles;
 
-{$I 'ET0_Common_Constants.INC'}
-{$I 'ET0_Common_Types.INC'}
-{$I 'ET0_Results_Types.INC'}
-{$I 'ET0_FILES_NAMES.INC'}
+{$I 'ET1_Common_Constants.INC'}
+{$I 'ET1_Common_Types.INC'}
+{$I 'ET1_Results_Types.INC'}
+{$I 'ET1_FILES_NAMES.INC'}
 
 const
   DecisionFileName = ' Decisions.';
@@ -56,7 +56,7 @@ var
    currentDecision : TRetDecision;
 //	 prevDecision : TRetDecision;
    currentPeriod : TPeriodNumber;
-   currentRetailer : TAllRetailers;
+   currentRetailer : TBMRetailers;
    currentSeminar : string;
    vReadRes : Integer;
 
@@ -238,7 +238,7 @@ var
       Result  := jo;
    end;
 
-    function ReadRetdecisionRecord(pPeriodNumber : TPeriodNumber; pRetNumber : TAllRetailers;
+    function ReadRetdecisionRecord(pPeriodNumber : TPeriodNumber; pRetNumber : TBMRetailers;
     var pDecision: TRetDecision; vDataDirectory : AnsiString; vSeminarCode : AnsiString) : Integer;
     var
       vFile    : file of TRetdecision;
@@ -285,7 +285,7 @@ var
 
 
    function WriteRetdecisionRecord(pPeriodNumber : TPeriodNumber;
-   pRetNumber : TAllRetailers; var pDecision: TRetDecision;
+   pRetNumber : TBMRetailers; var pDecision: TRetDecision;
    vDataDirectory : AnsiString; vSeminarCode : AnsiString) : Integer;
     var
       vFile    : file of TRetDecision;
@@ -424,7 +424,7 @@ var
       Result  := jo;
     end;
 
-    function collectPLVar(pVar : TPrivateLabelVarDecision): ISuperObject;
+    function collectPLVar(pVar : TPrivateLabelVariantDecision): ISuperObject;
     var
       jo  : ISuperObject;
       I : Integer;
@@ -445,10 +445,10 @@ var
       jo.I['parentBrandID'] := pVar.drplv_ParentBrandID;
       jo.I['dateOfDeath'] := pVar.drplv_DateOfDeath;
       jo.I['dateOfBirth'] := pVar.drplv_DateofBirth;
-      jo.S['packFormat']  := GetEnumName(TypeInfo(TVarPackFormat),Integer(pVar.drplv_PackFormat));
+      jo.S['packFormat']  := GetEnumName(TypeInfo(TVariantPackFormat),Integer(pVar.drplv_PackFormat));
       jo.B['discontinue'] := pVar.drplv_Discontinue;
       jo.O['composition'] := SA([]);
-      for I := Low(TVarComposition) to High(TVarComposition) do
+      for I := Low(TVariantComposition) to High(TVariantComposition) do
         jo.A['composition'].I[I - 1] := pvar.drplv_Composition[I];
 
       Result  := jo;
@@ -493,7 +493,7 @@ var
       jo.I['dateOfDeath'] := pBrand.drpl_DateOfDeath;
       // PL Variants
       jo.O['privateLabelVarDecision'] := SA([]);
-      for ivar := Low(TOneBrandVars) to High(TOneBrandVars) do
+      for ivar := Low(TOneBrandVariants) to High(TOneBrandVariants) do
         jo.A['privateLabelVarDecision'].Add( collectPLVar(pBrand.drpl_Variants[ivar]) );
 
       Result  := jo;
@@ -637,7 +637,7 @@ var
         translateMarketAssortment(jo.A['retMarketAssortmentDecision'].O[I - 1], pMarket.drm_Assortment[I]);
     end;
 
-    procedure translatePLVar(jo: ISuperObject; var pVar : TPrivateLabelVarDecision);
+    procedure translatePLVar(jo: ISuperObject; var pVar : TPrivateLabelVariantDecision);
     var
       I : Integer;
     begin
@@ -646,9 +646,9 @@ var
       pVar.drplv_ParentBrandID := jo.I['parentBrandID'];
       pVar.drplv_DateOfDeath := jo.I['dateOfDeath'];
       pVar.drplv_DateofBirth := jo.I['dateOfBirth'];
-      pVar.drplv_PackFormat := TVarPackFormat(GetEnumValue(TypeInfo(TVarPackFormat),jo.S['packFormat']));
+      pVar.drplv_PackFormat := TVariantPackFormat(GetEnumValue(TypeInfo(TVariantPackFormat),jo.S['packFormat']));
       pVar.drplv_Discontinue := jo.B['discontinue'];
-      for I := Low(TVarComposition) to High(TVarComposition) do
+      for I := Low(TVariantComposition) to High(TVariantComposition) do
         pvar.drplv_Composition[I] := jo.A['composition'].I[I - 1];
     end;
 
@@ -662,7 +662,7 @@ var
       pBrand.drpl_DateofBirth := jo.I['dateOfBirth'];
       pBrand.drpl_DateOfDeath := jo.I['dateOfDeath'];
       // PL Variants
-      for ivar := Low(TOneBrandVars) to High(TOneBrandVars) do
+      for ivar := Low(TOneBrandVariants) to High(TOneBrandVariants) do
         translatePLVar(jo.A['privateLabelVarDecision'].O[ivar - 1], pBrand.drpl_Variants[ivar]) ;
     end;
 

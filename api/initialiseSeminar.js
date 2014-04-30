@@ -449,6 +449,13 @@ exports.initialiseSeminar = function(io){
 		}).then(function(result){ 
              io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	 
 
+            options.endWith = 0;
+            options.retailerID = '3';
+			options.cgiPath = conf.cgi.path_companyHistoryInfo;
+			options.schemaName = 'companyHistoryInfo';
+			return require('./models/companyHistoryInfo.js').addInfos(options);			
+		}).then(function(result){ 
+            io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	 
 
             res.send(200, 'Initialization done.');
 		}, function(error){ //log the error
