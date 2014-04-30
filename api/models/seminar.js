@@ -262,16 +262,16 @@ exports.setCurrentPeriod = function(req, res, next){
 }
 
 exports.deleteSeminar = function(req, res, next){
+	console.log('try to remote a seminar:' + req.body.seminarCode);
 	seminar.findOne({seminarCode:req.body.seminarCode},function(err,doc){
-		if(err){
-			next(new Error(err));
-		}
+		if(err){ next(new Error(err));}
 		if(!doc){
-			console.log("cannot find matched doc....");
-			res.send(404,'cannot find matched doc....');
+			res.send(404,'cannot find matched doc to remove....');
 		}else{
-			doc.remove();
-			res.send(200,'delete');
+			doc.remove(function(err, doc){
+				if(err){ res.send(400, 'remove seminar failure.'); }
+				else {res.send(200,'delete');}				
+			});
 		}
 	});
 }

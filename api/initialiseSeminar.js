@@ -32,11 +32,10 @@ exports.initialiseSeminar = function(io){
        	io.sockets.emit('AdminProcessLog', { msg: 'Start calling Initialize.DLL...', isError: false });                             
 		require('./models/seminar.js').initializeSeminar(options).then(function(result){
             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });      
-
             options.producerID = '1';
-            options.cgiPath = conf.cgi.path_producerDecision;
 
 		//Import General reports		
+            options.cgiPath = conf.cgi.path_producerDecision;
 			options.cgiPath = conf.cgi.path_GR_performanceHighlights;
 			options.schemaName = 'GR_performanceHighlights';		
 			return require('./models/GR_performanceHighlights.js').addReports(options);
@@ -394,6 +393,62 @@ exports.initialiseSeminar = function(io){
 			return require('./models/MR_sharesCrossSegment.js').addReports(options);			
 		}).then(function(result){ 
              io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	
+
+        //import Supplier decision 
+        	options.endWith = 1;
+
+            options.producerID = '1';
+			options.cgiPath = conf.cgi.path_producerDecision;
+			options.schemaName = 'producerDecision';
+			return require('./models/producerDecision.js').addProducerDecisions(options);			
+		}).then(function(result){ 
+             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	             
+
+            options.producerID = '2';
+			options.cgiPath = conf.cgi.path_producerDecision;
+			options.schemaName = 'producerDecision';
+			return require('./models/producerDecision.js').addProducerDecisions(options);			
+		}).then(function(result){ 
+             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	             
+
+            options.producerID = '3';
+			options.cgiPath = conf.cgi.path_producerDecision;
+			options.schemaName = 'producerDecision';
+			return require('./models/producerDecision.js').addProducerDecisions(options);			
+		}).then(function(result){ 
+             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	             
+
+            options.endWith = 0;
+            options.producerID = '4';
+			options.cgiPath = conf.cgi.path_producerDecision;
+			options.schemaName = 'producerDecision';
+			return require('./models/producerDecision.js').addProducerDecisions(options);			
+		}).then(function(result){ 
+             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	             
+
+             options.endWith = 1;
+            options.retailerID = '1';
+			options.cgiPath = conf.cgi.path_retailerDecision;
+			options.schemaName = 'retailerDecision';
+			return require('./models/retailerDecision.js').addRetailerDecisions(options);			
+		}).then(function(result){ 
+             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	 
+
+            options.retailerID = '2';
+			options.cgiPath = conf.cgi.path_retailerDecision;
+			options.schemaName = 'retailerDecision';
+			return require('./models/retailerDecision.js').addRetailerDecisions(options);			
+		}).then(function(result){ 
+             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	 
+
+             options.endWith = 0;
+            options.retailerID = '3';
+			options.cgiPath = conf.cgi.path_retailerDecision;
+			options.schemaName = 'retailerDecision';
+			return require('./models/retailerDecision.js').addRetailerDecisions(options);			
+		}).then(function(result){ 
+             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	 
+
 
             res.send(200, 'Initialization done.');
 		}, function(error){ //log the error

@@ -29,13 +29,10 @@ define(['app','socketIO'], function(app) {
 				'seminarCode' : seminar
 			}
 			$http({method: 'POST', url: '/deleteSeminar',data:data}).success(function(data, status, headers, config) {
-				showbubleMsg('Save new seminar successfully',2);
-				$scope.seminars.push(data);
-				$scope.newSeminarModal=false;
-
+				showbubleMsg('Remove seminar successfully',2);
+				initializePage();
 			}).error(function(data, status, headers, config) {
-				showbubleMsg('Insert failure, ' + data,1);
-				$scope.newSeminarModal=false;
+				showbubleMsg(data,1);
 			});
 
 		}
