@@ -27,7 +27,7 @@ exports.initialiseSeminar = function(io){
 			category1ID                : req.body.category1ID,
 			category2ID                : req.body.category2ID			
 		}	
-
+		
         io.sockets.emit('AdminProcessLog', { msg: 'Create separated folder for binary files of seminar : '+ req.body.seminar, isError: false }); 
        	io.sockets.emit('AdminProcessLog', { msg: 'Start calling Initialize.DLL...', isError: false });                             
 		require('./models/seminar.js').initializeSeminar(options).then(function(result){
@@ -394,7 +394,6 @@ exports.initialiseSeminar = function(io){
 			return require('./models/MR_sharesCrossSegment.js').addReports(options);			
 		}).then(function(result){ 
              io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	
-
 
             res.send(200, 'Initialization done.');
 		}, function(error){ //log the error
