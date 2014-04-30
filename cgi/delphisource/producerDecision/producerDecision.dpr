@@ -31,10 +31,10 @@ uses
   {$ENDIF}
   Classes, superobject, HCD_SystemDefinitions, System.TypInfo, iniFiles;
 
-{$I 'ET0_Common_Constants.INC'}
-{$I 'ET0_Common_Types.INC'}
-{$I 'ET0_Results_Types.INC'}
-{$I 'ET0_FILES_NAMES.INC'}
+{$I 'ET1_Common_Constants.INC'}
+{$I 'ET1_Common_Types.INC'}
+{$I 'ET1_Results_Types.INC'}
+{$I 'ET1_FILES_NAMES.INC'}
 
 const
   DecisionFileName = ' Decisions.';
@@ -321,43 +321,36 @@ var
       Result := vTempResult;
     end;
 
-    function collectVariant(pVar : TProVarDecision): ISuperObject;
+    function collectVariant(pVar : TProVariantDecision): ISuperObject;
     var
-      jo  : ISuperObject;
+      jo,jt  : ISuperObject;
       I : Integer;
     begin
       jo  := SO;
 
-//var proVarDecisionSchema = mongoose.Schema({
-//    varName : String,
-//    varID : Number, //varID = BrandID * 10 + varCount
-//    parentBrandID : Number, //brandID
-//    packFormat : String, //ECONOMY, STANDARD, PREMIUM
-//    dateOfBirth : Number,
-//    dateOfDeath : Number,
-//    composition : [Number], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
-//    production : Number,
-//    currentPriceBM : Number,
-//    currentPriceEmall : Number,
-//    discontinue : Boolean,
-//    nextPriceBM : Number,
-//    nextPriceEmall : Number
-//})
       jo.S['varName'] := pVar.dpv_VarName;
       jo.I['varID'] := pVar.dpv_VarID;
       jo.I['parentBrandID'] := pVar.dpv_ParentBrandID;
-      jo.S['packFormat']  := GetEnumName(TypeInfo(TVarPackFormat),Integer(pVar.dpv_PackFormat));
+      jo.S['packFormat']  := GetEnumName(TypeInfo(TVariantPackFormat),Integer(pVar.dpv_PackFormat));
       jo.I['dateOfBirth'] := pVar.dpv_DateofBirth;
       jo.I['dateOfDeath'] := pVar.dpv_DateOfDeath;
       jo.D['production']  := pVar.dpv_Production;
-      jo.D['currentPriceBM']  := pVar.dpv_CurrentPriceBM;
-      jo.D['currentPriceEmall'] := pVar.dpv_CurrentPriceEmall;
       jo.B['discontinue'] := pVar.dpv_Discontinue;
+      jo.D['currentPriceBM']  := pVar.dpv_CurrentPriceBM;
       jo.D['nextPriceBM'] := pVar.dpv_NextPriceBM;
-      jo.D['nextPriceEmall']  := pVar.dpv_NextPriceEmall;
       jo.O['composition'] := SA([]);
-      for I := Low(TVarComposition) to High(TVarComposition) do
+      for I := Low(TVariantComposition) to High(TVariantComposition) do
         jo.A['composition'].I[ I - 1 ] := pVar.dpv_Composition[I];
+
+      //Modified by Hao, 2014-Apr-30
+      //      jo.D['currentPriceEmall'] := pVar.dpv_CurrentPriceEmall;
+      //      jo.D['nextPriceEmall']  := pVar.dpv_NextPriceEmall;
+      jo.D['onlinePrice'] := pVar.dpv_OnLinePrice;
+      jo.D['onlinePlannedVolume'] := pVar.dpv_OnlinePlannedVolume;
+      jt := SO;
+      jt.I['promo_Frequency'] := pVar.dpv_PricePromotions.promo_Frequency;
+      jt.D['promo_Rate']  := pVar.dpv_PricePromotions.promo_Rate;
+      jo.O['pricePromotions'] := jt;
 
       Result  := jo;
     end;
@@ -369,35 +362,6 @@ var
     begin
       jo := SO;
 
-//var proBrandDecisionSchema = mongoose.Schema({
-//    brandName : String,
-//    brandID : Number,
-//    /*
-//        case 'P': brandID = (10 * userCount) + brandCount
-//        case 'R': brandID = (10 * (userCount +4)) + brandCount
-//        userCount = 1~4
-//        brandCount = 1~5
-//    */
-//    paranetCompanyID : Number, //TBrandOwners(Prod_1_ID~Ret_2_ID)
-//    /*
-//        Prod_1_ID          = 1;
-//        Prod_2_ID          = 2;
-//        Prod_3_ID          = 3;
-//        Prod_4_ID          = 4;
-//        Ret_1_ID           = 5;
-//        Ret_2_ID           = 6;
-//        TradTrade_ID       = 7;
-//        E_Mall_ID          = 8;
-//        Admin_ID           = 9;
-//    */
-//    dateOfBirth : Number, //which period this brand be created, if this brand is initialized in the beginning, this value should be -4
-//    dateOfDeath : Number, //which period this brand be discontinued, if this brand haven't been discontinued, this value should be 10
-//    advertisingOffLine : [Number], //TMarketDetails, 1-Urban, 2-Rural
-//    advertisingOnLine : Number,
-//    supportEmall : Number,
-//    supportTraditionalTrade : [Number], //TMarketDetails, 1-Urban, 2-Rural
-//    proVarDecision : [proVarDecisionSchema] //Length: TOneBrandVars(1~3)
-//})
       jo.S['brandName'] := pBrand.dpb_BrandName;
       jo.I['brandID'] := pBrand.dpb_BrandID;
       jo.I['paranetCompanyID']  := pBrand.dpb_ParentCompanyID;
@@ -412,7 +376,7 @@ var
       jo.A['supportTraditionalTrade'].D[0]  := pBrand.dpb_SupportTraditionalTrade[Tier_Urban_ID];
       jo.A['supportTraditionalTrade'].D[1]  := pBrand.dpb_SupportTraditionalTrade[Tier_Rural_ID] ;
       jo.O['proVarDecision']  := SA([]);
-      for ivar := Low(TProVarsDecisions) to High(TProVarsDecisions) do
+      for ivar := Low(TProVariantsDecisions) to High(TProVariantsDecisions) do
         jo.A['proVarDecision'].Add(collectVariant(pBrand.dpb_Variants[ivar]));
 
       Result  := jo;
@@ -424,14 +388,6 @@ var
       brn : Integer;
     begin
       jo := SO;
-//var proCatDecisionSchema = mongoose.Schema({
-//    categoryID : Number, //1~2
-//    capacityChange : Number,
-//    investInDesign : Number,/*E*/
-//    investInProductionFlexibility : Number,
-//    investInTechnology : Number,
-//    proBrandsDecision : [proBrandDecisionSchema] //Length: TProBrands(1~5)
-//})
       jo.I['categoryID'] := pCategory.dpc_CategoryID;
       jo.D['capacityChange'] := pCategory.dpc_CapacityChange;
       jo.D['investInDesign']  := pCategory.dpc_InvestInDesign;
@@ -452,15 +408,6 @@ var
       cat : Integer;
     begin
       jo := SO; //initialise JSON object
-
-//var proDecisionSchema = mongoose.Schema({
-//    seminar : String,
-//    period : Number,
-//    producerID : Number, //1~4
-//    nextBudgetExtension : Number,
-//    approvedBudgetExtension : Number,
-//    proCatDecision : [proCatDecisionSchema] //Length: TCategories(1~2)
-//})
       jo.S['seminar'] := currentSeminar;
       jo.I['period'] := currentPeriod;
       jo.I['producerID'] := currentProducer;
@@ -474,13 +421,7 @@ var
       //category
       for cat := Low(TCategories) to High(TCategories) do
           jo.A['proCatDecision'].Add( collectCategory(currentDecision.dp_CatDecisions[cat]) );
-
      Result := jo;
-
-          //*** you need to add this to global JSON
-      //s_str := j_o['fileName'].AsString;
-      //j_o.SaveTo(s_str, true, false);
-      //writeln('json_out :: ', j_o.AsJSon);
     end;
 
     procedure makeJson();
@@ -494,29 +435,35 @@ var
       oJsonFile.SaveTo(s_str, true, false);
     end;
 
-    procedure translateVariant(jo : ISuperObject; var pVar : TProVarDecision);
+    procedure translateVariant(jo : ISuperObject; var pVar : TProVariantDecision);
     begin
       StringToWideChar(jo.S['varName'],pVar.dpv_VarName,VarNameLength + 1);
       //pVar.dpv_VarName := jo.S['varName'];
       pVar.dpv_VarID := jo.I['varID'];
       pVar.dpv_ParentBrandID := jo.I['parentBrandID'];
-      pVar.dpv_PackFormat  := TVarPackFormat(GetEnumValue(TypeInfo(TVarPackFormat),jo.S['packFormat']));
+      pVar.dpv_PackFormat  := TVariantPackFormat(GetEnumValue(TypeInfo(TVariantPackFormat),jo.S['packFormat']));
       pVar.dpv_DateofBirth := jo.I['dateOfBirth'];
       pVar.dpv_DateOfDeath := jo.I['dateOfDeath'];
       pVar.dpv_Production  := jo.D['production'];
       pVar.dpv_CurrentPriceBM  := jo.D['currentPriceBM'];
-      pVar.dpv_CurrentPriceEmall := jo.D['currentPriceEmall'];
       pVar.dpv_Discontinue := jo.B['discontinue'];
       pVar.dpv_NextPriceBM := jo.D['nextPriceBM'];
-      pVar.dpv_NextPriceEmall  := jo.D['nextPriceEmall'];
-      for I := Low(TVarComposition) to High(TVarComposition) do
+      for I := Low(TVariantComposition) to High(TVariantComposition) do
         pVar.dpv_Composition[I] := jo.A['composition'].I[ I - 1 ];
+
+      //Modified by Hao, 2014-Apr-30
+      // pVar.dpv_NextPriceEmall  := jo.D['nextPriceEmall'];
+      // pVar.dpv_CurrentPriceEmall := jo.D['currentPriceEmall'];
+      pVar.dpv_OnLinePrice := jo.D['onlinePrice'];
+      pVar.dpv_OnlinePlannedVolume := jo.D['onlinePlannedVolume'];
+      pVar.dpv_PricePromotions.promo_Frequency := jo.I['pricePromotions.promo_Frequency'];
+      pVar.dpv_PricePromotions.promo_Rate  := jo.D['pricePromotions.promo_Rate'];      
 
     end;
 
     procedure translateBrand(jo : ISuperObject; var pBrand : TProBrandDecision);
     var
-      ivar : TOneBrandVars;
+      ivar : TOneBrandVariants;
     begin
       StringToWideChar(jo.S['brandName'],pBrand.dpb_BrandName,BrandNameLength + 1);
       //pBrand.dpb_BrandName := jo.S['brandName'];
@@ -530,7 +477,7 @@ var
       pBrand.dpb_AdvertisingOffLine[Tier_Rural_ID] := jo.A['advertisingOffLine'].D[1];
       pBrand.dpb_SupportTraditionalTrade[Tier_Urban_ID]  := jo.A['supportTraditionalTrade'].D[0];
       pBrand.dpb_SupportTraditionalTrade[Tier_Rural_ID]  := jo.A['supportTraditionalTrade'].D[1];
-      for ivar := Low(TProVarsDecisions) to High(TProVarsDecisions) do
+      for ivar := Low(TProVariantsDecisions) to High(TProVariantsDecisions) do
         translateVariant(jo.A['proVarDecision'].O[ivar - 1], pBrand.dpb_Variants[ivar]);
 
     end;

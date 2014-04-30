@@ -31,10 +31,10 @@ uses
   {$ENDIF}
   Classes, superobject, HCD_SystemDefinitions, System.TypInfo, inifiles;
 
-{$I 'ET0_Common_Constants.INC'}
-{$I 'ET0_Common_Types.INC'}
-{$I 'ET0_Results_Types.INC'}
-{$I 'ET0_FILES_NAMES.INC'}
+{$I 'ET1_Common_Constants.INC'}
+{$I 'ET1_Common_Types.INC'}
+{$I 'ET1_Results_Types.INC'}
+{$I 'ET1_FILES_NAMES.INC'}
 
 const
   DecisionFileName = 'Negotiations.';
@@ -280,39 +280,28 @@ DataDirectory : string;
   function producerViewSchema(pProducer: Integer): ISuperObject;
   var
     jo: ISuperObject;
-    vProd: TProducerTotalResults;
+   // vProd: TProducerTotalResults;
     I: Integer;
   begin
     jo  := SO;
-//var producerViewSchema = mongoose.Schema({
-//	producerID : Number, (1~4)
-//	//pt...
-//	budgetAvailable : Number,
-//	budgetOverspent : Number,
-//	budgetSpentToDate : Number
-//	//pc...
-//	productionCapacity : [Number], //TCategories(1~2)
-//	acquiredTechnologyLevel : [Number], //TCategories(1~2)
-//	acquiredProductionFlexibility : [Number], //TCategories(1~2)
-//	acquiredDesignLevel : [Number] //TCategories(1~2)
-//})
-    vProd := currentResult.r_Producers[pProducer];
-    jo.I['producerID']  := vProd.pt_CompanyID; 
-    jo.D['budgetAvailable'] := vProd.pt_BudgetAvailable;
-    jo.D['budgetOverspent'] := vProd.pt_BudgetOverspent;
-    jo.D['budgetSpentToDate'] := vProd.pt_BudgetSpentToDate;
+
+    //vProd := currentResult.r_Producers[pProducer];
+    jo.I['producerID']  := pProducer;
+    jo.D['budgetAvailable'] := 300;
+    jo.D['budgetOverspent'] := 200;
+    jo.D['budgetSpentToDate'] := 100;
     jo.O['productionCapacity']  := SA([]);
     for I := Low(TCategories) to High(TCategories) do       
-      jo.A['productionCapacity'].D[I - 1]  := vProd.pt_CategoriesResults[I].pc_ProductionCapacity;
+      jo.A['productionCapacity'].D[I - 1]  := 1000;
     jo.O['acquiredTechnologyLevel']  := SA([]);
     for I := Low(TCategories) to High(TCategories) do       
-      jo.A['acquiredTechnologyLevel'].D[I - 1]  := vProd.pt_CategoriesResults[I].pc_AcquiredTechnologyLevel;
+      jo.A['acquiredTechnologyLevel'].D[I - 1]  := 7;
     jo.O['acquiredProductionFlexibility']  := SA([]);
     for I := Low(TCategories) to High(TCategories) do       
-      jo.A['acquiredProductionFlexibility'].D[I - 1]  := vProd.pt_CategoriesResults[I].pc_AcquiredProductionFlexibility;
+      jo.A['acquiredProductionFlexibility'].D[I - 1]  := 9;
     jo.O['acquiredDesignLevel']  := SA([]);
     for I := Low(TCategories) to High(TCategories) do       
-      jo.A['acquiredDesignLevel'].D[I - 1]  := vProd.pt_CategoriesResults[I].pc_AcquiredDesignLevel;
+      jo.A['acquiredDesignLevel'].D[I - 1]  := 9;
 
     result  := jo;
   end;
@@ -320,7 +309,7 @@ DataDirectory : string;
   function retailerViewSchema(vRetailer: Integer): ISuperOBject;
   var
     jo: ISuperObject;
-    vRet: TRetailerTotalResults;
+    //vRet: TRetailerTotalResults;
   begin
     jo  := SO;
 //var retailerViewSchema = mongoose.Schema({
@@ -330,11 +319,11 @@ DataDirectory : string;
 //	budgetOverspent : Number,
 //	budgetSpentToDate : Number
 //})
-    vRet  := currentResult.r_Retailers[vRetailer];
-    jo.I['retailerID']  := vRet.rr_CompanyID;
-    jo.D['budgetAvailable'] := vRet.rr_BudgetAvailable;
-    jo.D['budgetOverspent'] := vRet.rr_BudgetOverspent;
-    jo.D['budgetSpentToDate'] := vRet.rr_BudgetSpentToDate;
+   // vRet  := currentResult.r_Retailers[vRetailer];
+    jo.I['retailerID']  := vRetailer;
+    jo.D['budgetAvailable'] := 1000;
+    jo.D['budgetOverspent'] := 500;
+    jo.D['budgetSpentToDate'] := 300;
 
     Result  := jo;    
   end;
@@ -358,7 +347,7 @@ DataDirectory : string;
     for prd := Low(TAllProducers) to High(TAllProducers) do
       jo.A['producerView'].Add( producerViewSchema(prd) );
     jo.O['retailerView']  := SA([]);
-    for ret := Low(TAllRetailers) to High(TAllRetailers) do
+    for ret := Low(TBMRetailers) to High(TBMRetailers) do
       jo.A['retailerView'].Add( retailerViewSchema(ret) );     
       
     result  := jo;

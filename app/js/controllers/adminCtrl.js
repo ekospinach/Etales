@@ -24,6 +24,19 @@ define(['app','socketIO'], function(app) {
 			else return 'Closed';
 		}
 
+		$scope.deleteSeminar = function(seminar){
+			var data = {
+				'seminarCode' : seminar
+			}
+			$http({method: 'POST', url: '/deleteSeminar',data:data}).success(function(data, status, headers, config) {
+				showbubleMsg('Remove seminar successfully',2);
+				initializePage();
+			}).error(function(data, status, headers, config) {
+				showbubleMsg(data,1);
+			});
+
+		}
+		
 		$scope.addSeminar=function(){
 			var data={
 				'seminarCode':$scope.seminarCode,

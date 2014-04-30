@@ -78,10 +78,10 @@
 					        </ul>				        	
 				        </li>  
 
-
-		          		<li access-level='{{accessLevels.playerView}}' active-nav>
+		          		<li access-level='{{accessLevels.playerView}}' active-nav ng-show=false>
 		          			<a href="/#/contract">{{Label.getContent('Negotiation')}}</a>
-		          		</li>      
+		          		</li>
+
 		          		<li class="{{decisionActive}}" access-level='{{accessLevels.producerViewOnly}}' active-nav>
 		          			<a href="/#/supplierDecision">{{Label.getContent('Make Decision')}}</a>
 		          		</li>
@@ -132,7 +132,6 @@
 		  		  	<li>
 		    			<a href="/#/admin" ng-show="true">Admin entrance</a>
 		    		</li>
-
 		    	</ul>
 		    </div>
 	    </footer>
