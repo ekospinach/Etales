@@ -43,6 +43,13 @@ define(['directives', 'services'], function(directives){
                     for(var i=0;i<allProCatDecisions.length;i++){
                         for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
                             if(allProCatDecisions[i].proBrandsDecision[j]!=undefined&&allProCatDecisions[i].proBrandsDecision[j].brandID!=undefined&&allProCatDecisions[i].proBrandsDecision[j].brandID!=0){
+                                allProCatDecisions[i].proBrandsDecision[j].advertisingOffLine[0]=allProCatDecisions[i].proBrandsDecision[j].advertisingOffLine[0].toFixed(2);
+                                allProCatDecisions[i].proBrandsDecision[j].advertisingOffLine[1]=allProCatDecisions[i].proBrandsDecision[j].advertisingOffLine[1].toFixed(2);
+                                allProCatDecisions[i].proBrandsDecision[j].advertisingOnLine=allProCatDecisions[i].proBrandsDecision[j].advertisingOnLine.toFixed(2);
+                                allProCatDecisions[i].proBrandsDecision[j].supportEmall=allProCatDecisions[i].proBrandsDecision[j].supportEmall.toFixed(2);
+                                allProCatDecisions[i].proBrandsDecision[j].supportTraditionalTrade[0]=allProCatDecisions[i].proBrandsDecision[j].supportTraditionalTrade[0].toFixed(2);
+                                allProCatDecisions[i].proBrandsDecision[j].supportTraditionalTrade[1]=allProCatDecisions[i].proBrandsDecision[j].supportTraditionalTrade[1].toFixed(2);
+                                allProCatDecisions[i].proBrandsDecision[j].supportTraditionalTrade[2]=allProCatDecisions[i].proBrandsDecision[j].supportTraditionalTrade[2].toFixed(2);
                                 brands.push(allProCatDecisions[i].proBrandsDecision[j]);
                                 count++;
                             }

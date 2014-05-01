@@ -101,6 +101,7 @@ define(['directives', 'services'], function(directives){
                                             products[count].packFormat=3;
                                         }
                                         products[count].currentPriceBM=parseFloat(products[count].currentPriceBM).toFixed(2);
+                                        products[count].nextPriceBM=parseFloat(products[count].nextPriceBM).toFixed(2);
                                         count++;
                                     }
                                 }
