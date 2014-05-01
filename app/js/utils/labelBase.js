@@ -505,7 +505,7 @@ var getLabelBase = function(){
 		/*retailer step 2*/
 		{id:'Market',  ENG:'Market',  CHN:'市场',  RUS:''},
 		{id:'Market Info',  ENG:'After completing national set of decisions, it would be logical to work on the decisions specific for each of the markets. They will be of a strategic essence and influence your store chain positioning on the market. ',  CHN:'制订本地市场的决策，这将影响门店在当地市场的定位。',  RUS:''},
-		{id:'In-store Service Level',  ENG:'In-store Service Level',  CHN:'店内服务水平',  RUS:''},
+		{id:'In-Store Service Level',  ENG:'In-Store Service Level',  CHN:'店内服务水平',  RUS:''},
 		{id:'In-Store Service',  ENG:'In-Store Service',  CHN:'店内服务水平',  RUS:''},
 		{id:'In-store Service Level Info',  ENG:'one of the following BASE, FAIR, MEDIUM, ENHANCED, PREMIUM; represents integrally expenditures of a retail chain on its service (labor costs, equipment and fixtures, lighting, etc.); influences convenience and assortment directly and price perception in reverse',  CHN:'提供“基础”、“一般”、“中等”、“好”和“优质”五种选择，直接影响购物者对你门店的便利性和产品组合感知，对价格感知起反作用。',  RUS:''},
 		{id:'Elecssories Selling surface',  ENG:'Elecssories Shelf space',  CHN:'电子配件品类的货架份额',  RUS:''},
