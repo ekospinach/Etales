@@ -48,7 +48,10 @@ define(['directives', 'services'], function(directives){
                                     allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].onlinePlannedVolume=allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].onlinePlannedVolume.toFixed(2);
                                     allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].onlinePrice=allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].onlinePrice.toFixed(2);
                                     //allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].pricePromotions.promo_Frequency=allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].pricePromotions.promo_Frequency.toFixed(2);
-                                    allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].pricePromotions.promo_Rate=allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].pricePromotions.promo_Rate.toFixed(2);
+                                    //allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].pricePromotions.promo_Rate=allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].pricePromotions.promo_Rate.toFixed(2);
+                                    if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].pricePromotions.promo_Rate>=0&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].pricePromotions.promo_Rate<=1){
+                                        allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].pricePromotions.promo_Rate=(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].pricePromotions.promo_Rate*100).toFixed(2);
+                                    }
                                 }
                                 brands.push(allProCatDecisions[i].proBrandsDecision[j]);
                                 count++;
@@ -126,6 +129,9 @@ define(['directives', 'services'], function(directives){
                         categoryID=1;
                     }else{
                         categoryID=2;
+                    }
+                    if(location=="pricePromotions"&&additionalIdx=="1"){
+                        value=parseFloat(value)/100;
                     }
                     ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,additionalIdx,value);                         
                 }
