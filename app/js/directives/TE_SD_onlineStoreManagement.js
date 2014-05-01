@@ -43,6 +43,13 @@ define(['directives', 'services'], function(directives){
                     for(var i=0;i<allProCatDecisions.length;i++){
                         for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
                             if(allProCatDecisions[i].proBrandsDecision[j]!=undefined&&allProCatDecisions[i].proBrandsDecision[j].brandID!=undefined&&allProCatDecisions[i].proBrandsDecision[j].brandID!=0){
+                                allProCatDecisions[i].proBrandsDecision[j].supportEmall=parseFloat(allProCatDecisions[i].proBrandsDecision[j].supportEmall).toFixed(2);
+                                for(var k=0;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
+                                    allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].onlinePlannedVolume=allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].onlinePlannedVolume.toFixed(2);
+                                    allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].onlinePrice=allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].onlinePrice.toFixed(2);
+                                    //allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].pricePromotions.promo_Frequency=allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].pricePromotions.promo_Frequency.toFixed(2);
+                                    allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].pricePromotions.promo_Rate=allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].pricePromotions.promo_Rate.toFixed(2);
+                                }
                                 brands.push(allProCatDecisions[i].proBrandsDecision[j]);
                                 count++;
                             }

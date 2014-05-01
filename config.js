@@ -127,24 +127,23 @@ module.exports = function(){
 			return {
 				cgi : {
 				  port                                : 800,
-				  host                                : '192.168.1.105',
+				  host                                : '192.168.1.101',
 				  path_marketReport                   : '/cgi-bin/marketReport.exe',
 				  path_lineChart                      : '/cgi-bin/lineChart.exe',
-				  path_perceptionMap                  : '/cgi-bin/perceptionMap.exe',				
-				  path_finReport                      : '/cgi-bin/finReport.exe',				
-				  path_volReport                      : '/cgi-bin/volReport.exe',	
+				  path_perceptionMap                  : '/cgi-bin/perceptionMap.exe',		
+				  path_finReport                      : '/cgi-bin/finReport.exe',		
+				  path_volReport                      : '/cgi-bin/volReport.exe',
 				  path_producerDecision               : '/cgi-bin/producerDecision.exe',
-				  path_retailerDecision               : '/cgi-bin/retailerDecision.exe',				  
-				  path_negotiationDecision            : '/cgi-bin/negotiationDecision.exe',				  
+				  path_retailerDecision               : '/cgi-bin/retailerDecision.exe',
+				  path_negotiationDecision            : '/cgi-bin/negotiationDecision.exe',
 				  path_brandHistoryInfo               : '/cgi-bin/brandHistoryInfo.exe',
 				  path_variantHistoryInfo             : '/cgi-bin/variantHistoryInfo.exe',
 				  path_companyHistoryInfo             : '/cgi-bin/companyHistoryInfo.exe',
 				  path_quarterHistoryInfo             : '/cgi-bin/quarterHistoryInfo.exe',
-				  uploadFileAbsDir                    : '',
 
 				  path_initialize                     : '/cgi-bin/initialize.exe',
 				  path_passive                        : '/cgi-bin/passive.exe',
-				  path_kernel                         : '/cgi-bin/kernel.exe',		
+				  path_kernel                         : '/cgi-bin/kernel.exe',
 
 				  path_GR_performanceHighlights       : '/cgi-bin/GR_performanceHighlights.exe',
 				  path_GR_crossSegmentSales           : '/cgi-bin/GR_crossSegmentSales.exe',
@@ -179,6 +178,8 @@ module.exports = function(){
 				  path_MR_sharesCrossSegment          : '/cgi-bin/MR_sharesCrossSegment.exe',
 				  path_MR_suppliersIntelligence       : '/cgi-bin/MR_suppliersIntelligence.exe',
 				  path_MR_variantPerceptionEvolution  : '/cgi-bin/MR_variantPerceptionEvolution.exe',
+
+   			  	  uploadFileAbsDir                    : '&filepath=\\\\vmware-host\\Shared%20Folders\\ludwikOnMac\\Code\\Actived\\Etales-result-viewer\\upload\\'
 				  		  
 				},
 				server : {

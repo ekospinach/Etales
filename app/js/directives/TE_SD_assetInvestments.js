@@ -131,6 +131,10 @@ define(['directives', 'services'], function(directives){
                         scope.heaPercentageProduction=(acHeaMax-data.data.result)/acHeaMax*100;
                         var categorys=new Array();
                         for(var i=0;i<scope.pageBase.proCatDecision.length;i++){
+                            scope.pageBase.proCatDecision[i].capacityChange=scope.pageBase.proCatDecision[i].capacityChange.toFixed(2);
+                            scope.pageBase.proCatDecision[i].investInDesign=scope.pageBase.proCatDecision[i].investInDesign.toFixed(2);
+                            scope.pageBase.proCatDecision[i].investInProductionFlexibility=scope.pageBase.proCatDecision[i].investInProductionFlexibility.toFixed(2);
+                            scope.pageBase.proCatDecision[i].investInTechnology=scope.pageBase.proCatDecision[i].investInTechnology.toFixed(2);
                             categorys.push(scope.pageBase.proCatDecision[i]);
                             count++;
                         }

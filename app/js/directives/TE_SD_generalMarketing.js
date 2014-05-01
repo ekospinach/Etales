@@ -49,7 +49,6 @@ define(['directives', 'services'], function(directives){
                                 allProCatDecisions[i].proBrandsDecision[j].supportEmall=allProCatDecisions[i].proBrandsDecision[j].supportEmall.toFixed(2);
                                 allProCatDecisions[i].proBrandsDecision[j].supportTraditionalTrade[0]=allProCatDecisions[i].proBrandsDecision[j].supportTraditionalTrade[0].toFixed(2);
                                 allProCatDecisions[i].proBrandsDecision[j].supportTraditionalTrade[1]=allProCatDecisions[i].proBrandsDecision[j].supportTraditionalTrade[1].toFixed(2);
-                                allProCatDecisions[i].proBrandsDecision[j].supportTraditionalTrade[2]=allProCatDecisions[i].proBrandsDecision[j].supportTraditionalTrade[2].toFixed(2);
                                 brands.push(allProCatDecisions[i].proBrandsDecision[j]);
                                 count++;
                             }
