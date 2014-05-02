@@ -12,6 +12,8 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    $scope.$watch('isPageLoading', function(newValue, oldValue){
 		    	$scope.isPageLoading = newValue;	    	
 		    })
+            
+            ProducerDecisionBase.startListenChangeFromServer(); 
 
 		    var switching=function(type){
 		    	$scope.ProductPortfolioManagement=$scope.BMListPrices=$scope.NegotiationAgreements=$scope.ProductionVolume=$scope.GeneralMarketing=$scope.OnlineStoreManagement=$scope.AssetInvestments=$scope.MarketResearchOrders=false;
@@ -25,6 +27,49 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    		case 'showAssetInvestments':$scope.AssetInvestments=true;break;
 		    		case 'showMarketResearchOrders':$scope.MarketResearchOrders=true;break;
 		    	}
+		    }
+
+		    var showView=function(){
+                var categoryID=0,acMax=0,abMax=0,expend=0,avaiableMax=0;
+		    	var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
+                    $http({
+                        method:'GET',
+                        url:url
+                    }).then(function(data){
+                        avaiableMax=data.data.budgetAvailable;
+                        if(PeriodInfo.getCurrentPeriod()<=1){
+                            abMax=data.data.budgetAvailable;
+                        }else{
+                            abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
+                        }
+                        $scope.totalBudget=abMax;
+                        $scope.acEleMax=data.data.productionCapacity[0];
+                        $scope.acHeaMax=data.data.productionCapacity[1];
+                        url="/producerExpend/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/brandName/location/1';
+                        return  $http({
+                            method:'GET',
+                            url:url,
+                        });
+                    }).then(function(data){
+                        expend=data.data.result;
+                        $scope.surplusExpend=($scope.totalBudget-expend).toFixed(2);
+                        url="/productionResult/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/EName/varName';
+                        return $http({
+                            method:'GET',
+                            url:url
+                        });
+                    }).then(function(data){
+                        $scope.eleSurplusProduction=($scope.acEleMax-data.data.result).toFixed(2);
+                        url="/productionResult/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/HName/varName';
+                        return $http({
+                            method:'GET',
+                            url:url
+                        });
+                    }).then(function(data){
+                        $scope.heaSurplusProduction=($scope.acHeaMax-data.data.result).toFixed(2);
+                    },function(){
+                    	console.log('fail');
+                    })
 		    }
 
 	    	var showProductPortfolioManagement=function(){
@@ -61,8 +106,12 @@ define(['app','socketIO','routingConfig'], function(app) {
 
 	    	$scope.switching=switching;
 	    	$scope.showProductPortfolioManagement=showProductPortfolioManagement;
-
+	    	$scope.showView=showView();
+	    	showView();
 	    	showProductPortfolioManagement();
+	    	$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
+                showView();
+            });
 		    
 	}]);
 
