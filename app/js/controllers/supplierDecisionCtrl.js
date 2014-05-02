@@ -42,7 +42,7 @@ define(['app','socketIO','routingConfig'], function(app) {
                         }else{
                             abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
                         }
-                        $scope.totalBudget=abMax;
+                        $scope.abMax=abMax;
                         $scope.acEleMax=data.data.productionCapacity[0];
                         $scope.acHeaMax=data.data.productionCapacity[1];
                         url="/producerExpend/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/brandName/location/1';
@@ -52,7 +52,7 @@ define(['app','socketIO','routingConfig'], function(app) {
                         });
                     }).then(function(data){
                         expend=data.data.result;
-                        $scope.surplusExpend=($scope.totalBudget-expend).toFixed(2);
+                        $scope.surplusExpend=($scope.abMax-expend).toFixed(2);
                         url="/productionResult/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/EName/varName';
                         return $http({
                             method:'GET',

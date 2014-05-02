@@ -485,36 +485,41 @@ define(['directives', 'services'], function(directives){
 
                 var showView=function(){
                     var d=$q.defer();
-                    var categoryID=0,count=0,result=0,acMax=0,abMax=0,expend=0,avaiableMax=0;
-                    var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/R/'+parseInt(PlayerInfo.getPlayer());
-		      		$http({
-		      			method:'GET',
-		      			url:url
-		      		}).then(function(data){
-		      			if(PeriodInfo.getCurrentPeriod()>=2){
-		      				abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
-		      			}else{
-		      				abMax=data.data.budgetAvailable;
-		      			}
-		      			scope.abMax=abMax;
-		      			url="/retailerExpend/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/-1/location/1';
-		      			return $http({
-		      				method:'GET',
-		      				url:url,
-		      			});
-		      		}).then(function(data){
-		      			expend=data.data.result;
-		      			scope.surplusExpend=abMax-expend;
-		      			scope.percentageExpend=(abMax-expend)/abMax*100;
-		      			loadSelectCategroy('Elecssories');
-		      			loadSelectCategroy('HealthBeauty');
-					}).then(function(){
-						scope.selectPacks=selectPacks;
-						scope.isResultShown = true;
-                        scope.isPageLoading = false; 
-					},function(){
-						d.reject(Label.getContent('showView fail'));
-					})
+                    loadSelectCategroy('Elecssories');
+                    loadSelectCategroy('HealthBeauty');
+                    scope.selectPacks=selectPacks;
+                    scope.isResultShown = true;
+                    scope.isPageLoading = false; 
+     //                var categoryID=0,count=0,result=0,acMax=0,abMax=0,expend=0,avaiableMax=0;
+     //                var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/R/'+parseInt(PlayerInfo.getPlayer());
+		   //    		$http({
+		   //    			method:'GET',
+		   //    			url:url
+		   //    		}).then(function(data){
+		   //    			if(PeriodInfo.getCurrentPeriod()>=2){
+		   //    				abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
+		   //    			}else{
+		   //    				abMax=data.data.budgetAvailable;
+		   //    			}
+		   //    			scope.abMax=abMax;
+		   //    			url="/retailerExpend/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/-1/location/1';
+		   //    			return $http({
+		   //    				method:'GET',
+		   //    				url:url,
+		   //    			});
+		   //    		}).then(function(data){
+		   //    			expend=data.data.result;
+		   //    			scope.surplusExpend=abMax-expend;
+		   //    			scope.percentageExpend=(abMax-expend)/abMax*100;
+		   //    			loadSelectCategroy('Elecssories');
+		   //    			loadSelectCategroy('HealthBeauty');
+					// }).then(function(){
+					// 	scope.selectPacks=selectPacks;
+					// 	scope.isResultShown = true;
+     //                    scope.isPageLoading = false; 
+					// },function(){
+					// 	d.reject(Label.getContent('showView fail'));
+					// })
 					return d.promise;      
                 }
 

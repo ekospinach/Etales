@@ -241,6 +241,157 @@ define(['directives', 'services'], function(directives){
                     }
                 }
 
+                // var showView=function(category,market){
+                //     var d=$q.defer();
+                //     var categoryID=0,count=0,result=0,expend=0,marketID=0;
+                //     scope.category=category;scope.market=market;
+                //     if(category=="HealthBeauties"){
+                //         category=2;
+                //     }else{
+                //         category=1;
+                //     }
+                //     if(market=="Rural"){
+                //         market=2;
+                //     }else{
+                //         market=1;
+                //     }
+                //     var orderProducts=new Array();
+                //     var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/R/'+parseInt(PlayerInfo.getPlayer());
+                //     $http({
+                //         method:'GET',
+                //         url:url
+                //     }).then(function(data){
+                //         if(PeriodInfo.getCurrentPeriod()>=2){
+                //             abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
+                //         }else{
+                //             abMax=data.data.budgetAvailable;
+                //         }
+                //         scope.abMax=abMax;
+                //         url="/retailerExpend/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/-1/location/1';
+                //         return $http({
+                //             method:'GET',
+                //             url:url
+                //         });
+                //     }).then(function(data){
+                //         expend=data.data.result;
+                //         scope.surplusExpend=abMax-expend;
+                //         scope.percentageExpend=(abMax-expend)/abMax*100;
+                //         url="/retailerShelfSpace/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/-1/0/brandName/varName';
+                //         return $http({
+                //             method:'GET',
+                //             url:url
+                //         });
+                //     }).then(function(data){
+                //         scope.surplusShelf=new Array();
+                //         scope.percentageShelf=new Array();
+                //         scope.surplusShelf[0]=new Array();
+                //         scope.surplusShelf[1]=new Array();
+                //         scope.percentageShelf[0]=new Array();
+                //         scope.percentageShelf[1]=new Array();
+                //         scope.surplusShelf[0][0]=data.data.result[0][0];
+                //         scope.surplusShelf[0][1]=data.data.result[0][1];
+                //         scope.surplusShelf[1][0]=data.data.result[1][0];
+                //         scope.surplusShelf[1][1]=data.data.result[1][1];
+                //         scope.percentageShelf[0][0]=(1-scope.surplusShelf[0][0])*100;
+                //         scope.percentageShelf[0][1]=(1-scope.surplusShelf[0][1])*100;
+                //         scope.percentageShelf[1][0]=(1-scope.surplusShelf[1][0])*100;
+                //         scope.percentageShelf[1][1]=(1-scope.surplusShelf[1][1])*100;
+                //         scope.showSurplusShelf=scope.percentageShelf[market-1][category-1];
+                //         scope.showPercentageShelf=scope.percentageShelf[market-1][category-1];
+
+                //         var allRetCatDecisions=loadSelectCategroy(market,category);
+                //         var products=new Array();
+                //         for(var i=0;i<allRetCatDecisions.length;i++){
+                //             for(var j=0;j<allRetCatDecisions[i].retVariantDecision.length;j++){
+                //                 if(allRetCatDecisions[i].retVariantDecision[j].brandID!=0&&allRetCatDecisions[i].retVariantDecision[j].variantID!=0){
+                //                     if(allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate>=0&&allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate<1){
+                //                         allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate*=100;
+                //                     }
+                //                     if(allRetCatDecisions[i].retVariantDecision[j].shelfSpace>=0&&allRetCatDecisions[i].retVariantDecision[j].shelfSpace<1){
+                //                         allRetCatDecisions[i].retVariantDecision[j].shelfSpace*=100;
+                //                         allRetCatDecisions[i].retVariantDecision[j].shelfSpace=parseFloat(allRetCatDecisions[i].retVariantDecision[j].shelfSpace).toFixed(2);
+                //                     }
+                //                     allRetCatDecisions[i].retVariantDecision[j].retailerPrice=parseFloat(allRetCatDecisions[i].retVariantDecision[j].retailerPrice).toFixed(2);
+                //                     products.push(allRetCatDecisions[i].retVariantDecision[j]);
+                //                     count++;
+                //                 }
+                //             }
+                //         }
+                //         scope.products=products;
+                //         //添加retailer load
+                //         url='/retailerProducts/'+parseInt(PlayerInfo.getPlayer())+'/'+PeriodInfo.getCurrentPeriod()+'/'+SeminarInfo.getSelectedSeminar()+'/'+category;
+                //         return $http({
+                //             method:'GET',
+                //             url:url
+                //         });
+                //     }).then(function(data){
+                //         for(var i=0;i<data.data.length;i++){
+                //             if(data.data[i].brandID!=0&&data.data[i].varID!=0){
+                //                 data.data[i].variantID=data.data[i].varID;
+                //                 data.data[i].select=false;
+                //                 orderProducts.push(data.data[i]);
+                //             }
+                //         }
+                //         var urls=new Array();
+                //         var checkurls=new Array();
+                //         for(i=0;i<3;i++){
+                //             urls[i]='/producerProducts/'+(i+1)+'/'+PeriodInfo.getCurrentPeriod()+'/'+SeminarInfo.getSelectedSeminar()+'/'+category;
+                //             checkurls[i]='/checkProducerDecision/'+SeminarInfo.getSelectedSeminar()+'/'+(i+1);
+                //         }
+                //         (function multipleRequestShooter(checkurls,urls,idx){
+                //             $http({
+                //                 method:'GET',
+                //                 url:checkurls[idx]
+                //             }).then(function(data){
+                //                 if(data.data=="unReady"){
+                //                     urls[idx]="/";
+                //                 }
+                //                 return $http({
+                //                     method:'GET',
+                //                     url:urls[idx]
+                //                 });
+                //             }).then(function(data){
+                //                 if(data.data.length<100){
+                //                     for(var j=0;j<data.data.length;j++){
+                //                         if(data.data[j].brandID!=undefined&&data.data[j].brandID!=0&&data.data[j].varID!=0){
+                //                             data.data[j].variantID=data.data[j].varID;
+                //                             data.data[j].select=false;
+                //                             orderProducts.push(data.data[j]);
+                //                         }
+                //                     }
+                //                 }
+                //             },function(data){
+
+                //             }).finally(function(){
+                //                 if(idx!=2){
+                //                     idx++;
+                //                     multipleRequestShooter(checkurls,urls,idx);
+                //                 }else{
+                //                     scope.orderProducts=orderProducts;
+                //                     var indexs=new Array();
+                //                     for(i=0;i<scope.orderProducts.length;i++){
+                //                         for(j=0;j<scope.products.length;j++){
+                //                             if(scope.orderProducts[i].brandName==scope.products[j].brandName&&scope.orderProducts[i].varName==scope.products[j].varName){
+                //                                 indexs.push(i);
+                //                             }
+                //                         }
+                //                     }
+                //                     for(i=indexs.length-1;i>=0;i--){
+                //                         scope.orderProducts.splice(indexs[i],1);
+                //                     }
+                //                     d.resolve();
+                //                 }
+                //             })
+                //         })(checkurls,urls,0);
+                //     }).then(function(){
+                //         scope.isResultShown = true;
+                //         scope.isPageLoading = false;   
+                //     },function(){
+                //         d.reject(Label.getContent('showView fail'));
+                //     });
+                //     return d.promise;
+                // }
+
                 var showView=function(category,market){
                     var d=$q.defer();
                     var categoryID=0,count=0,result=0,expend=0,marketID=0;
@@ -256,74 +407,31 @@ define(['directives', 'services'], function(directives){
                         market=1;
                     }
                     var orderProducts=new Array();
-                    var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/R/'+parseInt(PlayerInfo.getPlayer());
+                    var allRetCatDecisions=loadSelectCategroy(market,category);
+                    var products=new Array();
+                    for(var i=0;i<allRetCatDecisions.length;i++){
+                        for(var j=0;j<allRetCatDecisions[i].retVariantDecision.length;j++){
+                            if(allRetCatDecisions[i].retVariantDecision[j].brandID!=0&&allRetCatDecisions[i].retVariantDecision[j].variantID!=0){
+                                if(allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate>=0&&allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate<1){
+                                    allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate*=100;
+                                }
+                                if(allRetCatDecisions[i].retVariantDecision[j].shelfSpace>=0&&allRetCatDecisions[i].retVariantDecision[j].shelfSpace<1){
+                                    allRetCatDecisions[i].retVariantDecision[j].shelfSpace*=100;
+                                    allRetCatDecisions[i].retVariantDecision[j].shelfSpace=parseFloat(allRetCatDecisions[i].retVariantDecision[j].shelfSpace).toFixed(2);
+                                }
+                                allRetCatDecisions[i].retVariantDecision[j].order=parseFloat(allRetCatDecisions[i].retVariantDecision[j].order).toFixed(2);
+                                allRetCatDecisions[i].retVariantDecision[j].retailerPrice=parseFloat(allRetCatDecisions[i].retVariantDecision[j].retailerPrice).toFixed(2);
+                                products.push(allRetCatDecisions[i].retVariantDecision[j]);
+                                count++;
+                            }
+                        }
+                    }
+                    scope.products=products;
+                    //添加retailer load
+                    var url='/retailerProducts/'+parseInt(PlayerInfo.getPlayer())+'/'+PeriodInfo.getCurrentPeriod()+'/'+SeminarInfo.getSelectedSeminar()+'/'+category;
                     $http({
                         method:'GET',
                         url:url
-                    }).then(function(data){
-                        if(PeriodInfo.getCurrentPeriod()>=2){
-                            abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
-                        }else{
-                            abMax=data.data.budgetAvailable;
-                        }
-                        scope.abMax=abMax;
-                        url="/retailerExpend/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/-1/location/1';
-                        return $http({
-                            method:'GET',
-                            url:url
-                        });
-                    }).then(function(data){
-                        expend=data.data.result;
-                        scope.surplusExpend=abMax-expend;
-                        scope.percentageExpend=(abMax-expend)/abMax*100;
-                        url="/retailerShelfSpace/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/-1/0/brandName/varName';
-                        return $http({
-                            method:'GET',
-                            url:url
-                        });
-                    }).then(function(data){
-                        scope.surplusShelf=new Array();
-                        scope.percentageShelf=new Array();
-                        scope.surplusShelf[0]=new Array();
-                        scope.surplusShelf[1]=new Array();
-                        scope.percentageShelf[0]=new Array();
-                        scope.percentageShelf[1]=new Array();
-                        scope.surplusShelf[0][0]=data.data.result[0][0];
-                        scope.surplusShelf[0][1]=data.data.result[0][1];
-                        scope.surplusShelf[1][0]=data.data.result[1][0];
-                        scope.surplusShelf[1][1]=data.data.result[1][1];
-                        scope.percentageShelf[0][0]=(1-scope.surplusShelf[0][0])*100;
-                        scope.percentageShelf[0][1]=(1-scope.surplusShelf[0][1])*100;
-                        scope.percentageShelf[1][0]=(1-scope.surplusShelf[1][0])*100;
-                        scope.percentageShelf[1][1]=(1-scope.surplusShelf[1][1])*100;
-                        scope.showSurplusShelf=scope.percentageShelf[market-1][category-1];
-                        scope.showPercentageShelf=scope.percentageShelf[market-1][category-1];
-
-                        var allRetCatDecisions=loadSelectCategroy(market,category);
-                        var products=new Array();
-                        for(var i=0;i<allRetCatDecisions.length;i++){
-                            for(var j=0;j<allRetCatDecisions[i].retVariantDecision.length;j++){
-                                if(allRetCatDecisions[i].retVariantDecision[j].brandID!=0&&allRetCatDecisions[i].retVariantDecision[j].variantID!=0){
-                                    if(allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate>=0&&allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate<1){
-                                        allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate*=100;
-                                    }
-                                    if(allRetCatDecisions[i].retVariantDecision[j].shelfSpace>=0&&allRetCatDecisions[i].retVariantDecision[j].shelfSpace<1){
-                                        allRetCatDecisions[i].retVariantDecision[j].shelfSpace*=100;
-                                        allRetCatDecisions[i].retVariantDecision[j].shelfSpace=parseFloat(allRetCatDecisions[i].retVariantDecision[j].shelfSpace).toFixed(2);
-                                    }
-                                    allRetCatDecisions[i].retVariantDecision[j].retailerPrice=parseFloat(allRetCatDecisions[i].retVariantDecision[j].retailerPrice).toFixed(2);
-                                    products.push(allRetCatDecisions[i].retVariantDecision[j]);
-                                    count++;
-                                }
-                            }
-                        }
-                        scope.products=products;
-                        //添加retailer load
-                        url='/retailerProducts/'+parseInt(PlayerInfo.getPlayer())+'/'+PeriodInfo.getCurrentPeriod()+'/'+SeminarInfo.getSelectedSeminar()+'/'+category;
-                        return $http({
-                            method:'GET',
-                            url:url
-                        });
                     }).then(function(data){
                         for(var i=0;i<data.data.length;i++){
                             if(data.data[i].brandID!=0&&data.data[i].varID!=0){
