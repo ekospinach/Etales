@@ -101,7 +101,7 @@ exports.exportToBinary = function(options){
                                         if (response.status === (500 || 404)) {
                                             deferred.reject({msg: 'Failed to export binary, get 500 from CGI server(POST action):' + JSON.stringify(options)});
                                         } else {
-                                            deferred.resolve({msg: 'Export binary done, producer:' + options.producerID +', period' + options.period});
+                                            deferred.resolve({msg: 'Export binary done, producer: ' + options.producerID +', period: ' + options.period});
                                         }
                                     });
                                 }
@@ -153,7 +153,7 @@ exports.addProducerDecisions = function(options){
                                   if (currentPeriod >= startFrom) {
                                      sendRequest(currentPeriod);
                                   } else {
-                                     deferred.resolve({msg:'producerDecision(producer:'+ options.producerID + ', seminar:' + options.seminar + ') import done. from period' + startFrom + ' to ' + endWith, options: options});
+                                     deferred.resolve({msg:'producerDecision(producer:'+ options.producerID + ', seminar:' + options.seminar + ') import done. from period ' + startFrom + ' to ' + endWith, options: options});
                                   }
                                 });   
         });

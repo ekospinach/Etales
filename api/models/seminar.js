@@ -898,7 +898,7 @@ exports.passiveSeminar = function(options){
 		var reqOptions = {
 			hostname: options.cgiHost,
 			port: options.cgiPort,
-			path: options.cgiPath + '?seminar=' + doc.seminar
+			path: options.cgiPath + '?seminar=' + doc.seminarCode
 				  + '&span=' + doc.simulationSpan
 				  + '&isTraceActive=' + doc.traceActive
 				  + '&isTraditionalTradeActive=' + doc.traditionalTradeActive
@@ -940,7 +940,7 @@ exports.kernelSeminar = function(options){
 		var reqOptions = {
 			hostname: options.cgiHost,
 			port: options.cgiPort,
-			path: options.cgiPath + '?seminar=' + doc.seminar
+			path: options.cgiPath + '?seminar=' + doc.seminarCode
 				  + '&span=' + doc.simulationSpan
 				  + '&isTraceActive=' + doc.traceActive
 				  + '&isTraditionalTradeActive=' + doc.traditionalTradeActive

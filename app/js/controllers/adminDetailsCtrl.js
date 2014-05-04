@@ -16,10 +16,17 @@ define(['app','socketIO'], function(app) {
 				$scope.initializeMessage.push(data.msg); 					
 
 			}			
-//			console.log('scoketIO:'+data.msg);
 		}).on('PassiveProcessLog', function(data){
 			$scope.isKernelMessageShown = true;
-			if(data.msg != ''){ $scope.kernelMessage.push(data.msg); }
+			if(data.msg != ''){ 
+				if(!$scope.kernelMessage){
+					$scope.kernelMessage = [];
+				}
+				console.log(data.msg)
+				$scope.kernelMessage.push(data.msg); 					
+
+			}			
+
 		}).on('KernelProcessLog', function(data){
 			$scope.isKernelMessageShown = true;
 			if(data.msg != ''){ $scope.kernelMessage.push(data.msg); }
@@ -30,7 +37,7 @@ define(['app','socketIO'], function(app) {
 		$scope.isMessageShown = false;
 		//	console.log($scope.seminar);
 		//}
-
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 		//initializePage();
 	
 	    // $scope.$watch('seminar.traceActive', function() {
