@@ -136,7 +136,6 @@ define(['directives', 'services'], function(directives){
                 var showView=function(){
                     var d=$q.defer();
                     var categoryID=0,count=0,result=0,expend=0;
-					var labelLanguages={},infoLanguages={};
 					//var fakeName="EName",max=100;
 		      		var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/R/'+parseInt(PlayerInfo.getPlayer());
 		      		$http({

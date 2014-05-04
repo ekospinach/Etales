@@ -43,6 +43,16 @@ define(['directives', 'services'], function(directives){
                     for(var i=0;i<allProCatDecisions.length;i++){
                         for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
                             if(allProCatDecisions[i].proBrandsDecision[j]!=undefined&&allProCatDecisions[i].proBrandsDecision[j].brandID!=undefined&&allProCatDecisions[i].proBrandsDecision[j].brandID!=0){
+                                allProCatDecisions[i].proBrandsDecision[j].supportEmall=parseFloat(allProCatDecisions[i].proBrandsDecision[j].supportEmall).toFixed(2);
+                                for(var k=0;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
+                                    allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].onlinePlannedVolume=allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].onlinePlannedVolume.toFixed(2);
+                                    allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].onlinePrice=allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].onlinePrice.toFixed(2);
+                                    //allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].pricePromotions.promo_Frequency=allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].pricePromotions.promo_Frequency.toFixed(2);
+                                    //allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].pricePromotions.promo_Rate=allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].pricePromotions.promo_Rate.toFixed(2);
+                                    if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].pricePromotions.promo_Rate>=0&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].pricePromotions.promo_Rate<=1){
+                                        allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].pricePromotions.promo_Rate=(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].pricePromotions.promo_Rate*100).toFixed(2);
+                                    }
+                                }
                                 brands.push(allProCatDecisions[i].proBrandsDecision[j]);
                                 count++;
                             }
@@ -120,58 +130,65 @@ define(['directives', 'services'], function(directives){
                     }else{
                         categoryID=2;
                     }
+                    if(location=="pricePromotions"&&additionalIdx=="1"){
+                        value=parseFloat(value)/100;
+                    }
                     ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,additionalIdx,value);                         
                 }
 
                 var showView=function(){
                     var d=$q.defer();
-                    var categoryID=0,count=0,result=0,acMax=0,abMax=0,expend=0,avaiableMax=0;
-                    var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
-                    $http({
-                        method:'GET',
-                        url:url
-                    }).then(function(data){
-                        avaiableMax=data.data.budgetAvailable;
-                        if(PeriodInfo.getCurrentPeriod()<=1){
-                            abMax=data.data.budgetAvailable;
-                        }else{
-                            abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
-                        }
-                        acEleMax=data.data.productionCapacity[0];
-                        acHeaMax=data.data.productionCapacity[1];
-                        url="/producerExpend/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/brandName/location/1';
-                        return  $http({
-                            method:'GET',
-                            url:url,
-                        });
-                    }).then(function(data){
-                        expend=data.data.result;
-                        scope.surplusExpend=abMax-expend;
-                        scope.percentageExpend=(abMax-expend)/abMax*100;
-                        url="/productionResult/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/EName/varName';
-                        return $http({
-                            method:'GET',
-                            url:url
-                        });
-                    }).then(function(data){
-                        scope.eleSurplusProduction=acEleMax-data.data.result;
-                        scope.elePercentageProduction=(acEleMax-data.data.result)/acEleMax*100;
-                        url="/productionResult/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/HName/varName';
-                        return $http({
-                            method:'GET',
-                            url:url
-                        });
-                    }).then(function(data){
-                        scope.heaSurplusProduction=acHeaMax-data.data.result;
-                        scope.heaPercentageProduction=(acHeaMax-data.data.result)/acHeaMax*100;
-                        loadSelectCategroy('Elecssories');
-                        loadSelectCategroy('HealthBeauty');
-                    }).then(function(){
-                        scope.isResultShown = true;
-                        scope.isPageLoading = false;  
-                    },function(data){
-                        d.reject(Label.getContent('showView fail'));
-                    }); 
+                    loadSelectCategroy('Elecssories');
+                    loadSelectCategroy('HealthBeauty');
+                    scope.isResultShown = true;
+                    scope.isPageLoading = false;
+                    // var categoryID=0,count=0,result=0,acMax=0,abMax=0,expend=0,avaiableMax=0;
+                    // var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
+                    // $http({
+                    //     method:'GET',
+                    //     url:url
+                    // }).then(function(data){
+                    //     avaiableMax=data.data.budgetAvailable;
+                    //     if(PeriodInfo.getCurrentPeriod()<=1){
+                    //         abMax=data.data.budgetAvailable;
+                    //     }else{
+                    //         abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
+                    //     }
+                    //     acEleMax=data.data.productionCapacity[0];
+                    //     acHeaMax=data.data.productionCapacity[1];
+                    //     url="/producerExpend/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/brandName/location/1';
+                    //     return  $http({
+                    //         method:'GET',
+                    //         url:url,
+                    //     });
+                    // }).then(function(data){
+                    //     expend=data.data.result;
+                    //     scope.surplusExpend=abMax-expend;
+                    //     scope.percentageExpend=(abMax-expend)/abMax*100;
+                    //     url="/productionResult/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/EName/varName';
+                    //     return $http({
+                    //         method:'GET',
+                    //         url:url
+                    //     });
+                    // }).then(function(data){
+                    //     scope.eleSurplusProduction=acEleMax-data.data.result;
+                    //     scope.elePercentageProduction=(acEleMax-data.data.result)/acEleMax*100;
+                    //     url="/productionResult/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/HName/varName';
+                    //     return $http({
+                    //         method:'GET',
+                    //         url:url
+                    //     });
+                    // }).then(function(data){
+                    //     scope.heaSurplusProduction=acHeaMax-data.data.result;
+                    //     scope.heaPercentageProduction=(acHeaMax-data.data.result)/acHeaMax*100;
+                    //     loadSelectCategroy('Elecssories');
+                    //     loadSelectCategroy('HealthBeauty');
+                    // }).then(function(){
+                    //     scope.isResultShown = true;
+                    //     scope.isPageLoading = false;  
+                    // },function(data){
+                    //     d.reject(Label.getContent('showView fail'));
+                    // }); 
                     return d.promise;       
                 }
 

@@ -127,7 +127,7 @@ module.exports = function(){
 			return {
 				cgi : {
 				  port                                : 800,
-				  host                                : '192.168.1.105',
+				  host                                : '192.168.1.101',
 				  path_marketReport                   : '/cgi-bin/marketReport.exe',
 				  path_lineChart                      : '/cgi-bin/lineChart.exe',
 				  path_perceptionMap                  : '/cgi-bin/perceptionMap.exe',		
@@ -178,7 +178,7 @@ module.exports = function(){
 				  path_MR_sharesCrossSegment          : '/cgi-bin/MR_sharesCrossSegment.exe',
 				  path_MR_suppliersIntelligence       : '/cgi-bin/MR_suppliersIntelligence.exe',
 				  path_MR_variantPerceptionEvolution  : '/cgi-bin/MR_variantPerceptionEvolution.exe',
-		  		  
+
 				},
 				server : {
 				  port : 8000

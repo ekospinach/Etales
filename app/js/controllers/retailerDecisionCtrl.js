@@ -19,9 +19,58 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    		case 'showNegotiationAgreements':$scope.NegotiationAgreements=true;break;
 		    		case 'showMarketing':$scope.Marketing=true;break;
 		    		case 'showPrivateLabelPortfolioManagement':$scope.PrivateLabelPortfolioManagement=true;break;
-		    		case 'showMarketResearchOrders':$scope.MarketResearchOrders=true;break;
 		    		case 'showStoreManagement':$scope.StoreManagement=true;break;
+		    		case 'showMarketResearchOrders':$scope.MarketResearchOrders=true;break;
 		    	}
+		    }
+
+		    var showView=function(){
+                var abMax=0,expend=0;
+                var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/R/'+parseInt(PlayerInfo.getPlayer());
+                $http({
+                    method:'GET',
+                    url:url
+                }).then(function(data){
+                    if(PeriodInfo.getCurrentPeriod()>=2){
+                        abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
+                    }else{
+                        abMax=data.data.budgetAvailable;
+                    }
+                    $scope.abMax=abMax;
+                    url="/retailerExpend/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/-1/location/1';
+                    return $http({
+                        method:'GET',
+                        url:url
+                    });
+                }).then(function(data){
+                    expend=data.data.result;
+                    $scope.surplusExpend=abMax-expend;
+                    //$scope.percentageExpend=(abMax-expend)/abMax*100;
+                    url="/retailerShelfSpace/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/-1/0/brandName/varName';
+                    return $http({
+                        method:'GET',
+                        url:url
+                    });
+                }).then(function(data){
+                    $scope.surplusShelf=new Array();
+                    $scope.percentageShelf=new Array();
+                    $scope.surplusShelf[0]=new Array();
+                    $scope.surplusShelf[1]=new Array();
+                    $scope.percentageShelf[0]=new Array();
+                    $scope.percentageShelf[1]=new Array();
+                    $scope.surplusShelf[0][0]=data.data.result[0][0];
+                    $scope.surplusShelf[0][1]=data.data.result[0][1];
+                    $scope.surplusShelf[1][0]=data.data.result[1][0];
+                    $scope.surplusShelf[1][1]=data.data.result[1][1];
+                    $scope.percentageShelf[0][0]=(1-$scope.surplusShelf[0][0])*100;
+                    $scope.percentageShelf[0][1]=(1-$scope.surplusShelf[0][1])*100;
+                    $scope.percentageShelf[1][0]=(1-$scope.surplusShelf[1][0])*100;
+                    $scope.percentageShelf[1][1]=(1-$scope.surplusShelf[1][1])*100;
+                    // $scope.showSurplusShelf=$scope.percentageShelf[market-1][category-1];
+                    // $scope.showPercentageShelf=$scope.percentageShelf[market-1][category-1];
+                },function(){
+                	console.log('fail');
+                })
 		    }
 
 	    	var showNegotiationAgreements=function(){
@@ -46,7 +95,9 @@ define(['app','socketIO','routingConfig'], function(app) {
 
 	    	$scope.switching=switching;
 	    	$scope.showNegotiationAgreements=showNegotiationAgreements;
+	    	$scope.showView=showView;
 
+	    	showView();
 	    	showNegotiationAgreements();
 		    
 	}]);

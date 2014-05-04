@@ -189,35 +189,40 @@ define(['directives', 'services'], function(directives){
 
                 var selectPacks = function(category,parentBrandName,varName) {
                     var selected,postion=-1;
-                    if(category=="Elecssories"){
-                        for(var i=0;i<scope.productes.length;i++){
-                            if(scope.productes[i].parentBrandName==parentBrandName&&scope.productes[i].varName==varName){
-                                selected = $filter('filter')(scope.packs, {value: scope.productes[i].packFormat});
-                                postion=i;
-                                break;
+                    if(scope.productes.length>1&&scope.producths.length>1){
+                        if(category=="Elecssories"){
+                            for(var i=0;i<scope.productes.length;i++){
+                                if(scope.productes[i].parentBrandName==parentBrandName&&scope.productes[i].varName==varName){
+                                    selected = $filter('filter')(scope.packs, {value: scope.productes[i].packFormat});
+                                    postion=i;
+                                    break;
+                                }
                             }
-                        }
-                        if(postion!=-1){
-                            return (scope.productes[postion].packFormat && selected.length) ? selected[0].text : Label.getContent('Not set'); 
-                        }
-                        else{
-                            return Label.getContent('Not set'); 
-                        }
+                            if(postion!=-1&&selected!=undefined){
+                                return (scope.productes[postion].packFormat && selected.length) ? selected[0].text : Label.getContent('Not set'); 
+                            }
+                            else{
+                                return Label.getContent('Not set'); 
+                            }
+                        }else{
+                            for(var i=0;i<scope.producths.length;i++){
+                                if(scope.producths[i].parentBrandName==parentBrandName&&scope.producths[i].varName==varName){
+                                    selected = $filter('filter')(scope.packs, {value: scope.producths[i].packFormat});
+                                    postion=i;
+                                    break;
+                                }
+                            }
+                            if(postion!=-1&&selected!=undefined){
+                                return (scope.producths[postion].packFormat && selected.length) ? selected[0].text : Label.getContent('Not set'); 
+                            }
+                            else{
+                                return Label.getContent('Not set'); 
+                            }
+                        } 
                     }else{
-                        for(var i=0;i<scope.producths.length;i++){
-                            if(scope.producths[i].parentBrandName==parentBrandName&&scope.producths[i].varName==varName){
-                                selected = $filter('filter')(scope.packs, {value: scope.producths[i].packFormat});
-                                postion=i;
-                                break;
-                            }
-                        }
-                        if(postion!=-1){
-                            return (scope.producths[postion].packFormat && selected.length) ? selected[0].text : Label.getContent('Not set'); 
-                        }
-                        else{
-                            return Label.getContent('Not set'); 
-                        }
+                        return Label.getContent('Not set'); 
                     }
+                        
                 }
 
                 /*set add function is lauch new Brand*/
@@ -480,36 +485,41 @@ define(['directives', 'services'], function(directives){
 
                 var showView=function(){
                     var d=$q.defer();
-                    var categoryID=0,count=0,result=0,acMax=0,abMax=0,expend=0,avaiableMax=0;
-                    var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/R/'+parseInt(PlayerInfo.getPlayer());
-		      		$http({
-		      			method:'GET',
-		      			url:url
-		      		}).then(function(data){
-		      			if(PeriodInfo.getCurrentPeriod()>=2){
-		      				abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
-		      			}else{
-		      				abMax=data.data.budgetAvailable;
-		      			}
-		      			scope.abMax=abMax;
-		      			url="/retailerExpend/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/-1/location/1';
-		      			return $http({
-		      				method:'GET',
-		      				url:url,
-		      			});
-		      		}).then(function(data){
-		      			expend=data.data.result;
-		      			scope.surplusExpend=abMax-expend;
-		      			scope.percentageExpend=(abMax-expend)/abMax*100;
-		      			loadSelectCategroy('Elecssories');
-		      			loadSelectCategroy('HealthBeauty');
-					}).then(function(){
-						scope.selectPacks=selectPacks;
-						scope.isResultShown = true;
-                        scope.isPageLoading = false; 
-					},function(){
-						d.reject(Label.getContent('showView fail'));
-					})
+                    loadSelectCategroy('Elecssories');
+                    loadSelectCategroy('HealthBeauty');
+                    scope.selectPacks=selectPacks;
+                    scope.isResultShown = true;
+                    scope.isPageLoading = false; 
+     //                var categoryID=0,count=0,result=0,acMax=0,abMax=0,expend=0,avaiableMax=0;
+     //                var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/R/'+parseInt(PlayerInfo.getPlayer());
+		   //    		$http({
+		   //    			method:'GET',
+		   //    			url:url
+		   //    		}).then(function(data){
+		   //    			if(PeriodInfo.getCurrentPeriod()>=2){
+		   //    				abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
+		   //    			}else{
+		   //    				abMax=data.data.budgetAvailable;
+		   //    			}
+		   //    			scope.abMax=abMax;
+		   //    			url="/retailerExpend/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/-1/location/1';
+		   //    			return $http({
+		   //    				method:'GET',
+		   //    				url:url,
+		   //    			});
+		   //    		}).then(function(data){
+		   //    			expend=data.data.result;
+		   //    			scope.surplusExpend=abMax-expend;
+		   //    			scope.percentageExpend=(abMax-expend)/abMax*100;
+		   //    			loadSelectCategroy('Elecssories');
+		   //    			loadSelectCategroy('HealthBeauty');
+					// }).then(function(){
+					// 	scope.selectPacks=selectPacks;
+					// 	scope.isResultShown = true;
+     //                    scope.isPageLoading = false; 
+					// },function(){
+					// 	d.reject(Label.getContent('showView fail'));
+					// })
 					return d.promise;      
                 }
 

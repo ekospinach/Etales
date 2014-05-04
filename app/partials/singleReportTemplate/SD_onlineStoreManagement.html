@@ -1,18 +1,3 @@
-<div class="pull-right" style="width:400px">
-    <progress percent="percentageExpend" class="progress-primary"></progress>
-    <small>
-        <em>{{Label.getContent('Available Budget')}}:<strong>{{surplusExpend.toFixed(2)}}</strong></em>
-    </small>
-    <progress percent="elePercentageProduction" class="progress-suceess"></progress>
-    <small>
-        <em>{{Label.getContent('Elecssories')}} {{Label.getContent('Producer Available Capacity')}}: <strong>{{eleSurplusProduction.toFixed(2)}}</strong></em>
-    </small>
-    <progress percent="heaPercentageProduction" class="progress-danger"></progress>
-    <small>
-        <em>{{Label.getContent('HealthBeauties')}} {{Label.getContent('Producer Available Capacity')}}: <strong>{{heaSurplusProduction.toFixed(2)}}</strong></em>
-    </small>
-</div>
-<div style="clear:both;padding:1px 0" ng-show='isResultShown'></div>
 <div class='panel panel-primary my-success-panel' ng-show='isResultShown'>
 	<div class="panel-heading">
         <h3 class="panel-title text-center" popover="{{Label.getContent('Online Store Management Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
@@ -89,7 +74,7 @@
                     </a>
                 </td>
                 <td>
-                    <a href="#" editable-text="var.pricePromotions.promo_Rate" onaftersave="updateVariantDecision('Elecssories',brande.brandName,var.varN,'pricePromotions','1',$index,$data)">
+                    <a href="#" editable-text="var.pricePromotions.promo_Rate" onaftersave="updateVariantDecision('Elecssories',brande.brandName,var.varName,'pricePromotions','1',$index,$data)">
                         <p class="text-right">{{ var.pricePromotions.promo_Rate || 0 }}</p>
                     </a>
                 </td>
@@ -131,7 +116,7 @@
                     </a>
                 </td>
                 <td>
-                    <a href="#" editable-text="var.pricePromotions.promo_Rate" onaftersave="updateVariantDecision('HealthBeauty',brandh.brandName,var.varN,'pricePromotions','1',$index,$data)">
+                    <a href="#" editable-text="var.pricePromotions.promo_Rate" onaftersave="updateVariantDecision('HealthBeauty',brandh.brandName,var.varName,'pricePromotions','1',$index,$data)">
                         <p class="text-right">{{ var.pricePromotions.promo_Rate || 0 }}</p>
                     </a>
                 </td>

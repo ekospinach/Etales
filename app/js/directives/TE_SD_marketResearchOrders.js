@@ -60,7 +60,6 @@ define(['directives', 'services'], function(directives){
                     playDatas.push({'name':'Forcasts','realName':'forcasts','reportPrice':reportPrices.forcasts,'playerStatus':playerStatus.forcasts});
 
                     scope.playDatas=playDatas;
-                    console.log(playDatas);
 
                     deferred.resolve({msg:'Array is ready.'});                    
                     return deferred.promise;

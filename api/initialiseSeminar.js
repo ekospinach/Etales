@@ -28,7 +28,7 @@ exports.initialiseSeminar = function(io){
 			category2ID                : req.body.category2ID			
 		}	
 		
-        io.sockets.emit('AdminProcessLog', { msg: 'Create separated folder for binary files of seminar : '+ req.body.seminar, isError: false }); 
+        //io.sockets.emit('AdminProcessLog', { msg: 'Create separated folder for binary files of seminar : '+ req.body.seminar, isError: false }); 
        	io.sockets.emit('AdminProcessLog', { msg: 'Start calling Initialize.DLL...', isError: false });                             
 		require('./models/seminar.js').initializeSeminar(options).then(function(result){
             io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });      
@@ -426,6 +426,7 @@ exports.initialiseSeminar = function(io){
 		}).then(function(result){ 
              io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	             
 
+            //import retailer decision 
              options.endWith = 1;
             options.retailerID = '1';
 			options.cgiPath = conf.cgi.path_retailerDecision;
