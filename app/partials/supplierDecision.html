@@ -32,7 +32,7 @@
     <div class="row">
         <div class="col-md-9">
             <div class="bs-docs-section">
-                <supplier-product-portfolio-management ng-show='ProductPortfolioManagement' is-page-shown='ProductPortfolioManagement' is-page-loading='isPageLoading'></supplier-product-portfolio-management>
+                <supplier-product-portfolio-management ng-show='ProductPortfolioManagement' is-page-shown='ProductPortfolioManagement' is-page-loading='isPageLoading' is-ready='isReady'></supplier-product-portfolio-management>
                 
                 <supplier-b-m-list-prices ng-show='BMListPrices' is-page-shown='BMListPrices' is-page-loading='isPageLoading'></supplier-b-m-list-prices>
                 
@@ -62,7 +62,7 @@
                             <td><p class="text-right"><b>{{surplusExpend}}</b>/{{abMax}}</p></td>
                         </tr>
                         <tr>
-                            <td colspan="2"><p>{{Label.getContent('Shelf Space Left')}}</p></td>
+                            <td colspan="2"><p>{{Label.getContent('Available Period Capacity')}}</p></td>
                         </tr>
                         <tr>
                             <td><p class="padding-20">{{Label.getContent('Elecssories')}}</p></td>
@@ -81,7 +81,7 @@
                     <li class="">
                         <a href="/#/supplierDecision" style="color:#428BCA" ng-click='showBMListPrices()'>{{Label.getContent('B&M List Prices')}}</a>
                     </li>
-                    <li class="">
+                    <li ng-show='isReady' class="">
                         <a href="/#/supplierDecision" style="color:#428BCA" ng-click='showNegotiationAgreements()'>{{Label.getContent('Negotiation Agreements')}}</a>
                     </li>
                     <li class="">

@@ -130,7 +130,7 @@ app.post('/getCurrentUnitCost', require('./api/utils/unitCost').getCurrentUnitCo
 app.get('/currentPeriod/:seminar',require('./api/models/seminar.js').getCurrentPeriod);
 
 //seminar 
-app.get('/checkProducerDecision/:seminar/:producerID',require('./api/models/seminar.js').checkProducerDecision);
+app.get('/checkProducerDecision/:seminar/:period/:producerID',require('./api/models/seminar.js').checkProducerDecision);
 app.post('/submitDecision',require('./api/models/seminar.js').submitDecision(io));
 
 app.post('/deleteOrderData',require('./api/models/retailerDecision.js').deleteOrderData(io));

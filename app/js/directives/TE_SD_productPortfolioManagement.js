@@ -4,7 +4,8 @@ define(['directives', 'services'], function(directives){
         return {
             scope : {
                 isPageShown : '=',
-                isPageLoading : '='
+                isPageLoading : '=',
+                isReady:'='
             },
             restrict : 'E',
             templateUrl : '../../partials/singleReportTemplate/SD_productPortfolioManagement.html',            
@@ -543,6 +544,7 @@ define(['directives', 'services'], function(directives){
                     var d=$q.defer();
                     loadSelectCategroy('Elecssories');
                     loadSelectCategroy('HealthBeauty');
+                    scope.selectPacks=selectPacks;
                     scope.isResultShown = true;
                     scope.isPageLoading = false;  
                     // var categoryID=0,count=0,result=0,acMax=0,abMax=0,expend=0,avaiableMax=0;
@@ -594,6 +596,23 @@ define(['directives', 'services'], function(directives){
                     //     d.reject(Label.getContent('showView fail'));
                     // }); 
                     return d.promise;       
+                }
+
+                scope.submitDecision=function(){
+                    var queryCondition={
+                        producerID:parseInt(PlayerInfo.getPlayer()),
+                        seminar:SeminarInfo.getSelectedSeminar(),
+                        period:PeriodInfo.getCurrentPeriod()
+                    }
+                    $http({
+                        method:'POST',
+                        url:'/submitDecision',
+                        data:queryCondition
+                    }).then(function(data){
+                        console.log('successful');
+                    },function(err){
+                        console.log('fail');
+                    })
                 }
 
                 scope.$watch('isPageShown', function(newValue, oldValue){

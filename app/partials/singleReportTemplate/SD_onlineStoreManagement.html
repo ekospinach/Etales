@@ -8,7 +8,7 @@
     	<thead>
     		<tr>
     			<!-- <th colspan="5">{{Label.getContent('Elecssories')}}</th> -->
-                <th colspan="5"></th>
+                <th colspan="4"></th>
     			<th colspan="2">
                     <p class="text-center">{{Label.getContent('Promotions')}}</p>
                 </th>
@@ -17,7 +17,6 @@
                 <th>
                     <p class="text-center">{{Label.getContent('Brand')}}</p>
                 </th>
-                <th></th>
                 <th>
                     <p class="text-center">{{Label.getContent('Visibility')}}($mln)</p>
                 </th>
@@ -35,12 +34,12 @@
                 </th>
             </tr> 
             <tr class="success">
-                <td colspan="7">{{Label.getContent('Elecssories')}}</td>
+                <td colspan="6">{{Label.getContent('Elecssories')}}</td>
             </tr> 
     	</thead>
         <thead ng-repeat='brande in brandes'>
             <tr class="success">
-                <td colspan="2">
+                <td>
                     <p class="padding-20">
                         {{brande.brandName}}
                     </p>
@@ -53,9 +52,8 @@
                 <td colspan="4"></td>
             </tr>
             <tr class="success" ng-repeat='var in brande.proVarDecision' ng-if="var.varName!=''">
-                <td></td>
                 <td>
-                    <p class="padding-20">{{brande.brandName}}{{var.varName}}</p>
+                    <p class="padding-40">{{brande.brandName}}{{var.varName}}</p>
                 </td>
                 <td></td>
                 <td>
@@ -82,7 +80,7 @@
         </thead>
         <thead ng-repeat='brandh in brandhs'>
             <tr class="danger">
-                <td colspan="2">
+                <td>
                     <p class="padding-20">
                         {{brandh.brandName}}
                     </p>
@@ -95,9 +93,8 @@
                 <td colspan="4"></td>
             </tr>
             <tr class="danger" ng-repeat='var in brandh.proVarDecision' ng-if="var.varName!=''">
-                <td></td>
                 <td>
-                    <p class="padding-20">{{brandh.brandName}}{{var.varName}}</p>
+                    <p class="padding-40">{{brandh.brandName}}{{var.varName}}</p>
                 </td>
                 <td></td>
                 <td>
