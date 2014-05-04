@@ -183,6 +183,7 @@ define(['directives', 'services'], function(directives){
                     var d=$q.defer();
                     loadSelectCategroy('Elecssories');
                     loadSelectCategroy('HealthBeauty');
+                    scope.selectPacks=selectPacks;
                     scope.isResultShown = true;
                     scope.isPageLoading = false;  
                     // var categoryID=0,count=0,result=0,acMax=0,abMax=0,expend=0,avaiableMax=0;

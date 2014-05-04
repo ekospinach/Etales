@@ -31,10 +31,21 @@ define(['app','socketIO','routingConfig'], function(app) {
 
 		    var showView=function(){
                 var categoryID=0,acMax=0,abMax=0,expend=0,avaiableMax=0;
-		    	var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
-                    $http({
-                        method:'GET',
-                        url:url
+                var url='/checkProducerDecision/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer());
+					$http({
+						method:'GET',
+						url:url
+					}).then(function(data){
+						if(data.data=="isReady"){
+							$scope.isReady=true;
+						}else{
+							$scope.isReady=false;
+						}
+		    			url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
+                    	return $http({
+	                        method:'GET',
+	                        url:url
+	                    });
                     }).then(function(data){
                         avaiableMax=data.data.budgetAvailable;
                         if(PeriodInfo.getCurrentPeriod()<=1){

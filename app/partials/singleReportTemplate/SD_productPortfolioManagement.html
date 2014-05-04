@@ -35,28 +35,32 @@
     			</td>
     			<td>
     				<div style="clear:both"></div>
-    				<button type="button" class="btn btn-danger btn-xs pull-right" ng-show="(producte.dateOfBirth==currentPeriod)" ng-click="deleteProduct('Elecssories',producte.parentBrandName,producte.varName)">{{Label.getContent('Delete')}}</button>
+    				<button type="button" class="btn btn-danger btn-xs pull-right" ng-show="(producte.dateOfBirth==currentPeriod&&(!isReady))" ng-click="deleteProduct('Elecssories',producte.parentBrandName,producte.varName)">{{Label.getContent('Delete')}}</button>
     				<p class="text-center">{{producte.varName}}</p>
     			</td>
     			<td>
-    				<a href="#" editable-select="producte.packFormat" e-ng-options="p.value as p.text for p in packs" onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'packFormat','0',$index)">
+    				<a href="#" editable-select="producte.packFormat" e-ng-options="p.value as p.text for p in packs" ng-show='(producte.dateOfBirth==currentPeriod&&(!isReady))' onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'packFormat','0',$index)">
     					<p class="text-right">{{selectPacks('Elecssories',producte.parentBrandName,producte.varName)}}</p>
     				</a>
+                    <p class="text-right" ng-show="producte.dateOfBirth<currentPeriod||isReady">{{ selectPacks('Elecssories',producte.parentBrandName,producte.varName) }}</p>
     			</td>
     			<td>
-    				<a href="#" editable-text="producte.composition[1]" onbeforesave="checkTechnology('Elecssories',producte.parentBrandName,producte.varName,'composition','1',$index,$data)" onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'composition','1',$index)">
+    				<a href="#" editable-text="producte.composition[1]" onbeforesave="checkTechnology('Elecssories',producte.parentBrandName,producte.varName,'composition','1',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'composition','1',$index)">
     					<p class="text-right">{{ producte.composition[1] || 0 }}</p>
     				</a>
+                    <p ng-show="isReady" class="text-right">{{ producte.composition[1] || 0 }}</p>
     			</td>
     			<td>
-    				<a href="#" editable-text="producte.composition[0]" onbeforesave="checkDesign('Elecssories',producte.parentBrandName,producte.varName,'composition','0',$index,$data)" onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'composition','0',$index)">
+    				<a href="#" editable-text="producte.composition[0]" onbeforesave="checkDesign('Elecssories',producte.parentBrandName,producte.varName,'composition','0',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'composition','0',$index)">
     					<p class="text-right">{{ producte.composition[0] || 0 }}</p>
     				</a>
+                    <p ng-show="isReady" class="text-right">{{ producte.composition[0] || 0 }}</p>
     			</td>
     			<td>
-    				<a href="#" editable-text="producte.composition[2]" onbeforesave="checkRMQ('Elecssories',producte.parentBrandName,producte.varName,'composition','2',$index,$data)" onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'composition','2',$index)">
+    				<a href="#" editable-text="producte.composition[2]" onbeforesave="checkRMQ('Elecssories',producte.parentBrandName,producte.varName,'composition','2',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'composition','2',$index)">
     					<p class="text-right">{{ producte.composition[2] || 0 }}</p>
     				</a>
+                    <p ng-show="isReady" class="text-right">{{ producte.composition[2] || 0 }}</p>
     			</td>
     		</tr>
     		<tr>
@@ -85,29 +89,33 @@
     			</td>
     			<td>
     				<div style="clear:both"></div>
-    				<button type="button" class="btn btn-danger btn-xs pull-right" ng-show="(producth.dateOfBirth==currentPeriod)" ng-click="deleteProduct('HealthBeauty',producth.parentBrandName,producth.varName)">{{Label.getContent('Delete')}}</button>
+    				<button type="button" class="btn btn-danger btn-xs pull-right" ng-show="(producth.dateOfBirth==currentPeriod&&(!isReady))" ng-click="deleteProduct('HealthBeauty',producth.parentBrandName,producth.varName)">{{Label.getContent('Delete')}}</button>
     				<p class="text-center">{{producth.varName}}</p>
     				<div style="clear:both"></div>
     			</td>
     			<td>
-    				<a href="#" editable-select="producth.packFormat" e-ng-options="p.value as p.text for p in packs" onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'packFormat','0',$index)">
+    				<a href="#" editable-select="producth.packFormat" e-ng-options="p.value as p.text for p in packs" ng-show='(producth.dateOfBirth==currentPeriod&&(!isReady))' onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'packFormat','0',$index)">
     					<p class="text-right">{{selectPacks('HealthBeauty',producth.parentBrandName,producth.varName)}}</p>
     				</a>
+                    <p class="text-right" ng-show="producth.dateOfBirth<currentPeriod||isReady">{{ selectPacks('HealthBeauty',producth.parentBrandName,producth.varName) }}</p>
     			</td>
     			<td>
-    				<a href="#" editable-text="producth.composition[1]" onbeforesave="checkTechnology('HealthBeauty',producth.parentBrandName,producth.varName,'composition','1',$index,$data)" onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'composition','1',$index)">
+    				<a href="#" editable-text="producth.composition[1]" onbeforesave="checkTechnology('HealthBeauty',producth.parentBrandName,producth.varName,'composition','1',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'composition','1',$index)">
     					<p class="text-right">{{ producth.composition[1] || 0 }}</p>
     				</a>
+                    <p ng-show="isReady" class="text-right">{{ producth.composition[1] || 0 }}</p>
     			</td>
     			<td>
-    				<a href="#" editable-text="producth.composition[0]" onbeforesave="checkDesign('HealthBeauty',producth.parentBrandName,producth.varName,'composition','0',$index,$data)" onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'composition','0',$index)">
+    				<a href="#" editable-text="producth.composition[0]" onbeforesave="checkDesign('HealthBeauty',producth.parentBrandName,producth.varName,'composition','0',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'composition','0',$index)">
     					<p class="text-right">{{ producth.composition[0] || 0 }}</p>
     				</a>
+                    <p ng-show="isReady" class="text-right">{{ producth.composition[0] || 0 }}</p>
     			</td>
     			<td>
-    				<a href="#" editable-text="producth.composition[2]" onbeforesave="checkRMQ('HealthBeauty',producth.parentBrandName,producth.varName,'composition','2',$index,$data)" onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'composition','2',$index)">
+    				<a href="#" editable-text="producth.composition[2]" onbeforesave="checkRMQ('HealthBeauty',producth.parentBrandName,producth.varName,'composition','2',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'composition','2',$index)">
     					<p class="text-right">{{ producth.composition[2] || 0 }}</p>
     				</a>
+                    <p ng-show="isReady" class="text-right">{{ producth.composition[2] || 0 }}</p>
     			</td>
     		</tr>
     	</tbody>
@@ -115,6 +123,16 @@
 </div>
 <div ng-show='isResultShown'>
 	<a ng-click="openProductModal()" ng-disabled="isReady" class="btn btn-default">{{Label.getContent('New Product')}}</a>
+    <a href="" class="btn btn-primary" ng-disabled="isReady" ng-click="isCommitConfirmInfoShown=true" class="btn btn-primary">{{Label.getContent('Commit Portflio decision')}}</a>
+</div>
+<div class="alert alert-danger fade in" ng-show="isCommitConfirmInfoShown">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+    <h4>{{Label.getContent("Warning! Commit confirmation")}}</h4>
+    <p>{{Label.getContent("Producer portfolio confirm info")}}</p>
+    <p>
+        <button type="button" class="btn btn-danger" ng-click='submitDecision()'>{{Label.getContent("Take this action")}}</button>
+        <button type="button" ng-click="isCommitConfirmInfoShown=false" class="btn btn-default">{{Label.getContent("Cancel")}}</button>
+    </p>
 </div>
 <!--dialog start-->
 <div modal="productModal" class="hide" close="closeProductModal()" options="productModalOpts">
