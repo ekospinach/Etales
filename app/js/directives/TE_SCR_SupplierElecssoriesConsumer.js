@@ -63,7 +63,7 @@ define(['directives', 'services'], function(directives){
                                 fashionVolumeShare=0;
                                 freaksVolumeShare=0;
                             }
-                            if(volumeChange!=undefined){
+                            if(VolumesChanges!=undefined){
                                 priceVolumeChange=VolumesChanges.segmentInfo[0].shopperInfo[3].value;
                                 moneyVolumeChange=VolumesChanges.segmentInfo[1].shopperInfo[3].value;
                                 fashionVolumeChange=VolumesChanges.segmentInfo[2].shopperInfo[3].value;
