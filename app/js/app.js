@@ -3,6 +3,7 @@
 	'filters',
 	'services',
 	'directives/basicDirectives',
+	'highchart',
 	'directives/chartLibraryWrapper',
 	'directives/TE_GR_performanceHighlights',
 	'directives/TE_GR_marketShare',	
@@ -92,7 +93,6 @@
 	'labelRenderer',
 	'textRenderer',
 	'tree',
-	'highchart',
 	'highchartMore',
 	'angularHighcharts',
 	], function (angular, filters, services,directives,bootstrap, controllers) {
