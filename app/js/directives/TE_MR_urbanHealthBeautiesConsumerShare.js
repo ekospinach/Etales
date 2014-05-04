@@ -29,24 +29,45 @@ define(['directives', 'services'], function(directives){
                             var Changes=_.find(data.data[0].valueChange,function(obj){
                                 return (obj.parentBrandName==brandName&&obj.variantName==variantName&&obj.marketID==market);
                             });
-                            var priceValueChange=Changes.segmentInfo[0].shopperInfo[3].value;
-                            var moneyValueChange=Changes.segmentInfo[1].shopperInfo[3].value;
-                            var fashionValueChange=Changes.segmentInfo[2].shopperInfo[3].value;
-                            var freaksValueChange=Changes.segmentInfo[3].shopperInfo[3].value;
+                            if(Changes!=undefined){
+                                var priceValueChange=Changes.segmentInfo[0].shopperInfo[3].value;
+                                var moneyValueChange=Changes.segmentInfo[1].shopperInfo[3].value;
+                                var fashionValueChange=Changes.segmentInfo[2].shopperInfo[3].value;
+                                var freaksValueChange=Changes.segmentInfo[3].shopperInfo[3].value;
+                            }else{
+                                var priceValueChange=0;
+                                var moneyValueChange=0;
+                                var fashionValueChange=0;
+                                var freaksValueChange=0; 
+                            }
                             var Volumes=_.find(data.data[0].absoluteVolume,function(obj){
                                 return (obj.parentBrandName==brandName&&obj.variantName==variantName&&obj.marketID==market);
                             });
                             var VolumeChanges=_.find(data.data[0].volumeChange,function(obj){
                                 return (obj.parentBrandName==brandName&&obj.variantName==variantName&&obj.marketID==market);
                             });
-                            var priceVolume=Volumes.segmentInfo[0].shopperInfo[3].value;
-                            var moneyVolume=Volumes.segmentInfo[1].shopperInfo[3].value;
-                            var fashionVolume=Volumes.segmentInfo[2].shopperInfo[3].value;
-                            var freaksVolume=Volumes.segmentInfo[3].shopperInfo[3].value;
-                            var priceVolumeChange=VolumeChanges.segmentInfo[0].shopperInfo[3].value;
-                            var moneyVolumeChange=VolumeChanges.segmentInfo[1].shopperInfo[3].value;
-                            var fashionVolumeChange=VolumeChanges.segmentInfo[2].shopperInfo[3].value;
-                            var freaksVolumeChange=VolumeChanges.segmentInfo[3].shopperInfo[3].value;
+                            if(Volumes!=undefined){
+                                var priceVolume=Volumes.segmentInfo[0].shopperInfo[3].value;
+                                var moneyVolume=Volumes.segmentInfo[1].shopperInfo[3].value;
+                                var fashionVolume=Volumes.segmentInfo[2].shopperInfo[3].value;
+                                var freaksVolume=Volumes.segmentInfo[3].shopperInfo[3].value;                                
+                            }else{
+                                var priceVolume=0;
+                                var moneyVolume=0;
+                                var fashionVolume=0;
+                                var freaksVolume=0;
+                            }
+                            if(VolumeChanges!=undefined){
+                                var priceVolumeChange=VolumeChanges.segmentInfo[0].shopperInfo[3].value;
+                                var moneyVolumeChange=VolumeChanges.segmentInfo[1].shopperInfo[3].value;
+                                var fashionVolumeChange=VolumeChanges.segmentInfo[2].shopperInfo[3].value;
+                                var freaksVolumeChange=VolumeChanges.segmentInfo[3].shopperInfo[3].value;                                
+                            }else{
+                                var priceVolumeChange=0;
+                                var moneyVolumeChange=0;
+                                var fashionVolumeChange=0;
+                                var freaksVolumeChange=0;
+                            }
                             switch(data.data[0].absoluteValue[i].parentCompanyID){
                                 case 1:scope.player1s.push({'fullName':brandName+variantName,'priceValue':priceValue,'priceValueChange':priceValueChange,'priceVolume':priceVolume,'priceVolumeChange':priceVolumeChange,'moneyValue':moneyValue,'moneyValueChange':moneyValueChange,'moneyVolume':moneyVolume,'moneyVolumeChange':moneyVolumeChange,'fashionValue':fashionValue,'fashionValueChange':fashionValueChange,'fashionVolume':fashionVolume,'fashionVolumeChange':fashionVolumeChange,'freaksValue':freaksValue,'freaksValueChange':freaksValueChange,'freaksVolume':freaksVolume,'freaksVolumeChange':freaksVolumeChange});break;
                                 case 2:scope.player2s.push({'fullName':brandName+variantName,'priceValue':priceValue,'priceValueChange':priceValueChange,'priceVolume':priceVolume,'priceVolumeChange':priceVolumeChange,'moneyValue':moneyValue,'moneyValueChange':moneyValueChange,'moneyVolume':moneyVolume,'moneyVolumeChange':moneyVolumeChange,'fashionValue':fashionValue,'fashionValueChange':fashionValueChange,'fashionVolume':fashionVolume,'fashionVolumeChange':fashionVolumeChange,'freaksValue':freaksValue,'freaksValueChange':freaksValueChange,'freaksVolume':freaksVolume,'freaksVolumeChange':freaksVolumeChange});break;

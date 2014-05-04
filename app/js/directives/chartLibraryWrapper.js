@@ -228,7 +228,7 @@ define(['directives'], function(directives){
             scope.$watch(attrs.ngModel, function(v){
                 if($('#highchart4')!=undefined){
                    $('#highchart4').empty();
-                    $('#highchart4').highcharts({
+                   $('#highchart4').highcharts({
                         chart: {
                             type: 'bubble',
                             zoomType: 'xy'
@@ -260,7 +260,7 @@ define(['directives'], function(directives){
         return function(scope,elem,attrs){
             scope.$watch(attrs.ngModel, function(v){
                 if($('#highchart5')!=undefined){
-                   $('#highchart5').empty();
+                    $('#highchart5').empty();
                     $('#highchart5').highcharts({
                         chart: {
                             type: 'bubble',

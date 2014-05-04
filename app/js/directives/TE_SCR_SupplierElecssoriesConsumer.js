@@ -35,24 +35,45 @@ define(['directives', 'services'], function(directives){
                             var ValueChanges=_.find(data.data[0].valueChange,function(obj){
                                 return(obj.variantName==varName&&obj.parentBrandName==brandName&&obj.marketID==marketID);
                             });
-                            priceValueChange=ValueChanges.segmentInfo[0].shopperInfo[3].value;
-                            moneyValueChange=ValueChanges.segmentInfo[1].shopperInfo[3].value;
-                            fashionValueChange=ValueChanges.segmentInfo[2].shopperInfo[3].value;
-                            freaksValueChange=ValueChanges.segmentInfo[3].shopperInfo[3].value;
+                            if(ValueChanges!=undefined){
+                                priceValueChange=ValueChanges.segmentInfo[0].shopperInfo[3].value;
+                                moneyValueChange=ValueChanges.segmentInfo[1].shopperInfo[3].value;
+                                fashionValueChange=ValueChanges.segmentInfo[2].shopperInfo[3].value;
+                                freaksValueChange=ValueChanges.segmentInfo[3].shopperInfo[3].value;                               
+                            }else{
+                                priceValueChange=0;
+                                moneyValueChange=0;
+                                fashionValueChange=0;
+                                freaksValueChange=0;
+                            }
                             var Volumes=_.find(data.data[0].absoluteVolume,function(obj){
                                 return(obj.variantName==varName&&obj.parentBrandName==brandName&&obj.marketID==marketID);
                             });
                             var VolumesChanges=_.find(data.data[0].volumeChange,function(obj){
                                 return(obj.variantName==varName&&obj.parentBrandName==brandName&&obj.marketID==marketID);
                             });
-                            priceVolumeShare=Volumes.segmentInfo[0].shopperInfo[3].value;
-                            moneyVolumeShare=Volumes.segmentInfo[1].shopperInfo[3].value;
-                            fashionVolumeShare=Volumes.segmentInfo[2].shopperInfo[3].value;
-                            freaksVolumeShare=Volumes.segmentInfo[3].shopperInfo[3].value;
-                            priceVolumeChange=VolumesChanges.segmentInfo[0].shopperInfo[3].value;
-                            moneyVolumeChange=VolumesChanges.segmentInfo[1].shopperInfo[3].value;
-                            fashionVolumeChange=VolumesChanges.segmentInfo[2].shopperInfo[3].value;
-                            freaksVolumeChange=VolumesChanges.segmentInfo[3].shopperInfo[3].value;
+                            if(Volumes!=undefined){
+                                priceVolumeShare=Volumes.segmentInfo[0].shopperInfo[3].value;
+                                moneyVolumeShare=Volumes.segmentInfo[1].shopperInfo[3].value;
+                                fashionVolumeShare=Volumes.segmentInfo[2].shopperInfo[3].value;
+                                freaksVolumeShare=Volumes.segmentInfo[3].shopperInfo[3].value;                                
+                            }else{
+                                priceVolumeShare=0;
+                                moneyVolumeShare=0;
+                                fashionVolumeShare=0;
+                                freaksVolumeShare=0;
+                            }
+                            if(volumeChange!=undefined){
+                                priceVolumeChange=VolumesChanges.segmentInfo[0].shopperInfo[3].value;
+                                moneyVolumeChange=VolumesChanges.segmentInfo[1].shopperInfo[3].value;
+                                fashionVolumeChange=VolumesChanges.segmentInfo[2].shopperInfo[3].value;
+                                freaksVolumeChange=VolumesChanges.segmentInfo[3].shopperInfo[3].value;
+                            }else{
+                                priceVolumeChange=0;
+                                moneyVolumeChange=0;
+                                fashionVolumeChange=0;
+                                freaksVolumeChange=0;                                
+                            }
                             switch(marketID){
                                 case 1:
                                     scope.urban1s.push({'fullName':brandName+varName,'priceVolumeShare':priceVolumeShare,'priceVolumeChange':priceVolumeChange,'moneyVolumeShare':moneyVolumeShare,'moneyVolumeChange':moneyVolumeChange,'fashionVolumeShare':fashionVolumeShare,'fashionVolumeChange':fashionVolumeChange,'freaksVolumeShare':freaksVolumeShare,'freaksVolumeChange':freaksVolumeChange});
