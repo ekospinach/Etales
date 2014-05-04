@@ -451,9 +451,9 @@ define(['directives', 'services'], function(directives){
                                 method:'GET',
                                 url:checkurls[idx]
                             }).then(function(data){
-                                if(data.data=="unReady"){
-                                    urls[idx]="/";
-                                }
+                                // if(data.data=="unReady"){
+                                //     urls[idx]="/";
+                                // }
                                 return $http({
                                     method:'GET',
                                     url:urls[idx]
@@ -487,13 +487,12 @@ define(['directives', 'services'], function(directives){
                                     for(i=indexs.length-1;i>=0;i--){
                                         scope.orderProducts.splice(indexs[i],1);
                                     }
+                                    scope.isResultShown = true;
+                                    scope.isPageLoading = false;
                                     d.resolve();
                                 }
                             })
-                        })(checkurls,urls,0);
-                    }).then(function(){
-                        scope.isResultShown = true;
-                        scope.isPageLoading = false;   
+                        })(checkurls,urls,0); 
                     },function(){
                         d.reject(Label.getContent('showView fail'));
                     });
