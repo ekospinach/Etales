@@ -27,21 +27,40 @@ define(['directives', 'services'], function(directives){
                             var Changes=_.find(data.data[0].valueChange,function(obj){
                                 return (obj.parentBrandName==brandName&&obj.variantName==variantName&&obj.marketID==market);
                             });
-                            var bmValueChange=Changes.segmentInfo[4].shopperInfo[0].value;
-                            var onlineValueChange=Changes.segmentInfo[4].shopperInfo[1].value;
-                            var mixedValueChange=Changes.segmentInfo[4].shopperInfo[2].value;
+                            if(Changes!=undefined){
+                                var bmValueChange=Changes.segmentInfo[4].shopperInfo[0].value;
+                                var onlineValueChange=Changes.segmentInfo[4].shopperInfo[1].value;
+                                var mixedValueChange=Changes.segmentInfo[4].shopperInfo[2].value; 
+                            }else{
+                                var bmValueChange=0;
+                                var onlineValueChange=0;
+                                var mixedValueChange=0; 
+                            }
+
                             var Volumes=_.find(data.data[0].absoluteVolume,function(obj){
                                 return (obj.parentBrandName==brandName&&obj.variantName==variantName&&obj.marketID==market);
                             });
                             var VolumeChanges=_.find(data.data[0].volumeChange,function(obj){
                                 return (obj.parentBrandName==brandName&&obj.variantName==variantName&&obj.marketID==market);
                             });
-                            var bmVolume=Volumes.segmentInfo[4].shopperInfo[0].value;
-                            var onlineVolume=Volumes.segmentInfo[4].shopperInfo[1].value;
-                            var mixedVolume=Volumes.segmentInfo[4].shopperInfo[2].value;
-                            var bmVolumeChange=VolumeChanges.segmentInfo[4].shopperInfo[0].value;
-                            var onlineVolumeChange=VolumeChanges.segmentInfo[4].shopperInfo[1].value;
-                            var mixedVolumeChange=VolumeChanges.segmentInfo[4].shopperInfo[2].value;
+                            if(Volumes!=undefined){
+                                var bmVolume=Volumes.segmentInfo[4].shopperInfo[0].value;
+                                var onlineVolume=Volumes.segmentInfo[4].shopperInfo[1].value;
+                                var mixedVolume=Volumes.segmentInfo[4].shopperInfo[2].value;
+                            }else{
+                                var bmVolume=0;
+                                var onlineVolume=0;
+                                var mixedVolume=0;
+                            }
+                            if(VolumeChanges!=undefined){
+                                var bmVolumeChange=VolumeChanges.segmentInfo[4].shopperInfo[0].value;
+                                var onlineVolumeChange=VolumeChanges.segmentInfo[4].shopperInfo[1].value;
+                                var mixedVolumeChange=VolumeChanges.segmentInfo[4].shopperInfo[2].value;                                
+                            }else{
+                                var bmVolumeChange=0;
+                                var onlineVolumeChange=0;
+                                var mixedVolumeChange=0;
+                            }
                             switch(data.data[0].absoluteValue[i].parentCompanyID){
                                 case 1:scope.player1s.push({'fullName':brandName+variantName,'bmValue':bmValue,'bmValueChange':bmValueChange,'bmVolume':bmVolume,'bmVolumeChange':bmVolumeChange,'onlineValue':onlineValue,'onlineValueChange':onlineValueChange,'onlineVolume':onlineVolume,'onlineVolumeChange':onlineVolumeChange,'mixedValue':mixedValue,'mixedValueChange':mixedValueChange,'mixedVolume':mixedVolume,'mixedVolumeChange':mixedVolumeChange});break;
                                 case 2:scope.player2s.push({'fullName':brandName+variantName,'bmValue':bmValue,'bmValueChange':bmValueChange,'bmVolume':bmVolume,'bmVolumeChange':bmVolumeChange,'onlineValue':onlineValue,'onlineValueChange':onlineValueChange,'onlineVolume':onlineVolume,'onlineVolumeChange':onlineVolumeChange,'mixedValue':mixedValue,'mixedValueChange':mixedValueChange,'mixedVolume':mixedVolume,'mixedVolumeChange':mixedVolumeChange});break;
