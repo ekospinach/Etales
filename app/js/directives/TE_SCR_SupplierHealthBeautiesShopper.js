@@ -34,21 +34,40 @@ define(['directives', 'services'], function(directives){
                             var ValueChanges=_.find(data.data[0].valueChange,function(obj){
                                 return(obj.variantName==varName&&obj.parentBrandName==brandName);
                             });
-                            bmValueChange=ValueChanges.segmentInfo[4].shopperInfo[0].value;
-                            onlineValueChange=ValueChanges.segmentInfo[4].shopperInfo[1].value;
-                            mixedValueChange=ValueChanges.segmentInfo[4].shopperInfo[2].value;
+                            if(ValueChanges!=undefined){
+                                bmValueChange=ValueChanges.segmentInfo[4].shopperInfo[0].value;
+                                onlineValueChange=ValueChanges.segmentInfo[4].shopperInfo[1].value;
+                                mixedValueChange=ValueChanges.segmentInfo[4].shopperInfo[2].value;                                
+                            }else{
+                                bmValueChange=0;
+                                onlineValueChange=0;
+                                mixedValueChange=0;
+                            }
+
                             var Volumes=_.find(data.data[0].absoluteVolume,function(obj){
                                 return(obj.variantName==varName&&obj.parentBrandName==brandName);
                             });
                             var VolumeChanges=_.find(data.data[0].volumeChange,function(obj){
                                 return(obj.variantName==varName&&obj.parentBrandName==brandName);
                             });
-                            bmVolumeShare=Volumes.segmentInfo[4].shopperInfo[0].value;
-                            onlineVolumeShare=Volumes.segmentInfo[4].shopperInfo[1].value;
-                            mixedVolumeShare=Volumes.segmentInfo[4].shopperInfo[2].value;
-                            bmVolumeChange=VolumeChanges.segmentInfo[4].shopperInfo[0].value;
-                            onlineVolumeChange=VolumeChanges.segmentInfo[4].shopperInfo[1].value;
-                            mixedVolumeChange=VolumeChanges.segmentInfo[4].shopperInfo[2].value;
+                            if(Volumes!=undefined){
+                                bmVolumeShare=Volumes.segmentInfo[4].shopperInfo[0].value;
+                                onlineVolumeShare=Volumes.segmentInfo[4].shopperInfo[1].value;
+                                mixedVolumeShare=Volumes.segmentInfo[4].shopperInfo[2].value;                                
+                            }else{
+                                bmVolumeShare=0;
+                                onlineVolumeShare=0;
+                                mixedVolumeShare=0;
+                            }
+                            if(VolumeChanges!=undefined){
+                                bmVolumeChange=VolumeChanges.segmentInfo[4].shopperInfo[0].value;
+                                onlineVolumeChange=VolumeChanges.segmentInfo[4].shopperInfo[1].value;
+                                mixedVolumeChange=VolumeChanges.segmentInfo[4].shopperInfo[2].value;                                
+                            }else{
+                                bmVolumeChange=0;
+                                onlineVolumeChange=0;
+                                mixedVolumeChange=0;
+                            }
                             switch(marketID){
                                 case 1:
                                     scope.urban1s.push({'fullName':brandName+varName,'bmVolumeShare':bmVolumeShare,'bmVolumeChange':bmVolumeChange,'onlineVolumeShare':onlineVolumeShare,'onlineVolumeChange':onlineVolumeChange,'mixedVolumeShare':mixedVolumeShare,'mixedVolumeChange':mixedVolumeChange});
