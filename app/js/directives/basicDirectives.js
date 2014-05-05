@@ -92,6 +92,14 @@ define(['directives'], function(directives){
                         });
                     }
                 })
+                .directive('angularWizard',function(){
+                    return function(scope,elm,attrs){
+                        $(".steps-indicator>li>a").click(function(){
+                            $(".steps-indicator li").removeClass("editing");
+                            $(this).parent().addClass("editing");
+                        });
+                    }
+                })
                 .directive('accessLevel', ['$rootScope', 'Auth', function($rootScope, Auth) {
                     return {
                         restrict: 'A',

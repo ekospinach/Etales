@@ -697,6 +697,15 @@ define(['directives'], function(directives){
             });
         }
     })
+    .directive('wizard',function(){
+        return function(scope,elem,attrs){
+            $("#wizard").steps({
+                headerTag: "h2",
+                bodyTag: "section",
+                transitionEffect: "slideLeft"
+            });
+        }
+    })
     .directive('forecastCategory',function(){
         return function(scope,elem,attrs){
             scope.$watch(attrs.ngModel,function(v){

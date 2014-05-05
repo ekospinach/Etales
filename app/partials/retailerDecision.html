@@ -1,3 +1,4 @@
+<link href="/js/steps/steps.css" type="text/css" rel="stylesheet">
 <style TYPE="text/css">
 
     .table-bordered > thead > tr > th,
@@ -11,9 +12,9 @@
     }
     @media (min-width: 1200px) {
       /* Widen the fixed sidebar again */
-      .bs-docs-sidebar.affix-bottom,
-      .bs-docs-sidebar.affix {
-        width: 25%;
+      .bs-docs-section.affix-bottom,
+      .bs-docs-section.affix {
+        padding: 0;
       }
     }
 
@@ -30,7 +31,7 @@
 
 <div class="container bs-docs-container">
     <div class="row">
-        <div class="col-md-9">
+        <!-- <div class="col-md-9">
             <div class="bs-docs-section">
                 <retailer-negotiation-agreements ng-show='NegotiationAgreements' is-page-shown='NegotiationAgreements' is-page-loading='isPageLoading'></retailer-negotiation-agreements>
 
@@ -99,6 +100,81 @@
                         <a href="/#/retailerDecision" style="color:#428BCA" ng-click='showMarketResearchOrders()'>{{Label.getContent('Market Research Orders')}}</a>
                     </li>
                 </ul>
+            </div>
+        </div> -->
+        <div class="col-md-12">
+            <div style="padding:30px 0" angular-wizard>
+                <ul class="steps-indicator steps-5">
+                   <li class="done editing">
+                        <a href="/#/retailerDecision" ng-click="showNegotiationAgreements()">{{Label.getContent('Negotiation Agreements')}}</a>
+                    </li>
+                    <li class="done">
+                        <a href="/#/retailerDecision" ng-click='showMarketing()'>{{Label.getContent('Marketing')}}</a>
+                    </li>
+                    <li class="done">
+                        <a href="/#/retailerDecision" ng-click='showPrivateLabelPortfolioManagement()'>{{Label.getContent('Private Label Portfolio Management')}}</a>
+                    </li>
+                    <li class="done">
+                        <a href="/#/retailerDecision" ng-click='showStoreManagement()'>{{Label.getContent('Store Management')}}</a>
+                    </li>
+                    <li class="done">
+                        <a href="/#/retailerDecision" ng-click='showMarketResearchOrders()'>{{Label.getContent('Market Research Orders')}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="bs-docs-section">
+                <retailer-negotiation-agreements ng-show='NegotiationAgreements' is-page-shown='NegotiationAgreements' is-page-loading='isPageLoading'></retailer-negotiation-agreements>
+
+                <retailer-marketing ng-show='Marketing' is-page-shown='Marketing' is-page-loading='isPageLoading'></retailer-marketing>
+
+                <retailer-private-label-portfolio-management ng-show='PrivateLabelPortfolioManagement' is-page-shown='PrivateLabelPortfolioManagement' is-page-loading='isPageLoading'></retailer-private-label-portfolio-management>
+
+                <retailer-store-management ng-show='StoreManagement' is-page-shown='StoreManagement' is-page-loading='isPageLoading'></retailer-store-management>
+
+                <retailer-market-research-orders ng-show='MarketResearchOrders' is-page-shown='MarketResearchOrders' is-page-loading='isPageLoading'></retailer-market-research-orders>
+                
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="bs-docs-section bs-docs-sidebar hidden-print" affix='10' role="complementary">
+                <table class="table table-condensed">
+                    <thead>
+                        <th colspan="2">
+                            <p>{{Label.getContent('Decision Info')}}</p>
+                        </th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><p>{{Label.getContent('Time Left')}}</p></td>
+                            <td><p class="text-right">30 {{Label.getContent('mins')}}</p></td>
+                        </tr>
+                        <tr>
+                            <td><p>{{Label.getContent('Total Budget')}}</p></td>
+                            <td><p class="text-right"><b>{{surplusExpend}}</b>/{{abMax}}</p></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><p>{{Label.getContent('Shelf Space Left')}}</p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="padding-20">{{Label.getContent('Urban')}} {{Label.getContent('Elecssories')}}</p></td>
+                            <td><p class="text-right"><b>{{percentageShelf[0][0].toFixed(2)}}%</b>/100%</p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="padding-20">{{Label.getContent('Urban')}} {{Label.getContent('HealthBeauties')}}</p></td>
+                            <td><p class="text-right"><b>{{percentageShelf[0][1].toFixed(2)}}%</b>/100%</p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="padding-20">{{Label.getContent('Rural')}} {{Label.getContent('Elecssories')}}</p></td>
+                            <td><p class="text-right"><b>{{percentageShelf[1][0].toFixed(2)}}%</b>/100%</p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="padding-20">{{Label.getContent('Rural')}} {{Label.getContent('HealthBeauties')}}</p></td>
+                            <td><p class="text-right"><b>{{percentageShelf[1][1].toFixed(2)}}%</b>/100%</p></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

@@ -39,7 +39,8 @@
 			angularHighcharts:      '../bower_components/highcharts-ng/src/highcharts-ng',
 			highchartMore:          '../bower_components/highcharts/highcharts-more',
 			//Bootstrap switch interface for admin module, handle initialize parameter configure 
-			angularBootstrapSwitch: '../bower_components/angular-bootstrap-switch/dist/angular-bootstrap-switch'
+			angularBootstrapSwitch: '../bower_components/angular-bootstrap-switch/dist/angular-bootstrap-switch',
+			steps: 					'./steps/steps',
 			//angular promise tracker is used for adding loading spinner by track general promise or request 
 			//angularPromiseTracker:  '../bower_components/angular-promise-tracker/promise-tracker'
 		},
@@ -68,7 +69,8 @@
 			'angularHighcharts' :['angular','highchart'],
 			'angularBootstrapSwitch':['angular','jquery','bootstrapswitch'],
 //			'angularPromiseTracker':['angular']
-			'highchart' :['jquery']
+			'highchart' :['jquery'],
+			'steps':['jquery']
 		},
 		priority: [
 			"angular"
