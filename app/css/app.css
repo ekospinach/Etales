@@ -248,9 +248,12 @@ table tr td p,table tr th p{
     background-color: transparent;
     color: #333333;
 }
-.tr-info{
+/*.tr-info{
     background-color: #428BCA;
     color: #FFFFFF;
+}*/
+.tr-info{
+  background-color: #DFF0D8; 
 }
 .td-info{
     background-color: #D9EDF7;
