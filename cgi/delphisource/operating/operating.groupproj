@@ -9,6 +9,12 @@
 			<Projects Include="C:\E-project\trunk\V100\Tester\ET1_DeclarationsTest.dproj">
 				<Dependencies/>
 			</Projects>
+			<Projects Include="passive.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="kernel.dproj">
+				<Dependencies/>
+			</Projects>
 		</ItemGroup>
 		<ProjectExtensions>
 			<Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -35,14 +41,32 @@
 		<Target Name="ET1_DeclarationsTest:Make">
 			<MSBuild Projects="C:\E-project\trunk\V100\Tester\ET1_DeclarationsTest.dproj" Targets="Make"/>
 		</Target>
+		<Target Name="passive">
+			<MSBuild Projects="passive.dproj"/>
+		</Target>
+		<Target Name="passive:Clean">
+			<MSBuild Projects="passive.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="passive:Make">
+			<MSBuild Projects="passive.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="kernel">
+			<MSBuild Projects="kernel.dproj"/>
+		</Target>
+		<Target Name="kernel:Clean">
+			<MSBuild Projects="kernel.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="kernel:Make">
+			<MSBuild Projects="kernel.dproj" Targets="Make"/>
+		</Target>
 		<Target Name="Build">
-			<CallTarget Targets="initialize;ET1_DeclarationsTest"/>
+			<CallTarget Targets="initialize;ET1_DeclarationsTest;passive;kernel"/>
 		</Target>
 		<Target Name="Clean">
-			<CallTarget Targets="initialize:Clean;ET1_DeclarationsTest:Clean"/>
+			<CallTarget Targets="initialize:Clean;ET1_DeclarationsTest:Clean;passive:Clean;kernel:Clean"/>
 		</Target>
 		<Target Name="Make">
-			<CallTarget Targets="initialize:Make;ET1_DeclarationsTest:Make"/>
+			<CallTarget Targets="initialize:Make;ET1_DeclarationsTest:Make;passive:Make;kernel:Make"/>
 		</Target>
 		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
 	</Project>

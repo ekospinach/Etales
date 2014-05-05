@@ -286,24 +286,24 @@ exports.deleteSeminar = function(req, res, next){
 
 exports.addSeminar=function(req,res,next){
 	var Newseminar = new seminar({
-		seminarCode : 'June',
-		seminarDescription : 'hello', 
+		seminarCode : req.body.seminarCode,
+		seminarDescription : req.body.seminarDescription, 
 		seminarDate : Date.now(),
 		currentPeriod : 1,
-		isInitialise : true, //when user login, need check this value
+		isInitialise : false, //when user login, need check this value
 		reportPrice : {
-			awareness                    : 10,
-			brandPerceptions             : 10,
-			retailerPerceptions          : 10,
-			marketShareByConsumerSegment : 10,
-			salesByConsumberSegment      : 10,
-			marketShareByShopperSegment  : 10,
-			salesByShopperSegment        : 10,
-			BMRetailerPrices             : 10,
-			promotionIntensity           : 10,
-			supplierIntelligence         : 10,
-			retailerIntelligence         : 10,
-			forcasts                     : 10
+			awareness                    : 0.375,
+			brandPerceptions             : 0.45,
+			retailerPerceptions          : 0.45,
+			marketShareByConsumerSegment : 0.275,
+			salesByConsumberSegment      : 0.275,
+			marketShareByShopperSegment  : 0.275,
+			salesByShopperSegment        : 0.275,
+			BMRetailerPrices             : 0.25,
+			promotionIntensity           : 0.25,
+			supplierIntelligence         : 0.5,
+			retailerIntelligence         : 0.5,
+			forcasts                     : 0.25
 		},
 		facilitator : [{
             password : "310",
@@ -898,7 +898,7 @@ exports.passiveSeminar = function(options){
 		var reqOptions = {
 			hostname: options.cgiHost,
 			port: options.cgiPort,
-			path: options.cgiPath + '?seminar=' + doc.seminar
+			path: options.cgiPath + '?seminar=' + doc.seminarCode
 				  + '&span=' + doc.simulationSpan
 				  + '&isTraceActive=' + doc.traceActive
 				  + '&isTraditionalTradeActive=' + doc.traditionalTradeActive
@@ -940,7 +940,7 @@ exports.kernelSeminar = function(options){
 		var reqOptions = {
 			hostname: options.cgiHost,
 			port: options.cgiPort,
-			path: options.cgiPath + '?seminar=' + doc.seminar
+			path: options.cgiPath + '?seminar=' + doc.seminarCode
 				  + '&span=' + doc.simulationSpan
 				  + '&isTraceActive=' + doc.traceActive
 				  + '&isTraditionalTradeActive=' + doc.traditionalTradeActive

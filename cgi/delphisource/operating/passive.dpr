@@ -29,12 +29,7 @@ uses
   {$ELSE}
     Windows,
   {$ENDIF}
-  Classes,HCD_SystemDefinitions,ET0_AdministratorDLLs,iniFiles;
-
-{$I 'ET0_Common_Constants.INC'}
-{$I 'ET0_Common_Types.INC'}
-{$I 'ET0_Results_Types.INC'}
-{$I 'ET0_Runtime_Codes.INC'}
+  Classes,HCD_SystemDefinitions,CgiCommonFunction,iniFiles;
 
 var
    i: integer;
@@ -47,7 +42,7 @@ var
    iSize : integer;
    DataDirectory : string;
 
-   currentConf : ET0_AdministratorDLLs.TConfigurationRecord;
+   currentConf : TConfigurationRecord;
    vTempStr : string;
 
    vChoosenPeriod : Integer;
@@ -159,7 +154,7 @@ var
     end;
   end;
   
-   function getPassiveDecision(conf : ET0_AdministratorDLLs.TConfigurationRecord; period : Integer) : string;
+   function getPassiveDecision(conf : TConfigurationRecord; period : Integer) : string;
    var
     ReturnCode : LongWord;
    begin

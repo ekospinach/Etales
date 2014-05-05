@@ -23,11 +23,11 @@ var
   vReadRes : Integer;
   oJsonFile : ISuperObject;
 
-  function ShopperInfoSchema(fieldIdx: Integer; shopper : TShoppersKind; variant : TVariantCrossSegmentDetails):ISuperObject;
+  function ShopperInfoSchema(fieldIdx: Integer; shopper : TShoppersKind; segmentID : integer; variant : TVariantCrossSegmentDetails):ISuperObject;
   var
     jo : ISuperObject;
     ShopperStr : string;
-    segmentID : integer;
+   // segmentID : integer;
   begin
     jo := SO;
     case Shopper of
@@ -59,7 +59,7 @@ var
     jo.I['segmentID'] := segmentID;
     jo.O['shopperInfo'] := SA([]);
     for Shopper := Low(TShoppersKind) to High(TShoppersKind) do
-      jo.A['shopperInfo'].Add( ShopperInfoSchema(fieldIdx, Shopper, variant) );
+      jo.A['shopperInfo'].Add( ShopperInfoSchema(fieldIdx, Shopper, segmentID, variant) );
 
     result := jo;
   end;
@@ -73,10 +73,11 @@ var
     jo.S['variantName'] := variant.vsd_VariantName;
     jo.S['parentBrandName'] := variant.vsd_ParentBrandName;
     jo.I['parentCategoryID'] := catID;
+    jo.I['parentCompanyID'] := variant.vsd_ParentCompanyID;    
     jo.I['marketID'] := marketID;
     
     jo.O['segmentInfo'] := SA([]);
-    for segmentID := Low(TSegmentsTotal) to High(TSegmentsTotal) do 
+    for segmentID := Low(TSegmentsTotal) to High(TSegmentsTotal) do
     begin
       jo.A['segmentInfo'].Add( segmentInfoSchema(fieldIdx, segmentID, variant) );
     end;

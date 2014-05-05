@@ -179,8 +179,6 @@ module.exports = function(){
 				  path_MR_suppliersIntelligence       : '/cgi-bin/MR_suppliersIntelligence.exe',
 				  path_MR_variantPerceptionEvolution  : '/cgi-bin/MR_variantPerceptionEvolution.exe',
 
-   			  	  uploadFileAbsDir                    : '&filepath=\\\\vmware-host\\Shared%20Folders\\ludwikOnMac\\Code\\Actived\\Etales-result-viewer\\upload\\'
-				  		  
 				},
 				server : {
 				  port : 8000
