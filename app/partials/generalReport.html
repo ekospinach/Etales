@@ -6,6 +6,12 @@
         width: 25%;
       }
     }
+    @media (min-width: 992px) {
+        .bs-docs-sidebar.affix {
+            position: fixed; /* Undo the static */
+            top: 80px;
+        }
+    }
 </style>
 
 <div class="my-super-awesome-loading-box" ng-show="isPageLoading">Loading...</div>

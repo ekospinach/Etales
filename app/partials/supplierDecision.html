@@ -10,6 +10,9 @@
       border: 1px solid #428BCA;
       border-right: none;
     }
+    .bs-docs-sidebar.affix{
+        position: fixed;
+    }
     @media (min-width: 1200px) {
       /* Widen the fixed sidebar again */
       .bs-docs-section.affix-bottom,
@@ -17,11 +20,15 @@
         padding: 0;
       }
     }
+
     .my-super-awesome-loading-box {
       padding: 10px;
       text-align: center;
       border: 0px solid gray;
       background: #EFEFEF;
+    }
+    .bs-docs-section{
+        padding-top:60px;
     }
 
 </style>
@@ -103,7 +110,7 @@
             </div>
         </div> -->
         <div class="col-md-12">
-            <div style="padding:30px 0" angular-wizard>
+            <div style="padding:50px 0" angular-wizard>
                 <ul class="steps-indicator" ng-class="{true: 'steps-8', false: 'steps-7'}[isReady]">
                     <li class="done editing">
                         <a href="/#/supplierDecision" ng-click="showProductPortfolioManagement()">{{Label.getContent('Product Portfolio Management')}}</a>
@@ -136,7 +143,7 @@
             <div class="bs-docs-section">
                 <supplier-product-portfolio-management ng-show='ProductPortfolioManagement' is-page-shown='ProductPortfolioManagement' is-page-loading='isPageLoading' is-ready='isReady'></supplier-product-portfolio-management>
                 
-                <supplier-b-m-list-prices ng-show='BMListPrices' is-page-shown='BMListPrices' is-page-loading='isPageLoading'></supplier-b-m-list-prices>
+                <supplier-b-m-list-prices ng-show='BMListPrices' is-page-shown='BMListPrices' is-page-loading='isPageLoading' is-ready='isReady'></supplier-b-m-list-prices>
                 
                 <supplier-negotiation-agreements ng-show='NegotiationAgreements' is-page-shown='NegotiationAgreements' is-page-loading='isPageLoading'></supplier-negotiation-agreements>
                 <supplier-production-volume ng-show='ProductionVolume' is-page-shown='ProductionVolume' is-page-loading='isPageLoading'></supplier-production-volume>
@@ -147,7 +154,7 @@
             </div>
         </div>
         <div class="col-md-3">
-            <div class="bs-docs-section bs-docs-sidebar hidden-print" affix='10' role="complementary">
+            <div class="bs-docs-section bs-docs-sidebar hidden-print" affix='0' role="complementary">
                 <table class="table table-condensed">
                     <thead>
                         <th colspan="2">

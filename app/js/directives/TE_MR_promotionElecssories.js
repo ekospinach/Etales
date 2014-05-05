@@ -22,16 +22,16 @@ define(['directives', 'services'], function(directives){
                             var fullName=data.data[0].variantInfo[i].parentBrandName+data.data[0].variantInfo[i].variantName;
                             var rural1Length=rural1Depth=urban1Length=urban1Depth=rural2Length=rural2Depth=urban2Length=urban2Depth=0;
                             if(data.data[0].variantInfo[i].accountInfo[0]!=undefined){
-                                rural1Length=data.data[0].variantInfo[i].accountInfo[0].promoRate[1];
-                                rural1Depth=data.data[0].variantInfo[i].accountInfo[0].promoFrequency[1];
-                                urban1Length=data.data[0].variantInfo[i].accountInfo[0].promoRate[0];
-                                urban1Depth=data.data[0].variantInfo[i].accountInfo[0].promoFrequency[0];
+                                rural1Depth=data.data[0].variantInfo[i].accountInfo[0].promoRate[1];
+                                rural1Length=data.data[0].variantInfo[i].accountInfo[0].promoFrequency[1];
+                                urban1Depth=data.data[0].variantInfo[i].accountInfo[0].promoRate[0];
+                                urban1Length=data.data[0].variantInfo[i].accountInfo[0].promoFrequency[0];
                             }
                             if(data.data[0].variantInfo[i].accountInfo[1]!=undefined){
-                                rural2Length=data.data[0].variantInfo[i].accountInfo[1].promoRate[1];
-                                rural2Depth=data.data[0].variantInfo[i].accountInfo[1].promoFrequency[1];
-                                urban2Length=data.data[0].variantInfo[i].accountInfo[1].promoRate[0];
-                                urban2Depth=data.data[0].variantInfo[i].accountInfo[1].promoFrequency[0];
+                                rural2Depth=data.data[0].variantInfo[i].accountInfo[1].promoRate[1];
+                                rural2Length=data.data[0].variantInfo[i].accountInfo[1].promoFrequency[1];
+                                urban2Depth=data.data[0].variantInfo[i].accountInfo[1].promoRate[0];
+                                urban2Length=data.data[0].variantInfo[i].accountInfo[1].promoFrequency[0];
                             }
                             switch(data.data[0].variantInfo[i].parentCompanyID){
                                 case 1:scope.player1s.push({'fullName':fullName,'rural1Length':rural1Length,'rural1Depth':rural1Depth,'urban1Length':urban1Length,'urban1Depth':urban1Depth,'rural2Length':rural2Length,'rural2Depth':rural2Depth,'urban2Length':urban2Length,'urban2Depth':urban2Depth});break;

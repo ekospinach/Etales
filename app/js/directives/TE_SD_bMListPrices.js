@@ -4,7 +4,8 @@ define(['directives', 'services'], function(directives){
         return {
             scope : {
                 isPageShown : '=',
-                isPageLoading : '='
+                isPageLoading : '=',
+                isReady : '='
             },
             restrict : 'E',
             templateUrl : '../../partials/singleReportTemplate/SD_bMListPrices.html',            
@@ -60,6 +61,54 @@ define(['directives', 'services'], function(directives){
                         method:'POST',
                         url:'/getCurrentUnitCost',
                         data:postData
+                    }).then(function(data){
+                        currentUnitCost=data.data.result;
+                        if(value>4*currentUnitCost||value<0.5*currentUnitCost){
+                            d.resolve(Label.getContent('Input range')+':'+0.5*currentUnitCost+'~'+4*currentUnitCost);
+                        }else{
+                            d.resolve();
+                        }
+                    },function(){
+                        d.resolve(Label.getContent('fail'));
+                    })
+                    return d.promise;
+                }
+
+                scope.checkCurrentBM=function(category,brandName,varName,location,additionalIdx,index,value){
+                    var d=$q.defer();
+                    var categoryID=0,max=0,currentUnitCost=0;
+                    var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
+                    if(!filter.test(value)){
+                        d.resolve(Label.getContent('Input a number'));
+                    }
+                    if(category=="Elecssories"){
+                        categoryID=1;
+                    }else{
+                        categoryID=2;
+                    }
+                    var url='/checkProducerDecision/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer());
+                    $http({
+                        method:'GET',
+                        url:url
+                    }).then(function(data){
+                        if(data.data=="isReady"){
+                            d.resolve(Label.getContent('Check Error'));
+                        }
+
+                        var postData = {
+                            period : PeriodInfo.getCurrentPeriod(),
+                            seminar : SeminarInfo.getSelectedSeminar(),
+                            brandName : brandName,
+                            varName : varName,
+                            catID : categoryID,
+                            userRole :  2,
+                            userID : PlayerInfo.getPlayer(),                              
+                        }
+                        return $http({
+                            method:'POST',
+                            url:'/getCurrentUnitCost',
+                            data:postData
+                        });
                     }).then(function(data){
                         currentUnitCost=data.data.result;
                         if(value>4*currentUnitCost||value<0.5*currentUnitCost){
@@ -242,6 +291,24 @@ define(['directives', 'services'], function(directives){
                     //     d.reject(Label.getContent('showView fail'));
                     // }); 
                     return d.promise;       
+                }
+
+                scope.submitDecision=function(){
+                    var queryCondition={
+                        producerID:parseInt(PlayerInfo.getPlayer()),
+                        seminar:SeminarInfo.getSelectedSeminar(),
+                        period:PeriodInfo.getCurrentPeriod()
+                    }
+                    $http({
+                        method:'POST',
+                        url:'/submitDecision',
+                        data:queryCondition
+                    }).then(function(data){
+                        console.log('successful');
+                        scope.isCommitConfirmInfoShown=false;
+                    },function(err){
+                        console.log('fail');
+                    })
                 }
 
                 scope.$watch('isPageShown', function(newValue, oldValue){

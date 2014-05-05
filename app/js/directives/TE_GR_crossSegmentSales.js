@@ -146,7 +146,7 @@ define(['directives', 'services'], function(directives){
                     scope.crossSegment3Config = {
                         options: {
                             xAxis: {
-                                categories: [Label.getContent('Price Sensitive'), Label.getContent('Value for Money'), Label.getContent('Fashion'), Label.getContent('Freaks')]
+                                categories: [Label.getContent('Price Sensitive'), Label.getContent('Value for Money'), Label.getContent('Health Conscious'), Label.getContent('Impatient')]
                             },
                             yAxis:{
                                 title:{text:"units mln"}
@@ -179,7 +179,7 @@ define(['directives', 'services'], function(directives){
                     scope.crossSegment4Config = {
                         options: {
                             xAxis: {
-                                categories: [Label.getContent('Price Sensitive'), Label.getContent('Value for Money'), Label.getContent('Fashion'), Label.getContent('Freaks')]
+                                categories: [Label.getContent('Price Sensitive'), Label.getContent('Value for Money'), Label.getContent('Health Conscious'), Label.getContent('Impatient')]
                             },
                             yAxis:{
                                 title:{text:"units mln"}
