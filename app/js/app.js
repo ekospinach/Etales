@@ -95,7 +95,6 @@
 	'tree',
 	'highchartMore',
 	'angularHighcharts',
-	'steps',
 	], function (angular, filters, services,directives,bootstrap, controllers) {
 		'use strict';
 		return angular.module('myApp', [
