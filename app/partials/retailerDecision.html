@@ -10,6 +10,9 @@
       border: 1px solid #428BCA;
       border-right: none;
     }
+    .bs-docs-sidebar.affix{
+        position: fixed;
+    }
     @media (min-width: 1200px) {
       /* Widen the fixed sidebar again */
       .bs-docs-section.affix-bottom,
@@ -17,12 +20,14 @@
         padding: 0;
       }
     }
-
     .my-super-awesome-loading-box {
       padding: 10px;
       text-align: center;
       border: 0px solid gray;
       background: #EFEFEF;
+    }
+    .bs-docs-section{
+        padding-top:60px;
     }
 
 </style>
@@ -103,7 +108,7 @@
             </div>
         </div> -->
         <div class="col-md-12">
-            <div style="padding:30px 0" angular-wizard>
+            <div style="padding:50px 0" angular-wizard>
                 <ul class="steps-indicator steps-5">
                    <li class="done editing">
                         <a href="/#/retailerDecision" ng-click="showNegotiationAgreements()">{{Label.getContent('Negotiation Agreements')}}</a>

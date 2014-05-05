@@ -10,6 +10,9 @@
       border: 1px solid #428BCA;
       border-right: none;
     }
+    .bs-docs-sidebar.affix{
+        position: fixed;
+    }
     @media (min-width: 1200px) {
       /* Widen the fixed sidebar again */
       .bs-docs-section.affix-bottom,
@@ -22,6 +25,9 @@
       text-align: center;
       border: 0px solid gray;
       background: #EFEFEF;
+    }
+    .bs-docs-section{
+        padding-top:60px;
     }
 
 </style>
@@ -103,7 +109,7 @@
             </div>
         </div> -->
         <div class="col-md-12">
-            <div style="padding:30px 0" angular-wizard>
+            <div style="padding:50px 0" angular-wizard>
                 <ul class="steps-indicator" ng-class="{true: 'steps-8', false: 'steps-7'}[isReady]">
                     <li class="done editing">
                         <a href="/#/supplierDecision" ng-click="showProductPortfolioManagement()">{{Label.getContent('Product Portfolio Management')}}</a>
@@ -147,7 +153,7 @@
             </div>
         </div>
         <div class="col-md-3">
-            <div class="bs-docs-section bs-docs-sidebar hidden-print" affix='10' role="complementary">
+            <div class="bs-docs-section bs-docs-sidebar hidden-print" affix='0' role="complementary">
                 <table class="table table-condensed">
                     <thead>
                         <th colspan="2">

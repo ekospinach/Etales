@@ -838,7 +838,7 @@ var getLabelBase = function(){
 		{id:'mins',  ENG:'mins',  CHN:'分钟',  RUS:''},
 		{id:'Decision Info',  ENG:'Decision Info',  CHN:'决策介绍',  RUS:''},
 		{id:'Shelf Space Left',  ENG:'Shelf Space Left',  CHN:'货架剩余空间',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'Store Management Info',  ENG:'Store Management Info',  CHN:'Store Management 介绍',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
