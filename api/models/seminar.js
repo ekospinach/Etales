@@ -742,7 +742,7 @@ exports.updateSeminar=function(req,res,next){
 					doc[queryCondition.location][queryCondition.additionalIdx].password=queryCondition.value;
 					break;
 				case 'updateCurrentPeriod':
-					doc.currentPeriod = parseInt(queryCondition.value);
+					doc.currentPeriod = queryCondition.value;
 					break;
 				// case 'updateActive':
 				// 	doc.is
