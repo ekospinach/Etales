@@ -12,7 +12,7 @@ var allDealSchema = mongoose.Schema({
 
 var producerDealSchema = mongoose.Schema({
     producerID : Number,
-    retailerDeal : [retailerDealSchema]//length: TAllRetailers(1~4)
+    retailerDeal : [retailerDealSchema]s//length: TAllRetailers(1~4)
 })
 
 var retailerDealSchema = mongoose.Schema({
@@ -237,6 +237,7 @@ function fillAllDeal(seminar, period){
 
   tempDeal = new allDeal({seminar:seminar, period:period});
 
+  //push empty subschema into array
   for (var proCount = 0; proCount < 4; proCount++) {
      tempDeal.producerDeal.push(new producerDeal({producerID : proCount+1}));
      for (var retCount = 0; retCount < 4; retCount++) {
@@ -276,6 +277,8 @@ function fillAllDeal(seminar, period){
       if(doc){
           console.log('Find contracts between producer ' + pair[idx].producerID + ' and retailer ' + pair[idx].retailerID + ' in period ' + period + ', is:');
           var catCount = 0;
+
+          //a promise chain to 
           fillNegotiationItemByContractDetail(tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].minimumOrder,'nc_MinimumOrder',pair[idx].producerID,pair[idx].retailerID,catCount,period,seminar,doc.contractCode).then(function(result){
                       tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].categoryID = catCount + 1;
                       tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].minimumOrder = result.categoryDeal;
@@ -284,6 +287,7 @@ function fillAllDeal(seminar, period){
                     }).then(function(result){
                       tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].categoryID = catCount + 1;
                       tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].minimumOrder = result.categoryDeal;
+
                       catCount = 0;
                       return fillNegotiationItemByContractDetail(tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].volumeDiscountRate,'nc_VolumeDiscountRate',pair[idx].producerID,pair[idx].retailerID,catCount,period,seminar,doc.contractCode);
                     }).then(function(result){
@@ -294,6 +298,7 @@ function fillAllDeal(seminar, period){
                     }).then(function(result){
                       tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].categoryID = catCount + 1;
                       tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].volumeDiscountRate = result.categoryDeal;
+
                       catCount = 0;
                       return fillNegotiationItemByContractDetail(tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].salesTargetVolume,'nc_SalesTargetVolume',pair[idx].producerID,pair[idx].retailerID,catCount,period,seminar,doc.contractCode);
                     }).then(function(result){
@@ -383,7 +388,7 @@ function fillNegotiationItemByContractDetail(categoryDeal, negotiationItem, prod
       deferred = q.defer();
 
   categoryDeal.useMarketsDetails = false;
-  categoryDeal.useBrandsDetails = true;
+  categoryDeal.useBrandsDetails = false;
 
   (function loopBrand(brandCount, categoryCount, producerID, seminar, period){
     require('./producerDecision.js').proDecision.findOne({seminar:seminar, period:period, producerID:producerID}, function(err, brandDoc){
@@ -504,3 +509,131 @@ function fillNegotiationItemByContractDetail(categoryDeal, negotiationItem, prod
 
   return deferred.promise;
 }
+
+// comment old version for contractDetailsSchema, 2014-May-6, by Hao
+// function fillNegotiationItemByContractDetail(categoryDeal, negotiationItem, producerID, retailerID, categoryCount, period, seminar, contractCode){
+//   var brand,variant,
+//       deferred = q.defer();
+
+//   categoryDeal.useMarketsDetails = false;
+//   categoryDeal.useBrandsDetails = true;
+
+//   (function loopBrand(brandCount, categoryCount, producerID, seminar, period){
+//     require('./producerDecision.js').proDecision.findOne({seminar:seminar, period:period, producerID:producerID}, function(err, brandDoc){
+//         console.log('producerDecision findOne inside: seminar ' + seminar + '/period ' + period + '/producerID ' + producerID + '/brandCount '  + brandCount);       
+//         if(brandDoc && (brandDoc.proCatDecision[categoryCount].proBrandsDecision[brandCount].brandName != '')){
+//           brand = brandDoc.proCatDecision[categoryCount].proBrandsDecision[brandCount];
+//           console.log('>>> Find Brand : ' + brand.brandName );          
+//           require('./contract').contractDetails.findOne({contractCode: contractCode,
+//                                                 userType: 'P',
+//                                                 negotiationItem: negotiationItem,
+//                                                 relatedBrandName : brand.brandName,
+//                                                 relatedBrandID: brand.brandID, //need Monsoul to check BrandID is set properly in contractDetailsSchema
+//                                                 isVerified: true}, function(err, contractDetailsDoc){
+//                                                   if(contractDetailsDoc){
+//                                                     console.log('There is related verified contractDetails :' + brand.brandName );
+//                                                     categoryDeal.brandsDetails[brandCount].brandID = brand.brandID;
+//                                                     if(contractDetailsDoc.useBrandDetails){
+//                                                       console.log('Use Brand Details, copy value...');
+
+//                                                       categoryDeal.brandsDetails[brandCount].useVariantsDetails = false;
+//                                                       categoryDeal.brandsDetails[brandCount].useMarketsDetails = true;
+//                                                       categoryDeal.brandsDetails[brandCount].dateOfBirth = brand.dateOfBirth;
+//                                                       categoryDeal.brandsDetails[brandCount].dateOfDeath = brand.dateOfDeath;
+//                                                       categoryDeal.brandsDetails[brandCount].marketsDetails[0] = contractDetailsDoc.brand_urbanValue;
+//                                                       categoryDeal.brandsDetails[brandCount].marketsDetails[1] = contractDetailsDoc.brand_ruralValue;
+//                                                       console.log('test');
+//                                                       if(brandCount<4){
+//                                                         brandCount++; 
+//                                                         console.log('-------------------- change Brand ++ >>>>')        
+//                                                         loopBrand(brandCount, categoryCount, producerID, seminar, period);
+//                                                       } else {      
+//                                                           console.log('brand ' + brand.brandName + ' loop done');
+//                                                           deferred.resolve({categoryDeal:categoryDeal, msg:'categoryDeal(catCount:' + categoryCount + '/negotiationItem:' + negotiationItem + ') generate done.'});
+//                                                       }                                                        
+//                                                     }else{
+//                                                       categoryDeal.brandsDetails[brandCount].useVariantsDetails = true;
+//                                                       categoryDeal.brandsDetails[brandCount].useMarketsDetails = false;
+//                                                       categoryDeal.brandsDetails[brandCount].dateOfBirth = brand.dateOfBirth;
+//                                                       categoryDeal.brandsDetails[brandCount].dateOfDeath = brand.dateOfDeath;                                                      
+//                                                       console.log('User Varinat Details, enter varinat loop...');
+
+//                                                       (function loopVariant(brandCount, varCount, producerID, seminar, period){
+//                                                           require('./producerDecision').proDecision.findOne({seminar:seminar, period:period, producerID:producerID}, function(err, variantDoc){
+//                                                               if(err) { console.log('Error:' + err)};                                                         
+//                                                             //  console.log(variantDoc);
+//                                                               variant = variantDoc.proCatDecision[categoryCount].proBrandsDecision[brandCount].proVarDecision[varCount];
+//                                                               if(variant.varName != ''){
+//                                                                 console.log('Find variant : ' + variant.varName + ', copy value...');
+
+//                                                                 //console.log('Find Variant with producerID:'+ producerID + ', categoryCount:' + categoryCount + ', brandCount:' + brandCount + ', varCount:' + varCount + ', varName:' + varName);                                                                
+//                                                                 categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].useMarketsDetails = true;
+//                                                                 categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].varID = variant.varID;
+//                                                                 categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].dateOfBirth = variant.dateOfBirth;
+//                                                                 categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].dateOfDeath = variant.dateOfDeath;
+//                                                                 switch(varCount){
+//                                                                   case 0:
+//                                                                     categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[0] = contractDetailsDoc.variant_A_urbanValue;                  
+//                                                                     categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[1] = contractDetailsDoc.variant_A_ruralValue;
+//                                                                     break;
+//                                                                   case 1:
+//                                                                     categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[0] = contractDetailsDoc.variant_B_urbanValue;                  
+//                                                                     categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[1] = contractDetailsDoc.variant_B_ruralValue;
+//                                                                     break;
+//                                                                   case 2:
+//                                                                     categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[0] = contractDetailsDoc.variant_C_urbanValue;                  
+//                                                                     categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[1] = contractDetailsDoc.variant_C_ruralValue;
+//                                                                     break;   
+//                                                                 }
+
+//                                                               } else {
+//                                                                   console.log('No Variant with producerID:'+ producerID + ', categoryCount:' + categoryCount + ', brandCount:' + brandCount + ', varCount:' + varCount);
+//                                                               }
+
+//                                                               if(varCount<2){
+//                                                                 varCount++;
+//                                                                 console.log('---------------------------------- change Variant ++ >>>>')      
+              
+//                                                                 loopVariant(brandCount, varCount, producerID, seminar, period);
+//                                                               }else{
+//                                                                 console.log('variant ' + variant.varName + ' loop done');
+//                                                                 if(brandCount<4){
+//                                                                   brandCount++;
+//                                                                   console.log('-------------------- change Brand ++ >>>>')        
+//                                                                   loopBrand(brandCount, categoryCount, producerID, seminar, period);
+//                                                                 } else {      
+//                                                                     console.log('brand ' + brand.brandName + ' loop done');
+//                                                                     deferred.resolve({categoryDeal:categoryDeal, msg:'categoryDeal(catCount:' + categoryCount + '/negotiationItem:' + negotiationItem + ') generate done.'});
+//                                                                 }                                                                        
+//                                                               }                                                                  
+//                                                           })
+//                                                       })(brandCount, 0, producerID, seminar,period)
+//                                                     }
+//                                                   }else{
+//                                                     console.log('NO contract details with contractCode: ' + contractCode + '/relatedBrandName: ' + brand.brandName + '/negotiationItem:' + negotiationItem);
+//                                                     if(brandCount<4){
+//                                                       brandCount++;
+//                                                       console.log('-------------------- change Brand ++ >>>>')        
+//                                                       loopBrand(brandCount, categoryCount, producerID, seminar, period);
+//                                                     } else {      
+//                                                         console.log('brands loop done');
+//                                                         deferred.resolve({categoryDeal:categoryDeal, msg:'categoryDeal(catCount:' + categoryCount + '/negotiationItem:' + negotiationItem + ') generate done.'});
+//                                                     }                                                    
+//                                                   }
+//                                                 })
+//         } else {
+//           console.log('No Brand with producerID:'+ producerID + ', categoryCount:' + categoryCount + ', brandCount:' + brandCount);
+//           if(brandCount<4){
+//             brandCount++;
+//             console.log('-------------------- change Brand ++ >>>>')        
+//             loopBrand(brandCount, categoryCount, producerID, seminar, period);
+//           } else {      
+//               console.log('brands loop done');
+//               deferred.resolve({categoryDeal:categoryDeal, msg:'categoryDeal(catCount:' + categoryCount + '/negotiationItem:' + negotiationItem + ') generate done.'});
+//           }             
+//         }
+//     });
+//   })(0,categoryCount,producerID,seminar,period);
+
+//   return deferred.promise;
+// }

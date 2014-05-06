@@ -1,6 +1,6 @@
 define(['app','socketIO'], function(app) {
 
-	app.controller('adminCtrl',['$scope', '$http','$rootScope','SeminarInfo','$location', function($scope, $http,$rootScope, SeminarInfo, $location) {
+	app.controller('adminCtrl',['$scope', '$http','$rootScope','EditSeminarInfo','$location', function($scope, $http,$rootScope, EditSeminarInfo, $location) {
 		$rootScope.loginCss="";
 	    $rootScope.loginFooter="bs-footer";
 	    $rootScope.loginLink="footer-links";
@@ -15,7 +15,7 @@ define(['app','socketIO'], function(app) {
 		initializePage();
 
 		$scope.checkSeminarDetails = function(seminar){
-			SeminarInfo.setSelectedSeminar(seminar);
+			EditSeminarInfo.setSelectedSeminar(seminar);
 			$location.path('/adminDetails')
 		}
 

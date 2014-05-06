@@ -27,29 +27,29 @@ var contractSchema = mongoose.Schema({
 contractSchema.plugin(uniqueValidator);
 
 var contractVariantDetailsSchema = mongoose.Schema({
-	contractCode    : String,
-	parentBrandName : String,
-	parentBrandCount : Number,
-	variantName     : String,
-	variantCount    : Number,
+	contractCode                           : String,
+	parentBrandName                        : String,
+	parentBrandCount                       : Number,
+	variantName                            : String,
+	variantCount                           : Number,
 	
-	nc_MinimumOrder : Number,
-	nc_MinimumOrder_lastModifiedBy : String, 
-	nc_VolumeDiscountRate : Number,
-	nc_VolumeDiscountRate_lastModifiedBy : String,	
-
-	nc_SalesTargetVolume : Number,
-	nc_SalesTargetVolume_lastModifiedBy : String,
-	nc_PerformanceBonusRate : Number,
+	nc_MinimumOrder                        : Number,
+	nc_MinimumOrder_lastModifiedBy         : String, 
+	nc_VolumeDiscountRate                  : Number,
+	nc_VolumeDiscountRate_lastModifiedBy   : String,	
+	
+	nc_SalesTargetVolume                   : Number,
+	nc_SalesTargetVolume_lastModifiedBy    : String,
+	nc_PerformanceBonusRate                : Number,
 	nc_PerformanceBonusRate_lastModifiedBy : String,
-
-	nc_PaymentDays : Number,
-	nc_PaymentDays_lastModifiedBy : String,
-	nc_OtherCompensation : Number,
-	nc_OtherCompensation_lastModifiedBy : String,
 	
-	isProducerApproved : Boolean,
-	isRetailerApproved : Boolean,
+	nc_PaymentDays                         : Number,
+	nc_PaymentDays_lastModifiedBy          : String,
+	nc_OtherCompensation                   : Number,
+	nc_OtherCompensation_lastModifiedBy    : String,
+	
+	isProducerApproved                     : Boolean,
+	isRetailerApproved                     : Boolean,
 })
 
 
