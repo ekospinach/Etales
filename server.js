@@ -48,8 +48,6 @@ app.post('/setPassiveDecision', require('./api/passiveSeminar.js').setPassiveDec
 app.post('/importResult', require('./api/passiveSeminar.js').importResult(io));
 app.post('/runSeminar', require('./api/kernelSeminar.js').runSeminar(io));
 
-app.post('/contract');
-app.post('/contractDetails');
 app.post('/producerDecision',require('./api/models/producerDecision.js').updateProducerDecision(io));
 app.post('/retailerDecision',require('./api/models/retailerDecision.js').updateRetailerDecision(io));
 //app.post('/setContractLock',require('./api/models/contract.js').setContractLock(io));
@@ -85,7 +83,7 @@ app.post('/updateSeminar',require('./api/models/seminar.js').updateSeminar);
 //add new contract
 app.post('/addContract',require('./api/models/contract.js').addContract(io));
 app.post('/addContractDetails',require('./api/models/contract.js').addContractDetails(io));
-
+app.get('/getContractDetails/:contractCode',require('./api/models/contract.js').getContractDetails);
 //duplicate
 //app.post('/duplicateContract',require('./api/models/contract.js').duplicateContract(io));
 app.get('/variantHistoryInfo/:seminar/:period/:parentBrandName/:varName',require('./api/models/variantHistoryInfo').getVariantHistory);
@@ -119,7 +117,7 @@ app.get('/producerCurrentDecision/:seminar/:period/:producerID/:brandName/:varNa
 app.get('/checkProducerProduct/:seminar/:period/:producerID/:categoryID/:checkType/:brandName/:varName',require('./api/models/producerDecision.js').checkProducerProduct);
 app.get('/producerExpend/:seminar/:period/:producerID/:brandName/:location/:additionalIdx',require('./api/models/producerDecision.js').getProducerExpend);
 
-//app.get('/checkContractLock/:contractCode',require('./api/models/contract.js').checkContractLock);
+app.get('/checkContract/:contractCode',require('./api/models/contract.js').checkContract);
 app.get('/producerVariantBM/:seminar/:period/:producerID/:categoryID/:brandName/:varName',require('./api/models/producerDecision.js').getProducerVariantBM);
 //retailer check
 app.get('/retailerExpend/:seminar/:period/:retailerID/:marketID/:location/:additionalIdx',require('./api/models/retailerDecision.js').getRetailerExpend);

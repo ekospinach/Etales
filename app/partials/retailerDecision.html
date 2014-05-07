@@ -128,10 +128,8 @@
                 </ul>
             </div>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9" ng-show='!isNegotiation'>
             <div class="bs-docs-section">
-                <retailer-negotiation-agreements ng-show='NegotiationAgreements' is-page-shown='NegotiationAgreements' is-page-loading='isPageLoading'></retailer-negotiation-agreements>
-
                 <retailer-marketing ng-show='Marketing' is-page-shown='Marketing' is-page-loading='isPageLoading'></retailer-marketing>
 
                 <retailer-private-label-portfolio-management ng-show='PrivateLabelPortfolioManagement' is-page-shown='PrivateLabelPortfolioManagement' is-page-loading='isPageLoading'></retailer-private-label-portfolio-management>
@@ -142,7 +140,7 @@
                 
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3" ng-show='!isNegotiation'>
             <div class="bs-docs-section bs-docs-sidebar hidden-print" affix='10' role="complementary">
                 <table class="table table-condensed">
                     <thead>
@@ -180,6 +178,11 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+        <div class="col-md-12" ng-show='isNegotiation'>
+            <div class="bs-docs-section">
+                <retailer-negotiation-agreements ng-show='NegotiationAgreements' is-page-shown='NegotiationAgreements' is-page-loading='isPageLoading'></retailer-negotiation-agreements>
             </div>
         </div>
     </div>

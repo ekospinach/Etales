@@ -1,0 +1,159 @@
+<div class='panel panel-primary my-success-panel' ng-show='isResultShown'>
+	<div class="panel-heading">
+        <h3 class="panel-title text-center" popover="{{Label.getContent('Negotiation Agreements Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
+            {{Label.getContent('Negotiation Agreements')}}-{{Label.getContent('Supplier')}} 1
+        </h3>
+    </div>
+
+    <table class="table table-condensed table-bordered table-success" ng-show='isP1Ready'>
+        <thead>
+            <tr>
+                <th colspan="2"></th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Volume Discounts')}}<p>
+                </th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Performance Bonus')}}</p>
+                </th>
+                <th colspan="4"></th>
+            </tr>
+            <tr>
+                <th colspan="2"></th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Minimum Order Quantity')}}(units mln)</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Discount Rate')}}(%)</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Target Volume')}}(units mln)</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Bonus Rate')}}(%)</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Payment Terms')}}({{Label.getContent('days')}})</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Other Compensation')}}($mln)</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Supplier Agreement')}}</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Supplier Agreement')}}</p>
+                </th>
+            </tr>
+        </thead>
+    </table>
+    <div ng-show='!isP1Ready' style='text-align:center;'>
+	    <img src='/img/computer.jpg'></img>
+	    <h3>{{Label.getContent('Wait P1')}}</h3>
+	</div>
+</div>
+<div class='panel panel-primary my-success-panel' ng-show='isResultShown'>
+    <div class="panel-heading">
+        <h3 class="panel-title text-center" popover="{{Label.getContent('Negotiation Agreements Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
+            {{Label.getContent('Negotiation Agreements')}}-{{Label.getContent('Supplier')}} 2
+        </h3>
+    </div>
+
+    <table class="table table-condensed table-bordered table-success" ng-show='isP2Ready'>
+        <thead>
+            <tr>
+                <th colspan="2"></th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Volume Discounts')}}<p>
+                </th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Performance Bonus')}}</p>
+                </th>
+                <th colspan="4"></th>
+            </tr>
+            <tr>
+                <th colspan="2"></th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Minimum Order Quantity')}}(units mln)</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Discount Rate')}}(%)</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Target Volume')}}(units mln)</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Bonus Rate')}}(%)</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Payment Terms')}}({{Label.getContent('days')}})</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Other Compensation')}}($mln)</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Supplier Agreement')}}</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Supplier Agreement')}}</p>
+                </th>
+            </tr>
+        </thead>
+    </table>
+    <div ng-show='!isP2Ready' style='text-align:center;'>
+	    <img src='/img/computer.jpg'></img>
+	    <h3>{{Label.getContent('Wait P2')}}</h3>
+	</div>
+</div>
+<div class='panel panel-primary my-success-panel' ng-show='isResultShown'>
+    <div class="panel-heading">
+        <h3 class="panel-title text-center" popover="{{Label.getContent('Negotiation Agreements Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
+            {{Label.getContent('Negotiation Agreements')}}-{{Label.getContent('Supplier')}} 3
+        </h3>
+    </div>
+
+    <table class="table table-condensed table-bordered table-success" ng-show='isP3Ready'>
+        <thead>
+            <tr>
+                <th colspan="2"></th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Volume Discounts')}}<p>
+                </th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Performance Bonus')}}</p>
+                </th>
+                <th colspan="4"></th>
+            </tr>
+            <tr>
+                <th colspan="2"></th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Minimum Order Quantity')}}(units mln)</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Discount Rate')}}(%)</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Target Volume')}}(units mln)</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Bonus Rate')}}(%)</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Payment Terms')}}({{Label.getContent('days')}})</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Other Compensation')}}($mln)</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Supplier Agreement')}}</p>
+                </th>
+                <th>
+                    <p class="text-center">{{Label.getContent('Supplier Agreement')}}</p>
+                </th>
+            </tr>
+        </thead>
+    </table>
+    <div ng-show='!isP3Ready' style='text-align:center;'>
+	    <img src='/img/computer.jpg'></img>
+	    <h3>{{Label.getContent('Wait P3')}}</h3>
+	</div>
+</div>

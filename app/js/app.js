@@ -77,6 +77,7 @@
 	'directives/TE_SD_onlineStoreManagement',
 	'directives/TE_SD_assetInvestments',
 	'directives/TE_SD_marketResearchOrders',
+	'directives/TE_RD_negotiationAgreements',
 	'directives/TE_RD_marketing',
 	'directives/TE_RD_privateLabelPortfolioManagement',
 	'directives/TE_RD_storeManagement',

@@ -331,10 +331,10 @@ define(['directives', 'services'], function(directives){
                             data:postData
                         });
                     }).then(function(data){
-                        var contractCode='P'+PlayerInfo.getPlayer()+'andR1_'+SeminarInfo.getSelectedSeminar()+'_'+PeriodInfo.getCurrentPeriod();
+                        var contractCode1='P'+PlayerInfo.getPlayer()+'andR1_'+SeminarInfo.getSelectedSeminar()+'_'+PeriodInfo.getCurrentPeriod();
                         (function multipleRequestShooter(products,idx){
                             postData={
-                                contractCode:contractCode,
+                                contractCode:contractCode1,
                                 brandName:products[idx].parentBrandName,
                                 brandID:products[idx].parentBrandID,
                                 varName:products[idx].varName,
@@ -355,10 +355,10 @@ define(['directives', 'services'], function(directives){
                                 }
                             })
                         })(scope.productes,0);
-                        var contractCode='P'+PlayerInfo.getPlayer()+'andR1_'+SeminarInfo.getSelectedSeminar()+'_'+PeriodInfo.getCurrentPeriod();
+                        var contractCode2='P'+PlayerInfo.getPlayer()+'andR1_'+SeminarInfo.getSelectedSeminar()+'_'+PeriodInfo.getCurrentPeriod();
                         (function multipleRequestShooter(products,idx){
                             postData={
-                                contractCode:contractCode,
+                                contractCode:contractCode2,
                                 brandName:products[idx].parentBrandName,
                                 brandID:products[idx].parentBrandID,
                                 varName:products[idx].varName,
@@ -379,10 +379,10 @@ define(['directives', 'services'], function(directives){
                                 }
                             })
                         })(scope.producths,0);
-                        var contractCode='P'+PlayerInfo.getPlayer()+'andR2_'+SeminarInfo.getSelectedSeminar()+'_'+PeriodInfo.getCurrentPeriod();
+                        var contractCode3='P'+PlayerInfo.getPlayer()+'andR2_'+SeminarInfo.getSelectedSeminar()+'_'+PeriodInfo.getCurrentPeriod();
                         (function multipleRequestShooter(products,idx){
                             postData={
-                                contractCode:contractCode,
+                                contractCode:contractCode3,
                                 brandName:products[idx].parentBrandName,
                                 brandID:products[idx].parentBrandID,
                                 varName:products[idx].varName,
@@ -403,10 +403,10 @@ define(['directives', 'services'], function(directives){
                                 }
                             })
                         })(scope.productes,0);
-                        var contractCode='P'+PlayerInfo.getPlayer()+'andR2_'+SeminarInfo.getSelectedSeminar()+'_'+PeriodInfo.getCurrentPeriod();
+                        var contractCode4='P'+PlayerInfo.getPlayer()+'andR2_'+SeminarInfo.getSelectedSeminar()+'_'+PeriodInfo.getCurrentPeriod();
                         (function multipleRequestShooter(products,idx){
                             postData={
-                                contractCode:contractCode,
+                                contractCode:contractCode4,
                                 brandName:products[idx].parentBrandName,
                                 brandID:products[idx].parentBrandID,
                                 varName:products[idx].varName,

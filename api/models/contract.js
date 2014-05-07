@@ -83,6 +83,17 @@ exports.addContract = function(io){
      }
 }
 
+exports.checkContract=function(req,res,next){
+     contract.findOne({contractCode:req.params.contractCode},function(err,doc){
+          if(err) {next(new Error(err))};
+          if(doc){
+               res.send(200,'isReady');
+          }else{
+          res.send(200,'unReady');
+          }
+     })  
+}
+
 exports.addContractDetails=function(io){
      return function(req,res,next){
           var newContractVariantDetails=new contractVariantDetails({
@@ -112,4 +123,20 @@ exports.addContractDetails=function(io){
                res.send(200,newContractVariantDetails);
           });
      }
+}
+
+exports.getContractDetails=function(req,res,next){
+     contractVariantDetails.find({
+          contractCode:req.params.contractCode
+     },function(err,doc){
+          if(err){next(new Error(err))};
+          if(doc){
+               doc.sort(function(x,y){
+                    return x.parentBrandID-y.parentBrandID;
+               });
+               res.send(200,doc);
+          }else{
+               res.send(404,'fail');
+          }
+     })
 }
