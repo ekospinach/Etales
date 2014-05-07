@@ -41,6 +41,24 @@ define(['directives', 'services'], function(directives){
                     }
                 }
 
+                scope.updateContractDetails=function(contractCode,brandName,varName,location,index,value){
+                    var postData={
+                        contractCode:contractCode,
+                        brandName:brandName,
+                        varName:varName,
+                        userType:'P',
+                        location:location,
+                        value:value
+                    };
+                    $http({
+                        method:'POST',
+                        url:'/updateContractDetails',
+                        data:postData
+                    }).then(function(data){
+                        console.log('success');
+                    })
+                }
+
                 var getResult =function(){
                     if(!scope.isReady){
                         scope.isResultShown = true;

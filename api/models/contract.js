@@ -140,3 +140,38 @@ exports.getContractDetails=function(req,res,next){
           }
      })
 }
+
+exports.updateContractDetails=function(io){
+     return function(req,res,next){
+          var result=false;
+          var queryCondition={
+               contractCode:req.body.contractCode,
+               parentBrandName:req.body.brandName,
+               variantName:req.body.varName,
+               userType:req.body.userType,
+               location:req.body.location,
+               modify:req.body.location+'_lastModifiedBy',
+               value:req.body.value,
+          };
+          contractVariantDetails.findOne({
+               contractCode:queryCondition.contractCode,
+               parentBrandName:queryCondition.parentBrandName,
+               variantName:queryCondition.variantName
+          },function(err,doc){
+               if(err){
+                    next(new Error(err));
+               }
+               doc[queryCondition.location]=queryCondition.value;
+               if(queryCondition.location!="isProducerApproved"||queryCondition.location!="isRetailerApproved"){
+                  doc[queryCondition.modify]=queryCondition.userType;  
+               }
+               doc.save(function(err,doc,numberAffected){
+                    if(err){
+                         next(new Error(err));
+                    }
+                    console.log('save update,number affected:'+numberAffected);
+                    res.send(200, {result:0});
+               });  
+          })
+     }
+}

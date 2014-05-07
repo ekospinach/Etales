@@ -84,6 +84,7 @@ app.post('/updateSeminar',require('./api/models/seminar.js').updateSeminar);
 app.post('/addContract',require('./api/models/contract.js').addContract(io));
 app.post('/addContractDetails',require('./api/models/contract.js').addContractDetails(io));
 app.get('/getContractDetails/:contractCode',require('./api/models/contract.js').getContractDetails);
+app.post('/updateContractDetails',require('./api/models/contract.js').updateContractDetails(io));
 //duplicate
 //app.post('/duplicateContract',require('./api/models/contract.js').duplicateContract(io));
 app.get('/variantHistoryInfo/:seminar/:period/:parentBrandName/:varName',require('./api/models/variantHistoryInfo').getVariantHistory);
