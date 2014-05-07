@@ -71,6 +71,7 @@
 	'directives/TE_MR_urbanHealthBeautiesShopperShare',
 	'directives/TE_SD_productPortfolioManagement',
 	'directives/TE_SD_bMListPrices',
+	'directives/TE_SD_negotiationAgreements',
 	'directives/TE_SD_productionVolume',
 	'directives/TE_SD_generalMarketing',
 	'directives/TE_SD_onlineStoreManagement',

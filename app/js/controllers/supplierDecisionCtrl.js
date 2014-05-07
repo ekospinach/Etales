@@ -16,11 +16,11 @@ define(['app','socketIO','routingConfig'], function(app) {
             ProducerDecisionBase.startListenChangeFromServer(); 
 
 		    var switching=function(type){
-		    	$scope.ProductPortfolioManagement=$scope.BMListPrices=$scope.NegotiationAgreements=$scope.ProductionVolume=$scope.GeneralMarketing=$scope.OnlineStoreManagement=$scope.AssetInvestments=$scope.MarketResearchOrders=false;
+		    	$scope.ProductPortfolioManagement=$scope.BMListPrices=$scope.NegotiationAgreements=$scope.ProductionVolume=$scope.GeneralMarketing=$scope.OnlineStoreManagement=$scope.AssetInvestments=$scope.MarketResearchOrders=$scope.isNegotiation=false;
 		    	switch(type){
 		    		case 'showProductPortfolioManagement':$scope.ProductPortfolioManagement=true;break;
 		    		case 'showBMListPrices':$scope.BMListPrices=true;break;
-		    		case 'showNegotiationAgreements':$scope.NegotiationAgreements=true;break;
+		    		case 'showNegotiationAgreements':$scope.NegotiationAgreements=true;$scope.isNegotiation=true;break;
 		    		case 'showProductionVolume':$scope.ProductionVolume=true;break;
 		    		case 'showGeneralMarketing':$scope.GeneralMarketing=true;break;
 		    		case 'showOnlineStoreManagement':$scope.OnlineStoreManagement=true;break;
