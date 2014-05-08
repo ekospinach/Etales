@@ -48,13 +48,11 @@ app.post('/setPassiveDecision', require('./api/passiveSeminar.js').setPassiveDec
 app.post('/importResult', require('./api/passiveSeminar.js').importResult(io));
 app.post('/runSeminar', require('./api/kernelSeminar.js').runSeminar(io));
 
-app.post('/contract');
-app.post('/contractDetails');
 app.post('/producerDecision',require('./api/models/producerDecision.js').updateProducerDecision(io));
 app.post('/retailerDecision',require('./api/models/retailerDecision.js').updateRetailerDecision(io));
-app.post('/setContractLock',require('./api/models/contract.js').setContractLock(io));
+//app.post('/setContractLock',require('./api/models/contract.js').setContractLock(io));
 
-app.post('/updateContractDetails',require('./api/models/contract.js').updateContractDetails(io));
+//app.post('/updateContractDetails',require('./api/models/contract.js').updateContractDetails(io));
 
 //add Seminar
 app.post('/addSeminar',require('./api/models/seminar.js').addSeminar);
@@ -77,15 +75,19 @@ app.get('/seminarList',require('./api/models/seminar.js').getSeminarList);
 //update seminar
 app.post('/updateSeminar',require('./api/models/seminar.js').updateSeminar);
 
-app.get('/contracts/:seminar/:period/:contractUserID',require('./api/models/contract.js').getContractList);
+//app.get('/contracts/:seminar/:period/:contractUserID',require('./api/models/contract.js').getContractList);
 //get contractDetail
-app.get('/contractDetail/:contractCode/:userType/:negotiationItem/:brandName',require('./api/models/contract.js').getContractDetail);
-app.post('/compareContractDetailsAndUpdateIsVerified', require('./api/models/contract.js').compareContractDetailsAndUpdateIsVerified);
-app.post('/copyProposal', require('./api/models/contract.js').copyProposal);
+//app.get('/contractDetail/:contractCode/:userType/:negotiationItem/:brandName',require('./api/models/contract.js').getContractDetail);
+//app.post('/compareContractDetailsAndUpdateIsVerified', require('./api/models/contract.js').compareContractDetailsAndUpdateIsVerified);
+//app.post('/copyProposal', require('./api/models/contract.js').copyProposal);
 //add new contract
 app.post('/addContract',require('./api/models/contract.js').addContract(io));
+app.post('/addContractDetails',require('./api/models/contract.js').addContractDetails(io));
+app.get('/getContractDetails/:contractCode',require('./api/models/contract.js').getContractDetails);
+app.get('/checkContractDetails/:contractCode/:parentBrandName/:variantName/:location',require('./api/models/contract.js').checkContractDetails);
+app.post('/updateContractDetails',require('./api/models/contract.js').updateContractDetails(io));
 //duplicate
-app.post('/duplicateContract',require('./api/models/contract.js').duplicateContract(io));
+//app.post('/duplicateContract',require('./api/models/contract.js').duplicateContract(io));
 app.get('/variantHistoryInfo/:seminar/:period/:parentBrandName/:varName',require('./api/models/variantHistoryInfo').getVariantHistory);
 //get brandHistory getPeriodBrandHistory
 app.get('/brandHistoryInfo/:seminar/:period/:brandName',require('./api/models/brandHistoryInfo.js').getBrandHistory);
@@ -117,7 +119,7 @@ app.get('/producerCurrentDecision/:seminar/:period/:producerID/:brandName/:varNa
 app.get('/checkProducerProduct/:seminar/:period/:producerID/:categoryID/:checkType/:brandName/:varName',require('./api/models/producerDecision.js').checkProducerProduct);
 app.get('/producerExpend/:seminar/:period/:producerID/:brandName/:location/:additionalIdx',require('./api/models/producerDecision.js').getProducerExpend);
 
-app.get('/checkContractLock/:contractCode',require('./api/models/contract.js').checkContractLock);
+app.get('/checkContract/:contractCode',require('./api/models/contract.js').checkContract);
 app.get('/producerVariantBM/:seminar/:period/:producerID/:categoryID/:brandName/:varName',require('./api/models/producerDecision.js').getProducerVariantBM);
 //retailer check
 app.get('/retailerExpend/:seminar/:period/:retailerID/:marketID/:location/:additionalIdx',require('./api/models/retailerDecision.js').getRetailerExpend);
@@ -134,7 +136,7 @@ app.get('/checkProducerDecision/:seminar/:period/:producerID',require('./api/mod
 app.post('/submitDecision',require('./api/models/seminar.js').submitDecision(io));
 
 app.post('/deleteOrderData',require('./api/models/retailerDecision.js').deleteOrderData(io));
-app.post('/deleteDetailData',require('./api/models/contract.js').deleteContractDetailData(io));
+//app.post('/deleteDetailData',require('./api/models/contract.js').deleteContractDetailData(io));
 
 // app.get('/addGeneralReport',require('./api/models/generalReport.js').addGeneralReport);
 // app.get('/getGeneralReport/:seminar/:period',require('./api/models/generalReport.js').getGeneralReport);

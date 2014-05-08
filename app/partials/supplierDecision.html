@@ -111,14 +111,14 @@
         </div> -->
         <div class="col-md-12">
             <div style="padding:50px 0" angular-wizard>
-                <ul class="steps-indicator" ng-class="{true: 'steps-8', false: 'steps-7'}[isReady]">
+                <ul class="steps-indicator steps-8">
                     <li class="done editing">
                         <a href="/#/supplierDecision" ng-click="showProductPortfolioManagement()">{{Label.getContent('Product Portfolio Management')}}</a>
                         </li>
                     <li class="done">
                         <a href="/#/supplierDecision" ng-click='showBMListPrices()'>{{Label.getContent('B&M List Prices')}}</a>
                     </li>
-                    <li ng-show='isReady' class="done">
+                    <li class="done">
                         <a href="/#/supplierDecision" ng-click='showNegotiationAgreements()'>{{Label.getContent('Negotiation Agreements')}}</a>
                     </li>
                     <li class="done">
@@ -139,13 +139,12 @@
                 </ul>
             </div>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9" ng-show='!isNegotiation'>
             <div class="bs-docs-section">
                 <supplier-product-portfolio-management ng-show='ProductPortfolioManagement' is-page-shown='ProductPortfolioManagement' is-page-loading='isPageLoading' is-ready='isReady'></supplier-product-portfolio-management>
                 
                 <supplier-b-m-list-prices ng-show='BMListPrices' is-page-shown='BMListPrices' is-page-loading='isPageLoading' is-ready='isReady'></supplier-b-m-list-prices>
                 
-                <supplier-negotiation-agreements ng-show='NegotiationAgreements' is-page-shown='NegotiationAgreements' is-page-loading='isPageLoading'></supplier-negotiation-agreements>
                 <supplier-production-volume ng-show='ProductionVolume' is-page-shown='ProductionVolume' is-page-loading='isPageLoading'></supplier-production-volume>
                 <supplier-general-marketing ng-show='GeneralMarketing' is-page-shown='GeneralMarketing' is-page-loading='isPageLoading'></supplier-general-marketing>
                 <supplier-online-store-management ng-show='OnlineStoreManagement' is-page-shown='OnlineStoreManagement' is-page-loading='isPageLoading'></supplier-online-store-management>
@@ -153,7 +152,7 @@
                 <supplier-market-research-orders ng-show='MarketResearchOrders' is-page-shown='MarketResearchOrders' is-page-loading='isPageLoading'></supplier-market-research-orders> 
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3" ng-show='!isNegotiation'>
             <div class="bs-docs-section bs-docs-sidebar hidden-print" affix='0' role="complementary">
                 <table class="table table-condensed">
                     <thead>
@@ -183,6 +182,11 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+        <div class="col-md-12" ng-show='isNegotiation'>
+            <div class="bs-docs-section">
+                <supplier-negotiation-agreements ng-show='NegotiationAgreements' is-page-shown='NegotiationAgreements' is-ready='isReady' is-page-loading='isPageLoading'></supplier-negotiation-agreements>
             </div>
         </div>
     </div>

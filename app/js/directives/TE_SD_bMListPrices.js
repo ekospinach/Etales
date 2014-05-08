@@ -304,10 +304,131 @@ define(['directives', 'services'], function(directives){
                         url:'/submitDecision',
                         data:queryCondition
                     }).then(function(data){
-                        console.log('successful');
-                        scope.isCommitConfirmInfoShown=false;
-                    },function(err){
-                        console.log('fail');
+                        console.log(scope.isReady);
+                        var postData={
+                            period:PeriodInfo.getCurrentPeriod(),
+                            seminar:SeminarInfo.getSelectedSeminar(),
+                            draftedByCompanyID:PlayerInfo.getPlayer(),
+                            producerID:PlayerInfo.getPlayer(),
+                            retailerID:1
+                        }
+                        return $http({
+                            method:'POST',
+                            url:'/addContract',
+                            data:postData
+                        });
+                    }).then(function(data){
+                        postData={
+                            period:PeriodInfo.getCurrentPeriod(),
+                            seminar:SeminarInfo.getSelectedSeminar(),
+                            draftedByCompanyID:PlayerInfo.getPlayer(),
+                            producerID:PlayerInfo.getPlayer(),
+                            retailerID:2
+                        }
+                        return $http({
+                            method:'POST',
+                            url:'/addContract',
+                            data:postData
+                        });
+                    }).then(function(data){
+                        var contractCode1='P'+PlayerInfo.getPlayer()+'andR1_'+SeminarInfo.getSelectedSeminar()+'_'+PeriodInfo.getCurrentPeriod();
+                        (function multipleRequestShooter(products,idx){
+                            postData={
+                                contractCode:contractCode1,
+                                brandName:products[idx].parentBrandName,
+                                brandID:products[idx].parentBrandID,
+                                varName:products[idx].varName,
+                                varID:products[idx].varID
+                            }
+                            $http({
+                                method:'POST',
+                                url:'/addContractDetails',
+                                data:postData
+                            }).then(function(data){
+                            
+                            },function(data){
+
+                            }).finally(function(){
+                                if(idx<products.length-1){
+                                    idx++;
+                                    multipleRequestShooter(scope.productes,idx);
+                                }
+                            })
+                        })(scope.productes,0);
+                        var contractCode2='P'+PlayerInfo.getPlayer()+'andR1_'+SeminarInfo.getSelectedSeminar()+'_'+PeriodInfo.getCurrentPeriod();
+                        (function multipleRequestShooter(products,idx){
+                            postData={
+                                contractCode:contractCode2,
+                                brandName:products[idx].parentBrandName,
+                                brandID:products[idx].parentBrandID,
+                                varName:products[idx].varName,
+                                varID:products[idx].varID
+                            }
+                            $http({
+                                method:'POST',
+                                url:'/addContractDetails',
+                                data:postData
+                            }).then(function(data){
+                            
+                            },function(data){
+
+                            }).finally(function(){
+                                if(idx<products.length-1){
+                                    idx++;
+                                    multipleRequestShooter(scope.producths,idx);
+                                }
+                            })
+                        })(scope.producths,0);
+                        var contractCode3='P'+PlayerInfo.getPlayer()+'andR2_'+SeminarInfo.getSelectedSeminar()+'_'+PeriodInfo.getCurrentPeriod();
+                        (function multipleRequestShooter(products,idx){
+                            postData={
+                                contractCode:contractCode3,
+                                brandName:products[idx].parentBrandName,
+                                brandID:products[idx].parentBrandID,
+                                varName:products[idx].varName,
+                                varID:products[idx].varID
+                            }
+                            $http({
+                                method:'POST',
+                                url:'/addContractDetails',
+                                data:postData
+                            }).then(function(data){
+                            
+                            },function(data){
+
+                            }).finally(function(){
+                                if(idx<products.length-1){
+                                    idx++;
+                                    multipleRequestShooter(scope.productes,idx);
+                                }
+                            })
+                        })(scope.productes,0);
+                        var contractCode4='P'+PlayerInfo.getPlayer()+'andR2_'+SeminarInfo.getSelectedSeminar()+'_'+PeriodInfo.getCurrentPeriod();
+                        (function multipleRequestShooter(products,idx){
+                            postData={
+                                contractCode:contractCode4,
+                                brandName:products[idx].parentBrandName,
+                                brandID:products[idx].parentBrandID,
+                                varName:products[idx].varName,
+                                varID:products[idx].varID
+                            }
+                            $http({
+                                method:'POST',
+                                url:'/addContractDetails',
+                                data:postData
+                            }).then(function(data){
+                            
+                            },function(data){
+
+                            }).finally(function(){
+                                if(idx<products.length-1){
+                                    idx++;
+                                    multipleRequestShooter(scope.producths,idx);
+                                }else{
+                                    scope.isCommitConfirmInfoShown=false;
+                                }
+                            })
+                        })(scope.producths,0);
                     })
                 }
 

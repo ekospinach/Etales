@@ -117,7 +117,7 @@
     <h4>{{Label.getContent("Warning! Commit confirmation")}}</h4>
     <p>{{Label.getContent("Producer portfolio confirm info")}}</p>
     <p>
-        <button type="button" class="btn btn-danger" ng-click='submitDecision()'>{{Label.getContent("Take this action")}}</button>
+        <button type="button" class="btn btn-danger" ng-click='submitDecision()' ng-disabled='isReady'>{{Label.getContent("Take this action")}}</button>
         <button type="button" ng-click="isCommitConfirmInfoShown=false" class="btn btn-default">{{Label.getContent("Cancel")}}</button>
     </p>
 </div>
