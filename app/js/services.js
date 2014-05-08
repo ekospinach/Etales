@@ -72,7 +72,8 @@ define(['angular',
 
 			},
 			getActivedNegotiationItem : function(){
-				var negotiationItems=['nc_MinimumOrder',
+				var negotiationItems=[
+				'nc_MinimumOrder',
 				'nc_SalesTargetVolume',
 				'nc_PaymentDays',
 				'nc_OtherCompensation',				

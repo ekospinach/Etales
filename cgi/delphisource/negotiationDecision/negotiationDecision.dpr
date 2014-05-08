@@ -29,12 +29,7 @@ uses
   {$ELSE}
     Windows,
   {$ENDIF}
-  Classes, superobject, HCD_SystemDefinitions, System.TypInfo,inifiles;
-
-{$I 'ET0_Common_Constants.INC'}
-{$I 'ET0_Common_Types.INC'}
-{$I 'ET0_Results_Types.INC'}
-{$I 'ET0_FILES_NAMES.INC'}
+  Classes, superobject, CgiCommonFunction, HCD_SystemDefinitions, System.TypInfo,inifiles;
 
 const
   DecisionFileName = 'Negotiations.';
@@ -53,6 +48,9 @@ var
    sValue : string;
    iSize : integer;
 
+   sResponseData : tStrings;
+   sLogList : TStrings;
+
    currentAllDeals  : TAllDeals;
    currentPeriod : TPeriodNumber;
    currentSeminar : string;
@@ -61,179 +59,9 @@ var
    oJsonFile : ISuperObject;
    sFile  : string;
 
-   function getVariable(name:string):string;
-   {$IFNDEF LINUX}
-     var
-       Buffer : array [0..2047] of char;
-   {$ENDIF}
+   procedure Log(content: String);
    begin
-    {$IFDEF LINUX}
-      result := getenv(PChar(Name)); // or Unix/Linux with SysUtils.GetEnvironmentVariable(Name)
-    {$ELSE}
-      Buffer := '';
-      GetEnvironmentVariable(PChar(Name), Buffer, SizeOf(Buffer));
-      Result := Buffer;
-    {$ENDIF}
-   end;
-
-   procedure WriteAllEnvironVariables;
-   var
-   {$IFDEF LINUX}
-     Env : PPChar;
-   {$ELSE}
-     p: pchar;
-   {$ENDIF}
-   begin
-    WriteLn('<BR><H4>Environment variables</H4>');
-    WriteLn('<TABLE bgcolor="#FFCC99"  border="1" cellspacing="1" cellpadding="1">');
-
-    {$IFDEF LINUX}
-      Env := System.envp;
-      while Assigned(Env^) do
-      begin
-        WriteLn('<TR><TD>'+Env^+'</TD></TR>');
-        Inc(Env);
-      end;
-    {$ELSE}
-      p := GetEnvironmentStrings;
-      while strlen(p)<>0 do begin
-        WriteLn('<TR><TD>'+p+'</TD></TR>');
-        p:=strend(p);
-        inc(p);
-      end;
-    {$ENDIF}
-
-    Writeln('</TABLE>');
-   end;
-
-   Procedure Explode(sQuery: string; var Params: tStrings);
-   var
-    nPos : Integer;
-    s : string;
-   begin
-      if Length(sQuery)>0 then
-      begin
-         nPos:=1;
-         s:= sQuery;
-
-         while nPos>0 do
-         begin
-           nPos := Pos('&',s);
-
-           if nPos>0 then
-             begin
-               Params.Add(Copy(s,1,nPos-1));
-               s := Copy(s,nPos+1,Length(s)-nPos)
-             end
-           else
-             Params.Add(s);
-         end;
-      end;
-   end;
-
-   function DecodeUrl(url: string): string;
-    var
-      x: integer;
-      ch: string;
-      sVal: string;
-      Buff: string;
-    begin
-      //Init
-      Buff := '';
-      x := 1;
-      while x <= Length(url) do
-      begin
-        //Get single char
-        ch := url[x];
-
-        if ch = '+' then
-        begin
-          //Append space
-          Buff := Buff + ' ';
-        end
-        else if ch <> '%' then
-        begin
-          //Append other chars
-          Buff := Buff + ch;
-        end
-        else
-        begin
-          //Get value
-          sVal := Copy(url, x + 1, 2);
-          //Convert sval to int then to char
-          Buff := Buff + char(StrToInt('$' + sVal));
-          //Inc counter by 2
-          Inc(x, 2);
-        end;
-        //Inc counter
-        Inc(x);
-      end;
-      //Return result
-      Result := Buff;
-    end;
-
-    function getSeminar(const filePath : string): string; overload;
-    var
-      i_tmp : Integer;
-    begin
-      i_tmp := LastDelimiter('.',filePath) + 1;
-      Result := Copy(filePath, i_tmp, 10);
-    end;
-
-    function getSeminar(): string; overload;
-    begin
-      Result := dummySeminar;
-      if sListData.IndexOfName('seminar') <> -1 then
-        Result  := sListData.Values['seminar'];
-    end;
-
-    function getPeriod(): Integer;
-    begin
-      Result := dummyNo;
-      if sListData.IndexOfName('period') <> -1 then
-         Result := StrToInt(sListData.Values['period']);
-    end;
-
-    function getRetailer(): Integer;
-    begin
-      Result  := dummyNo;
-      if sListData.IndexOfName('retailerID') <> -1 then
-        Result := StrToInt(sListData.Values['retailerID']);
-      if sListData.IndexOfName('retailerid') <> -1 then
-        Result  := StrToInt(sListData.Values['retailerid']);
-    end;
-
-    function getFileName(): AnsiString;
-    var
-      partOne, partNum, seminar : string;
-    begin
-      if sListData.IndexOfName('filepath') <> -1 then
-        begin
-          Result := DecodeUrl(sListData.Values['filepath']);
-          Exit;
-        end;
-      partOne := 'Retailer ';
-      partNum := IntToStr(getRetailer);
-      seminar := getSeminar;
-      Result := DataDirectory + partOne + partNum + DecisionFileName + seminar;
-    end;
-
-   function getJson(): ISuperObject;
-   var
-      vStr  : string;
-      jo  : ISuperObject;
-   begin
-      vStr := '';
-      jo := SO;
-
-      if sListData.IndexOfName('jsonData') <> -1 then
-          vStr := DecodeUrl(sListData.Values['jsonData'])
-      else
-        Writeln('Error 400' + #13 + #10 + 'No JSON data provided');
-
-      jo  := SO(vStr);
-
-      Result  := jo;
+      sLoglist.Add(FormatDateTime('[yyyy-MM-dd hh:mm:ss] ',Now) + content);
    end;
 
   function ReadNegoRecordByProDecision(pPeriodNumber : TPeriodNumber;
@@ -307,7 +135,7 @@ var
     end;
 
 
-    function variantsDetailsSchema(var curVariantDetails: TVariantDetails): ISuperObject;
+   function variantsDetailsSchema(var curVariantDetails: TVariantDetails): ISuperObject;
     var
       jo: ISuperObject;
       mkt: Integer;
@@ -355,7 +183,7 @@ var
       for mkt := Low(TMarketsTotal) to High(TMarketsTotal) do
         jo.A['marketsDetails'].D[mkt - 1] := curBrandDetails.nib_MarketsDetails[mkt];
       jo.O['variantsDetails'] := SA([]);
-      for vnt := Low(TOneBrandVars) to High(TOneBrandVars) do
+      for vnt := Low(TOneBrandVariants) to High(TOneBrandVariants) do
         jo.A['variantsDetails'].Add( variantsDetailsSchema(curBrandDetails.nib_VariantsDetails[vnt]) );
 
       Result  := jo;
@@ -439,7 +267,7 @@ var
     function producerDealSchema(producer: Integer): ISuperObject;
     var
       jo: ISuperObject;
-      retailer  : TAllRetailers;
+      retailer  : TBMRetailers;
     begin
       jo  := SO;
 //var producerDealSchema = mongoose.Schema({
@@ -448,7 +276,7 @@ var
 //})
       jo.I['producerID']  := producer;
       jo.O['retailerDeal']  := SA([]);
-      for retailer := Low(TAllRetailers) to High(TAllRetailers) do
+      for retailer := Low(TBMRetailers) to High(TBMRetailers) do
         jo.A['retailerDeal'].Add(retailerDealSchema(producer, retailer) );
 
       Result  := jo;
@@ -517,6 +345,9 @@ var
 //    useMarketsDetails : Boolean,
 //    variantsDetails : [variantsDetailsSchema] //length: TOneBrandVars
 //})
+      //jo.SaveTo('Brands.txt', TRUE, TRUE);
+      //Log(jo.AsString);
+      Log('Deal with brand : '+ inttostr(jo.I['brandID']));
       curBrandDetails.nib_BrandID := jo.I['brandID'];
       curBrandDetails.nib_DateofBirth := jo.I['dateOfBirth'];
       curBrandDetails.nib_DateOfDeath := jo.I['dateOfDeath'];
@@ -525,9 +356,15 @@ var
       if curBrandDetails.nib_UseMarketsDetails then
         for mkt := Low(TMarketsTotal) to High(TMarketsTotal) do
           curBrandDetails.nib_MarketsDetails[mkt] := jo.A['marketsDetails'].D[mkt - 1];
+
       if curBrandDetails.nib_UseVariantsDetails then
-        for vnt := Low(TOneBrandVars) to High(TOneBrandVars) do
-          fromJSONvariantsDetailsSchema(curBrandDetails.nib_VariantsDetails[vnt], jo.A['variantsDetails'].O[vnt - 1] );
+        for vnt := Low(TOneBrandVariants) to High(TOneBrandVariants) do
+        begin
+          if (jo.A['variantsDetails'].length <> 0) then
+          begin
+            fromJSONvariantsDetailsSchema(curBrandDetails.nib_VariantsDetails[vnt], jo.A['variantsDetails'].O[vnt - 1] );
+          end;
+        end;
     end;
 
     procedure fromJSONcategoryDetailsSchema(var curCatDetails: TCategoryDetails; jo: ISuperObject);
@@ -540,14 +377,25 @@ var
 //    useMarketsDetails : Boolean,
 //    brandsDetails : [brandDetailsSchema], //Length: TProBrands
 //})
+      Log('category details');
       curCatDetails.nic_UseBrandsDetails  := jo.B['useBrandsDetails'];
       curCatDetails.nic_UseMarketsDetails := jo.B['useMarketsDetails'];
-      if curCatDetails.nic_UseMarketsDetails then
-         for mkt := Low(TMarketsTotal) to High(TMarketsTotal) do
-          curCatDetails.nic_MarketsDetails[mkt] := jo.A['marketsDetails'].D[ mkt - 1 ];
-      if curCatDetails.nic_UseBrandsDetails then
+
+//      if curCatDetails.nic_UseMarketsDetails then
+//         for mkt := Low(TMarketsTotal) to High(TMarketsTotal) do
+//          curCatDetails.nic_MarketsDetails[mkt] := jo.A['marketsDetails'].D[ mkt - 1 ];
+
+
+     // if curCatDetails.nic_UseBrandsDetails then
+     // Log(jo.AsString);
         for brn := Low(TProBrands) to High(TProBrands) do
-          fromJSONbrandDetailsSchema(curCatDetails.nic_BrandsDetails[brn], jo.A['brandsDetails'].O[brn - 1] );
+        begin
+          if (jo.A['brandsDetails'].Length <> 0) then
+          begin
+            fromJSONbrandDetailsSchema(curCatDetails.nic_BrandsDetails[brn], jo.A['brandsDetails'].O[brn - 1] );
+          end;
+        end;
+
     end;
 
     procedure fromJSONcategoryDealSchema(var curCatDeal: TCategoryDeal; jo: ISuperObject);
@@ -565,6 +413,7 @@ var
 //    salesTargetVolume      : categoryDetailsSchema;
 //    volumeDiscountRate     : categoryDetailsSchema;
 //})
+      Log('Deal with curCatDeal :' + IntToStr(jo.I['categoryID']));
       curCatDeal.nc_CategoryID  := jo.I['categoryID'];
       fromJSONcategoryDetailsSchema(curCatDeal.nc_ConsignementVolume, jo.O['consignementVolume']);
       fromJSONcategoryDetailsSchema(curCatDeal.nc_InStoreActivitiesFee, jo.O['inStoreActivitiesFee']);
@@ -587,32 +436,14 @@ var
 //var retailerDealSchema = mongoose.Schema({
 //    retailerID : Number,
 //})
-      curDeal.neg_RetailerID  := jo.I['retailerID'];
       for cat := Low(TCategories) to High(TCategories) do
         fromJSONcategoryDealSchema(curDeal.neg_CategoriesDeals[cat], jo.A['categoryDeal'].O[cat -1] );
-    end;
-
-    procedure fromJSONproducerDealSchema(var curDeal : TOnePairDeal; retailer: Integer; jo: ISuperObject);
-    var
-      jt: ISuperObject;
-    begin
-//var producerDealSchema = mongoose.Schema({
-//    producerID : Number,
-//    retailerDealSchema : [retailerDealSchema]
-//})
-      jo.SaveTo('aa.txt',True,True);
-      curDeal.neg_ProducerID  := jo.I['producerID'];
-      jt  := jo.A['retailerDeal'].O[retailer - 1];
-      jt.SaveTo('bb.txt', TRUE, TRUE);
-      writeln(jt.AsString);
-      writeln('piece');
-      fromJSONretailerDealSchema(curDeal, jt);
     end;
 
     procedure fromJSONallDealSchema(var curAllDeals : TAllDeals; jo: ISuperObject);
     var
       producer : TAllProducers;
-      retailer  : TAllRetailers;
+      retailer  : TBMRetailers;
       jp, jr: ISuperObject;
     begin
 //var allDealSchema = mongoose.Schema({
@@ -623,16 +454,80 @@ var
       currentPeriod  := jo.I['period'];
       currentSeminar := jo.S['seminar'];
       for producer := Low(TAllProducers) to High(TAllProducers) do
-        for retailer := Low(TAllRetailers) to High(TAllRetailers) do
+        for retailer := Low(TBMRetailers) to High(TBMRetailers) do
           begin
             jp  := jo.A['producerDeal'].O[producer - 1];
             jr  := jp.A['retailerDeal'].O[0];
+            currentAllDeals[producer, retailer].neg_RetailerID := retailer;
+            currentAllDeals[producer, retailer].neg_ProducerID := producer;
+            Log('Deal with currentAllDeals[' + IntToStr(producer) + ', ' + IntToStr(retailer) + ']');
             fromJSONretailerDealSchema( currentAllDeals[producer, retailer], jr );
           end;
 
 //          fromJSONproducerDealSchema( currentAllDeals[producer, retailer], retailer, jo.A['producerDeal'].O[producer - 1]);
     end;
 
+   function DecodeUrl(url: string): string;
+    var
+      x: integer;
+      ch: string;
+      sVal: string;
+      Buff: string;
+    begin
+      //Init
+      Buff := '';
+      x := 1;
+      while x <= Length(url) do
+      begin
+        //Get single char
+        ch := url[x];
+
+        if ch = '+' then
+        begin
+          //Append space
+          Buff := Buff + ' ';
+        end
+        else if ch <> '%' then
+        begin
+          //Append other chars
+          Buff := Buff + ch;
+        end
+        else
+        begin
+          //Get value
+          sVal := Copy(url, x + 1, 2);
+          //Convert sval to int then to char
+          Buff := Buff + char(StrToInt('$' + sVal));
+          //Inc counter by 2
+          Inc(x, 2);
+        end;
+        //Inc counter
+        Inc(x);
+      end;
+      //Return result
+      Result := Buff;
+    end;
+
+   function getJson(): ISuperObject;
+   var
+      vStr  : string;
+      jo  : ISuperObject;
+   begin
+      vStr := '';
+      jo := SO;
+      Log('Try to get jsonData...');
+      if sListData.IndexOfName('jsonData') <> -1 then
+      begin
+          Log('Found jsonData, trying to decode...');
+          vStr := DecodeUrl(sListData.Values['jsonData']);
+         // Log('Decode result:' + vStr);
+      end
+      else
+        Writeln('Error 400' + #13 + #10 + 'No JSON data provided');
+
+      jo  := SO(vStr);
+      Result  := jo;
+   end;
 
   procedure LoadConfigIni(vseminar : string);
   var
@@ -648,15 +543,17 @@ var
   end;
 
 begin
-
   SetMultiByteConversionCodePage(CP_UTF8);
   sDati := '';
   sListData := TStringList.Create;
+  sResponseData := TStringList.Create;
+  sLogList := TStringList.Create;
+  sResponseData.Clear;
   sListData.Clear;
+  sLogList.Clear;
   try
 
     WriteLn('Content-type: application/json');
-    Writeln;
     sValue := getVariable('REQUEST_METHOD');
     // GET
     //Parameters: period, seminar
@@ -670,16 +567,26 @@ begin
         sValue := getVariable('QUERY_STRING');
         Explode(sValue, sListData);
         // initialize globals
-        currentSeminar := getSeminar;
-        currentPeriod := getPeriod;
+        currentSeminar := getSeminar(sListData);
+        currentPeriod := getPeriod(sListData);
         //generate dataDirectory depends on seminar
         LoadConfigIni(currentSeminar);
         {** Read results file **}
         vReadRes := ReadNegoRecordByProDecision(currentPeriod,currentAllDeals,
           DataDirectory,currentSeminar); // read Nego file
-        // Now let's make some JSON stuff here
-        if vReadRes = 0 then
+
+        // Read result failed
+        if vReadRes <> 0 then
+        begin
+          Writeln('Status: 404 Not Found');
+          WriteLn;
+        end
+        else
+        //Read result successfully, generate JSON and writeln
+        begin
+          WriteLn;
           makeJson;
+        end;
       end
     else
     // POST
@@ -697,21 +604,22 @@ begin
         iSize := strtoint(sValue);
         SetLength(sDati,iSize);
         bUpload := false;
+
         sValue := getVariable('HTTP_CONTENT_TYPE');
         if (Trim(sValue)<>'') and (Trim(sValue) <> 'application/x-www-form-urlencoded') then
             bUpload := true; // There is an attached file
             // We my use this mechanism if we want to, i.e. reading JSON
-
         for i:=1 to iSize do
           Read(sDati[i]);
-
         if bUpload then
           sListData.Add(sDati)
         else
           Explode(sDati, sListData);
+
         // initialize globals
         // read JSON data from post field
         oJsonFile := getJson;
+
         // these work only if JSON is correct, that is it keeps them
         currentSeminar := oJsonFile.S['seminar'];
         currentPeriod := oJsonFile.I['period'];
@@ -720,8 +628,6 @@ begin
 
         // now we have process JSON and convert it into binary stucture
         fromJSONallDealSchema(currentAllDeals, oJsonFile);
-
-
         //generate dataDirectory depends on seminar
         LoadConfigIni(currentSeminar);
         // write tranlated JSON to binary file
@@ -729,12 +635,27 @@ begin
           currentAllDeals,DataDirectory,currentSeminar); // update Decision file
 
         // shake hands
-        if vReadRes = 0 then
-          Writeln('Status : 200 OK');
+        if vReadRes <> 0 then
+        begin
+          Writeln('Status: 400 Bad Request');
+          WriteLn;
+        end
+        else
+        //Read result successfully, generate JSON and writeln
+        begin
+          Writeln('Status: 200 OK');
+          WriteLn;
+        end;
       end;
     end;
+    for i:= 0 to sResponseData.Count-1 do
+    WriteLn(sResponseData[i]);
+
   finally
+    sLogList.saveToFile(GetCurrentDir + '/Log.txt');
     sListData.Free;
+    sLogList.Free;
+    sResponseData.Free;
   end;
 end.
 

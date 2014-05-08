@@ -15,6 +15,7 @@ define(['app','socketIO'], function(app) {
 		initializePage();
 
 		$scope.checkSeminarDetails = function(seminar){
+			
 			EditSeminarInfo.setSelectedSeminar(seminar);
 			$location.path('/adminDetails')
 		}

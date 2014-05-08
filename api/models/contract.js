@@ -29,9 +29,9 @@ contractSchema.plugin(uniqueValidator);
 var contractVariantDetailsSchema = mongoose.Schema({
 	contractCode                           : String,
 	parentBrandName                        : String,
-	parentBrandCount                       : Number,
+	parentBrandID                          : Number,
 	variantName                            : String,
-	variantCount                           : Number,
+	variantID                              : Number,
 	
 	nc_MinimumOrder                        : Number,
 	nc_MinimumOrder_lastModifiedBy         : String, 
@@ -51,7 +51,6 @@ var contractVariantDetailsSchema = mongoose.Schema({
 	isProducerApproved                     : Boolean,
 	isRetailerApproved                     : Boolean,
 })
-
 
 var contractDetailsSchema = mongoose.Schema({
 	contractCode : String, 
@@ -89,6 +88,8 @@ var contractDetailsSchema = mongoose.Schema({
 
 exports.contract = mongoose.model('contract', contractSchema);
 exports.contractDetails = mongoose.model('contractDetails', contractDetailsSchema);
+exports.contractVariantDetails = mongoose.model('contractVariantDetails', contractVariantDetailsSchema);
+
 var contract = mongoose.model('contract', contractSchema);
 var contractDetails = mongoose.model('contractDetails', contractDetailsSchema);
 

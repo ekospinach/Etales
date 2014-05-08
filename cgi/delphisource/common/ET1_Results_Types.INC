@@ -525,7 +525,7 @@ TRCR_QuarterKeyPerformanceIndicators =
     rcrkpi_VolumeRotationIndex        : single;
     rcrkpi_ValueRotationIndex         : single;
     rcrkpi_ProfitabilityIndex         : single;
-    rcrkpi_StockCover                 : single;
+    rcrkpi_StockCover                 : single; 
     rcrkpi_ShoppersShare              : array[TShoppersKind] of single;
   end;
     
