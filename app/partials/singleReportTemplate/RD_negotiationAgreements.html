@@ -8,7 +8,7 @@
     <table class="table table-condensed table-bordered table-success" ng-show='isP1Ready'>
         <thead>
             <tr>
-                <th colspan="2"></th>
+                <th></th>
                 <th colspan="2">
                     <p class="text-center">{{Label.getContent('Volume Discounts')}}<p>
                 </th>
@@ -18,7 +18,7 @@
                 <th colspan="4"></th>
             </tr>
             <tr>
-                <th colspan="2"></th>
+                <th></th>
                 <th>
                     <p class="text-center">{{Label.getContent('Minimum Order Quantity')}}(units mln)</p>
                 </th>
@@ -41,10 +41,68 @@
                     <p class="text-center">{{Label.getContent('Supplier Agreement')}}</p>
                 </th>
                 <th>
-                    <p class="text-center">{{Label.getContent('Supplier Agreement')}}</p>
+                    <p class="text-center">{{Label.getContent('Retailer Agreement')}}</p>
                 </th>
             </tr>
         </thead>
+        <tbody>
+            <tr class="success">
+                <th colspan="9">{{Label.getContent('Brand')}}-{{Label.getContent('Elecssories')}}</th>
+            </tr>
+            <tr ng-repeat='product1e in product1es'>
+                <td>
+                    <p class="padding-10">{{product1e.parentBrandName}}{{product1e.variantName}}</p>
+                </td>
+                <td>
+                    <a href="#" editable-text="product1e.nc_MinimumOrder" ng-show="(!product1e.isProducerApproved)&&(!product1e.isRetailerApproved)" onbeforesave="checkContractDetails(product1e.contractCode,product1e.parentBrandName,product1e.variantName,'nc_MinimumOrder',$index,$data,1,1)" onaftersave="updateContractDetails(product1e.contractCode,product1e.parentBrandName,product1e.variantName,'nc_MinimumOrder',$index,$data,1,1)">
+                        <p class="text-right" ng-class="{'P': 'text-danger', 'R': 'text-primary'}[product1e.nc_MinimumOrder_lastModifiedBy]">{{ product1e.nc_MinimumOrder || 0 }}</p>
+                    </a>
+                    <p class="text-right text-muted" ng-show="product1e.isProducerApproved||product1e.isRetailerApproved">{{ product1e.nc_MinimumOrder || 0 }}</p>
+                </td>
+                <td>
+                    <a href="#" editable-text="product1e.nc_VolumeDiscountRate" ng-show="(!product1e.isProducerApproved)&&(!product1e.isRetailerApproved)" onbeforesave="checkContractDetails(product1e.contractCode,product1e.parentBrandName,product1e.variantName,'nc_VolumeDiscountRate',$index,$data,1,1)" onaftersave="updateContractDetails(product1e.contractCode,product1e.parentBrandName,product1e.variantName,'nc_VolumeDiscountRate',$index,$data,1,1)">
+                        <p class="text-right" ng-class="{'P': 'text-danger', 'R': 'text-primary'}[product1e.nc_VolumeDiscountRate_lastModifiedBy]">{{ product1e.nc_VolumeDiscountRate || 0 }}</p>
+                    </a>
+                    <p class="text-right text-muted" ng-show="product1e.isProducerApproved||product1e.isRetailerApproved">{{ product1e.nc_VolumeDiscountRate || 0 }}</p>
+                </td>
+                <td>
+                    <a href="#" editable-text="product1e.nc_SalesTargetVolume" ng-show="(!product1e.isProducerApproved)&&(!product1e.isRetailerApproved)" onbeforesave="checkContractDetails(product1e.contractCode,product1e.parentBrandName,product1e.variantName,'nc_SalesTargetVolume',$index,$data,1,1)" onaftersave="updateContractDetails(product1e.contractCode,product1e.parentBrandName,product1e.variantName,'nc_SalesTargetVolume',$index,$data,1,1)">
+                        <p class="text-right" ng-class="{'P': 'text-danger', 'R': 'text-primary'}[product1e.nc_SalesTargetVolume_lastModifiedBy]">{{ product1e.nc_SalesTargetVolume || 0 }}</p>
+                    </a>
+                    <p class="text-right text-muted" ng-show="product1e.isProducerApproved||product1e.isRetailerApproved">{{ product1e.nc_SalesTargetVolume || 0 }}</p>
+                </td>
+                <td>
+                    <a href="#" editable-text="product1e.nc_PerformanceBonusRate" ng-show="(!product1e.isProducerApproved)&&(!product1e.isRetailerApproved)" onbeforesave="checkContractDetails(product1e.contractCode,product1e.parentBrandName,product1e.variantName,'nc_PerformanceBonusRate',$index,$data,1,1)" onaftersave="updateContractDetails(product1e.contractCode,product1e.parentBrandName,product1e.variantName,'nc_PerformanceBonusRate',$index,$data,1,1)">
+                        <p class="text-right" ng-class="{'P': 'text-danger', 'R': 'text-primary'}[product1e.nc_PerformanceBonusRate_lastModifiedBy]">{{ product1e.nc_PerformanceBonusRate || 0 }}</p>
+                    </a>
+                    <p class="text-right text-muted" ng-show="product1e.isProducerApproved||product1e.isRetailerApproved">{{ product1e.nc_PerformanceBonusRate || 0 }}</p>
+                </td>
+                <td>
+                    <a href="#" editable-text="product1e.nc_PaymentDays" ng-show="(!product1e.isProducerApproved)&&(!product1e.isRetailerApproved)" onbeforesave="checkContractDetails(product1e.contractCode,product1e.parentBrandName,product1e.variantName,'nc_PaymentDays',$index,$data,1,1)" onaftersave="updateContractDetails(product1e.contractCode,product1e.parentBrandName,product1e.variantName,'nc_PaymentDays',$index,$data,1,1)">
+                        <p class="text-right" ng-class="{'P': 'text-danger', 'R': 'text-primary'}[product1e.nc_PaymentDays_lastModifiedBy]">{{ product1e.nc_PaymentDays || 0 }}</p>
+                    </a>
+                    <p class="text-right text-muted" ng-show="product1e.isProducerApproved||product1e.isRetailerApproved">{{ product1e.nc_PaymentDays || 0 }}</p>
+                </td>
+                <td>
+                    <a href="#" editable-text="product1e.nc_OtherCompensation" ng-show="(!product1e.isProducerApproved)&&(!product1e.isRetailerApproved)" onbeforesave="checkContractDetails(product1e.contractCode,product1e.parentBrandName,product1e.variantName,'nc_OtherCompensation',$index,$data,1,1)" onaftersave="updateContractDetails(product1e.contractCode,product1e.parentBrandName,product1e.variantName,'nc_OtherCompensation',$index,$data,1,1)">
+                        <p class="text-right" ng-class="{'P': 'text-danger', 'R': 'text-primary'}[product1e.nc_OtherCompensation_lastModifiedBy]">{{ product1e.nc_OtherCompensation || 0 }}</p>
+                    </a>
+                    <p class="text-right text-muted" ng-show="product1e.isProducerApproved||product1e.isRetailerApproved">{{ product1e.nc_OtherCompensation || 0 }}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{ product1e.isProducerApproved && Label.getContent('Agree') || Label.getContent('DisAgree') }}</p>
+                </td>
+                <td>
+                    <a href="#" editable-checkbox="product1e.isRetailerApproved" e-title="{{Label.getContent('Approved')}}?" ng-show='(!product1e.isProducerApproved)||(product1e.isProducerApproved&&(!product1e.isRetailerApproved))' onbeforesave="checkContractDetails(product1e.contractCode,product1e.parentBrandName,product1e.variantName,'isRetailerApproved',$index,$data,1,1)" onaftersave="updateContractDetails(product1e.contractCode,product1e.parentBrandName,product1e.variantName,'isRetailerApproved',$index,$data,1,1)">
+                        <p class="text-right">{{ product1e.isRetailerApproved && Label.getContent('Agree') || Label.getContent('DisAgree') }}</p>
+                    </a>
+                    <p class="text-right" ng-show="product1e.isRetailerApproved&&product1e.isProducerApproved" class="text-right">{{ product1e.isRetailerApproved && Label.getContent('Agree') || Label.getContent('DisAgree') }}</p>
+                </td>
+            </tr>
+            <tr class="danger">
+                <th colspan="9">{{Label.getContent('Brand')}}-{{Label.getContent('HealthBeauties')}}</th>
+            </tr>
+        </tbody>
     </table>
     <div ng-show='!isP1Ready' style='text-align:center;'>
 	    <img src='/img/computer.jpg'></img>
@@ -61,7 +119,7 @@
     <table class="table table-condensed table-bordered table-success" ng-show='isP2Ready'>
         <thead>
             <tr>
-                <th colspan="2"></th>
+                <th></th>
                 <th colspan="2">
                     <p class="text-center">{{Label.getContent('Volume Discounts')}}<p>
                 </th>
@@ -71,7 +129,7 @@
                 <th colspan="4"></th>
             </tr>
             <tr>
-                <th colspan="2"></th>
+                <th></th>
                 <th>
                     <p class="text-center">{{Label.getContent('Minimum Order Quantity')}}(units mln)</p>
                 </th>
@@ -94,7 +152,7 @@
                     <p class="text-center">{{Label.getContent('Supplier Agreement')}}</p>
                 </th>
                 <th>
-                    <p class="text-center">{{Label.getContent('Supplier Agreement')}}</p>
+                    <p class="text-center">{{Label.getContent('Retailer Agreement')}}</p>
                 </th>
             </tr>
         </thead>
@@ -114,7 +172,7 @@
     <table class="table table-condensed table-bordered table-success" ng-show='isP3Ready'>
         <thead>
             <tr>
-                <th colspan="2"></th>
+                <th></th>
                 <th colspan="2">
                     <p class="text-center">{{Label.getContent('Volume Discounts')}}<p>
                 </th>
@@ -124,7 +182,7 @@
                 <th colspan="4"></th>
             </tr>
             <tr>
-                <th colspan="2"></th>
+                <th></th>
                 <th>
                     <p class="text-center">{{Label.getContent('Minimum Order Quantity')}}(units mln)</p>
                 </th>
@@ -147,7 +205,7 @@
                     <p class="text-center">{{Label.getContent('Supplier Agreement')}}</p>
                 </th>
                 <th>
-                    <p class="text-center">{{Label.getContent('Supplier Agreement')}}</p>
+                    <p class="text-center">{{Label.getContent('Retailer Agreement')}}</p>
                 </th>
             </tr>
         </thead>

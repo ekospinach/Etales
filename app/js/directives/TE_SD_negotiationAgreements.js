@@ -41,7 +41,42 @@ define(['directives', 'services'], function(directives){
                     }
                 }
 
-                scope.updateContractDetails=function(contractCode,brandName,varName,location,index,value){
+                scope.checkContractDetails=function(contractCode,brandName,varName,location,index,value,categroy,retailerID){
+                    var d=$q.defer();
+                    var url='/checkContractDetails/'+contractCode+'/'+brandName+'/'+varName+'/'+location;
+                    $http({
+                        method:'GET',
+                        url:url
+                    }).then(function(data){
+                        if(data.data.result=="no"){
+                            d.resolve(Label.getContent('This product is locked'));
+                        }else{
+                            d.resolve();
+                        }
+                        if(categroy==1){
+                            switch(retailerID){
+                                case 1:
+                                scope.product1es[index]=data.data.doc;
+                                break;
+                                case 2:
+                                scope.product2es[index]=data.data.doc;
+                                break;
+                            }
+                        }else{
+                            switch(retailerID){
+                                case 1:
+                                scope.product1hs[index]=data.data.doc;
+                                break;
+                                case 2:
+                                scope.product2hs[index]=data.data.doc;
+                                break;
+                            }
+                        }
+                    })
+                    return d.promise;
+                }
+
+                scope.updateContractDetails=function(contractCode,brandName,varName,location,index,value,categroy,retailerID){
                     var postData={
                         contractCode:contractCode,
                         brandName:brandName,
@@ -55,8 +90,26 @@ define(['directives', 'services'], function(directives){
                         url:'/updateContractDetails',
                         data:postData
                     }).then(function(data){
-                        console.log('success');
-                    })
+                        if(categroy==1){
+                            switch(retailerID){
+                                case 1:
+                                scope.product1es[index]=data.data;
+                                break;
+                                case 2:
+                                scope.product2es[index]=data.data;
+                                break;
+                            }
+                        }else{
+                            switch(retailerID){
+                                case 1:
+                                scope.product1hs[index]=data.data;
+                                break;
+                                case 2:
+                                scope.product2hs[index]=data.data;
+                                break;
+                            }
+                        }
+                    });
                 }
 
                 var getResult =function(){

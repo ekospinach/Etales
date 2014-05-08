@@ -854,7 +854,7 @@ var getLabelBase = function(){
 		{id:'Agree',  ENG:'Agree',  CHN:'同意',  RUS:''},
 		{id:'DisAgree',  ENG:'DisAgree',  CHN:'不同意',  RUS:''},
 		{id:'Approved',  ENG:'Approved',  CHN:'确认',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'This product is locked',  ENG:'This product is locked',  CHN:'该产品已锁定',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
