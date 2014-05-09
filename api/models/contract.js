@@ -23,9 +23,14 @@ var contractVariantDetailsSchema = mongoose.Schema({
      variantName                            : String,
      variantID                              : Number,
     
+     composition                            : [Number], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+     currentPriceBM                         : Number,
+     isNewProduct							: Boolean,  //used for showing tag "NEW"
+     isCompositionModified                  : Boolean, //compare with previous period composition, used for showing tag "MODIFIED"
+
      nc_MinimumOrder                        : Number,
      nc_MinimumOrder_lastModifiedBy         : String,
-     nc_VolumeDiscountRate                  : Number,
+     nc_VolumeDiscountRate                  : Number,,
      nc_VolumeDiscountRate_lastModifiedBy   : String,    
     
      nc_SalesTargetVolume                   : Number,
