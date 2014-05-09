@@ -30,7 +30,7 @@ var contractVariantDetailsSchema = mongoose.Schema({
 
      nc_MinimumOrder                        : Number,
      nc_MinimumOrder_lastModifiedBy         : String,
-     nc_VolumeDiscountRate                  : Number,,
+     nc_VolumeDiscountRate                  : Number,
      nc_VolumeDiscountRate_lastModifiedBy   : String,    
     
      nc_SalesTargetVolume                   : Number,
