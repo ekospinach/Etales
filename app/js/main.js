@@ -23,7 +23,8 @@
 			require: 				'../bower_components/requirejs/require',
 			underscore: 			'../bower_components/underscore/underscore',
 			bootstrap: 				'../bower_components/bootstrap/dist/js/bootstrap',
-			angularBootstrap:  		'../bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls',
+			angularBootstrap: 		'./steps/angular-bootstrap',
+			//angularBootstrap:  		'../bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls',
 			routingConfig :  		'./routingConfig',
 			//jquery-jqplot-->Map.html
 			jqplot: 				'../bower_components/jqplot/jquery.jqplot.min',
