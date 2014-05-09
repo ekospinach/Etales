@@ -6,13 +6,16 @@
             <p class="lead">{{Label.getContent('eTales Info')}}</p>
             <p>
                 <a class="btn btn-outline-inverse btn-lg" ng-click="openLoginModal()">{{Label.getContent('Get started')}}</a>
+                
                 <a class="btn btn-outline-inverse btn-lg"  ng-click="openAdminLoginModal()">{{Label.getContent('Admin entrance')}}</a>
             </p>
         </div>
     </main>
 </div>
 <!--modal start-->
-	<div modal="loginModal" class="hide" close="closeLoginModal()" options="loginOpts">
+<!-- <div ng-controller="ModalDemoCtrl">
+	<script type="text/ng-template" id="myModalContent.html">
+	// <div modal="loginModal" class="hide" close="closeLoginModal()" options="loginOpts">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -59,7 +62,9 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	//</div>
+	</script>
+</div> -->
 	<div modal="aminLoginModal" class="hide" close="closeAdminLoginModal()" options="adminLoginOpts">
 		<div class="modal-dialog">
 			<div class="modal-content">

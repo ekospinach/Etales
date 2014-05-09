@@ -1,0 +1,43 @@
+
+<div class="modal-header">
+	<button type="button" class="close" ng-click="cancel()">&times;</button>
+	<h4 class="modal-title">{{Label.getContent('User Login')}}</h4>
+</div>
+<div class="modal-body">
+	<form class="form-horizontal" role="form">
+		<div class="form-group">
+	    	<label for="userRole" class="col-sm-2 control-label">{{Label.getContent('Role')}}:</label>
+	    	<div class="col-sm-10">
+	    		<select class="form-control" id="userRole" ng-model="userRole">
+					<option value="1">{{Label.getContent('Producer')}} 1</option>
+					<option value="2">{{Label.getContent('Producer')}} 2</option>
+					<option value="3">{{Label.getContent('Producer')}} 3</option>
+					<option value="5">{{Label.getContent('Retailer')}} 1</option>
+					<option value="6">{{Label.getContent('Retailer')}} 2</option>
+					<option value="9">{{Label.getContent('Facilitator')}}</option>
+				</select>
+	    	</div>
+	  	</div>
+	  	<div class="form-group">
+	    	<label for="userSeminar" class="col-sm-2 control-label">{{Label.getContent('Seminar')}}:</label>
+	    	<div class="col-sm-10">
+	      		<input type="text" id="userSeminar" class="form-control" placeholder="{{Label.getContent('Seminar Code')}}" ng-model="userSeminar">
+	    	</div>
+	  	</div>
+	  	<div class="form-group">
+	    	<label for="userPassword" class="col-sm-2 control-label">{{Label.getContent('Password')}}:</label>
+	    	<div class="col-sm-10">
+	      		<input type="password" id="userPassword" class="form-control" ng-model="userPassword">
+	    	</div>
+	  	</div>
+	</form>
+	<div class="{{userBubleClassName}}" ng-show='true'>
+		<strong>{{userBubleTitle}}</strong> {{userBubleMsg}}
+	</div>	
+</div>
+<div class="modal-footer">
+	<a class="btn btn-default" ng-click="cancel()">{{Label.getContent('Cancel')}}</a>
+	<a class="btn btn-primary" ng-click="userLogin()">
+		{{Label.getContent('Login')}}
+	</a>
+</div>
