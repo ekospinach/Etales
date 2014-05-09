@@ -1,6 +1,6 @@
 define(['app','socketIO'], function(app) {
 
-	app.controller('adminDetailsCtrl',['$scope', '$http','$rootScope','SeminarInfo', function($scope, $http,$rootScope, SeminarInfo) {
+	app.controller('adminDetailsCtrl',['$scope', '$http','$rootScope','EditSeminarInfo', function($scope, $http,$rootScope, EditSeminarInfo) {
 		$rootScope.loginCss    = "";
 	    $rootScope.loginFooter = "bs-footer";
 	    $rootScope.loginLink   = "footer-links";
@@ -32,17 +32,11 @@ define(['app','socketIO'], function(app) {
 			if(data.msg != ''){ $scope.kernelMessage.push(data.msg); }
 		});	        
 
-		//var initializePage=function(){
-		$scope.seminar = SeminarInfo.getSelectedSeminar();
+		$scope.seminar = EditSeminarInfo.getSelectedSeminar();
 		$scope.isMessageShown = false;
-		//	console.log($scope.seminar);
-		//}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
-		//initializePage();
-	
-	    // $scope.$watch('seminar.traceActive', function() {
-	    //   console.log('traceActive changeed.');
-	    // });		
+
+
+		
 
 		$scope.getSeminarStatus = function(value){
 			if(value){
@@ -51,6 +45,7 @@ define(['app','socketIO'], function(app) {
 				return 'False (Please set related paramters below and initialise seminar)'
 			}
 		}
+
 		$scope.updatePassword=function(seminar,location,additionalIdx){
 			var data={
 				seminarCode:seminar.seminarCode,
@@ -58,9 +53,8 @@ define(['app','socketIO'], function(app) {
 				additionalIdx:additionalIdx,
 				value:seminar[location][additionalIdx].password,
 				behaviour:'updatePassword'
-
 			}
-			console.log('post data:' + data);
+			console.log('update Password post data:' + data);
 			$http({method: 'POST', url: '/updateSeminar',data:data}).
 			  success(function(data, status, headers, config) {
 			  	console.log('update success');
@@ -76,6 +70,7 @@ define(['app','socketIO'], function(app) {
 				value : seminar.currentPeriod,
 				behaviour:'updateCurrentPeriod'
 			}
+			console.log('update current period, post data:' + data);
 			$http({method: 'POST', url: '/updateSeminar',data:data}).
 			  success(function(data, status, headers, config) {
 			  	console.log('update success');

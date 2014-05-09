@@ -16,7 +16,7 @@ var proVarDecisionSchema = mongoose.Schema({
     discontinue : Boolean,
     production : Number,
     currentPriceBM : Number,
-    nextPriceBM : Number,
+    //nextPriceBM : Number,
 
     //Modified by Hao, 2014-Apr-23
     // currentPriceEmall : Number,

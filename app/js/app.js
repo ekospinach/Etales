@@ -144,7 +144,7 @@
 	        });
 		}]).config(function(LabelProvider){
 			//config default language
-			LabelProvider.initialiseLanguage('CHN');
+			LabelProvider.initialiseLanguage('ENG');
 		}).config(function(cfpLoadingBarProvider){
 			 cfpLoadingBarProvider.includeSpinner = true;
 		});

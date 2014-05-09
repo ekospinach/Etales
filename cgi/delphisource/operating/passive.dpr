@@ -168,6 +168,7 @@ var
     else
     begin
       sResponseData.add('get passive decision failed, run time code:' + IntToStr( ReturnCode ));
+     // Log('Data directory:' + conf.cr_AdministratorFilesLocation);
       Log('get passive decision failed, run time code:' + IntToStr( ReturnCode ));
       Result := 'Status: 404 Not Found';
     end;

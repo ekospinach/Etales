@@ -72,7 +72,8 @@ define(['angular',
 
 			},
 			getActivedNegotiationItem : function(){
-				var negotiationItems=['nc_MinimumOrder',
+				var negotiationItems=[
+				'nc_MinimumOrder',
 				'nc_SalesTargetVolume',
 				'nc_PaymentDays',
 				'nc_OtherCompensation',				
@@ -116,15 +117,30 @@ define(['angular',
 		var selectedSeminar;
 		return {
 			getSelectedSeminar : function(){
-				console.log('services get:' + selectedSeminar);
+				console.log('[SeminarInfo]services get:' + selectedSeminar);
 				return selectedSeminar;
 			},
 			setSelectedSeminar : function(value){
 				selectedSeminar = value;
-				console.log('services set seminar: ' + selectedSeminar);
+				console.log('[SeminarInfo]services set seminar: ' + selectedSeminar);
 			}		
 		}
 	})
+
+	services.factory('EditSeminarInfo', function(){
+		var selectedSeminar;
+		return {
+			getSelectedSeminar : function(){
+				console.log('[EditSeminarInfo]services get:' + selectedSeminar.seminarCode);
+				return selectedSeminar;
+			},
+			setSelectedSeminar : function(value){
+				selectedSeminar = value;
+				console.log('[EditSeminarInfo]services set seminar: ' + selectedSeminar.seminarCode);
+			}		
+		}
+	})
+
 
 	services.factory('PeriodInfo', function(){
 		var currentPeriod;

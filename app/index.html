@@ -27,7 +27,7 @@
 				</div>
 				<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">		
 					<ul class="nav navbar-nav">
-						<li class="active" access-level='{{accessLevels.public}}' active-nav>
+						<li ng-show="false" class="active" access-level='{{accessLevels.public}}' active-nav>
 							<a href="/#/home">{{Label.getContent('Participant manual')}}</a>
 						</li>
 						<li class="dropdown" access-level='{{accessLevels.playerView}}' acyive-nva>
@@ -123,7 +123,7 @@
 		    	<ul class="{{loginLink}}" style="margin-left:0px">
 		    		<li class="current-version"> {{Label.getContent('Currently')}} v0.0.1 </li>
 		  		  	<li>
-		    			<a ng-click="Label.changeLanguage('ENG')">English version</a>
+		    			<a ng-click="Label.changeLanguage('CHN')">中文版本</a>
 		    		</li>
 		  		  	<li>
 		    			<a href="/#/test" ng-show='flase'>Operation entrance</a>
