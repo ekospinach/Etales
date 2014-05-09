@@ -56,6 +56,7 @@
             <tr ng-repeat='product1e in product1es'>
                 <td>
                     <p class="padding-10">{{product1e.parentBrandName}}{{product1e.variantName}}</p>
+                    <!--<button  popover-template="my.tpl.html" popover-placement="bottom">???</button>-->
                 </td>
                 <td>
                     <a href="#" editable-text="product1e.nc_MinimumOrder" ng-show="(!product1e.isProducerApproved)&&(!product1e.isRetailerApproved)" onbeforesave="checkContractDetails(product1e.contractCode,product1e.parentBrandName,product1e.variantName,'nc_MinimumOrder',$index,$data,1,1)" onaftersave="updateContractDetails(product1e.contractCode,product1e.parentBrandName,product1e.variantName,'nc_MinimumOrder',$index,$data,1,1)">
