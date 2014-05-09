@@ -338,7 +338,9 @@ define(['directives', 'services'], function(directives){
                                 brandName:products[idx].parentBrandName,
                                 brandID:products[idx].parentBrandID,
                                 varName:products[idx].varName,
-                                varID:products[idx].varID
+                                varID:products[idx].varID,
+                                composition:products[idx].composition,
+                                currentPriceBM:products[idx].currentPriceBM
                             }
                             $http({
                                 method:'POST',
@@ -362,7 +364,9 @@ define(['directives', 'services'], function(directives){
                                 brandName:products[idx].parentBrandName,
                                 brandID:products[idx].parentBrandID,
                                 varName:products[idx].varName,
-                                varID:products[idx].varID
+                                varID:products[idx].varID,
+                                composition:products[idx].composition,
+                                currentPriceBM:products[idx].currentPriceBM
                             }
                             $http({
                                 method:'POST',
@@ -386,7 +390,9 @@ define(['directives', 'services'], function(directives){
                                 brandName:products[idx].parentBrandName,
                                 brandID:products[idx].parentBrandID,
                                 varName:products[idx].varName,
-                                varID:products[idx].varID
+                                varID:products[idx].varID,
+                                composition:products[idx].composition,
+                                currentPriceBM:products[idx].currentPriceBM
                             }
                             $http({
                                 method:'POST',
@@ -410,7 +416,9 @@ define(['directives', 'services'], function(directives){
                                 brandName:products[idx].parentBrandName,
                                 brandID:products[idx].parentBrandID,
                                 varName:products[idx].varName,
-                                varID:products[idx].varID
+                                varID:products[idx].varID,
+                                composition:products[idx].composition,
+                                currentPriceBM:products[idx].currentPriceBM
                             }
                             $http({
                                 method:'POST',

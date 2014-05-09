@@ -25,7 +25,7 @@ var contractVariantDetailsSchema = mongoose.Schema({
     
      composition                            : [Number], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
      currentPriceBM                         : Number,
-     isNewProduct							: Boolean,  //used for showing tag "NEW"
+     isNewProduct					    : Boolean,  //used for showing tag "NEW"
      isCompositionModified                  : Boolean, //compare with previous period composition, used for showing tag "MODIFIED"
 
      nc_MinimumOrder                        : Number,
@@ -73,9 +73,9 @@ exports.addContract = function(io){
                                    seminar : req.body.seminar,
                                    draftedByCompanyID : req.body.draftedByCompanyID,
                                    producerID : req.body.producerID,
-                                   retailerID : req.body.retailerID,
+                                   retailerID : req.body.retailerID,  
                                    isDraftFinished : false,
-                                   isLocked : false, 
+                                   isLocked : false
                               });
                               /*need add Contract Detail*/
                               newContract.save(function(err){
@@ -122,7 +122,11 @@ exports.addContractDetails=function(io){
                nc_OtherCompensation                   : 0,
                nc_OtherCompensation_lastModifiedBy    : 'P',             
                isProducerApproved                     : false,
-               isRetailerApproved                     : false,               
+               isRetailerApproved                     : false,  
+               isNewProduct                           : true,  //used for showing tag "NEW"
+               isCompositionModified                  : true, //compare with previous period composition, used for showing tag "MODIFIED"
+               composition                            : req.body.composition, //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+               currentPriceBM                         : req.body.currentPriceBM             
           });
           newContractVariantDetails.save(function(err){
                if(err) next(new Error(err));
