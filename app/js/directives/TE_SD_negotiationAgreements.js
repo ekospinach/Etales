@@ -25,7 +25,7 @@ define(['directives', 'services'], function(directives){
                     var socket = io.connect();
                     socket.on('retailerEditNegotiation', function(data){
                         scope.isNegotiationChange=true;
-                        //getResult();
+                        getResult();
                     });             
                 }
 
