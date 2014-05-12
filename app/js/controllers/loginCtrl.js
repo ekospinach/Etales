@@ -11,27 +11,10 @@ define(['app','socketIO'], function(app) {
 
 		var userRoles = routingConfig.userRoles;
 
-
-		$scope.welcomeMessage = 'hey this is loginCtrl.js!';
-		$scope.loginOpts = {
-			backdropFade: true,
-			dialogFade:true
-		};
-		$scope.adminLoginOpts = {
-			backdropFade: true,
-			dialogFade:true
-		};
-		// $scope.openLoginModal=function(){
-		// 	$scope.loginModal=true;
-		// }
-		var closeLoginModal=function(){
-			$scope.loginModal=false;
-			
-		}
 		$scope.openLoginModal=function(size){
 			var modalInstance = $modal.open({
 				templateUrl: '../../partials/modal/loginModal.html',
-				controller: ModalLoginCtrl,
+				controller: loginModalCtrl,
 				size: size
 		    });
 
@@ -40,12 +23,25 @@ define(['app','socketIO'], function(app) {
 		    });
 		}
 
-		var ModalLoginCtrl=function($rootScope,$scope,$modalInstance,Label,SeminarInfo,RoleInfo,PeriodInfo,PlayerInfo){
+		$scope.openAdminLoginModal=function(size){
+			var modalInstance=$modal.open({
+				templateUrl:'../../partials/modal/adminLoginModal.html',
+				controller:adminLoginModalCtrl,
+				size:size
+			});
+
+			modalInstance.result.then(function(){
+				console.log('admin login');
+			})
+		}
+
+		var loginModalCtrl=function($rootScope,$scope,$modalInstance,Label,SeminarInfo,RoleInfo,PeriodInfo,PlayerInfo){
 			$scope.Label=Label;
 			var cancel = function () {
 			    $modalInstance.dismiss('cancel');
 			};
 			$scope.cancel=cancel;
+			$scope.showbubleMsg=showbubleMsg;
 			$scope.userLogin=function(){
 				var username="";
 				var seminar=userSeminar.value;
@@ -87,18 +83,116 @@ define(['app','socketIO'], function(app) {
 					showbubleMsg('login failure.',1);
 				});	
 			}
+			var showbubleMsg = function(content, status){
+	 			$scope.bubleMsg = ' ' + content;
+		 		switch(status){
+		 			case 1: 
+		 				$scope.userBubleClassName = 'alert alert-danger'; 
+		 				$scope.userBubleTitle = 'Error!';
+		 				$scope.userBubleMsg=content;
+		 				break;
+		 			case 2: 
+		 				$scope.userBubleClassName = 'alert alert-success'; 
+		 				$scope.userBubleTitle = 'Success!';
+		 				$scope.userBubleMsg=content;
+		 				break;
+		 			case 3:
+		 				$scope.userBubleClassName = 'alert alert-block'; 
+		 				$scope.userBubleTitle = 'Warning!';
+		 				$scope.userBubleMsg=content;
+		 				break;	
+		 			case 4: 
+		 				$scope.adminBubleClassName = 'alert alert-danger'; 
+		 				$scope.adminBubleTitle = 'Error!';
+		 				$scope.adminBubleMsg=content;
+		 				break;
+		 			case 5: 
+		 				$scope.adminBubleClassName = 'alert alert-success'; 
+		 				$scope.adminBubleTitle = 'Success!';
+		 				$scope.adminBubleMsg=content;
+		 				break;
+		 			case 6:
+		 				$scope.adminBubleClassName = 'alert alert-block'; 
+		 				$scope.adminBubleTitle = 'Warning!';
+		 				$scope.adminBubleMsg=content;
+		 				break;	  			
+		 			default:
+		 			 $scope.userBubleClassName = 'alert'; 
+		 			 $scope.adminBubleClassName = 'alert'; 
+		 		}
+		 		console.log('infoBuble.show');
+		 		$scope.infoBuble = true;
+		 	};
+
+		}
+		var adminLoginModalCtrl=function($location,$scope,$modalInstance,Label,SeminarInfo,RoleInfo,PeriodInfo,PlayerInfo){
+			$scope.Label=Label;
+			var cancel = function () {
+			    $modalInstance.dismiss('cancel');
+			};
+			$scope.cancel=cancel;
+			$scope.showbubleMsg=showbubleMsg;
+			$scope.adminLogin=function(){
+				if(adminSeminar.value=="MAY"&&adminPassword.value=="123"){
+					showbubleMsg('login success',5);
+					cancel();
+					$location.path('/admin');
+				}else{
+	                showbubleMsg('Failed to login',4);
+				}
+			}
+			var showbubleMsg = function(content, status){
+	 			$scope.bubleMsg = ' ' + content;
+		 		switch(status){
+		 			case 1: 
+		 				$scope.userBubleClassName = 'alert alert-danger'; 
+		 				$scope.userBubleTitle = 'Error!';
+		 				$scope.userBubleMsg=content;
+		 				break;
+		 			case 2: 
+		 				$scope.userBubleClassName = 'alert alert-success'; 
+		 				$scope.userBubleTitle = 'Success!';
+		 				$scope.userBubleMsg=content;
+		 				break;
+		 			case 3:
+		 				$scope.userBubleClassName = 'alert alert-block'; 
+		 				$scope.userBubleTitle = 'Warning!';
+		 				$scope.userBubleMsg=content;
+		 				break;	
+		 			case 4: 
+		 				$scope.adminBubleClassName = 'alert alert-danger'; 
+		 				$scope.adminBubleTitle = 'Error!';
+		 				$scope.adminBubleMsg=content;
+		 				break;
+		 			case 5: 
+		 				$scope.adminBubleClassName = 'alert alert-success'; 
+		 				$scope.adminBubleTitle = 'Success!';
+		 				$scope.adminBubleMsg=content;
+		 				break;
+		 			case 6:
+		 				$scope.adminBubleClassName = 'alert alert-block'; 
+		 				$scope.adminBubleTitle = 'Warning!';
+		 				$scope.adminBubleMsg=content;
+		 				break;	  			
+		 			default:
+		 			 $scope.userBubleClassName = 'alert'; 
+		 			 $scope.adminBubleClassName = 'alert'; 
+		 		}
+		 		console.log('infoBuble.show');
+		 		$scope.infoBuble = true;
+		 	};
 
 		}
 
-		$scope.openAdminLoginModal=function(){
-			$scope.aminLoginModal=true;
-		}
-		var closeAdminLoginModal=function(){
-			$scope.aminLoginModal=false;
-			$scope.bubleClassName = "";    
-            $scope.bubleTitle = "";
-            $scope.bubleMsg = "";
-		}
+		// $scope.openAdminLoginModal=function(){
+		// 	$scope.aminLoginModal=true;
+		// }
+		// var closeAdminLoginModal=function(){
+		// 	$scope.aminLoginModal=false;
+		// 	$scope.bubleClassName = "";    
+  //           $scope.bubleTitle = "";
+  //           $scope.bubleMsg = "";
+		// }
 
 		// $scope.userLogin=function(){
 		// 	var username="";
@@ -142,60 +236,15 @@ define(['app','socketIO'], function(app) {
 		// 	});	
 		// }
 
-		$scope.adminLogin=function(){
-			if($scope.adminSeminar=="MAY"&&$scope.adminPassword=="123"){
-				showbubleMsg('login success',5);
-				closeAdminLoginModal();
-				$location.path('/admin');
-			}else{
-                showbubleMsg('Failed to login',4);
-			}
-		}
-
-		var showbubleMsg = function(content, status){
-	 		$scope.bubleMsg = ' ' + content;
-	 		switch(status){
-	 			case 1: 
-	 				$scope.userBubleClassName = 'alert alert-danger'; 
-	 				$scope.userBubleTitle = 'Error!';
-	 				$scope.userBubleMsg=content;
-	 				break;
-	 			case 2: 
-	 				$scope.userBubleClassName = 'alert alert-success'; 
-	 				$scope.userBubleTitle = 'Success!';
-	 				$scope.userBubleMsg=content;
-	 				break;
-	 			case 3:
-	 				$scope.userBubleClassName = 'alert alert-block'; 
-	 				$scope.userBubleTitle = 'Warning!';
-	 				$scope.userBubleMsg=content;
-	 				break;	
-	 			case 4: 
-	 				$scope.adminBubleClassName = 'alert alert-danger'; 
-	 				$scope.adminBubleTitle = 'Error!';
-	 				$scope.adminBubleMsg=content;
-	 				break;
-	 			case 5: 
-	 				$scope.adminBubleClassName = 'alert alert-success'; 
-	 				$scope.adminBubleTitle = 'Success!';
-	 				$scope.adminBubleMsg=content;
-	 				break;
-	 			case 6:
-	 				$scope.adminBubleClassName = 'alert alert-block'; 
-	 				$scope.adminBubleTitle = 'Warning!';
-	 				$scope.adminBubleMsg=content;
-	 				break;	  			
-	 			default:
-	 			 $scope.userBubleClassName = 'alert'; 
-	 			 $scope.adminBubleClassName = 'alert'; 
-	 		}
-	 		console.log('infoBuble.show');
-	 		$scope.infoBuble = true;
-	 	};
-
-	 	$scope.showbubleMsg=showbubleMsg;
-		$scope.closeLoginModal=closeLoginModal;
-		$scope.closeAdminLoginModal=closeAdminLoginModal;
+		// $scope.adminLogin=function(){
+		// 	if($scope.adminSeminar=="MAY"&&$scope.adminPassword=="123"){
+		// 		showbubleMsg('login success',5);
+		// 		closeAdminLoginModal();
+		// 		$location.path('/admin');
+		// 	}else{
+  //               showbubleMsg('Failed to login',4);
+		// 	}
+		// }
 
 	}]);
 
