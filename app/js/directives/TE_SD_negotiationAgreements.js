@@ -5,6 +5,7 @@ define(['directives', 'services'], function(directives){
             scope : {
                 isPageShown : '=',
                 isPageLoading : '=',
+                isNegotiationChange: '=',
                 isReady : '='
             },
             restrict : 'E',
@@ -16,7 +17,16 @@ define(['directives', 'services'], function(directives){
                     scope.isPageLoading = true;
                     scope.isResultShown = false;                    
                     scope.Label = Label;
+                    startListenChangeFromServer();
                     getResult();
+                }
+
+                var startListenChangeFromServer=function(){
+                    var socket = io.connect();
+                    socket.on('retailerEditNegotiation', function(data){
+                        scope.isNegotiationChange=true;
+                        //getResult();
+                    });             
                 }
 
                 var loadProduct=function(data,categroy,retailerID){
@@ -132,6 +142,7 @@ define(['directives', 'services'], function(directives){
                         }).then(function(data){
                             return organiseArray(data.data,2);
                         }).then(function(data){
+                            scope.isNegotiationChange = false;
                             scope.isResultShown = true;
                             scope.isPageLoading = false; 
                         },function(){
