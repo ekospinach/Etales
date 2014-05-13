@@ -1,6 +1,6 @@
 define(['directives', 'services'], function(directives){
 
-    directives.directive('supplierBMBusiness', ['Label','SeminarInfo','$http','PeriodInfo','$q','PlayerInfo', function(Label, SeminarInfo, $http, PeriodInfo, $q,PlayerInfo){
+    directives.directive('supplierBMBusiness', ['Label','SeminarInfo','$http','PeriodInfo','$q','PlayerInfo','$modal', function(Label, SeminarInfo, $http, PeriodInfo, $q,PlayerInfo,$modal){
         return {
             scope : {
                 isPageShown : '=',
@@ -114,11 +114,17 @@ define(['directives', 'services'], function(directives){
 			    	}
 			    }
 
+
 			    scope.openProductModal=function(brandName,type){
-                    var num=0;
+			    	var loadVariantValue=function(data,brandName,variantName,num){
+				    	var array=_.find(data,function(obj){
+				    		return (obj.variantName==variantName&&obj.parentBrandName==brandName);
+				    	});
+				    	return array.value[num];
+				    }
+			    	var num=0;
                     scope.variants=new Array();
                     scope.brandName=brandName;
-                    scope.productModal=true;
                     if(type="BM"){
                         scope.BMShow=true;
                         scope.OLShow=false;
@@ -172,17 +178,32 @@ define(['directives', 'services'], function(directives){
                                 'Interest':Interest,'Taxes':Taxes,'ExceptionalItems':ExceptionalItems,'NetProfit':NetProfit,'NetProfitChange':NetProfitChange,'NetProfitMargin':NetProfitMargin,'NetProfitShareInCategory':NetProfitShareInCategory,'GrossProfitMargin':GrossProfitMargin,'GrossProfitMarginShare':GrossProfitMarginShare,'TradeSupport':TradeSupport});
                             }
                         }
+                        var modalInstance=$modal.open({
+							templateUrl:'../../partials/modal/supplierBMProduct.html',
+							controller:supplierBMProductModalCtrl
+						});
+
+						modalInstance.result.then(function(){
+							console.log('show Product')
+						})
                     },function(){
                         console.log('fail');
-                    })
-                }
-                scope.productOpts = {
-                    backdropFade: true,
-                    dialogFade:true
-                };
-                scope.closeProductModal=function(){
-                    scope.productModal=false;  
-                }
+                    });
+					
+			    }
+
+			    var supplierBMProductModalCtrl=function($scope,$modalInstance,Label){
+			    	$scope.Label=Label;
+			    	$scope.variants=scope.variants;
+			    	$scope.brandName=scope.brandName;
+			    	$scope.BMShow=scope.BMShow;
+                    $scope.OLShow=scope.OLShow;
+					var cancel = function () {
+					    $modalInstance.dismiss('cancel');
+					};
+					$scope.cancel=cancel;
+			    }
+
 
                 var getResult =function(){
                     var url='/SCR-consolidatedProfitAndLoss/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());

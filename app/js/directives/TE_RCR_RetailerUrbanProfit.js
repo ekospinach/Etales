@@ -1,6 +1,6 @@
 define(['directives', 'services'], function(directives){
 
-    directives.directive('retailerUrbanProfit', ['Label','SeminarInfo','$http','PeriodInfo','$q','PlayerInfo', function(Label, SeminarInfo, $http, PeriodInfo, $q,PlayerInfo){
+    directives.directive('retailerUrbanProfit', ['Label','SeminarInfo','$http','PeriodInfo','$q','PlayerInfo','$modal', function(Label, SeminarInfo, $http, PeriodInfo, $q,PlayerInfo,$modal){
         return {
             scope : {
                 isPageShown : '=',
@@ -28,15 +28,19 @@ define(['directives', 'services'], function(directives){
                     }
                 }
 
-                var loadVariantValue=function(data,brandName,variantName,num){
-                    var array=_.find(data,function(obj){
-                        return (obj.variantName==variantName&&obj.parentBrandName==brandName&&obj.marketID==num);
-                    });
-                    return array.value;
-                }
+                
 
                 scope.openRetailerProductModal=function(brandName,type){
-                    scope.retailerProductModal=true;
+                    var loadVariantValue=function(data,brandName,variantName,num){
+                        var array=_.find(data,function(obj){
+                            return (obj.variantName==variantName&&obj.parentBrandName==brandName&&obj.marketID==num);
+                        });
+                        if(array!=undefined){
+                            return array.value;
+                        }else{
+                            return -1;
+                        }
+                    }
                     var marketID=0;
                     scope.variants=new Array();
                     scope.brandName=brandName;
@@ -86,16 +90,26 @@ define(['directives', 'services'], function(directives){
                                     'Interest':Interest,'Taxes':Taxes,'ExceptionalItems':ExceptionalItems,'NetProfit':NetProfit,'NetProfitChange':NetProfitChange,'NetProfitMargin':NetProfitMargin,'NetProfitShareInCategory':NetProfitShareInCategory,'OperatingProfitMarginShareInCategory':OperatingProfitMarginShareInCategory});
                             }
                         }
+                        var modalInstance=$modal.open({
+                            templateUrl:'../../partials/modal/retailerProfitProduct.html',
+                            controller:retailerProfitProductModalCtrl
+                        });
+                        modalInstance.result.then(function(){
+                            console.log('show Product')
+                        })
                     },function(){
                         console.log('fail');
                     })
                 }
-                scope.retailerProductOpts = {
-                    backdropFade: true,
-                    dialogFade:true
-                };
-                scope.closeRetailerProductModal=function(){
-                    scope.retailerProductModal=false;  
+
+                var retailerProfitProductModalCtrl=function($scope,$modalInstance,Label){
+                    $scope.Label=Label;
+                    $scope.variants=scope.variants;
+                    $scope.brandName=scope.brandName;
+                    var cancel = function () {
+                        $modalInstance.dismiss('cancel');
+                    };
+                    $scope.cancel=cancel;
                 }
 
                 var loadTotalValue=function(data){

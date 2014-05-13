@@ -1,6 +1,6 @@
 define(['directives', 'services'], function(directives){
 
-    directives.directive('retailerStoreManagement', ['RetailerDecisionBase','RetailerDecision','Label','SeminarInfo','$http','$location','$filter','PeriodInfo','$q','PlayerInfo', function(RetailerDecisionBase,RetailerDecision,Label, SeminarInfo, $http,$location,$filter, PeriodInfo, $q,PlayerInfo){
+    directives.directive('retailerStoreManagement', ['RetailerDecisionBase','RetailerDecision','Label','SeminarInfo','$http','$location','$filter','PeriodInfo','$q','PlayerInfo','$modal', function(RetailerDecisionBase,RetailerDecision,Label, SeminarInfo, $http,$location,$filter, PeriodInfo, $q,PlayerInfo,$modal){
         return {
             scope : {
                 isPageShown : '=',
@@ -15,8 +15,6 @@ define(['directives', 'services'], function(directives){
                     scope.isPageLoading = true;
                     scope.isResultShown = false;                    
                     scope.Label = Label;
-                    scope.open=open;
-                    scope.close=close;
                     scope.showView=showView;
                     scope.currentPeriod=PeriodInfo.getCurrentPeriod();
                     RetailerDecisionBase.startListenChangeFromServer();
@@ -499,45 +497,64 @@ define(['directives', 'services'], function(directives){
                     return d.promise;
                 }
 
-                var open = function () {
-                    scope.shouldBeOpen = true;
+                scope.open = function () {
+                    var modalInstance=$modal.open({
+                        templateUrl:'../../partials/modal/retailerOrderModal.html',
+                        controller:retailerOrderModalCtrl
+                    });
+
+                    modalInstance.result.then(function(){
+                        console.log('retailerNewProductModal');
+                    })
                 };
-                var close = function () {
-                    scope.shouldBeOpen = false;
-                    RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
-                        scope.pageBase = base;
-                    }).then(function(){
-                        return showView(scope.category,scope.market);
-                    }), function(reason){
-                        console.log('from ctr: ' + reason);
-                    }, function(update){
-                        console.log('from ctr: ' + update);
+                var retailerOrderModalCtrl=function($rootScope,$scope,$modalInstance,Label,SeminarInfo,RoleInfo,PeriodInfo,PlayerInfo,ProducerDecisionBase){
+                    $scope.Label=Label;
+                    $scope.pageBase=scope.pageBase;
+                    $scope.category=scope.category;
+                    $scope.market=scope.market;
+                    $scope.orderProducts=scope.orderProducts;
+                    /*set add function is lauch new Brand*/
+                    var close = function () {
+                        $modalInstance.dismiss('cancel');
+                        RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
+                            $scope.pageBase = base;
+                        }).then(function(){
+                            return showView($scope.category,$scope.market);
+                        }), function(reason){
+                            console.log('from ctr: ' + reason);
+                        }, function(update){
+                            console.log('from ctr: ' + update);
+                        };
                     };
-                };
-                scope.addOrders=function(market){
-                    var ordersProducts=new Array();
-                    for(var i=0;i<scope.orderProducts.length;i++){
-                        if(scope.orderProducts[i].select){
-                            ordersProducts.push(scope.orderProducts[i]);
+                    var addOrders=function(market){
+                        var ordersProducts=new Array();
+                        for(var i=0;i<$scope.orderProducts.length;i++){
+                            if($scope.orderProducts[i].select){
+                                ordersProducts.push($scope.orderProducts[i]);
+                            }
                         }
-                    }
-                    for(i=0;i<ordersProducts.length;i++){
-                        ordersProducts[i].order=0,
-                        ordersProducts[i].retailerPrice=0,
-                        ordersProducts[i].shelfSpace=0,
-                        ordersProducts[i].pricePromotions={
-                            promo_Frequency:0,
-                            promo_Rate:0
+                        for(i=0;i<ordersProducts.length;i++){
+                            ordersProducts[i].order=0,
+                            ordersProducts[i].retailerPrice=0,
+                            ordersProducts[i].shelfSpace=0,
+                            ordersProducts[i].pricePromotions={
+                                promo_Frequency:0,
+                                promo_Rate:0
+                            }
                         }
+                        if(market=="Urban"){
+                            RetailerDecisionBase.addOrders(1,ordersProducts);
+                        }
+                        else{
+                            RetailerDecisionBase.addOrders(2,ordersProducts);
+                        }
+                        close();
                     }
-                    if(market=="Urban"){
-                        RetailerDecisionBase.addOrders(1,ordersProducts);
-                    }
-                    else{
-                        RetailerDecisionBase.addOrders(2,ordersProducts);
-                    }
-                    close();
+                    $scope.close=close;
+                    $scope.addOrders=addOrders;
                 }
+
+                
                 scope.deleteOrder=function(category,market,brandName,varName){
                     if(market=="Urban"){
                         market=1;

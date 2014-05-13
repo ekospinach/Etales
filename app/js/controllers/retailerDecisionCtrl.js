@@ -14,7 +14,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    })
 
 		    var switching=function(type){
-		    	$scope.NegotiationAgreements=$scope.Marketing=$scope.PrivateLabelPortfolioManagement=$scope.StoreManagement=$scope.MarketResearchOrders=$scope.isNegotiation=false;
+		    	$scope.isNegotiationChange=$scope.NegotiationAgreements=$scope.Marketing=$scope.PrivateLabelPortfolioManagement=$scope.StoreManagement=$scope.MarketResearchOrders=$scope.isNegotiation=false;
 		    	switch(type){
 		    		case 'showNegotiationAgreements':$scope.NegotiationAgreements=true;$scope.isNegotiation=true;break;
 		    		case 'showMarketing':$scope.Marketing=true;break;

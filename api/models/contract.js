@@ -193,6 +193,11 @@ exports.updateContractDetails=function(io){
                if(queryCondition.location!="isProducerApproved"||queryCondition.location!="isRetailerApproved"){
                   doc[queryCondition.modify]=queryCondition.userType;  
                }
+               if(queryCondition.userType=="P"){
+                    io.sockets.emit('supplierEditNegotiation', 'Supplier Edit Negotiation ');
+               }else{
+                    io.sockets.emit('retailerEditNegotiation', 'Retailer Edit Negotiation');
+               }
                doc.save(function(err,doc,numberAffected){
                     if(err){
                          next(new Error(err));

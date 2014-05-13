@@ -175,7 +175,7 @@ define(['directives', 'services'], function(directives){
                                     break;
                                 }
                             }
-                            if(postion!=-1){
+                            if(postion!=-1&&selected!=undefined){
                                 return (scope.productes[postion].packFormat && selected.length) ? selected[0].text : Label.getContent('Not set'); 
                             }
                             else{
@@ -189,7 +189,7 @@ define(['directives', 'services'], function(directives){
                                     break;
                                 }
                             }
-                            if(postion!=-1){
+                            if(postion!=-1&&selected!=undefined){
                                 return (scope.producths[postion].packFormat && selected.length) ? selected[0].text : Label.getContent('Not set'); 
                             }
                             else{
@@ -445,19 +445,19 @@ define(['directives', 'services'], function(directives){
                         initializePage();
                     }
                 });
-                // scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
-                //     ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
-                //         scope.pageBase = base; 
-                //     }).then(function(){
-                //         console.log('11111');
-                //         return showView();
-                //         console.log('2222');
-                //     }), function(reason){
-                //         console.log('from ctr: ' + reason);
-                //     }, function(update){
-                //         console.log('from ctr: ' + update);
-                //     };
-                // });
+                scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
+                    ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
+                        scope.pageBase = base; 
+                    }).then(function(){
+                        console.log('11111');
+                        return showView();
+                        console.log('2222');
+                    }), function(reason){
+                        console.log('from ctr: ' + reason);
+                    }, function(update){
+                        console.log('from ctr: ' + update);
+                    };
+                });
 
             }
         }

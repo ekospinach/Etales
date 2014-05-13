@@ -34,6 +34,8 @@
 </style>
 
 <div class="my-super-awesome-loading-box" ng-show="isPageLoading">Loading...</div>
+<div class="my-super-awesome-loading-box" ng-show="isNegotiationChange">{{Label.getContent('Retailer Change')}}</div>
+
 
 <div class="container bs-docs-container">
     <div class="row">
@@ -186,7 +188,7 @@
         </div>
         <div class="col-md-12" ng-show='isNegotiation'>
             <div class="bs-docs-section">
-                <supplier-negotiation-agreements ng-show='NegotiationAgreements' is-page-shown='NegotiationAgreements' is-ready='isReady' is-page-loading='isPageLoading'></supplier-negotiation-agreements>
+                <supplier-negotiation-agreements ng-show='NegotiationAgreements' is-page-shown='NegotiationAgreements' is-ready='isReady' is-negotiation-change='isNegotiationChange' is-page-loading='isPageLoading'></supplier-negotiation-agreements>
             </div>
         </div>
     </div>

@@ -1,6 +1,6 @@
 define(['directives', 'services'], function(directives){
 
-    directives.directive('supplierOnlineBusiness', ['Label','SeminarInfo','$http','PeriodInfo','$q','PlayerInfo', function(Label, SeminarInfo, $http, PeriodInfo, $q,PlayerInfo){
+    directives.directive('supplierOnlineBusiness', ['Label','SeminarInfo','$http','PeriodInfo','$q','PlayerInfo','$modal', function(Label, SeminarInfo, $http, PeriodInfo, $q,PlayerInfo,$modal){
         return {
             scope : {
                 isPageShown : '=',
@@ -19,6 +19,12 @@ define(['directives', 'services'], function(directives){
                 }
 
                 scope.openProductModal=function(brandName,type){
+                    var loadVariantValue=function(data,brandName,variantName,num){
+                        var array=_.find(data,function(obj){
+                            return (obj.variantName==variantName&&obj.parentBrandName==brandName);
+                        });
+                        return array.value[num];
+                    }
                     var num=0;
                     scope.variants=new Array();
                     scope.brandName=brandName;
@@ -76,17 +82,36 @@ define(['directives', 'services'], function(directives){
                                 'Interest':Interest,'Taxes':Taxes,'ExceptionalItems':ExceptionalItems,'NetProfit':NetProfit,'NetProfitChange':NetProfitChange,'NetProfitMargin':NetProfitMargin,'NetProfitShareInCategory':NetProfitShareInCategory,'GrossProfitMargin':GrossProfitMargin,'GrossProfitMarginShare':GrossProfitMarginShare,'TradeSupport':TradeSupport});
                             }
                         }
+
+                        var modalInstance=$modal.open({
+                            templateUrl:'../../partials/modal/supplierOnlineProduct.html',
+                            controller:supplierOnlineProductModalCtrl
+                        });
+                        modalInstance.result.then(function(){
+                            console.log('show Product')
+                        })
                     },function(){
                         console.log('fail');
                     })
                 }
-                scope.productOpts = {
-                    backdropFade: true,
-                    dialogFade:true
-                };
-                scope.closeProductModal=function(){
-                    scope.productModal=false;  
+                var supplierOnlineProductModalCtrl=function($scope,$modalInstance,Label){
+                    $scope.Label=Label;
+                    $scope.variants=scope.variants;
+                    $scope.brandName=scope.brandName;
+                    $scope.BMShow=scope.BMShow;
+                    $scope.OLShow=scope.OLShow;
+                    var cancel = function () {
+                        $modalInstance.dismiss('cancel');
+                    };
+                    $scope.cancel=cancel;
                 }
+                // scope.productOpts = {
+                //     backdropFade: true,
+                //     dialogFade:true
+                // };
+                // scope.closeProductModal=function(){
+                //     scope.productModal=false;  
+                // }
 
                 var loadValue=function(data,name,num){
 			    	var array=_.find(data,function(obj){

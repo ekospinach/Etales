@@ -4,7 +4,8 @@ define(['directives', 'services'], function(directives){
         return {
             scope : {
                 isPageShown : '=',
-                isPageLoading : '='
+                isPageLoading : '=',
+                isNegotiationChange : '='
             },
             restrict : 'E',
             templateUrl : '../../partials/singleReportTemplate/RD_negotiationAgreements.html',            
@@ -15,7 +16,16 @@ define(['directives', 'services'], function(directives){
                     scope.isPageLoading = true;
                     scope.isResultShown = false;                    
                     scope.Label = Label;
+                    startListenChangeFromServer();
                     getResult();               
+                }
+
+                var startListenChangeFromServer=function(){
+                    var socket = io.connect();
+                    socket.on('supplierEditNegotiation', function(data){
+                        scope.isNegotiationChange=true;
+                        getResult();
+                    });             
                 }
 
                 var loadProduct=function(data,categroy,producerID){
@@ -194,6 +204,7 @@ define(['directives', 'services'], function(directives){
                     }).then(function(data){
                         return organiseArray(data.data,3);
                     }).then(function(){
+                        scope.isNegotiationChange = false;
                         scope.isResultShown = true;
                         scope.isPageLoading = false; 
                     },function(){

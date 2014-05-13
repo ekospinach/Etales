@@ -1,0 +1,28 @@
+
+<div class="modal-header">{{Label.getContent('Order Product')}}</div>
+<div class="modal-body">
+	<table class="table table-condensed table-bordered">
+		<thead>
+			<tr>
+				<th></th>
+				<th>{{Label.getContent('Brand')}}</th>
+				<th>{{Label.getContent('Variant')}}</th>
+				<th>{{Label.getContent('Produced by')}}</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="orderProduct in orderProducts">
+				<td>
+					<input type="checkbox" ng-model="orderProduct.select">
+				</td>
+				<td>{{orderProduct.brandName}}</td>
+				<td>{{orderProduct.varName}}</td>
+				<td>{{orderProduct.parentName}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<div class="modal-footer">
+	<input type="button" class="btn btn-default" ng-click="close()" value="{{Label.getContent('Cancel')}}">
+	<input type="button" class="btn btn-primary" ng-click="addOrders(market)" value="{{Label.getContent('Add')}}">
+</div>

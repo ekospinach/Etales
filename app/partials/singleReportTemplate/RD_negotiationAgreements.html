@@ -104,7 +104,7 @@
             </tr>
             <tr ng-repeat='product in product1hs'>
                 <td>
-                    <p class="padding-10" popover-template="../../partials/toolTip/producth.html" popover-trigger="mouseenter" popover-placement="right" popover-title='{{product.parentBrandName}}{{product.variantName}}'>{{product.parentBrandName}}{{product.variantName}}</p>
+                    <p class="padding-10" data-template="../../partials/toolTip/producth.html" popover-trigger="mouseenter" popover-placement="right" popover-title='{{product.parentBrandName}}{{product.variantName}}'>{{product.parentBrandName}}{{product.variantName}}</p>
                 </td>
                 <td>
                     <a href="#" editable-text="product.nc_MinimumOrder" ng-show="(!product.isProducerApproved)&&(!product.isRetailerApproved)" onbeforesave="checkContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_MinimumOrder',$index,$data,2,1)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_MinimumOrder',$index,$data,2,1)">
