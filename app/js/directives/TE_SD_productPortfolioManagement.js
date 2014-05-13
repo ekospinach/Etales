@@ -24,10 +24,6 @@ define(['directives', 'services'], function(directives){
                     },{
                         value: 3, text: Label.getContent('PREMIUM')
                     }]; 
-                    scope.productModalOpts = {
-                        backdropFade: true,
-                        dialogFade:true
-                    };
                     scope.parameter="NewBrand";/*default add new Brand*/
                     ProducerDecisionBase.startListenChangeFromServer(); 
                     ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
@@ -438,7 +434,7 @@ define(['directives', 'services'], function(directives){
                                     break;
                                 }
                             }
-                            url="/checkProducerProduct/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+scope.lauchNewCategory+'/variant/'+newBrandName+'/'+newproducerDecision.varName;
+                            url="/checkProducerProduct/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+$scope.lauchNewCategory+'/variant/'+newBrandName+'/'+newproducerDecision.varName;
                             
                             $http({
                                 method:'GET',
