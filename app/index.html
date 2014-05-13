@@ -19,17 +19,18 @@
 	</head>
 	<body class="{{loginCss}}" ng-controller="NavbarCtrl">
 		<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" id="pageheader" role="banner" style="display:none">
-			<div class="container">
+			<div class="container">											
 				<div class="navbar-header">
 					<a href="/#/home" style="float: left; padding: 13px 15px; margin-left: -15px;">
 						<img height="24px" src="img/ETlogo.png" st="123px">
 					</a>
-				</div>
-				<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">		
+				</div>								
+				<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
 					<ul class="nav navbar-nav">
 						<li ng-show="false" class="active" access-level='{{accessLevels.public}}' active-nav>
 							<a href="/#/home">{{Label.getContent('Participant manual')}}</a>
 						</li>
+
 						<li class="dropdown" access-level='{{accessLevels.playerView}}' acyive-nva>
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
 								{{Label.getContent('Reports')}}
@@ -92,6 +93,11 @@
 		          			<a href="/#/facilitatorDecision">{{Label.getContent('Make Decision')}}
 		          			</a>
 		          		</li>
+
+		          		<li access-level='{{accessLevels.facilitatorView}}' active-nav>
+		          			<a href="/#/feedback">{{Label.getContent('Feedback')}}
+		          			</a>
+		          		</li>		          		
 		      		</ul>
 
 				    <ul class="nav navbar-nav navbar-right" data-access-level="{{ accessLevels.playerView }}">  
