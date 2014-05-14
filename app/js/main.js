@@ -14,8 +14,7 @@
 			angularRoute: 			'../bower_components/angular-route/angular-route',
 			angularResource: 		'../bower_components/angular-resource/angular-resource',
 			angularMocks: 			'../bower_components/angular-mocks/angular-mocks',
-			angularLoadingBar : 	'../bower_components/angular-loading-bar/src/loading-bar',
-			text: 					'../bower_components/requirejs-text/text',
+			angularLoadingBar : 	'../bower_components/angular-loading-bar/src/loading-bar', text: 					'../bower_components/requirejs-text/text',
 			angularXeditable: 		'../bower_components/angular-xeditable/dist/js/xeditable',
 			socketIO: 				'../bower_components/socket.io-client/dist/socket.io',
 			jquery: 				'../bower_components/jquery/dist/jquery',
@@ -23,10 +22,8 @@
 			require: 				'../bower_components/requirejs/require',
 			underscore: 			'../bower_components/underscore/underscore',
 			bootstrap: 				'../bower_components/bootstrap/dist/js/bootstrap',
-			//angularBootstrap: 		'./steps/angular-bootstrap',
-			angularBootstrap:  		'../bower_components/angular-bootstrap/ui-bootstrap-tpls',
+			angularBootstrap: 		'./steps/angular-bootstrap',
 			routingConfig :  		'./routingConfig',
-			//jquery-jqplot-->Map.html
 			jqplot: 				'../bower_components/jqplot/jquery.jqplot.min',
 			bubbleRenderer: 		'./map/jqplot.bubbleRenderer',
 			labelRenderer: 			'./map/jqplot.canvasAxisLabelRenderer.min',
@@ -39,10 +36,6 @@
 			highchart:              '../bower_components/highcharts/highcharts',
 			angularHighcharts:      '../bower_components/highcharts-ng/src/highcharts-ng',
 			highchartMore:          '../bower_components/highcharts/highcharts-more',
-			//Bootstrap switch interface for admin module, handle initialize parameter configure 
-			angularBootstrapSwitch: '../bower_components/angular-bootstrap-switch/dist/angular-bootstrap-switch',
-			//angular promise tracker is used for adding loading spinner by track general promise or request 
-			//angularPromiseTracker:  '../bower_components/angular-promise-tracker/promise-tracker'
 		},
 		baseUrl: 'js',
 		shim: {
@@ -68,7 +61,6 @@
 			'bootstrapswitch' : ['jquery'],
 			'angularHighcharts' :['angular','highchart'],
 			'angularBootstrapSwitch':['angular','jquery','bootstrapswitch'],
-//			'angularPromiseTracker':['angular']
 			'highchart' :['jquery']
 		},
 		priority: [
