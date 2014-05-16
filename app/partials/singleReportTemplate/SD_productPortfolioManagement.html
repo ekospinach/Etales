@@ -35,7 +35,7 @@
     			<td>
     				<div style="clear:both"></div>
     				<button type="button" class="btn btn-danger btn-xs pull-right" ng-show="(producte.dateOfBirth==currentPeriod&&(!isReady))" ng-click="deleteProduct('Elecssories',producte.parentBrandName,producte.varName)">{{Label.getContent('Delete')}}</button>
-    				<p>{{producte.parentBrandName}}{{producte.varName}}</p>
+    				<p class=>{{producte.parentBrandName}}{{producte.varName}}</p>
                     <div style="clear:both"></div>
     			</td>
     			<td>
@@ -57,7 +57,7 @@
                     <p ng-show="isReady" class="text-right">{{ producte.composition[0] || 0 }}</p>
     			</td>
     			<td>
-    				<a href="#" editable-text="producte.composition[2]" onbeforesave="checkRMQ('Elecssories',producte.parentBrandName,producte.varName,'composition','2',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'composition','2',$index)">
+    				<a href="#" editable-text="producte.composition[2]" onbeforesave="checkValue('Elecssories',producte.parentBrandName,producte.varName,'composition','2',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'composition','2',$index)">
     					<p class="text-right">{{ producte.composition[2] || 0 }}</p>
     				</a>
                     <p ng-show="isReady" class="text-right">{{ producte.composition[2] || 0 }}</p>
@@ -89,7 +89,7 @@
     			<td>
     				<div style="clear:both"></div>
     				<button type="button" class="btn btn-danger btn-xs pull-right" ng-show="(producth.dateOfBirth==currentPeriod&&(!isReady))" ng-click="deleteProduct('HealthBeauty',producth.parentBrandName,producth.varName)">{{Label.getContent('Delete')}}</button>
-    				<p>{{producth.parentBrandName}}{{producth.varName}}</p>
+    				<p class=>{{producth.parentBrandName}}{{producth.varName}}</p>
     				<div style="clear:both"></div>
     			</td>
     			<td>
@@ -105,13 +105,13 @@
                     <p ng-show="isReady" class="text-right">{{ producth.composition[1] || 0 }}</p>
     			</td>
     			<td>
-    				<a href="#" editable-text="producth.composition[0]" onbeforesave="checkDesign('HealthBeauty',producth.parentBrandName,producth.varName,'composition','0',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'composition','0',$index)">
+    				<a href="#" editable-text="producth.composition[0]" onbeforesave="checkValue('HealthBeauty',producth.parentBrandName,producth.varName,'composition','0',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'composition','0',$index)">
     					<p class="text-right">{{ producth.composition[0] || 0 }}</p>
     				</a>
                     <p ng-show="isReady" class="text-right">{{ producth.composition[0] || 0 }}</p>
     			</td>
     			<td>
-    				<a href="#" editable-text="producth.composition[2]" onbeforesave="checkRMQ('HealthBeauty',producth.parentBrandName,producth.varName,'composition','2',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'composition','2',$index)">
+    				<a href="#" editable-text="producth.composition[2]" onbeforesave="checkValue('HealthBeauty',producth.parentBrandName,producth.varName,'composition','2',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'composition','2',$index)">
     					<p class="text-right">{{ producth.composition[2] || 0 }}</p>
     				</a>
                     <p ng-show="isReady" class="text-right">{{ producth.composition[2] || 0 }}</p>

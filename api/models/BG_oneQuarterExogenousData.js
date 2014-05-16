@@ -27,4 +27,36 @@ var oneQuarterExogenousDataSchema = mongoose.Schema({
     MaxRetailPriceVsNetBMPrice      : Number,    
 })
 
-var oneQuarterExogenousDataSchema = mongoose.model('bg_oneQuarterExogenousData');
+var oneQuarterExogenousData = mongoose.model('bg_oneQuarterExogenousData',oneQuarterExogenousDataSchema);
+
+exports.addOneQuarterExogenousData=function(req,res,next){
+    var newOneQuarterExogenousData=new oneQuarterExogenousData({
+        seminar:'MAY',
+        period:0,
+        marketID:1,
+        categoryID:1,
+        MinBMPriceVsCost                : 0.4,
+        MaxBMPriceVsCost                : 4,
+        IngredientsQualityVsATLGap      : 2,
+        ActiveAgentVsSmoothenerGap      : 1,
+        MaxTargetVolumeVsTotalMarket    : 0.5,
+        MinOnlinePriceVsCost            : 0.5,
+        MaxOnlinePriceVsCost            : 6,
+        MaxCapacityReduction            : -0.3,
+        MaxCapacityIncrease             : 0.3,
+        Supplier4AcquiredLevelsGapForPL : 10,
+        MinPLPriceVsCost                : 0.4,
+        MaxPLPriceVsCost                : 4,
+        MinRetailPriceVsNetBMPrice      : 0.5,
+        MaxRetailPriceVsNetBMPrice      : 3
+    });
+    newOneQuarterExogenousData.save(function(err) {
+        if(!err){
+            res.send(200,newOneQuarterExogenousData);
+            console.log("created new OneQuarterExogenousData:"+newOneQuarterExogenousData);
+        } else {
+            res.send(400,err);
+        }
+    });
+
+}

@@ -129,6 +129,9 @@ define(['directives', 'services'], function(directives){
                         method:'GET',
                         url:url
                     }).then(function(data){
+                        if(data.data=="isReady"){
+                            d.resolve(Label.getContent('check fail'));
+                        }
                         url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
                         return $http({
                             method:'GET',
@@ -145,7 +148,7 @@ define(['directives', 'services'], function(directives){
                             }
                         }else{
                             categoryID=2;
-                            max=data.data.acquiredTechnologyLevel[categoryID-1]+2;
+                            max=data.data.acquiredTechnologyLevel[categoryID-1];
                             if(value<1||value>max){
                                 d.resolve(Label.getContent('Input range')+':1~'+max);
                             }else{
@@ -170,6 +173,9 @@ define(['directives', 'services'], function(directives){
                         method:'GET',
                         url:url
                     }).then(function(data){
+                        if(data.data=="isReady"){
+                            d.resolve(Label.getContent('check fail'));
+                        }
                         url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
                         return $http({
                             method:'GET',
@@ -191,32 +197,13 @@ define(['directives', 'services'], function(directives){
                                 d.resolve();
                             }
                         }
-                        url="/producerCurrentDecision/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+brandName+'/'+varName;
-                        return $http({
-                                method:'GET',
-                                url:url
-                        });
-                    }).then(function(data){
-                        if(data.data.composition[2]>data.data.composition[0]-2){
-                            if(value>data.data.composition[2]||(value<data.data.composition[0]-2)){
-                                d.resolve(Label.getContent('Input range')+(data.data.composition[0]-2)+'('+Label.getContent('Design Level')+'-2)'+'~'+data.data.composition[2]+'('+Label.getContent('Quality-of-Raw-Materials')+')');
-                            }else{
-                                d.resolve();
-                            }
-                        }else{
-                            if(value>data.data.composition[0]-2||(value<data.data.composition[2])){
-                                d.resolve(Label.getContent('Input range')+data.data.composition[2]+'('+Label.getContent('Quality-of-Raw-Materials')+')'+'~'+(data.data.composition[0]-2)+'('+Label.getContent('Design Level')+'-2)');
-                            }else{
-                                d.resolve();
-                            }
-                        }
                     },function(){
-                        d.resolve(Label.getContent('fail'));
+                        console.log('fail');
                     });
                     return d.promise;
                 }
 
-                scope.checkRMQ=function(category,brandName,varName,location,additionalIdx,index,value){
+                scope.checkValue=function(category,brandName,varName,location,additionalIdx,index,value){
                     var d=$q.defer();
                     var categoryID=0,max=0;
                     var filter=/^[0-9]*[1-9][0-9]*$/;
@@ -233,7 +220,10 @@ define(['directives', 'services'], function(directives){
                         method:'GET',
                         url:url
                     }).then(function(data){
-                        url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
+                        if(data.data=="isReady"){
+                            d.resolve(Label.getContent('check fail'));
+                        }
+                        url="/producerCurrentDecision/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
                         return $http({
                             method:'GET',
                             url:url
