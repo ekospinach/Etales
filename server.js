@@ -192,7 +192,7 @@ app.get('/RCR-profitabilityBySupplier/:seminar/:period/:retailerID',require('./a
 app.get('/RCR-sharesCrossSegment/:seminar/:period/:retailerID',require('./api/models/RCR_sharesCrossSegment.js').getRCR_sharesCrossSegment);
 
 app.get('/addOneQuarterExogenousData',require('./api/models/BG_oneQuarterExogenousData.js').addOneQuarterExogenousData);
-
+app.get('/getOneQuarterExogenousData/:seminar/:period/:categoryID/:marketID',require('./api/models/BG_oneQuarterExogenousData.js').getOneQuarterExogenousData);
 //add market report
 app.get('/addMR-awarenessEvolution',require('./api/models/MR_awarenessEvolution.js').addMR_awarenessEvolution);
 app.get('/addMR-sharesCrossSegment',require('./api/models/MR_sharesCrossSegment.js').addMR_sharesCrossSegment);

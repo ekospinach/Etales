@@ -36,43 +36,6 @@ define(['directives', 'services'], function(directives){
                         console.log('from ctr: ' + update);
                     };                   
                 }
-                scope.checkNextPriceBM=function(category,brandName,varName,location,additionalIdx,index,value){
-                    var d=$q.defer();
-                    var categoryID=0,max=0,currentUnitCost=0;
-                    var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
-                    if(!filter.test(value)){
-                        d.resolve(Label.getContent('Input a number'));
-                    }
-                    if(category=="Elecssories"){
-                        categoryID=1;
-                    }else{
-                        categoryID=2;
-                    }
-                    var postData = {
-                        period : PeriodInfo.getCurrentPeriod(),
-                        seminar : SeminarInfo.getSelectedSeminar(),
-                        brandName : brandName,
-                        varName : varName,
-                        catID : categoryID,
-                        userRole :  2,
-                        userID : PlayerInfo.getPlayer(),                                
-                    }
-                    $http({
-                        method:'POST',
-                        url:'/getCurrentUnitCost',
-                        data:postData
-                    }).then(function(data){
-                        currentUnitCost=data.data.result;
-                        if(value>4*currentUnitCost||value<0.5*currentUnitCost){
-                            d.resolve(Label.getContent('Input range')+':'+0.5*currentUnitCost+'~'+4*currentUnitCost);
-                        }else{
-                            d.resolve();
-                        }
-                    },function(){
-                        d.resolve(Label.getContent('fail'));
-                    })
-                    return d.promise;
-                }
 
                 scope.checkCurrentBM=function(category,brandName,varName,location,additionalIdx,index,value){
                     var d=$q.defer();
@@ -94,7 +57,6 @@ define(['directives', 'services'], function(directives){
                         if(data.data=="isReady"){
                             d.resolve(Label.getContent('Check Error'));
                         }
-
                         var postData = {
                             period : PeriodInfo.getCurrentPeriod(),
                             seminar : SeminarInfo.getSelectedSeminar(),
@@ -110,9 +72,15 @@ define(['directives', 'services'], function(directives){
                             data:postData
                         });
                     }).then(function(data){
-                        currentUnitCost=data.data.result;
-                        if(value>4*currentUnitCost||value<0.5*currentUnitCost){
-                            d.resolve(Label.getContent('Input range')+':'+0.5*currentUnitCost+'~'+4*currentUnitCost);
+                        scope.currentUnitCost=data.data.result;
+                        url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+categoryID+'/1';
+                        return $http({
+                            method:'GET',
+                            url:url
+                        })
+                    }).then(function(data){
+                        if(value>data.data.MaxBMPriceVsCost*scope.currentUnitCost||value<data.data.MinBMPriceVsCost*scope.currentUnitCost){
+                            d.resolve(Label.getContent('Input range')+':'+data.data.MinBMPriceVsCost*scope.currentUnitCost+'~'+data.data.MaxBMPriceVsCost*scope.currentUnitCost);
                         }else{
                             d.resolve();
                         }
