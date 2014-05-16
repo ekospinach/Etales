@@ -130,7 +130,7 @@ define(['directives', 'services'], function(directives){
                         url:url
                     }).then(function(data){
                         if(data.data=="isReady"){
-                            d.resolve(Label.getContent('check fail'));
+                            d.resolve(Label.getContent('Check Error'));
                         }
                         url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
                         return $http({
@@ -174,7 +174,7 @@ define(['directives', 'services'], function(directives){
                         url:url
                     }).then(function(data){
                         if(data.data=="isReady"){
-                            d.resolve(Label.getContent('check fail'));
+                            d.resolve(Label.getContent('Check Error'));
                         }
                         url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
                         return $http({
@@ -187,6 +187,8 @@ define(['directives', 'services'], function(directives){
                             max=data.data.acquiredTechnologyLevel[categoryID-1];
                             if(value<1||value>max){
                                 d.resolve(Label.getContent('Input range')+':1~'+max);
+                            }else{
+                                d.resolve();
                             }
                         }else{
                             categoryID=2;
@@ -205,15 +207,10 @@ define(['directives', 'services'], function(directives){
 
                 scope.checkValue=function(category,brandName,varName,location,additionalIdx,index,value){
                     var d=$q.defer();
-                    var categoryID=0,max=0;
+                    var max=0;
                     var filter=/^[0-9]*[1-9][0-9]*$/;
                     if(!filter.test(value)){
                         d.resolve(Label.getContent('Input a Integer'));
-                    }
-                    if(category=="Elecssories"){
-                        categoryID=1;
-                    }else{
-                        categoryID=2;
                     }
                     var url='/checkProducerDecision/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer());
                     $http({
@@ -221,15 +218,15 @@ define(['directives', 'services'], function(directives){
                         url:url
                     }).then(function(data){
                         if(data.data=="isReady"){
-                            d.resolve(Label.getContent('check fail'));
+                            d.resolve(Label.getContent('Check Error'));
                         }
-                        url="/producerCurrentDecision/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
+                        url="/producerCurrentDecision/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+brandName+'/'+varName;
                         return $http({
-                            method:'GET',
-                            url:url
+                                method:'GET',
+                                url:url
                         });
                     }).then(function(data){
-                        max=data.data.acquiredTechnologyLevel[categoryID-1]+2;
+                        max=data.data.composition[1]+2;
                         if(value<1||value>max){
                             d.resolve(Label.getContent('Input range')+':1~'+max);
                         }else{
