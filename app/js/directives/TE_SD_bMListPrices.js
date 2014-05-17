@@ -82,6 +82,19 @@ define(['directives', 'services'], function(directives){
                         if(value>data.data.MaxBMPriceVsCost*scope.currentUnitCost||value<data.data.MinBMPriceVsCost*scope.currentUnitCost){
                             d.resolve(Label.getContent('Input range')+':'+data.data.MinBMPriceVsCost*scope.currentUnitCost+'~'+data.data.MaxBMPriceVsCost*scope.currentUnitCost);
                         }else{
+                            if(scope.currentUnitCost>value){
+                                if(category=="Elecssories"){
+                                    scope.productes[index].showInfo=true;
+                                }else{
+                                    scope.producths[index].showInfo=true;
+                                } 
+                            }else{
+                                if(category=="Elecssories"){
+                                    scope.productes[index].showInfo=false;
+                                }else{
+                                    scope.producths[index].showInfo=false;
+                                } 
+                            }
                             d.resolve();
                         }
                     },function(){
@@ -118,7 +131,8 @@ define(['directives', 'services'], function(directives){
                                             products[count].packFormat=3;
                                         }
                                         products[count].currentPriceBM=parseFloat(products[count].currentPriceBM).toFixed(2);
-                                        products[count].nextPriceBM=parseFloat(products[count].nextPriceBM).toFixed(2);
+                                        //products[count].nextPriceBM=parseFloat(products[count].nextPriceBM).toFixed(2);
+                                        products[count].showInfo=false;
                                         count++;
                                     }
                                 }
@@ -209,55 +223,7 @@ define(['directives', 'services'], function(directives){
                     loadSelectCategroy('HealthBeauty');
                     scope.selectPacks=selectPacks;
                     scope.isResultShown = true;
-                    scope.isPageLoading = false; 
-                    //var categoryID=0,count=0,result=0,acMax=0,abMax=0,expend=0,avaiableMax=0;
-                    // var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
-                    // $http({
-                    //     method:'GET',
-                    //     url:url
-                    // }).then(function(data){
-                    //     avaiableMax=data.data.budgetAvailable;
-                    //     if(PeriodInfo.getCurrentPeriod()<=1){
-                    //         abMax=data.data.budgetAvailable;
-                    //     }else{
-                    //         abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
-                    //     }
-                    //     acEleMax=data.data.productionCapacity[0];
-                    //     acHeaMax=data.data.productionCapacity[1];
-                    //     url="/producerExpend/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/brandName/location/1';
-                    //     return  $http({
-                    //         method:'GET',
-                    //         url:url,
-                    //     });
-                    // }).then(function(data){
-                    //     expend=data.data.result;
-                    //     scope.surplusExpend=abMax-expend;
-                    //     scope.percentageExpend=(abMax-expend)/abMax*100;
-                    //     url="/productionResult/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/EName/varName';
-                    //     return $http({
-                    //         method:'GET',
-                    //         url:url
-                    //     });
-                    // }).then(function(data){
-                    //     scope.eleSurplusProduction=acEleMax-data.data.result;
-                    //     scope.elePercentageProduction=(acEleMax-data.data.result)/acEleMax*100;
-                    //     url="/productionResult/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/HName/varName';
-                    //     return $http({
-                    //         method:'GET',
-                    //         url:url
-                    //     });
-                    // }).then(function(data){
-                    //     scope.heaSurplusProduction=acHeaMax-data.data.result;
-                    //     scope.heaPercentageProduction=(acHeaMax-data.data.result)/acHeaMax*100;
-                    //     loadSelectCategroy('Elecssories');
-                    //     loadSelectCategroy('HealthBeauty');
-                    // }).then(function(){
-                    //     scope.isResultShown = true;
-                    //     scope.isPageLoading = false;  
-                    //     scope.selectPacks=selectPacks;
-                    // },function(data){
-                    //     d.reject(Label.getContent('showView fail'));
-                    // }); 
+                    scope.isPageLoading = false;
                     return d.promise;       
                 }
 
@@ -417,9 +383,7 @@ define(['directives', 'services'], function(directives){
                     ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
                         scope.pageBase = base; 
                     }).then(function(){
-                        console.log('11111');
                         return showView();
-                        console.log('2222');
                     }), function(reason){
                         console.log('from ctr: ' + reason);
                     }, function(update){

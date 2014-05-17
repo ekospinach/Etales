@@ -856,7 +856,7 @@ var getLabelBase = function(){
 		{id:'This product is locked',  ENG:'This product is locked',  CHN:'该产品已锁定',  RUS:''},
 		{id:'Retailer Change',  ENG:'Retailer Change',  CHN:'零售商修改谈判',  RUS:''},
 		{id:'Supplier Change',  ENG:'Supplier Change',  CHN:'供应商商修改谈判',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'Less than current cost',  ENG:'Less than current cost',  CHN:'低于成本',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},

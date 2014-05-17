@@ -57,22 +57,22 @@
                 </td>
                 <td></td>
                 <td>
-                    <a href="#" editable-text="var.onlinePlannedVolume" onaftersave="updateVariantDecision('Elecssories',brande.brandName,var.varName,'onlinePlannedVolume','0',$index,$data)">
+                    <a href="#" editable-text="var.onlinePlannedVolume" onbeforesave="checkOrderVolumes('Elecssories',brande.brandName,var.varName,'onlinePlannedVolume','0',$index,$data)" onaftersave="updateVariantDecision('Elecssories',brande.brandName,var.varName,'onlinePlannedVolume','0',$index,$data)">
                         <p class="text-right">{{ var.onlinePlannedVolume || 0 }}</p>
                     </a>
                 </td>
                 <td>
-                    <a href="#" editable-text="var.onlinePrice" onaftersave="updateVariantDecision('Elecssories',brande.brandName,var.varName,'onlinePrice','0',$index,$data)">
+                    <a href="#" editable-text="var.onlinePrice" onbeforesave="checkPrices('Elecssories',brande.brandName,var.varName,'onlinePrice','0',$index,$data)" onaftersave="updateVariantDecision('Elecssories',brande.brandName,var.varName,'onlinePrice','0',$index,$data)">
                         <p class="text-right">{{ var.onlinePrice || 0 }}</p>
                     </a>
                 </td>
                 <td>
-                    <a href="#" editable-text="var.pricePromotions.promo_Frequency" onaftersave="updateVariantDecision('Elecssories',brande.brandName,var.varName,'pricePromotions','0',$index,$data)">
+                    <a href="#" editable-text="var.pricePromotions.promo_Frequency"onbeforesave="checkFrequency('Elecssories',brande.brandName,var.varName,'pricePromotions','0',$index,$data)" onaftersave="updateVariantDecision('Elecssories',brande.brandName,var.varName,'pricePromotions','0',$index,$data)">
                         <p class="text-right">{{ var.pricePromotions.promo_Frequency || 0 }}</p>
                     </a>
                 </td>
                 <td>
-                    <a href="#" editable-text="var.pricePromotions.promo_Rate" onaftersave="updateVariantDecision('Elecssories',brande.brandName,var.varName,'pricePromotions','1',$index,$data)">
+                    <a href="#" editable-text="var.pricePromotions.promo_Rate" onbeforesave="checkDepth('Elecssories',brande.brandName,var.varName,'pricePromotions','1',$index,$data)" onaftersave="updateVariantDecision('Elecssories',brande.brandName,var.varName,'pricePromotions','1',$index,$data)">
                         <p class="text-right">{{ var.pricePromotions.promo_Rate || 0 }}</p>
                     </a>
                 </td>
@@ -103,22 +103,22 @@
                 </td>
                 <td></td>
                 <td>
-                    <a href="#" editable-text="var.onlinePlannedVolume" onaftersave="updateVariantDecision('HealthBeauty',brandh.brandName,var.varName,'onlinePlannedVolume','0',$index,$data)">
+                    <a href="#" editable-text="var.onlinePlannedVolume" onbeforesave="checkOrderVolumes('HealthBeauty',brandh.brandName,var.varName,'onlinePlannedVolume','0',$index,$data)"onaftersave="updateVariantDecision('HealthBeauty',brandh.brandName,var.varName,'onlinePlannedVolume','0',$index,$data)">
                         <p class="text-right">{{ var.onlinePlannedVolume || 0 }}</p>
                     </a>
                 </td>
                 <td>
-                    <a href="#" editable-text="var.onlinePrice" onaftersave="updateVariantDecision('HealthBeauty',brandh.brandName,var.varName,'onlinePrice','0',$index,$data)">
+                    <a href="#" editable-text="var.onlinePrice" onbeforesave="checkPrices('HealthBeauty',brandh.brandName,var.varName,'onlinePrice','0',$index,$data)" onaftersave="updateVariantDecision('HealthBeauty',brandh.brandName,var.varName,'onlinePrice','0',$index,$data)">
                         <p class="text-right">{{ var.onlinePrice || 0 }}</p>
                     </a>
                 </td>
                 <td>
-                    <a href="#" editable-text="var.pricePromotions.promo_Frequency" onaftersave="updateVariantDecision('HealthBeauty',brandh.brandName,var.varName,'pricePromotions','0',$index,$data)">
+                    <a href="#" editable-text="var.pricePromotions.promo_Frequency" onbeforesave="checkFrequency('HealthBeauty',brandh.brandName,var.varName,'pricePromotions','0',$index,$data)" onaftersave="updateVariantDecision('HealthBeauty',brandh.brandName,var.varName,'pricePromotions','0',$index,$data)">
                         <p class="text-right">{{ var.pricePromotions.promo_Frequency || 0 }}</p>
                     </a>
                 </td>
                 <td>
-                    <a href="#" editable-text="var.pricePromotions.promo_Rate" onaftersave="updateVariantDecision('HealthBeauty',brandh.brandName,var.varName,'pricePromotions','1',$index,$data)">
+                    <a href="#" editable-text="var.pricePromotions.promo_Rate" onbeforesave="checkDepth('HealthBeauty',brandh.brandName,var.varName,'pricePromotions','1',$index,$data)" onaftersave="updateVariantDecision('HealthBeauty',brandh.brandName,var.varName,'pricePromotions','1',$index,$data)">
                         <p class="text-right">{{ var.pricePromotions.promo_Rate || 0 }}</p>
                     </a>
                 </td>
