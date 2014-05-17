@@ -130,6 +130,7 @@ app.get('/retailerCurrentDecision/:seminar/:period/:retailerID/:brandName/:varNa
 //special calculate API
 app.post('/getCurrentUnitCost', require('./api/utils/unitCost').getCurrentUnitCost);
 app.get('/currentPeriod/:seminar',require('./api/models/seminar.js').getCurrentPeriod);
+app.get('/getScrplSales/:seminar/:period/:producerID/:categoryID',require('./api/models/SCR_consolidatedProfitAndLoss.js').getScrplSales);
 
 //seminar 
 app.get('/checkProducerDecision/:seminar/:period/:producerID',require('./api/models/seminar.js').checkProducerDecision);
@@ -167,7 +168,7 @@ app.get('/addSCR-keyPerformanceIndicators',require('./api/models/SCR_keyPerforma
 app.get('/addSCR-negotiations',require('./api/models/SCR_negotiations.js').addSCR_negotiations);
 app.get('/addSCR-sharesCrossSegment',require('./api/models/SCR_sharesCrossSegment.js').addSCR_sharesCrossSegment);
 
-//get producer report record
+//get producer report record 
 app.get('/SCR-consolidatedProfitAndLoss/:seminar/:period/:producerID',require('./api/models/SCR_consolidatedProfitAndLoss.js').getSCR_consolidatedProfitAndLoss);
 app.get('/SCR-channelsProfitability/:seminar/:period/:producerID',require('./api/models/SCR_channelsProfitability.js').getSCR_channelsProfitability);
 app.get('/SCR-inventoryVolumes/:seminar/:period/:producerID',require('./api/models/SCR_inventoryVolumes.js').getSCR_inventoryVolumes);

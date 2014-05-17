@@ -151,7 +151,7 @@ define(['directives', 'services'], function(directives){
                         d.resolve(Label.getContent('Input a number'));
                     }
                     if(value>100||value<0){
-                        d.resolve(Label.getContent('Input range')+':0~100'));
+                        d.resolve(Label.getContent('Input range')+':0~100');
                     }else{
                         d.resolve();
                     }
