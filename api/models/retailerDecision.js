@@ -347,8 +347,10 @@ exports.getRetailerExpend=function(req,res,next){
             res.send(404,{err:'cannot find the doc'});
         }else{
             var result=0;
-            result+=(doc.onlineAdvertising[0]+doc.onlineAdvertising[1]+doc.onlineAdvertising[2]+doc.tradtionalAdvertising[0]+doc.tradtionalAdvertising[1]+doc.tradtionalAdvertising[2]);
-            result+=(doc.retMarketDecision[0].localAdvertising[0]+doc.retMarketDecision[0].localAdvertising[1]+doc.retMarketDecision[0].localAdvertising[2]+doc.retMarketDecision[1].localAdvertising[0]+doc.retMarketDecision[1].localAdvertising[1]+doc.retMarketDecision[1].localAdvertising[2]);
+            //result+=(doc.onlineAdvertising[0]+doc.onlineAdvertising[1]+doc.onlineAdvertising[2]+doc.tradtionalAdvertising[0]+doc.tradtionalAdvertising[1]+doc.tradtionalAdvertising[2]);
+            result+=(doc.onlineAdvertising[0]+doc.onlineAdvertising[1]+doc.tradtionalAdvertising[0]+doc.tradtionalAdvertising[1]);
+            //result+=(doc.retMarketDecision[0].localAdvertising[0]+doc.retMarketDecision[0].localAdvertising[1]+doc.retMarketDecision[0].localAdvertising[2]+doc.retMarketDecision[1].localAdvertising[0]+doc.retMarketDecision[1].localAdvertising[1]+doc.retMarketDecision[1].localAdvertising[2]);
+            result+=(doc.retMarketDecision[0].localAdvertising[0]+doc.retMarketDecision[0].localAdvertising[1]+doc.retMarketDecision[1].localAdvertising[0]+doc.retMarketDecision[1].localAdvertising[1]);
             if(req.params.marketID!=-1){
                 if(req.params.marketID==0){
                     result-=(doc[req.params.location][req.params.additionalIdx]);

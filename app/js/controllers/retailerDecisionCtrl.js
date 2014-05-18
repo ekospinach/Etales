@@ -97,6 +97,10 @@ define(['app','socketIO','routingConfig'], function(app) {
 	    	$scope.showNegotiationAgreements=showNegotiationAgreements;
 	    	$scope.showView=showView;
 
+            $scope.$on('retailerDecisionBaseChangedFromServer', function(event, newBase){
+                showView();
+            }); 
+
 	    	showView();
 	    	showNegotiationAgreements();
 		    

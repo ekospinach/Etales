@@ -29,7 +29,7 @@ define(['directives', 'services'], function(directives){
 					};                 
                 }
 
-                scope.checkBudget=function(location,additionalIdx,value){
+                scope.checkBudget=function(marketID,location,additionalIdx,value){
 					var d=$q.defer();
 					var max=0;
 					var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
@@ -42,7 +42,7 @@ define(['directives', 'services'], function(directives){
 		      			url:url
 		      		}).then(function(data){
 		      			max=data.data.budgetAvailable;
-		      			url="/retailerExpend/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/0/'+location+'/'+additionalIdx;
+		      			url="/retailerExpend/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/'+marketID+'/'+location+'/'+additionalIdx;
 		      			return $http({
 		      				method:'GET',
 		      				url:url
@@ -51,36 +51,6 @@ define(['directives', 'services'], function(directives){
 		      			expend=data.data.result;
 		      			if(value>max-expend){
 		      				d.resolve(Label.getContent('Input range')+':0~'+(max-expend));
-		      			}else{
-		      				d.resolve();
-		    			}
-		      		},function(){
-		      			d.resolve(Label.getContent('fail'));
-		      		});
-		      		return d.promise;
-				}
-
-				scope.checkBudgeting=function(marketID,location,postion,additionalIdx,index,value){
-					var d=$q.defer();
-					var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
-					if(!filter.test(value)){
-						d.resolve(Label.getContent('Input a number'));
-					}
-					var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/R/'+parseInt(PlayerInfo.getPlayer());
-		      		$http({
-		      			method:'GET',
-		      			url:url
-		      		}).then(function(data){
-		      			max=data.data.budgetAvailable;
-		      			url="/retailerExpend/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/'+marketID+'/'+location+'/'+additionalIdx;
-			      		return $http({
-			      			method:'GET',
-			      			url:url,
-			     		});
-		      		}).then(function(data){
-		      			expend=data.data.result;
-		      			if(value>max-expend){
-		      				d.resolve(Label.getContent('Input range'+':0~')+(max-expend));
 		      			}else{
 		      				d.resolve();
 		    			}
