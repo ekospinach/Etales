@@ -140,20 +140,14 @@ define(['directives', 'services'], function(directives){
                     }).then(function(data){
                         if(category=="Elecssories"){
                             categoryID=1;
-                            max=data.data.acquiredDesignLevel[categoryID-1];
-                            if(value<1||value>max){
-                                d.resolve(Label.getContent('Input range')+':1~'+max);
-                            }else{
-                                d.resolve();
-                            }
                         }else{
                             categoryID=2;
-                            max=data.data.acquiredTechnologyLevel[categoryID-1];
-                            if(value<1||value>max){
-                                d.resolve(Label.getContent('Input range')+':1~'+max);
-                            }else{
-                                d.resolve();
-                            }
+                        }
+                        max=data.data.acquiredDesignLevel[categoryID-1];
+                        if(value<1||value>max){
+                            d.resolve(Label.getContent('Input range')+':1~'+max);
+                        }else{
+                            d.resolve();
                         }
                     },function(){
                         d.resolve(Label.getContent('fail'));
