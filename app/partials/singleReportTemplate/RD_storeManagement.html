@@ -88,6 +88,7 @@
             		<a href="#" editable-text="product.retailerPrice" onbeforesave="checkRetailerPrice(category,market,product.brandName,product.varName,'retailerPrice','postion',$index,product.dateOfBirth,$data)" onaftersave="updateRetailerDecision(category,market,product.brandName,product.varName,'retailerPrice','postion',$index,$data)">
             			<p class="text-right">{{ product.retailerPrice || 0 }}
             			</p>
+                        <p ng-show='product.showInfo'>{{Label.getContent('Less than current cost')}}
             		</a>
             	</td>
             	<td>
