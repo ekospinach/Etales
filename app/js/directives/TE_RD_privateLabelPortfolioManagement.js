@@ -135,7 +135,7 @@ define(['directives', 'services'], function(directives){
                         }else{
                             categoryID=2;
                         }
-                        max=data.data.acquiredDesignLevel[categoryID-1];
+                        max=data.data.acquiredDesignLevel[categoryID-1]-3;
                         if(value<1||value>max){
                             d.resolve(Label.getContent('Input range')+':1~'+max);
                         }else{
@@ -164,7 +164,7 @@ define(['directives', 'services'], function(directives){
                         }else{
                             categoryID=2;
                         }
-                        max=data.data.acquiredTechnologyLevel[categoryID-1];
+                        max=data.data.acquiredTechnologyLevel[categoryID-1]-3;
                         if(value<1||value>max){
                             d.resolve(Label.getContent('Input range')+':1~'+max);
                         }else{

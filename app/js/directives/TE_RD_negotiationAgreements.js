@@ -16,6 +16,7 @@ define(['directives', 'services'], function(directives){
                     scope.isPageLoading = true;
                     scope.isResultShown = false;                    
                     scope.Label = Label;
+                    scope.retailerID=PlayerInfo.getPlayer();
                     startListenChangeFromServer();
                     getResult();               
                 }
@@ -93,6 +94,99 @@ define(['directives', 'services'], function(directives){
                                 break;
                             }
                         }
+                    })
+                    return d.promise;
+                }
+
+                scope.checkDiscountRate=function(contractCode,producerID,retailerID,brandName,varName,index,value,volume,bmPrices,categroy){
+                    var d=$q.defer();
+                    var discountRate=0;
+                    var filter=/^[0-9]*[1-9][0-9]*$/;
+                    if(!filter.test(value)){
+                        d.resolve(Label.getContent('Input a Integer'));
+                    }
+                    var url='/checkContractDetails/'+contractCode+'/'+brandName+'/'+varName+'/nc_VolumeDiscountRate';
+                    $http({
+                        method:'GET',
+                        url:url
+                    }).then(function(data){
+                        if(data.data.result=="no"){
+                            d.resolve(Label.getContent('This product is locked'));
+                        }
+                        url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+producerID;
+                        return $http({
+                            method:'GET',
+                            url:url
+                        });
+                    }).then(function(data){
+                        negotiationABmax=data.data.budgetAvailable;
+                        if(volume*bmPrices*(1-value/100)>negotiationABmax){
+                            discountRate=100-negotiationABmax/(volume*bmPrices);
+                            d.resolve(Label.getContent('Input range')+':0~'+discountRate);
+                        }else{
+                            d.resolve();
+                        }
+                    },function(){
+                        d.resolve(Label.getContent('Check Error'));
+                    })
+                    return d.promise;
+                }
+
+                scope.checkBonusRate=function(contractCode,producerID,retailerID,brandName,varName,index,value,volume,bmPrices,categroy){
+                    var d=$q.defer();
+                    var bonusRate=0;
+                    var filter=/^[0-9]*[1-9][0-9]*$/;
+                    if(!filter.test(value)){
+                        d.resolve(Label.getContent('Input a Integer'));
+                    }
+                    var url='/checkContractDetails/'+contractCode+'/'+brandName+'/'+varName+'/nc_PerformanceBonusRate';
+                    $http({
+                        method:'GET',
+                        url:url
+                    }).then(function(data){
+                        if(data.data.result=="no"){
+                            d.resolve(Label.getContent('This product is locked'));
+                        }
+                        url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+producerID;
+                        return $http({
+                            method:'GET',
+                            url:url
+                        });
+                    }).then(function(data){
+                        negotiationABmax=data.data.budgetAvailable;
+                        if(volume*bmPrices*value>negotiationABmax){
+                            bonusRate=negotiationABmax/(volume*bmPrices);
+                            d.resolve(Label.getContent('Input range')+':0~'+bonusRate);
+                        }else{
+                            d.resolve();
+                        }
+                    },function(){
+                        d.resolve(Label.getContent('Check Error'));
+                    })
+                    return d.promise;
+                }
+
+                scope.checkPaymentTerms=function(contractCode,producerID,retailerID,brandName,varName,index,value){
+                    var d=$q.defer();
+                    var filter=/^\d+$/;
+                    if(!filter.test(value)){
+                        d.resolve(Label.getContent('Input a Integer'));
+                    }
+                    if(value>183||value<0){
+                        d.resolve(Label.getContent('Input range')+':0~183');
+                    }
+                    var url='/checkContractDetails/'+contractCode+'/'+brandName+'/'+varName+'/nc_PaymentDays';
+                    $http({
+                        method:'GET',
+                        url:url
+                    }).then(function(data){
+                        if(data.data.result=="no"){
+                            d.resolve(Label.getContent('This product is locked'));
+                        }else{
+                            d.resolve();
+                        }
+                    },function(){
+                        d.resolve(Label.getContent('Check Error'));
                     })
                     return d.promise;
                 }
