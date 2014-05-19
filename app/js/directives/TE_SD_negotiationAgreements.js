@@ -112,6 +112,8 @@ define(['directives', 'services'], function(directives){
                         if(volume*bmPrices*(1-value/100)>negotiationABmax){
                             discountRate=100-negotiationABmax/(volume*bmPrices);
                             d.resolve(Label.getContent('Input range')+':0~'+discountRate);
+                        }else if(value>100){
+                            d.resolve(Label.getContent('Input range')+':0~100');
                         }else{
                             d.resolve();
                         }
@@ -146,6 +148,8 @@ define(['directives', 'services'], function(directives){
                         if(volume*bmPrices*value>negotiationABmax){
                             bonusRate=negotiationABmax/(volume*bmPrices);
                             d.resolve(Label.getContent('Input range')+':0~'+bonusRate);
+                        }else if(value>100){
+                            d.resolve(Label.getContent('Input range')+':0~100');
                         }else{
                             d.resolve();
                         }
