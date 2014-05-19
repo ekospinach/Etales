@@ -11,10 +11,15 @@ Config = require('./config.js'),
 passport = require('passport'),
 flash = require('connect-flash'),
 userRoles = require('./app/js/routingConfig').userRoles,
-accessLevels = require('./app/js/routingConfig').accessLevels;
+accessLevels = require('./app/js/routingConfig').accessLevels,
+util = require('util');
 
 //process.env.NODE_ENV = 'production';
 conf = new Config();
+
+//backend view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 app.use(express.cookieParser());
 app.use(express.favicon());
@@ -32,6 +37,12 @@ app.use(passport.session());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, '/app')));
 app.use(express.logger());
+
+
+app.get('/feedbackENG', function(req, res, next){
+	res.render('feedbackENG.ejs', {seminar : req.query.seminar, 
+								   period : req.query.period});
+});
 
 //user authenticate
 passport.use(require('./api/models/seminar').localStrategy);
@@ -213,6 +224,8 @@ app.get('/getMR-variantPerceptionEvolution/:seminar/:period',require('./api/mode
 app.get('/getMR-retailerPerceptionEvolution/:seminar/:period',require('./api/models/MR_retailerPerceptionEvolution.js').getMR_retailerPerceptionEvolution);
 app.get('/getMR-retailersIntelligence/:seminar/:period',require('./api/models/MR_retailersIntelligence.js').getMR_retailersIntelligence);
 app.get('/getMR-forecasts/:seminar/:period',require('./api/models/MR_forecasts.js').getMR_forecasts);
+
+
 app.use(express.errorHandler());
 
 port = parseInt(process.env.PORT, 10) || conf.server.port;

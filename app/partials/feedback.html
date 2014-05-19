@@ -1,9 +1,39 @@
-<div class="reveal">
-    <div class="slides">
-        <section>Single Horizontal Slide</section>
-        <section>
-            <section>Vertical Slide 1</section>
-            <section>Vertical Slide 2</section>
-        </section>
+<div id="content" class="bs-header">
+    <div class="container">
+      <h1 class="margin-row-10">{{Label.getContent('Feedback session')}}</h1>
+      <p>{{Label.getContent('Feedback session Info')}}</p>
     </div>
+</div>
+
+<div class="bs-old-docs">
+    <div class="container">
+        <strong>
+        	
+        </strong>
+    </div>
+</div>
+
+<div class="container bs-docs-container">
+	<div class="row">
+		<div class="col-md-10">
+		    <div class="bs-docs-section">
+		    	<form class="form-horizontal" role="form">
+				  	<div class="form-group">
+				  		<label for="selectPeriod" class="col-sm-3 control-label">{{Label.getContent('Choose Period')}}:</label>
+						<div class="col-sm-4">
+							<select class="form-control" id="selectPeriod" ng-model="selectPeriod" ng-change="setPreriod(selectPeriod)">
+								<option  ng-repeat='p in periods' value="{{p}}">{{p}}</option>
+							</select>
+					   	</div>
+				  	</div>
+				  	<div  class="form-group">
+				  		<div class="col-sm-3"></div>
+				  		<div class="col-sm-4">
+				  			<a ng-click=openTab() class="btn btn-primary">{{Label.getContent('Generate feedback slides')}}</a>
+				  		</div>
+				  	</div>
+				</form>
+		    </div>
+		</div>
+	</div>
 </div>

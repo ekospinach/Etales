@@ -1,6 +1,6 @@
 define(['app','socketIO'], function(app) {
 
-	app.controller('loginCtrl',['$scope', '$http', '$location','$rootScope','Auth','$q','PlayerInfo','SeminarInfo','PeriodInfo','RoleInfo','$modal', function($scope, $http, $location,$rootScope,Auth,$q,PlayerInfo,SeminarInfo,PeriodInfo,RoleInfo,$modal) {
+	app.controller('loginCtrl',['$scope', '$http', '$location','$rootScope','Auth','$q','PlayerInfo','SeminarInfo','PeriodInfo','RoleInfo','$modal','$window', function($scope, $http, $location,$rootScope,Auth,$q,PlayerInfo,SeminarInfo,PeriodInfo,RoleInfo,$modal, $window) {
 		// You can access the scope of the controller from here
 
 		    $rootScope.loginFooter="container";
@@ -24,15 +24,18 @@ define(['app','socketIO'], function(app) {
 		}
 
 		$scope.openAdminLoginModal=function(size){
-			var modalInstance=$modal.open({
-				templateUrl:'../../partials/modal/adminLoginModal.html',
-				controller:adminLoginModalCtrl,
-				size:size
-			});
 
-			modalInstance.result.then(function(){
-				console.log('admin login');
-			})
+			$window.open('feedbackENG?seminar=MAY&period=0');
+
+			// var modalInstance=$modal.open({
+			// 	templateUrl:'../../partials/modal/adminLoginModal.html',
+			// 	controller:adminLoginModalCtrl,
+			// 	size:size
+			// });
+
+			// modalInstance.result.then(function(){
+			// 	console.log('admin login');
+			// })
 		}
 
 		var loginModalCtrl=function($rootScope,$scope,$modalInstance,Label,SeminarInfo,RoleInfo,PeriodInfo,PlayerInfo){

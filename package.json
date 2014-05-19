@@ -25,7 +25,8 @@
     "connect-flash": "~0.1.1",
     "newrelic": "~1.1.1",
     "excel-export": "~0.3.10",
-    "node-xlsx": "~0.2.2"
+    "node-xlsx": "~0.2.2",
+    "ejs": "~1.0.0"
   },
   "devDependencies": {
     "grunt": "~0.4.3",

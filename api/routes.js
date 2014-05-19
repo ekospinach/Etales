@@ -44,7 +44,6 @@ var routes = [
         middleware: [UserCtrl.index],
         accessLevel: accessLevels.admin
     },
-
 ];
 
 module.exports = function(app) {

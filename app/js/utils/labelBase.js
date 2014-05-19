@@ -863,7 +863,11 @@ var getLabelBase = function(){
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
 
-		{id:'',  ENG:'',  CHN:'',  RUS:''}
+		{id:'Feedback',  ENG:'Feedback',  CHN:'阶段总结',  RUS:''},
+		{id:'Feedback session',  ENG:'Feedback session',  CHN:'阶段总结',  RUS:''},
+		{id:'Feedback session Info',  ENG:'Choose a period to generate feedback slides for current seminar',  CHN:'阶段总结',  RUS:''},	
+		{id:'Generate feedback slides',  ENG:'Generate feedback slides',  CHN:'生成报告',  RUS:''},
+
 	]
 }
 
