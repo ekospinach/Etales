@@ -97,6 +97,9 @@ app.post('/addContractDetails',require('./api/models/contract.js').addContractDe
 app.get('/getContractDetails/:contractCode',require('./api/models/contract.js').getContractDetails);
 app.get('/checkContractDetails/:contractCode/:parentBrandName/:variantName/:location',require('./api/models/contract.js').checkContractDetails);
 app.post('/updateContractDetails',require('./api/models/contract.js').updateContractDetails(io));
+
+app.post('/removeContract', require('./api/models/contract.js').removeContract(io));
+app.post('/removeContractDetailsByContractCode', require('./api/models/contract.js').removeContractDetailsByContractcode(io));
 //duplicate
 //app.post('/duplicateContract',require('./api/models/contract.js').duplicateContract(io));
 app.get('/variantHistoryInfo/:seminar/:period/:parentBrandName/:varName',require('./api/models/variantHistoryInfo').getVariantHistory);
@@ -141,16 +144,12 @@ app.get('/retailerCurrentDecision/:seminar/:period/:retailerID/:brandName/:varNa
 //special calculate API
 app.post('/getCurrentUnitCost', require('./api/utils/unitCost').getCurrentUnitCost);
 app.get('/currentPeriod/:seminar',require('./api/models/seminar.js').getCurrentPeriod);
+app.get('/getScrplSales/:seminar/:period/:producerID/:categoryID',require('./api/models/SCR_consolidatedProfitAndLoss.js').getScrplSales);
 
 //seminar 
 app.get('/checkProducerDecision/:seminar/:period/:producerID',require('./api/models/seminar.js').checkProducerDecision);
-app.post('/submitDecision',require('./api/models/seminar.js').submitDecision(io));
-
+app.post('/submitPortfolioDecision',require('./api/models/seminar.js').submitPortfolioDecision(io));
 app.post('/deleteOrderData',require('./api/models/retailerDecision.js').deleteOrderData(io));
-//app.post('/deleteDetailData',require('./api/models/contract.js').deleteContractDetailData(io));
-
-// app.get('/addGeneralReport',require('./api/models/generalReport.js').addGeneralReport);
-// app.get('/getGeneralReport/:seminar/:period',require('./api/models/generalReport.js').getGeneralReport);
 
 //add generalReport record
 app.get('/addCrossSegmentSales',require('./api/models/GR_crossSegmentSales.js').addCrossSegmentSales);
@@ -178,7 +177,7 @@ app.get('/addSCR-keyPerformanceIndicators',require('./api/models/SCR_keyPerforma
 app.get('/addSCR-negotiations',require('./api/models/SCR_negotiations.js').addSCR_negotiations);
 app.get('/addSCR-sharesCrossSegment',require('./api/models/SCR_sharesCrossSegment.js').addSCR_sharesCrossSegment);
 
-//get producer report record
+//get producer report record 
 app.get('/SCR-consolidatedProfitAndLoss/:seminar/:period/:producerID',require('./api/models/SCR_consolidatedProfitAndLoss.js').getSCR_consolidatedProfitAndLoss);
 app.get('/SCR-channelsProfitability/:seminar/:period/:producerID',require('./api/models/SCR_channelsProfitability.js').getSCR_channelsProfitability);
 app.get('/SCR-inventoryVolumes/:seminar/:period/:producerID',require('./api/models/SCR_inventoryVolumes.js').getSCR_inventoryVolumes);
@@ -202,6 +201,8 @@ app.get('/RCR-negotiations/:seminar/:period/:retailerID',require('./api/models/R
 app.get('/RCR-profitabilityBySupplier/:seminar/:period/:retailerID',require('./api/models/RCR_profitabilityBySupplier.js').getRCR_profitabilityBySupplier);
 app.get('/RCR-sharesCrossSegment/:seminar/:period/:retailerID',require('./api/models/RCR_sharesCrossSegment.js').getRCR_sharesCrossSegment);
 
+app.get('/addOneQuarterExogenousData',require('./api/models/BG_oneQuarterExogenousData.js').addOneQuarterExogenousData);
+app.get('/getOneQuarterExogenousData/:seminar/:period/:categoryID/:marketID',require('./api/models/BG_oneQuarterExogenousData.js').getOneQuarterExogenousData);
 //add market report
 app.get('/addMR-awarenessEvolution',require('./api/models/MR_awarenessEvolution.js').addMR_awarenessEvolution);
 app.get('/addMR-sharesCrossSegment',require('./api/models/MR_sharesCrossSegment.js').addMR_sharesCrossSegment);

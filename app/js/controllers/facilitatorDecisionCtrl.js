@@ -44,7 +44,5 @@ define(['app'], function(app) {
 				$window.open('www.google.com');
 			}
 
-
-
 		}]);
 });

@@ -101,6 +101,109 @@ define(['directives', 'services'], function(directives){
                     return d.promise;
                 }
 
+                scope.checkOrderVolumes=function(category,brandName,varName,location,additionalIdx,index,value){
+                    var d=$q.defer();
+                    var acMax=0;
+                    if(category=="Elecssories"){
+                        category=1;
+                    }else{
+                        category=2;
+                    }
+                    var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
+                    if(!filter.test(value)){
+                        d.resolve(Label.getContent('Input a number'));
+                    }
+                    var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
+                    $http({
+                        method:'GET',
+                        url:url
+                    }).then(function(data){
+                        acMax=data.data.productionCapacity[category-1];
+                        if(value>acMax||value<0){
+                            d.resolve(Label.getContent('Input range')+':0~'+acMax);
+                        }else{
+                            d.resolve();
+                        }
+                    },function(){
+                        console.log('fail');
+                    })
+                    return d.promise;
+                }
+
+                scope.checkFrequency=function(category,brandName,varName,location,additionalIdx,index,value){
+                    var d=$q.defer();
+                    var filter=/^[0-9]*[1-9][0-9]*$/;
+                    if(!filter.test(value)){
+                        d.resolve(Label.getContent('Input a Integer'));
+                    }
+                    if(value>182||value<0){
+                        d.resolve(Label.getContent('Input range')+':0~182');
+                    }else{
+                        d.resolve();
+                    }
+                    return d.promise;
+                }
+
+                scope.checkDepth=function(category,brandName,varName,location,additionalIdx,index,value){
+                    var d=$q.defer();
+                    var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
+                    if(!filter.test(value)){
+                        d.resolve(Label.getContent('Input a number'));
+                    }
+                    if(value>100||value<0){
+                        d.resolve(Label.getContent('Input range')+':0~100');
+                    }else{
+                        d.resolve();
+                    }
+                    return d.promise;
+                }
+
+                scope.checkPrices=function(category,brandName,varName,location,additionalIdx,index,value){
+                    var d=$q.defer();
+                    var categoryID=0,max=0,currentUnitCost=0;
+                    var url="";
+                    var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
+                    if(!filter.test(value)){
+                        d.resolve(Label.getContent('Input a number'));
+                    }
+                    if(category=="Elecssories"){
+                        categoryID=1;
+                    }else{
+                        categoryID=2;
+                    }
+                    var postData = {
+                        period : PeriodInfo.getCurrentPeriod(),
+                        seminar : SeminarInfo.getSelectedSeminar(),
+                        brandName : brandName,
+                        varName : varName,
+                        catID : categoryID,
+                        userRole :  2,
+                        userID : PlayerInfo.getPlayer(),                              
+                    }
+                    $http({
+                        method:'POST',
+                        url:'/getCurrentUnitCost',
+                        data:postData
+                    }).then(function(data){
+                        scope.currentUnitCost=data.data.result;
+                        url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+categoryID+'/1';
+                        return $http({
+                            method:'GET',
+                            url:url
+                        })
+                    }).then(function(data){
+                        if(value>data.data.MaxOnlinePriceVsCost*scope.currentUnitCost||value<data.data.MinOnlinePriceVsCost*scope.currentUnitCost){
+                            d.resolve(Label.getContent('Input range')+':'+data.data.MinOnlinePriceVsCost*scope.currentUnitCost+'~'+data.data.MaxOnlinePriceVsCost*scope.currentUnitCost);
+                        }else{
+                            d.resolve();
+                        }
+                    },function(){
+                        d.resolve(Label.getContent('fail'));
+                    })
+                    return d.promise;
+                }
+
+
                 scope.updateBrandDecision=function(category,brandName,location,tep,index){
                     var categoryID;
                     if(category=="Elecssories"){

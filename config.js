@@ -15,7 +15,7 @@ module.exports = function(){
 				  path_negotiationDecision            : '/cgi-bin/negotiationDecision.exe',
 				  path_brandHistoryInfo               : '/cgi-bin/brandHistoryInfo.exe',
 				  path_variantHistoryInfo             : '/cgi-bin/variantHistoryInfo.exe',
-				  path_companyHistoryInfo             : '/cgi-bin/companyHistoryInfo.exe',
+				  path_companyHistoryInfo             : '/cgi-bin/BG_companyHistoryInfo.exe',
 				  path_quarterHistoryInfo             : '/cgi-bin/quarterHistoryInfo.exe',
 
 				  path_initialize                     : '/cgi-bin/initialize.exe',
@@ -56,6 +56,8 @@ module.exports = function(){
 				  path_MR_suppliersIntelligence       : '/cgi-bin/MR_suppliersIntelligence.exe',
 				  path_MR_variantPerceptionEvolution  : '/cgi-bin/MR_variantPerceptionEvolution.exe',
 
+				  path_BG_oneQuarterExogenousData     : '/cgi-bin/BG_oneQuarterExogenousData.exe',
+
    			  	  uploadFileAbsDir                    : '&filepath=\\\\vmware-host\\Shared%20Folders\\ludwikOnMac\\Code\\Actived\\Etales-result-viewer\\upload\\'
 				},
 				server : {
@@ -77,7 +79,7 @@ module.exports = function(){
 				  path_negotiationDecision : '/cgi-bin/negotiationDecision.exe',
 				  path_brandHistoryInfo    : '/cgi-bin/brandHistoryInfo.exe',
 				  path_variantHistoryInfo  : '/cgi-bin/variantHistoryInfo.exe',
-				  path_companyHistoryInfo  : '/cgi-bin/companyHistoryInfo.exe',
+				  path_companyHistoryInfo  : '/cgi-bin/BG_companyHistoryInfo.exe',
 				  path_quarterHistoryInfo  : '/cgi-bin/quarterHistoryInfo.exe',
 
 				  path_initialize          : '/cgi-bin/initialize.exe',
@@ -118,6 +120,9 @@ module.exports = function(){
 				  path_MR_suppliersIntelligence       : '/cgi-bin/MR_suppliersIntelligence.exe',
 				  path_MR_variantPerceptionEvolution  : '/cgi-bin/MR_variantPerceptionEvolution.exe',
 
+				  path_BG_oneQuarterExogenousData     : '/cgi-bin/BG_oneQuarterExogenousData.exe',
+
+
 				},
 				server : {
 				  port : 9000
@@ -138,7 +143,7 @@ module.exports = function(){
 				  path_negotiationDecision            : '/cgi-bin/negotiationDecision.exe',
 				  path_brandHistoryInfo               : '/cgi-bin/brandHistoryInfo.exe',
 				  path_variantHistoryInfo             : '/cgi-bin/variantHistoryInfo.exe',
-				  path_companyHistoryInfo             : '/cgi-bin/companyHistoryInfo.exe',
+				  path_companyHistoryInfo             : '/cgi-bin/BG_companyHistoryInfo.exe',
 				  path_quarterHistoryInfo             : '/cgi-bin/quarterHistoryInfo.exe',
 
 				  path_initialize                     : '/cgi-bin/initialize.exe',
@@ -178,6 +183,9 @@ module.exports = function(){
 				  path_MR_sharesCrossSegment          : '/cgi-bin/MR_sharesCrossSegment.exe',
 				  path_MR_suppliersIntelligence       : '/cgi-bin/MR_suppliersIntelligence.exe',
 				  path_MR_variantPerceptionEvolution  : '/cgi-bin/MR_variantPerceptionEvolution.exe',
+
+				  path_BG_oneQuarterExogenousData     : '/cgi-bin/BG_oneQuarterExogenousData.exe',
+				  
 
 				},
 				server : {

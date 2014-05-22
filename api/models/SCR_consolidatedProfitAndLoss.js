@@ -1170,6 +1170,24 @@ exports.addSCR_consolidatedProfitAndLoss=function(req,res,next){
     });    
 }
 
+exports.getScrplSales=function(req,res,next){
+    SCR_consolidatedProfitAndLoss.findOne({
+        seminar:req.params.seminar,
+        period:req.params.period,
+        producerID:req.params.producerID
+    },function(err,doc){
+        if(err){
+            next(new Error(err));
+        }
+        if(!doc){
+           res.send(404,{err:'cannot find the doc'}); 
+        }else{
+            res.send(200,doc.scrpl_Sales[req.params.categoryID-1].value);
+            //res.send(200,doc.scrpl_Sales[req.params.categoryID-1][0]);
+        }
+    })
+}
+
 exports.getSCR_consolidatedProfitAndLoss=function(req,res,next){
     var data={
         'seminar':req.params.seminar,

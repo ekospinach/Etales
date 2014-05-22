@@ -36,43 +36,6 @@ define(['directives', 'services'], function(directives){
                         console.log('from ctr: ' + update);
                     };                   
                 }
-                scope.checkNextPriceBM=function(category,brandName,varName,location,additionalIdx,index,value){
-                    var d=$q.defer();
-                    var categoryID=0,max=0,currentUnitCost=0;
-                    var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
-                    if(!filter.test(value)){
-                        d.resolve(Label.getContent('Input a number'));
-                    }
-                    if(category=="Elecssories"){
-                        categoryID=1;
-                    }else{
-                        categoryID=2;
-                    }
-                    var postData = {
-                        period : PeriodInfo.getCurrentPeriod(),
-                        seminar : SeminarInfo.getSelectedSeminar(),
-                        brandName : brandName,
-                        varName : varName,
-                        catID : categoryID,
-                        userRole :  2,
-                        userID : PlayerInfo.getPlayer(),                                
-                    }
-                    $http({
-                        method:'POST',
-                        url:'/getCurrentUnitCost',
-                        data:postData
-                    }).then(function(data){
-                        currentUnitCost=data.data.result;
-                        if(value>4*currentUnitCost||value<0.5*currentUnitCost){
-                            d.resolve(Label.getContent('Input range')+':'+0.5*currentUnitCost+'~'+4*currentUnitCost);
-                        }else{
-                            d.resolve();
-                        }
-                    },function(){
-                        d.resolve(Label.getContent('fail'));
-                    })
-                    return d.promise;
-                }
 
                 scope.checkCurrentBM=function(category,brandName,varName,location,additionalIdx,index,value){
                     var d=$q.defer();
@@ -94,7 +57,6 @@ define(['directives', 'services'], function(directives){
                         if(data.data=="isReady"){
                             d.resolve(Label.getContent('Check Error'));
                         }
-
                         var postData = {
                             period : PeriodInfo.getCurrentPeriod(),
                             seminar : SeminarInfo.getSelectedSeminar(),
@@ -110,10 +72,29 @@ define(['directives', 'services'], function(directives){
                             data:postData
                         });
                     }).then(function(data){
-                        currentUnitCost=data.data.result;
-                        if(value>4*currentUnitCost||value<0.5*currentUnitCost){
-                            d.resolve(Label.getContent('Input range')+':'+0.5*currentUnitCost+'~'+4*currentUnitCost);
+                        scope.currentUnitCost=data.data.result;
+                        url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+categoryID+'/1';
+                        return $http({
+                            method:'GET',
+                            url:url
+                        })
+                    }).then(function(data){
+                        if(value>data.data.MaxBMPriceVsCost*scope.currentUnitCost||value<data.data.MinBMPriceVsCost*scope.currentUnitCost){
+                            d.resolve(Label.getContent('Input range')+':'+data.data.MinBMPriceVsCost*scope.currentUnitCost+'~'+data.data.MaxBMPriceVsCost*scope.currentUnitCost);
                         }else{
+                            if(scope.currentUnitCost>value){
+                                if(category=="Elecssories"){
+                                    scope.productes[index].showInfo=true;
+                                }else{
+                                    scope.producths[index].showInfo=true;
+                                } 
+                            }else{
+                                if(category=="Elecssories"){
+                                    scope.productes[index].showInfo=false;
+                                }else{
+                                    scope.producths[index].showInfo=false;
+                                } 
+                            }
                             d.resolve();
                         }
                     },function(){
@@ -150,7 +131,8 @@ define(['directives', 'services'], function(directives){
                                             products[count].packFormat=3;
                                         }
                                         products[count].currentPriceBM=parseFloat(products[count].currentPriceBM).toFixed(2);
-                                        products[count].nextPriceBM=parseFloat(products[count].nextPriceBM).toFixed(2);
+                                        //products[count].nextPriceBM=parseFloat(products[count].nextPriceBM).toFixed(2);
+                                        products[count].showInfo=false;
                                         count++;
                                     }
                                 }
@@ -213,8 +195,8 @@ define(['directives', 'services'], function(directives){
 
                 scope.updateProducerDecision=function(category,brandName,varName,location,additionalIdx,index){
                     var categoryID;
-                    if(location=="composition"){
-                        if(category=="Elecssories"){
+                    if (location == "composition") {
+                        if (category == "Elecssories") {
                             categoryID=1;
                             ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,additionalIdx,scope.productes[index][location][additionalIdx]);                         
                         }
@@ -241,203 +223,154 @@ define(['directives', 'services'], function(directives){
                     loadSelectCategroy('HealthBeauty');
                     scope.selectPacks=selectPacks;
                     scope.isResultShown = true;
-                    scope.isPageLoading = false; 
-                    //var categoryID=0,count=0,result=0,acMax=0,abMax=0,expend=0,avaiableMax=0;
-                    // var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
-                    // $http({
-                    //     method:'GET',
-                    //     url:url
-                    // }).then(function(data){
-                    //     avaiableMax=data.data.budgetAvailable;
-                    //     if(PeriodInfo.getCurrentPeriod()<=1){
-                    //         abMax=data.data.budgetAvailable;
-                    //     }else{
-                    //         abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
-                    //     }
-                    //     acEleMax=data.data.productionCapacity[0];
-                    //     acHeaMax=data.data.productionCapacity[1];
-                    //     url="/producerExpend/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/brandName/location/1';
-                    //     return  $http({
-                    //         method:'GET',
-                    //         url:url,
-                    //     });
-                    // }).then(function(data){
-                    //     expend=data.data.result;
-                    //     scope.surplusExpend=abMax-expend;
-                    //     scope.percentageExpend=(abMax-expend)/abMax*100;
-                    //     url="/productionResult/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/EName/varName';
-                    //     return $http({
-                    //         method:'GET',
-                    //         url:url
-                    //     });
-                    // }).then(function(data){
-                    //     scope.eleSurplusProduction=acEleMax-data.data.result;
-                    //     scope.elePercentageProduction=(acEleMax-data.data.result)/acEleMax*100;
-                    //     url="/productionResult/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/HName/varName';
-                    //     return $http({
-                    //         method:'GET',
-                    //         url:url
-                    //     });
-                    // }).then(function(data){
-                    //     scope.heaSurplusProduction=acHeaMax-data.data.result;
-                    //     scope.heaPercentageProduction=(acHeaMax-data.data.result)/acHeaMax*100;
-                    //     loadSelectCategroy('Elecssories');
-                    //     loadSelectCategroy('HealthBeauty');
-                    // }).then(function(){
-                    //     scope.isResultShown = true;
-                    //     scope.isPageLoading = false;  
-                    //     scope.selectPacks=selectPacks;
-                    // },function(data){
-                    //     d.reject(Label.getContent('showView fail'));
-                    // }); 
+                    scope.isPageLoading = false;
                     return d.promise;       
                 }
 
-                scope.submitDecision=function(){
-                    var queryCondition={
-                        producerID:parseInt(PlayerInfo.getPlayer()),
-                        seminar:SeminarInfo.getSelectedSeminar(),
-                        period:PeriodInfo.getCurrentPeriod()
-                    }
-                    $http({
-                        method:'POST',
-                        url:'/submitDecision',
-                        data:queryCondition
-                    }).then(function(data){
-                        console.log(scope.isReady);
-                        var postData={
-                            period:PeriodInfo.getCurrentPeriod(),
-                            seminar:SeminarInfo.getSelectedSeminar(),
-                            draftedByCompanyID:PlayerInfo.getPlayer(),
-                            producerID:PlayerInfo.getPlayer(),
-                            retailerID:1
-                        }
+                scope.submitDecision = function() {
+
+                   var postData;
+
+                   //step 0: Delete all the related contract schema and contractDetails schema 
+                   var contractCode = 'P'+PlayerInfo.getPlayer()+'andR1_'+SeminarInfo.getSelectedSeminar()+'_'+PeriodInfo.getCurrentPeriod();
+                   $http({
+                        method : 'POST',
+                        url : '/removeContract',
+                        data : { contractCode : contractCode}
+                   }).then(function(data){
+                        console.log(data.data);
+
+                        var contractCode = 'P'+PlayerInfo.getPlayer()+'andR2_'+SeminarInfo.getSelectedSeminar()+'_'+PeriodInfo.getCurrentPeriod();
                         return $http({
-                            method:'POST',
-                            url:'/addContract',
-                            data:postData
-                        });
-                    }).then(function(data){
+                                        method : 'POST',                                                                                                  
+                                        url    : '/removeContract',                                                                                  
+                                        data   : { contractCode : contractCode}                            
+                                    });
+
+                   }).then(function(data){
+                        console.log(data.data);
+
+                        var contractCode = 'P'+PlayerInfo.getPlayer()+'andR1_'+SeminarInfo.getSelectedSeminar()+'_'+PeriodInfo.getCurrentPeriod();
+                        return $http({
+                                        method : 'POST',                                                                                                  
+                                        url    : '/removeContractDetailsByContractCode',                                                                                  
+                                        data   : { contractCode : contractCode}                            
+                                    });
+
+                   }).then(function(data){
+                        console.log(data.data);
+
+                        var contractCode = 'P'+PlayerInfo.getPlayer()+'andR2_'+SeminarInfo.getSelectedSeminar()+'_'+PeriodInfo.getCurrentPeriod();
+                        return $http({
+                                        method : 'POST',                                                                                                  
+                                        url    : '/removeContractDetailsByContractCode',                                                                                  
+                                        data   : { contractCode : contractCode}                            
+                                    });
+                   }).then(function(data){
+                       console.log(data.data);
+
+                   //step 1: Add contract schema between current supplier and retailer 1 
                         postData={
-                            period:PeriodInfo.getCurrentPeriod(),
-                            seminar:SeminarInfo.getSelectedSeminar(),
-                            draftedByCompanyID:PlayerInfo.getPlayer(),
-                            producerID:PlayerInfo.getPlayer(),
-                            retailerID:2
+                            period             : PeriodInfo.getCurrentPeriod(),
+                            seminar            : SeminarInfo.getSelectedSeminar(),
+                            draftedByCompanyID : PlayerInfo.getPlayer(),
+                            producerID         : PlayerInfo.getPlayer(),
+                            retailerID         : 1
                         }
+                        return $http({
+                            method :'POST',
+                            url    :'/addContract',
+                            data   :postData
+                        });
+                        
+                    }).then(function(data){
+
+                    console.log('created contract schema between supplier ' + postData.producerID + ' and retailer ' + postData.retailerID);
+                    
+                    //step 2: Add contract schema between current supplier and retailer 2
+                        postData.retailerID = 2;
                         return $http({
                             method:'POST',
                             url:'/addContract',
                             data:postData
                         });
+                    }).then(function(data){                        
+                        console.log('created contract schema between supplier ' + postData.producerID + ' and retailer ' + postData.retailerID);
+
+                    //step 3: Add related contract details for two contact schema
+                        var contractCode = 'P'+PlayerInfo.getPlayer()+'andR1_'+SeminarInfo.getSelectedSeminar()+'_'+PeriodInfo.getCurrentPeriod();
+                        return contractDetailsCreateShooter(contractCode, scope.productes);
+
                     }).then(function(data){
-                        var contractCode1='P'+PlayerInfo.getPlayer()+'andR1_'+SeminarInfo.getSelectedSeminar()+'_'+PeriodInfo.getCurrentPeriod();
-                        (function multipleRequestShooter(products,idx){
-                            postData={
-                                contractCode:contractCode1,
-                                brandName:products[idx].parentBrandName,
-                                brandID:products[idx].parentBrandID,
-                                varName:products[idx].varName,
-                                varID:products[idx].varID,
-                                composition:products[idx].composition,
-                                currentPriceBM:products[idx].currentPriceBM
-                            }
-                            $http({
-                                method:'POST',
-                                url:'/addContractDetails',
-                                data:postData
-                            }).then(function(data){
-                            
-                            },function(data){
+                        console.log(data.msg);
+                        
+                        var contractCode = 'P'+PlayerInfo.getPlayer()+'andR1_'+SeminarInfo.getSelectedSeminar()+'_'+PeriodInfo.getCurrentPeriod();
+                        return contractDetailsCreateShooter(contractCode, scope.producths);
+                    }).then(function(data){
+                        console.log(data.msg);
 
-                            }).finally(function(){
-                                if(idx<products.length-1){
-                                    idx++;
-                                    multipleRequestShooter(scope.productes,idx);
-                                }
-                            })
-                        })(scope.productes,0);
-                        var contractCode2='P'+PlayerInfo.getPlayer()+'andR1_'+SeminarInfo.getSelectedSeminar()+'_'+PeriodInfo.getCurrentPeriod();
-                        (function multipleRequestShooter(products,idx){
-                            postData={
-                                contractCode:contractCode2,
-                                brandName:products[idx].parentBrandName,
-                                brandID:products[idx].parentBrandID,
-                                varName:products[idx].varName,
-                                varID:products[idx].varID,
-                                composition:products[idx].composition,
-                                currentPriceBM:products[idx].currentPriceBM
-                            }
-                            $http({
-                                method:'POST',
-                                url:'/addContractDetails',
-                                data:postData
-                            }).then(function(data){
-                            
-                            },function(data){
+                        var contractCode = 'P'+PlayerInfo.getPlayer()+'andR2_'+SeminarInfo.getSelectedSeminar()+'_'+PeriodInfo.getCurrentPeriod();
+                        return contractDetailsCreateShooter(contractCode, scope.productes);
+                    }).then(function(data){
+                        console.log(data.msg);
 
-                            }).finally(function(){
-                                if(idx<products.length-1){
-                                    idx++;
-                                    multipleRequestShooter(scope.producths,idx);
-                                }
-                            })
-                        })(scope.producths,0);
-                        var contractCode3='P'+PlayerInfo.getPlayer()+'andR2_'+SeminarInfo.getSelectedSeminar()+'_'+PeriodInfo.getCurrentPeriod();
-                        (function multipleRequestShooter(products,idx){
-                            postData={
-                                contractCode:contractCode3,
-                                brandName:products[idx].parentBrandName,
-                                brandID:products[idx].parentBrandID,
-                                varName:products[idx].varName,
-                                varID:products[idx].varID,
-                                composition:products[idx].composition,
-                                currentPriceBM:products[idx].currentPriceBM
-                            }
-                            $http({
-                                method:'POST',
-                                url:'/addContractDetails',
-                                data:postData
-                            }).then(function(data){
-                            
-                            },function(data){
+                        var contractCode = 'P'+PlayerInfo.getPlayer()+'andR2_'+SeminarInfo.getSelectedSeminar()+'_'+PeriodInfo.getCurrentPeriod();
+                        return contractDetailsCreateShooter(contractCode, scope.producths);                        
+                    }).then(function(data){
+                        console.log(data.msg);
 
-                            }).finally(function(){
-                                if(idx<products.length-1){
-                                    idx++;
-                                    multipleRequestShooter(scope.productes,idx);
-                                }
-                            })
-                        })(scope.productes,0);
-                        var contractCode4='P'+PlayerInfo.getPlayer()+'andR2_'+SeminarInfo.getSelectedSeminar()+'_'+PeriodInfo.getCurrentPeriod();
-                        (function multipleRequestShooter(products,idx){
-                            postData={
-                                contractCode:contractCode4,
-                                brandName:products[idx].parentBrandName,
-                                brandID:products[idx].parentBrandID,
-                                varName:products[idx].varName,
-                                varID:products[idx].varID,
-                                composition:products[idx].composition,
-                                currentPriceBM:products[idx].currentPriceBM
-                            }
-                            $http({
-                                method:'POST',
-                                url:'/addContractDetails',
-                                data:postData
-                            }).then(function(data){
-                            
-                            },function(data){
+                    //step 4: after everything related have been inserted into DB, send request to /submitDecision to block input interface
+                        var queryCondition={
+                            producerID : parseInt(PlayerInfo.getPlayer()),
+                            seminar    : SeminarInfo.getSelectedSeminar(),
+                            period     : PeriodInfo.getCurrentPeriod(),
+                            value      : true
+                        }
+                        return $http({
+                            method :'POST',
+                            url    :'/submitPortfolioDecision',
+                            data   :queryCondition
+                        });
+                    }).then(function(data){
+                        console.log('Submitted decision complete, lock input.');
+                    }, function(data){
+                        if (data.msg != undefined ){ console.log('Error: ' + data.msg);}
+                        else console.log('Error: ' + data.data);                        
+                    });
+                }
 
-                            }).finally(function(){
-                                if(idx<products.length-1){
-                                    idx++;
-                                    multipleRequestShooter(scope.producths,idx);
-                                }else{
-                                    scope.isCommitConfirmInfoShown=false;
-                                }
-                            })
-                        })(scope.producths,0);
-                    })
+
+                function contractDetailsCreateShooter(contractCode, productList){
+                    var deferred = $q.defer();
+
+                    (function multipleRequestShooter(products,idx){
+                        var shooterData={
+                            contractCode:contractCode,
+                            brandName:products[idx].parentBrandName,
+                            brandID:products[idx].parentBrandID,
+                            varName:products[idx].varName,
+                            varID:products[idx].varID,
+                            composition:products[idx].composition,
+                            currentPriceBM:products[idx].currentPriceBM
+                        }
+                        $http({
+                            method:'POST',
+                            url:'/addContractDetails',
+                            data:shooterData
+                        }).then(function(data){
+                            if(idx<products.length-1){
+                                idx++;
+                                multipleRequestShooter(products,idx);
+                            }else{
+                                deferred.resolve({msg:'contract details shooter done, contractCode : ' + contractCode});
+                            }                        
+                        },function(data){
+                            deferred.reject({msg:'Error from contract details shooter, contractCode : ' + contractCode});
+                        });
+
+                    })(productList,0);
+
+                    return deferred.promise;
                 }
 
                 scope.$watch('isPageShown', function(newValue, oldValue){
@@ -445,13 +378,12 @@ define(['directives', 'services'], function(directives){
                         initializePage();
                     }
                 });
+
                 scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
                     ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
                         scope.pageBase = base; 
                     }).then(function(){
-                        console.log('11111');
                         return showView();
-                        console.log('2222');
                     }), function(reason){
                         console.log('from ctr: ' + reason);
                     }, function(update){

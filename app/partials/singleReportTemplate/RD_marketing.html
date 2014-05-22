@@ -23,7 +23,7 @@
                     <p class="padding-40">{{Label.getContent('Price Appeal')}}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="pageBase.onlineAdvertising[0]" onbeforesave="checkBudget('onlineAdvertising','0',$data)" onaftersave="updateRetailerDecision('onlineAdvertising','0')">
+                    <a href="#" editable-text="pageBase.onlineAdvertising[0]" onbeforesave="checkBudget(0,'onlineAdvertising','0',$data)" onaftersave="updateRetailerDecision('onlineAdvertising','0')">
                         <p class="text-right">{{ pageBase.onlineAdvertising[0] || 0 }}</p>
                     </a>
                 </td>
@@ -33,7 +33,7 @@
                     <p class="padding-40">{{Label.getContent('Convenience')}}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="pageBase.onlineAdvertising[1]" onbeforesave="checkBudget('onlineAdvertising','1',$data)" onaftersave="updateRetailerDecision('onlineAdvertising','1')">
+                    <a href="#" editable-text="pageBase.onlineAdvertising[1]" onbeforesave="checkBudget(0,'onlineAdvertising','1',$data)" onaftersave="updateRetailerDecision('onlineAdvertising','1')">
                         <p class="text-right">{{ pageBase.onlineAdvertising[1]|| 0 }}</p>
                     </a>
                 </td>
@@ -49,7 +49,7 @@
                     <p class="padding-40">{{Label.getContent('Rural')}}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="markets[1].localAdvertising[0]" onbeforesave="checkBudgeting(markets[1].marketID,'localAdvertising','postion','0',$index,$data)" onaftersave="updateMarketingDecision(markets[1].marketID,'localAdvertising','postion','0',1)">
+                    <a href="#" editable-text="markets[1].localAdvertising[0]" onbeforesave="checkBudget(2,'localAdvertising','0',$data)" onaftersave="updateMarketingDecision(markets[1].marketID,'localAdvertising','postion','0',1)">
                         <p class="text-right">{{ markets[1].localAdvertising[0] || 0 }}
                         </p>
                     </a>
@@ -60,7 +60,7 @@
                     <p class="padding-40">{{Label.getContent('Urban')}}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="markets[0].localAdvertising[0]" onbeforesave="checkBudgeting(markets[0].marketID,'localAdvertising','postion','0',$index,$data)" onaftersave="updateMarketingDecision(markets[0].marketID,'localAdvertising','postion','0',0)">
+                    <a href="#" editable-text="markets[0].localAdvertising[0]" onbeforesave="checkBudget(1,'localAdvertising','0',$data)" onaftersave="updateMarketingDecision(markets[0].marketID,'localAdvertising','postion','0',0)">
                         <p class="text-right">{{ markets[0].localAdvertising[0] || 0 }}
                         </p>
                     </a>

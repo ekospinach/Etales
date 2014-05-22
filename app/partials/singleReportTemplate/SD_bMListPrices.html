@@ -7,7 +7,7 @@
     <table class="table table-condensed table-bordered table-success">
     	<thead>
     		<tr>
-    			<th colspan="2">{{Label.getContent('Elecssories')}}</th>
+    			<th>{{Label.getContent('Elecssories')}}</th>
     			<th>
     				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Pack Format Info')}}" popover-title="{{Label.getContent('Pack Format')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Pack Format')}}<span style="color:red">*</span></p>
     			</th>
@@ -25,7 +25,7 @@
     			</th>
     		</tr>
     		<tr class="success">
-    			<td colspan="7">
+    			<td colspan="6">
     				<p>{{Label.getContent('Brand')}}</p>
     			</td>
     		</tr>
@@ -33,10 +33,7 @@
     	<tbody>
     		<tr class="success" ng-repeat='producte in productes'>
     			<td>
-    				<p class="padding-20">{{producte.parentBrandName}}</p>
-    			</td>
-    			<td>
-    				<p class="text-center">{{producte.varName}}</p>
+    				<p class="padding-20">{{producte.parentBrandName}}{{producte.varName}}</p>
     			</td>
     			<td>
     				<p class="text-right">{{selectPacks('Elecssories',producte.parentBrandName,producte.varName)}}</p>
@@ -53,12 +50,13 @@
     			<td>
     				<a href="#" editable-text="producte.currentPriceBM" onbeforesave="checkCurrentBM('Elecssories',producte.parentBrandName,producte.varName,'currentPriceBM','0',$index,$data)" onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'currentPriceBM','0',$index)" ng-show='!isReady'>
     					<p class="text-right">{{ producte.currentPriceBM || 0 }}</p>
+                        <p ng-show='producte.showInfo'>{{Label.getContent('Less than current cost')}}</p>
     				</a>
                     <p class="text-right" ng-show='isReady'>{{ producte.currentPriceBM || 0 }}</p>
     			</td>
     		</tr>
     		<tr>
-    			<th colspan="2">{{Label.getContent('HealthBeauties')}}</th>
+    			<th>{{Label.getContent('HealthBeauties')}}</th>
     			<th>
     				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Pack Format Info')}}" popover-title="{{Label.getContent('Pack Format')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Pack Format')}}<span style="color:red">*</span></p>
     			</th>
@@ -76,16 +74,13 @@
     			</th>
     		</tr>
             <tr class="danger">
-                <td colspan="7">
+                <td colspan="6">
                     <p>{{Label.getContent('Brand')}}</p>
                 </td>
             </tr>
     		<tr class="danger" ng-repeat='producth in producths'>
     			<td>
-    				<p class="padding-20">{{producth.parentBrandName}}</p>
-    			</td>
-    			<td>
-    				<p class="text-center">{{producth.varName}}</p>
+    				<p class="padding-20">{{producth.parentBrandName}}{{producth.varName}}</p>
     			</td>
     			<td>
     				<p class="text-right">{{selectPacks('HealthBeauty',producth.parentBrandName,producth.varName)}}</p>
@@ -101,9 +96,10 @@
     			</td>
     			<td>
     				<a href="#" editable-text="producth.currentPriceBM" onbeforesave="checkCurrentBM('HealthBeauty',producth.parentBrandName,producth.varName,'currentPriceBM','0',$index,$data)" onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'currentPriceBM','0',$index)" ng-show='!isReady'>
-    					<p class="text-right">{{ producth.nextPriceBM || 0 }}</p>
+    					<p class="text-right">{{ producth.currentPriceBM || 0 }}</p>
+                        <p ng-show='producth.showInfo'>{{Label.getContent('Less than current cost')}}</p>
     				</a>
-                    <p class="text-right" ng-show='isReady'>{{ producth.nextPriceBM || 0 }}</p>
+                    <p class="text-right" ng-show='isReady'>{{ producth.currentPriceBM || 0 }}</p>
     			</td>
     		</tr>
     	</tbody>

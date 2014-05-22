@@ -46,6 +46,26 @@ define(['app','socketIO'], function(app) {
 			}
 		}
 
+		$scope.updatePortfolioDecisionCommittedChanged = function(producerID, period, value) {
+            var queryCondition={
+                producerID : producerID,
+                seminar    : $scope.seminar.seminarCode,
+                period     : period,
+                value      : value
+            }
+
+            $http({
+                method :'POST',
+                url    :'/submitPortfolioDecision',
+                data   :queryCondition
+            }).success(function(data, status, headers, config){
+            	console.log('update commit portfolio decision status successfully');
+            }).error(function(data, status, headers, config){
+            	console.log('update commit portfolio decision status failed.');
+            })
+
+		}		
+
 		$scope.updatePassword=function(seminar,location,additionalIdx){
 			var data={
 				seminarCode:seminar.seminarCode,
@@ -54,6 +74,7 @@ define(['app','socketIO'], function(app) {
 				value:seminar[location][additionalIdx].password,
 				behaviour:'updatePassword'
 			}
+
 			console.log('update Password post data:' + data);
 			$http({method: 'POST', url: '/updateSeminar',data:data}).
 			  success(function(data, status, headers, config) {

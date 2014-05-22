@@ -458,7 +458,7 @@ function fillNegotiationItemByContractDetail(categoryDeal, negotiationItem, prod
                           console.log('          - NO related verified contractDetails, copy from last period input ...'); 
                           /*      
   
-                          If they cannot reach any agreement, need to copy agreement last period automatically.
+                          //TODO: If they cannot reach any agreement, need to copy agreement last period input automatically. And put previous input into current position.
                                 
                           */
                         }

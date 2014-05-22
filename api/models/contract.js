@@ -58,14 +58,18 @@ var contractVariantDetails = mongoose.model('contractVariantDetails', contractVa
 
 exports.addContract = function(io){
      return function(req, res, next){
-          contract.count({seminar: req.body.seminar,period:req.body.period, producerID:req.body.producerID, retailerID:req.body.retailerID},function(err,count){
+          contract.count({
+                    seminar: req.body.seminar,
+                    period:req.body.period, 
+                    producerID:req.body.producerID, 
+                    retailerID:req.body.retailerID},function(err,count){
                if(count!=0){
-                    res.send(404,'another contract');
+                    res.send(400,'bad contract pair: supplier ' + req.body.producerID + ' retialer ' + req.body.retailerID +', already existed, please remove them first.');
                }else{
                     var contractCode='P'+req.body.producerID+'and'+'R'+req.body.retailerID+'_'+req.body.seminar+'_'+req.body.period; //sth + period + seminar, must be
                     contract.count({contractCode: contractCode},function(err,count){
                          if(count!=0){
-                              res.send(404,'another contractCode');
+                              res.send(400,'bad contractCode:' + contractCode);
                          }else{
                               var newContract=new contract({
                                    contractCode : contractCode,
@@ -101,6 +105,7 @@ exports.checkContract=function(req,res,next){
      })  
 }
 
+//TODO: should check previous period input first, if anything, copy original ones. 
 exports.addContractDetails=function(io){
      return function(req,res,next){
           var newContractVariantDetails=new contractVariantDetails({
@@ -123,8 +128,8 @@ exports.addContractDetails=function(io){
                nc_OtherCompensation_lastModifiedBy    : 'P',             
                isProducerApproved                     : false,
                isRetailerApproved                     : false,  
-               isNewProduct                           : true,  //used for showing tag "NEW"
-               isCompositionModified                  : true, //compare with previous period composition, used for showing tag "MODIFIED"
+               isNewProduct                           : false,  //used for showing tag "NEW"
+               isCompositionModified                  : false,  //compare with previous period composition, used for showing tag "MODIFIED"
                composition                            : req.body.composition, //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                currentPriceBM                         : req.body.currentPriceBM             
           });
@@ -206,5 +211,24 @@ exports.updateContractDetails=function(io){
                     res.send(200, doc);
                });  
           })
+     }
+}
+
+
+exports.removeContractDetailsByContractcode = function(io){
+     return function(req, res, next){
+          contractVariantDetails.remove({contractCode : req.body.contractCode}, function(err, numberAffected){
+               if(err){ next(new Error(err))};
+               res.send('Related contractDetails("' + req.body.contractCode + '") have been removed,  number affected : ' + numberAffected);
+          });
+     }
+}
+
+exports.removeContract = function(io){
+     return function(req, res, next){
+          contract.remove({contractCode : req.body.contractCode}, function(err, numberAffected){
+               if(err){ next(new Error(err))};
+               res.send('Related contract("' + req.body.contractCode + '") have been removed,  number affected : ' + numberAffected);
+          });
      }
 }

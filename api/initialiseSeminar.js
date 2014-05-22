@@ -465,6 +465,14 @@ exports.initialiseSeminar = function(io){
 	            io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	 
 
 
+	            options.endWith = 0;
+				options.cgiPath = conf.cgi.path_BG_oneQuarterExogenousData;
+				options.schemaName = 'BG_oneQuarterExogenousData';
+				return require('./models/BG_oneQuarterExogenousData.js').addInfos(options);							
+			}).then(function(result){ 
+	            io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	 
+
+
 	            status = 'actived';
 	            res.send(200, 'Initialization done.');
 			}, function(error){ //log the error

@@ -21,8 +21,10 @@ define(['angular',
 		};
 
 		this.$get = function(){
+
 			var self = this, item;
 			var items=new Array();
+
 			return {
 				getContent : function(value){
 					switch(self.currentLanguage){
@@ -60,7 +62,9 @@ define(['angular',
 	})	
 
 	services.factory('ContractInfo', function(){
+
 		var selectedContract;
+
 		return {
 			getSelectedContract : function(){
 				console.log('services get:' + selectedContract);
@@ -89,12 +93,12 @@ define(['angular',
 		var player;
 		return {
 			getPlayer:function(){
-				console.log('get player:' + player);
+			//	console.log('get player:' + player);
 				return player;
 			},
 			setPlayer:function(value){
 				player=value;
-				console.log('set player:'+player)
+			//	console.log('set player:'+player)
 			}
 		}
 	})
@@ -117,12 +121,12 @@ define(['angular',
 		var selectedSeminar;
 		return {
 			getSelectedSeminar : function(){
-				console.log('[SeminarInfo]services get:' + selectedSeminar);
+				//console.log('[SeminarInfo]services get:' + selectedSeminar);
 				return selectedSeminar;
 			},
 			setSelectedSeminar : function(value){
 				selectedSeminar = value;
-				console.log('[SeminarInfo]services set seminar: ' + selectedSeminar);
+				//console.log('[SeminarInfo]services set seminar: ' + selectedSeminar);
 			}		
 		}
 	})
@@ -131,12 +135,12 @@ define(['angular',
 		var selectedSeminar;
 		return {
 			getSelectedSeminar : function(){
-				console.log('[EditSeminarInfo]services get:' + selectedSeminar.seminarCode);
+				//console.log('[EditSeminarInfo]services get:' + selectedSeminar.seminarCode);
 				return selectedSeminar;
 			},
 			setSelectedSeminar : function(value){
 				selectedSeminar = value;
-				console.log('[EditSeminarInfo]services set seminar: ' + selectedSeminar.seminarCode);
+				//console.log('[EditSeminarInfo]services set seminar: ' + selectedSeminar.seminarCode);
 			}		
 		}
 	})
@@ -146,22 +150,22 @@ define(['angular',
 		var currentPeriod;
 		return {
 			getCurrentPeriod:function(){
-				console.log('services get period:'+currentPeriod);
+				//console.log('services get period:'+currentPeriod);
 				return currentPeriod;
 			},
 			getPreviousPeriod:function(){
 				currentPeriod=currentPeriod-1;
-				console.log('services get period:'+currentPeriod);
+				//console.log('services get period:'+currentPeriod);
 				return currentPeriod;
 			},
 			getNextPeriod:function(){
 				currentPeriod=currentPeriod+1;
-				console.log('services get period:'+currentPeriod);
+				//console.log('services get period:'+currentPeriod);
 				return currentPeriod;
 			},
 			setCurrentPeriod:function(value){
 				currentPeriod=value;
-				console.log('services set period:'+currentPeriod);
+				//console.log('services set period:'+currentPeriod);
 			}	
 		}
 	})

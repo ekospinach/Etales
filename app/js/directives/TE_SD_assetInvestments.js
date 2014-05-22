@@ -61,13 +61,25 @@ define(['directives', 'services'], function(directives){
                     }
                 }
 
-                scope.checkData=function(value){
+                scope.checkData=function(categoryID,value){
                     var d=$q.defer();
                     var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
                     if(!filter.test(value)){
                         d.resolve(Label.getContent('Input a number'));
                     }else{
-                        d.resolve();
+                        var url='/getScrplSales/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+PlayerInfo.getPlayer()+'/'+categoryID;
+                        $http({
+                            method:'GET',
+                            url:url
+                        }).then(function(data){
+                            if(value>data.data[0]){
+                                d.resolve(Label.getContent('Input range')+':0~'+data.data[0].toFixed(2));
+                            }else{
+                                d.resolve();
+                            }
+                        },function(){
+                            d.resolve(Label.getContent('Check Error'));
+                        })
                     }
                     return d.promise;
                 }
