@@ -177,7 +177,6 @@ exports.getSeminarList=function(req,res,next){
 }
 
 exports.getCurrentPeriod=function(req,res,next){
-	console.log(req.params.seminar);
 	return seminar.findOne({
 		seminarCode:req.params.seminar
 	},function(err,doc){

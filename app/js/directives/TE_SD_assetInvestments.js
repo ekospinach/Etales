@@ -29,7 +29,7 @@ define(['directives', 'services'], function(directives){
                     };                   
                 }
 
-                var loadSelectCategroy=function(category){
+                var loadSelectCategory=function(category){
                     var d=$q.defer();
                     var count=0;
                     var brands=new Array();

@@ -103,7 +103,7 @@ define(['directives', 'services'], function(directives){
                     return d.promise;
                 }
 
-                var loadSelectCategroy=function(category){
+                var loadSelectCategory=function(category){
                     var count=0;
                     var products=new Array();
                     var allProCatDecisions=_.filter(scope.pageBase.proCatDecision,function(obj){
@@ -131,7 +131,6 @@ define(['directives', 'services'], function(directives){
                                             products[count].packFormat=3;
                                         }
                                         products[count].currentPriceBM=parseFloat(products[count].currentPriceBM).toFixed(2);
-                                        //products[count].nextPriceBM=parseFloat(products[count].nextPriceBM).toFixed(2);
                                         products[count].showInfo=false;
                                         count++;
                                     }
@@ -183,7 +182,7 @@ define(['directives', 'services'], function(directives){
                     }
                 }
 
-                var loadByCategroy=function(category){
+                var loadByCategory=function(category){
                     return _.filter(scope.pageBase.proCatDecision,function(obj){
                         if(category=="HealthBeauty"){
                             return (obj.categoryID==2);
@@ -219,8 +218,8 @@ define(['directives', 'services'], function(directives){
 
                 var showView=function(){
                     var d=$q.defer();
-                    loadSelectCategroy('Elecssories');
-                    loadSelectCategroy('HealthBeauty');
+                    loadSelectCategory('Elecssories');
+                    loadSelectCategory('HealthBeauty');
                     scope.selectPacks=selectPacks;
                     scope.isResultShown = true;
                     scope.isPageLoading = false;

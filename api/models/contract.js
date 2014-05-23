@@ -90,6 +90,42 @@ exports.addContract = function(io){
      }
 }
 
+exports.checkVolume=function(req,res,next){
+     contractVariantDetails.findOne({
+          contractCode:req.params.contractCode,
+          parentBrandName:req.params.parentBrandName,
+          variantName:req.params.variantName
+     },function(err,doc){
+          if(err){
+               next(new Error(err));
+          }
+          if(!doc){
+               res.send(400,'fail');
+          }else if(doc.nc_MinimumOrder!=0){
+               res.send(200,'isReady');
+          }else{
+               res.send(200,'unReady');
+          }
+     })
+}
+exports.checkSalesTargetVolume=function(req,res,next){
+     contractVariantDetails.findOne({
+          contractCode:req.params.contractCode,
+          parentBrandName:req.params.parentBrandName,
+          variantName:req.params.variantName
+     },function(err,doc){
+          if(err){
+               next(new Error(err));
+          }
+          if(!doc){
+               res.send(400,'fail');
+          }else if(doc.nc_SalesTargetVolume!=0){
+               res.send(200,'isReady');
+          }else{
+               res.send(200,'unReady');
+          }
+     })
+}
 exports.checkContract=function(req,res,next){
      contract.findOne({contractCode:req.params.contractCode},function(err,doc){
           if(err) {next(new Error(err))};
@@ -169,6 +205,27 @@ exports.checkContractDetails=function(req,res,next){
      });
 }
 
+exports.getNegotiationExpend=function(req,res,next){
+     contractVariantDetails.find({
+          contractCode:req.params.contractCode
+     },function(err,docs){
+          if(err){
+               next(new Error(err));
+          }
+          var result=0;
+          if(docs){
+               for(var i=0;i<docs.length;i++){
+                    if(docs[i].parentBrandName!=req.params.parentBrandName&&docs[i].variantName!=req.params.variantName){
+                         result+=docs[i].nc_MinimumOrder;  
+                    }  
+               }
+               res.send(200,{'result':result});
+          }else{
+               res.send(404,'fail');
+          }
+     })
+}
+
 exports.updateContractDetails=function(io){
      return function(req,res,next){
           var result=false;
@@ -192,6 +249,12 @@ exports.updateContractDetails=function(io){
                doc[queryCondition.location]=queryCondition.value;
                if(queryCondition.location!="isProducerApproved"||queryCondition.location!="isRetailerApproved"){
                   doc[queryCondition.modify]=queryCondition.userType;  
+               }
+               if(queryCondition.location=="nc_MinimumOrder"){
+                    doc.nc_VolumeDiscountRate=0;
+               }
+               if(queryCondition.location=="nc_VolumeDiscountRate"){
+                    doc.nc_SalesTargetVolume=0;
                }
                if(queryCondition.userType=="P"){
                     io.sockets.emit('supplierEditNegotiation', 'Supplier Edit Negotiation ');

@@ -29,7 +29,7 @@ define(['directives', 'services'], function(directives){
                     };                   
                 }
 
-                var loadSelectCategroy=function(category){
+                var loadSelectCategory=function(category){
                     var d=$q.defer();
                     var count=0;
                     var brands=new Array();
@@ -241,8 +241,8 @@ define(['directives', 'services'], function(directives){
 
                 var showView=function(){
                     var d=$q.defer();
-                    loadSelectCategroy('Elecssories');
-                    loadSelectCategroy('HealthBeauty');
+                    loadSelectCategory('Elecssories');
+                    loadSelectCategory('HealthBeauty');
                     scope.isResultShown = true;
                     scope.isPageLoading = false;
                     // var categoryID=0,count=0,result=0,acMax=0,abMax=0,expend=0,avaiableMax=0;
@@ -284,8 +284,8 @@ define(['directives', 'services'], function(directives){
                     // }).then(function(data){
                     //     scope.heaSurplusProduction=acHeaMax-data.data.result;
                     //     scope.heaPercentageProduction=(acHeaMax-data.data.result)/acHeaMax*100;
-                    //     loadSelectCategroy('Elecssories');
-                    //     loadSelectCategroy('HealthBeauty');
+                    //     loadSelectCategory('Elecssories');
+                    //     loadSelectCategory('HealthBeauty');
                     // }).then(function(){
                     //     scope.isResultShown = true;
                     //     scope.isPageLoading = false;  

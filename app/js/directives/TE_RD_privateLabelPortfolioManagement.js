@@ -36,7 +36,7 @@ define(['directives', 'services'], function(directives){
 					};                    
                 }
 
-                var loadSelectCategroy=function(category){
+                var loadSelectCategory=function(category){
                     var count=0;
                     var products=new Array();
                     var allRetCatDecisions=_.filter(scope.pageBase.retCatDecision,function(obj){
@@ -274,7 +274,7 @@ define(['directives', 'services'], function(directives){
                         }
                         $scope.brandLastName=parseInt(parseInt(PlayerInfo.getPlayer()))+4;/*need check*/
                     }
-                    var loadByCategroy=function(category){
+                    var loadByCategory=function(category){
                         return _.filter($scope.pageBase.retCatDecision,function(obj){
                             if(category=="HealthBeauty"){
                                 return (obj.categoryID==2);
@@ -291,7 +291,7 @@ define(['directives', 'services'], function(directives){
                         }else{
                             category="HealthBeauty";
                         }
-                        var allretCatDecisions=loadByCategroy(category);
+                        var allretCatDecisions=loadByCategory(category);
                         var allBrands=new Array();
                         for(var i=0;i<allretCatDecisions.length;i++){
                             for(var j=0;j<allretCatDecisions[i].privateLabelDecision.length;j++){
@@ -405,7 +405,7 @@ define(['directives', 'services'], function(directives){
                     $scope.addNewProduct=addNewProduct;
                     $scope.setBrandName=setBrandName;
                     $scope.loadAllBrand=loadAllBrand;
-                    $scope.loadByCategroy=loadByCategroy;
+                    $scope.loadByCategory=loadByCategory;
                     $scope.showbubleMsg=showbubleMsg;
                     setAddNewBrand();
                     var calculateBrandID=function(retVariantDecision,retailerID){
@@ -495,8 +495,8 @@ define(['directives', 'services'], function(directives){
 
                 var showView=function(){
                     var d=$q.defer();
-                    loadSelectCategroy('Elecssories');
-                    loadSelectCategroy('HealthBeauty');
+                    loadSelectCategory('Elecssories');
+                    loadSelectCategory('HealthBeauty');
                     scope.selectPacks=selectPacks;
                     scope.isResultShown = true;
                     scope.isPageLoading = false; 

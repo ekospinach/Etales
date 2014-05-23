@@ -571,7 +571,8 @@ var getLabelBase = function(){
 
 		/*decision*/
 		{id:'Not set',  ENG:'Not set',  CHN:'请选择',  RUS:''},
-		{id:'Input a number',  ENG:'Enter a negative number(Allow two decimal places)',  CHN:'请输入非负数(可保留两位小数)',  RUS:''},
+		{id:'Input a number',  ENG:'Enter a positive number(Allow two decimal places)',  CHN:'请输入非负数(可保留两位小数)',  RUS:''},
+		{id:'Input Number',  ENG:'Enter a negative or positive number(Allow two decimal places)',  CHN:'请输入非负数(可保留两位小数)',  RUS:''},
 		{id:'fail',  ENG:'check fail,please call the admin',  CHN:'验证失败,请联系管理员',  RUS:''},
 		{id:'Input a Integer',  ENG:'Input a nonnegative integer',  CHN:'请输入非负整数',  RUS:''},
 		{id:'Input range',  ENG:'Input range',  CHN:'输入范围',  RUS:''},
@@ -857,7 +858,8 @@ var getLabelBase = function(){
 		{id:'Retailer Change',  ENG:'Retailer Change',  CHN:'零售商修改谈判',  RUS:''},
 		{id:'Supplier Change',  ENG:'Supplier Change',  CHN:'供应商商修改谈判',  RUS:''},
 		{id:'Less than current cost',  ENG:'Less than current cost',  CHN:'低于成本',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'set Minimum Order first',  ENG:'please set minimum order first',  CHN:'请先输入最小订量',  RUS:''},
+		{id:'set Target Volume first',  ENG:'please set salesTargetVolume first',  CHN:'请先输入目标量',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
