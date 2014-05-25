@@ -5395,6 +5395,58 @@ exports.addRCR_consolidatedProfitAndLoss=function(req,res,next){
     }); 
 }
 
+exports.getRcrplSales=function(req,res,next){
+    RCR_consolidatedProfitAndLoss.findOne({
+        seminar:req.params.seminar,
+        period:req.params.period,
+        retailerID:req.params.retailerID
+    },function(err,doc){
+        if(err){
+            next(new Error(err));
+        }
+        if(!doc){
+           res.send(404,{err:'cannot find the doc'}); 
+        }else{
+            res.send(200,doc.rcrpl_Sales[req.params.categoryID-1].value);
+            //res.send(200,doc.scrpl_Sales[req.params.categoryID-1][0]);
+        }
+    })
+}
+
+exports.getSalesVolume=function(req,res,next){
+    RCR_consolidatedProfitAndLoss.findOne({
+        seminar:req.params.seminar,
+        period:req.params.period,
+        retailerID:req.params.retailerID
+    },function(err,doc){
+        if(err){
+            next(new Error(err));
+        }
+        if(!doc){
+           res.send(404,{err:'cannot find the doc'}); 
+        }else{
+            res.send(200,20);
+        }
+    })
+}
+
+exports.getMarketSize=function(req,res,next){
+    RCR_consolidatedProfitAndLoss.findOne({
+        seminar:req.params.seminar,
+        period:req.params.period,
+        retailerID:req.params.retailerID
+    },function(err,doc){
+        if(err){
+            next(new Error(err));
+        }
+        if(!doc){
+           res.send(404,{err:'cannot find the doc'}); 
+        }else{
+            res.send(200,20);
+        }
+    })
+}
+
 exports.getRCR_consolidatedProfitAndLoss=function(req,res,next){
     var data={
         'seminar':req.params.seminar,

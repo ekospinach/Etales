@@ -87,6 +87,58 @@ define(['directives', 'services'], function(directives){
                     return d.promise;
                 }
 
+                scope.checkMinimumOrder=function(contractCode,brandName,varName,category,value,retailerID){
+                    var d=$q.defer();
+                    var filter=/^[0-9]*[1-9][0-9]*$/;
+                    if(!filter.test(value)){
+                        d.resolve(Label.getContent('Input a Integer'));
+                    }
+                    var url='/checkContractDetails/'+contractCode+'/'+brandName+'/'+varName+'/nc_MinimumOrder';
+                    $http({
+                        method:'GET',
+                        url:url
+                    }).then(function(data){
+                        if(data.data.result=="no"){
+                            d.resolve(Label.getContent('This product is locked'));
+                        }
+                        url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+PlayerInfo.getPlayer();
+                        return $http({
+                            method:'GET',
+                            url:url
+                        });
+                    }).then(function(data){
+                        negotiationACmax=data.data.productionCapacity[category-1];
+                        url='/getNegotiationExpend/'+contractCode+'/'+brandName+'/'+varName;
+                        return $http({
+                            method:'GET',
+                            url:url
+                        })
+                    }).then(function(data){
+                        expend=data.data.result;
+                        url='/getSalesVolume/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+retailerID+'/'+category;
+                        return $http({
+                            method:'GET',
+                            url:url
+                        })
+                    }).then(function(data){
+                        if(negotiationACmax-expend>data.data){
+                            if(value>data.data){
+                                d.resolve(Label.getContent('Input range')+':0~'+data.data);
+                            }else{
+                                d.resolve();
+                            }
+                        }else{
+                            if(value>negotiationACmax-expend){
+                                d.resolve(Label.getContent('Input range')+':0~'+negotiationACmax-expend);
+                            }else{
+                                d.resolve();
+                            }
+                        }
+                    },function(){
+                        d.resolve(Label.getContent('Check Error'));
+                    });
+                }
+
                 scope.checkDiscountRate=function(contractCode,producerID,retailerID,brandName,varName,index,value,volume,bmPrices,category){
                     var d=$q.defer();
                     var discountRate=expend=0;
@@ -137,6 +189,60 @@ define(['directives', 'services'], function(directives){
                         d.resolve(Label.getContent('Check Error'));
                     })
                     return d.promise;
+                }
+
+                scope.checkTargetVolume =function(contractCode,brandName,varName,category,value,retailerID){
+                    var d=$q.defer();
+                    var maxTargetVolumeVsTotalMarket,marketSize,salesVolume;
+                    var filter=/^[0-9]*[1-9][0-9]*$/;
+                    if(!filter.test(value)){
+                        d.resolve(Label.getContent('Input a Integer'));
+                    }
+                    var url='/checkContractDetails/'+contractCode+'/'+brandName+'/'+varName+'/nc_SalesTargetVolume';
+                    $http({
+                        method:'GET',
+                        url:url
+                    }).then(function(data){
+                        if(data.data.result=="no"){
+                            d.resolve(Label.getContent('This product is locked'));
+                        }
+                        url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+category+'/1';
+                        return $http({
+                            method:'GET',
+                            url:url
+                        });
+                    }).then(function(data){
+                        maxTargetVolumeVsTotalMarket=data.data.MaxTargetVolumeVsTotalMarket;
+                        url='/getMarketSize/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+retailerID+'/'+category;
+                        return $http({
+                            method:'GET',
+                            url:url
+                        })
+                    }).then(function(data){
+                        marketSize=data.data;
+                        url='/getSalesVolume/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+retailerID+'/'+category;
+                        return $http({
+                            method:'GET',
+                            url:url
+                        })
+                    }).then(function(data){
+                        salesVolume=data.data;
+                        if(marketSize*maxTargetVolumeVsTotalMarket>salesVolume){
+                            if(value>salesVolume){
+                                d.resolve(Label.getContent('Input range')+':0~'+salesVolume);
+                            }else{
+                                d.resolve();
+                            }
+                        }else{
+                            if(value>marketSize*maxTargetVolumeVsTotalMarket){
+                                d.resolve(Label.getContent('Input range')+':0~'+marketSize*maxTargetVolumeVsTotalMarket);
+                            }else{
+                                d.resolve();
+                            }
+                        }
+                    },function(){
+                        d.resolve(Label.getContent('Check Error'));
+                    });
                 }
 
                 scope.checkBonusRate=function(contractCode,producerID,retailerID,brandName,varName,index,value,volume,bmPrices,category){
@@ -239,7 +345,7 @@ define(['directives', 'services'], function(directives){
                         });
                     }).then(function(data){
                         supplierOtherCompensation=data.data[0].toFixed(2);
-                        url='/getRcrpl_Sales/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+retailerID+'/'+category;
+                        url='/getRcrplSales/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+retailerID+'/'+category;
                         return $http({
                             method:'GET',
                             url:url
