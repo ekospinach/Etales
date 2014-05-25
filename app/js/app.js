@@ -82,6 +82,7 @@
 	'directives/TE_RD_privateLabelPortfolioManagement',
 	'directives/TE_RD_storeManagement',
 	'directives/TE_RD_marketResearchOrders',
+	'directives/revealJSWrapper',
 	'angularRoute',
 	'angularXeditable',
 	'angularBootstrap',
@@ -97,6 +98,7 @@
 	'tree',
 	'highchartMore',
 	'angularHighcharts',
+	'reveal',
 	], function (angular, filters, services,directives,bootstrap, controllers) {
 		'use strict';
 		return angular.module('myApp', [

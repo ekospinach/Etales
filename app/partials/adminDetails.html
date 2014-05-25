@@ -46,6 +46,8 @@
 			{{ seminar.facilitator[0].password || 'empty' }}
 		</a>
 	</p>				
+
+
 	<div class="page-header">
 		<h3>Initialize
 			<small>
@@ -130,7 +132,66 @@
 		  </span>				  
 		</div>		
 		
-	</div>            
+	</div>         
+
+	<div class="page-header">
+		<h3>Game progress monitor
+			<small>
+	
+			</small>
+		</h3>
+	</div>        		
+
+	<div class="row">
+		<div class="col-md-6">
+			<div class="panel panel-info" ng-repeat='supplier in seminar.producers'>
+				<div class="panel-heading">Supplier {{supplier.producerID}}</div>
+
+				<table class="table table-condensed table-bordered">
+					<thead>
+						<tr>
+							<td></td>
+							<td>Is portfolio decision committed?</td>
+							<td>Is decision committed(Lock)?</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat='periodInfo in supplier.decisionCommitStatus'>
+							<td><strong>Period {{periodInfo.period}}</strong></td>
+							<td>
+								<a href="#" editable-checkbox="periodInfo.isPortfolioDecisionCommitted" onaftersave="updatePortfolioDecisionCommittedChanged(supplier.producerID, periodInfo.period, periodInfo.isPortfolioDecisionCommitted)">{{periodInfo.isPortfolioDecisionCommitted}} </a>				
+							</td>
+							<td><a href="#" editable-checkbox="periodInfo.isDecisionCommitted" onaftersave="updateFinalDecisionCommittedChanged('Producer', supplier.producerID, periodInfo.period, periodInfo.isDecisionCommitted)">{{periodInfo.isDecisionCommitted}}</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>			
+		</div>
+
+		<div class="col-md-6">
+			<div class="panel panel-success" ng-repeat='retailer in seminar.retailers'>
+				<div class="panel-heading">Retailer {{retailer.retailerID}}</div>
+
+				<table class="table table-condensed table-bordered">
+					<thead>
+						<tr>
+							<td></td>
+							<td>Is decision committed(Lock)?</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat='periodInfo in retailer.decisionCommitStatus'>
+							<td><strong>Period {{periodInfo.period}}</strong></td>
+							<td><a href="#" editable-checkbox="periodInfo.isDecisionCommitted" onaftersave="updateFinalDecisionCommittedChanged('Retailer', retailer.retailerID, periodInfo.period, periodInfo.isDecisionCommitted)">{{periodInfo.isDecisionCommitted}}</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>					
+		</div>
+
+	</div>
+
+
 
 </div>
 

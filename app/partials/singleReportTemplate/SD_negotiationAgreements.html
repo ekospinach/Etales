@@ -78,6 +78,7 @@
                     <p class="text-right text-muted" ng-show="product.isProducerApproved||product.isRetailerApproved">{{ product.nc_SalesTargetVolume || 0 }}</p>
                 </td>
                 <td>
+
                     <a href="#" editable-text="product.nc_PerformanceBonusRate" ng-show="(!product.isProducerApproved)&&(!product.isRetailerApproved)" onbeforesave="checkBonusRate(product.contractCode,producerID,1,product.parentBrandName,product.variantName,$index,$data,product.nc_SalesTargetVolume,product.currentPriceBM,1)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_PerformanceBonusRate',$index,$data,1,1)">
                         <p class="text-right" ng-class="{'P': 'text-danger', 'R': 'text-primary'}[product.nc_PerformanceBonusRate_lastModifiedBy]">{{ product.nc_PerformanceBonusRate || 0 }}</p>
                     </a>
@@ -131,6 +132,7 @@
                     <p class="text-right text-muted" ng-show="product.isProducerApproved||product.isRetailerApproved">{{ product.nc_SalesTargetVolume || 0 }}</p>
                 </td>
                 <td>
+
                     <a href="#" editable-text="product.nc_PerformanceBonusRate" ng-show="(!product.isProducerApproved)&&(!product.isRetailerApproved)" onbeforesave="checkBonusRate(product.contractCode,producerID,1,product.parentBrandName,product.variantName,$index,$data,product.nc_SalesTargetVolume,product.currentPriceBM,2)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_PerformanceBonusRate',$index,$data,2,1)">
                         <p class="text-right" ng-class="{'P': 'text-danger', 'R': 'text-primary'}[product.nc_PerformanceBonusRate_lastModifiedBy]">{{ product.nc_PerformanceBonusRate || 0 }}</p>
                     </a>

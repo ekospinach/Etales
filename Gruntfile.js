@@ -17,7 +17,8 @@
           'app/partials/*.html',
           'app/css/**/*.css',
           'app/js/**/*.js',
-          'app/img/**/*.{png,jpg,jpeg,gif,webp,svg}',        
+          'app/img/**/*.{png,jpg,jpeg,gif,webp,svg}',  
+          'views/*.ejs'      
         ],
         options: { livereload: true }
       }

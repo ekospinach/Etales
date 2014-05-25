@@ -426,10 +426,18 @@ exports.runSeminar = function(io){
 				options.cgiPath = conf.cgi.path_MR_sharesCrossSegment;
 				options.schemaName = 'MR_sharesCrossSegment';
 				return require('./models/MR_sharesCrossSegment.js').addReports(options);			
-
 			//deal with promises chain 						
 			}).then(function(result){ 
 	            io.sockets.emit('KernelProcessLog', { msg: result.msg, isError: false });	
+
+	            options.endWith = 0;
+				options.cgiPath = conf.cgi.path_BG_oneQuarterExogenousData;
+				options.schemaName = 'BG_oneQuarterExogenousData';
+				return require('./models/BG_oneQuarterExogenousData.js').addInfos(options);							
+			}).then(function(result){ 
+	            io.sockets.emit('KernelProcessLog', { msg: result.msg, isError: false });	 
+
+
 	            res.send(200, 'Run period start from ' + options.startFrom + ' to ' + options.endWith + ' done.');
 	            status = 'actived';
 			}, function(error){ //log the error

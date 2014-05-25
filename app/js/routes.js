@@ -28,7 +28,8 @@ define(['angular',
 		'controllers/facilitatorConfidentialReportCtrl',
 		'controllers/supplierDecisionCtrl',
 		'controllers/retailerDecisionCtrl',
-		'controllers/navbarCtrl'], function(angular, app) {
+		'controllers/navbarCtrl',
+		'controllers/feedbackCtrl'], function(angular, app) {
 	'use strict';
 	return app.config(['$routeProvider','$httpProvider', function($routeProvider, $httpProvider) {
 
@@ -117,6 +118,10 @@ define(['angular',
 		}).when('/facilitatorDecision',{
 			controller:'facilitatorDecisionCtrl',
 			templateUrl:'partials/facilitatorDecision.html',
+			access:access.facilitatorView
+		}).when('/feedback',{
+			controller:'feedbackCtrl',
+			templateUrl:'partials/feedback.html',
 			access:access.facilitatorView
 		}).when('/summaryReport',{
 			controller:'summaryReportCtrl',

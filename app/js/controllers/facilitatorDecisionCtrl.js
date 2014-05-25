@@ -1,6 +1,7 @@
 define(['app'], function(app) {
 		app.controller('facilitatorDecisionCtrl',
-			['$scope','$q','$rootScope','$location','$http','$filter','Label','PlayerInfo','PeriodInfo','SeminarInfo', function($scope,$q,$rootScope,$location,$http,$filter,Label,PlayerInfo,PeriodInfo,SeminarInfo) {
+			['$scope','$q','$rootScope','$location','$http','$filter','Label','PlayerInfo','PeriodInfo','SeminarInfo','$window',
+	 function($scope,$q,$rootScope,$location,$http,$filter,Label,PlayerInfo,PeriodInfo,SeminarInfo, $window) {
 			$rootScope.decisionActive="active";
 			$rootScope.loginCss="";
 		    $rootScope.loginFooter="bs-footer";
@@ -37,6 +38,11 @@ define(['app'], function(app) {
 		    $scope.setPreriod=function(period){
 		    	PeriodInfo.setCurrentPeriod(period);
 		    }
+
+			$scope.openTab = function() {
+				console.log('open new tab');
+				$window.open('www.google.com');
+			}
 
 		}]);
 });

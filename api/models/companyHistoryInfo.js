@@ -30,7 +30,7 @@ var retailerViewSchema = mongoose.Schema({
 	budgetSpentToDate : Number
 })
 
-var companyHistory=mongoose.model('companyHistory',companyHistoryInfoSchema);
+var companyHistory=mongoose.model('BG_companyHistory',companyHistoryInfoSchema);
 
 exports.getCompanyHistory=function(req,res,next){
 	companyHistory.findOne({

@@ -9,11 +9,20 @@ uses
   iniFiles,
   HCD_SystemDefinitions;
 
+
+
 {$I 'ET1_Common_Constants.INC'}
-{$I 'ET1_Common_Types.INC'}
-{$I 'ET1_Results_Types.INC'}
-{$I 'ET1_FILES_NAMES.INC'}
 {$I 'ET1_Runtime_Codes.INC'}
+{$I 'ET1_Common_Types.INC'}
+{$I 'ET1_Exogenous_Type.INC'}
+{$I 'ET1_Parameters_Type.INC'}
+{$I 'ET1_Universe_Declarations.INC'}
+{$I 'ET1_Global_Variables.INC'}
+{$I 'ET1_Files_Names.INC'}
+{$I 'ET1_Results_Types.INC'}
+{$I 'ET1_Kernel_Internal_Types.INC'}
+
+
 
 const
   dummyNo = 0;
@@ -38,8 +47,109 @@ function getVariable(name : string):string;
 procedure Explode(sQuery: string; var Params:TStrings);  
 function ReadResults(PeriodNumber : TPeriodNumber; SeminarCode : ansistring; DataDirectory : Ansistring; var OnePeriodResults : TAllResults ) : Integer;
 procedure LoadConfigIni(var DataDirectory : string; seminar : string);
-  
+
+Function ReadExogenousFile( ProgramsLocation : string;
+                            Geographies      : TMarketsSet;
+                            Products         : TCategoriesSet;
+                            Geographies_IDs  : TMarketsBytes;
+                            Products_IDs     : TCategoriesBytes;
+                            PeriodNumber     : TPeriodNumber ) : LongWord;
+Procedure SetGlobalNames;
+
+var
+  X2Ago, XPrev, XNow, XNext, XAfterNext  : TExogenous;
+  IOStatus                               : integer;
+
 implementation {-------------------------------------------------------------------------------------------------------------------}
+
+Procedure SetGlobalNames;
+var
+  Geography : TMarketsUniverse;
+  Category  : TCategoriesUniverse;
+
+begin
+  for Geography := 1 to MarketsUniverse do
+  begin
+    for Category := 1 to CategoriesUniverse do
+    begin
+      if (( length( UniverseMarketsNames[Geography] ) > 0 ) and ( length( UniverseCategoriesNames[Category] ) > 0 )) then
+      begin
+        ExogenousFilesNames[Geography, Category] := UniverseMarketsNames[Geography] + UniverseCategoriesNames[Category] + EXOExtension;
+        ParametersFilesNames[Geography, Category] := UniverseMarketsNames[Geography] + UniverseCategoriesNames[Category] + PARExtension;
+      end;
+    end;
+  end;
+
+end; { Set Global Names ====================================================================================================}
+
+
+Function ReadExogenousFile( ProgramsLocation : string;
+                            Geographies      : TMarketsSet;
+                            Products         : TCategoriesSet;
+                            Geographies_IDs  : TMarketsBytes;
+                            Products_IDs     : TCategoriesBytes;
+                            PeriodNumber     : TPeriodNumber ) : LongWord;
+var
+  ExoFileName    : string;
+  ExoFile        : TOneQuarterExogenousFile;
+  Cat            : TCategories;
+  Geog           : TMarkets;
+
+  PMinus2, PMinus1, PPlus1, PPlus2 : TPeriodNumber;
+
+begin
+  Fillchar( X2Ago, SizeOf(TExogenous), 0);
+  Fillchar( XPrev, SizeOf(TExogenous), 0);
+  Fillchar( XNow, SizeOf(TExogenous), 0);
+  Fillchar( XNext, SizeOf(TExogenous), 0);
+  Fillchar( XAfterNext, SizeOf(TExogenous), 0);
+
+  if ( PeriodNumber > HistoryStart ) then PMinus1 := PeriodNumber - 1 else PMinus1 := PeriodNumber;
+  if ( PMinus1 > HistoryStart ) then PMinus2 := PMinus1 - 1 else PMinus2 := PMinus1;
+
+  if ( PeriodNumber < FutureEnd ) then PPlus1 := PeriodNumber + 1 else PPlus1 := PeriodNumber;
+  if ( PPlus1 < FutureEnd ) then PPlus2 := PPlus1 + 1 else PPlus2 := PPlus1;
+
+  for Geog in Geographies do
+  begin
+    for Cat in Products do
+    begin
+  //    Writeln('Geographies_IDs[Geog]: ' + IntToStr(Geographies_IDs[Geog]));
+  //    Writeln('Products_IDs[Cat]: ' + IntToStr(Products_IDs[Cat]));
+  //    Writeln('ExogenousFilesNames[Geographies_IDs[Geog], Products_IDs[Cat]: ' + ExogenousFilesNames[Geographies_IDs[Geog], Products_IDs[Cat]] );
+      ExoFileName := ProgramsLocation + ExogenousFilesNames[Geographies_IDs[Geog], Products_IDs[Cat]];
+    //  Writeln(ExoFileName);
+      try
+        AssignFile( ExoFile, ExoFileName );
+        Reset( ExoFile );
+
+        Seek( ExoFile, PMinus2 - HistoryStart );
+        Read( ExoFile, X2Ago[Geog, Cat]);
+
+        Seek( ExoFile, PMinus1 - HistoryStart );
+        Read( ExoFile, XPrev[Geog, Cat]);
+
+        Seek( ExoFile, PeriodNumber - HistoryStart );
+        Read( ExoFile, XNow[Geog, Cat] );
+
+        Seek( ExoFile, PPlus1 - HistoryStart );
+        Read( ExoFile, XNext[Geog, Cat]);
+
+        Seek( ExoFile, PPlus2 - HistoryStart );
+        Read( ExoFile, XAfterNext[Geog, Cat]);
+
+        CloseFile( ExoFile );
+        IOStatus := err_ExogenousFileRead_OK;
+      except on EInOutError: Exception do IOStatus := err_ExogenousFileReadFailed;
+      end;
+      if ( IOStatus <> err_ExogenousFileRead_OK ) then Break;
+    end;
+    if ( IOStatus <> err_ExogenousFileRead_OK ) then Break;
+  end;
+  Result := IOStatus;
+
+end;
+
 
 function getSeminar(sListData : TStrings): string; 
 begin

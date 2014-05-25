@@ -28,10 +28,12 @@ var seminarSchema = mongoose.Schema({
 		retailerIntelligence         : Number,
 		forcasts                     : Number
 	},
+
 	producers : [producerSchema],
 	retailers : [retailerSchema],
 	facilitator : [facilitatorSchema],
 
+	//Kernel communicate parameters 
     simulationSpan : Number,
     traceActive : Boolean,
     traditionalTradeActive : Boolean,
@@ -211,22 +213,75 @@ exports.checkProducerDecision=function(req,res,next){
 	})
 }
 
-exports.submitDecision=function(io){
+exports.submitPortfolioDecision=function(io){
 	return function(req,res,next){
-		var queryCondition={
-			seminar:req.body.seminar,
-			producerID:req.body.producerID,
-			period:req.body.period
+		var queryCondition = {
+			seminar    : req.body.seminar,
+			producerID : req.body.producerID,
+			period     : req.body.period,
+			value       : req.body.value
 		}
+		console.log(util.inspect(queryCondition, {depth : null}));
+
 		seminar.findOne({seminarCode:queryCondition.seminar},function(err,doc){
 			if(err) {next(new Error(err))};
 			if(doc){
-				for(var i=0;i<doc.producers[queryCondition.producerID-1].decisionCommitStatus.length;i++){
-					if(doc.producers[queryCondition.producerID-1].decisionCommitStatus[i].period==queryCondition.period){
-						doc.producers[queryCondition.producerID-1].decisionCommitStatus[i].isPortfolioDecisionCommitted=true;
+				for (var i = 0; i < doc.producers[queryCondition.producerID - 1].decisionCommitStatus.length; i++) {
+					if (doc.producers[queryCondition.producerID - 1].decisionCommitStatus[i].period == queryCondition.period) {
+						doc.producers[queryCondition.producerID - 1].decisionCommitStatus[i].isPortfolioDecisionCommitted = queryCondition.value;
+						console.log(doc.producers[queryCondition.producerID - 1].decisionCommitStatus[i].isPortfolioDecisionCommitted);						
 					}
 				}
 				doc.markModified('producers');
+				doc.save(function(err){
+					if(!err){
+						io.sockets.emit('producerBaseChanged', 'this is a baseChanged');
+						res.send(200,'success');
+					}else{
+						io.sockets.emit('producerBaseChanged', 'this is a baseChanged');
+						res.send(400,'fail');
+					}
+				})
+			}else{
+				res.send(404,'there is no contract');
+			}
+		})
+	}
+}
+
+exports.submitFinalDecision=function(io){
+	return function(req,res,next){
+		var queryCondition = {
+			seminar    : req.body.seminar,
+			roleID 	   : req.body.roleID,
+			role     : req.body.role,
+			period     : req.body.period,
+			value       : req.body.value,
+		}
+
+		seminar.findOne({seminarCode:queryCondition.seminar},function(err,doc){
+			if(err) {next(new Error(err)); }
+			if(doc){
+				switch(queryCondition.role){
+					case 'Producer':
+						for (var i = 0; i < doc.producers[queryCondition.roleID - 1].decisionCommitStatus.length; i++) {
+							if (doc.producers[queryCondition.roleID - 1].decisionCommitStatus[i].period == queryCondition.period) {
+								doc.producers[queryCondition.roleID - 1].decisionCommitStatus[i].isDecisionCommitted = queryCondition.value;
+								console.log(doc.producers[queryCondition.roleID - 1].decisionCommitStatus[i].isDecisionCommitted);
+							}
+						}
+						doc.markModified('producers');
+						break;
+					case 'Retailer':
+						for (var i = 0; i < doc.retailers[queryCondition.roleID - 1].decisionCommitStatus.length; i++) {
+							if (doc.retailers[queryCondition.roleID - 1].decisionCommitStatus[i].period == queryCondition.period) {
+								doc.retailers[queryCondition.roleID - 1].decisionCommitStatus[i].isDecisionCommitted = queryCondition.value;
+								console.log(doc.retailers[queryCondition.roleID - 1].decisionCommitStatus[i].isDecisionCommitted);
+							}
+						}
+						doc.markModified('retailers');
+						break;
+				}				
 				doc.save(function(err){
 					if(!err){
 						io.sockets.emit('producerBaseChanged', 'this is a baseChanged');
@@ -284,6 +339,8 @@ exports.deleteSeminar = function(req, res, next){
 }
 
 exports.addSeminar=function(req,res,next){
+	//TODO: add Seminar need to be more "automatic", period information should start from 0, end with Max period(simulationSpan)
+
 	var Newseminar = new seminar({
 		seminarCode : req.body.seminarCode,
 		seminarDescription : req.body.seminarDescription, 
@@ -826,6 +883,8 @@ exports.submitOrder=function(req,res,next){
 		}
 	})
 }
+
+
 
 exports.initializeSeminar = function(options){
 	var deferred = q.defer();

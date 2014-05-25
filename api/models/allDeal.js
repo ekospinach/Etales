@@ -446,21 +446,28 @@ function fillNegotiationItemByContractDetail(categoryDeal, negotiationItem, prod
                         if(contractVariantDetailsDoc){
                           console.log('          - FOUND related verified contractDetails, do the items copy :' + brand.brandName + variantName.variantName);
                           switch(negotiationItem){
-                            case 'nc_MinimumOrder': categoryDeal.brandsDetails[brandCount].variantDetails[varCount].marketsDetails[3] = contractVariantDetailsDoc.nc_MinimumOrder;  break; 
-                            case 'nc_SalesTargetVolume': categoryDeal.brandsDetails[brandCount].variantDetails[varCount].marketsDetails[3] = contractVariantDetailsDoc.nc_SalesTargetVolume;  break;
-                            case 'nc_PaymentDays': categoryDeal.brandsDetails[brandCount].variantDetails[varCount].marketsDetails[3] = contractVariantDetailsDoc.nc_PaymentDays;  break;
-                            case 'nc_OtherCompensation': categoryDeal.brandsDetails[brandCount].variantDetails[varCount].marketsDetails[3] = contractVariantDetailsDoc.nc_otherCompensation;  break;
-                            case 'nc_VolumeDiscountRate': categoryDeal.brandsDetails[brandCount].variantDetails[varCount].marketsDetails[3] = contractVariantDetailsDoc.nc_volumeDiscountRate;  break;
-                            case 'nc_PerformanceBonusAmount': categoryDeal.brandsDetails[brandCount].variantDetails[varCount].marketsDetails[3] = contractVariantDetailsDoc.nc_performanceBonusAmount;  break;
-                            case 'nc_PerformanceBonusRate': categoryDeal.brandsDetails[brandCount].variantDetails[varCount].marketsDetails[3] = contractVariantDetailsDoc.nc_performanceBonusRate;  break;
+                            case 'nc_MinimumOrder'           : categoryDeal.brandsDetails[brandCount].variantDetails[varCount].marketsDetails[3] = contractVariantDetailsDoc.nc_MinimumOrder;  break; 
+                            case 'nc_SalesTargetVolume'      : categoryDeal.brandsDetails[brandCount].variantDetails[varCount].marketsDetails[3] = contractVariantDetailsDoc.nc_SalesTargetVolume;  break;
+                            case 'nc_PaymentDays'            : categoryDeal.brandsDetails[brandCount].variantDetails[varCount].marketsDetails[3] = contractVariantDetailsDoc.nc_PaymentDays;  break;
+                            case 'nc_OtherCompensation'      : categoryDeal.brandsDetails[brandCount].variantDetails[varCount].marketsDetails[3] = contractVariantDetailsDoc.nc_otherCompensation;  break;
+                            case 'nc_VolumeDiscountRate'     : categoryDeal.brandsDetails[brandCount].variantDetails[varCount].marketsDetails[3] = contractVariantDetailsDoc.nc_volumeDiscountRate;  break;
+                            case 'nc_PerformanceBonusAmount' : categoryDeal.brandsDetails[brandCount].variantDetails[varCount].marketsDetails[3] = contractVariantDetailsDoc.nc_performanceBonusAmount;  break;
+                            case 'nc_PerformanceBonusRate'   : categoryDeal.brandsDetails[brandCount].variantDetails[varCount].marketsDetails[3] = contractVariantDetailsDoc.nc_performanceBonusRate;  break;
                           }
                         } else {                          
                           console.log('          - NO related verified contractDetails, copy from last period input ...'); 
-                          /*      
-  
-                          If they cannot reach any agreement, need to copy agreement last period automatically.
+
+                          //TODO: If they cannot reach any agreement, need to copy agreement last period input automatically. And put previous input into current position.
+                          switch(negotiationItem){
+                            case 'nc_MinimumOrder'           : categoryDeal.brandsDetails[brandCount].variantDetails[varCount].marketsDetails[3] = 0; break; 
+                            case 'nc_SalesTargetVolume'      : categoryDeal.brandsDetails[brandCount].variantDetails[varCount].marketsDetails[3] = 0;  break;
+                            case 'nc_PaymentDays'            : categoryDeal.brandsDetails[brandCount].variantDetails[varCount].marketsDetails[3] = 0; break;
+                            case 'nc_OtherCompensation'      : categoryDeal.brandsDetails[brandCount].variantDetails[varCount].marketsDetails[3] = 0;  break;
+                            case 'nc_VolumeDiscountRate'     : categoryDeal.brandsDetails[brandCount].variantDetails[varCount].marketsDetails[3] = 0;  break;
+                            case 'nc_PerformanceBonusAmount' : categoryDeal.brandsDetails[brandCount].variantDetails[varCount].marketsDetails[3] = 0;  break;
+                            case 'nc_PerformanceBonusRate'   : categoryDeal.brandsDetails[brandCount].variantDetails[varCount].marketsDetails[3] = 0;  break;
+                          }
                                 
-                          */
                         }
 
                         //Get into next variant or next brand or END loop

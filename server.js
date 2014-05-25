@@ -11,10 +11,15 @@ Config = require('./config.js'),
 passport = require('passport'),
 flash = require('connect-flash'),
 userRoles = require('./app/js/routingConfig').userRoles,
-accessLevels = require('./app/js/routingConfig').accessLevels;
+accessLevels = require('./app/js/routingConfig').accessLevels,
+util = require('util');
 
 //process.env.NODE_ENV = 'production';
 conf = new Config();
+
+//backend view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 app.use(express.cookieParser());
 app.use(express.favicon());
@@ -32,6 +37,12 @@ app.use(passport.session());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, '/app')));
 app.use(express.logger());
+
+
+app.get('/feedbackENG', function(req, res, next){
+	res.render('feedbackENG.ejs', {seminar : req.query.seminar, 
+								   period : req.query.period});
+});
 
 //user authenticate
 passport.use(require('./api/models/seminar').localStrategy);
@@ -92,6 +103,8 @@ app.get('/checkSalesTargetVolume/:contractCode/:parentBrandName/:variantName',re
 
 app.post('/updateContractDetails',require('./api/models/contract.js').updateContractDetails(io));
 
+app.post('/removeContract', require('./api/models/contract.js').removeContract(io));
+app.post('/removeContractDetailsByContractCode', require('./api/models/contract.js').removeContractDetailsByContractcode(io));
 //duplicate
 //app.post('/duplicateContract',require('./api/models/contract.js').duplicateContract(io));
 app.get('/variantHistoryInfo/:seminar/:period/:parentBrandName/:varName',require('./api/models/variantHistoryInfo').getVariantHistory);
@@ -137,19 +150,16 @@ app.get('/retailerCurrentDecision/:seminar/:period/:retailerID/:brandName/:varNa
 app.post('/getCurrentUnitCost', require('./api/utils/unitCost').getCurrentUnitCost);
 app.get('/currentPeriod/:seminar',require('./api/models/seminar.js').getCurrentPeriod);
 app.get('/getScrplSales/:seminar/:period/:producerID/:categoryID',require('./api/models/SCR_consolidatedProfitAndLoss.js').getScrplSales);
+
 app.get('/getRcrplSales/:seminar/:period/:retailerID/:categoryID',require('./api/models/RCR_consolidatedProfitAndLoss.js').getRcrplSales);
 app.get('/getSalesVolume/:seminar/:period/:retailerID/:categoryID',require('./api/models/RCR_consolidatedProfitAndLoss.js').getSalesVolume);
 app.get('/getMarketSize/:seminar/:period/:retailerID/:categoryID',require('./api/models/RCR_consolidatedProfitAndLoss.js').getMarketSize);
 
 //seminar 
 app.get('/checkProducerDecision/:seminar/:period/:producerID',require('./api/models/seminar.js').checkProducerDecision);
-app.post('/submitDecision',require('./api/models/seminar.js').submitDecision(io));
-
+app.post('/submitPortfolioDecision',require('./api/models/seminar.js').submitPortfolioDecision(io));
+app.post('/submitFinalDecision',require('./api/models/seminar.js').submitFinalDecision(io));
 app.post('/deleteOrderData',require('./api/models/retailerDecision.js').deleteOrderData(io));
-//app.post('/deleteDetailData',require('./api/models/contract.js').deleteContractDetailData(io));
-
-// app.get('/addGeneralReport',require('./api/models/generalReport.js').addGeneralReport);
-// app.get('/getGeneralReport/:seminar/:period',require('./api/models/generalReport.js').getGeneralReport);
 
 //add generalReport record
 app.get('/addCrossSegmentSales',require('./api/models/GR_crossSegmentSales.js').addCrossSegmentSales);
@@ -225,6 +235,8 @@ app.get('/getMR-variantPerceptionEvolution/:seminar/:period',require('./api/mode
 app.get('/getMR-retailerPerceptionEvolution/:seminar/:period',require('./api/models/MR_retailerPerceptionEvolution.js').getMR_retailerPerceptionEvolution);
 app.get('/getMR-retailersIntelligence/:seminar/:period',require('./api/models/MR_retailersIntelligence.js').getMR_retailersIntelligence);
 app.get('/getMR-forecasts/:seminar/:period',require('./api/models/MR_forecasts.js').getMR_forecasts);
+
+
 app.use(express.errorHandler());
 
 port = parseInt(process.env.PORT, 10) || conf.server.port;

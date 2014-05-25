@@ -93,6 +93,7 @@ define(['directives', 'services'], function(directives){
                     if(!filter.test(value)){
                         d.resolve(Label.getContent('Input a Integer'));
                     }
+
                     var url='/checkContractDetails/'+contractCode+'/'+brandName+'/'+varName+'/nc_MinimumOrder';
                     $http({
                         method:'GET',
@@ -146,6 +147,7 @@ define(['directives', 'services'], function(directives){
                     if(!filter.test(value)){
                         d.resolve(Label.getContent('Input Number'));
                     }
+
                     var url='/checkContractDetails/'+contractCode+'/'+brandName+'/'+varName+'/nc_VolumeDiscountRate';
                     $http({
                         method:'GET',
@@ -154,6 +156,7 @@ define(['directives', 'services'], function(directives){
                         if(data.data.result=="no"){
                             d.resolve(Label.getContent('This product is locked'));
                         }
+
                         url='/checkVolume/'+contractCode+'/'+brandName+'/'+varName;
                         return $http({
                             method:'GET',
@@ -163,6 +166,7 @@ define(['directives', 'services'], function(directives){
                         if(data.data=="unReady"){
                             d.resolve(Label.getContent('set Minimum Order first'))
                         }
+
                         url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+producerID;
                         return $http({
                             method:'GET',
@@ -170,6 +174,7 @@ define(['directives', 'services'], function(directives){
                         });
                     }).then(function(data){
                         negotiationABmax=data.data.budgetAvailable;
+
                         url='/getNegotiationExpend/'+contractCode+'/'+brandName+'/'+varName;
                         return $http({
                             method:'GET',
@@ -182,6 +187,7 @@ define(['directives', 'services'], function(directives){
                         }else if(volume*bmPrices*(1-value/100)>negotiationABmax-expend){
                             discountRate=100-(negotiationABmax-expend)*100/(volume*bmPrices);
                             d.resolve(Label.getContent('Input range')+':0~'+discountRate);
+
                         }else{
                             d.resolve();
                         }
@@ -198,6 +204,7 @@ define(['directives', 'services'], function(directives){
                     if(!filter.test(value)){
                         d.resolve(Label.getContent('Input a Integer'));
                     }
+
                     var url='/checkContractDetails/'+contractCode+'/'+brandName+'/'+varName+'/nc_SalesTargetVolume';
                     $http({
                         method:'GET',
@@ -252,6 +259,7 @@ define(['directives', 'services'], function(directives){
                     if(!filter.test(value)){
                         d.resolve(Label.getContent('Input Number'));
                     }
+
                     var url='/checkContractDetails/'+contractCode+'/'+brandName+'/'+varName+'/nc_PerformanceBonusRate';
                     $http({
                         method:'GET',
@@ -269,6 +277,7 @@ define(['directives', 'services'], function(directives){
                         if(data.data=="unReady"){
                             d.resolve(Label.getContent('set Target Volume first'))
                         }
+
                         url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+producerID;
                         return $http({
                             method:'GET',
@@ -276,6 +285,7 @@ define(['directives', 'services'], function(directives){
                         });
                     }).then(function(data){
                         negotiationABmax=data.data.budgetAvailable;
+
                         url='/getNegotiationExpend/'+contractCode+'/'+brandName+'/'+varName;
                         return $http({
                             method:'GET',

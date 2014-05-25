@@ -58,14 +58,18 @@ var contractVariantDetails = mongoose.model('contractVariantDetails', contractVa
 
 exports.addContract = function(io){
      return function(req, res, next){
-          contract.count({seminar: req.body.seminar,period:req.body.period, producerID:req.body.producerID, retailerID:req.body.retailerID},function(err,count){
+          contract.count({
+                    seminar: req.body.seminar,
+                    period:req.body.period, 
+                    producerID:req.body.producerID, 
+                    retailerID:req.body.retailerID},function(err,count){
                if(count!=0){
-                    res.send(404,'another contract');
+                    res.send(400,'bad contract pair: supplier ' + req.body.producerID + ' retialer ' + req.body.retailerID +', already existed, please remove them first.');
                }else{
                     var contractCode='P'+req.body.producerID+'and'+'R'+req.body.retailerID+'_'+req.body.seminar+'_'+req.body.period; //sth + period + seminar, must be
                     contract.count({contractCode: contractCode},function(err,count){
                          if(count!=0){
-                              res.send(404,'another contractCode');
+                              res.send(400,'bad contractCode:' + contractCode);
                          }else{
                               var newContract=new contract({
                                    contractCode : contractCode,
@@ -139,36 +143,90 @@ exports.checkContract=function(req,res,next){
 
 exports.addContractDetails=function(io){
      return function(req,res,next){
-          var newContractVariantDetails=new contractVariantDetails({
-               contractCode                           : req.body.contractCode,
-               parentBrandName                        : req.body.brandName,
-               parentBrandID                          : req.body.brandID,
-               variantName                            : req.body.varName,
-               variantID                              : req.body.varID,              
-               nc_MinimumOrder                        : 0,
-               nc_MinimumOrder_lastModifiedBy         : 'P',
-               nc_VolumeDiscountRate                  : 0,
-               nc_VolumeDiscountRate_lastModifiedBy   : 'P',                  
-               nc_SalesTargetVolume                   : 0,
-               nc_SalesTargetVolume_lastModifiedBy    : 'P',
-               nc_PerformanceBonusRate                : 0,
-               nc_PerformanceBonusRate_lastModifiedBy : 'P',              
-               nc_PaymentDays                         : 0,
-               nc_PaymentDays_lastModifiedBy          : 'P',
-               nc_OtherCompensation                   : 0,
-               nc_OtherCompensation_lastModifiedBy    : 'P',             
-               isProducerApproved                     : false,
-               isRetailerApproved                     : false,  
-               isNewProduct                           : true,  //used for showing tag "NEW"
-               isCompositionModified                  : true, //compare with previous period composition, used for showing tag "MODIFIED"
-               composition                            : req.body.composition, //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
-               currentPriceBM                         : req.body.currentPriceBM             
-          });
-          newContractVariantDetails.save(function(err){
-               if(err) next(new Error(err));
-               io.sockets.emit('contarctListChanged', {producerID: req.body.producerID, retailerID: req.body.retailerID}); 
-               res.send(200,newContractVariantDetails);
-          });
+          
+          var currentPeriodCode = req.body.contractCode;
+          var period = currentPeriodCode.substring(currentPeriodCode.length - 1, currentPeriodCode.length);
+          var previousPeriod = parseInt(period) - 1;
+
+          // console.log('Period:' + period);
+          // console.log('Period(afterparse):' + parseInt(period));
+          // console.log('previous Period:' + previousPeriod);
+
+          var previousPeriodCode = currentPeriodCode.substring(0, currentPeriodCode.length - 1) + previousPeriod;
+          // console.log('current Period Code:' + currentPeriodCode);
+          // console.log('previous Period Code: ' + previousPeriodCode);
+
+          contractVariantDetails.findOne({contractCode : previousPeriodCode,
+                                          parentBrandName : req.body.brandName,
+                                          parentBrandID   : req.body.brandID,
+                                          variantName     : req.body.variantName,
+                                          variantID       : req.body.variantID},
+                                         function(err, previousDoc){
+                                             if(err){ next(new Error(err));}
+
+                                             //check previous period input first, if anything, copy original ones.
+                                             if(previousDoc){
+                                                  var newContractVariantDetails = new contractVariantDetails({
+                                                       contractCode                           : req.body.contractCode,
+                                                       parentBrandName                        : req.body.brandName,
+                                                       parentBrandID                          : req.body.brandID,
+                                                       variantName                            : req.body.varName,
+                                                       variantID                              : req.body.varID,              
+                                                       nc_MinimumOrder                        : previousDoc.nc_MinimumOrder,                       
+                                                       nc_MinimumOrder_lastModifiedBy         : previousDoc.nc_MinimumOrder_lastModifiedBy,        
+                                                       nc_VolumeDiscountRate                  : previousDoc.nc_VolumeDiscountRate,                 
+                                                       nc_VolumeDiscountRate_lastModifiedBy   : previousDoc.nc_VolumeDiscountRate_lastModifiedBy,  
+                                                       nc_SalesTargetVolume                   : previousDoc.nc_SalesTargetVolume,                  
+                                                       nc_SalesTargetVolume_lastModifiedBy    : previousDoc.nc_SalesTargetVolume_lastModifiedBy,   
+                                                       nc_PerformanceBonusRate                : previousDoc.nc_PerformanceBonusRate,               
+                                                       nc_PerformanceBonusRate_lastModifiedBy : previousDoc.nc_PerformanceBonusRate_lastModifiedBy,
+                                                       nc_PaymentDays                         : previousDoc.nc_PaymentDays,                        
+                                                       nc_PaymentDays_lastModifiedBy          : previousDoc.nc_PaymentDays_lastModifiedBy,         
+                                                       nc_OtherCompensation                   : previousDoc.nc_OtherCompensation,                  
+                                                       nc_OtherCompensation_lastModifiedBy    : previousDoc.nc_OtherCompensation_lastModifiedBy,                
+                                                       isProducerApproved                     : false,
+                                                       isRetailerApproved                     : false,  
+                                                       isNewProduct                           : false,  //used for showing tag "NEW"
+                                                       isCompositionModified                  : false,  //compare with previous period composition, used for showing tag "MODIFIED"
+                                                       composition                            : req.body.composition, //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                                                       currentPriceBM                         : req.body.currentPriceBM             
+                                                  });
+                                             //if no history, create empty doc
+                                             }else{
+                                                  var newContractVariantDetails = new contractVariantDetails({
+                                                       contractCode                           : req.body.contractCode,
+                                                       parentBrandName                        : req.body.brandName,
+                                                       parentBrandID                          : req.body.brandID,
+                                                       variantName                            : req.body.varName,
+                                                       variantID                              : req.body.varID,              
+                                                       nc_MinimumOrder                        : 0,
+                                                       nc_MinimumOrder_lastModifiedBy         : 'P',
+                                                       nc_VolumeDiscountRate                  : 0,
+                                                       nc_VolumeDiscountRate_lastModifiedBy   : 'P',                  
+                                                       nc_SalesTargetVolume                   : 0,
+                                                       nc_SalesTargetVolume_lastModifiedBy    : 'P',
+                                                       nc_PerformanceBonusRate                : 0,
+                                                       nc_PerformanceBonusRate_lastModifiedBy : 'P',              
+                                                       nc_PaymentDays                         : 0,
+                                                       nc_PaymentDays_lastModifiedBy          : 'P',
+                                                       nc_OtherCompensation                   : 0,
+                                                       nc_OtherCompensation_lastModifiedBy    : 'P',             
+                                                       isProducerApproved                     : false,
+                                                       isRetailerApproved                     : false,  
+                                                       isNewProduct                           : false,  //used for showing tag "NEW"
+                                                       isCompositionModified                  : false,  //compare with previous period composition, used for showing tag "MODIFIED"
+                                                       composition                            : req.body.composition, //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                                                       currentPriceBM                         : req.body.currentPriceBM             
+                                                  });
+                                             }
+
+                                             newContractVariantDetails.save(function(err){
+                                                  if(err) next(new Error(err));
+                                                  io.sockets.emit('contarctListChanged', {producerID: req.body.producerID, retailerID: req.body.retailerID}); 
+                                                  res.send(200,newContractVariantDetails);
+                                             });
+                                         })
+
      }
 }
 
@@ -280,5 +338,24 @@ exports.updateContractDetails=function(io){
                     res.send(200, doc);
                });  
           })
+     }
+}
+
+
+exports.removeContractDetailsByContractcode = function(io){
+     return function(req, res, next){
+          contractVariantDetails.remove({contractCode : req.body.contractCode}, function(err, numberAffected){
+               if(err){ next(new Error(err))};
+               res.send('Related contractDetails("' + req.body.contractCode + '") have been removed,  number affected : ' + numberAffected);
+          });
+     }
+}
+
+exports.removeContract = function(io){
+     return function(req, res, next){
+          contract.remove({contractCode : req.body.contractCode}, function(err, numberAffected){
+               if(err){ next(new Error(err))};
+               res.send('Related contract("' + req.body.contractCode + '") have been removed,  number affected : ' + numberAffected);
+          });
      }
 }
