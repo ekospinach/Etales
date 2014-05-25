@@ -29,27 +29,27 @@ define(['directives', 'services'], function(directives){
                     });             
                 }
 
-                var loadProduct=function(data,categroy,producerID){
+                var loadProduct=function(data,category,producerID){
                     var products=new Array();
                     for(var i=0;i<data.length;i++){
-                        if(data[i].parentBrandName.substring(0,1)==categroy){
+                        if(data[i].parentBrandName.substring(0,1)==category){
                             products.push(data[i]);
                         }
                     }
                     if(producerID==1){
-                        if(categroy=="E"){
+                        if(category=="E"){
                             scope.product1es=products;
                         }else{
                             scope.product1hs=products;
                         }
                     }else if(producerID==2){
-                        if(categroy=="E"){
+                        if(category=="E"){
                             scope.product2es=products;
                         }else{
                             scope.product2hs=products;
                         }
                     }else{
-                        if(categroy=="E"){
+                        if(category=="E"){
                             scope.product3es=products;
                         }else{
                             scope.product3hs=products;
@@ -57,7 +57,7 @@ define(['directives', 'services'], function(directives){
                     }
                 }
 
-                scope.checkContractDetails=function(contractCode,brandName,varName,location,index,value,categroy,producerID){
+                scope.checkContractDetails=function(contractCode,brandName,varName,location,index,value,category,producerID){
                     var d=$q.defer();
                     var url='/checkContractDetails/'+contractCode+'/'+brandName+'/'+varName+'/'+location;
                     $http({
@@ -69,7 +69,7 @@ define(['directives', 'services'], function(directives){
                         }else{
                             d.resolve();
                         }
-                        if(categroy==1){
+                        if(category==1){
                             switch(producerID){
                                 case 1:
                                 scope.product1es[index]=data.data.doc;
@@ -98,7 +98,7 @@ define(['directives', 'services'], function(directives){
                     return d.promise;
                 }
 
-                scope.checkDiscountRate=function(contractCode,producerID,retailerID,brandName,varName,index,value,volume,bmPrices,categroy){
+                scope.checkDiscountRate=function(contractCode,producerID,retailerID,brandName,varName,index,value,volume,bmPrices,category){
                     var d=$q.defer();
                     var discountRate=0;
                     var filter=/^[0-9]*[1-9][0-9]*$/;
@@ -134,7 +134,7 @@ define(['directives', 'services'], function(directives){
                     return d.promise;
                 }
 
-                scope.checkBonusRate=function(contractCode,producerID,retailerID,brandName,varName,index,value,volume,bmPrices,categroy){
+                scope.checkBonusRate=function(contractCode,producerID,retailerID,brandName,varName,index,value,volume,bmPrices,category){
                     var d=$q.defer();
                     var bonusRate=0;
                     var filter=/^[0-9]*[1-9][0-9]*$/;
@@ -195,7 +195,7 @@ define(['directives', 'services'], function(directives){
                     return d.promise;
                 }
 
-                scope.updateContractDetails=function(contractCode,brandName,varName,location,index,value,categroy,producerID){
+                scope.updateContractDetails=function(contractCode,brandName,varName,location,index,value,category,producerID){
                     var postData={
                         contractCode:contractCode,
                         brandName:brandName,
@@ -209,7 +209,7 @@ define(['directives', 'services'], function(directives){
                         url:'/updateContractDetails',
                         data:postData
                     }).then(function(data){
-                        if(categroy==1){
+                        if(category==1){
                             switch(producerID){
                                 case 1:
                                 scope.product1es[index]=data.data;

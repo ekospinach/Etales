@@ -60,7 +60,7 @@
                     <p class="padding-10" popover-template="../../partials/toolTip/producte.html" popover-trigger="mouseenter" popover-placement="right" popover-title='{{product.parentBrandName}}{{product.variantName}}'>{{product.parentBrandName}}{{product.variantName}}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="product.nc_MinimumOrder" ng-show="(!product.isProducerApproved)&&(!product.isRetailerApproved)" onbeforesave="checkContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_MinimumOrder',$index,$data,1,1)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_MinimumOrder',$index,$data,1,1)">
+                    <a href="#" editable-text="product.nc_MinimumOrder" ng-show="(!product.isProducerApproved)&&(!product.isRetailerApproved)" onbeforesave="checkMinimumOrder(product.contractCode,product.parentBrandName,product.variantName,$index,1,$data,1)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_MinimumOrder',$index,$data,1,1)">
                         <p class="text-right" ng-class="{'P': 'text-danger', 'R': 'text-primary'}[product.nc_MinimumOrder_lastModifiedBy]">{{ product.nc_MinimumOrder || 0 }}</p>
                     </a>
                     <p class="text-right text-muted" ng-show="product.isProducerApproved||product.isRetailerApproved">{{ product.nc_MinimumOrder || 0 }}</p>
@@ -78,7 +78,8 @@
                     <p class="text-right text-muted" ng-show="product.isProducerApproved||product.isRetailerApproved">{{ product.nc_SalesTargetVolume || 0 }}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="product.nc_PerformanceBonusRate" ng-show="(!product.isProducerApproved)&&(!product.isRetailerApproved)" onbeforesave="checkBonusRate(product.contractCode,producerID,1,product.parentBrandName,product.variantName,$index,$data,product.nc_MinimumOrder,product.currentPriceBM,1)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_PerformanceBonusRate',$index,$data,1,1)">
+
+                    <a href="#" editable-text="product.nc_PerformanceBonusRate" ng-show="(!product.isProducerApproved)&&(!product.isRetailerApproved)" onbeforesave="checkBonusRate(product.contractCode,producerID,1,product.parentBrandName,product.variantName,$index,$data,product.nc_SalesTargetVolume,product.currentPriceBM,1)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_PerformanceBonusRate',$index,$data,1,1)">
                         <p class="text-right" ng-class="{'P': 'text-danger', 'R': 'text-primary'}[product.nc_PerformanceBonusRate_lastModifiedBy]">{{ product.nc_PerformanceBonusRate || 0 }}</p>
                     </a>
                     <p class="text-right text-muted" ng-show="product.isProducerApproved||product.isRetailerApproved">{{ product.nc_PerformanceBonusRate || 0 }}</p>
@@ -90,7 +91,7 @@
                     <p class="text-right text-muted" ng-show="product.isProducerApproved||product.isRetailerApproved">{{ product.nc_PaymentDays || 0 }}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="product.nc_OtherCompensation" ng-show="(!product.isProducerApproved)&&(!product.isRetailerApproved)" onbeforesave="checkContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_OtherCompensation',$index,$data,1,1)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_OtherCompensation',$index,$data,1,1)">
+                    <a href="#" editable-text="product.nc_OtherCompensation" ng-show="(!product.isProducerApproved)&&(!product.isRetailerApproved)" onbeforesave="checkOtherCompensation(product.contractCode,product.parentBrandName,product.variantName,1,$data,1)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_OtherCompensation',$index,$data,1,1)">
                         <p class="text-right" ng-class="{'P': 'text-danger', 'R': 'text-primary'}[product.nc_OtherCompensation_lastModifiedBy]">{{ product.nc_OtherCompensation || 0 }}</p>
                     </a>
                     <p class="text-right text-muted" ng-show="product.isProducerApproved||product.isRetailerApproved">{{ product.nc_OtherCompensation || 0 }}</p>
@@ -113,7 +114,7 @@
                     <p class="padding-10" popover-template="../../partials/toolTip/producth.html" popover-trigger="mouseenter" popover-placement="right" popover-title='{{product.parentBrandName}}{{product.variantName}}'>{{product.parentBrandName}}{{product.variantName}}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="product.nc_MinimumOrder" ng-show="(!product.isProducerApproved)&&(!product.isRetailerApproved)" onbeforesave="checkContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_MinimumOrder',$index,$data,2,1)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_MinimumOrder',$index,$data,2,1)">
+                    <a href="#" editable-text="product.nc_MinimumOrder" ng-show="(!product.isProducerApproved)&&(!product.isRetailerApproved)" onbeforesave="checkMinimumOrder(product.contractCode,product.parentBrandName,product.variantName,2,$data,1)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_MinimumOrder',$index,$data,2,1)">
                         <p class="text-right" ng-class="{'P': 'text-danger', 'R': 'text-primary'}[product.nc_MinimumOrder_lastModifiedBy]">{{ product.nc_MinimumOrder || 0 }}</p>
                     </a>
                     <p class="text-right text-muted" ng-show="product.isProducerApproved||product.isRetailerApproved">{{ product.nc_MinimumOrder || 0 }}</p>
@@ -131,7 +132,8 @@
                     <p class="text-right text-muted" ng-show="product.isProducerApproved||product.isRetailerApproved">{{ product.nc_SalesTargetVolume || 0 }}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="product.nc_PerformanceBonusRate" ng-show="(!product.isProducerApproved)&&(!product.isRetailerApproved)" onbeforesave="checkBonusRate(product.contractCode,producerID,1,product.parentBrandName,product.variantName,$index,$data,product.nc_MinimumOrder,product.currentPriceBM,2)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_PerformanceBonusRate',$index,$data,2,1)">
+
+                    <a href="#" editable-text="product.nc_PerformanceBonusRate" ng-show="(!product.isProducerApproved)&&(!product.isRetailerApproved)" onbeforesave="checkBonusRate(product.contractCode,producerID,1,product.parentBrandName,product.variantName,$index,$data,product.nc_SalesTargetVolume,product.currentPriceBM,2)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_PerformanceBonusRate',$index,$data,2,1)">
                         <p class="text-right" ng-class="{'P': 'text-danger', 'R': 'text-primary'}[product.nc_PerformanceBonusRate_lastModifiedBy]">{{ product.nc_PerformanceBonusRate || 0 }}</p>
                     </a>
                     <p class="text-right text-muted" ng-show="product.isProducerApproved||product.isRetailerApproved">{{ product.nc_PerformanceBonusRate || 0 }}</p>
@@ -143,7 +145,7 @@
                     <p class="text-right text-muted" ng-show="product.isProducerApproved||product.isRetailerApproved">{{ product.nc_PaymentDays || 0 }}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="product.nc_OtherCompensation" ng-show="(!product.isProducerApproved)&&(!product.isRetailerApproved)" onbeforesave="checkContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_OtherCompensation',$index,$data,2,1)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_OtherCompensation',$index,$data,2,1)">
+                    <a href="#" editable-text="product.nc_OtherCompensation" ng-show="(!product.isProducerApproved)&&(!product.isRetailerApproved)" onbeforesave="checkOtherCompensation(product.contractCode,product.parentBrandName,product.variantName,2,$data,1)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_OtherCompensation',$index,$data,2,1)">
                         <p class="text-right" ng-class="{'P': 'text-danger', 'R': 'text-primary'}[product.nc_OtherCompensation_lastModifiedBy]">{{ product.nc_OtherCompensation || 0 }}</p>
                     </a>
                     <p class="text-right text-muted" ng-show="product.isProducerApproved||product.isRetailerApproved">{{ product.nc_OtherCompensation || 0 }}</p>
@@ -216,7 +218,7 @@
                     <p class="padding-10" popover-template="../../partials/toolTip/producte.html" popover-trigger="mouseenter" popover-placement="right" popover-title='{{product.parentBrandName}}{{product.variantName}}'>{{product.parentBrandName}}{{product.variantName}}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="product.nc_MinimumOrder" ng-show="(!product.isProducerApproved)&&(!product.isRetailerApproved)" onbeforesave="checkContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_MinimumOrder',$index,$data,1,2)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_MinimumOrder',$index,$data,1,2)">
+                    <a href="#" editable-text="product.nc_MinimumOrder" ng-show="(!product.isProducerApproved)&&(!product.isRetailerApproved)" onbeforesave="checkMinimumOrder(product.contractCode,product.parentBrandName,product.variantName,1,$data,2)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_MinimumOrder',$index,$data,1,2)">
                         <p class="text-right" ng-class="{'P': 'text-danger', 'R': 'text-primary'}[product.nc_MinimumOrder_lastModifiedBy]">{{ product.nc_MinimumOrder || 0 }}</p>
                     </a>
                     <p class="text-right text-muted" ng-show="product.isProducerApproved||product.isRetailerApproved">{{ product.nc_MinimumOrder || 0 }}</p>
@@ -234,7 +236,7 @@
                     <p class="text-right text-muted" ng-show="product.isProducerApproved||product.isRetailerApproved">{{ product.nc_SalesTargetVolume || 0 }}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="product.nc_PerformanceBonusRate" ng-show="(!product.isProducerApproved)&&(!product.isRetailerApproved)" onbeforesave="checkBonusRate(product.contractCode,producerID,2,product.parentBrandName,product.variantName,$index,$data,product.nc_MinimumOrder,product.currentPriceBM,1)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_PerformanceBonusRate',$index,$data,1,2)">
+                    <a href="#" editable-text="product.nc_PerformanceBonusRate" ng-show="(!product.isProducerApproved)&&(!product.isRetailerApproved)" onbeforesave="checkBonusRate(product.contractCode,producerID,2,product.parentBrandName,product.variantName,$index,$data,product.nc_SalesTargetVolume,product.currentPriceBM,1)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_PerformanceBonusRate',$index,$data,1,2)">
                         <p class="text-right" ng-class="{'P': 'text-danger', 'R': 'text-primary'}[product.nc_PerformanceBonusRate_lastModifiedBy]">{{ product.nc_PerformanceBonusRate || 0 }}</p>
                     </a>
                     <p class="text-right text-muted" ng-show="product.isProducerApproved||product.isRetailerApproved">{{ product.nc_PerformanceBonusRate || 0 }}</p>
@@ -246,7 +248,7 @@
                     <p class="text-right text-muted" ng-show="product.isProducerApproved||product.isRetailerApproved">{{ product.nc_PaymentDays || 0 }}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="product.nc_OtherCompensation" ng-show="(!product.isProducerApproved)&&(!product.isRetailerApproved)" onbeforesave="checkContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_OtherCompensation',$index,$data,1,2)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_OtherCompensation',$index,$data,1,2)">
+                    <a href="#" editable-text="product.nc_OtherCompensation" ng-show="(!product.isProducerApproved)&&(!product.isRetailerApproved)" onbeforesave="checkOtherCompensation(product.contractCode,product.parentBrandName,product.variantName,1,$data,2)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_OtherCompensation',$index,$data,1,2)">
                         <p class="text-right" ng-class="{'P': 'text-danger', 'R': 'text-primary'}[product.nc_OtherCompensation_lastModifiedBy]">{{ product.nc_OtherCompensation || 0 }}</p>
                     </a>
                     <p class="text-right text-muted" ng-show="product.isProducerApproved||product.isRetailerApproved">{{ product.nc_OtherCompensation || 0 }}</p>
@@ -269,7 +271,7 @@
                     <p class="padding-10" popover-template="../../partials/toolTip/producth.html" popover-trigger="mouseenter" popover-placement="right" popover-title='{{product.parentBrandName}}{{product.variantName}}'>{{product.parentBrandName}}{{product.variantName}}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="product.nc_MinimumOrder" ng-show="(!product.isProducerApproved)&&(!product.isRetailerApproved)" onbeforesave="checkContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_MinimumOrder',$index,$data,2,2)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_MinimumOrder',$index,$data,2,2)">
+                    <a href="#" editable-text="product.nc_MinimumOrder" ng-show="(!product.isProducerApproved)&&(!product.isRetailerApproved)" onbeforesave="checkMinimumOrder(product.contractCode,product.parentBrandName,product.variantName,2,$data,2)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_MinimumOrder',$index,$data,2,2)">
                         <p class="text-right" ng-class="{'P': 'text-danger', 'R': 'text-primary'}[product.nc_MinimumOrder_lastModifiedBy]">{{ product.nc_MinimumOrder || 0 }}</p>
                     </a>
                     <p class="text-right text-muted" ng-show="product.isProducerApproved||product.isRetailerApproved">{{ product.nc_MinimumOrder || 0 }}</p>
@@ -287,7 +289,7 @@
                     <p class="text-right text-muted" ng-show="product.isProducerApproved||product.isRetailerApproved">{{ product.nc_SalesTargetVolume || 0 }}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="product.nc_PerformanceBonusRate" ng-show="(!product.isProducerApproved)&&(!product.isRetailerApproved)" onbeforesave="checkBonusRate(product.contractCode,producerID,2,product.parentBrandName,product.variantName,$index,$data,product.nc_MinimumOrder,product.currentPriceBM,2)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_PerformanceBonusRate',$index,$data,2,2)">
+                    <a href="#" editable-text="product.nc_PerformanceBonusRate" ng-show="(!product.isProducerApproved)&&(!product.isRetailerApproved)" onbeforesave="checkBonusRate(product.contractCode,producerID,2,product.parentBrandName,product.variantName,$index,$data,product.nc_SalesTargetVolume,product.currentPriceBM,2)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_PerformanceBonusRate',$index,$data,2,2)">
                         <p class="text-right" ng-class="{'P': 'text-danger', 'R': 'text-primary'}[product.nc_PerformanceBonusRate_lastModifiedBy]">{{ product.nc_PerformanceBonusRate || 0 }}</p>
                     </a>
                     <p class="text-right text-muted" ng-show="product.isProducerApproved||product.isRetailerApproved">{{ product.nc_PerformanceBonusRate || 0 }}</p>
@@ -299,7 +301,7 @@
                     <p class="text-right text-muted" ng-show="product.isProducerApproved||product.isRetailerApproved">{{ product.nc_PaymentDays || 0 }}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="product.nc_OtherCompensation" ng-show="(!product.isProducerApproved)&&(!product.isRetailerApproved)" onbeforesave="checkContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_OtherCompensation',$index,$data,2,2)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_OtherCompensation',$index,$data,2,2)">
+                    <a href="#" editable-text="product.nc_OtherCompensation" ng-show="(!product.isProducerApproved)&&(!product.isRetailerApproved)" onbeforesave="checkOtherCompensation(product.contractCode,product.parentBrandName,product.variantName,2,$data,2)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_OtherCompensation',$index,$data,2,2)">
                         <p class="text-right" ng-class="{'P': 'text-danger', 'R': 'text-primary'}[product.nc_OtherCompensation_lastModifiedBy]">{{ product.nc_OtherCompensation || 0 }}</p>
                     </a>
                     <p class="text-right text-muted" ng-show="product.isProducerApproved||product.isRetailerApproved">{{ product.nc_OtherCompensation || 0 }}</p>

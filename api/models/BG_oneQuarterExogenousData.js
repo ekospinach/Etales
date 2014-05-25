@@ -29,7 +29,6 @@ var oneQuarterExogenousDataSchema = mongoose.Schema({
 
 var oneQuarterExogenousData = mongoose.model('bg_oneQuarterExogenousData',oneQuarterExogenousDataSchema);
 
-
 exports.addInfos = function(options){
     var deferred = q.defer();
     var startFrom = options.startFrom,

@@ -64,7 +64,7 @@ define(['directives', 'services'], function(directives){
                     return d.promise;
                 }
 
-                var loadSelectCategroy=function(category){
+                var loadSelectCategory=function(category){
                     var count=0;
                     var products=new Array();
                     var allProCatDecisions=_.filter(scope.pageBase.proCatDecision,function(obj){
@@ -145,7 +145,7 @@ define(['directives', 'services'], function(directives){
                     }
                 }
 
-                var loadByCategroy=function(category){
+                var loadByCategory=function(category){
                     return _.filter(scope.pageBase.proCatDecision,function(obj){
                         if(category=="HealthBeauty"){
                             return (obj.categoryID==2);
@@ -181,8 +181,8 @@ define(['directives', 'services'], function(directives){
 
                 var showView=function(){
                     var d=$q.defer();
-                    loadSelectCategroy('Elecssories');
-                    loadSelectCategroy('HealthBeauty');
+                    loadSelectCategory('Elecssories');
+                    loadSelectCategory('HealthBeauty');
                     scope.selectPacks=selectPacks;
                     scope.isResultShown = true;
                     scope.isPageLoading = false;  
@@ -225,8 +225,8 @@ define(['directives', 'services'], function(directives){
                     // }).then(function(data){
                     //     scope.heaSurplusProduction=acHeaMax-data.data.result;
                     //     scope.heaPercentageProduction=(acHeaMax-data.data.result)/acHeaMax*100;
-                    //     loadSelectCategroy('Elecssories');
-                    //     loadSelectCategroy('HealthBeauty');
+                    //     loadSelectCategory('Elecssories');
+                    //     loadSelectCategory('HealthBeauty');
                     // }).then(function(){
                     //     scope.isResultShown = true;
                     //     scope.isPageLoading = false;  

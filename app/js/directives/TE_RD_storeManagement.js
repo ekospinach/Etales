@@ -29,7 +29,7 @@ define(['directives', 'services'], function(directives){
                     };                 
                 }
 
-                var loadSelectCategroy=function(market,category){
+                var loadSelectCategory=function(market,category){
                     var retMarketDecisions=_.filter(scope.pageBase.retMarketDecision,function(obj){
                         return (obj.marketID==market);
                     });
@@ -59,18 +59,11 @@ define(['directives', 'services'], function(directives){
                         d.resolve(Label.getContent('Input a number'));
                     }
                     var max=0;
-                    
-                    var url='/quarterHistoryInfo/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1);
-                    $http({method:'GET',url:url}).then(function(data){
-                        max=data.data.categoryView[category-1].categoryMarketView[market-1].segmentsVolumes[4];
-                        if(value>max||value<0){
-                            d.resolve(Label.getContent('Input range')+':0~'+max);
-                        }else{
-                            d.resolve();
-                        }
-                    },function(){
-                        d.resolve(Label.getContent('fail'));
-                    })
+                    if(value>100||value<0){
+                        d.resolve(Label.getContent('Input range'+':0~100'));
+                    }else{
+                        d.resolve();
+                    }
                     return d.promise;
                 }
                 /*Shelf space : 0~ 100%，每次给某一个市场内的某个产品分配份额或者减少份额，右上角的该市场的货架进度条 Avaiable Shelf space必须进行进行相应的减少或者增加。该市场内所有产品的份额相加不能大于100%。
@@ -237,7 +230,7 @@ define(['directives', 'services'], function(directives){
                         market=1;
                     }
                     var orderProducts=new Array();
-                    var allRetCatDecisions=loadSelectCategroy(market,category);
+                    var allRetCatDecisions=loadSelectCategory(market,category);
                     var products=new Array();
                     for(var i=0;i<allRetCatDecisions.length;i++){
                         for(var j=0;j<allRetCatDecisions[i].retVariantDecision.length;j++){
