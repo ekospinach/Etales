@@ -66,6 +66,28 @@ define(['app','socketIO'], function(app) {
 
 		}		
 
+		$scope.updateFinalDecisionCommittedChanged = function(role, roleID, period, value) {
+            var queryCondition={
+				roleID  : roleID,
+				role    : role,
+				seminar : $scope.seminar.seminarCode,
+				period  : period,
+				value   : value,
+            }
+
+            $http({
+                method :'POST',
+                url    :'/submitFinalDecision',
+                data   :queryCondition
+            }).success(function(data, status, headers, config){
+            	console.log('update commit final decision status successfully');
+            }).error(function(data, status, headers, config){
+            	console.log('update commit final decision status failed.');
+            })
+
+		}		
+
+
 		$scope.updatePassword=function(seminar,location,additionalIdx){
 			var data={
 				seminarCode:seminar.seminarCode,

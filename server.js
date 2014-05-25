@@ -149,6 +149,7 @@ app.get('/getScrplSales/:seminar/:period/:producerID/:categoryID',require('./api
 //seminar 
 app.get('/checkProducerDecision/:seminar/:period/:producerID',require('./api/models/seminar.js').checkProducerDecision);
 app.post('/submitPortfolioDecision',require('./api/models/seminar.js').submitPortfolioDecision(io));
+app.post('/submitFinalDecision',require('./api/models/seminar.js').submitFinalDecision(io));
 app.post('/deleteOrderData',require('./api/models/retailerDecision.js').deleteOrderData(io));
 
 //add generalReport record

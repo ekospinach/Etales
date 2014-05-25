@@ -298,6 +298,7 @@ define(['directives', 'services'], function(directives){
                         console.log('created contract schema between supplier ' + postData.producerID + ' and retailer ' + postData.retailerID);
 
                     //step 3: Add related contract details for two contact schema
+                   //TODO: need to update field "isNewProduct" and "isCompositionModifed" in smart way                    
                         var contractCode = 'P'+PlayerInfo.getPlayer()+'andR1_'+SeminarInfo.getSelectedSeminar()+'_'+PeriodInfo.getCurrentPeriod();
                         return contractDetailsCreateShooter(contractCode, scope.productes);
 

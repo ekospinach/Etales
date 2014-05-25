@@ -108,7 +108,7 @@
 	        	loadingModuleNameEl.innerHTML = map.name + (map.url ? ' at ' + map.url : '') ;
 	        } else {
 
-	          //TODO later load, must have loading indicator for this then
+	          //TODO: later load, must have loading indicator for this then
 	        }
 	      };
 	    });

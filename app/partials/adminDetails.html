@@ -161,7 +161,7 @@
 							<td>
 								<a href="#" editable-checkbox="periodInfo.isPortfolioDecisionCommitted" onaftersave="updatePortfolioDecisionCommittedChanged(supplier.producerID, periodInfo.period, periodInfo.isPortfolioDecisionCommitted)">{{periodInfo.isPortfolioDecisionCommitted}} </a>				
 							</td>
-							<td>{{periodInfo.isDecisionCommitted}}</td>
+							<td><a href="#" editable-checkbox="periodInfo.isDecisionCommitted" onaftersave="updateFinalDecisionCommittedChanged('Producer', supplier.producerID, periodInfo.period, periodInfo.isDecisionCommitted)">{{periodInfo.isDecisionCommitted}}</a></td>
 						</tr>
 					</tbody>
 				</table>
@@ -182,7 +182,7 @@
 					<tbody>
 						<tr ng-repeat='periodInfo in retailer.decisionCommitStatus'>
 							<td><strong>Period {{periodInfo.period}}</strong></td>
-							<td>{{periodInfo.isDecisionCommitted}}</td>
+							<td><a href="#" editable-checkbox="periodInfo.isDecisionCommitted" onaftersave="updateFinalDecisionCommittedChanged('Retailer', retailer.retailerID, periodInfo.period, periodInfo.isDecisionCommitted)">{{periodInfo.isDecisionCommitted}}</a></td>
 						</tr>
 					</tbody>
 				</table>
