@@ -94,6 +94,28 @@ exports.addContract = function(io){
      }
 }
 
+exports.getContractExpend=function(req,res,next){
+     var result=0;
+     contractVariantDetails.find({
+          contractCode:'P'+req.params.producerID+'andR'+req.params.retailerID+'_'+req.params.seminar+'_'+req.params.period,
+     },function(err,docs){
+          if(err){
+               next(new Error(err));
+          }         
+          if(docs.length!=0){
+               for(var i=0;i<docs.length;i++){
+                    result+=docs[i].nc_SalesTargetVolume;
+                    if(docs[i].parentBrandName==req.params.parentBrandName&&docs[i].variantName==req.params.variantName){
+                         result-=docs[i].nc_SalesTargetVolume;
+                    }
+               }
+               res.send(200,{'result':result});
+          }else{
+               res.send(200,{'result':0});
+          }
+     });
+}
+
 exports.checkVolume=function(req,res,next){
      contractVariantDetails.findOne({
           contractCode:req.params.contractCode,
