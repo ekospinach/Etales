@@ -151,7 +151,9 @@ app.post('/getCurrentUnitCost', require('./api/utils/unitCost').getCurrentUnitCo
 app.get('/currentPeriod/:seminar',require('./api/models/seminar.js').getCurrentPeriod);
 app.get('/getScrplSales/:seminar/:period/:producerID/:categoryID',require('./api/models/SCR_consolidatedProfitAndLoss.js').getScrplSales);
 
-app.get('/getRcrplSales/:seminar/:period/:retailerID/:categoryID',require('./api/models/RCR_consolidatedProfitAndLoss.js').getRcrplSales);
+app.get('/RCR-consolidatedProfitAndLoss/:seminar/:period/:retailerID',require('./api/models/RCR_consolidatedProfitAndLoss.js').getRCR_consolidatedProfitAndLoss);
+
+app.get('/getRcrplSales/:seminar/:period/:retailerID/:categoryID/:marketID',require('./api/models/RCR_consolidatedProfitAndLoss.js').getRcrplSales);
 app.get('/getSalesVolume/:seminar/:period/:retailerID/:categoryID',require('./api/models/RCR_consolidatedProfitAndLoss.js').getSalesVolume);
 app.get('/getMarketSize/:seminar/:period/:retailerID/:categoryID',require('./api/models/RCR_consolidatedProfitAndLoss.js').getMarketSize);
 

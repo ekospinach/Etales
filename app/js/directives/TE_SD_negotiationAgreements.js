@@ -138,6 +138,7 @@ define(['directives', 'services'], function(directives){
                     },function(){
                         d.resolve(Label.getContent('Check Error'));
                     });
+                    return d.promise;
                 }
 
                 scope.checkDiscountRate=function(contractCode,producerID,retailerID,brandName,varName,index,value,volume,bmPrices,category){
@@ -185,9 +186,8 @@ define(['directives', 'services'], function(directives){
                         if(value>100){                       
                             d.resolve(Label.getContent('Input range')+':0~100');             
                         }else if(volume*bmPrices*(1-value/100)>negotiationABmax-expend){
-                            discountRate=100-(negotiationABmax-expend)*100/(volume*bmPrices);
+                            discountRate=1-(negotiationABmax-expend)*100/(volume*bmPrices);
                             d.resolve(Label.getContent('Input range')+':0~'+discountRate);
-
                         }else{
                             d.resolve();
                         }
@@ -213,7 +213,7 @@ define(['directives', 'services'], function(directives){
                         if(data.data.result=="no"){
                             d.resolve(Label.getContent('This product is locked'));
                         }
-                        url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+category+'/1';
+                        url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+category+'/1';
                         return $http({
                             method:'GET',
                             url:url
@@ -250,6 +250,7 @@ define(['directives', 'services'], function(directives){
                     },function(){
                         d.resolve(Label.getContent('Check Error'));
                     });
+                    return d.promise;
                 }
 
                 scope.checkBonusRate=function(contractCode,producerID,retailerID,brandName,varName,index,value,volume,bmPrices,category){
@@ -355,13 +356,13 @@ define(['directives', 'services'], function(directives){
                         });
                     }).then(function(data){
                         supplierOtherCompensation=data.data[0].toFixed(2);
-                        url='/getRcrplSales/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+retailerID+'/'+category;
+                        url='/getRcrplSales/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+retailerID+'/'+category+'/1';
                         return $http({
                             method:'GET',
                             url:url
                         });
                     }).then(function(data){
-                        retailerOtherCompensation=data.data[0].toFixed(2);
+                        retailerOtherCompensation=data.data.result.toFixed(2);
                         if(retailerOtherCompensation>=supplierOtherCompensation){
                             if(value>supplierOtherCompensation||value<(0-supplierOtherCompensation)){
                                 d.resolve(Label.getContent('Input range')+':'+(0-supplierOtherCompensation)+'~'+supplierOtherCompensation);

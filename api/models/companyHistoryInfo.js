@@ -33,6 +33,7 @@ var retailerViewSchema = mongoose.Schema({
 var companyHistory=mongoose.model('BG_companyHistory',companyHistoryInfoSchema);
 
 exports.getCompanyHistory=function(req,res,next){
+  console.log(req.params.seminar);
 	companyHistory.findOne({
 		seminar:req.params.seminar,
 		period:req.params.period
