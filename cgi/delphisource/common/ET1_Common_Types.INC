@@ -61,6 +61,7 @@ Type
   TStorePerceptions        = ( PRICE, CONVENIENCE );
   TTechnology              = 1..MaxTechnologyLevel;  
   TTimeSpan                = TimeStart..TimeEnd;
+  TTOPDays                 = 0..24;  { this is used as multiplications of 15 days to cover - almost - the entire year }
   TVariantBasePerceptions  = 1..VariantDimsMax - 1;
   TVariantThreePerceptions = 1..VariantDimsMax;
   TVariants                = 1..AllVariantsMax;

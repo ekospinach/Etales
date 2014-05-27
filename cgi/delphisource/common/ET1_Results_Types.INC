@@ -713,6 +713,71 @@ TMarketResearch =
 
 {-----------------------------------------------------------------------------------------------------------------------------------------------}
 
+TF_CategoryNegotiationsItem =
+  record
+    fcni_SuppliersCost       : array[TProducers] of single;
+    fcni_RetailersBenefits   : array[TBMRetailers] of single;
+  end;
+
+TF_NegotiationsItems = array[TCategoriesTotal] of TF_CategoryNegotiationsItem;
+
+
+
+TF_CategoryTransactionsPerTOP = array[TTOPDays] of single;
+
+TF_TransactionsPerTOP = array[TCategoriesTotal] of TF_CategoryTransactionsPerTOP;
+
+
+
+TF_CategoryMarketResults = array[TTimeSpan, TActiveActors] of single;
+
+TF_MarketsResults = array[TCategoriesTotal] of TF_CategoryMarketResults;
+
+
+TF_CategorySuppliersKPIs = array[TTimeSpan, TProducers] of single;
+
+TF_SuppliersKPIs = array[TCategoriesTotal] of TF_CategorySuppliersKPIs;
+
+
+TF_QuarterRetailersKPIs = array[TTimeSpan, TModernRetailers] of single;
+
+TF_RetailersKPIs = array[TMarketsTotal, TCategoriesTotal] of TF_QuarterRetailersKPIs;
+
+
+
+TFeedback =
+  record
+    f_DiscountsValue                  : TF_NegotiationsItems;
+    f_PerformanceBonusesValue         : TF_NegotiationsItems;
+    f_OtherCompensationsValue         : TF_NegotiationsItems;
+    f_TransactionsPerTOP              : TF_TransactionsPerTOP;
+    f_MarketSalesVolume               : TF_MarketsResults;
+    f_MarketSalesValue                : TF_MarketsResults;
+    f_VolumeMarketShares              : TF_MarketsResults;
+    f_ValueMarketShares               : TF_MarketsResults;
+    f_OperatingProfit                 : TF_MarketsResults;
+    f_OperatingProfitMargin           : TF_MarketsResults;
+    f_NetProfit                       : TF_MarketsResults;
+    f_NetProfitMargin                 : TF_MarketsResults;
+    f_ShelfSpaceAllocation            : TF_MarketsResults;
+    f_TradeSpendingEffectiveness      : TF_SuppliersKPIs;
+    f_MarketingSpendingEffectiveness  : TF_SuppliersKPIs;
+    f_PortfolioStrength               : TF_SuppliersKPIs;
+    f_SuppliersBMValueSalesShare      : TF_SuppliersKPIs;
+    f_SuppliersBMVolumeSalesShare     : TF_SuppliersKPIs;
+    f_SuppliersBMShareOfShoppers      : TF_SuppliersKPIs;
+    f_SuppliersOnlineValueSalesShare  : TF_SuppliersKPIs;
+    f_SuppliersOnlineVolumeSalesShare : TF_SuppliersKPIs;
+    f_SuppliersOnlineShareOfShoppers  : TF_SuppliersKPIs;
+    f_RetailersValueRotationIndex     : TF_RetailersKPIs;
+    f_RetailersVolumeRotationIndex    : TF_RetailersKPIs;
+    f_RetailersProfitabilityIndex     : TF_RetailersKPIs;
+    f_RetailersStocksCover            : TF_RetailersKPIs;
+    f_RetailersShoppersShare          : TF_RetailersKPIs;
+  end;
+
+{-----------------------------------------------------------------------------------------------------------------------------------------------}
+
 TAllResults =
   record
     r_PeriodNumber                 : TTimeSpan;
@@ -720,6 +785,7 @@ TAllResults =
     r_SuppliersConfidentialReports : TSuppliersConfidentialReports;
     r_RetailersConfidentialReports : TRetailersConfidentialReports;
     r_MarketResearch               : TMarketResearch;
+    r_Feedback                     : TFeedback;
   end;
 
 TAllResultsFile = file of TAllResults;

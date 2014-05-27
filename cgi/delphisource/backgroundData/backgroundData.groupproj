@@ -1,0 +1,60 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{E4F14020-315F-4F3B-A979-43161CB0BC77}</ProjectGuid>
+		</PropertyGroup>
+		<ItemGroup>
+			<Projects Include="BG_companyHistoryInfo.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="BG_oneQuarterExogenousData.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="BG_feedbackSlides.dproj">
+				<Dependencies/>
+			</Projects>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Default.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Default.Personality/>
+			</BorlandProject>
+		</ProjectExtensions>
+		<Target Name="BG_companyHistoryInfo">
+			<MSBuild Projects="BG_companyHistoryInfo.dproj"/>
+		</Target>
+		<Target Name="BG_companyHistoryInfo:Clean">
+			<MSBuild Projects="BG_companyHistoryInfo.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="BG_companyHistoryInfo:Make">
+			<MSBuild Projects="BG_companyHistoryInfo.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="BG_oneQuarterExogenousData">
+			<MSBuild Projects="BG_oneQuarterExogenousData.dproj"/>
+		</Target>
+		<Target Name="BG_oneQuarterExogenousData:Clean">
+			<MSBuild Projects="BG_oneQuarterExogenousData.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="BG_oneQuarterExogenousData:Make">
+			<MSBuild Projects="BG_oneQuarterExogenousData.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="BG_feedbackSlides">
+			<MSBuild Projects="BG_feedbackSlides.dproj"/>
+		</Target>
+		<Target Name="BG_feedbackSlides:Clean">
+			<MSBuild Projects="BG_feedbackSlides.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="BG_feedbackSlides:Make">
+			<MSBuild Projects="BG_feedbackSlides.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="Build">
+			<CallTarget Targets="BG_companyHistoryInfo;BG_oneQuarterExogenousData;BG_feedbackSlides"/>
+		</Target>
+		<Target Name="Clean">
+			<CallTarget Targets="BG_companyHistoryInfo:Clean;BG_oneQuarterExogenousData:Clean;BG_feedbackSlides:Clean"/>
+		</Target>
+		<Target Name="Make">
+			<CallTarget Targets="BG_companyHistoryInfo:Make;BG_oneQuarterExogenousData:Make;BG_feedbackSlides:Make"/>
+		</Target>
+		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
+	</Project>
