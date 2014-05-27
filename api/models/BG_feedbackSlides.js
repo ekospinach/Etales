@@ -12,7 +12,7 @@ var BG_feedbackSlidesSchema = mongoose.Schmea({
     f_DiscountsValue                  : [negotiationsItemDetailsSchema],
     f_PerformanceBonusesValue         : [negotiationsItemDetailsSchema],
     f_OtherCompensationsValue         : [negotiationsItemDetailsSchema],
-    f_TransactionsPerTOP              : [transactionsPerTOPSchema];
+    f_TransactionsPerTOP              : [transactionsPerTOPSchema],
     f_MarketSalesVolume               : [marketResultSchema],
     f_MarketSalesValue                : [marketResultSchema],
     f_VolumeMarketShares              : [marketResultSchema],
