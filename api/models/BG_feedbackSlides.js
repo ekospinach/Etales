@@ -11,7 +11,9 @@ var BG_feedbackSlidesSchema = mongoose.Schema({
     f_DiscountsValue                  : [negotiationsItemDetailsSchema],
     f_PerformanceBonusesValue         : [negotiationsItemDetailsSchema],
     f_OtherCompensationsValue         : [negotiationsItemDetailsSchema],
+
     f_TransactionsPerTOP              : [transactionsPerTOPSchema],
+
     f_MarketSalesVolume               : [marketResultSchema],
     f_MarketSalesValue                : [marketResultSchema],
     f_VolumeMarketShares              : [marketResultSchema],
@@ -21,6 +23,7 @@ var BG_feedbackSlidesSchema = mongoose.Schema({
     f_NetProfit                       : [marketResultSchema],
     f_NetProfitMargin                 : [marketResultSchema],
     f_ShelfSpaceAllocation            : [marketResultSchema],
+
     f_TradeSpendingEffectiveness      : [supplierKPIInfoSchema],
     f_MarketingSpendingEffectiveness  : [supplierKPIInfoSchema],
     f_PortfolioStrength               : [supplierKPIInfoSchema],
@@ -30,6 +33,7 @@ var BG_feedbackSlidesSchema = mongoose.Schema({
     f_SuppliersOnlineValueSalesShare  : [supplierKPIInfoSchema],
     f_SuppliersOnlineVolumeSalesShare : [supplierKPIInfoSchema],
     f_SuppliersOnlineShareOfShoppers  : [supplierKPIInfoSchema],
+    
     f_RetailersValueRotationIndex     : [retailerKPIInfoSchema],
     f_RetailersVolumeRotationIndex    : [retailerKPIInfoSchema],
     f_RetailersProfitabilityIndex     : [retailerKPIInfoSchema],
