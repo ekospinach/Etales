@@ -471,8 +471,10 @@ exports.initialiseSeminar = function(io){
 			}).then(function(result){ 
 	            io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	 
 
+	            console.log('cgi shoot:' + conf.cgi.path_BG_feedbackSlides);
 				options.cgiPath = conf.cgi.path_BG_feedbackSlides;
 				options.schemaName = 'BG_feedbackSlides';
+				//return require('./models/companyHistoryInfo.js').addInfos(options);
 				return require('./models/BG_feedbackSlides.js').addInfos(options);							
 			}).then(function(result){ 
 	            io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	 
@@ -480,7 +482,7 @@ exports.initialiseSeminar = function(io){
 	            status = 'actived';
 	            res.send(200, 'Initialization done.');
 			}, function(error){ //log the error
-	            //io.sockets.emit('AdminProcessLog', { msg: error.msg, isError: true });			
+	            io.sockets.emit('AdminProcessLog', { msg: error.msg, isError: true });			
 	            status = 'actived';
 	            res.send(404, error.msg);            
 			}, function(progress){ //log the progress

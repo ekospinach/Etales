@@ -5,10 +5,9 @@ var mongoose = require('mongoose'),
     request = require('request'),
     q = require('q');
 
-//New Schema
-var BG_feedbackSlidesSchema = mongoose.Schmea({
-    period : Number,
-    seminar : String,
+var BG_feedbackSlidesSchema = mongoose.Schema({
+    period                            : Number,
+    seminar                           : String,
     f_DiscountsValue                  : [negotiationsItemDetailsSchema],
     f_PerformanceBonusesValue         : [negotiationsItemDetailsSchema],
     f_OtherCompensationsValue         : [negotiationsItemDetailsSchema],
@@ -61,7 +60,7 @@ var transactionsPerTOPSchema = mongoose.Schema({
 })
 
 
-var marketResultSchema = mongoose.Schmea({
+var marketResultSchema = mongoose.Schema({
     categoryID : Number,
     period     : Number, 
     actorID    : Number, //TActiveActors : 1~(3+2)
@@ -83,13 +82,15 @@ var retailerKPIInfoSchema = mongoose.Schema({
     value      : Number,
 })
 
-var BG_feedbackSlides=mongoose.model('BG_feedbackSlides',BG_feedbackSlidesSchema);
+var BG_feedbackSlides = mongoose.model('BG_feedbackSlides', BG_feedbackSlidesSchema);
 
-exports.addReports = function(options){
+exports.addInfos = function(options){
+    console.log('active addinfos');
     var deferred = q.defer();
     var startFrom = options.startFrom,
     endWith = options.endWith;
 
+    console.log('BG_feedbackSlides shoot:' + util.inspect(options, {depth:null}));
    (function sendRequest(currentPeriod){        
       var reqOptions = {
           hostname: options.cgiHost,
@@ -97,12 +98,15 @@ exports.addReports = function(options){
           path: options.cgiPath + '?period=' + currentPeriod + '&seminar=' + options.seminar 
       };
 
+      console.log('BG_feedbackSlides shoot:' + reqOptions.cgiPath);
       http.get(reqOptions, function(response) { 
         var data = '';
         response.setEncoding('utf8');
         response.on('data', function(chunk){
           data += chunk;
         }).on('end', function(){
+          console.log('response statusCode from CGI(' + options.cgiPath + ') for period ' + currentPeriod + ': ' + response.statusCode);
+
           if ( response.statusCode === (404 || 500) ) 
             deferred.reject({msg:'Get 404||500 error from CGI server, reqOptions:' + JSON.stringify(reqOptions)});
           else {
