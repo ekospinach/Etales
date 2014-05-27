@@ -366,7 +366,7 @@ define(['directives', 'services'], function(directives){
                                 return (obj.categoryID==$scope.lauchNewCategory);
                             });
                             newBrand.brandID=calculateBrandID(proBrandsDecision,PlayerInfo.getPlayer());
-                            newBrand.brandName=$scope.brandFirstName+myForm[1][1].value+parseInt(PlayerInfo.getPlayer());
+                            newBrand.brandName=$scope.brandFirstName+myForm[1].value+parseInt(PlayerInfo.getPlayer());
                             newBrand.paranetCompanyID=PlayerInfo.getPlayer();
                             newBrand.dateOfDeath=10;
                             newBrand.dateOfBirth=PeriodInfo.getCurrentPeriod();
@@ -376,7 +376,7 @@ define(['directives', 'services'], function(directives){
                             newBrand.supportTraditionalTrade=new Array(0,0);
                             newBrand.proVarDecision=new Array();
                             newproducerDecision.parentBrandID=newBrand.brandID;
-                            newproducerDecision.varName='_'+myForm[1][2].value;/*need check*/
+                            newproducerDecision.varName='_'+myForm[2].value;/*need check*/
                             newproducerDecision.varID=10*newBrand.brandID+1;/*need check*/
                             //need add 2 null vars
                             newBrand.proVarDecision.push(newproducerDecision,nullDecision,nullDecision);
@@ -396,8 +396,8 @@ define(['directives', 'services'], function(directives){
                             var proBrandsDecision=_.find($scope.pageBase.proCatDecision,function(obj){
                                 return (obj.categoryID==$scope.addNewCategory);
                             });
-                            newproducerDecision.parentBrandID=parseInt(myForm[1][4].value);
-                            newproducerDecision.varName='_'+myForm[1][5].value;/*need check*/
+                            newproducerDecision.parentBrandID=parseInt(myForm[4].value);
+                            newproducerDecision.varName='_'+myForm[5].value;/*need check*/
                             var proVarDecision=_.find(proBrandsDecision.proBrandsDecision,function(obj){
                                 return (obj.brandID==newproducerDecision.parentBrandID);
                             });

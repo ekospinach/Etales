@@ -90,7 +90,6 @@ define(['app','socketIO','routingConfig'], function(app) {
 						url: url,
 					});
 				}).then(function(data) {
-<<<<<<< HEAD
 					productExpend = data.data.result;
 					url='/getContractExpend/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer()+'/1/brandName/varName';
 					return $http({
@@ -107,12 +106,6 @@ define(['app','socketIO','routingConfig'], function(app) {
 				}).then(function(data){
 					r2ContractExpend = data.data.result;
 					$scope.surplusExpend = ($scope.abMax - productExpend- r1ContractExpend - r2ContractExpend).toFixed(2);
-=======
-					expend = data.data.result;
-					$scope.surplusExpend = ($scope.abMax - expend).toFixed(2);
-
-				//get production capacity left = $scope.eleSurplusProduction (Elecssories)
->>>>>>> a84cbbb7cdebfd8635ab2ed96507ce9c3f6594a9
 					url = "/productionResult/" + SeminarInfo.getSelectedSeminar() + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer()) + '/EName/varName';
 					return $http({
 						method: 'GET',
