@@ -407,7 +407,7 @@ var getLabelBase = function(){
 		{id:'Price Perception',  ENG:'Price Perception',  CHN:'价格感知',  RUS:''},
 
 
-		{id:'Unit Cost',  ENG:'Unit Production Cost',  CHN:'单位生产成本',  RUS:''},
+		{id:'Unit Cost',  ENG:'Unit Cost',  CHN:'单位生产成本',  RUS:''},
 		{id:'Acquired Technology Level',  ENG:'Acquired Technology Level',  CHN:'当前拥有最高技术水平',  RUS:''},
 		{id:'Acquired Design Level',  ENG:'Acquired Design Level',  CHN:'当前拥有最高设计水平',  RUS:''},
 		{id:'Acquired Active agent',  ENG:'Acquired Active agent',  CHN:'当前拥有活力因子',  RUS:''},
@@ -860,8 +860,8 @@ var getLabelBase = function(){
 		{id:'Less than current cost',  ENG:'Less than current cost',  CHN:'低于成本',  RUS:''},
 		{id:'set Minimum Order first',  ENG:'please set minimum order first',  CHN:'请先输入最小订量',  RUS:''},
 		{id:'set Target Volume first',  ENG:'please set salesTargetVolume first',  CHN:'请先输入目标量',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'Unit Cost',  ENG:'Unit Cost',  CHN:'生产成本',  RUS:''},
+		{id:'UnitCost Info',  ENG:'UnitCost Info',  CHN:'',  RUS:''},
 
 		{id:'Feedback',  ENG:'Feedback',  CHN:'阶段总结',  RUS:''},
 		{id:'Feedback session',  ENG:'Feedback session',  CHN:'阶段总结',  RUS:''},

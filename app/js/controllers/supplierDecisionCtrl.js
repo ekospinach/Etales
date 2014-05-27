@@ -49,7 +49,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 				}
 			}
 
-			var showView = function() {
+			var loadBackgroundData = function() {
 				var categoryID = 0,
 					acMax = 0,
 					abMax = 0,
@@ -77,20 +77,20 @@ define(['app','socketIO','routingConfig'], function(app) {
 						url: url
 					});
 				}).then(function(data) {
-					//assign available budget, capacity for two categories 
-					//avaiableMax = data.data.budgetAvailable;
+				//assign available budget, capacity for two categories 
 
 					$scope.abMax = data.data.budgetAvailable + data.data.budgetSpentToDate;
 					$scope.acEleMax = data.data.productionCapacity[0];
 					$scope.acHeaMax = data.data.productionCapacity[1];
 
-
+				//get how much money have been spent in current period, money left = $scope.surplusExpend
 					url = "/producerExpend/" + SeminarInfo.getSelectedSeminar() + '/' + (PeriodInfo.getCurrentPeriod()) + '/' + parseInt(PlayerInfo.getPlayer()) + '/brandName/location/1';
 					return $http({
 						method: 'GET',
 						url: url,
 					});
 				}).then(function(data) {
+<<<<<<< HEAD
 					productExpend = data.data.result;
 					url='/getContractExpend/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer()+'/1/brandName/varName';
 					return $http({
@@ -107,6 +107,12 @@ define(['app','socketIO','routingConfig'], function(app) {
 				}).then(function(data){
 					r2ContractExpend = data.data.result;
 					$scope.surplusExpend = ($scope.abMax - productExpend- r1ContractExpend - r2ContractExpend).toFixed(2);
+=======
+					expend = data.data.result;
+					$scope.surplusExpend = ($scope.abMax - expend).toFixed(2);
+
+				//get production capacity left = $scope.eleSurplusProduction (Elecssories)
+>>>>>>> a84cbbb7cdebfd8635ab2ed96507ce9c3f6594a9
 					url = "/productionResult/" + SeminarInfo.getSelectedSeminar() + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer()) + '/EName/varName';
 					return $http({
 						method: 'GET',
@@ -114,6 +120,8 @@ define(['app','socketIO','routingConfig'], function(app) {
 					});
 				}).then(function(data) {
 					$scope.eleSurplusProduction = ($scope.acEleMax - data.data.result).toFixed(2);
+
+				//get production capacity left = $scope.eleSurplusProduction (Health Beauties)
 					url = "/productionResult/" + SeminarInfo.getSelectedSeminar() + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer()) + '/HName/varName';
 					return $http({
 						method: 'GET',
@@ -121,6 +129,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 					});
 				}).then(function(data) {
 					$scope.heaSurplusProduction = ($scope.acHeaMax - data.data.result).toFixed(2);
+
 				}, function() {
 					console.log('fail');
 				})
@@ -158,17 +167,17 @@ define(['app','socketIO','routingConfig'], function(app) {
 	    	}
 
             ProducerDecisionBase.startListenChangeFromServer(); 
-			showView();
+			loadBackgroundData();
 			showProductPortfolioManagement();
 			$scope.switching = switching;
 			$scope.showProductPortfolioManagement = showProductPortfolioManagement;
-			$scope.showView = showView();
+			$scope.loadBackgroundData = loadBackgroundData();
 
 		    $scope.$watch('isPageLoading', function(newValue, oldValue){
 		    	$scope.isPageLoading = newValue;	    	
 		    })
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase) {
-				showView();
+				loadBackgroundData();
 			});
 	}]);
 
