@@ -260,59 +260,6 @@ define(['directives', 'services'], function(directives){
 
                 scope.checkBonusRate=function(contractCode,producerID,retailerID,brandName,varName,index,value,volume,bmPrices,category){
                     var d=$q.defer();
-                    var discountRate=expend=0;
-                    var filter=/^-?[0-9]+([.]{1}[0-9]{1,2})?$/;
-                    if(!filter.test(value)){
-                        d.resolve(Label.getContent('Input Number'));
-                    }
-                    var url='/checkContractDetails/'+contractCode+'/'+brandName+'/'+varName+'/nc_PerformanceBonusRate';
-                    $http({
-                        method:'GET',
-                        url:url
-                    }).then(function(data){
-                        if(data.data.result=="no"){
-                            d.resolve(Label.getContent('This product is locked'));
-                        }
-                        url='/checkSalesTargetVolume/'+contractCode+'/'+brandName+'/'+varName;
-                        return $http({
-                            method:'GET',
-                            url:url
-                        });
-                    }).then(function(data){
-                        if(data.data=="unReady"){
-                            d.resolve(Label.getContent('set Target Volume first'))
-                        }
-                        url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+producerID;
-                        return $http({
-                            method:'GET',
-                            url:url
-                        });
-                    }).then(function(data){
-                        negotiationABmax=data.data.budgetAvailable;
-                        url='/getNegotiationExpend/'+contractCode+'/'+brandName+'/'+varName;
-                        return $http({
-                            method:'GET',
-                            url:url
-                        })
-                    }).then(function(data){
-                        expend=data.data.result;
-                        if(value>100){                       
-                            d.resolve(Label.getContent('Input range')+':0~100');             
-                        }else if(volume*bmPrices*value/100>negotiationABmax-expend){
-                            bonusRate=(negotiationABmax-expend)*100/(volume*bmPrices);
-                            d.resolve(Label.getContent('Input range')+':0~'+bonusRate);
-                        }else{
-                            d.resolve();
-                        }
-
-                    },function(){
-                        d.resolve(Label.getContent('Check Error'));
-                    })
-                    return d.promise;
-                }
-
-                scope.checkBonusRate=function(contractCode,producerID,retailerID,brandName,varName,index,value,volume,bmPrices,category){
-                    var d=$q.defer();
                     var discountRate=expend=max=productExpend=r1ContractExpend=r2ContractExpend=0;
                     var filter=/^-?[0-9]+([.]{1}[0-9]{1,2})?$/;
                     if(!filter.test(value)){
@@ -376,7 +323,7 @@ define(['directives', 'services'], function(directives){
 
                     },function(){
                         d.resolve(Label.getContent('Check Error'));
-                    })
+                    });
                     return d.promise;
                 }
 

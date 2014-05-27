@@ -315,12 +315,9 @@ define(['directives', 'services'], function(directives){
                         }else{
                             d.resolve();
                         }
-                    })
-                        
-
                     },function(){
                         d.resolve(Label.getContent('Check Error'));
-                    })
+                    });
                     return d.promise;
                 }
 
