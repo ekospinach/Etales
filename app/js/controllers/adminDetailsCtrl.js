@@ -14,7 +14,6 @@ define(['app','socketIO'], function(app) {
 					$scope.initializeMessage = [];
 				}
 				$scope.initializeMessage.push(data.msg); 					
-
 			}			
 		}).on('PassiveProcessLog', function(data){
 			$scope.isKernelMessageShown = true;
