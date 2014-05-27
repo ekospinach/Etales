@@ -348,9 +348,12 @@ exports.updateContractDetails=function(io){
                     doc.nc_SalesTargetVolume_lastModifiedBy=queryCondition.userType;
                }
                if(queryCondition.userType=="P"){
-                    io.sockets.emit('supplierEditNegotiation', 'Supplier Edit Negotiation ');
+                    io.sockets.emit('supplierEditNegotiation', 'Supplier Edit Negotiation');
                }else{
                     io.sockets.emit('retailerEditNegotiation', 'Retailer Edit Negotiation');
+               }
+               if(queryCondition.location=="nc_SalesTargetVolume"){
+                    io.sockets.emit('EditSalesTargetVolume','Supplier Edit Negotiation');
                }
                doc.save(function(err,doc,numberAffected){
                     if(err){

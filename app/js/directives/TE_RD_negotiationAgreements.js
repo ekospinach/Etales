@@ -311,6 +311,75 @@ define(['directives', 'services'], function(directives){
                     return d.promise;
                 }
 
+                scope.checkBonusRate=function(contractCode,producerID,retailerID,brandName,varName,index,value,volume,bmPrices,category){
+                    var d=$q.defer();
+                    var discountRate=expend=max=productExpend=r1ContractExpend=r2ContractExpend=0;
+                    var filter=/^-?[0-9]+([.]{1}[0-9]{1,2})?$/;
+                    if(!filter.test(value)){
+                        d.resolve(Label.getContent('Input Number'));
+                    }
+
+                    var url='/checkContractDetails/'+contractCode+'/'+brandName+'/'+varName+'/nc_PerformanceBonusRate';
+                    $http({
+                        method:'GET',
+                        url:url
+                    }).then(function(data){
+                        if(data.data.result=="no"){
+                            d.resolve(Label.getContent('This product is locked'));
+                        }
+                        url='/checkSalesTargetVolume/'+contractCode+'/'+brandName+'/'+varName;
+                        return $http({
+                            method:'GET',
+                            url:url
+                        });
+                    }).then(function(data){
+                        if(data.data=="unReady"){
+                            d.resolve(Label.getContent('set Target Volume first'))
+                        }
+
+                        url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+producerID;
+                        return $http({
+                            method:'GET',
+                            url:url
+                        });
+                    }).then(function(data){
+                        max=data.data.budgetAvailable + data.data.budgetSpentToDate;
+                        url = "/producerExpend/" + SeminarInfo.getSelectedSeminar() + '/' + (PeriodInfo.getCurrentPeriod()) + '/' + producerID + '/brandName/location/1';
+                        return $http({
+                            method: 'GET',
+                            url: url,
+                        });
+                    }).then(function(data){
+                        productExpend=data.data.result;
+                        url='/getContractExpend/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+producerID+'/1/'+brandName+'/'+varName;
+                        return $http({
+                            method:'GET',
+                            url:url
+                        });
+                    }).then(function(data){
+                        r1ContractExpend=data.data.result;
+                        url='/getContractExpend/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+producerID+'/2/'+brandName+'/'+varName;
+                        return $http({
+                            method:'GET',
+                            url:url
+                        });
+                    }).then(function(data){
+                        r2ContractExpend=data.data.result;
+                        if(value>100){                       
+                            d.resolve(Label.getContent('Input range')+':0~100');             
+                        }else if(volume*bmPrices*value/100>max-productExpend-r1ContractExpend-r2ContractExpend){
+                            bonusRate=(max-productExpend-r1ContractExpend-r2ContractExpend)*100/(volume*bmPrices);
+                            d.resolve(Label.getContent('Input range')+':0~'+bonusRate);
+                        }else{
+                            d.resolve();
+                        }
+
+                    },function(){
+                        d.resolve(Label.getContent('Check Error'));
+                    })
+                    return d.promise;
+                }
+
                 scope.checkPaymentTerms=function(contractCode,producerID,retailerID,brandName,varName,index,value){
                     var d=$q.defer();
                     var filter=/^\d+$/;

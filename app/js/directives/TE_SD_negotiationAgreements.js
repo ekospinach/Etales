@@ -255,7 +255,7 @@ define(['directives', 'services'], function(directives){
 
                 scope.checkBonusRate=function(contractCode,producerID,retailerID,brandName,varName,index,value,volume,bmPrices,category){
                     var d=$q.defer();
-                    var discountRate=expend=0;
+                    var discountRate=expend=max=productExpend=r1ContractExpend=r2ContractExpend=0;
                     var filter=/^-?[0-9]+([.]{1}[0-9]{1,2})?$/;
                     if(!filter.test(value)){
                         d.resolve(Label.getContent('Input Number'));
@@ -285,23 +285,38 @@ define(['directives', 'services'], function(directives){
                             url:url
                         });
                     }).then(function(data){
-                        negotiationABmax=data.data.budgetAvailable;
-
-                        url='/getNegotiationExpend/'+contractCode+'/'+brandName+'/'+varName;
+                        max=data.data.budgetAvailable + data.data.budgetSpentToDate;
+                        url = "/producerExpend/" + SeminarInfo.getSelectedSeminar() + '/' + (PeriodInfo.getCurrentPeriod()) + '/' + parseInt(PlayerInfo.getPlayer()) + '/brandName/location/1';
+                        return $http({
+                            method: 'GET',
+                            url: url,
+                        });
+                    }).then(function(data){
+                        productExpend=data.data.result;
+                        url='/getContractExpend/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer()+'/1/'+brandName+'/'+varName;
                         return $http({
                             method:'GET',
                             url:url
-                        })
+                        });
                     }).then(function(data){
-                        expend=data.data.result;
+                        r1ContractExpend=data.data.result;
+                        url='/getContractExpend/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer()+'/2/'+brandName+'/'+varName;
+                        return $http({
+                            method:'GET',
+                            url:url
+                        });
+                    }).then(function(data){
+                        r2ContractExpend=data.data.result;
                         if(value>100){                       
                             d.resolve(Label.getContent('Input range')+':0~100');             
-                        }else if(volume*bmPrices*value/100>negotiationABmax-expend){
-                            bonusRate=(negotiationABmax-expend)*100/(volume*bmPrices);
+                        }else if(volume*bmPrices*value/100>max-productExpend-r1ContractExpend-r2ContractExpend){
+                            bonusRate=(max-productExpend-r1ContractExpend-r2ContractExpend)*100/(volume*bmPrices);
                             d.resolve(Label.getContent('Input range')+':0~'+bonusRate);
                         }else{
                             d.resolve();
                         }
+                    })
+                        
 
                     },function(){
                         d.resolve(Label.getContent('Check Error'));

@@ -53,7 +53,9 @@ define(['app','socketIO','routingConfig'], function(app) {
 				var categoryID = 0,
 					acMax = 0,
 					abMax = 0,
-					expend = 0,
+					productExpend = 0,
+					r1ContractExpend = 0,
+					r2ContractExpend = 0,
 					avaiableMax = 0;
 
 				//check with server, make sure that isPortfolioDecisionCommitted = true = $scope.isReady 
@@ -89,8 +91,22 @@ define(['app','socketIO','routingConfig'], function(app) {
 						url: url,
 					});
 				}).then(function(data) {
-					expend = data.data.result;
-					$scope.surplusExpend = ($scope.abMax - expend).toFixed(2);
+					productExpend = data.data.result;
+					url='/getContractExpend/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer()+'/1/brandName/varName';
+					return $http({
+						method:'GET',
+						url:url
+					});
+				}).then(function(data){
+					r1ContractExpend = data.data.result;
+					url='/getContractExpend/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer()+'/2/brandName/varName';
+					return $http({
+						method:'GET',
+						url:url
+					});
+				}).then(function(data){
+					r2ContractExpend = data.data.result;
+					$scope.surplusExpend = ($scope.abMax - productExpend- r1ContractExpend - r2ContractExpend).toFixed(2);
 					url = "/productionResult/" + SeminarInfo.getSelectedSeminar() + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer()) + '/EName/varName';
 					return $http({
 						method: 'GET',

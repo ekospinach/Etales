@@ -73,7 +73,7 @@ define(['directives', 'services'], function(directives){
 
                 scope.checkData=function(category,brandName,location,tep,index,value){
                     var d=$q.defer();
-                    var categoryID,max,result;
+                    var categoryID,max,result,r1ContractExpend,r2ContractExpend;
                     var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
                     if(!filter.test(value)){
                         d.resolve(Label.getContent('Input a number'));
@@ -83,15 +83,29 @@ define(['directives', 'services'], function(directives){
                         method:'GET',
                         url:url
                     }).then(function(data){
-                        max=data.data.budgetAvailable;
+                        max=data.data.budgetAvailable + data.data.budgetSpentToDate;
+                        url='/getContractExpend/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer()+'/1/brandName/varName';
+                        return $http({
+                            method:'GET',
+                            url:url
+                        });
+                    }).then(function(data){
+                        r1ContractExpend = data.data.result;
+                        url='/getContractExpend/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer()+'/2/brandName/varName';
+                        return $http({
+                            method:'GET',
+                            url:url
+                        });
+                    }).then(function(data){
+                        r2ContractExpend = data.data.result;
                         url="/producerExpend/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/'+brandName+'/'+location+'/'+tep;
                         return $http({
                             method:'GET',
                             url:url
                         });
                     }).then(function(data){
-                        if(parseInt(data.data.result)+parseInt(value)>max){
-                            d.resolve(Label.getContent('Input range')+':0~'+(max-data.data.result));
+                        if(parseInt(data.data.result)+parseInt(value)>max-r1ContractExpend-r2ContractExpend){
+                            d.resolve(Label.getContent('Input range')+':0~'+(max-r1ContractExpend-r2ContractExpend-data.data.result));
                         }else{
                             d.resolve();
                         }
