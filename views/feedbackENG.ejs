@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app="feedback">
 
   <head>
     <meta charset="utf-8">
@@ -30,12 +30,13 @@
     <![endif]-->
   </head>
 
-  <body>
+  <body ng-controller="feedBackCtrl">
 
     <div class="reveal">
       <!-- Any section element inside of this container is displayed as a slide -->
       <div class="slides">
         <section>
+          {{phones}}
           <h1>Feedback session</h1>
           <h3>Seminar : <%=  seminar %></h3>
           <h3>Period : <%= period %></h3>           
@@ -44,8 +45,12 @@
 
         <section>
           <section>
-            <h2><a>Negotiation Results</a> - Volume Discounts</h2>
+            <h3><a>Negotiation Results</a> - Volume Discounts</h3>
             <hr>
+            <div>
+              <highchart id="chart1" config="chartConfig"style="width:49%;float:left"></highchart>
+              <highchart id="chart2" config="chartConfig" style="width:49%;float:left"></highchart>
+            </div>
             <h3>Total Volume Discounts : 43.4 ($mln)</h3>
           </section>
           <section>
@@ -176,6 +181,12 @@
 
     <script src="bower_components/reveal.js/lib/js/head.min.js"></script>
     <script src="bower_components/reveal.js/js/reveal.min.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/highcharts/highcharts.js"></script>
+    <script src="bower_components/highcharts-ng/src/highcharts-ng.js"></script>
+
+    <script src="js/feedBackApp.js"></script>
 
     <script>
 

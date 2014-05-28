@@ -173,3 +173,19 @@ exports.addInfos = function(options){
     return deferred.promise;
 }
 
+exports.getFeedBack = function(req,res,next){
+  BG_feedbackSlides.findOne({
+    seminar:req.params.seminar,
+    period:req.params.period
+  },function(err,doc){
+    if(err){
+      next(new Error(err));
+    }
+    if(doc){
+      res.send(200,doc);
+    }else{
+      res.send(404,'fail');
+    }
+  })
+}
+
