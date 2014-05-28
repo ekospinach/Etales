@@ -272,6 +272,52 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
                 loading: false
             }
 
+            console.log(data.data.f_TransactionsPerTOP[2].value);
+            $scope.termsofPayment = {
+                options: {
+                    title:{
+                        text:'Transaction Values by Terms of Payment',
+                    },
+                    chart: {
+                        type: 'pie',
+                        backgroundColor: 'transparent',
+                    },
+                    legend: {
+                        layout: 'vertical',
+                        align: 'right',
+                        verticalAlign: 'top',
+                        x:0,
+                        y:20
+                    },
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p><b>'+this.key+'</b></p>'+'<p>'+this.point.y.toFixed(2)+'($mln)</p>'+'<p>'+this.point.percentage.toFixed(2)+'%</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    plotOptions: {
+                        pie: {
+                            dataLabels: {
+                                enabled: false
+                            },
+                            showInLegend: true
+                        }
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    data: [
+                        {'name':'30 Days',y:data.data.f_TransactionsPerTOP[2].value,'color':'#3257A7'},
+                        {'name':'45 Days',y:data.data.f_TransactionsPerTOP[3].value,'color':'#B11E22'},
+                        {'name':'60 Days',y:data.data.f_TransactionsPerTOP[4].value,'color':'#F6B920'},
+                        {'name':'90 Days',y:data.data.f_TransactionsPerTOP[6].value,'color':'#329444'}
+                    ]
+                }],
+                loading: false
+            }
+
         });
     }
 
