@@ -1,4 +1,4 @@
-var path    = require('path'),
+	var path    = require('path'),
 
 	mongoose = require('mongoose'),
 	express = require('express'),
@@ -63,4 +63,4 @@ var path    = require('path'),
 	      server.listen(port, function () {
 	          console.log('Server listening on port ' + port);
 	      });
-	});    
+	});

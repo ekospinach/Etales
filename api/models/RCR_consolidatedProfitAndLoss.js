@@ -5396,6 +5396,7 @@ exports.addRCR_consolidatedProfitAndLoss=function(req,res,next){
 }
 
 exports.getRcrplSales=function(req,res,next){
+    var result=0;
     RCR_consolidatedProfitAndLoss.findOne({
         seminar:req.params.seminar,
         period:req.params.period,
@@ -5407,7 +5408,13 @@ exports.getRcrplSales=function(req,res,next){
         if(!doc){
            res.send(404,{err:'cannot find the doc'}); 
         }else{
-            res.send(200,doc.rcrpl_Sales[req.params.categoryID-1].value);
+            for(var i=0;i<doc.rcrpl_Sales.length;i++){
+                if(doc.rcrpl_Sales[i].categoryID==req.params.categoryID&&doc.rcrpl_Sales[i].marketID==req.params.marketID){
+                    result=doc.rcrpl_Sales[i].value;
+                    break;
+                }
+            }
+            res.send(200,{'result':result});
             //res.send(200,doc.scrpl_Sales[req.params.categoryID-1][0]);
         }
     })
@@ -5423,14 +5430,15 @@ exports.getSalesVolume=function(req,res,next){
             next(new Error(err));
         }
         if(!doc){
-           res.send(404,{err:'cannot find the doc'}); 
+            res.send(404,{err:'cannot find the doc'}); 
         }else{
-            res.send(200,20);
+            res.send(200,'200');
         }
     })
 }
 
 exports.getMarketSize=function(req,res,next){
+    console.log(req.params.seminar);
     RCR_consolidatedProfitAndLoss.findOne({
         seminar:req.params.seminar,
         period:req.params.period,
@@ -5442,7 +5450,7 @@ exports.getMarketSize=function(req,res,next){
         if(!doc){
            res.send(404,{err:'cannot find the doc'}); 
         }else{
-            res.send(200,20);
+            res.send(200,'200');
         }
     })
 }

@@ -29,7 +29,7 @@ module.exports = function(app, io){
     app.get('/producerCurrentDecision/:seminar/:period/:producerID/:brandName/:varName',                    require('./../api/models/producerDecision.js').getProducerCurrentDecision);
     app.get('/checkProducerProduct/:seminar/:period/:producerID/:categoryID/:checkType/:brandName/:varName',require('./../api/models/producerDecision.js').checkProducerProduct);
     app.get('/producerExpend/:seminar/:period/:producerID/:brandName/:location/:additionalIdx',             require('./../api/models/producerDecision.js').getProducerExpend);
-    
+
     app.get('/checkContract/:contractCode',                                                                 require('./../api/models/contract.js').checkContract);
     app.get('/producerVariantBM/:seminar/:period/:producerID/:categoryID/:brandName/:varName',              require('./../api/models/producerDecision.js').getProducerVariantBM);
     //retailer check
@@ -43,7 +43,7 @@ module.exports = function(app, io){
     app.get('/currentPeriod/:seminar',                                                                      require('./../api/models/seminar.js').getCurrentPeriod);
     app.get('/getScrplSales/:seminar/:period/:producerID/:categoryID',                                      require('./../api/models/SCR_consolidatedProfitAndLoss.js').getScrplSales);
     
-    app.get('/getRcrplSales/:seminar/:period/:retailerID/:categoryID',                                      require('./../api/models/RCR_consolidatedProfitAndLoss.js').getRcrplSales);
+    app.get('/getRcrplSales/:seminar/:period/:retailerID/:categoryID/:marketID',                            require('./../api/models/RCR_consolidatedProfitAndLoss.js').getRcrplSales);
     app.get('/getSalesVolume/:seminar/:period/:retailerID/:categoryID',                                     require('./../api/models/RCR_consolidatedProfitAndLoss.js').getSalesVolume);
     app.get('/getMarketSize/:seminar/:period/:retailerID/:categoryID',                                      require('./../api/models/RCR_consolidatedProfitAndLoss.js').getMarketSize);
     
@@ -52,7 +52,9 @@ module.exports = function(app, io){
     app.post('/addContract',                                                                                require('./../api/models/contract.js').addContract(io));
     app.post('/addContractDetails',                                                                         require('./../api/models/contract.js').addContractDetails(io));
     app.get('/getContractDetails/:contractCode',                                                            require('./../api/models/contract.js').getContractDetails);
-    app.get('/getNegotiationExpend/:contractCode/:parentBrandName/:variantName',                            require('./../api/models/contract.js').getNegotiationExpend);
+    app.get('/getNegotiationExpend/:contractCode/:parentBrandName/:variantName',                            require('./../api/models/contract.js').getNegotiationExpend);//salesVolume 
+    app.get('/getContractExpend/:seminar/:period/:producerID/:retailerID/:parentBrandName/:variantName',    require('./../api/models/contract.js').getContractExpend);//SalesTargetVolume
+    
     app.get('/checkContractDetails/:contractCode/:parentBrandName/:variantName/:location',                  require('./../api/models/contract.js').checkContractDetails);
     app.get('/checkVolume/:contractCode/:parentBrandName/:variantName',                                     require('./../api/models/contract.js').checkVolume);
     app.get('/checkSalesTargetVolume/:contractCode/:parentBrandName/:variantName',                          require('./../api/models/contract.js').checkSalesTargetVolume);

@@ -33,7 +33,6 @@ define(['angular',
 						    if(item){ return item.ENG;}
 						    else{
 						    	items.push(value);
-						    	//console.log(items);
 						    	return '**NotFound**';
 						    }
 						    break;
@@ -93,12 +92,10 @@ define(['angular',
 		var player;
 		return {
 			getPlayer:function(){
-			//	console.log('get player:' + player);
 				return player;
 			},
 			setPlayer:function(value){
 				player=value;
-			//	console.log('set player:'+player)
 			}
 		}
 	})
@@ -121,12 +118,10 @@ define(['angular',
 		var selectedSeminar;
 		return {
 			getSelectedSeminar : function(){
-				//console.log('[SeminarInfo]services get:' + selectedSeminar);
 				return selectedSeminar;
 			},
 			setSelectedSeminar : function(value){
 				selectedSeminar = value;
-				//console.log('[SeminarInfo]services set seminar: ' + selectedSeminar);
 			}		
 		}
 	})
@@ -135,12 +130,10 @@ define(['angular',
 		var selectedSeminar;
 		return {
 			getSelectedSeminar : function(){
-				//console.log('[EditSeminarInfo]services get:' + selectedSeminar.seminarCode);
 				return selectedSeminar;
 			},
 			setSelectedSeminar : function(value){
 				selectedSeminar = value;
-				//console.log('[EditSeminarInfo]services set seminar: ' + selectedSeminar.seminarCode);
 			}		
 		}
 	})
@@ -150,22 +143,18 @@ define(['angular',
 		var currentPeriod;
 		return {
 			getCurrentPeriod:function(){
-				//console.log('services get period:'+currentPeriod);
 				return currentPeriod;
 			},
 			getPreviousPeriod:function(){
 				currentPeriod=currentPeriod-1;
-				//console.log('services get period:'+currentPeriod);
 				return currentPeriod;
 			},
 			getNextPeriod:function(){
 				currentPeriod=currentPeriod+1;
-				//console.log('services get period:'+currentPeriod);
 				return currentPeriod;
 			},
 			setCurrentPeriod:function(value){
 				currentPeriod=value;
-				//console.log('services set period:'+currentPeriod);
 			}	
 		}
 	})
@@ -186,7 +175,6 @@ define(['angular',
 	            if(role === undefined) {
 	                role = $rootScope.user.role;
 	            }
-	           // console.log('start authorize, role:' + role + ', accessLevel:' + accessLevel);
 	            return accessLevel & role;
 	        },
 	        isLoggedIn: function(user) {
@@ -258,7 +246,6 @@ define(['angular',
   		 };
 	}]);
 
-	//services.factory('ContractListen')
 
 	services.factory('ProducerDecision',['$resource','$rootScope', function($resource,$rootScope){
 		return $resource('/producerDecision/:producerID/:period/:seminar',{},
@@ -340,9 +327,11 @@ define(['angular',
 				startListenChangeFromServer : function(){
 					var socket = io.connect();
 					socket.on('producerBaseChanged', function(data){
-						//console.log(data);
 						$rootScope.$broadcast('producerDecisionBaseChangedFromServer', base);
-					});					
+					});
+					socket.on('EditSalesTargetVolume',function(data){
+						$rootScope.$broadcast('producerDecisionBaseChangedFromServer', base);
+					});
 				},				
 				setSomething : function(sth){
 					//post to server...
