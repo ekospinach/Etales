@@ -14,12 +14,22 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
     var loadNegotiationResults=function(){
         $scope.chartConfig = {
             options: {
+                title:{
+                    text:'Breakdown of Volume Discounts given by Suppliers',
+                },
                 chart: {
                     type: 'pie',
-                     plotBackgroundColor: null,
+                    plotBackgroundColor: null,
                     plotBorderWidth: null,
                     plotShadow: false
 
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'top',
+                    x:0,
+                    y:20
                 },
                 plotOptions: {
                     pie: {
@@ -33,9 +43,9 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
             series: [{
                 type: 'pie',
                 data: [
-                    ['foo', 10],
-                    ['bar', 90],
-                    ['baz', 100]
+                    ['supplier-1', 10],
+                    ['supplier-2', 90],
+                    ['supplier-3', 100]
                 ]
             }],
 
