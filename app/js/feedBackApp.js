@@ -19,10 +19,7 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
                 },
                 chart: {
                     type: 'pie',
-                    plotBackgroundColor: null,
-                    plotBorderWidth: null,
-                    plotShadow: false
-
+                    backgroundColor: 'transparent',
                 },
                 legend: {
                     layout: 'vertical',
