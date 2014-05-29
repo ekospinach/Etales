@@ -71,6 +71,7 @@ module.exports = function(app, io){
 	app.get('/getMR-retailerPerceptionEvolution/:seminar/:period',        require('./../api/models/MR_retailerPerceptionEvolution.js').getMR_retailerPerceptionEvolution);
 	app.get('/getMR-retailersIntelligence/:seminar/:period',              require('./../api/models/MR_retailersIntelligence.js').getMR_retailersIntelligence);
 	app.get('/getMR-forecasts/:seminar/:period',                          require('./../api/models/MR_forecasts.js').getMR_forecasts);
-	
+	//bg_feedback
+	app.get('/getFeedBack/:seminar/:period',							  require('./../api/models/BG_feedbackSlides.js').getFeedBack);
 }
 

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app="feedback">
 
   <head>
     <meta charset="utf-8">
@@ -30,12 +30,13 @@
     <![endif]-->
   </head>
 
-  <body>
+  <body ng-controller="feedBackCtrl">
 
     <div class="reveal">
       <!-- Any section element inside of this container is displayed as a slide -->
       <div class="slides">
         <section>
+          {{phones}}
           <h1>Feedback session</h1>
           <h3>Seminar : <%=  seminar %></h3>
           <h3>Period : <%= period %></h3>           
@@ -44,24 +45,31 @@
 
         <section>
           <section>
-            <h2><a>Negotiation Results</a> - Volume Discounts</h2>
+            <h3><a>Negotiation Results</a> - Volume Discounts</h3>
             <hr>
-            <h3>Total Volume Discounts : 43.4 ($mln)</h3>
+              <highchart id="chart1" config="supplierNegotiationResults"style="width:50%;float:left;height:450px"></highchart>
+              <highchart id="chart2" config="retailerNegotiationResults" style="width:50%;float:left;height:450px"></highchart>
+            <h4>Total Volume Discounts : 43.4 ($mln)</h4>
           </section>
           <section>
-            <h2><a>Negotiation Results</a> - Performance Bonus</h2>
+            <h3><a>Negotiation Results</a> - Performance Bonus</h3>
             <hr>
-            <h3>Total Volume Discounts : 43.4 ($mln)</h3>
+            <highchart id="chart3" config="supplierPerformanceBonuses"style="width:50%;float:left;height:450px"></highchart>
+            <highchart id="chart4" config="retailerPerformanceBonuses" style="width:50%;float:left;height:450px"></highchart>
+            <h4>Total Volume Discounts : 43.4 ($mln)</h4>
           </section>
           <section>
-            <h2><a>Negotiation Results</a> - Other Compensation</h2>
+            <h3><a>Negotiation Results</a> - Other Compensation</h3>
+            <highchart id="chart5" config="supplierOtherCompensation"style="width:50%;float:left;height:450px"></highchart>
+            <highchart id="chart6" config="retailerOtherCompensation" style="width:50%;float:left;height:450px"></highchart>
             <hr>
-            <h3>Total Volume Discounts : 43.4 ($mln)</h3>
+            <h4>Total Volume Discounts : 43.4 ($mln)</h4>
           </section>
           <section>
-            <h2><a>Negotiation Results</a> - Terms of Payment</h2>
+            <h3><a>Negotiation Results</a> - Terms of Payment</h3>
             <hr>
-            <h3>Total Volume Discounts : 43.4 ($mln)</h3>
+            <highchart id="chart7" config="termsofPayment"></highchart>
+            <h4>Total Volume Discounts : 43.4 ($mln)</h4>
           </section>
         </section>
 
@@ -177,6 +185,12 @@
 
     <script src="bower_components/reveal.js/lib/js/head.min.js"></script>
     <script src="bower_components/reveal.js/js/reveal.min.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/highcharts/highcharts.js"></script>
+    <script src="bower_components/highcharts-ng/src/highcharts-ng.js"></script>
+
+    <script src="js/feedBackApp.js"></script>
 
     <script>
 
