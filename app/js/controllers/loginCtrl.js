@@ -26,13 +26,7 @@ define(['app','socketIO'], function(app) {
 
 		$scope.openAdminLoginModal=function(size){
 
-			//$window.open('feedbackENG?seminar=MAY&period=0');
-
-			notify({
-				message:'This is a GOOGLE message...',
-				template:'/partials/gmail-template.html',
-				position:'center'
-			});
+			$window.open('feedbackENG?seminar=MAY&period=0');
 
 			// var modalInstance=$modal.open({
 			// 	templateUrl:'../../partials/modal/adminLoginModal.html',

@@ -37,7 +37,7 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
                                 color: '#000000',
                                 connectorColor: '#000000',
                                 align:'center',
-                                format: '<p style="line-hight:20px"><b>{point.name}</b></br>'+'{point.y:.2f}($mln)</br>'+'<b>{point.percentage:.2f}%</b></br></p>',
+                                format: '<p style="line-hight:20px"><b style="font-size:14px" style="font-size:14px">{point.name}</b></br>'+'{point.y:.2f}($mln)</br>'+'<b>{point.percentage:.2f}%</b></br></p>',
                                 useHTML:true
                             },
                             showInLegend: true
@@ -47,10 +47,17 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
                 series: [{
                     type: 'pie',
                     data: [
-                        {'name':'supplier-1',y:data.data.f_DiscountsValue[0].fcni_SuppliersCost[0].value,'color':'#3257A7'},
-                        {'name':'supplier-2',y:data.data.f_DiscountsValue[0].fcni_SuppliersCost[1].value,'color':'#B11E22'},
-                        {'name':'supplier-3',y:data.data.f_DiscountsValue[0].fcni_SuppliersCost[2].value,'color':'#F6B920'}
-                    ]
+                        {'name':'Supplier-1',y:data.data.f_DiscountsValue[2].fcni_SuppliersCost[0].value,'color':'#3257A7'},
+                        {'name':'Supplier-2',y:data.data.f_DiscountsValue[2].fcni_SuppliersCost[1].value,'color':'#B11E22'},
+                        {'name':'Supplier-3',y:data.data.f_DiscountsValue[2].fcni_SuppliersCost[2].value,'color':'#F6B920'}
+                    ],
+                    // dataLabels: {
+                    //     color:'white',
+                    //     //distance: -20,
+                    //     formatter: function () {
+                    //         if(this.percentage!=0)  return Math.round(this.percentage)  + '%';
+                    //     }
+                    // }                    
                 }],
                 loading: false
             }
@@ -81,7 +88,7 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
                                 color: '#000000',
                                 connectorColor: '#000000',
                                 align:'center',
-                                format: '<p style="line-hight:20px"><b>{point.name}</b></br>'+'{point.y:.2f}($mln)</br>'+'<b>{point.percentage:.2f}%</b></br></p>',
+                                format: '<p style="line-hight:20px"><b style="font-size:14px">{point.name}</b></br>'+'{point.y:.2f}($mln)</br>'+'<b>{point.percentage:.2f}%</b></br></p>',
                                 useHTML:true
                             },
                             showInLegend: true
@@ -91,8 +98,8 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
                 series: [{
                     type: 'pie',
                     data: [
-                        {'name':'retailer-1',y:data.data.f_DiscountsValue[0].fcni_RetailersBenefits[0].value,'color':'#8B288B'},
-                        {'name':'retailer-2',y:data.data.f_DiscountsValue[0].fcni_RetailersBenefits[1].value,'color':'#F05422'}
+                        {'name':'Retailer-1',y:data.data.f_DiscountsValue[2].fcni_RetailersBenefits[0].value,'color':'#8B288B'},
+                        {'name':'Retailer-2',y:data.data.f_DiscountsValue[2].fcni_RetailersBenefits[1].value,'color':'#F05422'}
                     ]
                 }],
                 loading: false
@@ -124,7 +131,7 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
                                 color: '#000000',
                                 connectorColor: '#000000',
                                 align:'center',
-                                format: '<p style="line-hight:20px"><b>{point.name}</b></br>'+'{point.y:.2f}($mln)</br>'+'<b>{point.percentage:.2f}%</b></br></p>',
+                                format: '<p style="line-hight:20px"><b style="font-size:14px">{point.name}</b></br>'+'{point.y:.2f}($mln)</br>'+'<b>{point.percentage:.2f}%</b></br></p>',
                                 useHTML:true
                             },
                             showInLegend: true
@@ -134,9 +141,9 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
                 series: [{
                     type: 'pie',
                     data: [
-                        {'name':'supplier-1',y:data.data.f_PerformanceBonusesValue[0].fcni_SuppliersCost[0].value,'color':'#3257A7'},
-                        {'name':'supplier-2',y:data.data.f_PerformanceBonusesValue[0].fcni_SuppliersCost[1].value,'color':'#B11E22'},
-                        {'name':'supplier-3',y:data.data.f_PerformanceBonusesValue[0].fcni_SuppliersCost[2].value,'color':'#F6B920'}
+                        {'name':'Supplier-1',y:data.data.f_PerformanceBonusesValue[0].fcni_SuppliersCost[0].value,'color':'#3257A7'},
+                        {'name':'Supplier-2',y:data.data.f_PerformanceBonusesValue[0].fcni_SuppliersCost[1].value,'color':'#B11E22'},
+                        {'name':'Supplier-3',y:data.data.f_PerformanceBonusesValue[0].fcni_SuppliersCost[2].value,'color':'#F6B920'}
                     ]
                 }],
                 loading: false
@@ -168,7 +175,7 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
                                 color: '#000000',
                                 connectorColor: '#000000',
                                 align:'center',
-                                format: '<p style="line-hight:20px"><b>{point.name}</b></br>'+'{point.y:.2f}($mln)</br>'+'<b>{point.percentage:.2f}%</b></br></p>',
+                                format: '<p style="line-hight:20px"><b style="font-size:14px">{point.name}</b></br>'+'{point.y:.2f}($mln)</br>'+'<b>{point.percentage:.2f}%</b></br></p>',
                                 useHTML:true
                             },
                             showInLegend: true
@@ -178,8 +185,8 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
                 series: [{
                     type: 'pie',
                     data: [
-                        {'name':'retailer-1',y:data.data.f_PerformanceBonusesValue[0].fcni_RetailersBenefits[0].value,'color':'#8B288B'},
-                        {'name':'retailer-2',y:data.data.f_PerformanceBonusesValue[0].fcni_RetailersBenefits[1].value,'color':'#F05422'}
+                        {'name':'Retailer-1',y:data.data.f_PerformanceBonusesValue[0].fcni_RetailersBenefits[0].value,'color':'#8B288B'},
+                        {'name':'Retailer-2',y:data.data.f_PerformanceBonusesValue[0].fcni_RetailersBenefits[1].value,'color':'#F05422'}
                     ]
                 }],
                 loading: false
@@ -211,7 +218,7 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
                                 color: '#000000',
                                 connectorColor: '#000000',
                                 align:'center',
-                                format: '<p style="line-hight:20px"><b>{point.name}</b></br>'+'{point.y:.2f}($mln)</br>'+'<b>{point.percentage:.2f}%</b></br></p>',
+                                format: '<p style="line-hight:20px"><b style="font-size:14px">{point.name}</b></br>'+'{point.y:.2f}($mln)</br>'+'<b>{point.percentage:.2f}%</b></br></p>',
                                 useHTML:true
                             },
                             showInLegend: true
@@ -221,9 +228,9 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
                 series: [{
                     type: 'pie',
                     data: [
-                        {'name':'supplier-1',y:data.data.f_OtherCompensationsValue[0].fcni_SuppliersCost[0].value,'color':'#3257A7'},
-                        {'name':'supplier-2',y:data.data.f_OtherCompensationsValue[0].fcni_SuppliersCost[1].value,'color':'#B11E22'},
-                        {'name':'supplier-3',y:data.data.f_OtherCompensationsValue[0].fcni_SuppliersCost[2].value,'color':'#F6B920'}
+                        {'name':'Supplier-1',y:data.data.f_OtherCompensationsValue[0].fcni_SuppliersCost[0].value,'color':'#3257A7'},
+                        {'name':'Supplier-2',y:data.data.f_OtherCompensationsValue[0].fcni_SuppliersCost[1].value,'color':'#B11E22'},
+                        {'name':'Supplier-3',y:data.data.f_OtherCompensationsValue[0].fcni_SuppliersCost[2].value,'color':'#F6B920'}
                     ]
                 }],
                 loading: false
@@ -255,7 +262,7 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
                                 color: '#000000',
                                 connectorColor: '#000000',
                                 align:'center',
-                                format: '<p style="line-hight:20px"><b>{point.name}</b></br>'+'{point.y:.2f}($mln)</br>'+'<b>{point.percentage:.2f}%</b></br></p>',
+                                format: '<p style="line-hight:20px"><b style="font-size:14px">{point.name}</b></br>'+'{point.y:.2f}($mln)</br>'+'<b>{point.percentage:.2f}%</b></br></p>',
                                 useHTML:true
                             },
                             showInLegend: true
@@ -265,8 +272,8 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
                 series: [{
                     type: 'pie',
                     data: [
-                        {'name':'retailer-1',y:data.data.f_OtherCompensationsValue[0].fcni_RetailersBenefits[0].value,'color':'#8B288B'},
-                        {'name':'retailer-2',y:data.data.f_OtherCompensationsValue[0].fcni_RetailersBenefits[1].value,'color':'#F05422'}
+                        {'name':'Retailer-1',y:data.data.f_OtherCompensationsValue[0].fcni_RetailersBenefits[0].value,'color':'#8B288B'},
+                        {'name':'Retailer-2',y:data.data.f_OtherCompensationsValue[0].fcni_RetailersBenefits[1].value,'color':'#F05422'}
                     ]
                 }],
                 loading: false
@@ -299,7 +306,7 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
                                 color: '#000000',
                                 connectorColor: '#000000',
                                 align:'center',
-                                format: '<p style="line-hight:20px"><b>{point.name}</b></br>'+'{point.y:.2f}($mln)</br>'+'<b>{point.percentage:.2f}%</b></br></p>',
+                                format: '<p style="line-hight:20px"><b style="font-size:14px">{point.name}</b></br>'+'{point.y:.2f}($mln)</br>'+'<b>{point.percentage:.2f}%</b></br></p>',
                                 useHTML:true
                             },
                             showInLegend: true
