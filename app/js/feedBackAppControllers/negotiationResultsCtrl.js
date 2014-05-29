@@ -6,6 +6,9 @@ app.controller('negotiationResultsCtrl', ['$scope','$http','$q',function($scope,
             method:'GET',
             url:url
         }).then(function(data){
+            $scope.data=data.data;
+            console.log(data.data);
+
             //Negotiation Results
             $scope.supplierNegotiationResults = {
                 options: {

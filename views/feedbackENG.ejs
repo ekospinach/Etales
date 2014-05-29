@@ -42,20 +42,19 @@
     <![endif]-->
   </head>
 
-  <body ng-controller="feedBackCtrl">
+  <body>
 
     <div class="reveal">
       <!-- Any section element inside of this container is displayed as a slide -->
       <div class="slides">
         <section>
-          {{phones}}
           <h1>Feedback session</h1>
           <h3>Seminar : <%=  seminar %></h3>
           <h3>Period : <%= period %></h3>           
           <small>Designed by <a href="http://www.hcdglobal.com">HCD Learning</a></small>            
         </section>
 
-        <section>
+        <section ng-controller="negotiationResultsCtrl">
           <section>
             <h4><a>Negotiation Results</a> - Volume Discounts</h4>
             <hr>
@@ -203,7 +202,7 @@
     <script src="bower_components/highcharts/highcharts.js"></script>
     <script src="bower_components/highcharts-ng/src/highcharts-ng.js"></script>
 
-    <script src="js/feedBackApp.js"></script>
+    <script src="js/feedBackAppControllers/negotiationResultsCtrl.js"></script>
 
     <script>
 
