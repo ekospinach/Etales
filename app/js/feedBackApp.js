@@ -21,11 +21,7 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
                         backgroundColor: 'transparent',
                     },
                     legend: {
-                        layout: 'vertical',
-                        align: 'right',
-                        verticalAlign: 'top',
-                        x:0,
-                        y:20
+                        enabled:false
                     },
                     tooltip: {
                         formatter: function() {
@@ -38,7 +34,11 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
                     plotOptions: {
                         pie: {
                             dataLabels: {
-                                enabled: false
+                                color: '#000000',
+                                connectorColor: '#000000',
+                                align:'center',
+                                format: '<p style="line-hight:20px"><b>{point.name}</b></br>'+'{point.y:.2f}($mln)</br>'+'<b>{point.percentage:.2f}%</b></br></p>',
+                                useHTML:true
                             },
                             showInLegend: true
                         }
@@ -65,11 +65,7 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
                         backgroundColor: 'transparent',
                     },
                     legend: {
-                        layout: 'vertical',
-                        align: 'right',
-                        verticalAlign: 'top',
-                        x:0,
-                        y:20
+                        enabled:false
                     },
                     tooltip: {
                         formatter: function() {
@@ -82,7 +78,11 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
                     plotOptions: {
                         pie: {
                             dataLabels: {
-                                enabled: false
+                                color: '#000000',
+                                connectorColor: '#000000',
+                                align:'center',
+                                format: '<p style="line-hight:20px"><b>{point.name}</b></br>'+'{point.y:.2f}($mln)</br>'+'<b>{point.percentage:.2f}%</b></br></p>',
+                                useHTML:true
                             },
                             showInLegend: true
                         }
@@ -108,11 +108,7 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
                         backgroundColor: 'transparent',
                     },
                     legend: {
-                        layout: 'vertical',
-                        align: 'right',
-                        verticalAlign: 'top',
-                        x:0,
-                        y:20
+                        enabled:false
                     },
                     tooltip: {
                         formatter: function() {
@@ -125,7 +121,11 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
                     plotOptions: {
                         pie: {
                             dataLabels: {
-                                enabled: false
+                                color: '#000000',
+                                connectorColor: '#000000',
+                                align:'center',
+                                format: '<p style="line-hight:20px"><b>{point.name}</b></br>'+'{point.y:.2f}($mln)</br>'+'<b>{point.percentage:.2f}%</b></br></p>',
+                                useHTML:true
                             },
                             showInLegend: true
                         }
@@ -152,11 +152,7 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
                         backgroundColor: 'transparent',
                     },
                     legend: {
-                        layout: 'vertical',
-                        align: 'right',
-                        verticalAlign: 'top',
-                        x:0,
-                        y:20
+                        enabled:false
                     },
                     tooltip: {
                         formatter: function() {
@@ -169,7 +165,11 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
                     plotOptions: {
                         pie: {
                             dataLabels: {
-                                enabled: false
+                                color: '#000000',
+                                connectorColor: '#000000',
+                                align:'center',
+                                format: '<p style="line-hight:20px"><b>{point.name}</b></br>'+'{point.y:.2f}($mln)</br>'+'<b>{point.percentage:.2f}%</b></br></p>',
+                                useHTML:true
                             },
                             showInLegend: true
                         }
@@ -195,11 +195,7 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
                         backgroundColor: 'transparent',
                     },
                     legend: {
-                        layout: 'vertical',
-                        align: 'right',
-                        verticalAlign: 'top',
-                        x:0,
-                        y:20
+                        enabled:false
                     },
                     tooltip: {
                         formatter: function() {
@@ -212,7 +208,11 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
                     plotOptions: {
                         pie: {
                             dataLabels: {
-                                enabled: false
+                                color: '#000000',
+                                connectorColor: '#000000',
+                                align:'center',
+                                format: '<p style="line-hight:20px"><b>{point.name}</b></br>'+'{point.y:.2f}($mln)</br>'+'<b>{point.percentage:.2f}%</b></br></p>',
+                                useHTML:true
                             },
                             showInLegend: true
                         }
@@ -239,11 +239,7 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
                         backgroundColor: 'transparent',
                     },
                     legend: {
-                        layout: 'vertical',
-                        align: 'right',
-                        verticalAlign: 'top',
-                        x:0,
-                        y:20
+                        enabled:false
                     },
                     tooltip: {
                         formatter: function() {
@@ -256,7 +252,11 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
                     plotOptions: {
                         pie: {
                             dataLabels: {
-                                enabled: false
+                                color: '#000000',
+                                connectorColor: '#000000',
+                                align:'center',
+                                format: '<p style="line-hight:20px"><b>{point.name}</b></br>'+'{point.y:.2f}($mln)</br>'+'<b>{point.percentage:.2f}%</b></br></p>',
+                                useHTML:true
                             },
                             showInLegend: true
                         }
@@ -283,11 +283,7 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
                         backgroundColor: 'transparent',
                     },
                     legend: {
-                        layout: 'vertical',
-                        align: 'right',
-                        verticalAlign: 'top',
-                        x:0,
-                        y:20
+                        enabled:false
                     },
                     tooltip: {
                         formatter: function() {
@@ -300,7 +296,11 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
                     plotOptions: {
                         pie: {
                             dataLabels: {
-                                enabled: false
+                                color: '#000000',
+                                connectorColor: '#000000',
+                                align:'center',
+                                format: '<p style="line-hight:20px"><b>{point.name}</b></br>'+'{point.y:.2f}($mln)</br>'+'<b>{point.percentage:.2f}%</b></br></p>',
+                                useHTML:true
                             },
                             showInLegend: true
                         }
