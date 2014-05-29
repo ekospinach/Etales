@@ -296,7 +296,7 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
                     plotOptions: {
                         pie: {
                             dataLabels: {
-                                distance:-45,
+                                distance:-80,
                                 rotation:0,
                                 color:'white',
                                 format: '<p style="font-size:16px;line-hight:20px">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
