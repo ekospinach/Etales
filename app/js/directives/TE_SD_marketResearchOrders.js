@@ -94,7 +94,7 @@ define(['directives', 'services'], function(directives){
                     }
                 })
 
-                $scope.$on('producerReportPurchaseDecisionChanged', function(event, data, newSeminarData) {  
+                scope.$on('producerReportPurchaseDecisionChanged', function(event, data, newSeminarData) {  
                     organiseArray(newSeminarData);
                     scope.isResultShown = true;
                     scope.isPageLoading = false;                    

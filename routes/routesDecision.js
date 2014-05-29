@@ -72,7 +72,8 @@ module.exports = function(app, io){
     app.post('/submitOrder',                                                                                require('./../api/models/seminar.js').submitOrder);
 
 
-
+    app.post('/submitPortfolioDecision',                                         require('./../api/models/seminar.js').submitPortfolioDecision(io));
+    app.post('/submitFinalDecision',                                             require('./../api/models/seminar.js').submitFinalDecision(io));
 
 
 };

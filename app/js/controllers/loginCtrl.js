@@ -39,7 +39,7 @@ define(['app','socketIO'], function(app) {
 			// })
 		}
 
-		var loginModalCtrl=function($rootScope,$scope,$modalInstance,Label,SeminarInfo,RoleInfo,PeriodInfo,PlayerInfo){
+		var loginModalCtrl=function($rootScope,$scope,$modalInstance,Label,SeminarInfo,RoleInfo,PeriodInfo,PlayerInfo, ProducerDecisionBase){
 			$scope.Label=Label;
 			var cancel = function () {
 			    $modalInstance.dismiss('cancel');
@@ -82,6 +82,10 @@ define(['app','socketIO'], function(app) {
 						//console.log($rootScope.user.userRole);
 						PlayerInfo.setPlayer($rootScope.user.roleID);
 						RoleInfo.setRole($rootScope.user.role);
+
+						//Register socketIO listeners 
+						ProducerDecisionBase.startListenChangeFromServer(); 
+
 					});
 				},function(res){
 					showbubleMsg('login failure.',1);

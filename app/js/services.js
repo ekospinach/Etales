@@ -328,7 +328,7 @@ define(['angular',
 				startListenChangeFromServer : function(){
 					var socket = io.connect();
 					socket.on('producerBaseChanged', function(data){						
-						//if changed base is modified by current supplier, reload decision base and broadcast message...
+						//if changed base is modified by current supplier & seminar, reload decision base and broadcast message...
 						if( (data.producerID == PlayerInfo.getPlayer()) && (data.seminar == SeminarInfo.getSelectedSeminar())  ){
 							requestPara.producerID = parseInt(PlayerInfo.getPlayer());
 							requestPara.period = PeriodInfo.getCurrentPeriod();
@@ -342,7 +342,7 @@ define(['angular',
 					});
 
 					socket.on('producerReportPurchaseDecisionChanged', function(data) {
-						//if changed base is modified by current supplier, reload Report Purchase decision base and broadcast message...
+						//if changed base is modified by current supplier & seminar, reload Report Purchase decision base and broadcast message...
 						if ((data.producerID == PlayerInfo.getPlayer()) && (data.seminar == SeminarInfo.getSelectedSeminar())) {
 							var url = '/currentPeriod/' + SeminarInfo.getSelectedSeminar();
 							$http({
@@ -363,7 +363,7 @@ define(['angular',
 				setSomething : function(sth){
 					//post to server...
 					base.seminar = sth;
-					$rootScope.$broadcast('producerDecisionBaseChanged', base);
+					
 				},
 				getAllProduct:function(producerID,categoryID){
 					$http({method:'GET',url:''})
@@ -395,7 +395,7 @@ define(['angular',
 					}
 
 					$http({method:'POST', url:'/producerDecision', data: queryCondition}).then(function(res){
-						$rootScope.$broadcast('producerDecisionBaseChanged', base);
+						
 					 	console.log('Success:' + res);
 					 },function(res){
 						console.log('Failed:' + res);
@@ -425,7 +425,7 @@ define(['angular',
 						value : value
 					}
 					$http({method:'POST', url:'/producerDecision', data: queryCondition}).then(function(res){
-						$rootScope.$broadcast('producerDecisionBaseChanged', base);
+						
 					 	console.log('Success:' + res);
 					 },function(res){
 						console.log('Failed:' + res);
@@ -443,7 +443,7 @@ define(['angular',
 						value : value
 					}
 					$http({method:'POST', url:'/producerDecision', data: queryCondition}).then(function(res){
-						$rootScope.$broadcast('producerDecisionBaseChanged', base);
+						
 					 	console.log('Success:' + res);
 					 },function(res){
 						console.log('Failed:' + res);
@@ -459,7 +459,7 @@ define(['angular',
 						value : newproducerDecision
 					}
 					$http({method:'POST', url:'/producerDecision', data: queryCondition}).then(function(res){
-						$rootScope.$broadcast('producerDecisionBaseChanged', base);
+						
 					 	return 1;
 					 },function(res){
 						return 0;
@@ -476,7 +476,7 @@ define(['angular',
 						brandName:brandName
 					}
 					$http({method:'POST', url:'/producerDecision', data: queryCondition}).then(function(res){
-						$rootScope.$broadcast('producerDecisionBaseChanged', base);
+						
 					 	return 1;
 					 },function(res){
 						return 0;
@@ -531,14 +531,14 @@ define(['angular',
 					 	})
 					 }).then(function(data){
 					 	console.log('success');
-					 	$rootScope.$broadcast('producerDecisionBaseChanged', base);
+					 	
 					 },function(err){
 					 	console.log('fail'+err);
-					 	$rootScope.$broadcast('producerDecisionBaseChanged', base);
+					 	
 					 })
 				},
 				submitDecision:function(){
-					//$rootScope.$broadcast('producerDecisionBaseChanged', base);
+					//
 					var queryCondition={
 						producerID:PlayerInfo.getPlayer(),
 						seminar:SeminarInfo.getSelectedSeminar(),
@@ -548,9 +548,9 @@ define(['angular',
 						url:'/submitDecision',
 						data:queryCondition
 					}).then(function(data){
-						$rootScope.$broadcast('producerDecisionBaseChanged', base);
+						
 					},function(err){
-						$rootScope.$broadcast('producerDecisionBaseChanged', base);
+						
 					})
 				},
 				getBase : function(){
@@ -700,7 +700,7 @@ define(['angular',
 					 },function(res){
 						console.log('Failed:' + res);
 					});
-					//$rootScope.$broadcast('producerDecisionBaseChanged', base);
+					//
 				},
 				//step4
 				setRetailerDecision:function(categoryID,marketID,brandName,varName,location,additionalIdx,value){
@@ -794,10 +794,10 @@ define(['angular',
 					 	})
 					}).then(function(data){
 						console.log('success');
-					 	$rootScope.$broadcast('producerDecisionBaseChanged', base);
+					 	
 					},function(err){
 					 	console.log('fail'+err);
-					 	$rootScope.$broadcast('producerDecisionBaseChanged', base);
+					 	
 					});
 				},
 				// addOrder:function(marketID,product){

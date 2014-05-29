@@ -159,7 +159,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 	    		switching('showMarketResearchOrders');
 	    	}
 
-            ProducerDecisionBase.startListenChangeFromServer(); 
+
 			loadBackgroundData();
 			showProductPortfolioManagement();
 			$scope.switching = switching;
@@ -181,14 +181,15 @@ define(['app','socketIO','routingConfig'], function(app) {
 				});
 			});
 
+
 			$scope.$on('producerReportPurchaseDecisionChanged', function(event, data, newBase) {  
+				loadBackgroundData();
 				notify({
 					message:'Report purchase decision saved, Supplier ' + data.producerID  + ' Period ' + data.period + '.',
 					template:'/partials/gmail-template.html',
 					position:'center'
 				});
 			});
-
 
 			$scope.$on('producerDecisionReloadError', function(event, data, newBase) {  
 				notify({
