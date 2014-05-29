@@ -85,7 +85,6 @@ define(['directives', 'services'], function(directives){
 
                 scope.updateProducerDecision=function(categoryID,location,index){
                     ProducerDecisionBase.setProducerDecisionCategory(categoryID,location,scope.categorys[index][location]);
-                    scope.$broadcast('producerDecisionBaseChanged');
                 }
 
                 scope.updateVariantDecision=function(category,brandName,varName,location,additionalIdx,index,value){
@@ -114,65 +113,6 @@ define(['directives', 'services'], function(directives){
                     scope.categorys=categorys;
                     scope.isResultShown = true;
                     scope.isPageLoading = false;
-                    // var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
-                    // $http({
-                    //     method:'GET',
-                    //     url:url
-                    // }).then(function(data){
-                    //     avaiableMax=data.data.budgetAvailable;
-                    //     if(PeriodInfo.getCurrentPeriod()<=1){
-                    //         abMax=data.data.budgetAvailable;
-                    //     }else{
-                    //         abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
-                    //     }
-                    //     acEleMax=data.data.productionCapacity[0];
-                    //     acHeaMax=data.data.productionCapacity[1];
-                    //     url="/producerExpend/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/brandName/location/1';
-                    //     return  $http({
-                    //         method:'GET',
-                    //         url:url,
-                    //     });
-                    // }).then(function(data){
-                    //     expend=data.data.result;
-                    //     scope.surplusExpend=abMax-expend;
-                    //     scope.percentageExpend=(abMax-expend)/abMax*100;
-                    //     url="/productionResult/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/EName/varName';
-                    //     return $http({
-                    //         method:'GET',
-                    //         url:url
-                    //     });
-                    // }).then(function(data){
-                    //     scope.eleSurplusProduction=acEleMax-data.data.result;
-                    //     scope.elePercentageProduction=(acEleMax-data.data.result)/acEleMax*100;
-                    //     url="/productionResult/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/HName/varName';
-                    //     return $http({
-                    //         method:'GET',
-                    //         url:url
-                    //     });
-                    // }).then(function(data){
-                    //     scope.heaSurplusProduction=acHeaMax-data.data.result;
-                    //     scope.heaPercentageProduction=(acHeaMax-data.data.result)/acHeaMax*100;
-                    //     var categorys=new Array();
-                    //     for(var i=0;i<scope.pageBase.proCatDecision.length;i++){
-                    //         scope.pageBase.proCatDecision[i].capacityChange=scope.pageBase.proCatDecision[i].capacityChange.toFixed(2);
-                    //         scope.pageBase.proCatDecision[i].investInDesign=scope.pageBase.proCatDecision[i].investInDesign.toFixed(2);
-                    //         scope.pageBase.proCatDecision[i].investInProductionFlexibility=scope.pageBase.proCatDecision[i].investInProductionFlexibility.toFixed(2);
-                    //         scope.pageBase.proCatDecision[i].investInTechnology=scope.pageBase.proCatDecision[i].investInTechnology.toFixed(2);
-                    //         categorys.push(scope.pageBase.proCatDecision[i]);
-                    //         count++;
-                    //     }
-                    //     if(count!=0){
-                    //         d.resolve();
-                    //     }else{
-                    //         d.reject(Label.getContent('load categorys fail'));
-                    //     }
-                    //     scope.categorys=categorys;
-                    // }).then(function(){
-                    //     scope.isResultShown = true;
-                    //     scope.isPageLoading = false;  
-                    // },function(data){
-                    //     d.reject(Label.getContent('showView fail'));
-                    // }); 
                     return d.promise;       
                 }
 
@@ -181,17 +121,12 @@ define(['directives', 'services'], function(directives){
                         initializePage();
                     }
                 });
-                // scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
-                //     ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
-                //         scope.pageBase = base; 
-                //     }).then(function(){
-                //         return showView();
-                //     }), function(reason){
-                //         console.log('from ctr: ' + reason);
-                //     }, function(update){
-                //         console.log('from ctr: ' + update);
-                //     };
-                // });
+                
+                scope.$on('producerDecisionBaseChangedFromServer', function(event, data, newBase) {                    
+                        //decision base had been updated, re-render the page with newBase
+                        scope.pageBase = newBase;
+                        showView();
+                });
 
             }
         }

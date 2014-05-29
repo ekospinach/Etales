@@ -398,7 +398,7 @@ exports.updateProducerDecision = function(io){
                                         doc.save(function(err, doc, numberAffected){
                                             if(err) next(new Error(err));
                                             console.log('save updated, number affected:'+numberAffected);
-                                            io.sockets.emit('producerBaseChanged', 'this is a baseChanged');
+                                            io.sockets.emit('producerBaseChanged', {period : queryCondition.period, producerID : queryCondition.producerID, seminar : queryCondition.seminar});
                                             if(queryCondition.behaviour=="deleteProduct"){
                                                 res.send(200,{index:index});
                                             }else{

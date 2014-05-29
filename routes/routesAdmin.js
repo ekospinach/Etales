@@ -9,7 +9,6 @@ module.exports = function(app, io){
 	app.post('/runSeminar',                                                      require('./../api/kernelSeminar.js').runSeminar(io));
 	
 	app.post('/addSeminar',                                                      require('./../api/models/seminar.js').addSeminar);
-	app.post('/submitOrder',                                                     require('./../api/models/seminar.js').submitOrder);
 	app.post('/deleteSeminar',                                                   require('./../api/models/seminar.js').deleteSeminar);
 	app.post('/duplicateSeminar',                                                require('./../api/models/seminar.js').duplicateSeminar);
 	app.post('/setCurrentPeriod',                                                require('./../api/models/seminar.js').setCurrentPeriod);
@@ -22,7 +21,6 @@ module.exports = function(app, io){
 	//seminar 
 	app.post('/submitPortfolioDecision',                                         require('./../api/models/seminar.js').submitPortfolioDecision(io));
 	app.post('/submitFinalDecision',                                             require('./../api/models/seminar.js').submitFinalDecision(io));
-	app.post('/deleteOrderData',                                                 require('./../api/models/retailerDecision.js').deleteOrderData(io));
 	
 	//export data to excel
 	//app.get('/excel',                                                          require('./../api/utils/excel.js').testGet);
