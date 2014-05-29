@@ -37,7 +37,7 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
                                 distance:-100,
                                 rotation:0,
                                 color:'white',
-                                format: '<p style="font-size:20px;line-hight:20px">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
+                                format: '<p style="font-size:17px;line-hight:20px">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
                                 useHTML:true
                             },
                             showInLegend: true
@@ -81,7 +81,7 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
                                 distance:-100,
                                 rotation:0,
                                 color:'white',
-                                format: '<p style="font-size:20px;line-hight:20px">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
+                                format: '<p style="font-size:17px;line-hight:20px">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
                                 useHTML:true
                             },
                             showInLegend: true
@@ -124,7 +124,7 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
                                 distance:-100,
                                 rotation:0,
                                 color:'white',
-                                format: '<p style="font-size:20px;line-hight:20px">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
+                                format: '<p style="font-size:17px;line-hight:20px">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
                                 useHTML:true
                             },
                             showInLegend: true
@@ -168,7 +168,7 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
                                 distance:-100,
                                 rotation:0,
                                 color:'white',
-                                format: '<p style="font-size:20px;line-hight:20px">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
+                                format: '<p style="font-size:17px;line-hight:20px">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
                                 useHTML:true
                             },
                             showInLegend: true
@@ -211,7 +211,7 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
                                 distance:-100,
                                 rotation:0,
                                 color:'white',
-                                format: '<p style="font-size:20px;line-hight:20px">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
+                                format: '<p style="font-size:17px;line-hight:20px">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
                                 useHTML:true
                             },
                             showInLegend: true
@@ -255,7 +255,7 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
                                 distance:-100,
                                 rotation:0,
                                 color:'white',
-                                format: '<p style="font-size:20px;line-hight:20px">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
+                                format: '<p style="font-size:17px;line-hight:20px">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
                                 useHTML:true
                             },
                             showInLegend: true
@@ -299,7 +299,7 @@ app.controller('feedBackCtrl', ['$scope','$http','$q',function($scope,$http,$q) 
                                 distance:-80,
                                 rotation:0,
                                 color:'white',
-                                format: '<p style="font-size:20px;line-hight:20px">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
+                                format: '<p style="font-size:17px;line-hight:20px">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
                                 useHTML:true
                             },
                             showInLegend: true
