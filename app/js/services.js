@@ -302,6 +302,7 @@ define(['angular',
 		};
 	}]);
 
+
 	services.provider('ProducerDecisionBase', function(){
 		var requestPara = {
 				period : 0,
@@ -327,7 +328,7 @@ define(['angular',
 				},
 				startListenChangeFromServer : function(){
 					var socket = io.connect();
-					socket.on('producerBaseChanged', function(data){						
+					socket.on('socketIO:producerBaseChanged', function(data){						
 						//if changed base is modified by current supplier & seminar, reload decision base and broadcast message...
 						if( (data.producerID == PlayerInfo.getPlayer()) && (data.seminar == SeminarInfo.getSelectedSeminar())  ){
 							requestPara.producerID = parseInt(PlayerInfo.getPlayer());
@@ -341,7 +342,7 @@ define(['angular',
 						}
 					});
 
-					socket.on('producerReportPurchaseDecisionChanged', function(data) {
+					socket.on('socketIO:producerReportPurchaseDecisionChanged', function(data) {
 						//if changed base is modified by current supplier & seminar, reload Report Purchase decision base and broadcast message...
 						if ((data.producerID == PlayerInfo.getPlayer()) && (data.seminar == SeminarInfo.getSelectedSeminar())) {
 							var url = '/currentPeriod/' + SeminarInfo.getSelectedSeminar();
@@ -359,6 +360,11 @@ define(['angular',
 					socket.on('EditSalesTargetVolume',function(data){
 						$rootScope.$broadcast('producerDecisionBaseChangedFromServer', base);
 					});
+
+					socket.on('socketIO:producerPortfolioDecisionStatusChanged', function(data){
+						$rootScope.$broadcast('producerPortfolioDecisionStatusChanged',data);
+					})
+
 				},				
 				setSomething : function(sth){
 					//post to server...

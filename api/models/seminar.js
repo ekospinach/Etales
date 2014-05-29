@@ -233,10 +233,10 @@ exports.submitPortfolioDecision=function(io){
 					}
 				}
 				doc.markModified('producers');
-                io.sockets.emit('producerPortfolioDecisionStatusChanged', {period : queryCondition.period, producerID : queryCondition.producerID, seminar : queryCondition.seminar});
+                io.sockets.emit('socketIO:producerPortfolioDecisionStatusChanged', {period : queryCondition.period, producerID : queryCondition.producerID, seminar : queryCondition.seminar});
 				doc.save(function(err){
 					if(!err){
-                        io.sockets.emit('producerBaseChanged', {period : queryCondition.period, producerID : queryCondition.producerID, seminar : queryCondition.seminar});
+                        io.sockets.emit('socketIO:producerBaseChanged', {period : queryCondition.period, producerID : queryCondition.producerID, seminar : queryCondition.seminar});
 						res.send(200,'success');
 					}else{
 						res.send(400,'fail');
