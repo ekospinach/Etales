@@ -17,7 +17,6 @@ define(['directives', 'services'], function(directives){
                     scope.Label = Label;
 
                     scope.currentPeriod=PeriodInfo.getCurrentPeriod();
-                    ProducerDecisionBase.startListenChangeFromServer(); 
                     ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
                         scope.pageBase = base; 
                     }).then(function(){

@@ -30,7 +30,7 @@ define(['app'], function(app) {
 			    dialogFade:true
 			};
 			/*Angular-ui-bootstrap modal end*/		
-			ProducerDecisionBase.startListenChangeFromServer();
+			//ProducerDecisionBase.startListenChangeFromServer();
 			ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
 				$scope.pageBase = base;	
 			}).then(function(){

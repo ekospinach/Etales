@@ -20,7 +20,6 @@ module.exports = function(app, io){
 	app.get('/getOneQuarterExogenousData/:seminar/:period/:categoryID/:marketID',require('./../api/models/BG_oneQuarterExogenousData.js').getOneQuarterExogenousData);
 	
 	//seminar 
-	app.get('/checkProducerDecision/:seminar/:period/:producerID',               require('./../api/models/seminar.js').checkProducerDecision);
 	app.post('/submitPortfolioDecision',                                         require('./../api/models/seminar.js').submitPortfolioDecision(io));
 	app.post('/submitFinalDecision',                                             require('./../api/models/seminar.js').submitFinalDecision(io));
 	app.post('/deleteOrderData',                                                 require('./../api/models/retailerDecision.js').deleteOrderData(io));

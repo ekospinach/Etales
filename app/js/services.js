@@ -326,7 +326,7 @@ define(['angular',
 				},
 				startListenChangeFromServer : function(){
 					var socket = io.connect();
-					socket.on('producerBaseChanged', function(data){
+					socket.on('producerBaseChanged', function(data){						
 						$rootScope.$broadcast('producerDecisionBaseChangedFromServer', base);
 					});
 					socket.on('EditSalesTargetVolume',function(data){
@@ -366,6 +366,7 @@ define(['angular',
 						additionalIdx  : additionalIdx,
 						value : value
 					}
+
 					$http({method:'POST', url:'/producerDecision', data: queryCondition}).then(function(res){
 						$rootScope.$broadcast('producerDecisionBaseChanged', base);
 					 	console.log('Success:' + res);

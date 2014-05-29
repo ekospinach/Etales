@@ -97,7 +97,9 @@
     			<td>
     				<a href="#" editable-text="producth.currentPriceBM" onbeforesave="checkCurrentBM('HealthBeauty',producth.parentBrandName,producth.varName,'currentPriceBM','0',$index,$data)" onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'currentPriceBM','0',$index)" ng-show='!isReady'>
     					<p class="text-right">{{ producth.currentPriceBM || 0 }}</p>
-                        <p ng-show='producth.showInfo'>{{Label.getContent('Less than current cost')}}</p>
+
+<!--                         <p ng-show='producth.showInfo'>{{Label.getContent('Less than current cost')}}</p>
+ -->                        
     				</a>
                     <p class="text-right" ng-show='isReady'>{{ producth.currentPriceBM || 0 }}</p>
     			</td>

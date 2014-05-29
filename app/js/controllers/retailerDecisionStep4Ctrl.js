@@ -16,7 +16,7 @@ define(['app'], function(app) {
 			$scope.shouldShow="";
 			$scope.shouldHide="none";
 
-			ProducerDecisionBase.startListenChangeFromServer();
+			//ProducerDecisionBase.startListenChangeFromServer();
 			RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
 				$scope.pageBase = base;
 			}).then(function(){

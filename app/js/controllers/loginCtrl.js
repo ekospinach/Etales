@@ -1,6 +1,7 @@
 define(['app','socketIO'], function(app) {
 
-	app.controller('loginCtrl',['$scope', '$http', '$location','$rootScope','Auth','$q','PlayerInfo','SeminarInfo','PeriodInfo','RoleInfo','$modal','$window', function($scope, $http, $location,$rootScope,Auth,$q,PlayerInfo,SeminarInfo,PeriodInfo,RoleInfo,$modal, $window) {
+	app.controller('loginCtrl',['$scope', '$http', '$location','$rootScope','Auth','$q','PlayerInfo','SeminarInfo','PeriodInfo','RoleInfo','$modal','$window','notify', 
+						function($scope, $http, $location,$rootScope,Auth,$q,PlayerInfo,SeminarInfo,PeriodInfo,RoleInfo,$modal, $window, notify) {
 		// You can access the scope of the controller from here
 
 		    $rootScope.loginFooter="container";
@@ -25,7 +26,13 @@ define(['app','socketIO'], function(app) {
 
 		$scope.openAdminLoginModal=function(size){
 
-			$window.open('feedbackENG?seminar=MAY&period=0');
+			//$window.open('feedbackENG?seminar=MAY&period=0');
+
+			notify({
+				message:'This is a GOOGLE message...',
+				template:'/partials/gmail-template.html',
+				position:'center'
+			});
 
 			// var modalInstance=$modal.open({
 			// 	templateUrl:'../../partials/modal/adminLoginModal.html',

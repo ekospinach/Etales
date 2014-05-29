@@ -1,5 +1,5 @@
 define(['app','socketIO','routingConfig'], function(app) {
-	app.controller('supplierDecisionCtrl',['$scope', '$http', 'ProducerDecisionBase','$rootScope','Auth','$anchorScroll','$q','PlayerInfo','SeminarInfo','PeriodInfo','Label','RoleInfo', function($scope, $http, ProducerDecisionBase,$rootScope,Auth,$anchorScroll,$q,PlayerInfo,SeminarInfo,PeriodInfo,Label,RoleInfo) {
+	app.controller('supplierDecisionCtrl',['$scope', '$http', 'ProducerDecisionBase','$rootScope','Auth','$anchorScroll','$q','PlayerInfo','SeminarInfo','PeriodInfo','Label','RoleInfo','notify', function($scope, $http, ProducerDecisionBase,$rootScope,Auth,$anchorScroll,$q,PlayerInfo,SeminarInfo,PeriodInfo,Label,RoleInfo, notify) {
 			
 			$rootScope.decisionActive="active";
 			$rootScope.loginCss="";
@@ -171,6 +171,12 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    })
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase) {
 				loadBackgroundData();
+				console.log('here is a test for notify');
+				notify({
+					message:'Decision has been updated to latest version...',
+					template:'/partials/gmail-template.html',
+					position:'center'
+				});
 			});
 	}]);
 

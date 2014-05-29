@@ -23,7 +23,6 @@ module.exports = function(app, io){
     app.get('/producerCompanyDecision/:producerID/:period/:seminar/:categoryID',                            require('./../api/models/producerDecision.js').getCompanyHistory);
     app.get('/quarterHistoryInfo/:seminar/:period',                                                         require('./../api/models/quarterHistoryInfo.js').getQuarterHistory);
     
-    
     //producer check
     app.get('/productionResult/:seminar/:period/:producerID/:brandName/:varName',                           require('./../api/models/producerDecision.js').getProductionResult);
     app.get('/producerCurrentDecision/:seminar/:period/:producerID/:brandName/:varName',                    require('./../api/models/producerDecision.js').getProducerCurrentDecision);
@@ -47,7 +46,6 @@ module.exports = function(app, io){
     app.get('/getSalesVolume/:seminar/:period/:retailerID/:categoryID',                                     require('./../api/models/RCR_consolidatedProfitAndLoss.js').getSalesVolume);
     app.get('/getMarketSize/:seminar/:period/:retailerID/:categoryID',                                      require('./../api/models/RCR_consolidatedProfitAndLoss.js').getMarketSize);
     
-    
     //Negotiation 
     app.post('/addContract',                                                                                require('./../api/models/contract.js').addContract(io));
     app.post('/addContractDetails',                                                                         require('./../api/models/contract.js').addContractDetails(io));
@@ -62,5 +60,7 @@ module.exports = function(app, io){
     app.post('/removeContract',                                                                             require('./../api/models/contract.js').removeContract(io));
     app.post('/removeContractDetailsByContractCode',                                                        require('./../api/models/contract.js').removeContractDetailsByContractcode(io));
 
+    //Check if supplier has submitted portfolio decision 
+    app.get('/checkProducerDecision/:seminar/:period/:producerID',                                          require('./../api/models/seminar.js').checkProducerDecision);
 
 };

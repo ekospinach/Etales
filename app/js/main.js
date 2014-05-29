@@ -14,6 +14,7 @@
 			angularRoute: 			'../bower_components/angular-route/angular-route',
 			angularResource: 		'../bower_components/angular-resource/angular-resource',
 			angularMocks: 			'../bower_components/angular-mocks/angular-mocks',
+			angularAnimate: 		'../bower_components/angular-animate/angular-animate.min',
 			angularLoadingBar : 	'../bower_components/angular-loading-bar/src/loading-bar', 
 			text: 					'../bower_components/requirejs-text/text',
 			angularXeditable: 		'../bower_components/angular-xeditable/dist/js/xeditable',
@@ -38,7 +39,10 @@
 			angularHighcharts:      '../bower_components/highcharts-ng/src/highcharts-ng',
 			highchartMore:          '../bower_components/highcharts/highcharts-more',
 			//revealJS for facilitator 
-			reveal : 				'../bower_components/reveal.js/js/reveal.min'
+			reveal: 				'../bower_components/reveal.js/js/reveal.min',
+			//angular notification 
+			//toaster:               '../bower_components/angular-notify-toaster/toaster',
+			ngNotify: 			   '../bower_components/angular-notify/dist/angular-notify.min',	
 		},
 		baseUrl: 'js',
 		shim: {
@@ -64,7 +68,9 @@
 			'bootstrapswitch' : ['jquery'],
 			'angularHighcharts' :['angular','highchart'],
 			'angularBootstrapSwitch':['angular','jquery','bootstrapswitch'],
-			'highchart' :['jquery']
+			'highchart' :['jquery'],
+			//'toaster' :['jquery','angular','angularAnimate'],
+			'ngNotify' :['jquery','angular']
 		},
 		priority: [
 			"angular"

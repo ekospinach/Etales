@@ -99,6 +99,7 @@
 	'highchartMore',
 	'angularHighcharts',
 	'reveal',
+	'ngNotify'
 	], function (angular, filters, services,directives,bootstrap, controllers) {
 		'use strict';
 		return angular.module('myApp', [
@@ -111,7 +112,8 @@
 			'ui.bootstrap',
 			'chieffancypants.loadingBar',
 			'ngCookies',
-			'highcharts-ng'
+			'highcharts-ng',
+			'cgNotify'
 		]).run(function(editableOptions){
 			editableOptions.theme = 'bs3';
 		}).run(['$rootScope', '$location','Auth','$http', function ($rootScope, $location, Auth, $http) {		    
