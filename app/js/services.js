@@ -313,6 +313,7 @@ define(['angular',
 		this.$get = ['ProducerDecision', '$q','$rootScope','$http','PlayerInfo','SeminarInfo','PeriodInfo', function(ProducerDecision, $q, $rootScope,$http,PlayerInfo,SeminarInfo,PeriodInfo){
 			return {
 				reload : function(p){ 
+					console.log('reload actived...');
 					requestPara = p;
 					var delay = $q.defer();
 					getLoaderPromise(ProducerDecision, $q).then(function(){
@@ -327,8 +328,34 @@ define(['angular',
 				startListenChangeFromServer : function(){
 					var socket = io.connect();
 					socket.on('producerBaseChanged', function(data){						
-						$rootScope.$broadcast('producerDecisionBaseChangedFromServer', base);
+						//if changed base is modified by current supplier, reload decision base and broadcast message...
+						if( (data.producerID == PlayerInfo.getPlayer()) && (data.seminar == SeminarInfo.getSelectedSeminar())  ){
+							requestPara.producerID = parseInt(PlayerInfo.getPlayer());
+							requestPara.period = PeriodInfo.getCurrentPeriod();
+							requestPara.seminar = SeminarInfo.getSelectedSeminar();
+							getLoaderPromise(ProducerDecision, $q).then(function(newBase){
+								$rootScope.$broadcast('producerDecisionBaseChangedFromServer', data, newBase);							
+							}, function(reason){
+								$rootScope.$broadcast('producerDecisionReloadError', data, newBase);							
+							});							
+						}
 					});
+
+					socket.on('producerReportPurchaseDecisionChanged', function(data) {
+						//if changed base is modified by current supplier, reload Report Purchase decision base and broadcast message...
+						if ((data.producerID == PlayerInfo.getPlayer()) && (data.seminar == SeminarInfo.getSelectedSeminar())) {
+							var url = '/currentPeriod/' + SeminarInfo.getSelectedSeminar();
+							$http({
+								method: 'GET',
+								url: url,
+							}).then(function(newSeminarData) {
+								$rootScope.$broadcast('producerReportPurchaseDecisionChanged', data, newSeminarData);
+							}, function() {
+								$rootScope.$broadcast('producerReportPurchaseDecisionChangedError', data, newSeminarData);
+							});
+						}
+					});
+
 					socket.on('EditSalesTargetVolume',function(data){
 						$rootScope.$broadcast('producerDecisionBaseChangedFromServer', base);
 					});
@@ -341,9 +368,9 @@ define(['angular',
 				getAllProduct:function(producerID,categoryID){
 					$http({method:'GET',url:''})
 				},
+
 				//step1 & step2
 				setProducerDecisionValue:function(categoryID,brandName,varName,location,additionalIdx,value){
-
 					var queryCondition = {
 						producerID:PlayerInfo.getPlayer(),
 						period:PeriodInfo.getCurrentPeriod(),

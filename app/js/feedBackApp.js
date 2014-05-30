@@ -33,7 +33,11 @@ app.controller('negotiationResultsCtrl', ['$scope','$http','$q',function($scope,
                                 distance:-100,
                                 rotation:0,
                                 color:'white',
+<<<<<<< HEAD
                                 format: '<p class="p-font">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
+=======
+                                format: '<p style="font-size:17px;line-hight:20px">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
+>>>>>>> 05b9d3e4eb75727f6e47b48d681013f511012fff
                                 useHTML:true
                             },
                             showInLegend: true
@@ -77,7 +81,11 @@ app.controller('negotiationResultsCtrl', ['$scope','$http','$q',function($scope,
                                 distance:-100,
                                 rotation:0,
                                 color:'white',
+<<<<<<< HEAD
                                 format: '<p class="p-font">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
+=======
+                                format: '<p style="font-size:17px;line-hight:20px">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
+>>>>>>> 05b9d3e4eb75727f6e47b48d681013f511012fff
                                 useHTML:true
                             },
                             showInLegend: true
@@ -120,7 +128,11 @@ app.controller('negotiationResultsCtrl', ['$scope','$http','$q',function($scope,
                                 distance:-100,
                                 rotation:0,
                                 color:'white',
+<<<<<<< HEAD
                                 format: '<p class="p-font">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
+=======
+                                format: '<p style="font-size:17px;line-hight:20px">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
+>>>>>>> 05b9d3e4eb75727f6e47b48d681013f511012fff
                                 useHTML:true
                             },
                             showInLegend: true
@@ -164,7 +176,11 @@ app.controller('negotiationResultsCtrl', ['$scope','$http','$q',function($scope,
                                 distance:-100,
                                 rotation:0,
                                 color:'white',
+<<<<<<< HEAD
                                 format: '<p class="p-font">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
+=======
+                                format: '<p style="font-size:17px;line-hight:20px">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
+>>>>>>> 05b9d3e4eb75727f6e47b48d681013f511012fff
                                 useHTML:true
                             },
                             showInLegend: true
@@ -207,7 +223,11 @@ app.controller('negotiationResultsCtrl', ['$scope','$http','$q',function($scope,
                                 distance:-100,
                                 rotation:0,
                                 color:'white',
+<<<<<<< HEAD
                                 format: '<p class="p-font">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
+=======
+                                format: '<p style="font-size:17px;line-hight:20px">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
+>>>>>>> 05b9d3e4eb75727f6e47b48d681013f511012fff
                                 useHTML:true
                             },
                             showInLegend: true
@@ -251,7 +271,11 @@ app.controller('negotiationResultsCtrl', ['$scope','$http','$q',function($scope,
                                 distance:-100,
                                 rotation:0,
                                 color:'white',
+<<<<<<< HEAD
                                 format: '<p class="p-font">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
+=======
+                                format: '<p style="font-size:17px;line-hight:20px">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
+>>>>>>> 05b9d3e4eb75727f6e47b48d681013f511012fff
                                 useHTML:true
                             },
                             showInLegend: true
@@ -295,7 +319,11 @@ app.controller('negotiationResultsCtrl', ['$scope','$http','$q',function($scope,
                                 distance:-80,
                                 rotation:0,
                                 color:'white',
+<<<<<<< HEAD
                                 format: '<p class="p-font">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
+=======
+                                format: '<p style="font-size:17px;line-hight:20px">{point.name}</br>'+'{point.y:.2f}($mln)</br>'+'{point.percentage:.2f}%</br></p>',
+>>>>>>> 05b9d3e4eb75727f6e47b48d681013f511012fff
                                 useHTML:true
                             },
                             showInLegend: true

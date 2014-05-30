@@ -169,15 +169,36 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    $scope.$watch('isPageLoading', function(newValue, oldValue){
 		    	$scope.isPageLoading = newValue;	    	
 		    })
-			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase) {
+
+		    //handle Supplier Decision module push notification messages
+
+			$scope.$on('producerDecisionBaseChangedFromServer', function(event, data, newBase) {  
 				loadBackgroundData();
-				console.log('here is a test for notify');
 				notify({
-					message:'Decision has been updated to latest version...',
+					message:'Decision has been saved, Supplier ' + data.producerID  + ' Period ' + data.period + '.',
 					template:'/partials/gmail-template.html',
 					position:'center'
 				});
 			});
+
+			$scope.$on('producerReportPurchaseDecisionChanged', function(event, data, newBase) {  
+				notify({
+					message:'Report purchase decision saved, Supplier ' + data.producerID  + ' Period ' + data.period + '.',
+					template:'/partials/gmail-template.html',
+					position:'center'
+				});
+			});
+
+
+			$scope.$on('producerDecisionReloadError', function(event, data, newBase) {  
+				notify({
+					message:'Decision reload Error occur, Supplier ' + data.producerID  + ' Period ' + data.period + '.',
+					template:'/partials/gmail-template.html',
+					position:'center'
+				});
+			});
+
+
 	}]);
 
 });

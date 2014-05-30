@@ -56,7 +56,7 @@
 
         <section ng-controller="negotiationResultsCtrl">
           <section>
-            <h4><a>Negotiation Results</a> - Volume Discounts</h4>
+            <h3><a>Negotiation Results</a> - Volume Discounts</h3>
             <hr>
               <highchart id="chart1" config="supplierNegotiationResults"style="width:50%;float:left;height:500px"></highchart>
               <highchart id="chart2" config="retailerNegotiationResults" style="width:50%;float:left;height:500px"></highchart>
@@ -85,103 +85,118 @@
           </section>
         </section>
 
-
-        <section>
+        <section ng-controller="salesCtrl">
           <section>
-            <h2><span class="roseLetter">Sales</span> - Elecssories - previous</h2>
+            <h3><span class="roseLetter">Sales</span> - Elecssories - previous</h3>
             <hr>
+            <highchart id="chart8" config="previousSalesVolumeElecssories"style="width:50%;float:left;height:500px"></highchart>
+            <highchart id="chart9" config="previousSalesValueElecssories"style="width:50%;float:left;height:500px"></highchart>
           </section>          
           <section>
-            <h2><span class="roseLetter">Sales</span> - Elecssories - current</h2>
+            <h3><span class="roseLetter">Sales</span> - Elecssories - current</h3>
             <hr>
+            <highchart id="chart10" config="currentSalesVolumeElecssories"style="width:50%;float:left;height:500px"></highchart>
+            <highchart id="chart11" config="currentSalesValueElecssories"style="width:50%;float:left;height:500px"></highchart>
           </section>          
           <section>
-            <h2><span class="roseLetter">Sales</span> - HealthBeauties - Previous</h2>
+            <h3><span class="roseLetter">Sales</span> - HealthBeauties - Previous</h3>
             <hr>
+            <highchart id="chart12" config="previousSalesVolumeHealthBeauties"style="width:50%;float:left;height:500px"></highchart>
+            <highchart id="chart13" config="previousSalesValueHealthBeauties"style="width:50%;float:left;height:500px"></highchart>
           </section>     
           <section>
-            <h2><span class="roseLetter">Sales</span> - HealthBeauties - Current</h2>
+            <h3><span class="roseLetter">Sales</span> - HealthBeauties - Current</h3>
             <hr>
+            <highchart id="chart14" config="currentSalesVolumeHealthBeauties"style="width:50%;float:left;height:500px"></highchart>
+            <highchart id="chart15" config="currentSalesValueHealthBeauties"style="width:50%;float:left;height:500px"></highchart>
+          </section>     
+        </section>
+
+        <section ng-controller="marketSharesCtrl">
+          <section>
+            <h3><span class="greenLetter">Market Shares</span> - Elecssories - Previous</h3>
+            <hr>
+            <highchart id="chart16" config="previousSharesVolumeElecssories"style="width:50%;float:left;height:500px"></highchart>
+            <highchart id="chart17" config="previousSharesValueElecssories"style="width:50%;float:left;height:500px"></highchart>
+          </section>          
+          <section>
+            <h3><span class="greenLetter">Market Shares</span> - Elecssories - Current</h3>
+            <hr>
+            <highchart id="chart18" config="currentSharesVolumeElecssories"style="width:50%;float:left;height:500px"></highchart>
+            <highchart id="chart19" config="currentSharesValueElecssories"style="width:50%;float:left;height:500px"></highchart>
+          </section>          
+          <section>
+            <h3><span class="greenLetter">Market Shares</span> - HealthBeauties - Previous</h3>
+            <hr>
+            <highchart id="chart20" config="previousSharesVolumeHealthBeauties"style="width:50%;float:left;height:500px"></highchart>
+            <highchart id="chart21" config="previousSharesValueHealthBeauties"style="width:50%;float:left;height:500px"></highchart>
+          </section>     
+          <section>
+            <h3><span class="greenLetter">Market Shares</span> - HealthBeauties - Current</h3>
+            <hr>
+            <highchart id="chart22" config="currentSharesVolumeHealthBeauties"style="width:50%;float:left;height:500px"></highchart>
+            <highchart id="chart23" config="currentSharesValueHealthBeauties"style="width:50%;float:left;height:500px"></highchart>
           </section>     
         </section>
 
         <section>
           <section>
-            <h2><span class="greenLetter">Market Shares</span> - Elecssories - Previous</h2>
+            <h3><span class="purpleLetter">Profits</span> - Previous</h3>
             <hr>
           </section>          
           <section>
-            <h2><span class="greenLetter">Market Shares</span> - Elecssories - Current</h2>
-            <hr>
-          </section>          
-          <section>
-            <h2><span class="greenLetter">Market Shares</span> - HealthBeauties - Previous</h2>
-            <hr>
-          </section>     
-          <section>
-            <h2><span class="greenLetter">Market Shares</span> - HealthBeauties - Current</h2>
-            <hr>
-          </section>     
-        </section>
-
-        <section>
-          <section>
-            <h2><span class="purpleLetter">Profits</span> - Previous</h2>
-            <hr>
-          </section>          
-          <section>
-            <h2><span class="purpleLetter">Profits</span> - Current</h2>
+            <h3><span class="purpleLetter">Profits</span> - Current</h3>
             <hr>
           </section>           
         </section>
 
         <section>
-          <h2><span class="redLetter">Shelf Space Allocation</h2>
+          <h3><span class="redLetter">Shelf Space Allocation</h3>
           <hr>
         </section>
 
         <section>
           <section>
-            <h2><span class="blueLetter">Supplier KPIs</span> - Effectiveness of Trade Spending</h2>
+            <h3><span class="blueLetter">Supplier KPIs</span> - Effectiveness of Trade Spending</h3>
             <hr>
           </section>          
           <section>
-            <h2><span class="blueLetter">Supplier KPIs</span> - Effectiveness of Marketing Spending</h2>
+            <h3><span class="blueLetter">Supplier KPIs</span> - Effectiveness of Marketing Spending</h3>
             <hr>
           </section>     
           <section>
-            <h2><span class="blueLetter">Supplier KPIs</span> - Portfolio Strength</h2>
+            <h3><span class="blueLetter">Supplier KPIs</span> - Portfolio Strength</h3>
             <hr>
           </section>     
           <section>
-            <h2><span class="blueLetter">Supplier KPIs</span> - B&M Channel Strength</h2>
+            <h3><span class="blueLetter">Supplier KPIs</span> - B&M Channel Strength</h3>
             <hr>
           </section>                                           
           <section>
-            <h2><span class="blueLetter">Supplier KPIs</span> - Online Channel Strength</h2>
+            <h3><span class="blueLetter">Supplier KPIs</span> - Online Channel Strength</h3>
             <hr>
           </section>                  
         </section>
 
         <section>
           <section>
-            <h2><span class="orangeLetter">Retailer KPIs</span> - Rotation Index</h2>
+            <h3><span class="orangeLetter">Retailer KPIs</span> - Rotation Index</h3>
             <hr>
           </section>          
           <section>
-            <h2><span class="orangeLetter">Retailer KPIs</span> - Profitability Index</h2>
+            <h3><span class="orangeLetter">Retailer KPIs</span> - Profitability Index</h3>
             <hr>
           </section>     
           <section>
-            <h2><span class="orangeLetter">Retailer KPIs</span> - Profitability Index</h2>
+            <h3><span class="orangeLetter">Retailer KPIs</span> - Profitability Index</h3>
             <hr>
           </section>     
           <section>
-            <h2><span class="orangeLetter">Retailer KPIs</span> - Stock Cover</h2>
+            <h3><span class="orangeLetter">Retailer KPIs</span> - Stock Cover</h3>
             <hr>
           </section>                                           
           <section>
-            <h2><span class="orangeLetter">Retailer KPIs</span> - Share of Shoppers</h2>
+            <h3><span class="orangeLetter">Retailer KPIs</span> - Share of Shoppers</h3>
             <hr>
           </section>                  
         </section>
@@ -203,6 +218,8 @@
     <script src="bower_components/highcharts-ng/src/highcharts-ng.js"></script>
 
     <script src="js/feedBackAppControllers/negotiationResultsCtrl.js"></script>
+    <script src="js/feedBackAppControllers/salesCtrl.js"></script>
+    <script src="js/feedBackAppControllers/marketSharesCtrl.js"></script>
 
     <script>
 
@@ -215,7 +232,7 @@
         center: true,
 
         theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
 
         // Parallax scrolling
         // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',

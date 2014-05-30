@@ -408,22 +408,10 @@ define(['directives', 'services'], function(directives) {
                         }
                     });
 
-                    scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase) {
-                        ProducerDecisionBase.reload({
-                            producerID: parseInt(PlayerInfo.getPlayer()),
-                            period: PeriodInfo.getCurrentPeriod(),
-                            seminar: SeminarInfo.getSelectedSeminar()
-                        }).then(function(base) {
-                            scope.pageBase = base;
-                        }).then(function() {
-                            return showView();
-                        }),
-                        function(reason) {
-                            console.log('from ctr: ' + reason);
-                        },
-                        function(update) {
-                            console.log('from ctr: ' + update);
-                        };
+                    scope.$on('producerDecisionBaseChangedFromServer', function(event, data, newBase) {                    
+                            //decision base had been updated, re-render the page with newBase
+                            scope.pageBase = newBase;
+                            showView();
                     });
 
                 }
