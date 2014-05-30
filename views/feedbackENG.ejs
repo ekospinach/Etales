@@ -159,9 +159,11 @@
           </section>           
         </section>
 
-        <section>
+        <section ng-controller="shelfSpaceCtrl">
           <h3><span class="redLetter">Shelf Space Allocation</h3>
           <hr>
+          <highchart id="chart28" config="currentShelfSpaceElecssories"style="width:50%;float:left;height:500px"></highchart>
+            <highchart id="chart29" config="currentShelfSpaceHealthBeauties"style="width:50%;float:left;height:500px"></highchart>
         </section>
 
         <section>
@@ -230,6 +232,7 @@
     <script src="js/feedBackAppControllers/salesCtrl.js"></script>
     <script src="js/feedBackAppControllers/marketSharesCtrl.js"></script>
     <script src="js/feedBackAppControllers/profitsCtrl.js"></script>
+    <script src="js/feedBackAppControllers/shelfSpaceCtrl.js"></script>
 
     <script>
 
