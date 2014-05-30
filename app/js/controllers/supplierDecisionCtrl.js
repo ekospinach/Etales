@@ -171,32 +171,19 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    })
 
 		    //handle Supplier Decision module push notification messages
-
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, data, newBase) {  
 				loadBackgroundData();
-				notify({
-					message:'Decision has been saved, Supplier ' + data.producerID  + ' Period ' + data.period + '.',
-					template:'/partials/gmail-template.html',
-					position:'center'
-				});
+				notify('Decision has been saved, Supplier ' + data.producerID  + ' Period ' + data.period + '.');
 			});
 
 
 			$scope.$on('producerReportPurchaseDecisionChanged', function(event, data, newBase) {  
 				loadBackgroundData();
-				notify({
-					message:'Report purchase decision saved, Supplier ' + data.producerID  + ' Period ' + data.period + '.',
-					template:'/partials/gmail-template.html',
-					position:'center'
-				});
+				notify('Report purchase decision saved, Supplier ' + data.producerID  + ' Period ' + data.period + '.');				
 			});
 
 			$scope.$on('producerDecisionReloadError', function(event, data, newBase) {  
-				notify({
-					message:'Decision reload Error occur, Supplier ' + data.producerID  + ' Period ' + data.period + '.',
-					template:'/partials/gmail-template.html',
-					position:'center'
-				});
+				notify('Decision reload Error occur, Supplier ' + data.producerID  + ' Period ' + data.period + '.');
 			});
 
 

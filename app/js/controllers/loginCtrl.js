@@ -1,7 +1,7 @@
 define(['app','socketIO'], function(app) {
 
-	app.controller('loginCtrl',['$scope', '$http', '$location','$rootScope','Auth','$q','PlayerInfo','SeminarInfo','PeriodInfo','RoleInfo','$modal','$window','notify', 
-						function($scope, $http, $location,$rootScope,Auth,$q,PlayerInfo,SeminarInfo,PeriodInfo,RoleInfo,$modal, $window, notify) {
+	app.controller('loginCtrl',['$scope', '$http', '$location','$rootScope','Auth','$q','PlayerInfo','SeminarInfo','PeriodInfo','RoleInfo','$modal','$window','notify','ProducerDecisionBase','RetailerDecisionBase', 
+						function($scope, $http, $location,$rootScope,Auth,$q,PlayerInfo,SeminarInfo,PeriodInfo,RoleInfo,$modal, $window, notify, ProducerDecisionBase, RetailerDecisionBase) {
 		// You can access the scope of the controller from here
 
 		    $rootScope.loginFooter="container";
@@ -83,8 +83,7 @@ define(['app','socketIO'], function(app) {
 						PlayerInfo.setPlayer($rootScope.user.roleID);
 						RoleInfo.setRole($rootScope.user.role);
 
-						//Register socketIO listeners 
-						ProducerDecisionBase.startListenChangeFromServer(); 
+
 
 					});
 				},function(res){
@@ -202,57 +201,9 @@ define(['app','socketIO'], function(app) {
   //           $scope.bubleMsg = "";
 		// }
 
-		// $scope.userLogin=function(){
-		// 	var username="";
-		// 	var seminar=$scope.userSeminar;
-		// 	SeminarInfo.setSelectedSeminar(seminar);
-		// 	var password=$scope.userPassword;
-		// 	switch($scope.userRole){
-		// 		case '1':username=seminar+'^'+userRoles.producer+'^'+$scope.userRole;break;
-		// 		case '2':username=seminar+'^'+userRoles.producer+'^'+$scope.userRole;break;
-		// 		case '3':username=seminar+'^'+userRoles.producer+'^'+$scope.userRole;break;
-		// 		case '4':username=seminar+'^'+userRoles.producer+'^'+$scope.userRole;break;
-		// 		case '5':username=seminar+'^'+userRoles.retailer+'^'+($scope.userRole-4);break;
-		// 		case '6':username=seminar+'^'+userRoles.retailer+'^'+($scope.userRole-4);break;
-		// 		case '7':username=seminar+'^'+userRoles.retailer+'^'+($scope.userRole-4);break;
-		// 		case '8':username=seminar+'^'+userRoles.retailer+'^'+($scope.userRole-4);break;
-		// 		case '9':username=seminar+'^'+userRoles.facilitator+'^'+($scope.userRole-8);break;
-		// 	}
-		// 	Auth.login({
-		// 		username:username,
-		// 		password:password,
-		// 		rememberme:true
-		// 	},function(res){
-		// 		showbubleMsg('login success.',2);
-		// 		var url="/currentPeriod/"+seminar;
-		// 		$http({
-		// 			method:'GET',
-		// 			url:url
-		// 		}).then(function(data){
-		// 			//$rootScope.currentPeriod=data.currentPeriod;
-		// 			PeriodInfo.setCurrentPeriod(data.data.currentPeriod);
-		// 			$rootScope.rootStartFrom=-2;
-		// 			$rootScope.rootEndWith=data.currentPeriod-1;
-		// 			closeLoginModal();
-		// 		}).then(function(){
-		// 			//console.log($rootScope.user.userRole);
-		// 			PlayerInfo.setPlayer($rootScope.user.roleID);
-		// 			RoleInfo.setRole($rootScope.user.role);
-		// 		});
-		// 	},function(res){
-		// 		showbubleMsg('login failure.',1);
-		// 	});	
-		// }
-
-		// $scope.adminLogin=function(){
-		// 	if($scope.adminSeminar=="MAY"&&$scope.adminPassword=="123"){
-		// 		showbubleMsg('login success',5);
-		// 		closeAdminLoginModal();
-		// 		$location.path('/admin');
-		// 	}else{
-  //               showbubleMsg('Failed to login',4);
-		// 	}
-		// }
+		//Register socketIO listeners 
+		ProducerDecisionBase.startListenChangeFromServer(); 
+		RetailerDecisionBase.startListenChangeFromServer();		
 
 	}]);
 

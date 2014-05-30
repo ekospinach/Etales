@@ -16,7 +16,6 @@ module.exports = function(app, io){
     app.get('/producerVariantBM/:seminar/:period/:producerID/:categoryID/:brandName/:varName',              require('./../api/models/producerDecision.js').getProducerVariantBM);
     
 
-
     app.post('/retailerDecision',                                                                           require('./../api/models/retailerDecision.js').updateRetailerDecision(io));
     //retailer get retailerDecision
     app.get('/getRetailerDecisionByVar/:retailerID/:period/:seminar/:brandName/:varName',                   require('./../api/models/retailerDecision.js').retailerGetRetailerDecision);
@@ -71,9 +70,11 @@ module.exports = function(app, io){
     //Submit supplier research order decision
     app.post('/submitOrder',                                                                                require('./../api/models/seminar.js').submitOrder);
 
-
+    
     app.post('/submitPortfolioDecision',                                         require('./../api/models/seminar.js').submitPortfolioDecision(io));
     app.post('/submitFinalDecision',                                             require('./../api/models/seminar.js').submitFinalDecision(io));
+
+
 
 
 };

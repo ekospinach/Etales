@@ -89,6 +89,8 @@ define(['directives', 'services'], function(directives){
                         initializePage();
                     }
                 })
+
+                
             }
         }
     }])

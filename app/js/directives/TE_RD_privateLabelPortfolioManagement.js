@@ -23,8 +23,7 @@ define(['directives', 'services'], function(directives){
                     },{
                         value: 3, text: Label.getContent('PREMIUM')
                     }]; 
-                    scope.parameter="NewBrand";/*default add new Brand*/
-                    RetailerDecisionBase.startListenChangeFromServer();
+                    scope.parameter="NewBrand";/*default add new Brand*/                    
 					RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
 						scope.pageBase = base;
 					}).then(function(){
@@ -509,17 +508,10 @@ define(['directives', 'services'], function(directives){
                     }
                 });
                 
-                scope.$on('retailerDecisionBaseChangedFromServer', function(event, newBase){
-					RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
-						scope.pageBase = base;
-					}).then(function(){
-						return showView();
-					}), function(reason){
-						console.log('from ctr: ' + reason);
-					}, function(update){
-						console.log('from ctr: ' + update);
-					};
-				}); 
+                scope.$on('retailerDecisionBaseChangedFromServer', function(event, data, newBase) {  
+                    scope.pageBase = base;
+                    showView();
+                });             
 
             }
         }
