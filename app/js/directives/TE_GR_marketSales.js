@@ -136,6 +136,9 @@ define(['directives', 'services'], function(directives){
                                 series: {
                                     stacking: 'normal'
                                 }
+                            },
+                            credits: {
+                                enabled: false
                             }
                         },
                         series: scope.marketSales1Series,
@@ -143,7 +146,7 @@ define(['directives', 'services'], function(directives){
                             text: Label.getContent('Elecssories')+' - '+Label.getContent('Volume Sales')
                         },
                         credits: {
-                            enabled: true
+                            enabled: false
                         },
                         loading: false
                     }
@@ -195,6 +198,9 @@ define(['directives', 'services'], function(directives){
                                 series: {
                                     stacking: 'normal'
                                 }
+                            },
+                            credits: {
+                                enabled: false
                             }
                         },
                         series: scope.marketSales2Series,
@@ -202,7 +208,7 @@ define(['directives', 'services'], function(directives){
                             text: Label.getContent('Elecssories')+' - '+Label.getContent('Value Sales')
                         },
                         credits: {
-                            enabled: true
+                            enabled: false
                         },
                         loading: false
                     }
@@ -253,6 +259,9 @@ define(['directives', 'services'], function(directives){
                                 series: {
                                     stacking: 'normal'
                                 }
+                            },
+                            credits: {
+                                enabled: false
                             }
                         },
                         series: scope.marketSales3Series,
@@ -260,7 +269,7 @@ define(['directives', 'services'], function(directives){
                             text: Label.getContent('HealthBeauties')+' - '+Label.getContent('Volume Sales')
                         },
                         credits: {
-                            enabled: true
+                            enabled: false
                         },
                         loading: false
                     }
@@ -310,6 +319,9 @@ define(['directives', 'services'], function(directives){
                                 series: {
                                     stacking: 'normal'
                                 }
+                            },
+                            credits: {
+                                enabled: false
                             }
                         },
                         series: scope.marketSales4Series,
@@ -317,7 +329,7 @@ define(['directives', 'services'], function(directives){
                             text: Label.getContent('HealthBeauties')+' - '+Label.getContent('Value Sales')
                         },
                         credits: {
-                            enabled: true
+                            enabled: false
                         },
                         loading: false
                     }
