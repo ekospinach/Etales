@@ -1,4 +1,4 @@
-var marketSharesCtrl=function($scope,$http){
+var profitsCtrl=function($scope,$http){
     function GetRequest() {
        var url = document.location.search; //获取url中"?"符后的字串
        var theRequest = new Object();
@@ -30,7 +30,7 @@ var marketSharesCtrl=function($scope,$http){
             method:'GET',
             url:url
         }).then(function(data){
-            var currentElecssoriesVolume=new Array({
+            var currentOperatingProfits=new Array({
                 name:'Supplier-1',
                 data:new Array(),
                 color:'#3257A7'
@@ -51,7 +51,7 @@ var marketSharesCtrl=function($scope,$http){
                 data:new Array(),
                 color:'#F05422'
             });
-            var currentElecssoriesValue=new Array({
+            var currentNetProfitMargins=new Array({
                 name:'Supplier-1',
                 data:new Array(),
                 color:'#3257A7'
@@ -72,7 +72,7 @@ var marketSharesCtrl=function($scope,$http){
                 data:new Array(),
                 color:'#F05422'
             });
-            var previousElecssoriesVolume=new Array({
+            var previousOperatingProfits=new Array({
                 name:'Supplier-1',
                 data:new Array(),
                 color:'#3257A7'
@@ -93,7 +93,7 @@ var marketSharesCtrl=function($scope,$http){
                 data:new Array(),
                 color:'#F05422'
             });
-            var previousElecssoriesValue=new Array({
+            var previousNetProfitMargins=new Array({
                 name:'Supplier-1',
                 data:new Array(),
                 color:'#3257A7'
@@ -114,90 +114,7 @@ var marketSharesCtrl=function($scope,$http){
                 data:new Array(),
                 color:'#F05422'
             });
-            var currentHealthBeautiesVolume=new Array({
-                name:'Supplier-1',
-                data:new Array(),
-                color:'#3257A7'
-            },{
-                name:'Supplier-2',
-                data:new Array(),
-                color:'#B11E22'
-            },{
-                name:'Supplier-3',
-                data:new Array(),
-                color:'#F6B920'
-            },{
-                name:'Retailer-1',
-                data:new Array(),
-                color:'#8B288B'
-            },{
-                name:'Retailer-2',
-                data:new Array(),
-                color:'#F05422'
-            });
-            var currentHealthBeautiesValue=new Array({
-                name:'Supplier-1',
-                data:new Array(),
-                color:'#3257A7'
-            },{
-                name:'Supplier-2',
-                data:new Array(),
-                color:'#B11E22'
-            },{
-                name:'Supplier-3',
-                data:new Array(),
-                color:'#F6B920'
-            },{
-                name:'Retailer-1',
-                data:new Array(),
-                color:'#8B288B'
-            },{
-                name:'Retailer-2',
-                data:new Array(),
-                color:'#F05422'
-            });
-            var previousHealthBeautiesVolume=new Array({
-                name:'Supplier-1',
-                data:new Array(),
-                color:'#3257A7'
-            },{
-                name:'Supplier-2',
-                data:new Array(),
-                color:'#B11E22'
-            },{
-                name:'Supplier-3',
-                data:new Array(),
-                color:'#F6B920'
-            },{
-                name:'Retailer-1',
-                data:new Array(),
-                color:'#8B288B'
-            },{
-                name:'Retailer-2',
-                data:new Array(),
-                color:'#F05422'
-            });
-            var previousHealthBeautiesValue=new Array({
-                name:'Supplier-1',
-                data:new Array(),
-                color:'#3257A7'
-            },{
-                name:'Supplier-2',
-                data:new Array(),
-                color:'#B11E22'
-            },{
-                name:'Supplier-3',
-                data:new Array(),
-                color:'#F6B920'
-            },{
-                name:'Retailer-1',
-                data:new Array(),
-                color:'#8B288B'
-            },{
-                name:'Retailer-2',
-                data:new Array(),
-                color:'#F05422'
-            });
+            
 
             for(var j=0;j<currentCategories.length;j++){
                 for(var i=0;i<data.data.f_VolumeMarketShares.length;i++){

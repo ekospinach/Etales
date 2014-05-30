@@ -30,7 +30,6 @@ var salesCtrl=function($scope,$http){
             method:'GET',
             url:url
         }).then(function(data){
-            //Sales Results
             var currentElecssoriesVolume=new Array({
                 name:'Supplier-1',
                 data:new Array(),
@@ -373,8 +372,6 @@ var salesCtrl=function($scope,$http){
                 }
             }
 
-            console.log(previousElecssoriesValue);
-
             $scope.previousSalesVolumeElecssories = {
                 options: {
                     title:{
@@ -387,7 +384,8 @@ var salesCtrl=function($scope,$http){
                     yAxis: {
                         title: {
                             text: 'mln units'
-                        }
+                        },
+                        gridLineColor: 'transparent'
                     },
                     xAxis: {
                         categories: previousCategories,
@@ -395,13 +393,21 @@ var salesCtrl=function($scope,$http){
                             text: 'Period'
                         }
                     },
-                    plotOptions: {
-                        line: {
-                            dataLabels: {
-                                enabled: true
-                            },
-                            enableMouseTracking: false
-                        }
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">mln units:'+this.point.y+'</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    legend: {
+                        layout:'vertical',
+                        align: 'right',
+                        verticalAlign: 'middle'
                     }
                 },
                 series: previousElecssoriesVolume,
@@ -419,7 +425,8 @@ var salesCtrl=function($scope,$http){
                     yAxis: {
                         title: {
                             text: 'mln units'
-                        }
+                        },
+                        gridLineColor: 'transparent'
                     },
                     xAxis: {
                         categories: previousCategories,
@@ -427,13 +434,16 @@ var salesCtrl=function($scope,$http){
                             text: 'Period'
                         }
                     },
-                    plotOptions: {
-                        line: {
-                            dataLabels: {
-                                enabled: true
-                            },
-                            enableMouseTracking: false
-                        }
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">mln units:'+this.point.y+'</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
                     }
                 },
                 series: previousHealthBeautiesVolume,
@@ -451,7 +461,8 @@ var salesCtrl=function($scope,$http){
                     yAxis: {
                         title: {
                             text: '$mln'
-                        }
+                        },
+                        gridLineColor: 'transparent'
                     },
                     xAxis: {
                         categories: previousCategories,
@@ -459,13 +470,21 @@ var salesCtrl=function($scope,$http){
                             text: 'Period'
                         }
                     },
-                    plotOptions: {
-                        line: {
-                            dataLabels: {
-                                enabled: true
-                            },
-                            enableMouseTracking: false
-                        }
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">$mln:'+this.point.y+'</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    legend: {
+                        layout:'vertical',
+                        align: 'right',
+                        verticalAlign: 'middle'
                     }
                 },
                 series: previousElecssoriesValue,
@@ -483,7 +502,8 @@ var salesCtrl=function($scope,$http){
                     yAxis: {
                         title: {
                             text: '$mln'
-                        }
+                        },
+                        gridLineColor: 'transparent'
                     },
                     xAxis: {
                         categories: previousCategories,
@@ -491,13 +511,16 @@ var salesCtrl=function($scope,$http){
                             text: 'Period'
                         }
                     },
-                    plotOptions: {
-                        line: {
-                            dataLabels: {
-                                enabled: true
-                            },
-                            enableMouseTracking: false
-                        }
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">$mln:'+this.point.y+'</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
                     }
                 },
                 series: previousHealthBeautiesValue,
@@ -515,7 +538,8 @@ var salesCtrl=function($scope,$http){
                     yAxis: {
                         title: {
                             text: 'mln units'
-                        }
+                        },
+                        gridLineColor: 'transparent'
                     },
                     xAxis: {
                         categories: currentCategories,
@@ -523,13 +547,16 @@ var salesCtrl=function($scope,$http){
                             text: 'Period'
                         }
                     },
-                    plotOptions: {
-                        line: {
-                            dataLabels: {
-                                enabled: true
-                            },
-                            enableMouseTracking: false
-                        }
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">mln units:'+this.point.y+'</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
                     }
                 },
                 series: currentElecssoriesVolume,
@@ -547,7 +574,8 @@ var salesCtrl=function($scope,$http){
                     yAxis: {
                         title: {
                             text: 'mln units'
-                        }
+                        },
+                        gridLineColor: 'transparent'
                     },
                     xAxis: {
                         categories: currentCategories,
@@ -555,13 +583,16 @@ var salesCtrl=function($scope,$http){
                             text: 'Period'
                         }
                     },
-                    plotOptions: {
-                        line: {
-                            dataLabels: {
-                                enabled: true
-                            },
-                            enableMouseTracking: false
-                        }
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">mln units:'+this.point.y+'</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
                     }
                 },
                 series: currentHealthBeautiesVolume,
@@ -579,7 +610,8 @@ var salesCtrl=function($scope,$http){
                     yAxis: {
                         title: {
                             text: '$mln'
-                        }
+                        },
+                        gridLineColor: 'transparent'
                     },
                     xAxis: {
                         categories: currentCategories,
@@ -587,13 +619,16 @@ var salesCtrl=function($scope,$http){
                             text: 'Period'
                         }
                     },
-                    plotOptions: {
-                        line: {
-                            dataLabels: {
-                                enabled: true
-                            },
-                            enableMouseTracking: false
-                        }
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">$mln:'+this.point.y+'</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
                     }
                 },
                 series: currentElecssoriesValue,
@@ -611,7 +646,8 @@ var salesCtrl=function($scope,$http){
                     yAxis: {
                         title: {
                             text: '$mln'
-                        }
+                        },
+                        gridLineColor: 'transparent'
                     },
                     xAxis: {
                         categories: currentCategories,
@@ -619,13 +655,16 @@ var salesCtrl=function($scope,$http){
                             text: 'Period'
                         }
                     },
-                    plotOptions: {
-                        line: {
-                            dataLabels: {
-                                enabled: true
-                            },
-                            enableMouseTracking: false
-                        }
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">$mln:'+this.point.y+'</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
                     }
                 },
                 series: currentHealthBeautiesValue,
