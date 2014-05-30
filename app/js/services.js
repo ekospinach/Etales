@@ -619,9 +619,12 @@ define(['angular',
 							requestPara.period = PeriodInfo.getCurrentPeriod();
 							requestPara.seminar = SeminarInfo.getSelectedSeminar();							
 							getRetailerPromise(RetailerDecision, $q).then(function(newBase){
+								console.log('$rootScope.$broadcast: ' + JSON.stringfy(data));
 								$rootScope.$broadcast('retailerDecisionBaseChangedFromServer', data, newBase);							
 							}, function(reason){
+								console.log('faile $rootScope.$broadcast: ' + JSON.stringfy(data));								
 								$rootScope.$broadcast('retailerDecisionReloadError', data, newBase);							
+
 							});							
 						}
 					});				
