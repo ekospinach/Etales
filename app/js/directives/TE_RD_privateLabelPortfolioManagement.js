@@ -176,39 +176,6 @@ define(['directives', 'services'], function(directives){
 					return d.promise;
 				}
 
-                scope.checkValue=function(category,brandName,varName,location,additionalIdx,index,value){
-                    var d=$q.defer();
-                    var max=0;
-                    var filter=/^[0-9]*[1-9][0-9]*$/;
-                    if(!filter.test(value)){
-                        d.resolve(Label.getContent('Input a Integer'));
-                    }
-                    var url='/checkProducerDecision/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer());
-                    $http({
-                        method:'GET',
-                        url:url
-                    }).then(function(data){
-                        if(data.data=="isReady"){
-                            d.resolve(Label.getContent('Check Error'));
-                        }
-                        url="/producerCurrentDecision/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+brandName+'/'+varName;
-                        return $http({
-                                method:'GET',
-                                url:url
-                        });
-                    }).then(function(data){
-                        max=data.data.composition[1]+2;
-                        if(value<1||value>max){
-                            d.resolve(Label.getContent('Input range')+':1~'+max);
-                        }else{
-                            d.resolve();
-                        }
-                    },function(){
-                        d.resolve(Label.getContent('fail'));
-                    });
-                    return d.promise;
-                }
-
 				scope.checkValue=function(category,brandName,varName,location,additionalIdx,index,value){
 					var d=$q.defer();
 					var categoryID=0,max=0;

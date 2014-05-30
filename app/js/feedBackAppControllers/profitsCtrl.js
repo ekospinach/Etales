@@ -117,42 +117,32 @@ var profitsCtrl=function($scope,$http){
             
 
             for(var j=0;j<currentCategories.length;j++){
-                for(var i=0;i<data.data.f_VolumeMarketShares.length;i++){
-                    if(data.data.f_VolumeMarketShares[i].period==currentCategories[j]){
-                        switch(data.data.f_VolumeMarketShares[i].actorID){
+                for(var i=0;i<data.data.f_OperatingProfit.length;i++){
+                    if(data.data.f_OperatingProfit[i].period==currentCategories[j]){
+                        switch(data.data.f_OperatingProfit[i].actorID){
                             case 1:
-                            if(data.data.f_VolumeMarketShares[i].categoryID==1){
-                                currentElecssoriesVolume[0].data.push(data.data.f_VolumeMarketShares[i].value);
-                            }else if(data.data.f_VolumeMarketShares[i].categoryID==2){
-                                currentHealthBeautiesVolume[0].data.push(data.data.f_VolumeMarketShares[i].value);
+                            if(data.data.f_OperatingProfit[i].categoryID==3){
+                                currentOperatingProfits[0].data.push(data.data.f_OperatingProfit[i].value);
                             }
                             break;
                             case 2:
-                            if(data.data.f_VolumeMarketShares[i].categoryID==1){
-                                currentElecssoriesVolume[1].data.push(data.data.f_VolumeMarketShares[i].value);
-                            }else if(data.data.f_VolumeMarketShares[i].categoryID==2){
-                                currentHealthBeautiesVolume[1].data.push(data.data.f_VolumeMarketShares[i].value);
+                            if(data.data.f_OperatingProfit[i].categoryID==3){
+                                currentOperatingProfits[1].data.push(data.data.f_OperatingProfit[i].value);
                             }
                             break;
                             case 3:
-                            if(data.data.f_VolumeMarketShares[i].categoryID==1){
-                                currentElecssoriesVolume[2].data.push(data.data.f_VolumeMarketShares[i].value);
-                            }else if(data.data.f_VolumeMarketShares[i].categoryID==2){
-                                currentHealthBeautiesVolume[2].data.push(data.data.f_VolumeMarketShares[i].value);
+                            if(data.data.f_OperatingProfit[i].categoryID==3){
+                                currentOperatingProfits[2].data.push(data.data.f_OperatingProfit[i].value);
                             }
                             break;
                             case 4:
-                            if(data.data.f_VolumeMarketShares[i].categoryID==1){
-                                currentElecssoriesVolume[3].data.push(data.data.f_VolumeMarketShares[i].value);
-                            }else if(data.data.f_VolumeMarketShares[i].categoryID==2){
-                                currentHealthBeautiesVolume[3].data.push(data.data.f_VolumeMarketShares[i].value);
+                            if(data.data.f_OperatingProfit[i].categoryID==3){
+                                currentOperatingProfits[3].data.push(data.data.f_OperatingProfit[i].value);
                             }
                             break;
                             case 5:
-                            if(data.data.f_VolumeMarketShares[i].categoryID==1){
-                                currentElecssoriesVolume[4].data.push(data.data.f_VolumeMarketShares[i].value);
-                            }else if(data.data.f_VolumeMarketShares[i].categoryID==2){
-                                currentHealthBeautiesVolume[4].data.push(data.data.f_VolumeMarketShares[i].value);
+                            if(data.data.f_OperatingProfit[i].categoryID==3){
+                                currentOperatingProfits[4].data.push(data.data.f_OperatingProfit[i].value);
                             }
                             break;
                         }
@@ -160,42 +150,32 @@ var profitsCtrl=function($scope,$http){
                 }
             }
             for(var j=0;j<currentCategories.length;j++){
-                for(var i=0;i<data.data.f_ValueMarketShares.length;i++){
-                    if(data.data.f_ValueMarketShares[i].period==currentCategories[j]){
-                        switch(data.data.f_ValueMarketShares[i].actorID){
+                for(var i=0;i<data.data.f_NetProfitMargin.length;i++){
+                    if(data.data.f_NetProfitMargin[i].period==currentCategories[j]){
+                        switch(data.data.f_NetProfitMargin[i].actorID){
                             case 1:
-                            if(data.data.f_ValueMarketShares[i].categoryID==1){
-                                currentElecssoriesValue[0].data.push(data.data.f_ValueMarketShares[i].value);
-                            }else if(data.data.f_ValueMarketShares[i].categoryID==2){
-                                currentHealthBeautiesValue[0].data.push(data.data.f_ValueMarketShares[i].value);
+                            if(data.data.f_NetProfitMargin[i].categoryID==3){
+                                currentNetProfitMargins[0].data.push(data.data.f_NetProfitMargin[i].value);
                             }
                             break;
                             case 2:
-                            if(data.data.f_ValueMarketShares[i].categoryID==1){
-                                currentElecssoriesValue[1].data.push(data.data.f_ValueMarketShares[i].value);
-                            }else if(data.data.f_ValueMarketShares[i].categoryID==2){
-                                currentHealthBeautiesValue[1].data.push(data.data.f_ValueMarketShares[i].value);
+                            if(data.data.f_NetProfitMargin[i].categoryID==3){
+                                currentNetProfitMargins[1].data.push(data.data.f_NetProfitMargin[i].value);
                             }
                             break;
                             case 3:
-                            if(data.data.f_ValueMarketShares[i].categoryID==1){
-                                currentElecssoriesValue[2].data.push(data.data.f_ValueMarketShares[i].value);
-                            }else if(data.data.f_ValueMarketShares[i].categoryID==2){
-                                currentHealthBeautiesValue[2].data.push(data.data.f_ValueMarketShares[i].value);
+                            if(data.data.f_NetProfitMargin[i].categoryID==3){
+                                currentNetProfitMargins[2].data.push(data.data.f_NetProfitMargin[i].value);
                             }
                             break;
                             case 4:
-                            if(data.data.f_ValueMarketShares[i].categoryID==1){
-                                currentElecssoriesValue[3].data.push(data.data.f_ValueMarketShares[i].value);
-                            }else if(data.data.f_ValueMarketShares[i].categoryID==2){
-                                currentHealthBeautiesValue[3].data.push(data.data.f_ValueMarketShares[i].value);
+                            if(data.data.f_NetProfitMargin[i].categoryID==3){
+                                currentNetProfitMargins[3].data.push(data.data.f_NetProfitMargin[i].value);
                             }
                             break;
                             case 5:
-                            if(data.data.f_ValueMarketShares[i].categoryID==1){
-                                currentElecssoriesValue[4].data.push(data.data.f_ValueMarketShares[i].value);
-                            }else if(data.data.f_ValueMarketShares[i].categoryID==2){
-                                currentHealthBeautiesValue[4].data.push(data.data.f_ValueMarketShares[i].value);
+                            if(data.data.f_NetProfitMargin[i].categoryID==3){
+                                currentNetProfitMargins[4].data.push(data.data.f_NetProfitMargin[i].value);
                             }
                             break;
                         }
@@ -203,42 +183,32 @@ var profitsCtrl=function($scope,$http){
                 }
             }
             for(var j=0;j<previousCategories.length;j++){
-                for(var i=0;i<data.data.f_VolumeMarketShares.length;i++){
-                    if(data.data.f_VolumeMarketShares[i].period==previousCategories[j]){
-                        switch(data.data.f_VolumeMarketShares[i].actorID){
+                for(var i=0;i<data.data.f_OperatingProfit.length;i++){
+                    if(data.data.f_OperatingProfit[i].period==previousCategories[j]){
+                        switch(data.data.f_OperatingProfit[i].actorID){
                             case 1:
-                            if(data.data.f_VolumeMarketShares[i].categoryID==1){
-                                previousElecssoriesVolume[0].data.push(data.data.f_VolumeMarketShares[i].value);
-                            }else if(data.data.f_VolumeMarketShares[i].categoryID==2){
-                                previousHealthBeautiesVolume[0].data.push(data.data.f_VolumeMarketShares[i].value);
+                            if(data.data.f_OperatingProfit[i].categoryID==3){
+                                previousOperatingProfits[0].data.push(data.data.f_OperatingProfit[i].value);
                             }
                             break;
                             case 2:
-                            if(data.data.f_VolumeMarketShares[i].categoryID==1){
-                                previousElecssoriesVolume[1].data.push(data.data.f_VolumeMarketShares[i].value);
-                            }else if(data.data.f_VolumeMarketShares[i].categoryID==2){
-                                previousHealthBeautiesVolume[1].data.push(data.data.f_VolumeMarketShares[i].value);
+                            if(data.data.f_OperatingProfit[i].categoryID==3){
+                                previousOperatingProfits[1].data.push(data.data.f_OperatingProfit[i].value);
                             }
                             break;
                             case 3:
-                            if(data.data.f_VolumeMarketShares[i].categoryID==1){
-                                previousElecssoriesVolume[2].data.push(data.data.f_VolumeMarketShares[i].value);
-                            }else if(data.data.f_VolumeMarketShares[i].categoryID==2){
-                                previousHealthBeautiesVolume[2].data.push(data.data.f_VolumeMarketShares[i].value);
+                            if(data.data.f_OperatingProfit[i].categoryID==3){
+                                previousOperatingProfits[2].data.push(data.data.f_OperatingProfit[i].value);
                             }
                             break;
                             case 4:
-                            if(data.data.f_VolumeMarketShares[i].categoryID==1){
-                                previousElecssoriesVolume[3].data.push(data.data.f_VolumeMarketShares[i].value);
-                            }else if(data.data.f_VolumeMarketShares[i].categoryID==2){
-                                previousHealthBeautiesVolume[3].data.push(data.data.f_VolumeMarketShares[i].value);
+                            if(data.data.f_OperatingProfit[i].categoryID==3){
+                                previousOperatingProfits[3].data.push(data.data.f_OperatingProfit[i].value);
                             }
                             break;
                             case 5:
-                            if(data.data.f_VolumeMarketShares[i].categoryID==1){
-                                previousElecssoriesVolume[4].data.push(data.data.f_VolumeMarketShares[i].value);
-                            }else if(data.data.f_VolumeMarketShares[i].categoryID==2){
-                                previousHealthBeautiesVolume[4].data.push(data.data.f_VolumeMarketShares[i].value);
+                            if(data.data.f_OperatingProfit[i].categoryID==3){
+                                previousOperatingProfits[4].data.push(data.data.f_OperatingProfit[i].value);
                             }
                             break;
                         }
@@ -246,42 +216,32 @@ var profitsCtrl=function($scope,$http){
                 }
             }
             for(var j=0;j<previousCategories.length;j++){
-                for(var i=0;i<data.data.f_ValueMarketShares.length;i++){
-                    if(data.data.f_ValueMarketShares[i].period==previousCategories[j]){
-                        switch(data.data.f_ValueMarketShares[i].actorID){
+                for(var i=0;i<data.data.f_NetProfitMargin.length;i++){
+                    if(data.data.f_NetProfitMargin[i].period==previousCategories[j]){
+                        switch(data.data.f_NetProfitMargin[i].actorID){
                             case 1:
-                            if(data.data.f_ValueMarketShares[i].categoryID==1){
-                                previousElecssoriesValue[0].data.push(data.data.f_ValueMarketShares[i].value);
-                            }else if(data.data.f_ValueMarketShares[i].categoryID==2){
-                                previousHealthBeautiesValue[0].data.push(data.data.f_ValueMarketShares[i].value);
+                            if(data.data.f_NetProfitMargin[i].categoryID==3){
+                                previousNetProfitMargins[0].data.push(data.data.f_NetProfitMargin[i].value);
                             }
                             break;
                             case 2:
-                            if(data.data.f_ValueMarketShares[i].categoryID==1){
-                                previousElecssoriesValue[1].data.push(data.data.f_ValueMarketShares[i].value);
-                            }else if(data.data.f_ValueMarketShares[i].categoryID==2){
-                                previousHealthBeautiesValue[1].data.push(data.data.f_ValueMarketShares[i].value);
+                            if(data.data.f_NetProfitMargin[i].categoryID==3){
+                                previousNetProfitMargins[1].data.push(data.data.f_NetProfitMargin[i].value);
                             }
                             break;
                             case 3:
-                            if(data.data.f_ValueMarketShares[i].categoryID==1){
-                                previousElecssoriesValue[2].data.push(data.data.f_ValueMarketShares[i].value);
-                            }else if(data.data.f_ValueMarketShares[i].categoryID==2){
-                                previousHealthBeautiesValue[2].data.push(data.data.f_ValueMarketShares[i].value);
+                            if(data.data.f_NetProfitMargin[i].categoryID==3){
+                                previousNetProfitMargins[2].data.push(data.data.f_NetProfitMargin[i].value);
                             }
                             break;
                             case 4:
-                            if(data.data.f_ValueMarketShares[i].categoryID==1){
-                                previousElecssoriesValue[3].data.push(data.data.f_ValueMarketShares[i].value);
-                            }else if(data.data.f_ValueMarketShares[i].categoryID==2){
-                                previousHealthBeautiesValue[3].data.push(data.data.f_ValueMarketShares[i].value);
+                            if(data.data.f_NetProfitMargin[i].categoryID==3){
+                                previousNetProfitMargins[3].data.push(data.data.f_NetProfitMargin[i].value);
                             }
                             break;
                             case 5:
-                            if(data.data.f_ValueMarketShares[i].categoryID==1){
-                                previousElecssoriesValue[4].data.push(data.data.f_ValueMarketShares[i].value);
-                            }else if(data.data.f_ValueMarketShares[i].categoryID==2){
-                                previousHealthBeautiesValue[4].data.push(data.data.f_ValueMarketShares[i].value);
+                            if(data.data.f_NetProfitMargin[i].categoryID==3){
+                                previousNetProfitMargins[4].data.push(data.data.f_NetProfitMargin[i].value);
                             }
                             break;
                         }
@@ -289,10 +249,45 @@ var profitsCtrl=function($scope,$http){
                 }
             }
 
-            $scope.previousSharesVolumeElecssories = {
+            $scope.previousOperatingProfits = {
                 options: {
                     title:{
-                        text:'Volumes Shares',
+                        text:'Operating Profits',
+                    },
+                    chart: {
+                        type: 'line',
+                        backgroundColor: 'transparent',
+                    },
+                    yAxis: {
+                        title: {
+                            text: '$mln'
+                        }
+                    },
+                    xAxis: {
+                        categories: previousCategories,
+                        title: {
+                            text: 'Period'
+                        }
+                    },
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">$mln:'+this.point.y.toFixed(2)+'</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
+                    }
+                },
+                series: previousOperatingProfits,
+                loading: false
+            }
+            $scope.previousNetProfitMargins = {
+                options: {
+                    title:{
+                        text:'Net Profit Margins',
                     },
                     chart: {
                         type: 'line',
@@ -309,22 +304,25 @@ var profitsCtrl=function($scope,$http){
                             text: 'Period'
                         }
                     },
-                    plotOptions: {
-                        line: {
-                            dataLabels: {
-                                enabled: true
-                            },
-                            enableMouseTracking: false
-                        }
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
                     }
                 },
-                series: previousElecssoriesVolume,
+                series: previousNetProfitMargins,
                 loading: false
             }
-            $scope.previousSharesVolumeHealthBeauties = {
+            $scope.currentOperatingProfits = {
                 options: {
                     title:{
-                        text:'Volumes Shares',
+                        text:'Operating Profits',
                     },
                     chart: {
                         type: 'line',
@@ -332,95 +330,34 @@ var profitsCtrl=function($scope,$http){
                     },
                     yAxis: {
                         title: {
-                            text: '%'
+                            text: '$mln'
                         }
                     },
                     xAxis: {
-                        categories: previousCategories,
+                        categories: currentCategories,
                         title: {
                             text: 'Period'
                         }
                     },
-                    plotOptions: {
-                        line: {
-                            dataLabels: {
-                                enabled: true
-                            },
-                            enableMouseTracking: false
-                        }
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">$mln:'+this.point.y.toFixed(2)+'</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
                     }
                 },
-                series: previousHealthBeautiesVolume,
+                series: currentOperatingProfits,
                 loading: false
             }
-            $scope.previousSharesValueElecssories = {
+            $scope.currentNetProfitMargins = {
                 options: {
                     title:{
-                        text:'Values Shares',
-                    },
-                    chart: {
-                        type: 'line',
-                        backgroundColor: 'transparent',
-                    },
-                    yAxis: {
-                        title: {
-                            text: '%'
-                        }
-                    },
-                    xAxis: {
-                        categories: previousCategories,
-                        title: {
-                            text: 'Period'
-                        }
-                    },
-                    plotOptions: {
-                        line: {
-                            dataLabels: {
-                                enabled: true
-                            },
-                            enableMouseTracking: false
-                        }
-                    }
-                },
-                series: previousElecssoriesValue,
-                loading: false
-            }
-            $scope.previousSharesValueHealthBeauties = {
-                options: {
-                    title:{
-                        text:'Values Shares',
-                    },
-                    chart: {
-                        type: 'line',
-                        backgroundColor: 'transparent',
-                    },
-                    yAxis: {
-                        title: {
-                            text: '%'
-                        }
-                    },
-                    xAxis: {
-                        categories: previousCategories,
-                        title: {
-                            text: 'Period'
-                        }
-                    },
-                    plotOptions: {
-                        line: {
-                            dataLabels: {
-                                enabled: true
-                            },
-                            enableMouseTracking: false
-                        }
-                    }
-                },
-                series: previousHealthBeautiesValue,
-                loading: false
-            }
-            $scope.currentSharesVolumeElecssories = {
-                options: {
-                    title:{
-                        text:'Volumes Shares',
+                        text:'Net Profit Margins',
                     },
                     chart: {
                         type: 'line',
@@ -437,114 +374,22 @@ var profitsCtrl=function($scope,$http){
                             text: 'Period'
                         }
                     },
-                    plotOptions: {
-                        line: {
-                            dataLabels: {
-                                enabled: true
-                            },
-                            enableMouseTracking: false
-                        }
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
                     }
                 },
-                series: currentElecssoriesVolume,
+                series: currentNetProfitMargins,
                 loading: false
             }
-            $scope.currentSharesVolumeHealthBeauties = {
-                options: {
-                    title:{
-                        text:'Volumes Shares',
-                    },
-                    chart: {
-                        type: 'line',
-                        backgroundColor: 'transparent',
-                    },
-                    yAxis: {
-                        title: {
-                            text: '%'
-                        }
-                    },
-                    xAxis: {
-                        categories: currentCategories,
-                        title: {
-                            text: 'Period'
-                        }
-                    },
-                    plotOptions: {
-                        line: {
-                            dataLabels: {
-                                enabled: true
-                            },
-                            enableMouseTracking: false
-                        }
-                    }
-                },
-                series: currentHealthBeautiesVolume,
-                loading: false
-            }
-            $scope.currentSharesValueElecssories = {
-                options: {
-                    title:{
-                        text:'Values Shares',
-                    },
-                    chart: {
-                        type: 'line',
-                        backgroundColor: 'transparent',
-                    },
-                    yAxis: {
-                        title: {
-                            text: '%'
-                        }
-                    },
-                    xAxis: {
-                        categories: currentCategories,
-                        title: {
-                            text: 'Period'
-                        }
-                    },
-                    plotOptions: {
-                        line: {
-                            dataLabels: {
-                                enabled: true
-                            },
-                            enableMouseTracking: false
-                        }
-                    }
-                },
-                series: currentElecssoriesValue,
-                loading: false
-            }
-            $scope.currentSharesValueHealthBeauties = {
-                options: {
-                    title:{
-                        text:'Values Shares',
-                    },
-                    chart: {
-                        type: 'line',
-                        backgroundColor: 'transparent',
-                    },
-                    yAxis: {
-                        title: {
-                            text: '%'
-                        }
-                    },
-                    xAxis: {
-                        categories: currentCategories,
-                        title: {
-                            text: 'Period'
-                        }
-                    },
-                    plotOptions: {
-                        line: {
-                            dataLabels: {
-                                enabled: true
-                            },
-                            enableMouseTracking: false
-                        }
-                    }
-                },
-                series: currentHealthBeautiesValue,
-                loading: false
-            }
+
 
         });
     }

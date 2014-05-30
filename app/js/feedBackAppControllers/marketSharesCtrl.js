@@ -392,13 +392,16 @@ var marketSharesCtrl=function($scope,$http){
                             text: 'Period'
                         }
                     },
-                    plotOptions: {
-                        line: {
-                            dataLabels: {
-                                enabled: true
-                            },
-                            enableMouseTracking: false
-                        }
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
                     }
                 },
                 series: previousElecssoriesVolume,
@@ -424,13 +427,16 @@ var marketSharesCtrl=function($scope,$http){
                             text: 'Period'
                         }
                     },
-                    plotOptions: {
-                        line: {
-                            dataLabels: {
-                                enabled: true
-                            },
-                            enableMouseTracking: false
-                        }
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
                     }
                 },
                 series: previousHealthBeautiesVolume,
@@ -456,13 +462,16 @@ var marketSharesCtrl=function($scope,$http){
                             text: 'Period'
                         }
                     },
-                    plotOptions: {
-                        line: {
-                            dataLabels: {
-                                enabled: true
-                            },
-                            enableMouseTracking: false
-                        }
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
                     }
                 },
                 series: previousElecssoriesValue,
@@ -488,13 +497,16 @@ var marketSharesCtrl=function($scope,$http){
                             text: 'Period'
                         }
                     },
-                    plotOptions: {
-                        line: {
-                            dataLabels: {
-                                enabled: true
-                            },
-                            enableMouseTracking: false
-                        }
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
                     }
                 },
                 series: previousHealthBeautiesValue,
@@ -520,13 +532,16 @@ var marketSharesCtrl=function($scope,$http){
                             text: 'Period'
                         }
                     },
-                    plotOptions: {
-                        line: {
-                            dataLabels: {
-                                enabled: true
-                            },
-                            enableMouseTracking: false
-                        }
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
                     }
                 },
                 series: currentElecssoriesVolume,
@@ -552,13 +567,16 @@ var marketSharesCtrl=function($scope,$http){
                             text: 'Period'
                         }
                     },
-                    plotOptions: {
-                        line: {
-                            dataLabels: {
-                                enabled: true
-                            },
-                            enableMouseTracking: false
-                        }
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
                     }
                 },
                 series: currentHealthBeautiesVolume,
@@ -584,13 +602,16 @@ var marketSharesCtrl=function($scope,$http){
                             text: 'Period'
                         }
                     },
-                    plotOptions: {
-                        line: {
-                            dataLabels: {
-                                enabled: true
-                            },
-                            enableMouseTracking: false
-                        }
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
                     }
                 },
                 series: currentElecssoriesValue,
@@ -616,13 +637,16 @@ var marketSharesCtrl=function($scope,$http){
                             text: 'Period'
                         }
                     },
-                    plotOptions: {
-                        line: {
-                            dataLabels: {
-                                enabled: true
-                            },
-                            enableMouseTracking: false
-                        }
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
                     }
                 },
                 series: currentHealthBeautiesValue,

@@ -395,7 +395,7 @@ var salesCtrl=function($scope,$http){
                     },
                     tooltip: {
                         formatter: function() {
-                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">mln units:'+this.point.y+'</p>';
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">mln units:'+this.point.y.toFixed(2)+'</p>';
                             return s;
                         },
                         shared: false,
@@ -403,11 +403,6 @@ var salesCtrl=function($scope,$http){
                     },
                     credits: {
                         enabled: false
-                    },
-                    legend: {
-                        layout:'vertical',
-                        align: 'right',
-                        verticalAlign: 'middle'
                     }
                 },
                 series: previousElecssoriesVolume,
@@ -436,7 +431,7 @@ var salesCtrl=function($scope,$http){
                     },
                     tooltip: {
                         formatter: function() {
-                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">mln units:'+this.point.y+'</p>';
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">mln units:'+this.point.y.toFixed(2)+'</p>';
                             return s;
                         },
                         shared: false,
@@ -472,7 +467,7 @@ var salesCtrl=function($scope,$http){
                     },
                     tooltip: {
                         formatter: function() {
-                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">$mln:'+this.point.y+'</p>';
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">$mln:'+this.point.y.toFixed(2)+'</p>';
                             return s;
                         },
                         shared: false,
@@ -480,11 +475,6 @@ var salesCtrl=function($scope,$http){
                     },
                     credits: {
                         enabled: false
-                    },
-                    legend: {
-                        layout:'vertical',
-                        align: 'right',
-                        verticalAlign: 'middle'
                     }
                 },
                 series: previousElecssoriesValue,
@@ -513,7 +503,7 @@ var salesCtrl=function($scope,$http){
                     },
                     tooltip: {
                         formatter: function() {
-                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">$mln:'+this.point.y+'</p>';
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">$mln:'+this.point.y.toFixed(2)+'</p>';
                             return s;
                         },
                         shared: false,
@@ -549,7 +539,7 @@ var salesCtrl=function($scope,$http){
                     },
                     tooltip: {
                         formatter: function() {
-                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">mln units:'+this.point.y+'</p>';
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">mln units:'+this.point.y.toFixed(2)+'</p>';
                             return s;
                         },
                         shared: false,
@@ -585,7 +575,7 @@ var salesCtrl=function($scope,$http){
                     },
                     tooltip: {
                         formatter: function() {
-                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">mln units:'+this.point.y+'</p>';
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">mln units:'+this.point.y.toFixed(2)+'</p>';
                             return s;
                         },
                         shared: false,
@@ -621,7 +611,7 @@ var salesCtrl=function($scope,$http){
                     },
                     tooltip: {
                         formatter: function() {
-                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">$mln:'+this.point.y+'</p>';
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">$mln:'+this.point.y.toFixed(2)+'</p>';
                             return s;
                         },
                         shared: false,
@@ -657,7 +647,7 @@ var salesCtrl=function($scope,$http){
                     },
                     tooltip: {
                         formatter: function() {
-                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">$mln:'+this.point.y+'</p>';
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">$mln:'+this.point.y.toFixed(2)+'</p>';
                             return s;
                         },
                         shared: false,
