@@ -391,7 +391,8 @@ var salesCtrl=function($scope,$http){
                         categories: previousCategories,
                         title: {
                             text: 'Period'
-                        }
+                        },
+                        tickmarkPlacement: 'on'
                     },
                     tooltip: {
                         formatter: function() {
@@ -463,7 +464,8 @@ var salesCtrl=function($scope,$http){
                         categories: previousCategories,
                         title: {
                             text: 'Period'
-                        }
+                        },
+                        tickmarkPlacement: 'on'
                     },
                     tooltip: {
                         formatter: function() {

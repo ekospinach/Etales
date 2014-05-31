@@ -41,6 +41,30 @@
       font-size: 20px;
       line-height: 20px;
     }
+    .highcharts-subtitle{
+      width: 75%;
+    }
+    .text-left {
+      width: 33%;
+      font-size: 20px;
+      float: left;
+      margin-bottom:0px;
+      text-align: left;
+    }
+    .text-right {
+      width: 33%;
+      font-size: 20px;
+      float: left;
+      margin-bottom:0px;
+      text-align: right;
+    }
+    .text-center {
+      width: 33%;
+      font-size: 20px;
+      float: left;
+      margin-bottom:0px;
+      text-align: center;
+    }
     </style>
     <!--[if lt IE 9]>
     <script src="bower_components/reveal.js/lib/js/html5shiv.js"></script>
@@ -170,32 +194,36 @@
           <section>
             <h3><span class="blueLetter">Supplier KPIs</span> - Effectiveness of Trade Spending</h3>
             <hr>
-            <highchart id="chart30" config="tradeSpendingElecssories"style="width:50%;float:left;height:500px"></highchart>
-            <highchart id="chart31" config="tradeSpendingHealthBeauties"style="width:50%;float:left;height:500px"></highchart>
+            <highchart id="chart30" config="tradeSpendingElecssories" style="width:50%;float:left;height:500px"></highchart>
+            <highchart id="chart31" config="tradeSpendingHealthBeauties" style="width:50%;float:left;height:500px"></highchart>
           </section>          
           <section>
             <h3><span class="blueLetter">Supplier KPIs</span> - Effectiveness of Marketing Spending</h3>
             <hr>
-            <highchart id="chart32" config="marketingSpendingElecssories"style="width:50%;float:left;height:500px"></highchart>
-            <highchart id="chart33" config="marketingSpendingHealthBeauties"style="width:50%;float:left;height:500px"></highchart>
+            <highchart id="chart32" config="marketingSpendingElecssories" style="width:50%;float:left;height:500px"></highchart>
+            <highchart id="chart33" config="marketingSpendingHealthBeauties" style="width:50%;float:left;height:500px"></highchart>
           </section>     
           <section>
             <h3><span class="blueLetter">Supplier KPIs</span> - Portfolio Strength</h3>
-            <highchart id="chart34" config="portfolioStrengthElecssories"style="width:50%;float:left;height:500px"></highchart>
-            <highchart id="chart35" config="portfolioStrengthHealthBeauties"style="width:50%;float:left;height:500px"></highchart>
             <hr>
+            <highchart id="chart34" config="portfolioStrengthElecssories" style="width:50%;float:left;height:500px"></highchart>
+            <highchart id="chart35" config="portfolioStrengthHealthBeauties" style="width:50%;float:left;height:500px"></highchart>
           </section>     
           <section>
             <h3><span class="blueLetter">Supplier KPIs</span> - B&M Channel Strength</h3>
             <hr>
+            <highchart id="chart36" config="bmChannelStrengthElecssories" style="height:300px"></highchart>
+            <highchart id="chart37" config="bmChannelStrengthHealthBeauties" style="height:300px"></highchart>
           </section>                                           
           <section>
             <h3><span class="blueLetter">Supplier KPIs</span> - Online Channel Strength</h3>
             <hr>
+            <highchart id="chart38" config="onlineChannelStrengthElecssories" style="height:300px"></highchart>
+            <highchart id="chart39" config="onlineChannelStrengthHealthBeauties" style="height:300px"></highchart>
           </section>                  
         </section>
 
-        <section>
+        <section ng-controller="retailerKPIsCtrl">
           <section>
             <h3><span class="orangeLetter">Retailer KPIs</span> - Rotation Index</h3>
             <hr>
