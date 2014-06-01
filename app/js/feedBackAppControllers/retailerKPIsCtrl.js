@@ -113,6 +113,24 @@ var retailerKPIsCtrl=function($scope,$http){
                 data:new Array(),
                 color:'#F05422'
             });
+            var ruralStockCover=new Array({
+                name:'Retailer-1',
+                data:new Array(),
+                color:'#8B288B'
+            },{
+                name:'Retailer-2',
+                data:new Array(),
+                color:'#F05422'
+            });
+            var urbanStockCover=new Array({
+                name:'Retailer-1',
+                data:new Array(),
+                color:'#8B288B'
+            },{
+                name:'Retailer-2',
+                data:new Array(),
+                color:'#F05422'
+            });
 
             //rotationIndexSalesValue
             for(var j=0;j<currentCategories.length;j++){
@@ -213,8 +231,23 @@ var retailerKPIsCtrl=function($scope,$http){
                     }
                 }
             }
+            //Stock Cover
+            for(var j=0;j<currentCategories.length;j++){
+                for(var i=0;i<data.data.f_RetailersStocksCover.length;i++){
+                    if(data.data.f_RetailersStocksCover[i].period==currentCategories[j]){
+                        if(data.data.f_RetailersStocksCover[i].categoryID==3){
+                            if(data.data.f_RetailersStocksCover[i].marketID==1){
+                                urbanStockCover[data.data.f_RetailersStocksCover[i].retailerID-1].data.push(data.data.f_RetailersStocksCover[i].value);
+                            }else if(data.data.f_RetailersStocksCover[i].marketID==2){
+                                ruralStockCover[data.data.f_RetailersStocksCover[i].retailerID-1].data.push(data.data.f_RetailersStocksCover[i].value);
+                            }
+                        }
+                    }
+                }
+            }
 
-            console.log(currentRuralProfitabilityIndex);
+            //ShareofShoppers
+
 
 
             $scope.rotationIndexSalesValueElecssories={
@@ -556,6 +589,79 @@ var retailerKPIsCtrl=function($scope,$http){
                     }
                 },
                 series: currentUrbanProfitabilityIndex,
+                loading: false
+            }
+
+            $scope.urbanStockCover = {
+                options: {
+                    title:{
+                        text:'Urban Market',
+                    },
+                    chart: {
+                        type: 'line',
+                        backgroundColor: 'transparent',
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Stock Cover (in Weeks)'
+                        },
+                        gridLineColor: 'transparent'
+                    },
+                    xAxis: {
+                        categories: currentCategories,
+                        title: {
+                            text: 'Period'
+                        }
+                    },
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">Stock Cover:'+this.point.y.toFixed(2)+'(in Weeks)</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
+                    }
+                },
+                series: urbanStockCover,
+                loading: false
+            }
+            $scope.ruralStockCover = {
+                options: {
+                    title:{
+                        text:'Rural Market',
+                    },
+                    chart: {
+                        type: 'line',
+                        backgroundColor: 'transparent',
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Stock Cover (in Weeks)'
+                        },
+                        gridLineColor: 'transparent'
+                    },
+                    xAxis: {
+                        categories: currentCategories,
+                        title: {
+                            text: 'Period'
+                        }
+                    },
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">Stock Cover:'+this.point.y.toFixed(2)+'(in Weeks)</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
+                    }
+                },
+                series: ruralStockCover,
                 loading: false
             }
 
