@@ -76,6 +76,44 @@ var retailerKPIsCtrl=function($scope,$http){
                 data:new Array(),
                 color:'#F05422'
             });
+
+            var previousUrbanProfitabilityIndex=new Array({
+                name:'Retailer-1',
+                data:new Array(),
+                color:'#8B288B'
+            },{
+                name:'Retailer-2',
+                data:new Array(),
+                color:'#F05422'
+            });
+            var currentUrbanProfitabilityIndex=new Array({
+                name:'Retailer-1',
+                data:new Array(),
+                color:'#8B288B'
+            },{
+                name:'Retailer-2',
+                data:new Array(),
+                color:'#F05422'
+            });
+            var previousRuralProfitabilityIndex=new Array({
+                name:'Retailer-1',
+                data:new Array(),
+                color:'#8B288B'
+            },{
+                name:'Retailer-2',
+                data:new Array(),
+                color:'#F05422'
+            });
+            var currentRuralProfitabilityIndex=new Array({
+                name:'Retailer-1',
+                data:new Array(),
+                color:'#8B288B'
+            },{
+                name:'Retailer-2',
+                data:new Array(),
+                color:'#F05422'
+            });
+
             //rotationIndexSalesValue
             for(var j=0;j<currentCategories.length;j++){
                 for(var i=0;i<data.data.f_RetailersValueRotationIndex.length;i++){
@@ -147,6 +185,36 @@ var retailerKPIsCtrl=function($scope,$http){
                 }
             }
 
+            //currentProfitability Index
+            for(var j=0;j<currentCategories.length;j++){
+                for(var i=0;i<data.data.f_RetailersProfitabilityIndex.length;i++){
+                    if(data.data.f_RetailersProfitabilityIndex[i].period==currentCategories[j]){
+                        if(data.data.f_RetailersProfitabilityIndex[i].categoryID==3){
+                            if(data.data.f_RetailersProfitabilityIndex[i].marketID==1){
+                                currentUrbanProfitabilityIndex[data.data.f_RetailersProfitabilityIndex[i].retailerID-1].data.push(data.data.f_RetailersProfitabilityIndex[i].value);
+                            }else if(data.data.f_RetailersProfitabilityIndex[i].marketID==2){
+                                currentRuralProfitabilityIndex[data.data.f_RetailersProfitabilityIndex[i].retailerID-1].data.push(data.data.f_RetailersProfitabilityIndex[i].value);
+                            }
+                        }
+                    }
+                }
+            }
+            //previousProfitability Index
+            for(var j=0;j<previousCategories.length;j++){
+                for(var i=0;i<data.data.f_RetailersProfitabilityIndex.length;i++){
+                    if(data.data.f_RetailersProfitabilityIndex[i].period==previousCategories[j]){
+                        if(data.data.f_RetailersProfitabilityIndex[i].categoryID==3){
+                            if(data.data.f_RetailersProfitabilityIndex[i].marketID==1){
+                                previousUrbanProfitabilityIndex[data.data.f_RetailersProfitabilityIndex[i].retailerID-1].data.push(data.data.f_RetailersProfitabilityIndex[i].value);
+                            }else if(data.data.f_RetailersProfitabilityIndex[i].marketID==2){
+                                previousRuralProfitabilityIndex[data.data.f_RetailersProfitabilityIndex[i].retailerID-1].data.push(data.data.f_RetailersProfitabilityIndex[i].value);
+                            }
+                        }
+                    }
+                }
+            }
+
+            console.log(currentRuralProfitabilityIndex);
 
 
             $scope.rotationIndexSalesValueElecssories={
@@ -247,7 +315,6 @@ var retailerKPIsCtrl=function($scope,$http){
                 },
                 loading: false
             }
-
             $scope.rotationIndexSalesVolumeElecssories={
                 options: {
                     xAxis: {
@@ -344,6 +411,151 @@ var retailerKPIsCtrl=function($scope,$http){
                 credits: {
                     enabled: false
                 },
+                loading: false
+            }
+
+            $scope.previousRuralProfitabilityIndex = {
+                options: {
+                    title:{
+                        text:'Rural Market',
+                    },
+                    chart: {
+                        type: 'line',
+                        backgroundColor: 'transparent',
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Profitability Index($mln)'
+                        },
+                        gridLineColor: 'transparent'
+                    },
+                    xAxis: {
+                        categories: currentCategories,
+                        title: {
+                            text: 'Period'
+                        }
+                    },
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">Profitability Index:'+this.point.y.toFixed(2)+'($mln)</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
+                    }
+                },
+                series: previousRuralProfitabilityIndex,
+                loading: false
+            }
+            $scope.previousUrbanProfitabilityIndex = {
+                options: {
+                    title:{
+                        text:'Urban Market',
+                    },
+                    chart: {
+                        type: 'line',
+                        backgroundColor: 'transparent',
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Profitability Index($mln)'
+                        },
+                        gridLineColor: 'transparent'
+                    },
+                    xAxis: {
+                        categories: currentCategories,
+                        title: {
+                            text: 'Period'
+                        }
+                    },
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">Profitability Index:'+this.point.y.toFixed(2)+'($mln)</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
+                    }
+                },
+                series: previousUrbanProfitabilityIndex,
+                loading: false
+            }
+            $scope.currentRuralProfitabilityIndex = {
+                options: {
+                    title:{
+                        text:'Rural Market',
+                    },
+                    chart: {
+                        type: 'line',
+                        backgroundColor: 'transparent',
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Profitability Index($mln)'
+                        },
+                        gridLineColor: 'transparent'
+                    },
+                    xAxis: {
+                        categories: currentCategories,
+                        title: {
+                            text: 'Period'
+                        }
+                    },
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">Profitability Index:'+this.point.y.toFixed(2)+'($mln)</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
+                    }
+                },
+                series: currentRuralProfitabilityIndex,
+                loading: false
+            }
+            $scope.currentUrbanProfitabilityIndex = {
+                options: {
+                    title:{
+                        text:'Urban Market',
+                    },
+                    chart: {
+                        type: 'line',
+                        backgroundColor: 'transparent',
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Profitability Index($mln)'
+                        },
+                        gridLineColor: 'transparent'
+                    },
+                    xAxis: {
+                        categories: currentCategories,
+                        title: {
+                            text: 'Period'
+                        }
+                    },
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">Profitability Index:'+this.point.y.toFixed(2)+'($mln)</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
+                    }
+                },
+                series: currentUrbanProfitabilityIndex,
                 loading: false
             }
 
