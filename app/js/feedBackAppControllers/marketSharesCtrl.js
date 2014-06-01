@@ -372,6 +372,9 @@ var marketSharesCtrl=function($scope,$http){
                 }
             }
 
+            console.log(previousCategories);
+            console.log(previousElecssoriesVolume);
+
             $scope.previousSharesVolumeElecssories = {
                 options: {
                     title:{
@@ -407,6 +410,7 @@ var marketSharesCtrl=function($scope,$http){
                 series: previousElecssoriesVolume,
                 loading: false
             }
+
             $scope.previousSharesVolumeHealthBeauties = {
                 options: {
                     title:{
