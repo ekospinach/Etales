@@ -116,7 +116,22 @@ define(['directives', 'services'], function(directives){
                         
                 }
 
-                //check
+                /*
+                Private Labels are produced by supplier 4. 
+                It's Acquired Technology Level and others are constantly upgraded 
+                and are supposed to be used for "Hi-Tech" products competing with 
+                with products from S1, S2, S3. Production of Private Labels is a 
+                sort of spin-off activity. Producer 4 is not using its highest 
+                technology, designn, etc levels to produce Private Labels.
+
+                So, for Private Labels, yoy have to take everything three levels below. 
+
+                For instance, if Producer 4 has Acquired Technology Level = 12, 
+                he can produce his own hi-tech products using ATL=12, 
+                but private labels ordered at producer 4 can only use ATL = 9 = (12 -3)
+                */               
+
+                //Design Level range : 1 ~ (AcquiredDesignLevel - 3)
 				scope.checkDesign=function(category,brandName,varName,location,additionalIdx,index,value){
 					var d = $q.defer();	
 					var categoryID=0,max=0;
@@ -145,7 +160,7 @@ define(['directives', 'services'], function(directives){
 					});
 					return d.promise;
 				}
-
+                //Technology range : 1 ~ (AcquiredDesignLevel - 3)
 				scope.checkTechnology=function(category,brandName,varName,location,additionalIdx,index,value){
 					var d=$q.defer();
 					var categoryID=0,max=0;
@@ -175,39 +190,7 @@ define(['directives', 'services'], function(directives){
 					return d.promise;
 				}
 
-                scope.checkValue=function(category,brandName,varName,location,additionalIdx,index,value){
-                    var d=$q.defer();
-                    var max=0;
-                    var filter=/^[0-9]*[1-9][0-9]*$/;
-                    if(!filter.test(value)){
-                        d.resolve(Label.getContent('Input a Integer'));
-                    }
-                    var url='/checkProducerDecision/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer());
-                    $http({
-                        method:'GET',
-                        url:url
-                    }).then(function(data){
-                        if(data.data=="isReady"){
-                            d.resolve(Label.getContent('Check Error'));
-                        }
-                        url="/producerCurrentDecision/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+brandName+'/'+varName;
-                        return $http({
-                                method:'GET',
-                                url:url
-                        });
-                    }).then(function(data){
-                        max=data.data.composition[1]+2;
-                        if(value<1||value>max){
-                            d.resolve(Label.getContent('Input range')+':1~'+max);
-                        }else{
-                            d.resolve();
-                        }
-                    },function(){
-                        d.resolve(Label.getContent('fail'));
-                    });
-                    return d.promise;
-                }
-
+                //Quality-of-Raw Materials & Smoothener Level Range : 1 ~ CurrentTechnologyLevel + 2
 				scope.checkValue=function(category,brandName,varName,location,additionalIdx,index,value){
 					var d=$q.defer();
 					var categoryID=0,max=0;
@@ -509,7 +492,7 @@ define(['directives', 'services'], function(directives){
                 });
                 
                 scope.$on('retailerDecisionBaseChangedFromServer', function(event, data, newBase) {  
-                    scope.pageBase = base;
+                    scope.pageBase = newBase;
                     showView();
                 });             
 

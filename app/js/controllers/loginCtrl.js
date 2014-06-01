@@ -1,7 +1,7 @@
 define(['app','socketIO'], function(app) {
 
-	app.controller('loginCtrl',['$scope', '$http', '$location','$rootScope','Auth','$q','PlayerInfo','SeminarInfo','PeriodInfo','RoleInfo','$modal','$window','notify','ProducerDecisionBase','RetailerDecisionBase', 
-						function($scope, $http, $location,$rootScope,Auth,$q,PlayerInfo,SeminarInfo,PeriodInfo,RoleInfo,$modal, $window, notify, ProducerDecisionBase, RetailerDecisionBase) {
+	app.controller('loginCtrl',['$scope', '$http', '$location','$rootScope','Auth','$q','PlayerInfo','SeminarInfo','PeriodInfo','RoleInfo','$modal','$window','notify',
+						function($scope, $http, $location,$rootScope,Auth,$q,PlayerInfo,SeminarInfo,PeriodInfo,RoleInfo,$modal, $window, notify) {
 		// You can access the scope of the controller from here
 
 		    $rootScope.loginFooter="container";
@@ -201,9 +201,6 @@ define(['app','socketIO'], function(app) {
   //           $scope.bubleMsg = "";
 		// }
 
-		//Register socketIO listeners 
-		ProducerDecisionBase.startListenChangeFromServer(); 
-		RetailerDecisionBase.startListenChangeFromServer();		
 
 	}]);
 

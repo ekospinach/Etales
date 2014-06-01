@@ -172,7 +172,7 @@ define(['directives', 'services'], function(directives){
                 });
 
 	            scope.$on('retailerDecisionBaseChangedFromServer', function(event, data, newBase) {  
-	                scope.pageBase = base;
+	                scope.pageBase = newBase;
 	                showView();
 	            });				
 

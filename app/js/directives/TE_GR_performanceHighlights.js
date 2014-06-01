@@ -47,6 +47,8 @@ define(['directives', 'services'], function(directives){
 
                 var organiseArray = function(data){
                     var deferred = $q.defer();
+
+                    if(data.data[0] == "XXXXX"){ deferred.reject({msg:'XXXXX'}); }
                     if(data.data[0]){
                         scope.operatingProfits=new Array();
                         scope.cumulativeInvestments=new Array();
@@ -78,6 +80,7 @@ define(['directives', 'services'], function(directives){
                     }
                 })
 
+            emitter.on()
 
             }
         }

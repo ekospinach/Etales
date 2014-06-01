@@ -612,17 +612,15 @@ define(['angular',
 				},
 				startListenChangeFromServer : function(){
 					var socket = io.connect();
-					socket.on('socketIO:retailerBaseChanged', function(data){						
+					socket.on('socketIO:retailerBaseChanged', function(data){	
 						//if changed base is modified by current retailer & seminar, reload decision base and broadcast message...
-						if( (data.retailerID == PlayerInfo.getPlayer()) && (data.seminar == SeminarInfo.getSelectedSeminar())  ){
+						if( (data.retailerID ==  PlayerInfo.getPlayer()) && (data.seminar == SeminarInfo.getSelectedSeminar()) ){
 							requestPara.retailerID = parseInt(PlayerInfo.getPlayer());
 							requestPara.period = PeriodInfo.getCurrentPeriod();
 							requestPara.seminar = SeminarInfo.getSelectedSeminar();							
 							getRetailerPromise(RetailerDecision, $q).then(function(newBase){
-								console.log('$rootScope.$broadcast: ' + JSON.stringfy(data));
 								$rootScope.$broadcast('retailerDecisionBaseChangedFromServer', data, newBase);							
 							}, function(reason){
-								console.log('faile $rootScope.$broadcast: ' + JSON.stringfy(data));								
 								$rootScope.$broadcast('retailerDecisionReloadError', data, newBase);							
 
 							});							
@@ -916,8 +914,10 @@ define(['angular',
 		}];
 		var getRetailerPromise=function(RetailerDecision,q){
 			var delay=q.defer();
-			delay.notify('start to get base from server...');
-			RetailerDecision.get({retailerID:requestPara.retailerID,period:requestPara.period,seminar:requestPara.seminar},function(retailerDecision){
+			//delay.notify('start to get base from server...');
+			RetailerDecision.get({retailerID:requestPara.retailerID,
+								  period:requestPara.period,
+								  seminar:requestPara.seminar},function(retailerDecision){
 									base=retailerDecision;
 									delay.resolve(base);
 								},function(){
