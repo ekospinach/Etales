@@ -1,6 +1,6 @@
 define(['app'], function(app) {
 
-	app.controller('NavbarCtrl', ['$scope', '$http', '$location','$rootScope','Auth','Label','notify','ProducerDecisionBase','RetailerDecisionBase',  function($scope, $http, $location,$rootScope,Auth,Label,notify, ProducerDecisionBase, RetailerDecisionBase) {
+	app.controller('NavbarCtrl', ['$scope', '$http', '$location','$rootScope','Auth','Label','notify','ProducerDecisionBase','RetailerDecisionBase','NegotiationBase',  function($scope, $http, $location,$rootScope,Auth,Label,notify, ProducerDecisionBase, RetailerDecisionBase, NegotiationBase) {
 	    $scope.getUserRoleText = function(role) {
 
 	//        console.log('trying to get user role text:' + _.invert(Auth.userRoles)[role]);
@@ -41,6 +41,7 @@ define(['app'], function(app) {
 		//Register socketIO listeners 
 		ProducerDecisionBase.startListenChangeFromServer(); 
 		RetailerDecisionBase.startListenChangeFromServer();		
+		NegotiationBase.startListenChangeFromServer();
 	}]);
 
 });

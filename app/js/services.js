@@ -302,7 +302,30 @@ define(['angular',
 		};
 	}]);
 
+	services.provider('NegotiationBase', function(){
+		this.$get = ['$q', '$rootScope','$http', function($q, $rootScope, $http){
+			return {
+				startListenChangeFromServer : function(){
+					var socket = io.connect();
+					socket.on('socketIO:contractDetailsUpdated', function(data){						
+						//if changed base is modified by current supplier & seminar, reload decision base and broadcast message...
+						switch(data.userType){
+							case 'P': 
+								if( (data.producerID == PlayerInfo.getPlayer()) && (data.seminar == SeminarInfo.getSelectedSeminar())  ){
+									
+								}	
+								break;
+							case 'R': 
+								if( (data.retailerID == PlayerInfo.getPlayer()) && (data.seminar == SeminarInfo.getSelectedSeminar()) ){
 
+								}
+								break;
+						}
+					});					
+				}
+			}
+		}]
+	})
 	services.provider('ProducerDecisionBase', function(){
 		var requestPara = {
 				period : 0,

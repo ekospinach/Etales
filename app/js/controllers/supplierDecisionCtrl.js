@@ -49,7 +49,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 				}
 			}
 
-			var loadBackgroundData = function() {
+			var loadBackgroundDataAndCalculateDecisionInfo = function() {
 				var categoryID = 0,
 					acMax = 0,
 					abMax = 0,
@@ -160,11 +160,11 @@ define(['app','socketIO','routingConfig'], function(app) {
 	    	}
 
 
-			loadBackgroundData();
+			loadBackgroundDataAndCalculateDecisionInfo();
 			showProductPortfolioManagement();
 			$scope.switching = switching;
 			$scope.showProductPortfolioManagement = showProductPortfolioManagement;
-			$scope.loadBackgroundData = loadBackgroundData();
+			$scope.loadBackgroundDataAndCalculateDecisionInfo = loadBackgroundDataAndCalculateDecisionInfo();
 
 		    $scope.$watch('isPageLoading', function(newValue, oldValue){
 		    	$scope.isPageLoading = newValue;	    	
@@ -172,13 +172,13 @@ define(['app','socketIO','routingConfig'], function(app) {
 
 		    //handle Supplier Decision module push notification messages
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, data, newBase) {  
-				loadBackgroundData();
+				loadBackgroundDataAndCalculateDecisionInfo();
 				notify('Decision has been saved, Supplier ' + data.producerID  + ' Period ' + data.period + '.');
 			});
 
 
 			$scope.$on('producerReportPurchaseDecisionChanged', function(event, data, newBase) {  
-				loadBackgroundData();
+				loadBackgroundDataAndCalculateDecisionInfo();
 				notify('Report purchase decision saved, Supplier ' + data.producerID  + ' Period ' + data.period + '.');				
 			});
 
