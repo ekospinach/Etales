@@ -137,6 +137,9 @@ define(['directives', 'services'], function(directives){
                                 series: {
                                     stacking: 'percent'
                                 }
+                            },
+                            credits: {
+                                enabled: false
                             }
                         },
                         series: scope.marketShare1Series,
@@ -144,7 +147,7 @@ define(['directives', 'services'], function(directives){
                             text: Label.getContent('Elecssories')+' - '+Label.getContent('Volume Market Shares')
                         },
                         credits: {
-                            enabled: true
+                            enabled: false
                         },
                         loading: false
                     }
@@ -191,6 +194,9 @@ define(['directives', 'services'], function(directives){
                                 series: {
                                     stacking: 'percent'
                                 }
+                            },
+                            credits: {
+                                enabled: false
                             }
                         },
                         series: scope.marketShare2Series,
@@ -198,7 +204,7 @@ define(['directives', 'services'], function(directives){
                             text: Label.getContent('Elecssories')+' - '+Label.getContent('Value Market Shares')
                         },
                         credits: {
-                            enabled: true
+                            enabled: false
                         },
                         loading: false
                     }
@@ -244,6 +250,9 @@ define(['directives', 'services'], function(directives){
                                 series: {
                                     stacking: 'percent'
                                 }
+                            },
+                            credits: {
+                                enabled: false
                             }
                         },
                         series: scope.marketShare3Series,
@@ -251,7 +260,7 @@ define(['directives', 'services'], function(directives){
                             text: Label.getContent('HealthBeauties')+' - '+Label.getContent('Volume Market Shares')
                         },
                         credits: {
-                            enabled: true
+                            enabled: false
                         },
                         loading: false
                     }
@@ -297,6 +306,9 @@ define(['directives', 'services'], function(directives){
                                 series: {
                                     stacking: 'percent'
                                 }
+                            },
+                            credits: {
+                                enabled: false
                             }
                         },
                         series: scope.marketShare4Series,
@@ -304,7 +316,7 @@ define(['directives', 'services'], function(directives){
                             text: Label.getContent('HealthBeauties')+' - '+Label.getContent('Value Market Shares')
                         },
                         credits: {
-                            enabled: true
+                            enabled: false
                         },
                         loading: false
                     }

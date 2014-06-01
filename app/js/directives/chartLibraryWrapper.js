@@ -149,7 +149,10 @@ define(['directives'], function(directives){
                             },
                             shared: false,
                             useHTML: true
-                        },                      
+                        },   
+                        credits: {
+                            enabled: false
+                        },                  
                         series: scope.mySeries1     
                     });
                 }
@@ -182,7 +185,10 @@ define(['directives'], function(directives){
                             },
                             shared: false,
                             useHTML: true
-                         },                      
+                        },
+                        credits: {
+                            enabled: false
+                        },                         
                         series: scope.mySeries2     
                     });
                 }
@@ -215,6 +221,9 @@ define(['directives'], function(directives){
                             },
                             shared: false,
                             useHTML: true
+                        },   
+                        credits: {
+                            enabled: false
                         },                      
                         series: scope.mySeries1     
                     });
@@ -249,7 +258,10 @@ define(['directives'], function(directives){
                             },
                             shared: false,
                             useHTML: true
-                         },                      
+                        }, 
+                        credits: {
+                            enabled: false
+                        },                        
                         series: scope.mySeries2     
                     }); 
                 }
@@ -282,7 +294,10 @@ define(['directives'], function(directives){
                             },
                             shared: false,
                             useHTML: true
-                        },                      
+                        },  
+                        credits: {
+                            enabled: false
+                        },                       
                         series: scope.mySeries1     
                     }); 
                 }   
@@ -315,7 +330,10 @@ define(['directives'], function(directives){
                             },
                             shared: false,
                             useHTML: true
-                         },                      
+                        },
+                        credits: {
+                            enabled: false
+                        },                         
                         series: scope.mySeries2     
                     });
                 }
@@ -348,7 +366,10 @@ define(['directives'], function(directives){
                             },
                             shared: false,
                             useHTML: true
-                        },                      
+                        },
+                        credits: {
+                            enabled: false
+                        },                         
                         series: scope.mySeries1     
                     });
                 }
@@ -381,7 +402,10 @@ define(['directives'], function(directives){
                             },
                             shared: false,
                             useHTML: true
-                         },                      
+                        },
+                        credits: {
+                            enabled: false
+                        },                         
                         series: scope.mySeries2     
                     }); 
                 }
@@ -415,7 +439,10 @@ define(['directives'], function(directives){
                             },
                             shared: false,
                             useHTML: true
-                        },                      
+                        },
+                        credits: {
+                            enabled: false
+                        },                         
                         series: scope.retailerPerceptionsSeries1     
                     });
                 }
@@ -449,7 +476,10 @@ define(['directives'], function(directives){
                             },
                             shared: false,
                             useHTML: true
-                        },                      
+                        }, 
+                        credits: {
+                            enabled: false
+                        },                        
                         series: scope.retailerPerceptionsSeries2     
                     });
                 }
@@ -480,7 +510,10 @@ define(['directives'], function(directives){
                         }, 
                         tooltip: {
                             crosshairs: true
-                        },                     
+                        },  
+                        credits: {
+                            enabled: false
+                        },                      
                         series: scope.forecastsConsumerSeries1     
                     });
                 }
@@ -510,7 +543,10 @@ define(['directives'], function(directives){
                         }, 
                         tooltip: {
                             crosshairs: true
-                        },                     
+                        },
+                        credits: {
+                            enabled: false
+                        },                        
                         series: scope.forecastsConsumerSeries2     
                     });
                 }
@@ -540,7 +576,10 @@ define(['directives'], function(directives){
                         }, 
                         tooltip: {
                             crosshairs: true
-                        },                     
+                        },  
+                        credits: {
+                            enabled: false
+                        },                      
                         series: scope.forecastsConsumerSeries3     
                     }); 
                 }
@@ -570,7 +609,10 @@ define(['directives'], function(directives){
                         }, 
                         tooltip: {
                             crosshairs: true
-                        },                     
+                        }, 
+                        credits: {
+                            enabled: false
+                        },                       
                         series: scope.forecastsConsumerSeries4     
                     });
                 }
@@ -600,7 +642,10 @@ define(['directives'], function(directives){
                         }, 
                         tooltip: {
                             crosshairs: true
-                        },                     
+                        }, 
+                        credits: {
+                            enabled: false
+                        },                       
                         series: scope.forecastsShopperSeries1     
                     });
                 } 
@@ -629,7 +674,10 @@ define(['directives'], function(directives){
                         }, 
                         tooltip: {
                             crosshairs: true
-                        },                     
+                        },  
+                        credits: {
+                            enabled: false
+                        },                      
                         series: scope.forecastsShopperSeries2     
                     });
                 }
@@ -659,7 +707,10 @@ define(['directives'], function(directives){
                         }, 
                         tooltip: {
                             crosshairs: true
-                        },                     
+                        }, 
+                        credits: {
+                            enabled: false
+                        },                       
                         series: scope.forecastsShopperSeries3     
                     });
                 }
@@ -689,7 +740,10 @@ define(['directives'], function(directives){
                         }, 
                         tooltip: {
                             crosshairs: true
-                        },                     
+                        }, 
+                        credits: {
+                            enabled: false
+                        },                       
                         series: scope.forecastsShopperSeries4     
                     });
                 }
@@ -728,7 +782,10 @@ define(['directives'], function(directives){
                         }, 
                         tooltip: {
                             crosshairs: true
-                        },                     
+                        },  
+                        credits: {
+                            enabled: false
+                        },                      
                         series: scope.forecastCategorySeries     
                     });
                 }
@@ -759,6 +816,9 @@ define(['directives'], function(directives){
                         }, 
                         tooltip: {
                             crosshairs: true
+                        },   
+                        credits: {
+                            enabled: false
                         },                     
                         series: scope.forecastInternetSeries     
                     });

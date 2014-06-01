@@ -66,6 +66,9 @@ define(['directives', 'services'], function(directives){
                             }
                         },
                             series:scope.awarenessHealthBeauties1Series,
+                            credits: {
+                                enabled: false
+                            },
                             title:{text:Label.getContent('Rural')}
                         };break;
                         case 2:
@@ -85,6 +88,9 @@ define(['directives', 'services'], function(directives){
                             }
                         },
                             series:scope.awarenessHealthBeauties2Series,
+                            credits: {
+                                enabled: false
+                            },
                             title:{text:Label.getContent('Urban')}
                         };break;
                     }

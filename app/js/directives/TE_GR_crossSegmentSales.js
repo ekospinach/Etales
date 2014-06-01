@@ -99,7 +99,7 @@ define(['directives', 'services'], function(directives){
                             text: Label.getContent('Elecssories')+' - '+Label.getContent('Urban')
                         },
                         credits: {
-                            enabled: true
+                            enabled: false
                         },
                         loading: false
                     }
@@ -132,7 +132,7 @@ define(['directives', 'services'], function(directives){
                             text: Label.getContent('Elecssories')+' - '+Label.getContent('Rural')
                         },
                         credits: {
-                            enabled: true
+                            enabled: false
                         },
                         loading: false
                     }
@@ -165,7 +165,7 @@ define(['directives', 'services'], function(directives){
                             text: Label.getContent('HealthBeauties')+' - '+Label.getContent('Urban')
                         },
                         credits: {
-                            enabled: true
+                            enabled: false
                         },
                         loading: false
                     }
@@ -198,7 +198,7 @@ define(['directives', 'services'], function(directives){
                             text: Label.getContent('HealthBeauties')+' - '+Label.getContent('Rural')
                         },
                         credits: {
-                            enabled: true
+                            enabled: false
                         },
                         loading: false
                     }
