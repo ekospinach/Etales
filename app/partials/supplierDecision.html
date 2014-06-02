@@ -30,6 +30,19 @@
     .bs-docs-section{
         padding-top:60px;
     }
+    .col-md-9{
+        width: 80%;
+    }
+    .col-md-3{
+        width: 20%;
+    }
+    @media (min-width: 1200px) {
+      /* Widen the fixed sidebar again */
+      .bs-docs-sidebar.affix-bottom,
+      .bs-docs-sidebar.affix {
+        width: 213px;
+      }
+    }
 
 </style>
 
@@ -107,11 +120,11 @@
                             <td colspan="2"><p>{{Label.getContent('Available Period Capacity')}}</p></td>
                         </tr>
                         <tr>
-                            <td><p class="padding-20">{{Label.getContent('Elecssories')}}</p></td>
+                            <td><p class="padding-10">{{Label.getContent('Elecssories')}}</p></td>
                             <td><p class="text-right"><b>{{eleSurplusProduction}}</b>/{{acEleMax}}</p></td>
                         </tr>
                         <tr>
-                            <td><p class="padding-20">{{Label.getContent('HealthBeauties')}}</p></td>
+                            <td><p class="padding-10">{{Label.getContent('HealthBeauties')}}</p></td>
                             <td><p class="text-right"><b>{{heaSurplusProduction}}</b>/{{acHeaMax}}</p></td>
                         </tr>
                     </tbody>

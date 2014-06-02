@@ -267,12 +267,6 @@ table tr td p,table tr th p{
 .td-danger{
     background-color: #F2DEDE;
 }
-.col-md-9{
-    width: 74%;
-}
-.col-md-3{
-    width: 26%;
-}
 .my-super-awesome-loading-box {
     padding: 10px;
     text-align: center;
