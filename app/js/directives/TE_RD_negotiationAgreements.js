@@ -154,7 +154,7 @@ define(['directives', 'services'], function(directives){
                 scope.checkDiscountRate=function(contractCode,producerID,retailerID,brandName,varName,index,value,volume,bmPrices,category){
                     var d=$q.defer();
                     var discountRate=expend=0;
-                    var filter=/^-?[0-9]+([.]{1}[0-9]{1,2})?$/;
+                    var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
                     if(!filter.test(value)){
                         d.resolve(Label.getContent('Input Number'));
                     }
@@ -261,9 +261,9 @@ define(['directives', 'services'], function(directives){
                 scope.checkBonusRate=function(contractCode,producerID,retailerID,brandName,varName,index,value,volume,bmPrices,category){
                     var d=$q.defer();
                     var discountRate=expend=max=productExpend=r1ContractExpend=r2ContractExpend=0;
-                    var filter=/^-?[0-9]+([.]{1}[0-9]{1,2})?$/;
+                    var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
                     if(!filter.test(value)){
-                        d.resolve(Label.getContent('Input Number'));
+                        d.resolve(Label.getContent('Input  Number'));
                     }
 
                     var url='/checkContractDetails/'+contractCode+'/'+brandName+'/'+varName+'/nc_PerformanceBonusRate';

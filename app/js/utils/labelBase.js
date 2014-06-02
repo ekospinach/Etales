@@ -77,7 +77,7 @@ var getLabelBase = function(){
 		{id:'Retail Market Share (Volume) Info',  ENG:'Retail Market Share (Volume) Info',  CHN:'Retail Market Share (Volume) Info',  RUS:''},
 		{id:'Volume Info',  ENG:'Volume Info',  CHN:'Volume介绍',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'UnitCost Info',  ENG:'UnitCost Info',  CHN:'生成成本介绍',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},

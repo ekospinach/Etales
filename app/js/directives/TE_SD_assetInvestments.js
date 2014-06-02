@@ -60,6 +60,39 @@ define(['directives', 'services'], function(directives){
                     }
                 }
 
+                scope.checkCapacity=function(categoryID,value){
+                    var d=$q.defer();
+                    var MaxCapacityReduction,MaxCapacityIncrease,max,acLeft;
+                    var filter=/^-?[0-9]+([.]{1}[0-9]{1,2})?$/;
+                    if(!filter.test(value)){
+                        d.resolve(Label.getContent('Input Number'));
+                    }else{
+                        var url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+categoryID+'/1';
+                        $http({
+                            method:'GET',
+                            url:url
+                        }).then(function(data){
+                            MaxCapacityReduction=data.data.MaxCapacityReduction;
+                            MaxCapacityIncrease=data.data.MaxCapacityIncrease;
+                            url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar() + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + parseInt(PlayerInfo.getPlayer());
+                            return $http({
+                                method: 'GET',
+                                url: url
+                            });
+                        }).then(function(data){
+                            max=data.data.productionCapacity[categoryID-1];
+                            if(value<max*MaxCapacityReduction||value>max*MaxCapacityIncrease){
+                                d.resolve(Label.getContent('Input range')+':'+max*MaxCapacityReduction+'~'+max*MaxCapacityIncrease);
+                            }else{
+                                d.resolve();
+                            }
+                        },function(data){
+                            d.resolve(Label.getContent('Check Error'));
+                        })
+                    }
+                    return d.promise;
+                }
+
                 scope.checkData=function(categoryID,value){
                     var d=$q.defer();
                     var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;

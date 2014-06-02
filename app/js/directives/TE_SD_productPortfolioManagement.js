@@ -404,6 +404,7 @@ define(['directives', 'services'], function(directives) {
                                 promo_Frequency: 0, //range: 0~52
                                 promo_Rate: 0 //0~1        
                             };
+                            console.log($scope.lauchNewCategory);
 
                             var newproducerDecision = new ProducerDecision();
                             newproducerDecision.packFormat = "ECONOMY";
@@ -469,7 +470,7 @@ define(['directives', 'services'], function(directives) {
                                         break;
                                     }
                                 }
-                                url = "/checkProducerProduct/" + SeminarInfo.getSelectedSeminar() + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer()) + '/' + $scope.lauchNewCategory + '/variant/' + newBrandName + '/' + newproducerDecision.varName;
+                                url = "/checkProducerProduct/" + SeminarInfo.getSelectedSeminar() + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer()) + '/' + $scope.addNewCategory + '/variant/' + newBrandName + '/' + newproducerDecision.varName;
 
                                 $http({
                                     method: 'GET',

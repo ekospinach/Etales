@@ -29,7 +29,7 @@
                     <p class="padding-20" ng-show='$index==1'>{{Label.getContent('HealthBeauties')}}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="category.capacityChange"onaftersave="updateProducerDecision(category.categoryID,'capacityChange',$index)">
+                    <a href="#" editable-text="category.capacityChange" onbeforesave="checkCapacity(category.categoryID,$data)" onaftersave="updateProducerDecision(category.categoryID,'capacityChange',$index)">
                         <p class="text-right">{{ category.capacityChange || 0 }}</p>
                     </a>
                 </td>

@@ -116,7 +116,7 @@ define(['directives', 'services'], function(directives){
 
                 scope.checkOrderVolumes=function(category,brandName,varName,location,additionalIdx,index,value){
                     var d=$q.defer();
-                    var acMax=0;
+                    var categoryID,max,result;
                     if(category=="Elecssories"){
                         category=1;
                     }else{
@@ -131,9 +131,15 @@ define(['directives', 'services'], function(directives){
                         method:'GET',
                         url:url
                     }).then(function(data){
-                        acMax=data.data.productionCapacity[category-1];
-                        if(value>acMax||value<0){
-                            d.resolve(Label.getContent('Input range')+':0~'+acMax);
+                        max=data.data.productionCapacity[category-1];
+                        url="/productionResult/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+brandName+'/'+varName;
+                        return $http({
+                            method:'GET',
+                            url:url
+                        });
+                    }).then(function(data){
+                        if(parseInt(data.data.result)+parseInt(value)>max){
+                            d.resolve(Label.getContent('Input range')+':0~'+(max-parseInt(data.data.result)));
                         }else{
                             d.resolve();
                         }
@@ -149,8 +155,8 @@ define(['directives', 'services'], function(directives){
                     if(!filter.test(value)){
                         d.resolve(Label.getContent('Input a Integer'));
                     }
-                    if(value>182||value<0){
-                        d.resolve(Label.getContent('Input range')+':0~182');
+                    if(value>26||value<0){
+                        d.resolve(Label.getContent('Input range')+':0~26');
                     }else{
                         d.resolve();
                     }

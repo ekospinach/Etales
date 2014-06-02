@@ -798,6 +798,8 @@ exports.checkProducerProduct=function(req,res,next){
                         }
                     }
                 }
+                console.log(count);
+                console.log(result);
                 if(count>=3){
                     res.send(404,{message:'more than 3'});
                 }else if(result!=0){
