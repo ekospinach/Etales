@@ -96,7 +96,7 @@
                     <a href="#" editable-checkbox="product.isRetailerApproved" e-title="{{Label.getContent('Approved')}}?" ng-show='(!product.isProducerApproved)||(product.isProducerApproved&&(!product.isRetailerApproved))' onbeforesave="checkContractDetailsLockStatus(product.contractCode,product.parentBrandName,product.variantName,'isRetailerApproved',$index,$data,1,1)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'isRetailerApproved',$index,$data,1,1)">
                         <p class="text-right">{{ product.isRetailerApproved && Label.getContent('Agree') || Label.getContent('DisAgree') }}</p>
                     </a>
-                    <p class="text-right" ng-show="product.isRetailerApproved&&product.isProducerApproved" class="text-right">{{ product.isRetailerApproved && Label.getContent('Agree') || Label.getContent('DisAgree') }}</p>
+                    <p class="text-right" ng-show="product.isRetailerApproved&&product.isProducerApproved" class="text-right">{{ product.isRetailerApproved && Label.getContent('Agree') || Label.getContent('DisAgree') }} <span class="glyphicon glyphicon-lock"></span></p>
                 </td>
             </tr>
             <tr class="danger">
@@ -149,7 +149,7 @@
                     <a href="#" editable-checkbox="product.isRetailerApproved" e-title="{{Label.getContent('Approved')}}?" ng-show='(!product.isProducerApproved)||(product.isProducerApproved&&(!product.isRetailerApproved))' onbeforesave="checkContractDetailsLockStatus(product.contractCode,product.parentBrandName,product.variantName,'isRetailerApproved',$index,$data,1,1)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'isRetailerApproved',$index,$data,1,1)">
                         <p class="text-right">{{ product.isRetailerApproved && Label.getContent('Agree') || Label.getContent('DisAgree') }}</p>
                     </a>
-                    <p class="text-right" ng-show="product.isRetailerApproved&&product.isProducerApproved" class="text-right">{{ product.isRetailerApproved && Label.getContent('Agree') || Label.getContent('DisAgree') }}</p>
+                    <p class="text-right" ng-show="product.isRetailerApproved&&product.isProducerApproved" class="text-right">{{ product.isRetailerApproved && Label.getContent('Agree') || Label.getContent('DisAgree') }} <span class="glyphicon glyphicon-lock"></span></p>
                 </td>
             </tr>
         </tbody>
@@ -261,7 +261,7 @@
                     <a href="#" editable-checkbox="product.isRetailerApproved" e-title="{{Label.getContent('Approved')}}?" ng-show='(!product.isProducerApproved)||(product.isProducerApproved&&(!product.isRetailerApproved))' onbeforesave="checkContractDetailsLockStatus(product.contractCode,product.parentBrandName,product.variantName,'isRetailerApproved',$index,$data,1,2)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'isRetailerApproved',$index,$data,1,2)">
                         <p class="text-right">{{ product.isRetailerApproved && Label.getContent('Agree') || Label.getContent('DisAgree') }}</p>
                     </a>
-                    <p class="text-right" ng-show="product.isRetailerApproved&&product.isProducerApproved" class="text-right">{{ product.isRetailerApproved && Label.getContent('Agree') || Label.getContent('DisAgree') }}</p>
+                    <p class="text-right" ng-show="product.isRetailerApproved&&product.isProducerApproved" class="text-right">{{ product.isRetailerApproved && Label.getContent('Agree') || Label.getContent('DisAgree') }} <span class="glyphicon glyphicon-lock"></span></p>
                 </td>
             </tr>
             <tr class="danger">
@@ -314,7 +314,7 @@
                     <a href="#" editable-checkbox="product.isRetailerApproved" e-title="{{Label.getContent('Approved')}}?" ng-show='(!product.isProducerApproved)||(product.isProducerApproved&&(!product.isRetailerApproved))' onbeforesave="checkContractDetailsLockStatus(product.contractCode,product.parentBrandName,product.variantName,'isRetailerApproved',$index,$data,1,2)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'isRetailerApproved',$index,$data,1,2)">
                         <p class="text-right">{{ product.isRetailerApproved && Label.getContent('Agree') || Label.getContent('DisAgree') }}</p>
                     </a>
-                    <p class="text-right" ng-show="product.isRetailerApproved&&product.isProducerApproved" class="text-right">{{ product.isRetailerApproved && Label.getContent('Agree') || Label.getContent('DisAgree') }}</p>
+                    <p class="text-right" ng-show="product.isRetailerApproved&&product.isProducerApproved" class="text-right">{{ product.isRetailerApproved && Label.getContent('Agree') || Label.getContent('DisAgree') }} <span class="glyphicon glyphicon-lock"></span></p>
                 </td>
             </tr>
         </tbody>
@@ -422,7 +422,7 @@
                     <a href="#" editable-checkbox="product.isRetailerApproved" e-title="{{Label.getContent('Approved')}}?" ng-show='(!product.isProducerApproved)||(product.isProducerApproved&&(!product.isRetailerApproved))' onbeforesave="checkContractDetailsLockStatus(product.contractCode,product.parentBrandName,product.variantName,'isRetailerApproved',$index,$data,1,3)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'isRetailerApproved',$index,$data,1,3)">
                         <p class="text-right">{{ product.isRetailerApproved && Label.getContent('Agree') || Label.getContent('DisAgree') }}</p>
                     </a>
-                    <p class="text-right" ng-show="product.isRetailerApproved&&product.isProducerApproved" class="text-right">{{ product.isRetailerApproved && Label.getContent('Agree') || Label.getContent('DisAgree') }}</p>
+                    <p class="text-right" ng-show="product.isRetailerApproved&&product.isProducerApproved" class="text-right">{{ product.isRetailerApproved && Label.getContent('Agree') || Label.getContent('DisAgree') }} <span class="glyphicon glyphicon-lock"></span></p>
                 </td>
             </tr>
             <tr class="danger">
@@ -475,7 +475,7 @@
                     <a href="#" editable-checkbox="product.isRetailerApproved" e-title="{{Label.getContent('Approved')}}?" ng-show='(!product.isProducerApproved)||(product.isProducerApproved&&(!product.isRetailerApproved))' onbeforesave="checkContractDetailsLockStatus(product.contractCode,product.parentBrandName,product.variantName,'isRetailerApproved',$index,$data,1,3)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'isRetailerApproved',$index,$data,1,3)">
                         <p class="text-right">{{ product.isRetailerApproved && Label.getContent('Agree') || Label.getContent('DisAgree') }}</p>
                     </a>
-                    <p class="text-right" ng-show="product.isRetailerApproved&&product.isProducerApproved" class="text-right">{{ product.isRetailerApproved && Label.getContent('Agree') || Label.getContent('DisAgree') }}</p>
+                    <p class="text-right" ng-show="product.isRetailerApproved&&product.isProducerApproved" class="text-right">{{ product.isRetailerApproved && Label.getContent('Agree') || Label.getContent('DisAgree') }} <span class="glyphicon glyphicon-lock"></span></p>
                 </td>
             </tr>
         </tbody>

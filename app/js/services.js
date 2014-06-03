@@ -398,10 +398,6 @@ define(['angular',
 						}
 					})
 
-					socket.on('EditSalesTargetVolume',function(data){
-						$rootScope.$broadcast('producerDecisionBaseChangedFromServer', base);
-					});
-
 				},				
 				setSomething : function(sth){
 					//post to server...
@@ -673,12 +669,7 @@ define(['angular',
 								$rootScope.$broadcast('retailerReportPurchaseDecisionChangedError', data, newSeminarData);
 							});
 						}
-					});						
-
-					socket.on('retailerBaseChanged', function(data){
-						//console.log(data);
-						$rootScope.$broadcast('retailerDecisionBaseChangedFromServer', base);
-					});				
+					});								
 				},
 				//step1
 								/* 
