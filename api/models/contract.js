@@ -295,9 +295,12 @@ exports.getContractDetails = function(req, res, next) {
      })
 }
 
-
-//either supplier or Retailer click approve contract, return "no", else return "yes"
-exports.checkContractDetails = function(req, res, next) {
+//Two situation
+//1: Before user commit some normal value(MinimumOrders, DiscountRate...), they want to check if item has been "freeze"
+//In this case, either supplier or Retailer approve item, return True(Freeze)
+//2: Before user want to change isApproved field(isRetilerApproved, isProducerApproved)
+//In this case, only return True when both sides approve item
+exports.checkContractDetailsLockStatus = function(req, res, next) {
      contractVariantDetails.findOne({
           contractCode: req.params.contractCode,
           parentBrandName: req.params.parentBrandName,
@@ -306,19 +309,22 @@ exports.checkContractDetails = function(req, res, next) {
           if (err) {
                next(new Error(err));
           }
-          if ((doc.isProducerApproved && req.params.location != "isRetailerApproved" && req.params.location != "isProducerApproved") || (doc.isRetailerApproved && req.params.location != "isRetailerApproved" && req.params.location != "isProducerApproved") || (doc.isRetailerApproved && doc.isProducerApproved)) {
+          if ((doc.isProducerApproved && req.params.location != "isRetailerApproved" && req.params.location != "isProducerApproved") 
+               || (doc.isRetailerApproved && req.params.location != "isRetailerApproved" && req.params.location != "isProducerApproved") 
+               || (doc.isRetailerApproved && doc.isProducerApproved)) { 
                res.send(200, {
-                    'result': 'no',
+                    'result': true,
                     doc: doc
                });
           } else {
                res.send(200, {
-                    'result': 'yes',
+                    'result': false,
                     doc: doc
                });
           }
      });
 }
+
 exports.getNegotiationExpend = function(req, res, next) {
      contractVariantDetails.find({
           contractCode: req.params.contractCode
@@ -369,7 +375,8 @@ exports.updateContractDetails = function(io) {
 
                producerID : req.body.producerID,
                retailerID : req.body.retailerID,
-               seminar : req.body.seminar
+               seminar : req.body.seminar,
+               period : req.body.period
           };
           contractVariantDetails.findOne({
                contractCode: queryCondition.contractCode,
@@ -383,6 +390,7 @@ exports.updateContractDetails = function(io) {
                if (queryCondition.location != "isProducerApproved" || queryCondition.location != "isRetailerApproved") {
                     doc[queryCondition.modify] = queryCondition.userType;
                }
+
                if (queryCondition.location == "nc_MinimumOrder") {
                     doc.nc_VolumeDiscountRate = 0;
                     doc.nc_VolumeDiscountRate_lastModifiedBy = queryCondition.userType;
@@ -391,6 +399,7 @@ exports.updateContractDetails = function(io) {
                     doc.nc_SalesTargetVolume = 0;
                     doc.nc_SalesTargetVolume_lastModifiedBy = queryCondition.userType;
                }
+
                if (queryCondition.userType == "P") {
                     io.sockets.emit('supplierEditNegotiation', 'Supplier Edit Negotiation');
                } else {
@@ -399,6 +408,7 @@ exports.updateContractDetails = function(io) {
                if (queryCondition.location == "nc_SalesTargetVolume") {
                     io.sockets.emit('EditSalesTargetVolume', 'Supplier Edit Negotiation');
                }
+
                doc.save(function(err, doc, numberAffected) {
                     if (err) {
                          next(new Error(err));
@@ -407,7 +417,8 @@ exports.updateContractDetails = function(io) {
                     io.sockets.emit('socketIO:contractDetailsUpdated', {userType   : queryCondition.userType, 
                                                                         seminar    : queryCondition.seminar, 
                                                                         producerID : queryCondition.producerID, 
-                                                                        retailerID : queryCondition.retailerID});
+                                                                        retailerID : queryCondition.retailerID,
+                                                                        period     : queryCondition.period});
                     res.send(200, doc);
                });
           })

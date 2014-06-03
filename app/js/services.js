@@ -21,10 +21,8 @@ define(['angular',
 		};
 
 		this.$get = function(){
-
 			var self = this, item;
 			var items=new Array();
-
 			return {
 				getContent : function(value){
 					switch(self.currentLanguage){
@@ -303,23 +301,35 @@ define(['angular',
 	}]);
 
 	services.provider('NegotiationBase', function(){
-		this.$get = ['$q', '$rootScope','$http', function($q, $rootScope, $http){
+		var userRoles = routingConfig.userRoles;
+
+		this.$get = ['$q', '$rootScope','$http','SeminarInfo','PlayerInfo','RoleInfo', function($q, $rootScope, $http, SeminarInfo, PlayerInfo, RoleInfo){
 			return {
 				startListenChangeFromServer : function(){
 					var socket = io.connect();
-					socket.on('socketIO:contractDetailsUpdated', function(data){						
-						//if changed base is modified by current supplier & seminar, reload decision base and broadcast message...
-						switch(data.userType){
-							case 'P': 
-								if( (data.producerID == PlayerInfo.getPlayer()) && (data.seminar == SeminarInfo.getSelectedSeminar())  ){
-									
-								}	
-								break;
-							case 'R': 
-								if( (data.retailerID == PlayerInfo.getPlayer()) && (data.seminar == SeminarInfo.getSelectedSeminar()) ){
+					socket.on('socketIO:contractDetailsUpdated', function(data){	
 
-								}
-								break;
+						//Only deal with current seminar push notifications					
+						if(data.seminar == SeminarInfo.getSelectedSeminar()){
+							//Depends on different userRole, broadcast different info
+							console.log(RoleInfo.getRole());
+							switch(parseInt(RoleInfo.getRole())){
+								case userRoles.producer:
+									if((data.userType == 'P') && (data.producerID == PlayerInfo.getPlayer())){										
+										$rootScope.$broadcast('NegotiationBaseChangedSaved',data);
+									} else if((data.userType == 'R') && (data.producerID == PlayerInfo.getPlayer())){
+										$rootScope.$broadcast('NegotiationBaseChangedByRetailer',data);
+									}
+									break;
+								case userRoles.retailer:
+									if((data.userType == 'R') && (data.retailerID == PlayerInfo.getPlayer())){
+										$rootScope.$broadcast('NegotiationBaseChangedSaved',data);										
+									} else if((data.userType == 'P') && (data.retailerID == PlayerInfo.getPlayer())){
+										$rootScope.$broadcast('NegotiationBaseChangedBySupplier',data);
+									}
+									break;
+								case userRoles.facilitator: break;
+							}							
 						}
 					});					
 				}

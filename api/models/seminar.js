@@ -233,9 +233,25 @@ exports.submitPortfolioDecision=function(io){
 					}
 				}
 				doc.markModified('producers');
-                io.sockets.emit('socketIO:producerPortfolioDecisionStatusChanged', {period : queryCondition.period, producerID : queryCondition.producerID, seminar : queryCondition.seminar});
+
+				//notify Retailer that supplier X has committed portfolio decision.
+                io.sockets.emit('socketIO:producerPortfolioDecisionStatusChanged', {period : queryCondition.period, producerID : queryCondition.producerID, seminar : queryCondition.seminar});                
+
+                //notify Retailer to refresh negotiation page automatically 
+                io.sockets.emit('socketIO:contractDetailsUpdated', {userType   : 'P', 
+                                                                        seminar    : queryCondition.seminar, 
+                                                                        producerID : queryCondition.producerID, 
+                                                                        retailerID : 1,
+                                                                        period     : queryCondition.period});
+                io.sockets.emit('socketIO:contractDetailsUpdated', {userType   : 'P', 
+                                                                        seminar    : queryCondition.seminar, 
+                                                                        producerID : queryCondition.producerID, 
+                                                                        retailerID : 2,
+                                                                        period     : queryCondition.period});
+
 				doc.save(function(err){
 					if(!err){
+						//notify supplier that decision has been saved to reload page
                         io.sockets.emit('socketIO:producerBaseChanged', {period : queryCondition.period, producerID : queryCondition.producerID, seminar : queryCondition.seminar});
 						res.send(200,'success');
 					}else{

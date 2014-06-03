@@ -34,8 +34,6 @@
 </style>
 
 <div class="my-super-awesome-loading-box" ng-show="isPageLoading">Loading...</div>
-<div class="my-super-awesome-loading-box" ng-show="isNegotiationChange">{{Label.getContent('Retailer Change')}}</div>
-
 
 <div class="container bs-docs-container">
     <div class="row">
@@ -71,9 +69,9 @@
         </div>
         <div class="col-md-9" ng-show='!isNegotiation'>
             <div class="bs-docs-section">
-                <supplier-product-portfolio-management ng-show='ProductPortfolioManagement' is-page-shown='ProductPortfolioManagement' is-page-loading='isPageLoading' is-ready='isReady'></supplier-product-portfolio-management>
+                <supplier-product-portfolio-management ng-show='ProductPortfolioManagement' is-page-shown='ProductPortfolioManagement' is-page-loading='isPageLoading' is-ready='isPortfolioDecisionReady'></supplier-product-portfolio-management>
                 
-                <supplier-b-m-list-prices ng-show='BMListPrices' is-page-shown='BMListPrices' is-page-loading='isPageLoading' is-ready='isReady'></supplier-b-m-list-prices>
+                <supplier-b-m-list-prices ng-show='BMListPrices' is-page-shown='BMListPrices' is-page-loading='isPageLoading' is-ready='isPortfolioDecisionReady'></supplier-b-m-list-prices>
                 
                 <supplier-production-volume ng-show='ProductionVolume' is-page-shown='ProductionVolume' is-page-loading='isPageLoading'></supplier-production-volume>
                 
@@ -120,7 +118,7 @@
         </div>
         <div class="col-md-12" ng-show='isNegotiation'>
             <div class="bs-docs-section">
-                <supplier-negotiation-agreements ng-show='NegotiationAgreements' is-page-shown='NegotiationAgreements' is-ready='isReady' is-negotiation-change='isNegotiationChange' is-page-loading='isPageLoading'></supplier-negotiation-agreements>
+                <supplier-negotiation-agreements ng-show='NegotiationAgreements' is-page-shown='NegotiationAgreements' is-portfolio-decision-ready='isPortfolioDecisionReady' is-page-loading='isPageLoading'></supplier-negotiation-agreements>
             </div>
         </div>
     </div>

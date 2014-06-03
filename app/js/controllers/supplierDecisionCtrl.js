@@ -65,9 +65,9 @@ define(['app','socketIO','routingConfig'], function(app) {
 					url: url
 				}).then(function(data) {
 					if (data.data == "isReady") {
-						$scope.isReady = true;
+						$scope.isPortfolioDecisionReady = true;
 					} else {
-						$scope.isReady = false;
+						$scope.isPortfolioDecisionReady = false;
 					}
 
 				//Get company history information (available budget, capacity, acquired TL...)

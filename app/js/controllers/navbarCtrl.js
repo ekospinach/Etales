@@ -38,7 +38,7 @@ define(['app'], function(app) {
 			notify('Supplier ' + data.producerID  + ' just committed portfolio decision for period ' + data.period + '.');
 		});
 
-		//Register socketIO listeners 
+		//Register socketIO listeners in NavCtrl which will only be activated once in application
 		ProducerDecisionBase.startListenChangeFromServer(); 
 		RetailerDecisionBase.startListenChangeFromServer();		
 		NegotiationBase.startListenChangeFromServer();

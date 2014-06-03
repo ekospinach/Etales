@@ -1,94 +1,20 @@
 define(['directives', 'services'], function(directives) {
 
-    directives.directive('supplierNegotiationAgreements', ['ProducerDecisionBase', 'ProducerDecision', 'Label', 'SeminarInfo', '$http', '$location', '$filter', 'PeriodInfo', '$q', 'PlayerInfo',
-        function(ProducerDecisionBase, ProducerDecision, Label, SeminarInfo, $http, $location, $filter, PeriodInfo, $q, PlayerInfo) {
+    directives.directive('supplierNegotiationAgreements', ['ProducerDecisionBase', 'ProducerDecision', 'Label', 'SeminarInfo', '$http', '$location', '$filter', 'PeriodInfo', '$q', 'PlayerInfo','notify',
+        function(ProducerDecisionBase, ProducerDecision, Label, SeminarInfo, $http, $location, $filter, PeriodInfo, $q, PlayerInfo, notify) {
             return {
                 scope: {
                     isPageShown: '=',
                     isPageLoading: '=',
-                    isNegotiationChange: '=',
-                    isReady: '='
+                    isPortfolioDecisionReady: '='
                 },
                 restrict: 'E',
                 templateUrl: '../../partials/singleReportTemplate/SD_negotiationAgreements.html',
                 link: function(scope, element, attrs) {
+                    /* 
 
-                    var initializePage = function() {
-                        console.log('initializePage some small...');
-                        scope.isPageLoading = true;
-                        scope.isResultShown = false;
-                        scope.Label = Label;
-                        startListenChangeFromServer();
-                        scope.producerID = PlayerInfo.getPlayer();
-                        getResult();
-                    }
-
-                    var startListenChangeFromServer = function() {
-                        var socket = io.connect();
-                        socket.on('retailerEditNegotiation', function(data) {
-                            scope.isNegotiationChange = true;
-                            getResult();
-                        });
-                    }
-
-                    var loadProduct = function(data, category, retailerID) {
-                        var products = new Array();
-                        for (var i = 0; i < data.length; i++) {
-                            if (data[i].parentBrandName.substring(0, 1) == category) {
-                                products.push(data[i]);
-                            }
-                        }
-                        if (retailerID == 1) {
-                            if (category == "E") {
-                                scope.product1es = products;
-                            } else {
-                                scope.product1hs = products;
-                            }
-                        } else {
-                            if (category == "E") {
-                                scope.product2es = products;
-                            } else {
-                                scope.product2hs = products;
-                            }
-                        }
-                    }
-
-                    scope.checkContractDetails = function(contractCode, brandName, varName, location, index, value, category, retailerID) {
-                        var d = $q.defer();
-                        var url = '/checkContractDetails/' + contractCode + '/' + brandName + '/' + varName + '/' + location;
-                        $http({
-                            method: 'GET',
-                            url: url
-                        }).then(function(data) {
-                            if (data.data.result == "no") {
-                                d.resolve(Label.getContent('This product is locked'));
-                            } else {
-                                d.resolve();
-                            }
-                            if (category == 1) {
-                                switch (retailerID) {
-                                    case 1:
-                                        scope.product1es[index] = data.data.doc;
-                                        break;
-                                    case 2:
-                                        scope.product2es[index] = data.data.doc;
-                                        break;
-                                }
-                            } else {
-                                switch (retailerID) {
-                                    case 1:
-                                        scope.product1hs[index] = data.data.doc;
-                                        break;
-                                    case 2:
-                                        scope.product2hs[index] = data.data.doc;
-                                        break;
-                                }
-                            }
-                        })
-                        return d.promise;
-                    }
-
-                    /*
+                         Input Validation  
+ 
                          Minimum Order range
                          0 ~ Min((1)Supplier's total production capacity minus ( the sum of what has been already approved in this and other deals),
                                  (2)the value of the discount = volume * BM Price * ( 1 -discount rate ) cannot exceed remaining available budget,
@@ -101,13 +27,13 @@ define(['directives', 'services'], function(directives) {
                             d.resolve(Label.getContent('Input a Integer'));
                         }
 
-                        var url = '/checkContractDetails/' + contractCode + '/' + brandName + '/' + varName + '/nc_MinimumOrder';
+                        var url = '/checkContractDetailsLockStatus/' + contractCode + '/' + brandName + '/' + varName + '/nc_MinimumOrder';
                         $http({
                             method: 'GET',
                             url: url
                         }).then(function(data) {
-                            if (data.data.result == "no") {
-                                d.resolve(Label.getContent('This product is locked'));
+                            if (data.data.result) {
+                                d.resolve(Label.getContent('This item has been locked.'));
                             }
 
                             url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar() + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + PlayerInfo.getPlayer();
@@ -166,13 +92,13 @@ define(['directives', 'services'], function(directives) {
                             d.resolve(Label.getContent('Input Number'));
                         }
 
-                        var url = '/checkContractDetails/' + contractCode + '/' + brandName + '/' + varName + '/nc_VolumeDiscountRate';
+                        var url = '/checkContractDetailsLockStatus/' + contractCode + '/' + brandName + '/' + varName + '/nc_VolumeDiscountRate';
                         $http({
                             method: 'GET',
                             url: url
                         }).then(function(data) {
-                            if (data.data.result == "no") {
-                                d.resolve(Label.getContent('This product is locked'));
+                            if (data.data.result) {
+                                d.resolve(Label.getContent('This item has been locked.'));
                             }
 
                             url = '/checkVolume/' + contractCode + '/' + brandName + '/' + varName;
@@ -233,13 +159,13 @@ define(['directives', 'services'], function(directives) {
                             d.resolve(Label.getContent('Input a Integer'));
                         }
 
-                        var url = '/checkContractDetails/' + contractCode + '/' + brandName + '/' + varName + '/nc_SalesTargetVolume';
+                        var url = '/checkContractDetailsLockStatus/' + contractCode + '/' + brandName + '/' + varName + '/nc_SalesTargetVolume';
                         $http({
                             method: 'GET',
                             url: url
                         }).then(function(data) {
-                            if (data.data.result == "no") {
-                                d.resolve(Label.getContent('This product is locked'));
+                            if (data.data.result) {
+                                d.resolve(Label.getContent('This item has been locked.'));
                             }
                             url = '/getOneQuarterExogenousData/' + SeminarInfo.getSelectedSeminar() + '/' + PeriodInfo.getCurrentPeriod() + '/' + category + '/1';
                             return $http({
@@ -301,13 +227,13 @@ define(['directives', 'services'], function(directives) {
                             d.resolve(Label.getContent('Input Number'));
                         }
 
-                        var url = '/checkContractDetails/' + contractCode + '/' + brandName + '/' + varName + '/nc_PerformanceBonusRate';
+                        var url = '/checkContractDetailsLockStatus/' + contractCode + '/' + brandName + '/' + varName + '/nc_PerformanceBonusRate';
                         $http({
                             method: 'GET',
                             url: url
                         }).then(function(data) {
-                            if (data.data.result == "no") {
-                                d.resolve(Label.getContent('This product is locked'));
+                            if (data.data.result) {
+                                d.resolve(Label.getContent('This item has been locked.'));
                             }
                             url = '/checkSalesTargetVolume/' + contractCode + '/' + brandName + '/' + varName;
                             return $http({
@@ -374,13 +300,13 @@ define(['directives', 'services'], function(directives) {
                         if (value > 183 || value < 0) {
                             d.resolve(Label.getContent('Input range') + ':0~183');
                         }
-                        var url = '/checkContractDetails/' + contractCode + '/' + brandName + '/' + varName + '/nc_PaymentDays';
+                        var url = '/checkContractDetailsLockStatus/' + contractCode + '/' + brandName + '/' + varName + '/nc_PaymentDays';
                         $http({
                             method: 'GET',
                             url: url
                         }).then(function(data) {
-                            if (data.data.result == "no") {
-                                d.resolve(Label.getContent('This product is locked'));
+                            if (data.data.result) {
+                                d.resolve(Label.getContent('This item has been locked.'));
                             } else {
                                 d.resolve();
                             }
@@ -405,13 +331,13 @@ define(['directives', 'services'], function(directives) {
                         if (!filter.test(value)) {
                             d.resolve(Label.getContent('Input Number'));
                         }
-                        var url = '/checkContractDetails/' + contractCode + '/' + brandName + '/' + varName + '/nc_OtherCompensation';
+                        var url = '/checkContractDetailsLockStatus/' + contractCode + '/' + brandName + '/' + varName + '/nc_OtherCompensation';
                         $http({
                             method: 'GET',
                             url: url
                         }).then(function(data) {
-                            if (data.data.result == "no") {
-                                d.resolve(Label.getContent('This product is locked'));
+                            if (data.data.result) {
+                                d.resolve(Label.getContent('This item has been locked.'));
                             }
                             url = '/getScrplSales/' + SeminarInfo.getSelectedSeminar() + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/' + PlayerInfo.getPlayer() + '/' + category;
                             return $http({
@@ -446,6 +372,12 @@ define(['directives', 'services'], function(directives) {
                         return d.promise;
                     }
 
+
+                    /* 
+
+                        Data Operation
+
+                    */
                     scope.updateContractDetails = function(contractCode, brandName, varName, location, index, value, category, retailerID) {
                         var postData = {
                             contractCode: contractCode,
@@ -457,7 +389,8 @@ define(['directives', 'services'], function(directives) {
 
                             producerID : PlayerInfo.getPlayer(),
                             retailerID : retailerID,
-                            seminar : SeminarInfo.getSelectedSeminar()
+                            seminar : SeminarInfo.getSelectedSeminar(),
+                            period : PeriodInfo.getCurrentPeriod()
                         };
 
                         $http({
@@ -487,33 +420,32 @@ define(['directives', 'services'], function(directives) {
                         });
                     }
 
-                    var getResult = function() {
-                        if (!scope.isReady) {
+                    var initializePage = function() {
+                        //if Portfolio deicison isReady                            
+                        if(scope.isPortfolioDecisionReady){
+                            scope.isPageLoading = true;
+                            scope.isResultShown = false;
+                            scope.Label = Label;                    
+                            scope.producerID = PlayerInfo.getPlayer();
+                            getResult(1);
+                            getResult(2);
+                        }
+                    }                    
+
+                    var getResult = function(retailerID) {
+                        var url = '/getContractDetails/' + 'P' + PlayerInfo.getPlayer() + 'andR' + retailerID + '_' + SeminarInfo.getSelectedSeminar() + '_' + PeriodInfo.getCurrentPeriod();
+                        $http({
+                            method: 'GET',
+                            url: url,
+                        }).then(function(data) {
+                            return organiseArray(data.data, retailerID);
+                        }).then(function() {
+                            scope.isNegotiationChange = false;
                             scope.isResultShown = true;
                             scope.isPageLoading = false;
-                        } else {
-                            var url = '/getContractDetails/' + 'P' + PlayerInfo.getPlayer() + 'andR1_' + SeminarInfo.getSelectedSeminar() + '_' + PeriodInfo.getCurrentPeriod();
-                            $http({
-                                method: 'GET',
-                                url: url,
-                            }).then(function(data) {
-                                return organiseArray(data.data, 1);
-                            }).then(function() {
-                                url = '/getContractDetails/' + 'P' + PlayerInfo.getPlayer() + 'andR2_' + SeminarInfo.getSelectedSeminar() + '_' + PeriodInfo.getCurrentPeriod();
-                                return $http({
-                                    method: 'GET',
-                                    url: url
-                                });
-                            }).then(function(data) {
-                                return organiseArray(data.data, 2);
-                            }).then(function(data) {
-                                scope.isNegotiationChange = false;
-                                scope.isResultShown = true;
-                                scope.isPageLoading = false;
-                            }, function() {
-                                console.log('fail');
-                            })
-                        }
+                        }, function() {
+                            console.log('fail');
+                        })
                     }
 
                     var organiseArray = function(data, retailerID) {
@@ -526,12 +458,84 @@ define(['directives', 'services'], function(directives) {
                         return deferred.promise;
                     }
 
+                    var loadProduct = function(data, category, retailerID) {
+                        var products = new Array();
+                        for (var i = 0; i < data.length; i++) {
+                            if (data[i].parentBrandName.substring(0, 1) == category) {
+                                products.push(data[i]);
+                            }
+                        }
+                        if (retailerID == 1) {
+                            if (category == "E") {
+                                scope.product1es = products;
+                            } else {
+                                scope.product1hs = products;
+                            }
+                        } else {
+                            if (category == "E") {
+                                scope.product2es = products;
+                            } else {
+                                scope.product2hs = products;
+                            }
+                        }
+                    }
+
+                    //Before user click DisAgree or Agree, check if contract details has been locked(both side choose agree)
+                    //if data.result = true : Lock
+                    //if data.result = false : Not Lock
+                    scope.checkContractDetailsLockStatus = function(contractCode, brandName, varName, location, index, value, category, retailerID) {
+                        var d = $q.defer();
+                        var url = '/checkContractDetailsLockStatus/' + contractCode + '/' + brandName + '/' + varName + '/' + location;
+                        $http({
+                            method: 'GET',
+                            url: url
+                        }).then(function(data) {
+                            //update this item details from server anyway 
+                            if (category == 1) {
+                                switch (retailerID) {
+                                    case 1:
+                                        scope.product1es[index] = data.data.doc;
+                                        break;
+                                    case 2:
+                                        scope.product2es[index] = data.data.doc;
+                                        break;
+                                }
+                            } else {
+                                switch (retailerID) {
+                                    case 1:
+                                        scope.product1hs[index] = data.data.doc;
+                                        break;
+                                    case 2:
+                                        scope.product2hs[index] = data.data.doc;
+                                        break;
+                                }
+                            }
+
+                            if (data.data.result) {
+                                d.resolve(Label.getContent('This item has been locked.'));
+                            } else {
+                                d.resolve();
+                            }
+                        })
+                        return d.promise;
+                    }
 
                     scope.$watch('isPageShown', function(newValue, oldValue) {
                         if (newValue == true) {
                             initializePage();
                         }
                     });
+
+                    scope.$on('NegotiationBaseChangedSaved', function(event, data) {  
+                        getResult(data.retailerID);
+                        notify('Negotiation has been saved, Supplier ' + data.producerID  + ' Period ' + data.period + '.');
+                    });
+
+                    scope.$on('NegotiationBaseChangedByRetailer', function(event, data) {  
+                        getResult(data.retailerID);                        
+                        notify('Negotiation has been updated by Retailer' + data.retailerID  + ' Period ' + data.period + '.');
+                    });
+
                 }
             }
         }

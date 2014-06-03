@@ -60,13 +60,14 @@ module.exports = function(app, io){
     //Get sum of negotiation cost of rest product in same player's decision 
     app.get('/getContractExpend/:seminar/:period/:producerID/:retailerID/:parentBrandName/:variantName',    require('./../api/models/contract.js').getContractExpend);//SalesTargetVolume
     
+    //Check if selected contract details has been lock(both side choose agree)    
+    //return { "result" : true, "doc" : contractDetails} : Locked
+    //return { "result" : false, "doc" : contractDetails}  : not Locked
+    app.get('/checkContractDetailsLockStatus/:contractCode/:parentBrandName/:variantName/:location',        require('./../api/models/contract.js').checkContractDetailsLockStatus);
 
-    //Check if selected contract details has been lock()
-    //return { "result" : "no", "doc" : contractDetails} : Locked
-    //return { "result" : "yes", "doc" : contractDetails}  : not Locked
-    app.get('/checkContractDetails/:contractCode/:parentBrandName/:variantName/:location',                  require('./../api/models/contract.js').checkContractDetails);
 
     app.get('/checkVolume/:contractCode/:parentBrandName/:variantName',                                     require('./../api/models/contract.js').checkVolume);
+    //Check if user has commit Sales target volume decision( nc_SalesTarget <> 0)
     app.get('/checkSalesTargetVolume/:contractCode/:parentBrandName/:variantName',                          require('./../api/models/contract.js').checkSalesTargetVolume);
     app.post('/updateContractDetails',                                                                      require('./../api/models/contract.js').updateContractDetails(io));
     app.post('/removeContract',                                                                             require('./../api/models/contract.js').removeContract(io));
