@@ -368,7 +368,7 @@ define(['directives', 'services'], function(directives){
                                     break;
                                 }
                             }
-                            url="/checkRetailerProduct/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+$scope.lauchNewCategory+'/variant/'+newBrandName+'/'+newretailerDecision.varName;
+                            url="/checkRetailerProduct/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+$scope.addNewCategory+'/variant/'+newBrandName+'/'+newretailerDecision.varName;
                             $http({
                                 method:'GET',
                                 url:url

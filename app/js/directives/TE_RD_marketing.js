@@ -104,64 +104,38 @@ define(['directives', 'services'], function(directives){
 
                 var showView=function(){
                     var d=$q.defer();
-                    var categoryID=0,count=0,result=0,expend=0;
-					//var fakeName="EName",max=100;
-		      		var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/R/'+parseInt(PlayerInfo.getPlayer());
-		      		$http({
-		      			method:'GET',
-		      			url:url
-		      		}).then(function(data){
-		      			if(PeriodInfo.getCurrentPeriod()>=2){
-		      				abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
-		      			}else{
-		      				abMax=data.data.budgetAvailable;
+	      			var markets=new Array();
+					for(var i=0;i<scope.pageBase.retMarketDecision.length;i++){
+		      			if(scope.pageBase.retMarketDecision[i].marketID==1){
+		      				scope.pageBase.retMarketDecision[i].marketName="Urban";			
+		      			}else if(scope.pageBase.retMarketDecision[i].marketID==2){
+		      				scope.pageBase.retMarketDecision[i].marketName="Rural";
 		      			}
-		      			scope.abMax=abMax;
-		      			url="/retailerExpend/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/-1/location/1';
-		      			return $http({
-		      				method:'GET',
-		      				url:url,
-		      			});
-		      		}).then(function(data){
-		      			expend=data.data.result;
-		      			scope.surplusExpend=abMax-expend;
-		      			scope.percentageExpend=(abMax-expend)/abMax*100;
-		      			var markets=new Array();
-						for(var i=0;i<scope.pageBase.retMarketDecision.length;i++){
-			      			if(scope.pageBase.retMarketDecision[i].marketID==1){
-			      				scope.pageBase.retMarketDecision[i].marketName="Urban";			
-			      			}else if(scope.pageBase.retMarketDecision[i].marketID==2){
-			      				scope.pageBase.retMarketDecision[i].marketName="Rural";
-			      			}
-			      			if(scope.pageBase.retMarketDecision[i].serviceLevel=="SL_BASE"){
-			      				scope.pageBase.retMarketDecision[i].serviceLevel=1;
-			      			}else if(scope.pageBase.retMarketDecision[i].serviceLevel=="SL_FAIR"){
-			      				scope.pageBase.retMarketDecision[i].serviceLevel=2;
-			      			}else if(scope.pageBase.retMarketDecision[i].serviceLevel=="SL_MEDIUM"){
-			      				scope.pageBase.retMarketDecision[i].serviceLevel=3;
-			      			}else if(scope.pageBase.retMarketDecision[i].serviceLevel=="SL_ENHANCED"){
-			      				scope.pageBase.retMarketDecision[i].serviceLevel=4;
-			      			}else if(scope.pageBase.retMarketDecision[i].serviceLevel=="SL_PREMIUM"){
-			      				scope.pageBase.retMarketDecision[i].serviceLevel=5;
-			      			}
-			      			if(scope.pageBase.retMarketDecision[i].categorySurfaceShare[0]>=0&&scope.pageBase.retMarketDecision[i].categorySurfaceShare[0]<=1){
-			      				scope.pageBase.retMarketDecision[i].categorySurfaceShare[0]*=100;
-			      				scope.pageBase.retMarketDecision[i].categorySurfaceShare[0]=scope.pageBase.retMarketDecision[i].categorySurfaceShare[0].toFixed(2);
-			      			}
-			      			if(scope.pageBase.retMarketDecision[i].categorySurfaceShare[1]>=0&&scope.pageBase.retMarketDecision[i].categorySurfaceShare[1]<=1){
-			      				scope.pageBase.retMarketDecision[i].categorySurfaceShare[1]*=100;
-			      				scope.pageBase.retMarketDecision[i].categorySurfaceShare[1]=scope.pageBase.retMarketDecision[i].categorySurfaceShare[1].toFixed(2);
-			      			}				      			
-			      			markets.push(scope.pageBase.retMarketDecision[i]);
-			      		}
-			      		scope.markets=markets;
-			      		scope.selectPacks=selectPacks;
-		      		}).then(function(){
-		      			scope.isResultShown = true;
-                        scope.isPageLoading = false; 
-		      		},function(){
-		      			d.reject(Label.getContent('showView fail'));
-		      		});	
+		      			if(scope.pageBase.retMarketDecision[i].serviceLevel=="SL_BASE"){
+		      				scope.pageBase.retMarketDecision[i].serviceLevel=1;
+		      			}else if(scope.pageBase.retMarketDecision[i].serviceLevel=="SL_FAIR"){
+		      				scope.pageBase.retMarketDecision[i].serviceLevel=2;
+		      			}else if(scope.pageBase.retMarketDecision[i].serviceLevel=="SL_MEDIUM"){
+		      				scope.pageBase.retMarketDecision[i].serviceLevel=3;
+		      			}else if(scope.pageBase.retMarketDecision[i].serviceLevel=="SL_ENHANCED"){
+		      				scope.pageBase.retMarketDecision[i].serviceLevel=4;
+		      			}else if(scope.pageBase.retMarketDecision[i].serviceLevel=="SL_PREMIUM"){
+		      				scope.pageBase.retMarketDecision[i].serviceLevel=5;
+		      			}
+		      			if(scope.pageBase.retMarketDecision[i].categorySurfaceShare[0]>=0&&scope.pageBase.retMarketDecision[i].categorySurfaceShare[0]<=1){
+		      				scope.pageBase.retMarketDecision[i].categorySurfaceShare[0]*=100;
+		      				scope.pageBase.retMarketDecision[i].categorySurfaceShare[0]=scope.pageBase.retMarketDecision[i].categorySurfaceShare[0].toFixed(2);
+		      			}
+		      			if(scope.pageBase.retMarketDecision[i].categorySurfaceShare[1]>=0&&scope.pageBase.retMarketDecision[i].categorySurfaceShare[1]<=1){
+		      				scope.pageBase.retMarketDecision[i].categorySurfaceShare[1]*=100;
+		      				scope.pageBase.retMarketDecision[i].categorySurfaceShare[1]=scope.pageBase.retMarketDecision[i].categorySurfaceShare[1].toFixed(2);
+		      			}				      			
+		      			markets.push(scope.pageBase.retMarketDecision[i]);
+		      		}
+		      		scope.markets=markets;
+		      		scope.selectPacks=selectPacks;
+	      			scope.isResultShown = true;
+                    scope.isPageLoading = false; 
 		      		return d.promise;      
                 }
 
