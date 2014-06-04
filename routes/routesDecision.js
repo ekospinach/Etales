@@ -77,7 +77,7 @@ module.exports = function(app, io){
     app.get('/checkProducerDecision/:seminar/:period/:producerID',                                          require('./../api/models/seminar.js').checkProducerDecision);
 
     //Submit supplier research order decision
-    app.post('/submitOrder',                                                                                require('./../api/models/seminar.js').submitOrder);
+    app.post('/submitOrder',                                                                                require('./../api/models/seminar.js').submitOrder(io));
 
     
     app.post('/submitPortfolioDecision',                                         require('./../api/models/seminar.js').submitPortfolioDecision(io));
