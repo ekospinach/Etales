@@ -680,6 +680,12 @@ define(['angular',
 						}
 					});						
 
+					socket.on('socketIO:retailerMarketResearchOrdersChanged',function(data){
+						if(data.seminar==SeminarInfo.getSelectedSeminar()){
+							$rootScope.$broadcast('retailerMarketResearchOrdersChanged',data);							
+						}
+					})
+
 					socket.on('retailerBaseChanged', function(data){
 						//console.log(data);
 						$rootScope.$broadcast('retailerDecisionBaseChangedFromServer', base);

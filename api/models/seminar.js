@@ -876,7 +876,7 @@ exports.submitOrder=function(io){
 										// 	console.log(doc.retailers[i].reportPurchaseStatus[j][queryCondition.data[k].realName]);
 										// 	doc.retailers[i].reportPurchaseStatus[j][queryCondition.data[k].realName]=queryCondition.data[k].playerStatus;
 										// }
-										doc.producers[i].reportPurchaseStatus[j][queryCondition.name]=queryCondition.value;
+										doc.retailers[i].reportPurchaseStatus[j][queryCondition.name]=queryCondition.value;
 									}
 								}
 							}
@@ -891,7 +891,13 @@ exports.submitOrder=function(io){
 						if(err){
 							next(new Error(err));
 						}
-						io.sockets.emit('socketIO:producerMarketResearchOrdersChanged', {period : queryCondition.period,  seminar : queryCondition.seminarCode});
+						if(queryCondition.player=="Producer"){
+						io.sockets.emit('socketIO:producerMarketResearchOrdersChanged', {period : queryCondition.period,  seminar : queryCondition.seminarCode,producerID:queryCondition.playerID});
+
+						}else{
+						io.sockets.emit('socketIO:retailerMarketResearchOrdersChanged', {period : queryCondition.period,  seminar : queryCondition.seminarCode,retailerID:queryCondition.playerID});
+
+						}
 						console.log('save updated, number affected!:'+numberAffected+'doc:'+doc);
 	                    res.send(200, 'mission complete!');
 					});

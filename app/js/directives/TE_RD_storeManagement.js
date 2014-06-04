@@ -403,7 +403,7 @@ define(['directives', 'services'], function(directives){
 
                 scope.$on('retailerDecisionBaseChangedFromServer', function(event, data, newBase) {  
                     scope.pageBase = newBase;
-                    showView();
+                    showView(scope.category,scope.market);
                 });             
             }
         }

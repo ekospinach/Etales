@@ -409,7 +409,7 @@ define(['directives', 'services'], function(directives) {
                             });
                         }).then(function(data){
                             return organiseArray(data.data, producerID);
-                        }).then(function(data){
+                        },function(data){
                             console.log('TE_RD_negotiationAgreement getResult() failed.');
                         });
                     }
