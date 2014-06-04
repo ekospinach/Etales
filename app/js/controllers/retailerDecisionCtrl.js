@@ -1,5 +1,5 @@
 define(['app','socketIO','routingConfig'], function(app) {
-	app.controller('retailerDecisionCtrl',['$scope', '$http', 'RetailerDecisionBase','$rootScope','Auth','$anchorScroll','$q','PlayerInfo','SeminarInfo','PeriodInfo','Label','RoleInfo', function($scope, $http, RetailerDecisionBase,$rootScope,Auth,$anchorScroll,$q,PlayerInfo,SeminarInfo,PeriodInfo,Label,RoleInfo) {
+	app.controller('retailerDecisionCtrl',['$scope', '$http', 'RetailerDecisionBase','$rootScope','Auth','$anchorScroll','$q','PlayerInfo','SeminarInfo','PeriodInfo','Label','RoleInfo','notify', function($scope, $http, RetailerDecisionBase,$rootScope,Auth,$anchorScroll,$q,PlayerInfo,SeminarInfo,PeriodInfo,Label,RoleInfo,notify) {
 			
 			$rootScope.decisionActive="active";
 			$rootScope.loginCss="";
@@ -97,12 +97,26 @@ define(['app','socketIO','routingConfig'], function(app) {
 	    	$scope.showNegotiationAgreements=showNegotiationAgreements;
 	    	$scope.showView=showView;
 
-            $scope.$on('retailerDecisionBaseChangedFromServer', function(event, newBase){
-                showView();
-            }); 
 
 	    	showView();
 	    	showNegotiationAgreements();
+
+            //handle Retailer Decision module push notification messages
+            $scope.$on('retailerDecisionBaseChangedFromServer', function(event, data, newBase) {  
+                showView();
+                notify('Decision has been saved, Retailer ' + data.retailerID  + ' Period ' + data.period + '.');
+            });
+
+            $scope.$on('retailerReportPurchaseDecisionChanged', function(event, data, newBase) {  
+                showView();
+                notify('Report purchase decision saved, Retailer ' + data.retailerID  + ' Period ' + data.period + '.');                
+            });
+
+            $scope.$on('retailerDecisionReloadError', function(event, data, newBase) {  
+                showView();
+                notify('Decision reload Error occur, Retailer ' + data.retailerID  + ' Period ' + data.period + '.');
+            });
+
 		    
 	}]);
 

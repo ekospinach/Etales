@@ -51,9 +51,12 @@
     				<p class="text-right">{{ producte.composition[2] || 0 }}</p>
     			</td>
     			<td>
-    				<a href="#" editable-text="producte.production" onbeforesave="checkProduction('Elecssories',producte.parentBrandName,producte.varName,'production','0',$index,$data)" onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'production','0',$index)">
+    				<a href="#" editable-text="producte.production" onbeforesave="checkProduction('Elecssories',producte.parentBrandName,producte.varName,'production','0',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'production','0',$index)">
     					<p class="text-right">{{ producte.production || 0 }}</p>
     				</a>
+                    <p ng-show='isReady' class="text-right">
+                        {{ producte.production || 0 }}
+                    </p>
     			</td>
     		</tr>
     		<tr>
@@ -99,9 +102,10 @@
     				<p class="text-right">{{ producth.composition[2] || 0 }}</p>
     			</td>
     			<td>
-    				<a href="#" editable-text="producth.production" onbeforesave="checkProduction('HealthBeauty',producth.parentBrandName,producth.varName,'production','0',$index,$data)" onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'production','0',$index)">
+    				<a href="#" editable-text="producth.production" onbeforesave="checkProduction('HealthBeauty',producth.parentBrandName,producth.varName,'production','0',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'production','0',$index)">
                         <p class="text-right">{{ producth.production || 0 }}</p>
                     </a>
+                    <p class="text-right" ng-show='isReady'>{{ producth.production || 0 }}</p>
     			</td>
     		</tr>
     	</tbody>

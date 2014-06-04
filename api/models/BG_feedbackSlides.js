@@ -59,7 +59,15 @@ var retailerInfoSchema = mongoose.Schema({
 
 var transactionsPerTOPSchema = mongoose.Schema({
     categoryID : Number,
-    topDays    : Number, //0~24, this is used as multiplications of 15 days to cover - almost - the entire year
+    topDays    : Number, 
+    //0~12, this is used as multiplications of 15 days to cover - almost - the entire year
+    //0 - corresponds to payment on delivery
+    //1 - payment after 15 days,
+    //2 - payment after 30 days,
+    //3 - payment after 45 days,
+    //....
+    //12 - payment after 180 days.
+
     value      : Number   
 })
 

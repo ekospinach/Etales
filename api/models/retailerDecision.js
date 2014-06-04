@@ -674,8 +674,8 @@ exports.updateRetailerDecision = function(io){
                                         doc.markModified('retCatDecision');
                                         doc.save(function(err, doc, numberAffected){
                                             if(err) next(new Error(err));
-                                            console.log('save updated hhq, number affected:'+numberAffected);
-                                            io.sockets.emit('retailerBaseChanged', 'this is a baseChanged');
+                                            console.log('save updated hhq, number affected:'+numberAffected);                                   
+                                            io.sockets.emit('socketIO:retailerBaseChanged', {retailerID: queryCondition.retailerID, seminar: queryCondition.seminar, period: queryCondition.period});
                                             res.send(200, 'mission complete!');
                                         });                                   
                                     }    

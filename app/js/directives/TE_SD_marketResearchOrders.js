@@ -4,7 +4,8 @@ define(['directives', 'services'], function(directives){
         return {
             scope : {
                 isPageShown : '=',
-                isPageLoading : '='
+                isPageLoading : '=',
+                isReady: '='
             },
             restrict : 'E',
             templateUrl : '../../partials/singleReportTemplate/SD_marketResearchOrders.html',            
@@ -66,16 +67,15 @@ define(['directives', 'services'], function(directives){
                 }
 
 
-                scope.submitOrder=function(){
-                    console.log(scope.playDatas);
+                scope.submitOrder=function(name,value){
                     var postData={
                         player:'Producer',
                         playerID:PlayerInfo.getPlayer(),
                         period:PeriodInfo.getCurrentPeriod(),
                         seminarCode:SeminarInfo.getSelectedSeminar(),
-                        data:scope.playDatas
+                        name:name,
+                        value:value
                     }
-                    console.log(postData);
                     $http({
                         method:'POST',
                         url:'/submitOrder',
@@ -86,7 +86,6 @@ define(['directives', 'services'], function(directives){
                         console.log('fail');
                     })
                 }
-
 
                 scope.$watch('isPageShown', function(newValue, oldValue){
                     if(newValue==true) {

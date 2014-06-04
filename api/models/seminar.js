@@ -233,12 +233,28 @@ exports.submitPortfolioDecision=function(io){
 					}
 				}
 				doc.markModified('producers');
+
+				//notify Retailer that supplier X has committed portfolio decision.
+                io.sockets.emit('socketIO:producerPortfolioDecisionStatusChanged', {period : queryCondition.period, producerID : queryCondition.producerID, seminar : queryCondition.seminar});                
+
+                //notify Retailer to refresh negotiation page automatically 
+                io.sockets.emit('socketIO:contractDetailsUpdated', {userType   : 'P', 
+                                                                        seminar    : queryCondition.seminar, 
+                                                                        producerID : queryCondition.producerID, 
+                                                                        retailerID : 1,
+                                                                        period     : queryCondition.period});
+                io.sockets.emit('socketIO:contractDetailsUpdated', {userType   : 'P', 
+                                                                        seminar    : queryCondition.seminar, 
+                                                                        producerID : queryCondition.producerID, 
+                                                                        retailerID : 2,
+                                                                        period     : queryCondition.period});
+
 				doc.save(function(err){
 					if(!err){
-						io.sockets.emit('producerBaseChanged', 'this is a baseChanged');
+						//notify supplier that decision has been saved to reload page
+                        io.sockets.emit('socketIO:producerBaseChanged', {period : queryCondition.period, producerID : queryCondition.producerID, seminar : queryCondition.seminar});
 						res.send(200,'success');
 					}else{
-						io.sockets.emit('producerBaseChanged', 'this is a baseChanged');
 						res.send(400,'fail');
 					}
 				})
@@ -827,7 +843,8 @@ exports.submitOrder=function(req,res,next){
 		period:req.body.period,
 		player:req.body.player,
 		playerID:req.body.playerID,
-		data:req.body.data
+		name:req.body.name,
+		value:req.body.value
 	};
 	seminar.findOne({seminarCode:queryCondition.seminarCode},function(err,doc){
 		if(err){
@@ -844,10 +861,7 @@ exports.submitOrder=function(req,res,next){
 						if(doc.producers[i].producerID==queryCondition.playerID){
 							for(var j=0;j<doc.producers[i].reportPurchaseStatus.length;j++){
 								if(doc.producers[i].reportPurchaseStatus[j].period==queryCondition.period){
-									for(var k=0;k<queryCondition.data.length;k++){
-										console.log(doc.producers[i].reportPurchaseStatus[j][queryCondition.data[k].realName]);
-										doc.producers[i].reportPurchaseStatus[j][queryCondition.data[k].realName]=queryCondition.data[k].playerStatus;
-									}
+									doc.producers[i].reportPurchaseStatus[j][queryCondition.name]=queryCondition.value;
 								}
 							}
 						}
@@ -858,10 +872,11 @@ exports.submitOrder=function(req,res,next){
 						if(doc.retailers[i].retailerID==queryCondition.playerID){
 							for(var j=0;j<doc.retailers[i].reportPurchaseStatus.length;j++){
 								if(doc.retailers[i].reportPurchaseStatus[j].period==queryCondition.period){
-									for(var k=0;k<queryCondition.data.length;k++){
-										console.log(doc.retailers[i].reportPurchaseStatus[j][queryCondition.data[k].realName]);
-										doc.retailers[i].reportPurchaseStatus[j][queryCondition.data[k].realName]=queryCondition.data[k].playerStatus;
-									}
+									// for(var k=0;k<queryCondition.data.length;k++){
+									// 	console.log(doc.retailers[i].reportPurchaseStatus[j][queryCondition.data[k].realName]);
+									// 	doc.retailers[i].reportPurchaseStatus[j][queryCondition.data[k].realName]=queryCondition.data[k].playerStatus;
+									// }
+									doc.producers[i].reportPurchaseStatus[j][queryCondition.name]=queryCondition.value;
 								}
 							}
 						}

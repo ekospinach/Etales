@@ -16,7 +16,6 @@ module.exports = function(app, io){
     app.get('/producerVariantBM/:seminar/:period/:producerID/:categoryID/:brandName/:varName',              require('./../api/models/producerDecision.js').getProducerVariantBM);
     
 
-
     app.post('/retailerDecision',                                                                           require('./../api/models/retailerDecision.js').updateRetailerDecision(io));
     //retailer get retailerDecision
     app.get('/getRetailerDecisionByVar/:retailerID/:period/:seminar/:brandName/:varName',                   require('./../api/models/retailerDecision.js').retailerGetRetailerDecision);
@@ -55,11 +54,20 @@ module.exports = function(app, io){
     app.post('/addContract',                                                                                require('./../api/models/contract.js').addContract(io));
     app.post('/addContractDetails',                                                                         require('./../api/models/contract.js').addContractDetails(io));
     app.get('/getContractDetails/:contractCode',                                                            require('./../api/models/contract.js').getContractDetails);
-    app.get('/getNegotiationExpend/:contractCode/:parentBrandName/:variantName',                            require('./../api/models/contract.js').getNegotiationExpend);//salesVolume 
+    
+    //Get sum of minimum order of rest product under same category, same contractCode
+    app.get('/getNegotiationExpend/:contractCode/:parentBrandName/:variantName',                            require('./../api/models/contract.js').getNegotiationExpend);
+    //Get sum of negotiation cost of rest product in same player's decision 
     app.get('/getContractExpend/:seminar/:period/:producerID/:retailerID/:parentBrandName/:variantName',    require('./../api/models/contract.js').getContractExpend);//SalesTargetVolume
     
-    app.get('/checkContractDetails/:contractCode/:parentBrandName/:variantName/:location',                  require('./../api/models/contract.js').checkContractDetails);
+    //Check if selected contract details has been lock(both side choose agree)    
+    //return { "result" : true, "doc" : contractDetails} : Locked
+    //return { "result" : false, "doc" : contractDetails}  : not Locked
+    app.get('/checkContractDetailsLockStatus/:contractCode/:parentBrandName/:variantName/:location',        require('./../api/models/contract.js').checkContractDetailsLockStatus);
+
+
     app.get('/checkVolume/:contractCode/:parentBrandName/:variantName',                                     require('./../api/models/contract.js').checkVolume);
+    //Check if user has commit Sales target volume decision( nc_SalesTarget <> 0)
     app.get('/checkSalesTargetVolume/:contractCode/:parentBrandName/:variantName',                          require('./../api/models/contract.js').checkSalesTargetVolume);
     app.post('/updateContractDetails',                                                                      require('./../api/models/contract.js').updateContractDetails(io));
     app.post('/removeContract',                                                                             require('./../api/models/contract.js').removeContract(io));
@@ -71,6 +79,9 @@ module.exports = function(app, io){
     //Submit supplier research order decision
     app.post('/submitOrder',                                                                                require('./../api/models/seminar.js').submitOrder);
 
+    
+    app.post('/submitPortfolioDecision',                                         require('./../api/models/seminar.js').submitPortfolioDecision(io));
+    app.post('/submitFinalDecision',                                             require('./../api/models/seminar.js').submitFinalDecision(io));
 
 
 

@@ -4,7 +4,8 @@ define(['directives', 'services'], function(directives){
         return {
             scope : {
                 isPageShown : '=',
-                isPageLoading : '='
+                isPageLoading : '=',
+                isReady : '='
             },
             restrict : 'E',
             templateUrl : '../../partials/singleReportTemplate/SD_productionVolume.html',            

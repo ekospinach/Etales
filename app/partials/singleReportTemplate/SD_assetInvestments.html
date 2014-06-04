@@ -29,32 +29,30 @@
                     <p class="padding-20" ng-show='$index==1'>{{Label.getContent('HealthBeauties')}}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="category.capacityChange" onbeforesave="checkCapacity(category.categoryID,$data)" onaftersave="updateProducerDecision(category.categoryID,'capacityChange',$index)">
+                    <a href="#" editable-text="category.capacityChange" ng-show='!isReady' onbeforesave="checkCapacity(category.categoryID,$data)" onaftersave="updateProducerDecision(category.categoryID,'capacityChange',$index)">
                         <p class="text-right">{{ category.capacityChange || 0 }}</p>
                     </a>
+                    <p ng-show='isReady' class="text-right">{{ category.capacityChange || 0 }}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="category.investInTechnology" onbeforesave="checkData(category.categoryID,$data)" onaftersave="updateProducerDecision(category.categoryID,'investInTechnology',$index)">
-                        <p class="text-right">{{ category.investInTechnology || 0 }}
-                        </p>
+                    <a href="#" editable-text="category.investInTechnology" ng-show='!isReady' onbeforesave="checkData(category.categoryID,$data)" onaftersave="updateProducerDecision(category.categoryID,'investInTechnology',$index)">
+                        <p class="text-right">{{ category.investInTechnology || 0 }}</p>
                     </a>
+                    <p ng-show='isReady' class="text-right">{{ category.investInTechnology || 0 }}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="category.investInProductionFlexibility" onbeforesave="checkData(category.categoryID,$data)" onaftersave="updateProducerDecision(category.categoryID,'investInProductionFlexibility',$index)">
-                        <p class="text-right">{{ category.investInProductionFlexibility || 0 }}
-                        </p>
+                    <a href="#" editable-text="category.investInProductionFlexibility" ng-show='!isReady' onbeforesave="checkData(category.categoryID,$data)" onaftersave="updateProducerDecision(category.categoryID,'investInProductionFlexibility',$index)">
+                        <p class="text-right">{{ category.investInProductionFlexibility || 0 }}</p>
                     </a>
+                    <p ng-show='isReady' class="text-right">{{ category.investInProductionFlexibility || 0 }}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="category.investInDesign" onbeforesave="checkData(category.categoryID,$data)" onaftersave="updateProducerDecision(category.categoryID,'investInDesign',$index)">
-                        <p class="text-right">{{ category.investInDesign || 0 }}
-                        </p>
+                    <a href="#" editable-text="category.investInDesign" ng-show='!isReady' onbeforesave="checkData(category.categoryID,$data)" onaftersave="updateProducerDecision(category.categoryID,'investInDesign',$index)">
+                        <p class="text-right">{{ category.investInDesign || 0 }}</p>
                     </a>
+                    <p ng-show='isReady' class="text-right">{{ category.investInDesign || 0 }}</p>
                 </td>
             </tr>
-
-            
-
         </tbody>
     </table>
 </div>

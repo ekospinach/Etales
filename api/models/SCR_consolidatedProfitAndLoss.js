@@ -1180,7 +1180,7 @@ exports.getScrplSales=function(req,res,next){
             next(new Error(err));
         }
         if(!doc){
-           res.send(404,{err:'cannot find the doc'}); 
+            res.send(404,{err:'cannot find the doc'}); 
         }else{
             res.send(200,doc.scrpl_Sales[req.params.categoryID-1].value);
         }

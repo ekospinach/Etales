@@ -1,6 +1,6 @@
 define(['app'], function(app) {
 
-	app.controller('NavbarCtrl', ['$scope', '$http', '$location','$rootScope','Auth','Label', function($scope, $http, $location,$rootScope,Auth,Label) {
+	app.controller('NavbarCtrl', ['$scope', '$http', '$location','$rootScope','Auth','Label','notify','ProducerDecisionBase','RetailerDecisionBase','NegotiationBase',  function($scope, $http, $location,$rootScope,Auth,Label,notify, ProducerDecisionBase, RetailerDecisionBase, NegotiationBase) {
 	    $scope.getUserRoleText = function(role) {
 
 	//        console.log('trying to get user role text:' + _.invert(Auth.userRoles)[role]);
@@ -27,6 +27,21 @@ define(['app'], function(app) {
 		})
 
 		$scope.Label = Label;
+
+		//handle global push notification messages		
+		notify.config({
+				template:'/partials/gmail-template.html',
+				position:'center'			
+		});
+
+		$scope.$on('producerPortfolioDecisionStatusChanged', function(event, data, newBase) {  
+			notify('Supplier ' + data.producerID  + ' just committed portfolio decision for period ' + data.period + '.');
+		});
+
+		//Register socketIO listeners in NavCtrl which will only be activated once in application
+		ProducerDecisionBase.startListenChangeFromServer(); 
+		RetailerDecisionBase.startListenChangeFromServer();		
+		NegotiationBase.startListenChangeFromServer();
 	}]);
 
 });
