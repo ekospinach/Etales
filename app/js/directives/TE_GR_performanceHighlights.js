@@ -21,8 +21,8 @@ define(['directives', 'services'], function(directives){
 
                     //switching('showPerformance');
                     var url='/performanceHighlights/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1);
-                    scope.logs = [];
-                    scope.logs.push('Sending GET : ' + url );
+                    // scope.logs = [];
+                    // scope.logs.push('Sending GET : ' + url );
 
                     $http({
                         method:'GET',
@@ -33,15 +33,15 @@ define(['directives', 'services'], function(directives){
                         return organiseArray(data);
 
                     }).then(function(data){
-                        if(!scope.logs){scope.logs = [];}
-                        scope.logs.push(data.msg);                                            
+                        // if(!scope.logs){scope.logs = [];}
+                        // scope.logs.push(data.msg);                                            
 
                         scope.isResultShown = true;
                         scope.isPageLoading = false;                                                                         
 
                     },function(data){
-                        if(!scope.logs){scope.logs = [];}
-                        scope.logs.push(data.msg);                                            
+                        // if(!scope.logs){scope.logs = [];}
+                        // scope.logs.push(data.msg);                                            
                     });
                 }
 
@@ -80,8 +80,7 @@ define(['directives', 'services'], function(directives){
                     }
                 })
 
-            emitter.on()
-
+  
             }
         }
     }])
