@@ -212,6 +212,25 @@ exports.checkProducerDecision=function(req,res,next){
 		}
 	})
 }
+exports.checkRetailerDecision=function(req,res,next){
+	seminar.findOne({seminarCode:req.params.seminar},function(err,doc){
+		if(err) {next(new Error(err))};
+		if(doc){
+			for(var i=0;i<doc.retailers[req.params.retailerID-1].decisionCommitStatus.length;i++){
+				if(doc.retailers[req.params.retailerID-1].decisionCommitStatus[i].period==req.params.period){
+					if(doc.retailers[req.params.retailerID-1].decisionCommitStatus[i].isDecisionCommitted==true){
+						res.send(200,'isReady');
+					}else{
+						res.send(200,'unReady');
+					}
+				}
+			}
+			
+		}else{
+			res.send(404,'there is no contract');
+		}
+	})
+}
 
 exports.submitPortfolioDecision=function(io){
 	return function(req,res,next){

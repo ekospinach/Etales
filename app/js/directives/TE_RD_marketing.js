@@ -4,7 +4,8 @@ define(['directives', 'services'], function(directives){
         return {
             scope : {
                 isPageShown : '=',
-                isPageLoading : '='
+                isPageLoading : '=',
+                isReady : '='
             },
             restrict : 'E',
             templateUrl : '../../partials/singleReportTemplate/RD_marketing.html',            
@@ -146,8 +147,12 @@ define(['directives', 'services'], function(directives){
                 });
 
 	            scope.$on('retailerDecisionBaseChangedFromServer', function(event, data, newBase) {  
-	                scope.pageBase = newBase;
-	                showView();
+                    if(data.seminar==SeminarInfo.getSelectedSeminar()&&data.period==PeriodInfo.getCurrentPeriod()&&data.retailerID==PlayerInfo.getPlayer()){
+	                	if(data.categoryID!=undefined&&data.marketID!=undefined){
+	                		scope.pageBase = newBase;
+		                	showView();	
+	                	}   
+		            }
 	            });				
 
             }

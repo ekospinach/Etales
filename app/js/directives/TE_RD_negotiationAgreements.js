@@ -5,7 +5,8 @@ define(['directives', 'services'], function(directives) {
                 scope: {
                     isPageShown: '=',
                     isPageLoading: '=',
-                    isNegotiationChange: '='
+                    isNegotiationChange: '=',
+                    isReady : '='
                 },
                 restrict: 'E',
                 templateUrl: '../../partials/singleReportTemplate/RD_negotiationAgreements.html',

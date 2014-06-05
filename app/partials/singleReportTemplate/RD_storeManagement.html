@@ -1,112 +1,337 @@
-<h4 class="pull-left">
-	<span class="label label-info">{{Label.getContent(category)}}</span>
-	<span class="label label-info">{{Label.getContent(market)}}</span>
-</h4>
-<div style="clear:both"></div>
-<div class="btn-group pull-left" ng-show='isResultShown'>
-	<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
-		{{Label.getContent('Category')}}
-		<span class="caret"></span>
-	</button>
-	<ul class="dropdown-menu">
-		<li class=""><a ng-click="showView('Elecssories',market)">{{Label.getContent('Elecssories')}}</a></li>
-		<li class=""><a ng-click="showView('HealthBeauties',market)">{{Label.getContent('HealthBeauties')}}</a></li>
-	</ul>
-</div>
-<div class="btn-group pull-left" style="margin-left:10px" ng-show='isResultShown'>
-	<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
-		{{Label.getContent('Market')}}<span class="caret"></span>
-	</button>
-	<ul class="dropdown-menu">
-		<li class="">
-			<a ng-click="showView(category,'Urban')">{{Label.getContent('Urban')}}</a>
-		</li>
-		<li class="">
-			<a ng-click="showView(category,'Rural')">{{Label.getContent('Rural')}}</a>
-		</li>
-	</ul>
-</div>
-<div style="clear:both;padding:1px 0" ng-show='isResultShown'></div>
 <div class='panel panel-primary my-success-panel' ng-show='isResultShown'>
-	<div class="panel-heading">
+    <div class="panel-heading">
         <h3 class="panel-title text-center" popover="{{Label.getContent('Store Management Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
-            {{Label.getContent('Store Management')}}
+            {{Label.getContent('Store Management')}}-{{Label.getContent('Elecssories')}}-{{Label.getContent('Urban')}}
         </h3>
     </div>
     <table class="table table-condensed table-bordered table-success">
-    	<thead>
-    		<tr>
-    			<th colspan="5">
-    			</th>
-    			<th colspan="2">
-    				<p class="text-center">{{Label.getContent('Promotions')}}</p>
-    			</th>
-    		</tr>
-    		<tr>
-    			<th colspan="2">
-    				<p>{{Label.getContent('Brand')}}</p>
-    			</th>
-    			<th>
-    				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Order Volume Info')}}" popover-title="{{Label.getContent('Order Volume')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Order Volume')}}(units mln)<span style="color:red">*</span></p>
-    			</th>
-    			<th>
-    				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Shelf Space Info')}}" popover-title="{{Label.getContent('Shelf Space')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Shelf Space')}}(%)<span style="color:red">*</span></p>
-    			</th>
-    			<th>
-    				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Retail Price Info')}}" popover-title="{{Label.getContent('Retail Price')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Retail Price')}}($)<span style="color:red">*</span></p>
-    			</th>
-    			<th>
-    				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Promotions Frequency Info')}}" popover-title="{{Label.getContent('Promotions Frequency')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Frequency')}}({{Label.getContent('weeks')}})<span style="color:red">*</span></p>
-    			</th>
-    			<th>
-    				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Reduction Rate Info')}}" popover-title="{{Label.getContent('Reduction Rate')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Depth')}}(%)<span style="color:red">*</span></p>
-    			</th>
-    		</tr>
-    	</thead>
-    	<tbody>
-    		<tr ng-repeat='product in products'>
-    			<td>{{product.brandName}}</td>
-    			<td>
-	                <div style="clear:both"></div>
-	                <p class="pull-left">
-	                  {{product.varName}}
-	                </p>
-	                <button type="button" class="btn btn-danger btn-xs pull-left" ng-click="deleteOrder(category,market,product.brandName,product.varName)" style="margin-left:5px">{{Label.getContent('Delete')}}</button>
-            	</td>
-            	<td>
-            		<a href="#" editable-text="product.order" onbeforesave="checkOrderVolume(category,market,product.brandName,product.varName,'order','postion',$index,$data)" onaftersave="updateRetailerDecision(category,market,product.brandName,product.varName,'order','postion',$index,$data)">
-            			<p class="text-right">{{ product.order || 0 }}</p>
-            		</a>
-            	</td>
-            	<td>
-            		<a href="#" editable-text="product.shelfSpace" onbeforesave="checkShelfSpace(category,market,product.brandName,product.varName,'shelfSpace','postion',$index,$data)" onaftersave="updateRetailerDecision(category,market,product.brandName,product.varName,'shelfSpace','postion',$index,$data)">
-            			<p class="text-right">{{ product.shelfSpace || 0 }}
-            			</p>
-            		</a>
-            	</td>
-            	<td>
-            		<a href="#" editable-text="product.retailerPrice" onbeforesave="checkRetailerPrice(category,market,product.brandName,product.varName,'retailerPrice','postion',$index,product.dateOfBirth,$data)" onaftersave="updateRetailerDecision(category,market,product.brandName,product.varName,'retailerPrice','postion',$index,$data)">
-            			<p class="text-right">{{ product.retailerPrice || 0 }}
-            			</p>
+        <thead>
+            <tr>
+                <th colspan="5">
+                </th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Promotions')}}</p>
+                </th>
+            </tr>
+            <tr>
+                <th colspan="2">
+                    <p>{{Label.getContent('Brand')}}</p>
+                </th>
+                <th>
+                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Order Volume Info')}}" popover-title="{{Label.getContent('Order Volume')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Order Volume')}}(units mln)<span style="color:red">*</span></p>
+                </th>
+                <th>
+                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Shelf Space Info')}}" popover-title="{{Label.getContent('Shelf Space')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Shelf Space')}}(%)<span style="color:red">*</span></p>
+                </th>
+                <th>
+                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Retail Price Info')}}" popover-title="{{Label.getContent('Retail Price')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Retail Price')}}($)<span style="color:red">*</span></p>
+                </th>
+                <th>
+                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Promotions Frequency Info')}}" popover-title="{{Label.getContent('Promotions Frequency')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Frequency')}}({{Label.getContent('weeks')}})<span style="color:red">*</span></p>
+                </th>
+                <th>
+                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Reduction Rate Info')}}" popover-title="{{Label.getContent('Reduction Rate')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Depth')}}(%)<span style="color:red">*</span></p>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat='product in UrbanElecssoriesProducts'>
+                <td>{{product.brandName}}</td>
+                <td>
+                    <div style="clear:both"></div>
+                    <p class="pull-left">
+                      {{product.varName}}
+                    </p>
+                    <button type="button" class="btn btn-danger btn-xs pull-left" ng-click="deleteOrder('Elecssories','Urban',product.brandName,product.varName)" style="margin-left:5px">{{Label.getContent('Delete')}}</button>
+                </td>
+                <td>
+                    <a href="#" editable-text="product.order" onbeforesave="checkOrderVolume('Elecssories','Urban',product.brandName,product.varName,'order','postion',$index,$data)" onaftersave="updateRetailerDecision('Elecssories','Urban',product.brandName,product.varName,'order','postion',$index,$data)">
+                        <p class="text-right">{{ product.order || 0 }}</p>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" editable-text="product.shelfSpace" onbeforesave="checkShelfSpace('Elecssories','Urban',product.brandName,product.varName,'shelfSpace','postion',$index,$data)" onaftersave="updateRetailerDecision('Elecssories','Urban',product.brandName,product.varName,'shelfSpace','postion',$index,$data)">
+                        <p class="text-right">{{ product.shelfSpace || 0 }}
+                        </p>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" editable-text="product.retailerPrice" onbeforesave="checkRetailerPrice('Elecssories','Urban',product.brandName,product.varName,'retailerPrice','postion',$index,product.dateOfBirth,$data)" onaftersave="updateRetailerDecision('Elecssories','Urban',product.brandName,product.varName,'retailerPrice','postion',$index,$data)">
+                        <p class="text-right">{{ product.retailerPrice || 0 }}
+                        </p>
                         <p ng-show='product.showInfo'>{{Label.getContent('Less than current cost')}}
-            		</a>
-            	</td>
-            	<td>
-            		<a href="#" editable-text="product.pricePromotions.promo_Frequency" onbeforesave="checkPromototionFrequency($data)" onaftersave="updateRetailerDecision(category,market,product.brandName,product.varName,'pricePromotions','promo_Frequency',$index,$data)">
-            			<p class="text-right">{{ product.pricePromotions.promo_Frequency || 0 }}
-            			</p>
-            		</a>
-            	</td>
-            	<td>
-            		<a href="#" editable-text="product.pricePromotions.promo_Rate" onbeforesave="checkReductionRate($data)" onaftersave="updateRetailerDecision(category,market,product.brandName,product.varName,'pricePromotions','promo_Rate',$index,$data)">
-            			<p class="text-right">{{ product.pricePromotions.promo_Rate || 0 }}
-            			</p>
-            		</a>
-            	</td>
-    		</tr>
-    	</tbody>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" editable-text="product.pricePromotions.promo_Frequency" onbeforesave="checkPromototionFrequency($data)" onaftersave="updateRetailerDecision('Elecssories','Urban',product.brandName,product.varName,'pricePromotions','promo_Frequency',$index,$data)">
+                        <p class="text-right">{{ product.pricePromotions.promo_Frequency || 0 }}
+                        </p>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" editable-text="product.pricePromotions.promo_Rate" onbeforesave="checkReductionRate($data)" onaftersave="updateRetailerDecision('Elecssories','Urban',product.brandName,product.varName,'pricePromotions','promo_Rate',$index,$data)">
+                        <p class="text-right">{{ product.pricePromotions.promo_Rate || 0 }}
+                        </p>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
     </table>
 </div>
-<div ng-show='isResultShown'>
-    <a ng-click="open()" class="btn btn-default">{{Label.getContent('Add Order')}}</a>
+<div ng-show='isResultShown' style="padding-bottom:20px">
+    <a ng-click="open('Elecssories','Urban')" class="btn btn-default">{{Label.getContent('Add Order')}}</a>
+</div>
+
+<div style="clear:both;padding-bottom:5px"></div>
+
+<div class='panel panel-primary my-success-panel' ng-show='isResultShown'>
+    <div class="panel-heading">
+        <h3 class="panel-title text-center" popover="{{Label.getContent('Store Management Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
+            {{Label.getContent('Store Management')}}-{{Label.getContent('HealthBeauties')}}-{{Label.getContent('Urban')}}
+        </h3>
+    </div>
+    <table class="table table-condensed table-bordered table-success">
+        <thead>
+            <tr>
+                <th colspan="5">
+                </th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Promotions')}}</p>
+                </th>
+            </tr>
+            <tr>
+                <th colspan="2">
+                    <p>{{Label.getContent('Brand')}}</p>
+                </th>
+                <th>
+                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Order Volume Info')}}" popover-title="{{Label.getContent('Order Volume')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Order Volume')}}(units mln)<span style="color:red">*</span></p>
+                </th>
+                <th>
+                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Shelf Space Info')}}" popover-title="{{Label.getContent('Shelf Space')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Shelf Space')}}(%)<span style="color:red">*</span></p>
+                </th>
+                <th>
+                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Retail Price Info')}}" popover-title="{{Label.getContent('Retail Price')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Retail Price')}}($)<span style="color:red">*</span></p>
+                </th>
+                <th>
+                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Promotions Frequency Info')}}" popover-title="{{Label.getContent('Promotions Frequency')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Frequency')}}({{Label.getContent('weeks')}})<span style="color:red">*</span></p>
+                </th>
+                <th>
+                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Reduction Rate Info')}}" popover-title="{{Label.getContent('Reduction Rate')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Depth')}}(%)<span style="color:red">*</span></p>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat='product in UrbanHelthBeautiesProducts'>
+                <td>{{product.brandName}}</td>
+                <td>
+                    <div style="clear:both"></div>
+                    <p class="pull-left">
+                      {{product.varName}}
+                    </p>
+                    <button type="button" class="btn btn-danger btn-xs pull-left" ng-click="deleteOrder('HealthBeauties','Urban',product.brandName,product.varName)" style="margin-left:5px">{{Label.getContent('Delete')}}</button>
+                </td>
+                <td>
+                    <a href="#" editable-text="product.order" onbeforesave="checkOrderVolume('HealthBeauties','Urban',product.brandName,product.varName,'order','postion',$index,$data)" onaftersave="updateRetailerDecision('HealthBeauties','Urban',product.brandName,product.varName,'order','postion',$index,$data)">
+                        <p class="text-right">{{ product.order || 0 }}</p>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" editable-text="product.shelfSpace" onbeforesave="checkShelfSpace('HealthBeauties','Urban',product.brandName,product.varName,'shelfSpace','postion',$index,$data)" onaftersave="updateRetailerDecision('HealthBeauties','Urban',product.brandName,product.varName,'shelfSpace','postion',$index,$data)">
+                        <p class="text-right">{{ product.shelfSpace || 0 }}
+                        </p>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" editable-text="product.retailerPrice" onbeforesave="checkRetailerPrice('HealthBeauties','Urban',product.brandName,product.varName,'retailerPrice','postion',$index,product.dateOfBirth,$data)" onaftersave="updateRetailerDecision('HealthBeauties','Urban',product.brandName,product.varName,'retailerPrice','postion',$index,$data)">
+                        <p class="text-right">{{ product.retailerPrice || 0 }}
+                        </p>
+                        <p ng-show='product.showInfo'>{{Label.getContent('Less than current cost')}}
+                    </a>
+                </td>
+                <td>
+                    <a href="#" editable-text="product.pricePromotions.promo_Frequency" onbeforesave="checkPromototionFrequency($data)" onaftersave="updateRetailerDecision('HealthBeauties','Urban',product.brandName,product.varName,'pricePromotions','promo_Frequency',$index,$data)">
+                        <p class="text-right">{{ product.pricePromotions.promo_Frequency || 0 }}
+                        </p>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" editable-text="product.pricePromotions.promo_Rate" onbeforesave="checkReductionRate($data)" onaftersave="updateRetailerDecision('HealthBeauties','Urban',product.brandName,product.varName,'pricePromotions','promo_Rate',$index,$data)">
+                        <p class="text-right">{{ product.pricePromotions.promo_Rate || 0 }}
+                        </p>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div ng-show='isResultShown' style="padding-bottom:20px">
+    <a ng-click="open('HealthBeauties','Urban')" class="btn btn-default">{{Label.getContent('Add Order')}}</a>
+</div>
+
+<div class='panel panel-primary my-success-panel' ng-show='isResultShown'>
+    <div class="panel-heading">
+        <h3 class="panel-title text-center" popover="{{Label.getContent('Store Management Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
+            {{Label.getContent('Store Management')}}-{{Label.getContent('Elecssories')}}-{{Label.getContent('Rural')}}
+        </h3>
+    </div>
+    <table class="table table-condensed table-bordered table-success">
+        <thead>
+            <tr>
+                <th colspan="5">
+                </th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Promotions')}}</p>
+                </th>
+            </tr>
+            <tr>
+                <th colspan="2">
+                    <p>{{Label.getContent('Brand')}}</p>
+                </th>
+                <th>
+                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Order Volume Info')}}" popover-title="{{Label.getContent('Order Volume')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Order Volume')}}(units mln)<span style="color:red">*</span></p>
+                </th>
+                <th>
+                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Shelf Space Info')}}" popover-title="{{Label.getContent('Shelf Space')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Shelf Space')}}(%)<span style="color:red">*</span></p>
+                </th>
+                <th>
+                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Retail Price Info')}}" popover-title="{{Label.getContent('Retail Price')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Retail Price')}}($)<span style="color:red">*</span></p>
+                </th>
+                <th>
+                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Promotions Frequency Info')}}" popover-title="{{Label.getContent('Promotions Frequency')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Frequency')}}({{Label.getContent('weeks')}})<span style="color:red">*</span></p>
+                </th>
+                <th>
+                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Reduction Rate Info')}}" popover-title="{{Label.getContent('Reduction Rate')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Depth')}}(%)<span style="color:red">*</span></p>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat='product in RuralElecssoriesProducts'>
+                <td>{{product.brandName}}</td>
+                <td>
+                    <div style="clear:both"></div>
+                    <p class="pull-left">
+                      {{product.varName}}
+                    </p>
+                    <button type="button" class="btn btn-danger btn-xs pull-left" ng-click="deleteOrder('Elecssories','Rural',product.brandName,product.varName)" style="margin-left:5px">{{Label.getContent('Delete')}}</button>
+                </td>
+                <td>
+                    <a href="#" editable-text="product.order" onbeforesave="checkOrderVolume('Elecssories','Rural',product.brandName,product.varName,'order','postion',$index,$data)" onaftersave="updateRetailerDecision('Elecssories','Rural',product.brandName,product.varName,'order','postion',$index,$data)">
+                        <p class="text-right">{{ product.order || 0 }}</p>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" editable-text="product.shelfSpace" onbeforesave="checkShelfSpace('Elecssories','Rural',product.brandName,product.varName,'shelfSpace','postion',$index,$data)" onaftersave="updateRetailerDecision('Elecssories','Rural',product.brandName,product.varName,'shelfSpace','postion',$index,$data)">
+                        <p class="text-right">{{ product.shelfSpace || 0 }}
+                        </p>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" editable-text="product.retailerPrice" onbeforesave="checkRetailerPrice('Elecssories','Rural',product.brandName,product.varName,'retailerPrice','postion',$index,product.dateOfBirth,$data)" onaftersave="updateRetailerDecision('Elecssories','Rural',product.brandName,product.varName,'retailerPrice','postion',$index,$data)">
+                        <p class="text-right">{{ product.retailerPrice || 0 }}
+                        </p>
+                        <p ng-show='product.showInfo'>{{Label.getContent('Less than current cost')}}
+                    </a>
+                </td>
+                <td>
+                    <a href="#" editable-text="product.pricePromotions.promo_Frequency" onbeforesave="checkPromototionFrequency($data)" onaftersave="updateRetailerDecision('Elecssories','Rural',product.brandName,product.varName,'pricePromotions','promo_Frequency',$index,$data)">
+                        <p class="text-right">{{ product.pricePromotions.promo_Frequency || 0 }}
+                        </p>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" editable-text="product.pricePromotions.promo_Rate" onbeforesave="checkReductionRate($data)" onaftersave="updateRetailerDecision('Elecssories','Rural',product.brandName,product.varName,'pricePromotions','promo_Rate',$index,$data)">
+                        <p class="text-right">{{ product.pricePromotions.promo_Rate || 0 }}
+                        </p>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div ng-show='isResultShown' style="padding-bottom:20px">
+    <a ng-click="open('Elecssories','Rural')" class="btn btn-default">{{Label.getContent('Add Order')}}</a>
+</div>
+
+<div class='panel panel-primary my-success-panel' ng-show='isResultShown'>
+    <div class="panel-heading">
+        <h3 class="panel-title text-center" popover="{{Label.getContent('Store Management Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
+            {{Label.getContent('Store Management')}}-{{Label.getContent('HealthBeauties')}}-{{Label.getContent('Rural')}}
+        </h3>
+    </div>
+    <table class="table table-condensed table-bordered table-success">
+        <thead>
+            <tr>
+                <th colspan="5">
+                </th>
+                <th colspan="2">
+                    <p class="text-center">{{Label.getContent('Promotions')}}</p>
+                </th>
+            </tr>
+            <tr>
+                <th colspan="2">
+                    <p>{{Label.getContent('Brand')}}</p>
+                </th>
+                <th>
+                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Order Volume Info')}}" popover-title="{{Label.getContent('Order Volume')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Order Volume')}}(units mln)<span style="color:red">*</span></p>
+                </th>
+                <th>
+                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Shelf Space Info')}}" popover-title="{{Label.getContent('Shelf Space')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Shelf Space')}}(%)<span style="color:red">*</span></p>
+                </th>
+                <th>
+                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Retail Price Info')}}" popover-title="{{Label.getContent('Retail Price')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Retail Price')}}($)<span style="color:red">*</span></p>
+                </th>
+                <th>
+                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Promotions Frequency Info')}}" popover-title="{{Label.getContent('Promotions Frequency')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Frequency')}}({{Label.getContent('weeks')}})<span style="color:red">*</span></p>
+                </th>
+                <th>
+                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Reduction Rate Info')}}" popover-title="{{Label.getContent('Reduction Rate')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Depth')}}(%)<span style="color:red">*</span></p>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat='product in RuralHelthBeautiesProducts'>
+                <td>{{product.brandName}}</td>
+                <td>
+                    <div style="clear:both"></div>
+                    <p class="pull-left">
+                      {{product.varName}}
+                    </p>
+                    <button type="button" class="btn btn-danger btn-xs pull-left" ng-click="deleteOrder('HealthBeauties','Rural',product.brandName,product.varName)" style="margin-left:5px">{{Label.getContent('Delete')}}</button>
+                </td>
+                <td>
+                    <a href="#" editable-text="product.order" onbeforesave="checkOrderVolume('HealthBeauties','Rural',product.brandName,product.varName,'order','postion',$index,$data)" onaftersave="updateRetailerDecision('HealthBeauties','Rural',product.brandName,product.varName,'order','postion',$index,$data)">
+                        <p class="text-right">{{ product.order || 0 }}</p>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" editable-text="product.shelfSpace" onbeforesave="checkShelfSpace('HealthBeauties','Rural',product.brandName,product.varName,'shelfSpace','postion',$index,$data)" onaftersave="updateRetailerDecision('HealthBeauties','Rural',product.brandName,product.varName,'shelfSpace','postion',$index,$data)">
+                        <p class="text-right">{{ product.shelfSpace || 0 }}
+                        </p>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" editable-text="product.retailerPrice" onbeforesave="checkRetailerPrice('HealthBeauties','Rural',product.brandName,product.varName,'retailerPrice','postion',$index,product.dateOfBirth,$data)" onaftersave="updateRetailerDecision('HealthBeauties','Rural',product.brandName,product.varName,'retailerPrice','postion',$index,$data)">
+                        <p class="text-right">{{ product.retailerPrice || 0 }}
+                        </p>
+                        <p ng-show='product.showInfo'>{{Label.getContent('Less than current cost')}}
+                    </a>
+                </td>
+                <td>
+                    <a href="#" editable-text="product.pricePromotions.promo_Frequency" onbeforesave="checkPromototionFrequency($data)" onaftersave="updateRetailerDecision('HealthBeauties','Rural',product.brandName,product.varName,'pricePromotions','promo_Frequency',$index,$data)">
+                        <p class="text-right">{{ product.pricePromotions.promo_Frequency || 0 }}
+                        </p>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" editable-text="product.pricePromotions.promo_Rate" onbeforesave="checkReductionRate($data)" onaftersave="updateRetailerDecision('HealthBeauties','Rural',product.brandName,product.varName,'pricePromotions','promo_Rate',$index,$data)">
+                        <p class="text-right">{{ product.pricePromotions.promo_Rate || 0 }}
+                        </p>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div ng-show='isResultShown' style="padding-bottom:20px">
+    <a ng-click="open('HealthBeauties','Rural')" class="btn btn-default">{{Label.getContent('Add Order')}}</a>
 </div>

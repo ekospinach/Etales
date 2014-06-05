@@ -4,7 +4,8 @@ define(['directives', 'services'], function(directives){
         return {
             scope : {
                 isPageShown : '=',
-                isPageLoading : '='
+                isPageLoading : '=',
+                isReady : '='
             },
             restrict : 'E',
             templateUrl : '../../partials/singleReportTemplate/RD_marketResearchOrders.html',            
@@ -67,7 +68,7 @@ define(['directives', 'services'], function(directives){
                 scope.submitOrder=function(name,value){
                     var postData={
                         player:'Retailer',
-                        playerID:PlayerInfo.getPlayer(),
+                    playerID:PlayerInfo.getPlayer(),
                         period:PeriodInfo.getCurrentPeriod(),
                         seminarCode:SeminarInfo.getSelectedSeminar(),
                         name:name,
@@ -92,8 +93,9 @@ define(['directives', 'services'], function(directives){
                 })
 
                 scope.$on('retailerMarketResearchOrdersChanged', function(event, data) {  
-                    console.log(data);
-                    initializePage();                   
+                    if(data.seminar==SeminarInfo.getSelectedSeminar()&&data.period==PeriodInfo.getCurrentPeriod()&&data.retailerID==PlayerInfo.getPlayer()){
+                        initializePage();  
+                    }           
                 });
                 
             }

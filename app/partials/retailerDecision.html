@@ -29,7 +29,6 @@
     .bs-docs-section{
         padding-top:60px;
     }
-
 </style>
 
 <div class="my-super-awesome-loading-box" ng-show="isPageLoading">Loading...</div>
@@ -58,19 +57,19 @@
                 </ul>
             </div>
         </div>
-        <div class="col-md-9" ng-show='!isNegotiation'>
+        <div class="col-md-9" style="width:74%" ng-show='!isNegotiation'>
             <div class="bs-docs-section">
-                <retailer-marketing ng-show='Marketing' is-page-shown='Marketing' is-page-loading='isPageLoading'></retailer-marketing>
+                <retailer-marketing ng-show='Marketing' is-page-shown='Marketing' is-page-loading='isPageLoading' is-ready='isRetailerDecisionReady'></retailer-marketing>
 
-                <retailer-private-label-portfolio-management ng-show='PrivateLabelPortfolioManagement' is-page-shown='PrivateLabelPortfolioManagement' is-page-loading='isPageLoading'></retailer-private-label-portfolio-management>
+                <retailer-private-label-portfolio-management ng-show='PrivateLabelPortfolioManagement' is-page-shown='PrivateLabelPortfolioManagement' is-page-loading='isPageLoading' is-ready='isRetailerDecisionReady'></retailer-private-label-portfolio-management>
 
-                <retailer-store-management ng-show='StoreManagement' is-page-shown='StoreManagement' is-page-loading='isPageLoading'></retailer-store-management>
+                <retailer-store-management ng-show='StoreManagement' is-page-shown='StoreManagement' is-page-loading='isPageLoading' is-ready='isRetailerDecisionReady'></retailer-store-management>
 
-                <retailer-market-research-orders ng-show='MarketResearchOrders' is-page-shown='MarketResearchOrders' is-page-loading='isPageLoading'></retailer-market-research-orders>
+                <retailer-market-research-orders ng-show='MarketResearchOrders' is-page-shown='MarketResearchOrders' is-page-loading='isPageLoading' is-ready='isRetailerDecisionReady'></retailer-market-research-orders>
                 
             </div>
         </div>
-        <div class="col-md-3" ng-show='!isNegotiation'>
+        <div class="col-md-3" style="width:26%" ng-show='!isNegotiation'>
             <div class="bs-docs-section bs-docs-sidebar hidden-print" affix='10' role="complementary">
                 <table class="table table-condensed">
                     <thead>
