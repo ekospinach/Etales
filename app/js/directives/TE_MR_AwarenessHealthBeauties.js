@@ -55,7 +55,7 @@ define(['directives', 'services'], function(directives){
                         },{
                             name:'Increase',data:scope.increaseRural,color:'#5CB85C'
                         },{
-                            name:'Value',data:scope.valueRural,color:'#DDDDDD'
+                            name:'Value',data:scope.valueRural,color:'#428BCA'
                         }];
                         scope.awarenessHealthBeauties1Config={
                             options:{
@@ -77,7 +77,7 @@ define(['directives', 'services'], function(directives){
                         },{
                             name:'Increase',data:scope.increaseUrban,color:'#5CB85C'
                         },{
-                            name:'Value',data:scope.valueUrban,color:'#DDDDDD'
+                            name:'Value',data:scope.valueUrban,color:'#428BCA'
                         }];
                         scope.awarenessHealthBeauties2Config={
                             options:{
