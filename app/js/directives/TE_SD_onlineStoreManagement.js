@@ -117,7 +117,7 @@ define(['directives', 'services'], function(directives){
 
                 scope.checkOrderVolumes=function(category,brandName,varName,location,additionalIdx,index,value){
                     var d=$q.defer();
-                    var categoryID,max,result;
+                    var categoryID,production,result;
                     if(category=="Elecssories"){
                         category=1;
                     }else{
@@ -127,25 +127,25 @@ define(['directives', 'services'], function(directives){
                     if(!filter.test(value)){
                         d.resolve(Label.getContent('Input a number'));
                     }
-                    var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
+                    // var url='/'
+                    var url='/producerCurrentDecision/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer()+'/'+brandName+'/'+varName;
                     $http({
                         method:'GET',
                         url:url
                     }).then(function(data){
-                        max=data.data.productionCapacity[category-1];
-                        url="/productionResult/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+brandName+'/'+varName;
+                        production=data.data.production;
+                        url='/SCR-Closing/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+PlayerInfo.getPlayer()+'/'+brandName+'/'+varName;
                         return $http({
                             method:'GET',
                             url:url
-                        });
+                        })
                     }).then(function(data){
-                        if(parseInt(data.data.result)+parseInt(value)>max){
-                            d.resolve(Label.getContent('Input range')+':0~'+(max-parseInt(data.data.result)));
+                        result=data.result;
+                        if(value>result+production){
+                            d.resolve(Label.getContent('Input range')+':0~'+result+production);
                         }else{
                             d.resolve();
                         }
-                    },function(){
-                        console.log('fail');
                     })
                     return d.promise;
                 }
