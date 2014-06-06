@@ -674,12 +674,13 @@ define(['angular',
 								$rootScope.$broadcast('retailerReportPurchaseDecisionChangedError', data, newSeminarData);
 							});
 						}
+					});
 
 					socket.on('socketIO:retailerMarketResearchOrdersChanged',function(data){
 						if(data.seminar==SeminarInfo.getSelectedSeminar()){
 							$rootScope.$broadcast('retailerMarketResearchOrdersChanged',data);							
 						}
-					})
+					});
 
 				},
 				//step1
