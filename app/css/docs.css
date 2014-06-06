@@ -9,11 +9,11 @@ body {
 .btn-outline {
     background-color: #FFFFFF;
     border-color: #E5E5E5;
-    color: #005e20;
+    color: #563D7C;
 }
 .btn-outline:hover, .btn-outline:focus, .btn-outline:active {
-    background-color: #005e20;
-    border-color: #005e20;
+    background-color: #563D7C;
+    border-color: #563D7C;
     color: #FFFFFF;
 }
 .btn-outline-inverse {
@@ -24,11 +24,11 @@ body {
 .btn-outline-inverse:hover, .btn-outline-inverse:focus, .btn-outline-inverse:active {
     background-color: #FFFFFF;
     border-color: #FFFFFF;
-    color: #005e20;
+    color: #563D7C;
     text-shadow: none;
 }
 .bs-docs-nav {
-    background-color: #005e20;
+    background-color: #563D7C;
     border-color: #463265;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
@@ -50,7 +50,7 @@ body {
     color: #FFFFFF;
 }
 .bs-docs-nav .navbar-toggle {
-    border-color: #005e20;
+    border-color: #563D7C;
 }
 .bs-docs-nav .navbar-toggle:hover {
     background-color: #463265;
@@ -120,12 +120,12 @@ body {
 .bs-docs-home, .bs-header {
 
 /* -- green version -- */
-    background-color: #005e20;
-
-/* -- purple version -- */    
 /*    background-color: #563D7C;
+*/
+/* -- purple version -- */    
+    background-color: #563D7C;
       background-image: url('../img/index.png');
-*/    
+    
     color: #CDBFE3;
 }
 .bs-masthead {
@@ -421,8 +421,8 @@ body {
 }
 .bs-sidebar .nav > .active > a, .bs-sidebar .nav > .active:hover > a, .bs-sidebar .nav > .active:focus > a {
     background-color: rgba(0, 0, 0, 0);
-    border-right: 1px solid #005e20;
-    color: #005e20;
+    border-right: 1px solid #563D7C;
+    color: #563D7C;
     font-weight: bold;
 }
 .bs-sidebar .nav .nav {
