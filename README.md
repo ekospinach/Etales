@@ -1,137 +1,57 @@
 # Etales
 Business Simulation Game
 
-This is a fork of [Angular Seed](https://github.com/angular/angular-seed) but with changes needed for requireJS support.
+##Patch List, 2014 JUNE
 
-* AngularJS 1.2.0-rc.1
-* RequireJS 2.1.8
-* Full support for unit and e2e tests
-* Support for Karma Test Runner 0.10+ (formerly Testacular)
+###### Supplier Decisions 
++ push notification bugs fix
++ Product Portfolio management页面,  New Product功能完全失灵
++ Product Portfolio management页面,增加即时变化的unitCost列
++ Product Portfolio management页面,漏掉了discontinue选项
++ Product Portfolio management页面,第一列宽度需要加宽，当按钮出现时，layout被破坏。
++ Product Portfolio management页面,可添加完全同名的单品。当删除同名单品时，新旧单品将被一起删除。
 
-## Changes 
+###### Retailer Decisions 
 
-* To run e2e tests, you need to have a server running, you could run`scripts/web-server.js` from the root folder of this repository to get one.
-* There are 2 very similar files bootstraping the app named `main.js` and `main-test.js`. Latter is used only for unit testing where we still use RequireJS (so all your `define` and `require` works) but we don't attach our app to the DOM. 
-* App has been divided into separate files to hold controllers, filters, directives and services separately. These are all defined as separated Angular modules. In this example all these are required to run the main app but in real-world scenario it's likely that you will have modules that are not needed for certain parts of the applications - use requireJS to load them only as and when needed.
+###### Reports Overall
++ 所有带括号的内容前后必须有一个空格。example: Financial Results-B&M Business Profit & Loss Statement(Elecssories). 应为：     Financial Results - B&M Business Profit & Loss Statement (Elecssories)
 
-## Installation
+###### General reports
++ Market shares report 图表内缺少labels : Total/by Market/by Consumer Segment/by Shopper segment (参考pdf)
++ Sales report 图表内缺少labels : Total/by Market/by Consumer Segment/by Shopper segment (参考pdf)
++ Cross-Segment report 图表内缺少labels: Shopper Segments/Consumer Segment (参考pdf)
 
-    git clone git@github.com:tnajdek/angular-requirejs-seed.git
-    cd angular-requirejs-seed
-    npm install
-    bower install
+###### Supplier Confidential reports
++ Consolidated Profit & Loss Statement, 每个”-“和”(1)(2)(3)”之后都有一个空格。
++ BM Business Profit & Loss Statement, 每个”-“和”(1)(2)(3)”之后都有一个空格。
++ BM Business Profit & Loss Statement,  弹出单品details的方式需要改善？？？强制增加弹出框中产品列的列宽，使左边的行header和列宽基本平衡。
++ Online Profit & Loss Statement, 每个”-“和”(1)(2)(3)”之后都有一个空格。’
++ Online Profit & Loss Statement, 太宽，通过修改css增加横向滚动条
++ Situation Report - Volume, 有两列需要merge（参考pdf）
++ Key Performance Indicators, 此页中有四行需要popover tips，内容参考pdf。interface效果最好用bootstrap css在每行末尾加一个”i”符号。example : ```<span class="glyphicon glyphicon-lock"></span>```
 
-## Running
+###### Supplier Confidential reports
++ Consolidated Profit & Loss Statement, 每个”-“和”(1)(2)(3)”之后都有一个空格。目前向后缩进的行其实不需要缩进（参考pdf）。
++ Rural/Urban Profit & Loss Statement, 每个”-“和”(1)(2)(3)”之后都有一个空格。目前向后缩进的行其实不需要缩进（参考pdf）。
++ Rural/Urban Profit & Loss Statement,  太宽，通过修改css增加横向滚动条。
++ Rural/Urban Profit & Loss Statement,  弹出单品details的方式需要改善？？？强制增加弹出框中产品列的列宽，使左边的行header和列宽基本平衡。
++ Profitability by Channel, Private Label那列需要正确的merge（参考pdf）
++ Key Performance Indicators, 此页中有3行需要popover tips，内容参考pdf。interface效果最好用bootstrap css在每行末尾加一个”i”符号。example : ```<span class="glyphicon glyphicon-lock"></span>```
++ BM Business Profit & Loss Statement,  弹出单品details的方式需要改善？？？强制增加弹出框中产品列的列宽
++ Online Profit & Loss Statement, 每个”-“和”(1)(2)(3)”之后都有一个空格。’
++ Online Profit & Loss Statement, 太宽，通过修改css增加横向滚动条
++ Situation Report - Volume, 有两列需要merge（参考pdf）
++ Key Performance Indicators, 此页中有四行需要popover tips，内容参考pdf。interface效果最好用bootstrap css在每行末尾加一个”i”符号。example : ```<span class="glyphicon glyphicon-lock"></span>```
 
-    # Serve static files using your own web server or run
-    scripts/web-server.js
-
-## Testing
-
-    # Run unit tests automatically whenever app changes
-    scripts/test.sh
-
-    # Run end to end tests (requires web server to be running)
-    #script/e2e-test.sh
-
-To run e2e tests you can also point your browser to:
-
-    http://localhost:8000/test/e2e/runner.html
-
-
-Documentation from the original repo untouched
-----------------------------------------------
-
-# angular-seed — the seed for AngularJS apps
-
-This project is an application skeleton for a typical [AngularJS](http://angularjs.org/) web app.
-You can use it to quickly bootstrap your angular webapp projects and dev environment for these
-projects.
-
-The seed contains AngularJS libraries, test libraries and a bunch of scripts all preconfigured for
-instant web development gratification. Just clone the repo (or download the zip/tarball), start up
-our (or yours) webserver and you are ready to develop and test your application.
-
-The seed app doesn't do much, just shows how to wire two controllers and views together. You can
-check it out by opening app/index.html in your browser (might not work file `file://` scheme in
-certain browsers, see note below).
-
-_Note: While angular is client-side-only technology and it's possible to create angular webapps that
-don't require a backend server at all, we recommend hosting the project files using a local
-webserver during development to avoid issues with security restrictions (sandbox) in browsers. The
-sandbox implementation varies between browsers, but quite often prevents things like cookies, xhr,
-etc to function properly when an html page is opened via `file://` scheme instead of `http://`._
-
-
-## How to use angular-seed
-
-Clone the angular-seed repository and start hacking...
-
-
-### Running the app during development
-
-You can pick one of these options:
-
-* serve this repository with your webserver
-* install node.js and run `scripts/web-server.js`
-
-Then navigate your browser to `http://localhost:<port>/app/index.html` to see the app running in
-your browser.
-
-
-### Running the app in production
-
-This really depends on how complex is your app and the overall infrastructure of your system, but
-the general rule is that all you need in production are all the files under the `app/` directory.
-Everything else should be omitted.
-
-Angular apps are really just a bunch of static html, css and js files that just need to be hosted
-somewhere, where they can be accessed by browsers.
-
-If your Angular app is talking to the backend server via xhr or other means, you need to figure
-out what is the best way to host the static files to comply with the same origin policy if
-applicable. Usually this is done by hosting the files by the backend server or through
-reverse-proxying the backend server(s) and a webserver(s).
-
-
-### Running unit tests
-
-We recommend using [jasmine](http://pivotal.github.com/jasmine/) and
-[Testacular](http://vojtajina.github.com/testacular/) for your unit tests/specs, but you are free
-to use whatever works for you.
-
-Requires [node.js](http://nodejs.org/), Testacular (`sudo npm install -g testacular`) and a local
-or remote browser.
-
-* start `scripts/test.sh` (on windows: `scripts\test.bat`)
-  * a browser will start and connect to the Testacular server (Chrome is default browser, others can be captured by loading the same url as the one in Chrome or by changing the `config/testacular.conf.js` file)
-* to run or re-run tests just change any of your source or test javascript files
-
-
-### End to end testing
-
-Angular ships with a baked-in end-to-end test runner that understands angular, your app and allows
-you to write your tests with jasmine-like BDD syntax.
-
-Requires a webserver, node.js + `./scripts/web-server.js` or your backend server that hosts the angular static files.
-
-Check out the
-[end-to-end runner's documentation](http://docs.angularjs.org/guide/dev_guide.e2e-testing) for more
-info.
-
-* create your end-to-end tests in `test/e2e/scenarios.js`
-* serve your project directory with your http/backend server or node.js + `scripts/web-server.js`
-* to run do one of:
-  * open `http://localhost:port/test/e2e/runner.html` in your browser
-  * run the tests from console with [Testacular](vojtajina.github.com/testacular) via
-    `scripts/e2e-test.sh` or `script/e2e-test.bat`
-
-
-### Receiving updates from upstream
-
-When we upgrade angular-seed's repo with newer angular or testing library code, you can just
-fetch the changes and merge them into your project with git.
-
+###### Market reports
++ Supplier/Retailer按照上阶段购买report决策显示当前阶段的报告，1阶段（游戏开始时）时默认显示全部报告。facilitator默认显示全部报告。
++ Retailer Perception 横纵坐标的label丢失
++ Brand Perception 横纵坐标的label字体过小
++ Market Shares by Consumer Segment- Elecssories - Rural 菜单label和显示内容不符
++ Market Shares by Consumer Segment- HealthBeauties - Urban 菜单label和显示内容不符
++ Market Shares by Shopper Segment- Elecssories - Rural 菜单label和显示内容不符
++ Market Shares by Shopper Segment- HealthBeauties - Urban 菜单label和显示内容不符
++ Sales by Consumer Segment/Shopper Segment，有可能有上述相同问题，需要double-check code
 
 ## Directory Layout
 
