@@ -177,18 +177,19 @@ exports.getSCR_inventoryVolumes=function(req,res,next){
     })  
 }
 
-exports.getSCR_Closing=function(req,res,next){
+
+exports.getSCR_ClosingInternetInventoryVolume=function(req,res,next){
     var data={
         'seminar':req.params.seminar,
         'period':req.params.period,
         'producerID':req.params.producerID
     };
-    SCR_inventoryVolumes.find(data,function(err,doc){
+    SCR_inventoryVolumes.findOne(data,function(err,doc){
         if(doc){
-            console.log(doc[0].scrviv_Closing);
-            for(i=0;i<doc[0].scrviv_Closing.length;i++){
-                if(doc[0].scrviv_Closing[i].parentBrandName==req.params.brandName&&doc[0].scrviv_Closing[i].variantName==req.params.varName){
-                    res.send(200,{'result':doc[0].scrviv_Closing[i].value[1]});
+            console.log(doc.scrviv_Closing);
+            for(i=0;i<doc.scrviv_Closing.length;i++){
+                if(doc.scrviv_Closing[i].parentBrandName==req.params.brandName&&doc.scrviv_Closing[i].variantName==req.params.varName){
+                    res.send(200,{'result':doc.scrviv_Closing[i].value[1]});
                 } 
             }
 

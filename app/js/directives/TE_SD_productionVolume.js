@@ -195,12 +195,9 @@ define(['directives', 'services'], function(directives){
                     }
                 });
                 scope.$on('producerDecisionBaseChangedFromServer', function(event, data, newBase) {                    
-                        //decision base had been updated, re-render the page with newBase
-                    if(data.seminar==SeminarInfo.getSelectedSeminar()&&data.period==PeriodInfo.getCurrentPeriod()&&data.producerID==PlayerInfo.getPlayer()){
-                    
+                        //decision base had been updated, re-render the page with newBase                    
                         scope.pageBase = newBase;
                         showView();
-                    }
                 });
 
             }

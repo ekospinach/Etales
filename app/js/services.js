@@ -391,6 +391,12 @@ define(['angular',
 						}
 					});
 
+					socket.on('socketIO:producerMarketResearchOrdersChanged', function(data) {
+						if (data.seminar == SeminarInfo.getSelectedSeminar() && data.producerID == PlayerInfo.getPlayer()) {
+							$rootScope.$broadcast('producerMarketResearchOrdersChanged', data);
+						}
+					});
+
 					//send seminar global message to notify retailer that supplier has commit portfolio decision
 					socket.on('socketIO:producerPortfolioDecisionStatusChanged', function(data){
 						if(data.seminar == SeminarInfo.getSelectedSeminar()){
@@ -398,11 +404,18 @@ define(['angular',
 						}
 					});
 
-					socket.on('socketIO:producerMarketResearchOrdersChanged', function(data) {
-						if (data.seminar == SeminarInfo.getSelectedSeminar()) {
-							$rootScope.$broadcast('producerMarketResearchOrdersChanged', data);
+					socket.on('socketIO:finalDecisionCommitted', function(data){
+						if(data.seminar == SeminarInfo.getSelectedSeminar()
+							&& data.role == 'Producer'
+							&& data.period == PeriodInfo.getCurrentPeriod()
+							&& data.roleID == PlayerInfo.getPlayer()){
+							$rootScope.$broadcast('producerDecisionLocked', data);
 						}
-					});
+					})
+
+						//io.sockets.emit('FinalDecisionCommitted', {seminar : queryCondition.seminar, role: queryCondition.role, roleID : queryCondition.roleID, period : queryCondition.period});
+
+
 				},				
 				setSomething : function(sth){
 					//post to server...
@@ -677,11 +690,20 @@ define(['angular',
 					});
 
 					socket.on('socketIO:retailerMarketResearchOrdersChanged',function(data){
-						if(data.seminar==SeminarInfo.getSelectedSeminar()){
-							$rootScope.$broadcast('retailerMarketResearchOrdersChanged',data);							
+						if (data.seminar == SeminarInfo.getSelectedSeminar() && data.period == PeriodInfo.getCurrentPeriod() && data.retailerID == PlayerInfo.getPlayer()) {
+							$rootScope.$broadcast('retailerMarketResearchOrdersChanged', data);
 						}
 					});
 
+
+					socket.on('socketIO:finalDecisionCommitted', function(data){
+						if(data.seminar == SeminarInfo.getSelectedSeminar()
+							&& data.role == 'Retailer'
+							&& data.period == PeriodInfo.getCurrentPeriod()
+							&& data.roleID == PlayerInfo.getPlayer()){
+							$rootScope.$broadcast('retailerDecisionLocked', data);
+						}
+					})					
 				},
 				//step1
 								/* 

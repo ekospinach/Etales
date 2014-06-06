@@ -669,28 +669,31 @@ exports.getProducerCurrentDecision=function(req,res,next){
     })
 }
 
-exports.getProducerVariantBM=function(req,res,next){
+exports.getProducerVariantBM = function(req, res, next) {
     proDecision.findOne({
-        seminar:req.params.seminar,
-        period:req.params.period,
-        producerID:req.params.producerID
-    },function(err,doc){
-        if(err){
-            next (new Error(err));
+        seminar: req.params.seminar,
+        period: req.params.period,
+        producerID: req.params.producerID
+    }, function(err, doc) {
+        if (err) {
+            next(new Error(err));
         }
-        if(!doc){
-            res.send(404,{err:'cannot find the doc'});
-        }else{
-            var result=0,count=0;
-            var allProCatDecisions=_.filter(doc.proCatDecision,function(obj){
-                return (obj.categoryID==req.params.categoryID);
+        if (!doc) {
+            res.send(404, {
+                err: 'cannot find the doc'
             });
-            for(var i=0;i<allProCatDecisions.length;i++){
-                for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
-                    if(allProCatDecisions[i].proBrandsDecision[j].brandID!=0&&allProCatDecisions[i].proBrandsDecision[j].brandName==req.params.brandName){
-                        for(var k=0;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
-                            if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=0&&allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varName==req.params.varName){
-                                result=allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].currentPriceBM;
+        } else {
+            var result = 0,
+                count = 0;
+            var allProCatDecisions = _.filter(doc.proCatDecision, function(obj) {
+                return (obj.categoryID == req.params.categoryID);
+            });
+            for (var i = 0; i < allProCatDecisions.length; i++) {
+                for (var j = 0; j < allProCatDecisions[i].proBrandsDecision.length; j++) {
+                    if (allProCatDecisions[i].proBrandsDecision[j].brandID != 0 && allProCatDecisions[i].proBrandsDecision[j].brandName == req.params.brandName) {
+                        for (var k = 0; k < allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length; k++) {
+                            if (allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID != 0 && allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varName == req.params.varName) {
+                                result = allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].currentPriceBM;
                                 count++;
                                 break;
                             }
@@ -699,16 +702,18 @@ exports.getProducerVariantBM=function(req,res,next){
                     }
                 }
             }
-            if(count!=0){
-                res.send(200,{result:result});
-            }
-            else{
-                res.send(404,{result:'failed'});
+            if (count != 0) {
+                res.send(200, {
+                    result: result
+                });
+            } else {
+                res.send(404, {
+                    result: 'BM price for this product has not been decided.'
+                });
             }
         }
     })
 }
-
 exports.getProductInfo=function(req,res,next){
     proDecision.findOne({
         seminar:req.params.seminar,

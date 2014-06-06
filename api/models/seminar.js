@@ -212,6 +212,27 @@ exports.checkProducerDecision=function(req,res,next){
 		}
 	})
 }
+
+exports.checkProducerFinalDecision=function(req,res,next){
+	seminar.findOne({seminarCode:req.params.seminar},function(err,doc){
+		if(err) {next(new Error(err))};
+		if(doc){
+			for(var i=0;i<doc.producers[req.params.producerID-1].decisionCommitStatus.length;i++){
+				if(doc.producers[req.params.producerID-1].decisionCommitStatus[i].period==req.params.period){
+					if(doc.producers[req.params.producerID-1].decisionCommitStatus[i].isDecisionCommitted==true){
+						res.send(200,'isReady');
+					}else{
+						res.send(200,'unReady');
+					}
+				}
+			}
+			
+		}else{
+			res.send(404,'there is no contract');
+		}
+	})
+}
+
 exports.checkRetailerDecision=function(req,res,next){
 	seminar.findOne({seminarCode:req.params.seminar},function(err,doc){
 		if(err) {next(new Error(err))};
@@ -319,10 +340,9 @@ exports.submitFinalDecision=function(io){
 				}				
 				doc.save(function(err){
 					if(!err){
-						io.sockets.emit('producerBaseChanged', 'this is a baseChanged');
+						io.sockets.emit('socketIO:finalDecisionCommitted', {seminar : queryCondition.seminar, role: queryCondition.role, roleID : queryCondition.roleID, period : queryCondition.period});
 						res.send(200,'success');
-					}else{
-						io.sockets.emit('producerBaseChanged', 'this is a baseChanged');
+					}else{						
 						res.send(400,'fail');
 					}
 				})

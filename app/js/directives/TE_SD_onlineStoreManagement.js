@@ -134,15 +134,16 @@ define(['directives', 'services'], function(directives){
                         url:url
                     }).then(function(data){
                         production=data.data.production;
-                        url='/SCR-Closing/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+PlayerInfo.getPlayer()+'/'+brandName+'/'+varName;
+                        url='/SCR-ClosingInternetInventoryVolume/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+PlayerInfo.getPlayer()+'/'+brandName+'/'+varName;
                         return $http({
                             method:'GET',
                             url:url
                         })
                     }).then(function(data){
-                        result=data.result;
-                        if(value>result+production){
-                            d.resolve(Label.getContent('Input range')+':0~'+result+production);
+                        //result=data.result;
+                        var limited = data.data.result + production;
+                        if(value>limited){
+                            d.resolve(Label.getContent('Input range')+':0~'+limited);
                         }else{
                             d.resolve();
                         }
@@ -276,11 +277,8 @@ define(['directives', 'services'], function(directives){
                 
                 scope.$on('producerDecisionBaseChangedFromServer', function(event, data, newBase) {                    
                         //decision base had been updated, re-render the page with newBase
-                    if(data.seminar==SeminarInfo.getSelectedSeminar()&&data.period==PeriodInfo.getCurrentPeriod()&&data.producerID==PlayerInfo.getPlayer()){
-                    
                         scope.pageBase = newBase;
                         showView();
-                    }
                 });
 
             }

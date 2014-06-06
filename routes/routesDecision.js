@@ -79,6 +79,7 @@ module.exports = function(app, io){
 
     //Check if supplier has submitted portfolio decision 
     app.get('/checkProducerDecision/:seminar/:period/:producerID',                                          require('./../api/models/seminar.js').checkProducerDecision);
+    app.get('/checkProducerFinalDecision/:seminar/:period/:producerID',                                          require('./../api/models/seminar.js').checkProducerFinalDecision);    
     app.get('/checkRetailerDecision/:seminar/:period/:retailerID',                                          require('./../api/models/seminar.js').checkRetailerDecision);
 
     //Submit supplier research order decision
@@ -87,8 +88,5 @@ module.exports = function(app, io){
     
     app.post('/submitPortfolioDecision',                                         require('./../api/models/seminar.js').submitPortfolioDecision(io));
     app.post('/submitFinalDecision',                                             require('./../api/models/seminar.js').submitFinalDecision(io));
-
-
-
 
 };

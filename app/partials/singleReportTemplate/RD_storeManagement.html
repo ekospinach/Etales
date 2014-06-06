@@ -1,7 +1,7 @@
 <div class='panel panel-primary my-success-panel' ng-show='isResultShown'>
     <div class="panel-heading">
         <h3 class="panel-title text-center" popover="{{Label.getContent('Store Management Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
-            {{Label.getContent('Store Management')}}-{{Label.getContent('Elecssories')}}-{{Label.getContent('Urban')}}
+            {{Label.getContent('Store Management')}} - {{Label.getContent('Elecssories')}} - {{Label.getContent('Urban')}}     <a ng-show='isResultShown' ng-disabled="isReady" ng-click="open('Elecssories','Urban')" class="btn btn-default">{{Label.getContent('Add Order')}}</a>
         </h3>
     </div>
     <table class="table table-condensed table-bordered table-success">
@@ -80,16 +80,13 @@
         </tbody>
     </table>
 </div>
-<div ng-show='isResultShown' style="padding-bottom:20px">
-    <a ng-disabled="isReady" ng-click="open('Elecssories','Urban')" class="btn btn-default">{{Label.getContent('Add Order')}}</a>
-</div>
 
 <div style="clear:both;padding-bottom:5px"></div>
 
 <div class='panel panel-primary my-success-panel' ng-show='isResultShown'>
     <div class="panel-heading">
         <h3 class="panel-title text-center" popover="{{Label.getContent('Store Management Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
-            {{Label.getContent('Store Management')}}-{{Label.getContent('HealthBeauties')}}-{{Label.getContent('Urban')}}
+            {{Label.getContent('Store Management')}} - {{Label.getContent('HealthBeauties')}} - {{Label.getContent('Urban')}} <a ng-show='isResultShown' ng-disabled="isReady" ng-click="open('HealthBeauties','Urban')" class="btn btn-default">{{Label.getContent('Add Order')}}</a>
         </h3>
     </div>
     <table class="table table-condensed table-bordered table-success">
@@ -167,14 +164,11 @@
         </tbody>
     </table>
 </div>
-<div ng-show='isResultShown' style="padding-bottom:20px">
-    <a ng-disabled="isReady" ng-click="open('HealthBeauties','Urban')" class="btn btn-default">{{Label.getContent('Add Order')}}</a>
-</div>
 
 <div class='panel panel-primary my-success-panel' ng-show='isResultShown'>
     <div class="panel-heading">
         <h3 class="panel-title text-center" popover="{{Label.getContent('Store Management Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
-            {{Label.getContent('Store Management')}}-{{Label.getContent('Elecssories')}}-{{Label.getContent('Rural')}}
+            {{Label.getContent('Store Management')}} - {{Label.getContent('Elecssories')}} - {{Label.getContent('Rural')}}    <a ng-show='isResultShown' ng-disabled="isReady" ng-click="open('Elecssories','Rural')" class="btn btn-default">{{Label.getContent('Add Order')}}</a>
         </h3>
     </div>
     <table class="table table-condensed table-bordered table-success">
@@ -252,14 +246,11 @@
         </tbody>
     </table>
 </div>
-<div ng-show='isResultShown' style="padding-bottom:20px">
-    <a ng-disabled="isReady" ng-click="open('Elecssories','Rural')" class="btn btn-default">{{Label.getContent('Add Order')}}</a>
-</div>
 
 <div class='panel panel-primary my-success-panel' ng-show='isResultShown'>
     <div class="panel-heading">
         <h3 class="panel-title text-center" popover="{{Label.getContent('Store Management Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
-            {{Label.getContent('Store Management')}}-{{Label.getContent('HealthBeauties')}}-{{Label.getContent('Rural')}}
+            {{Label.getContent('Store Management')}} - {{Label.getContent('HealthBeauties')}} - {{Label.getContent('Rural')}}     <a ng-show='isResultShown' ng-disabled="isReady" ng-click="open('HealthBeauties','Rural')" class="btn btn-default">{{Label.getContent('Add Order')}}</a>
         </h3>
     </div>
     <table class="table table-condensed table-bordered table-success">
@@ -336,7 +327,4 @@
             </tr>
         </tbody>
     </table>
-</div>
-<div ng-show='isResultShown' style="padding-bottom:20px">
-    <a ng-disabled="isReady" ng-click="open('HealthBeauties','Rural')" class="btn btn-default">{{Label.getContent('Add Order')}}</a>
 </div>

@@ -29,7 +29,7 @@ module.exports = function(app, io){
 	app.get('/SCR-consolidatedProfitAndLoss/:seminar/:period/:producerID',require('./../api/models/SCR_consolidatedProfitAndLoss.js').getSCR_consolidatedProfitAndLoss);
 	app.get('/SCR-channelsProfitability/:seminar/:period/:producerID',    require('./../api/models/SCR_channelsProfitability.js').getSCR_channelsProfitability);
 	app.get('/SCR-inventoryVolumes/:seminar/:period/:producerID',         require('./../api/models/SCR_inventoryVolumes.js').getSCR_inventoryVolumes);
-	app.get('/SCR-Closing/:seminar/:period/:producerID/:brandName/:varName',         require('./../api/models/SCR_inventoryVolumes.js').getSCR_Closing);
+	app.get('/SCR-ClosingInternetInventoryVolume/:seminar/:period/:producerID/:brandName/:varName',         require('./../api/models/SCR_inventoryVolumes.js').getSCR_ClosingInternetInventoryVolume);
 	
 	app.get('/SCR-keyPerformanceIndicators/:seminar/:period/:producerID', require('./../api/models/SCR_keyPerformanceIndicators.js').getSCR_keyPerformanceIndicators);
 	app.get('/SCR-negotiations/:seminar/:period/:producerID',             require('./../api/models/SCR_negotiations.js').getSCR_negotiations);

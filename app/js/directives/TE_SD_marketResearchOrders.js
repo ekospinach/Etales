@@ -94,9 +94,7 @@ define(['directives', 'services'], function(directives){
                 })
 
                 scope.$on('producerMarketResearchOrdersChanged', function(event, data, newSeminarData) {  
-                    if(data.seminar==SeminarInfo.getSelectedSeminar()&&data.period==PeriodInfo.getCurrentPeriod()&&data.producerID==PlayerInfo.getPlayer()){
-                        initializePage();  
-                    }                     
+                    getResult();  
                 });
 
             }

@@ -588,9 +588,7 @@ define(['directives', 'services'], function(directives) {
                     var showView = function() {
                         var d = $q.defer();
                         loadSelectCategory('Elecssories');
-                        loadSelectCategory('HealthBeauty');
-                        
-
+                        loadSelectCategory('HealthBeauty');                        
                         scope.isResultShown = true;
                         scope.isPageLoading = false;
                         return d.promise;
@@ -621,11 +619,8 @@ define(['directives', 'services'], function(directives) {
                     
                     scope.$on('producerDecisionBaseChangedFromServer', function(event, data, newBase) {                    
                             //decision base had been updated, re-render the page with newBase
-                        if(data.seminar==SeminarInfo.getSelectedSeminar()&&data.period==PeriodInfo.getCurrentPeriod()&&data.producerID==PlayerInfo.getPlayer()){
-                        
                             scope.pageBase = newBase;
                             showView();
-                        }
                     });
 
                 }

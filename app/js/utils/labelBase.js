@@ -819,6 +819,7 @@ var getLabelBase = function(){
 		{id:'Market Research Orders',  ENG:'Market Research Orders',  CHN:'市场研究订单',  RUS:''},
 		{id:'Market Research Orders Info',  ENG:'This decision form allows supplier to order market reports for the next period. By hovering the cursor on each study title, an a pop-up will appear which explaining the contents of that study',  CHN:'市场研究订单介绍',  RUS:''},
 		{id:'Order Volumes',  ENG:'Order Volumes',  CHN:'订单量',  RUS:''},
+		{id:'Online planned volume',  ENG:'Online planned volume',  CHN:'在线供货量',  RUS:''},		
 		{id:'Prices',  ENG:'Prices',  CHN:'价格',  RUS:''},
 		{id:'Technology',  ENG:'Technology',  CHN:'技术',  RUS:''},
 		{id:'Design',  ENG:'Design',  CHN:'设计',  RUS:''},

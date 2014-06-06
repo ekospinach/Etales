@@ -10,8 +10,13 @@ Business Simulation Game
 + Product Portfolio management页面,漏掉了discontinue选项
 + Product Portfolio management页面,第一列宽度需要加宽，当按钮出现时，layout被破坏。
 + Product Portfolio management页面,可添加完全同名的单品。当删除同名单品时，新旧单品将被一起删除。
++ Online Store Management页面，Frequency取值范围应该为0~26weeks
++ Asset Investment页面，Capacity 输入范围错误
++ Online Store Management页面，order volumes字样改为Online planned volume, 输入范围为，0 ~ 当前单品的本阶段产量 + 上阶段online库存。本阶段产量即为当前阶段此单品在Step4中的的决策，上阶段的online库存去```scrviv_Closing[INTERNET]```中取。(注意参数为INTERNET)
 
 ###### Retailer Decisions 
++ Store management 页面，每次保存决策成功后（品类2，市场2），由于自动刷新了界面，会导致回到不明品类市场的组合下（品类1市场1？）如下状况：
++ Store Management 页面，部分值的IO依然失灵：比如H类市场1中的retailer Pirce，无法存入值
 
 ###### Reports Overall
 + 所有带括号的内容前后必须有一个空格。example: Financial Results-B&M Business Profit & Loss Statement(Elecssories). 应为：     Financial Results - B&M Business Profit & Loss Statement (Elecssories)
