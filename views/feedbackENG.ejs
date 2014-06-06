@@ -87,24 +87,24 @@
           <section>
             <h3><a>Negotiation Results</a> - Volume Discounts</h3>
             <hr>
-              <highchart id="chart1" config="supplierNegotiationResults"style="width:50%;float:left;height:500px"></highchart>
-              <highchart id="chart2" config="retailerNegotiationResults" style="width:50%;float:left;height:500px"></highchart>
+              <highchart id="chart1" config="supplierNegotiationResults"style="width:480px;float:left;height:500px"></highchart>
+              <highchart id="chart2" config="retailerNegotiationResults" style="width:480px;float:left;height:500px"></highchart>
             <p> </p>
-            <h5>Total Volume Discounts : 43.4 ($mln)</h5>
+            <h5>Total Volume Discounts : {{supplierNegotiationResultsTotal}} ($mln)</h5>
           </section>
           <section>
             <h3><a>Negotiation Results</a> - Performance Bonus</h3>
             <hr>
-            <highchart id="chart3" config="supplierPerformanceBonuses"style="width:50%;float:left;height:500px"></highchart>
-            <highchart id="chart4" config="retailerPerformanceBonuses" style="width:50%;float:left;height:500px"></highchart>
-            <h4>Total Volume Discounts : 43.4 ($mln)</h4>
+            <highchart id="chart3" config="supplierPerformanceBonuses"style="width:480px;float:left;height:500px"></highchart>
+            <highchart id="chart4" config="retailerPerformanceBonuses" style="width:480px;float:left;height:500px"></highchart>
+            <h4>Total Performance Bonuses : {{supplierPerformanceBonusesTotal}} ($mln)</h4>
           </section>
           <section>
             <h3><a>Negotiation Results</a> - Other Compensation</h3>
-            <highchart id="chart5" config="supplierOtherCompensation"style="width:50%;float:left;height:500px"></highchart>
-            <highchart id="chart6" config="retailerOtherCompensation" style="width:50%;float:left;height:500px"></highchart>
+            <highchart id="chart5" config="supplierOtherCompensation"style="width:480px;float:left;height:500px"></highchart>
+            <highchart id="chart6" config="retailerOtherCompensation" style="width:480px;float:left;height:500px"></highchart>
             
-            <h4>Total Volume Discounts : 43.4 ($mln)</h4>
+            <h4>Total Transaction Value of Other Compensation : {{supplierOtherCompensationTotal}} ($mln)</h4>
           </section>
           <section>
             <h3><a>Negotiation Results</a> - Terms of Payment</h3>
@@ -117,26 +117,26 @@
           <section>
             <h3><span class="roseLetter">Sales</span> - Elecssories - previous</h3>
             <hr>
-            <highchart id="chart8" config="previousSalesVolumeElecssories"style="width:50%;float:left;height:500px"></highchart>
-             <highchart id="chart9" config="previousSalesValueElecssories"style="width:50%;float:left;height:500px"></highchart>
+            <highchart id="chart8" config="previousSalesVolumeElecssories"style="width:480px;float:left;height:500px"></highchart>
+             <highchart id="chart9" config="previousSalesValueElecssories"style="width:480px;float:left;height:500px"></highchart>
           </section>          
           <section>
             <h3><span class="roseLetter">Sales</span> - Elecssories - current</h3>
             <hr>
-            <highchart id="chart10" config="currentSalesVolumeElecssories"style="width:50%;float:left;height:500px"></highchart>
-            <highchart id="chart11" config="currentSalesValueElecssories"style="width:50%;float:left;height:500px"></highchart>
+            <highchart id="chart10" config="currentSalesVolumeElecssories"style="width:480px;float:left;height:500px"></highchart>
+            <highchart id="chart11" config="currentSalesValueElecssories"style="width:480px;float:left;height:500px"></highchart>
           </section>          
           <section>
             <h3><span class="roseLetter">Sales</span> - HealthBeauties - Previous</h3>
             <hr>
-            <highchart id="chart12" config="previousSalesVolumeHealthBeauties"style="width:50%;float:left;height:500px"></highchart>
-            <highchart id="chart13" config="previousSalesValueHealthBeauties"style="width:50%;float:right;height:500px"></highchart>
+            <highchart id="chart12" config="previousSalesVolumeHealthBeauties"style="width:480px;float:left;height:500px"></highchart>
+            <highchart id="chart13" config="previousSalesValueHealthBeauties"style="width:480px;float:right;height:500px"></highchart>
           </section>     
           <section>
             <h3><span class="roseLetter">Sales</span> - HealthBeauties - Current</h3>
             <hr>
-            <highchart id="chart14" config="currentSalesVolumeHealthBeauties"style="width:50%;float:left;height:500px"></highchart>
-            <highchart id="chart15" config="currentSalesValueHealthBeauties"style="width:50%;float:left;height:500px"></highchart>
+            <highchart id="chart14" config="currentSalesVolumeHealthBeauties"style="width:480px;float:left;height:500px"></highchart>
+            <highchart id="chart15" config="currentSalesValueHealthBeauties"style="width:480px;float:left;height:500px"></highchart>
           </section>     
         </section>
 
@@ -144,26 +144,26 @@
           <section>
             <h3><span class="greenLetter">Market Shares</span> - Elecssories - Previous</h3>
             <hr>
-            <highchart id="chart16" config="previousSharesVolumeElecssories"style="width:50%;float:left;height:500px"></highchart>
-            <highchart id="chart17" config="previousSharesValueElecssories"style="width:50%;float:left;height:500px"></highchart>
+            <highchart id="chart16" config="previousSharesVolumeElecssories" style="width:480px;float:left;height:500px"></highchart>
+            <highchart id="chart17" config="previousSharesValueElecssories"style="width:480px;float:left;height:500px"></highchart>
           </section>          
           <section>
             <h3><span class="greenLetter">Market Shares</span> - Elecssories - Current</h3>
             <hr>
-            <highchart id="chart18" config="currentSharesVolumeElecssories"style="width:50%;float:left;height:500px"></highchart>
-            <highchart id="chart19" config="currentSharesValueElecssories"style="width:50%;float:left;height:500px"></highchart>
+            <highchart id="chart18" config="currentSharesVolumeElecssories"style="width:480px;float:left;height:500px"></highchart>
+            <highchart id="chart19" config="currentSharesValueElecssories"style="width:480px;float:left;height:500px"></highchart>
           </section>          
           <section>
             <h3><span class="greenLetter">Market Shares</span> - HealthBeauties - Previous</h3>
             <hr>
-            <highchart id="chart20" config="previousSharesVolumeHealthBeauties"style="width:50%;float:left;height:500px"></highchart>
-            <highchart id="chart21" config="previousSharesValueHealthBeauties"style="width:50%;float:left;height:500px"></highchart>
+            <highchart id="chart20" config="previousSharesVolumeHealthBeauties"style="width:480px;float:left;height:500px"></highchart>
+            <highchart id="chart21" config="previousSharesValueHealthBeauties"style="width:480px;float:left;height:500px"></highchart>
           </section>     
           <section>
             <h3><span class="greenLetter">Market Shares</span> - HealthBeauties - Current</h3>
             <hr>
-            <highchart id="chart22" config="currentSharesVolumeHealthBeauties"style="width:50%;float:left;height:500px"></highchart>
-            <highchart id="chart23" config="currentSharesValueHealthBeauties"style="width:50%;float:left;height:500px"></highchart>
+            <highchart id="chart22" config="currentSharesVolumeHealthBeauties"style="width:480px;float:left;height:500px"></highchart>
+            <highchart id="chart23" config="currentSharesValueHealthBeauties"style="width:480px;float:left;height:500px"></highchart>
           </section>     
         </section>
 
@@ -171,54 +171,54 @@
           <section>
             <h3><span class="purpleLetter">Profits</span> - Previous</h3>
             <hr>
-            <highchart id="chart24" config="previousOperatingProfits"style="width:50%;float:left;height:500px"></highchart>
-            <highchart id="chart25" config="previousNetProfitMargins"style="width:50%;float:left;height:500px"></highchart>
+            <highchart id="chart24" config="previousOperatingProfits"style="width:480px;float:left;height:500px"></highchart>
+            <highchart id="chart25" config="previousNetProfitMargins"style="width:480px;float:left;height:500px"></highchart>
           </section>          
           <section>
             <h3><span class="purpleLetter">Profits</span> - Current</h3>
             <hr>
-            <highchart id="chart26" config="currentOperatingProfits"style="width:50%;float:left;height:500px"></highchart>
-            <highchart id="chart27" config="currentNetProfitMargins"style="width:50%;float:left;height:500px"></highchart>
+            <highchart id="chart26" config="currentOperatingProfits"style="width:480px;float:left;height:500px"></highchart>
+            <highchart id="chart27" config="currentNetProfitMargins"style="width:480px;float:left;height:500px"></highchart>
           </section>           
         </section>
 
         <section ng-controller="shelfSpaceCtrl">
           <h3><span class="redLetter">Shelf Space Allocation</h3>
           <hr>
-          <highchart id="chart28" config="currentShelfSpaceElecssories"style="width:50%;float:left;height:500px"></highchart>
-            <highchart id="chart29" config="currentShelfSpaceHealthBeauties"style="width:50%;float:left;height:500px"></highchart>
+          <highchart id="chart28" config="currentShelfSpaceElecssories"style="width:480px;float:left;height:500px"></highchart>
+            <highchart id="chart29" config="currentShelfSpaceHealthBeauties"style="width:480px;float:left;height:500px"></highchart>
         </section>
 
         <section ng-controller="supplierKPIsCtrl">
           <section>
             <h3><span class="blueLetter">Supplier KPIs</span> - Effectiveness of Trade Spending</h3>
             <hr>
-            <highchart id="chart30" config="tradeSpendingElecssories" style="width:50%;float:left;height:500px"></highchart>
-            <highchart id="chart31" config="tradeSpendingHealthBeauties" style="width:50%;float:left;height:500px"></highchart>
+            <highchart id="chart30" config="tradeSpendingElecssories" style="width:480px;float:left;height:500px"></highchart>
+            <highchart id="chart31" config="tradeSpendingHealthBeauties" style="width:480px;float:left;height:500px"></highchart>
           </section>          
           <section>
             <h3><span class="blueLetter">Supplier KPIs</span> - Effectiveness of Marketing Spending</h3>
             <hr>
-            <highchart id="chart32" config="marketingSpendingElecssories" style="width:50%;float:left;height:500px"></highchart>
-            <highchart id="chart33" config="marketingSpendingHealthBeauties" style="width:50%;float:left;height:500px"></highchart>
+            <highchart id="chart32" config="marketingSpendingElecssories" style="width:480px;float:left;height:500px"></highchart>
+            <highchart id="chart33" config="marketingSpendingHealthBeauties" style="width:480px;float:left;height:500px"></highchart>
           </section>     
           <section>
             <h3><span class="blueLetter">Supplier KPIs</span> - Portfolio Strength</h3>
             <hr>
-            <highchart id="chart34" config="portfolioStrengthElecssories" style="width:50%;float:left;height:500px"></highchart>
-            <highchart id="chart35" config="portfolioStrengthHealthBeauties" style="width:50%;float:left;height:500px"></highchart>
+            <highchart id="chart34" config="portfolioStrengthElecssories" style="width:480px;float:left;height:500px"></highchart>
+            <highchart id="chart35" config="portfolioStrengthHealthBeauties" style="width:480px;float:left;height:500px"></highchart>
           </section>     
           <section>
             <h3><span class="blueLetter">Supplier KPIs</span> - B&M Channel Strength</h3>
             <hr>
-            <highchart id="chart36" config="bmChannelStrengthElecssories" style="height:300px"></highchart>
-            <highchart id="chart37" config="bmChannelStrengthHealthBeauties" style="height:300px"></highchart>
+            <highchart id="chart36" config="bmChannelStrengthElecssories" style="width:960px;height:300px"></highchart>
+            <highchart id="chart37" config="bmChannelStrengthHealthBeauties" style="width:960px;height:300px"></highchart>
           </section>                                           
           <section>
             <h3><span class="blueLetter">Supplier KPIs</span> - Online Channel Strength</h3>
             <hr>
-            <highchart id="chart38" config="onlineChannelStrengthElecssories" style="height:300px"></highchart>
-            <highchart id="chart39" config="onlineChannelStrengthHealthBeauties" style="height:300px"></highchart>
+            <highchart id="chart38" config="onlineChannelStrengthElecssories" style="width:960px;height:300px"></highchart>
+            <highchart id="chart39" config="onlineChannelStrengthHealthBeauties" style="width:960px;height:300px"></highchart>
           </section>                  
         </section>
 
@@ -226,34 +226,34 @@
           <section>
             <h3><span class="orangeLetter">Retailer KPIs</span> - Rotation Index</h3>
             <hr>
-            <highchart id="chart40" config="rotationIndexSalesValueElecssories" style="height:300px;width:50%;float:left"></highchart>
-            <highchart id="chart41" config="rotationIndexSalesVolumeElecssories" style="height:300px;width:50%;float:left"></highchart>
-            <highchart id="chart42" config="rotationIndexSalesValueHealthBeauties" style="height:300px;width:50%;float:left"></highchart>
-            <highchart id="chart43" config="rotationIndexSalesVolumeHealthBeauties" style="height:300px;width:50%;float:left"></highchart>
+            <highchart id="chart40" config="rotationIndexSalesValueElecssories" style="height:300px;width:480px;float:left"></highchart>
+            <highchart id="chart41" config="rotationIndexSalesVolumeElecssories" style="height:300px;width:480px;float:left"></highchart>
+            <highchart id="chart42" config="rotationIndexSalesValueHealthBeauties" style="height:300px;width:480px;float:left"></highchart>
+            <highchart id="chart43" config="rotationIndexSalesVolumeHealthBeauties" style="height:300px;width:480px;float:left"></highchart>
           </section>          
           <section>
             <h3><span class="orangeLetter">Retailer KPIs</span> - Profitability Index - Previous</h3>
             <hr>
-            <highchart id="chart44" config="previousRuralProfitabilityIndex" style="width:50%;float:left;height:500px"></highchart>
-            <highchart id="chart45" config="previousUrbanProfitabilityIndex" style="width:50%;float:left;height:500px"></highchart>
+            <highchart id="chart44" config="previousRuralProfitabilityIndex" style="width:480px;float:left;height:500px"></highchart>
+            <highchart id="chart45" config="previousUrbanProfitabilityIndex" style="width:480px;float:left;height:500px"></highchart>
           </section>     
           <section>
             <h3><span class="orangeLetter">Retailer KPIs</span> - Profitability Index - Current</h3>
             <hr>
-            <highchart id="chart46" config="currentRuralProfitabilityIndex" style="width:50%;float:left;height:500px"></highchart>
-            <highchart id="chart47" config="currentUrbanProfitabilityIndex" style="width:50%;float:left;height:500px"></highchart>
+            <highchart id="chart46" config="currentRuralProfitabilityIndex" style="width:480px;float:left;height:500px"></highchart>
+            <highchart id="chart47" config="currentUrbanProfitabilityIndex" style="width:480px;float:left;height:500px"></highchart>
           </section>     
           <section>
             <h3><span class="orangeLetter">Retailer KPIs</span> - Stock Cover</h3>
             <hr>
-            <highchart id="chart48" config="ruralStockCover" style="width:50%;float:left;height:500px"></highchart>
-            <highchart id="chart49" config="urbanStockCover" style="width:50%;float:left;height:500px"></highchart>
+            <highchart id="chart48" config="ruralStockCover" style="width:480px;float:left;height:500px"></highchart>
+            <highchart id="chart49" config="urbanStockCover" style="width:480px;float:left;height:500px"></highchart>
           </section>                                           
           <section>
             <h3><span class="orangeLetter">Retailer KPIs</span> - Share of Shoppers</h3>
             <hr>
-            <highchart id="chart50" config="ruralShareOfShoppers" style="height:300px"></highchart>
-            <highchart id="chart51" config="urbanShareOfShoppers" style="height:300px"></highchart>
+            <highchart id="chart50" config="ruralShareOfShoppers" style="height:300px;width:960px"></highchart>
+            <highchart id="chart51" config="urbanShareOfShoppers" style="height:300px;width:960px"></highchart>
           </section>                  
         </section>
 

@@ -212,6 +212,25 @@ exports.checkProducerDecision=function(req,res,next){
 		}
 	})
 }
+exports.checkRetailerDecision=function(req,res,next){
+	seminar.findOne({seminarCode:req.params.seminar},function(err,doc){
+		if(err) {next(new Error(err))};
+		if(doc){
+			for(var i=0;i<doc.retailers[req.params.retailerID-1].decisionCommitStatus.length;i++){
+				if(doc.retailers[req.params.retailerID-1].decisionCommitStatus[i].period==req.params.period){
+					if(doc.retailers[req.params.retailerID-1].decisionCommitStatus[i].isDecisionCommitted==true){
+						res.send(200,'isReady');
+					}else{
+						res.send(200,'unReady');
+					}
+				}
+			}
+			
+		}else{
+			res.send(404,'there is no contract');
+		}
+	})
+}
 
 exports.submitPortfolioDecision=function(io){
 	return function(req,res,next){
@@ -799,7 +818,6 @@ exports.updateSeminar=function(req,res,next){
 		additionalIdx:req.body.additionalIdx,
 		value:req.body.value
 	};
-	console.log(queryCondition);
 	seminar.findOne({seminarCode:queryCondition.seminarCode},function(err,doc){
 		if(err){
 			next(new Error(err));
@@ -837,67 +855,75 @@ exports.updateSeminar=function(req,res,next){
 	});
 }
 
-exports.submitOrder=function(req,res,next){
-	var queryCondition={
-		seminarCode:req.body.seminarCode,
-		period:req.body.period,
-		player:req.body.player,
-		playerID:req.body.playerID,
-		data:req.body.data
-	};
-	seminar.findOne({seminarCode:queryCondition.seminarCode},function(err,doc){
-		if(err){
-			next(new Error(err));
-		}
-		if(!doc){
-			console.log("cannot find matched doc....");
-			res.send(404,'cannot find matched doc....');
-		}else{
-			var isUpdate=true;
-			switch(queryCondition.player){
-				case 'Producer':
-					for(var i=0;i<doc.producers.length;i++){
-						if(doc.producers[i].producerID==queryCondition.playerID){
-							for(var j=0;j<doc.producers[i].reportPurchaseStatus.length;j++){
-								if(doc.producers[i].reportPurchaseStatus[j].period==queryCondition.period){
-									for(var k=0;k<queryCondition.data.length;k++){
-										console.log(doc.producers[i].reportPurchaseStatus[j][queryCondition.data[k].realName]);
-										doc.producers[i].reportPurchaseStatus[j][queryCondition.data[k].realName]=queryCondition.data[k].playerStatus;
+exports.submitOrder=function(io){
+	return function(req,res,next){
+		var queryCondition={
+			seminarCode:req.body.seminarCode,
+			period:req.body.period,
+			player:req.body.player,
+			playerID:req.body.playerID,
+			name:req.body.name,
+			value:req.body.value
+		};
+		seminar.findOne({seminarCode:queryCondition.seminarCode},function(err,doc){
+			if(err){
+				next(new Error(err));
+			}
+			if(!doc){
+				console.log("cannot find matched doc....");
+				res.send(404,'cannot find matched doc....');
+			}else{
+				var isUpdate=true;
+				switch(queryCondition.player){
+					case 'Producer':
+						for(var i=0;i<doc.producers.length;i++){
+							if(doc.producers[i].producerID==queryCondition.playerID){
+								for(var j=0;j<doc.producers[i].reportPurchaseStatus.length;j++){
+									if(doc.producers[i].reportPurchaseStatus[j].period==queryCondition.period){
+										doc.producers[i].reportPurchaseStatus[j][queryCondition.name]=queryCondition.value;
 									}
 								}
 							}
 						}
-					}
-					break;
-				case 'Retailer':
-					for(var i=0;i<doc.retailers.length;i++){
-						if(doc.retailers[i].retailerID==queryCondition.playerID){
-							for(var j=0;j<doc.retailers[i].reportPurchaseStatus.length;j++){
-								if(doc.retailers[i].reportPurchaseStatus[j].period==queryCondition.period){
-									for(var k=0;k<queryCondition.data.length;k++){
-										console.log(doc.retailers[i].reportPurchaseStatus[j][queryCondition.data[k].realName]);
-										doc.retailers[i].reportPurchaseStatus[j][queryCondition.data[k].realName]=queryCondition.data[k].playerStatus;
+						break;
+					case 'Retailer':
+						for(var i=0;i<doc.retailers.length;i++){
+							if(doc.retailers[i].retailerID==queryCondition.playerID){
+								for(var j=0;j<doc.retailers[i].reportPurchaseStatus.length;j++){
+									if(doc.retailers[i].reportPurchaseStatus[j].period==queryCondition.period){
+										// for(var k=0;k<queryCondition.data.length;k++){
+										// 	console.log(doc.retailers[i].reportPurchaseStatus[j][queryCondition.data[k].realName]);
+										// 	doc.retailers[i].reportPurchaseStatus[j][queryCondition.data[k].realName]=queryCondition.data[k].playerStatus;
+										// }
+										doc.retailers[i].reportPurchaseStatus[j][queryCondition.name]=queryCondition.value;
 									}
 								}
 							}
 						}
-					}
-					break;
+						break;
+				}
+				if(isUpdate){
+					doc.markModified('facilitator');
+					doc.markModified('retailers');
+					doc.markModified('producers');
+					doc.save(function(err,doc,numberAffected){
+						if(err){
+							next(new Error(err));
+						}
+						if(queryCondition.player=="Producer"){
+						io.sockets.emit('socketIO:producerMarketResearchOrdersChanged', {period : queryCondition.period,  seminar : queryCondition.seminarCode,producerID:queryCondition.playerID});
+
+						}else{
+						io.sockets.emit('socketIO:retailerMarketResearchOrdersChanged', {period : queryCondition.period,  seminar : queryCondition.seminarCode,retailerID:queryCondition.playerID});
+
+						}
+						console.log('save updated, number affected!:'+numberAffected+'doc:'+doc);
+	                    res.send(200, 'mission complete!');
+					});
+				}
 			}
-			if(isUpdate){
-				doc.markModified('facilitator');
-				doc.markModified('retailers');
-				doc.markModified('producers');
-				doc.save(function(err,doc,numberAffected){
-					if(err){
-						next(new Error(err));
-					}
-					console.log('save updated, number affected:'+numberAffected+'doc:'+doc);
-                    res.send(200, 'mission complete!');
-				});
-			}
-		}
-	})
+		})
+	}
 }
 
 

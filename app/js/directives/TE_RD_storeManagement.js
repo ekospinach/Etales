@@ -4,7 +4,8 @@ define(['directives', 'services'], function(directives){
         return {
             scope : {
                 isPageShown : '=',
-                isPageLoading : '='
+                isPageLoading : '=',
+                isReady : '='
             },
             restrict : 'E',
             templateUrl : '../../partials/singleReportTemplate/RD_storeManagement.html',            
@@ -21,6 +22,15 @@ define(['directives', 'services'], function(directives){
                         scope.pageBase = base;
                     }).then(function(){
                         return showView('Elecssories','Rural');
+                    }).then(function(){
+                        return showView('HealthBeauties','Rural');
+                    }).then(function(){
+                        return showView('Elecssories','Urban');
+                    }).then(function(){
+                        return showView('HealthBeauties','Urban');
+                    }).then(function(){
+                        scope.isResultShown = true;
+                        scope.isPageLoading = false;
                     }), function(reason){
                         console.log('from ctr: ' + reason);
                     }, function(update){
@@ -154,6 +164,20 @@ define(['directives', 'services'], function(directives){
                                 d.resolve(Label.getContent('Input range')+':'+data.data.MinBMPriceVsCost*currentUnitCost+'~'+data.data.MaxPLPriceVsCost*currentUnitCost);
                             }else{
                                 scope.products[index].showInfo=true;
+
+                                if(category==2){
+                                    if(market==2){
+                                        scope.RuralHelthBeautiesProducts[index].showInfo=true;
+                                    }else{
+                                        scope.UrbanHelthBeautiesProducts[index].showInfo=true;
+                                    }
+                                }else{
+                                    if(market==2){
+                                        scope.RuralElecssoriesProducts[index].showInfo=true;
+                                    }else{
+                                        scope.UrbanElecssoriesProducts[index].showInfo=true;
+                                    }
+                                }
                                 d.resolve();
                             }
                         },function(){
@@ -200,7 +224,7 @@ define(['directives', 'services'], function(directives){
                     }
                     if(category=="Elecssories"){
                         category=1;
-                    }else if(category=="HealthBeauty"){
+                    }else{
                         category=2;
                     }
                     if(location=="pricePromotions"&&postion=="promo_Frequency"){
@@ -217,7 +241,7 @@ define(['directives', 'services'], function(directives){
                 var showView=function(category,market){
                     var d=$q.defer();
                     var categoryID=0,count=0,result=0,expend=0,marketID=0;
-                    scope.category=category;scope.market=market;
+                    //scope.category=category;scope.market=market;
                     if(category=="HealthBeauties"){
                         category=2;
                     }else{
@@ -249,7 +273,20 @@ define(['directives', 'services'], function(directives){
                             }
                         }
                     }
-                    scope.products=products;
+                    //
+                    if(category==2){
+                        if(market==2){
+                            scope.RuralHelthBeautiesProducts=products;
+                        }else{
+                            scope.UrbanHelthBeautiesProducts=products;
+                        }
+                    }else{
+                        if(market==2){
+                            scope.RuralElecssoriesProducts=products;
+                        }else{
+                            scope.UrbanElecssoriesProducts=products;
+                        }
+                    }
                     //添加retailer load
                     var url='/retailerProducts/'+parseInt(PlayerInfo.getPlayer())+'/'+PeriodInfo.getCurrentPeriod()+'/'+SeminarInfo.getSelectedSeminar()+'/'+category;
                     $http({
@@ -299,19 +336,31 @@ define(['directives', 'services'], function(directives){
                                     multipleRequestShooter(checkurls,urls,idx);
                                 }else{
                                     scope.orderProducts=orderProducts;
+
                                     var indexs=new Array();
-                                    for(i=0;i<scope.orderProducts.length;i++){
-                                        for(j=0;j<scope.products.length;j++){
-                                            if(scope.orderProducts[i].brandName==scope.products[j].brandName&&scope.orderProducts[i].varName==scope.products[j].varName){
+                                    for(i=0;i<orderProducts.length;i++){
+                                        for(j=0;j<products.length;j++){
+                                            if(orderProducts[i].brandName==products[j].brandName&&orderProducts[i].varName==products[j].varName){
                                                 indexs.push(i);
                                             }
                                         }
                                     }
                                     for(i=indexs.length-1;i>=0;i--){
-                                        scope.orderProducts.splice(indexs[i],1);
+                                        orderProducts.splice(indexs[i],1);
                                     }
-                                    scope.isResultShown = true;
-                                    scope.isPageLoading = false;
+                                    if(category==2){
+                                        if(market==2){
+                                            scope.RuralHelthBeautiesOrderProducts=orderProducts;
+                                        }else{
+                                            scope.UrbanHelthBeautiesOrderProducts=orderProducts;
+                                        }
+                                    }else{
+                                        if(market==2){
+                                            scope.RuralElecssoriesOrderProducts=orderProducts;
+                                        }else{
+                                            scope.UrbanElecssoriesOrderProducts=orderProducts;
+                                        }
+                                    }
                                     d.resolve();
                                 }
                             })
@@ -322,7 +371,22 @@ define(['directives', 'services'], function(directives){
                     return d.promise;
                 }
 
-                scope.open = function () {
+                scope.open = function (category,market) {
+                    scope.category=category;
+                    scope.market=market;
+                    if(category=='HealthBeauties'){
+                        if(market=='Rural'){
+                            scope.orderProducts=scope.RuralHelthBeautiesOrderProducts;
+                        }else{
+                            scope.orderProducts=scope.UrbanHelthBeautiesOrderProducts;
+                        }
+                    }else{
+                        if(market=='Rural'){
+                            scope.orderProducts=scope.RuralElecssoriesOrderProducts;
+                        }else{
+                            scope.orderProducts=scope.UrbanElecssoriesOrderProducts;
+                        }
+                    }
                     var modalInstance=$modal.open({
                         templateUrl:'../../partials/modal/retailerOrderModal.html',
                         controller:retailerOrderModalCtrl
@@ -392,7 +456,6 @@ define(['directives', 'services'], function(directives){
                         category=2;
                     }
                     RetailerDecisionBase.deleteOrder(market,category,brandName,varName);
-                    close();
                 }
 
                 scope.$watch('isPageShown', function(newValue, oldValue){
@@ -402,8 +465,18 @@ define(['directives', 'services'], function(directives){
                 });
 
                 scope.$on('retailerDecisionBaseChangedFromServer', function(event, data, newBase) {  
-                    scope.pageBase = newBase;
-                    showView();
+                    if(data.seminar==SeminarInfo.getSelectedSeminar()&&data.period==PeriodInfo.getCurrentPeriod()&&data.retailerID==PlayerInfo.getPlayer()){
+                        scope.pageBase = newBase;
+                        if(data.categoryID==1&&data.marketID==1){
+                            showView('Elecssories','Urban');
+                        }else if(data.categoryID==1&&data.marketID==2){
+                            showView('Elecssories','Rural');
+                        }else if(data.categoryID==2&&data.marketID==1){
+                            showView('HealthBeauties','Urban');
+                        }else if(data.categoryID==2&&data.marketID==2){
+                            showView('HealthBeauties','Rural');
+                        }
+                    }
                 });             
             }
         }

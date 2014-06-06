@@ -4,7 +4,8 @@ define(['directives', 'services'], function(directives){
         return {
             scope : {
                 isPageShown : '=',
-                isPageLoading : '='
+                isPageLoading : '=',
+                isReady: '='
             },
             restrict : 'E',
             templateUrl : '../../partials/singleReportTemplate/SD_marketResearchOrders.html',            
@@ -50,14 +51,14 @@ define(['directives', 'services'], function(directives){
                     playDatas.push({'name':'Brand Perceptions','realName':'brandPerceptions','reportPrice':reportPrices.brandPerceptions,'playerStatus':playerStatus.brandPerceptions});
                     playDatas.push({'name':'Retailer Perceptions','realName':'retailerPerceptions','reportPrice':reportPrices.retailerPerceptions,'playerStatus':playerStatus.retailerPerceptions});
                     playDatas.push({'name':'Market Share By Consumer Segment','realName':'marketShareByConsumerSegment','reportPrice':reportPrices.marketShareByConsumerSegment,'playerStatus':playerStatus.marketShareByConsumerSegment});
-                    playDatas.push({'name':'Sales By Consumer Segment','realName':'salesByConsumerSegment','reportPrice':reportPrices.salesByConsumberSegment,'playerStatus':playerStatus.salesByConsumberSegment});
+                    playDatas.push({'name':'Sales By Consumer Segment','realName':'salesByConsumerSegment','reportPrice':reportPrices.salesByConsumerSegment,'playerStatus':playerStatus.salesByConsumerSegment});
                     playDatas.push({'name':'Market Share ByShopper Segment','realName':'marketShareByShopperSegment','reportPrice':reportPrices.marketShareByShopperSegment,'playerStatus':playerStatus.marketShareByShopperSegment});
                     playDatas.push({'name':'Sales By Shopper Segment','realName':'salesByShopperSegment','reportPrice':reportPrices.salesByShopperSegment,'playerStatus':playerStatus.salesByShopperSegment});
                     playDatas.push({'name':'BM Retailer Prices','realName':'BMRetailerPrices','reportPrice':reportPrices.BMRetailerPrices,'playerStatus':playerStatus.BMRetailerPrices});
                     playDatas.push({'name':'Promotion Intensity','realName':'promotionIntensity','reportPrice':reportPrices.promotionIntensity,'playerStatus':playerStatus.promotionIntensity});
                     playDatas.push({'name':'Supplier Intelligence','realName':'supplierIntelligence','reportPrice':reportPrices.supplierIntelligence,'playerStatus':playerStatus.supplierIntelligence});
                     playDatas.push({'name':'Retailer Intelligence','realName':'retailerIntelligence','reportPrice':reportPrices.retailerIntelligence,'playerStatus':playerStatus.retailerIntelligence});
-                    playDatas.push({'name':'Forecasts','realName':'forecasts','reportPrice':reportPrices.forcasts,'playerStatus':playerStatus.forcasts});
+                    playDatas.push({'name':'Forecasts','realName':'forecasts','reportPrice':reportPrices.forecasts,'playerStatus':playerStatus.forecasts});
 
                     scope.playDatas=playDatas;
 
@@ -66,16 +67,15 @@ define(['directives', 'services'], function(directives){
                 }
 
 
-                scope.submitOrder=function(){
-                    console.log(scope.playDatas);
+                scope.submitOrder=function(name,value){
                     var postData={
                         player:'Producer',
                         playerID:PlayerInfo.getPlayer(),
                         period:PeriodInfo.getCurrentPeriod(),
                         seminarCode:SeminarInfo.getSelectedSeminar(),
-                        data:scope.playDatas
+                        name:name,
+                        value:value
                     }
-                    console.log(postData);
                     $http({
                         method:'POST',
                         url:'/submitOrder',
@@ -87,17 +87,16 @@ define(['directives', 'services'], function(directives){
                     })
                 }
 
-
                 scope.$watch('isPageShown', function(newValue, oldValue){
                     if(newValue==true) {
                         initializePage();
                     }
                 })
 
-                scope.$on('producerReportPurchaseDecisionChanged', function(event, data, newSeminarData) {  
-                    organiseArray(newSeminarData);
-                    scope.isResultShown = true;
-                    scope.isPageLoading = false;                    
+                scope.$on('producerMarketResearchOrdersChanged', function(event, data, newSeminarData) {  
+                    if(data.seminar==SeminarInfo.getSelectedSeminar()&&data.period==PeriodInfo.getCurrentPeriod()&&data.producerID==PlayerInfo.getPlayer()){
+                        initializePage();  
+                    }                     
                 });
 
             }

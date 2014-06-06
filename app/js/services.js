@@ -396,8 +396,13 @@ define(['angular',
 						if(data.seminar == SeminarInfo.getSelectedSeminar()){
 							$rootScope.$broadcast('producerPortfolioDecisionStatusChanged',data);							
 						}
-					})
+					});
 
+					socket.on('socketIO:producerMarketResearchOrdersChanged', function(data) {
+						if (data.seminar == SeminarInfo.getSelectedSeminar()) {
+							$rootScope.$broadcast('producerMarketResearchOrdersChanged', data);
+						}
+					});
 				},				
 				setSomething : function(sth){
 					//post to server...
@@ -669,7 +674,13 @@ define(['angular',
 								$rootScope.$broadcast('retailerReportPurchaseDecisionChangedError', data, newSeminarData);
 							});
 						}
-					});								
+
+					socket.on('socketIO:retailerMarketResearchOrdersChanged',function(data){
+						if(data.seminar==SeminarInfo.getSelectedSeminar()){
+							$rootScope.$broadcast('retailerMarketResearchOrdersChanged',data);							
+						}
+					})
+
 				},
 				//step1
 								/* 

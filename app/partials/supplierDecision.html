@@ -30,6 +30,19 @@
     .bs-docs-section{
         padding-top:60px;
     }
+    .col-md-9{
+        width: 80%;
+    }
+    .col-md-3{
+        width: 20%;
+    }
+    @media (min-width: 1200px) {
+      /* Widen the fixed sidebar again */
+      .bs-docs-sidebar.affix-bottom,
+      .bs-docs-sidebar.affix {
+        width: 213px;
+      }
+    }
 
 </style>
 
@@ -73,15 +86,15 @@
                 
                 <supplier-b-m-list-prices ng-show='BMListPrices' is-page-shown='BMListPrices' is-page-loading='isPageLoading' is-ready='isPortfolioDecisionReady'></supplier-b-m-list-prices>
                 
-                <supplier-production-volume ng-show='ProductionVolume' is-page-shown='ProductionVolume' is-page-loading='isPageLoading'></supplier-production-volume>
+                <supplier-production-volume ng-show='ProductionVolume' is-page-shown='ProductionVolume' is-page-loading='isPageLoading' is-ready='isPortfolioDecisionReady'></supplier-production-volume>
                 
-                <supplier-general-marketing ng-show='GeneralMarketing' is-page-shown='GeneralMarketing' is-page-loading='isPageLoading'></supplier-general-marketing>
+                <supplier-general-marketing ng-show='GeneralMarketing' is-page-shown='GeneralMarketing' is-page-loading='isPageLoading' is-ready='isPortfolioDecisionReady'></supplier-general-marketing>
                 
-                <supplier-online-store-management ng-show='OnlineStoreManagement' is-page-shown='OnlineStoreManagement' is-page-loading='isPageLoading'></supplier-online-store-management>
+                <supplier-online-store-management ng-show='OnlineStoreManagement' is-page-shown='OnlineStoreManagement' is-page-loading='isPageLoading' is-ready='isPortfolioDecisionReady'></supplier-online-store-management>
                 
-                <supplier-asset-investments ng-show='AssetInvestments' is-page-shown='AssetInvestments' is-page-loading='isPageLoading'></supplier-asset-investments>
+                <supplier-asset-investments ng-show='AssetInvestments' is-page-shown='AssetInvestments' is-page-loading='isPageLoading' is-ready='isPortfolioDecisionReady'></supplier-asset-investments>
 
-                <supplier-market-research-orders ng-show='MarketResearchOrders' is-page-shown='MarketResearchOrders' is-page-loading='isPageLoading'></supplier-market-research-orders> 
+                <supplier-market-research-orders ng-show='MarketResearchOrders' is-page-shown='MarketResearchOrders' is-page-loading='isPageLoading' is-ready='isPortfolioDecisionReady'></supplier-market-research-orders> 
             </div>
         </div>
         <div class="col-md-3" ng-show='!isNegotiation'>
@@ -105,11 +118,11 @@
                             <td colspan="2"><p>{{Label.getContent('Available Period Capacity')}}</p></td>
                         </tr>
                         <tr>
-                            <td><p class="padding-20">{{Label.getContent('Elecssories')}}</p></td>
+                            <td><p class="padding-10">{{Label.getContent('Elecssories')}}</p></td>
                             <td><p class="text-right"><b>{{eleSurplusProduction}}</b>/{{acEleMax}}</p></td>
                         </tr>
                         <tr>
-                            <td><p class="padding-20">{{Label.getContent('HealthBeauties')}}</p></td>
+                            <td><p class="padding-10">{{Label.getContent('HealthBeauties')}}</p></td>
                             <td><p class="text-right"><b>{{heaSurplusProduction}}</b>/{{acHeaMax}}</p></td>
                         </tr>
                     </tbody>

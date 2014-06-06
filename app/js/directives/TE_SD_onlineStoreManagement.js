@@ -4,7 +4,8 @@ define(['directives', 'services'], function(directives){
         return {
             scope : {
                 isPageShown : '=',
-                isPageLoading : '='
+                isPageLoading : '=',
+                isReady: '='
             },
             restrict : 'E',
             templateUrl : '../../partials/singleReportTemplate/SD_onlineStoreManagement.html',            
@@ -116,7 +117,7 @@ define(['directives', 'services'], function(directives){
 
                 scope.checkOrderVolumes=function(category,brandName,varName,location,additionalIdx,index,value){
                     var d=$q.defer();
-                    var acMax=0;
+                    var categoryID,production,result;
                     if(category=="Elecssories"){
                         category=1;
                     }else{
@@ -126,19 +127,25 @@ define(['directives', 'services'], function(directives){
                     if(!filter.test(value)){
                         d.resolve(Label.getContent('Input a number'));
                     }
-                    var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
+                    // var url='/'
+                    var url='/producerCurrentDecision/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer()+'/'+brandName+'/'+varName;
                     $http({
                         method:'GET',
                         url:url
                     }).then(function(data){
-                        acMax=data.data.productionCapacity[category-1];
-                        if(value>acMax||value<0){
-                            d.resolve(Label.getContent('Input range')+':0~'+acMax);
+                        production=data.data.production;
+                        url='/SCR-Closing/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+PlayerInfo.getPlayer()+'/'+brandName+'/'+varName;
+                        return $http({
+                            method:'GET',
+                            url:url
+                        })
+                    }).then(function(data){
+                        result=data.result;
+                        if(value>result+production){
+                            d.resolve(Label.getContent('Input range')+':0~'+result+production);
                         }else{
                             d.resolve();
                         }
-                    },function(){
-                        console.log('fail');
                     })
                     return d.promise;
                 }
@@ -149,8 +156,8 @@ define(['directives', 'services'], function(directives){
                     if(!filter.test(value)){
                         d.resolve(Label.getContent('Input a Integer'));
                     }
-                    if(value>182||value<0){
-                        d.resolve(Label.getContent('Input range')+':0~182');
+                    if(value>26||value<0){
+                        d.resolve(Label.getContent('Input range')+':0~26');
                     }else{
                         d.resolve();
                     }
@@ -269,8 +276,11 @@ define(['directives', 'services'], function(directives){
                 
                 scope.$on('producerDecisionBaseChangedFromServer', function(event, data, newBase) {                    
                         //decision base had been updated, re-render the page with newBase
+                    if(data.seminar==SeminarInfo.getSelectedSeminar()&&data.period==PeriodInfo.getCurrentPeriod()&&data.producerID==PlayerInfo.getPlayer()){
+                    
                         scope.pageBase = newBase;
                         showView();
+                    }
                 });
 
             }

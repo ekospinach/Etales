@@ -8,7 +8,7 @@
     <table class="table table-condensed table-bordered table-success">
     	<thead>
     		<tr>
-    			<th>
+    			<th style="width:160px">
                     <p>{{Label.getContent('Elecssories')}}</p>
                 </th>
     			<th>
@@ -24,11 +24,14 @@
     				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Quality-of-Raw-Materials Info')}}" popover-title="{{Label.getContent('Quality-of-Raw-Materials')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Quality-of-Raw-Materials')}}<span style="color:red">*</span></p>
     			</th>
                 <th>
+                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Discontinue this product Info')}}" popover-title="{{Label.getContent('Discontinue this product')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Discontinue this product')}}<span style="color:red">*</span></p>
+                </th>
+                <th>
                     <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('UnitCost Info')}}" popover-title="{{Label.getContent('Unit Cost')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Unit Cost')}}<span style="color:red">*</span></p>                
                 </th>
     		</tr>
     		<tr class="success">
-    			<td colspan="6">
+    			<td colspan="7">
     				<p>{{Label.getContent('Brand')}}</p>
     			</td>
     		</tr>
@@ -66,11 +69,17 @@
                     <p ng-show="isReady" class="text-right">{{ producte.composition[2] || 0 }}</p>
     			</td>
                 <td>
-                    <p class="text-right">99.9<p>
+                    <a href="#" editable-checkbox="producte.discontinue" e-title="{{Label.getContent('Discontinue this product')}}?" ng-show="!isReady" onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'discontinue','0',$index)">
+                        <p class="text-right">{{ producte.discontinue && Label.getContent('DisContinue') || Label.getContent('Continue') }}</p>
+                    </a>
+                    <p ng-show="isReady" class="text-right">{{ producte.discontinue && Label.getContent('DisContinue') || Label.getContent('Continue') }}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{producte.unitCost}}<p>
                 </td>
     		</tr>
     		<tr>
-    			<th>
+    			<th style="width:160px">
                     <p>{{Label.getContent('HealthBeauties')}}</p>
                 </th>
     			<th>
@@ -86,11 +95,14 @@
     				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Smoothener Level Info')}}" popover-title="{{Label.getContent('Smoothener Level')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Smoothener Level')}}<span style="color:red">*</span></p>
     			</th>
                 <th>
+                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Discontinue this product Info')}}" popover-title="{{Label.getContent('Discontinue this product')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Discontinue this product')}}<span style="color:red">*</span></p>
+                </th>
+                <th>
                     <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('UnitCost Info')}}" popover-title="{{Label.getContent('Unit Cost')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Unit Cost')}}<span style="color:red">*</span></p>                
                 </th>                
     		</tr>
     		<tr class="danger">
-    			<td colspan="6">
+    			<td colspan="7">
     				<p>{{Label.getContent('Brand')}}</p>
     			</td>
     		</tr>
@@ -126,7 +138,13 @@
                     <p ng-show="isReady" class="text-right">{{ producth.composition[2] || 0 }}</p>
     			</td>
                 <td>
-                    <p class="text-right">99.9<p>
+                    <a href="#" editable-checkbox="producth.discontinue" e-title="{{Label.getContent('Discontinue this product')}}?" ng-show="!isReady" onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'discontinue','0',$index)">
+                        <p class="text-right">{{ producth.discontinue && Label.getContent('DisContinue') || Label.getContent('Continue') }}</p>
+                    </a>
+                    <p ng-show="isReady" class="text-right">{{ producth.discontinue && Label.getContent('DisContinue') || Label.getContent('Continue') }}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{producth.unitCost}}<p>
                 </td>                
     		</tr>
     	</tbody>

@@ -481,7 +481,6 @@ define(['app'], function(app) {
 					}
 					return $http({method:'POST', url:'/getCurrentUnitCost', data:postData});
 				}).then(function(data){
-					console.log(data.data);
 				   $scope.currentUnitCost = data.data.result;					
 					url="/retailerDecision/"+parseInt(PlayerInfo.getPlayer())+'/'+(PeriodInfo.getCurrentPeriod())+'/'+SeminarInfo.getSelectedSeminar();
 					return $http({method:'GET',url:url});

@@ -55,30 +55,36 @@
                     <p class="padding-20">{{brande.brandName}}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="brande.advertisingOnLine" onbeforesave="checkData('Elecssories',brande.brandName,'advertisingOnLine','1',$index,$data)" onaftersave="updateProducerDecision('Elecssories',brande.brandName,'advertisingOnLine','1',$index)">
+                    <a href="#" editable-text="brande.advertisingOnLine" onbeforesave="checkData('Elecssories',brande.brandName,'advertisingOnLine','1',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('Elecssories',brande.brandName,'advertisingOnLine','1',$index)">
                         <p class="text-right">{{ brande.advertisingOnLine || 0 }}</p>
                     </a>
+                    <p ng-show='isReady' class="text-right">{{ brande.advertisingOnLine || 0 }}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="brande.advertisingOffLine[1]" onbeforesave="checkData('Elecssories',brande.brandName,'advertisingOffLine','1',$index,$data)" onaftersave="updateProducerDecision('Elecssories',brande.brandName,'advertisingOffLine','1',$index)">
+                    <a href="#" editable-text="brande.advertisingOffLine[1]" onbeforesave="checkData('Elecssories',brande.brandName,'advertisingOffLine','1',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('Elecssories',brande.brandName,'advertisingOffLine','1',$index)">
                         <p class="text-right">{{ brande.advertisingOffLine[1] || 0 }}</p>
                     </a>
+                    <p ng-show='isReady' class="text-right">{{ brande.advertisingOffLine[1] || 0 }}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="brande.advertisingOffLine[0]" onbeforesave="checkData('Elecssories',brande.brandName,'advertisingOffLine','0',$index,$data)" onaftersave="updateProducerDecision('Elecssories',brande.brandName,'advertisingOffLine','0',$index)">
+                    <a href="#" editable-text="brande.advertisingOffLine[0]" onbeforesave="checkData('Elecssories',brande.brandName,'advertisingOffLine','0',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('Elecssories',brande.brandName,'advertisingOffLine','0',$index)">
                         <p class="text-right">{{ brande.advertisingOffLine[0] || 0 }}
                         </p>
                     </a>
+                    <p ng-show='isReady' class="text-right">{{ brande.advertisingOffLine[0] || 0 }}
+                    </p>
                 </td>
                 <td>
-                    <a href="#" editable-text="brande.supportTraditionalTrade[1]" onbeforesave="checkData('Elecssories',brande.brandName,'supportTraditionalTrade','1',$index,$data)" onaftersave="updateProducerDecision('Elecssories',brande.brandName,'supportTraditionalTrade','1',$index)">
+                    <a href="#" editable-text="brande.supportTraditionalTrade[1]" onbeforesave="checkData('Elecssories',brande.brandName,'supportTraditionalTrade','1',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('Elecssories',brande.brandName,'supportTraditionalTrade','1',$index)">
                         <p class="text-right">{{ brande.supportTraditionalTrade[1] || 0 }}</p>
                     </a>
+                    <p ng-show='isReady' class="text-right">{{ brande.supportTraditionalTrade[1] || 0 }}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="brande.supportTraditionalTrade[0]" onbeforesave="checkData('Elecssories',brande.brandName,'supportTraditionalTrade','0',$index,$data)" onaftersave="updateProducerDecision('Elecssories',brande.brandName,'supportTraditionalTrade','0',$index)">
+                    <a href="#" editable-text="brande.supportTraditionalTrade[0]" onbeforesave="checkData('Elecssories',brande.brandName,'supportTraditionalTrade','0',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('Elecssories',brande.brandName,'supportTraditionalTrade','0',$index)">
                         <p class="text-right">{{ brande.supportTraditionalTrade[0] || 0 }}</p>
                     </a>
+                    <p ng-show='isReady' class="text-right">{{ brande.supportTraditionalTrade[0] || 0 }}</p>
                 </td>
             </tr>
 
@@ -128,30 +134,34 @@
                     <p class="padding-20">{{brandh.brandName}}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="brandh.advertisingOnLine" onbeforesave="checkData('HealthBeauty',brandh.brandName,'advertisingOnLine','1',$index,$data)" onaftersave="updateProducerDecision('HealthBeauty',brandh.brandName,'advertisingOnLine','1',$index)">
+                    <a href="#" editable-text="brandh.advertisingOnLine" onbeforesave="checkData('HealthBeauty',brandh.brandName,'advertisingOnLine','1',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('HealthBeauty',brandh.brandName,'advertisingOnLine','1',$index)">
                         <p class="text-right">{{ brandh.advertisingOnLine || 0 }}</p>
                     </a>
+                    <p ng-show='isReady' class="text-right">{{ brandh.advertisingOnLine || 0 }}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="brandh.advertisingOffLine[1]" onbeforesave="checkData('HealthBeauty',brandh.brandName,'advertisingOffLine','1',$index,$data)" onaftersave="updateProducerDecision('HealthBeauty',brandh.brandName,'advertisingOffLine','1',$index)">
+                    <a href="#" editable-text="brandh.advertisingOffLine[1]" onbeforesave="checkData('HealthBeauty',brandh.brandName,'advertisingOffLine','1',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('HealthBeauty',brandh.brandName,'advertisingOffLine','1',$index)">
                         <p class="text-right">{{ brandh.advertisingOffLine[1] || 0 }}</p>
                     </a>
+                    <p ng-show='isReady' class="text-right">{{ brandh.advertisingOffLine[1] || 0 }}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="brandh.advertisingOffLine[0]" onbeforesave="checkData('HealthBeauty',brandh.brandName,'advertisingOffLine','0',$index,$data)" onaftersave="updateProducerDecision('HealthBeauty',brandh.brandName,'advertisingOffLine','0',$index)">
-                        <p class="text-right">{{ brandh.advertisingOffLine[0] || 0 }}
-                        </p>
+                    <a href="#" editable-text="brandh.advertisingOffLine[0]" onbeforesave="checkData('HealthBeauty',brandh.brandName,'advertisingOffLine','0',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('HealthBeauty',brandh.brandName,'advertisingOffLine','0',$index)">
+                        <p class="text-right">{{ brandh.advertisingOffLine[0] || 0 }}</p>
                     </a>
+                    <p ng-show='isReady' class="text-right">{{ brandh.advertisingOffLine[0] || 0 }}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="brandh.supportTraditionalTrade[1]" onbeforesave="checkData('HealthBeauty',brandh.brandName,'supportTraditionalTrade','1',$index,$data)" onaftersave="updateProducerDecision('HealthBeauty',brandh.brandName,'supportTraditionalTrade','1',$index)">
+                    <a href="#" editable-text="brandh.supportTraditionalTrade[1]" onbeforesave="checkData('HealthBeauty',brandh.brandName,'supportTraditionalTrade','1',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('HealthBeauty',brandh.brandName,'supportTraditionalTrade','1',$index)">
                         <p class="text-right">{{ brandh.supportTraditionalTrade[1] || 0 }}</p>
                     </a>
+                    <p ng-show='isReady' class="text-right">{{ brandh.supportTraditionalTrade[1] || 0 }}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="brandh.supportTraditionalTrade[0]" onbeforesave="checkData('HealthBeauty',brandh.brandName,'supportTraditionalTrade','0',$index,$data)" onaftersave="updateProducerDecision('HealthBeauty',brandh.brandName,'supportTraditionalTrade','0',$index)">
+                    <a href="#" editable-text="brandh.supportTraditionalTrade[0]" onbeforesave="checkData('HealthBeauty',brandh.brandName,'supportTraditionalTrade','0',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('HealthBeauty',brandh.brandName,'supportTraditionalTrade','0',$index)">
                         <p class="text-right">{{ brandh.supportTraditionalTrade[0] || 0 }}</p>
                     </a>
+                    <p ng-show='isReady' class="text-right">{{ brandh.supportTraditionalTrade[0] || 0 }}</p>
                 </td>
             </tr>
         </tbody>

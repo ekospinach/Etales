@@ -20,23 +20,15 @@ var supplierKPIsCtrl=function($scope,$http){
 
         for(var i=-3;i<=Request['period'];i++){
             if(i!=Request['period']){
-                myCategories.push(i);
                 currentCategories.push(i);
                 previousCategories.push(i); 
             }else{
                 currentCategories.push(i);
-                myCategories.push(i);
             }
         }
 
-        myCategories.push('');
-        for(var i=-3;i<=Request['period'];i++){
-            myCategories.push(i);
-        }
-        myCategories.push('');
-        for(var i=-3;i<=Request['period'];i++){
-            myCategories.push(i);
-        }
+        testCategories=[Request['period']-2,Request['period']-1];
+        myCategories=[Request['period']-2,Request['period']-1,'',Request['period']-2,Request['period']-1,'',Request['period']-2,Request['period']-1];
 
 
         $http({
@@ -265,9 +257,9 @@ var supplierKPIsCtrl=function($scope,$http){
             }
 
             //bmChannelStrength
-            for(var j=0;j<currentCategories.length;j++){
+            for(var j=0;j<testCategories.length;j++){
                 for(var i=0;i<data.data.f_SuppliersBMValueSalesShare.length;i++){
-                    if(data.data.f_SuppliersBMValueSalesShare[i].period==currentCategories[j]){
+                    if(data.data.f_SuppliersBMValueSalesShare[i].period==testCategories[j]){
                         switch(data.data.f_SuppliersBMValueSalesShare[i].supplierID){
                             case 1:
                             if(data.data.f_SuppliersBMValueSalesShare[i].categoryID==1){
@@ -298,9 +290,9 @@ var supplierKPIsCtrl=function($scope,$http){
                 bmChannelStrengthElecssories[i].data.push('');
                 bmChannelStrengthHealthBeauties[i].data.push('');
             }
-            for(var j=0;j<currentCategories.length;j++){
+            for(var j=0;j<testCategories.length;j++){
                 for(var i=0;i<data.data.f_SuppliersBMVolumeSalesShare.length;i++){
-                    if(data.data.f_SuppliersBMVolumeSalesShare[i].period==currentCategories[j]){
+                    if(data.data.f_SuppliersBMVolumeSalesShare[i].period==testCategories[j]){
                         switch(data.data.f_SuppliersBMVolumeSalesShare[i].supplierID){
                             case 1:
                             if(data.data.f_SuppliersBMVolumeSalesShare[i].categoryID==1){
@@ -331,9 +323,9 @@ var supplierKPIsCtrl=function($scope,$http){
                 bmChannelStrengthElecssories[i].data.push('');
                 bmChannelStrengthHealthBeauties[i].data.push('');
             }
-            for(var j=0;j<currentCategories.length;j++){
+            for(var j=0;j<testCategories.length;j++){
                 for(var i=0;i<data.data.f_SuppliersBMShareOfShoppers.length;i++){
-                    if(data.data.f_SuppliersBMShareOfShoppers[i].period==currentCategories[j]){
+                    if(data.data.f_SuppliersBMShareOfShoppers[i].period==testCategories[j]){
                         switch(data.data.f_SuppliersBMShareOfShoppers[i].supplierID){
                             case 1:
                             if(data.data.f_SuppliersBMShareOfShoppers[i].categoryID==1){
@@ -361,9 +353,9 @@ var supplierKPIsCtrl=function($scope,$http){
                 }
             }
             //onlineChannelStrength
-            for(var j=0;j<currentCategories.length;j++){
+            for(var j=0;j<testCategories.length;j++){
                 for(var i=0;i<data.data.f_SuppliersOnlineValueSalesShare.length;i++){
-                    if(data.data.f_SuppliersOnlineValueSalesShare[i].period==currentCategories[j]){
+                    if(data.data.f_SuppliersOnlineValueSalesShare[i].period==testCategories[j]){
                         switch(data.data.f_SuppliersOnlineValueSalesShare[i].supplierID){
                             case 1:
                             if(data.data.f_SuppliersOnlineValueSalesShare[i].categoryID==1){
@@ -394,9 +386,9 @@ var supplierKPIsCtrl=function($scope,$http){
                 onlineChannelStrengthElecssories[i].data.push('');
                 onlineChannelStrengthHealthBeauties[i].data.push('');
             }
-            for(var j=0;j<currentCategories.length;j++){
+            for(var j=0;j<testCategories.length;j++){
                 for(var i=0;i<data.data.f_SuppliersOnlineVolumeSalesShare.length;i++){
-                    if(data.data.f_SuppliersOnlineVolumeSalesShare[i].period==currentCategories[j]){
+                    if(data.data.f_SuppliersOnlineVolumeSalesShare[i].period==testCategories[j]){
                         switch(data.data.f_SuppliersOnlineVolumeSalesShare[i].supplierID){
                             case 1:
                             if(data.data.f_SuppliersOnlineVolumeSalesShare[i].categoryID==1){
@@ -427,9 +419,9 @@ var supplierKPIsCtrl=function($scope,$http){
                 onlineChannelStrengthElecssories[i].data.push('');
                 onlineChannelStrengthHealthBeauties[i].data.push('');
             }
-            for(var j=0;j<currentCategories.length;j++){
+            for(var j=0;j<testCategories.length;j++){
                 for(var i=0;i<data.data.f_SuppliersOnlineShareOfShoppers.length;i++){
-                    if(data.data.f_SuppliersOnlineShareOfShoppers[i].period==currentCategories[j]){
+                    if(data.data.f_SuppliersOnlineShareOfShoppers[i].period==testCategories[j]){
                         switch(data.data.f_SuppliersOnlineShareOfShoppers[i].supplierID){
                             case 1:
                             if(data.data.f_SuppliersOnlineShareOfShoppers[i].categoryID==1){

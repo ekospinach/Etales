@@ -67,6 +67,8 @@ app.controller('negotiationResultsCtrl', ['$scope','$http','$q',function($scope,
                 loading: false
             }
 
+            $scope.supplierNegotiationResultsTotal=(data.data.f_DiscountsValue[2].fcni_SuppliersCost[0].value+data.data.f_DiscountsValue[2].fcni_SuppliersCost[1].value+data.data.f_DiscountsValue[2].fcni_SuppliersCost[2].value).toFixed(2);
+
             $scope.retailerNegotiationResults = {
                 options: {
                     title:{
@@ -160,6 +162,8 @@ app.controller('negotiationResultsCtrl', ['$scope','$http','$q',function($scope,
                 loading: false
             }
 
+            $scope.supplierPerformanceBonusesTotal=(data.data.f_PerformanceBonusesValue[2].fcni_SuppliersCost[0].value+data.data.f_PerformanceBonusesValue[2].fcni_SuppliersCost[1].value+data.data.f_PerformanceBonusesValue[2].fcni_SuppliersCost[2].value).toFixed(2);
+
             $scope.retailerPerformanceBonuses = {
                 options: {
                     title:{
@@ -252,6 +256,8 @@ app.controller('negotiationResultsCtrl', ['$scope','$http','$q',function($scope,
                 }],
                 loading: false
             }
+
+            $scope.supplierOtherCompensationTotal=(data.data.f_OtherCompensationsValue[2].fcni_SuppliersCost[0].value+data.data.f_OtherCompensationsValue[2].fcni_SuppliersCost[1].value+data.data.f_OtherCompensationsValue[2].fcni_SuppliersCost[2].value).toFixed(2);
 
             $scope.retailerOtherCompensation = {
                 options: {

@@ -20,18 +20,15 @@ var retailerKPIsCtrl=function($scope,$http){
 
         for(var i=-3;i<=Request['period'];i++){
             if(i!=Request['period']){
-                myCategories.push(i);
                 currentCategories.push(i);
                 previousCategories.push(i); 
             }else{
                 currentCategories.push(i);
-                myCategories.push(i);
             }
         }
-        myCategories.push('');
-        for(var i=-3;i<=Request['period'];i++){
-            myCategories.push(i);
-        }
+        
+        testCategories=[Request['period']-2,Request['period']-1];
+        myCategories=[Request['period']-2,Request['period']-1,'',Request['period']-2,Request['period']-1];
 
         var salesValueElecssories=new Array();
 
@@ -151,9 +148,9 @@ var retailerKPIsCtrl=function($scope,$http){
             });
 
             //rotationIndexSalesValue
-            for(var j=0;j<currentCategories.length;j++){
+            for(var j=0;j<testCategories.length;j++){
                 for(var i=0;i<data.data.f_RetailersValueRotationIndex.length;i++){
-                    if(data.data.f_RetailersValueRotationIndex[i].period==currentCategories[j]){
+                    if(data.data.f_RetailersValueRotationIndex[i].period==testCategories[j]){
                         if(data.data.f_RetailersValueRotationIndex[i].categoryID==1){
                             if(data.data.f_RetailersValueRotationIndex[i].marketID==2){
                                 rotationIndexSalesValueElecssories[data.data.f_RetailersValueRotationIndex[i].retailerID-1].data.push(data.data.f_RetailersValueRotationIndex[i].value);
@@ -170,9 +167,9 @@ var retailerKPIsCtrl=function($scope,$http){
                 rotationIndexSalesValueElecssories[i].data.push('');
                 rotationIndexSalesValueHealthBeauties[i].data.push('');
             }
-            for(var j=0;j<currentCategories.length;j++){
+            for(var j=0;j<testCategories.length;j++){
                 for(var i=0;i<data.data.f_RetailersValueRotationIndex.length;i++){
-                    if(data.data.f_RetailersValueRotationIndex[i].period==currentCategories[j]){
+                    if(data.data.f_RetailersValueRotationIndex[i].period==testCategories[j]){
                         if(data.data.f_RetailersValueRotationIndex[i].categoryID==1){
                             if(data.data.f_RetailersValueRotationIndex[i].marketID==1){
                                 rotationIndexSalesValueElecssories[data.data.f_RetailersValueRotationIndex[i].retailerID-1].data.push(data.data.f_RetailersValueRotationIndex[i].value);
@@ -186,9 +183,9 @@ var retailerKPIsCtrl=function($scope,$http){
                 }
             }
             //rotationIndexSalesVolume
-            for(var j=0;j<currentCategories.length;j++){
+            for(var j=0;j<testCategories.length;j++){
                 for(var i=0;i<data.data.f_RetailersVolumeRotationIndex.length;i++){
-                    if(data.data.f_RetailersVolumeRotationIndex[i].period==currentCategories[j]){
+                    if(data.data.f_RetailersVolumeRotationIndex[i].period==testCategories[j]){
                         if(data.data.f_RetailersVolumeRotationIndex[i].categoryID==1){
                             if(data.data.f_RetailersVolumeRotationIndex[i].marketID==2){
                                 rotationIndexSalesVolumeElecssories[data.data.f_RetailersVolumeRotationIndex[i].retailerID-1].data.push(data.data.f_RetailersVolumeRotationIndex[i].value);
@@ -205,9 +202,9 @@ var retailerKPIsCtrl=function($scope,$http){
                 rotationIndexSalesVolumeElecssories[i].data.push('');
                 rotationIndexSalesVolumeHealthBeauties[i].data.push('');
             }
-            for(var j=0;j<currentCategories.length;j++){
+            for(var j=0;j<testCategories.length;j++){
                 for(var i=0;i<data.data.f_RetailersVolumeRotationIndex.length;i++){
-                    if(data.data.f_RetailersVolumeRotationIndex[i].period==currentCategories[j]){
+                    if(data.data.f_RetailersVolumeRotationIndex[i].period==testCategories[j]){
                         if(data.data.f_RetailersVolumeRotationIndex[i].categoryID==1){
                             if(data.data.f_RetailersVolumeRotationIndex[i].marketID==1){
                                 rotationIndexSalesVolumeElecssories[data.data.f_RetailersVolumeRotationIndex[i].retailerID-1].data.push(data.data.f_RetailersVolumeRotationIndex[i].value);
@@ -265,9 +262,9 @@ var retailerKPIsCtrl=function($scope,$http){
             }
 
             //ShareofShoppers
-            for(var j=0;j<currentCategories.length;j++){
+            for(var j=0;j<testCategories.length;j++){
                 for(var i=0;i<data.data.f_RetailersShoppersShare.length;i++){
-                    if(data.data.f_RetailersShoppersShare[i].period==currentCategories[j]){
+                    if(data.data.f_RetailersShoppersShare[i].period==testCategories[j]){
                         if(data.data.f_RetailersShoppersShare[i].categoryID==3){
                             if(data.data.f_RetailersShoppersShare[i].marketID==2){
                                 ruralShareOfShoppers[data.data.f_RetailersShoppersShare[i].retailerID-1].data.push(data.data.f_RetailersShoppersShare[i].value);
@@ -278,7 +275,7 @@ var retailerKPIsCtrl=function($scope,$http){
                     }
                 }
             }
-            for(var i=0;i<2+currentCategories.length;i++){
+            for(var i=0;i<2+testCategories.length;i++){
                 ruralShareOfShoppers[0].data.push('');
                 ruralShareOfShoppers[1].data.push('');
                 urbanShareOfShoppers[0].data.push('');
@@ -289,9 +286,9 @@ var retailerKPIsCtrl=function($scope,$http){
             //     ruralShareOfShoppers[i].data.push('');
             //     urbanShareOfShoppers[i].data.push('');
             // }
-            // for(var j=0;j<currentCategories.length;j++){
+            // for(var j=0;j<testCategories.length;j++){
             //     for(var i=0;i<data.data.f_RetailersShoppersShare.length;i++){
-            //         if(data.data.f_RetailersShoppersShare[i].period==currentCategories[j]){
+            //         if(data.data.f_RetailersShoppersShare[i].period==testCategories[j]){
             //             if(data.data.f_RetailersShoppersShare[i].categoryID==3){
             //                 if(data.data.f_RetailersShoppersShare[i].marketID==2){
             //                     ruralShareOfShoppers[data.data.f_RetailersShoppersShare[i].retailerID-1].data.push(data.data.f_RetailersShoppersShare[i].value);

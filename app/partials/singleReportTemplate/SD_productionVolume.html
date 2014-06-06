@@ -21,7 +21,7 @@
     				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Quality-of-Raw-Materials Info')}}" popover-title="{{Label.getContent('Quality-of-Raw-Materials')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Quality-of-Raw-Materials')}}<span style="color:red">*</span></p>
     			</th>
     			<th>
-    				<p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Production Volume Info')}}" popover-title="{{Label.getContent('Production Volume')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Production Volume')}}<span style="color:red">*</span></p>
+    				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Production Volume Info')}}" popover-title="{{Label.getContent('Production Volume')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Production Volume')}}<span style="color:red">*</span></p>
     			</th>
     		</tr>
     		<tr class="success">
@@ -51,9 +51,12 @@
     				<p class="text-right">{{ producte.composition[2] || 0 }}</p>
     			</td>
     			<td>
-    				<a href="#" editable-text="producte.production" onbeforesave="checkProduction('Elecssories',producte.parentBrandName,producte.varName,'production','0',$index,$data)" onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'production','0',$index)">
+    				<a href="#" editable-text="producte.production" onbeforesave="checkProduction('Elecssories',producte.parentBrandName,producte.varName,'production','0',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'production','0',$index)">
     					<p class="text-right">{{ producte.production || 0 }}</p>
     				</a>
+                    <p ng-show='isReady' class="text-right">
+                        {{ producte.production || 0 }}
+                    </p>
     			</td>
     		</tr>
     		<tr>
@@ -71,7 +74,7 @@
     				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Smoothener Level Info')}}" popover-title="{{Label.getContent('Smoothener Level')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Smoothener Level')}}<span style="color:red">*</span></p>
     			</th>
     			<th>
-    				<p class="text-primary" Popover-animation="true" popover="{{Label.getContent('Production Volume Info')}}" popover-title="{{Label.getContent('Production Volume')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Production Volume')}}<span style="color:red">*</span></p>
+    				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Production Volume Info')}}" popover-title="{{Label.getContent('Production Volume')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Production Volume')}}<span style="color:red">*</span></p>
     			</th>
     		</tr>
             <tr class="danger">
@@ -99,9 +102,10 @@
     				<p class="text-right">{{ producth.composition[2] || 0 }}</p>
     			</td>
     			<td>
-    				<a href="#" editable-text="producth.production" onbeforesave="checkProduction('HealthBeauty',producth.parentBrandName,producth.varName,'production','0',$index,$data)" onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'production','0',$index)">
+    				<a href="#" editable-text="producth.production" onbeforesave="checkProduction('HealthBeauty',producth.parentBrandName,producth.varName,'production','0',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'production','0',$index)">
                         <p class="text-right">{{ producth.production || 0 }}</p>
                     </a>
+                    <p class="text-right" ng-show='isReady'>{{ producth.production || 0 }}</p>
     			</td>
     		</tr>
     	</tbody>

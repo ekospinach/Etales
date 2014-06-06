@@ -23,9 +23,10 @@
                     <p class="padding-40">{{Label.getContent('Price Appeal')}}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="pageBase.onlineAdvertising[0]" onbeforesave="checkBudget(0,'onlineAdvertising','0',$data)" onaftersave="updateRetailerDecision('onlineAdvertising','0')">
+                    <a href="#" editable-text="pageBase.onlineAdvertising[0]" ng-show='!isReady' onbeforesave="checkBudget(0,'onlineAdvertising','0',$data)" onaftersave="updateRetailerDecision('onlineAdvertising','0')">
                         <p class="text-right">{{ pageBase.onlineAdvertising[0] || 0 }}</p>
                     </a>
+                    <p ng-show='isReady' class="text-right">{{ pageBase.onlineAdvertising[0] || 0 }}</p>
                 </td>
             </tr>
             <tr>
@@ -33,9 +34,10 @@
                     <p class="padding-40">{{Label.getContent('Convenience')}}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="pageBase.onlineAdvertising[1]" onbeforesave="checkBudget(0,'onlineAdvertising','1',$data)" onaftersave="updateRetailerDecision('onlineAdvertising','1')">
+                    <a href="#" editable-text="pageBase.onlineAdvertising[1]" ng-show='!isReady' onbeforesave="checkBudget(0,'onlineAdvertising','1',$data)" onaftersave="updateRetailerDecision('onlineAdvertising','1')">
                         <p class="text-right">{{ pageBase.onlineAdvertising[1]|| 0 }}</p>
                     </a>
+                    <p ng-show='isReady' class="text-right">{{ pageBase.onlineAdvertising[1]|| 0 }}</p>
                 </td>
             </tr>
 
@@ -49,10 +51,11 @@
                     <p class="padding-40">{{Label.getContent('Rural')}}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="markets[1].localAdvertising[0]" onbeforesave="checkBudget(2,'localAdvertising','0',$data)" onaftersave="updateMarketingDecision(markets[1].marketID,'localAdvertising','postion','0',1)">
+                    <a href="#" editable-text="markets[1].localAdvertising[0]" ng-show='!isReady' onbeforesave="checkBudget(2,'localAdvertising','0',$data)" onaftersave="updateMarketingDecision(markets[1].marketID,'localAdvertising','postion','0',1)">
                         <p class="text-right">{{ markets[1].localAdvertising[0] || 0 }}
                         </p>
                     </a>
+                    <p ng-show='isReady' class="text-right">{{ markets[1].localAdvertising[0] || 0 }}</p>
                 </td>
             </tr>
             <tr class="warning">
@@ -60,10 +63,11 @@
                     <p class="padding-40">{{Label.getContent('Urban')}}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="markets[0].localAdvertising[0]" onbeforesave="checkBudget(1,'localAdvertising','0',$data)" onaftersave="updateMarketingDecision(markets[0].marketID,'localAdvertising','postion','0',0)">
+                    <a href="#" editable-text="markets[0].localAdvertising[0]" ng-show='!isReady' onbeforesave="checkBudget(1,'localAdvertising','0',$data)" onaftersave="updateMarketingDecision(markets[0].marketID,'localAdvertising','postion','0',0)">
                         <p class="text-right">{{ markets[0].localAdvertising[0] || 0 }}
                         </p>
                     </a>
+                    <p ng-show='isReady' class="text-right">{{ markets[0].localAdvertising[0] || 0 }}</p>
                 </td>
             </tr>
 
@@ -77,10 +81,11 @@
                     <p class="padding-40">{{Label.getContent('Rural')}}</p>
                 </td>
                 <td>
-                    <a href="#" editable-select="markets[1].serviceLevel" e-ng-options="p.value as p.text for p in packs" onaftersave="updateMarketingDecision(markets[1].marketID,'serviceLevel','postion','addtionalIdx',1)">
+                    <a href="#" editable-select="markets[1].serviceLevel" e-ng-options="p.value as p.text for p in packs" ng-show='!isReady' onaftersave="updateMarketingDecision(markets[1].marketID,'serviceLevel','postion','addtionalIdx',1)">
                         <p class="text-right">{{ selectPacks(markets[1].marketID) }}
                         </p>
                     </a>
+                    <p ng-show='isReady' class="text-right">{{ selectPacks(markets[1].marketID) }}</p>
                 </td>
             </tr>
             <tr class="warning">
@@ -88,10 +93,11 @@
                     <p class="padding-40">{{Label.getContent('Urban')}}</p>
                 </td>
                 <td>
-                    <a href="#" editable-select="markets[0].serviceLevel" e-ng-options="p.value as p.text for p in packs" onaftersave="updateMarketingDecision(markets[0].marketID,'serviceLevel','postion','addtionalIdx',0)">
+                    <a href="#" editable-select="markets[0].serviceLevel" e-ng-options="p.value as p.text for p in packs" ng-show='!isReady' onaftersave="updateMarketingDecision(markets[0].marketID,'serviceLevel','postion','addtionalIdx',0)">
                         <p class="text-right">{{ selectPacks(markets[0].marketID) }}
                         </p>
                     </a>
+                    <p ng-show='isReady' class="text-right">{{ selectPacks(markets[0].marketID) }}</p>
                 </td>
             </tr>
         </tbody>

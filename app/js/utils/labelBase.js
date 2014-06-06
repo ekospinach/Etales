@@ -77,12 +77,9 @@ var getLabelBase = function(){
 		{id:'Retail Market Share (Volume) Info',  ENG:'Retail Market Share (Volume) Info',  CHN:'Retail Market Share (Volume) Info',  RUS:''},
 		{id:'Volume Info',  ENG:'Volume Info',  CHN:'Volume介绍',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'UnitCost Info',  ENG:'UnitCost Info',  CHN:'生成成本介绍',  RUS:''},
+		{id:'Buy this Report',  ENG:'Buy this Report',  CHN:'购买此报告',  RUS:''},
+		
 
 		/*Login page*/
 		{id:'eTales Info',  ENG:'Best-in-class professional development tool among the world’s most respected companies and leading business schools',  CHN:'首次呈现和探索零售商、供应商、电商和消费者在社交媒体盛行时代的生存和胜出之道。',  RUS:''},
@@ -867,7 +864,14 @@ var getLabelBase = function(){
 		{id:'Feedback session',  ENG:'Feedback session',  CHN:'阶段总结',  RUS:''},
 		{id:'Feedback session Info',  ENG:'Choose a period to generate feedback slides for current seminar',  CHN:'阶段总结',  RUS:''},	
 		{id:'Generate feedback slides',  ENG:'Generate feedback slides',  CHN:'生成报告',  RUS:''},
-
+		{id:'weeks',  ENG:'weeks',  CHN:'周',  RUS:''},
+		{id:'Online Planned Volume',  ENG:'Online Planned Volume',  CHN:'在线计划产量',  RUS:''},
+		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'',  ENG:'',  CHN:'',  RUS:''}
 	]
 }
 

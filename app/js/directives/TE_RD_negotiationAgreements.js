@@ -5,7 +5,8 @@ define(['directives', 'services'], function(directives) {
                 scope: {
                     isPageShown: '=',
                     isPageLoading: '=',
-                    isNegotiationChange: '='
+                    isNegotiationChange: '=',
+                    isReady : '='
                 },
                 restrict: 'E',
                 templateUrl: '../../partials/singleReportTemplate/RD_negotiationAgreements.html',
@@ -409,7 +410,7 @@ define(['directives', 'services'], function(directives) {
                             });
                         }).then(function(data){
                             return organiseArray(data.data, producerID);
-                        }).then(function(data){
+                        },function(data){
                             console.log('TE_RD_negotiationAgreement getResult() failed.');
                         });
                     }
@@ -515,7 +516,6 @@ define(['directives', 'services'], function(directives) {
                         getResult(data.producerID);                        
                         notify('Negotiation has been updated by Supplier ' + data.producerID  + ' Period ' + data.period + '.');
                     });
-
 
                 }
             }

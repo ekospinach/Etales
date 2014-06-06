@@ -579,13 +579,10 @@ exports.updateRetailerDecision = function(io){
                                                                 console.log(doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].brandName==queryCondition.brandName);
                                                                 console.log(doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].varName==queryCondition.varName);
                                                                 if(doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k]!=undefined&&doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].brandName==queryCondition.brandName&&doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].varName==queryCondition.varName){
-                                                                    console.log('2222');
                                                                     if(queryCondition.location=="pricePromotions"){
                                                                         doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k][queryCondition.location][queryCondition.additionalIdx]=queryCondition.value;
                                                                     }
                                                                     else{
-                                                                        console.log(doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k][queryCondition.location]);
-                                                                        console.log(queryCondition.value);
                                                                         doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k][queryCondition.location]=queryCondition.value;  
 
                                                                     }
@@ -613,7 +610,6 @@ exports.updateRetailerDecision = function(io){
                                                                     }
                                                                 }
                                                             }
-                                                            console.log('count:'+count+',result:'+result);
                                                             if(count<=20&&result==0){
                                                                 for(var k=0;k<doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision.length;k++){
                                                                     if(doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].varName==""&&doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].brandName==""){
@@ -674,8 +670,12 @@ exports.updateRetailerDecision = function(io){
                                         doc.markModified('retCatDecision');
                                         doc.save(function(err, doc, numberAffected){
                                             if(err) next(new Error(err));
-                                            console.log('save updated hhq, number affected:'+numberAffected);                                   
-                                            io.sockets.emit('socketIO:retailerBaseChanged', {retailerID: queryCondition.retailerID, seminar: queryCondition.seminar, period: queryCondition.period});
+                                            console.log('save updated hhq, number affected:'+numberAffected);    
+                                            if(queryCondition.behaviour=="addOrder"){
+                                                io.sockets.emit('socketIO:retailerBaseChanged', {retailerID: queryCondition.retailerID, seminar: queryCondition.seminar, period: queryCondition.period,categoryID:queryCondition.value.categoryID,marketID:queryCondition.marketID});
+                                            }else{
+                                                io.sockets.emit('socketIO:retailerBaseChanged', {retailerID: queryCondition.retailerID, seminar: queryCondition.seminar, period: queryCondition.period,categoryID:queryCondition.categoryID,marketID:queryCondition.marketID});
+                                            }                            
                                             res.send(200, 'mission complete!');
                                         });                                   
                                     }    

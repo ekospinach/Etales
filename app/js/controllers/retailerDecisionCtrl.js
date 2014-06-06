@@ -68,8 +68,17 @@ define(['app','socketIO','routingConfig'], function(app) {
                     $scope.percentageShelf[1][1]=(1-$scope.surplusShelf[1][1])*100;
                     // $scope.showSurplusShelf=$scope.percentageShelf[market-1][category-1];
                     // $scope.showPercentageShelf=$scope.percentageShelf[market-1][category-1];
-                },function(){
-                	console.log('fail');
+                    url = '/checkRetailerDecision/' + SeminarInfo.getSelectedSeminar() + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
+                    return $http({
+                        method: 'GET',
+                        url: url
+                    });
+                }).then(function(data){
+                    if (data.data == "isReady") {
+                        $scope.isRetailerDecisionReady = true;
+                    } else {
+                        $scope.isRetailerDecisionReady = false;
+                    }
                 })
 		    }
 

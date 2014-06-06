@@ -45,9 +45,10 @@
                     </p>
                 </td>
                 <td>
-                    <a href="#" editable-text="brande.supportEmall" onbeforesave="checkData('Elecssories',brande.brandName,'supportEmall','1',$index,$data)" onaftersave="updateBrandDecision('Elecssories',brande.brandName,'supportEmall','1',$index)">
+                    <a href="#" editable-text="brande.supportEmall" onbeforesave="checkData('Elecssories',brande.brandName,'supportEmall','1',$index,$data)" ng-show='!isReady' onaftersave="updateBrandDecision('Elecssories',brande.brandName,'supportEmall','1',$index)">
                         <p class="text-right">{{ brande.supportEmall || 0 }}</p>
                     </a>
+                    <p ng-show='isReady' class="text-right">{{ brande.supportEmall || 0 }}</p>
                 </td>
                 <td colspan="4"></td>
             </tr>
@@ -57,24 +58,29 @@
                 </td>
                 <td></td>
                 <td>
-                    <a href="#" editable-text="var.onlinePlannedVolume" onbeforesave="checkOrderVolumes('Elecssories',brande.brandName,var.varName,'onlinePlannedVolume','0',$index,$data)" onaftersave="updateVariantDecision('Elecssories',brande.brandName,var.varName,'onlinePlannedVolume','0',$index,$data)">
+                    <a href="#" editable-text="var.onlinePlannedVolume" onbeforesave="checkOrderVolumes('Elecssories',brande.brandName,var.varName,'onlinePlannedVolume','0',$index,$data)" ng-show='!isReady' onaftersave="updateVariantDecision('Elecssories',brande.brandName,var.varName,'onlinePlannedVolume','0',$index,$data)">
                         <p class="text-right">{{ var.onlinePlannedVolume || 0 }}</p>
                     </a>
+                    <p ng-show='isReady' class="text-right">{{ var.onlinePlannedVolume || 0 }}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="var.onlinePrice" onbeforesave="checkPrices('Elecssories',brande.brandName,var.varName,'onlinePrice','0',$index,$data)" onaftersave="updateVariantDecision('Elecssories',brande.brandName,var.varName,'onlinePrice','0',$index,$data)">
+                    <a href="#" editable-text="var.onlinePrice" onbeforesave="checkPrices('Elecssories',brande.brandName,var.varName,'onlinePrice','0',$index,$data)" ng-show='!isReady' onaftersave="updateVariantDecision('Elecssories',brande.brandName,var.varName,'onlinePrice','0',$index,$data)">
                         <p class="text-right">{{ var.onlinePrice || 0 }}</p>
                     </a>
+                    <p ng-show='isReady' class="text-right">{{ var.onlinePrice || 0 }}</p>
+
                 </td>
                 <td>
-                    <a href="#" editable-text="var.pricePromotions.promo_Frequency"onbeforesave="checkFrequency('Elecssories',brande.brandName,var.varName,'pricePromotions','0',$index,$data)" onaftersave="updateVariantDecision('Elecssories',brande.brandName,var.varName,'pricePromotions','0',$index,$data)">
+                    <a href="#" editable-text="var.pricePromotions.promo_Frequency"onbeforesave="checkFrequency('Elecssories',brande.brandName,var.varName,'pricePromotions','0',$index,$data)" ng-show='!isReady' onaftersave="updateVariantDecision('Elecssories',brande.brandName,var.varName,'pricePromotions','0',$index,$data)">
                         <p class="text-right">{{ var.pricePromotions.promo_Frequency || 0 }}</p>
                     </a>
+                    <p ng-show='isReady' class="text-right">{{ var.pricePromotions.promo_Frequency || 0 }}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="var.pricePromotions.promo_Rate" onbeforesave="checkDepth('Elecssories',brande.brandName,var.varName,'pricePromotions','1',$index,$data)" onaftersave="updateVariantDecision('Elecssories',brande.brandName,var.varName,'pricePromotions','1',$index,$data)">
+                    <a href="#" editable-text="var.pricePromotions.promo_Rate" onbeforesave="checkDepth('Elecssories',brande.brandName,var.varName,'pricePromotions','1',$index,$data)" ng-show='!isReady' onaftersave="updateVariantDecision('Elecssories',brande.brandName,var.varName,'pricePromotions','1',$index,$data)">
                         <p class="text-right">{{ var.pricePromotions.promo_Rate || 0 }}</p>
                     </a>
+                    <p ng-show='isReady' class="text-right">{{ var.pricePromotions.promo_Rate || 0 }}</p>
                 </td>
             </tr>
         </thead>
@@ -91,9 +97,10 @@
                     </p>
                 </td>
                 <td>
-                    <a href="#" editable-text="brandh.supportEmall" onbeforesave="checkData('HealthBeauty',brandh.brandName,'supportEmall','1',$index,$data)" onaftersave="updateBrandDecision('HealthBeauty',brandh.brandName,'supportEmall','1',$index)">
+                    <a href="#" editable-text="brandh.supportEmall" onbeforesave="checkData('HealthBeauty',brandh.brandName,'supportEmall','1',$index,$data)" ng-show='!isReady' onaftersave="updateBrandDecision('HealthBeauty',brandh.brandName,'supportEmall','1',$index)">
                         <p class="text-right">{{ brandh.supportEmall || 0 }}</p>
                     </a>
+                    <p ng-show='isReady' class="text-right">{{ brandh.supportEmall || 0 }}</p>
                 </td>
                 <td colspan="4"></td>
             </tr>
@@ -103,24 +110,28 @@
                 </td>
                 <td></td>
                 <td>
-                    <a href="#" editable-text="var.onlinePlannedVolume" onbeforesave="checkOrderVolumes('HealthBeauty',brandh.brandName,var.varName,'onlinePlannedVolume','0',$index,$data)"onaftersave="updateVariantDecision('HealthBeauty',brandh.brandName,var.varName,'onlinePlannedVolume','0',$index,$data)">
+                    <a href="#" editable-text="var.onlinePlannedVolume" onbeforesave="checkOrderVolumes('HealthBeauty',brandh.brandName,var.varName,'onlinePlannedVolume','0',$index,$data)" ng-show='!isReady' onaftersave="updateVariantDecision('HealthBeauty',brandh.brandName,var.varName,'onlinePlannedVolume','0',$index,$data)">
                         <p class="text-right">{{ var.onlinePlannedVolume || 0 }}</p>
                     </a>
+                    <p ng-show='isReady' class="text-right">{{ var.onlinePlannedVolume || 0 }}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="var.onlinePrice" onbeforesave="checkPrices('HealthBeauty',brandh.brandName,var.varName,'onlinePrice','0',$index,$data)" onaftersave="updateVariantDecision('HealthBeauty',brandh.brandName,var.varName,'onlinePrice','0',$index,$data)">
+                    <a href="#" editable-text="var.onlinePrice" onbeforesave="checkPrices('HealthBeauty',brandh.brandName,var.varName,'onlinePrice','0',$index,$data)" ng-show='!isReady' onaftersave="updateVariantDecision('HealthBeauty',brandh.brandName,var.varName,'onlinePrice','0',$index,$data)">
                         <p class="text-right">{{ var.onlinePrice || 0 }}</p>
                     </a>
+                    <p ng-show='isReady' class="text-right">{{ var.onlinePrice || 0 }}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="var.pricePromotions.promo_Frequency" onbeforesave="checkFrequency('HealthBeauty',brandh.brandName,var.varName,'pricePromotions','0',$index,$data)" onaftersave="updateVariantDecision('HealthBeauty',brandh.brandName,var.varName,'pricePromotions','0',$index,$data)">
+                    <a href="#" editable-text="var.pricePromotions.promo_Frequency" onbeforesave="checkFrequency('HealthBeauty',brandh.brandName,var.varName,'pricePromotions','0',$index,$data)" ng-show='!isReady' onaftersave="updateVariantDecision('HealthBeauty',brandh.brandName,var.varName,'pricePromotions','0',$index,$data)">
                         <p class="text-right">{{ var.pricePromotions.promo_Frequency || 0 }}</p>
                     </a>
+                    <p ng-show='isReady' class="text-right">{{ var.pricePromotions.promo_Frequency || 0 }}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="var.pricePromotions.promo_Rate" onbeforesave="checkDepth('HealthBeauty',brandh.brandName,var.varName,'pricePromotions','1',$index,$data)" onaftersave="updateVariantDecision('HealthBeauty',brandh.brandName,var.varName,'pricePromotions','1',$index,$data)">
+                    <a href="#" editable-text="var.pricePromotions.promo_Rate" onbeforesave="checkDepth('HealthBeauty',brandh.brandName,var.varName,'pricePromotions','1',$index,$data)" ng-show='!isReady' onaftersave="updateVariantDecision('HealthBeauty',brandh.brandName,var.varName,'pricePromotions','1',$index,$data)">
                         <p class="text-right">{{ var.pricePromotions.promo_Rate || 0 }}</p>
                     </a>
+                    <p ng-show='isReady' class="text-right">{{ var.pricePromotions.promo_Rate || 0 }}</p>
                 </td>
             </tr>
         </thead>

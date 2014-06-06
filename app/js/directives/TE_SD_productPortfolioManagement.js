@@ -47,8 +47,14 @@ define(['directives', 'services'], function(directives) {
                     }
 
                     var loadSelectCategory = function(category) {
-                        var count = 0;
+                        var count = 0,categoryID = 1;
                         var products = new Array();
+                        var postDatas=new Array();
+                        if(category=="HealthBeauty"){
+                            categoryID=2;
+                        }else{
+                            categoryID=1;
+                        }
                         var allProCatDecisions = _.filter(scope.pageBase.proCatDecision, function(obj) {
                             if (category == "HealthBeauty") {
                                 return (obj.categoryID == 2);
@@ -78,11 +84,43 @@ define(['directives', 'services'], function(directives) {
                                 }
                             }
                         }
-                        if (category == "Elecssories") {
-                            scope.productes = products;
-                        } else {
-                            scope.producths = products;
+
+                        for(var i=0;i<products.length;i++){
+                            postDatas[i]={
+                                period : PeriodInfo.getCurrentPeriod(),
+                                seminar : SeminarInfo.getSelectedSeminar(),
+                                brandName : products[i].parentBrandName,
+                                varName : products[i].varName,
+                                catID : categoryID,
+                                userRole :  2,
+                                userID : parseInt(PlayerInfo.getPlayer()),
+                            }
                         }
+                        (function multipleRequestShooter(postDatas,idx){
+                            $http({
+                                method:'POST',
+                                url:'/getCurrentUnitCost',
+                                data:postDatas[idx]
+                            }).then(function(data){
+                                products[idx].unitCost=data.data.result;
+                            },function(data){
+
+                            }).finally(function(){
+                                if(idx!=postDatas.length-1){
+                                    idx++;
+                                    multipleRequestShooter(postDatas,idx);
+                                }else{
+                                    if (category == "Elecssories") {
+                                        scope.productes = products;
+                                    } else {
+                                        scope.producths = products;
+                                    }
+                                    if(scope.productes.length!=0&&scope.producths.length!=0){
+                                        scope.selectPacks = selectPacks;
+                                    }
+                                }
+                            })
+                        })(postDatas,0); 
                     }
 
                     var selectPacks = function(category, parentBrandName, varName) {
@@ -365,6 +403,7 @@ define(['directives', 'services'], function(directives) {
                                 promo_Frequency: 0, //range: 0~52
                                 promo_Rate: 0 //0~1        
                             };
+                            console.log($scope.lauchNewCategory);
 
                             var newproducerDecision = new ProducerDecision();
                             newproducerDecision.packFormat = "ECONOMY";
@@ -430,7 +469,7 @@ define(['directives', 'services'], function(directives) {
                                         break;
                                     }
                                 }
-                                url = "/checkProducerProduct/" + SeminarInfo.getSelectedSeminar() + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer()) + '/' + $scope.lauchNewCategory + '/variant/' + newBrandName + '/' + newproducerDecision.varName;
+                                url = "/checkProducerProduct/" + SeminarInfo.getSelectedSeminar() + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer()) + '/' + $scope.addNewCategory + '/variant/' + newBrandName + '/' + newproducerDecision.varName;
 
                                 $http({
                                     method: 'GET',
@@ -550,7 +589,8 @@ define(['directives', 'services'], function(directives) {
                         var d = $q.defer();
                         loadSelectCategory('Elecssories');
                         loadSelectCategory('HealthBeauty');
-                        scope.selectPacks = selectPacks;
+                        
+
                         scope.isResultShown = true;
                         scope.isPageLoading = false;
                         return d.promise;
@@ -581,8 +621,11 @@ define(['directives', 'services'], function(directives) {
                     
                     scope.$on('producerDecisionBaseChangedFromServer', function(event, data, newBase) {                    
                             //decision base had been updated, re-render the page with newBase
+                        if(data.seminar==SeminarInfo.getSelectedSeminar()&&data.period==PeriodInfo.getCurrentPeriod()&&data.producerID==PlayerInfo.getPlayer()){
+                        
                             scope.pageBase = newBase;
                             showView();
+                        }
                     });
 
                 }
