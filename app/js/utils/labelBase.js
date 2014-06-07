@@ -703,8 +703,6 @@ var getLabelBase = function(){
 		{id:'Payment Terms',  ENG:'Payment Terms',  CHN:'付款条件',  RUS:''},
 		{id:'days',  ENG:'days',  CHN:'天数',  RUS:''},
 		{id:'Contract Honored',  ENG:'Contract Honored',  CHN:'合同授予',  RUS:''},
-		{id:'Market Shares by Consumer Segment Info',  ENG:'This table shows the volume and value sales for all the HealthBeauties brands sold in the urban market. When moving the cursor on any brand name, the results for all its variants will pop up.',  CHN:'消费者细分市场份额介绍',  RUS:''},
-		{id:'Market Shares by Shopper Segment Info',  ENG:'This table shows the volume and value sales for all the Elecssories brands sold in the rural market. When moving the cursor on any brand name, the results for all its variants will pop up.',  CHN:'购买者细分市场份额介绍',  RUS:''},
 		{id:'Volume Share',  ENG:'Volume Share',  CHN:'销售份额',  RUS:''},
 		{id:'Change',  ENG:'Change',  CHN:'变化',  RUS:''},
 		{id:'Discontinued Goods Volume',  ENG:'Discontinued Goods Volume',  CHN:'停产产品销量',  RUS:''},
@@ -876,6 +874,27 @@ var getLabelBase = function(){
 		{id:'Rotation Index Info',  ENG:'sales (volume and value) per 1% shelf space',  CHN:'',  RUS:''},
 		{id:'Profitability Index Info',  ENG:'gross profit per 1% shelf space',  CHN:'',  RUS:''},
 		{id:'Stock Cover Info',  ENG:'the ratio of closing inventory over weekly sales volume',  CHN:'',  RUS:''},
+
+		{id:'Sales by Consumer Segment Elecssories Rural Info',  ENG:'This table shows the volume and value sales for all the Elecssories brands sold in the rural market. When moving the cursor on any brand name, the results for all its variants will pop up.',  CHN:'消费者细分市场份额介绍',  RUS:''},
+		{id:'Sales by Consumer Segment Elecssories Urban Info',  ENG:'This table shows the volume and value sales for all the Elecssories brands sold in the urban market. When moving the cursor on any brand name, the results for all its variants will pop up.',  CHN:'消费者细分市场份额介绍',  RUS:''},
+		{id:'Sales by Consumer Segment HealthBeauties Rural Info',  ENG:'This table shows the volume and value sales for all the HealthBeauties brands sold in the rural market. When moving the cursor on any brand name, the results for all its variants will pop up.',  CHN:'消费者细分市场份额介绍',  RUS:''},
+		{id:'Sales by Consumer Segment HealthBeauties Urban Info',  ENG:'This table shows the volume and value sales for all the HealthBeauties brands sold in the urban market. When moving the cursor on any brand name, the results for all its variants will pop up.',  CHN:'消费者细分市场份额介绍',  RUS:''},
+
+		{id:'Market Shares by Consumer Segment Elecssories Rural Info',  ENG:'This table shows the volume and value markets shares for all the Elecssories brands sold in the rural market. When moving the cursor on any brand name, the results for all its variants will pop up.',  CHN:'消费者细分市场份额介绍',  RUS:''},
+		{id:'Market Shares by Consumer Segment Elecssories Urban Info',  ENG:'This table shows the volume and value markets shares for all the Elecssories brands sold in the urban market. When moving the cursor on any brand name, the results for all its variants will pop up.',  CHN:'消费者细分市场份额介绍',  RUS:''},
+		{id:'Market Shares by Consumer Segment HealthBeauties Rural Info',  ENG:'This table shows the volume and value markets shares for all the HealthBeauties brands sold in the rural market. When moving the cursor on any brand name, the results for all its variants will pop up.',  CHN:'消费者细分市场份额介绍',  RUS:''},
+		{id:'Market Shares by Consumer Segment HealthBeauties Urban Info',  ENG:'This table shows the volume and value markets shares for all the HealthBeauties brands sold in the urban market. When moving the cursor on any brand name, the results for all its variants will pop up.',  CHN:'消费者细分市场份额介绍',  RUS:''},
+
+		{id:'Sales by Shopper Segment Elecssories Rural Info',  ENG:'This table shows the volume and value sales for all the Elecssories brands sold in the rural market. When moving the cursor on any brand name, the results for all its variants will pop up.',  CHN:'消费者细分市场份额介绍',  RUS:''},
+		{id:'Sales by Shopper Segment Elecssories Urban Info',  ENG:'This table shows the volume and value sales for all the Elecssories brands sold in the urban market. When moving the cursor on any brand name, the results for all its variants will pop up.',  CHN:'消费者细分市场份额介绍',  RUS:''},
+		{id:'Sales by Shopper Segment HealthBeauties Rural Info',  ENG:'This table shows the volume and value sales for all the HealthBeauties brands sold in the rural market. When moving the cursor on any brand name, the results for all its variants will pop up.',  CHN:'消费者细分市场份额介绍',  RUS:''},
+		{id:'Sales by Shopper Segment HealthBeauties Urban Info',  ENG:'This table shows the volume and value sales for all the HealthBeauties brands sold in the urban market. When moving the cursor on any brand name, the results for all its variants will pop up.',  CHN:'消费者细分市场份额介绍',  RUS:''},
+
+		{id:'Market Shares by Shopper Segment Elecssories Rural Info',  ENG:'This table shows the volume and value market shares for all the Elecssories brands sold in the rural market. When moving the cursor on any brand name, the results for all its variants will pop up.',  CHN:'消费者细分市场份额介绍',  RUS:''},
+		{id:'Market Shares by Shopper Segment Elecssories Urban Info',  ENG:'This table shows the volume and value market shares for all the Elecssories brands sold in the urban market. When moving the cursor on any brand name, the results for all its variants will pop up.',  CHN:'消费者细分市场份额介绍',  RUS:''},
+		{id:'Market Shares by Shopper Segment HealthBeauties Rural Info',  ENG:'This table shows the volume and value market shares for all the HealthBeauties brands sold in the rural market. When moving the cursor on any brand name, the results for all its variants will pop up.',  CHN:'消费者细分市场份额介绍',  RUS:''},
+		{id:'Market Shares by Shopper Segment HealthBeauties Urban Info',  ENG:'This table shows the volume and value market shares for all the HealthBeauties brands sold in the urban market. When moving the cursor on any brand name, the results for all its variants will pop up.',  CHN:'消费者细分市场份额介绍',  RUS:''},
+
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},

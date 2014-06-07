@@ -162,7 +162,25 @@ define(['app','socketIO','routingConfig'], function(app) {
 			}
 		    $scope.switching=switching;
 		    $scope.showAwarenessElecssories=showAwarenessElecssories;
-		  	showAwarenessElecssories();
+		  	//showAwarenessElecssories();
+		  	if($rootScope.user.role==8){
+				$scope.facilitatorShow=true;
+				$scope.producerShow=false;
+				$scope.retailerShow=false;
+			}else if($rootScope.user.role==4){
+				$scope.retailerShow=true;
+				$scope.producerShow=false;
+				$scope.facilitatorShow=false;
+				$scope.contractUserID=parseInt(PlayerInfo.getPlayer());
+				$scope.retailerID=parseInt(PlayerInfo.getPlayer());
+			}else if($rootScope.user.role==2){
+				$scope.producerShow=true;
+				$scope.facilitatorShow=false;
+				$scope.retailerShow=false;
+				$scope.contractUserID=parseInt(PlayerInfo.getPlayer());
+				$scope.producerID=parseInt(PlayerInfo.getPlayer());
+			}
+
 	}]);
 
 });

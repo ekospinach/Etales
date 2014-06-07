@@ -82,6 +82,8 @@ define(['directives', 'services'], function(directives){
                     },{
                         name:Label.getContent('Supplier 3 Online'),data:scope.player6hs,color:'#329444'
                     }];
+                    scope.xTitle3=Label.getContent('Convenience');
+                    scope.yTitle3=Label.getContent('Price Appeal');
                     scope.myModel="RetailerPerceptions";
 
                     deferred.resolve({msg:'Array is ready.'});                    

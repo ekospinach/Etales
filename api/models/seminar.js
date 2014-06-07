@@ -926,6 +926,31 @@ exports.submitOrder=function(io){
 	}
 }
 
+exports.getPlayerReportOrder=function(req,res,next){
+	seminar.findOne({seminarCode:req.params.seminar},function(err,doc){
+		if(err){ next(new Error(err));}
+		if(doc){
+			if(req.params.userType=="P"){
+				for(var i=0;i<doc.producers[req.params.playerID-1].reportPurchaseStatus.length;i++){
+					if(doc.producers[req.params.playerID-1].reportPurchaseStatus[i].period==req.params.period){
+						res.send(200,doc.producers[req.params.playerID-1].reportPurchaseStatus[i]);
+						break;
+					}
+				}
+			}else{
+				for(var i=0;i<doc.retailers[req.params.playerID-1].reportPurchaseStatus.length;i++){
+					if(doc.retailers[req.params.playerID-1].reportPurchaseStatus[i].period==req.params.period){
+						res.send(200,doc.retailers[req.params.playerID-1].reportPurchaseStatus[i]);
+						break;
+					}
+				}
+			}
+		}else{
+			res.send(404,'there is no contract');
+		}
+	});
+}
+
 
 
 exports.initializeSeminar = function(options){
