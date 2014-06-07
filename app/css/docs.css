@@ -118,8 +118,14 @@ body {
 }
 }
 .bs-docs-home, .bs-header {
+
+/* -- green version -- */
+/*    background-color: #563D7C;
+*/
+/* -- purple version -- */    
     background-color: #563D7C;
-    background-image: url('../img/index.png');
+      background-image: url('../img/index.png');
+    
     color: #CDBFE3;
 }
 .bs-masthead {
@@ -551,7 +557,7 @@ h1[id] {
 @media (min-width: 768px) {
 .bs-example {
     background-color: #FFFFFF;
-    border-color: #DDDDDD;
+    border-color: #428BCA;
     border-radius: 4px 4px 0 0;
     border-width: 1px;
     box-shadow: none;
@@ -787,7 +793,7 @@ h1[id] {
     text-align: center;
 }
 .visible-on .col-xs-6 .hidden-xs, .visible-on .col-xs-6 .hidden-sm, .visible-on .col-xs-6 .hidden-md, .visible-on .col-xs-6 .hidden-lg, .hidden-on .col-xs-6 .hidden-xs, .hidden-on .col-xs-6 .hidden-sm, .hidden-on .col-xs-6 .hidden-md, .hidden-on .col-xs-6 .hidden-lg {
-    border: 1px solid #DDDDDD;
+    border: 1px solid #428BCA;
     color: #999999;
 }
 .visible-on .col-xs-6 .visible-xs, .visible-on .col-xs-6 .visible-sm, .visible-on .col-xs-6 .visible-md, .visible-on .col-xs-6 .visible-lg, .hidden-on .col-xs-6 .visible-xs, .hidden-on .col-xs-6 .visible-sm, .hidden-on .col-xs-6 .visible-md, .hidden-on .col-xs-6 .visible-lg {
@@ -803,7 +809,7 @@ h1[id] {
     padding-left: 0;
 }
 .bs-glyphicons li {
-    border: 1px solid #DDDDDD;
+    border: 1px solid #428BCA;
     float: left;
     font-size: 12px;
     height: 115px;

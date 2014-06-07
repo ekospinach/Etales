@@ -147,12 +147,8 @@ define(['directives', 'services'], function(directives){
                 });
 
 	            scope.$on('retailerDecisionBaseChangedFromServer', function(event, data, newBase) {  
-                    if(data.seminar==SeminarInfo.getSelectedSeminar()&&data.period==PeriodInfo.getCurrentPeriod()&&data.retailerID==PlayerInfo.getPlayer()){
-	                	if(data.categoryID!=undefined&&data.marketID!=undefined){
-	                		scope.pageBase = newBase;
-		                	showView();	
-	                	}   
-		            }
+            		scope.pageBase = newBase;
+                	showView();	
 	            });				
 
             }

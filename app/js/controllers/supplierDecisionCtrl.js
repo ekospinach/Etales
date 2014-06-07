@@ -59,7 +59,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 					avaiableMax = 0;
 
 				//check with server, make sure that isPortfolioDecisionCommitted = true = $scope.isReady 
-				var url = '/checkProducerDecision/' + SeminarInfo.getSelectedSeminar() + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
+				var url = '/checkProducerFinalDecision/' + SeminarInfo.getSelectedSeminar() + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
 				$http({
 					method: 'GET',
 					url: url
@@ -186,6 +186,14 @@ define(['app','socketIO','routingConfig'], function(app) {
 				notify('Decision reload Error occur, Supplier ' + data.producerID  + ' Period ' + data.period + '.');
 			});
 
+            $scope.$on('producerMarketResearchOrdersChanged', function(event, data, newSeminarData) {  
+				notify('Decision has been saved, Supplier ' + data.producerID  + ' Period ' + data.period + '.');
+            });
+
+            $scope.$on('producerDecisionLocked', function(event, data) {  
+            	loadBackgroundDataAndCalculateDecisionInfo();
+                notify('Time is up, Lock Decision. Supplier ' + data.roleID  + ' Period ' + data.period + '.');
+            });            
 
 	}]);
 

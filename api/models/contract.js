@@ -386,6 +386,7 @@ exports.updateContractDetails = function(io) {
                if (err) {
                     next(new Error(err));
                }
+
                doc[queryCondition.location] = queryCondition.value;
                if (queryCondition.location != "isProducerApproved" || queryCondition.location != "isRetailerApproved") {
                     doc[queryCondition.modify] = queryCondition.userType;
@@ -395,25 +396,16 @@ exports.updateContractDetails = function(io) {
                     doc.nc_VolumeDiscountRate = 0;
                     doc.nc_VolumeDiscountRate_lastModifiedBy = queryCondition.userType;
                }
-               if (queryCondition.location == "nc_VolumeDiscountRate") {
-                    doc.nc_SalesTargetVolume = 0;
-                    doc.nc_SalesTargetVolume_lastModifiedBy = queryCondition.userType;
-               }
 
-               if (queryCondition.userType == "P") {
-                    io.sockets.emit('supplierEditNegotiation', 'Supplier Edit Negotiation');
-               } else {
-                    io.sockets.emit('retailerEditNegotiation', 'Retailer Edit Negotiation');
-               }
                if (queryCondition.location == "nc_SalesTargetVolume") {
-                    io.sockets.emit('EditSalesTargetVolume', 'Supplier Edit Negotiation');
+                    doc.nc_PerformanceBonusRate = 0;
+                    doc.nc_PerformanceBonusRate_lastModifiedBy = queryCondition.userType;
                }
 
                doc.save(function(err, doc, numberAffected) {
                     if (err) {
                          next(new Error(err));
                     }
-                    console.log('save update,number affected:' + numberAffected);
                     io.sockets.emit('socketIO:contractDetailsUpdated', {userType   : queryCondition.userType, 
                                                                         seminar    : queryCondition.seminar, 
                                                                         producerID : queryCondition.producerID, 

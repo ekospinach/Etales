@@ -162,24 +162,67 @@ define(['app','socketIO','routingConfig'], function(app) {
 			}
 		    $scope.switching=switching;
 		    $scope.showAwarenessElecssories=showAwarenessElecssories;
+		    var setReportShown=function(data,type){
+				$scope.forecasts=true;$scope.retailerIntelligence=true;$scope.supplierIntelligence=true;$scope.promotionIntensity=true;$scope.BMRetailerPrices=true;$scope.salesByShopperSegment=true;$scope.marketShareByShopperSegment=true;$scope.salesByConsumerSegment=true;$scope.marketShareByConsumerSegment=true;$scope.retailerPerceptions=true;$scope.brandPerceptions=true;$scope.awareness=true;
+				//if()
+				if(type!='Full'){
+					$scope.forecasts=data.forecasts;
+					$scope.retailerIntelligence=data.retailerIntelligence;
+					$scope.supplierIntelligence=data.supplierIntelligence;
+					$scope.promotionIntensity=data.promotionIntensity;
+					$scope.BMRetailerPrices=data.BMRetailerPrices;
+					$scope.salesByShopperSegment=data.salesByShopperSegment;
+					$scope.marketShareByShopperSegment=data.marketShareByShopperSegment;
+					$scope.salesByConsumerSegment=data.salesByConsumerSegment;
+					$scope.marketShareByConsumerSegment=data.marketShareByConsumerSegment;
+					$scope.retailerPerceptions=data.retailerPerceptions;
+					$scope.brandPerceptions=data.brandPerceptions;
+					$scope.awareness=data.awareness;
+				}
+				if($scope.awareness){
+					showAwarenessElecssories();
+				}
+		    }
+
 		  	//showAwarenessElecssories();
 		  	if($rootScope.user.role==8){
-				$scope.facilitatorShow=true;
-				$scope.producerShow=false;
-				$scope.retailerShow=false;
+		  		setReportShown('','Full');
+		  		showAwarenessElecssories();
 			}else if($rootScope.user.role==4){
-				$scope.retailerShow=true;
-				$scope.producerShow=false;
-				$scope.facilitatorShow=false;
-				$scope.contractUserID=parseInt(PlayerInfo.getPlayer());
-				$scope.retailerID=parseInt(PlayerInfo.getPlayer());
+				//retailer				
+				if(PeriodInfo.getCurrentPeriod()==1){
+					setReportShown('','Full');
+		  			showAwarenessElecssories();
+				}else{
+					var url='/getPlayerReportOrder/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/R/'+PlayerInfo.getPlayer();
+					$http({
+						method:'GET',
+						url:url
+					}).then(function(data){
+						setReportShown(data.data,'R');
+					},function(){
+						console.log('fail');
+					})
+				}
 			}else if($rootScope.user.role==2){
-				$scope.producerShow=true;
-				$scope.facilitatorShow=false;
-				$scope.retailerShow=false;
-				$scope.contractUserID=parseInt(PlayerInfo.getPlayer());
-				$scope.producerID=parseInt(PlayerInfo.getPlayer());
+				//producer
+				if(PeriodInfo.getCurrentPeriod()==1){
+					setReportShown('','Full');
+		  			showAwarenessElecssories();
+				}else{
+					var url='/getPlayerReportOrder/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+PlayerInfo.getPlayer();
+					$http({
+						method:'GET',
+						url:url
+					}).then(function(data){
+						setReportShown(data.data,'P');
+					},function(){
+						console.log('fail');
+					})
+				}
+
 			}
+			$scope.setReportShown=setReportShown;
 
 	}]);
 

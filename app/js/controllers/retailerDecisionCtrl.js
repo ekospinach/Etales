@@ -116,16 +116,19 @@ define(['app','socketIO','routingConfig'], function(app) {
                 notify('Decision has been saved, Retailer ' + data.retailerID  + ' Period ' + data.period + '.');
             });
 
-            $scope.$on('retailerReportPurchaseDecisionChanged', function(event, data, newBase) {  
-                showView();
-                notify('Report purchase decision saved, Retailer ' + data.retailerID  + ' Period ' + data.period + '.');                
-            });
-
             $scope.$on('retailerDecisionReloadError', function(event, data, newBase) {  
                 showView();
                 notify('Decision reload Error occur, Retailer ' + data.retailerID  + ' Period ' + data.period + '.');
             });
 
+            $scope.$on('retailerMarketResearchOrdersChanged', function(event, data) {  
+                notify('Decision has been saved, Retailer ' + data.retailerID  + ' Period ' + data.period + '.');
+            });            
+
+            $scope.$on('retailerDecisionLocked', function(event, data) {  
+                showView();
+                notify('Time is up, Lock Decision. Retailer ' + data.roleID  + ' Period ' + data.period + '.');
+            });     
 		    
 	}]);
 

@@ -263,6 +263,8 @@ define(['directives', 'services'], function(directives){
                         console.log('retailerNewProductModal');
                     })
                 };
+
+                
                 var retailerNewProductModalCtrl=function($rootScope,$scope,$modalInstance,Label,SeminarInfo,RoleInfo,PeriodInfo,PlayerInfo,ProducerDecisionBase){
                     $scope.Label=Label;
                     $scope.pageBase=scope.pageBase;
@@ -529,12 +531,8 @@ define(['directives', 'services'], function(directives){
                 });
                 
                 scope.$on('retailerDecisionBaseChangedFromServer', function(event, data, newBase) {  
-                    if(data.seminar==SeminarInfo.getSelectedSeminar()&&data.period==PeriodInfo.getCurrentPeriod()&&data.retailerID==PlayerInfo.getPlayer()){            
-                        if(data.marketID!=undefined&&data.categoryID!=undefined){
                             scope.pageBase = newBase;
                             showView();
-                        }
-                    }
                 });             
 
             }

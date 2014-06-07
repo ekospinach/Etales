@@ -18,7 +18,9 @@ module.exports = function(app, io){
 	app.get('/addOneQuarterExogenousData',                                       require('./../api/models/BG_oneQuarterExogenousData.js').addOneQuarterExogenousData);
 	app.get('/getOneQuarterExogenousData/:seminar/:period/:categoryID/:marketID',require('./../api/models/BG_oneQuarterExogenousData.js').getOneQuarterExogenousData);
 	
-	//seminar 
+	//getPlayerReportOrder
+	app.get('/getPlayerReportOrder/:seminar/:period/:userType/:playerID',		 require('./../api/models/seminar.js').getPlayerReportOrder);
+ 
 	
 	//export data to excel
 	//app.get('/excel',                                                          require('./../api/utils/excel.js').testGet);

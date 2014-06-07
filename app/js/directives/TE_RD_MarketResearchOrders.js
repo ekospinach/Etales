@@ -74,6 +74,7 @@ define(['directives', 'services'], function(directives){
                         name:name,
                         value:value
                     }
+                    
                     $http({
                         method:'POST',
                         url:'/submitOrder',
@@ -93,9 +94,7 @@ define(['directives', 'services'], function(directives){
                 })
 
                 scope.$on('retailerMarketResearchOrdersChanged', function(event, data) {  
-                    if(data.seminar==SeminarInfo.getSelectedSeminar()&&data.period==PeriodInfo.getCurrentPeriod()&&data.retailerID==PlayerInfo.getPlayer()){
-                        initializePage();  
-                    }           
+                    getResult();  
                 });
                 
             }

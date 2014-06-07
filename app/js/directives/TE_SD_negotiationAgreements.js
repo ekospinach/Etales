@@ -41,6 +41,7 @@ define(['directives', 'services'], function(directives) {
                                 method: 'GET',
                                 url: url
                             });
+                            
                         }).then(function(data) {
                             //negotiationACmac = MAX planned production capacity 
                             negotiationACmax = data.data.productionCapacity[category - 1];
@@ -151,6 +152,7 @@ define(['directives', 'services'], function(directives) {
                                  (2)the value of bonus = volume * bonus rate * BM Price has to be smaller than remaining budget,
                                  (3)Retailer's Previous CATEGORY sales volume)
                     */
+
                     scope.checkTargetVolume = function(contractCode, brandName, varName, category, value, retailerID) {
                         var d = $q.defer();
                         var maxTargetVolumeVsTotalMarket, marketSize, salesVolume;

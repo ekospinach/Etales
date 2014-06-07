@@ -59,7 +59,7 @@ define(['directives', 'services'], function(directives){
                     }
                     if(category=="Elecssories"){
                         category=1;
-                    }else if(category=="HealthBeauty"){
+                    }else {
                         category=2;
                     }
                     var d=$q.defer();
@@ -106,7 +106,7 @@ define(['directives', 'services'], function(directives){
                     }
                     if(category=="Elecssories"){
                         category=1;
-                    }else if(category=="HealthBeauty"){
+                    }else {
                         category=2;
                     }
                     var d=$q.defer();
@@ -116,7 +116,7 @@ define(['directives', 'services'], function(directives){
                         d.resolve(Label.getContent('Input a number'));
                     }
                     if(brandName.substring(brandName.length-1)<4){
-                        //producer
+                        //producer product
                         var url='/producerVariantBM/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+brandName.substring(brandName.length-1)+'/'+category+'/'+brandName+'/'+varName;
                         $http({
                             method:'GET',
@@ -134,8 +134,8 @@ define(['directives', 'services'], function(directives){
                             }else{
                                 d.resolve();
                             }
-                        },function(){
-                            console.log(Label.getContent('Check Error'));
+                        },function(data){
+                            d.resolve(data.data.result);
                         });
                     }else{
                         //retailer variant
@@ -371,31 +371,32 @@ define(['directives', 'services'], function(directives){
                     return d.promise;
                 }
 
-                scope.open = function (category,market) {
-                    scope.category=category;
-                    scope.market=market;
-                    if(category=='HealthBeauties'){
-                        if(market=='Rural'){
-                            scope.orderProducts=scope.RuralHelthBeautiesOrderProducts;
-                        }else{
-                            scope.orderProducts=scope.UrbanHelthBeautiesOrderProducts;
+                scope.open = function(category, market) {
+                    scope.category = category;
+                    scope.market = market;
+                    if (category == 'HealthBeauties') {
+                        if (market == 'Rural') {
+                            scope.orderProducts = scope.RuralHelthBeautiesOrderProducts;
+                        } else {
+                            scope.orderProducts = scope.UrbanHelthBeautiesOrderProducts;
                         }
-                    }else{
-                        if(market=='Rural'){
-                            scope.orderProducts=scope.RuralElecssoriesOrderProducts;
-                        }else{
-                            scope.orderProducts=scope.UrbanElecssoriesOrderProducts;
+                    } else {
+                        if (market == 'Rural') {
+                            scope.orderProducts = scope.RuralElecssoriesOrderProducts;
+                        } else {
+                            scope.orderProducts = scope.UrbanElecssoriesOrderProducts;
                         }
                     }
-                    var modalInstance=$modal.open({
-                        templateUrl:'../../partials/modal/retailerOrderModal.html',
-                        controller:retailerOrderModalCtrl
+                    var modalInstance = $modal.open({
+                        templateUrl: '../../partials/modal/retailerOrderModal.html',
+                        controller: retailerOrderModalCtrl
                     });
 
-                    modalInstance.result.then(function(){
+                    modalInstance.result.then(function() {
                         console.log('retailerNewProductModal');
                     })
                 };
+                
                 var retailerOrderModalCtrl=function($rootScope,$scope,$modalInstance,Label,SeminarInfo,RoleInfo,PeriodInfo,PlayerInfo,ProducerDecisionBase){
                     $scope.Label=Label;
                     $scope.pageBase=scope.pageBase;
@@ -465,19 +466,18 @@ define(['directives', 'services'], function(directives){
                 });
 
                 scope.$on('retailerDecisionBaseChangedFromServer', function(event, data, newBase) {  
-                    if(data.seminar==SeminarInfo.getSelectedSeminar()&&data.period==PeriodInfo.getCurrentPeriod()&&data.retailerID==PlayerInfo.getPlayer()){
                         scope.pageBase = newBase;
-                        if(data.categoryID==1&&data.marketID==1){
-                            showView('Elecssories','Urban');
-                        }else if(data.categoryID==1&&data.marketID==2){
-                            showView('Elecssories','Rural');
-                        }else if(data.categoryID==2&&data.marketID==1){
-                            showView('HealthBeauties','Urban');
-                        }else if(data.categoryID==2&&data.marketID==2){
-                            showView('HealthBeauties','Rural');
-                        }
+                        
+                    if (data.categoryID == 1 && data.marketID == 1) {
+                        showView('Elecssories', 'Urban');
+                    } else if (data.categoryID == 1 && data.marketID == 2) {
+                        showView('Elecssories', 'Rural');
+                    } else if (data.categoryID == 2 && data.marketID == 1) {
+                        showView('HealthBeauties', 'Urban');
+                    } else if (data.categoryID == 2 && data.marketID == 2) {
+                        showView('HealthBeauties', 'Rural');
                     }
-                });             
+                });
             }
         }
     }])

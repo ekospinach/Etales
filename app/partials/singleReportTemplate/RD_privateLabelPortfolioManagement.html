@@ -1,7 +1,7 @@
 <div class='panel panel-primary my-success-panel' ng-show='isResultShown'>
 	<div class="panel-heading">
         <h3 class="panel-title text-center" popover="{{Label.getContent('Private Label Portfolio Management Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
-            {{Label.getContent('Private Label Portfolio Management')}}
+            {{Label.getContent('Private Label Portfolio Management')}} <a ng-show='isResultShown' ng-click="openProductModal()" ng-disabled="isReady" class="btn btn-default">{{Label.getContent('New Product')}}</a>
         </h3>
     </div>
 
@@ -133,7 +133,4 @@
     		</tr>
     	</tbody>
     </table>
-</div>
-<div ng-show='isResultShown'>
-	<a ng-click="openProductModal()" ng-disabled="isReady" class="btn btn-default">{{Label.getContent('New Product')}}</a>
 </div>

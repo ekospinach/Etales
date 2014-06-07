@@ -65,16 +65,21 @@ module.exports = function(app, io){
     //return { "result" : false, "doc" : contractDetails}  : not Locked
     app.get('/checkContractDetailsLockStatus/:contractCode/:parentBrandName/:variantName/:location',        require('./../api/models/contract.js').checkContractDetailsLockStatus);
 
-
+    //Check if nc_MinimumOrder = 0
+    //if 0, return true
+    //if not 0, return false
     app.get('/checkVolume/:contractCode/:parentBrandName/:variantName',                                     require('./../api/models/contract.js').checkVolume);
+
     //Check if user has commit Sales target volume decision( nc_SalesTarget <> 0)
     app.get('/checkSalesTargetVolume/:contractCode/:parentBrandName/:variantName',                          require('./../api/models/contract.js').checkSalesTargetVolume);
+
     app.post('/updateContractDetails',                                                                      require('./../api/models/contract.js').updateContractDetails(io));
     app.post('/removeContract',                                                                             require('./../api/models/contract.js').removeContract(io));
     app.post('/removeContractDetailsByContractCode',                                                        require('./../api/models/contract.js').removeContractDetailsByContractcode(io));
 
     //Check if supplier has submitted portfolio decision 
     app.get('/checkProducerDecision/:seminar/:period/:producerID',                                          require('./../api/models/seminar.js').checkProducerDecision);
+    app.get('/checkProducerFinalDecision/:seminar/:period/:producerID',                                          require('./../api/models/seminar.js').checkProducerFinalDecision);    
     app.get('/checkRetailerDecision/:seminar/:period/:retailerID',                                          require('./../api/models/seminar.js').checkRetailerDecision);
 
     //Submit supplier research order decision
@@ -83,8 +88,5 @@ module.exports = function(app, io){
     
     app.post('/submitPortfolioDecision',                                         require('./../api/models/seminar.js').submitPortfolioDecision(io));
     app.post('/submitFinalDecision',                                             require('./../api/models/seminar.js').submitFinalDecision(io));
-
-
-
 
 };

@@ -92,7 +92,7 @@
             <div class="bs-docs-sidebar hidden-print" affix='10' role="complementary" angular-bootstrap>
                 <ul class="nav bs-docs-sidenav">
                     
-                    <li class="active">
+                    <li class="active" ng-show='awareness'>
                         <a href="/#/marketReport" style="color:#D9534F" ng-click='showAwarenessElecssories()'>{{Label.getContent('Awareness')}}</a>
                         <ul class="nav second-sidenav">
                             <li class="active">
@@ -103,7 +103,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="">
+                    <li class="" ng-show='brandPerceptions'>
                         <a href="/#/marketReport" style="color:#D9534F" ng-click='showRuralElecssoriesBrand()'>{{Label.getContent('Brand')}}{{Label.getContent('Perceptions')}}</a>
                         <ul class="nav second-sidenav">
                             <li class="">
@@ -120,10 +120,10 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="">
+                    <li class="" ng-show='retailerPerceptions'>
                         <a href="/#/marketReport" style="color:#D9534F" ng-click='showRetailerPerceptions()'>{{Label.getContent('Retailer Perceptions')}}</a>
                     </li>
-                    <li class="">
+                    <li class="" ng-show='marketShareByConsumerSegment'>
                         <a href="/#/marketReport" style="color:#D9534F;" ng-click='showRuralElecssoriesConsumerShare()'>{{Label.getContent('Market Shares by Consumer Segment')}}</a>
                         <ul class="nav second-sidenav">
                             <li class="">
@@ -140,7 +140,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="">
+                    <li class="" ng-show='salesByConsumerSegment'>
                         <a href="/#/marketReport" style="color:#D9534F;" ng-click='showRuralElecssoriesConsumerSales()'>{{Label.getContent('Sales by Consumer Segment')}}</a>
                         <ul class="nav second-sidenav">
                             <li class="">
@@ -157,7 +157,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="">
+                    <li class="" ng-show='marketShareByShopperSegment'>
                         <a href="/#/marketReport" style="color:#D9534F;" ng-click='showRuralElecssoriesShopperShare()'>{{Label.getContent('Market Shares by Shopper Segment')}}</a>
                         <ul class="nav second-sidenav">
                             <li class="">
@@ -174,7 +174,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="">
+                    <li class="" ng-show='salesByShopperSegment'>
                         <a href="/#/marketReport" style="color:#D9534F;" ng-click='showRuralElecssoriesShopperSales()'>{{Label.getContent('Sales by Shopper Segment')}}</a>
                         <ul class="nav second-sidenav">
                             <li class="">
@@ -191,7 +191,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="">
+                    <li class="" ng-show='BMRetailerPrices'>
                         <a href="/#/marketReport" style="color:#D9534F" ng-click='showBMElecssories()'>{{Label.getContent('B&M Retail Prices')}}</a>
                         <ul class="nav second-sidenav">
                             <li class="">
@@ -202,7 +202,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="">
+                    <li class="" ng-show='promotionIntensity'>
                         <a href="/#/marketReport" style="color:#D9534F" ng-click='showPromotionElecssories()'>{{Label.getContent('Promotion Intensity')}}</a>
                         <ul class="nav second-sidenav">
                             <li class="">
@@ -213,13 +213,13 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="">
+                    <li class="" ng-show='supplierIntelligence'>
                         <a href="/#/marketReport" style="color:#D9534F" ng-click='showSupplierIntelligence()'>{{Label.getContent('Supplier Intelligence')}}</a>
                     </li>
-                    <li class="">
+                    <li class="" ng-show='retailerIntelligence'>
                         <a href="/#/marketReport" style="color:#D9534F" ng-click='showRetailerIntelligence()'>{{Label.getContent('Retailer Intelligence')}}</a>
                     </li>
-                    <li class="">
+                    <li class="" ng-show='forecasts'>
                         <a href="/#/marketReport" style="color:#D9534F;" ng-click='showForecastsConsumer()'>{{Label.getContent('Forecasts')}}</a>
                         <ul class="nav second-sidenav">
                             <li class="">
