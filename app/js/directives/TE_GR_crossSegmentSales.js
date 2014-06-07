@@ -98,6 +98,10 @@ define(['directives', 'services'], function(directives){
                         title: {
                             text: Label.getContent('Elecssories')+' - '+Label.getContent('Urban')
                         },
+                        subtitle: {
+                            text: '<p class="text-center" style="font-size:16px">'+Label.getContent('Consumer Segments')+'</p>',
+                            useHTML:true,
+                        },
                         credits: {
                             enabled: false
                         },
@@ -130,6 +134,10 @@ define(['directives', 'services'], function(directives){
                         series: scope.crossSegment2Series,
                         title: {
                             text: Label.getContent('Elecssories')+' - '+Label.getContent('Rural')
+                        },
+                        subtitle: {
+                            text: '<p class="text-center" style="font-size:16px">'+Label.getContent('Consumer Segments')+'</p>',
+                            useHTML:true,
                         },
                         credits: {
                             enabled: false
@@ -164,6 +172,10 @@ define(['directives', 'services'], function(directives){
                         title: {
                             text: Label.getContent('HealthBeauties')+' - '+Label.getContent('Urban')
                         },
+                        subtitle: {
+                            text: '<p class="text-center" style="font-size:16px">'+Label.getContent('Consumer Segments')+'</p>',
+                            useHTML:true,
+                        },
                         credits: {
                             enabled: false
                         },
@@ -196,6 +208,10 @@ define(['directives', 'services'], function(directives){
                         series: scope.crossSegment4Series,
                         title: {
                             text: Label.getContent('HealthBeauties')+' - '+Label.getContent('Rural')
+                        },
+                        subtitle: {
+                            text: '<p class="text-center" style="font-size:16px">'+Label.getContent('Consumer Segments')+'</p>',
+                            useHTML:true,
                         },
                         credits: {
                             enabled: false

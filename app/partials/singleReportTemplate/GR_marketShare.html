@@ -1,12 +1,44 @@
+<style type="text/css">
+    .highcharts-subtitle{
+      width: 100%;
+    }
+
+    .text-left {
+      width: 15%;
+      font-size: 16px;
+      float: left;
+      margin-bottom:0px;
+    }
+    .text-right {
+      width: 30%;
+      font-size: 16px;
+      float: left;
+      margin-bottom:0px;
+    }
+    .text-center-left {
+      width: 25%;
+      font-size: 16px;
+      float: left;
+      margin-bottom:0px;
+      text-align: left;
+    }
+    .text-center-right {
+      width: 30%;
+      font-size: 16px;
+      float: left;
+      margin-bottom:0px;
+      text-align: center;
+    }
+</style>
 <div class="panel panel-primary" ng-show="isResultShown">
     <div class="panel-heading">
         <h3 class="panel-title text-center" popover="{{Label.getContent('Market Shares Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Market Shares')}}</h3>
     </div>
     
     <div>
-	    <highchart id="marketShare1" config="marketShare1Config" class="span9" style="height:600px;width:810px;"></highchart>
-	    <highchart id="marketShare2" config="marketShare2Config" class="span9" style="height:600px;width:810px;"></highchart>
-	    <highchart id="marketShare3" config="marketShare3Config" class="span9" style="height:600px;width:810px;"></highchart>
-	    <highchart id="marketShare4" config="marketShare4Config" class="span9" style="height:600px;width:810px;"></highchart>  	
+	    <highchart id="marketShare1" config="marketShare1Config" class="span9" style="height:600px;width:820px;"></highchart>
+	    <highchart id="marketShare2" config="marketShare2Config" class="span9" style="height:600px;width:820px;"></highchart>
+	    <highchart id="marketShare3" config="marketShare3Config" class="span9" style="height:600px;width:820px;"></highchart>
+	    <highchart id="marketShare4" config="marketShare4Config" class="span9" style="height:600px;width:820px;"></highchart>  	
     </div>
 </div>

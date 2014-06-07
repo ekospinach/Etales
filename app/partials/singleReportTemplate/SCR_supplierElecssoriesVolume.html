@@ -1,6 +1,6 @@
 <div class="panel my-panel-success panel-primary" ng-show='isResultShown'>
     <div class="panel-heading">
-        <h3 class="panel-title text-center" popover="{{Label.getContent('Volume Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Elecssories')}} {{Label.getContent('Situation Report')}}-{{Label.getContent('Volume')}}</h3>
+        <h3 class="panel-title text-center" popover="{{Label.getContent('Volume Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Elecssories')}} {{Label.getContent('Situation Report')}} - {{Label.getContent('Volume')}}</h3>
     </div>
     <table class="table table-condensed table-bordered table-success">
         <thead>
@@ -13,7 +13,7 @@
                         {{Label.getContent('Initial Inventory')}}
                     </p>
                 </th>
-                <th>
+                <th rowspan="2">
                     <p class="text-center">
                         {{Label.getContent('Production Volume')}}
                     </p>
@@ -23,7 +23,7 @@
                         {{Label.getContent('Sales Volume')}}
                     </p>
                 </th>
-                <th>
+                <th rowspan="2">
                     <p class="text-center">
                         {{Label.getContent('Discontinued Goods Volume')}}
                     </p>
@@ -34,8 +34,6 @@
                     </p>
                 </th>
             </tr>
-        </thead>
-        <tbody>
             <tr>
                 <td></td>
                 <td>
@@ -48,7 +46,7 @@
                         {{Label.getContent('Online')}}
                     </p>
                 </td>
-                <td></td>
+
                 <td>
                     <p class="text-center">
                         {{Label.getContent('Offline')}}
@@ -59,7 +57,7 @@
                         {{Label.getContent('Online')}}
                     </p>
                 </td>
-                <td></td>
+                
                 <td>
                     <p class="text-center">
                         {{Label.getContent('Offline')}}
@@ -71,6 +69,9 @@
                     </p>
                 </td>
             </tr>
+        </thead>
+        <tbody>
+
             <tr ng-repeat='product in products'>
                 <td>
                     <p class="padding-20">{{product.fullName}}</p>

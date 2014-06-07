@@ -767,7 +767,6 @@ var supplierKPIsCtrl=function($scope,$http){
                 subtitle: {
                     text: '<p style="font-size:20px" class="text-left">Share of Value Sales</p><p style="font-size:20px" class="text-center">Share of Value Sales</p><p style="font-size:20px" class="text-right">Share of Value Sales</p>',
                     useHTML:true,
-
                 },
                 credits: {
                     enabled: false

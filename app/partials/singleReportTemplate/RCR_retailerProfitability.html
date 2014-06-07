@@ -1,6 +1,6 @@
 <div class="panel my-panel-success panel-primary" ng-show='isResultShown'>
     <div class="panel-heading">
-        <h3 class="panel-title text-center" popover="{{Label.getContent('Profitability by Channel Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Financial Results')}}-{{Label.getContent('Profitability by Channel')}}</h3>
+        <h3 class="panel-title text-center" popover="{{Label.getContent('Profitability by Channel Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Financial Results')}} - {{Label.getContent('Profitability by Channel')}}</h3>
     </div>
     <table class="table table-condensed table-bordered table-success">
         <thead>
@@ -9,7 +9,7 @@
                 <th colspan="6">
                     <p class="text-center">{{Label.getContent('Suppliers')}}</p>
                 </th>
-                <th colspan="2">
+                <th rowspan="2" colspan="2">
                     <p class="text-center">{{Label.getContent('Private Label')}}</p>
                 </th>
             </tr>
@@ -24,7 +24,6 @@
                 <th colspan="2">
                     <p class="text-center">{{Label.getContent('Supplier')}} 3</p>
                 </th>
-                <th colspan="2"></th>
             </tr>
             <tr>
                 <th></th>
@@ -62,7 +61,7 @@
             </tr>
             <tr class="success">
                 <td>
-                    <p class="padding-20">{{Label.getContent('Shelf Space')}}(%)</p>
+                    <p class="padding-20">{{Label.getContent('Shelf Space')}} (%)</p>
                 </td>
                 <td>
                     <p class="text-right">{{ShelfSpaces[0].marketInfo[1].factoriesInfo[0]}}</p>
@@ -91,7 +90,7 @@
             </tr>
             <tr class="success">
                 <td>
-                    <p class="padding-20">{{Label.getContent('Sales')}}($mln)</p>
+                    <p class="padding-20">{{Label.getContent('Sales')}} ($mln)</p>
                 </td>
                 <td>
                     <p class="text-right">{{NetSales[0].marketInfo[1].factoriesInfo[0]}}</p>
@@ -120,7 +119,7 @@
             </tr>
             <tr class="success">
                 <td>
-                    <p class="padding-20">{{Label.getContent('Sales Per 1% of Shelf Space')}}($mln)</p>
+                    <p class="padding-20">{{Label.getContent('Sales Per 1% of Shelf Space')}} ($mln)</p>
                 </td>
                 <td>
                     <p class="text-right">{{NetSalesPerShelfSpaces[0].marketInfo[1].factoriesInfo[0]}}</p>
@@ -149,7 +148,7 @@
             </tr>
             <tr class="success">
                 <td>
-                    <p class="text-right">{{Label.getContent('Share of Value Sales')}}(%)</p>
+                    <p class="text-right">{{Label.getContent('Share of Value Sales')}} (%)</p>
                 </td>
                 <td>
                     <p class="text-right">{{NetSalesShares[0].marketInfo[1].factoriesInfo[0]}}</p>
@@ -178,7 +177,7 @@
             </tr>
             <tr class="success">
                 <td>
-                    <p class="padding-20">{{Label.getContent('Gross Contribution')}}($mln)</p>
+                    <p class="padding-20">{{Label.getContent('Gross Contribution')}} ($mln)</p>
                 </td>
                 <td>
                     <p class="text-right">{{GrossContributions[0].marketInfo[1].factoriesInfo[0]}}</p>
@@ -207,7 +206,7 @@
             </tr>
             <tr class="success">
                 <td>
-                    <p class="padding-20">{{Label.getContent('Gross Contribution Per 1% of Shelf Space')}}($mln)</p>
+                    <p class="padding-20">{{Label.getContent('Gross Contribution Per 1% of Shelf Space')}} ($mln)</p>
                 </td>
                 <td>
                     <p class="text-right">{{GrossContributionPerShelfSpaces[0].marketInfo[1].factoriesInfo[0]}}</p>
@@ -265,7 +264,7 @@
             </tr>
             <tr class="success">
                 <td>
-                    <p class="text-right">{{Label.getContent('Share of Gross Contribution')}}(%)</p>
+                    <p class="text-right">{{Label.getContent('Share of Gross Contribution')}} (%)</p>
                 </td>
                 <td>
                     <p class="text-right">{{GrossContributionShares[0].marketInfo[1].factoriesInfo[0]}}</p>
@@ -294,7 +293,7 @@
             </tr>
             <tr class="success">
                 <td>
-                    <p class="padding-20">{{Label.getContent('Terms of Payment')}}({{Label.getContent('days')}})</p>
+                    <p class="padding-20">{{Label.getContent('Terms of Payment')}} ({{Label.getContent('days')}})</p>
                 </td>
                 <td>
                     <p class="text-right">{{PaymentTerms[0].marketInfo[1].factoriesInfo[0]}}</p>
@@ -328,7 +327,7 @@
             </tr>
             <tr class="danger">
                 <td>
-                    <p class="padding-20">{{Label.getContent('Shelf Space')}}(%)</p>
+                    <p class="padding-20">{{Label.getContent('Shelf Space')}} (%)</p>
                 </td>
                 <td>
                     <p class="text-right">{{ShelfSpaces[1].marketInfo[1].factoriesInfo[0]}}</p>
@@ -357,7 +356,7 @@
             </tr>
             <tr class="danger">
                 <td>
-                    <p class="padding-20">{{Label.getContent('Sales')}}($mln)</p>
+                    <p class="padding-20">{{Label.getContent('Sales')}} ($mln)</p>
                 </td>
                 <td>
                     <p class="text-right">{{NetSales[1].marketInfo[1].factoriesInfo[0]}}</p>
@@ -386,7 +385,7 @@
             </tr>
             <tr class="danger">
                 <td>
-                    <p class="padding-20">{{Label.getContent('Sales Per 1% of Shelf Space')}}($mln)</p>
+                    <p class="padding-20">{{Label.getContent('Sales Per 1% of Shelf Space')}} ($mln)</p>
                 </td>
                 <td>
                     <p class="text-right">{{NetSalesPerShelfSpaces[1].marketInfo[1].factoriesInfo[0]}}</p>
@@ -415,7 +414,7 @@
             </tr>
             <tr class="danger">
                 <td>
-                    <p class="text-right">{{Label.getContent('Share of Value Sales')}}(%)</p>
+                    <p class="text-right">{{Label.getContent('Share of Value Sales')}} (%)</p>
                 </td>
                 <td>
                     <p class="text-right">{{NetSalesShares[1].marketInfo[1].factoriesInfo[0]}}</p>
@@ -444,7 +443,7 @@
             </tr>
             <tr class="danger">
                 <td>
-                    <p class="padding-20">{{Label.getContent('Gross Contribution')}}($mln)</p>
+                    <p class="padding-20">{{Label.getContent('Gross Contribution')}} ($mln)</p>
                 </td>
                 <td>
                     <p class="text-right">{{GrossContributions[1].marketInfo[1].factoriesInfo[0]}}</p>
@@ -473,7 +472,7 @@
             </tr>
             <tr class="danger">
                 <td>
-                    <p class="padding-20">{{Label.getContent('Gross Contribution Per 1% of Shelf Space')}}($mln)</p>
+                    <p class="padding-20">{{Label.getContent('Gross Contribution Per 1% of Shelf Space')}} ($mln)</p>
                 </td>
                 <td>
                     <p class="text-right">{{GrossContributionPerShelfSpaces[1].marketInfo[1].factoriesInfo[0]}}</p>
@@ -531,7 +530,7 @@
             </tr>
             <tr class="danger">
                 <td>
-                    <p class="text-right">{{Label.getContent('Share of Gross Contribution')}}(%)</p>
+                    <p class="text-right">{{Label.getContent('Share of Gross Contribution')}} (%)</p>
                 </td>
                 <td>
                     <p class="text-right">{{GrossContributionShares[1].marketInfo[1].factoriesInfo[0]}}</p>
@@ -560,7 +559,7 @@
             </tr>
             <tr class="danger">
                 <td>
-                    <p class="padding-20">{{Label.getContent('Terms of Payment')}}({{Label.getContent('days')}})</p>
+                    <p class="padding-20">{{Label.getContent('Terms of Payment')}} ({{Label.getContent('days')}})</p>
                 </td>
                 <td>
                     <p class="text-right">{{PaymentTerms[1].marketInfo[1].factoriesInfo[0]}}</p>

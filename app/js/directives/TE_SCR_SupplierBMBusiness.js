@@ -115,7 +115,7 @@ define(['directives', 'services'], function(directives){
 			    }
 
 
-			    scope.openProductModal=function(brandName,type){
+			    scope.openProductModal=function(brandName,type,size){
 			    	var loadVariantValue=function(data,brandName,variantName,num){
 				    	var array=_.find(data,function(obj){
 				    		return (obj.variantName==variantName&&obj.parentBrandName==brandName);
@@ -180,7 +180,8 @@ define(['directives', 'services'], function(directives){
                         }
                         var modalInstance=$modal.open({
 							templateUrl:'../../partials/modal/supplierBMProduct.html',
-							controller:supplierBMProductModalCtrl
+							controller:supplierBMProductModalCtrl,
+							size:size
 						});
 
 						modalInstance.result.then(function(){

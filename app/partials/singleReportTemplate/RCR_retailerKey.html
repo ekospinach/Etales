@@ -17,7 +17,7 @@
             </tr>
             <tr>
                 <td colspan="3">
-                    <p>{{Label.getContent('Rotation Index')}}</p>
+                    <p Popover-animation="true" popover="{{Label.getContent('Rotation Index Info')}}" popover-title="{{Label.getContent('Rotation Index')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Rotation Index')}} <span class="glyphicon glyphicon-info-sign" ></span></p>
                 </td>
             </tr>
         </thead>
@@ -62,7 +62,7 @@
             </tr>
             <tr>
                 <td>
-                    <p>{{Label.getContent('Profitability Index')}}</p>
+                    <p Popover-animation="true" popover="{{Label.getContent('Profitability Index Info')}}" popover-title="{{Label.getContent('Profitability Index')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Profitability Index')}} <span class="glyphicon glyphicon-info-sign" ></span></p>
                 </td>
                 <td class="td-info">
                     <p class="text-right">{{data.rcrkpi_ProfitabilityIndex[2][0].value[1]}}</p>
@@ -73,7 +73,7 @@
             </tr>
             <tr>
                 <td>
-                    <p>{{Label.getContent('Stock Cover')}}</p>
+                    <p Popover-animation="true" popover="{{Label.getContent('Stock Cover Info')}}" popover-title="{{Label.getContent('Stock Cover')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Stock Cover')}} <span class="glyphicon glyphicon-info-sign" ></span></p>
                 </td>
                 <td class="td-info">
                     <p class="text-right">{{data.rcrkpi_StockCover[2][0].value[1]}}</p>
@@ -84,7 +84,7 @@
             </tr>
             <tr>
                 <td colspan="3">
-                    <p>{{Label.getContent('Share of Shoppers')}}(%)</p>
+                    <p>{{Label.getContent('Share of Shoppers')}} (%)</p>
                 </td>
             </tr>
             <tr>

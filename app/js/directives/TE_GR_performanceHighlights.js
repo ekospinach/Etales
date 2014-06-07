@@ -80,8 +80,6 @@ define(['directives', 'services'], function(directives){
                     }
                 })
 
-            emitter.on()
-
             }
         }
     }])

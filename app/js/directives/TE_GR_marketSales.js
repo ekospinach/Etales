@@ -136,14 +136,15 @@ define(['directives', 'services'], function(directives){
                                 series: {
                                     stacking: 'normal'
                                 }
-                            },
-                            credits: {
-                                enabled: false
                             }
                         },
                         series: scope.marketSales1Series,
                         title: {
                             text: Label.getContent('Elecssories')+' - '+Label.getContent('Volume Sales')
+                        },
+                        subtitle: {
+                            text: '<p class="text-left">'+Label.getContent('Total')+'</p><p class="text-center-left">'+Label.getContent('by Market')+'</p><p class="text-center-right">'+Label.getContent('by Consumer Segment')+'</p><p class="text-right">'+Label.getContent('by Shopper Segment')+'</p>',
+                            useHTML:true,
                         },
                         credits: {
                             enabled: false
@@ -198,14 +199,15 @@ define(['directives', 'services'], function(directives){
                                 series: {
                                     stacking: 'normal'
                                 }
-                            },
-                            credits: {
-                                enabled: false
                             }
                         },
                         series: scope.marketSales2Series,
                         title: {
                             text: Label.getContent('Elecssories')+' - '+Label.getContent('Value Sales')
+                        },
+                        subtitle: {
+                            text: '<p class="text-left">'+Label.getContent('Total')+'</p><p class="text-center-left">'+Label.getContent('by Market')+'</p><p class="text-center-right">'+Label.getContent('by Consumer Segment')+'</p><p class="text-right">'+Label.getContent('by Shopper Segment')+'</p>',
+                            useHTML:true,
                         },
                         credits: {
                             enabled: false
@@ -259,14 +261,15 @@ define(['directives', 'services'], function(directives){
                                 series: {
                                     stacking: 'normal'
                                 }
-                            },
-                            credits: {
-                                enabled: false
                             }
                         },
                         series: scope.marketSales3Series,
                         title: {
                             text: Label.getContent('HealthBeauties')+' - '+Label.getContent('Volume Sales')
+                        },
+                        subtitle: {
+                            text: '<p class="text-left">'+Label.getContent('Total')+'</p><p class="text-center-left">'+Label.getContent('by Market')+'</p><p class="text-center-right">'+Label.getContent('by Consumer Segment')+'</p><p class="text-right">'+Label.getContent('by Shopper Segment')+'</p>',
+                            useHTML:true,
                         },
                         credits: {
                             enabled: false
@@ -319,14 +322,15 @@ define(['directives', 'services'], function(directives){
                                 series: {
                                     stacking: 'normal'
                                 }
-                            },
-                            credits: {
-                                enabled: false
                             }
                         },
                         series: scope.marketSales4Series,
                         title: {
                             text: Label.getContent('HealthBeauties')+' - '+Label.getContent('Value Sales')
+                        },
+                        subtitle: {
+                            text: '<p class="text-left">'+Label.getContent('Total')+'</p><p class="text-center-left">'+Label.getContent('by Market')+'</p><p class="text-center-right">'+Label.getContent('by Consumer Segment')+'</p><p class="text-right">'+Label.getContent('by Shopper Segment')+'</p>',
+                            useHTML:true,
                         },
                         credits: {
                             enabled: false

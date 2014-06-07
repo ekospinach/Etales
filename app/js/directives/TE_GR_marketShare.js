@@ -137,14 +137,15 @@ define(['directives', 'services'], function(directives){
                                 series: {
                                     stacking: 'percent'
                                 }
-                            },
-                            credits: {
-                                enabled: false
                             }
                         },
                         series: scope.marketShare1Series,
                         title: {
                             text: Label.getContent('Elecssories')+' - '+Label.getContent('Volume Market Shares')
+                        },
+                        subtitle: {
+                            text: '<p class="text-left">'+Label.getContent('Total')+'</p><p class="text-center-left">'+Label.getContent('by Market')+'</p><p class="text-center-right">'+Label.getContent('by Consumer Segment')+'</p><p class="text-right">'+Label.getContent('by Shopper Segment')+'</p>',
+                            useHTML:true,
                         },
                         credits: {
                             enabled: false
@@ -194,14 +195,15 @@ define(['directives', 'services'], function(directives){
                                 series: {
                                     stacking: 'percent'
                                 }
-                            },
-                            credits: {
-                                enabled: false
                             }
                         },
                         series: scope.marketShare2Series,
                         title: {
                             text: Label.getContent('Elecssories')+' - '+Label.getContent('Value Market Shares')
+                        },
+                        subtitle: {
+                            text: '<p class="text-left">'+Label.getContent('Total')+'</p><p class="text-center-left">'+Label.getContent('by Market')+'</p><p class="text-center-right">'+Label.getContent('by Consumer Segment')+'</p><p class="text-right">'+Label.getContent('by Shopper Segment')+'</p>',
+                            useHTML:true,
                         },
                         credits: {
                             enabled: false
@@ -250,14 +252,15 @@ define(['directives', 'services'], function(directives){
                                 series: {
                                     stacking: 'percent'
                                 }
-                            },
-                            credits: {
-                                enabled: false
                             }
                         },
                         series: scope.marketShare3Series,
                         title: {
                             text: Label.getContent('HealthBeauties')+' - '+Label.getContent('Volume Market Shares')
+                        },
+                        subtitle: {
+                            text: '<p class="text-left">'+Label.getContent('Total')+'</p><p class="text-center-left">'+Label.getContent('by Market')+'</p><p class="text-center-right">'+Label.getContent('by Consumer Segment')+'</p><p class="text-right">'+Label.getContent('by Shopper Segment')+'</p>',
+                            useHTML:true,
                         },
                         credits: {
                             enabled: false
@@ -306,14 +309,15 @@ define(['directives', 'services'], function(directives){
                                 series: {
                                     stacking: 'percent'
                                 }
-                            },
-                            credits: {
-                                enabled: false
                             }
                         },
                         series: scope.marketShare4Series,
                         title: {
                             text: Label.getContent('HealthBeauties')+' - '+Label.getContent('Value Market Shares')
+                        },
+                        subtitle: {
+                            text: '<p class="text-left">'+Label.getContent('Total')+'</p><p class="text-center-left">'+Label.getContent('by Market')+'</p><p class="text-center-right">'+Label.getContent('by Consumer Segment')+'</p><p class="text-right">'+Label.getContent('by Shopper Segment')+'</p>',
+                            useHTML:true,
                         },
                         credits: {
                             enabled: false
