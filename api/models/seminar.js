@@ -1130,19 +1130,6 @@ function duplicateSeminarDoc(options){
 		}else{
 			deferred.reject({msg:'cannot find matched seminar : ' + options.originalSeminarCode});
 		}
-
-		// if(!doc){ deferred.reject({msg:'cannot find matched seminar : ' + options.originalSeminarCode});}
-		// console.log(doc);
-		// console.log('doc:' + util.inspect(doc, {depth:null}));
-		// var newDoc = doc;
-		// console.log('newDoc:' + util.inspect(newDoc,{depth:null}));
-
-		// newDoc.seminarCode = options.targetSeminarCode;
-		// newDoc.seminarDescription = options.seminarDescription;
-		// newDoc.save(function(err){
-		// 	if(!err){ deferred.resolve({msg:'duplicate seminar document complete.'});}
-		// 	else{ deferred.reject({msg:'duplicate seminar document failed, err: ' + err});}
-		// })
 	})			
 
 	return deferred.promise;

@@ -184,7 +184,6 @@ define(['app','socketIO','routingConfig'], function(app) {
 				}
 		    }
 
-		  	//showAwarenessElecssories();
 		  	if($rootScope.user.role==8){
 		  		setReportShown('','Full');
 		  		showAwarenessElecssories();
