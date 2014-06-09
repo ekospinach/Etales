@@ -394,7 +394,7 @@ define(['directives', 'services'], function(directives) {
                     var getResult = function(producerID){
                         //check with server, make sure that isPortfolioDecisionCommitted = true = $scope.isPXReady to show Table
                         //Otherwise show a picture "Waiting for supplier to commit portfolio decision...."
-                        var url = '/checkProducerDecision/' + SeminarInfo.getSelectedSeminar() + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(producerID);
+                        var url = '/checkProducerPortfolioDecision/' + SeminarInfo.getSelectedSeminar() + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(producerID);
                         $http({
                             method: 'GET',
                             url: url

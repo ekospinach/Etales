@@ -78,7 +78,7 @@ module.exports = function(app, io){
     app.post('/removeContractDetailsByContractCode',                                                        require('./../api/models/contract.js').removeContractDetailsByContractcode(io));
 
     //Check if supplier has submitted portfolio decision 
-    app.get('/checkProducerDecision/:seminar/:period/:producerID',                                          require('./../api/models/seminar.js').checkProducerDecision);
+    app.get('/checkProducerPortfolioDecision/:seminar/:period/:producerID',                                          require('./../api/models/seminar.js').checkProducerDecision);
     app.get('/checkProducerFinalDecision/:seminar/:period/:producerID',                                          require('./../api/models/seminar.js').checkProducerFinalDecision);    
     app.get('/checkRetailerDecision/:seminar/:period/:retailerID',                                          require('./../api/models/seminar.js').checkRetailerDecision);
 

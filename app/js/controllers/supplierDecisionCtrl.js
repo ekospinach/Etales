@@ -60,7 +60,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 					avaiableMax = 0;
 
 				//check with server, make sure that isPortfolioDecisionCommitted = true = $scope.isReady 
-				var url = '/checkProducerFinalDecision/' + SeminarInfo.getSelectedSeminar() + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
+				var url = '/checkProducerPortfolioDecision/' + SeminarInfo.getSelectedSeminar() + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
 				$http({
 					method: 'GET',
 					url: url
@@ -70,6 +70,19 @@ define(['app','socketIO','routingConfig'], function(app) {
 					} else {
 						$scope.isPortfolioDecisionReady = false;
 					}
+
+				//Get company history information (available budget, capacity, acquired TL...)
+					url = '/checkProducerFinalDecision/' + SeminarInfo.getSelectedSeminar() + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
+					return $http({
+						method: 'GET',
+						url: url
+					});
+				}).then(function(data) {
+					if (data.data == "isReady") {
+						$scope.isFinalDecisionReady = true;
+					} else {
+						$scope.isFinalDecisionReady = false;
+					}					
 
 				//Get company history information (available budget, capacity, acquired TL...)
 					url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar() + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + parseInt(PlayerInfo.getPlayer());
