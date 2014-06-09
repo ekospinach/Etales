@@ -35,30 +35,18 @@ Business Simulation Game
 + Online Profit & Loss Statement, 每个”-“和”(1)(2)(3)”之后都有一个空格。’
 + Online Profit & Loss Statement, 太宽，通过修改css增加横向滚动条
 + Situation Report - Volume, 有两列需要merge（参考pdf）
-+ Key Performance Indicators, 此页中有四行需要popover tips，内容参考pdf。interface效果最好用bootstrap css在每行末尾加一个”i”符号。example : ```<span class="glyphicon glyphicon-lock"></span>```
 
-###### Supplier Confidential reports
+###### Retailer Confidential reports
 + Consolidated Profit & Loss Statement, 每个”-“和”(1)(2)(3)”之后都有一个空格。目前向后缩进的行其实不需要缩进（参考pdf）。
 + Rural/Urban Profit & Loss Statement, 每个”-“和”(1)(2)(3)”之后都有一个空格。目前向后缩进的行其实不需要缩进（参考pdf）。
-+ Rural/Urban Profit & Loss Statement,  太宽，通过修改css增加横向滚动条。
 + Rural/Urban Profit & Loss Statement,  弹出单品details的方式需要改善？？？强制增加弹出框中产品列的列宽，使左边的行header和列宽基本平衡。
 + Profitability by Channel, Private Label那列需要正确的merge（参考pdf）
 + Key Performance Indicators, 此页中有3行需要popover tips，内容参考pdf。interface效果最好用bootstrap css在每行末尾加一个”i”符号。example : ```<span class="glyphicon glyphicon-lock"></span>```
-+ BM Business Profit & Loss Statement,  弹出单品details的方式需要改善？？？强制增加弹出框中产品列的列宽
-+ Online Profit & Loss Statement, 每个”-“和”(1)(2)(3)”之后都有一个空格。’
-+ Online Profit & Loss Statement, 太宽，通过修改css增加横向滚动条
-+ Situation Report - Volume, 有两列需要merge（参考pdf）
-+ Key Performance Indicators, 此页中有四行需要popover tips，内容参考pdf。interface效果最好用bootstrap css在每行末尾加一个”i”符号。example : ```<span class="glyphicon glyphicon-lock"></span>```
 
 ###### Market reports
-+ Supplier/Retailer按照上阶段购买report决策显示当前阶段的报告，1阶段（游戏开始时）时默认显示全部报告。facilitator默认显示全部报告。
 + Retailer Perception 横纵坐标的label丢失
 + Brand Perception 横纵坐标的label字体过小
-+ Market Shares by Consumer Segment- Elecssories - Rural 菜单label和显示内容不符
-+ Market Shares by Consumer Segment- HealthBeauties - Urban 菜单label和显示内容不符
-+ Market Shares by Shopper Segment- Elecssories - Rural 菜单label和显示内容不符
-+ Market Shares by Shopper Segment- HealthBeauties - Urban 菜单label和显示内容不符
-+ Sales by Consumer Segment/Shopper Segment，有可能有上述相同问题，需要double-check code
+
 
 ## Directory Layout
 
