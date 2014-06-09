@@ -74,6 +74,7 @@ Type
   TWeeksInPeriod           = 0..PeriodLastWeek;
 
   TIngredientsDetails                = array[TIngredientsInput] of single;
+  TProducersIngredientsDetails       = array[TAllProducers] of TIngredientsDetails;
   TAllIngredientsDetails             = array[TSpecs] of TIngredientsDetails;
   TCategoriesBytes                   = array[TCategories] of byte;    { identifies current categories, ID taken from TCategoriesUniverse }
   TAxisImportance                    = array[TSegments, TVariantThreePerceptions] of single;

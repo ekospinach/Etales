@@ -59,8 +59,8 @@ const
     f_RetailersVolumeRotationIndex    = 123;
     f_RetailersProfitabilityIndex     = 124;
     f_RetailersStocksCover            = 125;
-    f_RetailersShoppersShare          = 126;
-
+    f_RetailersBMShoppersShare          = 126;
+    f_RetailersAllShoppersShare          = 127;
 var
   //decision: TDecision;
   jo : ISuperObject;
@@ -202,8 +202,10 @@ var
       f_RetailersVolumeRotationIndex    : begin jo.D['value'] := currentResult.r_Feedback.f_RetailersVolumeRotationIndex[marketID, catID, period, retailerID]; end;
       f_RetailersProfitabilityIndex     : begin jo.D['value'] := currentResult.r_Feedback.f_RetailersProfitabilityIndex[marketID, catID, period, retailerID]; end;
       f_RetailersStocksCover            : begin jo.D['value'] := currentResult.r_Feedback.f_RetailersStocksCover[marketID, catID, period, retailerID]; end;
-      f_RetailersShoppersShare          : begin jo.D['value'] := currentResult.r_Feedback.f_RetailersShoppersShare[marketID, catID, period, retailerID]; end;
-    end;  
+      f_RetailersBMShoppersShare          : begin jo.D['value'] := currentResult.r_Feedback.f_RetailersBMShoppersShare[marketID, catID, period, retailerID]; end;
+      f_RetailersAllShoppersShare          : begin jo.D['value'] := currentResult.r_Feedback.f_RetailersAllShoppersShare[marketID, catID, period, retailerID]; end;
+
+    end;
 
     result := jo;
     // currentResult.r_Feedback.f_RetailersValueRotationIndex[marketID, catID]
@@ -248,7 +250,8 @@ var
     oJsonFile.O['f_RetailersVolumeRotationIndex']    := SA([]);
     oJsonFile.O['f_RetailersProfitabilityIndex']     := SA([]);
     oJsonFile.O['f_RetailersStocksCover']            := SA([]);
-    oJsonFile.O['f_RetailersShoppersShare']          := SA([]);
+    oJsonFile.O['f_RetailersBMShoppersShare']          := SA([]);
+    oJsonFile.O['f_RetailersAllShoppersShare']          := SA([]);
 
     for catID := Low(TCategoriesTotal) to High(TCategoriesTotal) do
     begin
@@ -315,7 +318,9 @@ var
             oJsonFile.A['f_RetailersVolumeRotationIndex'].add( retailerKPIinfoSchema(f_RetailersVolumeRotationIndex, catID, period, retailerID, marketID) );
             oJsonFile.A['f_RetailersProfitabilityIndex'].add( retailerKPIinfoSchema(f_RetailersProfitabilityIndex, catID, period, retailerID, marketID) );
             oJsonFile.A['f_RetailersStocksCover'].add( retailerKPIinfoSchema(f_RetailersStocksCover, catID, period, retailerID, marketID) );
-            oJsonFile.A['f_RetailersShoppersShare'].add( retailerKPIinfoSchema(f_RetailersShoppersShare, catID, period, retailerID, marketID) );
+            oJsonFile.A['f_RetailersBMShoppersShare'].add( retailerKPIinfoSchema(f_RetailersBMShoppersShare, catID, period, retailerID, marketID) );
+            oJsonFile.A['f_RetailersAllShoppersShare'].add( retailerKPIinfoSchema(f_RetailersAllShoppersShare, catID, period, retailerID, marketID) );
+
           end;
         end;
       end;

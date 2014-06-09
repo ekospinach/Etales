@@ -98,7 +98,7 @@ Const
   CatsMaxTotal             = CatsMax + 1;  { for totals }
   DaysInPeriod             = 183;
 
-  HouseholdsGroupsMax      = 4;                        { overdeclared for the time being; only total used in the initial version }
+  HouseholdsGroupsMax      = 4;                        { over-declared for the time being; only total used in the initial version }
   HouseholdsGroupsMaxTotal = HouseholdsGroupsMax + 1;
   
   InventoryAgesMax         = 3;                     { Inventory is tracked 3 periods backward, any older inventory will be considered also 3 years old }

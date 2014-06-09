@@ -743,7 +743,7 @@ TF_QuarterRetailersKPIs = array[TTimeSpan, TModernRetailers] of single;
 
 TF_RetailersKPIs = array[TMarketsTotal, TCategoriesTotal] of TF_QuarterRetailersKPIs;
 
-
+TF_MarketSummary = array[TTimeSpan, TMarketsTotal, TCategoriesTotal] of single;
 
 TFeedback =
   record
@@ -773,7 +773,11 @@ TFeedback =
     f_RetailersVolumeRotationIndex    : TF_RetailersKPIs;
     f_RetailersProfitabilityIndex     : TF_RetailersKPIs;
     f_RetailersStocksCover            : TF_RetailersKPIs;
-    f_RetailersShoppersShare          : TF_RetailersKPIs;
+    f_RetailersBMShoppersShare        : TF_RetailersKPIs;
+    f_RetailersAllShoppersShare       : TF_RetailersKPIs;
+    f_TotalMarketVolume               : TF_MarketSummary;
+    f_TotalMarketValue                : TF_MarketSummary;
+    f_AverageTotalMarketNetPrice      : TF_MarketSummary;
   end;
 
 {-----------------------------------------------------------------------------------------------------------------------------------------------}
