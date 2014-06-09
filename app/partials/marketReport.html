@@ -103,6 +103,9 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="active" style='padding-left:6px' ng-show='!awareness'>
+                        <p style="color:#D9534F;font-size:13px" Popover-animation="true" popover="{{Label.getContent('Dont Purchase Info')}}" popover-trigger="mouseenter" popover-placement="left">{{Label.getContent('Awareness')}}<span class="glyphicon glyphicon-remove"></span></p>
+                    </li>
                     <li class="" ng-show='brandPerceptions'>
                         <a href="/#/marketReport" style="color:#D9534F" ng-click='showRuralElecssoriesBrand()'>{{Label.getContent('Brand')}}{{Label.getContent('Perceptions')}}</a>
                         <ul class="nav second-sidenav">
@@ -120,8 +123,14 @@
                             </li>
                         </ul>
                     </li>
+                    <li style='padding-left:6px' ng-show='!brandPerceptions'>
+                        <p style="color:#D9534F;font-size:13px" Popover-animation="true" popover="{{Label.getContent('Dont Purchase Info')}}" popover-trigger="mouseenter" popover-placement="left"><span class="glyphicon glyphicon-remove"></span>{{Label.getContent('Brand')}}{{Label.getContent('Perceptions')}}</p>
+                    </li>
                     <li class="" ng-show='retailerPerceptions'>
                         <a href="/#/marketReport" style="color:#D9534F" ng-click='showRetailerPerceptions()'>{{Label.getContent('Retailer Perceptions')}}</a>
+                    </li>
+                    <li style='padding-left:6px' ng-show='!retailerPerceptions'>
+                        <p style="color:#D9534F;font-size:13px" Popover-animation="true" popover="{{Label.getContent('Dont Purchase Info')}}" popover-trigger="mouseenter" popover-placement="left"><span class="glyphicon glyphicon-remove"></span>{{Label.getContent('Retailer Perceptions')}}</p>
                     </li>
                     <li class="" ng-show='marketShareByConsumerSegment'>
                         <a href="/#/marketReport" style="color:#D9534F;" ng-click='showRuralElecssoriesConsumerShare()'>{{Label.getContent('Market Shares by Consumer Segment')}}</a>
@@ -140,6 +149,9 @@
                             </li>
                         </ul>
                     </li>
+                    <li style='padding-left:6px' ng-show='!marketShareByConsumerSegment'>
+                        <p style="color:#D9534F;font-size:13px" Popover-animation="true" popover="{{Label.getContent('Dont Purchase Info')}}" popover-trigger="mouseenter" popover-placement="left"><span class="glyphicon glyphicon-remove"></span>{{Label.getContent('Market Shares by Consumer Segment')}}</p>
+                    </li>
                     <li class="" ng-show='salesByConsumerSegment'>
                         <a href="/#/marketReport" style="color:#D9534F;" ng-click='showRuralElecssoriesConsumerSales()'>{{Label.getContent('Sales by Consumer Segment')}}</a>
                         <ul class="nav second-sidenav">
@@ -156,6 +168,9 @@
                                 <a href="/#/marketReport" style="color:#D9534F;" ng-click='showUrbanHealthBeautiesConsumerSales()'>{{Label.getContent('HealthBeauties')}}-{{Label.getContent('Urban')}}</a>
                             </li>
                         </ul>
+                    </li>
+                    <li style='padding-left:6px' ng-show='!salesByConsumerSegment'>
+                        <p style="color:#D9534F;font-size:13px" Popover-animation="true" popover="{{Label.getContent('Dont Purchase Info')}}" popover-trigger="mouseenter" popover-placement="left"><span class="glyphicon glyphicon-remove"></span>{{Label.getContent('Sales by Consumer Segment')}}</p>
                     </li>
                     <li class="" ng-show='marketShareByShopperSegment'>
                         <a href="/#/marketReport" style="color:#D9534F;" ng-click='showRuralElecssoriesShopperShare()'>{{Label.getContent('Market Shares by Shopper Segment')}}</a>
@@ -174,6 +189,9 @@
                             </li>
                         </ul>
                     </li>
+                    <li style='padding-left:6px' ng-show='!marketShareByShopperSegment'>
+                        <p style="color:#D9534F;font-size:13px" Popover-animation="true" popover="{{Label.getContent('Dont Purchase Info')}}" popover-trigger="mouseenter" popover-placement="left"><span class="glyphicon glyphicon-remove"></span>{{Label.getContent('Market Shares by Shopper Segment')}}</p>
+                    </li>
                     <li class="" ng-show='salesByShopperSegment'>
                         <a href="/#/marketReport" style="color:#D9534F;" ng-click='showRuralElecssoriesShopperSales()'>{{Label.getContent('Sales by Shopper Segment')}}</a>
                         <ul class="nav second-sidenav">
@@ -191,6 +209,9 @@
                             </li>
                         </ul>
                     </li>
+                    <li style='padding-left:6px' ng-show='!salesByShopperSegment'>
+                        <p style="color:#D9534F;font-size:13px" Popover-animation="true" popover="{{Label.getContent('Dont Purchase Info')}}" popover-trigger="mouseenter" popover-placement="left"><span class="glyphicon glyphicon-remove"></span>{{Label.getContent('Sales by Shopper Segment')}}</p>
+                    </li>
                     <li class="" ng-show='BMRetailerPrices'>
                         <a href="/#/marketReport" style="color:#D9534F" ng-click='showBMElecssories()'>{{Label.getContent('B&M Retail Prices')}}</a>
                         <ul class="nav second-sidenav">
@@ -201,6 +222,9 @@
                                 <a href="/#/marketReport" style="color:#D9534F" ng-click='showBMHealthBeauties()'>{{Label.getContent('HealthBeauties')}}</a>
                             </li>
                         </ul>
+                    </li>
+                    <li style='padding-left:6px' ng-show='!BMRetailerPrices'>
+                        <p style="color:#D9534F;font-size:13px" Popover-animation="true" popover="{{Label.getContent('Dont Purchase Info')}}" popover-trigger="mouseenter" popover-placement="left"><span class="glyphicon glyphicon-remove"></span>{{Label.getContent('B&M Retail Prices')}}</p>
                     </li>
                     <li class="" ng-show='promotionIntensity'>
                         <a href="/#/marketReport" style="color:#D9534F" ng-click='showPromotionElecssories()'>{{Label.getContent('Promotion Intensity')}}</a>
@@ -213,11 +237,20 @@
                             </li>
                         </ul>
                     </li>
+                    <li style='padding-left:6px' ng-show='!promotionIntensity'>
+                        <p style="color:#D9534F;font-size:13px" Popover-animation="true" popover="{{Label.getContent('Dont Purchase Info')}}" popover-trigger="mouseenter" popover-placement="left"><span class="glyphicon glyphicon-remove"></span>{{Label.getContent('Promotion Intensity')}}</p>
+                    </li>
                     <li class="" ng-show='supplierIntelligence'>
                         <a href="/#/marketReport" style="color:#D9534F" ng-click='showSupplierIntelligence()'>{{Label.getContent('Supplier Intelligence')}}</a>
                     </li>
+                    <li style='padding-left:6px' ng-show='!supplierIntelligence'>
+                        <p style="color:#D9534F;font-size:13px" Popover-animation="true" popover="{{Label.getContent('Dont Purchase Info')}}" popover-trigger="mouseenter" popover-placement="left"><span class="glyphicon glyphicon-remove"></span>{{Label.getContent('Supplier Intelligence')}}</p>
+                    </li>
                     <li class="" ng-show='retailerIntelligence'>
                         <a href="/#/marketReport" style="color:#D9534F" ng-click='showRetailerIntelligence()'>{{Label.getContent('Retailer Intelligence')}}</a>
+                    </li>
+                    <li style='padding-left:6px' ng-show='!retailerIntelligence'>
+                        <p style="color:#D9534F;font-size:13px" Popover-animation="true" popover="{{Label.getContent('Dont Purchase Info')}}" popover-trigger="mouseenter" popover-placement="left"><span class="glyphicon glyphicon-remove"></span>{{Label.getContent('Retailer Intelligence')}}</p>
                     </li>
                     <li class="" ng-show='forecasts'>
                         <a href="/#/marketReport" style="color:#D9534F;" ng-click='showForecastsConsumer()'>{{Label.getContent('Forecasts')}}</a>
@@ -235,6 +268,9 @@
                                 <a href="/#/marketReport" style="color:#D9534F;" ng-click='showForecastsInternet()'>{{Label.getContent('Internet Penetration Rates')}}</a>
                             </li>
                         </ul>
+                    </li>
+                    <li style='padding-left:6px' ng-show='!forecasts'>
+                        <p style="color:#D9534F;font-size:13px" Popover-animation="true" popover="{{Label.getContent('Dont Purchase Info')}}" popover-trigger="mouseenter" popover-placement="left"><span class="glyphicon glyphicon-remove"></span>{{Label.getContent('Forecasts')}}</p>
                     </li>
                 </ul>
             </div>

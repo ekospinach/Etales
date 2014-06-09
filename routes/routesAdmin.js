@@ -20,6 +20,7 @@ module.exports = function(app, io){
 	
 	//getPlayerReportOrder
 	app.get('/getPlayerReportOrder/:seminar/:period/:userType/:playerID',		 require('./../api/models/seminar.js').getPlayerReportOrder);
+	app.get('/getPlayerReportOrderExpend/:seminar/:period/:userType/:playerID',	 require('./../api/models/seminar.js').getPlayerReportOrderExpend);
  
 	
 	//export data to excel

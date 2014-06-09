@@ -56,6 +56,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 					productExpend = 0,
 					r1ContractExpend = 0,
 					r2ContractExpend = 0,
+					reportExpend = 0,
 					avaiableMax = 0;
 
 				//check with server, make sure that isPortfolioDecisionCommitted = true = $scope.isReady 
@@ -105,7 +106,14 @@ define(['app','socketIO','routingConfig'], function(app) {
 					});
 				}).then(function(data){
 					r2ContractExpend = data.data.result;
-					$scope.surplusExpend = ($scope.abMax - productExpend- r1ContractExpend - r2ContractExpend).toFixed(2);
+					url='/getPlayerReportOrderExpend/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/P/'+PlayerInfo.getPlayer();
+					return $http({
+						method:'GET',
+						url:url
+					});
+				}).then(function(data){
+					reportExpend=data.data.result;
+					$scope.surplusExpend = ($scope.abMax - productExpend- r1ContractExpend - r2ContractExpend - reportExpend).toFixed(2);
 					url = "/productionResult/" + SeminarInfo.getSelectedSeminar() + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer()) + '/EName/varName';
 					return $http({
 						method: 'GET',
@@ -188,6 +196,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 
             $scope.$on('producerMarketResearchOrdersChanged', function(event, data, newSeminarData) {  
 				notify('Decision has been saved, Supplier ' + data.producerID  + ' Period ' + data.period + '.');
+				loadBackgroundDataAndCalculateDecisionInfo();
             });
 
             $scope.$on('producerDecisionLocked', function(event, data) {  
