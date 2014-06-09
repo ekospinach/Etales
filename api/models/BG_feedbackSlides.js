@@ -39,6 +39,8 @@ var BG_feedbackSlidesSchema = mongoose.Schema({
     f_RetailersProfitabilityIndex     : [retailerKPIInfoSchema],
     f_RetailersStocksCover            : [retailerKPIInfoSchema],
     f_RetailersShoppersShare          : [retailerKPIInfoSchema],
+    f_RetailersBMShoppersShare        : [retailerKPIInfoSchema],
+    f_RetailersAllShoppersShare       : [retailerKPIInfoSchema],
 })
 
 var negotiationsItemDetailsSchema = mongoose.Schema({
