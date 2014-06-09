@@ -966,9 +966,110 @@ exports.getPlayerReportOrder=function(req,res,next){
 				}
 			}
 		}else{
-			res.send(404,'there is no contract');
+			res.send(404,'cannot find matched doc....');
 		}
 	});
+}
+
+exports.getPlayerReportOrderExpend=function(req,res,next){
+	seminar.findOne({seminarCode:req.params.seminar},function(err,doc){
+		if(err){
+			next(new Error(err));
+		}
+		if(doc){
+			var result=0;
+			if(req.params.userType=="P"){
+				for(var i=0;i<doc.producers[req.params.playerID-1].reportPurchaseStatus.length;i++){
+					if(doc.producers[req.params.playerID-1].reportPurchaseStatus[i].period==req.params.period){
+						if(doc.producers[req.params.playerID-1].reportPurchaseStatus[i].awareness){
+							result+=doc.reportPrice.awareness;
+						}
+						if(doc.producers[req.params.playerID-1].reportPurchaseStatus[i].brandPerceptions){
+							result+=doc.reportPrice.brandPerceptions;
+						}
+						if(doc.producers[req.params.playerID-1].reportPurchaseStatus[i].retailerPerceptions){
+							result+=doc.reportPrice.retailerPerceptions;
+						}
+						if(doc.producers[req.params.playerID-1].reportPurchaseStatus[i].marketShareByConsumerSegment){
+							result+=doc.reportPrice.marketShareByConsumerSegment;
+						}
+						if(doc.producers[req.params.playerID-1].reportPurchaseStatus[i].salesByConsumerSegment){
+							result+=doc.reportPrice.salesByConsumerSegment;
+						}
+						if(doc.producers[req.params.playerID-1].reportPurchaseStatus[i].marketShareByShopperSegment){
+							result+=doc.reportPrice.marketShareByShopperSegment;
+						}
+						if(doc.producers[req.params.playerID-1].reportPurchaseStatus[i].salesByShopperSegment){
+							result+=doc.reportPrice.salesByShopperSegment;
+						}
+						if(doc.producers[req.params.playerID-1].reportPurchaseStatus[i].BMRetailerPrices){
+							result+=doc.reportPrice.BMRetailerPrices;
+						}
+						if(doc.producers[req.params.playerID-1].reportPurchaseStatus[i].promotionIntensity){
+							result+=doc.reportPrice.promotionIntensity;
+						}
+						if(doc.producers[req.params.playerID-1].reportPurchaseStatus[i].supplierIntelligence){
+							result+=doc.reportPrice.supplierIntelligence;
+						}
+						if(doc.producers[req.params.playerID-1].reportPurchaseStatus[i].retailerIntelligence){
+							result+=doc.reportPrice.retailerIntelligence;
+						}
+						if(doc.producers[req.params.playerID-1].reportPurchaseStatus[i].forecasts){
+							result+=doc.reportPrice.forecasts;
+						}
+						res.send(200,{'result':result});
+						break;
+					}
+				}
+			}else{
+				for(var i=0;i<doc.retailers[req.params.playerID-1].reportPurchaseStatus.length;i++){
+					if(doc.retailers[req.params.playerID-1].reportPurchaseStatus[i].period==req.params.period){
+						console.log(doc.retailers[req.params.playerID-1].reportPurchaseStatus[i].awareness);
+						if(doc.retailers[req.params.playerID-1].reportPurchaseStatus[i].awareness){
+							result+=doc.reportPrice.awareness;
+						}
+						if(doc.retailers[req.params.playerID-1].reportPurchaseStatus[i].brandPerceptions){
+							result+=doc.reportPrice.brandPerceptions;
+						}
+						if(doc.retailers[req.params.playerID-1].reportPurchaseStatus[i].retailerPerceptions){
+							result+=doc.reportPrice.retailerPerceptions;
+						}
+						if(doc.retailers[req.params.playerID-1].reportPurchaseStatus[i].marketShareByConsumerSegment){
+							result+=doc.reportPrice.marketShareByConsumerSegment;
+						}
+						if(doc.retailers[req.params.playerID-1].reportPurchaseStatus[i].salesByConsumerSegment){
+							result+=doc.reportPrice.salesByConsumerSegment;
+						}
+						if(doc.retailers[req.params.playerID-1].reportPurchaseStatus[i].marketShareByShopperSegment){
+							result+=doc.reportPrice.marketShareByShopperSegment;
+						}
+						if(doc.retailers[req.params.playerID-1].reportPurchaseStatus[i].salesByShopperSegment){
+							result+=doc.reportPrice.salesByShopperSegment;
+						}
+						if(doc.retailers[req.params.playerID-1].reportPurchaseStatus[i].BMRetailerPrices){
+							result+=doc.reportPrice.BMRetailerPrices;
+						}
+						if(doc.retailers[req.params.playerID-1].reportPurchaseStatus[i].promotionIntensity){
+							result+=doc.reportPrice.promotionIntensity;
+						}
+						if(doc.retailers[req.params.playerID-1].reportPurchaseStatus[i].supplierIntelligence){
+							result+=doc.reportPrice.supplierIntelligence;
+						}
+						if(doc.retailers[req.params.playerID-1].reportPurchaseStatus[i].retailerIntelligence){
+							result+=doc.reportPrice.retailerIntelligence;
+						}
+						if(doc.retailers[req.params.playerID-1].reportPurchaseStatus[i].forecasts){
+							result+=doc.reportPrice.forecasts;
+						}
+						res.send(200,{'result':result});
+						break;
+					}
+				}
+			}
+		}else{
+			res.send(404,'cannot find matched doc....');
+		}
+	})
 }
 
 
