@@ -27,8 +27,9 @@
                     <p class="text-right">{{playData.reportPrice.toFixed(2)}}</p>
                 </td>
                 <td>
-                    <a href="#" editable-checkbox="playData.playerStatus" e-title="{{Label.getContent('Buy this Report')}}?" ng-show="!isReady" onaftersave="submitOrder(playData.realName,$data)">
-                        <p class="text-right">{{ playData.playerStatus && Label.getContent('Buy') || Label.getContent('No') }}</p>
+                    <a href="#" editable-checkbox="playData.playerStatus" e-title="{{Label.getContent('Buy this Report')}}?" ng-show="!isReady"
+                    onbeforesave='checkBudget(playData.reportPrice,$data)' onaftersave="submitOrder(playData.realName,$data)">
+                        <p class="text-right"><span class="glyphicon glyphicon-shopping-cart" ng-show='!playData.playerStatus'></span>{{ playData.playerStatus && Label.getContent('Buy') || Label.getContent('No') }}</p>
                     </a>
                     <p ng-show="isReady" class="text-right">{{ playData.playerStatus && Label.getContent('Buy') || Label.getContent('No') }}</p>
                 </td>
