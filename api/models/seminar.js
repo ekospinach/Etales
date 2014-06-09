@@ -431,11 +431,23 @@ exports.addSeminar=function(req,res,next){
 	    	password : "210",
 	    	retailerID : 1,
 	    	decisionCommitStatus : [{
-	    		period : 1,
+	    		period : -3,
+	    		isDecisionCommitted : false
+	    	},{
+	    		period : -2,
+	    		isDecisionCommitted : true
+	    	},{
+	    		period : -1,
 	    		isDecisionCommitted : false
 	    	},{
 	    		period : 0,
-	    		isDecisionCommitted : true
+	    		isDecisionCommitted : false
+	    	},{
+	    		period : 1,
+	    		isDecisionCommitted : false
+	    	},{
+	    		period : 2,
+	    		isDecisionCommitted : false
 	    	}],
 	    	reportPurchaseStatus : [{
 	    		period                       : 1,
