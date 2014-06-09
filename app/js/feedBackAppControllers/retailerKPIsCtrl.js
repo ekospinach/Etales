@@ -261,44 +261,38 @@ var retailerKPIsCtrl=function($scope,$http){
                 }
             }
 
-            //ShareofShoppers
+            //B&M Shoppers
             for(var j=0;j<testCategories.length;j++){
-                for(var i=0;i<data.data.f_RetailersShoppersShare.length;i++){
-                    if(data.data.f_RetailersShoppersShare[i].period==testCategories[j]){
-                        if(data.data.f_RetailersShoppersShare[i].categoryID==3){
-                            if(data.data.f_RetailersShoppersShare[i].marketID==2){
-                                ruralShareOfShoppers[data.data.f_RetailersShoppersShare[i].retailerID-1].data.push(data.data.f_RetailersShoppersShare[i].value);
-                            }else if(data.data.f_RetailersShoppersShare[i].marketID==1){
-                                urbanShareOfShoppers[data.data.f_RetailersShoppersShare[i].retailerID-1].data.push(data.data.f_RetailersShoppersShare[i].value);
+                for(var i=0;i<data.data.f_RetailersBMShoppersShare.length;i++){
+                    if(data.data.f_RetailersBMShoppersShare[i].period==testCategories[j]){
+                        if(data.data.f_RetailersBMShoppersShare[i].categoryID==3){
+                            if(data.data.f_RetailersBMShoppersShare[i].marketID==2){
+                                ruralShareOfShoppers[data.data.f_RetailersBMShoppersShare[i].retailerID-1].data.push(data.data.f_RetailersBMShoppersShare[i].value);
+                            }else if(data.data.f_RetailersBMShoppersShare[i].marketID==1){
+                                urbanShareOfShoppers[data.data.f_RetailersBMShoppersShare[i].retailerID-1].data.push(data.data.f_RetailersBMShoppersShare[i].value);
                             }
                         }
                     }
                 }
             }
-            for(var i=0;i<2+testCategories.length;i++){
-                ruralShareOfShoppers[0].data.push('');
-                ruralShareOfShoppers[1].data.push('');
-                urbanShareOfShoppers[0].data.push('');
-                urbanShareOfShoppers[1].data.push('');
-            }
             //ALL Shoppers is not ready
-            // for(var i=0;i<2;i++){
-            //     ruralShareOfShoppers[i].data.push('');
-            //     urbanShareOfShoppers[i].data.push('');
-            // }
-            // for(var j=0;j<testCategories.length;j++){
-            //     for(var i=0;i<data.data.f_RetailersShoppersShare.length;i++){
-            //         if(data.data.f_RetailersShoppersShare[i].period==testCategories[j]){
-            //             if(data.data.f_RetailersShoppersShare[i].categoryID==3){
-            //                 if(data.data.f_RetailersShoppersShare[i].marketID==2){
-            //                     ruralShareOfShoppers[data.data.f_RetailersShoppersShare[i].retailerID-1].data.push(data.data.f_RetailersShoppersShare[i].value);
-            //                 }else if(data.data.f_RetailersShoppersShare[i].marketID==1){
-            //                     urbanShareOfShoppers[data.data.f_RetailersShoppersShare[i].retailerID-1].data.push(data.data.f_RetailersShoppersShare[i].value);
-            //                 }
-            //             }
-            //         }
-            //     }
-            // }
+            for(var i=0;i<2;i++){
+                ruralShareOfShoppers[i].data.push('');
+                urbanShareOfShoppers[i].data.push('');
+            }
+            for(var j=0;j<testCategories.length;j++){
+                for(var i=0;i<data.data.f_RetailersAllShoppersShare.length;i++){
+                    if(data.data.f_RetailersAllShoppersShare[i].period==testCategories[j]){
+                        if(data.data.f_RetailersAllShoppersShare[i].categoryID==3){
+                            if(data.data.f_RetailersAllShoppersShare[i].marketID==2){
+                                ruralShareOfShoppers[data.data.f_RetailersAllShoppersShare[i].retailerID-1].data.push(data.data.f_RetailersAllShoppersShare[i].value);
+                            }else if(data.data.f_RetailersAllShoppersShare[i].marketID==1){
+                                urbanShareOfShoppers[data.data.f_RetailersAllShoppersShare[i].retailerID-1].data.push(data.data.f_RetailersAllShoppersShare[i].value);
+                            }
+                        }
+                    }
+                }
+            }
 
 
 

@@ -41,9 +41,8 @@ var BG_feedbackSlidesSchema = mongoose.Schema({
 
 //  modified by Hao, 2014 June 9th
 //    f_RetailersShoppersShare          : [retailerKPIInfoSchema],
-    f_RetailersBMShoppersShare          : [retailerKPIInfoSchema],
-    f_RetailersAllShoppersShare          : [retailerKPIInfoSchema],
-
+    f_RetailersBMShoppersShare        : [retailerKPIInfoSchema],
+    f_RetailersAllShoppersShare       : [retailerKPIInfoSchema],
 })
 
 var negotiationsItemDetailsSchema = mongoose.Schema({
