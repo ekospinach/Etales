@@ -96,7 +96,7 @@ define(['app'], function(app) {
 					}
 
 
-					var url='/checkProducerDecision/'+SeminarInfo.getSelectedSeminar()+'/'+parseInt(PlayerInfo.getPlayer());
+					var url='/checkProducerPortfolioDecision/'+SeminarInfo.getSelectedSeminar()+'/'+parseInt(PlayerInfo.getPlayer());
 					$http({
 						method:'GET',
 						url:url
@@ -373,7 +373,7 @@ define(['app'], function(app) {
 				else{
 					categoryID=2;
 				}	
-				var url='/checkProducerDecision/'+SeminarInfo.getSelectedSeminar()+'/'+parseInt(PlayerInfo.getPlayer());
+				var url='/checkProducerPortfolioDecision/'+SeminarInfo.getSelectedSeminar()+'/'+parseInt(PlayerInfo.getPlayer());
 				$http({
 					method:'GET',
 					url:url
@@ -413,7 +413,7 @@ define(['app'], function(app) {
 				if(!filter.test(value)){
 					d.resolve(Label.getContent('Input a Integer'));
 				}
-				var url='/checkProducerDecision/'+SeminarInfo.getSelectedSeminar()+'/'+parseInt(PlayerInfo.getPlayer());
+				var url='/checkProducerPortfolioDecision/'+SeminarInfo.getSelectedSeminar()+'/'+parseInt(PlayerInfo.getPlayer());
 				$http({
 					method:'GET',
 					url:url
@@ -457,7 +457,7 @@ define(['app'], function(app) {
 				if(!filter.test(value)){
 					d.resolve(Label.getContent('Input a Integer'));
 				}
-				var url='/checkProducerDecision/'+SeminarInfo.getSelectedSeminar()+'/'+parseInt(PlayerInfo.getPlayer());
+				var url='/checkProducerPortfolioDecision/'+SeminarInfo.getSelectedSeminar()+'/'+parseInt(PlayerInfo.getPlayer());
 				$http({
 					method:'GET',
 					url:url
@@ -523,7 +523,7 @@ define(['app'], function(app) {
 				}else{
 					categoryID=2;
 				}
-				var url='/checkProducerDecision/'+SeminarInfo.getSelectedSeminar()+'/'+parseInt(PlayerInfo.getPlayer());
+				var url='/checkProducerPortfolioDecision/'+SeminarInfo.getSelectedSeminar()+'/'+parseInt(PlayerInfo.getPlayer());
 				$http({
 					method:'GET',
 					url:url
@@ -561,7 +561,7 @@ define(['app'], function(app) {
 				}else{
 					categoryID=2;
 				}
-				var url='/checkProducerDecision/'+SeminarInfo.getSelectedSeminar()+'/'+parseInt(PlayerInfo.getPlayer());
+				var url='/checkProducerPortfolioDecision/'+SeminarInfo.getSelectedSeminar()+'/'+parseInt(PlayerInfo.getPlayer());
 				$http({
 					method:'GET',
 					url:url
@@ -609,7 +609,7 @@ define(['app'], function(app) {
 				}else{
 					categoryID=2;
 				}
-				var url='/checkProducerDecision/'+SeminarInfo.getSelectedSeminar()+'/'+parseInt(PlayerInfo.getPlayer());
+				var url='/checkProducerPortfolioDecision/'+SeminarInfo.getSelectedSeminar()+'/'+parseInt(PlayerInfo.getPlayer());
 				$http({
 					method:'GET',
 					url:url

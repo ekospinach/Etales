@@ -304,7 +304,7 @@ define(['directives', 'services'], function(directives){
                         var checkurls=new Array();
                         for(i=0;i<3;i++){
                             urls[i]='/producerProducts/'+(i+1)+'/'+PeriodInfo.getCurrentPeriod()+'/'+SeminarInfo.getSelectedSeminar()+'/'+category;
-                            checkurls[i]='/checkProducerDecision/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+(i+1);
+                            checkurls[i]='/checkProducerPortfolioDecision/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+(i+1);
                         }
                         (function multipleRequestShooter(checkurls,urls,idx){
                             $http({

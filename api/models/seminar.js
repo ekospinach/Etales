@@ -214,21 +214,25 @@ exports.checkProducerDecision=function(req,res,next){
 }
 
 exports.checkProducerFinalDecision=function(req,res,next){
-	seminar.findOne({seminarCode:req.params.seminar},function(err,doc){
-		if(err) {next(new Error(err))};
-		if(doc){
-			for(var i=0;i<doc.producers[req.params.producerID-1].decisionCommitStatus.length;i++){
-				if(doc.producers[req.params.producerID-1].decisionCommitStatus[i].period==req.params.period){
-					if(doc.producers[req.params.producerID-1].decisionCommitStatus[i].isDecisionCommitted==true){
-						res.send(200,'isReady');
-					}else{
-						res.send(200,'unReady');
+	seminar.findOne({
+		seminarCode: req.params.seminar
+	}, function(err, doc) {
+		if (err) {
+			next(new Error(err))
+		};
+		if (doc) {
+			for (var i = 0; i < doc.producers[req.params.producerID - 1].decisionCommitStatus.length; i++) {
+				if (doc.producers[req.params.producerID - 1].decisionCommitStatus[i].period == req.params.period) {
+					if (doc.producers[req.params.producerID - 1].decisionCommitStatus[i].isDecisionCommitted == true) {
+						res.send(200, 'isReady');
+					} else {
+						res.send(200, 'unReady');
 					}
 				}
 			}
-			
-		}else{
-			res.send(404,'there is no contract');
+
+		} else {
+			res.send(404, 'there is no contract');
 		}
 	})
 }
