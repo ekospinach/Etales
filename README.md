@@ -14,11 +14,15 @@ Business Simulation Game
 + Asset Investment页面，Capacity 输入范围错误
 + Online Store Management页面，order volumes字样改为Online planned volume, 输入范围为，0 ~ 当前单品的本阶段产量 + 上阶段online库存。本阶段产量即为当前阶段此单品在Step4中的的决策，上阶段的online库存去```scrviv_Closing[INTERNET]```中取。(注意参数为INTERNET)
 + 当Seminar.producer.isDecisioncommitted = true 时，所有页面的决策输入必须被锁定。（做成动态锁定）
++ Market report purchase页面，使用editable重做，Total budget必须被随时（点击true或false后）更新。
 
 ###### Retailer Decisions 
 + Store management 页面，每次保存决策成功后（品类2，市场2），由于自动刷新了界面，会导致回到不明品类市场的组合下（品类1市场1？）如下状况：
 + Store Management 页面，部分值的IO依然失灵：比如H类市场1中的retailer Pirce，无法存入值
 + 当Seminar.retailer.isDecisioncommitted = true 时，所有页面的决策输入必须被锁定。（做成动态锁定）
++ Market report purchase页面，使用editable重做，Total budget必须被随时更新。
++ Store Management 页面，Add orders功能有问题：从列表上删除的产品没有回到Add列表内，无法再次添加。
++ Store Management 页面，背景色按照2个品类，2个市场的颜色调整.
 
 ###### Reports Overall
 + 所有带括号的内容前后必须有一个空格。example: Financial Results-B&M Business Profit & Loss Statement(Elecssories). 应为：     Financial Results - B&M Business Profit & Loss Statement (Elecssories)
@@ -35,6 +39,7 @@ Business Simulation Game
 + Online Profit & Loss Statement, 每个”-“和”(1)(2)(3)”之后都有一个空格。’
 + Online Profit & Loss Statement, 太宽，通过修改css增加横向滚动条
 + Situation Report - Volume, 有两列需要merge（参考pdf）
++ Key Performance Indicators, 此页中有四行需要popover tips，内容参考pdf。interface效果最好用bootstrap css在每行末尾加一个”i”符号。example : <span class="glyphicon glyphicon-lock"></span>
 
 ###### Retailer Confidential reports
 + Consolidated Profit & Loss Statement, 每个”-“和”(1)(2)(3)”之后都有一个空格。目前向后缩进的行其实不需要缩进（参考pdf）。

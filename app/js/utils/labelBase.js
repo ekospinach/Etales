@@ -133,6 +133,7 @@ var getLabelBase = function(){
 
 		/*navbar*/
 		{id:'Participant manual',  ENG:'Participant manual',  CHN:'学员手册',  RUS:''},
+		{id:'Manual',  ENG:'Manual',  CHN:'学员手册',  RUS:''},		
 		{id:'My company',  ENG:'My company',  CHN:'我的公司',  RUS:''},
 		{id:'Charts',  ENG:'Charts',  CHN:'图表',  RUS:''},
 		{id:'Make Decision',  ENG:'Make Decision',  CHN:'制订决策',  RUS:''},
