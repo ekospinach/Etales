@@ -452,9 +452,58 @@ exports.addSeminar=function(req,res,next){
 	    	},{
 	    		period : 2,
 	    		isDecisionCommitted : false
+	    	},{
+	    		period : 3,
+	    		isDecisionCommitted : false
+	    	},{
+	    		period : 4,
+	    		isDecisionCommitted : false
+	    	},{
+	    		period : 5,
+	    		isDecisionCommitted : false
+	    	},{
+	    		period : 6,
+	    		isDecisionCommitted : false
+	    	},{
+	    		period : 7,
+	    		isDecisionCommitted : false
+	    	},{
+	    		period : 8,
+	    		isDecisionCommitted : false
+	    	},{
+	    		period : 9,
+	    		isDecisionCommitted : false
 	    	}],
 	    	reportPurchaseStatus : [{
-	    		period                       : 1,
+	    		period                       : -3,
+				awareness                    : true,
+				brandPerceptions             : false,
+				retailerPerceptions          : false,
+				marketShareByConsumerSegment : false,
+				salesByConsumerSegment      : false,
+				marketShareByShopperSegment  : false,
+				salesByShopperSegment        : false,
+				BMRetailerPrices             : false,
+				promotionIntensity           : false,
+				supplierIntelligence         : false,
+				retailerIntelligence         : false,
+				forecasts                     : false
+	    	},{
+	    		period                       : -2,
+				awareness                    : true,
+				brandPerceptions             : false,
+				retailerPerceptions          : false,
+				marketShareByConsumerSegment : false,
+				salesByConsumerSegment      : false,
+				marketShareByShopperSegment  : false,
+				salesByShopperSegment        : false,
+				BMRetailerPrices             : false,
+				promotionIntensity           : false,
+				supplierIntelligence         : false,
+				retailerIntelligence         : false,
+				forecasts                     : false
+	    	},{
+	    		period                       : -1,
 				awareness                    : true,
 				brandPerceptions             : false,
 				retailerPerceptions          : false,
@@ -470,6 +519,132 @@ exports.addSeminar=function(req,res,next){
 	    	},{
 	    		period                       : 0,
 				awareness                    : true,
+				brandPerceptions             : true,
+				retailerPerceptions          : true,
+				marketShareByConsumerSegment : true,
+				salesByConsumerSegment      : true,
+				marketShareByShopperSegment  : true,
+				salesByShopperSegment        : true,
+				BMRetailerPrices             : true,
+				promotionIntensity           : true,
+				supplierIntelligence         : true,
+				retailerIntelligence         : true,
+				forecasts                     : true
+	    	},{
+	    		period                       : 1,
+				awareness                    : false,
+				brandPerceptions             : false,
+				retailerPerceptions          : false,
+				marketShareByConsumerSegment : false,
+				salesByConsumerSegment      : false,
+				marketShareByShopperSegment  : false,
+				salesByShopperSegment        : false,
+				BMRetailerPrices             : false,
+				promotionIntensity           : false,
+				supplierIntelligence         : false,
+				retailerIntelligence         : false,
+				forecasts                     : false
+	    	},{
+	    		period                       : 2,
+				awareness                    : false,
+				brandPerceptions             : false,
+				retailerPerceptions          : false,
+				marketShareByConsumerSegment : false,
+				salesByConsumerSegment      : false,
+				marketShareByShopperSegment  : false,
+				salesByShopperSegment        : false,
+				BMRetailerPrices             : false,
+				promotionIntensity           : false,
+				supplierIntelligence         : false,
+				retailerIntelligence         : false,
+				forecasts                     : false
+	    	},{
+	    		period                       : 3,
+				awareness                    : false,
+				brandPerceptions             : false,
+				retailerPerceptions          : false,
+				marketShareByConsumerSegment : false,
+				salesByConsumerSegment      : false,
+				marketShareByShopperSegment  : false,
+				salesByShopperSegment        : false,
+				BMRetailerPrices             : false,
+				promotionIntensity           : false,
+				supplierIntelligence         : false,
+				retailerIntelligence         : false,
+				forecasts                     : false
+	    	},{
+	    		period                       : 4,
+				awareness                    : false,
+				brandPerceptions             : false,
+				retailerPerceptions          : false,
+				marketShareByConsumerSegment : false,
+				salesByConsumerSegment      : false,
+				marketShareByShopperSegment  : false,
+				salesByShopperSegment        : false,
+				BMRetailerPrices             : false,
+				promotionIntensity           : false,
+				supplierIntelligence         : false,
+				retailerIntelligence         : false,
+				forecasts                     : false
+	    	},{
+	    		period                       : 5,
+				awareness                    : false,
+				brandPerceptions             : false,
+				retailerPerceptions          : false,
+				marketShareByConsumerSegment : false,
+				salesByConsumerSegment      : false,
+				marketShareByShopperSegment  : false,
+				salesByShopperSegment        : false,
+				BMRetailerPrices             : false,
+				promotionIntensity           : false,
+				supplierIntelligence         : false,
+				retailerIntelligence         : false,
+				forecasts                     : false
+	    	},{
+	    		period                       : 6,
+				awareness                    : false,
+				brandPerceptions             : false,
+				retailerPerceptions          : false,
+				marketShareByConsumerSegment : false,
+				salesByConsumerSegment      : false,
+				marketShareByShopperSegment  : false,
+				salesByShopperSegment        : false,
+				BMRetailerPrices             : false,
+				promotionIntensity           : false,
+				supplierIntelligence         : false,
+				retailerIntelligence         : false,
+				forecasts                     : false
+	    	},{
+	    		period                       : 7,
+				awareness                    : false,
+				brandPerceptions             : false,
+				retailerPerceptions          : false,
+				marketShareByConsumerSegment : false,
+				salesByConsumerSegment      : false,
+				marketShareByShopperSegment  : false,
+				salesByShopperSegment        : false,
+				BMRetailerPrices             : false,
+				promotionIntensity           : false,
+				supplierIntelligence         : false,
+				retailerIntelligence         : false,
+				forecasts                     : false
+	    	},{
+	    		period                       : 8,
+				awareness                    : false,
+				brandPerceptions             : false,
+				retailerPerceptions          : false,
+				marketShareByConsumerSegment : false,
+				salesByConsumerSegment      : false,
+				marketShareByShopperSegment  : false,
+				salesByShopperSegment        : false,
+				BMRetailerPrices             : false,
+				promotionIntensity           : false,
+				supplierIntelligence         : false,
+				retailerIntelligence         : false,
+				forecasts                     : false
+	    	},{
+	    		period                       : 9,
+				awareness                    : false,
 				brandPerceptions             : false,
 				retailerPerceptions          : false,
 				marketShareByConsumerSegment : false,
@@ -780,19 +955,91 @@ exports.addSeminar=function(req,res,next){
 	    	password : "140",
 	    	producerID : 4,
 	    	decisionCommitStatus:[{
-	    		period : 1,
+	    		period : -3,
+				isPortfolioDecisionCommitted : false,
+				isDecisionCommitted : false,
+	    	},{
+	    		period : -2,
+				isPortfolioDecisionCommitted : true,
+				isDecisionCommitted : true,
+	    	},{
+	    		period : -1,
 				isPortfolioDecisionCommitted : false,
 				isDecisionCommitted : false,
 	    	},{
 	    		period : 0,
-				isPortfolioDecisionCommitted : true,
-				isDecisionCommitted : true,
+				isPortfolioDecisionCommitted : false,
+				isDecisionCommitted : false,
+	    	},{
+	    		period : 1,
+				isPortfolioDecisionCommitted : false,
+				isDecisionCommitted : false,
+	    	},{
+	    		period : 2,
+				isPortfolioDecisionCommitted : false,
+				isDecisionCommitted : false,
+	    	},{
+	    		period : 3,
+				isPortfolioDecisionCommitted : false,
+				isDecisionCommitted : false,
+	    	},{
+	    		period : 4,
+				isPortfolioDecisionCommitted : false,
+				isDecisionCommitted : false,
+	    	},{
+	    		period : 5,
+				isPortfolioDecisionCommitted : false,
+				isDecisionCommitted : false,
+	    	},{
+	    		period : 6,
+				isPortfolioDecisionCommitted : false,
+				isDecisionCommitted : false,
+	    	},{
+	    		period : 7,
+				isPortfolioDecisionCommitted : false,
+				isDecisionCommitted : false,
+	    	},{
+	    		period : 8,
+				isPortfolioDecisionCommitted : false,
+				isDecisionCommitted : false,
+	    	},{
+	    		period : 9,
+				isPortfolioDecisionCommitted : false,
+				isDecisionCommitted : false,
 	    	}],
 	    	reportPurchaseStatus:[{
-	    		period                       : 1,
-				awareness                    : false,
+	    		period                       : -3,
+				awareness                    : true,
 				brandPerceptions             : false,
-				retailerPerceptions          : true,
+				retailerPerceptions          : false,
+				marketShareByConsumerSegment : false,
+				salesByConsumerSegment      : false,
+				marketShareByShopperSegment  : false,
+				salesByShopperSegment        : false,
+				BMRetailerPrices             : false,
+				promotionIntensity           : false,
+				supplierIntelligence         : false,
+				retailerIntelligence         : false,
+				forecasts                     : false
+	    	},{
+	    		period                       : -2,
+				awareness                    : true,
+				brandPerceptions             : false,
+				retailerPerceptions          : false,
+				marketShareByConsumerSegment : false,
+				salesByConsumerSegment      : false,
+				marketShareByShopperSegment  : false,
+				salesByShopperSegment        : false,
+				BMRetailerPrices             : false,
+				promotionIntensity           : false,
+				supplierIntelligence         : false,
+				retailerIntelligence         : false,
+				forecasts                     : false
+	    	},{
+	    		period                       : -1,
+				awareness                    : true,
+				brandPerceptions             : false,
+				retailerPerceptions          : false,
 				marketShareByConsumerSegment : false,
 				salesByConsumerSegment      : false,
 				marketShareByShopperSegment  : false,
@@ -804,9 +1051,135 @@ exports.addSeminar=function(req,res,next){
 				forecasts                     : false
 	    	},{
 	    		period                       : 0,
+				awareness                    : true,
+				brandPerceptions             : true,
+				retailerPerceptions          : true,
+				marketShareByConsumerSegment : true,
+				salesByConsumerSegment      : true,
+				marketShareByShopperSegment  : true,
+				salesByShopperSegment        : true,
+				BMRetailerPrices             : true,
+				promotionIntensity           : true,
+				supplierIntelligence         : true,
+				retailerIntelligence         : true,
+				forecasts                     : true
+	    	},{
+	    		period                       : 1,
 				awareness                    : false,
 				brandPerceptions             : false,
-				retailerPerceptions          : true,
+				retailerPerceptions          : false,
+				marketShareByConsumerSegment : false,
+				salesByConsumerSegment      : false,
+				marketShareByShopperSegment  : false,
+				salesByShopperSegment        : false,
+				BMRetailerPrices             : false,
+				promotionIntensity           : false,
+				supplierIntelligence         : false,
+				retailerIntelligence         : false,
+				forecasts                     : false
+	    	},{
+	    		period                       : 2,
+				awareness                    : false,
+				brandPerceptions             : false,
+				retailerPerceptions          : false,
+				marketShareByConsumerSegment : false,
+				salesByConsumerSegment      : false,
+				marketShareByShopperSegment  : false,
+				salesByShopperSegment        : false,
+				BMRetailerPrices             : false,
+				promotionIntensity           : false,
+				supplierIntelligence         : false,
+				retailerIntelligence         : false,
+				forecasts                     : false
+	    	},{
+	    		period                       : 3,
+				awareness                    : false,
+				brandPerceptions             : false,
+				retailerPerceptions          : false,
+				marketShareByConsumerSegment : false,
+				salesByConsumerSegment      : false,
+				marketShareByShopperSegment  : false,
+				salesByShopperSegment        : false,
+				BMRetailerPrices             : false,
+				promotionIntensity           : false,
+				supplierIntelligence         : false,
+				retailerIntelligence         : false,
+				forecasts                     : false
+	    	},{
+	    		period                       : 4,
+				awareness                    : false,
+				brandPerceptions             : false,
+				retailerPerceptions          : false,
+				marketShareByConsumerSegment : false,
+				salesByConsumerSegment      : false,
+				marketShareByShopperSegment  : false,
+				salesByShopperSegment        : false,
+				BMRetailerPrices             : false,
+				promotionIntensity           : false,
+				supplierIntelligence         : false,
+				retailerIntelligence         : false,
+				forecasts                     : false
+	    	},{
+	    		period                       : 5,
+				awareness                    : false,
+				brandPerceptions             : false,
+				retailerPerceptions          : false,
+				marketShareByConsumerSegment : false,
+				salesByConsumerSegment      : false,
+				marketShareByShopperSegment  : false,
+				salesByShopperSegment        : false,
+				BMRetailerPrices             : false,
+				promotionIntensity           : false,
+				supplierIntelligence         : false,
+				retailerIntelligence         : false,
+				forecasts                     : false
+	    	},{
+	    		period                       : 6,
+				awareness                    : false,
+				brandPerceptions             : false,
+				retailerPerceptions          : false,
+				marketShareByConsumerSegment : false,
+				salesByConsumerSegment      : false,
+				marketShareByShopperSegment  : false,
+				salesByShopperSegment        : false,
+				BMRetailerPrices             : false,
+				promotionIntensity           : false,
+				supplierIntelligence         : false,
+				retailerIntelligence         : false,
+				forecasts                     : false
+	    	},{
+	    		period                       : 7,
+				awareness                    : false,
+				brandPerceptions             : false,
+				retailerPerceptions          : false,
+				marketShareByConsumerSegment : false,
+				salesByConsumerSegment      : false,
+				marketShareByShopperSegment  : false,
+				salesByShopperSegment        : false,
+				BMRetailerPrices             : false,
+				promotionIntensity           : false,
+				supplierIntelligence         : false,
+				retailerIntelligence         : false,
+				forecasts                     : false
+	    	},{
+	    		period                       : 8,
+				awareness                    : false,
+				brandPerceptions             : false,
+				retailerPerceptions          : false,
+				marketShareByConsumerSegment : false,
+				salesByConsumerSegment      : false,
+				marketShareByShopperSegment  : false,
+				salesByShopperSegment        : false,
+				BMRetailerPrices             : false,
+				promotionIntensity           : false,
+				supplierIntelligence         : false,
+				retailerIntelligence         : false,
+				forecasts                     : false
+	    	},{
+	    		period                       : 9,
+				awareness                    : false,
+				brandPerceptions             : false,
+				retailerPerceptions          : false,
 				marketShareByConsumerSegment : false,
 				salesByConsumerSegment      : false,
 				marketShareByShopperSegment  : false,
@@ -818,7 +1191,7 @@ exports.addSeminar=function(req,res,next){
 				forecasts                     : false
 	    	}]
 	    }],
-	    simulationSpan : 6,
+	    simulationSpan : 9,
 	    traceActive : true,
 	    traditionalTradeActive : false,
 	    EMallActive : false,
@@ -833,6 +1206,7 @@ exports.addSeminar=function(req,res,next){
 
 	Newseminar.save(function(err) {
 		if(!err){
+			console.log('http');
 			res.send(200,Newseminar);
 			console.log("created new seminar:"+Newseminar);
 		} else {
