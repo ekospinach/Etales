@@ -87,6 +87,64 @@ define(['directives', 'services'], function(directives){
                     })
                 }
 
+                scope.checkBudget=function(price,value){
+                    var d = $q.defer(); 
+                    var categoryID = 0,
+                    abMax = 0,
+                    productExpend = 0,
+                    r1ContractExpend = 0,
+                    r2ContractExpend = 0,
+                    reportExpend = 0;
+                    if(value){
+                        var url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar() + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + parseInt(PlayerInfo.getPlayer());
+                        $http({
+                            method: 'GET',
+                            url: url
+                        }).then(function(data){
+                            abMax = data.data.budgetAvailable + data.data.budgetSpentToDate;
+                            url = "/producerExpend/" + SeminarInfo.getSelectedSeminar() + '/' + (PeriodInfo.getCurrentPeriod()) + '/' + parseInt(PlayerInfo.getPlayer()) + '/brandName/location/1';
+                            return $http({
+                                method: 'GET',
+                                url: url,
+                            });
+                        }).then(function(data) {
+                            productExpend = data.data.result;
+                            url='/getContractExpend/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer()+'/1/brandName/varName';
+                            return $http({
+                                method:'GET',
+                                url:url
+                            });
+                        }).then(function(data){
+                            r1ContractExpend = data.data.result;
+                            url='/getContractExpend/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer()+'/2/brandName/varName';
+                            return $http({
+                                method:'GET',
+                                url:url
+                            });
+                        }).then(function(data){
+                            r2ContractExpend = data.data.result;
+                            url='/getPlayerReportOrderExpend/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/P/'+PlayerInfo.getPlayer();
+                            return $http({
+                                method:'GET',
+                                url:url
+                            });
+                        }).then(function(data){
+                            reportExpend=data.data.result;
+                            if(abMax-productExpend-r1ContractExpend-r2ContractExpend-reportExpend<price){
+                                d.resolve(Label.getContent('Not enough budget'));
+                            }else{
+                                d.resolve();
+                            }
+                        },function(data){
+                            console.log('fail');
+                        })
+
+                    }else{
+                        d.resolve();
+                    }
+                    return d.promise;  
+                }
+
                 scope.$watch('isPageShown', function(newValue, oldValue){
                     if(newValue==true) {
                         initializePage();

@@ -31,7 +31,7 @@ define(['directives', 'services'], function(directives){
 
                 scope.checkBudget=function(marketID,location,additionalIdx,value){
 					var d=$q.defer();
-					var max=0;
+					var max=expend=reportExpend=0;
 					var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
 					if(!filter.test(value)){
 						d.resolve(Label.getContent('Input a number'));
@@ -41,7 +41,7 @@ define(['directives', 'services'], function(directives){
 		      			method:'GET',
 		      			url:url
 		      		}).then(function(data){
-		      			max=data.data.budgetAvailable;
+		      			max=data.data.budgetAvailable+data.data.budgetSpentToDate;
 		      			url="/retailerExpend/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/'+marketID+'/'+location+'/'+additionalIdx;
 		      			return $http({
 		      				method:'GET',
@@ -49,8 +49,15 @@ define(['directives', 'services'], function(directives){
 		      			});
 		      		}).then(function(data){
 		      			expend=data.data.result;
-		      			if(value>max-expend){
-		      				d.resolve(Label.getContent('Input range')+':0~'+(max-expend));
+		      			url='/getPlayerReportOrderExpend/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/R/'+PlayerInfo.getPlayer();
+	                    return $http({
+	                        method:'GET',
+	                        url:url
+	                    });
+	                }).then(function(data){
+	                	reportExpend=data.data.result;
+		      			if(value>max-expend-reportExpend){
+		      				d.resolve(Label.getContent('Input range')+':0~'+(max-expend-reportExpend).toFixed(2));
 		      			}else{
 		      				d.resolve();
 		    			}

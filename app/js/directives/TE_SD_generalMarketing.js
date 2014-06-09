@@ -68,7 +68,7 @@ define(['directives', 'services'], function(directives){
 
                 scope.checkData=function(category,brandName,location,tep,index,value){
                     var d=$q.defer();
-                    var categoryID,max,result,r1ContractExpend,r2ContractExpend;
+                    var categoryID,max,result,r1ContractExpend,r2ContractExpend,reportExpend;
                     var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
                     if(!filter.test(value)){
                         d.resolve(Label.getContent('Input a number'));
@@ -93,14 +93,21 @@ define(['directives', 'services'], function(directives){
                         });
                     }).then(function(data){
                         r2ContractExpend = data.data.result;
+                        url='/getPlayerReportOrderExpend/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/P/'+PlayerInfo.getPlayer();
+                        return $http({
+                            method:'GET',
+                            url:url
+                        });
+                    }).then(function(data){
+                        reportExpend=data.data.result;
                         url="/producerExpend/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/'+brandName+'/'+location+'/'+tep;
                         return $http({
                             method:'GET',
                             url:url
                         });
                     }).then(function(data){
-                        if(parseInt(data.data.result)+parseInt(value)>max-r1ContractExpend-r2ContractExpend){
-                            d.resolve(Label.getContent('Input range')+':0~'+(max-r1ContractExpend-r2ContractExpend-data.data.result));
+                        if(parseInt(data.data.result)+parseInt(value)>max-r1ContractExpend-r2ContractExpend-reportExpend){
+                            d.resolve(Label.getContent('Input range')+':0~'+(max-r1ContractExpend-r2ContractExpend-data.data.result-reportExpend).toFixed(2));
                         }else{
                             d.resolve();
                         }

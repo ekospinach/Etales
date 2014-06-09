@@ -897,7 +897,7 @@ var getLabelBase = function(){
 		{id:'Market Shares by Shopper Segment HealthBeauties Urban Info',  ENG:'This table shows the volume and value market shares for all the HealthBeauties brands sold in the urban market. When moving the cursor on any brand name, the results for all its variants will pop up.',  CHN:'消费者细分市场份额介绍',  RUS:''},
 
 		{id:"Dont Purchase Info",  ENG:"You didn't purchase this report in previous period.",  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'Not enough budget',  ENG:'You Dont have enough budget',  CHN:'',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
