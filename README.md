@@ -22,7 +22,7 @@ Business Simulation Game
 + 当Seminar.retailer.isDecisioncommitted = true 时，所有页面的决策输入必须被锁定。（做成动态锁定）
 + Market report purchase页面，使用editable重做，Total budget必须被随时更新。
 + Store Management 页面，Add orders功能有问题：从列表上删除的产品没有回到Add列表内，无法再次添加。
-+ Store Management 页面，背景色按照2个品类，2个市场的颜色调整.
++ Store Management 页面，背景色按照2个品类，2个市场的颜色调整.pma
 
 ###### Reports Overall
 + 所有带括号的内容前后必须有一个空格。example: Financial Results-B&M Business Profit & Loss Statement(Elecssories). 应为：     Financial Results - B&M Business Profit & Loss Statement (Elecssories)
