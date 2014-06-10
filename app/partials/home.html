@@ -1,7 +1,7 @@
 <div id="content" class="bs-header">
     <div class="container">
-        <h1>学员手册</h1>
-        <p>基本介绍，游戏规则以及背景参数。</p>
+        <h1>Participants Manual</h1>
+        <p>{{Label.getContent('Manual popInfo')}}</p>
     </div>
 </div>
 
@@ -17,305 +17,420 @@
     <div class="row">
         <div class="col-md-9">
             <div class="bs-docs-section">
-                <h1 id="js-general-introduction">概述</h1>
-                <p>合得国际“零售风暴”（eTales）是目前为止全球唯一反映网络零售、实体零售和生产商三者之间纵向横向互动竞争的电脑商战模拟。</p>
-                <p>模拟逼真再现了竞争激烈、不断变化的动态市场。这个市场受现代传播渠道的影响, 如社交媒体赋予消费者的力量及其对渠道的影响（如品牌社区），这些因素带来渠道迁移，并影响生产商和零售商的利润率。 </p>
-                <p>行业中真实的零供双方都在寻找制衡对方的竞争优势。讲师决定并公布获胜规则。因此，你的目标是制定并实施自己的战略和战术，使你所在小组获得最高得分，赢得竞争。</p>
-                <h3 id="js-overview">简述
-                </h3>
-                <p>“零售风暴”再现了一个快速发展的新兴市场。里面有两个市场：城市及农村，两个品类:电子配件产品和美容保健产品两大品类。</p>
-                <p>25-30位参赛者被分为五组，三组是制造生产商，两组是实体零售商（现代零售连锁）。生产商可经由实体零售和网络渠道销售。 </p>
-                <p>电脑扮演另外三个虚拟公司：生产商4，零售商3（代表传统零售），和网上商城。它们的存在使市场更复杂、动态。</p>
-                <p>一个决策周期代表现实生活中的六个月（半年）。生产商和零售商可以面对面和在线谈判沟通。 </p>
-                <p>游戏开始时，每个团队都将分配到同样的营运预算。 </p>
-                <h3 id="js-markets">市场/地理区域</h3>
-                <p>模拟中有两个市场-城市和农村。下表是两个市场的对比：</p>
-                <p class="text-center">
-                    市场/地理信息对比
-                </p>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th style="width:80%" scope="col">对比项</th>
-                            <th style="width:10%" scope="col">城市</th>
-                            <th class="width:10%" scope="col">农村</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>家庭户数（百万）</td>
-                            <td>16</td>
-                            <td>38</td>
-                        </tr>
-                        <tr>
-                            <td>品类渗透率 %（两个品类）</td>
-                            <td>100</td>
-                            <td>70</td>
-                        </tr>
-                        <tr>
-                            <td>互联网普及率 %</td>
-                            <td>75</td>
-                            <td>30</td>
-                        </tr>
-                        <tr>
-                            <th>市场份额组成</th>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>现代零售连锁占整个市场的百分比%</td>
-                            <td>60</td>
-                            <td>35</td>
-                        </tr>
-                        <tr>
-                            <td>传统零售占整个市场的百分比%</td>
-                            <td>30</td>
-                            <td>60</td>
-                        </tr>
-                        <tr>
-                            <td>网上零售占整个市场的百分比 %</td>
-                            <td>10</td>
-                            <td>5</td>
-                        </tr>
-                        <tr>
-                            <td>零售商1与零售商2在两市场门店数类似</td>
-                            <td>30</td>
-                            <td>30</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p>城市市场的发展领先于农村市场。城市市场较为稳定，乡村市场更具活力，正在积极赶追城市市场。</p>
-                <p>两个市场之间相互关联：</p>
-                <ul class="unstyled">
-                    <li>农村市场的品牌知名度/偏好度受该品牌在城市市场的表现（市场份额）影响。</li>
-                    <li>农村市场消费者对门店的感知受城市市场对门店感知的影响。</li>
+                <h1 class="page-header">Overview</h1>
+                <h2 id="js-what-is-eTales">What is eTales?</h2>
+                <h3 id="js-overview">Overview</h3>
+                <p class="lead">eTales is a business simulation reflecting vividly the horizontal and vertical competition of Manufacturers and Retailers in the consumer goods industry.</p>
+                <p class="lead">It mirrors the power dynamics in a competitive and changing market influenced by the modern communication channels, i.e. consumer empowerment through social media and its impact on power dynamics (brand communities), which results in channel migration and impacts Manufacturers and Retailers profitability. </p>
+                <h3 id="js-your-mission-and-roles">Your Mission & Roles</h3>
+                <p class="lead">You and the other members of your team have just been recruited by a large manufacturer/retailer to replace the former management team to manage its business.</p>
+                <p class="lead">You will be seeking competitive advantage over your rivals in the industry. Administrator decides and announces what criteria are used to determine the winner. So your aim would be to develop and implement strategy and tactics allowing your team to get best scores and outplay your competition.</p>
+                <h3 id="js-methodology">Methodology</h3>
+                <p class="lead">The simulation has 5 teams producing and selling two categories of products for two different markets. Three of the five teams represent manufacturers (suppliers) and two teams represent modern bricks & mortar retail chains (retailers).</p>
+                <p class="lead">In addition, the simulation consists of two virtual entities – a manufacturer (for private labels), Traditional retailer (Mom & Pop stores). The suppliers can sell their products directly through eMall (a platform the suppliers use to run their online stores) or in-directly through retailers.</p>
+                <p class="lead">The diagram below shows the game structure:</p>
+                <img src="./img/structure.png" width="100%" />
+                <p class="lead">The number of rounds to be played is decided by the administrator. Each round telescopes real 6-months period in the industry.</p>
+                <p class="lead" style="color:#D9534F">Notice!!</p>
+                <p class="lead">Initially, all teams will have access to the financial results of Period 0 and the market information of previous 3 periods. Then, they will be asked to make a set of decisions (i.e. decision 1) that will be processed by the administrator to generate the results of the subsequent period (i.e. period 1). The whole process will be repeated several times. After the last round, the final evaluations will be performed to determine which team achieved the best results. </p>
+                <h2 id="js-business-scenario">Business Scenario</h2>
+                <h3 id="js-market-situation">Market Situation</h3>
+                <p class="lead">The currency unit is $. The <strong>inflation</strong> itself remains relatively stable at around <strong>8.5% on a yearly basis. </strong></p>
+                <p class="lead"><strong>Market growth</strong> is quite significant, with a rate approaching <strong>9% in average on a yearly basis (around 2% per quarter)</strong>. At the same time, the market is very price sensitive and any price increases significantly exceeding inflation may result in volume growth stabilization, or even reduction. The fast pace of consumers’ maturing is constantly forcing the manufacturers to improve their offer and/or increase efficiency. </p>
+                <h3 id="js-geography-markets">Geography/Markets</h3>
+                <p class="lead">There are two geographical markets: Rural and Urban. Below is an overview of these two markets:</p>
+                <img src='./img/GeographyMarkets.png' width="100%"/>
+                <p class="lead">Urban market is ahead of Rural market in terms of development. Urban is more stable, rural is more dynamic, prone to catch up urban. Both markets are dependent, that is:</p>
+                <ul>
+                    <li>
+                        <p class="lead">Brand awareness/preferences in Rural are affected by brand performance in Urban</p>
+                    </li>
+                    <li>
+                        <p class="lead">Store perception in Rural is affected by store performance in Urban.</p>
+                    </li>
                 </ul>
-                <p>因此，农村市场消费者/购物者效仿城市市场消费者行为。</p>
-                <h3 id="js-categories">品类</h3>
-                <p>有两大品类：电子配件和美容健康产品。每个公司都经营两个品类。生产商进行研发、设计、生产、营销以及通过零售商分销产品（包括实体店和网上商城）。</p>
-                <p>下表简要对比这两个品类的关键特点。</p>
-                <p class="text-center">
-                    品类对比
-                </p>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th scope="col">对比项</th>
-                            <th scope="col">电子配件品类</th>
-                            <th scope="col">美容保健品类</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>定义</td>
-                            <td>电子配件</td>
-                            <td>个人护理产品</td>
-                        </tr>
-                        <tr>
-                            <td>0阶段家庭购买频率</td>
-                            <td>3次/月</td>
-                            <td>1.5次/月</td>
-                        </tr>
-                        <tr>
-                            <td rowspan="3">感知</td>
-                            <td>- 使用便利性</td>
-                            <td>- 效果</td>
-                        </tr>
-                        <tr>
-                            <td>- 质量</td>
-                            <td>- 亲柔度</td>
-                        </tr>
-                        <tr>
-                            <td>- 价格</td>
-                            <td>- 价格</td>
-                        </tr>
-                        <tr>
-                            <td rowspan="4">产品参数</td>
-                            <td>- 设计</td>
-                            <td>- 活力因子</td>
-                        </tr>
-                        <tr>
-                            <td>- 技术</td>
-                            <td>- 光滑因子</td>
-                        </tr>
-                        <tr>
-                            <td>- 原材料质量</td>
-                            <td>- 技术</td>
-                        </tr>
-                        <tr>
-                            <td>- 包装</td>
-                            <td>- 包装</td>
-                        </tr>
-                        <tr>
-                            <td rowspan="4">消费者细分市场</td>
-                            <td>- 狂热型</td>
-                            <td>- 急躁型（希望立刻看到效果）</td>
-                        </tr>
-                        <tr>
-                            <td>- 追求时尚/形象型</td>
-                            <td>- 注重健康型</td>
-                        </tr>
-                        <tr>
-                            <td>- 物有所值型</td>
-                            <td>- 物有所值型</td>
-                        </tr>
-                        <tr>
-                            <td>- 价格敏感型</td>
-                            <td>- 价格敏感型</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <h3 id="js-game-structure">游戏结构</h3>
-                <img src="./img/marketCHN.jpg" alt="Game Structure - Goods Flow or Supply Chain" width="100%"/>
-                <p class="text-center">模拟游戏结构—产品流 或 供应链</p>
-                <p>3个生产商小组和2个零售商小组（零售商1和零售商2）在城市和农村两个市场竞争。虚拟供应商（生产商4）由电脑自动运作，主要起两个作用：</p>
-                <ul class="unstyled">
-                    <li>为零售商1和零售商2生产自有品牌产品 </li>
-                    <li>如果生产商1，2，3缺乏创新，无法满足消费者需求，生产商4将推出新产品，并通过网上电子商城进行分销。</li>
+                <h3 id="js-categories">Categories</h3>
+                <p class="lead">There are two product categories: Elecssories and HealthBeauties. Elecssories are small appliances, electrical accessories and supplies. HealthBeauties constitute health and beauty aids. Each company manages both categories. Suppliers do research, design, production, marketing and distribute products through Retailers, both online and brick&mortar.</p>
+                <p class="lead">Below is a comparison of the two product categories:</p>
+                <img src="./img/categories.png" width="100%" />
+                <h3 id="js-market-players">Market Players</h3>
+                <p class="lead">Three Supplier (Supplier 1, Supplier 2 and Supplier 3) and two Retailer (Retailer 1 and Retailer 2) teams compete in two markets: Urban and Rural.Virtual Supplier (Supplier 4) is played by computer and serves primarily two purposes:</p>
+                <ul>
+                    <li>
+                        <p class="lead">It supplies Retailer 1 and Retailer 2 with their private labels.</p>
+                    </li>
+                    <li>
+                        <p class="lead">If real suppliers fail to satisfy consumer demand with innovation, it may launch new innovative products distributed through eMall.</p>
+                    </li>
                 </ul>
-                <p>模拟中有两个虚拟的完全不同的零售商：</p>
-                <ul class="unstyled">
-                    <li>零售商3是传统的实体店零售商，与零售商1和2平行</li>
-                    <li>网上电子商城（eMall）是新兴互联网分销渠道</li>
+                <p class="lead">There are two different virtual Retailer players:</p>
+                <ul>
+                    <li>
+                        <p class="lead">Retailer 3, which is a traditional retailer (Mom & Pop stores)</p>
+                    </li>
+                    <li>
+                        <p class="lead">eMall which is a new emerging on-line distribution channel.</p>
+                    </li>
                 </ul>
-                <h3 id="js-consumers">消费者/购物者</h3>
-                <p>购物者/消费者从三个维度感知零售商的门店：</p>
-                <ul class="unstyled">
-                    <li>便利性</li>
-                    <li>产品组合 </li>
-                    <li>价格</li>
+                <h3 id="js-consumers-as-shoppers">Consumers as Shoppers</h3>
+                <p class="lead">Retailer stores are perceived by shoppers/consumers in three dimensions: </p>
+                <p class="lead">a)  Convenience</p>
+                <p class="lead">b)  Assortment</p>
+                <p class="lead">c)  Price</p>
+                <p class="lead">Shopping habits are only presented implicitly. The choice of store is determined by consumer segment preferences.</p>
+                <img src="./img/segment.png" width="100%" />
+                <p class="lead">Shopper Segments are defined from channel preference standpoint and thus include:</p>
+                <p class="lead">a)  eMall only</p>
+                <p class="lead">b)  Bricks & Mortar only</p>
+                <p class="lead">c)  Mixed</p>
+
+                <h1 class="page-header">Business Operation</h1>
+                <h3 id="js-brief-overview">Brief Overview</h3>
+                <p class="lead">In each period, you’ll make a set of decisions. The decisions made vary depending on whether you are a supplier or a retailer. Following is the list of decisions:</p>
+                <p class="lead"><strong>Supplier Decisions: </strong></p>
+                <p class="lead padding-20">➢Portfolio Decisions</p>
+                <p class="lead padding-20">➢Pricing Decisions</p>
+                <p class="lead padding-20">➢Negotiation Agreements</p>
+                <p class="lead padding-20">➢Production Volume Decisions </p>
+                <p class="lead padding-20">➢General Marketing Decisions</p>
+                <p class="lead padding-20">➢Online Store Management Decisions</p>
+                <p class="lead padding-20">➢Asset Investment/ R&D Decisions</p>
+                <p class="lead"><strong>Retailer Decisions: </strong></p>
+                <p class="lead padding-20">➢Negotiation Agreements </p>
+                <p class="lead padding-20">➢Marketing Decisions</p>
+                <p class="lead padding-20">➢Private Label Portfolio Decisions</p>
+                <p class="lead padding-20">➢Store Management Decisions</p>
+
+                <h1 class="page-header" id="js-supplier-decisions">Supplier Decisions </h1>
+                <h3 id="js-portfolio-decisions">Portfolio Decisions</h3>
+                <li>
+                    <p class="lead">Initially every manufacturer carries both categories, each category with 3 brands, in total 6 brands (8 SKU) at the starting point. Manufacturers could carry maximum 5 brands in parallel for each category and each brand takes maximum 3 SKU.</p>
+                </li> 
+                <li>
+                    <p class="lead">First letter in brand name determines the category, E represent Elecssories, H for HealthBeauties. The digit at the end points to supplier number, and SKU is labeled in the end. For example HOLAY1_A, refers to Supplier 1, HealthBeauties category, brand OLAY, with A as its SKU label. </p>
+                </li>
+                <li>
+                    <p class="lead">Brand names ending with "5" and "6" indicate private labels of Retailer1 and Retailer 2 respectively.</p>
+                </li> 
+                <li>
+                    <p class="lead">You have to determine your product portfolio, i.e. brand names, SKU of each brand and product composition, including packaging format. There are three package options available: Economy, Standard, Premium which reflect the quality of the package. </p>
+                </li>
+                <li>
+                    <p class="lead">You may make a decision to: </p>
+                     <p class="lead padding-20">➢Change composition of an existing SKU</p>
+                    <p class="lead padding-40">- To modify a variant’s specification, enter the desired spec value.However, the Pack-Format cannot be changed. The changes are highlighted in red.</p>
+                    <p class="lead padding-20">➢Start a new SKU of an existing brand</p>
+                    <p class="lead padding-40">- To add a new variant under an existing brand, click on the brand name in the table, and enter the variant name with specifications. The new variant is highlighted in red.</p>
+                    <p class="lead padding-20">➢Launch a new brand</p>
+                    <p class="lead padding-40">- To add a new brand/variant click on “Brand” button and enter the brand/variant name with specifications. The new brand/variant is highlighted in red.</p>
+                    <p class="lead padding-20">➢Discontinue a SKU or a brand altogether</p>
+                    <p class="lead padding-40">- To discontinue an existing SKU, click on the SKU name. If you decide to discontinue a product, you need to collect inventory from Retailers, then scrap returns from trade as well as your own stock left at warehouse at loss. Supplier needs to compensate retailers 75% of its purchase price, and Supplier loses 60% of the inventory collected back from the trade.</p>
+                </li>
+                <li>
+                    <p class="lead">Please keep in mind that product composition affects both brand perception and product cost.</p>
+                </li>
+                <img src="./img/supplierProduct.png" width="100%" />
+                <h3 id="js-pricing-decisions">Pricing Decisions<h3>
+                <ul>
+                    <li>
+                        <p class="lead">Supplier decides the B&M List prices for the SKUs in supplier’s product portfolio by category. The list prices from previous period are shown by default and the supplier can change it. All the changes are highlighted in red. If the decisions are not validated within the deadline, those from the previous period are entered with the old list prices adjusted for inflation.</p>
+                    </li>
                 </ul>
-                <p>购物者/消费者的购物习惯并未明确说明，但对店铺的选择主要由各细分市场消费者的偏好决定。</p>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">细分市场 (两个品类)</th>
-                            <th scope="col">购物偏好</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>价格敏感型</td>
-                            <td>主要受价格感知影响</td>
-                        </tr>
-                        <tr>
-                            <td>物有所值型</td>
-                            <td>主要受价格和产品组合影响</td>
-                        </tr>
-                        <tr>
-                            <td>狂热型消费者（电子配件品类</td>
-                            <td>主要受产品组合影响</td>
-                        </tr>
-                        <tr>
-                            <td>急躁型消费者（美容保健品类）</td>
-                            <td>主要受产品组合影响</td>
-                        </tr>
-                        <tr>
-                            <td>追求时尚型消费者（电子配件品类）</td>
-                            <td>主要受便利性和产品组合影响</td>
-                        </tr>
-                        <tr>
-                            <td>注重健康型消费者（美容保健品类）</td>
-                            <td>主要受便利性和产品组合影响</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p>主要从渠道偏好的角度划分购物者细分市场，包括</p>
-                <ul class="unstyled">
-                    <li>只在网上购买</li>
-                    <li>只在实体店购买</li>
-                    <li>在两种渠道都购买</li>
+                <img src="./img/bmList.png" width="100%" />
+                <h3 id="js-negotiation-agreements">Negotiation Agreements</h3>
+                <ul>
+                    <li>
+                        <p class="lead">Suppliers negotiate with each of the two retailers on the following items:</p>
+                        <p class="padding-40 lead">a)  Discount rate for a Minimum Order Quantity</p>
+                        <p class="padding-40 lead">b)  Bonus Rate for a target volume</p>
+                        <p class="padding-40 lead">c)  Payment Terms (in terms of days) and Other compensation</p>
+                    </li>
+                    <li>
+                        <p class="lead">Negotiation is done at SKU level for each product category. When the negotiation round starts, the agreed-to contract terms from previous period are displayed. Thereafter, supplier or retailer can initiate proposals by changing the terms, which are highlighted in red (items proposed by supplier) and blue (items proposed by retailer). Once the contract terms are agreed for an SKU, either supplier or retailer or both can click on agree button. If both click on the agree button, the negotiation agreement for that SKU is frozen. Once all the SKU agreements are reached, each party clicks on “Validate Contract” button on the bottom of the screen. If both click it, the contract between both the parties is frozen.</p>
+                    </li>
                 </ul>
-                <div class="page-header">
-                    <h1 id="js-manufacturer">生产商决策</h1>
-                </div>                
-                <p>作为生产商小组，你必须完成以下决策：</p>
-                <ol>
-                    <li>产品组合管理</li>
-                    <li>生产计划和定价</li>
-                    <li>广告投资（按渠道和单品）</li>
-                    <li>品类决策</li>
-                    <li>技术</li>
-                </ol>
-                <p>生产商必须提前完成产品组合决策，以便零售商有足够的时间完成他们的决策，并及时下达采购订单。讲师将提醒大家何时确认产品组合决策。</p>
-                <p>你可以随时返回上一步修改产品组合决策，一旦确认组合决策后，你将无法再修改。 </p>
-                <div class="page-header">
-                    <h1 id="js-retailer-decision">零售商决策</h1>
-                </div>     
-                <p>如果你是零售商，必须完成以下决策：</p>
-                <ol>
-                    <li>广告决策</li>
-                    <li>市场决策</li>
-                    <li>自有品牌</li>
-                    <li>订单、定价及货架分配 （每个单品层面）</li>
-                </ol>
-                <div class="page-header">
-                     <h1 id="js-negotiations">谈判</h1>
-                </div>  
-                <p>整个模拟中，你需要和你的生意伙伴进行谈判。讲师会向你解释有关谈判的所有规则、顺序和时间。无论以何种形式谈判，你必须在系统中记录你的谈判结果。</p>
-                <div class="page-header">
-                    <h1 id="js-reports">报告</h1>
-                </div>  
-                <p>你将得到以下报告：</p>
-                <ul class="unstyled">
-                    <li>财务报表</li>
-                    <li>生产商盈利分析（按渠道）</li>
-                    <li>零售商盈利分析（按供应商）</li>
+                <img src="./img/supplierNegotiation.png" width="100%" />
+                <h3 id="js-production-volume-decisions">Production Volume Decisions</h3>
+                <ul>
+                    <li>
+                        <p class="lead">Suppliers decide the production volume for each SKU in their product categories based on the negotiation agreements with the Retailers. The production volumes from previous period are shown by default and the supplier can change it. All the changes are highlighted in red. If the decisions are not validated within the deadline, those from the previous period are submitted.</p>
+                    </li>
                 </ul>
-                <p>所有报告打开时都默认为全国市场，涵盖所有市场。通过选择“品类”、“品牌”或“单品”，选择市场，你可以挖掘所有需要的信息。如果想查看历史数据，你只需选择要查看的阶段和市场即可。</p>
-                <div class="page-header">
-                     <h1 id="js-market-studies">市场研究</h1>
-                </div>
-                <p>你将得到以下市场研究报告：</p>
-                <ul class="unstyled">
-                    <li>品牌知名度</li>
-                    <li>品牌市场份额（按销量计算）</li>
-                    <li>品牌市场份额（按销售额计算）</li>
-                    <li>平均净市场价</li>
-                    <li>品牌可见度份额</li>
-                    <li>市场销量（消费者实际购买数量）</li>
+                <img src="./img/productionVolume.png" width="100%" />
+                <h3 id="js-general-marketing-decisions">General Marketing Decisions</h3>
+                <li>
+                    <p class="lead">General Marketing Decision comprises of two main areas of spending:</p>
+                    <p class="padding-20 lead">a)  Advertising</p>
+                    <p class="padding-40 lead">I.  Online (At national level)</p>
+                    <p class="padding-40 lead">II. Offline – Urban & Rural</p>
+                    <p class="padding-20 lead">b)  Traditional Trade Support</p>
+                    <p class="padding-40 lead">I.  Rural</p>
+                    <p class="padding-40 lead">II. Urban</p>
+                </li>
+                <li>
+                    <p class="lead">All the decisions are made at SKU level for each product category.</p>
+                </li>
+                <li>
+                    <p class="lead">The values from previous period are shown by default and the supplier can change it. All the changes are highlighted in red. If the decisions are not validated within the deadline, those from the previous period are submitted.</p>
+                </li>
+                <img src="./img/generalMarketing.png" width="100%">
+                <h3 id="js-online-store-management-decisions">Online Store Management Decisions</h3>
+                <ul>
+                    <li>
+                        <p class="lead">In this decision, Suppliers can decide how to manage their online strategy. In specific, the can decide how much to spend for:</p>
+                        <p class="lead padding-20">a)  Visibility
+                        <p class="lead padding-20">b)  Order Volumes
+                        <p class="lead padding-20">c)  Online Prices
+                        <p class="lead padding-20">d)  And Promotions (in terms of days and depth)
+                    </li>
+                    <li>
+                        <p class="lead">While Visibility is decided at Brand Level, rests of the values are decided at SKU Level.</p>
+                    </li>
+                    <li>
+                        <p class="lead">The values from previous period are shown by default and the supplier can change it. All the changes are highlighted in red. If the decisions are not validated within the deadline, those from the previous period are submitted.</p>
+                    </li>
                 </ul>
-                <p>点击列标题，你可以对表内的数据栏进行排序，再次点击标题就会进行反向排序。你可以选择顶部的产品类别和（或）市场选择，从更广或更聚焦的角度分析数据。</p>
+                <img src="./img/supplierOnlineStore.png" width="100%" />
+
+                <h3 id="js-asset-investment">Asset Investments</h3>
+                <ul>
+                    <li>
+                        <p class="lead">These decisions are long-term investments, not taken from your limited operational budget. You borrow these investments from capital market at a cost. Keep in mind that your long-term investments increase your fixed assets and consequently costs of running business. In specific, the can decide how much to spend for:</p>
+                        <p class="lead padding-20">a)  Capacity</p>
+                        <p class="lead padding-20">b)  Technology</p>
+                        <p class="lead padding-20">c)  Flexibility</p>
+                        <p class="lead padding-20">d)  Design</p>
+                    </li>
+                    <li>
+                        <p class="lead">The asset investment decisions are made for each product category.</p>
+                    </li>
+                    <li>
+                        <p class="lead">When the cursor hover over these items, a pop-up showing the feasible range of values appears. The values from previous period are shown by default and the supplier can change it. All the changes are highlighted in red. If the decisions are not validated by the deadline, those from the previous period are submitted.</p>
+                    </li>
+                </ul>
+                <img src="./img/asset.png" width="100%" />
+                <h1 class="page-header" id="js-retailer-decisions">Retailer Decisions </h1>
+                <h3 id="js-retailer-negotiation-agreements">Negotiation Agreements</h3>
+                <ul>
+                    <li>
+                        <p class="lead">Retailers negotiate with each of the three suppliers on the following items:</p>
+                        <p class="lead padding-20">a)  Discount rate for a Minimum Order Quantity</p>
+                        <p class="lead padding-20">b)  Bonus Rate for a target volume</p>
+                        <p class="lead padding-20">c)  Payment Terms (in terms of days) and Other compensation</p>
+
+                    <li>
+                        <p class="lead">Negotiation is done at SKU level for each product category. When the negotiation round starts, the agreed-to contract terms from previous period are displayed. Thereafter, supplier or retailer can initiate proposals by changing the terms, which are highlighted in red (items proposed by supplier) and blue (items proposed by retailer). Once the contract terms are agreed for an SKU, either supplier or retailer or both can click on agree button. If both click on the agree button, the negotiation agreement for that SKU is frozen. Once all the SKU agreements are reached, each party clicks on “Validate Contract” button on the bottom of the screen. If both click it, the contract between both the parties is frozen.</p>
+                    </li>
+                </ul>
+                <img src="./img/retailerNegotiation.png" width="100%" />
+                <h3 id="js-marketing-decisions">Marketing Decisions</h3>
+                <ul>
+                    <li>
+                        <p class="lead">For Retailers, marketing decisions mainly comprises of advertising spending and In-store service level. For the online advertising, spending is mainly decided between price and convenience. For local advertising, spending is decided for rural and urban markets.</p>
+                        <p class="lead padding-20">a)  Online Advertising</p>
+                        <p class="lead padding-40">I.  Price Appeal</p>
+                        <p class="lead padding-40">II. Covenience</p>
+                        <p class="lead padding-20">b)  Local Advertising</p>
+                        <p class="lead padding-40">I.  Rural</p>
+                        <p class="lead padding-40">II. Urban</p>
+                    </li>
+                    <li>
+                        <p class="lead">In store service level mainly has impact on how your customers perceive your stores. The spending is decided for rural and urban markets.</p>
+                    </li>
+                    <li>
+                        <p class="lead">The values from previous period are shown by default and the retailer can change it. All the changes are highlighted in red. If the decisions are not validated within the deadline, those from the previous period are submitted. The range of values for In-Store levels is displayed when cursor hovers over the “In-Store Service Level” label.</p>
+                    </li>
+                </ul>
+                <img src="./img/retailerMarketing.png" width="100%" />
+                <h3 id="js-private-label-portfolio-decisions">Private Label Portfolio Decisions</h3>
+                <ul>
+                    <li>
+                        <p class="lead">Initially retailers start with one private label per category per market. At maximum, each retailer has three private labels per category per market. </p>
+                    </li>
+                    <li>
+                        <p class="lead">Private labels are produced by Supplier 4, which can deliver any product as long as the required volume does not exceed its production capacity and product composition is not beyond the acquired know-how of Supplier 4. (In general, Supplier 4 can’t deliver a product that is substantially more advanced than the existing ones).</p>
+                    </li>
+                    <li>
+                        <p class="lead">Brand names ending with "5" and "6" indicate private labels of Retailer1 and Retailer 2 respectively.</p>
+                    </li>
+                    <li>
+                        <p class="lead">You have to determine your product portfolio, i.e. brand names, SKU of each brand and product composition, including packaging format. There are three package options available: Economy, Standard, and Premium which reflect the quality of the package. </p>
+                    </li>
+                    <li>
+                        <p class="lead">You may make a decision to: </p>
+                        <p class="lead padding-20">➢Change composition of an existing SKU</p>
+                        <p class="lead padding-40">-To modify a variant’s specification, enter the desired spec value.However, the Pack-Format cannot be changed. The changes are highlighted in red.</p>
+                        <p class="lead padding-20">➢Start a new SKU of an existing brand</p>
+                        <p class="lead padding-40">-To add a new variant under an existing brand, click on the brand name in the table, and enter the variant name with specifications. The new variant is highlighted in red.</p>
+                        <p class="lead padding-20">➢Launch a new brand</p>
+                        <p class="lead padding-40">-To add a new brand/variant click on “Brand” button and enter the brand/variant name with specifications. The new brand/variant is highlighted in red.</p>
+                        <p class="lead padding-20">➢Discontinue a SKU or a brand altogether</p>
+                        <p class="lead padding-40">-To discontinue an existing SKU, click on the SKU name. </p>
+                    <li>
+                        <p class="lead">Please keep in mind that product composition affects both brand perception and product cost.</p>
+                    </li>
+                </ul>
+                <img src="./img/retailerProduct.png" width="100%" />
+                <h3 id="js-store-management-decisions">Store Management Decisions</h3>
+                <ul>
+                    <li>
+                        <p class="lead">Store Management decisions are mainly to spending Order Volumes, Retail Prices and Shelf-Space Allocation, along with decisions for promotions. </p>
+                    </li>
+                    <li>
+                        <p class="lead">The decisions are taken at SKU Level per market per category. The sum of total shelf space for each market & category should be 100%.</p>
+                    </li>
+                    <li>
+                        <p class="lead">The values from previous period are shown by default and the retailer can change it. All the changes are highlighted in red. If the decisions are not validated within the deadline, those from the previous period are submitted.</p>
+                    </li>
+                </ul>
+                <img src="./img/retailerStore.png" width="100%" />
+                <h1 class="page-header" id="js-operational-aspects">Operational Aspects</h1>
+                <h3 id="js-market-research-purchases">Market Research Purchases</h3>
+                <ul>
+                    <li>
+                        <p class="lead">Twelve market research studies are available for suppliers and retailers to make better informed choices. They are not free and come with a price. Following is the list:</p>
+                    </li>
+                    <img src="./img/marketResearchPurchases.png" width="100%" />
+                    <li>
+                        <p class="lead">Each of the report can be bought during a period. They will be available for study in the beginning of next period.</p>
+                    </li>
+                    <li>
+                        <p class="lead">If in a negotiation, a supplier agrees to pay for a retailer's MR, the "other compensation" will be used to transfer from supplier to retailer and register transaction as a "trade investment" with the supplier.</p>
+                    </li>
+                </ul>
+                <h3 id="js-operating-budget">Operating Budget</h3>
+                <ul>
+                    <li>
+                        <p class="lead">All the spending for suppliers and retailers will be financed from the operating budget.</p>
+                    </li>
+                    <li>
+                        <p class="lead">The exceptions are investments in assets, which are amortized and will be deducted by from capital budget.</p>
+                    </li>
+                    <li>
+                        <p class="lead">You can find your remaining operating budget using the budget calculator</p>
+                    </li>
+                </ul>
+                <h3 id="js-production-capacity">Production Capacity</h3>
+                <ul>
+                    <li>
+                        <p class="lead">Details of production capacity could be found in the capacity calculator imbedded in the production volume decision.</p>
+                    </li>
+                </ul>
+                <h3 id="js-time-management">Time Management</h3>
+                <ul>
+                    <li>
+                        <p class="lead">The time bar indicates how much time is left for each round before the deadline. There are three deadlines:</p>
+                    </li>
+                </ul>
+                <img src="./img/timeManagemeng.png" width="100%">
+
+                <p class="lead"><strong>Good luck!</strong> </p>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="bs-docs-sidebar hidden-print" affix='200' role="complementary" angular-bootstrap>
+            <div class="bs-docs-sidebar hidden-print" affix='10' role="complementary" angular-bootstrap>
                 <ul class="nav bs-docs-sidenav">
                     <li class="active">
-                        <a href="#/home#js-general-introduction">概述</a>
+                        <a href="#/home#js-what-is-eTales">What is eTales?</a>
                         <ul class="nav second-sidenav">
                             <li class="active">
-                                <a href="#/home#js-overview">简述</a>
+                                <a href="#/home#js-overview">Overview</a>
                             </li>
                             <li class="">
-                                <a href="#/home#js-markets">市场/地理区域</a>
+                                <a href="#/home#js-your-mission-and-roles">Your Mission & Roles</a>
                             </li>
                             <li class="">
-                                <a href="#/home#js-categories">品类</a>
-                            </li>
-                            <li class="">
-                                <a href="#/home#js-game-structure">游戏结构</a>
-                            </li>
-                            <li class="">
-                                <a href="#/home#js-consumers">消费者/购物者</a>
+                                <a href="#/home#js-methodology">Methodology</a>
                             </li>
                         </ul>
                     </li>
                     <li class="">
-                        <a href="#/home#js-manufacturer">生产商决策</a>
+                        <a href="#/home#js-business-scenario">Business Scenario</a>
+                        <ul class="nav second-sidenav">
+                            <li class="">
+                                <a href="#/home#js-market-situation">Market Situation</a>
+                            </li>
+                            <li class="">
+                                <a href="#/home#js-geography-markets">Geography/Markets</a>
+                            </li>
+                            <li class="">
+                                <a href="#/home#js-categories">   Categories</a>
+                            </li>
+                            <li class="">
+                                <a href="#/home#js-market-players">Market Players</a>
+                            </li>
+                            <li class="">
+                                <a href="#/home#js-consumers-as-shoppers">Consumers as Shoppers</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="">
+                        <a href="#/home#js-brief-overview">Brief Overview</a>
                     </li>
                     <li class="">
-                        <a href="#/home#js-retailer-decision">零售商决策</a>
+                        <a href="#/home#js-supplier-decisions">Supplier Decisions</a>
+                        <ul class="nav second-sidenav">
+                            <li class="">
+                                <a href="#/home#js-portfolio-decisions">Portfolio Decisions</a>
+                            </li>
+                            <li class="">
+                                <a href="#/home#js-pricing-decisions">Pricing Decisions</a>
+                            </li>
+                            <li class="">
+                                <a href="#/home#js-negotiation-agreements">Negotiation Agreements</a>
+                            </li>
+                            <li class="">
+                                <a href="#/home#js-production-volume-decisions">Production Volume Decisions</a>
+                            </li>
+                            <li class="">
+                                <a href="#/home#js-general-marketing-decisions">General Marketing Decisions</a>
+                            </li>
+                            <li class="">
+                                <a href="#/home#js-online-store-management-decisions">Online Store Management Decisions</a>
+                            </li>
+                            <li class="">
+                                <a href="#/home#js-asset-investment">Asset Investment/R&D Decisions</a>
+                            </li>
+                        </ul>
+
                     </li>
                     <li class="">
-                        <a href="#/home#js-negotiations">谈判</a>
+                        <a href="#/home#js-retailer-decisions">Retailer Decisions</a>
+                        <ul class="nav second-sidenav">
+                            <li class="">
+                                <a href="#/home#js-retailer-negotiation-agreements">Negotiation Agreements</a>
+                            </li>
+                            <li class="">
+                                <a href="#/home#js-marketing-decisions">Marketing Decisions</a>
+                            </li>
+                            <li class="">
+                                <a href="#/home#js-private-label-portfolio-decisions">Private Label Portfolio Decisions</a>
+                            </li>
+                            <li class="">
+                                <a href="#/home#js-store-management-decisions">Store Management Decisions</a>
+                            </li>
+                        </ul>
+                        
                     </li>
                     <li class="">
-                        <a href="#/home#js-reports">报告</a>
+                        <a href="#/home#js-operational-aspects">Operational Aspects</a>
+                        <ul class="nav second-sidenav">
+                            <li class="">
+                                <a href="#/home#js-market-research-purchases">Market Research Purchases</a>
+                            </li>
+                            <li class="">
+                                <a href="#/home#js-operating-budget">Operating Budget</a>
+                            </li>
+                            <li class="">
+                                <a href="#/home#js-production-capacity">Production Capacity</a>
+                            </li>
+                            <li class="">
+                                <a href="#/home#js-time-management">Time Management</a>
+                            </li>
+                        </ul>
                     </li>
-                    <li class="">
-                        <a href="#/home#js-market-studies">市场研究</a>
-                    </li>
+                    
                 </ul>
             </div>
         </div>
