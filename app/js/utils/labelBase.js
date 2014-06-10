@@ -77,7 +77,6 @@ var getLabelBase = function(){
 		{id:'Retail Market Share (Volume) Info',  ENG:'Retail Market Share (Volume) Info',  CHN:'Retail Market Share (Volume) Info',  RUS:''},
 		{id:'Volume Info',  ENG:'Volume Info',  CHN:'Volume介绍',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		{id:'UnitCost Info',  ENG:'UnitCost Info',  CHN:'生成成本介绍',  RUS:''},
 		{id:'Buy this Report',  ENG:'Buy this Report',  CHN:'购买此报告',  RUS:''},
 		
 
@@ -291,7 +290,6 @@ var getLabelBase = function(){
 
 		{id:'Channel',  ENG:'Channel',  CHN:'分销渠道',  RUS:''},
 		{id:'Assortment',  ENG:'Assortment',  CHN:'产品丰富性',  RUS:''},
-		{id:'Convenience',  ENG:'Convenience',  CHN:'便利性',  RUS:''},
 		{id:'Freaks',  ENG:'Freaks',  CHN:'狂热型',  RUS:''},
 		{id:'Fashion',  ENG:'Fashion',  CHN:'时尚型',  RUS:''},
 
@@ -368,10 +366,6 @@ var getLabelBase = function(){
 
 		{id:'Estimated Production Volume',  ENG:'Estimated Production Volume',  CHN:'预计产量',  RUS:''},
 		{id:'Estimated Production Volume Info',  ENG:'used to calculate estimated product cost with given product composition; on step 2 you will have to put final decision on order. ',  CHN:'预计产量主要用于计算生产成本，即根据当前的产品配方要求得出的预计生产成本，你可以在下一步最终确认产量。',  RUS:''},
-		{id:'Discontinue this product',  ENG:'Discontinue?',  CHN:'停止生产',  RUS:''},
-		{id:'Discontinue this product Info',  ENG:'take this decision with caution: all unsold stocks of this product will be automatically returned to your warehouse and scrapped at a cost to your business.',  CHN:'请注意:　所有期末未销售完的库存将退回到你的仓库进行销毁，成为你的成本。',  RUS:''},
-		{id:'DisContinue',  ENG:'Discontinue',  CHN:'停产',  RUS:''},
-		{id:'Continue',  ENG:'Continue',  CHN:'继续生产',  RUS:''},
 		{id:'Current Price BM',  ENG:'Current Price B&M',  CHN:'当前对实体零售店的报价',  RUS:''},
 		{id:'Current Price BM Info',  ENG:'list price for brick&mortar trade in current period; applicable for new launches only.',  CHN:'当前阶段对实体零售店的报价，只适用于新推出的产品。',  RUS:''},
 		{id:'Current Price Emall',  ENG:'Current Price Emall',  CHN:'当前网上商城的零售价',  RUS:''},
@@ -405,7 +399,6 @@ var getLabelBase = function(){
 		{id:'Acquired Smoothener Level',  ENG:'Acquired Smoothener Level',  CHN:'当前拥有最高光滑因子',  RUS:''},
 		{id:'Sales Volume',  ENG:'Sales Volume',  CHN:'销量',  RUS:''},
 		{id:'Unit Production Cost',  ENG:'Unit Production Cost',  CHN:'单位生产成本',  RUS:''},
-		{id:'Production Volume',  ENG:'Production Volume',  CHN:'产量',  RUS:''},
 		{id:'Initial Inventory',  ENG:'Initial Inventory',  CHN:'期初库存',  RUS:''},
 		{id:'ECONOMY',  ENG:'ECONOMY',  CHN:'经济包',  RUS:''},
 		{id:'STANDARD',  ENG:'STANDARD',  CHN:'标准包',  RUS:''},
@@ -434,7 +427,6 @@ var getLabelBase = function(){
 		{id:'Next Price Emall',  ENG:'Next Price Emall',  CHN:'下阶段网上商城的零售价',  RUS:''},
 		{id:'Next Price Emall Info',  ENG:'list and wholesale price for eMall in next period.',  CHN:'下阶段网上商城的零售价信息',  RUS:''},
 		{id:'Step 2 of 4',  ENG:'Step 2 of 4',  CHN:'步骤 2 / 4',  RUS:''},
-		{id:'Production Volume Info',  ENG:'volume you order from your factory; check your production capacity for the limits of your order.',  CHN:'你要求工厂生产的数量。注意查看你的产能信息，这是你生产订单的上限。',  RUS:''},
 		{id:'Back',  ENG:'Back',  CHN:'上一步',  RUS:''},
 
 		/*producer step 3*/
@@ -493,9 +485,6 @@ var getLabelBase = function(){
 		/*retailer step 2*/
 		{id:'Market',  ENG:'Market',  CHN:'市场',  RUS:''},
 		{id:'Market Info',  ENG:'After completing national set of decisions, it would be logical to work on the decisions specific for each of the markets. They will be of a strategic essence and influence your store chain positioning on the market. ',  CHN:'制订本地市场的决策，这将影响门店在当地市场的定位。',  RUS:''},
-		{id:'In-Store Service Level',  ENG:'In-Store Service Level',  CHN:'店内服务水平',  RUS:''},
-		{id:'In-Store Service',  ENG:'In-Store Service',  CHN:'店内服务水平',  RUS:''},
-		{id:'In-store Service Level Info',  ENG:'one of the following BASE, FAIR, MEDIUM, ENHANCED, PREMIUM; represents integrally expenditures of a retail chain on its service (labor costs, equipment and fixtures, lighting, etc.); influences convenience and assortment directly and price perception in reverse',  CHN:'提供“基础”、“一般”、“中等”、“好”和“优质”五种选择，直接影响购物者对你门店的便利性和产品组合感知，对价格感知起反作用。',  RUS:''},
 		{id:'Elecssories Selling surface',  ENG:'Elecssories Shelf space',  CHN:'电子配件品类的货架份额',  RUS:''},
 		{id:'Elecssories Selling surface Info',  ENG:'you may decide to increase store space allocated for one category and decrease accordingly another; total space allocated to both categories should be 100%; you must not kill any category, provisionally minimum store space must be 35%, therefore maximum store space per category could be 65%.',  CHN:'你可以灵活分配两个品类的货架份额比例，两个品类加起来等于100%。为了避免扼杀任一品类，分配给一个品类的货架份额至少为35%，即任一品类能分配的货架份额最高为65%。',  RUS:''},
 		{id:'HealthBeauty Selling surface',  ENG:'HealthBeauty Shelf space',  CHN:'美容健康品类的货架份额',  RUS:''},
@@ -541,12 +530,6 @@ var getLabelBase = function(){
 		{id:'Net Price at your store',  ENG:'Net Price at your store',  CHN:'门店的净零售价',  RUS:''},
 		{id:'Net Price',  ENG:'Net Price',  CHN:'门店的净零售价',  RUS:''},
 		{id:'weeks',  ENG:'weeks',  CHN:'周数',  RUS:''},
-		{id:'Order Volume',  ENG:'Order Volume',  CHN:'订货量',  RUS:''},
-		{id:'Order Volume Info',  ENG:'volume your order from manufacturer; you need to take into account brand potential, your current stocks and negotiated volumes/discounts to make a balanced decision.',  CHN:'你向生产商的下单量，建议综合考虑品牌的潜力、前期库存、你和生产商约定的数量／折扣协议等。',  RUS:''},
-		{id:'Shelf Space',  ENG:'Shelf Space',  CHN:'货架份额',  RUS:''},
-		{id:'Shelf Space Info',  ENG:'you may give a brand 5% of shelf space minimum. ',  CHN:'每个品牌最低分配的货架份额不能低于5%',  RUS:''},
-		{id:'Retail Price',  ENG:'Retail Price',  CHN:'零售价',  RUS:''},
-		{id:'Retail Price Info',  ENG:'your normal retail price which is the basis for promotional discounts. ',  CHN:'这是做促销时的正常基础价格。',  RUS:''},
 		{id:'Add Order',  ENG:'Add Order',  CHN:'增加订单',  RUS:''},
 		{id:'Order Product',  ENG:'Order Product',  CHN:'选择商品',  RUS:''},
 		{id:'Produced by',  ENG:'Produced by',  CHN:'生产厂家',  RUS:''},
@@ -777,10 +760,9 @@ var getLabelBase = function(){
 		{id:'Category Volumes by Market Info',  ENG:'This graph shows the historical values and the two-period ahead forecasts of category volumes by market. Moving the cursor on the forecasted areas will reveal the optimistic and pessimistic forecast values for each of the next two periods.',  CHN:'Category Volumes by Market介绍',  RUS:''},
 		{id:'Internet Penetration Rates Info',  ENG:'These graphs show the historical values and the two-period ahead forecasts of the internet penetration rates by market. Moving the cursor on the forecasted areas will reveal the optimistic and pessimistic forecast values for each of the next two periods.',  CHN:'Internet Penetration Rates介绍',  RUS:''},
 		{id:'Penetration Level',  ENG:'Penetration Level',  CHN:'渗透水平',  RUS:''},
-		{id:'Price Appeal',  ENG:'Price Appeal',  CHN:'价格的吸引力',  RUS:''},
 		{id:'Easy of Use',  ENG:'Easy of Use',  CHN:'易用性',  RUS:''},
 		{id:'Category Volumes by Market',  ENG:'Category Volumes by Market',  CHN:'市场类别',  RUS:''},
-		{id:'Product Portfolio Management Info',  ENG:'<p>This decision form allows supplier to manage their product portfolio. More specifically, supplier can decide to discontinue specific SKUs, add new brands/variants, add new variants under existing brands and modify the specifications of variants in supplier’s Elecssories portfolio. The product portfolio from the last period appears by default.</p>',  CHN:'',  RUS:''},
+		{id:'Product Portfolio Management Info',  ENG:'This decision form allows supplier to manage their product portfolio. More specifically, supplier can decide to discontinue specific SKUs, add new brands/variants, add new variants under existing brands and modify the specifications of variants in supplier’s Elecssories portfolio. The product portfolio from the last period appears by default.',  CHN:'',  RUS:''},
 		{id:'Product Portfolio Management',  ENG:'Product Portfolio Management',  CHN:'产品组合管理',  RUS:''},
 		
 		{id:'B&M List Prices Info',  ENG:'This decision form allows supplier to decide the B&M List prices for the SKUs in supplier’s Elecssories portfolio. The list prices from previous period are shown by default and the supplier can change it. All the changes are highlighted in red. If the decisions are not validated within the deadline, those from the previous period are entered with the old list prices adjusted for inflation.',  CHN:'介绍',  RUS:''},
@@ -800,6 +782,7 @@ var getLabelBase = function(){
 		{id:'Market Research Orders',  ENG:'Market Research Orders',  CHN:'市场研究订单',  RUS:''},
 		{id:'Market Research Orders Info',  ENG:'This decision form allows supplier to order market reports for the next period. By hovering the cursor on each study title, an a pop-up will appear which explaining the contents of that study',  CHN:'市场研究订单介绍',  RUS:''},
 		{id:'Online planned volume',  ENG:'Online planned volume',  CHN:'在线供货量',  RUS:''},		
+		{id:'Online Planned Volume',  ENG:'Online Planned Volume',  CHN:'在线计划产量',  RUS:''},
 		{id:'Marketing',  ENG:'Marketing',  CHN:'市场',  RUS:''},
 		{id:'Marketing Info',  ENG:'This decision form allows retailers to decide the spending for advertising and the In-Store service levels. The values from previous period are shown by default and the retailer can change it. All the changes are highlighted in red. If the decisions are not validated within the deadline, those from the previous period are submitted. The range of values for In-Store levels is displayed when cursor hovers over the “In-Store Service Level” label.',  CHN:'市场介绍',  RUS:''},
 		{id:'Private Label Portfolio Management',  ENG:'Private Label Portfolio Management',  CHN:'自有品牌组合管理',  RUS:''},
@@ -847,7 +830,6 @@ var getLabelBase = function(){
 		{id:'Feedback session Info',  ENG:'Choose a period to generate feedback slides for current seminar',  CHN:'阶段总结',  RUS:''},	
 		{id:'Generate feedback slides',  ENG:'Generate feedback slides',  CHN:'生成报告',  RUS:''},
 		{id:'weeks',  ENG:'weeks',  CHN:'周',  RUS:''},
-		{id:'Online Planned Volume',  ENG:'Online Planned Volume',  CHN:'在线计划产量',  RUS:''},
 		{id:'by Market',  ENG:'by Market',  CHN:'按市场分',  RUS:''},
 		{id:'by Consumer Segment',  ENG:'by Consumer Segment',  CHN:'通过消费者细分',  RUS:''},
 		{id:'by Shopper Segment',  ENG:'by Shopper Segment',  CHN:'通过购买者细分',  RUS:''},		
@@ -892,6 +874,10 @@ var getLabelBase = function(){
 		{id:'Design Level Info',  ENG:'an Elecsorries product attribute; an index from 1 to 20 defining design of a product; influences ease of use and quality perceptions; affects product cost. ',  CHN:'电子配件品类拥有的属性特征，用指数1-20表示，影响产品的易用性感知和质量感知，会影响生产成本。',  RUS:''},
 		{id:'Quality-of-Raw-Materials',  ENG:'Quality-of-Raw-Materials',  CHN:'原材料质量',  RUS:''},
 		{id:'Quality-of-Raw-Materials Info',  ENG:'an Elecsorries product attribute; an index from 1 to 22 defining quality of raw materials of a product; influences quality perception; affects product cost. ',  CHN:'电子配件品类拥有的属性特征，用指数1-22表示，影响产品的质量感知，会影响生产成本。',  RUS:''},
+		{id:'Discontinue this product',  ENG:'Discontinue?',  CHN:'停止生产',  RUS:''},
+		{id:'Discontinue this product Info',  ENG:'take this decision with caution: all unsold stocks of this product will be automatically returned to your warehouse and scrapped at a cost to your business.',  CHN:'请注意:　所有期末未销售完的库存将退回到你的仓库进行销毁，成为你的成本。',  RUS:''},
+		{id:'DisContinue',  ENG:'Discontinue',  CHN:'停产',  RUS:''},
+		{id:'Continue',  ENG:'Continue',  CHN:'继续生产',  RUS:''},
 		{id:'Active agent',  ENG:'Active agent',  CHN:'活力因子',  RUS:''},
 		{id:'Active agent Info',  ENG:'a Health/Beauties product attribute; an index from 1 to 20; influences performance perception; affects gentleness perception and product cost.',  CHN:'美容健康品类的属性特征，用指数1-20表示，影响产品效果和柔和度感知，也会影响生产成本。',  RUS:''},
 		{id:'Smoothener Level',  ENG:'Smoothener Level',  CHN:'光滑因子',  RUS:''},
@@ -899,6 +885,7 @@ var getLabelBase = function(){
 		{id:'B&M List Prices',  ENG:'B&M List Prices',  CHN:'价格列表',  RUS:''},
 		{id:'B&M List Prices Pop Info',  ENG:'list price for bricks&mortar trade in current period',  CHN:'B&M List Prices介绍',  RUS:''},
 		{id:'Unit Cost',  ENG:'Unit Cost',  CHN:'单位生产成本',  RUS:''},
+		{id:'UnitCost Info',  ENG:'UnitCost Info',  CHN:'生成成本介绍',  RUS:''},
 		/*supplier Product Portfolio Management end*/
 		/*supplier Negotiation start*/
 		{id:'Minimum Order Quantity',  ENG:'Minimum Order Quantity',  CHN:'最小订量',  RUS:''},		
@@ -914,7 +901,9 @@ var getLabelBase = function(){
 		{id:'Other Compensation',  ENG:'Other Compensation',  CHN:'其他支持',  RUS:''},
 		{id:'Other Compensation Info',  ENG:"is the miscellaneous compensation agreements between Supplier and Retailers. If in a negotiation, a supplier agrees to pay for a retailer's MR, the 'other compensation' will be used to transfer from supplier to retailer and register transaction as a 'trade investment' with the supplier",  CHN:'其他支持',  RUS:''},
 		{id:'Production Volumes',  ENG:'Production Volumes',  CHN:'产量',  RUS:''},
-		{id:'Production Volumes Info',  ENG:'is the number of million units of an SKU to be produced by a Supplier or a Private Label Retailer',  CHN:'产量',  RUS:''},
+		{id:'Production Volumes Info',  ENG:'Production Volumes Info',  CHN:'产量',  RUS:''},
+		{id:'Production Volume',  ENG:'Production Volume',  CHN:'产量',  RUS:''},
+		{id:'Production Volume Info',  ENG:'is the number of million units of an SKU to be produced by a Supplier or a Private Label Retailer',  CHN:'产量',  RUS:''},
 		/*supplier Negotiation end*/
 		/*supplier general marketing start*/
 		{id:'Advertising Online',  ENG:'Advertising Online',  CHN:'网络广告',  RUS:''},
@@ -933,14 +922,15 @@ var getLabelBase = function(){
 		/*supplier Online Store Management start*/
 		{id:'Visibility',  ENG:'Visibility',  CHN:'可见性',  RUS:''},
 		{id:'Visibility Info',  ENG:'budget you invest in online activities such as purchasing ad-words to make the brand more visible for online shoppers. It is decided at the brand level.',  CHN:'可见性',  RUS:''},
-		{id:'Order Volumes',  ENG:'Order Volumes',  CHN:'订单量',  RUS:''},
-		{id:'Order Volumes Info',  ENG:'is the number of million units of an SKU that a Supplier decides to cater for the eMall (online channel)',  CHN:'订单量',  RUS:''},
+		{id:'Online Planned Volumes',  ENG:'Online Planned Volumes',  CHN:'订单量',  RUS:''},
+		{id:'Online Planned Volumes Info',  ENG:'is the number of million units of an SKU that a Supplier decides to cater for the eMall (online channel)',  CHN:'订单量',  RUS:''},
+		
 		{id:'Prices',  ENG:'Prices',  CHN:'价格',  RUS:''},
 		{id:'Prices Info',  ENG:'is the online retail price of the SKU that a Supplier decides to cater for the eMall (online channel)',  CHN:'价格',  RUS:''},
 		{id:'Promotions Frequency',  ENG:'Promotions Frequency',  CHN:'促销频率',  RUS:''},
 		{id:'Promotions Frequency Info',  ENG:'is the number of days out of 26 weeks in each period when you plan to make your promotion campaign effective.',  CHN:'26周中促销的周数',  RUS:''},
 		{id:'Promotions Depth',  ENG:'Promotions Depth',  CHN:'促销频率',  RUS:''},
-		{id:'Promotions Depth Info',  ENG:'is discount percent off normal online retail price effective during promotions.',  CHN:'26周中促销的周数',  RUS:''},
+		{id:'Promotions Depth Info',  ENG:'is discount percent off normal online retail price effective during promotions.is discount percent off normal online retail price effective during promotions.',  CHN:'26周中促销的周数',  RUS:''},
 		/*supplier Online Store Management end*/
 		/*supplier Asset Investments start*/
 		{id:'Capacity',  ENG:'Capacity',  CHN:'能力',  RUS:''},
@@ -952,6 +942,30 @@ var getLabelBase = function(){
 		{id:'Flexibility Info',  ENG:'applies to both categories; helps you to automatically adjust your production to correspond to orders placed by retailers; affects your fixed assets.',  CHN:'灵活性',  RUS:''},
 		{id:'Design Info',  ENG:'Health/Beauties; you start with level 7 and can increase it to 20 by the session end; increases your fixed assets.',  CHN:'设计',  RUS:''},
 		/*supplier Asset Investments end*/
+		/*retailer marketing start*/
+		{id:'Price Appeal',  ENG:'Price Appeal',  CHN:'价格的吸引力',  RUS:''},
+		{id:'Price Appeal Info',  ENG:'budget you give online advertising agencies to promote Price Appeal of your store chain.',  CHN:'价格的吸引力',  RUS:''},
+		{id:'Convenience',  ENG:'Convenience',  CHN:'便利性',  RUS:''},
+		{id:'Convenience Info',  ENG:'budget you give online advertising agencies to promote convenience of your store chain.',  CHN:'便利性',  RUS:''},
+		{id:'Advertising Local Rural',  ENG:'Advertising Local Rural',  CHN:'农村广告',  RUS:''},
+		{id:'Advertising Local Urban',  ENG:'Advertising Local Urban',  CHN:'城市广告',  RUS:''},
+		{id:'Advertising Local Rural Info',  ENG:'budget you spend to advertise your store chain locally (outdoors Advertising, leaflets); promotes convenience of your stores.',  CHN:'农村广告',  RUS:''},
+		{id:'Advertising Local Urban Info',  ENG:'budget you spend to advertise your store chain locally (outdoors Advertising, leaflets); promotes convenience of your stores.',  CHN:'城市广告',  RUS:''},
+		{id:'In-Store Service Level',  ENG:'In-Store Service Level',  CHN:'店内服务水平',  RUS:''},
+		{id:'In-Store Service',  ENG:'In-Store Service',  CHN:'店内服务水平',  RUS:''},
+		{id:'In-Store Service Level Info',  ENG:'is a synthetic variable encompassing such aspects of store functioning like: opening hours, accessibility, number of open check-outs, friendliness and competence of the stuff, overall store layout, etc. The value ranges from 1 to 5, 1 being the lowest or basic and 5 being the highest or premium in-store service level',  CHN:'提供“基础”、“一般”、“中等”、“好”和“优质”五种选择，直接影响购物者对你门店的便利性和产品组合感知，对价格感知起反作用。',  RUS:''},
+		/*retailer marketingend*/
+		/*retailer Store Management start*/
+		{id:'Order Volume',  ENG:'Order Volume',  CHN:'订货量',  RUS:''},
+		{id:'Order Volume Info',  ENG:'volume your order from manufacturer; you need to take into account brand potential, your current stocks and negotiated volumes/discounts to make a balanced decision.',  CHN:'你向生产商的下单量，建议综合考虑品牌的潜力、前期库存、你和生产商约定的数量／折扣协议等。',  RUS:''},
+		{id:'Shelf Space',  ENG:'Shelf Space',  CHN:'货架份额',  RUS:''},
+		{id:'Shelf Space Info',  ENG:'you may give a brand 5% of shelf space minimum.',  CHN:'每个品牌最低分配的货架份额不能低于5%',  RUS:''},
+		{id:'Retail Price',  ENG:'Retail Price',  CHN:'零售价',  RUS:''},
+		{id:'Retail Price Info',  ENG:'your normal retail price which is the basis for promotional discounts.',  CHN:'这是做促销时的正常基础价格。',  RUS:''},
+		{id:'Retailer Promotions Depth Info',  ENG:'is the discount percent off normal retail price effective during promotions.',  CHN:'这是做促销时的正常基础价格。',  RUS:''},
+		{id:'Retailer Technology Level Info',  ENG:'an Elecsorries and Health/Beauty product attribute; an index from 1 to 20 defining quality level of a product; in Elecsorries influences quality and ease of use perceptions; in Health/Beauty allows successful merging of active agent with smoothener; affects production cost.',  CHN:'两个品类共有的属性特征，用指数1-20代表技术水平。在电子配件品类，技术水平影响质量和易用性感知，在美容健康品类，技术水平影响活力因子和光滑因子的融合程度。技术水平会影响生产成本。',  RUS:''},
+		/*retailer Store Management end*/
+
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
