@@ -38,7 +38,9 @@ var BG_feedbackSlidesSchema = mongoose.Schema({
     f_RetailersVolumeRotationIndex    : [retailerKPIInfoSchema],
     f_RetailersProfitabilityIndex     : [retailerKPIInfoSchema],
     f_RetailersStocksCover            : [retailerKPIInfoSchema],
-    f_RetailersShoppersShare          : [retailerKPIInfoSchema],
+
+//  modified by Hao, 2014 June 9th
+//    f_RetailersShoppersShare          : [retailerKPIInfoSchema],
     f_RetailersBMShoppersShare        : [retailerKPIInfoSchema],
     f_RetailersAllShoppersShare       : [retailerKPIInfoSchema],
 })

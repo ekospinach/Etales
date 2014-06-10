@@ -17,7 +17,7 @@
 
 		<link rel="stylesheet" type="text/css" media="all" href="css/app.css" />
 		<link rel="stylesheet" type="text/css" media="all" href="css/docs.css" />
-
+		<link rel="stylesheet" type="text/css" media="all" href="css/spinner.css" />
 	</head>
 	<body class="{{loginCss}}" ng-controller="NavbarCtrl">
 		<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" id="pageheader" role="banner" style="display:none">
@@ -29,8 +29,8 @@
 				</div>								
 				<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
 					<ul class="nav navbar-nav">
-						<li ng-show="false" class="active" access-level='{{accessLevels.public}}' active-nav>
-							<a href="/#/home">{{Label.getContent('Participant manual')}}</a>
+						<li class="active" access-level='{{accessLevels.playerView}}' active-nav>
+							<a href="/#/home">{{Label.getContent('Manual')}}</a>
 						</li>
 
 						<li class="dropdown" access-level='{{accessLevels.playerView}}' acyive-nva>
@@ -153,10 +153,12 @@
 	    		to experience this site.
 	    	</p>
 	    <![endif]-->
-	    <div class="watpl-container" id="pageloader">
+		    
+	    
+	    <div class="watpl-container" id="pageloader">	    	
 	    	<div class="container-fluid">
-	    		<h3 id="loading-status" class="loading-status">Loading</h3>
-	    		<p id="loading-module-name" class="loading-module-name"></p>
+<!-- 		    	<h3 id="loading-status" class="loading-status">Loading</h3>	 -->    	<div class='loader'></div>
+	 			<p id="loading-module-name" class="loading-module-name"></p>
 	    	</div>
 	    </div>
 

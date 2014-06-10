@@ -184,44 +184,44 @@ define(['app','socketIO','routingConfig'], function(app) {
 				}
 		    }
 
-		  	if($rootScope.user.role==8){
-		  		setReportShown('','Full');
-		  		showAwarenessElecssories();
-			}else if($rootScope.user.role==4){
-				//retailer				
-				if(PeriodInfo.getCurrentPeriod()==1){
-					setReportShown('','Full');
-		  			showAwarenessElecssories();
-				}else{
+		    var userRoles = routingConfig.userRoles;
+		    var initializePage = function(){
+		    	$scope.isPageLoading = true;
+		  		if($rootScope.user.role==userRoles.facilitator){
+			  		setReportShown('','Full');
+			  		showAwarenessElecssories();
+			  		$scope.isPageLoading = false;
+				}else if($rootScope.user.role==userRoles.retailer){
 					var url='/getPlayerReportOrder/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/R/'+PlayerInfo.getPlayer();
 					$http({
 						method:'GET',
 						url:url
 					}).then(function(data){
 						setReportShown(data.data,'R');
+			  			$scope.isPageLoading = false;
 					},function(){
 						console.log('fail');
+				  		$scope.isPageLoading = false;						
 					})
-				}
-			}else if($rootScope.user.role==2){
-				//producer
-				if(PeriodInfo.getCurrentPeriod()==1){
-					setReportShown('','Full');
-		  			showAwarenessElecssories();
-				}else{
+				}else if($rootScope.user.role==userRoles.producer){
 					var url='/getPlayerReportOrder/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+PlayerInfo.getPlayer();
 					$http({
 						method:'GET',
 						url:url
-					}).then(function(data){
+					}).then(function(data){						
 						setReportShown(data.data,'P');
+			  			$scope.isPageLoading = false;						
 					},function(){
 						console.log('fail');
+				  		$scope.isPageLoading = false;
 					})
-				}
+				}		    	
+		    }
 
-			}
-			$scope.setReportShown=setReportShown;
+		    initializePage();
+		    $scope.setReportShown=setReportShown;
+
+			
 
 	}]);
 

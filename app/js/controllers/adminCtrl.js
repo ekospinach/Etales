@@ -11,6 +11,27 @@ define(['app','socketIO'], function(app) {
 				$scope.seminars=data;
 			});
 		}
+		var showbubleMsg = function(content, status){
+	 		$scope.bubleMsg = ' ' + content;
+	 		switch(status){
+	 			case 1: 
+	 				$scope.bubleClassName = 'alert alert-danger'; 
+	 				$scope.bubleTitle = 'Error ';
+	 				break;
+	 			case 2: 
+	 				$scope.bubleClassName = 'alert alert-success'; 
+	 				$scope.bubleTitle = 'Success ';
+	 				break;
+	 			case 3:
+	 				$scope.bubleClassName = 'alert alert-block'; 
+	 				$scope.bubleTitle = 'Warning ';
+	 				break;	 			
+	 			default:
+	 			 $scope.bubleClassName = 'alert'; 
+	 		}
+	 		console.log('infoBuble.show');
+	 		$scope.infoBuble = true;
+	 	};
 
 		initializePage();
 
@@ -71,6 +92,7 @@ define(['app','socketIO'], function(app) {
 			}
 			$scope.closeSeminarModal=closeSeminarModal;
 			$scope.showbubleMsg=showbubleMsg;
+
 			$scope.addSeminar=function(){
 				var data={
 					'seminarCode':seminarCode.value,
@@ -86,28 +108,6 @@ define(['app','socketIO'], function(app) {
 					$scope.newSeminarModal=false;
 				});
 			}
-			var showbubleMsg = function(content, status){
-		 		$scope.bubleMsg = ' ' + content;
-		 		switch(status){
-		 			case 1: 
-		 				$scope.bubleClassName = 'alert alert-danger'; 
-		 				$scope.bubleTitle = 'Error ';
-		 				break;
-		 			case 2: 
-		 				$scope.bubleClassName = 'alert alert-success'; 
-		 				$scope.bubleTitle = 'Success ';
-		 				break;
-		 			case 3:
-		 				$scope.bubleClassName = 'alert alert-block'; 
-		 				$scope.bubleTitle = 'Warning ';
-		 				break;	 			
-		 			default:
-		 			 $scope.bubleClassName = 'alert'; 
-		 		}
-		 		console.log('infoBuble.show');
-		 		$scope.infoBuble = true;
-		 	};
-
 		}
 
 		//$scope.openNewSeminarModal=function(seminar){ $scope.newSeminarModal=true; }

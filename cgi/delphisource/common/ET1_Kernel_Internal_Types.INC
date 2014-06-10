@@ -25,7 +25,9 @@ TVariantInternal =
     v_ContractHonoured                         : array[TMarketsTotal, TBMRetailersTotal] of boolean;
     v_CurrentPriceBM                           : single;
     v_CurrentProductionCost                    : single;   { at original producer, including Supplier 4 for PL }
+    v_CurrentAcquisitionCost                   : array[TMarkets, TBMRetailers] of single;
     v_Delisted                                 : array[TMarkets, TBMRetailers] of boolean;
+    v_Demand                                   : array[TMarkets, TSegmentsTotal, TShoppersKind, TAllStores, TAllStores] of single;
     v_DivisionCostOfGoodsSold                  : array[TMarketsTotal, TProducerDivisions] of single;
     v_DivisionSalesVolume                      : array[TMarketsTotal, TProducerDivisions] of single;
     v_DivisionTotalTradeSupport                : array[TMarketsTotal, TProducerDivisions] of single;
@@ -90,6 +92,7 @@ TVariantInternal =
     v_Ret_QuantityDiscountsCurrentBenefits     : array[TMarketsTotal, TBMRetailersTotal] of single;  
     v_Ret_QuantityDiscountsFutureBenefits      : array[TMarketsTotal, TBMRetailersTotal] of single;  
     v_Ret_SalesVolume                          : array[TMarketsTotal, TBMRetailers] of single;
+    v_Ret_SalesValue                           : array[TMarketsTotal, TBMRetailers] of single;
     v_Ret_StartingInventory                    : array[TMarketsTotal, TBMRetailers] of TVariantInventoriesDetails;
     v_Ret_StartingStockCover                   : array[TMarketsTotal, TBMRetailers] of single;
     v_Ret_Taxes                                : array[TMarketsTotal, TBMRetailers] of single;
@@ -101,8 +104,10 @@ TVariantInternal =
     v_Sup_AcquisitionCost                      : single;  { across current production and inventory }
     v_Sup_AfterReturnsInventory                : array[TProducerDivisions] of TVariantInventoriesDetails;
     v_Sup_AfterShipmentsInventory              : array[TProducerDivisions] of TVariantInventoriesDetails;
+    v_Sup_AfterSalesInventory                  : array[TProducerDivisions] of TVariantInventoriesDetails;
     v_Sup_Amortisation                         : array[TMarketsTotal, TProducerDivisions] of single;
     v_Sup_AveragePostSalesCost                 : array[TProducerDivisions] of single;  
+    v_Sup_BeforeShipmentsInventory             : array[TProducerDivisions] of TVariantInventoriesDetails;
     v_Sup_ClosingInventory                     : array[TProducerDivisions] of TVariantInventoriesDetails;
     v_Sup_ClosingInventoryValue                : array[TProducerDivisions] of single;
     v_Sup_ClosingStockCover                    : array[TProducerDivisions] of single;
@@ -153,6 +158,7 @@ TVariantInternal =
     v_ValueMarketShare                         : array[TMarketsTotal, TSegmentsTotal, TShoppersKind, TAllStoresTotal] of single;
     v_ValueMarketShareChange                   : array[TMarketsTotal, TSegmentsTotal, TShoppersKind, TAllStoresTotal] of single;
     v_ValueMarketShareRanking                  : array[TMarketsTotal, TSegmentsTotal, TShoppersKind, TAllStoresTotal] of integer;
+    v_ValueMarketSales                         : array[TMarketsTotal, TSegmentsTotal, TShoppersKind, TAllStoresTotal] of single;
     v_ValueNetMarketSales                      : array[TMarketsTotal, TSegmentsTotal, TShoppersKind, TAllStoresTotal] of single;
     v_ValueNetMarketSalesChange                : array[TMarketsTotal, TSegmentsTotal, TShoppersKind, TAllStoresTotal] of single;
     v_VisibilityShare                          : array[TMarketsTotal, TAllStoresTotal] of single;
@@ -162,6 +168,7 @@ TVariantInternal =
     v_VolumeMarketShare                        : array[TMarketsTotal, TSegmentsTotal, TShoppersKind, TAllStoresTotal] of single;
     v_VolumeMarketShareChange                  : array[TMarketsTotal, TSegmentsTotal, TShoppersKind, TAllStoresTotal] of single;
     v_VolumeMarketShareRanking                 : array[TMarketsTotal, TSegmentsTotal, TShoppersKind, TAllStoresTotal] of integer;
+    v_WholesalesVolume                         : array[TMarketsTotal, TBMRetailers] of single;
   end;
 
 TVariantsInternal = array[TCategories, TVariants] of TVariantInternal;
@@ -325,6 +332,7 @@ TBrandInternal =
     b_VolumeDiscounts                          : array[TMarketsTotal, TBMRetailersTotal] of TDiscountsDetails;
     b_VolumeMarketSales                        : array[TMarketsTotal, TSegmentsTotal, TShoppersKind, TAllStoresTotal] of single;
     b_VolumeMarketShare                        : array[TMarketsTotal, TSegmentsTotal, TShoppersKind, TAllStoresTotal] of single;
+    b_WholesalesVolume                         : array[TMarketsTotal, TBMRetailers] of single;
   end;
 
 TBrandsInternal = array[TCategories, TBrands] of TBrandInternal;    
@@ -478,6 +486,7 @@ TProducerInternal =
     p_TraditionalTradeSupport                  : array[TMarketsTotal, TCategoriesTotal] of single;
     p_VolumeDiscountsCosts                     : array[TMarketsTotal, TCategoriesTotal, TBMRetailersTotal] of single;
     p_VolumeOrdered                            : array[TMarketsTotal, TCategoriesTotal, TAccountsTotal] of single;
+    p_WholesalesVolume                         : array[TMarketsTotal, TBMRetailers] of single;
     p_WholesaleValueShare                      : array[TMarketsTotal, TCategoriesTotal, TBMRetailersTotal] of single;
     p_WholesaleVolumeShare                     : array[TMarketsTotal, TCategoriesTotal, TBMRetailersTotal] of single;
   end;
