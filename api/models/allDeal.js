@@ -457,7 +457,7 @@ function fillNegotiationItemByContractDetail(categoryDeal, negotiationItem, prod
                         } else {                          
                           console.log('          - NO related verified contractDetails, copy from last period input ...'); 
 
-                          //TODO: If they cannot reach any agreement, need to copy agreement last period input automatically. And put previous input into current position.
+                          //If they cannot reach any agreement, use 0 for all the contract details.
                           switch(negotiationItem){
                             case 'nc_MinimumOrder'           : categoryDeal.brandsDetails[brandCount].variantDetails[varCount].marketsDetails[3] = 0; break; 
                             case 'nc_SalesTargetVolume'      : categoryDeal.brandsDetails[brandCount].variantDetails[varCount].marketsDetails[3] = 0;  break;

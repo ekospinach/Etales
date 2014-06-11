@@ -51,7 +51,21 @@ Business Simulation Game
 ###### Market reports
 + Retailer Perception 横纵坐标的label丢失
 + Brand Perception 横纵坐标的label字体过小
++ Supplier/Retailer按照上阶段购买report决策显示当前阶段的报告，1阶段（游戏开始时）时默认显示全部报告。facilitator默认显示全部报告（全根据seminar里的数据来，只是初始化的时候我们默认把0阶段的report购买数据全设定成true）。
++ Retailer/Brand Perception 横纵坐标的label字体过小，再放大2号
++ Market Shares by Consumer Segment- Elecssories - Rural 菜单label和显示内容不符
++ Market Shares by Consumer Segment- HealthBeauties - Urban 菜单label和显示内容不符
++ Market Shares by Shopper Segment- Elecssories - Rural 菜单label和显示内容不符
++ Market Shares by Shopper Segment- HealthBeauties - Urban 菜单label和显示内容不符
++ Sales by Consumer Segment/Shopper Segment，有可能有上述相同问题，需要double-check code
 
+
+###### System Overrall 
++ 部署服务器时SocketIO不工作
++ bug in the negotiation module, cannot generate contract details automatically
++ SeminarInfo 中producer/Retailer数组PeriodInfo数量不足
++ Admin page, New seminar is not working 
++ Negotiation :  If they cannot reach any agreement, need to copy agreement last period automatically.
 
 ## Directory Layout
 

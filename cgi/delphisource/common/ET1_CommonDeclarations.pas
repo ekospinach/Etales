@@ -21,7 +21,7 @@ uses
   Function BIndx( anOwner : TActors; aBrand : TProBrands ) : TBrands;
   Function VIndx( anOwner : TActors; aBrand : TProBrands; anItem : TOneBrandVariants ) : TVariants;
   Function VQuickIndx( aBrand : TBrands; anItem : TOneBrandVariants ) : TVariants;
-  Function SupplierID( aBID : TBrandID ) : TAllProducers;
+  Function SupplierID( aBID : TBrandID ) : TFactoriesTotal;
   Function MakeStocksOlder( StockOnEntry : TVariantInventoriesDetails ) : TVariantInventoriesDetails;
   Function UpdateStocksSummary( StockOnEntry : TVariantInventoriesDetails ) : TVariantInventoriesDetails;
   Function MoveStocks( var SourceStock      : TVariantInventoriesDetails;
@@ -30,6 +30,7 @@ uses
                            Price            : single;
                            MovedVolume      : single ) : single;
   Function ReduceStocks( StockOnEntry : TVariantInventoriesDetails; VolumeToSubstract : single ) : TVariantInventoriesDetails;
+  Function Acc2Div( anAccount : TAccountsTotal ) : TProducerDivisions;
 
 
 implementation {--------------------------------------------------------------------------------------------------------------}
@@ -86,13 +87,13 @@ implementation {----------------------------------------------------------------
 
   end; { VQuickIndx ==========================================================================================================}
 
-  Function SupplierID( aBID : TBrandID ) : TAllProducers;
+  Function SupplierID( aBID : TBrandID ) : TFactoriesTotal;
   var
     Temp : byte;
 
   begin
     Temp := aBid div IDM;
-    if ( Temp > ProsMax ) then Temp := ProsMaxPlus;
+    if ( Temp > ProsMaxPlus ) then Temp := FactoriesMax;
     Result := Temp;
 
   end; { SupplierID =========================================================================================================}
@@ -358,6 +359,14 @@ implementation {----------------------------------------------------------------
 
   end; { ReduceStocks =======================================================================================================}
 
+  Function Acc2Div( anAccount : TAccountsTotal ) : TProducerDivisions;
+  begin
+    case anAccount of
+      1..BMRetsMax : Result := TRADITIONAL;
+      AccountsMax  : Result := INTERNET;
+              else   Result := CORPORATE;
+    end; { case }
 
+  end; { Account2Division ===================================================================================================}
 
 end.

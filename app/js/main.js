@@ -102,6 +102,7 @@
 	        	pageheader=document.getElementById('pageheader'),
 	        	pagefooter=document.getElementById('pagefooter'),
 	        	pageloader=document.getElementById('pageloader');
+	        	
 	        pageheader.style.display="none";
 	        pagefooter.style.display="none";
 	        if (loadingStatusEl && loadingModuleNameEl) {  	

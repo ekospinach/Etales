@@ -56,19 +56,19 @@ var
         jo.O['value'] := SA([]);
         jo.A['value'].D[0]:= binaryReprot.scrkpi_ChannelSalesValueShare[TRADITIONAL];
         jo.A['value'].D[1]:= binaryReprot.scrkpi_ChannelSalesValueShare[INTERNET];
-        jo.A['value'].D[2]:= binaryReprot.scrkpi_ChannelSalesValueShare[TOTAL];
+        jo.A['value'].D[2]:= binaryReprot.scrkpi_ChannelSalesValueShare[CORPORATE];
       end;
       scrkpi_ChannelSalesVolumeShare  : begin
         jo.O['value'] := SA([]);
         jo.A['value'].D[0]:= binaryReprot.scrkpi_ChannelSalesVolumeShare[TRADITIONAL];
         jo.A['value'].D[1]:= binaryReprot.scrkpi_ChannelSalesVolumeShare[INTERNET];
-        jo.A['value'].D[2]:= binaryReprot.scrkpi_ChannelSalesVolumeShare[TOTAL];        
+        jo.A['value'].D[2]:= binaryReprot.scrkpi_ChannelSalesVolumeShare[CORPORATE];
       end;
       scrkpi_ShoppersShare            : begin
         jo.O['value'] := SA([]);
         jo.A['value'].D[0]:= binaryReprot.scrkpi_ShoppersShare[TRADITIONAL];
         jo.A['value'].D[1]:= binaryReprot.scrkpi_ShoppersShare[INTERNET];
-        jo.A['value'].D[2]:= binaryReprot.scrkpi_ShoppersShare[TOTAL];        
+        jo.A['value'].D[2]:= binaryReprot.scrkpi_ShoppersShare[CORPORATE];
       end;
       else
         writeln('default');

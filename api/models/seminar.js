@@ -357,29 +357,32 @@ exports.submitFinalDecision=function(io){
 	}
 }
 
-exports.setCurrentPeriod = function(req, res, next){
-		var queryCondition={
-			seminar:req.body.seminar,
-			period:req.body.period
-		}
-		console.log('setCurrentPeriod:' + queryCondition.seminar + '/' + queryCondition.period);
-		seminar.findOne({seminarCode:queryCondition.seminar},function(err,doc){
-			if(err) {next(new Error(err))};
-			if(doc){
-				console.log('find seminar:' + doc)
-				doc.currentPeriod = queryCondition.period;
-				doc.save(function(err){
-					if(!err){
-						console.log('update seminar:' + doc)						
-						res.send(200,'success');
-					}else{
-						res.send(400,'fail');
-					}
-				})
-			}else{
-				res.send(404,'there is no such seminar...');
+exports.setCurrentPeriod = function(io){
+	return function(req, res, next){
+			var queryCondition={
+				seminar:req.body.seminar,
+				period:req.body.period
 			}
-		})
+			//console.log('setCurrentPeriod:' + queryCondition.seminar + '/' + queryCondition.period);
+			seminar.findOne({seminarCode:queryCondition.seminar},function(err,doc){
+				if(err) {next(new Error(err))};
+				if(doc){
+//					console.log('find seminar:' + doc)
+					doc.currentPeriod = queryCondition.period;
+					doc.save(function(err){
+						if(!err){
+							io.sockets.emit('socketIO:seminarPeriodChanged', {period : queryCondition.period, seminar : queryCondition.seminar, span : doc.simulationSpan});
+			//				console.log('update seminar:' + doc)						
+							res.send(200,'success');
+						}else{
+							res.send(400,'fail');
+						}
+					})
+				}else{
+					res.send(404,'there is no such seminar...');
+				}
+			})		
+	}
 }
 
 exports.deleteSeminar = function(req, res, next){
@@ -398,8 +401,6 @@ exports.deleteSeminar = function(req, res, next){
 }
 
 exports.addSeminar=function(req,res,next){
-	//TODO: add Seminar need to be more "automatic", period information should start from 0, end with Max period(simulationSpan)
-
 	var Newseminar = new seminar({
 		seminarCode : req.body.seminarCode,
 		seminarDescription : req.body.seminarDescription, 
@@ -2371,53 +2372,55 @@ exports.addSeminar=function(req,res,next){
 	});
 }
 
-exports.updateSeminar=function(req,res,next){
-	var queryCondition={
-		seminarCode:req.body.seminarCode,
-		currentPeriod:req.body.currentPeriod,
-		behaviour:req.body.behaviour,
-		/*
-		password:edit password(need location ,additionalIdx,value)
-		*/
-		location:req.body.location,
-		additionalIdx:req.body.additionalIdx,
-		value:req.body.value
-	};
-	seminar.findOne({seminarCode:queryCondition.seminarCode},function(err,doc){
-		if(err){
-			next(new Error(err));
-		}
-		if(!doc){
-			console.log("cannot find matched doc....");
-			res.send(404,'cannot find matched doc....');
-		}else{
-			var isUpdate=true;
-			switch(queryCondition.behaviour){
-				case 'updatePassword':
-					doc[queryCondition.location][queryCondition.additionalIdx].password=queryCondition.value;
-					break;
-				case 'updateCurrentPeriod':
-					doc.currentPeriod = queryCondition.value;
-					break;
-				// case 'updateActive':
-				// 	doc.is
-			}
-			if(isUpdate){
-				doc.markModified('facilitator');
-				doc.markModified('retailers');
-				doc.markModified('producers');
-				console.log(doc.producers[0].password);
-				doc.save(function(err,doc,numberAffected){
-					if(err){
-						next(new Error(err));
-					}
-					console.log('save updated, number affected:'+numberAffected+'doc:'+doc);
-                    res.send(200, 'mission complete!');
-				});
-			}
+exports.updateSeminar=function(io){
 
-		}
-	});
+	return function(req, res, next){
+		var queryCondition={
+			seminarCode:req.body.seminarCode,
+			currentPeriod:req.body.currentPeriod,
+			behaviour:req.body.behaviour,
+			/*
+			password:edit password(need location ,additionalIdx,value)
+			*/
+			location:req.body.location,
+			additionalIdx:req.body.additionalIdx,
+			value:req.body.value
+		};
+		seminar.findOne({seminarCode:queryCondition.seminarCode},function(err,doc){
+			if(err){
+				next(new Error(err));
+			}
+			if(!doc){
+				res.send(404,'cannot find matched doc....');
+			}else{
+				var isUpdate=true;
+				switch(queryCondition.behaviour){
+					case 'updatePassword':
+						doc[queryCondition.location][queryCondition.additionalIdx].password=queryCondition.value;
+						break;
+					case 'updateCurrentPeriod':
+						doc.currentPeriod = queryCondition.value;
+						break;
+					// case 'updateActive':
+					// 	doc.is
+				}
+				if(isUpdate){
+					doc.markModified('facilitator');
+					doc.markModified('retailers');
+					doc.markModified('producers');
+					doc.save(function(err,doc,numberAffected){
+						if(err){
+							next(new Error(err));
+						}
+						io.sockets.emit('socketIO:seminarPeriodChanged', {period : doc.currentPeriod, seminar : doc.seminarCode, span : doc.simulationSpan});
+	                    res.send(200, 'mission complete!');
+					});
+				}
+
+			}
+		});
+		
+	}
 }
 
 exports.submitOrder=function(io){

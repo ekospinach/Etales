@@ -38,6 +38,10 @@ define(['app'], function(app) {
 			notify('Supplier ' + data.producerID  + ' just committed portfolio decision for period ' + data.period + '.');
 		});
 
+		$scope.$on('SeminarPeriodChanged', function(event, data) {  
+			notify('Period has been changed to ' + data.period + ' / ' + data.span);
+		});		
+
 		//Register socketIO listeners in NavCtrl which will only be activated once in application
 		ProducerDecisionBase.startListenChangeFromServer(); 
 		RetailerDecisionBase.startListenChangeFromServer();		
