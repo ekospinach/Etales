@@ -444,7 +444,7 @@ body {
 }
 .bs-sidebar.affix {
     position: fixed;
-    top: 80px;
+    top: 80;
 }
 .bs-sidebar.affix-bottom {
     position: absolute;
