@@ -23,31 +23,31 @@ define(['directives', 'services'], function(directives){
                         if(data.data[0].absoluteValue[i].parentCategoryID==category&&data.data[0].absoluteValue[i].marketID==market){
                             var varName=data.data[0].absoluteValue[i].variantName;
                             var brandName=data.data[0].absoluteValue[i].parentBrandName;
-                            var priceValueShare=data.data[0].absoluteValue[i].segmentInfo[0].shopperInfo[3].value;
-                            var moneyValueShare=data.data[0].absoluteValue[i].segmentInfo[1].shopperInfo[3].value;
-                            var fashionValueShare=data.data[0].absoluteValue[i].segmentInfo[2].shopperInfo[3].value;
-                            var freaksValueShare=data.data[0].absoluteValue[i].segmentInfo[3].shopperInfo[3].value;
+                            var priceValueShare=(data.data[0].absoluteValue[i].segmentInfo[0].shopperInfo[3].value*100).toFixed(2);
+                            var moneyValueShare=(data.data[0].absoluteValue[i].segmentInfo[1].shopperInfo[3].value*100).toFixed(2);
+                            var fashionValueShare=(data.data[0].absoluteValue[i].segmentInfo[2].shopperInfo[3].value*100).toFixed(2);
+                            var freaksValueShare=(data.data[0].absoluteValue[i].segmentInfo[3].shopperInfo[3].value*100).toFixed(2);
                             var valueChanges=_.find(data.data[0].valueChange,function(obj){
                                 return(obj.variantName==varName&&obj.parentBrandName==brandName&&obj.marketID==market);
                             });
-                            var priceValueChange=valueChanges.segmentInfo[0].shopperInfo[3].value;
-                            var moneyValueChange=valueChanges.segmentInfo[1].shopperInfo[3].value;
-                            var fashionValueChange=valueChanges.segmentInfo[2].shopperInfo[3].value;
-                            var freaksValueChange=valueChanges.segmentInfo[3].shopperInfo[3].value;
+                            var priceValueChange=(valueChanges.segmentInfo[0].shopperInfo[3].value*100).toFixed(2);
+                            var moneyValueChange=(valueChanges.segmentInfo[1].shopperInfo[3].value*100).toFixed(2);
+                            var fashionValueChange=(valueChanges.segmentInfo[2].shopperInfo[3].value*100).toFixed(2);
+                            var freaksValueChange=(valueChanges.segmentInfo[3].shopperInfo[3].value*100).toFixed(2);
                             var Volumes=_.find(data.data[0].absoluteVolume,function(obj){
                                 return(obj.variantName==varName&&obj.parentBrandName==brandName&&obj.marketID==market);
                             });
                             var volumeChanges=_.find(data.data[0].volumeChange,function(obj){
                                 return(obj.variantName==varName&&obj.parentBrandName==brandName&&obj.marketID==market);
                             });
-                            priceVolumeShare=Volumes.segmentInfo[0].shopperInfo[3].value;
-                            moneyVolumeShare=Volumes.segmentInfo[1].shopperInfo[3].value;
-                            fashionVolumeShare=Volumes.segmentInfo[2].shopperInfo[3].value;
-                            freaksVolumeShare=Volumes.segmentInfo[3].shopperInfo[3].value;
-                            priceVolumeChange=volumeChanges.segmentInfo[0].shopperInfo[3].value;
-                            moneyVolumeChange=volumeChanges.segmentInfo[1].shopperInfo[3].value;
-                            fashionVolumeChange=volumeChanges.segmentInfo[2].shopperInfo[3].value;
-                            freaksVolumeChange=volumeChanges.segmentInfo[3].shopperInfo[3].value;
+                            priceVolumeShare=(Volumes.segmentInfo[0].shopperInfo[3].value*100).toFixed(2);
+                            moneyVolumeShare=(Volumes.segmentInfo[1].shopperInfo[3].value*100).toFixed(2);
+                            fashionVolumeShare=(Volumes.segmentInfo[2].shopperInfo[3].value*100).toFixed(2);
+                            freaksVolumeShare=(Volumes.segmentInfo[3].shopperInfo[3].value*100).toFixed(2);
+                            priceVolumeChange=(volumeChanges.segmentInfo[0].shopperInfo[3].value*100).toFixed(2);
+                            moneyVolumeChange=(volumeChanges.segmentInfo[1].shopperInfo[3].value*100).toFixed(2);
+                            fashionVolumeChange=(volumeChanges.segmentInfo[2].shopperInfo[3].value*100).toFixed(2);
+                            freaksVolumeChange=(volumeChanges.segmentInfo[3].shopperInfo[3].value*100).toFixed(2);
 
                             switch(data.data[0].absoluteValue[i].parentCompanyID){
                                 case 1:if(category==1){
