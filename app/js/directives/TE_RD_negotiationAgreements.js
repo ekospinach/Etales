@@ -32,7 +32,7 @@ define(['directives', 'services'], function(directives) {
                         //     if (data.data.result) {
                         //         d.resolve(Label.getContent('This item has been locked.'));
                         //     }
-                        //     url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar() + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + producerID;
+                        //     url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + producerID;
                         //     return $http({
                         //         method: 'GET',
                         //         url: url
@@ -46,7 +46,7 @@ define(['directives', 'services'], function(directives) {
                         //     })
                         // }).then(function(data) {
                         //     expend = data.data.result;
-                        //     url = '/getSalesVolume/' + SeminarInfo.getSelectedSeminar() + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/' + PlayerInfo.getPlayer() + '/' + category;
+                        //     url = '/getSalesVolume/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/' + PlayerInfo.getPlayer() + '/' + category;
                         //     return $http({
                         //         method: 'GET',
                         //         url: url
@@ -98,7 +98,7 @@ define(['directives', 'services'], function(directives) {
                         //     if (data.data == "unReady") {
                         //         d.resolve(Label.getContent('set Minimum Order first'))
                         //     }
-                        //     url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar() + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + producerID;
+                        //     url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + producerID;
                         //     return $http({
                         //         method: 'GET',
                         //         url: url
@@ -143,21 +143,21 @@ define(['directives', 'services'], function(directives) {
                         //     if (data.data.result) {
                         //         d.resolve(Label.getContent('This item has been locked.'));
                         //     }
-                        //     url = '/getOneQuarterExogenousData/' + SeminarInfo.getSelectedSeminar() + '/' + PeriodInfo.getCurrentPeriod() + '/' + category + '/1';
+                        //     url = '/getOneQuarterExogenousData/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + category + '/1';
                         //     return $http({
                         //         method: 'GET',
                         //         url: url
                         //     });
                         // }).then(function(data) {
                         //     maxTargetVolumeVsTotalMarket = data.data.MaxTargetVolumeVsTotalMarket;
-                        //     url = '/getMarketSize/' + SeminarInfo.getSelectedSeminar() + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/' + PlayerInfo.getPlayer() + '/' + category;
+                        //     url = '/getMarketSize/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/' + PlayerInfo.getPlayer() + '/' + category;
                         //     return $http({
                         //         method: 'GET',
                         //         url: url
                         //     })
                         // }).then(function(data) {
                         //     marketSize = data.data;
-                        //     url = '/getSalesVolume/' + SeminarInfo.getSelectedSeminar() + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/' + PlayerInfo.getPlayer() + '/' + category;
+                        //     url = '/getSalesVolume/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/' + PlayerInfo.getPlayer() + '/' + category;
                         //     return $http({
                         //         method: 'GET',
                         //         url: url
@@ -211,28 +211,28 @@ define(['directives', 'services'], function(directives) {
                         //         d.resolve(Label.getContent('set Target Volume first'))
                         //     }
 
-                        //     url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar() + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + producerID;
+                        //     url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + producerID;
                         //     return $http({
                         //         method: 'GET',
                         //         url: url
                         //     });
                         // }).then(function(data) {
                         //     max = data.data.budgetAvailable + data.data.budgetSpentToDate;
-                        //     url = "/producerExpend/" + SeminarInfo.getSelectedSeminar() + '/' + (PeriodInfo.getCurrentPeriod()) + '/' + producerID + '/brandName/location/1';
+                        //     url = "/producerExpend/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod()) + '/' + producerID + '/brandName/location/1';
                         //     return $http({
                         //         method: 'GET',
                         //         url: url,
                         //     });
                         // }).then(function(data) {
                         //     productExpend = data.data.result;
-                        //     url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar() + '/' + PeriodInfo.getCurrentPeriod() + '/' + producerID + '/1/' + brandName + '/' + varName;
+                        //     url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + producerID + '/1/' + brandName + '/' + varName;
                         //     return $http({
                         //         method: 'GET',
                         //         url: url
                         //     });
                         // }).then(function(data) {
                         //     r1ContractExpend = data.data.result;
-                        //     url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar() + '/' + PeriodInfo.getCurrentPeriod() + '/' + producerID + '/2/' + brandName + '/' + varName;
+                        //     url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + producerID + '/2/' + brandName + '/' + varName;
                         //     return $http({
                         //         method: 'GET',
                         //         url: url
@@ -296,14 +296,14 @@ define(['directives', 'services'], function(directives) {
                         //     if (data.data.result) {
                         //         d.resolve(Label.getContent('This item has been locked.'));
                         //     }
-                        //     url = '/getScrplSales/' + SeminarInfo.getSelectedSeminar() + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/' + producerID + '/' + category;
+                        //     url = '/getScrplSales/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/' + producerID + '/' + category;
                         //     return $http({
                         //         method: 'GET',
                         //         url: url
                         //     });
                         // }).then(function(data) {
                         //     supplierOtherCompensation = data.data[0].toFixed(2);
-                        //     url = '/getRcrplSales/' + SeminarInfo.getSelectedSeminar() + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/' + PlayerInfo.getPlayer() + '/' + category + '/1';
+                        //     url = '/getRcrplSales/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/' + PlayerInfo.getPlayer() + '/' + category + '/1';
                         //     return $http({
                         //         method: 'GET',
                         //         url: url
@@ -345,7 +345,7 @@ define(['directives', 'services'], function(directives) {
 
                             producerID : producerID,
                             retailerID : PlayerInfo.getPlayer(),
-                            seminar : SeminarInfo.getSelectedSeminar(),
+                            seminar : SeminarInfo.getSelectedSeminar().seminarCode,
                             period : PeriodInfo.getCurrentPeriod()
                         };
 
@@ -394,7 +394,7 @@ define(['directives', 'services'], function(directives) {
                     var getResult = function(producerID){
                         //check with server, make sure that isPortfolioDecisionCommitted = true = $scope.isPXReady to show Table
                         //Otherwise show a picture "Waiting for supplier to commit portfolio decision...."
-                        var url = '/checkProducerPortfolioDecision/' + SeminarInfo.getSelectedSeminar() + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(producerID);
+                        var url = '/checkProducerPortfolioDecision/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(producerID);
                         $http({
                             method: 'GET',
                             url: url
@@ -414,7 +414,7 @@ define(['directives', 'services'], function(directives) {
                             }
                             scope.isResultShown = true;
                             scope.isPageLoading = false;
-                            url = '/getContractDetails/P' + producerID + 'andR' + PlayerInfo.getPlayer() + '_' + SeminarInfo.getSelectedSeminar() + '_' + PeriodInfo.getCurrentPeriod();
+                            url = '/getContractDetails/P' + producerID + 'andR' + PlayerInfo.getPlayer() + '_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + PeriodInfo.getCurrentPeriod();
                             return $http({
                                 method: 'GET',
                                 url: url

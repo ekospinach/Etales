@@ -18,7 +18,7 @@ define(['directives', 'services'], function(directives){
                     scope.Label = Label;
 
                     scope.currentPeriod=PeriodInfo.getCurrentPeriod();
-                    ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
+                    ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
                         scope.pageBase = base; 
                     }).then(function(){
                         return showView();
@@ -68,14 +68,14 @@ define(['directives', 'services'], function(directives){
                     if(!filter.test(value)){
                         d.resolve(Label.getContent('Input Number'));
                     }else{
-                        var url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+categoryID+'/1';
+                        var url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+categoryID+'/1';
                         $http({
                             method:'GET',
                             url:url
                         }).then(function(data){
                             MaxCapacityReduction=data.data.MaxCapacityReduction;
                             MaxCapacityIncrease=data.data.MaxCapacityIncrease;
-                            url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar() + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + parseInt(PlayerInfo.getPlayer());
+                            url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + parseInt(PlayerInfo.getPlayer());
                             return $http({
                                 method: 'GET',
                                 url: url
@@ -100,7 +100,7 @@ define(['directives', 'services'], function(directives){
                     if(!filter.test(value)){
                         d.resolve(Label.getContent('Input a number'));
                     }else{
-                        var url='/getScrplSales/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+PlayerInfo.getPlayer()+'/'+categoryID;
+                        var url='/getScrplSales/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+PlayerInfo.getPlayer()+'/'+categoryID;
                         $http({
                             method:'GET',
                             url:url

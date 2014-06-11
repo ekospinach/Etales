@@ -210,7 +210,7 @@ define(['angular',
     	return function() {
     		var delay = $q.defer();
 
-    		Map.get({seminar: SeminarInfo.getSelectedSeminar(),period:PeriodInfo.getCurrentPeriod()}, function(map) {
+    		Map.get({seminar: SeminarInfo.getSelectedSeminar().seminarCode,period:PeriodInfo.getCurrentPeriod()}, function(map) {
     			delay.resolve(map);
     		}, function() {
     			delay.reject('Unable to fetch file '  + $route.current.params.id);
@@ -292,7 +292,7 @@ define(['angular',
 			var delay = $q.defer();
 			ProducerDecision.get({producerID :PlayerInfo.getPlayer(),
 									period:PeriodInfo.getCurrentPeriod(),
-									seminar:SeminarInfo.getSelectedSeminar()}, function(producerDecision) {
+									seminar:SeminarInfo.getSelectedSeminar().seminarCode}, function(producerDecision) {
 				delay.resolve(producerDecision);
 			}, function() {
 				delay.reject('Unable to fetch producerDecision '  + $route.current.params.producerID);
@@ -311,7 +311,7 @@ define(['angular',
 
 					socket.on('socketIO:contractDetailsUpdated', function(data){	
 						//Only deal with current seminar push notifications					
-						if(data.seminar == SeminarInfo.getSelectedSeminar()){
+						if(data.seminar == SeminarInfo.getSelectedSeminar().seminarCode){
 							//Depends on different userRole, broadcast different info
 							console.log(RoleInfo.getRole());
 							switch(parseInt(RoleInfo.getRole())){
@@ -336,7 +336,7 @@ define(['angular',
 					
 					socket.on('socketIO:seminarPeriodChanged', function(data){	
 						//Only deal with current seminar push notifications					
-						if(data.seminar == SeminarInfo.getSelectedSeminar()){
+						if(data.seminar == SeminarInfo.getSelectedSeminar().seminarCode){
 							PeriodInfo.setCurrentPeriod(data.period);	
 							$rootScope.$broadcast('SeminarPeriodChanged',data);						
 						}							
@@ -346,6 +346,7 @@ define(['angular',
 			}
 		}]
 	})
+
 	services.provider('ProducerDecisionBase', function(){
 		var requestPara = {
 				period : 0,
@@ -373,10 +374,10 @@ define(['angular',
 					var socket = io.connect();
 					socket.on('socketIO:producerBaseChanged', function(data){						
 						//if changed base is modified by current supplier & seminar, reload decision base and broadcast message...
-						if( (data.producerID == PlayerInfo.getPlayer()) && (data.seminar == SeminarInfo.getSelectedSeminar())  ){
+						if( (data.producerID == PlayerInfo.getPlayer()) && (data.seminar == SeminarInfo.getSelectedSeminar().seminarCode)  ){
 							requestPara.producerID = parseInt(PlayerInfo.getPlayer());
 							requestPara.period = PeriodInfo.getCurrentPeriod();
-							requestPara.seminar = SeminarInfo.getSelectedSeminar();
+							requestPara.seminar = SeminarInfo.getSelectedSeminar().seminarCode;
 							console.log('active producer base reload!');
 							getLoaderPromise(ProducerDecision, $q).then(function(newBase){
 								$rootScope.$broadcast('producerDecisionBaseChangedFromServer', data, newBase);							
@@ -388,8 +389,8 @@ define(['angular',
 
 					socket.on('socketIO:producerReportPurchaseDecisionChanged', function(data) {
 						//if changed base is modified by current supplier & seminar, reload Report Purchase decision base and broadcast message...
-						if ((data.producerID == PlayerInfo.getPlayer()) && (data.seminar == SeminarInfo.getSelectedSeminar())) {
-							var url = '/currentPeriod/' + SeminarInfo.getSelectedSeminar();
+						if ((data.producerID == PlayerInfo.getPlayer()) && (data.seminar == SeminarInfo.getSelectedSeminar().seminarCode)) {
+							var url = '/currentPeriod/' + SeminarInfo.getSelectedSeminar().seminarCode;
 							$http({
 								method: 'GET',
 								url: url,
@@ -402,20 +403,20 @@ define(['angular',
 					});
 
 					socket.on('socketIO:producerMarketResearchOrdersChanged', function(data) {
-						if (data.seminar == SeminarInfo.getSelectedSeminar() && data.producerID == PlayerInfo.getPlayer()) {
+						if (data.seminar == SeminarInfo.getSelectedSeminar().seminarCode && data.producerID == PlayerInfo.getPlayer()) {
 							$rootScope.$broadcast('producerMarketResearchOrdersChanged', data);
 						}
 					});
 
 					//send seminar global message to notify retailer that supplier has commit portfolio decision
 					socket.on('socketIO:producerPortfolioDecisionStatusChanged', function(data){
-						if(data.seminar == SeminarInfo.getSelectedSeminar()){
+						if(data.seminar == SeminarInfo.getSelectedSeminar().seminarCode){
 							$rootScope.$broadcast('producerPortfolioDecisionStatusChanged',data);							
 						}
 					});
 
 					socket.on('socketIO:finalDecisionCommitted', function(data){
-						if(data.seminar == SeminarInfo.getSelectedSeminar()
+						if(data.seminar == SeminarInfo.getSelectedSeminar().seminarCode
 							&& data.role == 'Producer'
 							&& data.period == PeriodInfo.getCurrentPeriod()
 							&& data.roleID == PlayerInfo.getPlayer()){
@@ -441,7 +442,7 @@ define(['angular',
 					var queryCondition = {
 						producerID:PlayerInfo.getPlayer(),
 						period:PeriodInfo.getCurrentPeriod(),
-						seminar:SeminarInfo.getSelectedSeminar(),
+						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 						behaviour : 'updateVariant', 
 							    /* 
 							    switch(behaviour) case...
@@ -473,7 +474,7 @@ define(['angular',
 					var queryCondition = {
 						producerID:PlayerInfo.getPlayer(),
 						period:PeriodInfo.getCurrentPeriod(),
-						seminar:SeminarInfo.getSelectedSeminar(),
+						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 						behaviour : 'updateBrand', 
 							    /* 
 							    switch(behaviour) case...
@@ -503,7 +504,7 @@ define(['angular',
 					var queryCondition = {
 						producerID:PlayerInfo.getPlayer(),
 						period:PeriodInfo.getCurrentPeriod(),
-						seminar:SeminarInfo.getSelectedSeminar(),
+						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 						behaviour : 'updateCategory', 
 						categoryID : categoryID,
 						location : location,
@@ -520,7 +521,7 @@ define(['angular',
 					var queryCondition = {
 						producerID:PlayerInfo.getPlayer(),
 						period:PeriodInfo.getCurrentPeriod(),
-						seminar:SeminarInfo.getSelectedSeminar(),
+						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 						behaviour : 'addProductNewBrand', 
 						categoryID : categoryID,
 						value : newproducerDecision
@@ -536,7 +537,7 @@ define(['angular',
 					var queryCondition = {
 						producerID:PlayerInfo.getPlayer(),
 						period:PeriodInfo.getCurrentPeriod(),
-						seminar:SeminarInfo.getSelectedSeminar(),
+						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 						behaviour : 'addProductExistedBrand', 
 						categoryID : categoryID,
 						value : newproducerDecision,
@@ -553,7 +554,7 @@ define(['angular',
 					var queryCondition = {
 						producerID:PlayerInfo.getPlayer(),
 						period:PeriodInfo.getCurrentPeriod(),
-						seminar:SeminarInfo.getSelectedSeminar(),
+						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 						behaviour : 'deleteProduct', 
 						categoryID : categoryID,
 						varName : varName,
@@ -576,7 +577,7 @@ define(['angular',
 							index:data.data.index,
 							producerID:PlayerInfo.getPlayer(),
 							period:PeriodInfo.getCurrentPeriod(),
-							seminar:SeminarInfo.getSelectedSeminar()
+							seminar:SeminarInfo.getSelectedSeminar().seminarCode
 						}
 						return $http({
 							method:'POST',
@@ -586,7 +587,7 @@ define(['angular',
 					 }).then(function(data){
 					 	queryCondition={
 							period:PeriodInfo.getCurrentPeriod(),
-							seminar:SeminarInfo.getSelectedSeminar(),
+							seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 					 		brandName:brandName,
 					 		varName:varName,
 					 		categoryID:categoryID,
@@ -608,7 +609,7 @@ define(['angular',
 					//
 					var queryCondition={
 						producerID:PlayerInfo.getPlayer(),
-						seminar:SeminarInfo.getSelectedSeminar(),
+						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 					}
 					$http({
 						method:'POST',
@@ -671,10 +672,10 @@ define(['angular',
 					var socket = io.connect();
 					socket.on('socketIO:retailerBaseChanged', function(data){	
 						//if changed base is modified by current retailer & seminar, reload decision base and broadcast message...
-						if( (data.retailerID ==  PlayerInfo.getPlayer()) && (data.seminar == SeminarInfo.getSelectedSeminar()) ){
+						if( (data.retailerID ==  PlayerInfo.getPlayer()) && (data.seminar == SeminarInfo.getSelectedSeminar().seminarCode) ){
 							requestPara.retailerID = parseInt(PlayerInfo.getPlayer());
 							requestPara.period = PeriodInfo.getCurrentPeriod();
-							requestPara.seminar = SeminarInfo.getSelectedSeminar();							
+							requestPara.seminar = SeminarInfo.getSelectedSeminar().seminarCode;							
 							getRetailerPromise(RetailerDecision, $q).then(function(newBase){
 								$rootScope.$broadcast('retailerDecisionBaseChangedFromServer', data, newBase);							
 							}, function(reason){
@@ -686,8 +687,8 @@ define(['angular',
 
 					socket.on('socketIO:retailerReportPurchaseDecisionChanged', function(data) {
 						//if changed base is modified by current supplier & seminar, reload Report Purchase decision base and broadcast message...
-						if ((data.retailerID == PlayerInfo.getPlayer()) && (data.seminar == SeminarInfo.getSelectedSeminar())) {
-							var url = '/currentPeriod/' + SeminarInfo.getSelectedSeminar();
+						if ((data.retailerID == PlayerInfo.getPlayer()) && (data.seminar == SeminarInfo.getSelectedSeminar().seminarCode)) {
+							var url = '/currentPeriod/' + SeminarInfo.getSelectedSeminar().seminarCode;
 							$http({
 								method: 'GET',
 								url: url,
@@ -700,14 +701,14 @@ define(['angular',
 					});
 
 					socket.on('socketIO:retailerMarketResearchOrdersChanged',function(data){
-						if (data.seminar == SeminarInfo.getSelectedSeminar() && data.period == PeriodInfo.getCurrentPeriod() && data.retailerID == PlayerInfo.getPlayer()) {
+						if (data.seminar == SeminarInfo.getSelectedSeminar().seminarCode && data.period == PeriodInfo.getCurrentPeriod() && data.retailerID == PlayerInfo.getPlayer()) {
 							$rootScope.$broadcast('retailerMarketResearchOrdersChanged', data);
 						}
 					});
 
 
 					socket.on('socketIO:finalDecisionCommitted', function(data){
-						if(data.seminar == SeminarInfo.getSelectedSeminar()
+						if(data.seminar == SeminarInfo.getSelectedSeminar().seminarCode
 							&& data.role == 'Retailer'
 							&& data.period == PeriodInfo.getCurrentPeriod()
 							&& data.roleID == PlayerInfo.getPlayer()){
@@ -741,7 +742,7 @@ define(['angular',
 					var queryCondition = {
 						retailerID :PlayerInfo.getPlayer(),
 						period:PeriodInfo.getCurrentPeriod(),
-						seminar:SeminarInfo.getSelectedSeminar(),
+						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 						behaviour : 'updateGeneralDecision', 
 						location : location,
 						additionalIdx  : additionalIdx,
@@ -767,7 +768,7 @@ define(['angular',
 					var queryCondition = {
 						retailerID :PlayerInfo.getPlayer(),
 						period:PeriodInfo.getCurrentPeriod(),
-						seminar:SeminarInfo.getSelectedSeminar(),
+						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 						behaviour : 'updateMarketDecision', 
 						marketID : marketID,
 						location : location,
@@ -793,7 +794,7 @@ define(['angular',
 					var queryCondition = {
 						retailerID :PlayerInfo.getPlayer(),
 						period:PeriodInfo.getCurrentPeriod(),
-						seminar:SeminarInfo.getSelectedSeminar(),
+						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 						behaviour : 'updatePrivateLabel', 
 						categoryID : categoryID,
 						brandName : brandName,
@@ -815,7 +816,7 @@ define(['angular',
 					var queryCondition = {
 						retailerID :PlayerInfo.getPlayer(),
 						period:PeriodInfo.getCurrentPeriod(),
-						seminar:SeminarInfo.getSelectedSeminar(),
+						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 						behaviour : 'updateOrder', 
 						categoryID : categoryID,
 						marketID : marketID,
@@ -842,7 +843,7 @@ define(['angular',
 					var queryCondition = {
 						retailerID :PlayerInfo.getPlayer(),
 						period:PeriodInfo.getCurrentPeriod(),
-						seminar:SeminarInfo.getSelectedSeminar(),
+						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 						behaviour : 'addProductNewBrand', 
 						categoryID : categoryID,
 						value : newproducerDecision
@@ -858,7 +859,7 @@ define(['angular',
 					var queryCondition = {
 						retailerID :PlayerInfo.getPlayer(),
 						period:PeriodInfo.getCurrentPeriod(),
-						seminar:SeminarInfo.getSelectedSeminar(),
+						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 						behaviour : 'addProductExistedBrand', 
 						categoryID : categoryID,
 						brandName : brandName,
@@ -875,7 +876,7 @@ define(['angular',
 					var queryCondition = {
 						retailerID :PlayerInfo.getPlayer(),
 						period:PeriodInfo.getCurrentPeriod(),
-						seminar:SeminarInfo.getSelectedSeminar(),
+						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 						behaviour : 'deleteProduct', 
 						categoryID : categoryID,
 						varName : varName,
@@ -890,7 +891,7 @@ define(['angular',
 					 		//retailerID :$rootScope.user.username.substring($rootScope.user.username.length-1),
 							//retailerID :PlayerInfo.getPlayer(),
 							period:PeriodInfo.getCurrentPeriod(),
-							seminar:SeminarInfo.getSelectedSeminar(),
+							seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 							categoryID : categoryID,
 							varName : varName,
 							brandName:brandName
@@ -930,7 +931,7 @@ define(['angular',
 						queryCondition = {
 							retailerID :PlayerInfo.getPlayer(),
 							period:PeriodInfo.getCurrentPeriod(),
-							seminar:SeminarInfo.getSelectedSeminar(),
+							seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 							behaviour : 'addOrder', 
 							marketID:marketID,
 							value:myProducts[idx]
@@ -958,7 +959,7 @@ define(['angular',
 					var queryCondition = {
 						retailerID :PlayerInfo.getPlayer(),
 						period:PeriodInfo.getCurrentPeriod(),
-						seminar:SeminarInfo.getSelectedSeminar(),
+						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
 						behaviour : 'deleteOrder', 
 						marketID:marketID,
 						categoryID:categoryID,

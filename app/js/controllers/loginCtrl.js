@@ -110,6 +110,7 @@ define(['app','socketIO'], function(app) {
 					url:url
 				}).then(function(data){
 					//$rootScope.currentPeriod=data.currentPeriod;
+					SeminarInfo.setSelectedSeminar(seminar);
 					PeriodInfo.setCurrentPeriod(data.data.currentPeriod);
 					$rootScope.rootStartFrom=-2;
 					$rootScope.rootEndWith=data.currentPeriod-1;
@@ -133,7 +134,7 @@ define(['app','socketIO'], function(app) {
 			$scope.userLogin=function(){
 				var username="";
 				var seminar=userSeminar.value;
-				SeminarInfo.setSelectedSeminar(seminar);
+				
 				var password=userPassword.value;
 				switch(userRole.value){
 					case '1':username=seminar+'^'+userRoles.producer+'^'+userRole.value;break;
@@ -158,6 +159,7 @@ define(['app','socketIO'], function(app) {
 						url:url
 					}).then(function(data){
 						//$rootScope.currentPeriod=data.currentPeriod;
+						SeminarInfo.setSelectedSeminar(data.data);
 						PeriodInfo.setCurrentPeriod(data.data.currentPeriod);
 						$rootScope.rootStartFrom=-2;
 						$rootScope.rootEndWith=data.currentPeriod-1;
@@ -166,8 +168,6 @@ define(['app','socketIO'], function(app) {
 						//console.log($rootScope.user.userRole);
 						PlayerInfo.setPlayer($rootScope.user.roleID);
 						RoleInfo.setRole($rootScope.user.role);
-
-
 
 					});
 				},function(res){

@@ -18,7 +18,7 @@ define(['directives', 'services'], function(directives){
                     scope.Label = Label;
 
                     scope.currentPeriod=PeriodInfo.getCurrentPeriod();
-                    ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
+                    ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
                         scope.pageBase = base; 
                     }).then(function(){
                         return showView();
@@ -78,34 +78,34 @@ define(['directives', 'services'], function(directives){
                     if(!filter.test(value)){
                         d.resolve(Label.getContent('Input a number'));
                     }
-                    var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
+                    var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
                     $http({
                         method:'GET',
                         url:url
                     }).then(function(data){
                         max=data.data.budgetAvailable + data.data.budgetSpentToDate;
-                        url='/getContractExpend/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer()+'/1/brandName/varName';
+                        url='/getContractExpend/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer()+'/1/brandName/varName';
                         return $http({
                             method:'GET',
                             url:url
                         });
                     }).then(function(data){
                         r1ContractExpend = data.data.result;
-                        url='/getContractExpend/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer()+'/2/brandName/varName';
+                        url='/getContractExpend/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer()+'/2/brandName/varName';
                         return $http({
                             method:'GET',
                             url:url
                         });
                     }).then(function(data){
                         r2ContractExpend = data.data.result;
-                        url='/getPlayerReportOrderExpend/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/P/'+PlayerInfo.getPlayer();
+                        url='/getPlayerReportOrderExpend/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/P/'+PlayerInfo.getPlayer();
                         return $http({
                             method:'GET',
                             url:url
                         });
                     }).then(function(data){
                         reportExpend=data.data.result;
-                        url="/producerExpend/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/'+brandName+'/'+location+'/'+tep;
+                        url="/producerExpend/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/'+brandName+'/'+location+'/'+tep;
                         return $http({
                             method:'GET',
                             url:url
@@ -135,13 +135,13 @@ define(['directives', 'services'], function(directives){
                         d.resolve(Label.getContent('Input a number'));
                     }
                     // var url='/'
-                    var url='/producerCurrentDecision/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer()+'/'+brandName+'/'+varName;
+                    var url='/producerCurrentDecision/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer()+'/'+brandName+'/'+varName;
                     $http({
                         method:'GET',
                         url:url
                     }).then(function(data){
                         production=data.data.production;
-                        url='/SCR-ClosingInternetInventoryVolume/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+PlayerInfo.getPlayer()+'/'+brandName+'/'+varName;
+                        url='/SCR-ClosingInternetInventoryVolume/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+PlayerInfo.getPlayer()+'/'+brandName+'/'+varName;
                         return $http({
                             method:'GET',
                             url:url
@@ -201,7 +201,7 @@ define(['directives', 'services'], function(directives){
                     }
                     var postData = {
                         period : PeriodInfo.getCurrentPeriod(),
-                        seminar : SeminarInfo.getSelectedSeminar(),
+                        seminar : SeminarInfo.getSelectedSeminar().seminarCode,
                         brandName : brandName,
                         varName : varName,
                         catID : categoryID,
@@ -214,7 +214,7 @@ define(['directives', 'services'], function(directives){
                         data:postData
                     }).then(function(data){
                         scope.currentUnitCost=data.data.result;
-                        url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+categoryID+'/1';
+                        url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+categoryID+'/1';
                         return $http({
                             method:'GET',
                             url:url

@@ -364,7 +364,7 @@ define(['app','socketIO','routingConfig'], function(app) {
         for(var i=startFrom;i<=endWith;i++){
         	$scope.periods.push(i);
         }
-        $scope.seminar=SeminarInfo.getSelectedSeminar();
+        $scope.seminar=SeminarInfo.getSelectedSeminar().seminarCode;
         $scope.getMap=getMap;
         $scope.showSelect=showSelect;
         $scope.showChart = showChart;

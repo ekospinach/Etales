@@ -60,7 +60,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 					avaiableMax = 0;
 
 				//check with server, make sure that isPortfolioDecisionCommitted = true = $scope.isReady 
-				var url = '/checkProducerPortfolioDecision/' + SeminarInfo.getSelectedSeminar() + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
+				var url = '/checkProducerPortfolioDecision/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
 				$http({
 					method: 'GET',
 					url: url
@@ -72,7 +72,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 					}
 
 				//Get company history information (available budget, capacity, acquired TL...)
-					url = '/checkProducerFinalDecision/' + SeminarInfo.getSelectedSeminar() + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
+					url = '/checkProducerFinalDecision/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
 					return $http({
 						method: 'GET',
 						url: url
@@ -85,7 +85,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 					}					
 
 				//Get company history information (available budget, capacity, acquired TL...)
-					url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar() + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + parseInt(PlayerInfo.getPlayer());
+					url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + parseInt(PlayerInfo.getPlayer());
 					return $http({
 						method: 'GET',
 						url: url
@@ -98,28 +98,28 @@ define(['app','socketIO','routingConfig'], function(app) {
 					$scope.acHeaMax = data.data.productionCapacity[1];
 
 				//get how much money have been spent in current period, money left = $scope.surplusExpend
-					url = "/producerExpend/" + SeminarInfo.getSelectedSeminar() + '/' + (PeriodInfo.getCurrentPeriod()) + '/' + parseInt(PlayerInfo.getPlayer()) + '/brandName/location/1';
+					url = "/producerExpend/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod()) + '/' + parseInt(PlayerInfo.getPlayer()) + '/brandName/location/1';
 					return $http({
 						method: 'GET',
 						url: url,
 					});
 				}).then(function(data) {
 					productExpend = data.data.result;
-					url='/getContractExpend/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer()+'/1/brandName/varName';
+					url='/getContractExpend/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer()+'/1/brandName/varName';
 					return $http({
 						method:'GET',
 						url:url
 					});
 				}).then(function(data){
 					r1ContractExpend = data.data.result;
-					url='/getContractExpend/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer()+'/2/brandName/varName';
+					url='/getContractExpend/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer()+'/2/brandName/varName';
 					return $http({
 						method:'GET',
 						url:url
 					});
 				}).then(function(data){
 					r2ContractExpend = data.data.result;
-					url='/getPlayerReportOrderExpend/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/P/'+PlayerInfo.getPlayer();
+					url='/getPlayerReportOrderExpend/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/P/'+PlayerInfo.getPlayer();
 					return $http({
 						method:'GET',
 						url:url
@@ -127,7 +127,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 				}).then(function(data){
 					reportExpend=data.data.result;
 					$scope.surplusExpend = ($scope.abMax - productExpend- r1ContractExpend - r2ContractExpend - reportExpend).toFixed(2);
-					url = "/productionResult/" + SeminarInfo.getSelectedSeminar() + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer()) + '/EName/varName';
+					url = "/productionResult/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer()) + '/EName/varName';
 					return $http({
 						method: 'GET',
 						url: url
@@ -136,7 +136,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 					$scope.eleSurplusProduction = ($scope.acEleMax - data.data.result).toFixed(2);
 
 				//get production capacity left = $scope.eleSurplusProduction (Health Beauties)
-					url = "/productionResult/" + SeminarInfo.getSelectedSeminar() + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer()) + '/HName/varName';
+					url = "/productionResult/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer()) + '/HName/varName';
 					return $http({
 						method: 'GET',
 						url: url

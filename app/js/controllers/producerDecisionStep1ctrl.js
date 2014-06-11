@@ -31,7 +31,7 @@ define(['app'], function(app) {
 			};
 			/*Angular-ui-bootstrap modal end*/		
 			//ProducerDecisionBase.startListenChangeFromServer();
-			ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
+			ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
 				$scope.pageBase = base;	
 			}).then(function(){
 				return promiseStep1();
@@ -75,7 +75,7 @@ define(['app'], function(app) {
 					if($rootScope.user.role==8){
 						//Facilitator
 						$scope.facilitatorShow=true;
-						var url="/currentPeriod/"+SeminarInfo.getSelectedSeminar();
+						var url="/currentPeriod/"+SeminarInfo.getSelectedSeminar().seminarCode;
 						$http({
 							method:'GET',
 							url:url
@@ -96,7 +96,7 @@ define(['app'], function(app) {
 					}
 
 
-					var url='/checkProducerPortfolioDecision/'+SeminarInfo.getSelectedSeminar()+'/'+parseInt(PlayerInfo.getPlayer());
+					var url='/checkProducerPortfolioDecision/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+parseInt(PlayerInfo.getPlayer());
 					$http({
 						method:'GET',
 						url:url
@@ -189,7 +189,7 @@ define(['app'], function(app) {
 					categoryID=2;
 					fakeName="HName";
 				}
-	      		var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
+	      		var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
 	      		$http({
 	      			method:'GET',
 	      			url:url
@@ -201,7 +201,7 @@ define(['app'], function(app) {
 	      				abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
 	      			}
 					acMax=data.data.productionCapacity[categoryID-1];
-	      			url="/producerExpend/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/brandName/location/1';
+	      			url="/producerExpend/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/brandName/location/1';
 	      			return  $http({
 	      				method:'GET',
 	      				url:url,
@@ -210,7 +210,7 @@ define(['app'], function(app) {
 	      			expend=data.data.result;
 	       			$scope.surplusExpend=abMax-expend;
 	       			$scope.percentageExpend=(abMax-expend)/abMax*100;
-	      			url="/productionResult/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+fakeName+'/varName';
+	      			url="/productionResult/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+fakeName+'/varName';
 	      			return $http({
 	      				method:'GET',
 	      				url:url
@@ -349,7 +349,7 @@ define(['app'], function(app) {
 			};
 			var closeProductModal = function () {
 			    $scope.productModal = false;
-			    ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
+			    ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
 					$scope.pageBase = base;	
 				}).then(function(){
 					return promiseStep1();
@@ -373,7 +373,7 @@ define(['app'], function(app) {
 				else{
 					categoryID=2;
 				}	
-				var url='/checkProducerPortfolioDecision/'+SeminarInfo.getSelectedSeminar()+'/'+parseInt(PlayerInfo.getPlayer());
+				var url='/checkProducerPortfolioDecision/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+parseInt(PlayerInfo.getPlayer());
 				$http({
 					method:'GET',
 					url:url
@@ -381,14 +381,14 @@ define(['app'], function(app) {
 					if(data.data=="isReady"){
 						d.resolve(Label.getContent('Check Error'));
 					}
-					url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
+					url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
 					return $http({
 						method:'GET',
 						url:url
 					});
 				}).then(function(data){
 					max=data.data.productionCapacity[categoryID-1];
-					url="/productionResult/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+brandName+'/'+varName;
+					url="/productionResult/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+brandName+'/'+varName;
 					return $http({
 						method:'GET',
 						url:url
@@ -413,7 +413,7 @@ define(['app'], function(app) {
 				if(!filter.test(value)){
 					d.resolve(Label.getContent('Input a Integer'));
 				}
-				var url='/checkProducerPortfolioDecision/'+SeminarInfo.getSelectedSeminar()+'/'+parseInt(PlayerInfo.getPlayer());
+				var url='/checkProducerPortfolioDecision/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+parseInt(PlayerInfo.getPlayer());
 				$http({
 					method:'GET',
 					url:url
@@ -421,7 +421,7 @@ define(['app'], function(app) {
 					if(data.data=="isReady"){
 						d.resolve(Label.getContent('Check Error'));
 					}
-					url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
+					url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
 					return $http({
 						method:'GET',
 						url:url
@@ -457,7 +457,7 @@ define(['app'], function(app) {
 				if(!filter.test(value)){
 					d.resolve(Label.getContent('Input a Integer'));
 				}
-				var url='/checkProducerPortfolioDecision/'+SeminarInfo.getSelectedSeminar()+'/'+parseInt(PlayerInfo.getPlayer());
+				var url='/checkProducerPortfolioDecision/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+parseInt(PlayerInfo.getPlayer());
 				$http({
 					method:'GET',
 					url:url
@@ -465,7 +465,7 @@ define(['app'], function(app) {
 					if(data.data=="isReady"){
 						d.resolve(Label.getContent('Check Error'));
 					}
-					url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
+					url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
 					return $http({
 						method:'GET',
 						url:url
@@ -486,7 +486,7 @@ define(['app'], function(app) {
 							d.resolve();
 						}
 					}
-					url="/producerCurrentDecision/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+brandName+'/'+varName;
+					url="/producerCurrentDecision/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+brandName+'/'+varName;
 					return $http({
 							method:'GET',
 							url:url
@@ -523,7 +523,7 @@ define(['app'], function(app) {
 				}else{
 					categoryID=2;
 				}
-				var url='/checkProducerPortfolioDecision/'+SeminarInfo.getSelectedSeminar()+'/'+parseInt(PlayerInfo.getPlayer());
+				var url='/checkProducerPortfolioDecision/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+parseInt(PlayerInfo.getPlayer());
 				$http({
 					method:'GET',
 					url:url
@@ -531,7 +531,7 @@ define(['app'], function(app) {
 					if(data.data=="isReady"){
 						d.resolve(Label.getContent('Check Error'));
 					}
-					url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
+					url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
 					return $http({
 						method:'GET',
 						url:url
@@ -561,7 +561,7 @@ define(['app'], function(app) {
 				}else{
 					categoryID=2;
 				}
-				var url='/checkProducerPortfolioDecision/'+SeminarInfo.getSelectedSeminar()+'/'+parseInt(PlayerInfo.getPlayer());
+				var url='/checkProducerPortfolioDecision/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+parseInt(PlayerInfo.getPlayer());
 				$http({
 					method:'GET',
 					url:url
@@ -572,7 +572,7 @@ define(['app'], function(app) {
 
 					var postData = {
 						period : PeriodInfo.getCurrentPeriod(),
-						seminar : SeminarInfo.getSelectedSeminar(),
+						seminar : SeminarInfo.getSelectedSeminar().seminarCode,
 						brandName : brandName,
 						varName : varName,
 						catID : categoryID,
@@ -609,7 +609,7 @@ define(['app'], function(app) {
 				}else{
 					categoryID=2;
 				}
-				var url='/checkProducerPortfolioDecision/'+SeminarInfo.getSelectedSeminar()+'/'+parseInt(PlayerInfo.getPlayer());
+				var url='/checkProducerPortfolioDecision/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+parseInt(PlayerInfo.getPlayer());
 				$http({
 					method:'GET',
 					url:url
@@ -619,7 +619,7 @@ define(['app'], function(app) {
 					}
 					var postData = {
 						period : PeriodInfo.getCurrentPeriod(),
-						seminar : SeminarInfo.getSelectedSeminar(),
+						seminar : SeminarInfo.getSelectedSeminar().seminarCode,
 						brandName : brandName,
 						varName : varName,
 						catID : categoryID,
@@ -677,14 +677,14 @@ define(['app'], function(app) {
 					catID = 2;
 				}				
 				$scope.isCollapsed=false;
-				url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
+				url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
 				$http({method: 'GET', url: url})
 				.then(function(data) {
 					//console.log($scope.variantHistory);
 					$scope.companyHistory=data.data;
 					var postData = {
 					    period : PeriodInfo.getCurrentPeriod(),
-					    seminar : SeminarInfo.getSelectedSeminar(),
+					    seminar : SeminarInfo.getSelectedSeminar().seminarCode,
 					    brandName : brandName,
 					    varName : varName,
 					    catID : catID,
@@ -694,7 +694,7 @@ define(['app'], function(app) {
 					return $http({method:'POST', url:'/getCurrentUnitCost', data:postData});
 				}).then(function(data){
 				   $scope.currentUnitCost = data.data.result;
-				   var url='/variantHistoryInfo/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+brandName+'/'+varName;
+				   var url='/variantHistoryInfo/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+brandName+'/'+varName;
 				   return $http({method: 'GET', url: url});
 				}).then(function(data){
 					$scope.variantHistory=data.data;
@@ -711,7 +711,7 @@ define(['app'], function(app) {
 			var submitDecision=function(){
 				var queryCondition={
 					producerID:parseInt(PlayerInfo.getPlayer()),
-					seminar:SeminarInfo.getSelectedSeminar()
+					seminar:SeminarInfo.getSelectedSeminar().seminarCode
 				}
 				$http({
 					method:'POST',
@@ -773,7 +773,7 @@ define(['app'], function(app) {
 					//need add 2 null vars
 					newBrand.proVarDecision.push(newproducerDecision,nullDecision,nullDecision);
 
-					url="/checkProducerProduct/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+$scope.lauchNewCategory+'/brand/'+newBrand.brandName+'/'+newproducerDecision.varName;
+					url="/checkProducerProduct/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+$scope.lauchNewCategory+'/brand/'+newBrand.brandName+'/'+newproducerDecision.varName;
 					$http({
 						method:'GET',
 						url:url
@@ -801,7 +801,7 @@ define(['app'], function(app) {
 			       			break;
 			       		}
 			       	}
-			       	url="/checkProducerProduct/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+$scope.lauchNewCategory+'/variant/'+newBrandName+'/'+newproducerDecision.varName;
+			       	url="/checkProducerProduct/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+$scope.lauchNewCategory+'/variant/'+newBrandName+'/'+newproducerDecision.varName;
 			       	
 			       	$http({
 						method:'GET',
@@ -839,7 +839,7 @@ define(['app'], function(app) {
 		 	};
 			
 			var getPrevious=function(){
-				ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getPreviousPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
+				ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getPreviousPeriod(),seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
 					$scope.pageBase = base;	
 				}).then(function(){
 					return promiseStep1();
@@ -851,7 +851,7 @@ define(['app'], function(app) {
 			}
 
 			var getNext=function(){
-				ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getNextPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
+				ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getNextPeriod(),seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
 					$scope.pageBase = base;	
 				}).then(function(){
 					return promiseStep1();
@@ -863,7 +863,7 @@ define(['app'], function(app) {
 			}
 
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, newBase){
-				ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
+				ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
 					$scope.pageBase = base;	
 				}).then(function(){
 					return promiseStep1();

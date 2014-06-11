@@ -19,7 +19,7 @@ define(['directives', 'services'], function(directives){
 
                 var getResult =function(){
                     //switching('showPerformance');
-                    var url='/currentPeriod/'+SeminarInfo.getSelectedSeminar();
+                    var url='/currentPeriod/'+SeminarInfo.getSelectedSeminar().seminarCode;
                     $http({
                         method:'GET',
                         url:url,
@@ -72,7 +72,7 @@ define(['directives', 'services'], function(directives){
                         player:'Producer',
                         playerID:PlayerInfo.getPlayer(),
                         period:PeriodInfo.getCurrentPeriod(),
-                        seminarCode:SeminarInfo.getSelectedSeminar(),
+                        seminarCode:SeminarInfo.getSelectedSeminar().seminarCode,
                         name:name,
                         value:value
                     }
@@ -96,34 +96,34 @@ define(['directives', 'services'], function(directives){
                     r2ContractExpend = 0,
                     reportExpend = 0;
                     if(value){
-                        var url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar() + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + parseInt(PlayerInfo.getPlayer());
+                        var url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + parseInt(PlayerInfo.getPlayer());
                         $http({
                             method: 'GET',
                             url: url
                         }).then(function(data){
                             abMax = data.data.budgetAvailable + data.data.budgetSpentToDate;
-                            url = "/producerExpend/" + SeminarInfo.getSelectedSeminar() + '/' + (PeriodInfo.getCurrentPeriod()) + '/' + parseInt(PlayerInfo.getPlayer()) + '/brandName/location/1';
+                            url = "/producerExpend/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod()) + '/' + parseInt(PlayerInfo.getPlayer()) + '/brandName/location/1';
                             return $http({
                                 method: 'GET',
                                 url: url,
                             });
                         }).then(function(data) {
                             productExpend = data.data.result;
-                            url='/getContractExpend/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer()+'/1/brandName/varName';
+                            url='/getContractExpend/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer()+'/1/brandName/varName';
                             return $http({
                                 method:'GET',
                                 url:url
                             });
                         }).then(function(data){
                             r1ContractExpend = data.data.result;
-                            url='/getContractExpend/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer()+'/2/brandName/varName';
+                            url='/getContractExpend/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer()+'/2/brandName/varName';
                             return $http({
                                 method:'GET',
                                 url:url
                             });
                         }).then(function(data){
                             r2ContractExpend = data.data.result;
-                            url='/getPlayerReportOrderExpend/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/P/'+PlayerInfo.getPlayer();
+                            url='/getPlayerReportOrderExpend/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/P/'+PlayerInfo.getPlayer();
                             return $http({
                                 method:'GET',
                                 url:url

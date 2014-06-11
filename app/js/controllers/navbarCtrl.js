@@ -1,6 +1,7 @@
 define(['app'], function(app) {
 
-	app.controller('NavbarCtrl', ['$scope', '$http', '$location','$rootScope','Auth','Label','notify','ProducerDecisionBase','RetailerDecisionBase','NegotiationBase',  function($scope, $http, $location,$rootScope,Auth,Label,notify, ProducerDecisionBase, RetailerDecisionBase, NegotiationBase) {
+	app.controller('NavbarCtrl', ['$scope', '$http', '$location','$rootScope','Auth','Label','notify','ProducerDecisionBase','RetailerDecisionBase','NegotiationBase','SeminarInfo',  
+									function($scope, $http, $location,$rootScope,Auth,Label,notify, ProducerDecisionBase, RetailerDecisionBase, NegotiationBase, SeminarInfo) {
 	    $scope.getUserRoleText = function(role) {
 
 	//        console.log('trying to get user role text:' + _.invert(Auth.userRoles)[role]);
@@ -22,8 +23,13 @@ define(['app'], function(app) {
 	        });	    	
 	    }
 	    $location.path('/login');
+	    
 	    $scope.$on("$routeChangeSuccess", function(next, current){
-			$scope.currentPeriod = $rootScope.currentPeriod;	    
+	    	if(SeminarInfo.getSelectedSeminar()){
+				$scope.currentPeriod = SeminarInfo.getSelectedSeminar().currentPeriod;	    
+				$scope.span = SeminarInfo.getSelectedSeminar().simulationSpan;
+				$scope.seminar = SeminarInfo.getSelectedSeminar().seminarCode;	    		
+	    	}
 		})
 
 		$scope.Label = Label;
@@ -40,6 +46,9 @@ define(['app'], function(app) {
 
 		$scope.$on('SeminarPeriodChanged', function(event, data) {  
 			notify('Period has been changed to ' + data.period + ' / ' + data.span);
+			$scope.currentPeriod = data.period;
+			$scope.span = data.span;
+			$scope.seminar = data.seminar;
 		});		
 
 		//Register socketIO listeners in NavCtrl which will only be activated once in application

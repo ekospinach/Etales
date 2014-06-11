@@ -8,7 +8,7 @@ define(['app'], function(app) {
 		    $rootScope.loginDiv="container";
 			var showView=function(contractUserID){
 				$scope.period=PeriodInfo.getCurrentPeriod();
-				var url="/contracts/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+contractUserID;
+				var url="/contracts/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+contractUserID;
 				$http.get(url).success(function(data){
 					$scope.allContracts=data;
 					$scope.contractList=$scope.allContracts;
@@ -23,7 +23,7 @@ define(['app'], function(app) {
 						$scope.retailerShow=true;
 					}
 				});
-				var url="/currentPeriod/"+SeminarInfo.getSelectedSeminar();
+				var url="/currentPeriod/"+SeminarInfo.getSelectedSeminar().seminarCode;
 					$http({
 						method:'GET',
 						url:url
@@ -106,8 +106,8 @@ define(['app'], function(app) {
 			$scope.addNewContract=function(){
 				if($scope.newContractCode.length>0){
 					var data={
-						'contractCode':$scope.newContractCode+'_'+SeminarInfo.getSelectedSeminar()+'_'+PeriodInfo.getCurrentPeriod(),
-						'seminar':SeminarInfo.getSelectedSeminar(),
+						'contractCode':$scope.newContractCode+'_'+SeminarInfo.getSelectedSeminar().seminarCode+'_'+PeriodInfo.getCurrentPeriod(),
+						'seminar':SeminarInfo.getSelectedSeminar().seminarCode,
 						'period':PeriodInfo.getCurrentPeriod(),
 						'draftedByCompanyID':PlayerInfo.getPlayer(),
 						'producerID':PlayerInfo.getPlayer(),
@@ -213,8 +213,8 @@ define(['app'], function(app) {
 				}
 				if($scope.duplicateContractCode.length>0&&$scope.duplicateContractCode.length<10){
 					var data={
-						'contractCode':$scope.duplicateContractCode+'_'+SeminarInfo.getSelectedSeminar()+'_'+PeriodInfo.getCurrentPeriod(),
-						'seminar':SeminarInfo.getSelectedSeminar(),
+						'contractCode':$scope.duplicateContractCode+'_'+SeminarInfo.getSelectedSeminar().seminarCode+'_'+PeriodInfo.getCurrentPeriod(),
+						'seminar':SeminarInfo.getSelectedSeminar().seminarCode,
 						'period':PeriodInfo.getCurrentPeriod(),
 						'draftedByCompanyID':PlayerInfo.getPlayer(),
 						'producerID':PlayerInfo.getPlayer(),
@@ -234,7 +234,7 @@ define(['app'], function(app) {
 			}
 
 			var getPrevious=function(){
-				// ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getPreviousPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
+				// ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getPreviousPeriod(),seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
 				// 	$scope.pageBase = base;	
 				// }).then(function(){
 				// 	return promiseStep1();
@@ -249,7 +249,7 @@ define(['app'], function(app) {
 
 			var getNext=function(){
 				PeriodInfo.getNextPeriod();
-				// ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getNextPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
+				// ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getNextPeriod(),seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
 				// 	$scope.pageBase = base;	
 				// }).then(function(){
 				// 	return promiseStep1();
