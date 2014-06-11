@@ -136,12 +136,12 @@ define(['directives'], function(directives){
                         restrict: 'A',
                         link: function(scope, elem, attr) {
                             var offset = parseInt(attr.scrollOffset, 10)
-                            if(!offset) offset = 20;
+                            if(!offset) offset = 10;
                             console.log("offset:  " + offset);
-                            elem.scrollspy({ "offset" : offset});
+                            $(elem).scrollspy({ "offset" : offset});
                             scope.$watch(attr.scrollSpy, function(value) {
                                 $timeout(function() { 
-                                  elem.scrollspy('refresh', { "offset" : offset})
+                                  $(elem).scrollspy('refresh', { "offset" : offset})
                                 }, 1);
                             }, true);
                         }
@@ -196,7 +196,6 @@ define(['directives'], function(directives){
                       function checkPosition() {
                         var offset = $parse(scope.affix)(scope); 
                         var affix = win.prop('pageYOffset') <= offset ? 'top' : false;
-                        
                         if (affixed === affix) return;
                           
                         affixed = affix;
