@@ -57,7 +57,31 @@
 					          		</li>
 						        </ul>
 							</li>
-							
+					        <li class="dropdown"  access-level='{{accessLevels.playerView}}' ng-show=false>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
+									{{Label.getContent('Facilitator Report')}}
+									<b class="caret"></b>
+								</a>
+						        <ul class="dropdown-menu">
+									<li class="{{rootShow}}" access-level='{{accessLevels.playerView}}' artive-nav>
+										<a href="/#/map">{{Label.getContent('Perception Map')}}</a>
+									</li>
+					          		<li class="{{rootShow}}" access-level='{{accessLevels.playerView}}' active-nav>
+					          			<a href="/#/report">{{Label.getContent('Reports')}}</a>
+					          		</li>   
+					          		<li class="{{rootShow}}" access-level='{{accessLevels.playerView}}' active-nav>
+					          			<a href="/#/lineChart">{{Label.getContent('Charts')}}</a>
+					          		</li>     
+					          		<li class="" access-level='{{accessLevels.playerView}}' active-nav>
+					          			<a href="/#/marketReport">{{Label.getContent('Market studies')}}</a>
+					          		</li> 
+
+						        </ul>				        	
+					        </li>  
+
+			          		<li access-level='{{accessLevels.playerView}}' active-nav ng-show=false>
+			          			<a href="/#/contract">{{Label.getContent('Negotiation')}}</a>
+			          		</li>
 
 			          		<li class="{{decisionActive}}" access-level='{{accessLevels.producerViewOnly}}' active-nav>
 			          			<a href="/#/supplierDecision">{{Label.getContent('Make Decision')}}</a>
@@ -82,11 +106,8 @@
 										<strong>{{Label.getContent(getRoleNormal(user.role))}}  {{user.roleID}}</strong>
 										<b class="caret"></b>
 									</a>
-						        <ul class="dropdown-menu">
-						          <li role="presentation" class="dropdown-header">{{Label.getContent('Period')}} {{currentPeriod}} of 3</li>
-						          <li><a>{{Label.getContent('Get result of lastest period')}}</a></li>
-						          <li class="divider"></li>					          
-						          <li role="presentation" class="dropdown-header">{{Label.getContent('switchLanguage')}}</li>
+						        <ul class="dropdown-menu">			          
+						          <li role="presentation" class="dropdown-header">{{seminar}}, {{Label.getContent('Period')}} {{currentPeriod}} of {{span}}</li>
 						          <li><a ng-click="Label.changeLanguage('ENG')">English</a></li>					          
 						          <li><a ng-click="Label.changeLanguage('CHN')">简体中文</a></li>					          
 
