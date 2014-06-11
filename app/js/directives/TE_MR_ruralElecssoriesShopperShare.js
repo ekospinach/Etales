@@ -21,16 +21,16 @@ define(['directives', 'services'], function(directives){
                         if(data.data[0].absoluteValue[i].parentCategoryID==category&&data.data[0].absoluteValue[i].marketID==market){
                             var variantName=data.data[0].absoluteValue[i].variantName;
                             var brandName=data.data[0].absoluteValue[i].parentBrandName;
-                            var bmValue=data.data[0].absoluteValue[i].segmentInfo[4].shopperInfo[0].value;
-                            var onlineValue=data.data[0].absoluteValue[i].segmentInfo[4].shopperInfo[1].value;
-                            var mixedValue=data.data[0].absoluteValue[i].segmentInfo[4].shopperInfo[2].value;
+                            var bmValue=(data.data[0].absoluteValue[i].segmentInfo[4].shopperInfo[0].value*100).toFixed(2);
+                            var onlineValue=(data.data[0].absoluteValue[i].segmentInfo[4].shopperInfo[1].value*100).toFixed(2);
+                            var mixedValue=(data.data[0].absoluteValue[i].segmentInfo[4].shopperInfo[2].value*100).toFixed(2);
                             var Changes=_.find(data.data[0].valueChange,function(obj){
                                 return (obj.parentBrandName==brandName&&obj.variantName==variantName&&obj.marketID==market);
                             });
                             if(Changes!=undefined){
-                                var bmValueChange=Changes.segmentInfo[4].shopperInfo[0].value;
-                                var onlineValueChange=Changes.segmentInfo[4].shopperInfo[1].value;
-                                var mixedValueChange=Changes.segmentInfo[4].shopperInfo[2].value; 
+                                var bmValueChange=(Changes.segmentInfo[4].shopperInfo[0].value*100).toFixed(2);
+                                var onlineValueChange=(Changes.segmentInfo[4].shopperInfo[1].value*100).toFixed(2);
+                                var mixedValueChange=(Changes.segmentInfo[4].shopperInfo[2].value*100).toFixed(2); 
                             }else{
                                 var bmValueChange=0;
                                 var onlineValueChange=0;
@@ -44,18 +44,18 @@ define(['directives', 'services'], function(directives){
                                 return (obj.parentBrandName==brandName&&obj.variantName==variantName&&obj.marketID==market);
                             });
                             if(Volumes!=undefined){
-                                var bmVolume=Volumes.segmentInfo[4].shopperInfo[0].value;
-                                var onlineVolume=Volumes.segmentInfo[4].shopperInfo[1].value;
-                                var mixedVolume=Volumes.segmentInfo[4].shopperInfo[2].value;
+                                var bmVolume=(Volumes.segmentInfo[4].shopperInfo[0].value*100).toFixed(2);
+                                var onlineVolume=(Volumes.segmentInfo[4].shopperInfo[1].value*100).toFixed(2);
+                                var mixedVolume=(Volumes.segmentInfo[4].shopperInfo[2].value*100).toFixed(2);
                             }else{
                                 var bmVolume=0;
                                 var onlineVolume=0;
                                 var mixedVolume=0;
                             }
                             if(VolumeChanges!=undefined){
-                                var bmVolumeChange=VolumeChanges.segmentInfo[4].shopperInfo[0].value;
-                                var onlineVolumeChange=VolumeChanges.segmentInfo[4].shopperInfo[1].value;
-                                var mixedVolumeChange=VolumeChanges.segmentInfo[4].shopperInfo[2].value;                                
+                                var bmVolumeChange=(VolumeChanges.segmentInfo[4].shopperInfo[0].value*100).toFixed(2);
+                                var onlineVolumeChange=(VolumeChanges.segmentInfo[4].shopperInfo[1].value*100).toFixed(2);
+                                var mixedVolumeChange=(VolumeChanges.segmentInfo[4].shopperInfo[2].value*100).toFixed(2);                                
                             }else{
                                 var bmVolumeChange=0;
                                 var onlineVolumeChange=0;

@@ -22,7 +22,7 @@
                     <p>{{Label.getContent('Sales')}} ($mln)</p>
                 </td>
                 <td>
-                    <p class="text-right">{{sales[2].value[0]}}</p>
+                    <p class="text-right">{{sales[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand1 in brand1s'>
                     <p class="text-right">{{brand1.Sales}}</p>
@@ -33,7 +33,7 @@
                     <p class="text-right">{{Label.getContent('Change from Previous Period')}} (%)</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{salesChanges[2].value[0]}}</p>
+                    <p class="text-right">{{salesChanges[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand1 in brand1s'>
                     <p class="text-right">{{brand1.SalesChange}}</p>
@@ -55,7 +55,7 @@
                     <p class="padding-20">{{Label.getContent('Material Costs')}} ($mln)</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{materialCosts[2].value[0]}}</p>
+                    <p class="text-right">{{materialCosts[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand1 in brand1s'>
                     <p class="text-right">{{brand1.MaterialCosts}}</p>
@@ -67,7 +67,7 @@
                     <p class="padding-20" ng-show='true'>- {{Label.getContent('Cost of Goods Sold')}} ($mln)</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{costGoodsSolds[2].value[0]}}</p>
+                    <p class="text-right">{{costGoodsSolds[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand1 in brand1s'>
                     <p class="text-right">{{brand1.CostOfGoodsSold}}</p>
@@ -79,7 +79,7 @@
                     <p class="padding-20" ng-show='true'>- {{Label.getContent('Discontinued Goods Cost')}} ($mln)</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{discontinuedGoodsCosts[2].value[0]}}</p>
+                    <p class="text-right">{{discontinuedGoodsCosts[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand1 in brand1s'>
                     <p class="text-right">{{brand1.DiscontinuedGoodsCost}}</p>
@@ -91,7 +91,7 @@
                     <p class="padding-20" ng-show='true'>- {{Label.getContent('Inventory Holding Cost')}} ($mln)</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{holdingCosts[2].value[0]}}</p>
+                    <p class="text-right">{{holdingCosts[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand1 in brand1s'>
                     <p class="text-right">{{brand1.InventoryHoldingCost}}</p>
@@ -102,7 +102,7 @@
                     <p>{{Label.getContent('Gross Profit')}} ($mln)</p>
                 </td>
                 <td>
-                    <p class="text-right">{{grossProfits[2].value[0]}}</p>
+                    <p class="text-right">{{grossProfits[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand1 in brand1s'>
                     <p class="text-right">{{brand1.GrossProfit}}</p>
@@ -113,7 +113,7 @@
                     <p class="text-right">{{Label.getContent('Change from Previous Period')}} (%)</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{grossProfitChanges[2].value[0]}}</p>
+                    <p class="text-right">{{grossProfitChanges[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand1 in brand1s'>
                     <p class="text-right">{{brand1.GrossProfitChange}}</p>
@@ -124,7 +124,7 @@
                     <p>{{Label.getContent('Gross Profit Margin')}} (%)</p>
                 </td>
                 <td>
-                    <p class="text-right">{{grossProfitMargins[2].value[0]}}</p>
+                    <p class="text-right">{{grossProfitMargins[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand1 in brand1s'>
                     <p class="text-right">{{brand1.GrossProfitMargin}}</p>
@@ -146,7 +146,7 @@
                     <p class="padding-20">- {{Label.getContent('Marketing Expenses')}} ($mln)</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{expenseValues[2].value[0]}}</p>
+                    <p class="text-right">{{expenseValues[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand1 in brand1s'>
                     <p class="text-right">{{brand1.TradeAndMarketing}}</p>
@@ -157,7 +157,7 @@
                     <p class="padding-40">(1) {{Label.getContent('Advertising Online')}} ($mln)</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{advertisingOnLines[2].value[0]}}</p>
+                    <p class="text-right">{{advertisingOnLines[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand1 in brand1s'>
                     <p class="text-right">{{brand1.AdvertisingOnLine}}</p>
@@ -168,7 +168,7 @@
                     <p class="padding-40">(2) {{Label.getContent('Advertising Offline')}} ($mln)</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{advertisingOffLines[2].value[0]}}</p>
+                    <p class="text-right">{{advertisingOffLines[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand1 in brand1s'>
                     <p class="text-right">{{brand1.AdvertisingOffLine}}</p>
@@ -179,7 +179,7 @@
                     <p class="padding-40">(3) {{Label.getContent('Trade Support')}} ($mln)</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{tradeSupports[2].value[0]}}</p>
+                    <p class="text-right">{{tradeSupports[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand1 in brand1s'>
                     <p class="text-right">{{brand1.TradeSupport}}</p>
@@ -190,7 +190,7 @@
                     <p class="text-right">{{Label.getContent('Marketing Expenses')}} ({{Label.getContent('as % of sales')}})</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{expenseShares[2].value[0]}}</p>
+                    <p class="text-right">{{expenseShares[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand1 in brand1s'>
                     <p class="text-right">{{brand1.TradeAndMarketingAsPercentageOfSales}}</p>
@@ -212,7 +212,7 @@
                     <p class="padding-20">- {{Label.getContent('General Expenses')}} ($mln)</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{generalExpenses[2].value[0]}}</p>
+                    <p class="text-right">{{generalExpenses[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand1 in brand1s'>
                     <p class="text-right">{{brand1.GeneralExpenses}}</p>
@@ -223,7 +223,7 @@
                     <p class="padding-20">- {{Label.getContent('Amortisation')}} ($mln)</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{amortisations[2].value[0]}}</p>
+                    <p class="text-right">{{amortisations[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand1 in brand1s'>
                     <p class="text-right">{{brand1.Amortisation}}</p>
@@ -234,7 +234,7 @@
                     <p>{{Label.getContent('Operating Profit')}} ($mln)</p>
                 </td>
                 <td>
-                    <p class="text-right">{{operatingProfits[2].value[0]}}</p>
+                    <p class="text-right">{{operatingProfits[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand1 in brand1s'>
                     <p class="text-right">{{brand1.OperatingProfit}}</p>
@@ -245,7 +245,7 @@
                     <p class="text-right">{{Label.getContent('Change from Previous Period')}} (%)</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{operatingProfitChanges[2].value[0]}}</p>
+                    <p class="text-right">{{operatingProfitChanges[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand1 in brand1s'>
                     <p class="text-right">{{brand1.OperatingProfitChange}}</p>
@@ -256,7 +256,7 @@
                     <p>{{Label.getContent('Operating Profit Margin')}} (%)</p>
                 </td>
                 <td>
-                    <p class="text-right">{{operatingProfitMargins[2].value[0]}}</p>
+                    <p class="text-right">{{operatingProfitMargins[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand1 in brand1s'>
                     <p class="text-right">{{brand1.OperatingProfitMargin}}</p>
@@ -278,7 +278,7 @@
                     <p class="padding-20">- {{Label.getContent('Interest')}} ($mln)</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{interests[2].value[0]}}</p>
+                    <p class="text-right">{{interests[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand1 in brand1s'>
                     <p class="text-right">{{brand1.Interest}}</p>
@@ -289,7 +289,7 @@
                     <p class="padding-20">- {{Label.getContent('Taxes')}} ($mln)</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{taxes[2].value[0]}}</p>
+                    <p class="text-right">{{taxes[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand1 in brand1s'>
                     <p class="text-right">{{brand1.Taxes}}</p>
@@ -300,7 +300,7 @@
                     <p class="padding-20">- {{Label.getContent('Exceptional Costs/Profits')}} ($mln)</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{costsProfits[2].value[0]}}</p>
+                    <p class="text-right">{{costsProfits[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand1 in brand1s'>
                     <p class="text-right">{{brand1.ExceptionalItems}}</p>
@@ -311,7 +311,7 @@
                     <p>{{Label.getContent('Net Profit')}} ($mln)</p>
                 </td>
                 <td>
-                    <p class="text-right">{{netProfits[2].value[0]}}</p>
+                    <p class="text-right">{{netProfits[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand1 in brand1s'>
                     <p class="text-right">{{brand1.NetProfit}}</p>
@@ -322,7 +322,7 @@
                     <p class="text-right">{{Label.getContent('Change from Previous Period')}} (%)</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{netProfitChanges[2].value[0]}}</p>
+                    <p class="text-right">{{netProfitChanges[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand1 in brand1s'>
                     <p class="text-right">{{brand1.NetProfitChange}}</p>
@@ -333,7 +333,7 @@
                     <p>{{Label.getContent('Net Profit Margin')}} (%)</p>
                 </td>
                 <td>
-                    <p class="text-right">{{netProfitMargins[2].value[0]}}</p>
+                    <p class="text-right">{{netProfitMargins[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand1 in brand1s'>
                     <p class="text-right">{{brand1.NetProfitMargin}}</p>
@@ -376,7 +376,7 @@
                     <p>{{Label.getContent('Sales')}} ($mln)</p>
                 </td>
                 <td>
-                    <p class="text-right">{{sales[2].value[0]}}</p>
+                    <p class="text-right">{{sales[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand2 in brand2s'>
                     <p class="text-right">{{brand2.Sales}}</p>
@@ -387,7 +387,7 @@
                     <p class="text-right">{{Label.getContent('Change from Previous Period')}} (%)</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{salesChanges[2].value[0]}}</p>
+                    <p class="text-right">{{salesChanges[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand2 in brand2s'>
                     <p class="text-right">{{brand2.SalesChange}}</p>
@@ -409,7 +409,7 @@
                     <p class="padding-20">{{Label.getContent('Material Costs')}} ($mln)</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{materialCosts[2].value[0]}}</p>
+                    <p class="text-right">{{materialCosts[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand2 in brand2s'>
                     <p class="text-right">{{brand2.MaterialCosts}}</p>
@@ -421,7 +421,7 @@
                     <p class="padding-20">- {{Label.getContent('Cost of Goods Sold')}} ($mln)</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{costGoodsSolds[2].value[0]}}</p>
+                    <p class="text-right">{{costGoodsSolds[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand2 in brand2s'>
                     <p class="text-right">{{brand2.CostOfGoodsSold}}</p>
@@ -433,7 +433,7 @@
                     <p class="padding-20">- {{Label.getContent('Discontinued Goods Cost')}} ($mln)</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{discontinuedGoodsCosts[2].value[0]}}</p>
+                    <p class="text-right">{{discontinuedGoodsCosts[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand2 in brand2s'>
                     <p class="text-right">{{brand2.DiscontinuedGoodsCost}}</p>
@@ -445,7 +445,7 @@
                     <p class="padding-20">- {{Label.getContent('Inventory Holding Cost')}} ($mln)</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{holdingCosts[2].value[0]}}</p>
+                    <p class="text-right">{{holdingCosts[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand2 in brand2s'>
                     <p class="text-right">{{brand2.InventoryHoldingCost}}</p>
@@ -456,7 +456,7 @@
                     <p>{{Label.getContent('Gross Profit')}} ($mln)</p>
                 </td>
                 <td>
-                    <p class="text-right">{{grossProfits[2].value[0]}}</p>
+                    <p class="text-right">{{grossProfits[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand2 in brand2s'>
                     <p class="text-right">{{brand2.GrossProfit}}</p>
@@ -467,7 +467,7 @@
                     <p class="text-right">{{Label.getContent('Change from Previous Period')}} (%)</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{grossProfitChanges[2].value[0]}}</p>
+                    <p class="text-right">{{grossProfitChanges[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand2 in brand2s'>
                     <p class="text-right">{{brand2.GrossProfitChange}}</p>
@@ -478,7 +478,7 @@
                     <p>{{Label.getContent('Gross Profit Margin')}} (%)</p>
                 </td>
                 <td>
-                    <p class="text-right">{{grossProfitMargins[2].value[0]}}</p>
+                    <p class="text-right">{{grossProfitMargins[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand2 in brand2s'>
                     <p class="text-right">{{brand2.GrossProfitMargin}}</p>
@@ -500,7 +500,7 @@
                     <p class="padding-20">- {{Label.getContent('Marketing Expenses')}} ($mln)</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{expenseValues[2].value[0]}}</p>
+                    <p class="text-right">{{expenseValues[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand2 in brand2s'>
                     <p class="text-right">{{brand2.TradeAndMarketing}}</p>
@@ -511,7 +511,7 @@
                     <p class="padding-40">(1) {{Label.getContent('Advertising Online')}} ($mln)</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{advertisingOnLines[2].value[0]}}</p>
+                    <p class="text-right">{{advertisingOnLines[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand2 in brand2s'>
                     <p class="text-right">{{brand2.AdvertisingOnLine}}</p>
@@ -522,7 +522,7 @@
                     <p class="padding-40">(2) {{Label.getContent('Advertising Offline')}} ($mln)</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{advertisingOffLines[2].value[0]}}</p>
+                    <p class="text-right">{{advertisingOffLines[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand2 in brand2s'>
                     <p class="text-right">{{brand2.AdvertisingOffLine}}</p>
@@ -533,7 +533,7 @@
                     <p class="padding-40">(3) {{Label.getContent('Trade Support')}} ($mln)</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{tradeSupports[2].value[0]}}</p>
+                    <p class="text-right">{{tradeSupports[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand2 in brand2s'>
                     <p class="text-right">{{brand2.TradeSupport}}</p>
@@ -544,7 +544,7 @@
                     <p class="text-right">{{Label.getContent('Marketing Expenses')}} ({{Label.getContent('as % of sales')}})</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{expenseShares[2].value[0]}}</p>
+                    <p class="text-right">{{expenseShares[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand2 in brand2s'>
                     <p class="text-right">{{brand2.TradeAndMarketingAsPercentageOfSales}}</p>
@@ -566,7 +566,7 @@
                     <p class="padding-20">- {{Label.getContent('General Expenses')}} ($mln)</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{generalExpenses[2].value[0]}}</p>
+                    <p class="text-right">{{generalExpenses[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand2 in brand2s'>
                     <p class="text-right">{{brand2.GeneralExpenses}}</p>
@@ -577,7 +577,7 @@
                     <p class="padding-20">- {{Label.getContent('Amortisation')}} ($mln)</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{amortisations[2].value[0]}}</p>
+                    <p class="text-right">{{amortisations[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand2 in brand2s'>
                     <p class="text-right">{{brand2.Amortisation}}</p>
@@ -588,7 +588,7 @@
                     <p>{{Label.getContent('Operating Profit')}} ($mln)</p>
                 </td>
                 <td>
-                    <p class="text-right">{{operatingProfits[2].value[0]}}</p>
+                    <p class="text-right">{{operatingProfits[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand2 in brand2s'>
                     <p class="text-right">{{brand2.OperatingProfit}}</p>
@@ -599,7 +599,7 @@
                     <p class="text-right">{{Label.getContent('Change from Previous Period')}} (%)</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{operatingProfitChanges[2].value[0]}}</p>
+                    <p class="text-right">{{operatingProfitChanges[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand2 in brand2s'>
                     <p class="text-right">{{brand2.OperatingProfitChange}}</p>
@@ -610,7 +610,7 @@
                     <p>{{Label.getContent('Operating Profit Margin')}} (%)</p>
                 </td>
                 <td>
-                    <p class="text-right">{{operatingProfitMargins[2].value[0]}}</p>
+                    <p class="text-right">{{operatingProfitMargins[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand2 in brand2s'>
                     <p class="text-right">{{brand2.OperatingProfitMargin}}</p>
@@ -632,7 +632,7 @@
                     <p class="padding-20">- {{Label.getContent('Interest')}} ($mln)</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{interests[2].value[0]}}</p>
+                    <p class="text-right">{{interests[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand2 in brand2s'>
                     <p class="text-right">{{brand2.Interest}}</p>
@@ -643,7 +643,7 @@
                     <p class="padding-20">- {{Label.getContent('Taxes')}} ($mln)</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{taxes[2].value[0]}}</p>
+                    <p class="text-right">{{taxes[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand2 in brand2s'>
                     <p class="text-right">{{brand2.Taxes}}</p>
@@ -654,7 +654,7 @@
                     <p class="padding-20">- {{Label.getContent('Exceptional Costs/Profits')}} ($mln)</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{costsProfits[2].value[0]}}</p>
+                    <p class="text-right">{{costsProfits[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand2 in brand2s'>
                     <p class="text-right">{{brand2.ExceptionalItems}}</p>
@@ -665,7 +665,7 @@
                     <p>{{Label.getContent('Net Profit')}} ($mln)</p>
                 </td>
                 <td>
-                    <p class="text-right">{{netProfits[2].value[0]}}</p>
+                    <p class="text-right">{{netProfits[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand2 in brand2s'>
                     <p class="text-right">{{brand2.NetProfit}}</p>
@@ -676,7 +676,7 @@
                     <p class="text-right">{{Label.getContent('Change from Previous Period')}} (%)</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{netProfitChanges[2].value[0]}}</p>
+                    <p class="text-right">{{netProfitChanges[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand2 in brand2s'>
                     <p class="text-right">{{brand2.NetProfitChange}}</p>
@@ -687,7 +687,7 @@
                     <p>{{Label.getContent('Net Profit Margin')}} (%)</p>
                 </td>
                 <td>
-                    <p class="text-right">{{netProfitMargins[2].value[0]}}</p>
+                    <p class="text-right">{{netProfitMargins[2].value[0].toFixed(2)}}</p>
                 </td>
                 <td ng-repeat='brand2 in brand2s'>
                     <p class="text-right">{{brand2.NetProfitMargin}}</p>

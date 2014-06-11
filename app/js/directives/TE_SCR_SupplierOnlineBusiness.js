@@ -23,7 +23,7 @@ define(['directives', 'services'], function(directives){
                         var array=_.find(data,function(obj){
                             return (obj.variantName==variantName&&obj.parentBrandName==brandName);
                         });
-                        return array.value[num];
+                        return array.value[num].toFixed(2);
                     }
                     var num=0;
                     scope.variants=new Array();
@@ -46,7 +46,7 @@ define(['directives', 'services'], function(directives){
                         for(var i=0;i<data.data[0].scrv_Sales.length;i++){
                             if(data.data[0].scrv_Sales[i].parentBrandName==brandName){
                                 var variantName=data.data[0].scrv_Sales[i].variantName;
-                                var Sales=data.data[0].scrv_Sales[i].value[num];
+                                var Sales=data.data[0].scrv_Sales[i].value[num].toFixed(2);
                                 var SalesChange=loadVariantValue(data.data[0].scrv_SalesChange,brandName,variantName,num);
                                 var SalesShareInCategory=loadVariantValue(data.data[0].scrv_SalesShareInCategory,brandName,variantName,num);
                                 var MaterialCosts=loadVariantValue(data.data[0].scrv_MaterialCosts,brandName,variantName,num);
@@ -117,7 +117,7 @@ define(['directives', 'services'], function(directives){
 			    	var array=_.find(data,function(obj){
 			    		return (obj.brandName==name);
 			    	});
-			    	return array.value[num];
+			    	return array.value[num].toFixed(2);
 			    }
 
 			    var loadTotal=function(data){
@@ -165,7 +165,7 @@ define(['directives', 'services'], function(directives){
 			    	for(var i=0;i<data.data[0].scrb_Sales.length;i++){
 			    		if(data.data[0].scrb_Sales[i].parentCategoryID==category){
 			    			var brandName=data.data[0].scrb_Sales[i].brandName;
-			    			var Sales=data.data[0].scrb_Sales[i].value[num];
+			    			var Sales=data.data[0].scrb_Sales[i].value[num].toFixed(2);
 			    			var SalesChange=loadValue(data.data[0].scrb_SalesChange,brandName,num);
 				    		var SalesShareInCategory=loadValue(data.data[0].scrb_SalesShareInCategory,brandName,num);
 				    		var MaterialCosts=loadValue(data.data[0].scrb_MaterialCosts,brandName,num);
