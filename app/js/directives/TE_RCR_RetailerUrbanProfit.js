@@ -22,7 +22,7 @@ define(['directives', 'services'], function(directives){
                         return (obj.brandName==name&&obj.marketID==num);
                     });
                     if(array!=undefined){
-                        return array.value;
+                        return array.value.toFixed(2);
                     }else{
                         return 0;
                     }
@@ -36,7 +36,7 @@ define(['directives', 'services'], function(directives){
                             return (obj.variantName==variantName&&obj.parentBrandName==brandName&&obj.marketID==num);
                         });
                         if(array!=undefined){
-                            return array.value;
+                            return array.value.toFixed(2);
                         }else{
                             return -1;
                         }
@@ -57,7 +57,7 @@ define(['directives', 'services'], function(directives){
                         for(var i=0;i<data.data[0].rcrv_Sales.length;i++){
                             if(data.data[0].rcrv_Sales[i].parentBrandName==brandName&&data.data[0].rcrv_Sales[i].marketID==marketID){
                                 var variantName=data.data[0].rcrv_Sales[i].variantName;
-                                var Sales=data.data[0].rcrv_Sales[i].value;
+                                var Sales=data.data[0].rcrv_Sales[i].value.toFixed(2);
                                 var PromotionsCost=loadVariantValue(data.data[0].rcrv_PromotionsCost,brandName,variantName,marketID);
                                 var OtherCompensation=loadVariantValue(data.data[0].rcrv_OtherCompensation,brandName,variantName,marketID);
                                 var NetSales=loadVariantValue(data.data[0].rcrv_NetSales,brandName,variantName,marketID);
@@ -174,7 +174,7 @@ define(['directives', 'services'], function(directives){
                     for(var i=0;i<data.data[0].rcrb_Sales.length;i++){
                         if(data.data[0].rcrb_Sales[i].parentCategoryID==category&&data.data[0].rcrb_Sales[i].marketID==num){
                             var brandName=data.data[0].rcrb_Sales[i].brandName;
-                            var Sales=data.data[0].rcrb_Sales[i].value;
+                            var Sales=data.data[0].rcrb_Sales[i].value.toFixed(2);
                             var marketID=data.data[0].rcrb_Sales[i].marketID;
                             var PromotionsCost=loadValue(data.data[0].rcrb_PromotionsCost,brandName,marketID);
                             var OtherCompensation=loadValue(data.data[0].rcrb_OtherCompensation,brandName,marketID);
