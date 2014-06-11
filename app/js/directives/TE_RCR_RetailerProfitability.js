@@ -40,19 +40,19 @@ define(['directives', 'services'], function(directives){
                     var array=new Array();
                     for(var i=0;i<data.length;i++){
                         if(data[i].categoryID==1&&data[i].marketID==1){
-                            factoriesInfo[data[i].factoriesID-1]=data[i].value;
+                            factoriesInfo[data[i].factoriesID-1]=data[i].value.toFixed(2);
                         }
                     }
                     marketInfo.push({'factoriesInfo':factoriesInfo});
                     for(var i=0;i<data[i].length;i++){
                         if(data[i].categoryID==1&&data[i].marketID==2){
-                            factoriesInfo[data[i].factoriesID-1]=data[i].value;
+                            factoriesInfo[data[i].factoriesID-1]=data[i].value.toFixed(2);
                         }
                     }
                     marketInfo.push({'factoriesInfo':factoriesInfo});
                     for(var i=0;i<data[i].length;i++){
                         if(data[i].categoryID==1&&data[i].marketID==3){
-                            factoriesInfo[data[i].factoriesID-1]=data[i].value;
+                            factoriesInfo[data[i].factoriesID-1]=data[i].value.toFixed(2);
                         }
                     }
                     marketInfo.push({'factoriesInfo':factoriesInfo});
@@ -60,19 +60,19 @@ define(['directives', 'services'], function(directives){
                     marketInfo=new Array();
                     for(var i=0;i<data[i].length;i++){
                         if(data[i].categoryID==2&&data[i].marketID==1){
-                            factoriesInfo[data[i].factoriesID-1]=data[i].value;
+                            factoriesInfo[data[i].factoriesID-1]=data[i].value.toFixed(2);
                         }
                     }
                     marketInfo.push({'factoriesInfo':factoriesInfo});
                     for(var i=0;i<data[i].length;i++){
                         if(data[i].categoryID==2&&data[i].marketID==2){
-                            factoriesInfo[data[i].factoriesID-1]=data[i].value;
+                            factoriesInfo[data[i].factoriesID-1]=data[i].value.toFixed(2);
                         }
                     }
                     marketInfo.push({'factoriesInfo':factoriesInfo});
                     for(var i=0;i<data[i].length;i++){
                         if(data[i].categoryID==2&&data[i].marketID==3){
-                            factoriesInfo[data[i].factoriesID-1]=data[i].value;
+                            factoriesInfo[data[i].factoriesID-1]=data[i].value.toFixed(2);
                         }
                     }
                     marketInfo.push({'factoriesInfo':factoriesInfo});

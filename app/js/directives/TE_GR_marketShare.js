@@ -127,7 +127,13 @@ define(['directives', 'services'], function(directives){
                             },
                             tooltip: {
                                 formatter: function() {
-                                    var s = '<p><b>'+this.series.name+'</b></p>'+'<p>'+Label.getContent('Volume Market Shares')+':'+this.point.percentage.toFixed(2)+'%</p>'+'<p>'+scope.change1s[this.series._i][this.point.x]+' '+Label.getContent('over previous period')+'</p>';
+                                    var index=0;
+                                    if(this.series._i>=6){
+                                        index=this.series._i-6;
+                                    }else{
+                                        index=this.series._i;
+                                    }
+                                    var s = '<p><b>'+this.series.name+'</b></p>'+'<p>'+Label.getContent('Volume Market Shares')+':'+this.point.percentage.toFixed(2)+'%</p>'+'<p>'+scope.change1s[index][this.point.x].toFixed(2)+' '+Label.getContent('over previous period')+'</p>';
                                     return s;
                                 },
                                 shared: false,
@@ -144,7 +150,7 @@ define(['directives', 'services'], function(directives){
                             text: Label.getContent('Elecssories')+' - '+Label.getContent('Volume Market Shares')
                         },
                         subtitle: {
-                            text: '<p class="text-left">'+Label.getContent('Total')+'</p><p class="text-center-left">'+Label.getContent('by Market')+'</p><p class="text-center-right">'+Label.getContent('by Consumer Segment')+'</p><p class="text-right">'+Label.getContent('by Shopper Segment')+'</p>',
+                            text: '<p class="my-text-left">'+Label.getContent('Total')+'</p><p class="my-text-center-left">'+Label.getContent('by Market')+'</p><p class="my-text-center-right">'+Label.getContent('by Consumer Segment')+'</p><p class="my-text-right">'+Label.getContent('by Shopper Segment')+'</p>',
                             useHTML:true,
                         },
                         credits: {
@@ -185,7 +191,13 @@ define(['directives', 'services'], function(directives){
                             },
                             tooltip: {
                                 formatter: function() {
-                                    var s = '<p><b>'+this.series.name+'</b></p>'+'<p>'+Label.getContent('Value Market Shares')+':'+this.point.percentage.toFixed(2)+'%</p>'+'<p>'+scope.change2s[this.series._i][this.point.x]+' '+Label.getContent('over previous period')+'</p>';
+                                    var index=0;
+                                    if(this.series._i>=6){
+                                        index=this.series._i-6;
+                                    }else{
+                                        index=this.series._i;
+                                    }
+                                    var s = '<p><b>'+this.series.name+'</b></p>'+'<p>'+Label.getContent('Volume Market Shares')+':'+this.point.percentage.toFixed(2)+'%</p>'+'<p>'+scope.change2s[index][this.point.x].toFixed(2)+' '+Label.getContent('over previous period')+'</p>';
                                     return s;
                                 },
                                 shared: false,
@@ -202,7 +214,7 @@ define(['directives', 'services'], function(directives){
                             text: Label.getContent('Elecssories')+' - '+Label.getContent('Value Market Shares')
                         },
                         subtitle: {
-                            text: '<p class="text-left">'+Label.getContent('Total')+'</p><p class="text-center-left">'+Label.getContent('by Market')+'</p><p class="text-center-right">'+Label.getContent('by Consumer Segment')+'</p><p class="text-right">'+Label.getContent('by Shopper Segment')+'</p>',
+                            text: '<p class="my-text-left">'+Label.getContent('Total')+'</p><p class="my-text-center-left">'+Label.getContent('by Market')+'</p><p class="my-text-center-right">'+Label.getContent('by Consumer Segment')+'</p><p class="my-text-right">'+Label.getContent('by Shopper Segment')+'</p>',
                             useHTML:true,
                         },
                         credits: {
@@ -242,7 +254,13 @@ define(['directives', 'services'], function(directives){
                             },
                             tooltip: {
                                 formatter: function() {
-                                    var s = '<p><b>'+this.series.name+'</b></p>'+'<p>'+Label.getContent('Volume Market Shares')+':'+this.point.percentage.toFixed(2)+'%</p>'+'<p>'+scope.change3s[this.series._i][this.point.x]+' '+Label.getContent('over previous period')+'</p>';
+                                    var index=0;
+                                    if(this.series._i>=6){
+                                        index=this.series._i-6;
+                                    }else{
+                                        index=this.series._i;
+                                    }
+                                    var s = '<p><b>'+this.series.name+'</b></p>'+'<p>'+Label.getContent('Volume Market Shares')+':'+this.point.percentage.toFixed(2)+'%</p>'+'<p>'+scope.change3s[index][this.point.x].toFixed(2)+' '+Label.getContent('over previous period')+'</p>';
                                     return s;
                                 },
                                 shared: false,
@@ -259,7 +277,7 @@ define(['directives', 'services'], function(directives){
                             text: Label.getContent('HealthBeauties')+' - '+Label.getContent('Volume Market Shares')
                         },
                         subtitle: {
-                            text: '<p class="text-left">'+Label.getContent('Total')+'</p><p class="text-center-left">'+Label.getContent('by Market')+'</p><p class="text-center-right">'+Label.getContent('by Consumer Segment')+'</p><p class="text-right">'+Label.getContent('by Shopper Segment')+'</p>',
+                            text: '<p class="my-text-left">'+Label.getContent('Total')+'</p><p class="my-text-center-left">'+Label.getContent('by Market')+'</p><p class="my-text-center-right">'+Label.getContent('by Consumer Segment')+'</p><p class="my-text-right">'+Label.getContent('by Shopper Segment')+'</p>',
                             useHTML:true,
                         },
                         credits: {
@@ -299,7 +317,13 @@ define(['directives', 'services'], function(directives){
                             },
                             tooltip: {
                                 formatter: function() {
-                                    var s = '<p><b>'+this.series.name+'</b></p>'+'<p>'+Label.getContent('Value Market Shares')+':'+this.point.percentage.toFixed(2)+'%</p>'+'<p>'+scope.change4s[this.series._i][this.point.x]+' '+Label.getContent('over previous period')+'</p>';
+                                    var index=0;
+                                    if(this.series._i>=6){
+                                        index=this.series._i-6;
+                                    }else{
+                                        index=this.series._i;
+                                    }
+                                    var s = '<p><b>'+this.series.name+'</b></p>'+'<p>'+Label.getContent('Volume Market Shares')+':'+this.point.percentage.toFixed(2)+'%</p>'+'<p>'+scope.change4s[index][this.point.x].toFixed(2)+' '+Label.getContent('over previous period')+'</p>';
                                     return s;
                                 },
                                 shared: false,
@@ -316,7 +340,7 @@ define(['directives', 'services'], function(directives){
                             text: Label.getContent('HealthBeauties')+' - '+Label.getContent('Value Market Shares')
                         },
                         subtitle: {
-                            text: '<p class="text-left">'+Label.getContent('Total')+'</p><p class="text-center-left">'+Label.getContent('by Market')+'</p><p class="text-center-right">'+Label.getContent('by Consumer Segment')+'</p><p class="text-right">'+Label.getContent('by Shopper Segment')+'</p>',
+                            text: '<p class="my-text-left">'+Label.getContent('Total')+'</p><p class="my-text-center-left">'+Label.getContent('by Market')+'</p><p class="my-text-center-right">'+Label.getContent('by Consumer Segment')+'</p><p class="my-text-right">'+Label.getContent('by Shopper Segment')+'</p>',
                             useHTML:true,
                         },
                         credits: {

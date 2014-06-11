@@ -17,12 +17,10 @@
                 <th colspan="2">
                     <p class="text-center">{{Label.getContent('Traditional Trade')}}</p>
                 </th>
-                <th>
+                <th rowspan="2">
                     <p class="text-center">{{Label.getContent('Online Store')}}</p>
                 </th>
             </tr>
-        </thead>
-        <tbody>
             <tr>
                 <td></td>
                 <td>
@@ -43,8 +41,9 @@
                 <td>
                     <p class="text-center">{{Label.getContent('Urban')}}</p>
                 </td>
-                <td></td>
             </tr>
+        </thead>
+        <tbody>
             <tr class="success">
                 <td colspan='8'>
                     <p>{{Label.getContent('Elecssories')}}</p>
@@ -56,37 +55,37 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeOrdereds[0].marketInfo[1].accountInfo[0].value}}
+                        {{volumeOrdereds[0].marketInfo[1].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeOrdereds[0].marketInfo[0].accountInfo[0].value}}
+                        {{volumeOrdereds[0].marketInfo[0].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeOrdereds[0].marketInfo[1].accountInfo[1].value}}
+                        {{volumeOrdereds[0].marketInfo[1].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeOrdereds[0].marketInfo[0].accountInfo[1].value}}
+                        {{volumeOrdereds[0].marketInfo[0].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>               
                 <td>
                     <p class="text-right">
-                        {{volumeOrdereds[0].marketInfo[1].accountInfo[2].value}}
+                        {{volumeOrdereds[0].marketInfo[1].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeOrdereds[0].marketInfo[0].accountInfo[2].value}}
+                        {{volumeOrdereds[0].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeOrdereds[0].marketInfo[2].accountInfo[3].value}}
+                        {{volumeOrdereds[0].marketInfo[2].accountInfo[3].value.toFixed(2)}}
                     </p>
                 </td>
             </tr>
@@ -96,37 +95,37 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeSolds[0].marketInfo[1].accountInfo[0].value}}
+                        {{volumeSolds[0].marketInfo[1].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeSolds[0].marketInfo[0].accountInfo[0].value}}
+                        {{volumeSolds[0].marketInfo[0].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeSolds[0].marketInfo[1].accountInfo[1].value}}
+                        {{volumeSolds[0].marketInfo[1].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeSolds[0].marketInfo[0].accountInfo[1].value}}
+                        {{volumeSolds[0].marketInfo[0].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>               
                 <td>
                     <p class="text-right">
-                        {{volumeSolds[0].marketInfo[1].accountInfo[2].value}}
+                        {{volumeSolds[0].marketInfo[1].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeSolds[0].marketInfo[0].accountInfo[2].value}}
+                        {{volumeSolds[0].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeSolds[0].marketInfo[2].accountInfo[3].value}}
+                        {{volumeSolds[0].marketInfo[2].accountInfo[3].value.toFixed(2)}}
                     </p>
                 </td>
             </tr>
@@ -136,37 +135,37 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeSoldShares[0].marketInfo[1].accountInfo[0].value}}
+                        {{volumeSoldShares[0].marketInfo[1].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeSoldShares[0].marketInfo[0].accountInfo[0].value}}
+                        {{volumeSoldShares[0].marketInfo[0].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeSoldShares[0].marketInfo[1].accountInfo[1].value}}
+                        {{volumeSoldShares[0].marketInfo[1].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeSoldShares[0].marketInfo[0].accountInfo[1].value}}
+                        {{volumeSoldShares[0].marketInfo[0].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>               
                 <td>
                     <p class="text-right">
-                        {{volumeSoldShares[0].marketInfo[1].accountInfo[2].value}}
+                        {{volumeSoldShares[0].marketInfo[1].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeSoldShares[0].marketInfo[0].accountInfo[2].value}}
+                        {{volumeSoldShares[0].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeSoldShares[0].marketInfo[2].accountInfo[3].value}}
+                        {{volumeSoldShares[0].marketInfo[2].accountInfo[3].value.toFixed(2)}}
                     </p>
                 </td>
             </tr>
@@ -176,37 +175,37 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{salesValues[0].marketInfo[1].accountInfo[0].value}}
+                        {{salesValues[0].marketInfo[1].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{salesValues[0].marketInfo[0].accountInfo[0].value}}
+                        {{salesValues[0].marketInfo[0].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{salesValues[0].marketInfo[1].accountInfo[1].value}}
+                        {{salesValues[0].marketInfo[1].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{salesValues[0].marketInfo[0].accountInfo[1].value}}
+                        {{salesValues[0].marketInfo[0].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>               
                 <td>
                     <p class="text-right">
-                        {{salesValues[0].marketInfo[1].accountInfo[2].value}}
+                        {{salesValues[0].marketInfo[1].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{salesValues[0].marketInfo[0].accountInfo[2].value}}
+                        {{salesValues[0].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{salesValues[0].marketInfo[2].accountInfo[3].value}}
+                        {{salesValues[0].marketInfo[2].accountInfo[3].value.toFixed(2)}}
                     </p>
                 </td>
             </tr>
@@ -216,37 +215,37 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{salesValueShares[0].marketInfo[1].accountInfo[0].value}}
+                        {{salesValueShares[0].marketInfo[1].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{salesValueShares[0].marketInfo[0].accountInfo[0].value}}
+                        {{salesValueShares[0].marketInfo[0].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{salesValueShares[0].marketInfo[1].accountInfo[1].value}}
+                        {{salesValueShares[0].marketInfo[1].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{salesValueShares[0].marketInfo[0].accountInfo[1].value}}
+                        {{salesValueShares[0].marketInfo[0].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>               
                 <td>
                     <p class="text-right">
-                        {{salesValueShares[0].marketInfo[1].accountInfo[2].value}}
+                        {{salesValueShares[0].marketInfo[1].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{salesValueShares[0].marketInfo[0].accountInfo[2].value}}
+                        {{salesValueShares[0].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{salesValueShares[0].marketInfo[2].accountInfo[3].value}}
+                        {{salesValueShares[0].marketInfo[2].accountInfo[3].value.toFixed(2)}}
                     </p>
                 </td>
             </tr>
@@ -256,37 +255,37 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{costOfGoodsSolds[0].marketInfo[1].accountInfo[0].value}}
+                        {{costOfGoodsSolds[0].marketInfo[1].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{costOfGoodsSolds[0].marketInfo[0].accountInfo[0].value}}
+                        {{costOfGoodsSolds[0].marketInfo[0].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{costOfGoodsSolds[0].marketInfo[1].accountInfo[1].value}}
+                        {{costOfGoodsSolds[0].marketInfo[1].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{costOfGoodsSolds[0].marketInfo[0].accountInfo[1].value}}
+                        {{costOfGoodsSolds[0].marketInfo[0].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>               
                 <td>
                     <p class="text-right">
-                        {{costOfGoodsSolds[0].marketInfo[1].accountInfo[2].value}}
+                        {{costOfGoodsSolds[0].marketInfo[1].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{costOfGoodsSolds[0].marketInfo[0].accountInfo[2].value}}
+                        {{costOfGoodsSolds[0].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{costOfGoodsSolds[0].marketInfo[2].accountInfo[3].value}}
+                        {{costOfGoodsSolds[0].marketInfo[2].accountInfo[3].value.toFixed(2)}}
                     </p>
                 </td>
             </tr>
@@ -296,37 +295,37 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeSupports[0].marketInfo[1].accountInfo[0].value}}
+                        {{tradeSupports[0].marketInfo[1].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeSupports[0].marketInfo[0].accountInfo[0].value}}
+                        {{tradeSupports[0].marketInfo[0].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeSupports[0].marketInfo[1].accountInfo[1].value}}
+                        {{tradeSupports[0].marketInfo[1].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeSupports[0].marketInfo[0].accountInfo[1].value}}
+                        {{tradeSupports[0].marketInfo[0].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>               
                 <td>
                     <p class="text-right">
-                        {{tradeSupports[0].marketInfo[1].accountInfo[2].value}}
+                        {{tradeSupports[0].marketInfo[1].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeSupports[0].marketInfo[0].accountInfo[2].value}}
+                        {{tradeSupports[0].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeSupports[0].marketInfo[2].accountInfo[3].value}}
+                        {{tradeSupports[0].marketInfo[2].accountInfo[3].value.toFixed(2)}}
                     </p>
                 </td>
             </tr>
@@ -336,37 +335,37 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeProfits[0].marketInfo[1].accountInfo[0].value}}
+                        {{tradeProfits[0].marketInfo[1].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeProfits[0].marketInfo[0].accountInfo[0].value}}
+                        {{tradeProfits[0].marketInfo[0].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeProfits[0].marketInfo[1].accountInfo[1].value}}
+                        {{tradeProfits[0].marketInfo[1].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeProfits[0].marketInfo[0].accountInfo[1].value}}
+                        {{tradeProfits[0].marketInfo[0].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>               
                 <td>
                     <p class="text-right">
-                        {{tradeProfits[0].marketInfo[1].accountInfo[2].value}}
+                        {{tradeProfits[0].marketInfo[1].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeProfits[0].marketInfo[0].accountInfo[2].value}}
+                        {{tradeProfits[0].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeProfits[0].marketInfo[2].accountInfo[3].value}}
+                        {{tradeProfits[0].marketInfo[2].accountInfo[3].value.toFixed(2)}}
                     </p>
                 </td>
             </tr>
@@ -376,37 +375,37 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeProfitShares[0].marketInfo[1].accountInfo[0].value}}
+                        {{tradeProfitShares[0].marketInfo[1].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeProfitShares[0].marketInfo[0].accountInfo[0].value}}
+                        {{tradeProfitShares[0].marketInfo[0].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeProfitShares[0].marketInfo[1].accountInfo[1].value}}
+                        {{tradeProfitShares[0].marketInfo[1].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeProfitShares[0].marketInfo[0].accountInfo[1].value}}
+                        {{tradeProfitShares[0].marketInfo[0].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>               
                 <td>
                     <p class="text-right">
-                        {{tradeProfitShares[0].marketInfo[1].accountInfo[2].value}}
+                        {{tradeProfitShares[0].marketInfo[1].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeProfitShares[0].marketInfo[0].accountInfo[2].value}}
+                        {{tradeProfitShares[0].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeProfitShares[0].marketInfo[2].accountInfo[3].value}}
+                        {{tradeProfitShares[0].marketInfo[2].accountInfo[3].value.toFixed(2)}}
                     </p>
                 </td>
             </tr>
@@ -421,37 +420,37 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeOrdereds[1].marketInfo[1].accountInfo[0].value}}
+                        {{volumeOrdereds[1].marketInfo[1].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeOrdereds[1].marketInfo[0].accountInfo[0].value}}
+                        {{volumeOrdereds[1].marketInfo[0].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeOrdereds[1].marketInfo[1].accountInfo[1].value}}
+                        {{volumeOrdereds[1].marketInfo[1].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeOrdereds[1].marketInfo[0].accountInfo[1].value}}
+                        {{volumeOrdereds[1].marketInfo[0].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>               
                 <td>
                     <p class="text-right">
-                        {{volumeOrdereds[1].marketInfo[1].accountInfo[2].value}}
+                        {{volumeOrdereds[1].marketInfo[1].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeOrdereds[1].marketInfo[0].accountInfo[2].value}}
+                        {{volumeOrdereds[1].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeOrdereds[1].marketInfo[2].accountInfo[3].value}}
+                        {{volumeOrdereds[1].marketInfo[2].accountInfo[3].value.toFixed(2)}}
                     </p>
                 </td>
             </tr>
@@ -461,37 +460,37 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeSolds[1].marketInfo[1].accountInfo[0].value}}
+                        {{volumeSolds[1].marketInfo[1].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeSolds[1].marketInfo[0].accountInfo[0].value}}
+                        {{volumeSolds[1].marketInfo[0].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeSolds[1].marketInfo[1].accountInfo[1].value}}
+                        {{volumeSolds[1].marketInfo[1].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeSolds[1].marketInfo[0].accountInfo[1].value}}
+                        {{volumeSolds[1].marketInfo[0].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>               
                 <td>
                     <p class="text-right">
-                        {{volumeSolds[1].marketInfo[1].accountInfo[2].value}}
+                        {{volumeSolds[1].marketInfo[1].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeSolds[1].marketInfo[0].accountInfo[2].value}}
+                        {{volumeSolds[1].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeSolds[1].marketInfo[2].accountInfo[3].value}}
+                        {{volumeSolds[1].marketInfo[2].accountInfo[3].value.toFixed(2)}}
                     </p>
                 </td>
             </tr>
@@ -501,37 +500,37 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeSoldShares[1].marketInfo[1].accountInfo[0].value}}
+                        {{volumeSoldShares[1].marketInfo[1].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeSoldShares[1].marketInfo[0].accountInfo[0].value}}
+                        {{volumeSoldShares[1].marketInfo[0].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeSoldShares[1].marketInfo[1].accountInfo[1].value}}
+                        {{volumeSoldShares[1].marketInfo[1].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeSoldShares[1].marketInfo[0].accountInfo[1].value}}
+                        {{volumeSoldShares[1].marketInfo[0].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>               
                 <td>
                     <p class="text-right">
-                        {{volumeSoldShares[1].marketInfo[1].accountInfo[2].value}}
+                        {{volumeSoldShares[1].marketInfo[1].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeSoldShares[1].marketInfo[0].accountInfo[2].value}}
+                        {{volumeSoldShares[1].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeSoldShares[1].marketInfo[2].accountInfo[3].value}}
+                        {{volumeSoldShares[1].marketInfo[2].accountInfo[3].value.toFixed(2)}}
                     </p>
                 </td>
             </tr>
@@ -541,37 +540,37 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{salesValues[1].marketInfo[1].accountInfo[0].value}}
+                        {{salesValues[1].marketInfo[1].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{salesValues[1].marketInfo[0].accountInfo[0].value}}
+                        {{salesValues[1].marketInfo[0].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{salesValues[1].marketInfo[1].accountInfo[1].value}}
+                        {{salesValues[1].marketInfo[1].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{salesValues[1].marketInfo[0].accountInfo[1].value}}
+                        {{salesValues[1].marketInfo[0].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>               
                 <td>
                     <p class="text-right">
-                        {{salesValues[1].marketInfo[1].accountInfo[2].value}}
+                        {{salesValues[1].marketInfo[1].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{salesValues[1].marketInfo[0].accountInfo[2].value}}
+                        {{salesValues[1].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{salesValues[1].marketInfo[2].accountInfo[3].value}}
+                        {{salesValues[1].marketInfo[2].accountInfo[3].value.toFixed(2)}}
                     </p>
                 </td>
             </tr>
@@ -581,37 +580,37 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{salesValueShares[1].marketInfo[1].accountInfo[0].value}}
+                        {{salesValueShares[1].marketInfo[1].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{salesValueShares[1].marketInfo[0].accountInfo[0].value}}
+                        {{salesValueShares[1].marketInfo[0].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{salesValueShares[1].marketInfo[1].accountInfo[1].value}}
+                        {{salesValueShares[1].marketInfo[1].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{salesValueShares[1].marketInfo[0].accountInfo[1].value}}
+                        {{salesValueShares[1].marketInfo[0].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>               
                 <td>
                     <p class="text-right">
-                        {{salesValueShares[1].marketInfo[1].accountInfo[2].value}}
+                        {{salesValueShares[1].marketInfo[1].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{salesValueShares[1].marketInfo[0].accountInfo[2].value}}
+                        {{salesValueShares[1].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{salesValueShares[1].marketInfo[2].accountInfo[3].value}}
+                        {{salesValueShares[1].marketInfo[2].accountInfo[3].value.toFixed(2)}}
                     </p>
                 </td>
             </tr>
@@ -621,37 +620,37 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{costOfGoodsSolds[1].marketInfo[1].accountInfo[0].value}}
+                        {{costOfGoodsSolds[1].marketInfo[1].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{costOfGoodsSolds[1].marketInfo[0].accountInfo[0].value}}
+                        {{costOfGoodsSolds[1].marketInfo[0].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{costOfGoodsSolds[1].marketInfo[1].accountInfo[1].value}}
+                        {{costOfGoodsSolds[1].marketInfo[1].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{costOfGoodsSolds[1].marketInfo[0].accountInfo[1].value}}
+                        {{costOfGoodsSolds[1].marketInfo[0].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>               
                 <td>
                     <p class="text-right">
-                        {{costOfGoodsSolds[1].marketInfo[1].accountInfo[2].value}}
+                        {{costOfGoodsSolds[1].marketInfo[1].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{costOfGoodsSolds[1].marketInfo[0].accountInfo[2].value}}
+                        {{costOfGoodsSolds[1].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{costOfGoodsSolds[1].marketInfo[2].accountInfo[3].value}}
+                        {{costOfGoodsSolds[1].marketInfo[2].accountInfo[3].value.toFixed(2)}}
                     </p>
                 </td>
             </tr>
@@ -661,37 +660,37 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeSupports[1].marketInfo[1].accountInfo[0].value}}
+                        {{tradeSupports[1].marketInfo[1].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeSupports[1].marketInfo[0].accountInfo[0].value}}
+                        {{tradeSupports[1].marketInfo[0].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeSupports[1].marketInfo[1].accountInfo[1].value}}
+                        {{tradeSupports[1].marketInfo[1].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeSupports[1].marketInfo[0].accountInfo[1].value}}
+                        {{tradeSupports[1].marketInfo[0].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>               
                 <td>
                     <p class="text-right">
-                        {{tradeSupports[1].marketInfo[1].accountInfo[2].value}}
+                        {{tradeSupports[1].marketInfo[1].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeSupports[1].marketInfo[0].accountInfo[2].value}}
+                        {{tradeSupports[1].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeSupports[1].marketInfo[2].accountInfo[3].value}}
+                        {{tradeSupports[1].marketInfo[2].accountInfo[3].value.toFixed(2)}}
                     </p>
                 </td>
             </tr>
@@ -701,37 +700,37 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeProfits[1].marketInfo[1].accountInfo[0].value}}
+                        {{tradeProfits[1].marketInfo[1].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeProfits[1].marketInfo[0].accountInfo[0].value}}
+                        {{tradeProfits[1].marketInfo[0].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeProfits[1].marketInfo[1].accountInfo[1].value}}
+                        {{tradeProfits[1].marketInfo[1].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeProfits[1].marketInfo[0].accountInfo[1].value}}
+                        {{tradeProfits[1].marketInfo[0].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>               
                 <td>
                     <p class="text-right">
-                        {{tradeProfits[1].marketInfo[1].accountInfo[2].value}}
+                        {{tradeProfits[1].marketInfo[1].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeProfits[1].marketInfo[0].accountInfo[2].value}}
+                        {{tradeProfits[1].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeProfits[1].marketInfo[2].accountInfo[3].value}}
+                        {{tradeProfits[1].marketInfo[2].accountInfo[3].value.toFixed(2)}}
                     </p>
                 </td>
             </tr>
@@ -741,37 +740,37 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeProfitShares[1].marketInfo[1].accountInfo[0].value}}
+                        {{tradeProfitShares[1].marketInfo[1].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeProfitShares[1].marketInfo[0].accountInfo[0].value}}
+                        {{tradeProfitShares[1].marketInfo[0].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeProfitShares[1].marketInfo[1].accountInfo[1].value}}
+                        {{tradeProfitShares[1].marketInfo[1].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeProfitShares[1].marketInfo[0].accountInfo[1].value}}
+                        {{tradeProfitShares[1].marketInfo[0].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>               
                 <td>
                     <p class="text-right">
-                        {{tradeProfitShares[1].marketInfo[1].accountInfo[2].value}}
+                        {{tradeProfitShares[1].marketInfo[1].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeProfitShares[1].marketInfo[0].accountInfo[2].value}}
+                        {{tradeProfitShares[1].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeProfitShares[1].marketInfo[2].accountInfo[3].value}}
+                        {{tradeProfitShares[1].marketInfo[2].accountInfo[3].value.toFixed(2)}}
                     </p>
                 </td>
             </tr>

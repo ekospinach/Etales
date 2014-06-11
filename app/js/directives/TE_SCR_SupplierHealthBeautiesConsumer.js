@@ -27,19 +27,19 @@ define(['directives', 'services'], function(directives){
                         if(data.data[0].absoluteValue[i].parentCategoryID==category){
                             varName=data.data[0].absoluteValue[i].variantName;
                             brandName=data.data[0].absoluteValue[i].parentBrandName;
-                            priceValueShare=data.data[0].absoluteValue[i].segmentInfo[0].shopperInfo[3].value;
-                            moneyValueShare=data.data[0].absoluteValue[i].segmentInfo[1].shopperInfo[3].value;
-                            fashionValueShare=data.data[0].absoluteValue[i].segmentInfo[2].shopperInfo[3].value;
-                            freaksValueShare=data.data[0].absoluteValue[i].segmentInfo[3].shopperInfo[3].value;
+                            priceValueShare=(data.data[0].absoluteValue[i].segmentInfo[0].shopperInfo[3].value*100).toFixed(2);
+                            moneyValueShare=(data.data[0].absoluteValue[i].segmentInfo[1].shopperInfo[3].value*100).toFixed(2);
+                            fashionValueShare=(data.data[0].absoluteValue[i].segmentInfo[2].shopperInfo[3].value*100).toFixed(2);
+                            freaksValueShare=(data.data[0].absoluteValue[i].segmentInfo[3].shopperInfo[3].value*100).toFixed(2);
                             marketID=data.data[0].absoluteValue[i].marketID;
                             var ValueChanges=_.find(data.data[0].valueChange,function(obj){
                                 return(obj.variantName==varName&&obj.parentBrandName==brandName&&obj.marketID==marketID);
                             });
                             if(ValueChanges!=undefined){
-                                priceValueChange=ValueChanges.segmentInfo[0].shopperInfo[3].value;
-                                moneyValueChange=ValueChanges.segmentInfo[1].shopperInfo[3].value;
-                                fashionValueChange=ValueChanges.segmentInfo[2].shopperInfo[3].value;
-                                freaksValueChange=ValueChanges.segmentInfo[3].shopperInfo[3].value;                               
+                                priceValueChange=(ValueChanges.segmentInfo[0].shopperInfo[3].value*100).toFixed(2);
+                                moneyValueChange=(ValueChanges.segmentInfo[1].shopperInfo[3].value*100).toFixed(2);
+                                fashionValueChange=(ValueChanges.segmentInfo[2].shopperInfo[3].value*100).toFixed(2);
+                                freaksValueChange=(ValueChanges.segmentInfo[3].shopperInfo[3].value*100).toFixed(2);                               
                             }else{
                                 priceValueChange=0;
                                 moneyValueChange=0;
@@ -53,10 +53,10 @@ define(['directives', 'services'], function(directives){
                                 return(obj.variantName==varName&&obj.parentBrandName==brandName&&obj.marketID==marketID);
                             });
                             if(Volumes!=undefined){
-                                priceVolumeShare=Volumes.segmentInfo[0].shopperInfo[3].value;
-                                moneyVolumeShare=Volumes.segmentInfo[1].shopperInfo[3].value;
-                                fashionVolumeShare=Volumes.segmentInfo[2].shopperInfo[3].value;
-                                freaksVolumeShare=Volumes.segmentInfo[3].shopperInfo[3].value;                                
+                                priceVolumeShare=(Volumes.segmentInfo[0].shopperInfo[3].value*100).toFixed(2);
+                                moneyVolumeShare=(Volumes.segmentInfo[1].shopperInfo[3].value*100).toFixed(2);
+                                fashionVolumeShare=(Volumes.segmentInfo[2].shopperInfo[3].value*100).toFixed(2);
+                                freaksVolumeShare=(Volumes.segmentInfo[3].shopperInfo[3].value*100).toFixed(2);                                
                             }else{
                                 priceVolumeShare=0;
                                 moneyVolumeShare=0;
@@ -64,10 +64,10 @@ define(['directives', 'services'], function(directives){
                                 freaksVolumeShare=0;
                             }
                             if(VolumesChanges!=undefined){
-                                priceVolumeChange=VolumesChanges.segmentInfo[0].shopperInfo[3].value;
-                                moneyVolumeChange=VolumesChanges.segmentInfo[1].shopperInfo[3].value;
-                                fashionVolumeChange=VolumesChanges.segmentInfo[2].shopperInfo[3].value;
-                                freaksVolumeChange=VolumesChanges.segmentInfo[3].shopperInfo[3].value;
+                                priceVolumeChange=(VolumesChanges.segmentInfo[0].shopperInfo[3].value*100).toFixed(2);
+                                moneyVolumeChange=(VolumesChanges.segmentInfo[1].shopperInfo[3].value*100).toFixed(2);
+                                fashionVolumeChange=(VolumesChanges.segmentInfo[2].shopperInfo[3].value*100).toFixed(2);
+                                freaksVolumeChange=(VolumesChanges.segmentInfo[3].shopperInfo[3].value*100).toFixed(2);
                             }else{
                                 priceVolumeChange=0;
                                 moneyVolumeChange=0;
