@@ -11,8 +11,8 @@ module.exports = function(app, io){
 	app.post('/addSeminar',                                                      require('./../api/models/seminar.js').addSeminar);
 	app.post('/deleteSeminar',                                                   require('./../api/models/seminar.js').deleteSeminar);
 	app.post('/duplicateSeminar',                                                require('./../api/models/seminar.js').duplicateSeminar);
-	app.post('/setCurrentPeriod',                                                require('./../api/models/seminar.js').setCurrentPeriod);
-	app.post('/updateSeminar',                                                   require('./../api/models/seminar.js').updateSeminar);
+	app.post('/updateSeminar',                                                   require('./../api/models/seminar.js').updateSeminar(io));
+	app.post('/setCurrentPeriod',                                                require('./../api/models/seminar.js').setCurrentPeriod(io));
 	app.get('/seminarList',                                                      require('./../api/models/seminar.js').getSeminarList);
 	
 	app.get('/addOneQuarterExogenousData',                                       require('./../api/models/BG_oneQuarterExogenousData.js').addOneQuarterExogenousData);

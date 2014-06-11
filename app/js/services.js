@@ -137,7 +137,7 @@ define(['angular',
 	})
 
 
-	services.factory('PeriodInfo', function(){
+	services.factory('PeriodInfo', function($rootScope){
 		var currentPeriod;
 		return {
 			getCurrentPeriod:function(){
@@ -153,6 +153,7 @@ define(['angular',
 			},
 			setCurrentPeriod:function(value){
 				currentPeriod=value;
+				
 			}	
 		}
 	})
@@ -303,12 +304,12 @@ define(['angular',
 	services.provider('NegotiationBase', function(){
 		var userRoles = routingConfig.userRoles;
 
-		this.$get = ['$q', '$rootScope','$http','SeminarInfo','PlayerInfo','RoleInfo', function($q, $rootScope, $http, SeminarInfo, PlayerInfo, RoleInfo){
+		this.$get = ['$q', '$rootScope','$http','SeminarInfo','PlayerInfo','RoleInfo','PeriodInfo', function($q, $rootScope, $http, SeminarInfo, PlayerInfo, RoleInfo, PeriodInfo){
 			return {
 				startListenChangeFromServer : function(){
 					var socket = io.connect();
-					socket.on('socketIO:contractDetailsUpdated', function(data){	
 
+					socket.on('socketIO:contractDetailsUpdated', function(data){	
 						//Only deal with current seminar push notifications					
 						if(data.seminar == SeminarInfo.getSelectedSeminar()){
 							//Depends on different userRole, broadcast different info
@@ -332,6 +333,15 @@ define(['angular',
 							}							
 						}
 					});					
+					
+					socket.on('socketIO:seminarPeriodChanged', function(data){	
+						//Only deal with current seminar push notifications					
+						if(data.seminar == SeminarInfo.getSelectedSeminar()){
+							PeriodInfo.setCurrentPeriod(data.period);	
+							$rootScope.$broadcast('SeminarPeriodChanged',data);						
+						}							
+					});					
+
 				}
 			}
 		}]

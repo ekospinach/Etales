@@ -47,11 +47,11 @@ var
      jo.I['parentCategoryID'] := catID;
      jo.O['value'] := SA([]);     
      case (fieldIdx) of
-       scrviv_Initial:   begin jo.A['value'].D[0] := variant.scrviv_Initial[TRADITIONAL];    jo.A['value'].D[1] := variant.scrviv_Initial[INTERNET];    jo.A['value'].D[2] := variant.scrviv_Initial[TOTAL]; end;
+       scrviv_Initial:   begin jo.A['value'].D[0] := variant.scrviv_Initial[TRADITIONAL];    jo.A['value'].D[1] := variant.scrviv_Initial[INTERNET];    jo.A['value'].D[2] := variant.scrviv_Initial[CORPORATE]; end;
        scrviv_Production:   begin jo.A['value'].D[0] := 0;    jo.A['value'].D[1] := 0;    jo.A['value'].D[2] := variant.scrviv_Production; end;
-       scrviv_Sales:   begin jo.A['value'].D[0] := variant.scrviv_Sales[TRADITIONAL];    jo.A['value'].D[1] := variant.scrviv_Sales[INTERNET];    jo.A['value'].D[2] := variant.scrviv_Sales[TOTAL]; end;
+       scrviv_Sales:   begin jo.A['value'].D[0] := variant.scrviv_Sales[TRADITIONAL];    jo.A['value'].D[1] := variant.scrviv_Sales[INTERNET];    jo.A['value'].D[2] := variant.scrviv_Sales[CORPORATE]; end;
        scrviv_Discontinued:   begin jo.A['value'].D[0] := 0;    jo.A['value'].D[1] := 0;    jo.A['value'].D[2] := variant.scrviv_Discontinued; end;
-       scrviv_Closing:   begin jo.A['value'].D[0] := variant.scrviv_Closing[TRADITIONAL];    jo.A['value'].D[1] := variant.scrviv_Closing[INTERNET];    jo.A['value'].D[2] := variant.scrviv_Closing[TOTAL]; end;
+       scrviv_Closing:   begin jo.A['value'].D[0] := variant.scrviv_Closing[TRADITIONAL];    jo.A['value'].D[1] := variant.scrviv_Closing[INTERNET];    jo.A['value'].D[2] := variant.scrviv_Closing[CORPORATE]; end;
      end;
      result := jo;
   end;

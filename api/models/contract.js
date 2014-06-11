@@ -211,56 +211,56 @@ exports.addContractDetails = function(io) {
                     //check previous period input first, if anything, copy original ones.
                     if (previousDoc) {
                          var newContractVariantDetails = new contractVariantDetails({
-                              contractCode: req.body.contractCode,
-                              parentBrandName: req.body.brandName,
-                              parentBrandID: req.body.brandID,
-                              variantName: req.body.varName,
-                              variantID: req.body.varID,
-                              nc_MinimumOrder: previousDoc.nc_MinimumOrder,
-                              nc_MinimumOrder_lastModifiedBy: previousDoc.nc_MinimumOrder_lastModifiedBy,
-                              nc_VolumeDiscountRate: previousDoc.nc_VolumeDiscountRate,
-                              nc_VolumeDiscountRate_lastModifiedBy: previousDoc.nc_VolumeDiscountRate_lastModifiedBy,
-                              nc_SalesTargetVolume: previousDoc.nc_SalesTargetVolume,
-                              nc_SalesTargetVolume_lastModifiedBy: previousDoc.nc_SalesTargetVolume_lastModifiedBy,
-                              nc_PerformanceBonusRate: previousDoc.nc_PerformanceBonusRate,
-                              nc_PerformanceBonusRate_lastModifiedBy: previousDoc.nc_PerformanceBonusRate_lastModifiedBy,
-                              nc_PaymentDays: previousDoc.nc_PaymentDays,
-                              nc_PaymentDays_lastModifiedBy: previousDoc.nc_PaymentDays_lastModifiedBy,
-                              nc_OtherCompensation: previousDoc.nc_OtherCompensation,
-                              nc_OtherCompensation_lastModifiedBy: previousDoc.nc_OtherCompensation_lastModifiedBy,
-                              isProducerApproved: false,
-                              isRetailerApproved: false,
-                              isNewProduct: false, //used for showing tag "NEW"
-                              isCompositionModified: false, //compare with previous period composition, used for showing tag "MODIFIED"
-                              composition: req.body.composition, //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
-                              currentPriceBM: req.body.currentPriceBM
+                              contractCode                           : req.body.contractCode,
+                              parentBrandName                        : req.body.brandName,
+                              parentBrandID                          : req.body.brandID,
+                              variantName                            : req.body.varName,
+                              variantID                              : req.body.varID,
+                              nc_MinimumOrder                        : previousDoc.nc_MinimumOrder,
+                              nc_MinimumOrder_lastModifiedBy         : previousDoc.nc_MinimumOrder_lastModifiedBy,
+                              nc_VolumeDiscountRate                  : previousDoc.nc_VolumeDiscountRate,
+                              nc_VolumeDiscountRate_lastModifiedBy   : previousDoc.nc_VolumeDiscountRate_lastModifiedBy,
+                              nc_SalesTargetVolume                   : previousDoc.nc_SalesTargetVolume,
+                              nc_SalesTargetVolume_lastModifiedBy    : previousDoc.nc_SalesTargetVolume_lastModifiedBy,
+                              nc_PerformanceBonusRate                : previousDoc.nc_PerformanceBonusRate,
+                              nc_PerformanceBonusRate_lastModifiedBy : previousDoc.nc_PerformanceBonusRate_lastModifiedBy,
+                              nc_PaymentDays                         : previousDoc.nc_PaymentDays,
+                              nc_PaymentDays_lastModifiedBy          : previousDoc.nc_PaymentDays_lastModifiedBy,
+                              nc_OtherCompensation                   : previousDoc.nc_OtherCompensation,
+                              nc_OtherCompensation_lastModifiedBy    : previousDoc.nc_OtherCompensation_lastModifiedBy,
+                              isProducerApproved                     : false,
+                              isRetailerApproved                     : false,
+                              isNewProduct                           : false, //used for showing tag "NEW"
+                              isCompositionModified                  : false, //compare with previous period composition, used for showing tag "MODIFIED"
+                              composition                            : req.body.composition, //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                              currentPriceBM                         : req.body.currentPriceBM
                          });
-                         //if no history, create empty doc
+                    //if no history, create empty doc
                     } else {
-                         var newContractVariantDetails = new contractVariantDetails({
-                              contractCode: req.body.contractCode,
-                              parentBrandName: req.body.brandName,
-                              parentBrandID: req.body.brandID,
-                              variantName: req.body.varName,
-                              variantID: req.body.varID,
-                              nc_MinimumOrder: 0,
-                              nc_MinimumOrder_lastModifiedBy: 'P',
-                              nc_VolumeDiscountRate: 0,
-                              nc_VolumeDiscountRate_lastModifiedBy: 'P',
-                              nc_SalesTargetVolume: 0,
-                              nc_SalesTargetVolume_lastModifiedBy: 'P',
-                              nc_PerformanceBonusRate: 0,
-                              nc_PerformanceBonusRate_lastModifiedBy: 'P',
-                              nc_PaymentDays: 0,
-                              nc_PaymentDays_lastModifiedBy: 'P',
-                              nc_OtherCompensation: 0,
-                              nc_OtherCompensation_lastModifiedBy: 'P',
-                              isProducerApproved: false,
-                              isRetailerApproved: false,
-                              isNewProduct: false, //used for showing tag "NEW"
-                              isCompositionModified: false, //compare with previous period composition, used for showing tag "MODIFIED"
-                              composition: req.body.composition, //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
-                              currentPriceBM: req.body.currentPriceBM
+                         var newContractVariantDetails          = new contractVariantDetails({
+                              contractCode                           : req.body.contractCode,
+                              parentBrandName                        : req.body.brandName,
+                              parentBrandID                          : req.body.brandID,
+                              variantName                            : req.body.varName,
+                              variantID                              : req.body.varID,
+                              nc_MinimumOrder                        : 0,
+                              nc_MinimumOrder_lastModifiedBy         : 'P',
+                              nc_VolumeDiscountRate                  : 0,
+                              nc_VolumeDiscountRate_lastModifiedBy   : 'P',
+                              nc_SalesTargetVolume                   : 0,
+                              nc_SalesTargetVolume_lastModifiedBy    : 'P',
+                              nc_PerformanceBonusRate                : 0,
+                              nc_PerformanceBonusRate_lastModifiedBy : 'P',
+                              nc_PaymentDays                         : 0,
+                              nc_PaymentDays_lastModifiedBy          : 'P',
+                              nc_OtherCompensation                   : 0,
+                              nc_OtherCompensation_lastModifiedBy    : 'P',
+                              isProducerApproved                     : false,
+                              isRetailerApproved                     : false,
+                              isNewProduct                           : false, //used for showing tag "NEW"
+                              isCompositionModified                  : false, //compare with previous period composition, used for showing tag "MODIFIED"
+                              composition                            : req.body.composition, //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                              currentPriceBM                         : req.body.currentPriceBM
                          });
                     }
 

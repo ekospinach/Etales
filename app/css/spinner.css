@@ -79,11 +79,11 @@ html {
 .loader:after {
   left: 0;
 /*  #ecf0f1
-*/  border-left-color: #306B4F;
+*/  border-left-color: #d7f7c4;
 }
 .loader:before {
   right: 0;
-  border-right-color: #306B4F;
+  border-right-color: #d7f7c4;
   -webkit-animation-delay: -0.25s;
   animation-delay: -0.25s;
 }

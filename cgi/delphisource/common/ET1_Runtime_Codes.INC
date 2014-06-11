@@ -235,6 +235,9 @@ const
   
   kernel_PrivateLabelsProcurement_OK                 = 93931;
   kernel_ErrorInPrivateLabelsProcurement             = 93939;
+
+  kernel_ShoppersShare_OK                            = 93941;
+  kernel_ErrorInShoppersShare                        = 93949;
   
   kernel_SimulationRun_OK                            = 94000;
 

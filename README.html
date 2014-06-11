@@ -1,0 +1,245 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+
+body{
+  color:#444;
+  font-family:Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman',
+              "Hiragino Sans GB", "STXihei", "微软雅黑", serif;
+  font-size:12px;
+  line-height:1.5em;
+  background:#fefefe;
+  width: 45em;
+  margin: 10px auto;
+  padding: 1em;
+  outline: 1300px solid #FAFAFA;
+}
+
+a{ color: #0645ad; text-decoration:none;}
+a:visited{ color: #0b0080; }
+a:hover{ color: #06e; }
+a:active{ color:#faa700; }
+a:focus{ outline: thin dotted; }
+a:hover, a:active{ outline: 0; }
+
+span.backtick {
+  border:1px solid #EAEAEA;
+  border-radius:3px;
+  background:#F8F8F8;
+  padding:0 3px 0 3px;
+}
+
+::-moz-selection{background:rgba(255,255,0,0.3);color:#000}
+::selection{background:rgba(255,255,0,0.3);color:#000}
+
+a::-moz-selection{background:rgba(255,255,0,0.3);color:#0645ad}
+a::selection{background:rgba(255,255,0,0.3);color:#0645ad}
+
+p{
+margin:1em 0;
+}
+
+img{
+max-width:100%;
+}
+
+h1,h2,h3,h4,h5,h6{
+font-weight:normal;
+color:#111;
+line-height:1em;
+}
+h4,h5,h6{ font-weight: bold; }
+h1{ font-size:2.5em; }
+h2{ font-size:2em; border-bottom:1px solid silver; padding-bottom: 5px; }
+h3{ font-size:1.5em; }
+h4{ font-size:1.2em; }
+h5{ font-size:1em; }
+h6{ font-size:0.9em; }
+
+blockquote{
+color:#666666;
+margin:0;
+padding-left: 3em;
+border-left: 0.5em #EEE solid;
+}
+hr { display: block; height: 2px; border: 0; border-top: 1px solid #aaa;border-bottom: 1px solid #eee; margin: 1em 0; padding: 0; }
+
+
+pre , code, kbd, samp { 
+  color: #000; 
+  font-family: monospace; 
+  font-size: 0.88em; 
+  border-radius:3px;
+  background-color: #F8F8F8;
+  border: 1px solid #CCC; 
+}
+pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; padding: 5px 12px;}
+pre code { border: 0px !important; padding: 0;}
+code { padding: 0 3px 0 3px; }
+
+b, strong { font-weight: bold; }
+
+dfn { font-style: italic; }
+
+ins { background: #ff9; color: #000; text-decoration: none; }
+
+mark { background: #ff0; color: #000; font-style: italic; font-weight: bold; }
+
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+
+ul, ol { margin: 1em 0; padding: 0 0 0 2em; }
+li p:last-child { margin:0 }
+dd { margin: 0 0 0 2em; }
+
+img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+td { vertical-align: top; }
+
+@media only screen and (min-width: 480px) {
+body{font-size:14px;}
+}
+
+@media only screen and (min-width: 768px) {
+body{font-size:16px;}
+}
+
+@media print {
+  * { background: transparent !important; color: black !important; filter:none !important; -ms-filter: none !important; }
+  body{font-size:12pt; max-width:100%; outline:none;}
+  a, a:visited { text-decoration: underline; }
+  hr { height: 1px; border:0; border-bottom:1px solid black; }
+  a[href]:after { content: " (" attr(href) ")"; }
+  abbr[title]:after { content: " (" attr(title) ")"; }
+  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }
+  pre, blockquote { border: 1px solid #999; padding-right: 1em; page-break-inside: avoid; }
+  tr, img { page-break-inside: avoid; }
+  img { max-width: 100% !important; }
+  @page :left { margin: 15mm 20mm 15mm 10mm; }
+  @page :right { margin: 15mm 10mm 15mm 20mm; }
+  p, h2, h3 { orphans: 3; widows: 3; }
+  h2, h3 { page-break-after: avoid; }
+}
+</style><title>README</title></head><body><h1 id="etales">Etales</h1>
+<p>Business Simulation Game</p>
+<h2 id="patch-list-2014-june">Patch List, 2014 JUNE</h2>
+<h6 id="supplier-decisions">Supplier Decisions</h6>
+<ul>
+<li>push notification bugs fix</li>
+<li>Product Portfolio management页面,  New Product功能完全失灵</li>
+<li>Product Portfolio management页面,增加即时变化的unitCost列</li>
+<li>Product Portfolio management页面,漏掉了discontinue选项</li>
+<li>Product Portfolio management页面,第一列宽度需要加宽，当按钮出现时，layout被破坏。</li>
+<li>Product Portfolio management页面,可添加完全同名的单品。当删除同名单品时，新旧单品将被一起删除。</li>
+<li>Online Store Management页面，Frequency取值范围应该为0~26weeks</li>
+<li>Asset Investment页面，Capacity 输入范围错误</li>
+<li>Online Store Management页面，order volumes字样改为Online planned volume, 输入范围为，0 ~ 当前单品的本阶段产量 + 上阶段online库存。本阶段产量即为当前阶段此单品在Step4中的的决策，上阶段的online库存去<code>scrviv_Closing[INTERNET]</code>中取。(注意参数为INTERNET)</li>
+<li>当Seminar.producer.isDecisioncommitted = true 时，所有页面的决策输入必须被锁定。（做成动态锁定）</li>
+<li>Market report purchase页面，使用editable重做，Total budget必须被随时（点击true或false后）更新。</li>
+</ul>
+<h6 id="retailer-decisions">Retailer Decisions</h6>
+<ul>
+<li>Store management 页面，每次保存决策成功后（品类2，市场2），由于自动刷新了界面，会导致回到不明品类市场的组合下（品类1市场1？）如下状况：</li>
+<li>Store Management 页面，部分值的IO依然失灵：比如H类市场1中的retailer Pirce，无法存入值</li>
+<li>当Seminar.retailer.isDecisioncommitted = true 时，所有页面的决策输入必须被锁定。（做成动态锁定）</li>
+<li>Market report purchase页面，使用editable重做，Total budget必须被随时更新。</li>
+<li>Store Management 页面，Add orders功能有问题：从列表上删除的产品没有回到Add列表内，无法再次添加。</li>
+<li>Store Management 页面，背景色按照2个品类，2个市场的颜色调整.pma</li>
+</ul>
+<h6 id="reports-overall">Reports Overall</h6>
+<ul>
+<li>所有带括号的内容前后必须有一个空格。example: Financial Results-B&amp;M Business Profit &amp; Loss Statement(Elecssories). 应为：     Financial Results - B&amp;M Business Profit &amp; Loss Statement (Elecssories)</li>
+</ul>
+<h6 id="general-reports">General reports</h6>
+<ul>
+<li>Market shares report 图表内缺少labels : Total/by Market/by Consumer Segment/by Shopper segment (参考pdf)</li>
+<li>Sales report 图表内缺少labels : Total/by Market/by Consumer Segment/by Shopper segment (参考pdf)</li>
+<li>Cross-Segment report 图表内缺少labels: Shopper Segments/Consumer Segment (参考pdf)</li>
+</ul>
+<h6 id="supplier-confidential-reports">Supplier Confidential reports</h6>
+<ul>
+<li>Consolidated Profit &amp; Loss Statement, 每个”-“和”(1)(2)(3)”之后都有一个空格。</li>
+<li>BM Business Profit &amp; Loss Statement, 每个”-“和”(1)(2)(3)”之后都有一个空格。</li>
+<li>BM Business Profit &amp; Loss Statement,  弹出单品details的方式需要改善？？？强制增加弹出框中产品列的列宽，使左边的行header和列宽基本平衡。</li>
+<li>Online Profit &amp; Loss Statement, 每个”-“和”(1)(2)(3)”之后都有一个空格。’</li>
+<li>Online Profit &amp; Loss Statement, 太宽，通过修改css增加横向滚动条</li>
+<li>Situation Report - Volume, 有两列需要merge（参考pdf）</li>
+<li>Key Performance Indicators, 此页中有四行需要popover tips，内容参考pdf。interface效果最好用bootstrap css在每行末尾加一个”i”符号。example : <span class="glyphicon glyphicon-lock"></span></li>
+</ul>
+<h6 id="retailer-confidential-reports">Retailer Confidential reports</h6>
+<ul>
+<li>Consolidated Profit &amp; Loss Statement, 每个”-“和”(1)(2)(3)”之后都有一个空格。目前向后缩进的行其实不需要缩进（参考pdf）。</li>
+<li>Rural/Urban Profit &amp; Loss Statement, 每个”-“和”(1)(2)(3)”之后都有一个空格。目前向后缩进的行其实不需要缩进（参考pdf）。</li>
+<li>Rural/Urban Profit &amp; Loss Statement,  弹出单品details的方式需要改善？？？强制增加弹出框中产品列的列宽，使左边的行header和列宽基本平衡。</li>
+<li>Profitability by Channel, Private Label那列需要正确的merge（参考pdf）</li>
+<li>Key Performance Indicators, 此页中有3行需要popover tips，内容参考pdf。interface效果最好用bootstrap css在每行末尾加一个”i”符号。example : <code>&lt;span class="glyphicon glyphicon-lock"&gt;&lt;/span&gt;</code></li>
+</ul>
+<h6 id="market-reports">Market reports</h6>
+<ul>
+<li>Retailer Perception 横纵坐标的label丢失</li>
+<li>Brand Perception 横纵坐标的label字体过小</li>
+<li>Supplier/Retailer按照上阶段购买report决策显示当前阶段的报告，1阶段（游戏开始时）时默认显示全部报告。facilitator默认显示全部报告（全根据seminar里的数据来，只是初始化的时候我们默认把0阶段的report购买数据全设定成true）。</li>
+<li>Retailer/Brand Perception 横纵坐标的label字体过小，再放大2号</li>
+<li>Market Shares by Consumer Segment- Elecssories - Rural 菜单label和显示内容不符</li>
+<li>Market Shares by Consumer Segment- HealthBeauties - Urban 菜单label和显示内容不符</li>
+<li>Market Shares by Shopper Segment- Elecssories - Rural 菜单label和显示内容不符</li>
+<li>Market Shares by Shopper Segment- HealthBeauties - Urban 菜单label和显示内容不符</li>
+<li>Sales by Consumer Segment/Shopper Segment，有可能有上述相同问题，需要double-check code</li>
+</ul>
+<h6 id="system-overrall">System Overrall</h6>
+<ul>
+<li>部署服务器时SocketIO不工作</li>
+<li>bug in the negotiation module, cannot generate contract details automatically</li>
+<li>SeminarInfo 中producer/Retailer数组PeriodInfo数量不足</li>
+<li>Admin page, New seminar is not working </li>
+</ul>
+<h2 id="directory-layout">Directory Layout</h2>
+<pre><code>app/                --&gt; all of the files to be used in production
+  css/              --&gt; css files
+    app.css         --&gt; default stylesheet
+  img/              --&gt; image files
+  index.html        --&gt; app layout file (the main html template file of the app)
+  index-async.html  --&gt; just like index.html, but loads js files asynchronously
+  js/               --&gt; javascript files
+    app.js          --&gt; application
+    controllers.js  --&gt; application controllers
+    directives.js   --&gt; application directives
+    filters.js      --&gt; custom angular filters
+    services.js     --&gt; custom angular services
+  lib/              --&gt; angular and 3rd party javascript libraries
+    angular/
+      angular.js        --&gt; the latest angular js
+      angular.min.js    --&gt; the latest minified angular js
+      angular-*.js      --&gt; angular add-on modules
+      version.txt       --&gt; version number
+  partials/             --&gt; angular view partials (partial html templates)
+    partial1.html
+    partial2.html
+
+config/testacular.conf.js        --&gt; config file for running unit tests with Testacular
+config/testacular-e2e.conf.js    --&gt; config file for running e2e tests with Testacular
+
+scripts/            --&gt; handy shell/js/ruby scripts
+  e2e-test.sh       --&gt; runs end-to-end tests with Testacular (*nix)
+  e2e-test.bat      --&gt; runs end-to-end tests with Testacular (windows)
+  test.bat          --&gt; autotests unit tests with Testacular (windows)
+  test.sh           --&gt; autotests unit tests with Testacular (*nix)
+  web-server.js     --&gt; simple development webserver based on node.js
+
+test/               --&gt; test source files and libraries
+  e2e/              --&gt;
+    runner.html     --&gt; end-to-end test runner (open in your browser to run)
+    scenarios.js    --&gt; end-to-end specs
+  lib/
+    angular/                --&gt; angular testing libraries
+      angular-mocks.js      --&gt; mocks that replace certain angular services in tests
+      angular-scenario.js   --&gt; angular's scenario (end-to-end) test runner library
+      version.txt           --&gt; version file
+  unit/                     --&gt; unit level specs/tests
+    controllersSpec.js      --&gt; specs for controllers
+    directivessSpec.js      --&gt; specs for directives
+    filtersSpec.js          --&gt; specs for filters
+    servicesSpec.js         --&gt; specs for services
+</code></pre>
+<h2 id="contact">Contact</h2>
+<p>For more information on AngularJS please check out http://angularjs.org/</p></body></html>

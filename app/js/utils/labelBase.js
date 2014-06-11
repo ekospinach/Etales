@@ -1,6 +1,6 @@
 var getLabelBase = function(){
 	return [
-		{id:'Manual popInfo',  ENG:'Remark: If it is not specified otherwise in this simulation game, the monetary unit is RMB Million, the unit price is RMB Yuan and the volume unit is Million Package.',  CHN:'备注：除非特别说明，本模拟游戏中使用的货币单位均为人民币（百万元），产品单价均为人民币（元），产品数量单位均为百万包。 ',  RUS:''},	
+		{id:'Manual popInfo',  ENG:'Remark: If it is not specified otherwise in this simulation game, the monetary unit is Million dollar(mln$), the unit price is dollar($) and the volume unit is Million Package(mln packs).',  CHN:'备注：除非特别说明，本模拟游戏中使用的货币单位均为人民币（百万元），产品单价均为人民币（元），产品数量单位均为百万包。 ',  RUS:''},	
 		/*retail report new label */
 		/*line chart page */
 		{id:'e-Mall',  ENG:'E-Mall',  CHN:'网上商城',  RUS:''},

@@ -46,7 +46,7 @@ Type
   TProducers               = 1..ProsMax;
   TProducersPlus           = 1..ProsMaxPlus;
   TActiveActors            = 1..ActiveActorsMax;
-  TProducerDivisions       = ( TRADITIONAL, INTERNET, TOTAL );
+  TProducerDivisions       = ( TRADITIONAL, INTERNET, CORPORATE );
   TRetVariants             = 1..RetVariantsMax;
   TSegments                = 1..SegmentsMax;
   TSegmentsTotal           = 1..SegmentsMaxTotal;
