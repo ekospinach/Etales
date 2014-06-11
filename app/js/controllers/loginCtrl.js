@@ -85,7 +85,6 @@ define(['app','socketIO'], function(app) {
 		$scope.playerLogin=function(){
 			var username="";
 			var seminar=$scope.userSeminar;
-			SeminarInfo.setSelectedSeminar(seminar);
 			var password=$scope.userPassword;
 			switch($scope.userRole){
 				case '1':username=seminar+'^'+userRoles.producer+'^'+$scope.userRole;break;
@@ -110,6 +109,7 @@ define(['app','socketIO'], function(app) {
 					url:url
 				}).then(function(data){
 					//$rootScope.currentPeriod=data.currentPeriod;
+					SeminarInfo.setSelectedSeminar(data.data);
 					PeriodInfo.setCurrentPeriod(data.data.currentPeriod);
 					$rootScope.rootStartFrom=-2;
 					$rootScope.rootEndWith=data.currentPeriod-1;
