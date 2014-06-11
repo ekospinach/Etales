@@ -331,7 +331,7 @@ exports.initialiseSeminar = function(io){
 				return require('./models/RCR_negotiations.js').addReports(options);			
 			}).then(function(result){ 
 	            io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	
-
+				
 				options.cgiPath = conf.cgi.path_RCR_profitabilityBySupplier;
 				options.schemaName = 'RCR_profitabilityBySupplier';
 				return require('./models/RCR_profitabilityBySupplier.js').addReports(options);			

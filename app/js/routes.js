@@ -31,8 +31,9 @@ define(['angular',
 		'controllers/navbarCtrl',
 		'controllers/feedbackCtrl'], function(angular, app) {
 	'use strict';
-	return app.config(['$routeProvider','$httpProvider', function($routeProvider, $httpProvider) {
+	return app.config(['$routeProvider','$httpProvider', '$locationProvider',function($routeProvider, $httpProvider,$locationProvider) {
 
+		//$locationProvider.hashPrefix('!');
 		var access = routingConfig.accessLevels;
 		$routeProvider.when('/home',{
 			templateUrl:'partials/home.html',
