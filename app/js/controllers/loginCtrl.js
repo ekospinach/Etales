@@ -84,8 +84,6 @@ define(['app','socketIO'], function(app) {
 						PlayerInfo.setPlayer($rootScope.user.roleID);
 						RoleInfo.setRole($rootScope.user.role);
 
-
-
 					});
 				},function(res){
 					showbubleMsg('login failure.',1);

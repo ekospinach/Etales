@@ -25,9 +25,11 @@ define(['app'], function(app) {
 	    $location.path('/login');
 	    
 	    $scope.$on("$routeChangeSuccess", function(next, current){
-			$scope.currentPeriod = SeminarInfo.getSelectedSeminar().currentPeriod;	    
-			$scope.span = SeminarInfo.getSelectedSeminar().simulationSpan;
-			$scope.seminar = SeminarInfo.getSelectedSeminar().seminarCode;
+	    	if(SeminarInfo.getSelectedSeminar()){
+				$scope.currentPeriod = SeminarInfo.getSelectedSeminar().currentPeriod;	    
+				$scope.span = SeminarInfo.getSelectedSeminar().simulationSpan;
+				$scope.seminar = SeminarInfo.getSelectedSeminar().seminarCode;	    		
+	    	}
 		})
 
 		$scope.Label = Label;
