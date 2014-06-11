@@ -18,7 +18,7 @@ define(['directives', 'services'], function(directives){
                 }
 
                 var getResult =function(){
-                    var url='/SCR-negotiations/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+                    var url='/SCR-negotiations/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
 			    	$http({
                         method:'GET',
                         url:url,

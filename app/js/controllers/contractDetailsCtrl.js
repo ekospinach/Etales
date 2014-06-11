@@ -476,7 +476,7 @@ define(['app'], function(app) {
 				if(!filter.test(value)){
 					d.resolve(Label.getContent('Input a number'));
 				}
-				var seminar=SeminarInfo.getSelectedSeminar(),
+				var seminar=SeminarInfo.getSelectedSeminar().seminarCode,
 				period=PeriodInfo.getCurrentPeriod,
 				producerID=detail.relatedBrandName.substring(detail.relatedBrandName.length-1);
 				//producerID=detail.producerID;
@@ -501,7 +501,7 @@ define(['app'], function(app) {
 					for(i=0;i<variants.length;i++){
 						if(variants[i].varID!=0&&variants[i].varName!=""){
 							if(variants[i].dateOfBirth<PeriodInfo.getCurrentPeriod()){
-								url="/variantHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod-1)+'/'+detail.relatedBrandName+'/'+variants[i].varName;
+								url="/variantHistoryInfo/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod-1)+'/'+detail.relatedBrandName+'/'+variants[i].varName;
 								urls.push(url);
 							}else{
 								if(detail.relatedBrandName.substring(0,1)=="E"){
@@ -509,7 +509,7 @@ define(['app'], function(app) {
 					            }else{
 						            categoryID=2;
 						        }
-								url='/producerVariantBM/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod+'/'+producerID+'/'+categoryID+'/'+detail.relatedBrandName+'/'+variants[i].varName;
+								url='/producerVariantBM/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod+'/'+producerID+'/'+categoryID+'/'+detail.relatedBrandName+'/'+variants[i].varName;
 								urls.push(url);
 							}
 						}else{
@@ -874,7 +874,7 @@ define(['app'], function(app) {
 						console.log('err');
 					})
 				}else{
-					var seminar=SeminarInfo.getSelectedSeminar(),
+					var seminar=SeminarInfo.getSelectedSeminar().seminarCode,
 					period=PeriodInfo.getCurrentPeriod,
 					producerID=detail.relatedBrandName.substring(detail.relatedBrandName.length-1);
 					var url="/getProductInfo/"+producerID+'/'+period+'/'+seminar+'/'+detail.relatedBrandName;
@@ -887,7 +887,7 @@ define(['app'], function(app) {
 						for(i=0;i<variants.length;i++){
 							if(variants[i].varID!=0&&variants[i].varName!=""){
 								if(variants[i].dateOfBirth<PeriodInfo.getCurrentPeriod){
-									url="/variantHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod-1)+'/'+detail.relatedBrandName+'/'+variants[i].varName;
+									url="/variantHistoryInfo/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod-1)+'/'+detail.relatedBrandName+'/'+variants[i].varName;
 									urls.push(url);
 								}else{
 									if(detail.relatedBrandName.substring(0,1)=="E"){
@@ -895,7 +895,7 @@ define(['app'], function(app) {
 						            }else{
 						                categoryID=2;
 						            }
-									url='/producerVariantBM/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod+'/'+producerID+'/'+categoryID+'/'+detail.relatedBrandName+'/'+variants[i].varName;
+									url='/producerVariantBM/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod+'/'+producerID+'/'+categoryID+'/'+detail.relatedBrandName+'/'+variants[i].varName;
 									urls.push(url);
 								}
 							}else{

@@ -32,7 +32,7 @@ define(['directives', 'services'], function(directives) {
                         ProducerDecisionBase.reload({
                             producerID: parseInt(PlayerInfo.getPlayer()),
                             period: PeriodInfo.getCurrentPeriod(),
-                            seminar: SeminarInfo.getSelectedSeminar()
+                            seminar: SeminarInfo.getSelectedSeminar().seminarCode
                         }).then(function(base) {
                             scope.pageBase = base;
                         }).then(function() {
@@ -88,7 +88,7 @@ define(['directives', 'services'], function(directives) {
                         for(var i=0;i<products.length;i++){
                             postDatas[i]={
                                 period : PeriodInfo.getCurrentPeriod(),
-                                seminar : SeminarInfo.getSelectedSeminar(),
+                                seminar : SeminarInfo.getSelectedSeminar().seminarCode,
                                 brandName : products[i].parentBrandName,
                                 varName : products[i].varName,
                                 catID : categoryID,
@@ -172,7 +172,7 @@ define(['directives', 'services'], function(directives) {
                         if (!filter.test(value)) {
                             d.resolve(Label.getContent('Input a Integer'));
                         }
-                        var url = '/checkProducerPortfolioDecision/' + SeminarInfo.getSelectedSeminar() + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
+                        var url = '/checkProducerPortfolioDecision/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
                         $http({
                             method: 'GET',
                             url: url
@@ -180,7 +180,7 @@ define(['directives', 'services'], function(directives) {
                             if (data.data == "isReady") {
                                 d.resolve(Label.getContent('Check Error'));
                             }
-                            url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar() + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + parseInt(PlayerInfo.getPlayer());
+                            url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + parseInt(PlayerInfo.getPlayer());
                             return $http({
                                 method: 'GET',
                                 url: url
@@ -211,7 +211,7 @@ define(['directives', 'services'], function(directives) {
                         if (!filter.test(value)) {
                             d.resolve(Label.getContent('Input a Integer'));
                         }
-                        var url = '/checkProducerPortfolioDecision/' + SeminarInfo.getSelectedSeminar() + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
+                        var url = '/checkProducerPortfolioDecision/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
                         $http({
                             method: 'GET',
                             url: url
@@ -219,7 +219,7 @@ define(['directives', 'services'], function(directives) {
                             if (data.data == "isReady") {
                                 d.resolve(Label.getContent('Check Error'));
                             }
-                            url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar() + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + parseInt(PlayerInfo.getPlayer());
+                            url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + parseInt(PlayerInfo.getPlayer());
                             return $http({
                                 method: 'GET',
                                 url: url
@@ -249,7 +249,7 @@ define(['directives', 'services'], function(directives) {
                         if (!filter.test(value)) {
                             d.resolve(Label.getContent('Input a Integer'));
                         }
-                        var url = '/checkProducerPortfolioDecision/' + SeminarInfo.getSelectedSeminar() + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
+                        var url = '/checkProducerPortfolioDecision/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
                         $http({
                             method: 'GET',
                             url: url
@@ -257,7 +257,7 @@ define(['directives', 'services'], function(directives) {
                             if (data.data == "isReady") {
                                 d.resolve(Label.getContent('Check Error'));
                             }
-                            url = "/producerCurrentDecision/" + SeminarInfo.getSelectedSeminar() + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer()) + '/' + brandName + '/' + varName;
+                            url = "/producerCurrentDecision/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer()) + '/' + brandName + '/' + varName;
                             return $http({
                                 method: 'GET',
                                 url: url
@@ -319,7 +319,7 @@ define(['directives', 'services'], function(directives) {
                             ProducerDecisionBase.reload({
                                 producerID: parseInt(PlayerInfo.getPlayer()),
                                 period: PeriodInfo.getCurrentPeriod(),
-                                seminar: SeminarInfo.getSelectedSeminar()
+                                seminar: SeminarInfo.getSelectedSeminar().seminarCode
                             }).then(function(base) {
                                 scope.pageBase = base;
                             }).then(function() {
@@ -441,7 +441,7 @@ define(['directives', 'services'], function(directives) {
                                 //need add 2 null vars
                                 newBrand.proVarDecision.push(newproducerDecision, nullDecision, nullDecision);
 
-                                url = "/checkProducerProduct/" + SeminarInfo.getSelectedSeminar() + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer()) + '/' + $scope.lauchNewCategory + '/brand/' + newBrand.brandName + '/' + newproducerDecision.varName;
+                                url = "/checkProducerProduct/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer()) + '/' + $scope.lauchNewCategory + '/brand/' + newBrand.brandName + '/' + newproducerDecision.varName;
                                 $http({
                                     method: 'GET',
                                     url: url
@@ -469,7 +469,7 @@ define(['directives', 'services'], function(directives) {
                                         break;
                                     }
                                 }
-                                url = "/checkProducerProduct/" + SeminarInfo.getSelectedSeminar() + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer()) + '/' + $scope.addNewCategory + '/variant/' + newBrandName + '/' + newproducerDecision.varName;
+                                url = "/checkProducerProduct/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer()) + '/' + $scope.addNewCategory + '/variant/' + newBrandName + '/' + newproducerDecision.varName;
 
                                 $http({
                                     method: 'GET',
@@ -597,7 +597,7 @@ define(['directives', 'services'], function(directives) {
                     scope.submitDecision = function() {
                         var queryCondition = {
                             producerID: parseInt(PlayerInfo.getPlayer()),
-                            seminar: SeminarInfo.getSelectedSeminar(),
+                            seminar: SeminarInfo.getSelectedSeminar().seminarCode,
                             period: PeriodInfo.getCurrentPeriod()
                         }
                         $http({

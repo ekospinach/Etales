@@ -192,7 +192,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 			  		showAwarenessElecssories();
 			  		$scope.isPageLoading = false;
 				}else if($rootScope.user.role==userRoles.retailer){
-					var url='/getPlayerReportOrder/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/R/'+PlayerInfo.getPlayer();
+					var url='/getPlayerReportOrder/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/R/'+PlayerInfo.getPlayer();
 					$http({
 						method:'GET',
 						url:url
@@ -204,7 +204,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 				  		$scope.isPageLoading = false;						
 					})
 				}else if($rootScope.user.role==userRoles.producer){
-					var url='/getPlayerReportOrder/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+PlayerInfo.getPlayer();
+					var url='/getPlayerReportOrder/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+PlayerInfo.getPlayer();
 					$http({
 						method:'GET',
 						url:url

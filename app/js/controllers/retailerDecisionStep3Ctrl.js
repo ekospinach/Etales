@@ -30,7 +30,7 @@ define(['app'], function(app) {
 			    dialogFade:true
 			};
 			/*Angular-ui-bootstrap modal end*/		
-			RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
+			RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
 				$scope.pageBase = base;
 			}).then(function(){
 				return promiseStep1();
@@ -72,7 +72,7 @@ define(['app'], function(app) {
 					if($rootScope.user.role==8){
 						//Facilitator
 						$scope.facilitatorShow=true;
-						var url="/currentPeriod/"+SeminarInfo.getSelectedSeminar();
+						var url="/currentPeriod/"+SeminarInfo.getSelectedSeminar().seminarCode;
 						$http({
 							method:'GET',
 							url:url
@@ -162,7 +162,7 @@ define(['app'], function(app) {
 				$scope.retailerID=retailerID,$scope.period=period,$scope.category=category,$scope.language=language;
 				var categoryID=0,count=0,result=0,expend=0;
 				var fakeName="EName",max=100;
-	      		var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/R/'+parseInt(PlayerInfo.getPlayer());
+	      		var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/R/'+parseInt(PlayerInfo.getPlayer());
 	      		$http({
 	      			method:'GET',
 	      			url:url
@@ -173,7 +173,7 @@ define(['app'], function(app) {
 	      				abMax=data.data.budgetAvailable;
 	      			}
 	      			$scope.abMax=abMax;
-	      			url="/retailerExpend/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/-1/location/1';
+	      			url="/retailerExpend/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/-1/location/1';
 	      			return $http({
 	      				method:'GET',
 	      				url:url,
@@ -311,7 +311,7 @@ define(['app'], function(app) {
 			};
 			var closeProductModal = function () {
 			    $scope.productModal = false;
-			    RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
+			    RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
 					$scope.pageBase = base;
 				}).then(function(){
 					return promiseStep1();
@@ -330,7 +330,7 @@ define(['app'], function(app) {
 				if(!filter.test(value)){
 					d.resolve(Label.getContent('Input a Integer'));
 				}
-				var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/4';
+				var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/4';
 				$http({
 					method:'GET',
 					url:url
@@ -365,7 +365,7 @@ define(['app'], function(app) {
 				if(!filter.test(value)){
 					d.resolve(Label.getContent('Input a Integer'));
 				}
-				var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
+				var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
 				$http({
 					method:'GET',
 					url:url
@@ -385,7 +385,7 @@ define(['app'], function(app) {
 							d.resolve();
 						}
 					}
-					url="/retailerCurrentDecision/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+brandName+'/'+varName;
+					url="/retailerCurrentDecision/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+brandName+'/'+varName;
 					return $http({
 						method:'GET',
 						url:url
@@ -414,7 +414,7 @@ define(['app'], function(app) {
 				}else{
 					categoryID=2;
 				}
-				var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
+				var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
 				$http({
 					method:'GET',
 					url:url
@@ -466,13 +466,13 @@ define(['app'], function(app) {
 				}
 				$scope.currentRetailerIdx = parseInt(PlayerInfo.getPlayer()) - 1;			
 				$scope.isCollapsed=false;
-				var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/4';
+				var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/4';
 				$http({method:'GET',url:url})
 				.then(function(data){					
 					$scope.companyHistory=data.data;
 					var postData = {
 					    period : PeriodInfo.getCurrentPeriod(),
-					    seminar : SeminarInfo.getSelectedSeminar(),
+					    seminar : SeminarInfo.getSelectedSeminar().seminarCode,
 					    brandName : brandName,
 					    varName : varName,
 					    catID : catID,
@@ -482,11 +482,11 @@ define(['app'], function(app) {
 					return $http({method:'POST', url:'/getCurrentUnitCost', data:postData});
 				}).then(function(data){
 				   $scope.currentUnitCost = data.data.result;					
-					url="/retailerDecision/"+parseInt(PlayerInfo.getPlayer())+'/'+(PeriodInfo.getCurrentPeriod())+'/'+SeminarInfo.getSelectedSeminar();
+					url="/retailerDecision/"+parseInt(PlayerInfo.getPlayer())+'/'+(PeriodInfo.getCurrentPeriod())+'/'+SeminarInfo.getSelectedSeminar().seminarCode;
 					return $http({method:'GET',url:url});
 				}).then(function(data){
 					$scope.variantDecisionHistory=data;
-					url="/variantHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+brandName+'/'+varName;
+					url="/variantHistoryInfo/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+brandName+'/'+varName;
 					return $http({method:'GET',url:url});
 				}).then(function(data){
 				    $scope.variantHistory=data.data;
@@ -534,7 +534,7 @@ define(['app'], function(app) {
 						newretailerDecision.varID=10*newBrand.brandID+1;/*need check*/
 						newBrand.privateLabelVarDecision.push(newretailerDecision,nullDecision,nullDecision);
 						
-						url="/checkRetailerProduct/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+$scope.lauchNewCategory+'/brand/'+newBrand.brandName+'/'+newretailerDecision.varName;
+						url="/checkRetailerProduct/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+$scope.lauchNewCategory+'/brand/'+newBrand.brandName+'/'+newretailerDecision.varName;
 						$http({
 							method:'GET',
 							url:url
@@ -562,7 +562,7 @@ define(['app'], function(app) {
 			        			break;
 			        		}
 			        	}
-			        	url="/checkRetailerProduct/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+$scope.lauchNewCategory+'/variant/'+newBrandName+'/'+newretailerDecision.varName;
+			        	url="/checkRetailerProduct/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+$scope.lauchNewCategory+'/variant/'+newBrandName+'/'+newretailerDecision.varName;
 				       	$http({
 							method:'GET',
 							url:url
@@ -599,7 +599,7 @@ define(['app'], function(app) {
 		 	}
 
 		 	var getPrevious=function(){
-				RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
+				RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
 					$scope.pageBase = base;	
 				}).then(function(){
 					return promiseStep1();
@@ -611,7 +611,7 @@ define(['app'], function(app) {
 			}
 
 			var getNext=function(){
-				RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
+				RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
 					$scope.pageBase = base;	
 				}).then(function(){
 					return promiseStep1();
@@ -623,7 +623,7 @@ define(['app'], function(app) {
 			}
 
 			$scope.$on('retailerDecisionBaseChangedFromServer', function(event, newBase){
-				RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
+				RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
 					$scope.pageBase = base;
 				}).then(function(){
 					return promiseStep1();

@@ -19,7 +19,7 @@ define(['directives', 'services'], function(directives){
                 }
 
                 var getResult =function(){
-                    var url='/RCR-profitabilityBySupplier/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+                    var url='/RCR-profitabilityBySupplier/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
 			    	$http({
                         method:'GET',
                         url:url,

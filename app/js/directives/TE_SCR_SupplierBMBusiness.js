@@ -134,7 +134,7 @@ define(['directives', 'services'], function(directives){
                         scope.OLShow=true;
                         num=1;
                     }
-                    var url='/SCR-consolidatedProfitAndLoss/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+                    var url='/SCR-consolidatedProfitAndLoss/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
                     $http({
                         method:'GET',
                         url:url
@@ -207,7 +207,7 @@ define(['directives', 'services'], function(directives){
 
 
                 var getResult =function(){
-                    var url='/SCR-consolidatedProfitAndLoss/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+                    var url='/SCR-consolidatedProfitAndLoss/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
 			    	$http({
                         method:'GET',
                         url:url,

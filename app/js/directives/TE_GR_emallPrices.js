@@ -18,7 +18,7 @@ define(['directives', 'services'], function(directives){
 
                 var getResult =function(){
                     //switching('showPerformance');
-                    var url='/emallPrices/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1);
+                    var url='/emallPrices/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1);
                     $http({
                         method:'GET',
                         url:url,

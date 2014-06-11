@@ -26,21 +26,21 @@ define(['app','socketIO','routingConfig'], function(app) {
 
 		    var showView=function(){
                 var abMax=0,expend=0,reportExpend=0;
-                var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/R/'+parseInt(PlayerInfo.getPlayer());
+                var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/R/'+parseInt(PlayerInfo.getPlayer());
                 $http({
                     method:'GET',
                     url:url
                 }).then(function(data){
                     abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
                     $scope.abMax=abMax;
-                    url="/retailerExpend/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/-1/location/1';
+                    url="/retailerExpend/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/-1/location/1';
                     return $http({
                         method:'GET',
                         url:url
                     });
                 }).then(function(data){
                     expend=data.data.result;
-                    url='/getPlayerReportOrderExpend/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/R/'+PlayerInfo.getPlayer();
+                    url='/getPlayerReportOrderExpend/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/R/'+PlayerInfo.getPlayer();
                     return $http({
                         method:'GET',
                         url:url
@@ -49,7 +49,7 @@ define(['app','socketIO','routingConfig'], function(app) {
                     reportExpend=data.data.result;
                     $scope.surplusExpend=abMax-expend-reportExpend;
                     //$scope.percentageExpend=(abMax-expend)/abMax*100;
-                    url="/retailerShelfSpace/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/-1/0/brandName/varName';
+                    url="/retailerShelfSpace/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/-1/0/brandName/varName';
                     return $http({
                         method:'GET',
                         url:url
@@ -71,7 +71,7 @@ define(['app','socketIO','routingConfig'], function(app) {
                     $scope.percentageShelf[1][1]=(1-$scope.surplusShelf[1][1])*100;
                     // $scope.showSurplusShelf=$scope.percentageShelf[market-1][category-1];
                     // $scope.showPercentageShelf=$scope.percentageShelf[market-1][category-1];
-                    url = '/checkRetailerDecision/' + SeminarInfo.getSelectedSeminar() + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
+                    url = '/checkRetailerDecision/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
                     return $http({
                         method: 'GET',
                         url: url

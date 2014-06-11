@@ -19,7 +19,7 @@ define(['directives', 'services'], function(directives){
 
                     scope.currentPeriod=PeriodInfo.getCurrentPeriod();
                     
-                    ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
+                    ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
                         scope.pageBase = base; 
                     }).then(function(){
                         return showView();
@@ -41,13 +41,13 @@ define(['directives', 'services'], function(directives){
                     }else{
                         categoryID=2;
                     }   
-                    var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
+                    var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
                     $http({
                         method:'GET',
                         url:url
                     }).then(function(data){
                         max=data.data.productionCapacity[categoryID-1];
-                        url="/productionResult/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+brandName+'/'+varName;
+                        url="/productionResult/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+brandName+'/'+varName;
                         return $http({
                             method:'GET',
                             url:url

@@ -18,7 +18,7 @@ define(['directives', 'services'], function(directives){
                     scope.Label = Label;
 
                     scope.currentPeriod=PeriodInfo.getCurrentPeriod();                    
-					RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
+					RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
 						scope.pageBase = base;
 					}).then(function(){
 						return showView();
@@ -36,20 +36,20 @@ define(['directives', 'services'], function(directives){
 					if(!filter.test(value)){
 						d.resolve(Label.getContent('Input a number'));
 					}
-					var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/R/'+parseInt(PlayerInfo.getPlayer());
+					var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/R/'+parseInt(PlayerInfo.getPlayer());
 		      		$http({
 		      			method:'GET',
 		      			url:url
 		      		}).then(function(data){
 		      			max=data.data.budgetAvailable+data.data.budgetSpentToDate;
-		      			url="/retailerExpend/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/'+marketID+'/'+location+'/'+additionalIdx;
+		      			url="/retailerExpend/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/'+marketID+'/'+location+'/'+additionalIdx;
 		      			return $http({
 		      				method:'GET',
 		      				url:url
 		      			});
 		      		}).then(function(data){
 		      			expend=data.data.result;
-		      			url='/getPlayerReportOrderExpend/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/R/'+PlayerInfo.getPlayer();
+		      			url='/getPlayerReportOrderExpend/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/R/'+PlayerInfo.getPlayer();
 	                    return $http({
 	                        method:'GET',
 	                        url:url

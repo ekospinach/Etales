@@ -20,7 +20,7 @@ define(['directives', 'services'], function(directives){
                 var getResult =function(){
 
                     //switching('showPerformance');
-                    var url='/performanceHighlights/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1);
+                    var url='/performanceHighlights/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1);
                     // scope.logs = [];
                     // scope.logs.push('Sending GET : ' + url );
 

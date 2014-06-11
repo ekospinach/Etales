@@ -18,7 +18,7 @@ define(['directives', 'services'], function(directives){
 
                 var getResult =function(){
                     scope.player1es=new Array();scope.player2es=new Array();scope.player3es=new Array();scope.player4es=new Array();scope.player5es=new Array();scope.player6es=new Array();scope.player1hs=new Array();scope.player2hs=new Array();scope.player3hs=new Array();scope.player4hs=new Array();scope.player5hs=new Array();scope.player6hs=new Array();
-                    var url='/getMR-retailerPerceptionEvolution/'+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1);
+                    var url='/getMR-retailerPerceptionEvolution/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1);
                     $http({
                         method:'GET',
                         url:url,

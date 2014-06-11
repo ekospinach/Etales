@@ -25,7 +25,7 @@ define(['directives', 'services'], function(directives){
                         value: 3, text: Label.getContent('PREMIUM')
                     }]; 
                     scope.parameter="NewBrand";/*default add new Brand*/                    
-					RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
+					RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
 						scope.pageBase = base;
 					}).then(function(){
 						return showView();
@@ -81,7 +81,7 @@ define(['directives', 'services'], function(directives){
                     for(var i=0;i<products.length;i++){
                         postDatas[i]={
                             period : PeriodInfo.getCurrentPeriod(),
-                            seminar : SeminarInfo.getSelectedSeminar(),
+                            seminar : SeminarInfo.getSelectedSeminar().seminarCode,
                             brandName : products[i].parentBrandName,
                             varName : products[i].varName,
                             catID : categoryID,
@@ -177,7 +177,7 @@ define(['directives', 'services'], function(directives){
 					if(!filter.test(value)){
 						d.resolve(Label.getContent('Input a Integer'));
 					}
-					var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/4';
+					var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/4';
 					$http({
 						method:'GET',
 						url:url
@@ -206,7 +206,7 @@ define(['directives', 'services'], function(directives){
 					if(!filter.test(value)){
 						d.resolve(Label.getContent('Input a Integer'));
 					}
-					var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar()+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
+					var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/P/'+parseInt(PlayerInfo.getPlayer());
 					$http({
 						method:'GET',
 						url:url
@@ -236,7 +236,7 @@ define(['directives', 'services'], function(directives){
 					if(!filter.test(value)){
 						d.resolve(Label.getContent('Input a Integer'));
 					}
-					var url="/retailerCurrentDecision/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+brandName+'/'+varName;
+					var url="/retailerCurrentDecision/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+brandName+'/'+varName;
                     $http({
                         method:'GET',
                         url:url
@@ -380,7 +380,7 @@ define(['directives', 'services'], function(directives){
                             newretailerDecision.varID=10*newBrand.brandID+1;/*need check*/
                             newBrand.privateLabelVarDecision.push(newretailerDecision,nullDecision,nullDecision);
                             
-                            url="/checkRetailerProduct/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+$scope.lauchNewCategory+'/brand/'+newBrand.brandName+'/'+newretailerDecision.varName;
+                            url="/checkRetailerProduct/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+$scope.lauchNewCategory+'/brand/'+newBrand.brandName+'/'+newretailerDecision.varName;
                             $http({
                                 method:'GET',
                                 url:url
@@ -408,7 +408,7 @@ define(['directives', 'services'], function(directives){
                                     break;
                                 }
                             }
-                            url="/checkRetailerProduct/"+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+$scope.addNewCategory+'/variant/'+newBrandName+'/'+newretailerDecision.varName;
+                            url="/checkRetailerProduct/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+parseInt(PlayerInfo.getPlayer())+'/'+$scope.addNewCategory+'/variant/'+newBrandName+'/'+newretailerDecision.varName;
                             $http({
                                 method:'GET',
                                 url:url

@@ -18,7 +18,7 @@ define(['directives', 'services'], function(directives){
                     scope.Label = Label;
                     scope.showView=showView;
                     scope.currentPeriod=PeriodInfo.getCurrentPeriod();                    
-                    RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
+                    RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
                         scope.pageBase = base;
                     }).then(function(){
                         return showView('Elecssories','Rural');
@@ -117,13 +117,13 @@ define(['directives', 'services'], function(directives){
                     }
                     if(brandName.substring(brandName.length-1)<4){
                         //producer product
-                        var url='/producerVariantBM/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+brandName.substring(brandName.length-1)+'/'+category+'/'+brandName+'/'+varName;
+                        var url='/producerVariantBM/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+brandName.substring(brandName.length-1)+'/'+category+'/'+brandName+'/'+varName;
                         $http({
                             method:'GET',
                             url:url
                         }).then(function(data){
                             max=data.data.result;
-                            url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+category+'/'+market;
+                            url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+category+'/'+market;
                             return $http({
                                 method:'GET',
                                 url:url
@@ -141,7 +141,7 @@ define(['directives', 'services'], function(directives){
                         //retailer variant
                         var postData = {
                             period : PeriodInfo.getCurrentPeriod(),
-                            seminar : SeminarInfo.getSelectedSeminar(),
+                            seminar : SeminarInfo.getSelectedSeminar().seminarCode,
                             brandName : brandName,
                             varName : varName,
                             catID : category,
@@ -154,7 +154,7 @@ define(['directives', 'services'], function(directives){
                             data:postData
                         }).then(function(data){
                             currentUnitCost=data.data.result;
-                            url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+category+'/'+market;
+                            url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+category+'/'+market;
                             return $http({
                                 method:'GET',
                                 url:url
@@ -288,7 +288,7 @@ define(['directives', 'services'], function(directives){
                         }
                     }
                     //添加retailer load
-                    var url='/retailerProducts/'+parseInt(PlayerInfo.getPlayer())+'/'+PeriodInfo.getCurrentPeriod()+'/'+SeminarInfo.getSelectedSeminar()+'/'+category;
+                    var url='/retailerProducts/'+parseInt(PlayerInfo.getPlayer())+'/'+PeriodInfo.getCurrentPeriod()+'/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+category;
                     $http({
                         method:'GET',
                         url:url
@@ -303,8 +303,8 @@ define(['directives', 'services'], function(directives){
                         var urls=new Array();
                         var checkurls=new Array();
                         for(i=0;i<3;i++){
-                            urls[i]='/producerProducts/'+(i+1)+'/'+PeriodInfo.getCurrentPeriod()+'/'+SeminarInfo.getSelectedSeminar()+'/'+category;
-                            checkurls[i]='/checkProducerPortfolioDecision/'+SeminarInfo.getSelectedSeminar()+'/'+PeriodInfo.getCurrentPeriod()+'/'+(i+1);
+                            urls[i]='/producerProducts/'+(i+1)+'/'+PeriodInfo.getCurrentPeriod()+'/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+category;
+                            checkurls[i]='/checkProducerPortfolioDecision/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+(i+1);
                         }
                         (function multipleRequestShooter(checkurls,urls,idx){
                             $http({
@@ -406,7 +406,7 @@ define(['directives', 'services'], function(directives){
                     /*set add function is lauch new Brand*/
                     var close = function () {
                         $modalInstance.dismiss('cancel');
-                        RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar()}).then(function(base){
+                        RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
                             $scope.pageBase = base;
                         }).then(function(){
                             return showView($scope.category,$scope.market);

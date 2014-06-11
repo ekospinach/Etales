@@ -11,7 +11,7 @@ define(['app'], function(app) {
 		    var periods=new Array();
 		    $scope.periods=periods;
 		    
-		    var url="/currentPeriod/"+SeminarInfo.getSelectedSeminar();
+		    var url="/currentPeriod/"+SeminarInfo.getSelectedSeminar().seminarCode;
 			$http({
 				method:'GET',
 				url:url
