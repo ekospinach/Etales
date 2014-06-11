@@ -1,101 +1,40 @@
 <div load-end>
-    <main id="content" class="bs-masthead" role="main">
+    <main id="content" role="main">
         <div class="container">
             <!--<h1>eTales</h1>-->
-            <img src="img/E-tales-logo.png" attr="eTales" style="margin-top:20px;margin-bottom:10px" width='706px' height='100px'>
-            <p class="lead">{{Label.getContent('eTales Info')}}</p>
-            <p>
-                <a class="btn btn-outline-inverse btn-lg" ng-click="openLoginModal()">{{Label.getContent('Get started')}}</a>
-                
-                <a class="btn btn-outline-inverse btn-lg"  ng-click="openAdminLoginModal()">Test feedback module</a>
-            </p>
+            <div style="width:612px;margin:50px auto">
+            	<img src="img/E-tales-logo.png" attr="eTales" width='592' height='221' style="margin:50px 10px">
+	            <p class="lead" style="color:#d7f7c4">{{Label.getContent('eTales Info')}}</p>
+	            <!-- <p>
+	                <a class="btn btn-outline-inverse btn-lg" ng-click="openLoginModal()">{{Label.getContent('Get started')}}</a>
+	                
+	                <a class="btn btn-outline-inverse btn-lg"  ng-click="openAdminLoginModal()">Test feedback module</a>
+	            </p> -->
+	            <form class="form-inline" role="form" style="text-align:center;margin:50px 0">
+	            	<div class="form-group">
+	            		<select class="form-control"ng-model="userRole">
+	            			<option value="0">{{Label.getContent('Role')}}</option>
+							<option value="1">{{Label.getContent('Producer')}} 1</option>
+							<option value="2">{{Label.getContent('Producer')}} 2</option>
+							<option value="3">{{Label.getContent('Producer')}} 3</option>
+							<option value="5">{{Label.getContent('Retailer')}} 1</option>
+							<option value="6">{{Label.getContent('Retailer')}} 2</option>
+							<option value="9">{{Label.getContent('Facilitator')}}</option>
+						</select>
+	            	</div>
+	            	<div class="form-group">
+	            		<input type="text" id="userSeminar" class="form-control" placeholder="{{Label.getContent('Seminar Code')}}" ng-model="userSeminar">
+	            	</div>
+	            	<div class="form-group">
+	            		<input type="password" id="userPassword" placeholder="{{Label.getContent('Password')}}" class="form-control" ng-model="userPassword">
+	            	</div>
+	            	<button type="submit" class="btn btn-default" ng-click="playerLogin()">Sign in</button>
+	            </form>
+
+	            <div style="width:604px;margin:0 3px">
+		            <img src="img/eTalesLandingpageICONS.png" />
+		        </div>
+            </div>
         </div>
     </main>
 </div>
-<!--modal start-->
-<!-- <div ng-controller="ModalDemoCtrl">
-	<script type="text/ng-template" id="myModalContent.html">
-	// <div modal="loginModal" class="hide" close="closeLoginModal()" options="loginOpts">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeLoginModal()">&times;</button>
-					<h4 class="modal-title">{{Label.getContent('User Login')}}</h4>
-				</div>
-				<div class="modal-body">
-					<form class="form-horizontal" role="form">
-						<div class="form-group">
-					    	<label for="userRole" class="col-sm-2 control-label">{{Label.getContent('Role')}}:</label>
-					    	<div class="col-sm-10">
-					    		<select class="form-control" id="userRole" ng-model="userRole">
-									<option value="1">{{Label.getContent('Producer')}} 1</option>
-									<option value="2">{{Label.getContent('Producer')}} 2</option>
-									<option value="3">{{Label.getContent('Producer')}} 3</option>
-									<option value="5">{{Label.getContent('Retailer')}} 1</option>
-									<option value="6">{{Label.getContent('Retailer')}} 2</option>
-									<option value="9">{{Label.getContent('Facilitator')}}</option>
-								</select>
-					    	</div>
-					  	</div>
-					  	<div class="form-group">
-					    	<label for="userSeminar" class="col-sm-2 control-label">{{Label.getContent('Seminar')}}:</label>
-					    	<div class="col-sm-10">
-					      		<input type="text" id="userSeminar" class="form-control" placeholder="{{Label.getContent('Seminar Code')}}" ng-model="userSeminar">
-					    	</div>
-					  	</div>
-					  	<div class="form-group">
-					    	<label for="userPassword" class="col-sm-2 control-label">{{Label.getContent('Password')}}:</label>
-					    	<div class="col-sm-10">
-					      		<input type="password" id="userPassword" class="form-control" ng-model="userPassword">
-					    	</div>
-					  	</div>
-					</form>
-					<div class="{{userBubleClassName}}" ng-show='true'>
-	        			<strong>{{userBubleTitle}}</strong> {{userBubleMsg}}
-	        		</div>	
-				</div>
-				<div class="modal-footer">
-					<a class="btn btn-default" ng-click="closeLoginModal()">{{Label.getContent('Cancel')}}</a>
-					<a class="btn btn-primary" ng-click="userLogin()">
-						{{Label.getContent('Login')}}
-					</a>
-				</div>
-			</div>
-		</div>
-	//</div>
-	</script>
-</div> -->
-	<!-- <div modal="aminLoginModal" class="hide" close="closeAdminLoginModal()" options="adminLoginOpts">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeAdminLoginModal()">&times;</button>
-					<h4 class="modal-title">{{Label.getContent('Admin Login')}}</h4>
-				</div>
-				<div class="modal-body">
-					<form class="form-horizontal" role="form">
-						<div class="form-group">
-					    	<label for="adminSeminar" class="col-sm-2 control-label">{{Label.getContent('Seminar')}}:</label>
-					    	<div class="col-sm-10">
-					      		<input type="text" id="adminSeminar" class="form-control" placeholder="{{Label.getContent('Seminar Code')}}" ng-model="adminSeminar">
-					    	</div>
-					  	</div>
-					  	<div class="form-group">
-					    	<label for="adminPassword" class="col-sm-2 control-label">{{Label.getContent('Password')}}:</label>
-					    	<div class="col-sm-10">
-					      		<input type="password" id="adminPassword" class="form-control" ng-model="adminPassword">
-					    	</div>
-					  	</div>
-					</form>
-					<div class="{{adminBubleClassName}}" ng-show='true'>
-        				<strong>{{adminBubleTitle}}</strong>{{adminBubleMsg}}
-        			</div>
-				</div>			
-				<div class="modal-footer">
-					<a class="btn btn-default" ng-click="closeAdminLoginModal()">{{Label.getContent('Cancel')}}</a>
-					<a class="btn btn-primary" ng-click="adminLogin()">{{Label.getContent('Login')}}</a>
-				</div>
-			</div>
-		</div>
-	</div> -->
-<!--Modal end-->
