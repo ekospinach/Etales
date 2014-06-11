@@ -22,7 +22,7 @@ define(['directives', 'services'], function(directives){
                     var array=_.find(data,function(obj){
                         return (obj.variantName==variantName&&obj.parentBrandName==brandName&&obj.marketID==market);
                     });
-                    return array.value;
+                    return array.value.toFixed(2);
                 }
 
                 var loadretailerVolume=function(data,category,market){
@@ -30,7 +30,7 @@ define(['directives', 'services'], function(directives){
                         if(data.data[0].rcrviv_Initial[i].parentCategoryID==category&&data.data[0].rcrviv_Initial[i].marketID==market){
                             var varName=data.data[0].rcrviv_Initial[i].variantName;
                             var brandName=data.data[0].rcrviv_Initial[i].parentBrandName;
-                            var initial=data.data[0].rcrviv_Initial[i].value;
+                            var initial=data.data[0].rcrviv_Initial[i].value.toFixed(2);
                             var production=loadVariantValue(data.data[0].rcrviv_Purchase,brandName,varName,market);
                             var sales=loadVariantValue(data.data[0].rcrviv_Sales,brandName,varName,market);
                             var discontinued=loadVariantValue(data.data[0].rcrviv_Discontinued,brandName,varName,market);

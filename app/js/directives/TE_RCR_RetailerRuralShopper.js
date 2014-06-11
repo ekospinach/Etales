@@ -23,27 +23,27 @@ define(['directives', 'services'], function(directives){
                         if(data.data[0].absoluteValue[i].parentCategoryID==category&&data.data[0].absoluteValue[i].marketID==market){
                             var varName=data.data[0].absoluteValue[i].variantName;
                             var brandName=data.data[0].absoluteValue[i].parentBrandName;
-                            var bmValueShare=data.data[0].absoluteValue[i].segmentInfo[4].shopperInfo[0].value;
-                            var onlineValueShare=data.data[0].absoluteValue[i].segmentInfo[4].shopperInfo[1].value;
-                            var mixedValueShare=data.data[0].absoluteValue[i].segmentInfo[4].shopperInfo[2].value;
+                            var bmValueShare=(data.data[0].absoluteValue[i].segmentInfo[4].shopperInfo[0].value*100).toFixed(2);
+                            var onlineValueShare=(data.data[0].absoluteValue[i].segmentInfo[4].shopperInfo[1].value*100).toFixed(2);
+                            var mixedValueShare=(data.data[0].absoluteValue[i].segmentInfo[4].shopperInfo[2].value*100).toFixed(2);
                             var valueChanges=_.find(data.data[0].valueChange,function(obj){
                                 return(obj.variantName==varName&&obj.parentBrandName==brandName&&obj.marketID==market);
                             });
-                            var bmValueChange=valueChanges.segmentInfo[4].shopperInfo[0].value;
-                            var onlineValueChange=valueChanges.segmentInfo[4].shopperInfo[1].value;
-                            var mixedValueChange=valueChanges.segmentInfo[4].shopperInfo[2].value;
+                            var bmValueChange=(valueChanges.segmentInfo[4].shopperInfo[0].value*100).toFixed(2);
+                            var onlineValueChange=(valueChanges.segmentInfo[4].shopperInfo[1].value*100).toFixed(2);
+                            var mixedValueChange=(valueChanges.segmentInfo[4].shopperInfo[2].value*100).toFixed(2);
                             var Volumes=_.find(data.data[0].absoluteVolume,function(obj){
                                 return(obj.variantName==varName&&obj.parentBrandName==brandName);
                             });
                             var volumeChanges=_.find(data.data[0].volumeChange,function(obj){
                                 return(obj.variantName==varName&&obj.parentBrandName==brandName);
                             });
-                            var bmVolumeShare=Volumes.segmentInfo[4].shopperInfo[0].value;
-                            var onlineVolumeShare=Volumes.segmentInfo[4].shopperInfo[1].value;
-                            var mixedVolumeShare=Volumes.segmentInfo[4].shopperInfo[2].value;
-                            var bmVolumeChange=volumeChanges.segmentInfo[4].shopperInfo[0].value;
-                            var onlineVolumeChange=volumeChanges.segmentInfo[4].shopperInfo[1].value;
-                            var mixedVolumeChange=volumeChanges.segmentInfo[4].shopperInfo[2].value;
+                            var bmVolumeShare=(Volumes.segmentInfo[4].shopperInfo[0].value*100).toFixed(2);
+                            var onlineVolumeShare=(Volumes.segmentInfo[4].shopperInfo[1].value*100).toFixed(2);
+                            var mixedVolumeShare=(Volumes.segmentInfo[4].shopperInfo[2].value*100).toFixed(2);
+                            var bmVolumeChange=(volumeChanges.segmentInfo[4].shopperInfo[0].value*100).toFixed(2);
+                            var onlineVolumeChange=(volumeChanges.segmentInfo[4].shopperInfo[1].value*100).toFixed(2);
+                            var mixedVolumeChange=(volumeChanges.segmentInfo[4].shopperInfo[2].value*100).toFixed(2);
                             switch(data.data[0].absoluteValue[i].parentCompanyID){
                                 case 1:if(category==1){
                                     scope.eleValue1s.push({'fullName':brandName+varName,'bmValueShare':bmValueShare,'bmValueChange':bmValueChange,'onlineValueShare':onlineValueShare,'onlineValueChange':onlineValueChange,'mixedValueShare':mixedValueShare,'mixedValueChange':mixedValueChange});
