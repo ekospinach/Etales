@@ -110,11 +110,6 @@ define(['app','socketIO'], function(app) {
 					url:url
 				}).then(function(data){
 					//$rootScope.currentPeriod=data.currentPeriod;
-<<<<<<< HEAD
-					SeminarInfo.setSelectedSeminar(seminar);
-=======
-					SeminarInfo.setSelectedSeminar(data.data);
->>>>>>> b832a1741cd26c938084e5d9f3844a158a3f3816
 					PeriodInfo.setCurrentPeriod(data.data.currentPeriod);
 					$rootScope.rootStartFrom=-2;
 					$rootScope.rootEndWith=data.currentPeriod-1;
