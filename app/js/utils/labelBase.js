@@ -968,9 +968,9 @@ var getLabelBase = function(){
 		{id:'Retailer Technology Level Info',  ENG:'an Elecsorries and Health/Beauty product attribute; an index from 1 to 20 defining quality level of a product; in Elecsorries influences quality and ease of use perceptions; in Health/Beauty allows successful merging of active agent with smoothener; affects production cost.',  CHN:'两个品类共有的属性特征，用指数1-20代表技术水平。在电子配件品类，技术水平影响质量和易用性感知，在美容健康品类，技术水平影响活力因子和光滑因子的融合程度。技术水平会影响生产成本。',  RUS:''},
 		/*retailer Store Management end*/
 
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'Role Error',  ENG:'Please choose player role first.',  CHN:'',  RUS:''},
+		{id:'Login Fail',  ENG:'Invalid password or seminar code.',  CHN:'',  RUS:''},
+		{id:'Login Success',  ENG:'Login Success',  CHN:'',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''}
 	]
