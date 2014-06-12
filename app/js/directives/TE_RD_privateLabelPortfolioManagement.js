@@ -97,7 +97,7 @@ define(['directives', 'services'], function(directives){
                         }).then(function(data){
                             products[idx].unitCost=data.data.result;
                         },function(data){
-
+                            idx=postDatas.length-1;
                         }).finally(function(){
                             if(idx!=postDatas.length-1){
                                 idx++;
