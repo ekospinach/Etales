@@ -1,18 +1,20 @@
+<STYLE TYPE="text/css">
+	.login-error-info{ 
+		color: #E1D559;
+	}
+	.login-info{ 
+		color: transparent;
+	}
+</STYLE>
 <div load-end>
     <main id="content" role="main">
         <div class="container">
             <!--<h1>eTales</h1>-->
             <div style="width:612px;margin:100px auto">
             	<img src="img/E-tales-logo.png" attr="eTales" >            	
-<!-- 	            <p class="lead" style="color:#d7f7c4">{{Label.getContent('eTales Info')}}</p>
- -->	            <!-- <p>
-	                <a class="btn btn-outline-inverse btn-lg" ng-click="openLoginModal()">{{Label.getContent('Get started')}}</a>
-	                
-	                <a class="btn btn-outline-inverse btn-lg"  ng-click="openAdminLoginModal()">Test feedback module</a>
-	            </p> -->
 	            <form class="form-inline" role="form" style="text-align:center;margin:100px 40px">
 	            	<div class="form-group">
-	            		<select class="form-control"ng-model="userRole">
+	            		<select class="form-control"ng-model="userRole" style="background-color: #D7F7C4;color: #66946A;">
 	            			<option value="0">{{Label.getContent('Role')}}</option>
 							<option value="1">{{Label.getContent('Producer')}} 1</option>
 							<option value="2">{{Label.getContent('Producer')}} 2</option>
@@ -23,13 +25,15 @@
 						</select>
 	            	</div>
 	            	<div class="form-group">
-	            		<input type="text" id="userSeminar" class="form-control" placeholder="{{Label.getContent('Seminar Code')}}" ng-model="userSeminar">
+	            		<input type="text" id="userSeminar" class="form-control" placeholder="{{Label.getContent('Seminar Code')}}" ng-model="userSeminar" style="background-color:transparent;color:#d7f7c4;border:2px solid #D7F7C4">
 	            	</div>
 	            	<div class="form-group">
-	            		<input type="password" id="userPassword" placeholder="{{Label.getContent('Password')}}" class="form-control" ng-model="userPassword">
+	            		<input type="password" id="userPassword" placeholder="{{Label.getContent('Password')}}" class="form-control" ng-model="userPassword" style="background-color:transparent;color:#d7f7c4;border:2px solid #D7F7C4">
 	            	</div>
-	            	<button type="submit" class="btn btn-default" ng-click="playerLogin()">{{Label.getContent('Login')}}</button>
+	            	<button type="submit" class="btn btn-default" ng-click="playerLogin()" style="background-color: #D7F7C4;color: #66946A;font-weight:600">{{Label.getContent('Login')}}</button>
+	            	<p ng-class="infoClass">{{Label.getContent(errorInfo)}}</p>
 	            </form>
+	            
 
 	            <div style="margin:0 auto 40px">
 		            <img src="img/eTalesLandingpageICONS.png" />
