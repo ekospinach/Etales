@@ -120,11 +120,12 @@ body {
     padding-left: 0;
 }
 }
-.bs-docs-home, .bs-header {
-
+.bs-docs-home{
+    background:-webkit-gradient(linear,0% 0%, 0% 100%, from(#025037), to(#025037), color-stop(0.5,#001C13));
+}
+.bs-header {
 /* -- green version -- */
     background-color: #025037;
-
 /* -- purple version -- */    
     /*background-color: #563D7C;
       background-image: url('../img/index.png');*/
