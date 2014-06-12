@@ -43,7 +43,7 @@ body {
     color: #FFFFFF;
 }
 .bs-docs-nav .navbar-nav > li > a {
-    color: #CDBFE3;
+    color: #d7f7c4;
 }
 .bs-docs-nav .navbar-nav > li > a:hover {
     color: #FFFFFF;
@@ -131,7 +131,7 @@ body {
     /*background-color: #563D7C;
       background-image: url('../img/index.png');*/
     
-    color: #CDBFE3;
+    color: #d7f7c4;
 }
 .bs-masthead {
     padding: 30px 15px;
