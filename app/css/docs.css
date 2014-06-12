@@ -43,7 +43,7 @@ body {
     color: #FFFFFF;
 }
 .bs-docs-nav .navbar-nav > li > a {
-    color: #CDBFE3;
+    color: #d7f7c4;
 }
 .bs-docs-nav .navbar-nav > li > a:hover {
     color: #FFFFFF;
@@ -121,8 +121,9 @@ body {
 }
 }
 .bs-docs-home{
-    background:-webkit-gradient(linear,0% 0%, 0% 100%, from(#025037), to(#001C13));
-    background: -moz-linear-gradient(0% 0% 270deg, #025037,#025037);
+/*    background:-webkit-gradient(linear,0% 0%, 0% 100%, from(#025037), to(#025037), color-stop(0.5,#025037));
+    background: -moz-linear-gradient(0% 0% 270deg, #025037,#025037);*/
+    background-color: #025037;
 }
 .bs-header {
 /* -- green version -- */
@@ -131,7 +132,7 @@ body {
     /*background-color: #563D7C;
       background-image: url('../img/index.png');*/
     
-    color: #CDBFE3;
+    color: #d7f7c4;
 }
 .bs-masthead {
     padding: 30px 15px;
