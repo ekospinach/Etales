@@ -66,6 +66,7 @@ Business Simulation Game
 + SeminarInfo 中producer/Retailer数组PeriodInfo数量不足
 + Admin page, New seminar is not working 
 + Negotiation :  If they cannot reach any agreement, need to copy agreement last period automatically.
++ Service PeriodInfo 有问题 : 静态 无法主动更新
 
 ## Directory Layout
 

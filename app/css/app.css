@@ -238,15 +238,22 @@ table tr td p,table tr th p{
 .table-bordered > tfoot > tr > td {
 /*  border: 1px solid #428BCA;
 */  
-  border: 1px solid #428BCA;
+  border: 1px solid #C8C8C8;
 
   border-right: none;
 }
 .my-panel-success > .panel-heading {
     background-color: #5CB85C;
+    color:          #ffffff;
 }
 .my-panel-danger > .panel-heading {
     background-color: #D9534F;
+    color:          #ffffff;
+    border: #FFFFFF;
+}
+.my-panel-warning > .panel-heading {
+    background-color: #EEA236;
+    color:          #ffffff;
 }
 .my-success-panel > .panel-heading {
     background-color: transparent;
