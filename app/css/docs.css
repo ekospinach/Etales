@@ -122,6 +122,7 @@ body {
 }
 .bs-docs-home{
     background:-webkit-gradient(linear,0% 0%, 0% 100%, from(#025037), to(#025037), color-stop(0.5,#001C13));
+    background: -moz-linear-gradient(0% 0% 270deg, #025037,#025037);
 }
 .bs-header {
 /* -- green version -- */
