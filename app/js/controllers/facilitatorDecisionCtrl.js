@@ -22,9 +22,7 @@ define(['app'], function(app) {
 			}).then(function(data){
 				for (var i=0;i<=data.data.currentPeriod;i++){
 					$scope.periods.push(i);
-				}
-				console.log($scope.periods);
-			},function(){
+				}			},function(){
 				console.log('fail');
 			})
 
@@ -33,6 +31,7 @@ define(['app'], function(app) {
 		    		userRole-=4;
 		    	}
 		    	PlayerInfo.setPlayer(userRole);
+		    	PeriodInfo.getCurrentPeriod();
 		    }
 
 		    $scope.setPreriod=function(period){

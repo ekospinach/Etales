@@ -971,6 +971,10 @@ var getLabelBase = function(){
 		{id:'Role Error',  ENG:'Please choose player role first.',  CHN:'',  RUS:''},
 		{id:'Login Fail',  ENG:'Invalid password or seminar code.',  CHN:'',  RUS:''},
 		{id:'Login Success',  ENG:'Login Success',  CHN:'',  RUS:''},
+		{id:'Market Shares by Consumer Segment Info',  ENG:'Market Shares by Consumer Segment Info',  CHN:'',  RUS:''},
+		{id:'Market Shares by Shopper Segment Info',  ENG:'Market Shares by Shopper Segment Info',  CHN:'',  RUS:''},
+		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'',  ENG:'',  CHN:'',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''}
 	]
