@@ -135,7 +135,6 @@
 	                //else                  $location.path('/login');
 	            } else {
 	            	if(Auth.isLoggedIn()){
-
 						var url="/currentPeriod/"+$rootScope.user.seminar;
 						$http.get(url).success(function(data){
 							$rootScope.loadShow=false;
@@ -143,7 +142,6 @@
 							$rootScope.simulationSpan = data.simulationSpan;							
 							$rootScope.rootStartFrom=-2;
 							$rootScope.rootEndWith=$rootScope.currentPeriod-1;
-							console.log('set currentPeriod:' + $rootScope.currentPeriod);
 						});	   	            		
 	            	}
 	            }

@@ -19,7 +19,7 @@
 		<link rel="stylesheet" type="text/css" media="all" href="css/docs.css" />
 		<link rel="stylesheet" type="text/css" media="all" href="css/spinner.css" />
 	</head>
-	<body class="{{loginCss}}" ng-controller="NavbarCtrl" style="background-color:#025037">
+	<body class="bs-docs-home" ng-class="loginCss" ng-controller="NavbarCtrl">
 		<div access-level='{{accessLevels.playerView}}'>
 			<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" id="pageheader" role="banner" style="display:none">
 
@@ -57,12 +57,6 @@
 					          		</li>
 						        </ul>
 							</li>
-							<!-- <li class="" access-level='{{accessLevels.facilitatorView}}' acyive-nva>
-								<a href="/#/facilitatorSummaryReport">
-									{{Label.getContent('Reports')}}
-								</a>
-							</li> -->
-
 					        <li class="dropdown"  access-level='{{accessLevels.playerView}}' ng-show=false>
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
 									{{Label.getContent('Facilitator Report')}}
@@ -125,7 +119,6 @@
 					</nav>
 				</div>
 			</header>
-
 		</div>
 		<div ng-view>	    	
 	    </div>

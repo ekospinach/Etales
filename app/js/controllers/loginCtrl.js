@@ -85,7 +85,6 @@ define(['app','socketIO'], function(app) {
 		$scope.playerLogin=function(){
 			var username="";
 			var seminar=$scope.userSeminar;
-			SeminarInfo.setSelectedSeminar(seminar);
 			var password=$scope.userPassword;
 			switch($scope.userRole){
 				case '1':username=seminar+'^'+userRoles.producer+'^'+$scope.userRole;break;

@@ -28,13 +28,16 @@ body {
     text-shadow: none;
 }
 .bs-docs-nav {
-    background-color: #563D7C;
-    border-color: #463265;
+/*    background-color: #563D7C;
+    border-color: #463265;*/
+    /**green **/
+    background-color: #025037;
+    border-color: #025037;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
 }
 .bs-docs-nav .navbar-collapse {
-    border-color: #463265;
+    border-color: #025037;
 }
 .bs-docs-nav .navbar-brand {
     color: #FFFFFF;
@@ -46,15 +49,15 @@ body {
     color: #FFFFFF;
 }
 .bs-docs-nav .navbar-nav > .active > a, .bs-docs-nav .navbar-nav > .active > a:hover {
-    background-color: #463265;
+    background-color: #025037;
     color: #FFFFFF;
 }
 .bs-docs-nav .navbar-toggle {
-    border-color: #563D7C;
+    border-color: #025037;
 }
 .bs-docs-nav .navbar-toggle:hover {
-    background-color: #463265;
-    border-color: #463265;
+    background-color: #025037;
+    border-color: #025037;
 }
 .bs-footer {
     border-top: 1px solid #E5E5E5;
@@ -117,11 +120,13 @@ body {
     padding-left: 0;
 }
 }
-.bs-docs-home, .bs-header {
-
+.bs-docs-home{
+    background:-webkit-gradient(linear,0% 0%, 0% 100%, from(#025037), to(#025037), color-stop(0.5,#001C13));
+    background: -moz-linear-gradient(0% 0% 270deg, #025037,#025037);
+}
+.bs-header {
 /* -- green version -- */
-/*    background-color: #563D7C;
-*/
+    background-color: #025037;
 /* -- purple version -- */    
     /*background-color: #563D7C;
       background-image: url('../img/index.png');*/
