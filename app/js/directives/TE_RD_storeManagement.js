@@ -67,12 +67,14 @@ define(['directives', 'services'], function(directives){
                     if(!filter.test(value)){
                         d.resolve(Label.getContent('Input a number'));
                     }
-                    var max=0;
-                    if(value>100||value<0){
-                        d.resolve(Label.getContent('Input range'+':0~100'));
-                    }else{
-                        d.resolve();
-                    }
+
+                    d.resolve();
+                    // var max=0;
+                    // if(value>100||value<0){
+                    //     d.resolve(Label.getContent('Input range'+':0~100'));
+                    // }else{
+                    //     d.resolve();
+                    // }
                     return d.promise;
                 }
                 /*Shelf space : 0~ 100%，每次给某一个市场内的某个产品分配份额或者减少份额，右上角的该市场的货架进度条 Avaiable Shelf space必须进行进行相应的减少或者增加。该市场内所有产品的份额相加不能大于100%。
@@ -148,6 +150,7 @@ define(['directives', 'services'], function(directives){
                             userRole :  4,                      
                             userID : PlayerInfo.getPlayer(),
                         }   
+
                         $http({
                             method:'POST',
                             url:'/getCurrentUnitCost',
