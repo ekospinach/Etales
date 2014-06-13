@@ -161,7 +161,7 @@ define(['directives', 'services'], function(directives){
                             });
                         }).then(function(data){
                             if(value>data.data.MaxBMPriceVsCost*currentUnitCost||value<data.data.MinBMPriceVsCost*currentUnitCost){
-                                d.resolve(Label.getContent('Input range')+':'+data.data.MinBMPriceVsCost*currentUnitCost+'~'+data.data.MaxPLPriceVsCost*currentUnitCost);
+                                d.resolve(Label.getContent('Input range')+':'+data.data.MinBMPriceVsCost*currentUnitCost.toFixed(2)+'~'+data.data.MaxPLPriceVsCost*currentUnitCost.toFixed(2));
                             }else{
                                 d.resolve();
                             }
