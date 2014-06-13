@@ -91,7 +91,7 @@ define(['directives', 'services'], function(directives) {
                             });
                         }).then(function(data) {
                             scope.currentUnitCost = data.data.result;
-                            url = '/getOneQuarterExogenousData/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + categoryID + '/1';
+                            url = '/getOneQuarterExogenousData/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + categoryID + '/1';
                             return $http({
                                 method : 'GET',
                                 url    : url

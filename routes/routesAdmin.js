@@ -15,8 +15,8 @@ module.exports = function(app, io){
 	app.post('/setCurrentPeriod',                                                require('./../api/models/seminar.js').setCurrentPeriod(io));
 	app.get('/seminarList',                                                      require('./../api/models/seminar.js').getSeminarList);
 	
-	app.get('/addOneQuarterExogenousData',                                       require('./../api/models/BG_oneQuarterExogenousData.js').addOneQuarterExogenousData);
-	app.get('/getOneQuarterExogenousData/:seminar/:period/:categoryID/:marketID',require('./../api/models/BG_oneQuarterExogenousData.js').getOneQuarterExogenousData);
+//	app.get('/getOneQuarterExogenousData/:seminar/:period/:categoryID/:marketID',require('./../api/models/BG_oneQuarterExogenousData.js').getOneQuarterExogenousData);
+	app.get('/getOneQuarterExogenousData/:seminar/:categoryID/:marketID',require('./../api/models/BG_oneQuarterExogenousData.js').getOneQuarterExogenousData);
 	
 	//getPlayerReportOrder
 	app.get('/getPlayerReportOrder/:seminar/:period/:userType/:playerID',		 require('./../api/models/seminar.js').getPlayerReportOrder);

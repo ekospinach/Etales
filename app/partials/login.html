@@ -1,6 +1,6 @@
 <STYLE TYPE="text/css">
 	.login-error-info{ 
-		color: #E1D559;
+		color: #F6D239;
 	}
 	.login-info{ 
 		color: transparent;
@@ -30,7 +30,8 @@
 	            	<div class="form-group">
 	            		<input type="password" id="userPassword" placeholder="{{Label.getContent('Password')}}" class="form-control" ng-model="userPassword" style="background-color:transparent;color:#d7f7c4;border:2px solid #D7F7C4">
 	            	</div>
-	            	<button type="submit" class="btn btn-default" ng-click="playerLogin()" style="background-color: #F6D239;color: #001c13;font-weight:600; border:2px solid #F6D239">{{Label.getContent('Login')}}</button>
+	            	<div class="form-group">
+	            	<button type="submit" class="btn btn-default" ng-click="playerLogin()" style="background-color: #F6D239;color: #001c13;font-weight:600; border:2px solid #F6D239">{{Label.getContent('Login')}}</button>	</div>            
 	            	<p ng-class="infoClass">{{Label.getContent(errorInfo)}}</p>
 	            </form>
 	            

@@ -152,9 +152,19 @@ define(['directives', 'services'], function(directives){
                         if(value>limited){
                             d.resolve(Label.getContent('Input range')+':0~'+limited);
                         }else{
+
                             d.resolve();
                         }
-                    })
+                    },function(err){
+                        //if error comes from request to /SCR-ClosingInternetInventoryVolume/...
+                        var limited = production;
+                        if(value > limited){
+                            d.resolve(Label.getContent('Input range')+':0~'+limited);
+                        }else{
+                            d.resolve();
+                        }                        
+                    });
+
                     return d.promise;
                 }
 
@@ -214,7 +224,7 @@ define(['directives', 'services'], function(directives){
                         data:postData
                     }).then(function(data){
                         scope.currentUnitCost=data.data.result;
-                        url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+categoryID+'/1';
+                        url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+categoryID+'/1';
                         return $http({
                             method:'GET',
                             url:url
