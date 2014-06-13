@@ -106,6 +106,7 @@ exports.addInfos = function(options){
 }
 
 exports.getOneQuarterExogenousData=function(req,res,next){
+    console.log('H!!!!!!!');
     return oneQuarterExogenousData.findOne({
         seminar:req.params.seminar,
         period:0,
