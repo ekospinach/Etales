@@ -164,23 +164,8 @@ define(['directives', 'services'], function(directives){
                             });
                         }).then(function(data){
                             if(value>data.data.MaxBMPriceVsCost*currentUnitCost||value<data.data.MinBMPriceVsCost*currentUnitCost){
-                                d.resolve(Label.getContent('Input range')+':'+data.data.MinBMPriceVsCost*currentUnitCost+'~'+data.data.MaxPLPriceVsCost*currentUnitCost);
+                                d.resolve(Label.getContent('Input range')+':'+data.data.MinBMPriceVsCost*currentUnitCost.toFixed(2)+'~'+data.data.MaxPLPriceVsCost*currentUnitCost.toFixed(2));
                             }else{
-                                scope.products[index].showInfo=true;
-
-                                if(category==2){
-                                    if(market==2){
-                                        scope.RuralHelthBeautiesProducts[index].showInfo=true;
-                                    }else{
-                                        scope.UrbanHelthBeautiesProducts[index].showInfo=true;
-                                    }
-                                }else{
-                                    if(market==2){
-                                        scope.RuralElecssoriesProducts[index].showInfo=true;
-                                    }else{
-                                        scope.UrbanElecssoriesProducts[index].showInfo=true;
-                                    }
-                                }
                                 d.resolve();
                             }
                         },function(){
