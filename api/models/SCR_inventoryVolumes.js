@@ -177,7 +177,6 @@ exports.getSCR_inventoryVolumes=function(req,res,next){
     })  
 }
 
-
 exports.getSCR_ClosingInternetInventoryVolume=function(req,res,next){
     var data={
         'seminar':req.params.seminar,
@@ -190,7 +189,9 @@ exports.getSCR_ClosingInternetInventoryVolume=function(req,res,next){
             for(i=0;i<doc.scrviv_Closing.length;i++){
                 if(doc.scrviv_Closing[i].parentBrandName==req.params.brandName&&doc.scrviv_Closing[i].variantName==req.params.varName){
                     res.send(200,{'result':doc.scrviv_Closing[i].value[1]});
-                } 
+                } else {
+                    res.send(404, 'failed');
+                }
             }
 
         }else{

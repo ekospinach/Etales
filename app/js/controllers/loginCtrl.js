@@ -36,7 +36,10 @@ define(['app','socketIO'], function(app) {
 			var username="";
 			var seminar=$scope.userSeminar;
 			var password=$scope.userPassword;
-			if($scope.userRole){
+			if($scope.userRole == '0'){
+				$scope.errorInfo="Role Error"; 
+				$scope.infoClass="login-error-info";				
+			}else{
 				switch($scope.userRole){
 					case '1':username=seminar+'^'+userRoles.producer+'^'+$scope.userRole;break;
 					case '2':username=seminar+'^'+userRoles.producer+'^'+$scope.userRole;break;
@@ -74,9 +77,6 @@ define(['app','socketIO'], function(app) {
 					$scope.errorInfo="Login Fail"; 
 					$scope.infoClass="login-error-info";
 				});	
-			}else{
-				$scope.errorInfo="Role Error"; 
-				$scope.infoClass="login-error-info";				
 			}
 		}
 

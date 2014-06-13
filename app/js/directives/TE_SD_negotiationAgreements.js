@@ -175,7 +175,7 @@ define(['directives', 'services'], function(directives) {
                         //     if (data.data.result) {
                         //         d.resolve(Label.getContent('This item has been locked.'));
                         //     }
-                        //     url = '/getOneQuarterExogenousData/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + category + '/1';
+                        //     url = '/getOneQuarterExogenousData/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + category + '/1';
                         //     return $http({
                         //         method: 'GET',
                         //         url: url

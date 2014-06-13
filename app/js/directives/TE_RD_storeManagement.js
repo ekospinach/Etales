@@ -123,7 +123,7 @@ define(['directives', 'services'], function(directives){
                             url:url
                         }).then(function(data){
                             max=data.data.result;
-                            url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+category+'/'+market;
+                            url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+category+'/'+market;
                             return $http({
                                 method:'GET',
                                 url:url
@@ -154,7 +154,7 @@ define(['directives', 'services'], function(directives){
                             data:postData
                         }).then(function(data){
                             currentUnitCost=data.data.result;
-                            url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+category+'/'+market;
+                            url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+category+'/'+market;
                             return $http({
                                 method:'GET',
                                 url:url

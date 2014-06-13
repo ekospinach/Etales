@@ -238,6 +238,9 @@ const
 
   kernel_ShoppersShare_OK                            = 93941;
   kernel_ErrorInShoppersShare                        = 93949;
+
+  kernel_OtherCompletingResults_OK                   = 93991;
+  kernel_ErrorInOtherCompletingResults               = 93999;
   
   kernel_SimulationRun_OK                            = 94000;
 

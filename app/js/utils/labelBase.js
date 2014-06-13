@@ -973,7 +973,7 @@ var getLabelBase = function(){
 		{id:'Login Success',  ENG:'Login Success',  CHN:'',  RUS:''},
 		{id:'Market Shares by Consumer Segment Info',  ENG:'Market Shares by Consumer Segment Info',  CHN:'',  RUS:''},
 		{id:'Market Shares by Shopper Segment Info',  ENG:'Market Shares by Shopper Segment Info',  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'Admin',  ENG:'Admin',  CHN:'管理员',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''}
