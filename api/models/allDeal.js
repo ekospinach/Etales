@@ -296,6 +296,7 @@ function fillAllDeal(seminar, period){
                     }).then(function(result){
                       tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].categoryID = catCount + 1;
                       tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].volumeDiscountRate = result.categoryDeal;
+
                       catCount = 1;
                       return fillNegotiationItemByContractDetail(tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].volumeDiscountRate,'nc_VolumeDiscountRate',pair[idx].producerID,pair[idx].retailerID,catCount,period,seminar,doc.contractCode);
                     }).then(function(result){
@@ -343,12 +344,12 @@ function fillAllDeal(seminar, period){
                       tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].categoryID = catCount + 1;
                       tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].paymentDays = result.categoryDeal;
                       catCount = 0;
-                      return fillNegotiationItemByContractDetail(tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].otherCompensation,'nc_otherCompensation',pair[idx].producerID,pair[idx].retailerID,catCount,period,seminar,doc.contractCode);
+                      return fillNegotiationItemByContractDetail(tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].otherCompensation,'nc_OtherCompensation',pair[idx].producerID,pair[idx].retailerID,catCount,period,seminar,doc.contractCode);
                     }).then(function(result){
                       tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].categoryID = catCount + 1;
                       tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].otherCompensation = result.categoryDeal;
                       catCount = 1;
-                      return fillNegotiationItemByContractDetail(tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].otherCompensation,'nc_otherCompensation',pair[idx].producerID,pair[idx].retailerID,catCount,period,seminar,doc.contractCode);
+                      return fillNegotiationItemByContractDetail(tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].otherCompensation,'nc_OtherCompensation',pair[idx].producerID,pair[idx].retailerID,catCount,period,seminar,doc.contractCode);
                     }).then(function(result){
                       tempDeal.producerDeal[pair[idx].producerID-1].retailerDeal[pair[idx].retailerID-1].categoryDeal[catCount].otherCompensation = result.categoryDeal;
                       if(idx < pair.length-1){
@@ -446,26 +447,26 @@ function fillNegotiationItemByContractDetail(categoryDeal, negotiationItem, prod
                         if(contractVariantDetailsDoc){
                           console.log('          - FOUND related verified contractDetails, do the items copy : ' + brand.brandName + variant.varName);
                           switch(negotiationItem){
-                            case 'nc_MinimumOrder'           : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[3] = contractVariantDetailsDoc.nc_MinimumOrder;  break; 
-                            case 'nc_SalesTargetVolume'      : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[3] = contractVariantDetailsDoc.nc_SalesTargetVolume;  break;
-                            case 'nc_PaymentDays'            : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[3] = contractVariantDetailsDoc.nc_PaymentDays;  break;
-                            case 'nc_OtherCompensation'      : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[3] = contractVariantDetailsDoc.nc_otherCompensation;  break;
-                            case 'nc_VolumeDiscountRate'     : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[3] = contractVariantDetailsDoc.nc_volumeDiscountRate;  break;
-                            case 'nc_PerformanceBonusAmount' : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[3] = contractVariantDetailsDoc.nc_performanceBonusAmount;  break;
-                            case 'nc_PerformanceBonusRate'   : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[3] = contractVariantDetailsDoc.nc_performanceBonusRate;  break;
+                            case 'nc_MinimumOrder'           : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[2] = contractVariantDetailsDoc.nc_MinimumOrder;  break; 
+                            case 'nc_SalesTargetVolume'      : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[2] = contractVariantDetailsDoc.nc_SalesTargetVolume;  break;
+                            case 'nc_PaymentDays'            : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[2] = contractVariantDetailsDoc.nc_PaymentDays;  break;
+                            case 'nc_OtherCompensation'      : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[2] = contractVariantDetailsDoc.nc_OtherCompensation;  console.log('Write other:' + contractVariantDetailsDoc.nc_OtherCompensation); break;
+                            case 'nc_VolumeDiscountRate'     : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[2] = contractVariantDetailsDoc.nc_VolumeDiscountRate;  break;
+                            case 'nc_PerformanceBonusAmount' : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[2] = contractVariantDetailsDoc.nc_PerformanceBonusAmount;  break;
+                            case 'nc_PerformanceBonusRate'   : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[2] = contractVariantDetailsDoc.nc_PerformanceBonusRate;  break;
                           }
                         } else {                          
                           console.log('          - NO related verified contractDetails(' + contractCode + ', ' + brand.brandName + variant.varName + '), copy from last period input ...'); 
 
                           //If they cannot reach any agreement, use 0 for all the contract details.
                           switch(negotiationItem){
-                            case 'nc_MinimumOrder'           : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[3] = 0; break; 
-                            case 'nc_SalesTargetVolume'      : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[3] = 0;  break;
-                            case 'nc_PaymentDays'            : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[3] = 0; break;
-                            case 'nc_OtherCompensation'      : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[3] = 0;  break;
-                            case 'nc_VolumeDiscountRate'     : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[3] = 0;  break;
-                            case 'nc_PerformanceBonusAmount' : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[3] = 0;  break;
-                            case 'nc_PerformanceBonusRate'   : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[3] = 0;  break;
+                            case 'nc_MinimumOrder'           : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[2] = 0; break; 
+                            case 'nc_SalesTargetVolume'      : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[2] = 0;  break;
+                            case 'nc_PaymentDays'            : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[2] = 0; break;
+                            case 'nc_OtherCompensation'      : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[2] = 0;  break;
+                            case 'nc_VolumeDiscountRate'     : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[2] = 0;  break;
+                            case 'nc_PerformanceBonusAmount' : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[2] = 0;  break;
+                            case 'nc_PerformanceBonusRate'   : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[2] = 0;  break;
                           }
                                 
                         }
