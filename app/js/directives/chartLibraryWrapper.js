@@ -502,7 +502,7 @@ define(['directives'], function(directives){
                             text: scope.title1
                         },
                         xAxis: {
-                            title:{text:scope.segmentXTitle},categories:['','-3','-2','-1','+1','+2']
+                            title:{text:scope.segmentXTitle},categories:scope.categories
                         },
                         yAxis:{
                             title:{text:scope.segmentYTitle}
@@ -536,7 +536,7 @@ define(['directives'], function(directives){
                             text: scope.title2
                         },
                         xAxis: {
-                            title:{text:scope.segmentXTitle},categories:['','-3','-2','-1','+1','+2']
+                            title:{text:scope.segmentXTitle},categories:scope.categories
                         },
                         yAxis:{
                             title:{text:scope.segmentYTitle}
@@ -570,7 +570,7 @@ define(['directives'], function(directives){
                             text: scope.title3
                         },
                         xAxis: {
-                            title:{text:scope.segmentXTitle},categories:['','-3','-2','-1','+1','+2']
+                            title:{text:scope.segmentXTitle},categories:scope.categories
                         },
                         yAxis:{
                             title:{text:scope.segmentYTitle}
@@ -604,7 +604,7 @@ define(['directives'], function(directives){
                             text: scope.title4
                         },
                         xAxis: {
-                            title:{text:scope.segmentXTitle},categories:['','-3','-2','-1','+1','+2']
+                            title:{text:scope.segmentXTitle},categories:scope.categories
                         },
                         yAxis:{
                             title:{text:scope.segmentYTitle}
@@ -638,7 +638,7 @@ define(['directives'], function(directives){
                             text: scope.title1
                         },
                         xAxis: {
-                            title:{text:scope.segmentXTitle},categories:['','-3','-2','-1','+1','+2']
+                            title:{text:scope.segmentXTitle},categories:scope.categories
                         },
                         yAxis:{
                             title:{text:scope.segmentYTitle}
@@ -671,7 +671,7 @@ define(['directives'], function(directives){
                             text: scope.title2
                         },
                         xAxis: {
-                            title:{text:scope.segmentXTitle},categories:['','-3','-2','-1','+1','+2']
+                            title:{text:scope.segmentXTitle},categories:scope.categories
                         },
                         yAxis:{
                             title:{text:scope.segmentYTitle}
@@ -705,7 +705,7 @@ define(['directives'], function(directives){
                             text: scope.title3
                         },
                         xAxis: {
-                            title:{text:scope.segmentXTitle},categories:['','-3','-2','-1','+1','+2']
+                            title:{text:scope.segmentXTitle},categories:scope.categories
                         },
                         yAxis:{
                             title:{text:scope.segmentYTitle}
@@ -739,7 +739,7 @@ define(['directives'], function(directives){
                             text: scope.title4
                         },
                         xAxis: {
-                            title:{text:scope.segmentXTitle},categories:['','-3','-2','-1','+1','+2']
+                            title:{text:scope.segmentXTitle},categories:scope.categories
                         },
                         yAxis:{
                             title:{text:scope.segmentYTitle}
@@ -782,7 +782,7 @@ define(['directives'], function(directives){
                             text: ''
                         },
                         xAxis: {
-                            title:{text:scope.segmentXTitle},categories:['','-3','-2','-1','+1','+2']
+                            title:{text:scope.segmentXTitle},categories:scope.categories
                         },
                         yAxis:{
                             title:{text:scope.segmentYTitle}
@@ -817,7 +817,7 @@ define(['directives'], function(directives){
                             text: ''
                         },
                         xAxis: {
-                            title:{text:scope.segmentXTitle},categories:['','-3','-2','-1','+1','+2']
+                            title:{text:scope.segmentXTitle},categories:scope.categories
                         },
                         yAxis:{
                             title:{text:scope.segmentYTitle}

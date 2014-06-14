@@ -43,6 +43,8 @@ define(['directives', 'services'], function(directives){
                     }];
                     scope.segmentYTitle=Label.getContent('Penetration Level')+'(%)';
                     scope.segmentXTitle=Label.getContent('Period');
+                    var curP = PeriodInfo.getCurrentPeriod();
+                    scope.categories = ['', curP-3, curP-2, curP-1, curP, curP+1];                    
                     scope.myModel='ForecastsInternet';
                     scope.myModel='Consumer Segment Size';
                     deferred.resolve({msg:'Array is ready.'});                    

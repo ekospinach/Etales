@@ -49,6 +49,8 @@ define(['directives', 'services'], function(directives){
 					}];
 					scope.segmentYTitle=Label.getContent('Sales Volume')+'(units mln)';
 					scope.segmentXTitle=Label.getContent('Period');
+                    var curP = PeriodInfo.getCurrentPeriod();
+                    scope.categories = ['', curP-3, curP-2, curP-1, curP, curP+1];                    
 					scope.myModel='ForecastsCategory';
                     deferred.resolve({msg:'Array is ready.'});                    
                     return deferred.promise;

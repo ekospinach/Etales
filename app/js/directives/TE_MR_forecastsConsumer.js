@@ -88,6 +88,9 @@ define(['directives', 'services'], function(directives){
                     }];
                     scope.segmentYTitle=Label.getContent('Segment Size')+'(%)';
                     scope.segmentXTitle=Label.getContent('Period');
+
+                    var curP = PeriodInfo.getCurrentPeriod();
+                    scope.categories = ['', curP-3, curP-2, curP-1, curP, curP+1];
                     scope.title1=Label.getContent('Elecssories')+'-'+Label.getContent('Rural');
                     scope.title2=Label.getContent('Elecssories')+'-'+Label.getContent('Urban');
                     scope.title3=Label.getContent('HealthBeauties')+'-'+Label.getContent('Rural');

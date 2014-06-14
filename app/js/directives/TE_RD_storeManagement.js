@@ -163,10 +163,14 @@ define(['directives', 'services'], function(directives){
                                 url:url
                             });
                         }).then(function(data){
-                            if(value>data.data.MaxBMPriceVsCost*currentUnitCost||value<data.data.MinBMPriceVsCost*currentUnitCost){
-                                d.resolve(Label.getContent('Input range')+':'+data.data.MinBMPriceVsCost*currentUnitCost.toFixed(2)+'~'+data.data.MaxPLPriceVsCost*currentUnitCost.toFixed(2));
-                            }else{
-                                d.resolve();
+                            if(data.data && currentUnitCost){
+                                if(value>data.data.MaxBMPriceVsCost*currentUnitCost||value<data.data.MinBMPriceVsCost*currentUnitCost){
+                                    d.resolve(Label.getContent('Input range')+':'+data.data.MinBMPriceVsCost*currentUnitCost+'~'+data.data.MaxPLPriceVsCost*currentUnitCost);
+                                }else{
+                                    d.resolve();
+                                }                                
+                            } else {
+                                d.resolve('validation value undefined.');
                             }
                         },function(){
                             d.resolve(Label.getContent('fail'));
@@ -183,7 +187,7 @@ define(['directives', 'services'], function(directives){
                         d.resolve(Label.getContent('Input a Integer'));
                     }
                     if(value>26||value<0){
-                        d.resolve(Label.getContent('Input range')+':0~182');
+                        d.resolve(Label.getContent('Input range')+':0~26');
                     }else{
                         d.resolve();
                     }
