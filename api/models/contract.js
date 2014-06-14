@@ -29,6 +29,7 @@ var contractVariantDetailsSchema = mongoose.Schema({
 
      composition: [Number], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
      currentPriceBM: Number,
+     packFormat:String,
      isNewProduct: Boolean, //used for showing tag "NEW"
      isCompositionModified: Boolean, //compare with previous period composition, used for showing tag "MODIFIED"
 
@@ -233,7 +234,8 @@ exports.addContractDetails = function(io) {
                               isNewProduct                           : false, //used for showing tag "NEW"
                               isCompositionModified                  : false, //compare with previous period composition, used for showing tag "MODIFIED"
                               composition                            : req.body.composition, //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
-                              currentPriceBM                         : req.body.currentPriceBM
+                              currentPriceBM                         : req.body.currentPriceBM,
+                              packFormat                             : req.body.packFormat
                          });
                     //if no history, create empty doc
                     } else {
@@ -260,7 +262,8 @@ exports.addContractDetails = function(io) {
                               isNewProduct                           : false, //used for showing tag "NEW"
                               isCompositionModified                  : false, //compare with previous period composition, used for showing tag "MODIFIED"
                               composition                            : req.body.composition, //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
-                              currentPriceBM                         : req.body.currentPriceBM
+                              currentPriceBM                         : req.body.currentPriceBM,
+                              packFormat                             : req.body.packFormat
                          });
                     }
 
@@ -387,7 +390,13 @@ exports.updateContractDetails = function(io) {
                     next(new Error(err));
                }
 
-               doc[queryCondition.location] = queryCondition.value;
+               if(queryCondition.location == "nc_VolumeDiscountRate"||queryCondition.location == "nc_PerformanceBonusRate"){
+                    doc[queryCondition.location] = queryCondition.value/100;
+               }else{
+                    doc[queryCondition.location] = queryCondition.value;
+               }
+
+               //doc[queryCondition.location] = queryCondition.value;
                if (queryCondition.location != "isProducerApproved" || queryCondition.location != "isRetailerApproved") {
                     doc[queryCondition.modify] = queryCondition.userType;
                }

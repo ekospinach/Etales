@@ -141,6 +141,7 @@ define(['directives', 'services'], function(directives) {
                                             products.push(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k]);
                                             products[count].category = category;
                                             products[count].parentBrandName = allProCatDecisions[i].proBrandsDecision[j].brandName;
+                                            products[count].realPackFormat=products[count].packFormat;
                                             if (products[count].packFormat == "ECONOMY") {
                                                 products[count].packFormat = 1;
                                             } else if (products[count].packFormat == "STANDARD") {
@@ -376,7 +377,8 @@ define(['directives', 'services'], function(directives) {
                                 varName: products[idx].varName,
                                 varID: products[idx].varID,
                                 composition: products[idx].composition,
-                                currentPriceBM: products[idx].currentPriceBM
+                                currentPriceBM: products[idx].currentPriceBM,
+                                packFormat:products[idx].realPackFormat
                             }
                             $http({
                                 method: 'POST',
