@@ -182,7 +182,7 @@ define(['directives', 'services'], function(directives){
                     if(!filter.test(value)){
                         d.resolve(Label.getContent('Input a Integer'));
                     }
-                    if(value>182||value<0){
+                    if(value>26||value<0){
                         d.resolve(Label.getContent('Input range')+':0~182');
                     }else{
                         d.resolve();
