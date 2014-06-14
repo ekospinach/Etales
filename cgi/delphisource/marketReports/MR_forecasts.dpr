@@ -33,12 +33,12 @@ var
   //     mrf_Minimum_InternetPenetrationRate    : single;
   //     mrf_Maximum_InternetPenetrationRate    : single;  
   function internetPeriodSchema(idx : Integer; period :Integer) : ISuperObject;
-  var 
-    period : Integer;
+  var
+    jo : ISuperObject;
   begin
     jo := SO;
     jo.I['period'] := period;
-
+     jo.O['value'] := SA([]);
     case (idx) of
       minInternetPenetrationRate :
         begin
@@ -59,11 +59,11 @@ var
   //     mrf_Maximum_TotalVolume                : array[TCategories] of single;
   function totalPeriodSchema(idx : Integer; catID : Integer; period :Integer) : ISuperObject;
   var 
-    period : Integer;
+    jo : ISuperObject;
   begin
     jo := SO;
     jo.I['period'] := period;
-
+    jo.O['value'] := SA([]);
     case (idx) of
       minTotalVolume :
         begin
@@ -75,25 +75,27 @@ var
           jo.A['value'].D[0] := currentResult.r_MarketResearch.MR_forecasts[period, 1].mrf_Maximum_TotalVolume[catID];
           jo.A['value'].D[1] := currentResult.r_MarketResearch.MR_forecasts[period, 2].mrf_Maximum_TotalVolume[catID];
         end;
-    end;    
+    end;
     result := jo;
   end;
 
   function totalCategorySchema(idx : Integer; catID :Integer) : ISuperObject;
   var
     period : Integer;
+    jo : ISuperObject;
   begin
     jo := SO;
     jo.I['categoryID'] := catID;
     jo.O['periodInfo'] := SA([]);
+
     for period := Low(TForecastCoverage) to High(TForecastCoverage) do
     begin
       jo.A['periodInfo'].Add( totalPeriodSchema(idx, catID, period) );
-    end;   
+    end;
 
     result := jo;
   end;
-  //----------- 3 schema functions for 
+  //----------- 3 schema functions for
   //     mrf_Minimum_ShopperSegmentsImportance  : array[TCategories, TShoppersKind] of single;
   //     mrf_Maximum_ShopperSegmentsImportance  : array[TCategories, TShoppersKind] of single;
   function shopperPeriodSchema(idx : Integer; catID : Integer;  Shopper:TShoppersKind; period : Integer) : ISuperObject;
@@ -260,9 +262,9 @@ var
 
     for period := Low(TForecastCoverage) to High(TForecastCoverage) do
     begin
-      jo.A['minInternetPenetrationRate'].Add( internetPeriodSchema(minInternetPenetrationRate, period) );
-      jo.A['maxInternetPenetrationRate'].Add( internetPeriodSchema(maxInternetPenetrationRate, period) );
-    end;   
+      oJsonFile.A['minInternetPenetrationRate'].Add( internetPeriodSchema(minInternetPenetrationRate, period) );
+      oJsonFile.A['maxInternetPenetrationRate'].Add( internetPeriodSchema(maxInternetPenetrationRate, period) );
+    end;
 
     //for debug used
     s_str := 'out' + '.json';

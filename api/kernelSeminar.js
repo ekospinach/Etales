@@ -430,6 +430,12 @@ exports.runSeminar = function(io){
 	            io.sockets.emit('KernelProcessLog', { msg: result.msg, isError: false });	
 
 
+				options.cgiPath = conf.cgi.path_MR_forecasts;
+				options.schemaName = 'MR_forecasts';
+				return require('./models/MR_forecasts.js').addReports(options);									
+			}).then(function(result){ 
+	            io.sockets.emit('KernelProcessLog', { msg: result.msg, isError: false });	
+
 	           	//import background data 
 				options.cgiPath = conf.cgi.path_companyHistoryInfo;
 				options.schemaName = 'companyHistoryInfo';
