@@ -390,7 +390,13 @@ exports.updateContractDetails = function(io) {
                     next(new Error(err));
                }
 
-               doc[queryCondition.location] = queryCondition.value;
+               if(queryCondition.location == "nc_VolumeDiscountRate"||queryCondition.location == "nc_PerformanceBonusRate"){
+                    doc[queryCondition.location] = queryCondition.value/100;
+               }else{
+                    doc[queryCondition.location] = queryCondition.value;
+               }
+
+               //doc[queryCondition.location] = queryCondition.value;
                if (queryCondition.location != "isProducerApproved" || queryCondition.location != "isRetailerApproved") {
                     doc[queryCondition.modify] = queryCondition.userType;
                }
