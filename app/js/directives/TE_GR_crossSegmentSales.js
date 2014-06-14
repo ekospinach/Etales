@@ -88,6 +88,9 @@ define(['directives', 'services'], function(directives){
                             chart: {
                                 type: 'areaspline'
                             },
+                            tooltip: {
+                                valueDecimals: 2
+                            }, 
                             plotOptions: {
                                 series: {
                                     stacking: ''
@@ -125,6 +128,9 @@ define(['directives', 'services'], function(directives){
                             chart: {
                                 type: 'areaspline'
                             },
+                            tooltip: {
+                                valueDecimals: 2
+                            }, 
                             plotOptions: {
                                 series: {
                                     stacking: ''
@@ -162,6 +168,9 @@ define(['directives', 'services'], function(directives){
                             chart: {
                                 type: 'areaspline'
                             },
+                            tooltip: {
+                                valueDecimals: 2
+                            }, 
                             plotOptions: {
                                 series: {
                                     stacking: ''
@@ -199,6 +208,9 @@ define(['directives', 'services'], function(directives){
                             chart: {
                                 type: 'areaspline'
                             },
+                            tooltip: {
+                                valueDecimals: 2
+                            }, 
                             plotOptions: {
                                 series: {
                                     stacking: ''
