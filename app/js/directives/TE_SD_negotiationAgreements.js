@@ -486,10 +486,10 @@ define(['directives', 'services'], function(directives) {
                         for (var i = 0; i < data.length; i++) {
                             if (data[i].parentBrandName.substring(0, 1) == category) {
                                 if(data[i].nc_VolumeDiscountRate<=1){
-                                    data[i].nc_VolumeDiscountRate*=100;
+                                    data[i].nc_VolumeDiscountRate=(data[i].nc_VolumeDiscountRate*100).toFixed(2);
                                 }
                                 if(data[i].nc_PerformanceBonusRate<=1){
-                                    data[i].nc_PerformanceBonusRate*=100;
+                                    data[i].nc_PerformanceBonusRate=(data[i].nc_PerformanceBonusRate*100).toFixed(2);
                                 }
                                 products.push(data[i]);
                             }
