@@ -19,7 +19,7 @@ var proCatDecisionSchema = mongoose.Schema({
 var proBrandDecisionSchema = mongoose.Schema({
     brandName : String,
     brandID : Number,
-    paranetCompanyID : Number,
+    parentCompanyID : Number,
     dateOfBirth : Number,
     dateOfDeath : Number,
     advertisingOffLine : [Number], //TMarketDetails, 1-Urban, 2-Rural

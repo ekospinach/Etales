@@ -525,7 +525,7 @@ define(['app'], function(app) {
 						});
 						newBrand.brandID=calculateBrandID(retVariantDecision,$scope.retailerID);
 						newBrand.brandName=$scope.brandFirstName+$scope.lauchNewBrandName+$scope.brandLastName;
-						newBrand.paranetCompanyID=$scope.retailerID;
+						newBrand.parentCompanyID=$scope.retailerID;
 						newBrand.dateOfDeath=10;
 						newBrand.dateOfBirth=$scope.period;
 						newBrand.privateLabelVarDecision=new Array();
