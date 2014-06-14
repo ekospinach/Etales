@@ -60,6 +60,9 @@ define(['directives', 'services'], function(directives){
                         scope.awarenessHealthBeauties1Config={
                             options:{
                                 chart:{type:'bar'},
+                                tooltip: {
+                                    valueDecimals: 2
+                                },
                                 plotOptions:{series:{stacking:'normal'}},
                                 xAxis:{categories:scope.brandNames},
                                 yAxis:{title:{text:''}
@@ -82,6 +85,9 @@ define(['directives', 'services'], function(directives){
                         scope.awarenessHealthBeauties2Config={
                             options:{
                                 chart:{type:'bar'},
+                                tooltip: {
+                                    valueDecimals: 2
+                                },
                                 plotOptions:{series:{stacking:'normal'}},
                                 xAxis:{categories:scope.brandNames},
                                 yAxis:{title:{text:''}

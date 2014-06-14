@@ -509,7 +509,8 @@ define(['directives'], function(directives){
                             
                         }, 
                         tooltip: {
-                            crosshairs: true
+                            crosshairs: true,
+                            valueDecimals: 2
                         },  
                         credits: {
                             enabled: false
@@ -542,7 +543,8 @@ define(['directives'], function(directives){
                             
                         }, 
                         tooltip: {
-                            crosshairs: true
+                            crosshairs: true,
+                            valueDecimals: 2
                         },
                         credits: {
                             enabled: false
@@ -575,7 +577,8 @@ define(['directives'], function(directives){
                             
                         }, 
                         tooltip: {
-                            crosshairs: true
+                            crosshairs: true,
+                            valueDecimals: 2
                         },  
                         credits: {
                             enabled: false
@@ -608,7 +611,8 @@ define(['directives'], function(directives){
                             
                         }, 
                         tooltip: {
-                            crosshairs: true
+                            crosshairs: true,
+                            valueDecimals: 2
                         }, 
                         credits: {
                             enabled: false
@@ -641,7 +645,8 @@ define(['directives'], function(directives){
                             
                         }, 
                         tooltip: {
-                            crosshairs: true
+                            crosshairs: true,
+                            valueDecimals: 2
                         }, 
                         credits: {
                             enabled: false
@@ -673,7 +678,8 @@ define(['directives'], function(directives){
                             
                         }, 
                         tooltip: {
-                            crosshairs: true
+                            crosshairs: true,
+                            valueDecimals: 2
                         },  
                         credits: {
                             enabled: false
@@ -706,7 +712,8 @@ define(['directives'], function(directives){
                             
                         }, 
                         tooltip: {
-                            crosshairs: true
+                            crosshairs: true,
+                            valueDecimals: 2
                         }, 
                         credits: {
                             enabled: false
@@ -739,7 +746,8 @@ define(['directives'], function(directives){
                             
                         }, 
                         tooltip: {
-                            crosshairs: true
+                            crosshairs: true,
+                            valueDecimals: 2
                         }, 
                         credits: {
                             enabled: false
@@ -781,7 +789,8 @@ define(['directives'], function(directives){
                             
                         }, 
                         tooltip: {
-                            crosshairs: true
+                            crosshairs: true,
+                            valueDecimals: 2
                         },  
                         credits: {
                             enabled: false
@@ -815,7 +824,8 @@ define(['directives'], function(directives){
                             
                         }, 
                         tooltip: {
-                            crosshairs: true
+                            crosshairs: true,
+                            valueDecimals: 2
                         },   
                         credits: {
                             enabled: false
