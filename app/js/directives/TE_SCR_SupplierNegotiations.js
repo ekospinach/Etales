@@ -37,7 +37,11 @@ define(['directives', 'services'], function(directives){
                     var results=_.find(data,function(obj){
                         return(obj.variantName==varName&&obj.parentBrandName==brandName&&obj.modernRetailerID==retailer);
                     })
-                    return results.value.toFixed(2);
+                    if(results.value!=false){
+                        return results.value.toFixed(2);
+                    }else{
+                        return results.value;
+                    }
                 }
 
                 var loadNegotiations=function(data,category,retailer,i){
