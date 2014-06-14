@@ -29,6 +29,7 @@ var contractVariantDetailsSchema = mongoose.Schema({
 
      composition: [Number], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
      currentPriceBM: Number,
+     packFormat:String,
      isNewProduct: Boolean, //used for showing tag "NEW"
      isCompositionModified: Boolean, //compare with previous period composition, used for showing tag "MODIFIED"
 
@@ -233,7 +234,8 @@ exports.addContractDetails = function(io) {
                               isNewProduct                           : false, //used for showing tag "NEW"
                               isCompositionModified                  : false, //compare with previous period composition, used for showing tag "MODIFIED"
                               composition                            : req.body.composition, //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
-                              currentPriceBM                         : req.body.currentPriceBM
+                              currentPriceBM                         : req.body.currentPriceBM,
+                              packFormat                             : req.body.packFormat
                          });
                     //if no history, create empty doc
                     } else {
@@ -260,7 +262,8 @@ exports.addContractDetails = function(io) {
                               isNewProduct                           : false, //used for showing tag "NEW"
                               isCompositionModified                  : false, //compare with previous period composition, used for showing tag "MODIFIED"
                               composition                            : req.body.composition, //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
-                              currentPriceBM                         : req.body.currentPriceBM
+                              currentPriceBM                         : req.body.currentPriceBM,
+                              packFormat                             : req.body.packFormat
                          });
                     }
 
