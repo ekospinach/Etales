@@ -37,14 +37,14 @@ define(['directives', 'services'], function(directives){
                     var results=_.find(data,function(obj){
                         return(obj.variantName==varName&&obj.parentBrandName==brandName&&obj.modernRetailerID==retailer);
                     })
-                    return results.value;
+                    return results.value.toFixed(2);
                 }
 
                 var loadNegotiations=function(data,category,retailer,i){
                     var varName,brandName,discount_MinimumVolume,discount_Rate,bonus_TargetVolume,bonus_Rate,bonus_Value,vnd_PaymentTerm,vnd_OtherCompensation,vnd_ContractHonoured;
                     brandName=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].parentBrandName;
                     varName=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].variantName;
-                    discount_MinimumVolume=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].value;
+                    discount_MinimumVolume=data.data[0].vnd_QuantityDiscount.discount_MinimumVolume[i].value.toFixed(2);
                     discount_Rate=loadValue(data.data[0].vnd_QuantityDiscount.discount_Rate,varName,brandName,retailer);
                     bonus_TargetVolume=loadValue(data.data[0].vnd_TargetBonus.bonus_TargetVolume,varName,brandName,retailer);
                     bonus_Rate=loadValue(data.data[0].vnd_TargetBonus.bonus_Rate,varName,brandName,retailer);
