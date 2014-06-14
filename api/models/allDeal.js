@@ -439,12 +439,12 @@ function fillNegotiationItemByContractDetail(categoryDeal, negotiationItem, prod
                     require('./contract').contractVariantDetails.findOne({
                                       contractCode       : contractCode,
                                       parentBrandName    : brand.brandName,
-                                      variantName        : variant.variantName,
+                                      variantName        : variant.varName,
                                       isProducerApproved : true,
                                       isRetailerApproved : true}, function(err, contractVariantDetailsDoc){ 
 
                         if(contractVariantDetailsDoc){
-                          console.log('          - FOUND related verified contractDetails, do the items copy :' + brand.brandName + variantName.variantName);
+                          console.log('          - FOUND related verified contractDetails, do the items copy : ' + brand.brandName + variant.varName);
                           switch(negotiationItem){
                             case 'nc_MinimumOrder'           : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[3] = contractVariantDetailsDoc.nc_MinimumOrder;  break; 
                             case 'nc_SalesTargetVolume'      : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[3] = contractVariantDetailsDoc.nc_SalesTargetVolume;  break;
@@ -455,7 +455,7 @@ function fillNegotiationItemByContractDetail(categoryDeal, negotiationItem, prod
                             case 'nc_PerformanceBonusRate'   : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[3] = contractVariantDetailsDoc.nc_performanceBonusRate;  break;
                           }
                         } else {                          
-                          console.log('          - NO related verified contractDetails, copy from last period input ...'); 
+                          console.log('          - NO related verified contractDetails(' + contractCode + ', ' + brand.brandName + variant.varName + '), copy from last period input ...'); 
 
                           //If they cannot reach any agreement, use 0 for all the contract details.
                           switch(negotiationItem){
