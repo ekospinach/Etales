@@ -759,7 +759,7 @@ define(['app'], function(app) {
 					});
 					newBrand.brandID=calculateBrandID(proBrandsDecision,$scope.producerID);
 					newBrand.brandName=$scope.brandFirstName+$scope.lauchNewBrandName+parseInt(PlayerInfo.getPlayer());
-					newBrand.paranetCompanyID=$scope.producerID;
+					newBrand.parentCompanyID=$scope.producerID;
 					newBrand.dateOfDeath=10;
 					newBrand.dateOfBirth=$scope.period;
 					newBrand.advertisingOffLine=new Array(0,0);

@@ -364,7 +364,7 @@ var
 
       jo.S['brandName'] := pBrand.dpb_BrandName;
       jo.I['brandID'] := pBrand.dpb_BrandID;
-      jo.I['paranetCompanyID']  := pBrand.dpb_ParentCompanyID;
+      jo.I['parentCompanyID']  := pBrand.dpb_ParentCompanyID;
       jo.I['dateOfBirth'] := pBrand.dpb_DateofBirth;
       jo.I['dateOfDeath'] := pBrand.dpb_DateOfDeath;
       jo.D['advertisingOnLine'] := pBrand.dpb_AdvertisingOnLine;
@@ -468,7 +468,7 @@ var
       StringToWideChar(jo.S['brandName'],pBrand.dpb_BrandName,BrandNameLength + 1);
       //pBrand.dpb_BrandName := jo.S['brandName'];
       pBrand.dpb_BrandID := jo.I['brandID'];
-      pBrand.dpb_ParentCompanyID  := jo.I['paranetCompanyID'];
+      pBrand.dpb_ParentCompanyID  := jo.I['parentCompanyID'];
       pBrand.dpb_DateofBirth := jo.I['dateOfBirth'];
       pBrand.dpb_DateOfDeath := jo.I['dateOfDeath'];
       pBrand.dpb_AdvertisingOnLine := jo.D['advertisingOnLine'];

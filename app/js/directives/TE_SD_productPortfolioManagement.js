@@ -427,7 +427,7 @@ define(['directives', 'services'], function(directives) {
                                 });
                                 newBrand.brandID = calculateBrandID(proBrandsDecision, PlayerInfo.getPlayer());
                                 newBrand.brandName = $scope.brandFirstName + myForm[1].value + parseInt(PlayerInfo.getPlayer());
-                                newBrand.paranetCompanyID = PlayerInfo.getPlayer();
+                                newBrand.parentCompanyID = PlayerInfo.getPlayer();
                                 newBrand.dateOfDeath = 10;
                                 newBrand.dateOfBirth = PeriodInfo.getCurrentPeriod();
                                 newBrand.advertisingOffLine = new Array(0, 0);

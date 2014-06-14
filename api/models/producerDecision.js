@@ -38,7 +38,7 @@ var proBrandDecisionSchema = mongoose.Schema({
         userCount = 1~4
         brandCount = 1~5
     */
-    paranetCompanyID : Number, //TBrandOwners(Prod_1_ID~Ret_2_ID)
+    parentCompanyID : Number, //TBrandOwners(Prod_1_ID~Ret_2_ID)
     /*
         Prod_1_ID          = 1;
         Prod_2_ID          = 2;
@@ -267,7 +267,7 @@ exports.updateProducerDecision = function(io){
                                             nullBrandDecision.brandID=0;
                                             nullBrandDecision.brandName="",
                                             
-                                            nullBrandDecision.paranetCompanyID=0, 
+                                            nullBrandDecision.parentCompanyID=0, 
                                             nullBrandDecision.dateOfBirth=0, 
                                             nullBrandDecision.dateOfDeath=0, 
                                             nullBrandDecision.advertisingOffLine=[0,0], 

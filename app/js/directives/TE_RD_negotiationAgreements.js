@@ -79,7 +79,11 @@ define(['directives', 'services'], function(directives) {
                             d.resolve(Label.getContent('Input Number'));
                         }
 
-                        d.resolve();
+                        if(value > 100){
+                            d.resolve('Input range: 1% ~ 100%');
+                        } else {
+                            d.resolve();                            
+                        }
 
                         // var url = '/checkContractDetailsLockStatus/' + contractCode + '/' + brandName + '/' + varName + '/nc_VolumeDiscountRate';
                         // $http({
@@ -190,7 +194,11 @@ define(['directives', 'services'], function(directives) {
                             d.resolve(Label.getContent('Input Number'));
                         }
 
-                        d.resolve();
+                        if(value > 100){
+                            d.resolve('Input range: 1% ~ 100%');
+                        } else {
+                            d.resolve();                            
+                        }
 
                         // var url = '/checkContractDetailsLockStatus/' + contractCode + '/' + brandName + '/' + varName + '/nc_PerformanceBonusRate';
                         // $http({
