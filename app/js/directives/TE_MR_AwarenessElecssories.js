@@ -60,6 +60,9 @@ define(['directives', 'services'], function(directives){
                         scope.awarenessElecssories1Config={
                             options:{
                                 chart:{type:'bar'},
+                                tooltip: {
+                                    valueDecimals: 2
+                                },
                                 plotOptions:{series:{stacking:'normal'}},
                                 xAxis:{categories:scope.brandNames},
                                 yAxis:{title:{text:''}
@@ -82,6 +85,9 @@ define(['directives', 'services'], function(directives){
                         scope.awarenessElecssories2Config={
                             options:{
                                 chart:{type:'bar'},
+                                tooltip: {
+                                    valueDecimals: 2
+                                },
                                 plotOptions:{series:{stacking:'normal'}},
                                 xAxis:{categories:scope.brandNames},
                                 yAxis:{title:{text:''}
