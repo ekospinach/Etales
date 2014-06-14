@@ -410,6 +410,8 @@ define(['angular',
 
 					//send seminar global message to notify retailer that supplier has commit portfolio decision
 					socket.on('socketIO:producerPortfolioDecisionStatusChanged', function(data){
+						console.log(PlayerInfo.getPlayer());
+						console.log(SeminarInfo.getSelectedSeminar());
 						if(data.seminar == SeminarInfo.getSelectedSeminar().seminarCode){
 							$rootScope.$broadcast('producerPortfolioDecisionStatusChanged',data);							
 						}

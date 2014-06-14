@@ -451,8 +451,7 @@ define(['directives', 'services'], function(directives){
                 });
 
                 scope.$on('retailerDecisionBaseChangedFromServer', function(event, data, newBase) {  
-                        scope.pageBase = newBase;
-                        
+                    scope.pageBase = newBase;
                     if (data.categoryID == 1 && data.marketID == 1) {
                         showView('Elecssories', 'Urban');
                     } else if (data.categoryID == 1 && data.marketID == 2) {
@@ -462,6 +461,9 @@ define(['directives', 'services'], function(directives){
                     } else if (data.categoryID == 2 && data.marketID == 2) {
                         showView('HealthBeauties', 'Rural');
                     }
+                    // } else if(data.categoryID != undefined && data.marketID==undefined){
+                    //     initializePage();
+                    // }
                 });
             }
         }
