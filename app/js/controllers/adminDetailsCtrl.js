@@ -208,25 +208,25 @@ define(['app','socketIO'], function(app) {
 			$http({method:'POST', url:'/runSeminar', data:postData}).then(function(res){
 				$scope.isKernelMessageShown = true;
 				$scope.kernelMessage.push(res.data);			
-
+				$scope.kernelMessage.push('Complete, please reset current period manually!');
 				//if Run seminar successfully, current period need to be added by 1
-				if(selectedPeriod == seminar.currentPeriod){
-					var newData = {
-						seminarCode : seminar.seminarCode,
-						value : seminar.currentPeriod + 1,
-						behaviour:'updateCurrentPeriod'
-					}					
-					$http({method: 'POST', url: '/updateSeminar',data:newData}).
-					  success(function(res) {
-					  	$scope.seminar.currentPeriod = newData.value;
-						$scope.kernelMessage.push('current period has been modified into period ' + newData.value + ' !');
-						$scope.isActive = true;
-					  }).
-					  error(function(res) {
-						$scope.kernelMessage.push('current period modified failed ' + + ' !');
-						$scope.isActive = true;					  	
-					  });						
-				}
+				// if(selectedPeriod == seminar.currentPeriod){
+				// 	var newData = {
+				// 		seminarCode : seminar.seminarCode,
+				// 		value : seminar.currentPeriod + 1,
+				// 		behaviour:'updateCurrentPeriod'
+				// 	}					
+				// 	$http({method: 'POST', url: '/updateSeminar',data:newData}).
+				// 	  success(function(res) {
+				// 	  	$scope.seminar.currentPeriod = newData.value;
+				// 		$scope.kernelMessage.push('current period has been modified into period ' + newData.value + ' !');
+				// 		$scope.isActive = true;
+				// 	  }).
+				// 	  error(function(res) {
+				// 		$scope.kernelMessage.push('current period modified failed ' + + ' !');
+				// 		$scope.isActive = true;					  	
+				// 	  });						
+				// }
 
 			},function(res){
 				$scope.isKernelMessageShown = true;
