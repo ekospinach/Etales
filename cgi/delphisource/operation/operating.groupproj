@@ -15,6 +15,9 @@
 			<Projects Include="X:\trunk\V100\Tester\ET1_DeclarationsTest.dproj">
 				<Dependencies/>
 			</Projects>
+			<Projects Include="Y:\marketReports\MR_salesCrossSegment.dproj">
+				<Dependencies/>
+			</Projects>
 		</ItemGroup>
 		<ProjectExtensions>
 			<Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -59,14 +62,23 @@
 		<Target Name="ET1_DeclarationsTest:Make">
 			<MSBuild Projects="X:\trunk\V100\Tester\ET1_DeclarationsTest.dproj" Targets="Make"/>
 		</Target>
+		<Target Name="MR_salesCrossSegment">
+			<MSBuild Projects="Y:\marketReports\MR_salesCrossSegment.dproj"/>
+		</Target>
+		<Target Name="MR_salesCrossSegment:Clean">
+			<MSBuild Projects="Y:\marketReports\MR_salesCrossSegment.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="MR_salesCrossSegment:Make">
+			<MSBuild Projects="Y:\marketReports\MR_salesCrossSegment.dproj" Targets="Make"/>
+		</Target>
 		<Target Name="Build">
-			<CallTarget Targets="initialize;passive;kernel;ET1_DeclarationsTest"/>
+			<CallTarget Targets="initialize;passive;kernel;ET1_DeclarationsTest;MR_salesCrossSegment"/>
 		</Target>
 		<Target Name="Clean">
-			<CallTarget Targets="initialize:Clean;passive:Clean;kernel:Clean;ET1_DeclarationsTest:Clean"/>
+			<CallTarget Targets="initialize:Clean;passive:Clean;kernel:Clean;ET1_DeclarationsTest:Clean;MR_salesCrossSegment:Clean"/>
 		</Target>
 		<Target Name="Make">
-			<CallTarget Targets="initialize:Make;passive:Make;kernel:Make;ET1_DeclarationsTest:Make"/>
+			<CallTarget Targets="initialize:Make;passive:Make;kernel:Make;ET1_DeclarationsTest:Make;MR_salesCrossSegment:Make"/>
 		</Target>
 		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
 	</Project>

@@ -164,7 +164,6 @@ define(['directives', 'services'], function(directives){
                             d.resolve();
                         }                        
                     });
-
                     return d.promise;
                 }
 
