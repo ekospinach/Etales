@@ -70,9 +70,10 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    	switching('showElecssoriesShopper');
 		    }
 
-		    $scope.showElecssoriesVolume=function(){
+		    var showElecssoriesVolume = function(){
 		    	switching('showElecssoriesVolume');
 		    }
+		    $scope.showElecssoriesVolume=showElecssoriesVolume;
 
 		    $scope.showHealthBeautiesConsumer=function(){
 		    	switching('showHealthBeautiesConsumer');
@@ -114,10 +115,13 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    $scope.showRuralShopper=function(){
 		    	switching('showRuralShopper');
 		    }
-		    $scope.showRuralVolume=function(){
+
+		    var showRuralVolume = function(){
 		    	switching('showRuralVolume');
-		    
 		    }
+
+		    $scope.showRuralVolume = showRuralVolume
+
 		    $scope.showUrbanConsumer=function(){
 		    	switching('showUrbanConsumer');
 		    }
@@ -134,10 +138,13 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    $scope.switching=switching;	
 		    $scope.showRetailerConsolidate=showRetailerConsolidate;
 		    $scope.showProducerConsolidate=showProducerConsolidate;
+
+
 		    if(RoleInfo.getRole()==2){
 		    	$scope.producerShow=true;
 		    	$scope.retailerShow=false;
-		    	showProducerConsolidate();
+		    	showElecssoriesVolume();
+		    	//showProducerConsolidate();
 		    }else if(RoleInfo.getRole()==4){
 		    	$scope.retailerShow=true;
 		    	$scope.producerShow=false;

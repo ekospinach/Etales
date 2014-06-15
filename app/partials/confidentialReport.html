@@ -79,7 +79,8 @@
             <div class="bs-docs-sidebar hidden-print" affix='10' role="complementary" angular-bootstrap>
                 <ul class="nav bs-docs-sidenav">
                     
-                    <li class="active" ng-show='producerShow'>
+<!--                      ng-show='producerShow'
+ -->                    <li class="active" ng-show="false">
                     	<a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showProducerConsolidate()'>{{Label.getContent('Financial Results')}}</a>
                     	<ul class="nav second-sidenav">
                     		<li class="active">
@@ -100,12 +101,12 @@
                     	</ul>
                     </li>
                     <li class="" ng-show='producerShow'>
-                        <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showElecssoriesConsumer()'>{{Label.getContent('Elecssories')}}{{Label.getContent('Situation Report')}}</a>
+                        <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showElecssoriesVolume()'>{{Label.getContent('Elecssories')}}{{Label.getContent('Situation Report')}}</a>
                         <ul class="nav second-sidenav">
-                            <li class="">
+                            <li class="" ng-show="false">
                                 <a href="/#/confidentialReport" style="color:#5CB85C;" ng-click='showElecssoriesConsumer()'>{{Label.getContent('Market Shares by Consumer Segment')}}</a>
                             </li>
-                            <li class="">
+                            <li class="" ng-show="false">
                                 <a href="/#/confidentialReport" style="color:#5CB85C;" ng-click='showElecssoriesShopper()'>{{Label.getContent('Market Shares by Shopper Segment')}}</a>
                             </li>
                             <li class="">
@@ -114,12 +115,12 @@
                         </ul>
                     </li>
                     <li class="" ng-show='producerShow'>
-                        <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showHealthBeautiesConsumer()'>{{Label.getContent('HealthBeauties')}}{{Label.getContent('Situation Report')}}</a>
+                        <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showHealthBeautiesVolume()'>{{Label.getContent('HealthBeauties')}}{{Label.getContent('Situation Report')}}</a>
                         <ul class="nav second-sidenav">
-                            <li class="">
+                            <li class="" ng-show="false">
                                 <a href="/#/confidentialReport" style="color:#5CB85C;" ng-click='showHealthBeautiesConsumer()'>{{Label.getContent('Market Shares by Consumer Segment')}}</a>
                             </li>
-                            <li class="">
+                            <li class="" ng-show="false">
                                 <a href="/#/confidentialReport" style="color:#5CB85C;" ng-click='showHealthBeautiesShopper()'>{{Label.getContent('Market Shares by Shopper Segment')}}</a>
                             </li>
                             <li class="">
@@ -127,9 +128,14 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="" ng-show='producerShow'>
+<!--                     ng-show='producerShow' 
+ -->                    <li class="" ng-show="false">
                         <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showProducerKey()'>{{Label.getContent('Key Performance Indicators')}}</a>
                     </li>
+
+
+<!-- ng-show='retailerShow'
+ -->                    
                     <li class="active" ng-show='retailerShow'>
                         <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showRetailerConsolidate()'>{{Label.getContent('Financial Results')}}</a>
                         <ul class="nav second-sidenav">
@@ -142,7 +148,7 @@
                             <li class="">
                                 <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showRetailerUrbanProfit()'>{{Label.getContent('Urban Profit & Loss Statement')}}</a>
                             </li>
-                            <li class="">
+                            <li class="" ng-show="false">
                                 <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showRetailerProfitability()'>{{Label.getContent('Profitability by Channel')}}</a>
                             </li>
                             <li class="">
@@ -152,12 +158,12 @@
                     </li>
 
                     <li class="" ng-show='retailerShow'>
-                        <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showRuralConsumer()'>{{Label.getContent('Rural')}}{{Label.getContent('Situation Report')}}</a>
+                        <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showRuralVolume()'>{{Label.getContent('Rural')}}{{Label.getContent('Situation Report')}}</a>
                         <ul class="nav second-sidenav">
-                            <li class="">
+                            <li class="" ng-show="false">
                                 <a href="/#/confidentialReport" style="color:#5CB85C;" ng-click='showRuralConsumer()'>{{Label.getContent('Market Shares by Consumer Segment')}}</a>
                             </li>
-                            <li class="">
+                            <li class="" ng-show="false">
                                 <a href="/#/confidentialReport" style="color:#5CB85C;" ng-click='showRuralShopper()'>{{Label.getContent('Market Shares by Shopper Segment')}}</a>
                             </li>
                             <li class="">
@@ -166,12 +172,12 @@
                         </ul>
                     </li>
                     <li class="" ng-show='retailerShow'>
-                        <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showUrbanConsumer()'>{{Label.getContent('Urban')}}{{Label.getContent('Situation Report')}}</a>
+                        <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showUrbanVolume()'>{{Label.getContent('Urban')}}{{Label.getContent('Situation Report')}}</a>
                         <ul class="nav second-sidenav">
-                            <li class="">
+                            <li class="" ng-show="false">
                                 <a href="/#/confidentialReport" style="color:#5CB85C;" ng-click='showUrbanConsumer()'>{{Label.getContent('Market Shares by Consumer Segment')}}</a>
                             </li>
-                            <li class="">
+                            <li class="" ng-show="false">
                                 <a href="/#/confidentialReport" style="color:#5CB85C;" ng-click='showUrbanShopper()'>{{Label.getContent('Market Shares by Shopper Segment')}}</a>
                             </li>
                             <li class="">
@@ -179,7 +185,9 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="" ng-show='retailerShow'>
+
+ <!-- ng-show='retailerShow'                    
+  -->                   <li class="" ng-show="false">
                         <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showRetailerKey()'>{{Label.getContent('Key Performance Indicators')}}</a>
                     </li>
                 </ul>
