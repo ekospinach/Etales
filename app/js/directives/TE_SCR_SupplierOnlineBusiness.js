@@ -113,13 +113,6 @@ define(['directives', 'services'], function(directives){
                     };
                     $scope.cancel=cancel;
                 }
-                // scope.productOpts = {
-                //     backdropFade: true,
-                //     dialogFade:true
-                // };
-                // scope.closeProductModal=function(){
-                //     scope.productModal=false;  
-                // }
 
                 var loadValue=function(data,name,num){
 			    	var array=_.find(data,function(obj){
@@ -162,14 +155,7 @@ define(['directives', 'services'], function(directives){
 			    	scope.netProfitChanges=data.data[0].scrpl_NetProfitChange;
 			    	scope.netProfitMargins=data.data[0].scrpl_NetProfitMargin;		    	
 			    }
-
-			    var loadVariantValue=function(data,brandName,variantName,num){
-			    	var array=_.find(data,function(obj){
-			    		return (obj.variantName==variantName&&obj.parentBrandName==brandName);
-			    	});
-			    	return array.value[num];
-			    }
-
+                
 			    var loadBusiness=function(data,category,num){
                     if(category==1){
                         scope.brand1s=new Array();

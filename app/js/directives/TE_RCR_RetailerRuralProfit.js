@@ -29,11 +29,15 @@ define(['directives', 'services'], function(directives){
                     }
                 }
 
-                var loadVariantValue=function(data,brandName,variantName,num){
+                var loadPercentageValue=function(data,name,num){
                     var array=_.find(data,function(obj){
-                        return (obj.variantName==variantName&&obj.parentBrandName==brandName&&obj.marketID==num);
+                        return (obj.brandName==name&&obj.marketID==num);
                     });
-                    return array.value.toFixed(2);
+                    if(array!=undefined){
+                        return (array.value*100).toFixed(2);
+                    }else{
+                        return 0;
+                    }
                 }
 
                 scope.openRetailerProductModal=function(brandName,type){
@@ -47,6 +51,17 @@ define(['directives', 'services'], function(directives){
                             return -1;
                         }
                     }
+                    var loadVariantPercentageValue=function(data,brandName,variantName,num){
+                        var array=_.find(data,function(obj){
+                            return (obj.variantName==variantName&&obj.parentBrandName==brandName&&obj.marketID==num);
+                        });
+                        if(array!=undefined){
+                            return (array.value*100).toFixed(2);
+                        }else{
+                            return -1;
+                        }
+                    }
+                    
                     var marketID=0;
                     scope.variants=new Array();
                     scope.brandName=brandName;
@@ -67,29 +82,29 @@ define(['directives', 'services'], function(directives){
                                 var PromotionsCost=loadVariantValue(data.data[0].rcrv_PromotionsCost,brandName,variantName,marketID);
                                 var OtherCompensation=loadVariantValue(data.data[0].rcrv_OtherCompensation,brandName,variantName,marketID);
                                 var NetSales=loadVariantValue(data.data[0].rcrv_NetSales,brandName,variantName,marketID);
-                                var NetSalesChange=loadVariantValue(data.data[0].rcrv_NetSalesChange,brandName,variantName,marketID);
-                                var NetSalesShareInCategory=loadVariantValue(data.data[0].rcrv_NetSalesShareInCategory,brandName,variantName,marketID);
+                                var NetSalesChange=loadVariantPercentageValue(data.data[0].rcrv_NetSalesChange,brandName,variantName,marketID);
+                                var NetSalesShareInCategory=loadVariantPercentageValue(data.data[0].rcrv_NetSalesShareInCategory,brandName,variantName,marketID);
                                 var CostOfGoodsSold=loadVariantValue(data.data[0].rcrv_CostOfGoodsSold,brandName,variantName,marketID);
                                 var ValueOfQuantityDiscounts=loadVariantValue(data.data[0].rcrv_ValueOfQuantityDiscounts,brandName,variantName,marketID);
                                 var ValueOfPerformanceBonus=loadVariantValue(data.data[0].rcrv_ValueOfPerformanceBonus,brandName,variantName,marketID);
                                 var DiscontinuedGoodsCost=loadVariantValue(data.data[0].rcrv_DiscontinuedGoodsCost,brandName,variantName,marketID);
                                 var InventoryHoldingCost=loadVariantValue(data.data[0].rcrv_InventoryHoldingCost,brandName,variantName,marketID);
                                 var GrossProfit=loadVariantValue(data.data[0].rcrv_GrossProfit,brandName,variantName,marketID);
-                                var GrossProfitChange=loadVariantValue(data.data[0].rcrv_GrossProfitChange,brandName,variantName,marketID);
-                                var GrossProfitMargin=loadVariantValue(data.data[0].rcrv_GrossProfitMargin,brandName,variantName,marketID);
-                                var GrossProfitShareInCategory=loadVariantValue(data.data[0].rcrv_GrossProfitShareInCategory,brandName,variantName,marketID);
+                                var GrossProfitChange=loadVariantPercentageValue(data.data[0].rcrv_GrossProfitChange,brandName,variantName,marketID);
+                                var GrossProfitMargin=loadVariantPercentageValue(data.data[0].rcrv_GrossProfitMargin,brandName,variantName,marketID);
+                                var GrossProfitShareInCategory=loadVariantPercentageValue(data.data[0].rcrv_GrossProfitShareInCategory,brandName,variantName,marketID);
                                 var GeneralExpenses=loadVariantValue(data.data[0].rcrv_GeneralExpenses,brandName,variantName,marketID);
                                 var OperatingProfit=loadVariantValue(data.data[0].rcrv_OperatingProfit,brandName,variantName,marketID);
-                                var OperatingProfitChange=loadVariantValue(data.data[0].rcrv_OperatingProfitChange,brandName,variantName,marketID);
-                                var OperatingProfitMargin=loadVariantValue(data.data[0].rcrv_OperatingProfitMargin,brandName,variantName,marketID);
-                                var OperatingProfitMarginShareInCategory=loadVariantValue(data.data[0].rcrv_OperatingProfitMarginShareInCategory,brandName,variantName,marketID);
+                                var OperatingProfitChange=loadVariantPercentageValue(data.data[0].rcrv_OperatingProfitChange,brandName,variantName,marketID);
+                                var OperatingProfitMargin=loadVariantPercentageValue(data.data[0].rcrv_OperatingProfitMargin,brandName,variantName,marketID);
+                                var OperatingProfitMarginShareInCategory=loadVariantPercentageValue(data.data[0].rcrv_OperatingProfitMarginShareInCategory,brandName,variantName,marketID);
                                 var Interest=loadVariantValue(data.data[0].rcrv_Interest,brandName,variantName,marketID);
                                 var Taxes=loadVariantValue(data.data[0].rcrv_Taxes,brandName,variantName,marketID);
                                 var ExceptionalItems=loadVariantValue(data.data[0].rcrv_ExceptionalItems,brandName,variantName,marketID);
                                 var NetProfit=loadVariantValue(data.data[0].rcrv_NetProfit,brandName,variantName,marketID);
-                                var NetProfitChange=loadVariantValue(data.data[0].rcrv_NetProfitChange,brandName,variantName,marketID);
-                                var NetProfitMargin=loadVariantValue(data.data[0].rcrv_NetProfitMargin,brandName,variantName,marketID);
-                                var NetProfitShareInCategory=loadVariantValue(data.data[0].rcrv_NetProfitShareInCategory,brandName,variantName,marketID);
+                                var NetProfitChange=loadVariantPercentageValue(data.data[0].rcrv_NetProfitChange,brandName,variantName,marketID);
+                                var NetProfitMargin=loadVariantPercentageValue(data.data[0].rcrv_NetProfitMargin,brandName,variantName,marketID);
+                                var NetProfitShareInCategory=loadVariantPercentageValue(data.data[0].rcrv_NetProfitShareInCategory,brandName,variantName,marketID);
                                 scope.variants.push({'variantName':variantName,'Sales':Sales,'PromotionsCost':PromotionsCost,'OtherCompensation':OtherCompensation,'NetSales':NetSales,'NetSalesChange':NetSalesChange,'NetSalesShareInCategory':NetSalesShareInCategory,
                                     'CostOfGoodsSold':CostOfGoodsSold,'ValueOfQuantityDiscounts':ValueOfQuantityDiscounts,'ValueOfPerformanceBonus':ValueOfPerformanceBonus,'DiscontinuedGoodsCost':DiscontinuedGoodsCost,'InventoryHoldingCost':InventoryHoldingCost,'GrossProfit':GrossProfit,
                                     'GrossProfitChange':GrossProfitChange,'GrossProfitMargin':GrossProfitMargin,'GrossProfitShareInCategory':GrossProfitShareInCategory,'GeneralExpenses':GeneralExpenses,'OperatingProfit':OperatingProfit,'OperatingProfitChange':OperatingProfitChange,'OperatingProfitMargin':OperatingProfitMargin,
@@ -185,29 +200,29 @@ define(['directives', 'services'], function(directives){
                             var PromotionsCost=loadValue(data.data[0].rcrb_PromotionsCost,brandName,marketID);
                             var OtherCompensation=loadValue(data.data[0].rcrb_OtherCompensation,brandName,marketID);
                             var NetSales=loadValue(data.data[0].rcrb_NetSales,brandName,marketID);
-                            var NetSalesChange=loadValue(data.data[0].rcrb_NetSalesChange,brandName,marketID);
-                            var NetSalesShareInCategory=loadValue(data.data[0].rcrb_NetSalesShareInCategory,brandName,marketID);
+                            var NetSalesChange=loadPercentageValue(data.data[0].rcrb_NetSalesChange,brandName,marketID);
+                            var NetSalesShareInCategory=loadPercentageValue(data.data[0].rcrb_NetSalesShareInCategory,brandName,marketID);
                             var CostOfGoodsSold=loadValue(data.data[0].rcrb_CostOfGoodsSold,brandName,marketID);
                             var ValueOfQuantityDiscounts=loadValue(data.data[0].rcrb_ValueOfQuantityDiscounts,brandName,marketID);
                             var ValueOfPerformanceBonus=loadValue(data.data[0].rcrb_ValueOfPerformanceBonus,brandName,marketID);
                             var DiscontinuedGoodsCost=loadValue(data.data[0].rcrb_DiscontinuedGoodsCost,brandName,marketID);
                             var InventoryHoldingCost=loadValue(data.data[0].rcrb_InventoryHoldingCost,brandName,marketID);
                             var GrossProfit=loadValue(data.data[0].rcrb_GrossProfit,brandName,marketID);
-                            var GrossProfitChange=loadValue(data.data[0].rcrb_GrossProfitChange,brandName,marketID);
-                            var GrossProfitMargin=loadValue(data.data[0].rcrb_GrossProfitMargin,brandName,marketID);
-                            var GrossProfitShareInCategory=loadValue(data.data[0].rcrb_GrossProfitShareInCategory,brandName,marketID);
+                            var GrossProfitChange=loadPercentageValue(data.data[0].rcrb_GrossProfitChange,brandName,marketID);
+                            var GrossProfitMargin=loadPercentageValue(data.data[0].rcrb_GrossProfitMargin,brandName,marketID);
+                            var GrossProfitShareInCategory=loadPercentageValue(data.data[0].rcrb_GrossProfitShareInCategory,brandName,marketID);
                             var GeneralExpenses=loadValue(data.data[0].rcrb_GeneralExpenses,brandName,marketID);
                             var OperatingProfit=loadValue(data.data[0].rcrb_OperatingProfit,brandName,marketID);
-                            var OperatingProfitChange=loadValue(data.data[0].rcrb_OperatingProfitChange,brandName,marketID);
-                            var OperatingProfitMargin=loadValue(data.data[0].rcrb_OperatingProfitMargin,brandName,marketID);
-                            var OperatingProfitMarginShareInCategory=loadValue(data.data[0].rcrb_OperatingProfitMarginShareInCategory,brandName,marketID);
+                            var OperatingProfitChange=loadPercentageValue(data.data[0].rcrb_OperatingProfitChange,brandName,marketID);
+                            var OperatingProfitMargin=loadPercentageValue(data.data[0].rcrb_OperatingProfitMargin,brandName,marketID);
+                            var OperatingProfitMarginShareInCategory=loadPercentageValue(data.data[0].rcrb_OperatingProfitMarginShareInCategory,brandName,marketID);
                             var Interest=loadValue(data.data[0].rcrb_Interest,brandName,marketID);
                             var Taxes=loadValue(data.data[0].rcrb_Taxes,brandName,marketID);
                             var ExceptionalItems=loadValue(data.data[0].rcrb_ExceptionalItems,brandName,marketID);
                             var NetProfit=loadValue(data.data[0].rcrb_NetProfit,brandName,marketID);
-                            var NetProfitChange=loadValue(data.data[0].rcrb_NetProfitChange,brandName,marketID);
-                            var NetProfitMargin=loadValue(data.data[0].rcrb_NetProfitMargin,brandName,marketID);
-                            var NetProfitShareInCategory=loadValue(data.data[0].rcrb_NetProfitShareInCategory,brandName,marketID);
+                            var NetProfitChange=loadPercentageValue(data.data[0].rcrb_NetProfitChange,brandName,marketID);
+                            var NetProfitMargin=loadPercentageValue(data.data[0].rcrb_NetProfitMargin,brandName,marketID);
+                            var NetProfitShareInCategory=loadPercentageValue(data.data[0].rcrb_NetProfitShareInCategory,brandName,marketID);
                             if(category==1){
                                 scope.brand1s.push({'brandName':brandName,'Sales':Sales,'PromotionsCost':PromotionsCost,'OtherCompensation':OtherCompensation,'NetSales':NetSales,'NetSalesChange':NetSalesChange,'NetSalesShareInCategory':NetSalesShareInCategory,
                                     'CostOfGoodsSold':CostOfGoodsSold,'ValueOfQuantityDiscounts':ValueOfQuantityDiscounts,'ValueOfPerformanceBonus':ValueOfPerformanceBonus,'DiscontinuedGoodsCost':DiscontinuedGoodsCost,'InventoryHoldingCost':InventoryHoldingCost,'GrossProfit':GrossProfit,
