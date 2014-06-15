@@ -127,7 +127,7 @@
                     </p>
                 </td>
                 <td ng-repeat='valueShare in valueShares' ng-show='$even&&$index!=6&&$index!=12'>
-                    <p class="text-right">{{valueShare.value.toFixed(2)}}</p>
+                    <p class="text-right">{{(valueShare.value*100).toFixed(2)}}</p>
                 </td>
             </tr>
             <tr class="danger">
@@ -137,7 +137,7 @@
                     </p>
                 </td>
                 <td ng-repeat='valueShare in valueShares' ng-show='$odd&&$index!=7&&$index!=13'>
-                    <p class="text-right">{{valueShare.value.toFixed(2)}}</p>
+                    <p class="text-right">{{(valueShare.value*100).toFixed(2)}}</p>
                 </td>
             </tr>
             <tr>
@@ -154,7 +154,7 @@
                     </p>
                 </td>
                 <td ng-repeat='volumeShare in volumeShares' ng-show='$even&&$index!=6&&$index!=12'>
-                    <p class="text-right">{{volumeShare.value.toFixed(2)}}</p>
+                    <p class="text-right">{{(volumeShare.value*100).toFixed(2)}}</p>
                 </td>
             </tr>
             <tr class="danger">
@@ -164,7 +164,7 @@
                     </p>
                 </td>
                 <td ng-repeat='volumeShare in volumeShares' ng-show='$odd&&$index!=7&&$index!=13'>
-                    <p class="text-right">{{volumeShare.value.toFixed(2)}}</p>
+                    <p class="text-right">{{(volumeShare.value*100).toFixed(2)}}</p>
                 </td>
             </tr>
             <tr>
