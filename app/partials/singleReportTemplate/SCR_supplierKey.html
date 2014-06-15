@@ -22,10 +22,10 @@
                     <p Popover-animation="true" popover="{{Label.getContent('Effectiveness of Trade Spending Info')}}" popover-title="{{Label.getContent('Effectiveness of Trade Spending')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Effectiveness of Trade Spending')}} <span class="glyphicon glyphicon-info-sign" ></span></p>
                 </td>
                 <td class="success">
-                    <p class="text-right">{{data.scrkpi_TradeSpendingEffectiveness[0].value[2]}}</p>
+                    <p class="text-right">{{data.scrkpi_TradeSpendingEffectiveness[0].value[2].toFixed(2)}}</p>
                 </td>
                 <td class="danger">
-                    <p class="text-right">{{data.scrkpi_TradeSpendingEffectiveness[1].value[2]}}</p>
+                    <p class="text-right">{{data.scrkpi_TradeSpendingEffectiveness[1].value[2].toFixed(2)}}</p>
                 </td>
             </tr>
             <tr>
@@ -33,10 +33,10 @@
                     <p Popover-animation="true" popover="{{Label.getContent('Effectiveness of Marketing Spending Info')}}" popover-title="{{Label.getContent('Effectiveness of Marketing Spending')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Effectiveness of Marketing Spending')}} <span class="glyphicon glyphicon-info-sign" ></span></p>
                 </td>
                 <td class="success">
-                    <p class="text-right">{{data.scrkpi_MarketingEffectiveness[0].value[2]}}</p>
+                    <p class="text-right">{{data.scrkpi_MarketingEffectiveness[0].value[2].toFixed(2)}}</p>
                 </td>
                 <td class="danger">
-                    <p class="text-right">{{data.scrkpi_MarketingEffectiveness[1].value[2]}}</p>
+                    <p class="text-right">{{data.scrkpi_MarketingEffectiveness[1].value[2].toFixed(2)}}</p>
                 </td>
             </tr>
             <tr>
@@ -44,10 +44,10 @@
                     <p Popover-animation="true" popover="{{Label.getContent('Portfolio Strength Info')}}" popover-title="{{Label.getContent('Portfolio Strength')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Portfolio Strength')}} <span class="glyphicon glyphicon-info-sign" ></span></p>
                 </td>
                 <td class="success">
-                    <p class="text-right">{{data.scrkpi_PortfolioStrength[0].value[2]}}</p>
+                    <p class="text-right">{{data.scrkpi_PortfolioStrength[0].value[2].toFixed(2)}}</p>
                 </td>
                 <td class="danger">
-                    <p class="text-right">{{data.scrkpi_PortfolioStrength[1].value[2]}}</p>
+                    <p class="text-right">{{data.scrkpi_PortfolioStrength[1].value[2].toFixed(2)}}</p>
                 </td>
             </tr>
             <tr>
@@ -67,10 +67,10 @@
                     </p>
                 </td>
                 <td class="success">
-                    <p class="text-right">{{data.scrkpi_ChannelSalesValueShare[0].value[0]}}</p>
+                    <p class="text-right">{{(data.scrkpi_ChannelSalesValueShare[0].value[0]*100).toFixed(2)}}</p>
                 </td>
                 <td class="danger">
-                    <p class="text-right">{{data.scrkpi_ChannelSalesValueShare[1].value[0]}}</p>
+                    <p class="text-right">{{(data.scrkpi_ChannelSalesValueShare[1].value[0]*100).toFixed(2)}}</p>
                 </td>
             </tr>
             <tr>
@@ -80,10 +80,10 @@
                     </p>
                 </td>
                 <td class="success">
-                    <p class="text-right">{{data.scrkpi_ChannelSalesVolumeShare[0].value[0]}}</p>
+                    <p class="text-right">{{(data.scrkpi_ChannelSalesVolumeShare[0].value[0]*100).toFixed(2)}}</p>
                 </td>
                 <td class="danger">
-                    <p class="text-right">{{data.scrkpi_ChannelSalesVolumeShare[1].value[0]}}</p>
+                    <p class="text-right">{{(data.scrkpi_ChannelSalesVolumeShare[1].value[0]*100).toFixed(2)}}</p>
                 </td>
             </tr>
             <tr>
@@ -93,10 +93,10 @@
                     </p>
                 </td>
                 <td class="success">
-                    <p class="text-right">{{data.scrkpi_ShoppersShare[0].value[0]}}</p>
+                    <p class="text-right">{{(data.scrkpi_ShoppersShare[0].value[0]*100).toFixed(2)}}</p>
                 </td>
                 <td class="danger">
-                    <p class="text-right">{{data.scrkpi_ShoppersShare[1].value[0]}}</p>
+                    <p class="text-right">{{(data.scrkpi_ShoppersShare[1].value[0]*100).toFixed(2)}}</p>
                 </td>
             </tr>
             <tr>
@@ -111,10 +111,10 @@
                     </p>
                 </td>
                 <td class="success">
-                    <p class="text-right">{{data.scrkpi_ChannelSalesValueShare[0].value[1]}}</p>
+                    <p class="text-right">{{(data.scrkpi_ChannelSalesValueShare[0].value[1]*100).toFixed(2)}}</p>
                 </td>
                 <td class="danger">
-                    <p class="text-right">{{data.scrkpi_ChannelSalesValueShare[1].value[1]}}</p>
+                    <p class="text-right">{{(data.scrkpi_ChannelSalesValueShare[1].value[1]*100).toFixed(2)}}</p>
                 </td>
             </tr>
             <tr>
@@ -124,10 +124,10 @@
                     </p>
                 </td>
                 <td class="success">
-                    <p class="text-right">{{data.scrkpi_ChannelSalesVolumeShare[0].value[1]}}</p>
+                    <p class="text-right">{{(data.scrkpi_ChannelSalesVolumeShare[0].value[1]*100).toFixed(2)}}</p>
                 </td>
                 <td class="danger">
-                    <p class="text-right">{{data.scrkpi_ChannelSalesVolumeShare[1].value[1]}}</p>
+                    <p class="text-right">{{(data.scrkpi_ChannelSalesVolumeShare[1].value[1]*100).toFixed(2)}}</p>
                 </td>
             </tr>
             <tr>
@@ -137,10 +137,10 @@
                     </p>
                 </td>
                 <td class="success">
-                    <p class="text-right">{{data.scrkpi_ShoppersShare[0].value[1]}}</p>
+                    <p class="text-right">{{(data.scrkpi_ShoppersShare[0].value[1]*100).toFixed(2)}}</p>
                 </td>
                 <td class="danger">
-                    <p class="text-right">{{data.scrkpi_ShoppersShare[1].value[1]}}</p>
+                    <p class="text-right">{{(data.scrkpi_ShoppersShare[1].value[1]*100).toFixed(2)}}</p>
                 </td>
             </tr>
         </tbody>
