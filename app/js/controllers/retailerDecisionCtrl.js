@@ -32,7 +32,7 @@ define(['app','socketIO','routingConfig'], function(app) {
                     url:url
                 }).then(function(data){
                     abMax=data.data.budgetAvailable+data.data.budgetSpentToDate;
-                    $scope.abMax=abMax;
+                    $scope.abMax=abMax.toFixed(2);
                     url="/retailerExpend/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/-1/location/1';
                     return $http({
                         method:'GET',
@@ -47,7 +47,7 @@ define(['app','socketIO','routingConfig'], function(app) {
                     });
                 }).then(function(data){
                     reportExpend=data.data.result;
-                    $scope.surplusExpend=abMax-expend-reportExpend;
+                    $scope.surplusExpend=(abMax-expend-reportExpend).toFixed(2);
                     //$scope.percentageExpend=(abMax-expend)/abMax*100;
                     url="/retailerShelfSpace/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/-1/0/brandName/varName';
                     return $http({

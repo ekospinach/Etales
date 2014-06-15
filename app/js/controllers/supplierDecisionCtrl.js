@@ -93,7 +93,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 				}).then(function(data) {
 				//assign available budget, capacity for two categories 
 
-					$scope.abMax = data.data.budgetAvailable + data.data.budgetSpentToDate;
+					$scope.abMax = (data.data.budgetAvailable + data.data.budgetSpentToDate).toFixed(2);
 					$scope.acEleMax = data.data.productionCapacity[0];
 					$scope.acHeaMax = data.data.productionCapacity[1];
 
