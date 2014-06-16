@@ -122,13 +122,10 @@ exports.exportToBinary = function(options){
     var deferred = q.defer();
     var period = options.period;
 
-    // console.log('start remove alldeal...');
-    // removeAllDeal(options.seminar, options.period).then(function(result){      
-
-    //   console.log('here is outside...');
-    //   return ;
-
-    fillAllDeal(options.seminar, options.period).then(function(result){
+    //need to remove existed allDeal first...
+    removeAllDeal(options.seminar, options.period).then(function(result){      
+      return fillAllDeal(options.seminar, options.period)
+    }).then(function(result){
       allDeal.findOne({seminar: options.seminar, period : options.period},function(err, doc){
         if(err) deferred.reject({msg:err});
         if(!doc){
@@ -155,6 +152,25 @@ exports.exportToBinary = function(options){
 
     return deferred.promise;
 }
+
+function removeAllDeal(seminar, period){
+  deferred = q.defer();
+
+  console.log('inside...');
+  allDeal.remove({
+      seminar : seminar,
+      period : period
+  }, function(err, numberAffected){
+
+    if(err){  deferred.reject({msg: 'remove existed alldeal failed'}); }
+
+    console.log('resolve...');
+    deferred.resolve({msg: 'removed existed allDeal, numberAffected ' + numberAffected});
+  });
+
+  return deferred.promise;
+}
+
 
 exports.addDecisions = function(options){
     var deferred = q.defer();
@@ -234,23 +250,6 @@ function doSynchronousLoop(data, processData, done) {
   }
 }
 
-function removeAllDeal(seminar, period){
-  deferred = q.defer();
-
-  console.log('inside...');
-  allDeal.remove({
-      seminar : seminar,
-      period : period
-  }, function(err, numberAffected){
-
-    if(err){  deferred.reject({msg: 'remove existed alldeal failed'}); }
-
-    console.log('resolve...');
-    deferred.resolve({msg: 'removed existed allDeal, numberAffected ' + numberAffected});
-  });
-
-  return q.promise;
-}
 
 function fillAllDeal(seminar, period){
   var tempDeal,
@@ -434,7 +433,7 @@ function fillNegotiationItemByContractDetail(categoryDeal, negotiationItem, prod
       deferred = q.defer();
 
   categoryDeal.useMarketsDetails = false;
-  categoryDeal.useBrandsDetails = false;
+  categoryDeal.useBrandsDetails = true;
 
   console.log(' + Loop brands for negotiation items : '+ negotiationItem);
   (function loopBrand(brandCount, categoryCount, producerID, seminar, period){
@@ -442,7 +441,7 @@ function fillNegotiationItemByContractDetail(categoryDeal, negotiationItem, prod
     // console.log('producerDecision findOne inside: seminar ' + seminar + '/period ' + period + '/producerID ' + producerID + '/brandCount '  + brandCount);       
     require('./producerDecision.js').proDecision.findOne({seminar:seminar, period:period, producerID:producerID}, function(err, brandDoc){
 
-          categoryDeal.useBrandDetails = true;
+         
 
        // console.log(brandDoc.proCatDecision[categoryCount].proBrandsDecision[brandCount]);
         if(brandDoc && (brandDoc.proCatDecision[categoryCount].proBrandsDecision[brandCount].brandName != '')){
