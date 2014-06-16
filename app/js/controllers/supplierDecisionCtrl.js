@@ -215,7 +215,11 @@ define(['app','socketIO','routingConfig'], function(app) {
             $scope.$on('producerDecisionLocked', function(event, data) {  
             	loadBackgroundDataAndCalculateDecisionInfo();
                 notify('Time is up, Lock Decision. Supplier ' + data.roleID  + ' Period ' + data.period + '.');
+
             });            
+
+		    $scope.currentPeriod = PeriodInfo.getCurrentPeriod();
+		    $scope.historyPeriod = PeriodInfo.getCurrentPeriod();	            
 
 	}]);
 

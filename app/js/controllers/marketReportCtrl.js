@@ -185,7 +185,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    }
 
 		    var userRoles = routingConfig.userRoles;
-		    var initializePage = function(){
+	    var initializePage = function(){
 		    	$scope.isPageLoading = true;
 		  		if($rootScope.user.role==userRoles.facilitator){
 			  		setReportShown('','Full');
@@ -221,7 +221,9 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    initializePage();
 		    $scope.setReportShown=setReportShown;
 
-			
+		    $scope.currentPeriod = PeriodInfo.getCurrentPeriod();
+		    $scope.historyPeriod = PeriodInfo.getCurrentPeriod() - 1;
+
 
 	}]);
 

@@ -133,6 +133,9 @@ define(['app','socketIO','routingConfig'], function(app) {
                 showView();
                 notify('Time is up, Lock Decision. Retailer ' + data.roleID  + ' Period ' + data.period + '.');
             });     
+
+            $scope.currentPeriod = PeriodInfo.getCurrentPeriod();
+            $scope.historyPeriod = PeriodInfo.getCurrentPeriod();               
 		    
 	}]);
 

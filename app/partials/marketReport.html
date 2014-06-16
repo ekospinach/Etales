@@ -16,11 +16,14 @@
 
 <div class="my-super-awesome-loading-box" ng-show="isPageLoading">Loading...</div>
 
+
+
 <div class="container bs-docs-container">
     <div class="row">
         <div class="col-md-9">
             <div class="bs-docs-section">
                 <!--market report start-->
+                    <p access-level='{{accessLevels.facilitatorView}}'>Current period has been set into <b>{{currentPeriod}}</b>, you are checking the report of period <b>{{historyPeriod}}</b></p>                
                     <market-awareness-elecssories ng-show='AwarenessElecssories' is-page-shown='AwarenessElecssories' is-page-loading='isPageLoading'></market-awareness-elecssories>
 
                     <market-awareness-health-beauties ng-show='AwarenessHealthBeauties' is-page-shown='AwarenessHealthBeauties' is-page-loading='isPageLoading'></market-awareness-health-beauties>
