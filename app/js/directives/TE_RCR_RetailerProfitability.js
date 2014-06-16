@@ -35,94 +35,104 @@ define(['directives', 'services'], function(directives){
                 }
 
                 var loadValue=function(data){
-                    var factoriesInfo=new Array();
+                    var factoriesInfo1=new Array();
+                    var factoriesInfo2=new Array();
+                    var factoriesInfo3=new Array();
+                    var factoriesInfo4=new Array();
+                    var factoriesInfo5=new Array();
+                    var factoriesInfo6=new Array();
                     var marketInfo=new Array();
                     var array=new Array();
                     for(var i=0;i<data.length;i++){
                         if(data[i].categoryID==1&&data[i].marketID==1){
-                            factoriesInfo[data[i].factoriesID-1]=data[i].value.toFixed(2);
+                            factoriesInfo1[data[i].factoriesID-1]=data[i].value.toFixed(2);
                         }
                     }
-                    marketInfo.push({'factoriesInfo':factoriesInfo});
-                    for(var i=0;i<data[i].length;i++){
+                    marketInfo.push({'factoriesInfo':factoriesInfo1});
+                    for(var i=0;i<data.length;i++){
                         if(data[i].categoryID==1&&data[i].marketID==2){
-                            factoriesInfo[data[i].factoriesID-1]=data[i].value.toFixed(2);
+                            factoriesInfo2[data[i].factoriesID-1]=data[i].value.toFixed(2);
                         }
                     }
-                    marketInfo.push({'factoriesInfo':factoriesInfo});
-                    for(var i=0;i<data[i].length;i++){
+                    marketInfo.push({'factoriesInfo':factoriesInfo2});
+                    for(var i=0;i<data.length;i++){
                         if(data[i].categoryID==1&&data[i].marketID==3){
-                            factoriesInfo[data[i].factoriesID-1]=data[i].value.toFixed(2);
+                            factoriesInfo3[data[i].factoriesID-1]=data[i].value.toFixed(2);
                         }
                     }
-                    marketInfo.push({'factoriesInfo':factoriesInfo});
+                    marketInfo.push({'factoriesInfo':factoriesInfo3});
                     array.push({'marketInfo':marketInfo});
                     marketInfo=new Array();
-                    for(var i=0;i<data[i].length;i++){
+                    for(var i=0;i<data.length;i++){
                         if(data[i].categoryID==2&&data[i].marketID==1){
-                            factoriesInfo[data[i].factoriesID-1]=data[i].value.toFixed(2);
+                            factoriesInfo4[data[i].factoriesID-1]=data[i].value.toFixed(2);
                         }
                     }
-                    marketInfo.push({'factoriesInfo':factoriesInfo});
-                    for(var i=0;i<data[i].length;i++){
+                    marketInfo.push({'factoriesInfo':factoriesInfo4});
+                    for(var i=0;i<data.length;i++){
                         if(data[i].categoryID==2&&data[i].marketID==2){
-                            factoriesInfo[data[i].factoriesID-1]=data[i].value.toFixed(2);
+                            factoriesInfo5[data[i].factoriesID-1]=data[i].value.toFixed(2);
                         }
                     }
-                    marketInfo.push({'factoriesInfo':factoriesInfo});
-                    for(var i=0;i<data[i].length;i++){
+                    marketInfo.push({'factoriesInfo':factoriesInfo5});
+                    for(var i=0;i<data.length;i++){
                         if(data[i].categoryID==2&&data[i].marketID==3){
-                            factoriesInfo[data[i].factoriesID-1]=data[i].value.toFixed(2);
+                            factoriesInfo6[data[i].factoriesID-1]=data[i].value.toFixed(2);
                         }
                     }
-                    marketInfo.push({'factoriesInfo':factoriesInfo});
+                    marketInfo.push({'factoriesInfo':factoriesInfo6});
                     array.push({'marketInfo':marketInfo});
                     console.log(array);
                     return array;
                 }
 
                 var loadPercentageValue=function(data){
-                    var factoriesInfo=new Array();
+                    var factoriesInfo1=new Array();
+                    var factoriesInfo2=new Array();
+                    var factoriesInfo3=new Array();
+                    var factoriesInfo4=new Array();
+                    var factoriesInfo5=new Array();
+                    var factoriesInfo6=new Array();
                     var marketInfo=new Array();
                     var array=new Array();
                     for(var i=0;i<data.length;i++){
                         if(data[i].categoryID==1&&data[i].marketID==1){
-                            factoriesInfo[data[i].factoriesID-1]=(data[i].value*100).toFixed(2);
+                            factoriesInfo1[data[i].factoriesID-1]=(data[i].value*100).toFixed(2);
                         }
                     }
-                    marketInfo.push({'factoriesInfo':factoriesInfo});
-                    for(var i=0;i<data[i].length;i++){
+                    marketInfo.push({'factoriesInfo':factoriesInfo1});
+                    for(var i=0;i<data.length;i++){
                         if(data[i].categoryID==1&&data[i].marketID==2){
-                            factoriesInfo[data[i].factoriesID-1]=(data[i].value*100).toFixed(2);
+                            factoriesInfo2[data[i].factoriesID-1]=(data[i].value*100).toFixed(2);
                         }
                     }
-                    marketInfo.push({'factoriesInfo':factoriesInfo});
-                    for(var i=0;i<data[i].length;i++){
+                    marketInfo.push({'factoriesInfo':factoriesInfo2});
+                    for(var i=0;i<data.length;i++){
                         if(data[i].categoryID==1&&data[i].marketID==3){
-                            factoriesInfo[data[i].factoriesID-1]=(data[i].value*100).toFixed(2);
+                            factoriesInfo3[data[i].factoriesID-1]=(data[i].value*100).toFixed(2);
                         }
                     }
-                    marketInfo.push({'factoriesInfo':factoriesInfo});
+                    marketInfo.push({'factoriesInfo':factoriesInfo3});
                     array.push({'marketInfo':marketInfo});
                     marketInfo=new Array();
-                    for(var i=0;i<data[i].length;i++){
+                    for(var i=0;i<data.length;i++){
                         if(data[i].categoryID==2&&data[i].marketID==1){
-                            factoriesInfo[data[i].factoriesID-1]=(data[i].value*100).toFixed(2);
+                            factoriesInfo4[data[i].factoriesID-1]=(data[i].value*100).toFixed(2);
                         }
                     }
-                    marketInfo.push({'factoriesInfo':factoriesInfo});
-                    for(var i=0;i<data[i].length;i++){
+                    marketInfo.push({'factoriesInfo':factoriesInfo4});
+                    for(var i=0;i<data.length;i++){
                         if(data[i].categoryID==2&&data[i].marketID==2){
-                            factoriesInfo[data[i].factoriesID-1]=(data[i].value*100).toFixed(2);
+                            factoriesInfo5[data[i].factoriesID-1]=(data[i].value*100).toFixed(2);
                         }
                     }
-                    marketInfo.push({'factoriesInfo':factoriesInfo});
-                    for(var i=0;i<data[i].length;i++){
+                    marketInfo.push({'factoriesInfo':factoriesInfo5});
+                    for(var i=0;i<data.length;i++){
                         if(data[i].categoryID==2&&data[i].marketID==3){
-                            factoriesInfo[data[i].factoriesID-1]=(data[i].value*100).toFixed(2);
+                            factoriesInfo6[data[i].factoriesID-1]=(data[i].value*100).toFixed(2);
                         }
                     }
-                    marketInfo.push({'factoriesInfo':factoriesInfo});
+                    marketInfo.push({'factoriesInfo':factoriesInfo6});
                     array.push({'marketInfo':marketInfo});
                     console.log(array);
                     return array;
@@ -131,6 +141,7 @@ define(['directives', 'services'], function(directives){
                 var organiseArray = function(data){
                     var deferred = $q.defer();
                     scope.ShelfSpaces=loadPercentageValue(data.data[0].rcrps_ShelfSpace);
+                    console.log(data.data[0].rcrps_NetSales);
                     scope.NetSales=loadValue(data.data[0].rcrps_NetSales);
                     scope.NetSalesPerShelfSpaces=loadValue(data.data[0].rcrps_NetSalesPerShelfSpace);
                     scope.NetSalesShares=loadPercentageValue(data.data[0].rcrps_NetSalesShare);

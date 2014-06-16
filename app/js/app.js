@@ -99,7 +99,8 @@
 	'highchartMore',
 	'angularHighcharts',
 	'reveal',
-	'ngNotify'
+	'ngNotify',
+	'doubleScroll'
 	], function (angular, filters, services,directives,bootstrap, controllers) {
 		'use strict';
 		return angular.module('myApp', [
