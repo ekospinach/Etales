@@ -330,7 +330,7 @@ var
         for brandID := Low(TBrands) to High(TBrands) do
         begin
            tempBrandMarketInfo := currentResult.r_RetailersConfidentialReports[currentRetailer].rcr_Brands[marketId, catID, brandID];
-           if (tempBrandMarketInfo.rcrb_BrandName <> '') then
+           if ( (tempBrandMarketInfo.rcrb_BrandName <> '') and (tempBrandMarketInfo.rcrb_ShowInReport)) then
            begin
             oJsonFile.A['rcrb_Sales'].Add( brandMarketInfoSchema(rcrb_Sales, catID, marketID, tempBrandMarketInfo) );
             oJsonFile.A['rcrb_PromotionsCost'].Add( brandMarketInfoSchema(rcrb_PromotionsCost, catID, marketID, tempBrandMarketInfo) );
@@ -358,7 +358,7 @@ var
             oJsonFile.A['rcrb_NetProfit'].Add( brandMarketInfoSchema(rcrb_NetProfit, catID, marketID, tempBrandMarketInfo) );
             oJsonFile.A['rcrb_NetProfitChange'].Add( brandMarketInfoSchema(rcrb_NetProfitChange, catID, marketID, tempBrandMarketInfo) );
             oJsonFile.A['rcrb_NetProfitMargin'].Add( brandMarketInfoSchema(rcrb_NetProfitMargin, catID, marketID, tempBrandMarketInfo) );
-            oJsonFile.A['rcrb_NetSalesShareInCategory'].Add( brandMarketInfoSchema(rcrb_NetSalesShareInCategory, catID, marketID, tempBrandMarketInfo) );
+            oJsonFile.A['rcrb_NetProfitShareInCategory'].Add( brandMarketInfoSchema(rcrb_NetProfitShareInCategory, catID, marketID, tempBrandMarketInfo) );
            end;
         end; 
       end;
@@ -400,12 +400,12 @@ var
         for brandID := Low(TBrands) to High(TBrands) do 
         begin
            tempBrandMarketInfo := currentresult.r_RetailersConfidentialReports[currentRetailer].rcr_Brands[marketId, catID, brandID];
-           if (tempBrandMarketInfo.rcrb_BrandName <> '') then
+           if ((tempBrandMarketInfo.rcrb_BrandName <> '') and (tempBrandMarketInfo.rcrb_ShowInReport)) then
            begin
-             for variantID := Low(TOneBrandVariants) to high(TOneBrandVariants) do 
+             for variantID := Low(TOneBrandVariants) to high(TOneBrandVariants) do
              begin
                tempVariantMarketInfo := tempBrandMarketInfo.rcrb_Variants[variantID];
-               if (tempVariantMarketInfo.rcrv_VariantName <> '') then
+               if ((tempVariantMarketInfo.rcrv_VariantName <> '') and (tempVariantMarketInfo.rcrv_ShowInReport)) then
                begin
                   oJsonFile.A['rcrv_Sales'].Add( variantMarketInfoSchema(rcrv_Sales, catID, marketID, tempVariantMarketInfo) );
                   oJsonFile.A['rcrv_PromotionsCost'].Add( variantMarketInfoSchema(rcrv_PromotionsCost, catID, marketID, tempVariantMarketInfo) );

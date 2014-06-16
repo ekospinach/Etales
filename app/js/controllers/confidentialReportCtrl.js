@@ -143,8 +143,8 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    if(RoleInfo.getRole()==2){
 		    	$scope.producerShow=true;
 		    	$scope.retailerShow=false;
-		    	showElecssoriesVolume();
-		    	//showProducerConsolidate();
+		    	//showElecssoriesVolume();
+		    	showProducerConsolidate();
 		    }else if(RoleInfo.getRole()==4){
 		    	$scope.retailerShow=true;
 		    	$scope.producerShow=false;

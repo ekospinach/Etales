@@ -122,7 +122,7 @@ define(['app','socketIO'], function(app) {
 			  });			
 		}
 
-		$scope.Initialize =function(seminar){
+		$scope.Initialize =function(seminar, isKeepExistedPeriod1Decision){
 			$scope.isInitializeMessageShown = false;
 			$scope.initializeMessage = [];
 			$scope.isInitializeConfirmInfoShown = false;
@@ -139,8 +139,12 @@ define(['app','socketIO'], function(app) {
 				market1ID                  : seminar.market1ID,
 				market2ID                  : seminar.market2ID,
 				category1ID                : seminar.category1ID,
-				category2ID                : seminar.category2ID			
+				category2ID                : seminar.category2ID,
+				isKeepExistedPeriod1Decision : isKeepExistedPeriod1Decision
 			}
+			if(!isKeepExistedPeriod1Decision){
+				isKeepExistedPeriod1Decision = false;
+			}			
 
 			$http({method:'POST', url:'/initialiseSeminar', data:postData}).then(function(res){
 				$scope.isInitializeMessageShown = true;	
@@ -195,16 +199,23 @@ define(['app','socketIO'], function(app) {
 			})
 		}
 
-		$scope.Run =function(seminar, selectedPeriod){
+		$scope.Run =function(seminar, selectedPeriod, keepExistedNextPeriodDecision){
 			$scope.isKernelMessageShown = false;
 			$scope.kernelMessage  = [];
 			$scope.isRunConfirmInfoShown = false;
 			$scope.isActive = false;
 
+			if(!keepExistedNextPeriodDecision){
+				keepExistedNextPeriodDecision = false;
+			}
+
 			var postData = {
 				seminar  : seminar.seminarCode,
 				period : selectedPeriod,
-			}			
+				keepExistedNextPeriodDecision : keepExistedNextPeriodDecision
+			}	
+			console.log(postData);		
+
 			$http({method:'POST', url:'/runSeminar', data:postData}).then(function(res){
 				$scope.isKernelMessageShown = true;
 				$scope.kernelMessage.push(res.data);			
