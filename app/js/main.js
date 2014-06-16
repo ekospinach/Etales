@@ -42,7 +42,7 @@
 			reveal: 				'../bower_components/reveal.js/js/reveal.min',
 			//angular notification 
 			//toaster:               '../bower_components/angular-notify-toaster/toaster',
-			ngNotify: 			   '../bower_components/angular-notify/dist/angular-notify.min',	
+			ngNotify: 			   	'../bower_components/angular-notify/dist/angular-notify.min'
 		},
 		baseUrl: 'js',
 		shim: {
@@ -70,8 +70,7 @@
 			'angularBootstrapSwitch':['angular','jquery','bootstrapswitch'],
 			'highchart' :['jquery'],
 			//'toaster' :['jquery','angular','angularAnimate'],
-			'ngNotify' :['jquery','angular']
-		},
+			'ngNotify' :['jquery','angular']		},
 		priority: [
 			"angular"
 		],
