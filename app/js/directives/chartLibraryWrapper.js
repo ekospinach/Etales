@@ -837,21 +837,6 @@ define(['directives'], function(directives){
             });
         }
     })
-    .directive('fixedColumn',function(){
-        return function(scope,elem,attrs){
-            // $('#myTest').fixedHeaderTable({ fixedColumns: 1 });
-            // $('#myTest')
-            $('#myTest').tinytbl({
-                direction: 'ltr',
-                thead:     false,
-                tfoot:     false,
-                cols:      1,
-                width:     'auto',
-                height:    200,
-                renderer:  true
-            });     
-        }
-    })
 
     .directive('googleChart', ['$timeout','$window', function ($timeout, $window) {
         return {
