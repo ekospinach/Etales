@@ -189,8 +189,10 @@ exports.getSCR_ClosingInternetInventoryVolume=function(req,res,next){
             for(i=0;i<doc.scrviv_Closing.length;i++){
                 if(doc.scrviv_Closing[i].parentBrandName==req.params.brandName&&doc.scrviv_Closing[i].variantName==req.params.varName){
                     res.send(200,{'result':doc.scrviv_Closing[i].value[1]});
+                    break;
                 } else {
                     res.send(404, 'failed');
+                    break;
                 }
             }
 
