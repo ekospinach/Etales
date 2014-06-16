@@ -49,24 +49,24 @@ exports.passiveSeminar = function(io){
 		}).then(function(result){
 	        io.sockets.emit('PassiveProcessLog', { msg: result.msg, isError: false });			
 			
-		// //call passive module on the server, callback...
-	 //        options.cgiPath = conf.cgi.path_passive;
-	 //        return require('./models/seminar.js').passiveSeminar(options);
-		// }).then(function(result){
-	 //        io.sockets.emit('PassiveProcessLog', { msg: result.msg, isError: false });			
+		//call passive module on the server, callback...
+	        options.cgiPath = conf.cgi.path_passive;
+	        return require('./models/seminar.js').passiveSeminar(options);
+		}).then(function(result){
+	        io.sockets.emit('PassiveProcessLog', { msg: result.msg, isError: false });			
 
-		// //if callback true, import P4 and R3	
-	 //        options.producerID = 4;
-	 //        options.cgiPath = conf.cgi.path_producerDecision;
-	 //        return require('./models/producerDecision.js').addProducerDecisions(options);        
-		// }).then(function(result){
-	 //        io.sockets.emit('PassiveProcessLog', { msg: result.msg, isError: false });			
-		// 	options.retailerID = '3';	
-		// 	options.cgiPath = conf.cgi.path_retailerDecision;
+		//if callback true, import P4 and R3	
+	        options.producerID = 4;
+	        options.cgiPath = conf.cgi.path_producerDecision;
+	        return require('./models/producerDecision.js').addProducerDecisions(options);        
+		}).then(function(result){
+	        io.sockets.emit('PassiveProcessLog', { msg: result.msg, isError: false });			
+			options.retailerID = '3';	
+			options.cgiPath = conf.cgi.path_retailerDecision;
 
-		// 	return require('./models/retailerDecision.js').addRetailerDecisions(options);			
-		// }).then(function(result){
-	 //        io.sockets.emit('PassiveProcessLog', { msg: result.msg, isError: false });		
+			return require('./models/retailerDecision.js').addRetailerDecisions(options);			
+		}).then(function(result){
+	        io.sockets.emit('PassiveProcessLog', { msg: result.msg, isError: false });		
 	        	
 	        status = 'actived';
 			res.send(200, 'Get passive decison complete!');	

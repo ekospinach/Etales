@@ -21,6 +21,7 @@ var contractSchema = mongoose.Schema({
 })
 
 var contractVariantDetailsSchema = mongoose.Schema({
+     seminar : String,
      contractCode: String,
      parentBrandName: String,
      parentBrandID: Number,
@@ -235,7 +236,8 @@ exports.addContractDetails = function(io) {
                               isCompositionModified                  : false, //compare with previous period composition, used for showing tag "MODIFIED"
                               composition                            : req.body.composition, //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                               currentPriceBM                         : req.body.currentPriceBM,
-                              packFormat                             : req.body.packFormat
+                              packFormat                             : req.body.packFormat,
+                              seminar                                : req.body.seminar
                          });
                     //if no history, create empty doc
                     } else {
@@ -263,7 +265,8 @@ exports.addContractDetails = function(io) {
                               isCompositionModified                  : false, //compare with previous period composition, used for showing tag "MODIFIED"
                               composition                            : req.body.composition, //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
                               currentPriceBM                         : req.body.currentPriceBM,
-                              packFormat                             : req.body.packFormat
+                              packFormat                             : req.body.packFormat,
+                              seminar                                : req.body.seminar
                          });
                     }
 
