@@ -183,21 +183,23 @@ exports.getSCR_ClosingInternetInventoryVolume = function(req, res, next) {
         'period': req.params.period,
         'producerID': req.params.producerID
     };
+    var responseResult;
     SCR_inventoryVolumes.findOne(data, function(err, doc) {
         if (doc) {
             console.log(doc.scrviv_Closing);
             for (i = 0; i < doc.scrviv_Closing.length; i++) {
                 if (doc.scrviv_Closing[i].parentBrandName == req.params.brandName && doc.scrviv_Closing[i].variantName == req.params.varName) {
-                    res.send(200, {
-                        'result': doc.scrviv_Closing[i].value[1]
-                    });
-                } else {
-                    res.send(404, 'failed');
+                    responseResult = doc.scrviv_Closing[i].value[1];
                 }
             }
+        } 
 
+        if(responseResult){
+            res.send(200, {
+                'result': responseResult
+            });
         } else {
-            res.send(404, 'failed');
+           res.send(404, 'failed'); 
         }
     })
 }
