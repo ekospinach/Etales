@@ -62,6 +62,7 @@ define(['directives', 'services'], function(directives){
                             scope.prices[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[0].actorShopperInfo[3].grsom_MarketShareVolume);
                             scope.priceChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[0].actorShopperInfo[3].grsom_MarketShareVolumeChange);
                             scope.prices[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[0].actorShopperInfo[3].grsom_MarketShareValue);
+                            scope.priceChanges[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[0].actorShopperInfo[3].grsom_MarketShareValueChange);
                             scope.values[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[1].actorShopperInfo[3].grsom_MarketShareVolume);
                             scope.valueChanges[j].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[1].actorShopperInfo[3].grsom_MarketShareVolumeChange);
                             scope.values[j+1].push(data.data[0].actorInfo[i].actorCategoryInfo[k].actorMarketInfo[2].actorSegmentInfo[1].actorShopperInfo[3].grsom_MarketShareValue);
@@ -98,7 +99,6 @@ define(['directives', 'services'], function(directives){
                         {"name": Label.getContent('Retailer')+' 1', "data": [scope.totals[0][4],0,scope.rurals[0][4],scope.urbans[0][4],0,scope.prices[0][4],scope.values[0][4],scope.fashions[0][4],scope.freakss[0][4],0,scope.bms[0][4],scope.onlines[0][4],scope.mixeds[0][4]], type: "column",color:'#8B288B'},
                         {"name": Label.getContent('Retailer')+' 2', "data": [scope.totals[0][5],0,scope.rurals[0][5],scope.urbans[0][5],0,scope.prices[0][5],scope.values[0][5],scope.fashions[0][5],scope.freakss[0][5],0,scope.bms[0][5],scope.onlines[0][5],scope.mixeds[0][5]], type: "column",color:'#F05422'},
                     ];
-                    console.log(scope.marketShare1Series);
 
                     scope.change1s=scope.change2s=scope.change3s=scope.change4s=new Array();
                     for(var i=0;i<6;i++){
@@ -348,7 +348,6 @@ define(['directives', 'services'], function(directives){
                         },
                         loading: false
                     }
-
                     deferred.resolve({msg:'Array is ready.'});                    
                     return deferred.promise;
                 }

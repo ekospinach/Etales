@@ -113,6 +113,8 @@ define(['directives', 'services'], function(directives){
                         [scope.totalChanges[0][5],0,scope.ruralChanges[0][5],scope.urbanChanges[0][5],0,scope.priceChanges[0][5],scope.valueChanges[0][5],scope.fashionChanges[0][5],scope.freaksChanges[0][5],0,scope.bmChanges[0][5],scope.onlineChanges[0][5],scope.mixedChanges[0][5]]
                     ];
 
+                    console.log(scope.marketSales1Series);
+
                     scope.marketSales1Config = {
                         options: {
                             xAxis: {
