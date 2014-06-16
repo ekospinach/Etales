@@ -79,8 +79,8 @@
             <div class="bs-docs-sidebar hidden-print" affix='10' role="complementary" angular-bootstrap>
                 <ul class="nav bs-docs-sidenav">
                     
-<!--                      ng-show='producerShow'
- -->                    <li class="active" ng-show="false">
+<!--                      
+ -->                    <li class="active" ng-show='producerShow'>
                     	<a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showProducerConsolidate()'>{{Label.getContent('Financial Results')}}</a>
                     	<ul class="nav second-sidenav">
                     		<li class="active">
@@ -117,7 +117,7 @@
                     <li class="" ng-show='producerShow'>
                         <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showHealthBeautiesVolume()'>{{Label.getContent('HealthBeauties')}}{{Label.getContent('Situation Report')}}</a>
                         <ul class="nav second-sidenav">
-                            <li class="" ng-show="false">
+                            <li class="" ng-show="false">f
                                 <a href="/#/confidentialReport" style="color:#5CB85C;" ng-click='showHealthBeautiesConsumer()'>{{Label.getContent('Market Shares by Consumer Segment')}}</a>
                             </li>
                             <li class="" ng-show="false">
@@ -128,8 +128,8 @@
                             </li>
                         </ul>
                     </li>
-<!--                     ng-show='producerShow' 
- -->                    <li class="" ng-show="false">
+<!--                     
+ -->                <li class="" ng-show='producerShow'>
                         <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showProducerKey()'>{{Label.getContent('Key Performance Indicators')}}</a>
                     </li>
 
@@ -148,7 +148,7 @@
                             <li class="">
                                 <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showRetailerUrbanProfit()'>{{Label.getContent('Urban Profit & Loss Statement')}}</a>
                             </li>
-                            <li class="" ng-show="false">
+                            <li class="" >
                                 <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showRetailerProfitability()'>{{Label.getContent('Profitability by Channel')}}</a>
                             </li>
                             <li class="">
@@ -186,8 +186,7 @@
                         </ul>
                     </li>
 
- <!-- ng-show='retailerShow'                    
-  -->                   <li class="" ng-show="false">
+                   <li class="" ng-show='retailerShow'>
                         <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showRetailerKey()'>{{Label.getContent('Key Performance Indicators')}}</a>
                     </li>
                 </ul>
