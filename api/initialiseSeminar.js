@@ -31,7 +31,9 @@ exports.initialiseSeminar = function(io){
 				market1ID                  : req.body.market1ID,
 				market2ID                  : req.body.market2ID,
 				category1ID                : req.body.category1ID,
-				category2ID                : req.body.category2ID			
+				category2ID                : req.body.category2ID,
+
+				isGenerateNextPeriodDeicison   : req.body.isGenerateNextPeriodDeicison,				
 			}	
 			
 	        //io.sockets.emit('AdminProcessLog', { msg: 'Create separated folder for binary files of seminar : '+ req.body.seminar, isError: false }); 
@@ -495,7 +497,6 @@ exports.initialiseSeminar = function(io){
 	            io.sockets.emit('AdminProcessLog', { msg: progress.msg, isError: false });			
 			})	
 		}
-
 	}
 }
 

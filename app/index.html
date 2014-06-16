@@ -113,7 +113,7 @@
 									</a>
 						        <ul class="dropdown-menu">			          
 						          <li role="presentation" class="dropdown-header">{{seminar}}, {{Label.getContent('Period')}} {{currentPeriod}} of {{span}}</li>
-						          <li><a ng-click="Label.changeLanguage('ENG')">English</a></li>					          
+						          <li><a ng-click="Label.changeLanguage('ENG')">English</a></li>					       
 						          <li><a ng-click="Label.changeLanguage('CHN')">简体中文</a></li>					          
 
 						          <li class="divider"></li>
@@ -130,19 +130,12 @@
 	    <footer class="{{loginFooter}}" role="contentinfo" id="pagefooter" style="display:none;text-align:center;margin:20px auto;">
 	    	<img src="img/eTalesLandingpageHCDLOGO.png">
 		</footer>
-	    <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.chromium.org/developers/how-tos/chrome-frame-getting-started -->
-	    <!--[if lt IE 7]>
-	    	<p class="chromeframe">Your browser is <em>ancient!</em>
-	    		<a href="http://browsehappy.com/">Upgrade to a different browser</a> or 
-	    		<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a>
-	    		to experience this site.
-	    	</p>
-	    <![endif]-->
-		    	    
+
 	    <div class="watpl-container" id="pageloader">	    	
 	    	<div class="container-fluid">
 <!-- 		    	<h3 id="loading-status" class="loading-status">Loading</h3>	 -->
-				<div class='loader' style="margin:150px auto;"></div>
+				<div class='loader' style="margin:150px auto;"><p id="loading-module-name" class="loading-module-name"></p></div>
+				
 	 			<p id="loading-module-name" class="loading-module-name"></p>
 	    	</div>
 	    </div>
