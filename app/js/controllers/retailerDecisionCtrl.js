@@ -136,7 +136,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 
             $scope.currentPeriod = PeriodInfo.getCurrentPeriod();
             $scope.historyPeriod = PeriodInfo.getCurrentPeriod();               
-		    
+            $scope.PlayerID = PlayerInfo.getPlayer();		    
 	}]);
 
 });

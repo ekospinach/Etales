@@ -221,6 +221,18 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    $scope.currentPeriod = PeriodInfo.getCurrentPeriod();
 		    $scope.historyPeriod = PeriodInfo.getCurrentPeriod();	            
 
+		    // var userRoles = routingConfig.userRoles;
+		    // if(RoleInfo.getRole() == userRoles.producer){
+		    // 	$scope.roleName = 'Supplier';
+		    // } else if(RoleInfo.getRole() == userRoles.retailer){
+		    // 	$scope.roleName = 'Retailer';
+		    // } else if(RoleInfo.getRole() == userRoles.facilitator){
+		    // 	$scope.roleName = 'Facilitator';
+		    // }
+
+		    $scope.PlayerID = PlayerInfo.getPlayer();
+		    $scope.currentPeriod = PeriodInfo.getCurrentPeriod();
+
 	}]);
 
 });

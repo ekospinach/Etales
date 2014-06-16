@@ -41,20 +41,30 @@
 									<b class="caret"></b>	
 								</a>
 						        <ul class="dropdown-menu">
-									<li class="" access-level='{{accessLevels.playerView}}' artive-nav>
+									<li class="" access-level='{{accessLevels.PandRView}}' artive-nav>
 										<a href="/#/generalReport">{{Label.getContent('General Report')}}</a>
 									</li>
+									<li class="" access-level='{{accessLevels.facilitatorView}}' artive-nav>
+										<a href="/#/facilitatorGeneralReport">{{Label.getContent('General Report')}}</a>
+									</li>									
+
 									<li class="" access-level='{{accessLevels.PandRView}}' active-nav>
 					          			<a href="/#/confidentialReport">{{Label.getContent('Confidential Report')}}</a>
 					          		</li>     
 					          		<li class="" access-level='{{accessLevels.facilitatorView}}' active-nav>
 					          			<a href="/#/facilitatorConfidentialReport">{{Label.getContent('Confidential Report')}}</a>
 					          		</li>
-					          		<li class=" " access-level='{{accessLevels.playerView}}' active-nav>
+
+					          		<li class=" " access-level='{{accessLevels.PandRView}}' active-nav>
 					          			<a href="/#/marketReport">
 					          				{{Label.getContent('Market Report')}}
 					          			</a>
 					          		</li>
+					          		<li class=" " access-level='{{accessLevels.facilitatorView}}' active-nav>
+					          			<a href="/#/facilitatorMarketReport">
+					          				{{Label.getContent('Market Report')}}
+					          			</a>
+					          		</li>					          		
 						        </ul>
 							</li>
 

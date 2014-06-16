@@ -51,7 +51,6 @@
 <div class="container bs-docs-container">
     <div class="row">
         <div class="col-md-12">
-            <p access-level='{{accessLevels.facilitatorView}}'>Current period has been set into <b>{{currentPeriod}}</b>, you are checking the decision of period <b>{{historyPeriod}}</b></p>
 
             <div style="padding:50px 0" angular-wizard>
                 <ul class="steps-indicator steps-8">
@@ -83,7 +82,10 @@
             </div>
         </div>
         <div class="col-md-9" ng-show='!isNegotiation' style="padding:0 0 0 15px">
+
             <div class="bs-docs-section">
+            <p access-level='{{accessLevels.facilitatorView}}'>You are checking the decision of period <b>{{historyPeriod}}</b>, Supplier {{PlayerID}}</p>
+
                 <supplier-product-portfolio-management ng-show='ProductPortfolioManagement' is-page-shown='ProductPortfolioManagement' is-page-loading='isPageLoading' is-ready='isPortfolioDecisionReady'></supplier-product-portfolio-management>
                 
                 <supplier-b-m-list-prices ng-show='BMListPrices' is-page-shown='BMListPrices' is-page-loading='isPageLoading' is-ready='isPortfolioDecisionReady'></supplier-b-m-list-prices>
