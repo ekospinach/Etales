@@ -2703,8 +2703,8 @@ exports.passiveSeminar = function(options){
 				  + '&market1ID=' + doc.market1ID
 				  + '&market2ID=' + doc.market2ID
 				  + '&category1ID=' + doc.category1ID
-				  + '&category2ID=' + doc.category2ID,
-			period : options.period
+				  + '&category2ID=' + doc.category2ID
+				  + '&period=' + options.period
 		};
 		http.get(reqOptions, function(response){
 			var data = '';
@@ -2745,8 +2745,8 @@ exports.kernelSeminar = function(options){
 				  + '&market1ID=' + doc.market1ID
 				  + '&market2ID=' + doc.market2ID
 				  + '&category1ID=' + doc.category1ID
-				  + '&category2ID=' + doc.category2ID,
-			period : options.period
+				  + '&category2ID=' + doc.category2ID
+				  + '&period=' + options.period
 
 		};
 		http.get(reqOptions, function(response){

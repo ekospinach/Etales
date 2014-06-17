@@ -378,7 +378,8 @@ define(['directives', 'services'], function(directives) {
                                 varID: products[idx].varID,
                                 composition: products[idx].composition,
                                 currentPriceBM: products[idx].currentPriceBM,
-                                packFormat:products[idx].realPackFormat
+                                packFormat:products[idx].realPackFormat,
+                                seminar : SeminarInfo.getSelectedSeminar().seminarCode
                             }
                             $http({
                                 method: 'POST',

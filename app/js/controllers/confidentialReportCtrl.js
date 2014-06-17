@@ -149,6 +149,9 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    	$scope.producerShow=false;
 		    	showRetailerConsolidate();
 		    }
+
+		    $scope.currentPeriod = PeriodInfo.getCurrentPeriod();
+		    $scope.historyPeriod = PeriodInfo.getCurrentPeriod() - 1;		    
 		}]);
 
 });

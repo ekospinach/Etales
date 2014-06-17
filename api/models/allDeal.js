@@ -122,7 +122,10 @@ exports.exportToBinary = function(options){
     var deferred = q.defer();
     var period = options.period;
 
-    fillAllDeal(options.seminar, options.period).then(function(result){
+    //need to remove existed allDeal first...
+    removeAllDeal(options.seminar, options.period).then(function(result){      
+      return fillAllDeal(options.seminar, options.period)
+    }).then(function(result){
       allDeal.findOne({seminar: options.seminar, period : options.period},function(err, doc){
         if(err) deferred.reject({msg:err});
         if(!doc){
@@ -143,10 +146,31 @@ exports.exportToBinary = function(options){
         }       
       })
     }, function(error){
-      deferred.reject({msg: 'error'});
+      console.log('error: ' + util.inspect(error));
+      deferred.reject({msg: error.msg});
     });
+
     return deferred.promise;
 }
+
+function removeAllDeal(seminar, period){
+  deferred = q.defer();
+
+  console.log('inside...');
+  allDeal.remove({
+      seminar : seminar,
+      period : period
+  }, function(err, numberAffected){
+
+    if(err){  deferred.reject({msg: 'remove existed alldeal failed'}); }
+
+    console.log('resolve...');
+    deferred.resolve({msg: 'removed existed allDeal, numberAffected ' + numberAffected});
+  });
+
+  return deferred.promise;
+}
+
 
 exports.addDecisions = function(options){
     var deferred = q.defer();
@@ -225,6 +249,7 @@ function doSynchronousLoop(data, processData, done) {
     done();
   }
 }
+
 
 function fillAllDeal(seminar, period){
   var tempDeal,
@@ -408,13 +433,15 @@ function fillNegotiationItemByContractDetail(categoryDeal, negotiationItem, prod
       deferred = q.defer();
 
   categoryDeal.useMarketsDetails = false;
-  categoryDeal.useBrandsDetails = false;
+  categoryDeal.useBrandsDetails = true;
 
   console.log(' + Loop brands for negotiation items : '+ negotiationItem);
   (function loopBrand(brandCount, categoryCount, producerID, seminar, period){
 
     // console.log('producerDecision findOne inside: seminar ' + seminar + '/period ' + period + '/producerID ' + producerID + '/brandCount '  + brandCount);       
     require('./producerDecision.js').proDecision.findOne({seminar:seminar, period:period, producerID:producerID}, function(err, brandDoc){
+
+         
 
        // console.log(brandDoc.proCatDecision[categoryCount].proBrandsDecision[brandCount]);
         if(brandDoc && (brandDoc.proCatDecision[categoryCount].proBrandsDecision[brandCount].brandName != '')){

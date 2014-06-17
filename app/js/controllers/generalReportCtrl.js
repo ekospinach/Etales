@@ -55,6 +55,9 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    $scope.switching=switching;
 		    $scope.showPerformance=showPerformance;
 		  	showPerformance();
+
+		    $scope.currentPeriod = PeriodInfo.getCurrentPeriod();
+		    $scope.historyPeriod = PeriodInfo.getCurrentPeriod() - 1;		  	
 	}]);
 
 });

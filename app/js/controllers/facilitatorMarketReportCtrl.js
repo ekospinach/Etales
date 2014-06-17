@@ -1,6 +1,6 @@
 //facilitatorSummaryReportCtrl.js
 define(['app'], function(app) {
-		app.controller('facilitatorConfidentialReportCtrl',
+		app.controller('facilitatorMarketReportCtrl',
 			['$scope','$q','$rootScope','$location','$http','$filter','Label','PlayerInfo','PeriodInfo','SeminarInfo','RoleInfo', function($scope,$q,$rootScope,$location,$http,$filter,Label,PlayerInfo,PeriodInfo,SeminarInfo,RoleInfo) {
 			$rootScope.loginCss="";
 		    $rootScope.loginFooter="bs-footer";
@@ -28,20 +28,7 @@ define(['app'], function(app) {
 				console.log('fail');
 			})
 
-		    $scope.setPlayer=function(userRole){
-		    	var role=2;
-		    	if(userRole){
-			    	if(userRole>4){
-			    		userRole-=4;
-			    		role=4;
-			    	}
-			    	PlayerInfo.setPlayer(userRole);
-			    	RoleInfo.setRole(role);
-		    	} else {
-		    		$scope.msg = 'Please choose userRole.';
-		    	}
-		    }
-
+			$scope.msg = '';
 		    $scope.setPreriod=function(period){
 		    	if(period){
 			    	PeriodInfo.setCurrentPeriod(period);	    		

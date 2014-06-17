@@ -17,8 +17,10 @@
 <div class="my-super-awesome-loading-box" ng-show="isPageLoading">Loading...</div>
 <div class="container bs-docs-container">
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-9">        
             <div class="bs-docs-section">
+                    <p access-level='{{accessLevels.facilitatorView}}'>Current period has been set into <b>{{currentPeriod}}</b>, you are checking the report of period <b>{{historyPeriod}}</b></p>
+            
                 <!--general report start -->
                     <general-performance-highlights ng-show='Performance' is-page-shown='Performance' is-page-loading='isPageLoading'></general-performance-highlights>
                     

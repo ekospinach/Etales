@@ -26,6 +26,8 @@ define(['angular',
 		'controllers/marketReportCtrl',
 		'controllers/confidentialReportCtrl',
 		'controllers/facilitatorConfidentialReportCtrl',
+		'controllers/facilitatorGeneralReportCtrl',
+		'controllers/facilitatorMarketReportCtrl',		
 		'controllers/supplierDecisionCtrl',
 		'controllers/retailerDecisionCtrl',
 		'controllers/navbarCtrl',
@@ -128,10 +130,20 @@ define(['angular',
 			controller:'summaryReportCtrl',
 			templateUrl:'partials/summaryReport.html',
 			access:access.playerView
+
 		}).when('/facilitatorConfidentialReport',{
 			controller:'facilitatorConfidentialReportCtrl',
 			templateUrl:'partials/facilitatorConfidentialReport.html',
 			access:access.facilitatorView
+		}).when('/facilitatorGeneralReport',{
+			controller:'facilitatorGeneralReportCtrl',
+			templateUrl:'partials/facilitatorGeneralReport.html',
+			access:access.facilitatorView
+		}).when('/facilitatorMarketReport',{
+			controller:'facilitatorMarketReportCtrl',
+			templateUrl:'partials/facilitatorMarketReport.html',
+			access:access.facilitatorView
+
 		}).when('/supplierDecision',{
 			templateUrl:'partials/supplierDecision.html',
 			controller:'supplierDecisionCtrl',

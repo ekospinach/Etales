@@ -37,6 +37,7 @@
 <div class="container bs-docs-container">
     <div class="row">
         <div class="col-md-12">
+      
             <div style="padding:50px 0" angular-wizard>
                 <ul class="steps-indicator steps-5">
                    <li class="done editing">
@@ -59,6 +60,7 @@
         </div>
         <div class="col-md-9" style="width:80%;padding:0 0 0 15px" ng-show='!isNegotiation'>
             <div class="bs-docs-section">
+            <p access-level='{{accessLevels.facilitatorView}}'>You are checking the decision of period <b>{{historyPeriod}}</b>, Retailer {{PlayerID}}</p>              
                 <retailer-marketing ng-show='Marketing' is-page-shown='Marketing' is-page-loading='isPageLoading' is-ready='isRetailerDecisionReady'></retailer-marketing>
 
                 <retailer-private-label-portfolio-management ng-show='PrivateLabelPortfolioManagement' is-page-shown='PrivateLabelPortfolioManagement' is-page-loading='isPageLoading' is-ready='isRetailerDecisionReady'></retailer-private-label-portfolio-management>

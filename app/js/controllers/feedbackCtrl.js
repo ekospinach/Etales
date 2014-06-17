@@ -24,7 +24,9 @@ define(['app'], function(app) {
 				console.log('fail');
 			})
 
-			
-
+			$scope.openTab = function(period){
+				$window.open('feedbackENG?seminar=' + SeminarInfo.getSelectedSeminar().seminarCode + '&period=' + period);
+			}
+							
 		}]);
 });
