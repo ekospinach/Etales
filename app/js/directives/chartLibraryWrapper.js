@@ -840,7 +840,7 @@ define(['directives'], function(directives){
 
     // .directive('doubleScroll',function(){
     //     return function(scope,elem,attrs){
-    //         $('#myTest').doubleScroll();
+    //         $('.double-scroll').doubleScroll();
     //     }
     // })
 

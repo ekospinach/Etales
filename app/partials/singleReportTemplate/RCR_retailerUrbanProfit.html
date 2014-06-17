@@ -3,7 +3,6 @@
         <h3 class="panel-title text-center" popover="{{Label.getContent('Urban Profit & Loss Statement Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Financial Results')}} - {{Label.getContent('Urban Profit & Loss Statement')}} ({{Label.getContent('Elecssories')}})</h3>
     </div>
 
-
     <div> 
         <table class="table table-condensed table-bordered table-success" style="float:left;width:33%;">
             <thead>
@@ -150,7 +149,7 @@
             </tbody>
         </table>
     </div>
-    <div style="overflow-X:scroll" id="myTest">
+    <div style="overflow-X:scroll">
         <table class="table table-condensed table-bordered table-success">
             <thead>
                 <tr>
@@ -159,7 +158,7 @@
                     </th>
                     <th style="white-space: nowrap" ng-repeat='brand1 in brand1s'>
                         <p class="text-center">{{brand1.brandName}}
-                            <a class="btn btn-primary btn-xs" ng-click="openRetailerProductModal(brand1.brandName,'Rural')">{{Label.getContent('More')}}</a>
+                            <a class="btn btn-success btn-xs" ng-click="openRetailerProductModal(brand1.brandName,'Rural')">{{Label.getContent('More')}}</a>
                         </p>
                     </th>
                 </tr>
@@ -546,7 +545,7 @@
                     </th>
                     <th style="white-space: nowrap" ng-repeat='brand2 in brand2s'>
                         <p class="text-center">{{brand2.brandName}}
-                            <a class="btn btn-primary btn-xs" ng-click="openRetailerProductModal(brand2.brandName,'Rural')">{{Label.getContent('More')}}</a>
+                            <a class="btn btn-success btn-xs" ng-click="openRetailerProductModal(brand2.brandName,'Rural')">{{Label.getContent('More')}}</a>
                         </p>
                     </th>
                 </tr>
