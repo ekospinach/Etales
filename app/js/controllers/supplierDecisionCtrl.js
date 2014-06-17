@@ -71,7 +71,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 						$scope.isPortfolioDecisionReady = false;
 					}
 
-				//make sure that isFinalDeicisonCommitted = $scope.isFinalDecisionReady
+				//make sure that isFinalDeicisonCommitted = $scope.FinalDecisionReady
 					url = '/checkProducerFinalDecision/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
 					return $http({
 						method: 'GET',

@@ -316,9 +316,6 @@ implementation {----------------------------------------------------------------
 
     end;
 
-    SourceStock := UpdateStocksSummary( SourceStock );
-    DestinationStock := UpdateStocksSummary( DestinationStock );
-
     Result := LeftToMove;
 
   end; { MoveStocks =========================================================================================================}

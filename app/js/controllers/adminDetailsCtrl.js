@@ -238,7 +238,7 @@ define(['app','socketIO'], function(app) {
 				// 		$scope.isActive = true;					  	
 				// 	  });						
 				// }
-
+				$scope.isActive = true;	
 			},function(res){
 				$scope.isKernelMessageShown = true;
 				$scope.kernelMessage.push(res.data);				
@@ -272,6 +272,7 @@ define(['app','socketIO'], function(app) {
 	 		$scope.infoBuble = true;
 	 	};
 
+	 	$scope.isActive = true;	
 	}]);
 
 });

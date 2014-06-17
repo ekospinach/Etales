@@ -144,6 +144,8 @@ Const
 
   DefaultTOP               = 60;
 
+  MarketStudiesMax         = 20;
+
   ForecastError            = 0.05;
 
   Precision          = 1.0E-6;

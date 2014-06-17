@@ -106,6 +106,8 @@ exports.addContract = function(io) {
      }
 }
 
+
+//calculate how much per contractCode cost AKA supplier have to pay for 
 exports.getContractExpend = function(req, res, next) {
      var result = 0;
      contractVariantDetails.find({
@@ -114,6 +116,7 @@ exports.getContractExpend = function(req, res, next) {
           if (err) {
                next(new Error(err));
           }
+
           if (docs.length != 0) {
                for (var i = 0; i < docs.length; i++) {
                     result += docs[i].nc_SalesTargetVolume;

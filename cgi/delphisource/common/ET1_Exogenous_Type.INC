@@ -51,6 +51,8 @@ TOneQuarterExogenous =
       MinRetailPriceVsNetBMPrice      : single;
       MaxRetailPriceVsNetBMPrice      : single;
 
+      MarketStudiesPrices             : TMarketResearchPrices
+
     end;
 
 TExogenous = array[TMarkets, TCategories] of TOneQuarterExogenous;

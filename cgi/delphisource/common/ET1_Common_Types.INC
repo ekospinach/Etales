@@ -72,6 +72,7 @@ Type
   TVariantPriority         = ( NO_PREFERENCE, BM_PREFERENCE, EMALL_PREFERENCE );
   TWebTrawlerDimensions    = ( SENTIMENT, STRENGTH );  
   TWeeksInPeriod           = 0..PeriodLastWeek;
+  TMarketStudies           = 1..MarketStudiesMax;
 
   TIngredientsDetails                = array[TIngredientsInput] of single;
   TProducersIngredientsDetails       = array[TAllProducers] of TIngredientsDetails;
@@ -128,6 +129,9 @@ Type
   TVariantPerceptionsData            = array[TVariantPerceptions] of single;
   TWebTrawlerIndices                 = array[TWebTrawlerDimensions] of single; 
 
+  TMarketResearchOrders              = array[TMarketStudies] of boolean;
+  TMarketResearchPrices              = array[TMarketStudies] of single;
+
 
 {=========================   Producer Decisions   ===========================================================================}
 
@@ -181,13 +185,14 @@ Type
                    dp_CatDecisions            : TProCatsDecisions;
                    dp_NextBudgetExtension     : single;
                    dp_ApprovedBudgetExtension : single;
+{                   dp_MarketResearch          : TMarketResearchOrders;  }
                  end;
 
   TProsDecisions = array[TAllProducers] of TProDecision;
 
   TProDecisionsFile = file of TProDecision;
 
-  TProPastDecisions = array[HistoryStart..HistoryEnd] of TProDecision;
+  TProPastDecisions = array[1..ProsMaxPlus, HistoryStart..HistoryEnd] of TProDecision;
 
 
   TInitialProVariants   = array[TAllProducers, TProBrands, TOneBrandVariants] of TProVariantDecision;
@@ -268,6 +273,7 @@ Type
                    dr_TraditionalAdvertising   : TStorePerceptionsData;
                    dr_NextBudgetExtension      : single; 
                    dr_ApprovedBudgetExtension  : single;                           { ### }
+{                   dr_MarketResearch           : TMarketResearchOrders;  }
                  end;
 
   TRetsDecisions = array[TBMRetailers] of TRetDecision;

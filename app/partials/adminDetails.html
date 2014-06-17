@@ -102,11 +102,11 @@
 	  <h4>Warning! Initialise confirmation</h4>
 	  <p>Data(result and decision) from period -3 to period 0 will be covered</p>
 	  <p>
-	    <button type="button" class="btn btn-danger" ng-click='Initialize(seminar, isKeepExistedPeriod1Decision)'>Take this action</button>
+	    <button type="button" class="btn btn-danger" ng-click='Initialize(seminar, isKeepExistedPeriod1Decision)' ng-disabled="!isActive">Take this action</button>
 	    <button type="button" ng-click="isInitializeConfirmInfoShown=false" class="btn btn-default">Cancel</button>
 	  </p>
 	</div>		            
-	<p><a class="btn btn-default" ng-click="openInitializeModal()">Save changes & Initialize</a></p>		
+	<p><a class="btn btn-default" ng-click="openInitializeModal()" ng-disabled="!isActive">Save changes & Initialize</a></p>		
 
 	<div>
 		<div class="page-header">
@@ -136,8 +136,8 @@
 		  <span class="input-group-addon">Period (range: -3 ~ {{seminar.currentPeriod}})</span>
 		  <input type="text" class="form-control" ng-model="selectedPeriod">
 		  <span class="input-group-btn">
-		    <button class="btn btn-default" type="button" ng-click="passiveDecision(seminar, selectedPeriod)">Get passive decision</button>
-		    <button class="btn btn-default" ng-click="openRunModal()" type="button">Run</button>
+		    <button   ng-disabled="!isActive" class="btn btn-default" type="button" ng-click="passiveDecision(seminar, selectedPeriod)">Get passive decision</button>
+		    <button    ng-disabled="!isActive" class="btn btn-default" ng-click="openRunModal()" type="button">Run</button>
 		  </span>				  
 		</div>		
 		
