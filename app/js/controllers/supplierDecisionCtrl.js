@@ -71,7 +71,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 						$scope.isPortfolioDecisionReady = false;
 					}
 
-				//Get company history information (available budget, capacity, acquired TL...)
+				//make sure that isFinalDeicisonCommitted = $scope.isFinalDecisionReady
 					url = '/checkProducerFinalDecision/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
 					return $http({
 						method: 'GET',

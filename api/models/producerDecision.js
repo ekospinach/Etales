@@ -569,57 +569,63 @@ exports.getProductionResult=function(req,res,next){
     })
 }
 
-exports.getProducerExpend=function(req,res,next){
+exports.getProducerExpend = function(req, res, next) {
     proDecision.findOne({
-        seminar:req.params.seminar,
-        period:req.params.period,
-        producerID:req.params.producerID
-    },function(err,doc){
-        if(err){
+        seminar: req.params.seminar,
+        period: req.params.period,
+        producerID: req.params.producerID
+    }, function(err, doc) {
+        if (err) {
             next(new Error(err));
         }
-        if(!doc){
-            res.send(404,{err:'cannot find the doc'});
-        }else{
-            var result=0;
-            for(var i=0;i<doc.proCatDecision.length;i++){
-                for(var j=0;j<doc.proCatDecision[i].proBrandsDecision.length;j++){
-                    if(doc.proCatDecision[i].proBrandsDecision[j].brandID!=0&&doc.proCatDecision[i].proBrandsDecision[j].brandName!=""){
-                        result+=(
-                                doc.proCatDecision[i].proBrandsDecision[j].advertisingOffLine[0]
-                                +doc.proCatDecision[i].proBrandsDecision[j].advertisingOffLine[1]
-                                +doc.proCatDecision[i].proBrandsDecision[j].advertisingOnLine
-                                +doc.proCatDecision[i].proBrandsDecision[j].supportEmall
-                                +doc.proCatDecision[i].proBrandsDecision[j].supportTraditionalTrade[0]
-                                +doc.proCatDecision[i].proBrandsDecision[j].supportTraditionalTrade[1]
+        if (!doc) {
+            res.send(404, {
+                err: 'cannot find the doc'
+            });
+        } else {
+            var result = 0;
+            for (var i = 0; i < doc.proCatDecision.length; i++) {
+                for (var j = 0; j < doc.proCatDecision[i].proBrandsDecision.length; j++) {
+                    if (doc.proCatDecision[i].proBrandsDecision[j].brandID != 0 && doc.proCatDecision[i].proBrandsDecision[j].brandName != "") {
+                        result += (
+                            doc.proCatDecision[i].proBrandsDecision[j].advertisingOffLine[0] + 
+                            doc.proCatDecision[i].proBrandsDecision[j].advertisingOffLine[1] + 
+                            doc.proCatDecision[i].proBrandsDecision[j].advertisingOnLine + 
+                            doc.proCatDecision[i].proBrandsDecision[j].supportEmall + 
+                            doc.proCatDecision[i].proBrandsDecision[j].supportTraditionalTrade[0] + 
+                            doc.proCatDecision[i].proBrandsDecision[j].supportTraditionalTrade[1]
                         );
                     }
                 }
             }
-            if(req.params.brandName=="brandName"){
-               res.send(200,{result:result});                
-            }else{
-                if(req.params.brandName.substring(0,1)=="E"){
-                    categoryID=1;
-                }else{
-                    categoryID=2;
-                }
-                var allProCatDecisions=_.filter(doc.proCatDecision,function(obj){
-                    return (obj.categoryID==categoryID);
+            if (req.params.brandName == "brandName") {
+                res.send(200, {
+                    result: result
                 });
-                for(var i=0;i<allProCatDecisions.length;i++){
-                    for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
-                        if(allProCatDecisions[i].proBrandsDecision[j].brandID!=0&&allProCatDecisions[i].proBrandsDecision[j].brandName==req.params.brandName){
-                            if(req.params.location=="advertisingOffLine"||req.params.location=="supportTraditionalTrade"){
-                                result-=allProCatDecisions[i].proBrandsDecision[j][req.params.location][req.params.additionalIdx];
-                            }else{
-                                result-=allProCatDecisions[i].proBrandsDecision[j][req.params.location];
+            } else {
+                if (req.params.brandName.substring(0, 1) == "E") {
+                    categoryID = 1;
+                } else {
+                    categoryID = 2;
+                }
+                var allProCatDecisions = _.filter(doc.proCatDecision, function(obj) {
+                    return (obj.categoryID == categoryID);
+                });
+                for (var i = 0; i < allProCatDecisions.length; i++) {
+                    for (var j = 0; j < allProCatDecisions[i].proBrandsDecision.length; j++) {
+                        if (allProCatDecisions[i].proBrandsDecision[j].brandID != 0 && allProCatDecisions[i].proBrandsDecision[j].brandName == req.params.brandName) {
+                            if (req.params.location == "advertisingOffLine" || req.params.location == "supportTraditionalTrade") {
+                                result -= allProCatDecisions[i].proBrandsDecision[j][req.params.location][req.params.additionalIdx];
+                            } else {
+                                result -= allProCatDecisions[i].proBrandsDecision[j][req.params.location];
                             }
                             break;
                         }
                     }
                 }
-                res.send(200,{result:result});
+                res.send(200, {
+                    result: result
+                });
             }
         }
     })
