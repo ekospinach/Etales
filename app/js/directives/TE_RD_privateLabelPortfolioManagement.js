@@ -371,7 +371,7 @@ define(['directives', 'services'], function(directives){
                             });
                             newBrand.brandID=calculateBrandID(retVariantDecision,PlayerInfo.getPlayer());
                             newBrand.brandName=$scope.brandFirstName+myForm[1].value+(parseInt(PlayerInfo.getPlayer())+4);
-                            newBrand.parentCompanyID=PlayerInfo.getPlayer()+4;
+                            newBrand.parentCompanyID=parseInt(PlayerInfo.getPlayer())+4;
                             newBrand.dateOfDeath=10;
                             newBrand.dateOfBirth=PeriodInfo.getCurrentPeriod();
                             newBrand.privateLabelVarDecision=new Array();
