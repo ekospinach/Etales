@@ -117,24 +117,21 @@ exports.getContractExpend = function(req, res, next) {
                next(new Error(err));
           }
 
-          res.send(200, {
-               'result': 0
-          });      
-          // if (docs.length != 0) {
-          //      for (var i = 0; i < docs.length; i++) {
-          //           result += docs[i].nc_SalesTargetVolume;
-          //           if (docs[i].parentBrandName == req.params.parentBrandName && docs[i].variantName == req.params.variantName) {
-          //                result -= docs[i].nc_SalesTargetVolume;
-          //           }
-          //      }
-          //      res.send(200, {
-          //           'result': result
-          //      });
-          // } else {
-          //      res.send(200, {
-          //           'result': 0
-          //      });
-          // }
+          if (docs.length != 0) {
+               for (var i = 0; i < docs.length; i++) {
+                    result += docs[i].nc_SalesTargetVolume;
+                    if (docs[i].parentBrandName == req.params.parentBrandName && docs[i].variantName == req.params.variantName) {
+                         result -= docs[i].nc_SalesTargetVolume;
+                    }
+               }
+               res.send(200, {
+                    'result': result
+               });
+          } else {
+               res.send(200, {
+                    'result': 0
+               });
+          }
      });
 }
 

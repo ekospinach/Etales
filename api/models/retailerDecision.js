@@ -74,7 +74,7 @@ var retMarketDecisionSchema = mongoose.Schema({
     marketID : Number, //1~2
     categorySurfaceShare : [Number], //[1]for Elecssories [2]for HealthBeauty
     emptySpaceOptimised : Boolean,
-    localAdvertising : [Number], //0-Price, 1-Convenience, 2-assortment
+    localAdvertising : [Number], //0-Price, 1-Convenience
     serviceLevel : String, //SL_BASE, SL_FAIR, SL_MEDIUM, SL_ENHANCED, SL_PREMIUM
     retMarketAssortmentDecision : [retQuarterAssortmentDecisionSchema] //length : TCategories(1~2)
 })
@@ -85,8 +85,8 @@ var retDecisionSchema = mongoose.Schema({
     retailerID : Number, //TAllRetailers (1~4)
     nextBudgetExtension : Number,
     approvedBudgetExtension : Number,
-    onlineAdvertising : [Number], //0-Price, 1-Convenience, 2-assortment
-    tradtionalAdvertising : [Number], //0-Price, 1-Convenience, 2-assortment
+    onlineAdvertising : [Number], //0-Price, 1-Convenience
+    tradtionalAdvertising : [Number], //0-Price, 1-Convenience
     retCatDecision : [retCatDecisionSchema], //length: TCategories(1~2)
     retMarketDecision: [retMarketDecisionSchema] //length: TMarkets(1~2)
 })

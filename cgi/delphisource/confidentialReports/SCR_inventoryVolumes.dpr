@@ -11,6 +11,8 @@ const
   scrviv_Sales            = 102;
   scrviv_Discontinued     = 103;
   scrviv_Closing          = 104;
+  scrviv_Orders           = 105;
+  scrviv_Shipments        = 106; 
 
 var
   DataDirectory : string;
@@ -37,6 +39,24 @@ var
   //     scrviv_Discontinued     : single;
   //     scrviv_Closing          : array[TProducerDivisions] of single;
   //   end;
+  function variantMarketInfoSchema(fieldIdx : integer; catID : integer; marketID : integer; accountID : integer; variant : TSCR_VariantInventoryVolume): ISuperObject;
+  var
+     jo : ISuperObject;
+  begin
+     jo := SO;
+     jo.S['variantName'] := variant.scrviv_VariantName;
+     jo.S['parentBrandName'] := variant.scrviv_ParentBrandName;
+     jo.I['parentCategoryID'] := catID;
+     jo.I['marketID'] := marketID;
+     jo.I['accountID'] := accountID;     
+     case (fieldIdx) of
+        scrviv_Orders           : begin jo.D['value'] := variant.scrviv_Orders[marketID, accountID]; end;
+        scrviv_Shipments        : begin jo.D['value'] := variant.scrviv_Shipments[marketID, accountID];  end;     
+     end;
+     result := jo;
+  end;
+
+
   function variantInfoSchema(fieldIdx : integer; catID : integer; variant : TSCR_VariantInventoryVolume): ISuperObject;
   var
      jo : ISuperObject;
@@ -59,7 +79,7 @@ var
   procedure makeJson();
   var
     s_str : string;
-    actorID,catID,brandCount,variantCount : Integer;
+    actorID,catID,brandCount,variantCount,marketID, accountID : Integer;
   begin
     oJsonFile := SO;
     oJsonFile.S['seminar'] := currentSeminar;
@@ -71,6 +91,9 @@ var
     oJsonFile.O['scrviv_Sales'] := SA([]);
     oJsonFile.O['scrviv_Discontinued'] := SA([]);
     oJsonFile.O['scrviv_Closing'] := SA([]);
+
+    oJsonFile.O['scrviv_Orders'] := SA([]);
+    oJsonFile.O['scrviv_Shipments'] := SA([]);
 
     for catID := Low(TCategories) to High(TCategories) do
     begin
@@ -85,10 +108,20 @@ var
               oJsonFile.A['scrviv_Sales'].Add( variantInfoSchema(scrviv_Sales, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_InventoryVolumes[catID, brandCount, variantCount] ) );
               oJsonFile.A['scrviv_Discontinued'].Add( variantInfoSchema(scrviv_Discontinued, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_InventoryVolumes[catID, brandCount, variantCount] ) );
               oJsonFile.A['scrviv_Closing'].Add( variantInfoSchema(scrviv_Closing, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_InventoryVolumes[catID, brandCount, variantCount] ) );
+              
+              for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do
+              begin
+                for accountID := Low(TAccountsTotal) to High(TAccountsTotal) do
+                begin
+                  oJsonFile.A['scrviv_Orders'] := variantMarketInfoSchema(scrviv_Orders, catID, marketID, accountID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_InventoryVolumes[catID, brandCount, variantCount]  );
+                  oJsonFile.A['scrviv_Shipments'] := variantMarketInfoSchema(scrviv_Shipments, catID, marketID, accountID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_InventoryVolumes[catID, brandCount, variantCount]  );
+                end;
+              end;
             end;
           end;
         end;      
     end;    
+
 
     //for debug used
     s_str := 'out' + '.json';

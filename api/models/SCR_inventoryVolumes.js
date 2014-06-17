@@ -16,7 +16,9 @@ var SCR_inventoryVolumesSchema = mongoose.Schema({
     scrviv_Production       : [variantInfoSchema],
     scrviv_Sales            : [variantInfoSchema],
     scrviv_Discontinued     : [variantInfoSchema],
-    scrviv_Closing          : [variantInfoSchema]
+    scrviv_Closing          : [variantInfoSchema],
+    scrviv_Orders           : [variantMarketInfoSchema],
+    scrviv_Shipments           : [variantMarketInfoSchema],    
 })
 
 var variantInfoSchema = mongoose.Schema({
@@ -25,6 +27,16 @@ var variantInfoSchema = mongoose.Schema({
     parentCategoryID : Number,
     value : [Number], ////0-traditional, 1-Internet, 2-Total
 })
+
+var variantMarketInfoSchema = mongoose.Schema({
+    variantName       : String,
+    parentBrandName   : String,
+    parentCategoryID : Number,
+    marketID : Number, //1-Urban, 2-Rural, 3-Total
+    accountID : Number, //1-Retailer1, 2-Retailer2, 3-Traditional Trade, 4-On-Line, 5-Total
+    value : Number
+})
+
 var SCR_inventoryVolumes=mongoose.model('SCR_inventoryVolumes',SCR_inventoryVolumesSchema);
 
 exports.addReports = function(options){
@@ -68,6 +80,8 @@ exports.addReports = function(options){
                                 scrviv_Sales            : singleReport.scrviv_Sales,       
                                 scrviv_Discontinued     : singleReport.scrviv_Discontinued,
                                 scrviv_Closing          : singleReport.scrviv_Closing,     
+                                scrviv_Orders           : singleReport.scrviv_Orders,
+                                scrviv_Shipments           : singleReport.scrviv_Shipments,                                  
                                 },
                                 {upsert: true},
                                 function(err, numberAffected, raw){

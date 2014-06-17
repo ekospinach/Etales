@@ -294,6 +294,8 @@ TSCR_VariantInventoryVolume =
     scrviv_Initial          : array[TProducerDivisions] of single;
     scrviv_Production       : single;
     scrviv_Sales            : array[TProducerDivisions] of single;
+    scrviv_Orders           : array[TMarketsTotal, TAccountsTotal] of single;
+    scrviv_Shipments        : array[TMarketsTotal, TAccountsTotal] of single;
     scrviv_Discontinued     : single;
     scrviv_Closing          : array[TProducerDivisions] of single;
   end;

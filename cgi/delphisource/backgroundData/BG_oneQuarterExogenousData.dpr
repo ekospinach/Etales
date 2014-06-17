@@ -177,14 +177,14 @@ var
       catID: Integer;
     begin
       oJsonFile := SA([]);
-      oJsonFile[''] := oneQuarterExogenousDataSchema(1, 1);
-//      for marketID := Low(TMarkets) to High(TMarkets) do
-//      begin
-//        for catID := Low(TCategories) to High(TCategories) do
-//        begin
-//           oJsonFile[''] := oneQuarterExogenousDataSchema(marketID, catID);
-//        end;
-//      end;
+//      oJsonFile[''] := oneQuarterExogenousDataSchema(1, 1);
+      for marketID := Low(TMarkets) to High(TMarkets) do
+      begin
+        for catID := Low(TCategories) to High(TCategories) do
+        begin
+           oJsonFile[''] := oneQuarterExogenousDataSchema(marketID, catID);
+        end;
+      end;
 
       s_str := 'out' + '.json';
       writeln( oJsonFile.AsJSon(False,False));
@@ -232,7 +232,7 @@ begin
         SetGlobalNames;
 
                                            ///GetCurrentDir + '\'
-        ReturnStatus := ReadExogenousFile( 'C:\EtalesData\EJT1\', MarketsNow, CategoriesNow, Markets_IDs, Categories_IDs, currentPeriod );
+        ReturnStatus := ReadExogenousFile( GetCurrentDir + '\', MarketsNow, CategoriesNow, Markets_IDs, Categories_IDs, currentPeriod );
         if ( ReturnStatus = err_ExogenousFileRead_OK ) then
         begin
            makeJson;

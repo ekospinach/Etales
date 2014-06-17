@@ -214,10 +214,10 @@ implementation {----------------------------------------------------------------
       sVolume := SourceStock[sAge].invd_Volume;
       sFormula := SourceStock[sAge].invd_Composition;
       sCost := SourceStock[sAge].invd_UnitCost;
-      if IsZero( sVolume, Precision ) then Dec( sAge ) else
+      if IsZero( sVolume, SimplePrecision ) then Dec( sAge ) else
       begin
         dAge := InventoryAgesMax;
-        while ( not IsZero( LeftToMove, Precision)) and ( dAge >= 0 ) do
+        while ( not IsZero( sVolume, SimplePrecision)) and ( dAge >= 0 ) do
         begin
           dFormula := DestinationStock[dAge].invd_Composition;
           if not CompareMem( @sFormula, @dFormula, SizeOf( TVariantComposition )) and
@@ -239,7 +239,8 @@ implementation {----------------------------------------------------------------
 
             with SourceStock[sAge] do
             begin
-              invd_Volume := max( 0.0, sVolume - v );
+              sVolume := max( 0.0, sVolume - v );
+              invd_Volume := sVolume;
               if IsZero( invd_Volume, Precision ) then
               begin
                 invd_UnitCost := 0.0;
@@ -248,6 +249,8 @@ implementation {----------------------------------------------------------------
             end;
 
             LeftToMove := max( 0.0, LeftToMove - v );
+
+            if IsZero( LeftToMove, simplePrecision ) then dAge := -1; { force exit from that loop }
 
           end;
         end; { while dAge >= 0 }
@@ -260,7 +263,7 @@ implementation {----------------------------------------------------------------
       { i.e. some source formulas could not be found as destination                           }
       { the oldest stocks batch at destination will become an average of all unmoved formulas }
 
-      dAge := InventoryAgesMax;
+      dAge := 0;
       for i := 1 to SpecsMax do Temp[i] := DestinationStock[dAge].invd_Composition[i];
 
       for sAge := 0 to InventoryAgesMax do
