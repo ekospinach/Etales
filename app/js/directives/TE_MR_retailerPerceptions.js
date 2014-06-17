@@ -17,7 +17,30 @@ define(['directives', 'services'], function(directives){
                 }
 
                 var getResult =function(){
-                    scope.player1es=new Array();scope.player2es=new Array();scope.player3es=new Array();scope.player4es=new Array();scope.player5es=new Array();scope.player6es=new Array();scope.player1hs=new Array();scope.player2hs=new Array();scope.player3hs=new Array();scope.player4hs=new Array();scope.player5hs=new Array();scope.player6hs=new Array();
+                    scope.latestPlayer1es=new Array();
+                    scope.latestPlayer2es=new Array();
+                    scope.latestPlayer3es=new Array();
+                    scope.latestPlayer4es=new Array();
+                    scope.latestPlayer5es=new Array();
+                    scope.latestPlayer6es=new Array();
+                    scope.latestPlayer1hs=new Array();
+                    scope.latestPlayer2hs=new Array();
+                    scope.latestPlayer3hs=new Array();
+                    scope.latestPlayer4hs=new Array();
+                    scope.latestPlayer5hs=new Array();
+                    scope.latestPlayer6hs=new Array();
+                    scope.previousPlayer1es=new Array();
+                    scope.previousPlayer2es=new Array();
+                    scope.previousPlayer3es=new Array();
+                    scope.previousPlayer4es=new Array();
+                    scope.previousPlayer5es=new Array();
+                    scope.previousPlayer6es=new Array();
+                    scope.previousPlayer1hs=new Array();
+                    scope.previousPlayer2hs=new Array();
+                    scope.previousPlayer3hs=new Array();
+                    scope.previousPlayer4hs=new Array();
+                    scope.previousPlayer5hs=new Array();
+                    scope.previousPlayer6hs=new Array();
                     var url='/getMR-retailerPerceptionEvolution/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1);
                     $http({
                         method:'GET',
@@ -46,41 +69,71 @@ define(['directives', 'services'], function(directives){
                     for(var i=0;i<data.data[0].storeInfo.length;i++){
                         if(data.data[0].storeInfo[i].marketID==1){
                             switch(data.data[0].storeInfo[i].storeID){
-                                case 1:scope.player1es.push([data.data[0].storeInfo[i].latestPerception[1],data.data[0].storeInfo[i].latestPerception[0],10]);scope.player1hs.push([loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).latestPerception[1],loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).latestPerception[0],10]);break;
-                                case 2:scope.player2es.push([data.data[0].storeInfo[i].latestPerception[1],data.data[0].storeInfo[i].latestPerception[0],10]);scope.player2hs.push([loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).latestPerception[1],loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).latestPerception[0],10]);break;
-                                case 3:scope.player3es.push([data.data[0].storeInfo[i].latestPerception[1],data.data[0].storeInfo[i].latestPerception[0],10]);scope.player3hs.push([loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).latestPerception[1],loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).latestPerception[0],10]);break;
-                                case 4:scope.player4es.push([data.data[0].storeInfo[i].latestPerception[1],data.data[0].storeInfo[i].latestPerception[0],10]);scope.player4hs.push([loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).latestPerception[1],loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).latestPerception[0],10]);break;
-                                case 5:scope.player5es.push([data.data[0].storeInfo[i].latestPerception[1],data.data[0].storeInfo[i].latestPerception[0],10]);scope.player5hs.push([loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).latestPerception[1],loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).latestPerception[0],10]);break;
-                                case 6:scope.player6es.push([data.data[0].storeInfo[i].latestPerception[1],data.data[0].storeInfo[i].latestPerception[0],10]);scope.player6hs.push([loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).latestPerception[1],loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).latestPerception[0],10]);break;
+                                case 1:scope.latestPlayer1es.push([data.data[0].storeInfo[i].latestPerception[1],data.data[0].storeInfo[i].latestPerception[0],10]);scope.latestPlayer1hs.push([loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).latestPerception[1],loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).latestPerception[0],10]);
+                                scope.previousPlayer1es.push([data.data[0].storeInfo[i].previousPerception[1],data.data[0].storeInfo[i].previousPerception[0],10]);scope.latestPlayer1hs.push([loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).previousPerception[1],loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).previousPerception[0],10]);break;
+                                case 2:scope.latestPlayer2es.push([data.data[0].storeInfo[i].latestPerception[1],data.data[0].storeInfo[i].latestPerception[0],10]);scope.latestPlayer2hs.push([loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).latestPerception[1],loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).latestPerception[0],10]);
+                                scope.previousPlayer2es.push([data.data[0].storeInfo[i].previousPerception[1],data.data[0].storeInfo[i].previousPerception[0],10]);scope.latestPlayer2hs.push([loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).previousPerception[1],loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).previousPerception[0],10]);break;
+                                case 3:scope.latestPlayer3es.push([data.data[0].storeInfo[i].latestPerception[1],data.data[0].storeInfo[i].latestPerception[0],10]);scope.latestPlayer3hs.push([loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).latestPerception[1],loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).latestPerception[0],10]);
+                                scope.previousPlayer3es.push([data.data[0].storeInfo[i].previousPerception[1],data.data[0].storeInfo[i].previousPerception[0],10]);scope.latestPlayer3hs.push([loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).previousPerception[1],loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).previousPerception[0],10]);break;
+                                case 4:scope.latestPlayer4es.push([data.data[0].storeInfo[i].latestPerception[1],data.data[0].storeInfo[i].latestPerception[0],10]);scope.latestPlayer4hs.push([loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).latestPerception[1],loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).latestPerception[0],10]);
+                                scope.previousPlayer4es.push([data.data[0].storeInfo[i].previousPerception[1],data.data[0].storeInfo[i].previousPerception[0],10]);scope.latestPlayer4hs.push([loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).previousPerception[1],loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).previousPerception[0],10]);break;
+                                case 5:scope.latestPlayer5es.push([data.data[0].storeInfo[i].latestPerception[1],data.data[0].storeInfo[i].latestPerception[0],10]);scope.latestPlayer5hs.push([loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).latestPerception[1],loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).latestPerception[0],10]);
+                                scope.previousPlayer5es.push([data.data[0].storeInfo[i].previousPerception[1],data.data[0].storeInfo[i].previousPerception[0],10]);scope.latestPlayer5hs.push([loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).previousPerception[1],loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).previousPerception[0],10]);break;
+                                case 6:scope.latestPlayer6es.push([data.data[0].storeInfo[i].latestPerception[1],data.data[0].storeInfo[i].latestPerception[0],10]);scope.latestPlayer6hs.push([loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).latestPerception[1],loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).latestPerception[0],10]);
+                                scope.previousPlayer6es.push([data.data[0].storeInfo[i].previousPerception[1],data.data[0].storeInfo[i].previousPerception[0],10]);scope.latestPlayer6hs.push([loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).previousPerception[1],loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).previousPerception[0],10]);break;
                                 case 7:break;
                             }
                         }
                     }
                     scope.retailerPerceptionsSeries1=[{
-                        name:Label.getContent('Retailer')+' 1',data:scope.player1es,color:'#3257A7'
+                        name:Label.getContent('Retailer')+' 1',data:scope.latestPlayer1es,color:'#3257A7'
                     },{
-                        name:Label.getContent('Retailer')+' 2',data:scope.player2es,color:'#B11E22'
+                        name:Label.getContent('Retailer')+' 2',data:scope.latestPlayer2es,color:'#B11E22'
                     },{
-                        name:Label.getContent('Traditional Trade'),data:scope.player3es,color:'#F6B920'
+                        name:Label.getContent('Traditional Trade'),data:scope.latestPlayer3es,color:'#F6B920'
                     },{
-                        name:Label.getContent('Supplier 1 Online'),data:scope.player4es,color:'#8B288B'
+                        name:Label.getContent('Supplier 1 Online'),data:scope.latestPlayer4es,color:'#8B288B'
                     },{
-                        name:Label.getContent('Supplier 2 Online'),data:scope.player5es,color:'#F05422'
+                        name:Label.getContent('Supplier 2 Online'),data:scope.latestPlayer5es,color:'#F05422'
                     },{
-                        name:Label.getContent('Supplier 3 Online'),data:scope.player6es,color:'#329444'
+                        name:Label.getContent('Supplier 3 Online'),data:scope.latestPlayer6es,color:'#329444'
+                    },{
+                        name:Label.getContent('pre')+' '+Label.getContent('Retailer')+' 1',data:scope.previousPlayer1es,color:'#4682b4'
+                    },{
+                        name:Label.getContent('pre')+' '+Label.getContent('Retailer')+' 2',data:scope.previousPlayer2es,color:'#a0522d'
+                    },{
+                        name:Label.getContent('pre')+' '+Label.getContent('Traditional Trade'),data:scope.previousPlayer3es,color:'#daa520'
+                    },{
+                        name:Label.getContent('pre')+' '+Label.getContent('Supplier 1 Online'),data:scope.previousPlayer4es,color:'#8b008b'
+                    },{
+                        name:Label.getContent('pre')+' '+Label.getContent('Supplier 2 Online'),data:scope.previousPlayer5es,color:'#d2691e'
+                    },{
+                        name:Label.getContent('pre')+' '+Label.getContent('Supplier 3 Online'),data:scope.previousPlayer6es,color:'#2e8b57'
                     }];
                     scope.retailerPerceptionsSeries2=[{
-                        name:Label.getContent('Retailer')+' 1',data:scope.player1hs,color:'#3257A7'
+                        name:Label.getContent('Retailer')+' 1',data:scope.latestPlayer1hs,color:'#3257A7'
                     },{
-                        name:Label.getContent('Retailer')+' 2',data:scope.player2hs,color:'#B11E22'
+                        name:Label.getContent('Retailer')+' 2',data:scope.latestPlayer2hs,color:'#B11E22'
                     },{
-                        name:Label.getContent('Traditional Trade'),data:scope.player3hs,color:'#F6B920'
+                        name:Label.getContent('Traditional Trade'),data:scope.latestPlayer3hs,color:'#F6B920'
                     },{
-                        name:Label.getContent('Supplier 1 Online'),data:scope.player4hs,color:'#8B288B'
+                        name:Label.getContent('Supplier 1 Online'),data:scope.latestPlayer4hs,color:'#8B288B'
                     },{
-                        name:Label.getContent('Supplier 2 Online'),data:scope.player5hs,color:'#F05422'
+                        name:Label.getContent('Supplier 2 Online'),data:scope.latestPlayer5hs,color:'#F05422'
                     },{
-                        name:Label.getContent('Supplier 3 Online'),data:scope.player6hs,color:'#329444'
+                        name:Label.getContent('Supplier 3 Online'),data:scope.latestPlayer6hs,color:'#329444'
+                    },{
+                        name:Label.getContent('pre')+' '+Label.getContent('Retailer')+' 1',data:scope.previousPlayer1hs,color:'#4682b4'
+                    },{
+                        name:Label.getContent('pre')+' '+Label.getContent('Retailer')+' 2',data:scope.previousPlayer2hs,color:'#a0522d'
+                    },{
+                        name:Label.getContent('pre')+' '+Label.getContent('Traditional Trade'),data:scope.previousPlayer3hs,color:'#daa520'
+                    },{
+                        name:Label.getContent('pre')+' '+Label.getContent('Supplier 1 Online'),data:scope.previousPlayer4hs,color:'#8b008b'
+                    },{
+                        name:Label.getContent('pre')+' '+Label.getContent('Supplier 2 Online'),data:scope.previousPlayer5hs,color:'#d2691e'
+                    },{
+                        name:Label.getContent('pre')+' '+Label.getContent('Supplier 3 Online'),data:scope.previousPlayer6hs,color:'#2e8b57'
                     }];
                     scope.xTitle3=Label.getContent('Convenience');
                     scope.yTitle3=Label.getContent('Price Appeal');

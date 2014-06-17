@@ -976,8 +976,8 @@ var getLabelBase = function(){
 		{id:'Market Shares by Consumer Segment Info',  ENG:'Market Shares by Consumer Segment Info',  CHN:'',  RUS:''},
 		{id:'Market Shares by Shopper Segment Info',  ENG:'Market Shares by Shopper Segment Info',  CHN:'',  RUS:''},
 		{id:'Admin',  ENG:'Admin',  CHN:'管理员',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'pre',  ENG:'pre',  CHN:'',  RUS:''},
+		{id:'late',  ENG:'last',  CHN:'',  RUS:''},
 		{id:'',  ENG:'',  CHN:'',  RUS:''}
 	]
 }
