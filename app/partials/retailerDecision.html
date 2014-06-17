@@ -15,9 +15,9 @@
     }
     @media (min-width: 1200px) {
       /* Widen the fixed sidebar again */
-      .bs-docs-section.affix-bottom,
-      .bs-docs-section.affix {
-        padding: 0;
+      .bs-docs-sidebar.affix-bottom,
+      .bs-docs-sidebar.affix {
+        width: 213px;
       }
     }
     .my-super-awesome-loading-box {
@@ -57,7 +57,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-md-9" style="width:74%" ng-show='!isNegotiation'>
+        <div class="col-md-9" style="width:80%;padding:0 0 0 15px" ng-show='!isNegotiation'>
             <div class="bs-docs-section">
                 <retailer-marketing ng-show='Marketing' is-page-shown='Marketing' is-page-loading='isPageLoading' is-ready='isRetailerDecisionReady'></retailer-marketing>
 
@@ -69,7 +69,7 @@
                 
             </div>
         </div>
-        <div class="col-md-3" style="width:26%" ng-show='!isNegotiation'>
+        <div class="col-md-3" style="width:20%;padding:0 0 0 15px" ng-show='!isNegotiation'>
             <div class="bs-docs-section bs-docs-sidebar hidden-print" affix='10' role="complementary">
                 <table class="table table-condensed">
                     <thead>

@@ -838,6 +838,12 @@ define(['directives'], function(directives){
         }
     })
 
+    // .directive('doubleScroll',function(){
+    //     return function(scope,elem,attrs){
+    //         $('#myTest').doubleScroll();
+    //     }
+    // })
+
     .directive('googleChart', ['$timeout','$window', function ($timeout, $window) {
         return {
             restrict: 'A',
