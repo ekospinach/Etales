@@ -376,7 +376,7 @@ define(['directives', 'services'], function(directives){
                             newBrand.dateOfBirth=PeriodInfo.getCurrentPeriod();
                             newBrand.privateLabelVarDecision=new Array();
                             newretailerDecision.parentBrandID=newBrand.brandID;
-                            newretailerDecision.varName='_'+myForm[2].value;/*need check*/
+                            newretailerDecision.varName='_'+myForm[1].value;/*need check*/
                             newretailerDecision.varID=10*newBrand.brandID+1;/*need check*/
                             newBrand.privateLabelVarDecision.push(newretailerDecision,nullDecision,nullDecision);
                             
