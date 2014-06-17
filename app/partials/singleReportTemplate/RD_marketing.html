@@ -43,6 +43,34 @@
 
             <tr>
                 <th colspan="2">
+                    <p class="padding-20">{{Label.getContent('Offline')}}</p>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <p class="text-primary padding-40" Popover-animation="true" popover="{{Label.getContent('Price Appeal Info')}}" popover-title="{{Label.getContent('Price Appeal')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Price Appeal')}} <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
+                </td>
+                <td>
+                    <a href="#" editable-text="pageBase.tradtionalAdvertising[0]" ng-show='!isReady' onbeforesave="checkBudget(0,'tradtionalAdvertising','0',$data)" onaftersave="updateRetailerDecision('tradtionalAdvertising','0')">
+                        <p class="text-right">{{ pageBase.tradtionalAdvertising[0] || 0 }}</p>
+                    </a>
+                    <p ng-show='isReady' class="text-right">{{ pageBase.tradtionalAdvertising[0] || 0 }}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-40 text-primary" Popover-animation="true" popover="{{Label.getContent('Convenience Info')}}" popover-title="{{Label.getContent('Convenience')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Convenience')}} <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
+                </td>
+                <td>
+                    <a href="#" editable-text="pageBase.tradtionalAdvertising[1]" ng-show='!isReady' onbeforesave="checkBudget(0,'tradtionalAdvertising','1',$data)" onaftersave="updateRetailerDecision('tradtionalAdvertising','1')">
+                        <p class="text-right">{{ pageBase.tradtionalAdvertising[1]|| 0 }}</p>
+                    </a>
+                    <p ng-show='isReady' class="text-right">{{ pageBase.tradtionalAdvertising[1]|| 0 }}</p>
+                </td>
+            </tr>
+
+            <tr>
+                <th colspan="2">
                     <p class="padding-20">{{Label.getContent('Local')}}</p>
                 </th>
             </tr>
