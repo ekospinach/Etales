@@ -204,7 +204,6 @@ exports.getRetailerShelfSpace=function(req,res,next){
                     }
                 }
             }
-            console.log(req.params.marketID);
             if(req.params.marketID!=-1){
                 for(var i=0;i<doc.retMarketDecision.length;i++){
                     if(doc.retMarketDecision[i].marketID==req.params.marketID){
