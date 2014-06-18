@@ -45,7 +45,7 @@ define(['app'], function(app) {
 			$scope.setPeriod = function(period){
 				if($scope.selectedPeriod){
 					PeriodInfo.setCurrentPeriod($scope.selectedPeriod);					
-					$location.path('/generalReport');
+					$location.path('/confidentialReport');
 				} else {
 					$scope.msg = $scope.msg = 'Please choose period.';
 				}

@@ -28,7 +28,7 @@
 				  	<div class="form-group">
 				  		<label for="selectPeriod" class="col-sm-3 control-label">{{Label.getContent('Choose Period')}}:</label>
 						<div class="col-sm-4">
-							<select class="form-control" id="selectPeriod" ng-model="selectPeriod" ng-change="setPreriod(selectPeriod)">
+							<select class="form-control" id="selectPeriod" ng-model="selectedPeriod">
 								<option  ng-repeat='p in periods' value="{{p}}">{{Label.getContent('Period')}} {{p}}</option>
 							</select>
 					   	</div>
@@ -36,9 +36,8 @@
 				  	<div  class="form-group">
 				  		<div class="col-sm-3"></div>
 				  		<div class="col-sm-4">
-				  			<button type="button" class="btn btn-default">{{Label.getContent('Cancel')}}</button>
-				  			<a href="/#/supplierDecision" ng-show='userRole<5' class="btn btn-primary">{{Label.getContent('OK')}}</a>
-				  			<a href="/#/retailerDecision" ng-show='userRole>4' class="btn btn-primary">{{Label.getContent('OK')}}</a>
+				  			<a ng-show='userRole<5' class="btn btn-primary" ng-click="setSupplierPeriod(selectedPeriod)">{{Label.getContent('OK')}}</a>
+				  			<a ng-show='userRole>4' class="btn btn-primary" ng-click="setRetailerPeriod(selectedPeriod)">{{Label.getContent('OK')}}</a>
 				  		</div>
 
 				  	</div>

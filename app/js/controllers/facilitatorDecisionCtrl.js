@@ -8,23 +8,7 @@ define(['app'], function(app) {
 		    $rootScope.loginLink="footer-links";
 		    $rootScope.loginDiv="container";
 		    $scope.userRole=1;
-		    $scope.selectPeriod=1;
 		    PlayerInfo.setPlayer(1);
-		    PeriodInfo.setCurrentPeriod(1);
-
-		    var periods=new Array();
-		    $scope.periods=periods;
-		    
-		    var url="/currentPeriod/"+SeminarInfo.getSelectedSeminar().seminarCode;
-			$http({
-				method:'GET',
-				url:url
-			}).then(function(data){
-				for (var i=0;i<=data.data.currentPeriod;i++){
-					$scope.periods.push(i);
-				}			},function(){
-				console.log('fail');
-			})
 
 		    $scope.setPlayer=function(userRole){
 		    	if(userRole>4){
@@ -34,13 +18,39 @@ define(['app'], function(app) {
 		    	PeriodInfo.getCurrentPeriod();
 		    }
 
-		    $scope.setPreriod=function(period){
-		    	PeriodInfo.setCurrentPeriod(period);
-		    }
+		    var periods=new Array();
+		    $scope.periods=periods;
+		    
+		    var url="/currentPeriod/"+SeminarInfo.getSelectedSeminar().seminarCode;
+			$http({
+				method:'GET',
+				url:url
+			}).then(function(data){
+				for (var i=data.data.currentPeriod;i>=-2;i--){
+					$scope.periods.push(i);
+				}
+				$scope.selectedPeriod = data.data.currentPeriod;
+			},function(){
+				console.log('fail');
+			})
 
-			$scope.openTab = function() {
-				console.log('open new tab');
-				$window.open('www.google.com');
+			$scope.msg = '';		
+			$scope.setSupplierPeriod = function(period){
+				if($scope.selectedPeriod){
+					PeriodInfo.setCurrentPeriod($scope.selectedPeriod);					
+					$location.path('/supplierDecision');
+				} else {
+					$scope.msg = $scope.msg = 'Please choose period.';
+				}
+			}
+
+			$scope.setRetailerPeriod = function(period){
+				if($scope.selectedPeriod){
+					PeriodInfo.setCurrentPeriod($scope.selectedPeriod);					
+					$location.path('/retailerDecision');
+				} else {
+					$scope.msg = $scope.msg = 'Please choose period.';
+				}
 			}
 
 		}]);

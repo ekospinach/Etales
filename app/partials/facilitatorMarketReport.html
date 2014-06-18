@@ -13,7 +13,7 @@
 				  	<div class="form-group">
 				  		<label for="selectPeriod" class="col-sm-3 control-label">{{Label.getContent('Choose Period')}}:</label>
 						<div class="col-sm-4">
-							<select class="form-control" id="selectPeriod" ng-model="selectPeriod" ng-change="setPreriod(selectPeriod)">
+							<select class="form-control" id="selectPeriod" ng-model="selectedPeriod">
 								<option  ng-repeat='p in periods' value="{{p}}">{{Label.getContent('Period')}} {{p}}</option>
 							</select>
 					   	</div>
