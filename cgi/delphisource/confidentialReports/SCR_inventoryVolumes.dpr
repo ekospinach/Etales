@@ -108,18 +108,18 @@ var
               oJsonFile.A['scrviv_Sales'].Add( variantInfoSchema(scrviv_Sales, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_InventoryVolumes[catID, brandCount, variantCount] ) );
               oJsonFile.A['scrviv_Discontinued'].Add( variantInfoSchema(scrviv_Discontinued, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_InventoryVolumes[catID, brandCount, variantCount] ) );
               oJsonFile.A['scrviv_Closing'].Add( variantInfoSchema(scrviv_Closing, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_InventoryVolumes[catID, brandCount, variantCount] ) );
-              
+
               for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do
               begin
                 for accountID := Low(TAccountsTotal) to High(TAccountsTotal) do
                 begin
-                  oJsonFile.A['scrviv_Orders'] := variantMarketInfoSchema(scrviv_Orders, catID, marketID, accountID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_InventoryVolumes[catID, brandCount, variantCount]  );
-                  oJsonFile.A['scrviv_Shipments'] := variantMarketInfoSchema(scrviv_Shipments, catID, marketID, accountID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_InventoryVolumes[catID, brandCount, variantCount]  );
+                  oJsonFile.A['scrviv_Orders'].Add( variantMarketInfoSchema(scrviv_Orders, catID, marketID, accountID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_InventoryVolumes[catID, brandCount, variantCount]  ) );
+                  oJsonFile.A['scrviv_Shipments'].Add( variantMarketInfoSchema(scrviv_Shipments, catID, marketID, accountID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_InventoryVolumes[catID, brandCount, variantCount]  ) );
                 end;
               end;
             end;
           end;
-        end;      
+        end;
     end;    
 
 

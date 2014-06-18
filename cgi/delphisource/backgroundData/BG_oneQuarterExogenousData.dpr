@@ -118,35 +118,16 @@ var
     jo.D['budgetOverspent'] := vRet.rcr_Info.rcrInfo_BudgetOverspent;
     jo.D['budgetSpentToDate'] := vRet.rcr_Info.rcrInfo_BudgetSpentToDate;
 
-    Result  := jo;    
+    Result  := jo;
   end;
 
   function oneQuarterExogenousDataSchema(marketID : Integer; catID : Integer): ISuperObject;
   var
     jo: ISuperObject;
     prd, ret: Integer;
+    marketStudiesID : integer;
   begin
     jo  := SO;
-//var oneQuarterExogenousDataSchema = mongoose.Schema({
-//    seminar    : String,
-//    period     : Number,
-//    marketID   : Number,
-//    categoryID : Number,
-//    MinBMPriceVsCost                : Number,
-//    MaxBMPriceVsCost                : Number,
-//    IngredientsQualityVsATLGap      : Number,
-//    ActiveAgentVsSmoothenerGap      : Number,
-//    MaxTargetVolumeVsTotalMarket    : Number,
-//    MinOnlinePriceVsCost            : Number,
-//    MaxOnlinePriceVsCost            : Number,
-//    MaxCapacityReduction            : Number,
-//    MaxCapacityIncrease             : Number,
-//    Supplier4AcquiredLevelsGapForPL : Number,
-//    MinPLPriceVsCost                : Number,
-//    MaxPLPriceVsCost                : Number,
-//    MinRetailPriceVsNetBMPrice      : Number,
-//    MaxRetailPriceVsNetBMPrice      : Number,
-//})
     jo.I['period']  := currentPeriod;
     jo.S['seminar'] := currentSeminar;
     jo.S['marketID'] := IntToStr(marketID);
@@ -166,6 +147,11 @@ var
     jo.D['MaxPLPriceVsCost']                := XNOW[marketID, catID].MaxPLPriceVsCost;
     jo.D['MinRetailPriceVsNetBMPrice']      := XNOW[marketID, catID].MinRetailPriceVsNetBMPrice;
     jo.D['MaxRetailPriceVsNetBMPrice']      := XNOW[marketID, catID].MaxRetailPriceVsNetBMPrice;
+    jo.O['MarketStudiesPrices']             := SA([]);
+    for marketStudiesID := Low(TMarketStudies) to High(TMarketStudies) do
+    begin
+        jo.A['MarketStudiesPrices'].D[marketStudiesID-1] := XNOW[marketID, catID].MarketStudiesPrices[marketStudiesID];
+    end;
 
     result  := jo;
   end;

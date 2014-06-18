@@ -89,4 +89,6 @@ module.exports = function(app, io){
     app.post('/submitPortfolioDecision',                                         require('./../api/models/seminar.js').submitPortfolioDecision(io));
     app.post('/submitFinalDecision',                                             require('./../api/models/seminar.js').submitFinalDecision(io));
 
+    app.get('/getOneQuarterExogenousData/:seminar/:categoryID/:marketID/:period',        require('./../api/models/BG_oneQuarterExogenousData.js').getOneQuarterExogenousData);
+
 };

@@ -18,19 +18,19 @@ exports.getCurrentUnitCost = function(req, res, next){
   //get variant composition/catNow/isPrivateLabel/packFormat
 
   getProduct(query).then(function(variant){
-    console.log('get variant:' + util.inspect(variant.result, {depth:true}));
+    //console.log('get variant:' + util.inspect(variant.result, {depth:true}));
     return getCumVolumes(query, variant.result);
   }).then(function(variant){
-    console.log('get cumVolumes:' + util.inspect(variant.result, {depth:true}));
+    //console.log('get cumVolumes:' + util.inspect(variant.result, {depth:true}));
     var value = calculateUnitCost(variant.result.composition,
                              variant.result.packFormat,
                              variant.result.isPrivateLabel,
                              variant.result.cumVolumes,
                              variant.result.catNow);
-    console.log('done:' + value);
+    //console.log('done:' + value);
     res.send(200, {result: value.toFixed(2)});
   }, function(err){
-    console.log('err, ' + err.msg);
+    //console.log('err, ' + err.msg);
     res.send(404, err.msg);
   });
 }
@@ -38,7 +38,7 @@ exports.getCurrentUnitCost = function(req, res, next){
 function getProduct(query){
   var deferred = q.defer();
 
-  console.log('query:' + util.inspect(query,{depth:true}));
+  //console.log('query:' + util.inspect(query,{depth:true}));
   switch(parseInt(query.userRole)){
     case userRoles.producer:
         require('../models/producerDecision.js').proDecision.findOne({seminar:query.seminar, period:query.period, producerID:query.userID}, function(err, doc){
@@ -53,10 +53,14 @@ function getProduct(query){
                   isPrivateLabel : false,
                   catNow : query.catID                  
                 }})
-              } else { console.log('reject variant'); deferred.reject({msg:'UnitCost, cannot find variant by query: ' + query}); }
+              } else { 
+                //console.log('reject variant'); deferred.reject({msg:'UnitCost, cannot find variant by query: ' + query}); 
+              }
             } else { deferred.reject({msg:'UnitCost, cannot find brand by query: ' + query}); }           
-          } else { console.log('reject');deferred.reject({msg:'UnitCost, cannot find producerDecision doc by query: ' + query}); }
-        })
+          } else { 
+            //console.log('reject');deferred.reject({msg:'UnitCost, cannot find producerDecision doc by query: ' + query});
+          }
+        });
         break;
     case userRoles.retailer:
         require('../models/retailerDecision.js').retDecision.findOne({seminar:query.seminar, period:query.period, retailerID : query.userID}, function(err, doc){
@@ -172,12 +176,13 @@ function calculateUnitCost(composition, packFormat, isPrivateLabel, cumVolumes, 
 
       //SpecsMax = 3
       var currentProdCost = _.find(prodCost, function(assort){ return (assort.marketID==geogNow&&assort.categoryID==catNow)})
-      if(!currentProdCost) console.log('assort error');
+      // if(!currentProdCost) 
+      //   //console.log('assort error');
       for (var i = 0; i < 3; i++) {
         correctedVolumes[i] = cumVolumes[i][composition[i]]; 
-        console.log('for, cumVolumes[' + i + '][' + composition[i] + ']:' + cumVolumes[i][composition[i]]); 
+        //console.log('for, cumVolumes[' + i + '][' + composition[i] + ']:' + cumVolumes[i][composition[i]]); 
       };      
-      console.log('correctedVolumes:' + correctedVolumes);
+      //console.log('correctedVolumes:' + correctedVolumes);
       //MaxSpecsIndex = 22
       switch(catNow){
         case 1: //Elecsories
@@ -194,22 +199,24 @@ function calculateUnitCost(composition, packFormat, isPrivateLabel, cumVolumes, 
           };        
           break;
         default:
-          console.log('UnitCost: catNow error');
+          //console.log('UnitCost: catNow error');
       }        
 
-      console.log('complete switch:' + correctedVolumes);
+      //console.log('complete switch:' + correctedVolumes);
 
       tempResult = currentProdCost.logisticsCost;
-       console.log(tempResult);
+       //console.log(tempResult);
 
       var a,b;
       for (var spec = 0; spec < 3; spec++){
-        console.log('currentProdCost.ingredientDetails[' +spec + ']['+ composition[spec] +']:' + currentProdCost.ingredientDetails[spec][composition[spec]]);
+        //console.log('currentProdCost.ingredientDetails[' +spec + ']['+ composition[spec] +']:' + currentProdCost.ingredientDetails[spec][composition[spec]]);
         a = currentProdCost.ingredientDetails[spec][composition[spec]] * composition[spec]
         b = 0;
         for (var aMarket = 1; aMarket < 3; aMarket++) {
           var PC = _.find(prodCost, function(assort){ return assort.marketID==aMarket&&assort.categoryID==catNow; })
-          if(!PC){ console.log('UnitCost: get PC error in aMarket');}
+          if(!PC){ 
+            //console.log('UnitCost: get PC error in aMarket');
+          }
           b = b + PC.minProductionVolume;
         };
         b = (Math.max(correctedVolumes[spec], b))/ b;
@@ -217,7 +224,7 @@ function calculateUnitCost(composition, packFormat, isPrivateLabel, cumVolumes, 
         tempResult = tempResult + a*b;
       }
 
-      console.log(tempResult);
+      //console.log(tempResult);
 
       switch(packFormat){
         case 'ECONOMY':
@@ -230,7 +237,7 @@ function calculateUnitCost(composition, packFormat, isPrivateLabel, cumVolumes, 
           tempResult = tempResult * (1.0 + currentProdCost.PREMIUM)
           break;
         default:
-          console.log('UnitCost: packFormat error');
+          //console.log('UnitCost: packFormat error');
       }
 
       if(isPrivateLabel) tempResult = tempResult * (1.0 + currentProdCost.marginOnPrivateLabel);

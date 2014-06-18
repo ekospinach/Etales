@@ -223,7 +223,7 @@ define(['directives', 'services'], function(directives){
                         data:postData
                     }).then(function(data){
                         scope.currentUnitCost=data.data.result;
-                        url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+categoryID+'/1';
+                        url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+categoryID+'/1'+ '/' + PeriodInfo.getCurrentPeriod();
                         return $http({
                             method:'GET',
                             url:url

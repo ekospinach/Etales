@@ -1,6 +1,25 @@
 # Etales
 Business Simulation Game
 
+##Patch List, 2014 JUNE, before testing phase 2
+
+###### Reports
++ New report : additional situation report for two different categories
++ Rural/Urban Profit & Loss Statement,  太宽，通过修改css增加横向滚动条。第一列Fixed不动。
+
+###### Decisions
++ step2，need to change decision regarding advertising…
++ 新建的private label brand 没有parentCompanyID
++ private label discontinue options...
++ negotiation的pop中需要显示当前阶段的BM_listPrice和packformat
+
+###### Overall problems 
++ Facilitator bugs 
++ Initialise/Run seminar without covering existed decision data in the mongo (also in the binary?)
++ Server get down caused by some problems(see screen shots)
++ Need to debug export Alldeal function
++ Exogenous files need to be imported in the right way by period/market/category
+
 ##Patch List, 2014 JUNE
 
 ###### Supplier Decisions 
