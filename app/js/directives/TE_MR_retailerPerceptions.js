@@ -17,30 +17,7 @@ define(['directives', 'services'], function(directives){
                 }
 
                 var getResult =function(){
-                    scope.latestPlayer1es=new Array();
-                    scope.latestPlayer2es=new Array();
-                    scope.latestPlayer3es=new Array();
-                    scope.latestPlayer4es=new Array();
-                    scope.latestPlayer5es=new Array();
-                    scope.latestPlayer6es=new Array();
-                    scope.latestPlayer1hs=new Array();
-                    scope.latestPlayer2hs=new Array();
-                    scope.latestPlayer3hs=new Array();
-                    scope.latestPlayer4hs=new Array();
-                    scope.latestPlayer5hs=new Array();
-                    scope.latestPlayer6hs=new Array();
-                    scope.previousPlayer1es=new Array();
-                    scope.previousPlayer2es=new Array();
-                    scope.previousPlayer3es=new Array();
-                    scope.previousPlayer4es=new Array();
-                    scope.previousPlayer5es=new Array();
-                    scope.previousPlayer6es=new Array();
-                    scope.previousPlayer1hs=new Array();
-                    scope.previousPlayer2hs=new Array();
-                    scope.previousPlayer3hs=new Array();
-                    scope.previousPlayer4hs=new Array();
-                    scope.previousPlayer5hs=new Array();
-                    scope.previousPlayer6hs=new Array();
+                    scope.latestPlayer1es=new Array();scope.latestPlayer2es=new Array();scope.latestPlayer3es=new Array();scope.latestPlayer4es=new Array();scope.latestPlayer5es=new Array();scope.latestPlayer6es=new Array();scope.latestPlayer1hs=new Array();scope.latestPlayer2hs=new Array();scope.latestPlayer3hs=new Array();scope.latestPlayer4hs=new Array();scope.latestPlayer5hs=new Array();scope.latestPlayer6hs=new Array();scope.previousPlayer1es=new Array();scope.previousPlayer2es=new Array();scope.previousPlayer3es=new Array();scope.previousPlayer4es=new Array();scope.previousPlayer5es=new Array();scope.previousPlayer6es=new Array();scope.previousPlayer1hs=new Array();scope.previousPlayer2hs=new Array();scope.previousPlayer3hs=new Array();scope.previousPlayer4hs=new Array();scope.previousPlayer5hs=new Array();scope.previousPlayer6hs=new Array();
                     var url='/getMR-retailerPerceptionEvolution/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1);
                     $http({
                         method:'GET',
