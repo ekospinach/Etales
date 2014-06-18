@@ -19,6 +19,8 @@ define(['directives', 'services'], function(directives){
                 var getResult =function(){
                     scope.latestPlayer1es=new Array();scope.latestPlayer2es=new Array();scope.latestPlayer3es=new Array();scope.latestPlayer4es=new Array();scope.latestPlayer5es=new Array();scope.latestPlayer6es=new Array();scope.latestPlayer1hs=new Array();scope.latestPlayer2hs=new Array();scope.latestPlayer3hs=new Array();scope.latestPlayer4hs=new Array();scope.latestPlayer5hs=new Array();scope.latestPlayer6hs=new Array();
                     scope.previousInfo=Label.getContent('Previous period');
+                    scope.ruralTitle=Label.getContent('Rural');
+                    scope.urbanTitle=Label.getContent('Urban');
                     var url='/getMR-retailerPerceptionEvolution/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1);
                     $http({
                         method:'GET',

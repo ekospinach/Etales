@@ -424,7 +424,7 @@ define(['directives'], function(directives){
                             zoomType: 'xy'
                         },
                         title: {
-                            text: ''
+                            text: scope.ruralTitle
                         },
                         xAxis: {
                             title:{text:scope.xTitle3}
@@ -471,7 +471,7 @@ define(['directives'], function(directives){
                             zoomType: 'xy'
                         },
                         title: {
-                            text: ''
+                            text: scope.urbanTitle
                         },
                         xAxis: {
                             title:{text:scope.xTitle3}
