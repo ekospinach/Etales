@@ -431,7 +431,13 @@ define(['directives'], function(directives){
                         },
                         yAxis:{
                             title:{text:scope.yTitle3}
-                        },  
+                        }, 
+                        plotOptions: {
+                            bubble: {
+                                minSize: 50,
+                                maxSize: 50
+                            }
+                        }, 
                         tooltip: {
                             formatter: function() {
                                 var s = '<p>'+this.series.name+'</p>'+'<p>('+this.point.x.toFixed(2)+','+this.point.y.toFixed(2)+')</p>';
@@ -468,6 +474,12 @@ define(['directives'], function(directives){
                         },
                         yAxis:{
                             title:{text:scope.yTitle3}
+                        }, 
+                        plotOptions: {
+                            bubble: {
+                                minSize: 50,
+                                maxSize: 50
+                            }
                         }, 
                         tooltip: {
                             formatter: function() {
