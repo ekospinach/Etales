@@ -251,11 +251,10 @@ define(['directives', 'services'], function(directives){
                         for(var j=0;j<allRetCatDecisions[i].retVariantDecision.length;j++){
                             if(allRetCatDecisions[i].retVariantDecision[j].brandID!=0&&allRetCatDecisions[i].retVariantDecision[j].variantID!=0){
                                 if(allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate>=0&&allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate<1){
-                                    allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate*=100;
+                                    allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate=(parseFloat(allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate)*100).toFixed(2);
                                 }
                                 if(allRetCatDecisions[i].retVariantDecision[j].shelfSpace>=0&&allRetCatDecisions[i].retVariantDecision[j].shelfSpace<1){
-                                    allRetCatDecisions[i].retVariantDecision[j].shelfSpace*=100;
-                                    allRetCatDecisions[i].retVariantDecision[j].shelfSpace=parseFloat(allRetCatDecisions[i].retVariantDecision[j].shelfSpace).toFixed(2);
+                                    allRetCatDecisions[i].retVariantDecision[j].shelfSpace=(parseFloat(allRetCatDecisions[i].retVariantDecision[j].shelfSpace)*100).toFixed(2);
                                 }
                                 allRetCatDecisions[i].retVariantDecision[j].order=parseFloat(allRetCatDecisions[i].retVariantDecision[j].order).toFixed(2);
                                 allRetCatDecisions[i].retVariantDecision[j].retailerPrice=parseFloat(allRetCatDecisions[i].retVariantDecision[j].retailerPrice).toFixed(2);

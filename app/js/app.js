@@ -115,7 +115,9 @@
 			'ngCookies',
 			'highcharts-ng',
 			'cgNotify'
-		]).run(function(editableOptions){
+		]).run(function(editableOptions, editableThemes){
+			editableThemes.bs3.inputClass = 'input-sm';
+			editableThemes.bs3.buttonsClass = 'btn-sm';
 			editableOptions.theme = 'bs3';
 		}).run(['$rootScope', '$location','Auth','$http', function ($rootScope, $location, Auth, $http) {		    
 		    $rootScope.currentPeriod = 0;
