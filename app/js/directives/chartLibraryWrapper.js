@@ -434,7 +434,7 @@ define(['directives'], function(directives){
                         }, 
                         plotOptions: {
                             bubble: {
-                                minSize: 50,
+                                minSize: 30,
                                 maxSize: 50
                             }
                         }, 
@@ -477,7 +477,7 @@ define(['directives'], function(directives){
                         }, 
                         plotOptions: {
                             bubble: {
-                                minSize: 50,
+                                minSize: 30,
                                 maxSize: 50
                             }
                         }, 
