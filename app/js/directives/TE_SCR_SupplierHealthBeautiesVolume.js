@@ -71,7 +71,7 @@ define(['directives', 'services'], function(directives){
                             varName=scope.urbanProductNames[i].varName;
                             brandName=scope.urbanProductNames[i].brandName;
                             var orders=_.filter(data.data[0].scrviv_Orders,function(obj){
-                                return (obj.variantName==varName&&obj.parentBrandName==brandName);
+                                return (obj.variantName==varName&&obj.parentBrandName==brandName&&obj.marketID==1);
                             })
                             for(var j=0;j<orders.length;j++){
                                 switch(orders[j].accountID){
@@ -83,7 +83,7 @@ define(['directives', 'services'], function(directives){
                                 }
                             }
                             var sales=_.filter(data.data[0].scrviv_Shipments,function(obj){
-                                return (obj.variantName==varName&&obj.parentBrandName==brandName);
+                                return (obj.variantName==varName&&obj.parentBrandName==brandName&&obj.marketID==1);
                             });
                             for(var j=0;j<sales.length;j++){
                                 switch(sales[j].accountID){
@@ -101,7 +101,7 @@ define(['directives', 'services'], function(directives){
                             varName=scope.ruralProductNames[i].varName;
                             brandName=scope.ruralProductNames[i].brandName;
                             var orders=_.filter(data.data[0].scrviv_Orders,function(obj){
-                                return (obj.variantName==varName&&obj.parentBrandName==brandName);
+                                return (obj.variantName==varName&&obj.parentBrandName==brandName&&obj.marketID==2);
                             })
                             for(var j=0;j<orders.length;j++){
                                 switch(orders[j].accountID){
@@ -113,7 +113,7 @@ define(['directives', 'services'], function(directives){
                                 }
                             }
                             var sales=_.filter(data.data[0].scrviv_Shipments,function(obj){
-                                return (obj.variantName==varName&&obj.parentBrandName==brandName);
+                                return (obj.variantName==varName&&obj.parentBrandName==brandName&&obj.marketID==2);
                             });
                             for(var j=0;j<sales.length;j++){
                                 switch(sales[j].accountID){
