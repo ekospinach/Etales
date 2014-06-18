@@ -89,7 +89,27 @@ define(['directives', 'services'], function(directives){
                     if(value>100||value<0){
                         d.resolve(Label.getContent('Input range')+':0~100');
                     }else{
-                        d.resolve();
+                        if(market=="Urban"){
+                            market=1;
+                        }else if(market=="Rural"){
+                            market=2;
+                        }
+                        if(category=="Elecssories"){
+                            category=1;
+                        }else {
+                            category=2;
+                        }
+                        var url="/retailerShelfSpace/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/'+market+'/'+category+'/'+brandName+'/'+varName;
+                        $http({
+                            method:'GET',
+                            url:url
+                        }).then(function(data){
+                            if(value+data.data.exclude*100>100){
+                                d.resolve(Label.getContent('Input range')+':0~'+(100-data.data.exclude*100).toFixed(2));
+                            }else{
+                                d.resolve();
+                            }
+                        })
                     }
                     return d.promise;
                 }
@@ -250,10 +270,10 @@ define(['directives', 'services'], function(directives){
                     for(var i=0;i<allRetCatDecisions.length;i++){
                         for(var j=0;j<allRetCatDecisions[i].retVariantDecision.length;j++){
                             if(allRetCatDecisions[i].retVariantDecision[j].brandID!=0&&allRetCatDecisions[i].retVariantDecision[j].variantID!=0){
-                                if(allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate>=0&&allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate<1){
+                                if(allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate>=0&&allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate<=1){
                                     allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate=(parseFloat(allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate)*100).toFixed(2);
                                 }
-                                if(allRetCatDecisions[i].retVariantDecision[j].shelfSpace>=0&&allRetCatDecisions[i].retVariantDecision[j].shelfSpace<1){
+                                if(allRetCatDecisions[i].retVariantDecision[j].shelfSpace>=0&&allRetCatDecisions[i].retVariantDecision[j].shelfSpace<=1){
                                     allRetCatDecisions[i].retVariantDecision[j].shelfSpace=(parseFloat(allRetCatDecisions[i].retVariantDecision[j].shelfSpace)*100).toFixed(2);
                                 }
                                 allRetCatDecisions[i].retVariantDecision[j].order=parseFloat(allRetCatDecisions[i].retVariantDecision[j].order).toFixed(2);

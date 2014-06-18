@@ -204,6 +204,7 @@ exports.getRetailerShelfSpace=function(req,res,next){
                     }
                 }
             }
+            console.log(req.params.marketID);
             if(req.params.marketID!=-1){
                 for(var i=0;i<doc.retMarketDecision.length;i++){
                     if(doc.retMarketDecision[i].marketID==req.params.marketID){
@@ -211,7 +212,7 @@ exports.getRetailerShelfSpace=function(req,res,next){
                             if(doc.retMarketDecision[i].retMarketAssortmentDecision[j].categoryID==req.params.categoryID){
                                 for(var k=0;k<doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision.length;k++){
                                     if(doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].varName==req.params.varName&&doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].brandName==req.params.brandName){
-                                        exclude=result[i][j]-doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].shelfSpace;
+                                        exclude=result[req.params.marketID-1][req.params.categoryID-1]-doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].shelfSpace;
                                         break;
                                     }
                                 }
