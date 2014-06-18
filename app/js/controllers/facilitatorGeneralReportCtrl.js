@@ -24,14 +24,16 @@ define(['app'], function(app) {
 					$scope.periods.push(i);
 				}
 				console.log($scope.periods);
+				$scope.currentPeriod = data.data.currentPeriod;
 			},function(){
 				console.log('fail');
 			})
 
 			$scope.msg = '';
+
 		    $scope.setPreriod=function(period){
 		    	if(period){
-			    	PeriodInfo.setCurrentPeriod(period);	    		
+			    	PeriodInfo.setCurrentPeriod(period);	    			    			
 		    	} else {
 		    		$scope.msg = 'Please choose period.';
 		    	}
