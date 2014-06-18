@@ -18,9 +18,9 @@ define(['directives', 'services'], function(directives) {
                     */
                     scope.checkMinimumOrder = function(contractCode, brandName, varName, category, value, producerID) {
                         var d = $q.defer();
-                        var filter = /^[0-9]*[1-9][0-9]*$/;
+                        var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
                         if (!filter.test(value)) {
-                            d.resolve(Label.getContent('Input a Integer'));
+                            d.resolve(Label.getContent('Input Number'));
                         }
 
                         d.resolve();
@@ -133,9 +133,9 @@ define(['directives', 'services'], function(directives) {
                     scope.checkTargetVolume = function(contractCode, brandName, varName, category, value, producerID) {
                         var d = $q.defer();
                         var maxTargetVolumeVsTotalMarket, marketSize, salesVolume;
-                        var filter = /^[0-9]*[1-9][0-9]*$/;
+                        var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
                         if (!filter.test(value)) {
-                            d.resolve(Label.getContent('Input a Integer'));
+                            d.resolve(Label.getContent('Input Number'));
                         }
                         var url = '/checkContractDetailsLockStatus/' + contractCode + '/' + brandName + '/' + varName + '/nc_SalesTargetVolume';
 
@@ -362,6 +362,12 @@ define(['directives', 'services'], function(directives) {
                             data: postData
                         }).then(function(data) {
                             //update local interface anyway
+                            if(data.data.nc_VolumeDiscountRate<=1){
+                                data.data.nc_VolumeDiscountRate=(data.data.nc_VolumeDiscountRate*100).toFixed(2);
+                            }
+                            if(data.data.nc_PerformanceBonusRate<=1){
+                                data.data.nc_PerformanceBonusRate=(data.data.nc_PerformanceBonusRate*100).toFixed(2);
+                            }
                             switch(producerID){
                                 case 1:
                                     if (category == 1) {
@@ -490,6 +496,12 @@ define(['directives', 'services'], function(directives) {
                             url: url
                         }).then(function(data) {
                             //update this item details from server anyway 
+                            if(data.data.doc.nc_VolumeDiscountRate<=1){
+                                data.data.doc.nc_VolumeDiscountRate=(data.data.doc.nc_VolumeDiscountRate*100).toFixed(2);
+                            }
+                            if(data.data.doc.nc_PerformanceBonusRate<=1){
+                                data.data.doc.nc_PerformanceBonusRate=(data.data.doc.nc_PerformanceBonusRate*100).toFixed(2);
+                            }
                             if (category == 1) {
                                 switch (producerID) {
                                     case 1:
