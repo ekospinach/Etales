@@ -73,6 +73,7 @@ var
     jo.S['variantName'] := variant.vsd_VariantName;
     jo.S['parentBrandName'] := variant.vsd_ParentBrandName;
     jo.I['parentCategoryID'] := catID;
+    jo.I['parentCompanyID'] := variant.vsd_ParentCompanyID;
     jo.I['marketID'] := marketID;
     
     jo.O['segmentInfo'] := SA([]);

@@ -65,6 +65,7 @@ DataDirectory : string;
 
     vProd: TSupplierConfidentialReport;
     I, DL, TL: Integer;
+    MyArr: array[0..10] of Integer;
   begin
     jo  := SO;
 
@@ -88,23 +89,19 @@ DataDirectory : string;
       jo.A['acquiredProductionFlexibility'].D[I - 1]  := vProd.scr_Info.scrInfo_AcquiredProductionFlexibility[I];
       jo.A['acquiredDesignLevel'].D[I - 1]  := vProd.scr_Info.scrInfo_AcquiredDesignLevel[I];
 
-      DLvolume := SO;
-      DLvolume.O[''] := SA([]);
+      DLvolume := SA([]);
       for DL := Low(TDesign) to High(TDesign) do
       begin
-        DLvolume.A[''].D[DL-1] := vProd.scr_Info.scrInfo_CumulatedDesignVolume[I, DL];
+        DLvolume.D[ inttoStr(DL-1) ] := vProd.scr_Info.scrInfo_CumulatedDesignVolume[I, DL];
       end;
-
-//      jo.A['cumulatedDesignVolume'].O[I - 1] := DLvolume;
       jo.A['cumulatedDesignVolume'].Add(DLvolume);
 
-      // TLvolume := SO;
-      // TLvolume.O[''] := SA([]);
-      // for DL := Low(TTechnology) to High(TTechnology) do
-      // begin
-      //   TLvolume.A[''].D[TL-1] := vProd.scr_Info.scrInfo_CumulatedTechnologyVolume[I, TL];
-      // end;
-      // jo.A['cumulatedTechnologyVolume'].O[I - 1] := TLvolume;
+       TLvolume := SA([]);
+       for TL := Low(TTechnology) to High(TTechnology) do
+       begin
+         TLvolume.D[inttostr(TL-1)] := vProd.scr_Info.scrInfo_CumulatedTechnologyVolume[I, TL];
+       end;
+       jo.A['cumulatedTechnologyVolume'].Add(TLvolume);
 
     end;
 
