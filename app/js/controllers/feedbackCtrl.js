@@ -1,6 +1,6 @@
 define(['app'], function(app) {
 		app.controller('feedbackCtrl',
-			['$scope','$q','$rootScope','$location','$http','$filter','Label','PlayerInfo','PeriodInfo','SeminarInfo', function($scope,$q,$rootScope,$location,$http,$filter,Label,PlayerInfo,PeriodInfo,SeminarInfo) {
+			['$scope','$q','$rootScope','$location','$http','$filter','Label','PlayerInfo','PeriodInfo','SeminarInfo','$window', function($scope,$q,$rootScope,$location,$http,$filter,Label,PlayerInfo,PeriodInfo,SeminarInfo,$window) {
 			$rootScope.decisionActive="active";
 
 			$rootScope.loginCss="";
@@ -24,8 +24,8 @@ define(['app'], function(app) {
 				console.log('fail');
 			})
 
-			$scope.openTab = function(period){
-				$window.open('feedbackENG?seminar=' + SeminarInfo.getSelectedSeminar().seminarCode + '&period=' + period);
+			$scope.openTab = function(){
+				$window.open('feedbackENG?seminar=' + SeminarInfo.getSelectedSeminar().seminarCode + '&period=' + $scope.selectPeriod);
 			}
 							
 		}]);

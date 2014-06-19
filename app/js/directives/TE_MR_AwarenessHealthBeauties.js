@@ -25,22 +25,22 @@ define(['directives', 'services'], function(directives){
                             switch(market){
                                 case 1:
                                 if(data.data[0].brandInfo[i].latestAwareness>=data.data[0].brandInfo[i].previousAwareness){
-                                    scope.valueRural[count]=data.data[0].brandInfo[i].previousAwareness;
-                                    scope.increaseRural[count]=data.data[0].brandInfo[i].latestAwareness-data.data[0].brandInfo[i].previousAwareness;
+                                    scope.valueRural[count]=data.data[0].brandInfo[i].previousAwareness*100;
+                                    scope.increaseRural[count]=(data.data[0].brandInfo[i].latestAwareness-data.data[0].brandInfo[i].previousAwareness)*100;
                                     scope.dropRural[count]=0;
                                 }else{
-                                    scope.valueRural[count]=data.data[0].brandInfo[i].latestAwareness;
-                                    scope.dropRural[count]=data.data[0].brandInfo[i].previousAwareness-data.data[0].brandInfo[i].latestAwareness;
+                                    scope.valueRural[count]=data.data[0].brandInfo[i].latestAwareness*100;
+                                    scope.dropRural[count]=(data.data[0].brandInfo[i].previousAwareness-data.data[0].brandInfo[i].latestAwareness)*100;
                                     scope.increaseRural[count]=0;
                                 };break;
                                 case 2:
                                 if(data.data[0].brandInfo[i].latestAwareness>=data.data[0].brandInfo[i].previousAwareness){
-                                    scope.valueUrban[count]=data.data[0].brandInfo[i].previousAwareness;
-                                    scope.increaseUrban[count]=data.data[0].brandInfo[i].latestAwareness-data.data[0].brandInfo[i].previousAwareness;
+                                    scope.valueUrban[count]=data.data[0].brandInfo[i].previousAwareness*100;
+                                    scope.increaseUrban[count]=(data.data[0].brandInfo[i].latestAwareness-data.data[0].brandInfo[i].previousAwareness)*100;
                                     scope.dropUrban[count]=0;
                                 }else{
-                                    scope.valueUrban[count]=data.data[0].brandInfo[i].latestAwareness;
-                                    scope.dropUrban[count]=data.data[0].brandInfo[i].previousAwareness-data.data[0].brandInfo[i].latestAwareness;
+                                    scope.valueUrban[count]=data.data[0].brandInfo[i].latestAwareness*100;
+                                    scope.dropUrban[count]=(data.data[0].brandInfo[i].previousAwareness-data.data[0].brandInfo[i].latestAwareness)*100;
                                     scope.increaseUrban[count]=0;
                                 };break;
 

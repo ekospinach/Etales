@@ -424,7 +424,7 @@ define(['directives'], function(directives){
                             zoomType: 'xy'
                         },
                         title: {
-                            text: ''
+                            text: scope.ruralTitle
                         },
                         xAxis: {
                             title:{text:scope.xTitle3}
@@ -440,7 +440,11 @@ define(['directives'], function(directives){
                         }, 
                         tooltip: {
                             formatter: function() {
-                                var s = '<p>'+this.series.name+'</p>'+'<p>('+this.point.x.toFixed(2)+','+this.point.y.toFixed(2)+')</p>';
+                                if(this.point.z==10){
+                                    var s = '<p>'+this.series.name+'</p>'+'<p>('+this.point.x.toFixed(2)+','+this.point.y.toFixed(2)+')</p>'; 
+                                }else{
+                                    var s = '<p>'+scope.previousInfo+'</p><p>'+this.series.name+'</p>'+'<p>('+this.point.x.toFixed(2)+','+this.point.y.toFixed(2)+')</p>';
+                                }
                                 return s;
                             },
                             shared: false,
@@ -467,7 +471,7 @@ define(['directives'], function(directives){
                             zoomType: 'xy'
                         },
                         title: {
-                            text: ''
+                            text: scope.urbanTitle
                         },
                         xAxis: {
                             title:{text:scope.xTitle3}
@@ -483,7 +487,11 @@ define(['directives'], function(directives){
                         }, 
                         tooltip: {
                             formatter: function() {
-                                var s = '<p>'+this.series.name+'</p>'+'<p>('+this.point.x.toFixed(2)+','+this.point.y.toFixed(2)+')</p>';
+                                if(this.point.z==10){
+                                    var s = '<p>'+this.series.name+'</p>'+'<p>('+this.point.x.toFixed(2)+','+this.point.y.toFixed(2)+')</p>';
+                                }else{
+                                    var s = '<p>'+scope.previousInfo+'</p><p>'+this.series.name+'</p>'+'<p>('+this.point.x.toFixed(2)+','+this.point.y.toFixed(2)+')</p>';
+                                }
                                 return s;
                             },
                             shared: false,

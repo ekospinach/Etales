@@ -166,7 +166,7 @@ define(['angular',
 			access: access.playerView
 		});	
 
-		$routeProvider.otherwise({redirectTo: '/login'});
+		//$routeProvider.otherwise({redirectTo: '/login'});
 
       var interceptor = ['$location', '$q', function($location, $q) {
         function success(response) {

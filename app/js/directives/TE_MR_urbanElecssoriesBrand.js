@@ -73,7 +73,7 @@ define(['directives', 'services'], function(directives){
 
                 var organiseArray = function(data){
                     var deferred = $q.defer();
-                    scope.xTitle1=Label.getContent("Easy of Use");
+                    scope.xTitle1=Label.getContent("Ease of Use");
                     scope.yTitle1=Label.getContent("Quality");
                     scope.yTitle2=Label.getContent("Price Appeal");
                     loadBrandPerceptions(data,1,1);

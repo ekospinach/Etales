@@ -211,7 +211,7 @@ exports.getRetailerShelfSpace=function(req,res,next){
                             if(doc.retMarketDecision[i].retMarketAssortmentDecision[j].categoryID==req.params.categoryID){
                                 for(var k=0;k<doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision.length;k++){
                                     if(doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].varName==req.params.varName&&doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].brandName==req.params.brandName){
-                                        exclude=result[i][j]-doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].shelfSpace;
+                                        exclude=result[req.params.marketID-1][req.params.categoryID-1]-doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].shelfSpace;
                                         break;
                                     }
                                 }

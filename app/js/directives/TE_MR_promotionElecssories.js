@@ -23,15 +23,15 @@ define(['directives', 'services'], function(directives){
                             var rural1Length=rural1Depth=urban1Length=urban1Depth=rural2Length=rural2Depth=urban2Length=urban2Depth=0;
                             if(data.data[0].variantInfo[i].accountInfo[0]!=undefined){
                                 rural1Depth=(data.data[0].variantInfo[i].accountInfo[0].promoRate[1]*100).toFixed(2);
-                                rural1Length=data.data[0].variantInfo[i].accountInfo[0].promoFrequency[1].toFixed(2);
+                                rural1Length=data.data[0].variantInfo[i].accountInfo[0].promoFrequency[1];
                                 urban1Depth=(data.data[0].variantInfo[i].accountInfo[0].promoRate[0]*100).toFixed(2);
-                                urban1Length=data.data[0].variantInfo[i].accountInfo[0].promoFrequency[0].toFixed(2);
+                                urban1Length=data.data[0].variantInfo[i].accountInfo[0].promoFrequency[0];
                             }
                             if(data.data[0].variantInfo[i].accountInfo[1]!=undefined){
                                 rural2Depth=(data.data[0].variantInfo[i].accountInfo[1].promoRate[1]*100).toFixed(2);
-                                rural2Length=data.data[0].variantInfo[i].accountInfo[1].promoFrequency[1].toFixed(2);
+                                rural2Length=data.data[0].variantInfo[i].accountInfo[1].promoFrequency[1];
                                 urban2Depth=(data.data[0].variantInfo[i].accountInfo[1].promoRate[0]*100).toFixed(2);
-                                urban2Length=data.data[0].variantInfo[i].accountInfo[1].promoFrequency[0].toFixed(2);
+                                urban2Length=data.data[0].variantInfo[i].accountInfo[1].promoFrequency[0];
                             }
                             switch(data.data[0].variantInfo[i].parentCompanyID){
                                 case 1:scope.player1s.push({'fullName':fullName,'rural1Length':rural1Length,'rural1Depth':rural1Depth,'urban1Length':urban1Length,'urban1Depth':urban1Depth,'rural2Length':rural2Length,'rural2Depth':rural2Depth,'urban2Length':urban2Length,'urban2Depth':urban2Depth});break;
