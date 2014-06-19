@@ -48,7 +48,7 @@ define(['directives', 'services'], function(directives){
                         if(array!=undefined){
                             return array.value.toFixed(2);
                         }else{
-                            return -1;
+                            return 0;
                         }
                     }
                     var loadVariantPercentageValue=function(data,brandName,variantName,num){
@@ -58,7 +58,7 @@ define(['directives', 'services'], function(directives){
                         if(array!=undefined){
                             return (array.value*100).toFixed(2);
                         }else{
-                            return -1;
+                            return 0;
                         }
                     }
                     
