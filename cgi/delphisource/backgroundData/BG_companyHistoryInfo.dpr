@@ -94,14 +94,17 @@ DataDirectory : string;
       begin
         DLvolume.A[''].D[DL-1] := vProd.scr_Info.scrInfo_CumulatedDesignVolume[I, DL];
       end;
-      jo.A['cumulatedDesignVolume'].O[I - 1] := DLvolume;
-      
 
-      // jo.A['cumulatedTechnologyVolume'].O[I - 1] := SA([]);
-      // for TL := Low(TTechnology) to High(TTechnology) do
+//      jo.A['cumulatedDesignVolume'].O[I - 1] := DLvolume;
+      jo.A['cumulatedDesignVolume'].Add(DLvolume);
+
+      // TLvolume := SO;
+      // TLvolume.O[''] := SA([]);
+      // for DL := Low(TTechnology) to High(TTechnology) do
       // begin
-      //   jo.A['cumulatedTechnologyVolume'].O[I - 1].D[TL-1] := vProd.scr_Info.scrInfo_CumulatedTechnologyVolume[I, TL];
+      //   TLvolume.A[''].D[TL-1] := vProd.scr_Info.scrInfo_CumulatedTechnologyVolume[I, TL];
       // end;
+      // jo.A['cumulatedTechnologyVolume'].O[I - 1] := TLvolume;
 
     end;
 
