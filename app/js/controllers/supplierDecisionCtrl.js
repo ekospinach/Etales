@@ -207,7 +207,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 				notify('Decision reload Error occur, Supplier ' + data.producerID  + ' Period ' + data.period + '.');
 			});
 
-            $scope.$on('producerMarketResearchOrdersChanged', function(event, data, newSeminarData) {  
+            $scope.$on('supplierMarketResearchOrdersChanged', function(event, data) {  
 				notify('Decision has been saved, Supplier ' + data.producerID  + ' Period ' + data.period + '.');
 				loadBackgroundDataAndCalculateDecisionInfo();
             });

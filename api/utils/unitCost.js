@@ -16,6 +16,7 @@ exports.getCurrentUnitCost = function(req, res, next){
     userID : req.body.userID,
   };
 
+  console.log(query);
   //console.log('try to get production cost: ' + util.inspect(query));
   //get variant composition/catNow/isPrivateLabel/packFormat
   getProduct(query).then(function(variant){

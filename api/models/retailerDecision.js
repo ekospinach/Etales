@@ -89,7 +89,7 @@ var retDecisionSchema = mongoose.Schema({
     tradtionalAdvertising : [Number], //0-Price, 1-Convenience
     retCatDecision : [retCatDecisionSchema], //length: TCategories(1~2)
     retMarketDecision: [retMarketDecisionSchema], //length: TMarkets(1~2)
-//    marketResearchOrder : [Boolean]    
+    marketResearchOrder : [Boolean]    
 })
 
 exports.retDecision = mongoose.model('retailerDecision', retDecisionSchema);
@@ -626,6 +626,9 @@ exports.updateRetailerDecision = function(io){
                                                 }
                                             }
                                         break;
+                                        case 'updateMarketResearchOrders':
+                                            doc.marketResearchOrder[queryCondition.additionalIdx]=queryCondition.value;break;
+                                        break;
                                         case 'deleteOrder':
                                             var nullOrder={
                                                 brandName:"",
@@ -668,12 +671,17 @@ exports.updateRetailerDecision = function(io){
                                         doc.markModified('categorySurfaceShare');
                                         doc.markModified('localAdvertising');
                                         doc.markModified('retMarketDecision');
+                                        doc.markModified('marketResearchOrder');
                                         doc.markModified('retCatDecision');
                                         doc.save(function(err, doc, numberAffected){
                                             if(err) next(new Error(err));
                                             console.log('save updated hhq, number affected:'+numberAffected);    
+                                            if(err) next(new Error(err));
+                                            console.log('save updated hhq, number affected:'+numberAffected);    
                                             if(queryCondition.behaviour=="addOrder"){
                                                 io.sockets.emit('socketIO:retailerBaseChanged', {retailerID: queryCondition.retailerID, seminar: queryCondition.seminar, period: queryCondition.period,categoryID:queryCondition.value.categoryID,marketID:queryCondition.marketID});
+                                            }else if(queryCondition.behaviour=="updateMarketResearchOrders"){
+                                                io.sockets.emit('socketIO:retailerMarketResearchOrdersChanged', {retailerID: queryCondition.retailerID, seminar: queryCondition.seminar, period: queryCondition.period,categoryID:queryCondition.value.categoryID,marketID:queryCondition.marketID});                                                
                                             }else{
                                                 io.sockets.emit('socketIO:retailerBaseChanged', {retailerID: queryCondition.retailerID, seminar: queryCondition.seminar, period: queryCondition.period,categoryID:queryCondition.categoryID,marketID:queryCondition.marketID});
                                             }                            
