@@ -37,7 +37,7 @@ define(['directives', 'services'], function(directives){
                     scope.variants=new Array();
                     scope.brandName=brandName;
                     scope.productModal=true;
-                    if(type="BM"){
+                    if(type=="BM"){
                         scope.BMShow=true;
                         scope.OLShow=false;
                         num=0;

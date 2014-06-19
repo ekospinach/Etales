@@ -65,7 +65,7 @@ define(['directives', 'services'], function(directives){
                                 },
                                 plotOptions:{series:{stacking:'normal'}},
                                 xAxis:{categories:scope.brandNames},
-                                yAxis:{title:{text:''}
+                                yAxis:{title:{text:'%'}
                             }
                         },
                             series:scope.awarenessHealthBeauties1Series,
@@ -90,7 +90,7 @@ define(['directives', 'services'], function(directives){
                                 },
                                 plotOptions:{series:{stacking:'normal'}},
                                 xAxis:{categories:scope.brandNames},
-                                yAxis:{title:{text:''}
+                                yAxis:{title:{text:'%'}
                             }
                         },
                             series:scope.awarenessHealthBeauties2Series,

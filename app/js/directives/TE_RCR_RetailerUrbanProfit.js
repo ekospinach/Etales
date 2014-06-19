@@ -48,7 +48,7 @@ define(['directives', 'services'], function(directives){
                         if(array!=undefined){
                             return array.value.toFixed(2);
                         }else{
-                            return -1;
+                            return 0;
                         }
                     }
 
@@ -59,7 +59,7 @@ define(['directives', 'services'], function(directives){
                         if(array!=undefined){
                             return (array.value*100).toFixed(2);
                         }else{
-                            return -1;
+                            return 0;
                         }
                     }
 

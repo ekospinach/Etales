@@ -36,11 +36,11 @@ define(['directives', 'services'], function(directives){
                                 case 2:
                                 if(data.data[0].brandInfo[i].latestAwareness>=data.data[0].brandInfo[i].previousAwareness){
                                     scope.valueUrban[count]=data.data[0].brandInfo[i].previousAwareness*100;
-                                    scope.increaseUrban[count]=(data.data[0].brandInfo[i].latestAwareness-data.data[0].brandInfo[i].previousAwareness*100);
+                                    scope.increaseUrban[count]=(data.data[0].brandInfo[i].latestAwareness-data.data[0].brandInfo[i].previousAwareness)*100;
                                     scope.dropUrban[count]=0;
                                 }else{
                                     scope.valueUrban[count]=data.data[0].brandInfo[i].latestAwareness*100;
-                                    scope.dropUrban[count]=(data.data[0].brandInfo[i].previousAwareness-data.data[0].brandInfo[i].latestAwareness*100);
+                                    scope.dropUrban[count]=(data.data[0].brandInfo[i].previousAwareness-data.data[0].brandInfo[i].latestAwareness)*100;
                                     scope.increaseUrban[count]=0;
                                 };break;
 
@@ -65,7 +65,7 @@ define(['directives', 'services'], function(directives){
                                 },
                                 plotOptions:{series:{stacking:'normal'}},
                                 xAxis:{categories:scope.brandNames},
-                                yAxis:{title:{text:''}
+                                yAxis:{title:{text:'%'}
                             }
                         },
                             series:scope.awarenessElecssories1Series,
@@ -90,7 +90,7 @@ define(['directives', 'services'], function(directives){
                                 },
                                 plotOptions:{series:{stacking:'normal'}},
                                 xAxis:{categories:scope.brandNames},
-                                yAxis:{title:{text:''}
+                                yAxis:{title:{text:'%'}
                             }
                         },
                             series:scope.awarenessElecssories2Series,
