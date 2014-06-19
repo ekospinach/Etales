@@ -32,25 +32,25 @@
                     <a href="#" editable-text="category.capacityChange" ng-show='!isReady' onbeforesave="checkCapacity(category.categoryID,$data)" onaftersave="updateProducerDecision(category.categoryID,'capacityChange',$index)">
                         <p class="text-right">{{ category.capacityChange || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right">{{ category.capacityChange || 0 }}</p>
+                    <p ng-show='isReady' class="text-right text-muted">{{ category.capacityChange || 0 }}</p>
                 </td>
                 <td>
                     <a href="#" editable-text="category.investInTechnology" ng-show='!isReady' onbeforesave="checkData(category.categoryID,$data)" onaftersave="updateProducerDecision(category.categoryID,'investInTechnology',$index)">
                         <p class="text-right">{{ category.investInTechnology || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right">{{ category.investInTechnology || 0 }}</p>
+                    <p ng-show='isReady' class="text-right text-muted">{{ category.investInTechnology || 0 }}</p>
                 </td>
                 <td>
                     <a href="#" editable-text="category.investInProductionFlexibility" ng-show='!isReady' onbeforesave="checkData(category.categoryID,$data)" onaftersave="updateProducerDecision(category.categoryID,'investInProductionFlexibility',$index)">
                         <p class="text-right">{{ category.investInProductionFlexibility || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right">{{ category.investInProductionFlexibility || 0 }}</p>
+                    <p ng-show='isReady' class="text-right text-muted">{{ category.investInProductionFlexibility || 0 }}</p>
                 </td>
                 <td>
                     <a href="#" editable-text="category.investInDesign" ng-show='!isReady' onbeforesave="checkData(category.categoryID,$data)" onaftersave="updateProducerDecision(category.categoryID,'investInDesign',$index)">
                         <p class="text-right">{{ category.investInDesign || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right">{{ category.investInDesign || 0 }}</p>
+                    <p ng-show='isReady' class="text-right text-muted">{{ category.investInDesign || 0 }}</p>
                 </td>
             </tr>
         </tbody>

@@ -25,7 +25,7 @@
     			</th>
     		</tr>
     		<tr class="success">
-    			<td colspan="7">
+    			<td colspan="6">
     				<p>{{Label.getContent('Brand')}}</p>
     			</td>
     		</tr>
@@ -33,28 +33,24 @@
     	<tbody>
     		<tr class="success" ng-repeat='producte in productes'>
     			<td>
-    				<p class="padding-20">{{producte.parentBrandName}}</p>
+    				<p class="padding-20">{{producte.parentBrandName}}{{producte.varName}}</p>
+    			<td>
+    				<p class="text-right text-muted">{{selectPacks('Elecssories',producte.parentBrandName,producte.varName)}}</p>
     			</td>
     			<td>
-    				<p class="text-center">{{producte.varName}}</p>
+    				<p class="text-right text-muted">{{ producte.composition[1] || 0 }}</p>
     			</td>
     			<td>
-    				<p class="text-right">{{selectPacks('Elecssories',producte.parentBrandName,producte.varName)}}</p>
+    				<p class="text-right text-muted">{{ producte.composition[0] || 0 }}</p>
     			</td>
     			<td>
-    				<p class="text-right">{{ producte.composition[1] || 0 }}</p>
-    			</td>
-    			<td>
-    				<p class="text-right">{{ producte.composition[0] || 0 }}</p>
-    			</td>
-    			<td>
-    				<p class="text-right">{{ producte.composition[2] || 0 }}</p>
+    				<p class="text-right text-muted">{{ producte.composition[2] || 0 }}</p>
     			</td>
     			<td>
     				<a href="#" editable-text="producte.production" onbeforesave="checkProduction('Elecssories',producte.parentBrandName,producte.varName,'production','0',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'production','0',$index)">
     					<p class="text-right">{{ producte.production || 0 }}</p>
     				</a>
-                    <p ng-show='isReady' class="text-right">
+                    <p ng-show='isReady' class="text-right text-muted">
                         {{ producte.production || 0 }}
                     </p>
     			</td>
@@ -78,34 +74,31 @@
     			</th>
     		</tr>
             <tr class="danger">
-                <td colspan="7">
+                <td colspan="6">
                     <p>{{Label.getContent('Brand')}}</p>
                 </td>
             </tr>
     		<tr class="danger" ng-repeat='producth in producths'>
     			<td>
-    				<p class="padding-20">{{producth.parentBrandName}}</p>
+    				<p class="padding-20">{{producth.parentBrandName}}{{producth.varName}}</p>
     			</td>
     			<td>
-    				<p class="text-center">{{producth.varName}}</p>
+    				<p class="text-right text-muted">{{selectPacks('HealthBeauty',producth.parentBrandName,producth.varName)}}</p>
     			</td>
     			<td>
-    				<p class="text-right">{{selectPacks('HealthBeauty',producth.parentBrandName,producth.varName)}}</p>
+    				<p class="text-right text-muted">{{ producth.composition[1] || 0 }}</p>
     			</td>
     			<td>
-    				<p class="text-right">{{ producth.composition[1] || 0 }}</p>
+    				<p class="text-right text-muted">{{ producth.composition[0] || 0 }}</p>
     			</td>
     			<td>
-    				<p class="text-right">{{ producth.composition[0] || 0 }}</p>
-    			</td>
-    			<td>
-    				<p class="text-right">{{ producth.composition[2] || 0 }}</p>
+    				<p class="text-right text-muted">{{ producth.composition[2] || 0 }}</p>
     			</td>
     			<td>
     				<a href="#" editable-text="producth.production" onbeforesave="checkProduction('HealthBeauty',producth.parentBrandName,producth.varName,'production','0',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'production','0',$index)">
                         <p class="text-right">{{ producth.production || 0 }}</p>
                     </a>
-                    <p class="text-right" ng-show='isReady'>{{ producth.production || 0 }}</p>
+                    <p class="text-right text-muted" ng-show='isReady'>{{ producth.production || 0 }}</p>
     			</td>
     		</tr>
     	</tbody>
