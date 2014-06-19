@@ -36,11 +36,11 @@ define(['directives', 'services'], function(directives){
                                 case 2:
                                 if(data.data[0].brandInfo[i].latestAwareness>=data.data[0].brandInfo[i].previousAwareness){
                                     scope.valueUrban[count]=data.data[0].brandInfo[i].previousAwareness*100;
-                                    scope.increaseUrban[count]=(data.data[0].brandInfo[i].latestAwareness-data.data[0].brandInfo[i].previousAwareness*100);
+                                    scope.increaseUrban[count]=(data.data[0].brandInfo[i].latestAwareness-data.data[0].brandInfo[i].previousAwareness)*100;
                                     scope.dropUrban[count]=0;
                                 }else{
                                     scope.valueUrban[count]=data.data[0].brandInfo[i].latestAwareness*100;
-                                    scope.dropUrban[count]=(data.data[0].brandInfo[i].previousAwareness-data.data[0].brandInfo[i].latestAwareness*100);
+                                    scope.dropUrban[count]=(data.data[0].brandInfo[i].previousAwareness-data.data[0].brandInfo[i].latestAwareness)*100;
                                     scope.increaseUrban[count]=0;
                                 };break;
 
