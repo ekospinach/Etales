@@ -34,7 +34,7 @@ exports.getCurrentUnitCost = function(req, res, next){
     //console.log('done:' + value);
     res.send(200, {result: value.toFixed(2)});
   }, function(err){
-    //console.log('err, ' + err.msg);
+    console.log('err, ' + util.inspect(err));
     res.send(404, err.msg);
   });
 }
@@ -56,7 +56,7 @@ function getProduct(query){
                   packFormat : variant.packFormat,
                   isPrivateLabel : false,
                   catNow : query.catID,
-                  manufactorID : brand.producerID
+                  manufactorID : doc.producerID
                 }})
               } else { 
                 //console.log('reject variant'); 
@@ -132,59 +132,107 @@ function getCumVolumes(query, variant){
   var AA, TLH, SMT;
   //DL - DesignLevel, TLE - Technology Level ELECSORRIES, RMQ - QUALITY of INGREDIENTS
   //AA - Active Agent, TLH - Technology Level HEALTHBEAUTIES, SMT - Smoother level 
-  var CDL, CTEL, CRMQ;
-  var CAA, CLH, CSMT;
+  var CDL = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+  ,CTLE = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+  ,CRMQ = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
+  var CAA = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+  ,CTLH = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+  ,CSMT;
   //C - cumulated volume 
   var preCumulatedDLvolume, preCumulatedTLvolume;
   var historyPeriod;
   //Pre - Previous period 
 
   historyPeriod = query.period - 1;
-  switch(variant.catNow){
-    //ELECSORRIES
-    case '1':
-          DL = variant.composition[0];
-          TLE = variant.composition[1];
-          RMQ = variant.composition[2];
-          require('../models/companyHistory.js').findOne({seminar : query.seminar, period: historyPeriod}, function(err, doc){
-            if(doc){
-                var manufactor = _.find(doc.producerView, function(producer){return produerID == query.manufactorID;});
-                if(manufactor){
-                  preCumulatedDLvolume = manufactor.cumulatedDesignVolume;
-                  preCumulatedTLvolume = manufactor.cumulatedTechnologyVolume;
-                  
-                  //normal products
-                  if(query.manufactorID <= 3){
-                    require('../models/producerDecision.js').proDecision.findOne({seminar:query.seminar, period:query.period, producerID:query.userID}, function(err, doc){
-                      if(doc){
-                        
-                        
-                      } else { deferred.reject({msg:'UnitCost, cannot find companyHistory doc by query: ' + query}); }
-                    })                      
-                  //private labels 
-                  } else {
-                    require('../models/retailerDecision.js').retDecision.findOne({seminar:query.seminar, period:query.period, retailerID : query.userID}, function(err, doc){
-                      if(doc){
 
-                      }      
-                    })
-                  }
-                } else { deferred.reject({msg:'UnitCost, cannot find manufactor ' + query.manufactorID}); }
+  if(variant.catNow == 1){
+          //Find previous cumulated volume first...
+          
+          require('../models/companyHistoryInfo.js').companyHistory.findOne({seminar : query.seminar, period: historyPeriod}, function(err, doc){       
+            if(err){ deferred.reject({msg:'err from companyHistory'}); };  
+            if(doc){        
+                //console.log(doc);
+                var manufactor = _.find(doc.producerView, function(producer){return producer.producerID == variant.manufactorID;});               
+
+                if(manufactor){
+                      for (var i = 0; i < 20; i++) {
+                        CDL[i] = manufactor.cumulatedDesignVolume[variant.catNow - 1][i];
+                        CTLE[i] = manufactor.cumulatedTechnologyVolume[variant.catNow - 1][i];             
+                      };
+                      // CDL = manufactor.cumulatedDesignVolume[variant.catNow - 1];
+                      // CTLE = manufactor.cumulatedTechnologyVolume[variant.catNow - 1];   
+                      console.log('----- before -------')
+                      console.log('manufactor.cumulatedDesignVolume: ' + manufactor.cumulatedDesignVolume[variant.catNow - 1]);
+                      console.log('manufactor.cumulatedTechnologyVolume: ' + manufactor.cumulatedTechnologyVolume[variant.catNow - 1] );
+                      console.log('CDL: ' + CDL);
+                      console.log('CTLE: ' + CTLE);
+                      console.log('CRMQ: ' + CRMQ);                   
+                      //normal products
+                      
+                      if(variant.manufactorID <= 3){
+                          require('../models/producerDecision.js').proDecision.findOne({seminar:query.seminar, period:query.period, producerID:variant.manufactorID}, function(err, doc){           
+                            if(doc){
+                              var allProCatDecisions = _.filter(doc.proCatDecision,function(obj){ return (obj.categoryID == variant.catNow);});                      
+                              //console.log(util.inspect(allProCatDecisions, {depth:null}));
+                                                  
+                                console.log('----- portfolio -------') 
+                                for(var i=0;i<allProCatDecisions.length;i++){
+                                    for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
+
+                                          for(var k=0;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
+                                            if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=0 && allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varName!=""){
+
+                                                  console.log(allProCatDecisions[i].proBrandsDecision[j].brandName + allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varName + ': ' + allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].composition + ' / production: ' + allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].production);
+                                                  for (var specIdx = 0; specIdx < 22; specIdx++) {
+                                                    var realSpecIdx = specIdx + 1;
+                                                    if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].composition[0] >= realSpecIdx ){
+                                                        CDL[specIdx] += allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].production;
+                                                    }
+
+                                                    if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].composition[1] >= realSpecIdx ){                                         
+                                                        CTLE[specIdx] += allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].production;
+                                                    }
+
+                                                    if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].composition[2] == realSpecIdx){
+                                                      CRMQ[specIdx] = allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].production;
+                                                    }
+                                                  }
+                                            };
+                                          }
+                                       
+                                    }
+                                }
+                              
+                              console.log('----- after -------')
+                              console.log('CDL: ' + CDL);
+                              console.log('CTLE: ' + CTLE);
+                              console.log('CRMQ: ' + CRMQ);                 
+
+                              cumVolumes[0] = CDL;
+                              cumVolumes[1] = CTLE;
+                              cumVolumes[2] = CRMQ;
+                              variant.cumVolumes = cumVolumes;
+                              deferred.resolve({msg: 'getCumVolume', result: variant});                        
+                            } else { deferred.reject({msg:'UnitCost, cannot find companyHistory doc by query: ' + query}); }
+                          })                      
+                      //private labels 
+                      } else {
+                          console.log('-----');
+                          require('../models/retailerDecision.js').retDecision.findOne({seminar:query.seminar, period:query.period, retailerID : query.userID}, function(err, doc){
+                            if(doc){
+
+                            }      
+                          })
+                      }
+                } else { deferred.reject({msg:'UnitCost, cannot find manufactor ' + variant.manufactorID}); }
             } else { deferred.reject({msg:'UnitCost, cannot find companyHistory doc by query: ' + query});}
           })
-          break;
-    //HEALTHBEAUTIES
-    case '2':
-          break;
+  } else if (variant.catNow == 2){
+    variant.cumVolumes = cumVolumes;
+    deferred.resolve({msg: 'getCumVolume', result: variant}); 
   }
-  for (var i = 0; i < 3; i++) {
-    for (var j = 0; j < 22; j++) {
-      cumVolumes[i,j] = 0;
-    };
-  };
   
-  variant.cumVolumes = cumVolumes;
-  deferred.resolve({msg: 'getCumVolume', result: variant});
+
   return deferred.promise;
 }
 
