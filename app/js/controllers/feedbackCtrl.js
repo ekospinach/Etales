@@ -7,7 +7,7 @@ define(['app'], function(app) {
 		    $rootScope.loginFooter="bs-footer";
 		    $rootScope.loginLink="footer-links";
 		    $rootScope.loginDiv="container";		
-
+						
 		    var periods=new Array();
 		    $scope.periods=periods;
 		    
@@ -16,17 +16,24 @@ define(['app'], function(app) {
 				method:'GET',
 				url:url
 			}).then(function(data){
-				for (var i=-3;i<=data.data.currentPeriod-1;i++){
+				for (var i=data.data.currentPeriod;i>=-2;i--){
 					$scope.periods.push(i);
 				}
-				console.log($scope.periods);
+				$scope.selectedPeriod = data.data.currentPeriod;
 			},function(){
 				console.log('fail');
 			})
 
-			$scope.openTab = function(){
-				$window.open('feedbackENG?seminar=' + SeminarInfo.getSelectedSeminar().seminarCode + '&period=' + $scope.selectPeriod);
+			$scope.msg = '';		
+			$scope.setPeriod = function(period){
+				if($scope.selectedPeriod){
+					//PeriodInfo.setCurrentPeriod($scope.selectedPeriod);					
+					$window.open('feedbackENG?seminar=' + SeminarInfo.getSelectedSeminar().seminarCode + '&period=' + ($scope.selectedPeriod - 1));									
+				} else {
+					$scope.msg = $scope.msg = 'Please choose period.';
+				}
 			}
-							
+
+
 		}]);
 });
