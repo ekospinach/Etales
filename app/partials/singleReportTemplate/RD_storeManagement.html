@@ -47,33 +47,33 @@
                     <a href="#" editable-text="product.order" onbeforesave="checkOrderVolume('Elecssories','Urban',product.brandName,product.varName,'order','postion',$index,$data)" ng-show='!isReady' onaftersave="updateRetailerDecision('Elecssories','Urban',product.brandName,product.varName,'order','postion',$index,$data)">
                         <p class="text-right">{{ product.order || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right">{{ product.order || 0 }}</p>
+                    <p ng-show='isReady' class="text-right text-muted">{{ product.order || 0 }}</p>
                 </td>
                 <td style="background-color:#FCF8E3">
                     <a href="#" editable-text="product.shelfSpace" onbeforesave="checkShelfSpace('Elecssories','Urban',product.brandName,product.varName,'shelfSpace','postion',$index,$data)" ng-show='!isReady' onaftersave="updateRetailerDecision('Elecssories','Urban',product.brandName,product.varName,'shelfSpace','postion',$index,$data)">
                         <p class="text-right">{{ product.shelfSpace || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right">{{ product.shelfSpace || 0 }}</p>
+                    <p ng-show='isReady' class="text-right text-muted">{{ product.shelfSpace || 0 }}</p>
                 </td>
                 <td style="background-color:#FCF8E3">
                     <a href="#" editable-text="product.retailerPrice" onbeforesave="checkRetailerPrice('Elecssories','Urban',product.brandName,product.varName,'retailerPrice','postion',$index,product.dateOfBirth,$data)" ng-show='!isReady' onaftersave="updateRetailerDecision('Elecssories','Urban',product.brandName,product.varName,'retailerPrice','postion',$index,$data)">
                         <p class="text-right">{{ product.retailerPrice || 0 }}</p>
                         <p ng-show='product.showInfo'>{{Label.getContent('Less than current cost')}}
                     </a>
-                    <p ng-show='isReady' class="text-right">{{ product.retailerPrice || 0 }}</p>
+                    <p ng-show='isReady' class="text-right text-muted">{{ product.retailerPrice || 0 }}</p>
                 </td>
                 <td style="background-color:#FCF8E3">
                     <a href="#" editable-text="product.pricePromotions.promo_Frequency" onbeforesave="checkPromototionFrequency($data)" ng-show='!isReady' onaftersave="updateRetailerDecision('Elecssories','Urban',product.brandName,product.varName,'pricePromotions','promo_Frequency',$index,$data)">
                         <p class="text-right">{{ product.pricePromotions.promo_Frequency || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right">{{ product.pricePromotions.promo_Frequency || 0 }}</p>
+                    <p ng-show='isReady' class="text-right text-muted">{{ product.pricePromotions.promo_Frequency || 0 }}</p>
                 </td>
                 <td style="background-color:#FCF8E3">
                     <a href="#" editable-text="product.pricePromotions.promo_Rate" onbeforesave="checkReductionRate($data)" ng-show='!isReady' onaftersave="updateRetailerDecision('Elecssories','Urban',product.brandName,product.varName,'pricePromotions','promo_Rate',$index,$data)">
                         <p class="text-right">{{ product.pricePromotions.promo_Rate || 0 }}
                         </p>
                     </a>
-                    <p ng-show='isReady' class="text-right">{{ product.pricePromotions.promo_Rate || 0 }}</p>
+                    <p ng-show='isReady' class="text-right text-muted">{{ product.pricePromotions.promo_Rate || 0 }}</p>
                 </td>
             </tr>
         </tbody>
@@ -129,32 +129,32 @@
                     <a href="#" editable-text="product.order" onbeforesave="checkOrderVolume('HealthBeauties','Urban',product.brandName,product.varName,'order','postion',$index,$data)" ng-show='!isReady' onaftersave="updateRetailerDecision('HealthBeauties','Urban',product.brandName,product.varName,'order','postion',$index,$data)">
                         <p class="text-right">{{ product.order || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right">{{ product.order || 0 }}</p>
+                    <p ng-show='isReady' class="text-right text-muted">{{ product.order || 0 }}</p>
                 </td>
                 <td style="background-color:#FCF8E3">
                     <a href="#" editable-text="product.shelfSpace" onbeforesave="checkShelfSpace('HealthBeauties','Urban',product.brandName,product.varName,'shelfSpace','postion',$index,$data)" ng-show='!isReady' onaftersave="updateRetailerDecision('HealthBeauties','Urban',product.brandName,product.varName,'shelfSpace','postion',$index,$data)">
                         <p class="text-right">{{ product.shelfSpace || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right">{{ product.shelfSpace || 0 }}</p>
+                    <p ng-show='isReady' class="text-right text-muted">{{ product.shelfSpace || 0 }}</p>
                 </td>
                 <td style="background-color:#FCF8E3">
                     <a href="#" editable-text="product.retailerPrice" onbeforesave="checkRetailerPrice('HealthBeauties','Urban',product.brandName,product.varName,'retailerPrice','postion',$index,product.dateOfBirth,$data)" ng-show='!isReady' onaftersave="updateRetailerDecision('HealthBeauties','Urban',product.brandName,product.varName,'retailerPrice','postion',$index,$data)">
                         <p class="text-right">{{ product.retailerPrice || 0 }}</p>
                         <p ng-show='product.showInfo'>{{Label.getContent('Less than current cost')}}
                     </a>
-                    <p ng-show='isReady' class="text-right">{{ product.retailerPrice || 0 }}</p>
+                    <p ng-show='isReady' class="text-right text-muted">{{ product.retailerPrice || 0 }}</p>
                 </td>
                 <td style="background-color:#FCF8E3">
                     <a href="#" editable-text="product.pricePromotions.promo_Frequency" onbeforesave="checkPromototionFrequency($data)" ng-show='!isReady' onaftersave="updateRetailerDecision('HealthBeauties','Urban',product.brandName,product.varName,'pricePromotions','promo_Frequency',$index,$data)">
                         <p class="text-right">{{ product.pricePromotions.promo_Frequency || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right">{{ product.pricePromotions.promo_Frequency || 0 }}</p>
+                    <p ng-show='isReady' class="text-right text-muted">{{ product.pricePromotions.promo_Frequency || 0 }}</p>
                 </td>
                 <td style="background-color:#FCF8E3">
                     <a href="#" editable-text="product.pricePromotions.promo_Rate" onbeforesave="checkReductionRate($data)" ng-show='!isReady' onaftersave="updateRetailerDecision('HealthBeauties','Urban',product.brandName,product.varName,'pricePromotions','promo_Rate',$index,$data)">
                         <p class="text-right">{{ product.pricePromotions.promo_Rate || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right">{{ product.pricePromotions.promo_Rate || 0 }}</p>
+                    <p ng-show='isReady' class="text-right text-muted">{{ product.pricePromotions.promo_Rate || 0 }}</p>
                 </td>
             </tr>
         </tbody>
@@ -210,32 +210,32 @@
                     <a href="#" editable-text="product.order" onbeforesave="checkOrderVolume('Elecssories','Rural',product.brandName,product.varName,'order','postion',$index,$data)" ng-show='!isReady' onaftersave="updateRetailerDecision('Elecssories','Rural',product.brandName,product.varName,'order','postion',$index,$data)">
                         <p class="text-right">{{ product.order || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right">{{ product.order || 0 }}</p>
+                    <p ng-show='isReady' class="text-right text-muted">{{ product.order || 0 }}</p>
                 </td>
                 <td style="background-color:#D9EDF7">
                     <a href="#" editable-text="product.shelfSpace" onbeforesave="checkShelfSpace('Elecssories','Rural',product.brandName,product.varName,'shelfSpace','postion',$index,$data)" ng-show='!isReady' onaftersave="updateRetailerDecision('Elecssories','Rural',product.brandName,product.varName,'shelfSpace','postion',$index,$data)">
                         <p class="text-right">{{ product.shelfSpace || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right">{{ product.shelfSpace || 0 }}</p>
+                    <p ng-show='isReady' class="text-right text-muted">{{ product.shelfSpace || 0 }}</p>
                 </td>
                 <td style="background-color:#D9EDF7">
                     <a href="#" editable-text="product.retailerPrice" onbeforesave="checkRetailerPrice('Elecssories','Rural',product.brandName,product.varName,'retailerPrice','postion',$index,product.dateOfBirth,$data)" ng-show='!isReady' onaftersave="updateRetailerDecision('Elecssories','Rural',product.brandName,product.varName,'retailerPrice','postion',$index,$data)">
                         <p class="text-right">{{ product.retailerPrice || 0 }}</p>
                         <p ng-show='product.showInfo'>{{Label.getContent('Less than current cost')}}
                     </a>
-                    <p ng-show='isReady' class="text-right">{{ product.retailerPrice || 0 }}</p>
+                    <p ng-show='isReady' class="text-right text-muted">{{ product.retailerPrice || 0 }}</p>
                 </td>
                 <td style="background-color:#D9EDF7">
                     <a href="#" editable-text="product.pricePromotions.promo_Frequency" onbeforesave="checkPromototionFrequency($data)" ng-show='!isReady' onaftersave="updateRetailerDecision('Elecssories','Rural',product.brandName,product.varName,'pricePromotions','promo_Frequency',$index,$data)">
                         <p class="text-right">{{ product.pricePromotions.promo_Frequency || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right">{{ product.pricePromotions.promo_Frequency || 0 }}</p>
+                    <p ng-show='isReady' class="text-right text-muted">{{ product.pricePromotions.promo_Frequency || 0 }}</p>
                 </td>
                 <td style="background-color:#D9EDF7">
                     <a href="#" editable-text="product.pricePromotions.promo_Rate" onbeforesave="checkReductionRate($data)" ng-show='!isReady' onaftersave="updateRetailerDecision('Elecssories','Rural',product.brandName,product.varName,'pricePromotions','promo_Rate',$index,$data)">
                         <p class="text-right">{{ product.pricePromotions.promo_Rate || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right">{{ product.pricePromotions.promo_Rate || 0 }}</p>
+                    <p ng-show='isReady' class="text-right text-muted">{{ product.pricePromotions.promo_Rate || 0 }}</p>
                 </td>
             </tr>
         </tbody>
@@ -291,32 +291,32 @@
                     <a href="#" editable-text="product.order" onbeforesave="checkOrderVolume('HealthBeauties','Rural',product.brandName,product.varName,'order','postion',$index,$data)" ng-show='!isReady' onaftersave="updateRetailerDecision('HealthBeauties','Rural',product.brandName,product.varName,'order','postion',$index,$data)">
                         <p class="text-right">{{ product.order || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right">{{ product.order || 0 }}</p>
+                    <p ng-show='isReady' class="text-right text-muted">{{ product.order || 0 }}</p>
                 </td>
                 <td style="background-color:#D9EDF7">
                     <a href="#" editable-text="product.shelfSpace" onbeforesave="checkShelfSpace('HealthBeauties','Rural',product.brandName,product.varName,'shelfSpace','postion',$index,$data)" ng-show='!isReady' onaftersave="updateRetailerDecision('HealthBeauties','Rural',product.brandName,product.varName,'shelfSpace','postion',$index,$data)">
                         <p class="text-right">{{ product.shelfSpace || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right">{{ product.shelfSpace || 0 }}</p>
+                    <p ng-show='isReady' class="text-right text-muted">{{ product.shelfSpace || 0 }}</p>
                 </td>
                 <td style="background-color:#D9EDF7">
                     <a href="#" editable-text="product.retailerPrice" onbeforesave="checkRetailerPrice('HealthBeauties','Rural',product.brandName,product.varName,'retailerPrice','postion',$index,product.dateOfBirth,$data)" ng-show='!isReady' onaftersave="updateRetailerDecision('HealthBeauties','Rural',product.brandName,product.varName,'retailerPrice','postion',$index,$data)">
                         <p class="text-right">{{ product.retailerPrice || 0 }}</p>
                         <p ng-show='product.showInfo'>{{Label.getContent('Less than current cost')}}
                     </a>
-                    <p ng-show='isReady' class="text-right">{{ product.retailerPrice || 0 }}</p>
+                    <p ng-show='isReady' class="text-right text-muted">{{ product.retailerPrice || 0 }}</p>
                 </td>
                 <td style="background-color:#D9EDF7">
                     <a href="#" editable-text="product.pricePromotions.promo_Frequency" onbeforesave="checkPromototionFrequency($data)" ng-show='!isReady' onaftersave="updateRetailerDecision('HealthBeauties','Rural',product.brandName,product.varName,'pricePromotions','promo_Frequency',$index,$data)">
                         <p class="text-right">{{ product.pricePromotions.promo_Frequency || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right">{{ product.pricePromotions.promo_Frequency || 0 }}</p>
+                    <p ng-show='isReady' class="text-right text-muted">{{ product.pricePromotions.promo_Frequency || 0 }}</p>
                 </td>
                 <td style="background-color:#D9EDF7">
                     <a href="#" editable-text="product.pricePromotions.promo_Rate" onbeforesave="checkReductionRate($data)" ng-show='!isReady' onaftersave="updateRetailerDecision('HealthBeauties','Rural',product.brandName,product.varName,'pricePromotions','promo_Rate',$index,$data)">
                         <p class="text-right">{{ product.pricePromotions.promo_Rate || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right">{{ product.pricePromotions.promo_Rate || 0 }}</p>
+                    <p ng-show='isReady' class="text-right text-muted">{{ product.pricePromotions.promo_Rate || 0 }}</p>
                 </td>
             </tr>
         </tbody>

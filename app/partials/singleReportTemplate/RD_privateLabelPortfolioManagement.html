@@ -48,31 +48,31 @@
     				<a href="#" editable-select="producte.packFormat" e-ng-options="p.value as p.text for p in packs" ng-show='!isReady' onaftersave="updateRetailerDecision('Elecssories',producte.parentBrandName,producte.varName,'packFormat','0',$index,$data)">
     					<p class="text-right">{{selectPacks('Elecssories',producte.parentBrandName,producte.varName)}}</p>
     				</a>
-                    <p ng-show='isReady' class="text-right">{{selectPacks('Elecssories',producte.parentBrandName,producte.varName)}}</p>
+                    <p ng-show='isReady' class="text-right text-muted">{{selectPacks('Elecssories',producte.parentBrandName,producte.varName)}}</p>
     			</td>
     			<td>
     				<a href="#" editable-text="producte.composition[1]" onbeforesave="checkTechnology('Elecssories',producte.parentBrandName,producte.varName,'composition','1',$index,$data)" ng-show='!isReady' onaftersave="updateRetailerDecision('Elecssories',producte.parentBrandName,producte.varName,'composition','1',$index,$data)">
     					<p class="text-right">{{ producte.composition[1] || 0 }}</p>
     				</a>
-                    <p ng-show='isReady' class="text-right">{{ producte.composition[1] || 0 }}</p>
+                    <p ng-show='isReady' class="text-right text-muted">{{ producte.composition[1] || 0 }}</p>
     			</td>
     			<td>
     				<a href="#" editable-text="producte.composition[0]" onbeforesave="checkDesign('Elecssories',producte.parentBrandName,producte.varName,'composition','0',$index,$data)" ng-show='!isReady' onaftersave="updateRetailerDecision('Elecssories',producte.parentBrandName,producte.varName,'composition','0',$index,$data)">
     					<p class="text-right">{{ producte.composition[0] || 0 }}</p>
     				</a>
-                    <p ng-show='isReady' class="text-right">{{ producte.composition[0] || 0 }}</p>
+                    <p ng-show='isReady' class="text-right text-muted">{{ producte.composition[0] || 0 }}</p>
     			</td>
     			<td>
     				<a href="#" editable-text="producte.composition[2]" onbeforesave="checkValue('Elecssories',producte.parentBrandName,producte.varName,'composition','2',$index,$data)" ng-show='!isReady' onaftersave="updateRetailerDecision('Elecssories',producte.parentBrandName,producte.varName,'composition','2',$index,$data)">
     					<p class="text-right">{{ producte.composition[2] || 0 }}</p>
     				</a>
-                    <p ng-show='isReady' class="text-right">{{ producte.composition[2] || 0 }}</p>
+                    <p ng-show='isReady' class="text-right text-muted">{{ producte.composition[2] || 0 }}</p>
     			</td>
                 <td>
                     <a href="#" editable-checkbox="producte.discontinue" e-title="{{Label.getContent('Discontinue this product')}}" ng-show="!isReady" onaftersave="updateRetailerDecision('Elecssories',producte.parentBrandName,producte.varName,'discontinue','0',$index,$data)">
                         <p class="text-right">{{ producte.discontinue && Label.getContent('DisContinue') || Label.getContent('Continue') }}</p>
                     </a>
-                    <p ng-show="isReady" class="text-right">{{ producte.discontinue && Label.getContent('DisContinue') || Label.getContent('Continue') }}</p>
+                    <p ng-show="isReady" class="text-right text-muted">{{ producte.discontinue && Label.getContent('DisContinue') || Label.getContent('Continue') }}</p>
                 </td>
                 <td>
                     <p class="text-right">{{producte.unitCost}}<p>
@@ -118,31 +118,31 @@
     				<a href="#" editable-select="producth.packFormat" e-ng-options="p.value as p.text for p in packs" ng-show='!isReady' onaftersave="updateRetailerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'packFormat','0',$index,$data)">
     					<p class="text-right">{{selectPacks('HealthBeauty',producth.parentBrandName,producth.varName)}}</p>
     				</a>
-                    <p class="text-right" ng-show='isReady'>{{selectPacks('HealthBeauty',producth.parentBrandName,producth.varName)}}</p>
+                    <p class="text-right text-muted" ng-show='isReady'>{{selectPacks('HealthBeauty',producth.parentBrandName,producth.varName)}}</p>
     			</td>
     			<td>
     				<a href="#" editable-text="producth.composition[1]" onbeforesave="checkTechnology('HealthBeauty',producth.parentBrandName,producth.varName,'composition','1',$index,$data)" ng-show='!isReady' onaftersave="updateRetailerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'composition','1',$index,$data)">
     					<p class="text-right">{{ producth.composition[1] || 0 }}</p>
     				</a>
-                    <p class="text-right" ng-show='isReady'>{{ producth.composition[1] || 0 }}</p>
+                    <p class="text-right text-muted" ng-show='isReady'>{{ producth.composition[1] || 0 }}</p>
     			</td>
     			<td>
     				<a href="#" editable-text="producth.composition[0]" onbeforesave="checkDesign('HealthBeauty',producth.parentBrandName,producth.varName,'composition','0',$index,$data)" ng-show='!isReady' onaftersave="updateRetailerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'composition','0',$index,$data)">
     					<p class="text-right">{{ producth.composition[0] || 0 }}</p>
     				</a>
-                    <p class="text-right" ng-show='isReady'>{{ producth.composition[0] || 0 }}</p>
+                    <p class="text-right text-muted" ng-show='isReady'>{{ producth.composition[0] || 0 }}</p>
     			</td>
     			<td>
     				<a href="#" editable-text="producth.composition[2]" onbeforesave="checkValue('HealthBeauty',producth.parentBrandName,producth.varName,'composition','2',$index,$data)" ng-show='!isReady' onaftersave="updateRetailerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'composition','2',$index,$data)">
     					<p class="text-right">{{ producth.composition[2] || 0 }}</p>
     				</a>
-                    <p class="text-right" ng-show='isReady'>{{ producth.composition[2] || 0 }}</p>
+                    <p class="text-right text-muted" ng-show='isReady'>{{ producth.composition[2] || 0 }}</p>
     			</td>
                 <td>
                     <a href="#" editable-checkbox="producth.discontinue" e-title="{{Label.getContent('Discontinue this product')}}" ng-show="!isReady" onaftersave="updateRetailerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'discontinue','0',$index,$data)">
                         <p class="text-right">{{ producth.discontinue && Label.getContent('DisContinue') || Label.getContent('Continue') }}</p>
                     </a>
-                    <p ng-show="isReady" class="text-right">{{ producth.discontinue && Label.getContent('DisContinue') || Label.getContent('Continue') }}</p>
+                    <p ng-show="isReady" class="text-right text-muted">{{ producth.discontinue && Label.getContent('DisContinue') || Label.getContent('Continue') }}</p>
                 </td>
 
                 <td>
