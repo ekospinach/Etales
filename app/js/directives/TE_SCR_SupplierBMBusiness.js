@@ -144,7 +144,7 @@ define(['directives', 'services'], function(directives){
 			    	var num=0;
                     scope.variants=new Array();
                     scope.brandName=brandName;
-                    if(type="BM"){
+                    if(type=="BM"){
                         scope.BMShow=true;
                         scope.OLShow=false;
                         num=0;

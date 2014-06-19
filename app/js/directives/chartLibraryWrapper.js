@@ -142,6 +142,12 @@ define(['directives'], function(directives){
                         yAxis:{
                             title:{text:scope.yTitle1}
                         },  
+                        plotOptions: {
+                            bubble: {
+                                minSize: 20,
+                                maxSize: 20
+                            }
+                        },
                         tooltip: {
                             formatter: function() {
                                 var s = '<p>'+this.point.z+'</p>'+'<p>('+this.point.x.toFixed(2)+','+this.point.y.toFixed(2)+')</p>';
@@ -178,6 +184,12 @@ define(['directives'], function(directives){
                         yAxis:{
                             title:{text:scope.yTitle2}
                         },  
+                        plotOptions: {
+                            bubble: {
+                                minSize: 20,
+                                maxSize: 20
+                            }
+                        },
                         tooltip: {
                             formatter: function() {
                                 var s = '<p>'+this.point.z+'</p>'+'<p>('+this.point.y.toFixed(2)+')</p>';
@@ -214,6 +226,12 @@ define(['directives'], function(directives){
                         yAxis:{
                             title:{text:scope.yTitle1}
                         },  
+                        plotOptions: {
+                            bubble: {
+                                minSize: 20,
+                                maxSize: 20
+                            }
+                        },
                         tooltip: {
                             formatter: function() {
                                 var s = '<p>'+this.point.z+'</p>'+'<p>('+this.point.x.toFixed(2)+','+this.point.y.toFixed(2)+')</p>';
@@ -251,6 +269,12 @@ define(['directives'], function(directives){
                         yAxis:{
                             title:{text:scope.yTitle2}
                         },  
+                        plotOptions: {
+                            bubble: {
+                                minSize: 20,
+                                maxSize: 20
+                            }
+                        },
                         tooltip: {
                             formatter: function() {
                                 var s = '<p>'+this.point.z+'</p>'+'<p>('+this.point.y.toFixed(2)+')</p>';
@@ -287,6 +311,12 @@ define(['directives'], function(directives){
                         yAxis:{
                             title:{text:scope.yTitle1}
                         },  
+                        plotOptions: {
+                            bubble: {
+                                minSize: 20,
+                                maxSize: 20
+                            }
+                        },
                         tooltip: {
                             formatter: function() {
                                 var s = '<p>'+this.point.z+'</p>'+'<p>('+this.point.x.toFixed(2)+','+this.point.y.toFixed(2)+')</p>';
@@ -323,6 +353,12 @@ define(['directives'], function(directives){
                         yAxis:{
                             title:{text:scope.yTitle2}
                         },  
+                        plotOptions: {
+                            bubble: {
+                                minSize: 20,
+                                maxSize: 20
+                            }
+                        },
                         tooltip: {
                             formatter: function() {
                                 var s = '<p>'+this.point.z+'</p>'+'<p>('+this.point.y.toFixed(2)+')</p>';
@@ -359,6 +395,12 @@ define(['directives'], function(directives){
                         yAxis:{
                             title:{text:scope.yTitle1}
                         },  
+                        plotOptions: {
+                            bubble: {
+                                minSize: 20,
+                                maxSize: 20
+                            }
+                        },
                         tooltip: {
                             formatter: function() {
                                 var s = '<p>'+this.point.z+'</p>'+'<p>('+this.point.x.toFixed(2)+','+this.point.y.toFixed(2)+')</p>';
@@ -395,6 +437,12 @@ define(['directives'], function(directives){
                         yAxis:{
                             title:{text:scope.yTitle2}
                         },  
+                        plotOptions: {
+                            bubble: {
+                                minSize: 20,
+                                maxSize: 20
+                            }
+                        },
                         tooltip: {
                             formatter: function() {
                                 var s = '<p>'+this.point.z+'</p>'+'<p>('+this.point.y.toFixed(2)+')</p>';
@@ -434,7 +482,7 @@ define(['directives'], function(directives){
                         }, 
                         plotOptions: {
                             bubble: {
-                                minSize: 30,
+                                minSize: 15,
                                 maxSize: 50
                             }
                         }, 
@@ -481,7 +529,7 @@ define(['directives'], function(directives){
                         }, 
                         plotOptions: {
                             bubble: {
-                                minSize: 30,
+                                minSize: 15,
                                 maxSize: 50
                             }
                         }, 
