@@ -74,7 +74,7 @@ var proDecisionSchema = mongoose.Schema({
     producerID : Number, //1~4
     nextBudgetExtension : Number,
     approvedBudgetExtension : Number,
-    proCatDecision : [proCatDecisionSchema] //Length: TCategories(1~2)
+    proCatDecision : [proCatDecisionSchema] //Length: TCategories(1~2)    
 })
 
 exports.proDecision = proDecision = mongoose.model('proDecision', proDecisionSchema);

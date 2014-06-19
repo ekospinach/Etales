@@ -19,7 +19,9 @@ var producerViewSchema = mongoose.Schema({
 	productionCapacity : [Number], //TCategories(1~2)
 	acquiredTechnologyLevel : [Number], //TCategories(1~2)
 	acquiredProductionFlexibility : [Number], //TCategories(1~2)
-	acquiredDesignLevel : [Number] //TCategories(1~2)
+	acquiredDesignLevel : [Number], //TCategories(1~2)
+  cumulatedDesignVolume         : [],
+  cumulatedTechnologyVolume     : []
 })
 
 var retailerViewSchema = mongoose.Schema({

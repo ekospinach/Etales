@@ -15,13 +15,17 @@ exports.getCurrentUnitCost = function(req, res, next){
     userRole : req.body.userRole,
     userID : req.body.userID,
   };
-  //get variant composition/catNow/isPrivateLabel/packFormat
 
+  //console.log('try to get production cost: ' + util.inspect(query));
+  //get variant composition/catNow/isPrivateLabel/packFormat
   getProduct(query).then(function(variant){
-    //console.log('get variant:' + util.inspect(variant.result, {depth:true}));
+    console.log('get variant:' + util.inspect(variant.result, {depth:true}));
     return getCumVolumes(query, variant.result);
   }).then(function(variant){
-    //console.log('get cumVolumes:' + util.inspect(variant.result, {depth:true}));
+    console.log('get cumVolumes[0]:' + util.inspect(variant.result.cumVolumes[0], {depth:true}));
+    console.log('get cumVolumes[1]:' + util.inspect(variant.result.cumVolumes[1], {depth:true}));
+    console.log('get cumVolumes[2]:' + util.inspect(variant.result.cumVolumes[2], {depth:true}));
+
     var value = calculateUnitCost(variant.result.composition,
                              variant.result.packFormat,
                              variant.result.isPrivateLabel,
@@ -54,11 +58,13 @@ function getProduct(query){
                   catNow : query.catID                  
                 }})
               } else { 
-                //console.log('reject variant'); deferred.reject({msg:'UnitCost, cannot find variant by query: ' + query}); 
+                //console.log('reject variant'); 
+                deferred.reject({msg:'UnitCost, cannot find variant by query: ' + query}); 
               }
             } else { deferred.reject({msg:'UnitCost, cannot find brand by query: ' + query}); }           
           } else { 
-            //console.log('reject');deferred.reject({msg:'UnitCost, cannot find producerDecision doc by query: ' + query});
+            //console.log('reject');
+            deferred.reject({msg:'UnitCost, cannot find producerDecision doc by query: ' + query});
           }
         });
         break;
@@ -87,11 +93,53 @@ function getProduct(query){
   return deferred.promise;
 }
 
+/*
+{                                                                                              }
+{ --- CUMULATED VOLUMES  --- how to prepare them ? ------------------------------------------- }
+{                                                                                              }
+{ ELECSORRIES: - DESIGN: Previously cumulated plus sum of current volumes                      }
+{                        produced with the same level. (across all variants)                   }
+{                        Similarly, the volumes with higher level are also taken into account. }
+{                                                                                              }
+{              - TECHNOLOGY: same as above.                                                    }
+{                                                                                              }
+{              - QUALITY of INGREDIENTS: only current volume cumulated across all variants     }
+{                                        with the same quality index.                          }
+{                                                                                              }
+{ HEALTHBEAUTIES: - ACTIVE AGENT: only current volume cumulated across all variants with the   }
+{                                 same level.                                                  }
+{                                                                                              }
+{                   TECHNOLOGY: Previously cumulated plus sum of current volumes produced with }
+{                               the same level (across all variants). Similarly, the volumes   }
+{                               with higher level are also taken into account.                 }
+{                                                                                              }
+{                   SMOOTHENER: only current volume cumulated across all variants with the     }
+{                               same level.                                                    }
+{       
+
+Where to find previously cumulatedd plus sum of current volumes?
+scrInfo_CumulatedDesignVolume         : array[TCategories] of TDesignsDetails;
+scrInfo_CumulatedTechnologyVolume     : array[TCategories] of TTechnologiesDetails;
+*/  
 function getCumVolumes(query, variant){
   var deferred = q.defer();
-  var cumVolumes = [[ 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500 ],
-                    [ 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500 ],
-                    [ 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500 ]];
+  var cumVolumes = [[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+                    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+                    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]];
+  var DL, TLE, RMQ;
+  var AA, TLH, SMT;
+  // switch(variant.catNow){
+  //   //ELECSORRIES
+  //   case '1':
+  //         DL = variant.composition[0];
+  //         TLE = variant.composition[1];
+  //         RMQ = variant.composition[2];
+          
+  //         break;
+  //   //HEALTHBEAUTIES
+  //   case '2':
+  //         break;
+  // }
   // for (var i = 0; i < 3; i++) {
   //   for (var j = 0; j < 22; j++) {
   //     cumVolumes[i,j] = 0;
