@@ -74,8 +74,17 @@ var proDecisionSchema = mongoose.Schema({
     producerID : Number, //1~4
     nextBudgetExtension : Number,
     approvedBudgetExtension : Number,
-    proCatDecision : [proCatDecisionSchema] //Length: TCategories(1~2)    
+    proCatDecision : [proCatDecisionSchema], //Length: TCategories(1~2)    
+//    marketResearchOrder : [Boolean]
 })
+
+{ period: '0',
+  seminar: 'EJT1',
+  brandName: 'HOLAY1',
+  varName: '_A',
+  catID: 2,
+  userRole: 2,
+  userID: 1 }
 
 exports.proDecision = proDecision = mongoose.model('proDecision', proDecisionSchema);
 var proDecision = mongoose.model('proDecision', proDecisionSchema);

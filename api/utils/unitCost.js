@@ -55,7 +55,8 @@ function getProduct(query){
                   composition : variant.composition,
                   packFormat : variant.packFormat,
                   isPrivateLabel : false,
-                  catNow : query.catID                  
+                  catNow : query.catID,
+                  manufactorID : brand.producerID
                 }})
               } else { 
                 //console.log('reject variant'); 
@@ -79,7 +80,8 @@ function getProduct(query){
                   composition : variant.composition,
                   packFormat : variant.packFormat,
                   isPrivateLabel : true,
-                  catNow : query.catID
+                  catNow : query.catID,
+                  manufactorID : 4
                 }})
               } else { deferred.reject({msg:'UnitCost, cannot find variant by query: ' + query}); }
             } else { deferred.reject({msg:'UnitCost, cannot find brand by query: ' + query}); }           
@@ -128,23 +130,58 @@ function getCumVolumes(query, variant){
                     [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]];
   var DL, TLE, RMQ;
   var AA, TLH, SMT;
-  // switch(variant.catNow){
-  //   //ELECSORRIES
-  //   case '1':
-  //         DL = variant.composition[0];
-  //         TLE = variant.composition[1];
-  //         RMQ = variant.composition[2];
-          
-  //         break;
-  //   //HEALTHBEAUTIES
-  //   case '2':
-  //         break;
-  // }
-  // for (var i = 0; i < 3; i++) {
-  //   for (var j = 0; j < 22; j++) {
-  //     cumVolumes[i,j] = 0;
-  //   };
-  // };
+  //DL - DesignLevel, TLE - Technology Level ELECSORRIES, RMQ - QUALITY of INGREDIENTS
+  //AA - Active Agent, TLH - Technology Level HEALTHBEAUTIES, SMT - Smoother level 
+  var CDL, CTEL, CRMQ;
+  var CAA, CLH, CSMT;
+  //C - cumulated volume 
+  var preCumulatedDLvolume, preCumulatedTLvolume;
+  var historyPeriod;
+  //Pre - Previous period 
+
+  historyPeriod = query.period - 1;
+  switch(variant.catNow){
+    //ELECSORRIES
+    case '1':
+          DL = variant.composition[0];
+          TLE = variant.composition[1];
+          RMQ = variant.composition[2];
+          require('../models/companyHistory.js').findOne({seminar : query.seminar, period: historyPeriod}, function(err, doc){
+            if(doc){
+                var manufactor = _.find(doc.producerView, function(producer){return produerID == query.manufactorID;});
+                if(manufactor){
+                  preCumulatedDLvolume = manufactor.cumulatedDesignVolume;
+                  preCumulatedTLvolume = manufactor.cumulatedTechnologyVolume;
+                  
+                  //normal products
+                  if(query.manufactorID <= 3){
+                    require('../models/producerDecision.js').proDecision.findOne({seminar:query.seminar, period:query.period, producerID:query.userID}, function(err, doc){
+                      if(doc){
+                        
+                        
+                      } else { deferred.reject({msg:'UnitCost, cannot find companyHistory doc by query: ' + query}); }
+                    })                      
+                  //private labels 
+                  } else {
+                    require('../models/retailerDecision.js').retDecision.findOne({seminar:query.seminar, period:query.period, retailerID : query.userID}, function(err, doc){
+                      if(doc){
+
+                      }      
+                    })
+                  }
+                } else { deferred.reject({msg:'UnitCost, cannot find manufactor ' + query.manufactorID}); }
+            } else { deferred.reject({msg:'UnitCost, cannot find companyHistory doc by query: ' + query});}
+          })
+          break;
+    //HEALTHBEAUTIES
+    case '2':
+          break;
+  }
+  for (var i = 0; i < 3; i++) {
+    for (var j = 0; j < 22; j++) {
+      cumVolumes[i,j] = 0;
+    };
+  };
   
   variant.cumVolumes = cumVolumes;
   deferred.resolve({msg: 'getCumVolume', result: variant});
