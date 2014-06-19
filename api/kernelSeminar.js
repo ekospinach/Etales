@@ -884,14 +884,6 @@ function runPromiseChainWithOutImportingNewDecisions(io, options, res){
 	        io.sockets.emit('KernelProcessLog', { msg: result.msg, isError: false });	 
 
 
-	        options.endWith = 0;
-			options.cgiPath = conf.cgi.path_BG_oneQuarterExogenousData;
-			options.schemaName = 'BG_oneQuarterExogenousData';
-			return require('./models/BG_oneQuarterExogenousData.js').addInfos(options);							
-		}).then(function(result){ 
-	        io.sockets.emit('KernelProcessLog', { msg: result.msg, isError: false });	 
-
-
 			options.cgiPath = conf.cgi.path_BG_feedbackSlides;
 			options.schemaName = 'BG_feedbackSlides';
 			return require('./models/BG_feedbackSlides.js').addInfos(options);							

@@ -74,9 +74,9 @@ var proDecisionSchema = mongoose.Schema({
     producerID : Number, //1~4
     nextBudgetExtension : Number,
     approvedBudgetExtension : Number,
-    proCatDecision : [proCatDecisionSchema] //Length: TCategories(1~2)
+    proCatDecision : [proCatDecisionSchema], //Length: TCategories(1~2)    
+//    marketResearchOrder : [Boolean]
 })
-
 exports.proDecision = proDecision = mongoose.model('proDecision', proDecisionSchema);
 var proDecision = mongoose.model('proDecision', proDecisionSchema);
 var proVarDecision=mongoose.model('proVarDecision',proVarDecisionSchema);
@@ -964,3 +964,4 @@ exports.getVariant = function(categoryCount, brandCount, varCount, producerID, s
                          })
     return deferred.promise;
 }
+

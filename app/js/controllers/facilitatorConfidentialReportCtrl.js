@@ -10,7 +10,6 @@ define(['app'], function(app) {
 		    $scope.selectPeriod=1;
 		    PlayerInfo.setPlayer(1);
 		    RoleInfo.setRole(2);
-		    PeriodInfo.setCurrentPeriod(1);
 
 		    var periods=new Array();
 		    $scope.periods=periods;
@@ -20,10 +19,10 @@ define(['app'], function(app) {
 				method:'GET',
 				url:url
 			}).then(function(data){
-				for (var i=1;i<=data.data.currentPeriod;i++){
+				for (var i=data.data.currentPeriod;i>=-2;i--){
 					$scope.periods.push(i);
 				}
-				console.log($scope.periods);
+				$scope.selectedPeriod = data.data.currentPeriod;
 			},function(){
 				console.log('fail');
 			})
@@ -42,13 +41,15 @@ define(['app'], function(app) {
 		    	}
 		    }
 
-		    $scope.setPreriod=function(period){
-		    	if(period){
-			    	PeriodInfo.setCurrentPeriod(period);	    		
-		    	} else {
-		    		$scope.msg = 'Please choose period.';
-		    	}
-		    }
+			$scope.msg = '';		
+			$scope.setPeriod = function(period){
+				if($scope.selectedPeriod){
+					PeriodInfo.setCurrentPeriod($scope.selectedPeriod);					
+					$location.path('/confidentialReport');
+				} else {
+					$scope.msg = $scope.msg = 'Please choose period.';
+				}
+			}
 
 		}]);
 });

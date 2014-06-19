@@ -14,7 +14,6 @@ module.exports = function(app, io){
 	app.post('/updateSeminar',                                                   require('./../api/models/seminar.js').updateSeminar(io));
 	app.post('/setCurrentPeriod',                                                require('./../api/models/seminar.js').setCurrentPeriod(io));
 	app.get('/seminarList',                                                      require('./../api/models/seminar.js').getSeminarList);
-	app.get('/getOneQuarterExogenousData/:seminar/:categoryID/:marketID',		 require('./../api/models/BG_oneQuarterExogenousData.js').getOneQuarterExogenousData);
 	
 	//getPlayerReportOrder
 	app.get('/getPlayerReportOrder/:seminar/:period/:userType/:playerID',		 require('./../api/models/seminar.js').getPlayerReportOrder);

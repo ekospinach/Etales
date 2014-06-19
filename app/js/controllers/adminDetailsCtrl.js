@@ -273,6 +273,8 @@ define(['app','socketIO'], function(app) {
 	 	};
 
 	 	$scope.isActive = true;	
+	 	$scope.isKeepExistedPeriod1Decision = true;
+	 	$scope.keepExistedNextPeriodDecision = true;
 	}]);
 
 });

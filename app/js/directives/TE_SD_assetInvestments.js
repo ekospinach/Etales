@@ -68,7 +68,7 @@ define(['directives', 'services'], function(directives){
                     if(!filter.test(value)){
                         d.resolve(Label.getContent('Input Number'));
                     }else{
-                        var url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+categoryID+'/1';
+                        var url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+categoryID+'/1' + '/' + PeriodInfo.getCurrentPeriod();
                         $http({
                             method:'GET',
                             url:url

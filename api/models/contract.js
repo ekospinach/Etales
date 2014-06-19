@@ -193,28 +193,29 @@ exports.addContractDetails = function(io) {
           var period = currentPeriodCode.substring(currentPeriodCode.length - 1, currentPeriodCode.length);
           var previousPeriod = parseInt(period) - 1;
 
-          // console.log('Period:' + period);
-          // console.log('Period(afterparse):' + parseInt(period));
-          // console.log('previous Period:' + previousPeriod);
+           console.log('Period:' + period);
+           console.log('Period(afterparse):' + parseInt(period));
+           console.log('previous Period:' + previousPeriod);
 
           var previousPeriodCode = currentPeriodCode.substring(0, currentPeriodCode.length - 1) + previousPeriod;
-          // console.log('current Period Code:' + currentPeriodCode);
-          // console.log('previous Period Code: ' + previousPeriodCode);
+           console.log('current Period Code:' + currentPeriodCode);
+           console.log('previous Period Code: ' + previousPeriodCode);
 
+          console.log('product:' + req.body.brandName + req.body.variantName + '/' + req.body.brandID + req.body.variantID );
           contractVariantDetails.findOne({
                     contractCode: previousPeriodCode,
                     parentBrandName: req.body.brandName,
                     parentBrandID: req.body.brandID,
-                    variantName: req.body.variantName,
-                    variantID: req.body.variantID
+                    variantName: req.body.varName,
+                    variantID: req.body.varID
                },
                function(err, previousDoc) {
                     if (err) {
                          next(new Error(err));
                     }
-
                     //check previous period input first, if anything, copy original ones.
                     if (previousDoc) {
+                         console.log('found previous input, copy...');
                          var newContractVariantDetails = new contractVariantDetails({
                               contractCode                           : req.body.contractCode,
                               parentBrandName                        : req.body.brandName,

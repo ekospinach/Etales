@@ -60,8 +60,11 @@ DataDirectory : string;
   function producerViewSchema(pProducer: Integer): ISuperObject;
   var
     jo: ISuperObject;
+    DLvolume : ISuperObject;
+    TLvolume : ISuperObject;
+
     vProd: TSupplierConfidentialReport;
-    I: Integer;
+    I, DL, TL: Integer;
   begin
     jo  := SO;
 
@@ -72,20 +75,39 @@ DataDirectory : string;
     jo.D['budgetSpentToDate'] := vProd.scr_Info.scrInfo_BudgetSpentToDate;
 
     jo.O['productionCapacity']  := SA([]);
-    for I := Low(TCategories) to High(TCategories) do
-      jo.A['productionCapacity'].D[I - 1]  := vProd.scr_Info.scrInfo_ProductionCapacity[I];
-
     jo.O['acquiredTechnologyLevel']  := SA([]);
-    for I := Low(TCategories) to High(TCategories) do
-      jo.A['acquiredTechnologyLevel'].D[I - 1]  := vProd.scr_Info.scrInfo_AcquiredTechnologyLevel[I];
-
     jo.O['acquiredProductionFlexibility']  := SA([]);
-    for I := Low(TCategories) to High(TCategories) do
-      jo.A['acquiredProductionFlexibility'].D[I - 1]  := vProd.scr_Info.scrInfo_AcquiredProductionFlexibility[I];
-
     jo.O['acquiredDesignLevel']  := SA([]);
+
+    jo.O['cumulatedDesignVolume'] := SA([]);
+    jo.O['cumulatedTechnologyVolume'] := SA([]);
     for I := Low(TCategories) to High(TCategories) do
+    begin
+      jo.A['productionCapacity'].D[I - 1]  := vProd.scr_Info.scrInfo_ProductionCapacity[I];
+      jo.A['acquiredTechnologyLevel'].D[I - 1]  := vProd.scr_Info.scrInfo_AcquiredTechnologyLevel[I];
+      jo.A['acquiredProductionFlexibility'].D[I - 1]  := vProd.scr_Info.scrInfo_AcquiredProductionFlexibility[I];
       jo.A['acquiredDesignLevel'].D[I - 1]  := vProd.scr_Info.scrInfo_AcquiredDesignLevel[I];
+
+      DLvolume := SO;
+      DLvolume.O[''] := SA([]);
+      for DL := Low(TDesign) to High(TDesign) do
+      begin
+        DLvolume.A[''].D[DL-1] := vProd.scr_Info.scrInfo_CumulatedDesignVolume[I, DL];
+      end;
+
+//      jo.A['cumulatedDesignVolume'].O[I - 1] := DLvolume;
+      jo.A['cumulatedDesignVolume'].Add(DLvolume);
+
+      // TLvolume := SO;
+      // TLvolume.O[''] := SA([]);
+      // for DL := Low(TTechnology) to High(TTechnology) do
+      // begin
+      //   TLvolume.A[''].D[TL-1] := vProd.scr_Info.scrInfo_CumulatedTechnologyVolume[I, TL];
+      // end;
+      // jo.A['cumulatedTechnologyVolume'].O[I - 1] := TLvolume;
+
+    end;
+
 
     result  := jo;
   end;
