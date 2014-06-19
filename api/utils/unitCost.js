@@ -19,12 +19,11 @@ exports.getCurrentUnitCost = function(req, res, next){
   //console.log('try to get production cost: ' + util.inspect(query));
   //get variant composition/catNow/isPrivateLabel/packFormat
   getProduct(query).then(function(variant){
-    console.log('get variant:' + util.inspect(variant.result, {depth:true}));
     return getCumVolumes(query, variant.result);
   }).then(function(variant){
-    console.log('get cumVolumes[0]:' + util.inspect(variant.result.cumVolumes[0], {depth:true}));
-    console.log('get cumVolumes[1]:' + util.inspect(variant.result.cumVolumes[1], {depth:true}));
-    console.log('get cumVolumes[2]:' + util.inspect(variant.result.cumVolumes[2], {depth:true}));
+    // console.log('get cumVolumes[0]:' + util.inspect(variant.result.cumVolumes[0], {depth:true}));
+    // console.log('get cumVolumes[1]:' + util.inspect(variant.result.cumVolumes[1], {depth:true}));
+    // console.log('get cumVolumes[2]:' + util.inspect(variant.result.cumVolumes[2], {depth:true}));
 
     var value = calculateUnitCost(variant.result.composition,
                              variant.result.packFormat,
@@ -137,7 +136,7 @@ function getCumVolumes(query, variant){
   ,CRMQ = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
   var CAA = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
   ,CTLH = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
-  ,CSMT;
+  ,CSMT = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
   //C - cumulated volume 
   var preCumulatedDLvolume, preCumulatedTLvolume;
   var historyPeriod;
@@ -146,8 +145,7 @@ function getCumVolumes(query, variant){
   historyPeriod = query.period - 1;
 
   if(variant.catNow == 1){
-          //Find previous cumulated volume first...
-          
+          //Find previous cumulated volume first...          
           require('../models/companyHistoryInfo.js').companyHistory.findOne({seminar : query.seminar, period: historyPeriod}, function(err, doc){       
             if(err){ deferred.reject({msg:'err from companyHistory'}); };  
             if(doc){        
@@ -161,40 +159,41 @@ function getCumVolumes(query, variant){
                       };
                       // CDL = manufactor.cumulatedDesignVolume[variant.catNow - 1];
                       // CTLE = manufactor.cumulatedTechnologyVolume[variant.catNow - 1];   
-                      console.log('----- before -------')
+                      console.log('----- M' +variant.manufactorID + ' previous cumulated volume -------')                  
                       console.log('manufactor.cumulatedDesignVolume: ' + manufactor.cumulatedDesignVolume[variant.catNow - 1]);
                       console.log('manufactor.cumulatedTechnologyVolume: ' + manufactor.cumulatedTechnologyVolume[variant.catNow - 1] );
                       console.log('CDL: ' + CDL);
                       console.log('CTLE: ' + CTLE);
                       console.log('CRMQ: ' + CRMQ);                   
-                      //normal products
-                      
+
+
+                      //normal products                      
                       if(variant.manufactorID <= 3){
                           require('../models/producerDecision.js').proDecision.findOne({seminar:query.seminar, period:query.period, producerID:variant.manufactorID}, function(err, doc){           
                             if(doc){
-                              var allProCatDecisions = _.filter(doc.proCatDecision,function(obj){ return (obj.categoryID == variant.catNow);});                      
-                              //console.log(util.inspect(allProCatDecisions, {depth:null}));
+                              var catDec = _.filter(doc.proCatDecision,function(obj){ return (obj.categoryID == variant.catNow);});                      
+                              //console.log(util.inspect(catDec, {depth:null}));
                                                   
                                 console.log('----- portfolio -------') 
-                                for(var i=0;i<allProCatDecisions.length;i++){
-                                    for(var j=0;j<allProCatDecisions[i].proBrandsDecision.length;j++){
+                                for(var i=0;i<catDec.length;i++){
+                                    for(var j=0;j<catDec[i].proBrandsDecision.length;j++){
 
-                                          for(var k=0;k<allProCatDecisions[i].proBrandsDecision[j].proVarDecision.length;k++){
-                                            if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varID!=0 && allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varName!=""){
+                                          for(var k=0;k<catDec[i].proBrandsDecision[j].proVarDecision.length;k++){
+                                            if(catDec[i].proBrandsDecision[j].proVarDecision[k].varID!=0 && catDec[i].proBrandsDecision[j].proVarDecision[k].varName!=""){
 
-                                                  console.log(allProCatDecisions[i].proBrandsDecision[j].brandName + allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].varName + ': ' + allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].composition + ' / production: ' + allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].production);
+                                                  console.log(catDec[i].proBrandsDecision[j].brandName + catDec[i].proBrandsDecision[j].proVarDecision[k].varName + ': ' + catDec[i].proBrandsDecision[j].proVarDecision[k].composition + ' / production: ' + catDec[i].proBrandsDecision[j].proVarDecision[k].production);
                                                   for (var specIdx = 0; specIdx < 22; specIdx++) {
                                                     var realSpecIdx = specIdx + 1;
-                                                    if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].composition[0] >= realSpecIdx ){
-                                                        CDL[specIdx] += allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].production;
+                                                    if(catDec[i].proBrandsDecision[j].proVarDecision[k].composition[0] >= realSpecIdx ){
+                                                        CDL[specIdx] += catDec[i].proBrandsDecision[j].proVarDecision[k].production;
                                                     }
 
-                                                    if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].composition[1] >= realSpecIdx ){                                         
-                                                        CTLE[specIdx] += allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].production;
+                                                    if(catDec[i].proBrandsDecision[j].proVarDecision[k].composition[1] >= realSpecIdx ){                                         
+                                                        CTLE[specIdx] += catDec[i].proBrandsDecision[j].proVarDecision[k].production;
                                                     }
 
-                                                    if(allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].composition[2] == realSpecIdx){
-                                                      CRMQ[specIdx] = allProCatDecisions[i].proBrandsDecision[j].proVarDecision[k].production;
+                                                    if(catDec[i].proBrandsDecision[j].proVarDecision[k].composition[2] == realSpecIdx){
+                                                      CRMQ[specIdx] += catDec[i].proBrandsDecision[j].proVarDecision[k].production;
                                                     }
                                                   }
                                             };
@@ -217,21 +216,205 @@ function getCumVolumes(query, variant){
                           })                      
                       //private labels 
                       } else {
-                          console.log('-----');
+                          console.log('period:' + query.period);
                           require('../models/retailerDecision.js').retDecision.findOne({seminar:query.seminar, period:query.period, retailerID : query.userID}, function(err, doc){
                             if(doc){
+                              var catDec = _.filter(doc.retCatDecision,function(obj){ return (obj.categoryID == variant.catNow);});   
+                              console.log('----- private portfolio(with orders) -------')
+                              for(var i=0;i<catDec.length;i++){
+                                for(var j=0;j<catDec[i].privateLabelDecision.length;j++){
+                                      for(var k=0;k<catDec[i].privateLabelDecision[j].privateLabelVarDecision.length;k++){
+                                        if(catDec[i].privateLabelDecision[j].privateLabelVarDecision[k].varID!=0 && catDec[i].privateLabelDecision[j].privateLabelVarDecision[k].varName!=""){
 
-                            }      
+                                              var PLorder_Market1 = _.find(doc.retMarketDecision[0].retMarketAssortmentDecision[variant.catNow - 1].retVariantDecision, function(order){ return ((order.varName == catDec[i].privateLabelDecision[j].privateLabelVarDecision[k].varName) && (order.brandName ==catDec[i].privateLabelDecision[j].brandName )); });
+                                              var PLorder_Market2 = _.find(doc.retMarketDecision[1].retMarketAssortmentDecision[variant.catNow - 1].retVariantDecision, function(order){ return ((order.varName == catDec[i].privateLabelDecision[j].privateLabelVarDecision[k].varName) && (order.brandName ==catDec[i].privateLabelDecision[j].brandName )); });
+                                              //If those private label are ordered in the Urban or Rural 
+                                              var M1Order = 0;
+                                              var M2Order = 0;
+                                              if(PLorder_Market1 != undefined ) { M1Order = PLorder_Market1.order; }
+                                              if(PLorder_Market2 != undefined ) { M2Order = PLorder_Market2.order; }
+
+                                              // console.log(PLorder_Market1);
+                                              // console.log(PLorder_Market2);
+
+                                              var totalOrder; 
+
+                                              totalOrder =  M1Order + M2Order;
+
+                                              if((PLorder_Market1 != undefined) || (PLorder_Market2 != undefined )){
+                                                console.log(catDec[i].privateLabelDecision[j].brandName + catDec[i].privateLabelDecision[j].privateLabelVarDecision[k].varName + ': ' + catDec[i].privateLabelDecision[j].privateLabelVarDecision[k].composition + ' / total order volume : ' + totalOrder);                                                  
+
+                                                for (var specIdx = 0; specIdx < 22; specIdx++) {
+                                                  var realSpecIdx = specIdx + 1;
+                                                  if(catDec[i].privateLabelDecision[j].privateLabelVarDecision[k].composition[0] >= realSpecIdx ){
+                                                      CDL[specIdx] += totalOrder;
+                                                  }
+
+                                                  if(catDec[i].privateLabelDecision[j].privateLabelVarDecision[k].composition[1] >= realSpecIdx ){                                         
+                                                      CTLE[specIdx] += totalOrder;
+                                                  }
+
+                                                  if(catDec[i].privateLabelDecision[j].privateLabelVarDecision[k].composition[2] == realSpecIdx){
+                                                    CRMQ[specIdx] += totalOrder;
+                                                  }
+                                                }
+
+                                              }
+
+                                        };
+                                      }                                 
+                                }                                                                                                                        
+
+                              }
+                              console.log('----- after -------')                              
+                              console.log('CDL: ' + CDL);
+                              console.log('CTLE: ' + CTLE);
+                              console.log('CRMQ: ' + CRMQ);                 
+                              cumVolumes[0] = CDL;
+                              cumVolumes[1] = CTLE;
+                              cumVolumes[2] = CRMQ;
+                              variant.cumVolumes = cumVolumes;
+                              deferred.resolve({msg: 'getCumVolume', result: variant});       
+                            } else { deferred.reject({msg:'UnitCost, cannot find companyHistory doc by query: ' + query}); }
                           })
                       }
                 } else { deferred.reject({msg:'UnitCost, cannot find manufactor ' + variant.manufactorID}); }
             } else { deferred.reject({msg:'UnitCost, cannot find companyHistory doc by query: ' + query});}
           })
   } else if (variant.catNow == 2){
-    variant.cumVolumes = cumVolumes;
-    deferred.resolve({msg: 'getCumVolume', result: variant}); 
-  }
-  
+          //Find previous cumulated volume first...          
+          require('../models/companyHistoryInfo.js').companyHistory.findOne({seminar : query.seminar, period: historyPeriod}, function(err, doc){       
+            if(err){ deferred.reject({msg:'err from companyHistory'}); };  
+            if(doc){        
+                //console.log(doc);
+                var manufactor = _.find(doc.producerView, function(producer){return producer.producerID == variant.manufactorID;});               
+
+                if(manufactor){
+                      for (var i = 0; i < 20; i++) {
+                        CTLH[i] = manufactor.cumulatedTechnologyVolume[variant.catNow - 1][i];             
+                      };
+                      // CTLH = manufactor.cumulatedTechnologyVolume[variant.catNow - 1];   
+                      console.log('----- M' +variant.manufactorID + ' previous cumulated volume -------')                  
+                      console.log('manufactor.cumulatedTechnologyVolume: ' + manufactor.cumulatedTechnologyVolume[variant.catNow - 1] );
+                      console.log('CAA: ' + CAA);
+                      console.log('CTLH: ' + CTLH);
+                      console.log('CSMT: ' + CSMT);                   
+
+
+                      //normal products                      
+                      if(variant.manufactorID <= 3){
+                          require('../models/producerDecision.js').proDecision.findOne({seminar:query.seminar, period:query.period, producerID:variant.manufactorID}, function(err, doc){           
+                            if(doc){
+                              var catDec = _.filter(doc.proCatDecision,function(obj){ return (obj.categoryID == variant.catNow);});                      
+                              //console.log(util.inspect(catDec, {depth:null}));
+                                                  
+                                console.log('----- portfolio -------') 
+                                for(var i=0;i<catDec.length;i++){
+                                    for(var j=0;j<catDec[i].proBrandsDecision.length;j++){
+
+                                          for(var k=0;k<catDec[i].proBrandsDecision[j].proVarDecision.length;k++){
+                                            if(catDec[i].proBrandsDecision[j].proVarDecision[k].varID!=0 && catDec[i].proBrandsDecision[j].proVarDecision[k].varName!=""){
+
+                                                  console.log(catDec[i].proBrandsDecision[j].brandName + catDec[i].proBrandsDecision[j].proVarDecision[k].varName + ': ' + catDec[i].proBrandsDecision[j].proVarDecision[k].composition + ' / production: ' + catDec[i].proBrandsDecision[j].proVarDecision[k].production);
+                                                  for (var specIdx = 0; specIdx < 22; specIdx++) {
+                                                    var realSpecIdx = specIdx + 1;
+                                                    if(catDec[i].proBrandsDecision[j].proVarDecision[k].composition[0] == realSpecIdx ){
+                                                        CAA[specIdx] += catDec[i].proBrandsDecision[j].proVarDecision[k].production;
+                                                    }
+
+                                                    if(catDec[i].proBrandsDecision[j].proVarDecision[k].composition[1] >= realSpecIdx ){                                         
+                                                        CTLH[specIdx] += catDec[i].proBrandsDecision[j].proVarDecision[k].production;
+                                                    }
+
+                                                    if(catDec[i].proBrandsDecision[j].proVarDecision[k].composition[2] == realSpecIdx){
+                                                      CSMT[specIdx] += catDec[i].proBrandsDecision[j].proVarDecision[k].production;
+                                                    }
+                                                  }
+                                            };
+                                          }
+                                       
+                                    }
+                                }
+                              
+                              console.log('----- after -------')
+                              console.log('CAA: ' + CAA);
+                              console.log('CTLH: ' + CTLH);
+                              console.log('CSMT: ' + CSMT);                 
+
+                              cumVolumes[0] = CAA;
+                              cumVolumes[1] = CTLH;
+                              cumVolumes[2] = CSMT;
+                              variant.cumVolumes = cumVolumes;
+                              deferred.resolve({msg: 'getCumVolume', result: variant});                        
+                            } else { deferred.reject({msg:'UnitCost, cannot find companyHistory doc by query: ' + query}); }
+                          })                      
+                      //private labels 
+                      } else {
+                          console.log('period:' + query.period);
+                          require('../models/retailerDecision.js').retDecision.findOne({seminar:query.seminar, period:query.period, retailerID : query.userID}, function(err, doc){
+                            if(doc){
+                              var catDec = _.filter(doc.retCatDecision,function(obj){ return (obj.categoryID == variant.catNow);});   
+                              console.log('----- private portfolio(with orders) -------')
+                              for(var i=0;i<catDec.length;i++){
+                                for(var j=0;j<catDec[i].privateLabelDecision.length;j++){
+                                      for(var k=0;k<catDec[i].privateLabelDecision[j].privateLabelVarDecision.length;k++){
+                                        if(catDec[i].privateLabelDecision[j].privateLabelVarDecision[k].varID!=0 && catDec[i].privateLabelDecision[j].privateLabelVarDecision[k].varName!=""){
+
+                                              var PLorder_Market1 = _.find(doc.retMarketDecision[0].retMarketAssortmentDecision[variant.catNow - 1].retVariantDecision, function(order){ return ((order.varName == catDec[i].privateLabelDecision[j].privateLabelVarDecision[k].varName) && (order.brandName ==catDec[i].privateLabelDecision[j].brandName )); });
+                                              var PLorder_Market2 = _.find(doc.retMarketDecision[1].retMarketAssortmentDecision[variant.catNow - 1].retVariantDecision, function(order){ return ((order.varName == catDec[i].privateLabelDecision[j].privateLabelVarDecision[k].varName) && (order.brandName ==catDec[i].privateLabelDecision[j].brandName )); });
+                                              //If those private label are ordered in the Urban or Rural 
+                                              var M1Order = 0;
+                                              var M2Order = 0;
+                                              if(PLorder_Market1 != undefined ) { M1Order = PLorder_Market1.order; }
+                                              if(PLorder_Market2 != undefined ) { M2Order = PLorder_Market2.order; }
+
+                                              // console.log(PLorder_Market1);
+                                              // console.log(PLorder_Market2);
+
+                                              var totalOrder; 
+
+                                              totalOrder =  M1Order + M2Order;
+
+                                              if((PLorder_Market1 != undefined) || (PLorder_Market2 != undefined )){
+                                                console.log(catDec[i].privateLabelDecision[j].brandName + catDec[i].privateLabelDecision[j].privateLabelVarDecision[k].varName + ': ' + catDec[i].privateLabelDecision[j].privateLabelVarDecision[k].composition + ' / total order volume : ' + totalOrder);                                                  
+
+                                                for (var specIdx = 0; specIdx < 22; specIdx++) {
+                                                  var realSpecIdx = specIdx + 1;
+                                                  if(catDec[i].privateLabelDecision[j].privateLabelVarDecision[k].composition[0] == realSpecIdx ){
+                                                      CAA[specIdx] += totalOrder;
+                                                  }
+
+                                                  if(catDec[i].privateLabelDecision[j].privateLabelVarDecision[k].composition[1] >= realSpecIdx ){                                         
+                                                      CTLH[specIdx] += totalOrder;
+                                                  }
+
+                                                  if(catDec[i].privateLabelDecision[j].privateLabelVarDecision[k].composition[2] == realSpecIdx){
+                                                    CSMT[specIdx] += totalOrder;
+                                                  }
+                                                }
+
+                                              }
+
+                                        };
+                                      }                                 
+                                }                                                                                                                        
+
+                              }
+                              console.log('----- after -------')                              
+                              console.log('CAA: ' + CAA);
+                              console.log('CTLH: ' + CTLH);
+                              console.log('CSMT: ' + CSMT);                 
+                              cumVolumes[0] = CAA;
+                              cumVolumes[1] = CTLH;
+                              cumVolumes[2] = CSMT;
+                              variant.cumVolumes = cumVolumes;
+                              deferred.resolve({msg: 'getCumVolume', result: variant});       
+                            } else { deferred.reject({msg:'UnitCost, cannot find companyHistory doc by query: ' + query}); }
+                          })
+                      }
+                } else { deferred.reject({msg:'UnitCost, cannot find manufactor ' + variant.manufactorID}); }
+            } else { deferred.reject({msg:'UnitCost, cannot find companyHistory doc by query: ' + query});}
+          })  }
 
   return deferred.promise;
 }
