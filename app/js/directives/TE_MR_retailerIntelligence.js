@@ -17,63 +17,46 @@ define(['directives', 'services'], function(directives) {
                         getResult();
                     }
 
-                    var getResult = function() {
-                        scope.data = new Array();
-                        scope.variants = new Array();
-                        scope.player1es = new Array();
-                        scope.player2es = new Array();
-                        scope.player3es = new Array();
-                        scope.player5es = new Array();
-                        scope.player6es = new Array();
-                        scope.player1hs = new Array();
-                        scope.player2hs = new Array();
-                        scope.player3hs = new Array();
-                        scope.player5hs = new Array();
-                        scope.player6hs = new Array();
-                        var url = '/getMR-retailersIntelligence/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1);
-                        $http({
-                            method: 'GET',
-                            url: url,
-                            //tracker: scope.loadingTracker
-                        }).then(function(data) {
-                            return organiseArray(data);
-                        }).then(function(data) {
-                            scope.isResultShown = true;
-                            scope.isPageLoading = false;
-                        }, function() {
-                            console.log('fail');
-                        });
+                var organiseArray = function(data){
+                    var deferred = $q.defer();
+                    //put retailerInfo[1]'s values into retailerInfo[0] 
+                    data.data[0].retailerInfo[0].storeServiceLevel[2]=data.data[0].retailerInfo[1].storeServiceLevel[0];
+                    data.data[0].retailerInfo[0].storeServiceLevel[3]=data.data[0].retailerInfo[1].storeServiceLevel[1];
+                    data.data[0].retailerInfo[0].onlineAdvertising[2]=data.data[0].retailerInfo[1].onlineAdvertising[0];
+                    data.data[0].retailerInfo[0].onlineAdvertising[3]=data.data[0].retailerInfo[1].onlineAdvertising[1];
+                    data.data[0].retailerInfo[0].offlineAdvertising[2]=data.data[0].retailerInfo[1].offlineAdvertising[0];
+                    data.data[0].retailerInfo[0].offlineAdvertising[3]=data.data[0].retailerInfo[1].offlineAdvertising[1];
+                    data.data[0].retailerInfo[0].localAdvertising[2]=data.data[0].retailerInfo[1].localAdvertising[0];
+                    data.data[0].retailerInfo[0].localAdvertising[3]=data.data[0].retailerInfo[1].localAdvertising[1];
+                    scope.data.push({'storeServiceLevel':data.data[0].retailerInfo[0].storeServiceLevel,'onlineAdvertising':data.data[0].retailerInfo[0].onlineAdvertising,'offlineAdvertising':data.data[0].retailerInfo[0].offlineAdvertising,'localAdvertising':data.data[0].retailerInfo[0].localAdvertising});
+                    
+                    for(var i=0;i<data.data[0].retailerInfo[0].variantInfo.length;i++){
+                        var variant=_.find(data.data[0].retailerInfo[1].variantInfo,function(obj){
+                            return (obj.variantName==data.data[0].retailerInfo[0].variantInfo[i].variantName&&obj.parentBrandName==data.data[0].retailerInfo[0].variantInfo[i].parentBrandName);
+                        })
+                        //if retailer buy the variant  put retailerInfo[1]'s values into retailerInfo[0] 
+                        if(variant!=undefined){
+                            data.data[0].retailerInfo[0].variantInfo[i].shelfSpace[2]=variant.shelfSpace[0];
+                            data.data[0].retailerInfo[0].variantInfo[i].shelfSpace[3]=variant.shelfSpace[1];
+                        }else{
+                        //else set retailer2's value = 0
+                            data.data[0].retailerInfo[0].variantInfo[i].shelfSpace[2]=0;
+                            data.data[0].retailerInfo[0].variantInfo[i].shelfSpace[3]=0;
+                        }
+                        scope.variants.push(data.data[0].retailerInfo[0].variantInfo[i]);
                     }
-
-                    var organiseArray = function(data) {
-                        var deferred = $q.defer();
-
-                        data.data[0].retailerInfo[0].storeServiceLevel[2] = data.data[0].retailerInfo[1].storeServiceLevel[0];
-                        data.data[0].retailerInfo[0].storeServiceLevel[3] = data.data[0].retailerInfo[1].storeServiceLevel[1];
-                        data.data[0].retailerInfo[0].onlineAdvertising[2] = data.data[0].retailerInfo[1].onlineAdvertising[0];
-                        data.data[0].retailerInfo[0].onlineAdvertising[3] = data.data[0].retailerInfo[1].onlineAdvertising[1];
-                        data.data[0].retailerInfo[0].offlineAdvertising[2] = data.data[0].retailerInfo[1].offlineAdvertising[0];
-                        data.data[0].retailerInfo[0].offlineAdvertising[3] = data.data[0].retailerInfo[1].offlineAdvertising[1];
-                        data.data[0].retailerInfo[0].localAdvertising[2] = data.data[0].retailerInfo[1].localAdvertising[0];
-                        data.data[0].retailerInfo[0].localAdvertising[3] = data.data[0].retailerInfo[1].localAdvertising[1];
-                        scope.data.push({
-                            'storeServiceLevel': data.data[0].retailerInfo[0].storeServiceLevel,
-                            'onlineAdvertising': data.data[0].retailerInfo[0].onlineAdvertising,
-                            'offlineAdvertising': data.data[0].retailerInfo[0].offlineAdvertising,
-                            'localAdvertising': data.data[0].retailerInfo[0].localAdvertising
+                    //foreach retailer2's variant
+                    for(var i=0;i<data.data[0].retailerInfo[1].variantInfo.length;i++){
+                        var variant=_.find(scope.variants,function(obj){
+                            return (obj.variantName==data.data[0].retailerInfo[1].variantInfo[i].variantName&&obj.parentBrandName==data.data[0].retailerInfo[1].variantInfo[i].parentBrandName);
                         });
-                        for (var i = 0; i < data.data[0].retailerInfo[0].variantInfo.length; i++) {
-                            var variant = _.find(data.data[0].retailerInfo[1].variantInfo, function(obj) {
-                                return (obj.variantName == data.data[0].retailerInfo[0].variantInfo[i].variantName && obj.parentBrandName == data.data[0].retailerInfo[0].variantInfo[i].parentBrandName);
-                            })
-                            if (variant != undefined) {
-                                data.data[0].retailerInfo[0].variantInfo[i].shelfSpace[2] = variant.shelfSpace[0];
-                                data.data[0].retailerInfo[0].variantInfo[i].shelfSpace[3] = variant.shelfSpace[1];
-                            } else {
-                                data.data[0].retailerInfo[0].variantInfo[i].shelfSpace[2] = 0;
-                                data.data[0].retailerInfo[0].variantInfo[i].shelfSpace[3] = 0;
-                            }
-                            scope.variants.push(data.data[0].retailerInfo[0].variantInfo[i]);
+                        //if scope.variants haven't the variant set retailer1's values =0  
+                        if(variant==undefined){
+                            data.data[0].retailerInfo[1].variantInfo[i].shelfSpace[2]=data.data[0].retailerInfo[1].variantInfo[i].shelfSpace[0];
+                            data.data[0].retailerInfo[1].variantInfo[i].shelfSpace[3]=data.data[0].retailerInfo[1].variantInfo[i].shelfSpace[1];
+                            data.data[0].retailerInfo[1].variantInfo[i].shelfSpace[0]=0;
+                            data.data[0].retailerInfo[1].variantInfo[i].shelfSpace[1]=0;
+                            scope.variants.push(data.data[0].retailerInfo[1].variantInfo[i]);
                         }
 
                         for (var i = 0; i < data.data[0].retailerInfo[1].variantInfo.length; i++) {
