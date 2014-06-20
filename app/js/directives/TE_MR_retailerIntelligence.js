@@ -35,6 +35,7 @@ define(['directives', 'services'], function(directives){
 
                 var organiseArray = function(data){
                     var deferred = $q.defer();
+                    //put retailerInfo[1]'s values into retailerInfo[0] 
                     data.data[0].retailerInfo[0].storeServiceLevel[2]=data.data[0].retailerInfo[1].storeServiceLevel[0];
                     data.data[0].retailerInfo[0].storeServiceLevel[3]=data.data[0].retailerInfo[1].storeServiceLevel[1];
                     data.data[0].retailerInfo[0].onlineAdvertising[2]=data.data[0].retailerInfo[1].onlineAdvertising[0];
@@ -44,23 +45,28 @@ define(['directives', 'services'], function(directives){
                     data.data[0].retailerInfo[0].localAdvertising[2]=data.data[0].retailerInfo[1].localAdvertising[0];
                     data.data[0].retailerInfo[0].localAdvertising[3]=data.data[0].retailerInfo[1].localAdvertising[1];
                     scope.data.push({'storeServiceLevel':data.data[0].retailerInfo[0].storeServiceLevel,'onlineAdvertising':data.data[0].retailerInfo[0].onlineAdvertising,'offlineAdvertising':data.data[0].retailerInfo[0].offlineAdvertising,'localAdvertising':data.data[0].retailerInfo[0].localAdvertising});
+                    
                     for(var i=0;i<data.data[0].retailerInfo[0].variantInfo.length;i++){
                         var variant=_.find(data.data[0].retailerInfo[1].variantInfo,function(obj){
                             return (obj.variantName==data.data[0].retailerInfo[0].variantInfo[i].variantName&&obj.parentBrandName==data.data[0].retailerInfo[0].variantInfo[i].parentBrandName);
                         })
+                        //if retailer buy the variant  put retailerInfo[1]'s values into retailerInfo[0] 
                         if(variant!=undefined){
                             data.data[0].retailerInfo[0].variantInfo[i].shelfSpace[2]=variant.shelfSpace[0];
                             data.data[0].retailerInfo[0].variantInfo[i].shelfSpace[3]=variant.shelfSpace[1];
                         }else{
+                        //else set retailer2's value = 0
                             data.data[0].retailerInfo[0].variantInfo[i].shelfSpace[2]=0;
                             data.data[0].retailerInfo[0].variantInfo[i].shelfSpace[3]=0;
                         }
                         scope.variants.push(data.data[0].retailerInfo[0].variantInfo[i]);
                     }
+                    //foreach retailer2's variant
                     for(var i=0;i<data.data[0].retailerInfo[1].variantInfo.length;i++){
                         var variant=_.find(scope.variants,function(obj){
                             return (obj.variantName==data.data[0].retailerInfo[1].variantInfo[i].variantName&&obj.parentBrandName==data.data[0].retailerInfo[1].variantInfo[i].parentBrandName);
                         });
+                        //if scope.variants haven't the variant set retailer1's values =0  
                         if(variant==undefined){
                             data.data[0].retailerInfo[1].variantInfo[i].shelfSpace[2]=data.data[0].retailerInfo[1].variantInfo[i].shelfSpace[0];
                             data.data[0].retailerInfo[1].variantInfo[i].shelfSpace[3]=data.data[0].retailerInfo[1].variantInfo[i].shelfSpace[1];
