@@ -437,16 +437,16 @@ exports.addSeminar=function(req,res,next){
 	    	retailerID : 1,
 	    	decisionCommitStatus : [{
 	    		period : -3,
-	    		isDecisionCommitted : false
+	    		isDecisionCommitted : true
 	    	},{
 	    		period : -2,
 	    		isDecisionCommitted : true
 	    	},{
 	    		period : -1,
-	    		isDecisionCommitted : false
+	    		isDecisionCommitted : true
 	    	},{
 	    		period : 0,
-	    		isDecisionCommitted : false
+	    		isDecisionCommitted : true
 	    	},{
 	    		period : 1,
 	    		isDecisionCommitted : false
@@ -478,45 +478,45 @@ exports.addSeminar=function(req,res,next){
 	    	reportPurchaseStatus : [{
 	    		period                       : -3,
 				awareness                    : true,
-				brandPerceptions             : false,
-				retailerPerceptions          : false,
-				marketShareByConsumerSegment : false,
-				salesByConsumerSegment      : false,
-				marketShareByShopperSegment  : false,
-				salesByShopperSegment        : false,
-				BMRetailerPrices             : false,
-				promotionIntensity           : false,
-				supplierIntelligence         : false,
-				retailerIntelligence         : false,
-				forecasts                     : false
+				brandPerceptions             : true,
+				retailerPerceptions          : true,
+				marketShareByConsumerSegment : true,
+				salesByConsumerSegment      : true,
+				marketShareByShopperSegment  : true,
+				salesByShopperSegment        : true,
+				BMRetailerPrices             : true,
+				promotionIntensity           : true,
+				supplierIntelligence         : true,
+				retailerIntelligence         : true,
+				forecasts                     : true
 	    	},{
 	    		period                       : -2,
 				awareness                    : true,
-				brandPerceptions             : false,
-				retailerPerceptions          : false,
-				marketShareByConsumerSegment : false,
-				salesByConsumerSegment      : false,
-				marketShareByShopperSegment  : false,
-				salesByShopperSegment        : false,
-				BMRetailerPrices             : false,
-				promotionIntensity           : false,
-				supplierIntelligence         : false,
-				retailerIntelligence         : false,
-				forecasts                     : false
+				brandPerceptions             : true,
+				retailerPerceptions          : true,
+				marketShareByConsumerSegment : true,
+				salesByConsumerSegment      : true,
+				marketShareByShopperSegment  : true,
+				salesByShopperSegment        : true,
+				BMRetailerPrices             : true,
+				promotionIntensity           : true,
+				supplierIntelligence         : true,
+				retailerIntelligence         : true,
+				forecasts                     : true
 	    	},{
 	    		period                       : -1,
 				awareness                    : true,
-				brandPerceptions             : false,
-				retailerPerceptions          : false,
-				marketShareByConsumerSegment : false,
-				salesByConsumerSegment      : false,
-				marketShareByShopperSegment  : false,
-				salesByShopperSegment        : false,
-				BMRetailerPrices             : false,
-				promotionIntensity           : false,
-				supplierIntelligence         : false,
-				retailerIntelligence         : false,
-				forecasts                     : false
+				brandPerceptions             : true,
+				retailerPerceptions          : true,
+				marketShareByConsumerSegment : true,
+				salesByConsumerSegment      : true,
+				marketShareByShopperSegment  : true,
+				salesByShopperSegment        : true,
+				BMRetailerPrices             : true,
+				promotionIntensity           : true,
+				supplierIntelligence         : true,
+				retailerIntelligence         : true,
+				forecasts                     : true
 	    	},{
 	    		period                       : 0,
 				awareness                    : true,

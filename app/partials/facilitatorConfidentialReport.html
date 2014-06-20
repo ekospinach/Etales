@@ -9,7 +9,7 @@
 		<div class="col-md-10">
 		    <div class="bs-docs-section">
 		    	<form class="form-horizontal" role="form">
-					<div class="form-group">
+					<div class="form-group" access-level='{{accessLevels.facilitatorView}}'>
 						<label for="userRole" class="col-sm-3 control-label">{{Label.getContent('Choose Your Role')}}:</label>
 						<div class="col-sm-4">
 							<select class="form-control" id="userRole" ng-model="userRole" ng-change="setPlayer(userRole)">
@@ -28,7 +28,7 @@
 				  		<label for="selectPeriod" class="col-sm-3 control-label">{{Label.getContent('Choose Period')}}:</label>
 						<div class="col-sm-4">
 							<select class="form-control" id="selectPeriod" ng-model="selectedPeriod">
-								<option  ng-repeat='p in periods' value="{{p}}">{{Label.getContent('Period')}} {{p}}</option>
+								<option  ng-repeat='p in periods' value="{{p}}">{{Label.getContent('Period')}} {{p-1}}</option>
 							</select>
 					   	</div>
 				  	</div>

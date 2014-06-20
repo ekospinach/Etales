@@ -15,7 +15,7 @@ define(['app'], function(app) {
 				method:'GET',
 				url:url
 			}).then(function(data){
-				for (var i=data.data.currentPeriod;i>=-2;i--){
+				for (var i=data.data.currentPeriod;i>=0;i--){
 					$scope.periods.push(i);
 				}
 				$scope.selectedPeriod = data.data.currentPeriod;

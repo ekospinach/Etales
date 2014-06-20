@@ -1,21 +1,26 @@
 define(['app'], function(app) {
 		app.controller('facilitatorDecisionCtrl',
-			['$scope','$q','$rootScope','$location','$http','$filter','Label','PlayerInfo','PeriodInfo','SeminarInfo','$window',
-	 function($scope,$q,$rootScope,$location,$http,$filter,Label,PlayerInfo,PeriodInfo,SeminarInfo, $window) {
+			['RoleInfo', '$scope','$q','$rootScope','$location','$http','$filter','Label','PlayerInfo','PeriodInfo','SeminarInfo','$window',
+	 function(RoleInfo, $scope,$q,$rootScope,$location,$http,$filter,Label,PlayerInfo,PeriodInfo,SeminarInfo, $window) {
 			$rootScope.decisionActive="active";
 			$rootScope.loginCss="";
 		    $rootScope.loginFooter="bs-footer";
 		    $rootScope.loginLink="footer-links";
 		    $rootScope.loginDiv="container";
-		    $scope.userRole=1;
-		    PlayerInfo.setPlayer(1);
 
-		    $scope.setPlayer=function(userRole){
-		    	if(userRole>4){
-		    		userRole-=4;
-		    	}
-		    	PlayerInfo.setPlayer(userRole);
-		    	PeriodInfo.getCurrentPeriod();
+		    var userRoles = routingConfig.userRoles;
+		    var selectedPlayer;
+		    
+		    if(RoleInfo.getRole() == userRoles.facilitator){
+		    	$scope.selectedItem = 1;		    	
+		    	selectedPlayer = 1;
+		    }
+		   
+		    $scope.setPlayer=function(selectedItem){
+		    	if(selectedItem>4){
+		    		selectedItem-=4;
+		    	} 
+		    	selectedPlayer = selectedItem;
 		    }
 
 		    var periods=new Array();
@@ -26,7 +31,7 @@ define(['app'], function(app) {
 				method:'GET',
 				url:url
 			}).then(function(data){
-				for (var i=data.data.currentPeriod;i>=-2;i--){
+				for (var i=data.data.currentPeriod;i>=0;i--){
 					$scope.periods.push(i);
 				}
 				$scope.selectedPeriod = data.data.currentPeriod;
@@ -36,7 +41,8 @@ define(['app'], function(app) {
 
 			$scope.msg = '';		
 			$scope.setSupplierPeriod = function(period){
-				if($scope.selectedPeriod){
+				if($scope.selectedPeriod && selectedPlayer){
+			    	PlayerInfo.setPlayer(selectedPlayer);					
 					PeriodInfo.setCurrentPeriod($scope.selectedPeriod);					
 					$location.path('/supplierDecision');
 				} else {
@@ -45,7 +51,8 @@ define(['app'], function(app) {
 			}
 
 			$scope.setRetailerPeriod = function(period){
-				if($scope.selectedPeriod){
+				if($scope.selectedPeriod && selectedPlayer){					
+			    	PlayerInfo.setPlayer(selectedPlayer);							
 					PeriodInfo.setCurrentPeriod($scope.selectedPeriod);					
 					$location.path('/retailerDecision');
 				} else {

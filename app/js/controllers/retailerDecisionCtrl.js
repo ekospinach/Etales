@@ -1,5 +1,6 @@
 define(['app','socketIO','routingConfig'], function(app) {
-	app.controller('retailerDecisionCtrl',['$scope', '$http', 'RetailerDecisionBase','$rootScope','Auth','$anchorScroll','$q','PlayerInfo','SeminarInfo','PeriodInfo','Label','RoleInfo','notify', function($scope, $http, RetailerDecisionBase,$rootScope,Auth,$anchorScroll,$q,PlayerInfo,SeminarInfo,PeriodInfo,Label,RoleInfo,notify) {
+	app.controller('retailerDecisionCtrl',['$scope', '$http', 'RetailerDecisionBase','$rootScope','Auth','$anchorScroll','$q','PlayerInfo','SeminarInfo','PeriodInfo','Label','RoleInfo','notify', 
+                                   function($scope, $http, RetailerDecisionBase,$rootScope,Auth,$anchorScroll,$q,PlayerInfo,SeminarInfo,PeriodInfo,Label,RoleInfo,notify) {
 			
 			$rootScope.decisionActive="active";
 			$rootScope.loginCss="";
@@ -123,7 +124,7 @@ define(['app','socketIO','routingConfig'], function(app) {
                 showView();
                 notify('Decision reload Error occur, Retailer ' + data.retailerID  + ' Period ' + data.period + '.');
             });
-
+>
             $scope.$on('retailerMarketResearchOrdersChanged', function(event, data) {  
                 showView();
                 notify('Decision has been saved, Retailer ' + data.retailerID  + ' Period ' + data.period + '.');

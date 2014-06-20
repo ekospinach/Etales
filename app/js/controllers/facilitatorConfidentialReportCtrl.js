@@ -8,8 +8,12 @@ define(['app'], function(app) {
 		    $rootScope.loginDiv="container";
 		    $scope.userRole=1;
 		    $scope.selectPeriod=1;
-		    PlayerInfo.setPlayer(1);
-		    RoleInfo.setRole(2);
+
+		    var userRoles = routingConfig.userRoles;
+		    if(RoleInfo.getRole() == userRoles.facilitator){
+			    PlayerInfo.setPlayer(1);
+			    RoleInfo.setRole(2);
+		    }
 
 		    var periods=new Array();
 		    $scope.periods=periods;
@@ -19,7 +23,7 @@ define(['app'], function(app) {
 				method:'GET',
 				url:url
 			}).then(function(data){
-				for (var i=data.data.currentPeriod;i>=-2;i--){
+				for (var i=data.data.currentPeriod;i>=0;i--){
 					$scope.periods.push(i);
 				}
 				$scope.selectedPeriod = data.data.currentPeriod;
