@@ -1,21 +1,37 @@
-define(['directives', 'services'], function(directives) {
+define(['directives', 'services'], function(directives){
 
-    directives.directive('marketRetailerIntelligence', ['Label', 'SeminarInfo', '$http', 'PeriodInfo', '$q',
-        function(Label, SeminarInfo, $http, PeriodInfo, $q) {
-            return {
-                scope: {
-                    isPageShown: '=',
-                    isPageLoading: '='
-                },
-                restrict: 'E',
-                templateUrl: '../../partials/singleReportTemplate/MR_retailerIntelligence.html',
-                link: function(scope, element, attrs) {
-                    var initializePage = function() {
-                        scope.isPageLoading = true;
-                        scope.isResultShown = false;
-                        scope.Label = Label;
-                        getResult();
-                    }
+    directives.directive('marketRetailerIntelligence', ['Label','SeminarInfo','$http','PeriodInfo','$q', function(Label, SeminarInfo, $http, PeriodInfo, $q){
+        return {
+            scope : {
+                isPageShown : '=',
+                isPageLoading : '='
+            },
+            restrict : 'E',
+            templateUrl : '../../partials/singleReportTemplate/MR_retailerIntelligence.html',            
+            link : function(scope, element, attrs){                                                                
+                var initializePage = function(){
+                    scope.isPageLoading = true;
+                    scope.isResultShown = false;                    
+                    scope.Label = Label;
+                    getResult();                    
+                }
+
+                var getResult =function(){
+                    scope.data=new Array();scope.variants=new Array();scope.player1es=new Array();scope.player2es=new Array();scope.player3es=new Array();scope.player5es=new Array();scope.player6es=new Array();scope.player1hs=new Array();scope.player2hs=new Array();scope.player3hs=new Array();scope.player5hs=new Array();scope.player6hs=new Array();
+                    var url='/getMR-retailersIntelligence/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1);
+                    $http({
+                        method:'GET',
+                        url:url,
+                        //tracker: scope.loadingTracker
+                    }).then(function(data){   
+                        return organiseArray(data);
+                    }).then(function(data){
+                        scope.isResultShown = true;
+                        scope.isPageLoading = false;                                                                         
+                    },function(){
+                        console.log('fail');
+                    });
+                }
 
                 var organiseArray = function(data){
                     var deferred = $q.defer();
@@ -58,74 +74,49 @@ define(['directives', 'services'], function(directives) {
                             data.data[0].retailerInfo[1].variantInfo[i].shelfSpace[1]=0;
                             scope.variants.push(data.data[0].retailerInfo[1].variantInfo[i]);
                         }
-
-                        for (var i = 0; i < data.data[0].retailerInfo[1].variantInfo.length; i++) {
-                            var variant = _.find(scope.variants, function(obj) {
-                                return (obj.variantName == data.data[0].retailerInfo[1].variantInfo[i].variantName && obj.parentBrandName == data.data[0].retailerInfo[1].variantInfo[i].parentBrandName);
-                            });
-                            if (variant == undefined) {
-                                data.data[0].retailerInfo[1].variantInfo[i].shelfSpace[2] = data.data[0].retailerInfo[1].variantInfo[i].shelfSpace[0];
-                                data.data[0].retailerInfo[1].variantInfo[i].shelfSpace[3] = data.data[0].retailerInfo[1].variantInfo[i].shelfSpace[1];
-                                data.data[0].retailerInfo[1].variantInfo[i].shelfSpace[0] = 0;
-                                data.data[0].retailerInfo[1].variantInfo[i].shelfSpace[1] = 0;
-                                scope.variants.push(data.data[0].retailerInfo[1].variantInfo[i]);
-                            }
+                    }
+                    for(var i=0;i<scope.variants.length;i++){
+                        switch(scope.variants[i].parentCompanyID){
+                            case 1:if(scope.variants[i].parentCategoryID==1){
+                                scope.player1es.push(scope.variants[i]);
+                            }else{
+                                scope.player1hs.push(scope.variants[i]);
+                            }break;
+                            case 2:if(scope.variants[i].parentCategoryID==1){
+                                scope.player2es.push(scope.variants[i]);
+                            }else{
+                                scope.player2hs.push(scope.variants[i]);
+                            }break;
+                            case 3:if(scope.variants[i].parentCategoryID==1){
+                                scope.player3es.push(scope.variants[i]);
+                            }else{
+                                scope.player3hs.push(scope.variants[i]);
+                            }break;
+                            case 5:if(scope.variants[i].parentCategoryID==1){
+                                scope.player5es.push(scope.variants[i]);
+                            }else{
+                                scope.player5hs.push(scope.variants[i]);
+                            }break;
+                            case 6:if(scope.variants[i].parentCategoryID==1){
+                                scope.player6es.push(scope.variants[i]);
+                            }else{
+                                scope.player6hs.push(scope.variants[i]);
+                            }break;
                         }
-                        for (var i = 0; i < scope.variants.length; i++) {
-                            switch (scope.variants[i].parentCompanyID) {
-                                case 1:
-                                    if (scope.variants[i].parentCategoryID == 1) {
-                                        scope.player1es.push(scope.variants[i]);
-                                    } else {
-                                        scope.player1hs.push(scope.variants[i]);
-                                    }
-                                    break;
-                                case 2:
-                                    if (scope.variants[i].parentCategoryID == 1) {
-                                        scope.player2es.push(scope.variants[i]);
-                                    } else {
-                                        scope.player2hs.push(scope.variants[i]);
-                                    }
-                                    break;
-                                case 3:
-                                    if (scope.variants[i].parentCategoryID == 1) {
-                                        scope.player3es.push(scope.variants[i]);
-                                    } else {
-                                        scope.player3hs.push(scope.variants[i]);
-                                    }
-                                    break;
-                                case 5:
-                                    if (scope.variants[i].parentCategoryID == 1) {
-                                        scope.player5es.push(scope.variants[i]);
-                                    } else {
-                                        scope.player5hs.push(scope.variants[i]);
-                                    }
-                                    break;
-                                case 6:
-                                    if (scope.variants[i].parentCategoryID == 1) {
-                                        scope.player6es.push(scope.variants[i]);
-                                    } else {
-                                        scope.player6hs.push(scope.variants[i]);
-                                    }
-                                    break;
-                            }
-                        }
-
-                        deferred.resolve({
-                            msg: 'Array is ready.'
-                        });
-                        return deferred.promise;
                     }
 
-
-                    scope.$watch('isPageShown', function(newValue, oldValue) {
-                        if (newValue == true) {
-                            initializePage();
-                        }
-                    })
-
+                    deferred.resolve({msg:'Array is ready.'});                    
+                    return deferred.promise;
                 }
+
+
+                scope.$watch('isPageShown', function(newValue, oldValue){
+                    if(newValue==true) {
+                        initializePage();
+                    }
+                })
+
             }
         }
-    ])
+    }])
 })
