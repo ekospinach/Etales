@@ -33,10 +33,10 @@ define(['directives', 'services'], function(directives){
                             var onlineValueChange=(valueChanges.segmentInfo[4].shopperInfo[1].value*100).toFixed(2);
                             var mixedValueChange=(valueChanges.segmentInfo[4].shopperInfo[2].value*100).toFixed(2);
                             var Volumes=_.find(data.data[0].absoluteVolume,function(obj){
-                                return(obj.variantName==varName&&obj.parentBrandName==brandName);
+                                return(obj.variantName==varName&&obj.parentBrandName==brandName&&obj.marketID==market);
                             });
                             var volumeChanges=_.find(data.data[0].volumeChange,function(obj){
-                                return(obj.variantName==varName&&obj.parentBrandName==brandName);
+                                return(obj.variantName==varName&&obj.parentBrandName==brandName&&obj.marketID==market);
                             });
                             var bmVolumeShare=(Volumes.segmentInfo[4].shopperInfo[0].value*100).toFixed(2);
                             var onlineVolumeShare=(Volumes.segmentInfo[4].shopperInfo[1].value*100).toFixed(2);
