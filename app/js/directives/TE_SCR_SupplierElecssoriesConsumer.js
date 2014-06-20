@@ -31,6 +31,7 @@ define(['directives', 'services'], function(directives){
                             moneyValueShare=(data.data[0].absoluteValue[i].segmentInfo[1].shopperInfo[3].value*100).toFixed(2);
                             fashionValueShare=(data.data[0].absoluteValue[i].segmentInfo[2].shopperInfo[3].value*100).toFixed(2);
                             freaksValueShare=(data.data[0].absoluteValue[i].segmentInfo[3].shopperInfo[3].value*100).toFixed(2);
+                            
                             marketID=data.data[0].absoluteValue[i].marketID;
                             var ValueChanges=_.find(data.data[0].valueChange,function(obj){
                                 return(obj.variantName==varName&&obj.parentBrandName==brandName&&obj.marketID==marketID);
