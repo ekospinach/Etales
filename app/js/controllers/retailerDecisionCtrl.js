@@ -124,7 +124,7 @@ define(['app','socketIO','routingConfig'], function(app) {
                 showView();
                 notify('Decision reload Error occur, Retailer ' + data.retailerID  + ' Period ' + data.period + '.');
             });
->
+
             $scope.$on('retailerMarketResearchOrdersChanged', function(event, data) {  
                 showView();
                 notify('Decision has been saved, Retailer ' + data.retailerID  + ' Period ' + data.period + '.');

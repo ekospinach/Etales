@@ -489,7 +489,7 @@ function fillNegotiationItemByContractDetail(categoryDeal, negotiationItem, prod
                           switch(negotiationItem){
                             case 'nc_MinimumOrder'           : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[2] = 0; break; 
                             case 'nc_SalesTargetVolume'      : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[2] = 0;  break;
-                            case 'nc_PaymentDays'            : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[2] = 0; break;
+                            case 'nc_PaymentDays'            : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[2] = 60; break;
                             case 'nc_OtherCompensation'      : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[2] = 0;  break;
                             case 'nc_VolumeDiscountRate'     : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[2] = 0;  break;
                             case 'nc_PerformanceBonusAmount' : categoryDeal.brandsDetails[brandCount].variantsDetails[varCount].marketsDetails[2] = 0;  break;

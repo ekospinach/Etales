@@ -10,10 +10,16 @@ define(['app'], function(app) {
 
 		    var userRoles = routingConfig.userRoles;
 		    var selectedPlayer;
-		    
+
 		    if(RoleInfo.getRole() == userRoles.facilitator){
 		    	$scope.selectedItem = 1;		    	
 		    	selectedPlayer = 1;
+		    } else if(RoleInfo.getRole() == userRoles.producer){
+		    	selectedPlayer = PlayerInfo.getPlayer();
+		    	$scope.selectedItem = selectedPlayer;		    			    	
+		    } else if(RoleInfo.getRole() == userRoles.retailer){
+		    	selectedPlayer = PlayerInfo.getPlayer();
+		    	$scope.selectedItem = selectedPlayer + 4;		    			    	
 		    }
 		   
 		    $scope.setPlayer=function(selectedItem){
@@ -23,7 +29,7 @@ define(['app'], function(app) {
 		    	selectedPlayer = selectedItem;
 		    }
 
-		    var periods=new Array();
+		    var periods=new Array();		    
 		    $scope.periods=periods;
 		    
 		    var url="/currentPeriod/"+SeminarInfo.getSelectedSeminar().seminarCode;
@@ -37,7 +43,7 @@ define(['app'], function(app) {
 				$scope.selectedPeriod = data.data.currentPeriod;
 			},function(){
 				console.log('fail');
-			})
+			});
 
 			$scope.msg = '';		
 			$scope.setSupplierPeriod = function(period){
