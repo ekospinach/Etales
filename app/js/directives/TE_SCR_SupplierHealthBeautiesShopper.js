@@ -32,7 +32,7 @@ define(['directives', 'services'], function(directives){
                             mixedValueShare=(data.data[0].absoluteValue[i].segmentInfo[4].shopperInfo[2].value*100).toFixed(2);
                             marketID=data.data[0].absoluteValue[i].marketID;
                             var ValueChanges=_.find(data.data[0].valueChange,function(obj){
-                                return(obj.variantName==varName&&obj.parentBrandName==brandName);
+                                return(obj.variantName==varName&&obj.parentBrandName==brandName&&obj.marketID==marketID);
                             });
                             if(ValueChanges!=undefined){
                                 bmValueChange=(ValueChanges.segmentInfo[4].shopperInfo[0].value*100).toFixed(2);
@@ -45,10 +45,10 @@ define(['directives', 'services'], function(directives){
                             }
 
                             var Volumes=_.find(data.data[0].absoluteVolume,function(obj){
-                                return(obj.variantName==varName&&obj.parentBrandName==brandName);
+                                return(obj.variantName==varName&&obj.parentBrandName==brandName&&obj.marketID==marketID);
                             });
                             var VolumeChanges=_.find(data.data[0].volumeChange,function(obj){
-                                return(obj.variantName==varName&&obj.parentBrandName==brandName);
+                                return(obj.variantName==varName&&obj.parentBrandName==brandName&&obj.marketID==marketID);
                             });
                             if(Volumes!=undefined){
                                 bmVolumeShare=(Volumes.segmentInfo[4].shopperInfo[0].value*100).toFixed(2);
