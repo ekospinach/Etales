@@ -982,7 +982,10 @@ var getLabelBase = function(){
 		{id:'Admin',  ENG:'Admin',  CHN:'管理员',  RUS:''},
 		{id:'pre',  ENG:'pre',  CHN:'',  RUS:''},
 		{id:'late',  ENG:'last',  CHN:'',  RUS:''},
-		{id:'by Retailer and Market',  ENG:'by Retailer and Market',  CHN:'零售商和市场',  RUS:''}
+		{id:'by Retailer and Market',  ENG:'by Retailer and Market',  CHN:'零售商和市场',  RUS:''},
+		{id:'Price Promotions Cost',  ENG:'Price Promotions Cost',  CHN:'价格促销成本',  RUS:''},
+		{id:'',  ENG:'',  CHN:'',  RUS:''}
+
 	]
 }
 
