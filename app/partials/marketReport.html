@@ -246,7 +246,8 @@
                     <li class="" ng-show='supplierIntelligence'>
                         <a href="/#/marketReport" style="color:#D9534F" ng-click='showSupplierIntelligence()'>{{Label.getContent('Supplier Intelligence')}}</a>
                     </li>
-                    <li style='padding-left:6px' ng-show='!supplierIntelligence'>
+<!--                     ng-show='!supplierIntelligence'
+ -->                    <li style='padding-left:6px' ng-show="false">
                         <p style="color:#D9534F;font-size:13px" Popover-animation="true" popover="{{Label.getContent('Dont Purchase Info')}}" popover-trigger="mouseenter" popover-placement="left"><span class="glyphicon glyphicon-shopping-cart"></span>{{Label.getContent('Supplier Intelligence')}}</p>
                     </li>
                     <li class="" ng-show='retailerIntelligence'>
