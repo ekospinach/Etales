@@ -23,15 +23,15 @@ define(['directives', 'services'], function(directives){
                             var rural1Value=rural1ValueChange=urban1Value=urban1ValueChange=rural2Value=rural2ValueChange=urban2Value=urban2ValueChange=0;
                             if(data.data[0].variantInfo[i].accountInfo[0]!=undefined){
                                 rural1Value=data.data[0].variantInfo[i].accountInfo[0].latestNetMarketPrice[1];
-                                rural1ValueChange=data.data[0].variantInfo[i].accountInfo[0].netMarketPriceChange[1];
+                                rural1ValueChange=data.data[0].variantInfo[i].accountInfo[0].netMarketPriceChange[1]*100;
                                 urban1Value=data.data[0].variantInfo[i].accountInfo[0].latestNetMarketPrice[0];
-                                urban1ValueChange=data.data[0].variantInfo[i].accountInfo[0].netMarketPriceChange[0];
+                                urban1ValueChange=data.data[0].variantInfo[i].accountInfo[0].netMarketPriceChange[0]*100;
                             }
                             if(data.data[0].variantInfo[i].accountInfo[1]!=undefined){
                                 rural2Value=data.data[0].variantInfo[i].accountInfo[1].latestNetMarketPrice[1];
-                                rural2ValueChange=data.data[0].variantInfo[i].accountInfo[1].netMarketPriceChange[1];
+                                rural2ValueChange=data.data[0].variantInfo[i].accountInfo[1].netMarketPriceChange[1]*100;
                                 urban2Value=data.data[0].variantInfo[i].accountInfo[1].latestNetMarketPrice[0];
-                                urban2ValueChange=data.data[0].variantInfo[i].accountInfo[1].netMarketPriceChange[0];
+                                urban2ValueChange=data.data[0].variantInfo[i].accountInfo[1].netMarketPriceChange[0]*100;
                             }
                             switch(data.data[0].variantInfo[i].parentCompanyID){
                                 case 1:scope.player1s.push({'fullName':fullName,'rural1Value':rural1Value,'rural1ValueChange':rural1ValueChange,'urban1Value':urban1Value,'urban1ValueChange':urban1ValueChange,'rural2Value':rural2Value,'rural2ValueChange':rural2ValueChange,'urban2Value':urban2Value,'urban2ValueChange':urban2ValueChange});break;
