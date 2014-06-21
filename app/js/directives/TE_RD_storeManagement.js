@@ -276,6 +276,7 @@ define(['directives', 'services'], function(directives){
                     for(var i=0;i<allRetCatDecisions.length;i++){
                         for(var j=0;j<allRetCatDecisions[i].retVariantDecision.length;j++){
                             if(allRetCatDecisions[i].retVariantDecision[j].brandID!=0&&allRetCatDecisions[i].retVariantDecision[j].variantID!=0){
+                                allRetCatDecisions[i].retVariantDecision[j].netRetailerPrice=(allRetCatDecisions[i].retVariantDecision[j].retailerPrice*(1-allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Frequency*allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate/26)).toFixed(2);
                                 if(allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate>=0&&allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate<=1){
                                     allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate=(parseFloat(allRetCatDecisions[i].retVariantDecision[j].pricePromotions.promo_Rate)*100).toFixed(2);
                                 }
