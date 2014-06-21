@@ -64,7 +64,7 @@ var
       jo.A['advertisingOffLine'].D[marketID-1] := supplierInfo.mrsi_AdvertisingOffLine[marketID];
     end;
 
-    for retailerID := Low(TBMRetailers) to High(TBMRetailers) do 
+    for retailerID := Low(TAccountsTotal) to High(TAccountsTotal) do
     begin
       jo.A['actualTradeSupport'].Add( retailerInfoSchema(actualTradeSupport, retailerID, supplierInfo) );
       jo.A['negotiatedTradeSupport'].Add( retailerInfoSchema(negotiatedTradeSupport, retailerID, supplierInfo) );      

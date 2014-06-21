@@ -642,8 +642,8 @@ TMR_SupplierInvestments =
   record
     mrsi_AdvertisingOffLine            : array[TMarketsTotal] of single;
     mrsi_AdvertisingOnLine             : single;
-    mrsi_ActualTradeSupport            : array[TMarketsTotal, TBMRetailers] of single;
-    mrsi_NegotiatedTradeSupport        : array[TMarketsTotal, TBMRetailers] of single;
+    mrsi_ActualTradeSupport            : array[TMarketsTotal, TAccountsTotal] of single;
+    mrsi_NegotiatedTradeSupport        : array[TMarketsTotal, TAccountsTotal] of single;
     mrsi_OnLine_Visibility             : single;
     mrsi_OnLine_Other                  : single;
     mrsi_AcquiredTechnologyLevel       : TTechnology;
