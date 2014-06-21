@@ -29,10 +29,10 @@ define(['directives', 'services'], function(directives){
                                 return (obj.parentBrandName==brandName&&obj.variantName==variantName&&obj.marketID==market);
                             });
                             if(Changes!=undefined){
-                                var priceValueChange=Changes.segmentInfo[0].shopperInfo[3].value.toFixed(2);
-                                var moneyValueChange=Changes.segmentInfo[1].shopperInfo[3].value.toFixed(2);
-                                var fashionValueChange=Changes.segmentInfo[2].shopperInfo[3].value.toFixed(2);
-                                var freaksValueChange=Changes.segmentInfo[3].shopperInfo[3].value.toFixed(2);
+                                var priceValueChange=(Changes.segmentInfo[0].shopperInfo[3].value*100).toFixed(2);
+                                var moneyValueChange=(Changes.segmentInfo[1].shopperInfo[3].value*100).toFixed(2);
+                                var fashionValueChange=(Changes.segmentInfo[2].shopperInfo[3].value*100).toFixed(2);
+                                var freaksValueChange=(Changes.segmentInfo[3].shopperInfo[3].value*100).toFixed(2);
                             }else{
                                 var priceValueChange=0;
                                 var moneyValueChange=0;
@@ -57,10 +57,10 @@ define(['directives', 'services'], function(directives){
                                 var freaksVolume=0;
                             }
                             if(VolumeChanges!=undefined){
-                                var priceVolumeChange=VolumeChanges.segmentInfo[0].shopperInfo[3].value.toFixed(2);
-                                var moneyVolumeChange=VolumeChanges.segmentInfo[1].shopperInfo[3].value.toFixed(2);
-                                var fashionVolumeChange=VolumeChanges.segmentInfo[2].shopperInfo[3].value.toFixed(2);
-                                var freaksVolumeChange=VolumeChanges.segmentInfo[3].shopperInfo[3].value.toFixed(2);                                
+                                var priceVolumeChange=(VolumeChanges.segmentInfo[0].shopperInfo[3].value*100).toFixed(2);
+                                var moneyVolumeChange=(VolumeChanges.segmentInfo[1].shopperInfo[3].value*100).toFixed(2);
+                                var fashionVolumeChange=(VolumeChanges.segmentInfo[2].shopperInfo[3].value*100).toFixed(2);
+                                var freaksVolumeChange=(VolumeChanges.segmentInfo[3].shopperInfo[3].value*100).toFixed(2);                                
                             }else{
                                 var priceVolumeChange=0;
                                 var moneyVolumeChange=0;
