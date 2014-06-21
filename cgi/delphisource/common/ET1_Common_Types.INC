@@ -61,7 +61,7 @@ Type
   TStorePerceptions        = ( PRICE, CONVENIENCE );
   TTechnology              = 1..MaxTechnologyLevel;  
   TTimeSpan                = TimeStart..TimeEnd;
-  TTOPDays                 = 0..12;  { this is used as multiplications of 15 days to cover - almost - the entire half a year }
+  TTOPIntervalIndex        = 0..IntervalsMax;  { this is used as multiplications of 15 days to cover - almost - the entire half a year }
   TVariantBasePerceptions  = 1..VariantDimsMax - 1;
   TVariantThreePerceptions = 1..VariantDimsMax;
   TVariants                = 1..AllVariantsMax;
@@ -72,6 +72,7 @@ Type
   TVariantPriority         = ( NO_PREFERENCE, BM_PREFERENCE, EMALL_PREFERENCE );
   TWebTrawlerDimensions    = ( SENTIMENT, STRENGTH );  
   TWeeksInPeriod           = 0..PeriodLastWeek;
+  TTOPDays                 = 1..DaysInPeriod;
   TMarketStudies           = 1..MarketStudiesMax;
 
   TIngredientsDetails                = array[TIngredientsInput] of single;

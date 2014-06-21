@@ -283,7 +283,7 @@ TSCR_ChannelsProfitability = array[TCategoriesTotal, TAccounts, TMarketsTotal] o
 
 TSCR_Negotiations = array[TCategories, TBMRetailers, TProBrands, TOneBrandVariants] of TVariantNegotiationsDetails;
 
-TSCR_CrossSegments = array[TCategories, TMarkets, TProBrands, TOneBrandVariants] of TVariantCrossSegmentDetails;
+TSCR_CrossSegments = array[TCategories, TMarkets, TProBrands, TOneBrandVariants] of TVariantCrossSegmentDetails;  {@@@@@@@@}
 
 TSCR_VariantInventoryVolume =
   record
@@ -723,27 +723,13 @@ TF_CategoryNegotiationsItem =
 
 TF_NegotiationsItems = array[TCategoriesTotal] of TF_CategoryNegotiationsItem;
 
+TF_TransactionsPerTOP = array[TCategoriesTotal, TTOPIntervalIndex] of single;
 
+TF_MarketsResults = array[TCategoriesTotal, TTimeSpan, TActiveActors]  of single;
 
-TF_CategoryTransactionsPerTOP = array[TTOPDays] of single;
+TF_SuppliersKPIs = array[TCategoriesTotal, TTimeSpan, TProducers] of single;
 
-TF_TransactionsPerTOP = array[TCategoriesTotal] of TF_CategoryTransactionsPerTOP;
-
-
-
-TF_CategoryMarketResults = array[TTimeSpan, TActiveActors] of single;
-
-TF_MarketsResults = array[TCategoriesTotal] of TF_CategoryMarketResults;
-
-
-TF_CategorySuppliersKPIs = array[TTimeSpan, TProducers] of single;
-
-TF_SuppliersKPIs = array[TCategoriesTotal] of TF_CategorySuppliersKPIs;
-
-
-TF_QuarterRetailersKPIs = array[TTimeSpan, TModernRetailers] of single;
-
-TF_RetailersKPIs = array[TMarketsTotal, TCategoriesTotal] of TF_QuarterRetailersKPIs;
+TF_RetailersKPIs = array[TMarketsTotal, TCategoriesTotal, TTimeSpan, TBMRetailers] of single;
 
 TF_MarketSummary = array[TTimeSpan, TMarketsTotal, TCategoriesTotal] of single;
 

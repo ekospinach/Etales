@@ -51,6 +51,8 @@ Const
   FutureStart        =  HistoryEnd + 1;
   FutureEnd          =  9;
   TimeEnd            =  FutureEnd + 1;
+  OldestPast         =  -12;
+  LatestPast         =  -2;
 
   VarsMax                  = 3;                 { max # of variants per brand }
   VarsMaxTotal             = VarsMax + 1;       { for one brand totals }
@@ -97,6 +99,8 @@ Const
   CatsMax                  = 2;            { maximum # of selected categories }
   CatsMaxTotal             = CatsMax + 1;  { for totals }
   DaysInPeriod             = 183;
+  DaysInInterval           = 15;
+  IntervalsMax             = 12;
 
   HouseholdsGroupsMax      = 4;                        { over-declared for the time being; only total used in the initial version }
   HouseholdsGroupsMaxTotal = HouseholdsGroupsMax + 1;
