@@ -987,7 +987,7 @@ var getLabelBase = function(){
 		{id:'late',  ENG:'last',  CHN:'',  RUS:''},
 		{id:'by Retailer and Market',  ENG:'by Retailer and Market',  CHN:'零售商和市场',  RUS:''},
 		{id:'Price Promotions Cost',  ENG:'Price Promotions Cost',  CHN:'价格促销成本',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''}
+		{id:'Delivered Volume',  ENG:'Delivered Volume',  CHN:'Delivered Volume',  RUS:''}
 
 	]
 }
