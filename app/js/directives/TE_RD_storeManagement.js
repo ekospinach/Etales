@@ -92,8 +92,8 @@ define(['directives', 'services'], function(directives){
                     if(!filter.test(value)){
                         d.resolve(Label.getContent('Input a number'));
                     }
-                    if(value>100||value<0){
-                        d.resolve(Label.getContent('Input range')+':0~100');
+                    if(value>100||value<5){
+                        d.resolve(Label.getContent('Input range')+':5~100');
                     }else{
                         if(market=="Urban"){
                             market=1;
