@@ -21,6 +21,18 @@ define(['directives', 'services'], function(directives){
                         if(data.data[0].absoluteValue[i].parentCategoryID==category&&data.data[0].absoluteValue[i].marketID==market){
                             var variantName=data.data[0].absoluteValue[i].variantName;
                             var brandName=data.data[0].absoluteValue[i].parentBrandName;
+                            // priceValue=absoluteValue[].segmentInfo[0].shopperInfo[3].value
+                            // moneyValue=absoluteValue[].segmentInfo[1].shopperInfo[3].value
+                            // fashionValue=absoluteValue[].segmentInfo[2].shopperInfo[3].value
+                            // freaksValue=absoluteValue[].segmentInfo[3].shopperInfo[3].value
+                            // xxxChange=Changes(find from valueChange by variantName and parentBrandName and marketID).segmentInfo[].shopperInfo[3]
+                            // priceVolume=absoluteVolume[].segmentInfo[0].shopperInfo[3].value
+                            // moneyVolume=absoluteVolume[].segmentInfo[1].shopperInfo[3].value
+                            // fashionVolume=absoluteVolume[].segmentInfo[2].shopperInfo[3].value
+                            // freaksVolume=absoluteVolume[].segmentInfo[3].shopperInfo[3].value
+                            // xxxChange=Changes(find from valueChange by variantName and parentBrandName and marketID).segmentInfo[].shopperInfo[3]
+
+
                             var priceValue=data.data[0].absoluteValue[i].segmentInfo[0].shopperInfo[3].value.toFixed(2);
                             var moneyValue=data.data[0].absoluteValue[i].segmentInfo[1].shopperInfo[3].value.toFixed(2);
                             var fashionValue=data.data[0].absoluteValue[i].segmentInfo[2].shopperInfo[3].value.toFixed(2);

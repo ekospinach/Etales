@@ -21,6 +21,15 @@ define(['directives', 'services'], function(directives){
                         if(data.data[0].absoluteValue[i].parentCategoryID==category&&data.data[0].absoluteValue[i].marketID==market){
                             var variantName=data.data[0].absoluteValue[i].variantName;
                             var brandName=data.data[0].absoluteValue[i].parentBrandName;
+                            // bmValue=absoluteValue[].segmentInfo[4].shopperInfo[0].value
+                            // onlineValue=absoluteValue[].segmentInfo[4].shopperInfo[1].value
+                            // mixedValue=absoluteValue[].segmentInfo[4].shopperInfo[2].value
+                            // xxxChange=Changes(find from valueChange by variantName and parentBrandName and marketID).segmentInfo[4].shopperInfo[]
+                            // bmVolume=absoluteVolume[].segmentInfo[4].shopperInfo[0].value
+                            // onlineVolume=absoluteVolume[].segmentInfo[4].shopperInfo[1].value
+                            // mixedVolume=absoluteVolume[].segmentInfo[4].shopperInfo[2].value
+                            // xxxVolumeChange=Changes(find from volumeChange by variantName and parentBrandName and marketID).segmentInfo[4].shopperInfo[]
+
                             var bmValue=data.data[0].absoluteValue[i].segmentInfo[4].shopperInfo[0].value.toFixed(2);
                             var onlineValue=data.data[0].absoluteValue[i].segmentInfo[4].shopperInfo[1].value.toFixed(2);
                             var mixedValue=data.data[0].absoluteValue[i].segmentInfo[4].shopperInfo[2].value.toFixed(2);
