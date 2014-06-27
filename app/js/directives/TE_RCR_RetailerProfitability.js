@@ -41,6 +41,13 @@ define(['directives', 'services'], function(directives){
                     var factoriesInfo4=new Array();
                     var factoriesInfo5=new Array();
                     var factoriesInfo6=new Array();
+                    //factoriesInfo1 =category:1 market:1
+                    //factoriesInfo2 =category:1 market:2
+                    //factoriesInfo3 =category:1 market:3
+                    //factoriesInfo4 =category:2 market:1
+                    //factoriesInfo5 =category:2 market:2
+                    //factoriesInfo6 =category:2 market:3
+
                     var marketInfo=new Array();
                     var array=new Array();
                     for(var i=0;i<data.length;i++){
@@ -95,6 +102,13 @@ define(['directives', 'services'], function(directives){
                     var factoriesInfo6=new Array();
                     var marketInfo=new Array();
                     var array=new Array();
+                    //factoriesInfo1 =category:1 market:1
+                    //factoriesInfo2 =category:1 market:2
+                    //factoriesInfo3 =category:1 market:3
+                    //factoriesInfo4 =category:2 market:1
+                    //factoriesInfo5 =category:2 market:2
+                    //factoriesInfo6 =category:2 market:3
+                    //this function is for the value which need to *100
                     for(var i=0;i<data.length;i++){
                         if(data[i].categoryID==1&&data[i].marketID==1){
                             factoriesInfo1[data[i].factoriesID-1]=(data[i].value*100).toFixed(2);

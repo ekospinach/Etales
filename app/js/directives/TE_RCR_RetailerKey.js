@@ -35,6 +35,7 @@ define(['directives', 'services'], function(directives){
                 }
 
                 var loadValue=function(data,category,market){
+                    //return the value find from data where obj.categoryID=category and obj.marketID=market
                     var array=_.find(data,function(obj){
                         return (obj.categoryID==category&&obj.marketID==market);
                     });
@@ -58,8 +59,10 @@ define(['directives', 'services'], function(directives){
                     for(var i=0;i<data.data[0].rcrkpi_VolumeRotationIndex.length;i++){
                         value=new Array();
                         if(data.data[0].rcrkpi_VolumeRotationIndex[i].categoryID==1&&data.data[0].rcrkpi_VolumeRotationIndex[i].marketID==1){
+                            //make sure that the following find function won't find this one
                             data.data[0].rcrkpi_VolumeRotationIndex[i].categoryID=-1;
                             data.data[0].rcrkpi_VolumeRotationIndex[i].marketID=-1;
+                            
                             var market1=data.data[0].rcrkpi_VolumeRotationIndex[i].value;
                             var market2=loadValue(data.data[0].rcrkpi_VolumeRotationIndex,1,2);
                             var market3=loadValue(data.data[0].rcrkpi_VolumeRotationIndex,1,3);

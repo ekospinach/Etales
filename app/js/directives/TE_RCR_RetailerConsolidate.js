@@ -40,6 +40,7 @@ define(['directives', 'services'], function(directives){
                         array[i]=new Array();
                     }
                     for(var i=0;i<data.length;i++){
+                        //array[category-1][market-1]=data.value
                         switch(data[i].categoryID){
                             case 1:
                                 if(data[i].marketID==1)array[0][0]=data[i].value;
@@ -63,6 +64,7 @@ define(['directives', 'services'], function(directives){
 
                 var organiseArray = function(data){
                     var deferred = $q.defer();
+                    //loadValue return array: array[category-1][market-1]
                     scope.Sales=loadValue(data.data[0].rcrpl_Sales);
                     scope.PromotionsCost=loadValue(data.data[0].rcrpl_PromotionsCost);
                     scope.OtherCompensation=loadValue(data.data[0].rcrpl_OtherCompensation);
