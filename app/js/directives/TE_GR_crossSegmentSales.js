@@ -49,6 +49,20 @@ define(['directives', 'services'], function(directives){
                     }
 
                     for(var i=0;i<4;i++){
+                        /*
+                            data push info
+                        
+                            data[0]    {'categoryID':1,'marketID':1} 
+                            data[1]    {'categoryID':1,'marketID':2} 
+                            data[2]    {'categoryID':2,'marketID':1} 
+                            data[3]    {'categoryID':2,'marketID':2} 
+
+                            data[x][0] BMS
+                            data[x][1] NETIZENS
+                            data[x][2] MIXED
+                            data[x][3] ALLSHOPPERS
+
+                        */
                         //priceSensitives
                         scope.priceSensitives[0].push(data.data[0].categoryInfo[0].marketInfo[0].segmentInfo[0].shopperInfo[i].grcss_CrossSegmentsVolumes);
                         scope.priceSensitives[1].push(data.data[0].categoryInfo[0].marketInfo[1].segmentInfo[0].shopperInfo[i].grcss_CrossSegmentsVolumes);

@@ -46,6 +46,17 @@ define(['directives', 'services'], function(directives){
                     scope.retailer1hs=new Array();
                     scope.retailer2es=new Array();
                     scope.retailer2hs=new Array();
+
+                    /*
+                    
+                        producer data 
+                        the first letter of the variant parentBrandName decide the category e.g 'E' categoryID=1;
+                        the last letter of the varinat parentBrandName decide the player  e.g '1' supplier 1
+                        
+                        player 5 retailer 1
+                        player 6 retailer 2
+
+                    */
                     for(var i=0;i<data.data[0].categoryInfo[0].variantInfo.length;i++){
                         switch(data.data[0].categoryInfo[0].variantInfo[i].parentBrandName.substring(data.data[0].categoryInfo[0].variantInfo[i].parentBrandName.length-1)){
                             case '1':scope.producer1es.push(data.data[0].categoryInfo[0].variantInfo[i]);break;
