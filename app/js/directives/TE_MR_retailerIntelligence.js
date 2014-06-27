@@ -22,6 +22,7 @@ define(['directives', 'services'], function(directives){
                     $http({
                         method:'GET',
                         url:url,
+                        //tracker: scope.loadingTracker
                     }).then(function(data){   
                         return organiseArray(data);
                     }).then(function(data){

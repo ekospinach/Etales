@@ -30,7 +30,7 @@ define(['directives', 'services'], function(directives){
                             // moneyVolume=absoluteVolume[].segmentInfo[1].shopperInfo[3].value
                             // fashionVolume=absoluteVolume[].segmentInfo[2].shopperInfo[3].value
                             // freaksVolume=absoluteVolume[].segmentInfo[3].shopperInfo[3].value
-                            // xxxChange=Changes(find from valueChange by variantName and parentBrandName and marketID).segmentInfo[].shopperInfo[3]
+                            // xxxVolumeChange=Changes(find from volumeChange by variantName and parentBrandName and marketID).segmentInfo[].shopperInfo[3]
 
 
                             var priceValue=data.data[0].absoluteValue[i].segmentInfo[0].shopperInfo[3].value.toFixed(2);
