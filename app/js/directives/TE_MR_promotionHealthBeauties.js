@@ -21,6 +21,11 @@ define(['directives', 'services'], function(directives){
                         if(data.data[0].variantInfo[i].parentCategoryID==category){
                             var fullName=data.data[0].variantInfo[i].parentBrandName+data.data[0].variantInfo[i].variantName;
                             var rural1Length=rural1Depth=urban1Length=urban1Depth=rural2Length=rural2Depth=urban2Length=urban2Depth=0;
+                            //depth=variantInfo[].accountInfo[retailerID-1].promoRate[catrgoryID-1]
+                            //length=variantInfo[].accountInfo[retailerID-1].promoFrequency[categoryID-1]
+                            //variantInfo[].parentCompanyID decide player num
+                            //player 1 2 3 -->supplier
+                            //player 5 6 -->retailer
                             if(data.data[0].variantInfo[i].accountInfo[0]!=undefined){
                                 if(data.data[0].variantInfo[i].accountInfo[0].promoRate[1]!=0){
                                     rural1Depth=(data.data[0].variantInfo[i].accountInfo[0].promoRate[1]*100).toFixed(2)+'%';
