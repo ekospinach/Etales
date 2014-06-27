@@ -139,6 +139,7 @@ define(['directives', 'services'], function(directives){
                     for(var i=0;i<3;i++){
                         array[i]=new Array();
                     }
+                    //array[category-1][market-1]=data[].value
                     for(var i=0;i<data.length;i++){
                         switch(data[i].categoryID){
                             case 1:
