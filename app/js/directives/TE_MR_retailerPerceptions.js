@@ -48,6 +48,12 @@ define(['directives', 'services'], function(directives){
                     for(var i=0;i<data.data[0].storeInfo.length;i++){
                         if(data.data[0].storeInfo[i].marketID==1){
                             switch(data.data[0].storeInfo[i].storeID){
+                                // player's urban/rural data include 2 parts
+                                // part1 : latestPerception value  point:(x,y,z,)==>z is the size of the circle e.g (previousPerception[1],previousPerception[0],size)
+                                // part2 : previousPerception value ......
+
+                                //function loadValue ==>find the rural value of this player
+
                                 case 1:scope.latestPlayer1urban.push([data.data[0].storeInfo[i].latestPerception[1],data.data[0].storeInfo[i].latestPerception[0],10]);scope.latestPlayer1rural.push([loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).latestPerception[1],loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).latestPerception[0],10]);
                                 scope.latestPlayer1urban.push([data.data[0].storeInfo[i].previousPerception[1],data.data[0].storeInfo[i].previousPerception[0],5]);scope.latestPlayer1rural.push([loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).previousPerception[1],loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).previousPerception[0],5]);break;
                                 case 2:scope.latestPlayer2urban.push([data.data[0].storeInfo[i].latestPerception[1],data.data[0].storeInfo[i].latestPerception[0],10]);scope.latestPlayer2rural.push([loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).latestPerception[1],loadValue(data.data[0].storeInfo,data.data[0].storeInfo[i].storeID,2).latestPerception[0],10]);

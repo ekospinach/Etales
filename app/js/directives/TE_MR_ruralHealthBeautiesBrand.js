@@ -20,6 +20,9 @@ define(['directives', 'services'], function(directives){
                 var loadBrandPerceptions=function(data,category,market){
                     for(var i=0;i<data.data[0].variantInfo.length;i++){
                         if(category==data.data[0].variantInfo[i].parentCategoryID&&market==data.data[0].variantInfo[i].marketID){
+                            //variantInfo[].parentCompanyID decide the player
+                            //quality data (variantInfo[].latestPerception[1],variantInfo[].latestPerception[0],fullName)--> use fullName to pop the info of this circle
+                            //prices data (1,latestPerception[2],fullName) -->use num '1' to posit all the circle in line . and use fullName to pop the info of this circle
                             switch(data.data[0].variantInfo[i].parentCompanyID){
                                 case 1:scope.quality1s.push([data.data[0].variantInfo[i].latestPerception[0],data.data[0].variantInfo[i].latestPerception[1],data.data[0].variantInfo[i].parentBrandName+data.data[0].variantInfo[i].variantName]);scope.price1s.push([1,data.data[0].variantInfo[i].latestPerception[2],data.data[0].variantInfo[i].parentBrandName+data.data[0].variantInfo[i].variantName]);break;
                                 case 2:scope.quality2s.push([data.data[0].variantInfo[i].latestPerception[0],data.data[0].variantInfo[i].latestPerception[1],data.data[0].variantInfo[i].parentBrandName+data.data[0].variantInfo[i].variantName]);scope.price2s.push([1,data.data[0].variantInfo[i].latestPerception[2],data.data[0].variantInfo[i].parentBrandName+data.data[0].variantInfo[i].variantName]);break;
