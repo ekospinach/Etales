@@ -35,6 +35,16 @@ define(['directives', 'services'], function(directives){
                 var organiseArray = function(data){
                     var deferred = $q.defer();
                     scope.forecastsShopperSeries1=[{
+                        //data:[1,min,max],[2,min.max]...
+                        //B&M Only shopperInfo[0]
+                        //Online Only shopperInfo[1]
+                        //Mixed shopperInfo[2]
+
+                        //urban value[0]
+                        //rural value[1]
+
+                        //E ShopperSegmentsImportance[0]
+                        //H ShopperSegmentsImportance[1]
                         'name':Label.getContent('B&M Only'),'color':'#3257A7',
                         'data':[[1,data.data[0].minShopperSegmentsImportance[0].shopperInfo[0].periodInfo[0].value[1],data.data[0].maxShopperSegmentsImportance[0].shopperInfo[0].periodInfo[0].value[1]],[2,data.data[0].minShopperSegmentsImportance[0].shopperInfo[0].periodInfo[1].value[1],data.data[0].maxShopperSegmentsImportance[0].shopperInfo[0].periodInfo[1].value[1]],[3,data.data[0].minShopperSegmentsImportance[0].shopperInfo[0].periodInfo[2].value[1],data.data[0].maxShopperSegmentsImportance[0].shopperInfo[0].periodInfo[2].value[1]],[4,data.data[0].minShopperSegmentsImportance[0].shopperInfo[0].periodInfo[3].value[1],data.data[0].maxShopperSegmentsImportance[0].shopperInfo[0].periodInfo[3].value[1]],[5,data.data[0].minShopperSegmentsImportance[0].shopperInfo[0].periodInfo[4].value[1],data.data[0].maxShopperSegmentsImportance[0].shopperInfo[0].periodInfo[4].value[1]]]
                     },{

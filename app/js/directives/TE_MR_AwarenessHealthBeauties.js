@@ -19,6 +19,16 @@ define(['directives', 'services'], function(directives){
                 var loadAwareness=function(data,category,market){
                     scope.brandNames=new Array();
                     var count=0;
+                    /*
+                        if latestAwareness>=previousAwareness
+                        then value =previousAwareness;
+                        increase=latestAwareness-previousAwareness;
+                        drop=0;
+                        else
+                        then value =latestAwareness;
+                        drop=previousAwareness-latestAwareness;
+                        increase=0;
+                    */
                     for(var i=0;i<data.data[0].brandInfo.length;i++){
                         if(data.data[0].brandInfo[i].parentCategoryID==category&&data.data[0].brandInfo[i].marketID==market){
                             scope.brandNames[count]=data.data[0].brandInfo[i].brandName;
