@@ -31,7 +31,8 @@ define(['angular',
 		'controllers/supplierDecisionCtrl',
 		'controllers/retailerDecisionCtrl',
 		'controllers/navbarCtrl',
-		'controllers/feedbackCtrl'], function(angular, app) {
+		'controllers/feedbackCtrl',
+		'controllers/overviewReportCtrl'], function(angular, app) {
 	'use strict';
 	return app.config(['$routeProvider','$httpProvider', '$locationProvider',function($routeProvider, $httpProvider,$locationProvider) {
 
@@ -164,8 +165,11 @@ define(['angular',
 			templateUrl:'partials/confidentialReport.html',
 			controller:'confidentialReportCtrl',
 			access: access.playerView
+		}).when('/overviewReport',{
+			templateUrl:'partials/overviewReport.html',
+			controller:'overviewReportCtrl',
+			access: access.playerView
 		});	
-
 		//$routeProvider.otherwise({redirectTo: '/login'});
 
       var interceptor = ['$location', '$q', function($location, $q) {

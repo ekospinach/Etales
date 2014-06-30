@@ -255,6 +255,12 @@ table tr td p,table tr th p{
     background-color: #EEA236;
     color:          #ffffff;
 }
+
+.my-panel-overview > .panel-heading {
+    background-color: #000777;
+    color:          #ffffff;
+}
+
 .my-success-panel > .panel-heading {
     background-color: transparent;
     color: #333333;

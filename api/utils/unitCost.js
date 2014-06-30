@@ -486,6 +486,8 @@ function calculateUnitCost(composition, packFormat, isPrivateLabel, cumVolumes, 
         PREMIUM : 0.04,
         marginOnPrivateLabel : 0.25,                   
       }],
+
+
       tempResult,
       geogNow = 2, 
       correctedVolumes = [0,0,0]; //Length:TSpecs(1~3)
