@@ -36,16 +36,16 @@ var actorInfoSchema = mongoose.Schema({
 var actorCategoryInfoSchema = mongoose.Schema({
     categoryID : Number,                   //TCategoriesTotal : 1~(2+1)
     //Performance Highlights 
-    grph_SalesVolume             : Number, //CategoryID : 1~2
-    grph_NetSalesValue           : Number, //CategoryID : 1~3
+    grph_SalesVolume             : [Number], //CategoryID : 1~2, 0-BM 1-Online
+    grph_SalesVolumeChange       : [Number], //CategoryID : 1~3, 0-BM 1-Online
+    grph_NetSalesValue           : [Number], //CategoryID : 1~3, 0-BM 1-Online
+    grph_NetSalesValueChange     : [Number], //CategoryID : 1~2, 0-BM 1-Online
     
     grph_ValueMarketShare        : Number, //CategoryID : 1~2
     grph_VolumeMarketShare       : Number, //CategoryID : 1~3
 
-    grph_NetSalesValueChange     : Number, //CategoryID : 1~2
     grph_ValueMarketShareChange  : Number, //CategoryID : 1~2
     grph_VolumeMarketShareChange : Number, //CategoryID : 1~3
-    grph_SalesVolumeChange       : Number, //CategoryID : 1~3
 })
 
 var performanceHighlights=mongoose.model('GR_performanceHighlights',performanceHighlightsSchema);

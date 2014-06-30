@@ -161,10 +161,13 @@ define(['angular',
 
 	services.factory('Auth', function($http, $rootScope, $cookieStore){
 	    var accessLevels = routingConfig.accessLevels
-	        , userRoles = routingConfig.userRoles;
+	        , userRoles = routingConfig.userRoles,
+	        currentUser = $cookieStore.get('user') || { username: '', role: userRoles.guest };
 
-	    $rootScope.user = $cookieStore.get('user') || { username: '', role: userRoles.guest };
-	    $cookieStore.remove('user');
+	    console.log('Test cookies store, current user: ' + JSON.stringify(currentUser));
+
+	    $rootScope.user = currentUser;
+	    //$cookieStore.remove('user');
 
 	    $rootScope.accessLevels = accessLevels;
 	    $rootScope.userRoles = userRoles;

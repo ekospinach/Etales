@@ -27,7 +27,8 @@ var variantInfoSchema = mongoose.Schema({
     parentBrandID : Number,
     parentBrandName : String,
     packFormat : String,
-    vc_composition : [Number] // TBrandOwener : 1~6 (Prod_1_ID...Ret_2_ID)//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+    vc_composition : [Number], // TBrandOwener : 1~6 (Prod_1_ID...Ret_2_ID)//1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+    bmListPrice : Number,    
 })
 
 var productPortfolio=mongoose.model('gr_productPortfolio',productPortfolioSchema);
