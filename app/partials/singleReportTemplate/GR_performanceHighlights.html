@@ -85,8 +85,9 @@
                         {{Label.getContent('Elecssories')}}
                     </p>
                 </td>
+                <!--index is even and index!=6or12-->
                 <td ng-repeat='salesVolume in salesVolumes' ng-show='$even&&$index!=6&&$index!=12'>
-                    <p class="text-right">{{(salesVolume.value.toFixed(2)=="0.00"?salesVolume.value.toFixed(2):0}}</p>
+                    <p class="text-right">{{salesVolume.value.toFixed(2)}}</p>
                 </td>
             </tr>
             <tr class="danger">

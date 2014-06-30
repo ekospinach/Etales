@@ -242,28 +242,36 @@ table tr td p,table tr th p{
 
   border-right: none;
 }
+.panel {
+    border-color:   #c8c8c8;
+}
+
 .my-panel-success > .panel-heading {
     background-color: #5CB85C;
     color:          #ffffff;
+    border-color:   #c8c8c8;
 }
 .my-panel-danger > .panel-heading {
     background-color: #D9534F;
     color:          #ffffff;
-    border: #FFFFFF;
+    border-color:   #c8c8c8;
 }
 .my-panel-warning > .panel-heading {
     background-color: #EEA236;
     color:          #ffffff;
+    border-color:   #c8c8c8;
 }
 
 .my-panel-overview > .panel-heading {
     background-color: #1DAC8F;
     color:          #ffffff;
+    border-color:   #c8c8c8;
 }
 
 .my-success-panel > .panel-heading {
     background-color: transparent;
     color: #333333;
+    border-color:   #c8c8c8;
 }
 /*.tr-info{
     background-color: #428BCA;
@@ -295,7 +303,7 @@ table tr td p,table tr th p{
     color: #fff;
 }*/
 .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
-    background-color: #025037;
+    background-color: #c8c8c8;
     outline: 0 none;
     text-decoration: none;
 }
