@@ -76,7 +76,8 @@ var getLabelBase = function(){
 		{id:'Retail Market Share (Value) Info',  ENG:'Retail Market Share (Value) Info',  CHN:'Retail Market Share (Value) Info',  RUS:''},
 		{id:'Retail Market Share (Volume) Info',  ENG:'Retail Market Share (Volume) Info',  CHN:'Retail Market Share (Volume) Info',  RUS:''},
 		{id:'Volume Info',  ENG:'Volume Info',  CHN:'Volume介绍',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'B&M',  ENG:'B&M',  CHN:'B&M',  RUS:''},
+		{id:'Wholesale',  ENG:'Wholesale',  CHN:'Wholesale',  RUS:''},
 		{id:'Buy this Report',  ENG:'Buy this Report',  CHN:'购买此报告',  RUS:''},
 		
 
@@ -629,6 +630,8 @@ var getLabelBase = function(){
 		{id:'Value Market Shares',  ENG:'Value Market Shares',  CHN:'Value Market Shares',  RUS:''},
 		{id:'Volume Market Shares',  ENG:'Volume Market Shares',  CHN:'Volume Market Shares',  RUS:''},
 		{id:'Cumulative Investments',  ENG:'Cumulative Investments',  CHN:'累计投资',  RUS:''},
+		{id:'Cumulative Investments',  ENG:'Cumulative Investments',  CHN:'累计投资',  RUS:''},
+		
 		{id:'Promotion Intensity',  ENG:'Promotion Intensity',  CHN:'促销强度',  RUS:''},
 		{id:'Promotion Intensity Info',  ENG:'Promotion Intensity Info',  CHN:'促销强度介绍',  RUS:''},
 		{id:'Net Online Retail Price',  ENG:'Net Online Retail Price',  CHN:'网上售价',  RUS:''},
