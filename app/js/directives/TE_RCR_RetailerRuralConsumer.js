@@ -23,6 +23,18 @@ define(['directives', 'services'], function(directives){
                         if(data.data[0].absoluteValue[i].parentCategoryID==category&&data.data[0].absoluteValue[i].marketID==market){
                             var varName=data.data[0].absoluteValue[i].variantName;
                             var brandName=data.data[0].absoluteValue[i].parentBrandName;
+                            /*
+                                priceValueShare=absoluteValue[].segmentInfo[0].shopperInfo[3]
+                                moneyValueShare=absoluteValue[].segmentInfo[1].shopperInfo[3]
+                                fashionValueShare=absoluteValue[].segmentInfo[2].shopperInfo[3]
+                                freaksValueShare=absoluteValue[].segmentInfo[3].shopperInfo[3]
+                                xxxValueChange=Changes(find from valueChange by variantName and parentBrandName and marketID).segmentInfo[].shopperInfo[3]
+                                priceVolumeShare=absoluteVolume[].segmentInfo[0].shopperInfo[3]
+                                moneyVolumeShare=absoluteVolume[].segmentInfo[1].shopperInfo[3]
+                                fashionVolumeShare=absoluteVolume[].segmentInfo[2].shopperInfo[3]
+                                freaksVolumeShare=absoluteVolume[].segmentInfo[3].shopperInfo[3]
+                                xxxVolumeChange=Changes(find from volumeChange by variantName and parentBrandName and marketID).segmentInfo[].shopperInfo[3]
+                            */
                             var priceValueShare=(data.data[0].absoluteValue[i].segmentInfo[0].shopperInfo[3].value*100).toFixed(2);
                             var moneyValueShare=(data.data[0].absoluteValue[i].segmentInfo[1].shopperInfo[3].value*100).toFixed(2);
                             var fashionValueShare=(data.data[0].absoluteValue[i].segmentInfo[2].shopperInfo[3].value*100).toFixed(2);

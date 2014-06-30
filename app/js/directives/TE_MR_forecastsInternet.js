@@ -34,6 +34,10 @@ define(['directives', 'services'], function(directives){
 
                 var organiseArray = function(data){
                     var deferred = $q.defer();
+                    //data:[1,min,max],[2,min.max]...
+                    //urban value[0]
+                    //rural value[1]
+
                     scope.forecastInternetSeries=[{
                         'name':Label.getContent('Rural'),'color':'#3257A7',
                         'data':[[1,parseFloat((data.data[0].minInternetPenetrationRate[0].value[1]*100).toFixed(2)),parseFloat((data.data[0].maxInternetPenetrationRate[0].value[1]*100).toFixed(2))],[2,parseFloat((data.data[0].minInternetPenetrationRate[1].value[1]*100).toFixed(2)),parseFloat((data.data[0].maxInternetPenetrationRate[1].value[1]*100).toFixed(2))],[3,parseFloat((data.data[0].minInternetPenetrationRate[2].value[1]*100).toFixed(2)),parseFloat((data.data[0].maxInternetPenetrationRate[2].value[1]*100).toFixed(2))],[4,parseFloat((data.data[0].minInternetPenetrationRate[3].value[1]*100).toFixed(2)),parseFloat((data.data[0].maxInternetPenetrationRate[3].value[1]*100).toFixed(2))],[5,parseFloat((data.data[0].minInternetPenetrationRate[4].value[1]*100).toFixed(2)),parseFloat((data.data[0].maxInternetPenetrationRate[4].value[1]*100).toFixed(2))]]

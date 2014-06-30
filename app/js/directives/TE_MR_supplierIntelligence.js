@@ -36,6 +36,10 @@ define(['directives', 'services'], function(directives){
                     var deferred = $q.defer();
                     var myData=new Array();
                     myData.push({
+                        /*
+                            XXXXXXX_playerCategory: data.supplierInfo[player-1].categoryInfo[category-1].XXXXXXX
+                        */
+
                         'AdvertisingOnline_1e':data.data[0].supplierInfo[0].categoryInfo[0].advertisingOnLine,
                         'AdvertisingOnline_2e':data.data[0].supplierInfo[1].categoryInfo[0].advertisingOnLine,
                         'AdvertisingOnline_3e':data.data[0].supplierInfo[2].categoryInfo[0].advertisingOnLine,

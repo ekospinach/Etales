@@ -34,6 +34,18 @@ define(['directives', 'services'], function(directives){
 
                 var organiseArray = function(data){
                     var deferred = $q.defer();
+                    //data:[1,min,max],[2,min.max]...
+                    //Price Sensitive segmentInfo[0]
+                    //Value For Money segmentInfo[1]
+                    //Fashion segmentInfo[2]
+                    //Freaks segmentInfo[3]
+
+                    //urban value[0]
+                    //rural value[1]
+
+                    //E ConsumerSegmentsImportance[0]
+                    //H ConsumerSegmentsImportance[1]
+
                     scope.forecastsConsumerSeries1=[{
                         'name':Label.getContent('Price Sensitive'),'color':'#329444',
                         'data':[[1,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[0].periodInfo[0].value[1],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[0].periodInfo[0].value[1]],[2,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[0].periodInfo[1].value[1],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[0].periodInfo[1].value[1]],[3,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[0].periodInfo[2].value[1],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[0].periodInfo[2].value[1]],[4,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[0].periodInfo[3].value[1],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[0].periodInfo[3].value[1]],[5,data.data[0].minConsumerSegmentsImportance[0].segmentInfo[0].periodInfo[4].value[1],data.data[0].maxConsumerSegmentsImportance[0].segmentInfo[0].periodInfo[4].value[1]]]

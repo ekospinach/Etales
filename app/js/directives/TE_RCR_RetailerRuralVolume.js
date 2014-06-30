@@ -35,6 +35,8 @@ define(['directives', 'services'], function(directives){
                             var sales=loadVariantValue(data.data[0].rcrviv_Sales,brandName,varName,market);
                             var discontinued=loadVariantValue(data.data[0].rcrviv_Discontinued,brandName,varName,market);
                             var closing=loadVariantValue(data.data[0].rcrviv_Closing,brandName,varName,market);
+                            //data.parentCompany 1 2 3 ==>(supplier 1 2 3)'s product
+                            //data.parentCompany 5/6 ==>retailer's Private Label
                             switch(data.data[0].rcrviv_Initial[i].parentCompany){
                                 case 1:if(category==1){
                                     scope.product1es.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing});
@@ -52,6 +54,7 @@ define(['directives', 'services'], function(directives){
                                     scope.product3hs.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing});
                                 }break;
                                 case 4:break;
+                                //case 5 without break will automatic turn to case 6
                                 case 5:
                                 case 6:if(category==1){
                                     scope.product4es.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing});

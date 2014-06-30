@@ -18,7 +18,7 @@ define(['directives', 'services'], function(directives){
                     getResult();                    
                 }
 
-                var loadValue=function(data,varName,brandName,producer){
+                var loadValue=function(data,varName,brandName,producer){  
                     var results=_.find(data,function(obj){
                         return(obj.variantName==varName&&obj.parentBrandName==brandName&&obj.producerID==producer);
                     })

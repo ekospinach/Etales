@@ -21,6 +21,12 @@ define(['directives', 'services'], function(directives){
                         if(data.data[0].variantInfo[i].parentCategoryID==category){
                             var fullName=data.data[0].variantInfo[i].parentBrandName+data.data[0].variantInfo[i].variantName;
                             var rural1Value=rural1ValueChange=urban1Value=urban1ValueChange=rural2Value=rural2ValueChange=urban2Value=urban2ValueChange=0;
+                            /*
+                                urban=latestNetMarketPrice[0]
+                                rural=latestNetMarketPrice[1]
+                                urbanChange=netMarketPriceChange[0]
+                                ruralChange=netMarketPriceChange[1]
+                            */
                             if(data.data[0].variantInfo[i].accountInfo[0]!=undefined){
                                 rural1Value=data.data[0].variantInfo[i].accountInfo[0].latestNetMarketPrice[1];
                                 rural1ValueChange=data.data[0].variantInfo[i].accountInfo[0].netMarketPriceChange[1]*100;

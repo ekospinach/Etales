@@ -17,7 +17,6 @@ define(['directives', 'services'], function(directives){
                 }
 
                 var getResult =function(){
-                    //switching('showPerformance');
                     var url='/emallPrices/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1);
                     $http({
                         method:'GET',
@@ -42,6 +41,14 @@ define(['directives', 'services'], function(directives){
                     scope.producer2hs=new Array();                 
                     scope.producer3es=new Array();
                     scope.producer3hs=new Array();
+
+                    /*
+                    
+                        producer data 
+                        the first letter of the variant parentBrandName decide the category e.g 'E' categoryID=1;
+                        the last letter of the varinat parentBrandName decide the player  e.g '1' supplier 1
+
+                    */
 
                     for(var i=0;i<data.data[0].categoryInfo[0].variantInfo.length;i++){
                         if(data.data[0].categoryInfo[0].variantInfo[i].parentBrandName.substring(0,1)=="E"){
