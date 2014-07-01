@@ -85,6 +85,7 @@
 	'directives/TE_OR_sales',
 	'directives/TE_OR_marketShares',
 	'directives/TE_OR_profits',
+	'directives/TE_OR_shelfSpaceAllocation',
 	'directives/revealJSWrapper',
 	'angularRoute',
 	'angularXeditable',

@@ -992,7 +992,8 @@ var getLabelBase = function(){
 		{id:'Net Profits',  ENG:'Net Profits',  CHN:'Net Profits',  RUS:''},
 		{id:'Operating Profit Margins',  ENG:'Operating Profit Margins',  CHN:'Operating Profit Margins',  RUS:''},
 		{id:'Net Profit Margins',  ENG:'Net Profit Margins',  CHN:'Net Profit Margins',  RUS:''},
-		{id:'Overview',  ENG:'Overview',  CHN:'Overview',  RUS:''}
+		{id:'Overview',  ENG:'Overview',  CHN:'Overview',  RUS:''},
+		{id:'Overview Report',  ENG:'Overview Report',  CHN:'Overview Report',  RUS:''}
 
 	]
 }

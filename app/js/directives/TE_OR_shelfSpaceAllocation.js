@@ -25,7 +25,7 @@ define(['directives', 'services'], function(directives){
 			            currentCategories.push(i);
 			        }
 			    /*highchart data init start*/
-			        var currentElecssoriesVolume=new Array({
+			        var currentShelfSpaceElecssories=new Array({
 		                name:'Supplier-1',
 		                data:new Array(),
 		                color:'#3257A7'
@@ -46,71 +46,7 @@ define(['directives', 'services'], function(directives){
 		                data:new Array(),
 		                color:'#F05422'
 		            });
-		            var currentElecssoriesValue=new Array({
-		                name:'Supplier-1',
-		                data:new Array(),
-		                color:'#3257A7'
-		            },{
-		                name:'Supplier-2',
-		                data:new Array(),
-		                color:'#B11E22'
-		            },{
-		                name:'Supplier-3',
-		                data:new Array(),
-		                color:'#F6B920'
-		            },{
-		                name:'Retailer-1',
-		                data:new Array(),
-		                color:'#8B288B'
-		            },{
-		                name:'Retailer-2',
-		                data:new Array(),
-		                color:'#F05422'
-		            });
-
-		            var previousElecssoriesValue=new Array({
-		                name:'Supplier-1',
-		                data:new Array(),
-		                color:'#3257A7'
-		            },{
-		                name:'Supplier-2',
-		                data:new Array(),
-		                color:'#B11E22'
-		            },{
-		                name:'Supplier-3',
-		                data:new Array(),
-		                color:'#F6B920'
-		            },{
-		                name:'Retailer-1',
-		                data:new Array(),
-		                color:'#8B288B'
-		            },{
-		                name:'Retailer-2',
-		                data:new Array(),
-		                color:'#F05422'
-		            });
-		            var currentHealthBeautiesVolume=new Array({
-		                name:'Supplier-1',
-		                data:new Array(),
-		                color:'#3257A7'
-		            },{
-		                name:'Supplier-2',
-		                data:new Array(),
-		                color:'#B11E22'
-		            },{
-		                name:'Supplier-3',
-		                data:new Array(),
-		                color:'#F6B920'
-		            },{
-		                name:'Retailer-1',
-		                data:new Array(),
-		                color:'#8B288B'
-		            },{
-		                name:'Retailer-2',
-		                data:new Array(),
-		                color:'#F05422'
-		            });
-		            var currentHealthBeautiesValue=new Array({
+		            var currentShelfSpaceHealthBeauties=new Array({
 		                name:'Supplier-1',
 		                data:new Array(),
 		                color:'#3257A7'
@@ -133,88 +69,43 @@ define(['directives', 'services'], function(directives){
 		            });
 		        /*highchart data init end*/
 		        /*highchart set data  start*/
-		        	//sales Volume
-			        for(var j=0;j<currentCategories.length;j++){
-		                for(var i=0;i<scope.feedBack.f_MarketSalesVolume.length;i++){
-		                    if(scope.feedBack.f_MarketSalesVolume[i].period==currentCategories[j]){
-		                        switch(scope.feedBack.f_MarketSalesVolume[i].actorID){
+		        	for(var j=0;j<currentCategories.length;j++){
+		                for(var i=0;i<scope.feedBack.f_ShelfSpaceAllocation.length;i++){
+		                    if(scope.feedBack.f_ShelfSpaceAllocation[i].period==currentCategories[j]){
+		                        switch(scope.feedBack.f_ShelfSpaceAllocation[i].actorID){
 		                            case 1:
-		                            if(scope.feedBack.f_MarketSalesVolume[i].categoryID==1){
-		                                currentElecssoriesVolume[0].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
-		                            }else if(scope.feedBack.f_MarketSalesVolume[i].categoryID==2){
-		                                currentHealthBeautiesVolume[0].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
+		                            if(scope.feedBack.f_ShelfSpaceAllocation[i].categoryID==1){
+		                                currentShelfSpaceElecssories[0].data.push(scope.feedBack.f_ShelfSpaceAllocation[i].value);
+		                            }else if(scope.feedBack.f_ShelfSpaceAllocation[i].categoryID==2){
+		                                currentShelfSpaceHealthBeauties[0].data.push(scope.feedBack.f_ShelfSpaceAllocation[i].value);
 		                            }
 		                            break;
 		                            case 2:
-		                            if(scope.feedBack.f_MarketSalesVolume[i].categoryID==1){
-		                                currentElecssoriesVolume[1].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
-		                            }else if(scope.feedBack.f_MarketSalesVolume[i].categoryID==2){
-		                                currentHealthBeautiesVolume[1].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
+		                            if(scope.feedBack.f_ShelfSpaceAllocation[i].categoryID==1){
+		                                currentShelfSpaceElecssories[1].data.push(scope.feedBack.f_ShelfSpaceAllocation[i].value);
+		                            }else if(scope.feedBack.f_ShelfSpaceAllocation[i].categoryID==2){
+		                                currentShelfSpaceHealthBeauties[1].data.push(scope.feedBack.f_ShelfSpaceAllocation[i].value);
 		                            }
 		                            break;
 		                            case 3:
-		                            if(scope.feedBack.f_MarketSalesVolume[i].categoryID==1){
-		                                currentElecssoriesVolume[2].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
-		                            }else if(scope.feedBack.f_MarketSalesVolume[i].categoryID==2){
-		                                currentHealthBeautiesVolume[2].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
+		                            if(scope.feedBack.f_ShelfSpaceAllocation[i].categoryID==1){
+		                                currentShelfSpaceElecssories[2].data.push(scope.feedBack.f_ShelfSpaceAllocation[i].value);
+		                            }else if(scope.feedBack.f_ShelfSpaceAllocation[i].categoryID==2){
+		                                currentShelfSpaceHealthBeauties[2].data.push(scope.feedBack.f_ShelfSpaceAllocation[i].value);
 		                            }
 		                            break;
 		                            case 4:
-		                            if(scope.feedBack.f_MarketSalesVolume[i].categoryID==1){
-		                                currentElecssoriesVolume[3].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
-		                            }else if(scope.feedBack.f_MarketSalesVolume[i].categoryID==2){
-		                                currentHealthBeautiesVolume[3].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
+		                            if(scope.feedBack.f_ShelfSpaceAllocation[i].categoryID==1){
+		                                currentShelfSpaceElecssories[3].data.push(scope.feedBack.f_ShelfSpaceAllocation[i].value);
+		                            }else if(scope.feedBack.f_ShelfSpaceAllocation[i].categoryID==2){
+		                                currentShelfSpaceHealthBeauties[3].data.push(scope.feedBack.f_ShelfSpaceAllocation[i].value);
 		                            }
 		                            break;
 		                            case 5:
-		                            if(scope.feedBack.f_MarketSalesVolume[i].categoryID==1){
-		                                currentElecssoriesVolume[4].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
-		                            }else if(scope.feedBack.f_MarketSalesVolume[i].categoryID==2){
-		                                currentHealthBeautiesVolume[4].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
-		                            }
-		                            break;
-		                        }
-		                    }
-		                }
-		            }
-		            //sales Value
-		            for(var j=0;j<currentCategories.length;j++){
-		                for(var i=0;i<scope.feedBack.f_MarketSalesValue.length;i++){
-		                    if(scope.feedBack.f_MarketSalesValue[i].period==currentCategories[j]){
-		                        switch(scope.feedBack.f_MarketSalesValue[i].actorID){
-		                            case 1:
-		                            if(scope.feedBack.f_MarketSalesValue[i].categoryID==1){
-		                                currentElecssoriesValue[0].data.push(scope.feedBack.f_MarketSalesValue[i].value);
-		                            }else if(scope.feedBack.f_MarketSalesValue[i].categoryID==2){
-		                                currentHealthBeautiesValue[0].data.push(scope.feedBack.f_MarketSalesValue[i].value);
-		                            }
-		                            break;
-		                            case 2:
-		                            if(scope.feedBack.f_MarketSalesValue[i].categoryID==1){
-		                                currentElecssoriesValue[1].data.push(scope.feedBack.f_MarketSalesValue[i].value);
-		                            }else if(scope.feedBack.f_MarketSalesValue[i].categoryID==2){
-		                                currentHealthBeautiesValue[1].data.push(scope.feedBack.f_MarketSalesValue[i].value);
-		                            }
-		                            break;
-		                            case 3:
-		                            if(scope.feedBack.f_MarketSalesValue[i].categoryID==1){
-		                                currentElecssoriesValue[2].data.push(scope.feedBack.f_MarketSalesValue[i].value);
-		                            }else if(scope.feedBack.f_MarketSalesValue[i].categoryID==2){
-		                                currentHealthBeautiesValue[2].data.push(scope.feedBack.f_MarketSalesValue[i].value);
-		                            }
-		                            break;
-		                            case 4:
-		                            if(scope.feedBack.f_MarketSalesValue[i].categoryID==1){
-		                                currentElecssoriesValue[3].data.push(scope.feedBack.f_MarketSalesValue[i].value);
-		                            }else if(scope.feedBack.f_MarketSalesValue[i].categoryID==2){
-		                                currentHealthBeautiesValue[3].data.push(scope.feedBack.f_MarketSalesValue[i].value);
-		                            }
-		                            break;
-		                            case 5:
-		                            if(scope.feedBack.f_MarketSalesValue[i].categoryID==1){
-		                                currentElecssoriesValue[4].data.push(scope.feedBack.f_MarketSalesValue[i].value);
-		                            }else if(scope.feedBack.f_MarketSalesValue[i].categoryID==2){
-		                                currentHealthBeautiesValue[4].data.push(scope.feedBack.f_MarketSalesValue[i].value);
+		                            if(scope.feedBack.f_ShelfSpaceAllocation[i].categoryID==1){
+		                                currentShelfSpaceElecssories[4].data.push(scope.feedBack.f_ShelfSpaceAllocation[i].value);
+		                            }else if(scope.feedBack.f_ShelfSpaceAllocation[i].categoryID==2){
+		                                currentShelfSpaceHealthBeauties[4].data.push(scope.feedBack.f_ShelfSpaceAllocation[i].value);
 		                            }
 		                            break;
 		                        }
@@ -223,10 +114,10 @@ define(['directives', 'services'], function(directives){
 		            }
 		        /*highchart set data end*/
 		        /*set highchart function start*/
-		        	scope.currentSalesVolumeElecssories = {
+		        	scope.currentShelfSpaceElecssories = {
 		                options: {
 		                    title:{
-		                        text:'Sales Volumes',
+		                        text:'Elecssories',
 		                    },
 		                    chart: {
 		                        type: 'line',
@@ -234,7 +125,7 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    yAxis: {
 		                        title: {
-		                            text: 'mln units'
+		                            text: 'Shelf Space Allocation (%)'
 		                        },
 		                        gridLineColor: 'transparent'
 		                    },
@@ -246,7 +137,7 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    tooltip: {
 		                        formatter: function() {
-		                            var s = '<p>'+this.series.name+'</p>'+'<p>Period:'+this.key+'</p>'+'<p>mln units:'+this.point.y.toFixed(2)+'</p>';
+		                            var s = '<p>'+this.series.name+'</p>'+'<p>Period:'+this.key+'</p>'+'<p>Shelf Space Allocation:'+this.point.y.toFixed(2)+'%</p>';
 		                            return s;
 		                        },
 		                        shared: false,
@@ -256,13 +147,13 @@ define(['directives', 'services'], function(directives){
 		                        enabled: false
 		                    }
 		                },
-		                series: currentElecssoriesVolume,
+		                series: currentShelfSpaceElecssories,
 		                loading: false
 		            }
-		            scope.currentSalesVolumeHealthBeauties = {
+		            scope.currentShelfSpaceHealthBeauties = {
 		                options: {
 		                    title:{
-		                        text:'Sales Volumes',
+		                        text:'HealthBeauties',
 		                    },
 		                    chart: {
 		                        type: 'line',
@@ -270,7 +161,7 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    yAxis: {
 		                        title: {
-		                            text: 'mln units'
+		                            text: 'Shelf Space Allocation (%)'
 		                        },
 		                        gridLineColor: 'transparent'
 		                    },
@@ -282,7 +173,7 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    tooltip: {
 		                        formatter: function() {
-		                            var s = '<p>'+this.series.name+'</p>'+'<p>Period:'+this.key+'</p>'+'<p>mln units:'+this.point.y.toFixed(2)+'</p>';
+		                            var s = '<p>'+this.series.name+'</p>'+'<p>Period:'+this.key+'</p>'+'<p>Shelf Space Allocation:'+this.point.y.toFixed(2)+'%</p>';
 		                            return s;
 		                        },
 		                        shared: false,
@@ -292,79 +183,7 @@ define(['directives', 'services'], function(directives){
 		                        enabled: false
 		                    }
 		                },
-		                series: currentHealthBeautiesVolume,
-		                loading: false
-		            }
-		            scope.currentSalesValueElecssories = {
-		                options: {
-		                    title:{
-		                        text:'Sales Values',
-		                    },
-		                    chart: {
-		                        type: 'line',
-		                        backgroundColor: 'transparent',
-		                    },
-		                    yAxis: {
-		                        title: {
-		                            text: '$mln'
-		                        },
-		                        gridLineColor: 'transparent'
-		                    },
-		                    xAxis: {
-		                        categories: currentCategories,
-		                        title: {
-		                            text: 'Period'
-		                        }
-		                    },
-		                    tooltip: {
-		                        formatter: function() {
-		                            var s = '<p>'+this.series.name+'</p>'+'<p>Period:'+this.key+'</p>'+'<p>$mln:'+this.point.y.toFixed(2)+'</p>';
-		                            return s;
-		                        },
-		                        shared: false,
-		                        useHTML: true
-		                    },
-		                    credits: {
-		                        enabled: false
-		                    }
-		                },
-		                series: currentElecssoriesValue,
-		                loading: false
-		            }
-		            scope.currentSalesValueHealthBeauties = {
-		                options: {
-		                    title:{
-		                        text:'Sales Values',
-		                    },
-		                    chart: {
-		                        type: 'line',
-		                        backgroundColor: 'transparent',
-		                    },
-		                    yAxis: {
-		                        title: {
-		                            text: '$mln'
-		                        },
-		                        gridLineColor: 'transparent'
-		                    },
-		                    xAxis: {
-		                        categories: currentCategories,
-		                        title: {
-		                            text: 'Period'
-		                        }
-		                    },
-		                    tooltip: {
-		                        formatter: function() {
-		                            var s = '<p>'+this.series.name+'</p>'+'<p>Period:'+this.key+'</p>'+'<p>$mln:'+this.point.y.toFixed(2)+'</p>';
-		                            return s;
-		                        },
-		                        shared: false,
-		                        useHTML: true
-		                    },
-		                    credits: {
-		                        enabled: false
-		                    }
-		                },
-		                series: currentHealthBeautiesValue,
+		                series: currentShelfSpaceHealthBeauties,
 		                loading: false
 		            }
 		            scope.isPageLoading = false;

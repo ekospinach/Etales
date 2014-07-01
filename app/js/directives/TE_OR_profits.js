@@ -271,7 +271,7 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    tooltip: {
 		                        formatter: function() {
-		                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">$mln:'+this.point.y.toFixed(2)+'</p>';
+		                            var s = '<p>'+this.series.name+'</p>'+'<p>Period:'+this.key+'</p>'+'<p>$mln:'+this.point.y.toFixed(2)+'</p>';
 		                            return s;
 		                        },
 		                        shared: false,
@@ -306,7 +306,7 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    tooltip: {
 		                        formatter: function() {
-		                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">$mln:'+this.point.y.toFixed(2)+'</p>';
+		                            var s = '<p>'+this.series.name+'</p>'+'<p>Period:'+this.key+'</p>'+'<p>$mln:'+this.point.y.toFixed(2)+'</p>';
 		                            return s;
 		                        },
 		                        shared: false,
@@ -341,7 +341,7 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    tooltip: {
 		                        formatter: function() {
-		                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
+		                            var s = '<p>'+this.series.name+'</p>'+'<p>Period:'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
 		                            return s;
 		                        },
 		                        shared: false,
@@ -376,7 +376,7 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    tooltip: {
 		                        formatter: function() {
-		                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
+		                            var s = '<p>'+this.series.name+'</p>'+'<p>Period:'+this.key+'</p>'+'<p>'+this.point.y.toFixed(2)+'%</p>';
 		                            return s;
 		                        },
 		                        shared: false,
