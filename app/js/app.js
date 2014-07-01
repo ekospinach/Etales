@@ -83,6 +83,7 @@
 	'directives/TE_RD_storeManagement',
 	'directives/TE_RD_marketResearchOrders',
 	'directives/TE_OR_sales',
+	'directives/TE_OR_marketShares',
 	'directives/revealJSWrapper',
 	'angularRoute',
 	'angularXeditable',
