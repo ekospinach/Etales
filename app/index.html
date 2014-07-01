@@ -21,7 +21,7 @@
 	</head>
 	<body class="bs-docs-home" ng-class="loginCss" ng-controller="NavbarCtrl">
 
-		<div>
+		<div access-level='{{accessLevels.playerView}}'>
 			<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" id="pageheader" role="banner" style="display:none">
 
 				<div class="container">											
@@ -111,6 +111,8 @@
 						          <li role="presentation" class="dropdown-header">{{seminar}}, {{Label.getContent('Period')}} {{currentPeriod}} of {{span}}</li>
 						          <li><a ng-click="Label.changeLanguage('ENG')">English</a></li>					       
 						          <li><a ng-click="Label.changeLanguage('CHN')">简体中文</a></li>					          
+
+						          <li><a ng-click="openTabs()" access-level='{{accessLevels.facilitatorView}}'>Open more tabs</a></li>					          
 
 						          <li class="divider"></li>
 						          <li><a ng-click="logout()">{{Label.getContent('Log out')}}</a></li>
