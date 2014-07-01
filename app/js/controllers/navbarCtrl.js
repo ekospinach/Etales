@@ -1,7 +1,7 @@
 define(['app'], function(app) {
 
-	app.controller('NavbarCtrl', ['$scope', '$http', '$location','$rootScope','Auth','Label','notify','ProducerDecisionBase','RetailerDecisionBase','NegotiationBase','SeminarInfo',  
-									function($scope, $http, $location,$rootScope,Auth,Label,notify, ProducerDecisionBase, RetailerDecisionBase, NegotiationBase, SeminarInfo) {
+	app.controller('NavbarCtrl', ['$scope', '$http', '$location','$rootScope','Auth','Label','notify','ProducerDecisionBase','RetailerDecisionBase','NegotiationBase','SeminarInfo', '$window', 
+									function($scope, $http, $location,$rootScope,Auth,Label,notify, ProducerDecisionBase, RetailerDecisionBase, NegotiationBase, SeminarInfo,$window) {
 	    $scope.getUserRoleText = function(role) {
 
 	//        console.log('trying to get user role text:' + _.invert(Auth.userRoles)[role]);
@@ -24,7 +24,7 @@ define(['app'], function(app) {
 	    }
 
 	    $scope.openTabs = function(){	    	
-			$window.open('#/login');											    	
+			$window.open('#/login#hello?word');											    	
 	    }
 
 	    $location.path('/login');
