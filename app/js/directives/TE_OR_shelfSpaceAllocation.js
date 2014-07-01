@@ -1,6 +1,6 @@
 define(['directives', 'services'], function(directives){
 
-    directives.directive('overviewSales', ['Label','SeminarInfo','$http','PeriodInfo','$q', function(Label, SeminarInfo, $http, PeriodInfo, $q){
+    directives.directive('overviewShelfSpaceAllocation', ['Label','SeminarInfo','$http','PeriodInfo','$q', function(Label, SeminarInfo, $http, PeriodInfo, $q){
         return {
             scope : {
             	isPageShown : '=',
@@ -9,7 +9,7 @@ define(['directives', 'services'], function(directives){
                 selectedPeriod : '='
             },
             restrict : 'E',
-            templateUrl : '../../partials/singleReportTemplate/OR_sales.html',            
+            templateUrl : '../../partials/singleReportTemplate/OR_shelfSpaceAllocation.html',            
             link : function(scope, element, attrs){                                                                
                 var initializePage = function(){
                     console.log('initializePage some small...');                    
@@ -47,6 +47,28 @@ define(['directives', 'services'], function(directives){
 		                color:'#F05422'
 		            });
 		            var currentElecssoriesValue=new Array({
+		                name:'Supplier-1',
+		                data:new Array(),
+		                color:'#3257A7'
+		            },{
+		                name:'Supplier-2',
+		                data:new Array(),
+		                color:'#B11E22'
+		            },{
+		                name:'Supplier-3',
+		                data:new Array(),
+		                color:'#F6B920'
+		            },{
+		                name:'Retailer-1',
+		                data:new Array(),
+		                color:'#8B288B'
+		            },{
+		                name:'Retailer-2',
+		                data:new Array(),
+		                color:'#F05422'
+		            });
+
+		            var previousElecssoriesValue=new Array({
 		                name:'Supplier-1',
 		                data:new Array(),
 		                color:'#3257A7'

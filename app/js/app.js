@@ -121,6 +121,7 @@
 			editableThemes.bs3.buttonsClass = 'btn-sm';
 			editableOptions.theme = 'bs3';
 		}).run(['$rootScope', '$location','Auth','$http', function ($rootScope, $location, Auth, $http) {		    
+
 		    $rootScope.currentPeriod = 0;
 		    $rootScope.mapPeriod=0;
 		    $rootScope.rootStartFrom=-2;
@@ -150,7 +151,12 @@
 	            	}
 	            }
 	        });
-		}]).config(function(LabelProvider){
+		}])
+ 		// .config(function(AuthProvider){
+
+ 		// 	AuthProvider.checkCookies();
+ 		// })
+ 		.config(function(LabelProvider){
 			//config default language
 			LabelProvider.initialiseLanguage('ENG');
 		}).config(function(cfpLoadingBarProvider){

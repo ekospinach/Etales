@@ -159,18 +159,37 @@ define(['angular',
 	})
 
 
-	services.factory('Auth', function($http, $rootScope, $cookieStore){
+	services.factory('Auth', function($http, $rootScope, $cookieStore, SeminarInfo, RoleInfo, PeriodInfo, PlayerInfo, $location){
 	    var accessLevels = routingConfig.accessLevels
 	        , userRoles = routingConfig.userRoles,
 	        currentUser = $cookieStore.get('user') || { username: '', role: userRoles.guest };
 
-	    console.log('Test cookies store, current user: ' + JSON.stringify(currentUser));
-
+	    console.log('cookie is not empty, initialize login parameters: ' + JSON.stringify(currentUser));
 	    $rootScope.user = currentUser;
-	    //$cookieStore.remove('user');
-
 	    $rootScope.accessLevels = accessLevels;
-	    $rootScope.userRoles = userRoles;
+	    $rootScope.userRoles = userRoles;	    	    
+
+	  //   //if cookie is not empty, initialize login parameters 
+	  //   if(currentUser.username){	    	
+		 //    $rootScope.user = currentUser;
+		 //    $rootScope.accessLevels = accessLevels;
+		 //    $rootScope.userRoles = userRoles;		    	
+			// var url="/currentPeriod/"+currentUser.seminar;
+			// $http({
+			// 	method:'GET',
+			// 	url:url
+			// }).then(function(data){
+			// 	SeminarInfo.setSelectedSeminar(data.data);
+			// 	PeriodInfo.setCurrentPeriod(data.data.currentPeriod);
+			// 	$rootScope.rootStartFrom=-2;
+			// 	$rootScope.rootEndWith=data.currentPeriod-1;
+			// 	$location.path('/home');					
+			// }).then(function(){
+			// 	//console.log($rootScope.user.userRole);
+			// 	PlayerInfo.setPlayer($rootScope.user.roleID);
+			// 	RoleInfo.setRole($rootScope.user.role);
+			// });	    	
+	  //   }	    
 
 	    return {
 	        authorize: function(accessLevel, role) {         
@@ -190,6 +209,7 @@ define(['angular',
 	        login: function(user, success, error) {
 	            $http.post('/login', user).success(function(user){
 	                $rootScope.user = user;
+	                $cookieStore.put('user', user);
 	                success(user);
 	            }).error(error);
 	        },
@@ -197,6 +217,7 @@ define(['angular',
 	            $http.post('/logout').success(function() {
 	                $rootScope.user.username = '';
 	                $rootScope.user.role = userRoles.guest;
+	                $cookieStore.remove('user');
 	                success();
 	            }).error(error);
 	        },
@@ -204,6 +225,7 @@ define(['angular',
 	        userRoles: userRoles
 	    };
 	});
+
 
 	services.factory('Map',['$resource',function($resource){
     	return $resource('/perceptionMaps/:seminar/:period',{seminar:'@seminar',period:'@period'});

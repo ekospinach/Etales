@@ -4,7 +4,6 @@
     </div>
 </div>
 
-
 <div class="container bs-docs-container" ng-show='isPageInit'>
     <div class="row">
         <div class="col-md-10">
@@ -41,6 +40,11 @@
                     <p access-level='{{accessLevels.playerView}}'>You are checking the <b>Report History</b> of period <b>{{selectedPeriod-1}}</b></p>
                 <!--overview report start -->
                     <overview-sales is-page-loading='isPageLoading' is-page-shown='!isPageInit' feed-back='feedBack' selected-period='selectedPeriod'></overview-sales>
+                    <overview-market-shares is-page-loading='isPageLoading' is-page-shown='!isPageInit' feed-back='feedBack' selected-period='selectedPeriod'></overview-market-shares>
+                    <overview-profits is-page-loading='isPageLoading' is-page-shown='!isPageInit' feed-back='feedBack' selected-period='selectedPeriod'></overview-profits>
+                    Shelf Space Allocation
+                    <overview-shelf-space-allocation is-page-loading='isPageLoading' is-page-shown='!isPageInit' feed-back='feedBack' selected-period='selectedPeriod'></overview-shelf-space-allocation>
+                    <overview-share-of-shoppers is-page-loading='isPageLoading' is-page-shown='!isPageInit' feed-back='feedBack' selected-period='selectedPeriod'></overview-share-of-shoppers>
                 <!--overview report end -->
                 </div>
             </div>
