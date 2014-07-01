@@ -8,7 +8,6 @@ var mongoose = require('mongoose'),
 //TActiveActors : 1~(3+2)
 //TActors : 1~(4+3)
 
-
 //New Schema, 2014-Apr-17th
 var RCR_inventoryVolumesSchema = mongoose.Schema({
     period : Number,
