@@ -1,0 +1,18 @@
+<div class="panel panel-success my-panel-overview" ng-show="isResultShown">
+    <div class="panel-heading">
+        <h3 class="panel-title text-center">{{Label.getContent('Sales')}} - {{Label.getContent('Elecssories')}}</h3>
+    </div>
+    {{selectPeriod}}
+    <highchart id="" config="currentSalesVolumeElecssories"style="width:50%;float:left;height:500px"></highchart>
+    <highchart id="" config="currentSalesValueElecssories"style="width:50%;float:left;height:500px"></highchart>
+    <div style="clear:both"></div>
+</div>
+<div class="panel panel-success my-panel-overview" ng-show="isResultShown">
+    <div class="panel-heading">
+        <h3 class="panel-title text-center">{{Label.getContent('Sales')}} - {{Label.getContent('HealthBeauties')}}</h3>
+    </div>
+    {{selectPeriod}}
+    <highchart id="" config="currentSalesVolumeHealthBeauties"style="width:50%;float:left;height:500px"></highchart>
+    <highchart id="" config="currentSalesValueHealthBeauties"style="width:50%;float:left;height:500px"></highchart>
+    <div style="clear:both"></div>
+</div>

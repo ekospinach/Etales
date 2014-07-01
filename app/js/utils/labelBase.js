@@ -76,7 +76,8 @@ var getLabelBase = function(){
 		{id:'Retail Market Share (Value) Info',  ENG:'Retail Market Share (Value) Info',  CHN:'Retail Market Share (Value) Info',  RUS:''},
 		{id:'Retail Market Share (Volume) Info',  ENG:'Retail Market Share (Volume) Info',  CHN:'Retail Market Share (Volume) Info',  RUS:''},
 		{id:'Volume Info',  ENG:'Volume Info',  CHN:'Volume介绍',  RUS:''},
-		{id:'',  ENG:'',  CHN:'',  RUS:''},
+		{id:'B&M',  ENG:'B&M',  CHN:'B&M',  RUS:''},
+		{id:'Wholesale',  ENG:'Wholesale',  CHN:'Wholesale',  RUS:''},
 		{id:'Buy this Report',  ENG:'Buy this Report',  CHN:'购买此报告',  RUS:''},
 		
 
@@ -629,6 +630,8 @@ var getLabelBase = function(){
 		{id:'Value Market Shares',  ENG:'Value Market Shares',  CHN:'Value Market Shares',  RUS:''},
 		{id:'Volume Market Shares',  ENG:'Volume Market Shares',  CHN:'Volume Market Shares',  RUS:''},
 		{id:'Cumulative Investments',  ENG:'Cumulative Investments',  CHN:'累计投资',  RUS:''},
+		{id:'Cumulative Investments',  ENG:'Cumulative Investments',  CHN:'累计投资',  RUS:''},
+		
 		{id:'Promotion Intensity',  ENG:'Promotion Intensity',  CHN:'促销强度',  RUS:''},
 		{id:'Promotion Intensity Info',  ENG:'Promotion Intensity Info',  CHN:'促销强度介绍',  RUS:''},
 		{id:'Net Online Retail Price',  ENG:'Net Online Retail Price',  CHN:'网上售价',  RUS:''},
@@ -777,6 +780,7 @@ var getLabelBase = function(){
 		{id:'Facilitator Confidential Report',  ENG:'Confidential Report',  CHN:'讲师保密报告',  RUS:''},
 		{id:'Facilitator General Report',  ENG:'General Report',  CHN:'讲师保密报告',  RUS:''},
 		{id:'Facilitator Market Report',  ENG:'Market Report',  CHN:'讲师保密报告',  RUS:''},
+		{id:'Facilitator OverView Report',  ENG:'OverView Report',  CHN:'讲师保密报告',  RUS:''},
 		{id:'Facilitator Confidential Report Info',  ENG:'Facilitator Confidential Report Info',  CHN:'讲师保密报告介绍',  RUS:''},
 		{id:'General Marketing',  ENG:'General Marketing',  CHN:'综合市场',  RUS:''},
 		{id:'General Marketing Info',  ENG:'This decision form allows supplier to decide the General Marketing spending for each SKU in the supplier’s Elecssories portfolio. The values from previous period are shown by default and the supplier can change it. All the changes are highlighted in red. If the decisions are not validated within the deadline, those from the previous period are submitted.',  CHN:'综合市场介绍',  RUS:''},

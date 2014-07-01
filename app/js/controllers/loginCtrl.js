@@ -145,7 +145,8 @@ define(['app','socketIO'], function(app) {
 				PeriodInfo.setCurrentPeriod(data.data.currentPeriod);
 				$rootScope.rootStartFrom=-2;
 				$rootScope.rootEndWith=data.currentPeriod-1;
-				$location.path('/home');					
+				//$location.path('/home');					
+				$location.path('/facilitatorGeneralReport');	
 			}).then(function(){
 				//console.log($rootScope.user.userRole);
 				PlayerInfo.setPlayer($rootScope.user.roleID);

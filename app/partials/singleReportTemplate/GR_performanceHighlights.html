@@ -8,10 +8,10 @@
     <table class="table table-condensed table-bordered table-primary">
         <thead>
             <tr>
-                <th colspan="3"></th>
-                <th colspan="3">
+                <th colspan="2" rowspan="3"></th>
+                <th colspan="6">
                     <p class="text-center">
-                        {{Label.getContent('Producer')}}
+                        {{Label.getContent('Supplier')}}
                     </p>
                 </th>
                 <th colspan="2">
@@ -20,58 +20,78 @@
                     </p>
                 </th>
             </tr>
-        </thead>
-        <tbody>
             <tr>
-                <td colspan="3"></td>
-                <td>
+                <td colspan="2">
                     <p class="text-center">
-                        {{Label.getContent('Producer')}} 1
+                        {{Label.getContent('Supplier')}} 1
                     </p>
                 </td>
-                <td>
+                <td colspan="2">
                     <p class="text-center">
-                        {{Label.getContent('Producer')}} 2
+                        {{Label.getContent('Supplier')}} 2
                     </p>
                 </td>
-                <td>
+                <td colspan="2">
                     <p class="text-center">
-                        {{Label.getContent('Producer')}} 3
+                        {{Label.getContent('Supplier')}} 3
                     </p>
                 </td>
-                <td>
+                <td rowspan="2">
                     <p class="text-center">
                         {{Label.getContent('Retailer')}} 1
                     </p>
                 </td>
-                <td>
+                <td rowspan="2">
                     <p class="text-center">
                         {{Label.getContent('Retailer')}} 2
                     </p>
                 </td>
             </tr>
             <tr>
-                <td colspan="8">{{Label.getContent('Sales')}}</td>
+                <td>
+                    <p class="text-center">{{Label.getContent('B&M')}} ({{Label.getContent('Wholesale')}})</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Online')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('B&M')}} ({{Label.getContent('Wholesale')}})</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Online')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('B&M')}} ({{Label.getContent('Wholesale')}})</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Online')}}</p>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="10">{{Label.getContent('Sales')}}</td>
             </tr>
             <tr>
-                <td colspan="8">
+                <td colspan="10">
                     <p class="padding-20">
                         {{Label.getContent('Volume')}} (units mln)
                     </p>
                 </td>
             </tr>
             <tr class="success">
-                <td colspan="3">
+                <td colspan="2">
                     <p class="padding-40">
                         {{Label.getContent('Elecssories')}}
                     </p>
                 </td>
+                <!--index is even and index!=6or12-->
                 <td ng-repeat='salesVolume in salesVolumes' ng-show='$even&&$index!=6&&$index!=12'>
                     <p class="text-right">{{salesVolume.value.toFixed(2)}}</p>
                 </td>
             </tr>
             <tr class="danger">
-                <td colspan="3">
+                <td colspan="2">
                     <p class="padding-40">
                         {{Label.getContent('HealthBeauties')}}
                     </p>
@@ -80,9 +100,8 @@
                     <p class="text-right">{{salesVolume.value.toFixed(2)}}</p>
                 </td>
             </tr>
-
             <tr>
-                <td colspan="8">
+                <td colspan="10">
                     <p class="padding-20">
                         {{Label.getContent('Value')}} ($mln)
                     </p>
@@ -90,7 +109,7 @@
             </tr>
 
             <tr class="success">
-                <td colspan="3">
+                <td colspan="2">
                     <p class="padding-40">
                         {{Label.getContent('Elecssories')}}
                     </p>
@@ -100,7 +119,7 @@
                 </td>
             </tr>
             <tr class="danger">
-                <td colspan="3">
+                <td colspan="2">
                     <p class="padding-40">
                         {{Label.getContent('HealthBeauties')}}
                     </p>
@@ -111,17 +130,17 @@
             </tr>
 
             <tr>
-                <td colspan="8">{{Label.getContent('Consumer Market Shares')}}</td>
+                <td colspan="10">{{Label.getContent('Consumer Market Shares')}}</td>
             </tr>
             <tr>
-                <td colspan="8">
+                <td colspan="10">
                     <p class="padding-20">
                         {{Label.getContent('Value Market Shares')}} (%)
                     </p>
                 </td>
             </tr>
             <tr class="success">
-                <td colspan="3">
+                <td colspan="2">
                     <p class="padding-40">
                         {{Label.getContent('Elecssories')}}
                     </p>
@@ -131,7 +150,7 @@
                 </td>
             </tr>
             <tr class="danger">
-                <td colspan="3">
+                <td colspan="2">
                     <p class="padding-40">
                         {{Label.getContent('HealthBeauties')}}
                     </p>
@@ -141,14 +160,14 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="8">
+                <td colspan="10">
                     <p class="padding-20">
                         {{Label.getContent('Volume Market Shares')}} (%)
                     </p>
                 </td>
             </tr>
             <tr class="success">
-                <td colspan="3">
+                <td colspan="2">
                     <p class="padding-40">
                         {{Label.getContent('Elecssories')}}
                     </p>
@@ -158,7 +177,7 @@
                 </td>
             </tr>
             <tr class="danger">
-                <td colspan="3">
+                <td colspan="2">
                     <p class="padding-40">
                         {{Label.getContent('HealthBeauties')}}
                     </p>
@@ -168,7 +187,7 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="3">
+                <td colspan="2">
                     {{Label.getContent('Operating Profit')}} ($mln)
                 </td>
                 <td ng-repeat='operatingProfit in operatingProfits' ng-show='$index!=3&&$index!=6'>
@@ -176,7 +195,7 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="3">
+                <td colspan="2">
                     {{Label.getContent('Cumulative Investments')}} ($mln)
                 </td>
                 <td ng-repeat='cumulativeInvestment in cumulativeInvestments' ng-show='$index!=3&&$index!=6'>
