@@ -22,7 +22,13 @@ define(['app'], function(app) {
 	            $rootScope.error = "Failed to logout";
 	        });	    	
 	    }
+
+	    $scope.openTabs = function(){	    	
+			$window.open('#/login');											    	
+	    }
+
 	    $location.path('/login');
+
 	    
 	    $scope.$on("$routeChangeSuccess", function(next, current){
 	    	if(SeminarInfo.getSelectedSeminar()){
