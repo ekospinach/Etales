@@ -23,7 +23,7 @@ define(['app'], function(app) {
 						$scope.retailerShow=true;
 					}
 				});
-				var url="/currentPeriod/"+SeminarInfo.getSelectedSeminar().seminarCode;
+				var url="/seminarInfo/"+SeminarInfo.getSelectedSeminar().seminarCode;
 					$http({
 						method:'GET',
 						url:url

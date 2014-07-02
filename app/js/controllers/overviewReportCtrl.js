@@ -12,7 +12,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 	    var periods=new Array();
 	    $scope.periods=periods;
 	    
-	    var url="/currentPeriod/"+SeminarInfo.getSelectedSeminar().seminarCode;
+	    var url="/seminarInfo/"+SeminarInfo.getSelectedSeminar().seminarCode;
 		$http({
 			method:'GET',
 			url:url
