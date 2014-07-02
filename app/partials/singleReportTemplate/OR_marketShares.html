@@ -1,0 +1,16 @@
+<div class="panel panel-success my-panel-overview" ng-show="isResultShown">
+    <div class="panel-heading">
+        <h3 class="panel-title text-center">{{Label.getContent('Market Shares')}} - {{Label.getContent('Elecssories')}}</h3>
+    </div>
+    <highchart id="currentSharesVolumeElecssories" config="currentSharesVolumeElecssories"style="width:48%;float:left;height:500px"></highchart>
+    <highchart id="currentSharesValueElecssories" config="currentSharesValueElecssories"style="width:48%;float:left;height:500px"></highchart>
+    <div style="clear:both"></div>
+</div>
+<div class="panel panel-success my-panel-overview" ng-show="isResultShown">
+    <div class="panel-heading">
+        <h3 class="panel-title text-center">{{Label.getContent('Market Shares')}} - {{Label.getContent('HealthBeauties')}}</h3>
+    </div>
+    <highchart id="currentSharesVolumeHealthBeauties" config="currentSharesVolumeHealthBeauties"style="width:48%;float:left;height:500px"></highchart>
+    <highchart id="currentSharesValueHealthBeauties" config="currentSharesValueHealthBeauties"style="width:48%;float:left;height:500px"></highchart>
+    <div style="clear:both"></div>
+</div>

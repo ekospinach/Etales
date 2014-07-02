@@ -83,6 +83,7 @@
 	'directives/TE_RD_storeManagement',
 	'directives/TE_RD_marketResearchOrders',
 	'directives/TE_OR_sales',
+	'directives/TE_OR_marketShares',
 	'directives/revealJSWrapper',
 	'angularRoute',
 	'angularXeditable',
@@ -134,8 +135,9 @@
 		    $rootScope.loginDiv="";
 
 	        $rootScope.$on("$routeChangeStart", function (event, next, current) {
-	            //console.log('handle rootscope...');
+//	            console.log('handle rootscope, $rootscope: ' + JSON.stringify($rootScope.user));
 	            if (!Auth.authorize(next.access)) {
+	            	console.log('authorize fail, jump to login page...');
 	                if(!Auth.isLoggedIn()) $location.path('/login');
 	                //else                  $location.path('/login');
 	            } else {

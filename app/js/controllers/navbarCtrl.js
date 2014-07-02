@@ -1,7 +1,7 @@
 define(['app'], function(app) {
 
-	app.controller('NavbarCtrl', ['$scope', '$http', '$location','$rootScope','Auth','Label','notify','ProducerDecisionBase','RetailerDecisionBase','NegotiationBase','SeminarInfo',  
-									function($scope, $http, $location,$rootScope,Auth,Label,notify, ProducerDecisionBase, RetailerDecisionBase, NegotiationBase, SeminarInfo) {
+	app.controller('NavbarCtrl', ['$scope', '$http', '$location','$rootScope','Auth','Label','notify','ProducerDecisionBase','RetailerDecisionBase','NegotiationBase','SeminarInfo', '$window','$routeParams', 
+									function($scope, $http, $location,$rootScope,Auth,Label,notify, ProducerDecisionBase, RetailerDecisionBase, NegotiationBase, SeminarInfo,$window,$routeParams) {
 	    $scope.getUserRoleText = function(role) {
 
 	//        console.log('trying to get user role text:' + _.invert(Auth.userRoles)[role]);
@@ -24,11 +24,11 @@ define(['app'], function(app) {
 	    }
 
 	    $scope.openTabs = function(){	    	
-			$window.open('#/login');											    	
+			$window.open('#/login/general');		
+			$window.open('#/login/market');		
+			$window.open('#/login/confidential');		
+
 	    }
-
-	    $location.path('/login');
-
 	    
 	    $scope.$on("$routeChangeSuccess", function(next, current){
 	    	if(SeminarInfo.getSelectedSeminar()){
@@ -61,6 +61,8 @@ define(['app'], function(app) {
 		ProducerDecisionBase.startListenChangeFromServer(); 
 		RetailerDecisionBase.startListenChangeFromServer();		
 		NegotiationBase.startListenChangeFromServer();
+
+		console.log('$routeParams: ' + $routeParams.reportLocateId);
 	}]);
 
 });

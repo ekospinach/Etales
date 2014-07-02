@@ -1,6 +1,6 @@
 define(['directives', 'services'], function(directives){
 
-    directives.directive('overviewSales', ['Label','SeminarInfo','$http','PeriodInfo','$q', function(Label, SeminarInfo, $http, PeriodInfo, $q){
+    directives.directive('overviewMarketShares', ['Label','SeminarInfo','$http','PeriodInfo','$q', function(Label, SeminarInfo, $http, PeriodInfo, $q){
         return {
             scope : {
             	isPageShown : '=',
@@ -9,7 +9,7 @@ define(['directives', 'services'], function(directives){
                 selectedPeriod : '='
             },
             restrict : 'E',
-            templateUrl : '../../partials/singleReportTemplate/OR_sales.html',            
+            templateUrl : '../../partials/singleReportTemplate/OR_marketShares.html',            
             link : function(scope, element, attrs){                                                                
                 var initializePage = function(){
                     console.log('initializePage some small...');                    
@@ -111,88 +111,88 @@ define(['directives', 'services'], function(directives){
 		            });
 		        /*highchart data init end*/
 		        /*highchart set data  start*/
-		        	//sales Volume
+		        	//share Volume
 			        for(var j=0;j<currentCategories.length;j++){
-		                for(var i=0;i<scope.feedBack.f_MarketSalesVolume.length;i++){
-		                    if(scope.feedBack.f_MarketSalesVolume[i].period==currentCategories[j]){
-		                        switch(scope.feedBack.f_MarketSalesVolume[i].actorID){
+		                for(var i=0;i<scope.feedBack.f_VolumeMarketShares.length;i++){
+		                    if(scope.feedBack.f_VolumeMarketShares[i].period==currentCategories[j]){
+		                        switch(scope.feedBack.f_VolumeMarketShares[i].actorID){
 		                            case 1:
-		                            if(scope.feedBack.f_MarketSalesVolume[i].categoryID==1){
-		                                currentElecssoriesVolume[0].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
-		                            }else if(scope.feedBack.f_MarketSalesVolume[i].categoryID==2){
-		                                currentHealthBeautiesVolume[0].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
+		                            if(scope.feedBack.f_VolumeMarketShares[i].categoryID==1){
+		                                currentElecssoriesVolume[0].data.push(scope.feedBack.f_VolumeMarketShares[i].value);
+		                            }else if(scope.feedBack.f_VolumeMarketShares[i].categoryID==2){
+		                                currentHealthBeautiesVolume[0].data.push(scope.feedBack.f_VolumeMarketShares[i].value);
 		                            }
 		                            break;
 		                            case 2:
-		                            if(scope.feedBack.f_MarketSalesVolume[i].categoryID==1){
-		                                currentElecssoriesVolume[1].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
-		                            }else if(scope.feedBack.f_MarketSalesVolume[i].categoryID==2){
-		                                currentHealthBeautiesVolume[1].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
+		                            if(scope.feedBack.f_VolumeMarketShares[i].categoryID==1){
+		                                currentElecssoriesVolume[1].data.push(scope.feedBack.f_VolumeMarketShares[i].value);
+		                            }else if(scope.feedBack.f_VolumeMarketShares[i].categoryID==2){
+		                                currentHealthBeautiesVolume[1].data.push(scope.feedBack.f_VolumeMarketShares[i].value);
 		                            }
 		                            break;
 		                            case 3:
-		                            if(scope.feedBack.f_MarketSalesVolume[i].categoryID==1){
-		                                currentElecssoriesVolume[2].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
-		                            }else if(scope.feedBack.f_MarketSalesVolume[i].categoryID==2){
-		                                currentHealthBeautiesVolume[2].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
+		                            if(scope.feedBack.f_VolumeMarketShares[i].categoryID==1){
+		                                currentElecssoriesVolume[2].data.push(scope.feedBack.f_VolumeMarketShares[i].value);
+		                            }else if(scope.feedBack.f_VolumeMarketShares[i].categoryID==2){
+		                                currentHealthBeautiesVolume[2].data.push(scope.feedBack.f_VolumeMarketShares[i].value);
 		                            }
 		                            break;
 		                            case 4:
-		                            if(scope.feedBack.f_MarketSalesVolume[i].categoryID==1){
-		                                currentElecssoriesVolume[3].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
-		                            }else if(scope.feedBack.f_MarketSalesVolume[i].categoryID==2){
-		                                currentHealthBeautiesVolume[3].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
+		                            if(scope.feedBack.f_VolumeMarketShares[i].categoryID==1){
+		                                currentElecssoriesVolume[3].data.push(scope.feedBack.f_VolumeMarketShares[i].value);
+		                            }else if(scope.feedBack.f_VolumeMarketShares[i].categoryID==2){
+		                                currentHealthBeautiesVolume[3].data.push(scope.feedBack.f_VolumeMarketShares[i].value);
 		                            }
 		                            break;
 		                            case 5:
-		                            if(scope.feedBack.f_MarketSalesVolume[i].categoryID==1){
-		                                currentElecssoriesVolume[4].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
-		                            }else if(scope.feedBack.f_MarketSalesVolume[i].categoryID==2){
-		                                currentHealthBeautiesVolume[4].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
+		                            if(scope.feedBack.f_VolumeMarketShares[i].categoryID==1){
+		                                currentElecssoriesVolume[4].data.push(scope.feedBack.f_VolumeMarketShares[i].value);
+		                            }else if(scope.feedBack.f_VolumeMarketShares[i].categoryID==2){
+		                                currentHealthBeautiesVolume[4].data.push(scope.feedBack.f_VolumeMarketShares[i].value);
 		                            }
 		                            break;
 		                        }
 		                    }
 		                }
 		            }
-		            //sales Value
+		            //share value
 		            for(var j=0;j<currentCategories.length;j++){
-		                for(var i=0;i<scope.feedBack.f_MarketSalesValue.length;i++){
-		                    if(scope.feedBack.f_MarketSalesValue[i].period==currentCategories[j]){
-		                        switch(scope.feedBack.f_MarketSalesValue[i].actorID){
+		                for(var i=0;i<scope.feedBack.f_ValueMarketShares.length;i++){
+		                    if(scope.feedBack.f_ValueMarketShares[i].period==currentCategories[j]){
+		                        switch(scope.feedBack.f_ValueMarketShares[i].actorID){
 		                            case 1:
-		                            if(scope.feedBack.f_MarketSalesValue[i].categoryID==1){
-		                                currentElecssoriesValue[0].data.push(scope.feedBack.f_MarketSalesValue[i].value);
-		                            }else if(scope.feedBack.f_MarketSalesValue[i].categoryID==2){
-		                                currentHealthBeautiesValue[0].data.push(scope.feedBack.f_MarketSalesValue[i].value);
+		                            if(scope.feedBack.f_ValueMarketShares[i].categoryID==1){
+		                                currentElecssoriesValue[0].data.push(scope.feedBack.f_ValueMarketShares[i].value);
+		                            }else if(scope.feedBack.f_ValueMarketShares[i].categoryID==2){
+		                                currentHealthBeautiesValue[0].data.push(scope.feedBack.f_ValueMarketShares[i].value);
 		                            }
 		                            break;
 		                            case 2:
-		                            if(scope.feedBack.f_MarketSalesValue[i].categoryID==1){
-		                                currentElecssoriesValue[1].data.push(scope.feedBack.f_MarketSalesValue[i].value);
-		                            }else if(scope.feedBack.f_MarketSalesValue[i].categoryID==2){
-		                                currentHealthBeautiesValue[1].data.push(scope.feedBack.f_MarketSalesValue[i].value);
+		                            if(scope.feedBack.f_ValueMarketShares[i].categoryID==1){
+		                                currentElecssoriesValue[1].data.push(scope.feedBack.f_ValueMarketShares[i].value);
+		                            }else if(scope.feedBack.f_ValueMarketShares[i].categoryID==2){
+		                                currentHealthBeautiesValue[1].data.push(scope.feedBack.f_ValueMarketShares[i].value);
 		                            }
 		                            break;
 		                            case 3:
-		                            if(scope.feedBack.f_MarketSalesValue[i].categoryID==1){
-		                                currentElecssoriesValue[2].data.push(scope.feedBack.f_MarketSalesValue[i].value);
-		                            }else if(scope.feedBack.f_MarketSalesValue[i].categoryID==2){
-		                                currentHealthBeautiesValue[2].data.push(scope.feedBack.f_MarketSalesValue[i].value);
+		                            if(scope.feedBack.f_ValueMarketShares[i].categoryID==1){
+		                                currentElecssoriesValue[2].data.push(scope.feedBack.f_ValueMarketShares[i].value);
+		                            }else if(scope.feedBack.f_ValueMarketShares[i].categoryID==2){
+		                                currentHealthBeautiesValue[2].data.push(scope.feedBack.f_ValueMarketShares[i].value);
 		                            }
 		                            break;
 		                            case 4:
-		                            if(scope.feedBack.f_MarketSalesValue[i].categoryID==1){
-		                                currentElecssoriesValue[3].data.push(scope.feedBack.f_MarketSalesValue[i].value);
-		                            }else if(scope.feedBack.f_MarketSalesValue[i].categoryID==2){
-		                                currentHealthBeautiesValue[3].data.push(scope.feedBack.f_MarketSalesValue[i].value);
+		                            if(scope.feedBack.f_ValueMarketShares[i].categoryID==1){
+		                                currentElecssoriesValue[3].data.push(scope.feedBack.f_ValueMarketShares[i].value);
+		                            }else if(scope.feedBack.f_ValueMarketShares[i].categoryID==2){
+		                                currentHealthBeautiesValue[3].data.push(scope.feedBack.f_ValueMarketShares[i].value);
 		                            }
 		                            break;
 		                            case 5:
-		                            if(scope.feedBack.f_MarketSalesValue[i].categoryID==1){
-		                                currentElecssoriesValue[4].data.push(scope.feedBack.f_MarketSalesValue[i].value);
-		                            }else if(scope.feedBack.f_MarketSalesValue[i].categoryID==2){
-		                                currentHealthBeautiesValue[4].data.push(scope.feedBack.f_MarketSalesValue[i].value);
+		                            if(scope.feedBack.f_ValueMarketShares[i].categoryID==1){
+		                                currentElecssoriesValue[4].data.push(scope.feedBack.f_ValueMarketShares[i].value);
+		                            }else if(scope.feedBack.f_ValueMarketShares[i].categoryID==2){
+		                                currentHealthBeautiesValue[4].data.push(scope.feedBack.f_ValueMarketShares[i].value);
 		                            }
 		                            break;
 		                        }
@@ -201,10 +201,10 @@ define(['directives', 'services'], function(directives){
 		            }
 		        /*highchart set data end*/
 		        /*set highchart function start*/
-		        	scope.currentSalesVolumeElecssories = {
+		        	scope.currentSharesVolumeElecssories = {
 		                options: {
 		                    title:{
-		                        text:'Sales Volumes',
+		                        text:'Volumes Shares',
 		                    },
 		                    chart: {
 		                        type: 'line',
@@ -212,9 +212,8 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    yAxis: {
 		                        title: {
-		                            text: 'mln units'
-		                        },
-		                        gridLineColor: 'transparent'
+		                            text: '%'
+		                        }
 		                    },
 		                    xAxis: {
 		                        categories: currentCategories,
@@ -224,7 +223,7 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    tooltip: {
 		                        formatter: function() {
-		                            var s = '<p>'+this.series.name+'</p>'+'<p>Period:'+this.key+'</p>'+'<p>mln units:'+this.point.y.toFixed(2)+'</p>';
+		                            var s = '<p">'+this.series.name+'</p>'+'<p">Period:'+this.key+'</p>'+'<p">'+this.point.y.toFixed(2)+'%</p>';
 		                            return s;
 		                        },
 		                        shared: false,
@@ -237,10 +236,10 @@ define(['directives', 'services'], function(directives){
 		                series: currentElecssoriesVolume,
 		                loading: false
 		            }
-		            scope.currentSalesVolumeHealthBeauties = {
+		            scope.currentSharesVolumeHealthBeauties = {
 		                options: {
 		                    title:{
-		                        text:'Sales Volumes',
+		                        text:'Volumes Shares',
 		                    },
 		                    chart: {
 		                        type: 'line',
@@ -248,9 +247,8 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    yAxis: {
 		                        title: {
-		                            text: 'mln units'
-		                        },
-		                        gridLineColor: 'transparent'
+		                            text: '%'
+		                        }
 		                    },
 		                    xAxis: {
 		                        categories: currentCategories,
@@ -260,7 +258,7 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    tooltip: {
 		                        formatter: function() {
-		                            var s = '<p>'+this.series.name+'</p>'+'<p>Period:'+this.key+'</p>'+'<p>mln units:'+this.point.y.toFixed(2)+'</p>';
+		                            var s = '<p">'+this.series.name+'</p>'+'<p">Period:'+this.key+'</p>'+'<p">'+this.point.y.toFixed(2)+'%</p>';
 		                            return s;
 		                        },
 		                        shared: false,
@@ -273,10 +271,10 @@ define(['directives', 'services'], function(directives){
 		                series: currentHealthBeautiesVolume,
 		                loading: false
 		            }
-		            scope.currentSalesValueElecssories = {
+		            scope.currentSharesValueElecssories = {
 		                options: {
 		                    title:{
-		                        text:'Sales Values',
+		                        text:'Values Shares',
 		                    },
 		                    chart: {
 		                        type: 'line',
@@ -284,9 +282,8 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    yAxis: {
 		                        title: {
-		                            text: '$mln'
-		                        },
-		                        gridLineColor: 'transparent'
+		                            text: '%'
+		                        }
 		                    },
 		                    xAxis: {
 		                        categories: currentCategories,
@@ -296,7 +293,7 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    tooltip: {
 		                        formatter: function() {
-		                            var s = '<p>'+this.series.name+'</p>'+'<p>Period:'+this.key+'</p>'+'<p>$mln:'+this.point.y.toFixed(2)+'</p>';
+		                            var s = '<p">'+this.series.name+'</p>'+'<p">Period:'+this.key+'</p>'+'<p">'+this.point.y.toFixed(2)+'%</p>';
 		                            return s;
 		                        },
 		                        shared: false,
@@ -309,10 +306,10 @@ define(['directives', 'services'], function(directives){
 		                series: currentElecssoriesValue,
 		                loading: false
 		            }
-		            scope.currentSalesValueHealthBeauties = {
+		            scope.currentSharesValueHealthBeauties = {
 		                options: {
 		                    title:{
-		                        text:'Sales Values',
+		                        text:'Values Shares',
 		                    },
 		                    chart: {
 		                        type: 'line',
@@ -320,9 +317,8 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    yAxis: {
 		                        title: {
-		                            text: '$mln'
-		                        },
-		                        gridLineColor: 'transparent'
+		                            text: '%'
+		                        }
 		                    },
 		                    xAxis: {
 		                        categories: currentCategories,
@@ -332,7 +328,7 @@ define(['directives', 'services'], function(directives){
 		                    },
 		                    tooltip: {
 		                        formatter: function() {
-		                            var s = '<p>'+this.series.name+'</p>'+'<p>Period:'+this.key+'</p>'+'<p>$mln:'+this.point.y.toFixed(2)+'</p>';
+		                            var s = '<p">'+this.series.name+'</p>'+'<p">Period:'+this.key+'</p>'+'<p">'+this.point.y.toFixed(2)+'%</p>';
 		                            return s;
 		                        },
 		                        shared: false,

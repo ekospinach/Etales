@@ -1,14 +1,6 @@
 define(['angular',
 		'app',
 		'routingConfig',
-		'controllers/producerDecisionStep1Ctrl',
-		'controllers/producerDecisionStep2Ctrl',
-		'controllers/producerDecisionStep3Ctrl',
-		'controllers/producerDecisionStep4Ctrl',
-		'controllers/retailerDecisionStep1Ctrl',
-		'controllers/retailerDecisionStep2Ctrl',
-		'controllers/retailerDecisionStep3Ctrl',
-		'controllers/retailerDecisionStep4Ctrl',
 		'controllers/facilitatorDecisionCtrl',
 		'controllers/contractCtrl',
 		'controllers/contractDetailsCtrl',
@@ -16,10 +8,6 @@ define(['angular',
 		'controllers/adminCtrl',
 		'controllers/adminDetailsCtrl',
 		'controllers/homeCtrl',
-		'controllers/mapCtrl',
-		'controllers/marketingReportCtrl',
-		'controllers/lineChartCtrl',
-		'controllers/reportCtrl',
 		'controllers/testCtrl',
 		'controllers/summaryReportCtrl',
 		'controllers/generalReportCtrl',
@@ -41,39 +29,7 @@ define(['angular',
 		$routeProvider.when('/home',{
 			templateUrl:'partials/home.html',
 			controller:'homeCtrl',
-			access : access.public
-		}).when('/producerDecisionStep1',{
-			templateUrl:'partials/producerDecisionStep1.html',
-			controller:'producerDecisionStep1Ctrl',
-			access : access.producerView			
-		}).when('/producerDecisionStep2',{
-			templateUrl:'partials/producerDecisionStep2.html',
-			controller:'producerDecisionStep2Ctrl',
-			access : access.producerView			
-		}).when('/producerDecisionStep3',{
-			templateUrl:'partials/producerDecisionStep3.html',
-			controller:'producerDecisionStep3Ctrl',
-			access : access.producerView			
-		}).when('/producerDecisionStep4',{
-			templateUrl:'partials/producerDecisionStep4.html',
-			controller:'producerDecisionStep4Ctrl',
-			access : access.producerView			
-		}).when('/retailerDecisionStep1',{
-			templateUrl:'partials/retailerDecisionStep1.html',
-			controller:'retailerDecisionStep1Ctrl',
-			access : access.retailerView			
-		}).when('/retailerDecisionStep2',{
-			templateUrl:'partials/retailerDecisionStep2.html',
-			controller:'retailerDecisionStep2Ctrl',
-			access : access.retailerView			
-		}).when('/retailerDecisionStep3',{
-			templateUrl:'partials/retailerDecisionStep3.html',
-			controller:'retailerDecisionStep3Ctrl',
-			access : access.retailerView			
-		}).when('/retailerDecisionStep4',{
-			templateUrl:'partials/retailerDecisionStep4.html',
-			controller:'retailerDecisionStep4Ctrl',
-			access : access.retailerView			
+			access : access.playerView
 		}).when('/contract',{
 			templateUrl:'partials/contract.html',
 			controller:'contractCtrl',
@@ -86,6 +42,10 @@ define(['angular',
 			templateUrl:'partials/login.html',
 			controller:'loginCtrl',
 			access : access.public
+		}).when('/login/:reportLocateId',{
+			templateUrl:'partials/login.html',
+			controller:'loginCtrl',
+			access : access.public			
 		}).when('/admin',{
 			templateUrl:'partials/admin.html',
 			controller:'adminCtrl',
@@ -94,27 +54,6 @@ define(['angular',
 			templateUrl:'partials/adminDetails.html',
 			controller:'adminDetailsCtrl',
 			access : access.public
-		}).when('/map',{
-			controller: 'mapCtrl',
-			templateUrl:'partials/map.html',
-			access:access.playerView,
-			resolve:{
-				map:function(MapLoader){
-					return MapLoader();
-          		}
-        	}
-		}).when('/marketingReport',{
-			controller:'marketingReportCtrl',
-			templateUrl:'partials/marketingReport.html',
-			access:access.playerView
-		}).when('/lineChart',{
-			controller:'lineChartCtrl',
-			templateUrl:'partials/lineChart.html',
-			access:access.playerView
-		}).when('/report',{
-			controller:'reportCtrl',
-			templateUrl:'partials/report.html',
-			access:access.playerView
 		}).when('/test',{
 			controller:'testCtrl',
 			templateUrl:'partials/test.html',
@@ -131,7 +70,6 @@ define(['angular',
 			controller:'summaryReportCtrl',
 			templateUrl:'partials/summaryReport.html',
 			access:access.playerView
-
 		}).when('/facilitatorConfidentialReport',{
 			controller:'facilitatorConfidentialReportCtrl',
 			templateUrl:'partials/facilitatorConfidentialReport.html',
@@ -144,7 +82,6 @@ define(['angular',
 			controller:'facilitatorMarketReportCtrl',
 			templateUrl:'partials/facilitatorMarketReport.html',
 			access:access.facilitatorView
-
 		}).when('/supplierDecision',{
 			templateUrl:'partials/supplierDecision.html',
 			controller:'supplierDecisionCtrl',
@@ -169,8 +106,7 @@ define(['angular',
 			templateUrl:'partials/overviewReport.html',
 			controller:'overviewReportCtrl',
 			access: access.playerView
-		});	
-		//$routeProvider.otherwise({redirectTo: '/login'});
+		}).otherwise({redirectTo: '/login/:reportLocateId'});
 
       var interceptor = ['$location', '$q', function($location, $q) {
         function success(response) {

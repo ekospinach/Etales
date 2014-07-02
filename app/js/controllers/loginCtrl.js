@@ -1,6 +1,7 @@
 define(['app','socketIO'], function(app) {
 
-	app.controller('loginCtrl',['$scope', '$http', '$location','$rootScope','Auth','$q','PlayerInfo','SeminarInfo','PeriodInfo','RoleInfo','$modal','$window','notify',function($scope, $http, $location,$rootScope,Auth,$q,PlayerInfo,SeminarInfo,PeriodInfo,RoleInfo,$modal, $window, notify) {
+	app.controller('loginCtrl',['$scope', '$http', '$location','$rootScope','Auth','$q','PlayerInfo','SeminarInfo','PeriodInfo','RoleInfo','$modal','$window','notify','$routeParams', 
+						function($scope, $http, $location,$rootScope,Auth,$q,PlayerInfo,SeminarInfo,PeriodInfo,RoleInfo,$modal, $window, notify,$routeParams) {
 		// You can access the scope of the controller from here
 
 		    $rootScope.loginFooter="container";
@@ -120,7 +121,6 @@ define(['app','socketIO'], function(app) {
 		 		console.log('infoBuble.show');
 		 		$scope.infoBuble = true;
 		 	};
-
 		}
 
 		$scope.openAdminLoginModal=function(){
@@ -134,25 +134,36 @@ define(['app','socketIO'], function(app) {
             $scope.bubleMsg = "";
 		}
 
-	    //if cookie is not empty, initialize login parameters and login system automatically 
+	    //if cookie is not empty, initialize login overall parameters and login system automatically 
 	    if($rootScope.user.username){	    		    	
 			var url="/currentPeriod/"+$rootScope.user.seminar;
 			$http({
 				method:'GET',
 				url:url
 			}).then(function(data){
+				
 				SeminarInfo.setSelectedSeminar(data.data);
 				PeriodInfo.setCurrentPeriod(data.data.currentPeriod);
-				$rootScope.rootStartFrom=-2;
-				$rootScope.rootEndWith=data.currentPeriod-1;
-				//$location.path('/home');					
-				$location.path('/facilitatorGeneralReport');	
-			}).then(function(){
-				//console.log($rootScope.user.userRole);
 				PlayerInfo.setPlayer($rootScope.user.roleID);
 				RoleInfo.setRole($rootScope.user.role);
+				
+				$rootScope.rootStartFrom=-2;
+				$rootScope.rootEndWith=data.currentPeriod-1;
+				
+				console.log('$routeParams: ' + $routeParams.reportLocateId);
+				if($routeParams.reportLocateId == 'general'){
+					$location.path('/facilitatorGeneralReport');	
+				} else if($routeParams.reportLocateId == 'confidential'){
+					$location.path('/facilitatorConfidentialReport');	
+				} else if($routeParams.reportLocateId == 'market'){
+					$location.path('/facilitatorMarketReport');	
+				} else {
+					$location.path('/home');										
+				}				
 			});	    	
-	    }	    
+	    } else {
+		   // $location.path('/login');    	
+	    } 
 
 
 	}]);

@@ -43,5 +43,6 @@ define(['app','socketIO','routingConfig'], function(app) {
                 });
 			}
 		}
+
 	}]);
 });

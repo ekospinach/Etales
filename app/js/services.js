@@ -164,35 +164,12 @@ define(['angular',
 	        , userRoles = routingConfig.userRoles,
 	        currentUser = $cookieStore.get('user') || { username: '', role: userRoles.guest };
 
-	    console.log('cookie is not empty, initialize login parameters: ' + JSON.stringify(currentUser));
 	    $rootScope.user = currentUser;
 	    $rootScope.accessLevels = accessLevels;
-	    $rootScope.userRoles = userRoles;	    	    
-
-	  //   //if cookie is not empty, initialize login parameters 
-	  //   if(currentUser.username){	    	
-		 //    $rootScope.user = currentUser;
-		 //    $rootScope.accessLevels = accessLevels;
-		 //    $rootScope.userRoles = userRoles;		    	
-			// var url="/currentPeriod/"+currentUser.seminar;
-			// $http({
-			// 	method:'GET',
-			// 	url:url
-			// }).then(function(data){
-			// 	SeminarInfo.setSelectedSeminar(data.data);
-			// 	PeriodInfo.setCurrentPeriod(data.data.currentPeriod);
-			// 	$rootScope.rootStartFrom=-2;
-			// 	$rootScope.rootEndWith=data.currentPeriod-1;
-			// 	$location.path('/home');					
-			// }).then(function(){
-			// 	//console.log($rootScope.user.userRole);
-			// 	PlayerInfo.setPlayer($rootScope.user.roleID);
-			// 	RoleInfo.setRole($rootScope.user.role);
-			// });	    	
-	  //   }	    
+	    $rootScope.userRoles = userRoles;	    
 
 	    return {
-	        authorize: function(accessLevel, role) {         
+	        authorize: function(accessLevel, role) {         	        	
 	            if(role === undefined) {
 	                role = $rootScope.user.role;
 	            }

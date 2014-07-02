@@ -372,9 +372,6 @@ var marketSharesCtrl=function($scope,$http){
                 }
             }
 
-            console.log(previousCategories);
-            console.log(previousElecssoriesVolume);
-
             $scope.previousSharesVolumeElecssories = {
                 options: {
                     title:{
