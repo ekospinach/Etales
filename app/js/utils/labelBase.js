@@ -993,6 +993,8 @@ var getLabelBase = function(){
 		{id:'Operating Profit Margins',  ENG:'Operating Profit Margins',  CHN:'Operating Profit Margins',  RUS:''},
 		{id:'Net Profit Margins',  ENG:'Net Profit Margins',  CHN:'Net Profit Margins',  RUS:''},
 		{id:'Overview',  ENG:'Overview',  CHN:'Overview',  RUS:''},
+		{id:'B&M',  ENG:'B&M',  CHN:'B&M',  RUS:''},
+		{id:'Wholesale',  ENG:'Wholesale',  CHN:'Wholesale',  RUS:''},
 		{id:'Overview Report',  ENG:'Overview Report',  CHN:'Overview Report',  RUS:''}
 
 	]

@@ -65,7 +65,8 @@ define(['directives', 'services'], function(directives){
                                 scope.valueShares.push({'value':data.data[0].actorInfo[i].actorCategoryInfo[j].grph_ValueMarketShare});
                                 scope.volumeShares.push({'value':data.data[0].actorInfo[i].actorCategoryInfo[j].grph_VolumeMarketShare});
                             }
-                        }                    
+                        }  
+                        console.log(scope.salesVolumes);                
                         deferred.resolve({msg:'Array is ready.'});                    
                     } else {
                         deferred.reject({msg:'data.data[0] is undefined'});
