@@ -9,8 +9,7 @@ define(['directives', 'services'], function(directives){
             restrict : 'E',
             templateUrl : '../../partials/singleReportTemplate/GR_PerformanceHighlights.html',            
             link : function(scope, element, attrs){                                                                
-                var initializePage = function(){
-                    console.log('initializePage some small...');                    
+                var initializePage = function(){                 
                     scope.isPageLoading = true;
                     scope.isResultShown = false;                    
                     scope.Label = Label;
@@ -29,9 +28,7 @@ define(['directives', 'services'], function(directives){
                         url:url,
                         //tracker: scope.loadingTracker
                     }).then(function(data){ 
-                        console.log(data);
                         return organiseArray(data);
-
                     }).then(function(data){
                         // if(!scope.logs){scope.logs = [];}
                         // scope.logs.push(data.msg);                                            
@@ -66,7 +63,7 @@ define(['directives', 'services'], function(directives){
                                 scope.volumeShares.push({'value':data.data[0].actorInfo[i].actorCategoryInfo[j].grph_VolumeMarketShare});
                             }
                         }  
-                        console.log(scope.salesVolumes);                
+
                         deferred.resolve({msg:'Array is ready.'});                    
                     } else {
                         deferred.reject({msg:'data.data[0] is undefined'});

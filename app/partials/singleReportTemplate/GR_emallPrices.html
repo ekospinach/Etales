@@ -47,21 +47,21 @@
                     <p class="padding-20">{{Label.getContent('Producer')}} 1</p>
                 </td>
             </tr>
-            <tr class="success" ng-repeat='producer1e in producer1es'>
+            <tr class="success" ng-repeat='producer in producer1es'>
                 <td>
-                    <p class="padding-40">{{producer1e.parentBrandName+producer1e.varName}}</p>
+                    <p class="padding-40">{{producer.parentBrandName+producer.varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{producer1e.vemp_NetOnlinePrice.toFixed(2)}}</p>
+                    <p class="text-right">{{producer.vemp_NetOnlinePrice.toFixed(2)=="0.00"?0:producer.vemp_NetOnlinePrice.toFixed(2)}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(producer1e.vemp_PriceChange*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(producer.vemp_PriceChange*100).toFixed(2)=="0.00"?0:(producer.vemp_PriceChange*100).toFixed(2)}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{producer1e.vemp_Promotions.promo_Frequency}}</p>
+                    <p class="text-right">{{producer.vemp_Promotions.promo_Frequency=="0.00"?0:producer.vemp_Promotions.promo_Frequency}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(producer1e.vemp_Promotions.promo_Rate*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(producer.vemp_Promotions.promo_Rate*100).toFixed(2)=="0.00"?0:(producer.vemp_Promotions.promo_Rate*100).toFixed(2)}}</p>
                 </td>
             </tr>
             <tr class="success">
@@ -69,21 +69,21 @@
                     <p class="padding-20">{{Label.getContent('Producer')}} 2</p>
                 </td>
             </tr>
-            <tr class="success" ng-repeat='producer2e in producer2es'>
+            <tr class="success" ng-repeat='producer in producer2es'>
                 <td>
-                    <p class="padding-40">{{producer2e.parentBrandName+producer2e.varName}}</p>
+                    <p class="padding-40">{{producer.parentBrandName+producer.varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{producer2e.vemp_NetOnlinePrice.toFixed(2)}}</p>
+                    <p class="text-right">{{producer.vemp_NetOnlinePrice.toFixed(2)=="0.00"?0:producer.vemp_NetOnlinePrice.toFixed(2)}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(producer2e.vemp_PriceChange*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(producer.vemp_PriceChange*100).toFixed(2)=="0.00"?0:(producer.vemp_PriceChange*100).toFixed(2)}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{producer2e.vemp_Promotions.promo_Frequency}}</p>
+                    <p class="text-right">{{producer.vemp_Promotions.promo_Frequency=="0.00"?0:producer.vemp_Promotions.promo_Frequency}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(producer2e.vemp_Promotions.promo_Rate*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(producer.vemp_Promotions.promo_Rate*100).toFixed(2)=="0.00"?0:(producer.vemp_Promotions.promo_Rate*100).toFixed(2)}}</p>
                 </td>
 
             </tr>
@@ -92,21 +92,21 @@
                     <p class="padding-20">{{Label.getContent('Producer')}} 3</p>
                 </td>
             </tr>
-            <tr class="success" ng-repeat='producer3e in producer3es'>
+            <tr class="success" ng-repeat='producer in producer3es'>
                 <td>
-                    <p class="padding-40">{{producer3e.parentBrandName+producer3e.varName}}</p>
+                    <p class="padding-40">{{producer.parentBrandName+producer.varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{producer3e.vemp_NetOnlinePrice.toFixed(2)}}</p>
+                    <p class="text-right">{{producer.vemp_NetOnlinePrice.toFixed(2)=="0.00"?0:producer.vemp_NetOnlinePrice.toFixed(2)}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(producer3e.vemp_PriceChange*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(producer.vemp_PriceChange*100).toFixed(2)=="0.00"?0:(producer.vemp_PriceChange*100).toFixed(2)}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{producer3e.vemp_Promotions.promo_Frequency}}</p>
+                    <p class="text-right">{{producer.vemp_Promotions.promo_Frequency=="0.00"?0:producer.vemp_Promotions.promo_Frequency}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(producer3e.vemp_Promotions.promo_Rate*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(producer.vemp_Promotions.promo_Rate*100).toFixed(2)=="0.00"?0:(producer.vemp_Promotions.promo_Rate*100).toFixed(2)}}</p>
                 </td>
             </tr>
 
@@ -119,21 +119,21 @@
                     <p class="padding-20">{{Label.getContent('Producer')}} 1</p>
                 </td>
             </tr>
-            <tr class="danger" ng-repeat='producer1h in producer1hs'>
+            <tr class="danger" ng-repeat='producer in producer1hs'>
                 <td>
-                    <p class="padding-40">{{producer1h.parentBrandName+producer1h.varName}}</p>
+                    <p class="padding-40">{{producer.parentBrandName+producer.varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{producer1h.vemp_NetOnlinePrice.toFixed(2)}}</p>
+                    <p class="text-right">{{producer.vemp_NetOnlinePrice.toFixed(2)=="0.00"?0:producer.vemp_NetOnlinePrice.toFixed(2)}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(producer1h.vemp_PriceChange*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(producer.vemp_PriceChange*100).toFixed(2)=="0.00"?0:(producer.vemp_PriceChange*100).toFixed(2)}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{producer1h.vemp_Promotions.promo_Frequency}}</p>
+                    <p class="text-right">{{producer.vemp_Promotions.promo_Frequency=="0.00"?0:producer.vemp_Promotions.promo_Frequency}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(producer1h.vemp_Promotions.promo_Rate*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(producer.vemp_Promotions.promo_Rate*100).toFixed(2)=="0.00"?0:(producer.vemp_Promotions.promo_Rate*100).toFixed(2)}}</p>
                 </td>
 
             </tr>
@@ -142,21 +142,21 @@
                     <p class="padding-20">{{Label.getContent('Producer')}} 2</p>
                 </td>
             </tr>
-            <tr class="danger" ng-repeat='producer2h in producer2hs'>
+            <tr class="danger" ng-repeat='producer in producer2hs'>
                 <td>
-                    <p class="padding-40">{{producer2h.parentBrandName+producer2h.varName}}</p>
+                    <p class="padding-40">{{producer.parentBrandName+producer.varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{producer2h.vemp_NetOnlinePrice.toFixed(2)}}</p>
+                    <p class="text-right">{{producer.vemp_NetOnlinePrice.toFixed(2)=="0.00"?0:producer.vemp_NetOnlinePrice.toFixed(2)}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(producer2h.vemp_PriceChange*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(producer.vemp_PriceChange*100).toFixed(2)=="0.00"?0:(producer.vemp_PriceChange*100).toFixed(2)}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{producer2h.vemp_Promotions.promo_Frequency}}</p>
+                    <p class="text-right">{{producer.vemp_Promotions.promo_Frequency=="0.00"?0:producer.vemp_Promotions.promo_Frequency}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(producer2h.vemp_Promotions.promo_Rate*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(producer.vemp_Promotions.promo_Rate*100).toFixed(2)=="0.00"?0:(producer.vemp_Promotions.promo_Rate*100).toFixed(2)}}</p>
                 </td>
             </tr>
             <tr class="danger">
@@ -164,21 +164,21 @@
                     <p class="padding-20">{{Label.getContent('Producer')}} 3</p>
                 </td>
             </tr>
-            <tr class="danger" ng-repeat='producer3h in producer3hs'>
+            <tr class="danger" ng-repeat='producer in producer3hs'>
                 <td>
-                    <p class="padding-40">{{producer3h.parentBrandName+producer3h.varName}}</p>
+                    <p class="padding-40">{{producer.parentBrandName+producer.varName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{producer3h.vemp_NetOnlinePrice.toFixed(2)}}</p>
+                    <p class="text-right">{{producer.vemp_NetOnlinePrice.toFixed(2)=="0.00"?0:producer.vemp_NetOnlinePrice.toFixed(2)}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(producer3h.vemp_PriceChange*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(producer.vemp_PriceChange*100).toFixed(2)=="0.00"?0:(producer.vemp_PriceChange*100).toFixed(2)}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{producer3h.vemp_Promotions.promo_Frequency}}</p>
+                    <p class="text-right">{{producer.vemp_Promotions.promo_Frequency=="0.00"?0:producer.vemp_Promotions.promo_Frequency}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{(producer3h.vemp_Promotions.promo_Rate*100).toFixed(2)}}</p>
+                    <p class="text-right">{{(producer.vemp_Promotions.promo_Rate*100).toFixed(2)=="0.00"?0:(producer.vemp_Promotions.promo_Rate*100).toFixed(2)}}</p>
                 </td>
             </tr>
         </tbody>
