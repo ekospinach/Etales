@@ -134,8 +134,9 @@
  					role: userRoles.guest
  				};
 
- 				//if cookies is not empty, Initialize main services with information from cookies  				
+ 				//$rootScope.user is used for authorizing user(.role) in directive layer 
  				$rootScope.user = cookiesUserInfo;
+ 				//if cookies is not empty, Initialize main services with information from cookies  				 				
  				if (cookiesUserInfo.username) {
  					SeminarInfo.setSelectedSeminar(cookiesUserInfo.seminar);
  					PlayerInfo.setPlayer(cookiesUserInfo.roleID);
