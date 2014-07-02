@@ -53,33 +53,33 @@
                     <p>{{Label.getContent('Rural')}}</p>
                 </td>
             </tr>
-            <tr class="info" ng-repeat='rural1 in rural1s'>
+            <tr class="info" ng-repeat='rural in rural1s'>
                 <td>
-                    <p class="padding-20">{{rural1.fullName}}</p>
+                    <p class="padding-20">{{rural.fullName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{rural1.priceVolumeShare}}</p>
+                    <p class="text-right">{{rural.priceVolumeShare=="0.00"?0:rural.priceVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{rural1.priceVolumeChange}}</p>
+                    <p class="text-right">{{rural.priceVolumeChange=="0.00"?0:rural.priceVolumeChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{rural1.moneyVolumeShare}}</p>
+                    <p class="text-right">{{rural.moneyVolumeShare=="0.00"?0:rural.moneyVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{rural1.moneyVolumeChange}}</p>
+                    <p class="text-right">{{rural.moneyVolumeChange=="0.00"?0:rural.moneyVolumeChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{rural1.fashionVolumeShare}}</p>
+                    <p class="text-right">{{rural.fashionVolumeShare=="0.00"?0:rural.fashionVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{rural1.fashionVolumeChange}}</p>
+                    <p class="text-right">{{rural.fashionVolumeChange=="0.00"?0:rural.fashionVolumeChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{rural1.freaksVolumeShare}}</p>
+                    <p class="text-right">{{rural.freaksVolumeShare=="0.00"?0:rural.freaksVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{rural1.freaksVolumeChange}}</p>
+                    <p class="text-right">{{rural.freaksVolumeChange=="0.00"?0:rural.freaksVolumeChange}}</p>
                 </td>
             </tr>
             <tr class="warning">
@@ -87,33 +87,33 @@
                     <p>{{Label.getContent('Urban')}}</p>
                 </td>
             </tr>
-            <tr class="warning" ng-repeat='urban1 in urban1s'>
+            <tr class="warning" ng-repeat='urban in urban1s'>
                 <td>
-                    <p class="padding-20">{{urban1.fullName}}</p>
+                    <p class="padding-20">{{urban.fullName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{urban1.priceVolumeShare}}</p>
+                    <p class="text-right">{{urban.priceVolumeShare=="0.00"?0:urban.priceVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{urban1.priceVolumeChange}}</p>
+                    <p class="text-right">{{urban.priceVolumeChange=="0.00"?0:urban.priceVolumeChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{urban1.moneyVolumeShare}}</p>
+                    <p class="text-right">{{urban.moneyVolumeShare=="0.00"?0:urban.moneyVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{urban1.moneyVolumeChange}}</p>
+                    <p class="text-right">{{urban.moneyVolumeChange=="0.00"?0:urban.moneyVolumeChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{urban1.fashionVolumeShare}}</p>
+                    <p class="text-right">{{urban.fashionVolumeShare=="0.00"?0:urban.fashionVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{urban1.fashionVolumeChange}}</p>
+                    <p class="text-right">{{urban.fashionVolumeChange=="0.00"?0:urban.fashionVolumeChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{urban1.freaksVolumeShare}}</p>
+                    <p class="text-right">{{urban.freaksVolumeShare=="0.00"?0:urban.freaksVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{urban1.freaksVolumeChange}}</p>
+                    <p class="text-right">{{urban.freaksVolumeChange=="0.00"?0:urban.freaksVolumeChange}}</p>
                 </td>
             </tr>
             <tr>
@@ -163,33 +163,33 @@
                     <p>{{Label.getContent('Rural')}}</p>
                 </td>
             </tr>
-            <tr class="info" ng-repeat='rural2 in rural2s'>
+            <tr class="info" ng-repeat='rural in rural2s'>
                 <td>
-                    <p class="padding-20">{{rural2.fullName}}</p>
+                    <p class="padding-20">{{rural.fullName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{rural2.priceValueShare}}</p>
+                    <p class="text-right">{{rural.priceValueShare=="0.00"?0:rural.priceValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{rural2.priceValueChange}}</p>
+                    <p class="text-right">{{rural.priceValueChange=="0.00"?0:rural.priceValueChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{rural2.moneyValueShare}}</p>
+                    <p class="text-right">{{rural.moneyValueShare=="0.00"?0:rural.moneyValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{rural2.moneyValueChange}}</p>
+                    <p class="text-right">{{rural.moneyValueChange=="0.00"?0:rural.moneyValueChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{rural2.fashionValueShare}}</p>
+                    <p class="text-right">{{rural.fashionValueShare=="0.00"?0:rural.fashionValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{rural2.fashionValueChange}}</p>
+                    <p class="text-right">{{rural.fashionValueChange=="0.00"?0:rural.fashionValueChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{rural2.freaksValueShare}}</p>
+                    <p class="text-right">{{rural.freaksValueShare=="0.00"?0:rural.freaksValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{rural2.freaksValueChange}}</p>
+                    <p class="text-right">{{rural.freaksValueChange=="0.00"?0:rural.freaksValueChange}}</p>
                 </td>
             </tr>
             <tr class="warning">
@@ -197,33 +197,33 @@
                     <p>{{Label.getContent('Urban')}}</p>
                 </td>
             </tr>
-            <tr class="warning" ng-repeat='urban2 in urban2s'>
+            <tr class="warning" ng-repeat='urban in urban2s'>
                 <td>
-                    <p class="padding-20">{{urban2.fullName}}</p>
+                    <p class="padding-20">{{urban.fullName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{urban2.priceValueShare}}</p>
+                    <p class="text-right">{{urban.priceValueShare=="0.00"?0:urban.priceValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{urban2.priceValueChange}}</p>
+                    <p class="text-right">{{urban.priceValueChange=="0.00"?0:urban.priceValueChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{urban2.moneyValueShare}}</p>
+                    <p class="text-right">{{urban.moneyValueShare=="0.00"?0:urban.moneyValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{urban2.moneyValueChange}}</p>
+                    <p class="text-right">{{urban.moneyValueChange=="0.00"?0:urban.moneyValueChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{urban2.fashionValueShare}}</p>
+                    <p class="text-right">{{urban.fashionValueShare=="0.00"?0:urban.fashionValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{urban2.fashionValueChange}}</p>
+                    <p class="text-right">{{urban.fashionValueChange=="0.00"?0:urban.fashionValueChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{urban2.freaksValueShare}}</p>
+                    <p class="text-right">{{urban.freaksValueShare=="0.00"?0:urban.freaksValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{urban2.freaksValueChange}}</p>
+                    <p class="text-right">{{urban.freaksValueChange=="0.00"?0:urban.freaksValueChange}}</p>
                 </td>
             </tr>
         </tbody>
