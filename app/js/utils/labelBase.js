@@ -869,6 +869,7 @@ var getLabelBase = function(){
 
 		{id:"Dont Purchase Info",  ENG:"You didn't purchase this report in previous period.",  CHN:'',  RUS:''},
 		{id:'Not enough budget',  ENG:'You Dont have enough budget',  CHN:'',  RUS:''},
+		{id:'eMall Commission and Shipping Cost',  ENG:'eMall Commission and Shipping Cost',  CHN:'',  RUS:''},
 
 
 		/*supplier Product Portfolio Management start*/
