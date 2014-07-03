@@ -116,6 +116,8 @@ var seminar = mongoose.model('seminar', seminarSchema);
 
 exports.localStrategy = new LocalStrategy(function(username, password, done){
 	    var parameters = ['','',''],j = 0;    
+	    var tempSeminar = {};
+
 	    for (var i = 0; i < username.length; i++) {
 	      if(username[i] == '^') j = j + 1;
 	      else parameters[j] = parameters[j] + username[i]; 
@@ -142,7 +144,12 @@ exports.localStrategy = new LocalStrategy(function(username, password, done){
 				default:
 					return done(null, false, {message:'role does not exist.'});
 			}			
-			return done(null, { seminar: para_seminar, role: para_role, roleID: para_roleID, username: username });
+
+			tempSeminar.seminarCode = doc.seminarCode;
+			tempSeminar.seminarDescription = doc.seminarDescription;
+			tempSeminar.currentPeriod = doc.currentPeriod;
+			tempSeminar.simulationSpan = doc.simulationSpan;				
+			return done(null, { seminar: tempSeminar, role: para_role, roleID: para_roleID, username: username });
 		});
 });
 
@@ -152,6 +159,8 @@ exports.serializeUser = function(user, done){
 
 exports.deserializeUser = function(username, done){
     var parameters = ['','',''],j = 0;    
+    var tempSeminar = {};
+    
     for (var i = 0; i < username.length; i++) {
       if(username[i] == '^') j = j + 1;
       else parameters[j] = parameters[j] + username[i]; 
@@ -164,7 +173,12 @@ exports.deserializeUser = function(username, done){
 		if(err){ return done(err); }
 		if(!doc){ console.log('incorrestseminar'); return done(null, false, {message:'Incorrect seminar code.'}); }
 		if(!doc.isInitialise) {  return done(null, false, {message:'Seminar has not opened.'})}
-		return done(null, { seminar: para_seminar, role: para_role, roleID: para_roleID, username: username });
+		tempSeminar.seminarCode = doc.seminarCode;
+		tempSeminar.seminarDescription = doc.seminarDescription;
+		tempSeminar.currentPeriod = doc.currentPeriod;
+		tempSeminar.simulationSpan = doc.simulationSpan;				
+
+		return done(null, { seminar: tempSeminar, role: para_role, roleID: para_roleID, username: username });
 	});
 }
 
@@ -178,7 +192,8 @@ exports.getSeminarList=function(req,res,next){
 	});
 }
 
-exports.getCurrentPeriod=function(req,res,next){
+exports.getSeminarInfo=function(req,res,next){
+	var tempSeminar = {};
 	return seminar.findOne({
 		seminarCode:req.params.seminar
 	},function(err,doc){
@@ -188,7 +203,11 @@ exports.getCurrentPeriod=function(req,res,next){
 		if(!doc){
 			console.log('cannot find matched doc');
 		}else{
-			res.send(200,doc);
+			tempSeminar.seminarCode = doc.seminarCode;
+			tempSeminar.seminarDescription = doc.seminarDescription;
+			tempSeminar.currentPeriod = doc.currentPeriod;
+			tempSeminar.simulationSpan = doc.simulationSpan;			
+			res.send(200,tempSeminar);
 		}
 	})
 }

@@ -19,7 +19,7 @@ define(['directives', 'services'], function(directives){
 
                 var getResult =function(){
                     //switching('showPerformance');
-                    var url='/currentPeriod/'+SeminarInfo.getSelectedSeminar().seminarCode;
+                    var url='/seminarInfo/'+SeminarInfo.getSelectedSeminar().seminarCode;
                     $http({
                         method:'GET',
                         url:url,

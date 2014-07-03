@@ -7,6 +7,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    $rootScope.loginFooter="bs-footer";
 		    $rootScope.loginLink="footer-links";
 		    $rootScope.loginDiv="container";
+		    $rootScope.loadShow=true;
 
 	}]);
 

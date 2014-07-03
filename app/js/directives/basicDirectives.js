@@ -106,7 +106,7 @@ define(['directives'], function(directives){
                         link: function(scope, element, attrs) {
                             var prevDisp = element.css('display');
                             $rootScope.$watch('user.role', function(role) {
-                                //console.log('Directive handle, attrs.accessLevel: ' + attrs.accessLevel + ',try to call auth.authorize()...');
+                                console.log('Directive handle, attrs.accessLevel: ' + attrs.accessLevel + ',try to call auth.authorize()...');
                                 if(!Auth.authorize(attrs.accessLevel))
                                     element.css('display', 'none');
                                 else

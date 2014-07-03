@@ -161,38 +161,12 @@ define(['angular',
 
 	services.factory('Auth', function($http, $rootScope, $cookieStore, SeminarInfo, RoleInfo, PeriodInfo, PlayerInfo, $location){
 	    var accessLevels = routingConfig.accessLevels
-	        , userRoles = routingConfig.userRoles,
-	        currentUser = $cookieStore.get('user') || { username: '', role: userRoles.guest };
+	        , userRoles = routingConfig.userRoles;
 
-	    console.log('cookie is not empty, initialize login parameters: ' + JSON.stringify(currentUser));
-	    $rootScope.user = currentUser;
 	    $rootScope.accessLevels = accessLevels;
-	    $rootScope.userRoles = userRoles;	    	    
-
-	  //   //if cookie is not empty, initialize login parameters 
-	  //   if(currentUser.username){	    	
-		 //    $rootScope.user = currentUser;
-		 //    $rootScope.accessLevels = accessLevels;
-		 //    $rootScope.userRoles = userRoles;		    	
-			// var url="/currentPeriod/"+currentUser.seminar;
-			// $http({
-			// 	method:'GET',
-			// 	url:url
-			// }).then(function(data){
-			// 	SeminarInfo.setSelectedSeminar(data.data);
-			// 	PeriodInfo.setCurrentPeriod(data.data.currentPeriod);
-			// 	$rootScope.rootStartFrom=-2;
-			// 	$rootScope.rootEndWith=data.currentPeriod-1;
-			// 	$location.path('/home');					
-			// }).then(function(){
-			// 	//console.log($rootScope.user.userRole);
-			// 	PlayerInfo.setPlayer($rootScope.user.roleID);
-			// 	RoleInfo.setRole($rootScope.user.role);
-			// });	    	
-	  //   }	    
-
+	    $rootScope.userRoles = userRoles;	    
 	    return {
-	        authorize: function(accessLevel, role) {         
+	        authorize: function(accessLevel, role) {         	        	
 	            if(role === undefined) {
 	                role = $rootScope.user.role;
 	            }
@@ -415,7 +389,7 @@ define(['angular',
 					socket.on('socketIO:producerReportPurchaseDecisionChanged', function(data) {
 						//if changed base is modified by current supplier & seminar, reload Report Purchase decision base and broadcast message...
 						if ((data.producerID == PlayerInfo.getPlayer()) && (data.seminar == SeminarInfo.getSelectedSeminar().seminarCode)) {
-							var url = '/currentPeriod/' + SeminarInfo.getSelectedSeminar().seminarCode;
+							var url = '/seminarInfo/' + SeminarInfo.getSelectedSeminar().seminarCode;
 							$http({
 								method: 'GET',
 								url: url,
@@ -715,7 +689,7 @@ define(['angular',
 					socket.on('socketIO:retailerReportPurchaseDecisionChanged', function(data) {
 						//if changed base is modified by current supplier & seminar, reload Report Purchase decision base and broadcast message...
 						if ((data.retailerID == PlayerInfo.getPlayer()) && (data.seminar == SeminarInfo.getSelectedSeminar().seminarCode)) {
-							var url = '/currentPeriod/' + SeminarInfo.getSelectedSeminar().seminarCode;
+							var url = '/seminarInfo/' + SeminarInfo.getSelectedSeminar().seminarCode;
 							$http({
 								method: 'GET',
 								url: url,
@@ -936,22 +910,6 @@ define(['angular',
 					 	
 					});
 				},
-				// addOrder:function(marketID,product){
-				// 	var queryCondition = {
-				// 		retailerID :$rootScope.user.username.substring($rootScope.user.username.length-1),
-				// 		period:$rootScope.currentPeriod,
-				// 		seminar:$rootScope.user.seminar,
-				// 		behaviour : 'addOrder', 
-				// 		marketID:marketID,
-				// 		value:product
-				// 	}
-				// 	$http({method:'POST', url:'/retailerDecision', data: queryCondition}).then(function(res){
-				// 	 	console.log('Success:' + res);
-				// 	 	
-				// 	},function(res){
-				// 		console.log('Failed:' + res);
-				// 	});
-				// },
 				addOrders:function(marketID,products){
 					var queryCondition = {};
 					(function multipleRequestShooter(myProducts,idx){

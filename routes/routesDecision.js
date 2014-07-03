@@ -43,7 +43,7 @@ module.exports = function(app, io){
     
     //special calculate API
     app.post('/getCurrentUnitCost',                                                                         require('./../api/utils/unitCost').getCurrentUnitCost);
-    app.get('/currentPeriod/:seminar',                                                                      require('./../api/models/seminar.js').getCurrentPeriod);
+    app.get('/seminarInfo/:seminar',                                                                        require('./../api/models/seminar.js').getSeminarInfo);
     app.get('/getScrplSales/:seminar/:period/:producerID/:categoryID',                                      require('./../api/models/SCR_consolidatedProfitAndLoss.js').getScrplSales);
     
     app.get('/getRcrplSales/:seminar/:period/:retailerID/:categoryID/:marketID',                            require('./../api/models/RCR_consolidatedProfitAndLoss.js').getRcrplSales);

@@ -22,30 +22,38 @@
             <tr>
                 <td></td>
                 <td>
-                    <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                    <p class="text-center">{{Label.getContent('Volume Share')}} (%)</p>
                 </td>
                 <td>
-                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                    <p class="text-center">{{Label.getContent('Change')}} (%)</p>
                 </td>
                 <td>
-                    <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                    <p class="text-center">{{Label.getContent('Volume Share')}} (%)</p>
                 </td>
                 <td>
-                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                    <p class="text-center">{{Label.getContent('Change')}} (%)</p>
                 </td>
                 <td>
-                    <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                    <p class="text-center">{{Label.getContent('Volume Share')}} (%)</p>
                 </td>
                 <td>
-                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                    <p class="text-center">{{Label.getContent('Change')}} (%)</p>
                 </td>
             </tr>
         </thead>
         <tbody>
             <tr ng-show='player1s.length>=1'>
-                <td colspan="9">
+                <td colspan="7">
                     <p>{{Label.getContent('Supplier')}} 1</p>
                 </td>
+            </tr>
+            <tr ng-show='player1s.length>=1'>
+                <td style='background-color:{{nameColor}}'>
+                    <p>{{Label.getContent('Total')}}</p>
+                </td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
             </tr>
             <tr ng-repeat='player in player1s'>
                 <td style='background-color:{{nameColor}}'>
@@ -71,9 +79,17 @@
                 </td>
             </tr>
             <tr ng-show='player2s.length>=1'>
-                <td colspan="9">
+                <td colspan="7">
                     <p>{{Label.getContent('Supplier')}} 2</p>
                 </td>
+            </tr>
+            <tr ng-show='player2s.length>=1'>
+                <td style='background-color:{{nameColor}}'>
+                    <p>{{Label.getContent('Total')}}</p>
+                </td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
             </tr>
             <tr ng-repeat='player in player2s'>
                 <td style='background-color:{{nameColor}}'>
@@ -99,9 +115,17 @@
                 </td>
             </tr>
             <tr ng-show='player3s.length>=1'>
-                <td colspan="9">
+                <td colspan="7">
                     <p>{{Label.getContent('Supplier')}} 3</p>
                 </td>
+            </tr>
+            <tr ng-show='player3s.length>=1'>
+                <td style='background-color:{{nameColor}}'>
+                    <p>{{Label.getContent('Total')}}</p>
+                </td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
             </tr>
             <tr ng-repeat='player in player3s'>
                 <td style='background-color:{{nameColor}}'>
@@ -127,9 +151,17 @@
                 </td>
             </tr>
             <tr ng-show='player5s.length>=1'>
-                <td colspan="9">
+                <td colspan="7">
                     <p>{{Label.getContent('Retailer')}} 1</p>
                 </td>
+            </tr>
+            <tr ng-show='player5s.length>=1'>
+                <td style='background-color:{{nameColor}}'>
+                    <p>{{Label.getContent('Total')}}</p>
+                </td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
             </tr>
             <tr ng-repeat='player in player5s'>
                 <td style='background-color:{{nameColor}}'>
@@ -155,9 +187,17 @@
                 </td>
             </tr>
             <tr ng-show='player6s.length>=1'>
-                <td colspan="9">
+                <td colspan="7">
                     <p>{{Label.getContent('Retailer')}} 2</p>
                 </td>
+            </tr>
+            <tr ng-show='player6s.length>=1'>
+                <td style='background-color:{{nameColor}}'>
+                    <p>{{Label.getContent('Total')}}</p>
+                </td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
             </tr>
             <tr ng-repeat='player in player6s'>
                 <td style='background-color:{{nameColor}}'>
@@ -197,28 +237,36 @@
             <tr>
                 <td></td>
                 <td>
-                    <p class="text-center">{{Label.getContent('Value Share')}}</p>
+                    <p class="text-center">{{Label.getContent('Value Share')}} (%)</p>
                 </td>
                 <td>
-                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                    <p class="text-center">{{Label.getContent('Change')}} (%)</p>
                 </td>
                 <td>
-                    <p class="text-center">{{Label.getContent('Value Share')}}</p>
+                    <p class="text-center">{{Label.getContent('Value Share')}} (%)</p>
                 </td>
                 <td>
-                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                    <p class="text-center">{{Label.getContent('Change')}} (%)</p>
                 </td>
                 <td>
-                    <p class="text-center">{{Label.getContent('Value Share')}}</p>
+                    <p class="text-center">{{Label.getContent('Value Share')}} (%)</p>
                 </td>
                 <td>
-                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                    <p class="text-center">{{Label.getContent('Change')}} (%)</p>
                 </td>
             </tr>
             <tr ng-show='player1s.length>=1'>
-                <td colspan="9">
+                <td colspan="7">
                     <p>{{Label.getContent('Supplier')}} 1</p>
                 </td>
+            </tr>
+            <tr ng-show='player1s.length>=1'>
+                <td style='background-color:{{nameColor}}'>
+                    <p>{{Label.getContent('Total')}}</p>
+                </td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
             </tr>
             <tr ng-repeat='player in player1s'>
                 <td style='background-color:{{nameColor}}'>
@@ -244,9 +292,17 @@
                 </td>
             </tr>
             <tr ng-show='player2s.length>=1'>
-                <td colspan="9">
+                <td colspan="7">
                     <p>{{Label.getContent('Supplier')}} 2</p>
                 </td>
+            </tr>
+            <tr ng-show='player2s.length>=1'>
+                <td style='background-color:{{nameColor}}'>
+                    <p>{{Label.getContent('Total')}}</p>
+                </td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
             </tr>
             <tr ng-repeat='player in player2s'>
                 <td style='background-color:{{nameColor}}'>
@@ -272,9 +328,17 @@
                 </td>
             </tr>
             <tr ng-show='player3s.length>=1'>
-                <td colspan="9">
+                <td colspan="7">
                     <p>{{Label.getContent('Supplier')}} 3</p>
                 </td>
+            </tr>
+            <tr ng-show='player3s.length>=1'>
+                <td style='background-color:{{nameColor}}'>
+                    <p>{{Label.getContent('Total')}}</p>
+                </td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
             </tr>
             <tr ng-repeat='player in player3s'>
                 <td style='background-color:{{nameColor}}'>
@@ -300,9 +364,17 @@
                 </td>
             </tr>
             <tr ng-show='player5s.length>=1'>
-                <td colspan="9">
+                <td colspan="7">
                     <p>{{Label.getContent('Retailer')}} 1</p>
                 </td>
+            </tr>
+            <tr ng-show='player5s.length>=1'>
+                <td style='background-color:{{nameColor}}'>
+                    <p>{{Label.getContent('Total')}}</p>
+                </td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
             </tr>
             <tr ng-repeat='player in player5s'>
                 <td style='background-color:{{nameColor}}'>
@@ -328,9 +400,17 @@
                 </td>
             </tr>
             <tr ng-show='player6s.length>=1'>
-                <td colspan="9">
+                <td colspan="7">
                     <p>{{Label.getContent('Retailer')}} 2</p>
                 </td>
+            </tr>
+            <tr ng-show='player6s.length>=1'>
+                <td style='background-color:{{nameColor}}'>
+                    <p>{{Label.getContent('Total')}}</p>
+                </td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
             </tr>
             <tr ng-repeat='player in player6s'>
                 <td style='background-color:{{nameColor}}'>

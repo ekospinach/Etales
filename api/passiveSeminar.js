@@ -31,7 +31,7 @@ exports.passiveSeminar = function(io){
 		        io.sockets.emit('PassiveProcessLog', { msg: result.msg, isError: false });			
 				options.producerID = '3';
 				return require('./models/producerDecision.js').exportToBinary(options);
-			}).then(function(result){
+			}).then(function(result){				
 		        io.sockets.emit('PassiveProcessLog', { msg: result.msg, isError: false });			
 				options.retailerID = '1';
 				options.cgiPath = conf.cgi.path_retailerDecision;
