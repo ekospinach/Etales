@@ -83,7 +83,9 @@
  	'directives/TE_RD_storeManagement',
  	'directives/TE_RD_marketResearchOrders',
  	'directives/TE_OR_sales',
- 	'directives/TE_OR_marketShares',
+	'directives/TE_OR_marketShares',
+	'directives/TE_OR_profits',
+	'directives/TE_OR_shelfSpaceAllocation',
  	'directives/revealJSWrapper',
  	'angularRoute',
  	'angularXeditable',
@@ -122,11 +124,11 @@
  			editableOptions.theme = 'bs3';
  		}).run(['$rootScope', '$location', 'Auth', '$http','$cookieStore','SeminarInfo','PeriodInfo','PlayerInfo','RoleInfo',
  			function($rootScope, $location, Auth, $http, $cookieStore, SeminarInfo, PeriodInfo, PlayerInfo, RoleInfo) {
- 				$rootScope.loginBody = "bs-docs-home";
- 				$rootScope.loginFooter = "container";
- 				$rootScope.loginCss = "bs-docs-home";
- 				$rootScope.loginLink = "bs-masthead-links";
- 				$rootScope.loginDiv = "";
+ 				// $rootScope.loginBody = "bs-docs-home";
+ 				// $rootScope.loginFooter = "container";
+ 				// $rootScope.loginCss = "bs-docs-home";
+ 				// $rootScope.loginLink = "bs-masthead-links";
+ 				// $rootScope.loginDiv = "";
 
 			    var userRoles = routingConfig.userRoles;
  				var cookiesUserInfo = $cookieStore.get('user') || {

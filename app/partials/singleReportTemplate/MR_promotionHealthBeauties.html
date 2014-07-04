@@ -64,6 +64,233 @@
                     <p class="padding-10">{{Label.getContent('Supplier')}} 1</p>
                 </td>
             </tr>
+            <tr ng-repeat='player in player1s'>
+                <td style='background-color:{{nameColor}}'>
+                    <p class="padding-20">{{player.fullName}}</p>
+                </td>
+                <td class="td-info">
+                    <p class="text-right">{{player.rural1Length=="0.00"?'/':player.rural1Length}}</p>
+                </td>
+                <td class="td-info">
+                    <p class="text-right">{{player.rural1Depth||'/'}}</p>
+                </td>
+                <td class="td-warning">
+                    <p class="text-right">{{player.urban1Length=="0.00"?'/':player.urban1Length}}</p>
+                </td>
+                <td class="td-warning">
+                    <p class="text-right">{{player.urban1Depth||'/'}}</p>
+                </td>
+                <td class="td-info">
+                    <p class="text-right">{{player.rural2Length=="0.00"?'/':player.rural2Length}}</p>
+                </td>
+                <td class="td-info">
+                    <p class="text-right">{{player.rural2Depth||'/'}}</p>
+                </td>
+                <td class="td-warning">
+                    <p class="text-right">{{player.urban2Length=="0.00"?'/':player.urban2Length}}</p>
+                </td>
+                <td class="td-warning">
+                    <p class="text-right">{{player.urban2Depth||'/'}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="9">
+                    <p class="padding-10">{{Label.getContent('Supplier')}} 2</p>
+                </td>
+            </tr>
+            <tr ng-repeat='player in player2s'>
+                <td style='background-color:{{nameColor}}'>
+                    <p class="padding-20">{{player.fullName}}</p>
+                </td>
+                <td class="td-info">
+                    <p class="text-right">{{player.rural1Length=="0.00"?'/':player.rural1Length}}</p>
+                </td>
+                <td class="td-info">
+                    <p class="text-right">{{player.rural1Depth||'/'}}</p>
+                </td>
+                <td class="td-warning">
+                    <p class="text-right">{{player.urban1Length=="0.00"?'/':player.urban1Length}}</p>
+                </td>
+                <td class="td-warning">
+                    <p class="text-right">{{player.urban1Depth||'/'}}</p>
+                </td>
+                <td class="td-info">
+                    <p class="text-right">{{player.rural2Length=="0.00"?'/':player.rural2Length}}</p>
+                </td>
+                <td class="td-info">
+                    <p class="text-right">{{player.rural2Depth||'/'}}</p>
+                </td>
+                <td class="td-warning">
+                    <p class="text-right">{{player.urban2Length=="0.00"?'/':player.urban2Length}}</p>
+                </td>
+                <td class="td-warning">
+                    <p class="text-right">{{player.urban2Depth||'/'}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="9">
+                    <p class="padding-10">{{Label.getContent('Supplier')}} 3</p>
+                </td>
+            </tr>
+            <tr ng-repeat='player in player3s'>
+                <td style='background-color:{{nameColor}}'>
+                    <p class="padding-20">{{player.fullName}}</p>
+                </td>
+                <td class="td-info">
+                    <p class="text-right">{{player.rural1Length=="0.00"?'/':player.rural1Length}}</p>
+                </td>
+                <td class="td-info">
+                    <p class="text-right">{{player.rural1Depth||'/'}}</p>
+                </td>
+                <td class="td-warning">
+                    <p class="text-right">{{player.urban1Length=="0.00"?'/':player.urban1Length}}</p>
+                </td>
+                <td class="td-warning">
+                    <p class="text-right">{{player.urban1Depth||'/'}}</p>
+                </td>
+                <td class="td-info">
+                    <p class="text-right">{{player.rural2Length=="0.00"?'/':player.rural2Length}}</p>
+                </td>
+                <td class="td-info">
+                    <p class="text-right">{{player.rural2Depth||'/'}}</p>
+                </td>
+                <td class="td-warning">
+                    <p class="text-right">{{player.urban2Length=="0.00"?'/':player.urban2Length}}</p>
+                </td>
+                <td class="td-warning">
+                    <p class="text-right">{{player.urban2Depth||'/'}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="9">
+                    <p class="padding-10">{{Label.getContent('Retailer')}} 1</p>
+                </td>
+            </tr>
+            <tr ng-repeat='player in player5s'>
+                <td style='background-color:{{nameColor}}'>
+                    <p class="padding-20">{{player.fullName}}</p>
+                </td>
+                <td class="td-info">
+                    <p class="text-right">{{player.rural1Length=="0.00"?'/':player.rural1Length}}</p>
+                </td>
+                <td class="td-info">
+                    <p class="text-right">{{player.rural1Depth||'/'}}</p>
+                </td>
+                <td class="td-warning">
+                    <p class="text-right">{{player.urban1Length=="0.00"?'/':player.urban1Length}}</p>
+                </td>
+                <td class="td-warning">
+                    <p class="text-right">{{player.urban1Depth||'/'}}</p>
+                </td>
+                <td class="td-info">
+                    <p class="text-right">{{player.rural2Length=="0.00"?'/':player.rural2Length}}</p>
+                </td>
+                <td class="td-info">
+                    <p class="text-right">{{player.rural2Depth||'/'}}</p>
+                </td>
+                <td class="td-warning">
+                    <p class="text-right">{{player.urban2Length=="0.00"?'/':player.urban2Length}}</p>
+                </td>
+                <td class="td-warning">
+                    <p class="text-right">{{player.urban2Depth||'/'}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="9">
+                    <p class="padding-10">{{Label.getContent('Retailer')}} 2</p>
+                </td>
+            </tr>
+            <tr ng-repeat='player in player6s'>
+                <td style='background-color:{{nameColor}}'>
+                    <p class="padding-20">{{player.fullName}}</p>
+                </td>
+                <td class="td-info">
+                    <p class="text-right">{{player.rural1Length=="0.00"?'/':player.rural1Length}}</p>
+                </td>
+                <td class="td-info">
+                    <p class="text-right">{{player.rural1Depth||'/'}}</p>
+                </td>
+                <td class="td-warning">
+                    <p class="text-right">{{player.urban1Length=="0.00"?'/':player.urban1Length}}</p>
+                </td>
+                <td class="td-warning">
+                    <p class="text-right">{{player.urban1Depth||'/'}}</p>
+                </td>
+                <td class="td-info">
+                    <p class="text-right">{{player.rural2Length=="0.00"?'/':player.rural2Length}}</p>
+                </td>
+                <td class="td-info">
+                    <p class="text-right">{{player.rural2Depth||'/'}}</p>
+                </td>
+                <td class="td-warning">
+                    <p class="text-right">{{player.urban2Length=="0.00"?'/':player.urban2Length}}</p>
+                </td>
+                <td class="td-warning">
+                    <p class="text-right">{{player.urban2Depth||'/'}}</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- <table class="table table-condensed table-bordered table-danger">
+        <thead>
+            <tr>
+                <th></th>
+                <th colspan="4">
+                    <p class="text-center">{{Label.getContent('Retailer')}} 1</p>
+                </th>
+                <th colspan="4">
+                    <p class="text-center">{{Label.getContent('Retailer')}} 2</p>
+                </th>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2">
+                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                </td>
+                <td colspan="2">
+                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                </td>
+                <td colspan="2">
+                    <p class="text-center">{{Label.getContent('Rural')}}</p>
+                </td>
+                <td colspan="2">
+                    <p class="text-center">{{Label.getContent('Urban')}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Length')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Depth')}}</p>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="9">
+                    <p class="padding-10">{{Label.getContent('Supplier')}} 1</p>
+                </td>
+            </tr>
             <tr ng-repeat='player1 in player1s'>
                 <td style='background-color:{{nameColor}}'>
                     <p class="padding-20">{{player1.fullName}}</p>
@@ -230,5 +457,5 @@
                 </td>
             </tr>
         </tbody>
-    </table>
+    </table> -->
 </div>

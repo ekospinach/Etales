@@ -30,121 +30,37 @@ var profitsCtrl=function($scope,$http){
             method:'GET',
             url:url
         }).then(function(data){
-            var currentOperatingProfits=new Array({
-                name:'Supplier-1',
-                data:new Array(),
-                color:'#3257A7'
-            },{
-                name:'Supplier-2',
-                data:new Array(),
-                color:'#B11E22'
-            },{
-                name:'Supplier-3',
-                data:new Array(),
-                color:'#F6B920'
-            },{
-                name:'Retailer-1',
-                data:new Array(),
-                color:'#8B288B'
-            },{
-                name:'Retailer-2',
-                data:new Array(),
-                color:'#F05422'
-            });
-            var currentNetProfitMargins=new Array({
-                name:'Supplier-1',
-                data:new Array(),
-                color:'#3257A7'
-            },{
-                name:'Supplier-2',
-                data:new Array(),
-                color:'#B11E22'
-            },{
-                name:'Supplier-3',
-                data:new Array(),
-                color:'#F6B920'
-            },{
-                name:'Retailer-1',
-                data:new Array(),
-                color:'#8B288B'
-            },{
-                name:'Retailer-2',
-                data:new Array(),
-                color:'#F05422'
-            });
-            var previousOperatingProfits=new Array({
-                name:'Supplier-1',
-                data:new Array(),
-                color:'#3257A7'
-            },{
-                name:'Supplier-2',
-                data:new Array(),
-                color:'#B11E22'
-            },{
-                name:'Supplier-3',
-                data:new Array(),
-                color:'#F6B920'
-            },{
-                name:'Retailer-1',
-                data:new Array(),
-                color:'#8B288B'
-            },{
-                name:'Retailer-2',
-                data:new Array(),
-                color:'#F05422'
-            });
-            var previousNetProfitMargins=new Array({
-                name:'Supplier-1',
-                data:new Array(),
-                color:'#3257A7'
-            },{
-                name:'Supplier-2',
-                data:new Array(),
-                color:'#B11E22'
-            },{
-                name:'Supplier-3',
-                data:new Array(),
-                color:'#F6B920'
-            },{
-                name:'Retailer-1',
-                data:new Array(),
-                color:'#8B288B'
-            },{
-                name:'Retailer-2',
-                data:new Array(),
-                color:'#F05422'
-            });
-            
-
+            var currentOperatingProfits=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
+            var currentOperatingProfitMargins=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
+            var currentNetProfits=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
+            var currentNetProfitMargins=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
+            var previousOperatingProfits=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
+            var previousOperatingProfitMargins=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
+            var previousNetProfits=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
+            var previousNetProfitMargins=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
             for(var j=0;j<currentCategories.length;j++){
                 for(var i=0;i<data.data.f_OperatingProfit.length;i++){
                     if(data.data.f_OperatingProfit[i].period==currentCategories[j]){
-                        switch(data.data.f_OperatingProfit[i].actorID){
-                            case 1:
-                            if(data.data.f_OperatingProfit[i].categoryID==3){
-                                currentOperatingProfits[0].data.push(data.data.f_OperatingProfit[i].value);
-                            }
-                            break;
-                            case 2:
-                            if(data.data.f_OperatingProfit[i].categoryID==3){
-                                currentOperatingProfits[1].data.push(data.data.f_OperatingProfit[i].value);
-                            }
-                            break;
-                            case 3:
-                            if(data.data.f_OperatingProfit[i].categoryID==3){
-                                currentOperatingProfits[2].data.push(data.data.f_OperatingProfit[i].value);
-                            }
-                            break;
-                            case 4:
-                            if(data.data.f_OperatingProfit[i].categoryID==3){
-                                currentOperatingProfits[3].data.push(data.data.f_OperatingProfit[i].value);
-                            }
-                            break;
-                            case 5:
-                            if(data.data.f_OperatingProfit[i].categoryID==3){
-                                currentOperatingProfits[4].data.push(data.data.f_OperatingProfit[i].value);
-                            }
-                            break;
+                        if(data.data.f_OperatingProfit[i].categoryID==3){
+                            currentOperatingProfits[data.data.f_OperatingProfit[i].actorID-1].data.push(data.data.f_OperatingProfit[i].value);
+                        }
+                    }
+                }
+            }
+            for(var j=0;j<currentCategories.length;j++){
+                for(var i=0;i<data.data.f_OperatingProfitMargin.length;i++){
+                    if(data.data.f_OperatingProfitMargin[i].period==currentCategories[j]){
+                       if(data.data.f_OperatingProfitMargin[i].categoryID==3){
+                            currentOperatingProfitMargins[data.data.f_OperatingProfitMargin[i].actorID-1].data.push(data.data.f_OperatingProfitMargin[i].value);
+                        }
+                    }
+                }
+            }
+            for(var j=0;j<currentCategories.length;j++){
+                for(var i=0;i<data.data.f_NetProfit.length;i++){
+                    if(data.data.f_NetProfit[i].period==currentCategories[j]){
+                        if(data.data.f_NetProfit[i].categoryID==3){
+                            currentNetProfits[data.data.f_NetProfit[i].actorID-1].data.push(data.data.f_NetProfit[i].value);
                         }
                     }
                 }
@@ -152,65 +68,36 @@ var profitsCtrl=function($scope,$http){
             for(var j=0;j<currentCategories.length;j++){
                 for(var i=0;i<data.data.f_NetProfitMargin.length;i++){
                     if(data.data.f_NetProfitMargin[i].period==currentCategories[j]){
-                        switch(data.data.f_NetProfitMargin[i].actorID){
-                            case 1:
-                            if(data.data.f_NetProfitMargin[i].categoryID==3){
-                                currentNetProfitMargins[0].data.push(data.data.f_NetProfitMargin[i].value);
-                            }
-                            break;
-                            case 2:
-                            if(data.data.f_NetProfitMargin[i].categoryID==3){
-                                currentNetProfitMargins[1].data.push(data.data.f_NetProfitMargin[i].value);
-                            }
-                            break;
-                            case 3:
-                            if(data.data.f_NetProfitMargin[i].categoryID==3){
-                                currentNetProfitMargins[2].data.push(data.data.f_NetProfitMargin[i].value);
-                            }
-                            break;
-                            case 4:
-                            if(data.data.f_NetProfitMargin[i].categoryID==3){
-                                currentNetProfitMargins[3].data.push(data.data.f_NetProfitMargin[i].value);
-                            }
-                            break;
-                            case 5:
-                            if(data.data.f_NetProfitMargin[i].categoryID==3){
-                                currentNetProfitMargins[4].data.push(data.data.f_NetProfitMargin[i].value);
-                            }
-                            break;
+                        if(data.data.f_NetProfitMargin[i].categoryID==3){
+                            currentNetProfitMargins[data.data.f_NetProfitMargin[i].actorID-1].data.push(data.data.f_NetProfitMargin[i].value);
+                        }
+                    }
+                }
+            }
+
+            for(var j=0;j<previousCategories.length;j++){
+                for(var i=0;i<data.data.f_OperatingProfit.length;i++){
+                    if(data.data.f_OperatingProfit[i].period==previousCategories[j]){
+                        if(data.data.f_OperatingProfit[i].categoryID==3){
+                            previousOperatingProfits[data.data.f_OperatingProfit[i].actorID-1].data.push(data.data.f_OperatingProfit[i].value);
                         }
                     }
                 }
             }
             for(var j=0;j<previousCategories.length;j++){
-                for(var i=0;i<data.data.f_OperatingProfit.length;i++){
-                    if(data.data.f_OperatingProfit[i].period==previousCategories[j]){
-                        switch(data.data.f_OperatingProfit[i].actorID){
-                            case 1:
-                            if(data.data.f_OperatingProfit[i].categoryID==3){
-                                previousOperatingProfits[0].data.push(data.data.f_OperatingProfit[i].value);
-                            }
-                            break;
-                            case 2:
-                            if(data.data.f_OperatingProfit[i].categoryID==3){
-                                previousOperatingProfits[1].data.push(data.data.f_OperatingProfit[i].value);
-                            }
-                            break;
-                            case 3:
-                            if(data.data.f_OperatingProfit[i].categoryID==3){
-                                previousOperatingProfits[2].data.push(data.data.f_OperatingProfit[i].value);
-                            }
-                            break;
-                            case 4:
-                            if(data.data.f_OperatingProfit[i].categoryID==3){
-                                previousOperatingProfits[3].data.push(data.data.f_OperatingProfit[i].value);
-                            }
-                            break;
-                            case 5:
-                            if(data.data.f_OperatingProfit[i].categoryID==3){
-                                previousOperatingProfits[4].data.push(data.data.f_OperatingProfit[i].value);
-                            }
-                            break;
+                for(var i=0;i<data.data.f_OperatingProfitMargin.length;i++){
+                    if(data.data.f_OperatingProfitMargin[i].period==previousCategories[j]){
+                        if(data.data.f_OperatingProfitMargin[i].categoryID==3){
+                            previousOperatingProfitMargins[data.data.f_OperatingProfitMargin[i].actorID-1].data.push(data.data.f_OperatingProfitMargin[i].value);
+                        }
+                    }
+                }
+            }
+            for(var j=0;j<previousCategories.length;j++){
+                for(var i=0;i<data.data.f_NetProfit.length;i++){
+                    if(data.data.f_NetProfit[i].period==previousCategories[j]){
+                        if(data.data.f_NetProfit[i].categoryID==3){
+                            previousNetProfits[data.data.f_NetProfit[i].actorID-1].data.push(data.data.f_NetProfit[i].value);
                         }
                     }
                 }
@@ -218,32 +105,8 @@ var profitsCtrl=function($scope,$http){
             for(var j=0;j<previousCategories.length;j++){
                 for(var i=0;i<data.data.f_NetProfitMargin.length;i++){
                     if(data.data.f_NetProfitMargin[i].period==previousCategories[j]){
-                        switch(data.data.f_NetProfitMargin[i].actorID){
-                            case 1:
-                            if(data.data.f_NetProfitMargin[i].categoryID==3){
-                                previousNetProfitMargins[0].data.push(data.data.f_NetProfitMargin[i].value);
-                            }
-                            break;
-                            case 2:
-                            if(data.data.f_NetProfitMargin[i].categoryID==3){
-                                previousNetProfitMargins[1].data.push(data.data.f_NetProfitMargin[i].value);
-                            }
-                            break;
-                            case 3:
-                            if(data.data.f_NetProfitMargin[i].categoryID==3){
-                                previousNetProfitMargins[2].data.push(data.data.f_NetProfitMargin[i].value);
-                            }
-                            break;
-                            case 4:
-                            if(data.data.f_NetProfitMargin[i].categoryID==3){
-                                previousNetProfitMargins[3].data.push(data.data.f_NetProfitMargin[i].value);
-                            }
-                            break;
-                            case 5:
-                            if(data.data.f_NetProfitMargin[i].categoryID==3){
-                                previousNetProfitMargins[4].data.push(data.data.f_NetProfitMargin[i].value);
-                            }
-                            break;
+                        if(data.data.f_NetProfitMargin[i].categoryID==3){
+                            previousNetProfitMargins[data.data.f_NetProfitMargin[i].actorID-1].data.push(data.data.f_NetProfitMargin[i].value);
                         }
                     }
                 }
@@ -284,6 +147,76 @@ var profitsCtrl=function($scope,$http){
                 series: previousOperatingProfits,
                 loading: false
             }
+            $scope.previousOperatingProfitMargins = {
+                options: {
+                    title:{
+                        text:'Operating Profit Margins',
+                    },
+                    chart: {
+                        type: 'line',
+                        backgroundColor: 'transparent',
+                    },
+                    yAxis: {
+                        title: {
+                            text: '$mln'
+                        }
+                    },
+                    xAxis: {
+                        categories: previousCategories,
+                        title: {
+                            text: 'Period'
+                        }
+                    },
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">$mln:'+this.point.y.toFixed(2)+'</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
+                    }
+                },
+                series: previousOperatingProfitMargins,
+                loading: false
+            }
+            $scope.previousNetProfits = {
+                options: {
+                    title:{
+                        text:'Net Profits',
+                    },
+                    chart: {
+                        type: 'line',
+                        backgroundColor: 'transparent',
+                    },
+                    yAxis: {
+                        title: {
+                            text: '%'
+                        }
+                    },
+                    xAxis: {
+                        categories: previousCategories,
+                        title: {
+                            text: 'Period'
+                        }
+                    },
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
+                    }
+                },
+                series: previousNetProfits,
+                loading: false
+            }
             $scope.previousNetProfitMargins = {
                 options: {
                     title:{
@@ -319,6 +252,8 @@ var profitsCtrl=function($scope,$http){
                 series: previousNetProfitMargins,
                 loading: false
             }
+            
+
             $scope.currentOperatingProfits = {
                 options: {
                     title:{
@@ -352,6 +287,76 @@ var profitsCtrl=function($scope,$http){
                     }
                 },
                 series: currentOperatingProfits,
+                loading: false
+            }
+            $scope.currentOperatingProfitMargins = {
+                options: {
+                    title:{
+                        text:'Operating Profit Margins',
+                    },
+                    chart: {
+                        type: 'line',
+                        backgroundColor: 'transparent',
+                    },
+                    yAxis: {
+                        title: {
+                            text: '$mln'
+                        }
+                    },
+                    xAxis: {
+                        categories: currentCategories,
+                        title: {
+                            text: 'Period'
+                        }
+                    },
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">$mln:'+this.point.y.toFixed(2)+'</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
+                    }
+                },
+                series: currentOperatingProfitMargins,
+                loading: false
+            }
+            $scope.currentNetProfits = {
+                options: {
+                    title:{
+                        text:'Net Profits',
+                    },
+                    chart: {
+                        type: 'line',
+                        backgroundColor: 'transparent',
+                    },
+                    yAxis: {
+                        title: {
+                            text: '%'
+                        }
+                    },
+                    xAxis: {
+                        categories: currentCategories,
+                        title: {
+                            text: 'Period'
+                        }
+                    },
+                    tooltip: {
+                        formatter: function() {
+                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%</p>';
+                            return s;
+                        },
+                        shared: false,
+                        useHTML: true
+                    },
+                    credits: {
+                        enabled: false
+                    }
+                },
+                series: currentNetProfits,
                 loading: false
             }
             $scope.currentNetProfitMargins = {
@@ -389,6 +394,7 @@ var profitsCtrl=function($scope,$http){
                 series: currentNetProfitMargins,
                 loading: false
             }
+            
 
 
         });

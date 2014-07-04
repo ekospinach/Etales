@@ -1,11 +1,7 @@
 define(['app','socketIO','routingConfig','bootstrap'], function(app) {
 
 	app.controller('testCtrl',['$scope', '$http','$location', 'ProducerDecisionBase','$rootScope','Auth','Label', function($scope, $http,$location, ProducerDecisionBase,$rootScope,Auth,Label,WizardHandler) {
-		// You can access the scope of the controller from here
-			$rootScope.loginCss="";
-		    $rootScope.loginFooter="bs-footer";
-		    $rootScope.loginLink="footer-links";
-		    $rootScope.loginDiv="container";		
+		// You can access the scope of the controller from here		
 		var userRoles = routingConfig.userRoles;
 
 		var socket = io.connect('http://localhost');

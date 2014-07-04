@@ -19,12 +19,11 @@
 		<link rel="stylesheet" type="text/css" media="all" href="css/docs.css" />
 		<link rel="stylesheet" type="text/css" media="all" href="css/spinner.css" />
 	</head>
-	<body class="bs-docs-home" ng-class="loginCss" ng-controller="NavbarCtrl">
+	<body class="bs-docs-home" ng-class="pageBody" ng-controller="NavbarCtrl" load-end>
 
 		<div access-level='{{accessLevels.playerView}}'>
-			<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" id="pageheader" role="banner" style="display:none">
-
-				<div class="container">											
+			<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav hide" id="pageheader" role="banner" ng-class="pageHeader">
+				<div class="container">
 					<div class="navbar-header">
 						<a href="/#/home" style="float: left; padding: 13px 15px; margin-left: -15px;">
 							<img src="img/eTalesSMALLlogo.png">
@@ -42,9 +41,6 @@
 									<b class="caret"></b>	
 								</a>
 						        <ul class="dropdown-menu">
-<!-- 									<li class="" access-level='{{accessLevels.PandRView}}' active-nav>
-										<a href="/#/generalReport">{{Label.getContent('General Report')}}</a>
-									</li> -->
 
 									<li class="" access-level='{{accessLevels.playerView}}' active-nav>
 										<a href="/#/overviewReport">{{Label.getContent('Overview')}}</a>
@@ -53,19 +49,11 @@
 									<li class="" access-level='{{accessLevels.playerView}}' active-nav>
 										<a href="/#/facilitatorGeneralReport">{{Label.getContent('General Report')}}</a>
 									</li>									
-<!-- 
-									<li class="" access-level='{{accessLevels.playerView}}' active-nav>
-					          			<a href="/#/facilitatorConfidentialReport">{{Label.getContent('Confidential Report')}}</a>
-					          		</li>   -->   
+
 					          		<li access-level='{{accessLevels.playerView}}' active-nav>
 					          			<a href="/#/facilitatorConfidentialReport">{{Label.getContent('Confidential Report')}}</a>
 					          		</li>
 
-<!-- 					          		<li class=" " access-level='{{accessLevels.PandRView}}' active-nav>
-					          			<a href="/#/marketReport">
-					          				{{Label.getContent('Market Report')}}
-					          			</a>
-					          		</li> -->
 					          		<li class=" " access-level='{{accessLevels.playerView}}' active-nav>
 					          			<a href="/#/facilitatorMarketReport">
 					          				{{Label.getContent('Market Report')}}
@@ -79,12 +67,6 @@
 			          			<a href="/#/contract">{{Label.getContent('Negotiation')}}</a>
 			          		</li>
 
-<!-- 			          		<li class="{{decisionActive}}" access-level='{{accessLevels.producerViewOnly}}' active-nav>
-			          			<a href="/#/supplierDecision">{{Label.getContent('Make Decision')}}</a>
-			          		</li>
-			          		<li access-level='{{accessLevels.retailerViewOnly}}' active-nav>
-			          			<a href="/#/retailerDecision">{{Label.getContent('Make Decision')}}</a>
-			          		</li> -->
 			          		<li access-level='{{accessLevels.playerView}}' active-nav>
 			          			<a href="/#/facilitatorDecision">{{Label.getContent('Make Decision')}}
 			          			</a>
@@ -103,10 +85,10 @@
 
 					    <ul class="nav navbar-nav navbar-right" data-access-level="{{ accessLevels.playerView }}">  
 					        <li id="userInfo"  class="dropdown">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
-										<strong>{{Label.getContent(getRoleNormal(user.role))}}  {{user.roleID}}</strong>
-										<b class="caret"></b>
-									</a>
+					        	<a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
+									<strong>{{Label.getContent(getRoleNormal(user.role))}}  {{user.roleID}}</strong>
+									<b class="caret"></b>
+								</a>
 						        <ul class="dropdown-menu">			          
 						          <li role="presentation" class="dropdown-header">{{seminar}}, {{Label.getContent('Period')}} {{currentPeriod}} of {{span}}</li>
 						          <li><a ng-click="Label.changeLanguage('ENG')">English</a></li>					       
@@ -123,18 +105,17 @@
 				</div>
 			</header>
 		</div>
-		<div ng-view>	    	
-	    </div>
-	    <footer class="{{loginFooter}}" role="contentinfo" id="pagefooter" style="display:none;text-align:center;margin:20px auto;">
+		<div ng-view></div>
+	    <footer role="contentinfo" id="pagefooter" style="text-align:center;margin:20px auto;" class="bs-footer hide" ng-class="pageFooter">
 	    	<img src="img/eTalesLandingpageHCDLOGO.png">
 		</footer>
 
-	    <div class="watpl-container" id="pageloader">	    	
+	    <div class="watpl-container" id="pageloader" ng-class="pageLoader">	    	
 	    	<div class="container-fluid">
-<!-- 		    	<h3 id="loading-status" class="loading-status">Loading</h3>	 -->
-				<div class='loader' style="margin:150px auto;"><p id="loading-module-name" class="loading-module-name"></p></div>
-				
-	 			<p id="loading-module-name" class="loading-module-name"></p>
+				<div class='loader' style="margin:150px auto;">
+					<p id="loading-module-name" class="loading-module-name"></p>
+				</div>
+	 			<!--<p id="loading-module-name" class="loading-module-name"></p>-->
 	    	</div>
 	    </div>
 

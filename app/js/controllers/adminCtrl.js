@@ -1,10 +1,6 @@
 define(['app','socketIO'], function(app) {
 
 	app.controller('adminCtrl',['$scope', '$http','$rootScope','EditSeminarInfo','$location','$modal','Label', function($scope, $http,$rootScope, EditSeminarInfo, $location,$modal,Label) {
-		$rootScope.loginCss="";
-	    $rootScope.loginFooter="bs-footer";
-	    $rootScope.loginLink="footer-links";
-	    $rootScope.loginDiv="container";
 
 		var initializePage = function(){
 			$http.get('/seminarList').success(function(data){

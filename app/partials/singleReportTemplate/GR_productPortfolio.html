@@ -26,10 +26,10 @@
         <tbody>
             <!--E-->
             <tr class="success">
-                <th colspan="5">{{Label.getContent('Elecssories')}}</th>
+                <th colspan="6">{{Label.getContent('Elecssories')}}</th>
             </tr>
             <tr class="success">
-                <td colspan="5">
+                <td colspan="6">
                     <p class="padding-20">{{Label.getContent('Producer')}} 1</p>
                 </td>
             </tr>
@@ -38,7 +38,7 @@
                     <p class="padding-40">{{producer.parentBrandName+producer.varName}}</p>
                 </td>
                 <td>
-                    <p class="text-center">{{producer.packFormat}}</p>
+                    <p class="text-center">{{Label.getContent(producer.packFormat)}}</p>
                 </td>
                 <td>
                     <p class="text-right">{{producer.vc_composition[1]}}</p>
@@ -49,9 +49,13 @@
                 <td>
                     <p class="text-right">{{producer.vc_composition[2]}}</p>
                 </td>
+                <td>
+                    <p class="text-right">{{producer.bmListPrice.toFixed(2)=="0.00"?0:producer.bmListPrice.toFixed(2)}}</p>
+                </td>
+                
             </tr>
             <tr class="success">
-                <td colspan="5">
+                <td colspan="6">
                     <p class="padding-20">{{Label.getContent('Producer')}} 2</p>
                 </td>
             </tr>
@@ -60,7 +64,7 @@
                     <p class="padding-40">{{producer.parentBrandName+producer.varName}}</p>
                 </td>
                 <td>
-                    <p class="text-center">{{producer.packFormat}}</p>
+                    <p class="text-center">{{Label.getContent(producer.packFormat)}}</p>
                 </td>
                 <td>
                     <p class="text-right">{{producer.vc_composition[1]}}</p>
@@ -71,9 +75,12 @@
                 <td>
                     <p class="text-right">{{producer.vc_composition[2]}}</p>
                 </td>
+                <td>
+                    <p class="text-right">{{producer.bmListPrice.toFixed(2)=="0.00"?0:producer.bmListPrice.toFixed(2)}}</p>
+                </td>
             </tr>
             <tr class="success">
-                <td colspan="5">
+                <td colspan="6">
                     <p class="padding-20">{{Label.getContent('Producer')}} 3</p>
                 </td>
             </tr>
@@ -82,7 +89,7 @@
                     <p class="padding-40">{{producer.parentBrandName+producer.varName}}</p>
                 </td>
                 <td>
-                    <p class="text-center">{{producer.packFormat}}</p>
+                    <p class="text-center">{{Label.getContent(producer.packFormat)}}</p>
                 </td>
                 <td>
                     <p class="text-right">{{producer.vc_composition[1]}}</p>
@@ -93,9 +100,12 @@
                 <td>
                     <p class="text-right">{{producer.vc_composition[2]}}</p>
                 </td>
+                <td>
+                    <p class="text-right">{{producer.bmListPrice.toFixed(2)=="0.00"?0:producer.bmListPrice.toFixed(2)}}</p>
+                </td>
             </tr>
             <tr class="success">
-                <td colspan="5">
+                <td colspan="6">
                     <p class="padding-20">{{Label.getContent('Retailer')}} 1</p>
                 </td>
             </tr>
@@ -104,7 +114,7 @@
                     <p class="padding-40">{{retailer.parentBrandName+retailer.varName}}</p>
                 </td>
                 <td>
-                    <p class="text-center">{{retailer.packFormat}}</p>
+                    <p class="text-center">{{Label.getContent(retailer.packFormat)}}</p>
                 </td>
                 <td>
                     <p class="text-right">{{retailer.vc_composition[1]}}</p>
@@ -115,9 +125,12 @@
                 <td>
                     <p class="text-right">{{retailer.vc_composition[2]}}</p>
                 </td>
+                <td>
+                    <p class="text-right">{{retailer.bmListPrice.toFixed(2)=="0.00"?0:retailer.bmListPrice.toFixed(2)}}</p>
+                </td>
             </tr>
             <tr class="success">
-                <td colspan="5">
+                <td colspan="6">
                     <p class="padding-20">{{Label.getContent('Retailer')}} 2</p>
                 </td>
             </tr>
@@ -126,7 +139,7 @@
                     <p class="padding-40">{{retailer.parentBrandName+retailer.varName}}</p>
                 </td>
                 <td>
-                    <p class="text-center">{{retailer.packFormat}}</p>
+                    <p class="text-center">{{Label.getContent(retailer.packFormat)}}</p>
                 </td>
                 <td>
                     <p class="text-right">{{retailer.vc_composition[1]}}</p>
@@ -136,6 +149,9 @@
                 </td>
                 <td>
                     <p class="text-right">{{retailer.vc_composition[2]}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{retailer.bmListPrice.toFixed(2)=="0.00"?0:retailer.bmListPrice.toFixed(2)}}</p>
                 </td>
             </tr>
             <!--H-->
@@ -158,10 +174,10 @@
                 </th>
             </tr>
             <tr class="danger">
-                <th colspan="5">{{Label.getContent('HealthBeauties')}}</th>
+                <th colspan="6">{{Label.getContent('HealthBeauties')}}</th>
             </tr>
             <tr class="danger">
-                <td colspan="5">
+                <td colspan="6">
                     <p class="padding-20">{{Label.getContent('Producer')}} 1</p>
                 </td>
             </tr>
@@ -170,7 +186,7 @@
                     <p class="padding-40">{{producer.parentBrandName+producer.varName}}</p>
                 </td>
                 <td>
-                    <p class="text-center">{{producer.packFormat}}</p>
+                    <p class="text-center">{{Label.getContent(producer.packFormat)}}</p>
                 </td>
                 <td>
                     <p class="text-right">{{producer.vc_composition[1]}}</p>
@@ -181,9 +197,12 @@
                 <td>
                     <p class="text-right">{{producer.vc_composition[2]}}</p>
                 </td>
+                <td>
+                    <p class="text-right">{{producer.bmListPrice.toFixed(2)=="0.00"?0:producer.bmListPrice.toFixed(2)}}</p>
+                </td>
             </tr>
             <tr class="danger">
-                <td colspan="5">
+                <td colspan="6">
                     <p class="padding-20">{{Label.getContent('Producer')}} 2</p>
                 </td>
             </tr>
@@ -192,7 +211,7 @@
                     <p class="padding-40">{{producer.parentBrandName+producer.varName}}</p>
                 </td>
                 <td>
-                    <p class="text-center">{{producer.packFormat}}</p>
+                    <p class="text-center">{{Label.getContent(producer.packFormat)}}</p>
                 </td>
                 <td>
                     <p class="text-right">{{producer.vc_composition[1]}}</p>
@@ -203,9 +222,12 @@
                 <td>
                     <p class="text-right">{{producer.vc_composition[2]}}</p>
                 </td>
+                <td>
+                    <p class="text-right">{{producer.bmListPrice.toFixed(2)=="0.00"?0:producer.bmListPrice.toFixed(2)}}</p>
+                </td>
             </tr>
             <tr class="danger">
-                <td colspan="5">
+                <td colspan="6">
                     <p class="padding-20">{{Label.getContent('Producer')}} 3</p>
                 </td>
             </tr>
@@ -214,7 +236,7 @@
                     <p class="padding-40">{{producer.parentBrandName+producer.varName}}</p>
                 </td>
                 <td>
-                    <p class="text-center">{{producer.packFormat}}</p>
+                    <p class="text-center">{{Label.getContent(producer.packFormat)}}</p>
                 </td>
                 <td>
                     <p class="text-right">{{producer.vc_composition[1]}}</p>
@@ -225,9 +247,12 @@
                 <td>
                     <p class="text-right">{{producer.vc_composition[2]}}</p>
                 </td>
+                <td>
+                    <p class="text-right">{{producer.bmListPrice.toFixed(2)=="0.00"?0:producer.bmListPrice.toFixed(2)}}</p>
+                </td>
             </tr>
             <tr class="danger">
-                <td colspan="5">
+                <td colspan="6">
                     <p class="padding-20">{{Label.getContent('Retailer')}} 1</p>
                 </td>
             </tr>
@@ -236,7 +261,7 @@
                     <p class="padding-40">{{retailer.parentBrandName+retailer.varName}}</p>
                 </td>
                 <td>
-                    <p class="text-center">{{retailer.packFormat}}</p>
+                    <p class="text-center">{{Label.getContent(retailer.packFormat)}}</p>
                 </td>
                 <td>
                     <p class="text-right">{{retailer.vc_composition[1]}}</p>
@@ -247,9 +272,13 @@
                 <td>
                     <p class="text-right">{{retailer.vc_composition[2]}}</p>
                 </td>
+                <td>
+                    <p class="text-right">{{retailer.bmListPrice.toFixed(2)=="0.00"?0:retailer.bmListPrice.toFixed(2)}}</p>
+                </td>
+                
             </tr>
             <tr class="danger">
-                <td colspan="5">
+                <td colspan="6">
                     <p class="padding-20">{{Label.getContent('Retailer')}} 2</p>
                 </td>
             </tr>
@@ -258,7 +287,7 @@
                     <p class="padding-40">{{retailer.parentBrandName+retailer.varName}}</p>
                 </td>
                 <td>
-                    <p class="text-center">{{retailer.packFormat}}</p>
+                    <p class="text-center">{{Label.getContent(retailer.packFormat)}}</p>
                 </td>
                 <td>
                     <p class="text-right">{{retailer.vc_composition[1]}}</p>
@@ -268,6 +297,9 @@
                 </td>
                 <td>
                     <p class="text-right">{{retailer.vc_composition[2]}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{retailer.bmListPrice.toFixed(2)=="0.00"?0:retailer.bmListPrice.toFixed(2)}}</p>
                 </td>
             </tr>
         </tbody>

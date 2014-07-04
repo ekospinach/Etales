@@ -64,33 +64,33 @@
                     <p class="padding-10">{{Label.getContent('Supplier')}} 1</p>
                 </td>
             </tr>
-            <tr ng-repeat='player1 in player1s'>
+            <tr ng-repeat='player in player1s'>
                 <td style='background-color:{{nameColor}}'>
-                    <p class="padding-20">{{player1.fullName}}</p>
+                    <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player1.rural1Value.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.rural1Value.toFixed(2)=="0.00"?'/':player.rural1Value.toFixed(2)}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player1.rural1ValueChange.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.rural1ValueChange.toFixed(2)=="0.00"?'/':player.rural1ValueChange.toFixed(2)}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player1.urban1Value.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.urban1Value.toFixed(2)=="0.00"?'/':player.urban1Value.toFixed(2)}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player1.urban1ValueChange.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.urban1ValueChange.toFixed(2)=="0.00"?'/':player.urban1ValueChange.toFixed(2)}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player1.rural2Value.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.rural2Value.toFixed(2)=="0.00"?'/':player.rural2Value.toFixed(2)}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player1.rural2ValueChange.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.rural2ValueChange.toFixed(2)=="0.00"?'/':player.rural2ValueChange.toFixed(2)}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player1.urban2Value.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.urban2Value.toFixed(2)=="0.00"?'/':player.urban2Value.toFixed(2)}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player1.urban2ValueChange.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.urban2ValueChange.toFixed(2)=="0.00"?'/':player.urban2ValueChange.toFixed(2)}}</p>
                 </td>
             </tr>
             <tr>
@@ -98,33 +98,33 @@
                     <p class="padding-10">{{Label.getContent('Supplier')}} 2</p>
                 </td>
             </tr>
-            <tr ng-repeat='player2 in player2s'>
+            <tr ng-repeat='player in player2s'>
                 <td style='background-color:{{nameColor}}'>
-                    <p class="padding-20">{{player2.fullName}}</p>
+                    <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player2.rural1Value.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.rural1Value.toFixed(2)=="0.00"?'/':player.rural1Value.toFixed(2)}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player2.rural1ValueChange.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.rural1ValueChange.toFixed(2)=="0.00"?'/':player.rural1ValueChange.toFixed(2)}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player2.urban1Value.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.urban1Value.toFixed(2)=="0.00"?'/':player.urban1Value.toFixed(2)}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player2.urban1ValueChange.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.urban1ValueChange.toFixed(2)=="0.00"?'/':player.urban1ValueChange.toFixed(2)}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player2.rural2Value.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.rural2Value.toFixed(2)=="0.00"?'/':player.rural2Value.toFixed(2)}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player2.rural2ValueChange.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.rural2ValueChange.toFixed(2)=="0.00"?'/':player.rural2ValueChange.toFixed(2)}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player2.urban2Value.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.urban2Value.toFixed(2)=="0.00"?'/':player.urban2Value.toFixed(2)}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player2.urban2ValueChange.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.urban2ValueChange.toFixed(2)=="0.00"?'/':player.urban2ValueChange.toFixed(2)}}</p>
                 </td>
             </tr>
             <tr>
@@ -132,33 +132,33 @@
                     <p class="padding-10">{{Label.getContent('Supplier')}} 3</p>
                 </td>
             </tr>
-            <tr ng-repeat='player3 in player3s'>
+            <tr ng-repeat='player in player3s'>
                 <td style='background-color:{{nameColor}}'>
-                    <p class="padding-20">{{player3.fullName}}</p>
+                    <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player3.rural1Value.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.rural1Value.toFixed(2)=="0.00"?'/':player.rural1Value.toFixed(2)}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player3.rural1ValueChange.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.rural1ValueChange.toFixed(2)=="0.00"?'/':player.rural1ValueChange.toFixed(2)}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player3.urban1Value.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.urban1Value.toFixed(2)=="0.00"?'/':player.urban1Value.toFixed(2)}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player3.urban1ValueChange.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.urban1ValueChange.toFixed(2)=="0.00"?'/':player.urban1ValueChange.toFixed(2)}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player3.rural2Value.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.rural2Value.toFixed(2)=="0.00"?'/':player.rural2Value.toFixed(2)}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player3.rural2ValueChange.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.rural2ValueChange.toFixed(2)=="0.00"?'/':player.rural2ValueChange.toFixed(2)}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player3.urban2Value.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.urban2Value.toFixed(2)=="0.00"?'/':player.urban2Value.toFixed(2)}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player3.urban2ValueChange.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.urban2ValueChange.toFixed(2)=="0.00"?'/':player.urban2ValueChange.toFixed(2)}}</p>
                 </td>
             </tr>
             <tr>
@@ -166,33 +166,33 @@
                     <p class="padding-10">{{Label.getContent('Retailer')}} 1</p>
                 </td>
             </tr>
-            <tr ng-repeat='player5 in player5s'>
+            <tr ng-repeat='player in player5s'>
                 <td style='background-color:{{nameColor}}'>
-                    <p class="padding-20">{{player5.fullName}}</p>
+                    <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player5.rural1Value.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.rural1Value.toFixed(2)=="0.00"?'/':player.rural1Value.toFixed(2)}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player5.rural1ValueChange.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.rural1ValueChange.toFixed(2)=="0.00"?'/':player.rural1ValueChange.toFixed(2)}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player5.urban1Value.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.urban1Value.toFixed(2)=="0.00"?'/':player.urban1Value.toFixed(2)}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player5.urban1ValueChange.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.urban1ValueChange.toFixed(2)=="0.00"?'/':player.urban1ValueChange.toFixed(2)}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player5.rural2Value.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.rural2Value.toFixed(2)=="0.00"?'/':player.rural2Value.toFixed(2)}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player5.rural2ValueChange.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.rural2ValueChange.toFixed(2)=="0.00"?'/':player.rural2ValueChange.toFixed(2)}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player5.urban2Value.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.urban2Value.toFixed(2)=="0.00"?'/':player.urban2Value.toFixed(2)}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player5.urban2ValueChange.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.urban2ValueChange.toFixed(2)=="0.00"?'/':player.urban2ValueChange.toFixed(2)}}</p>
                 </td>
             </tr>
             <tr>
@@ -200,33 +200,33 @@
                     <p class="padding-10">{{Label.getContent('Retailer')}} 1</p>
                 </td>
             </tr>
-            <tr ng-repeat='player6 in player6s'>
+            <tr ng-repeat='player in player6s'>
                 <td style='background-color:{{nameColor}}'>
-                    <p class="padding-20">{{player6.fullName}}</p>
+                    <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player6.rural1Value.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.rural1Value.toFixed(2)=="0.00"?'/':player.rural1Value.toFixed(2)}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player6.rural1ValueChange.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.rural1ValueChange.toFixed(2)=="0.00"?'/':player.rural1ValueChange.toFixed(2)}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player6.urban1Value.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.urban1Value.toFixed(2)=="0.00"?'/':player.urban1Value.toFixed(2)}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player6.urban1ValueChange.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.urban1ValueChange.toFixed(2)=="0.00"?'/':player.urban1ValueChange.toFixed(2)}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player6.rural2Value.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.rural2Value.toFixed(2)=="0.00"?'/':player.rural2Value.toFixed(2)}}</p>
                 </td>
                 <td class="td-info">
-                    <p class="text-right">{{player6.rural2ValueChange.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.rural2ValueChange.toFixed(2)=="0.00"?'/':player.rural2ValueChange.toFixed(2)}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player6.urban2Value.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.urban2Value.toFixed(2)=="0.00"?'/':player.urban2Value.toFixed(2)}}</p>
                 </td>
                 <td class="td-warning">
-                    <p class="text-right">{{player6.urban2ValueChange.toFixed(2)||'/'}}</p>
+                    <p class="text-right">{{player.urban2ValueChange.toFixed(2)=="0.00"?'/':player.urban2ValueChange.toFixed(2)}}</p>
                 </td>
             </tr>
         </tbody>

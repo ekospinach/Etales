@@ -22,165 +22,204 @@
             <tr>
                 <td></td>
                 <td>
-                    <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                    <p class="text-center">{{Label.getContent('Volume Share')}} (%)</p>
                 </td>
                 <td>
-                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                    <p class="text-center">{{Label.getContent('Change')}} (%)</p>
                 </td>
                 <td>
-                    <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                    <p class="text-center">{{Label.getContent('Volume Share')}} (%)</p>
                 </td>
                 <td>
-                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                    <p class="text-center">{{Label.getContent('Change')}} (%)</p>
                 </td>
                 <td>
-                    <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                    <p class="text-center">{{Label.getContent('Volume Share')}} (%)</p>
                 </td>
                 <td>
-                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                    <p class="text-center">{{Label.getContent('Change')}} (%)</p>
                 </td>
             </tr>
         </thead>
         <tbody>
             <tr ng-show='player1s.length>=1'>
-                <td colspan="9">
+                <td colspan="7">
                     <p>{{Label.getContent('Supplier')}} 1</p>
                 </td>
             </tr>
-            <tr ng-repeat='player1 in player1s'>
+            <tr ng-show='player1s.length>=1'>
                 <td style='background-color:{{nameColor}}'>
-                    <p class="padding-20">{{player1.fullName}}</p>
+                    <p>{{Label.getContent('Total')}}</p>
+                </td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+            </tr>
+            <tr ng-repeat='player in player1s'>
+                <td style='background-color:{{nameColor}}'>
+                    <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player1.bmVolume}}</p>
+                    <p class="text-right">{{player.bmVolume=="0.00"?0:player.bmVolume}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player1.bmVolumeChange}}</p>
+                    <p class="text-right">{{player.bmVolumeChange=="0.00"?0:player.bmVolumeChange}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player1.onlineVolume}}</p>
+                    <p class="text-right">{{player.onlineVolume=="0.00"?0:player.onlineVolume}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player1.onlineVolumeChange}}</p>
+                    <p class="text-right">{{player.onlineVolumeChange=="0.00"?0:player.onlineVolumeChange}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player1.mixedVolume}}</p>
+                    <p class="text-right">{{player.mixedVolume=="0.00"?0:player.mixedVolume}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player1.mixedVolumeChange}}</p>
+                    <p class="text-right">{{player.mixedVolumeChange=="0.00"?0:player.mixedVolumeChange}}</p>
                 </td>
             </tr>
-
             <tr ng-show='player2s.length>=1'>
-                <td colspan="9">
+                <td colspan="7">
                     <p>{{Label.getContent('Supplier')}} 2</p>
                 </td>
             </tr>
-            <tr ng-repeat='player2 in player2s'>
+            <tr ng-show='player2s.length>=1'>
                 <td style='background-color:{{nameColor}}'>
-                    <p class="padding-20">{{player2.fullName}}</p>
+                    <p>{{Label.getContent('Total')}}</p>
+                </td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+            </tr>
+            <tr ng-repeat='player in player2s'>
+                <td style='background-color:{{nameColor}}'>
+                    <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player2.bmVolume}}</p>
+                    <p class="text-right">{{player.bmVolume=="0.00"?0:player.bmVolume}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player2.bmVolumeChange}}</p>
+                    <p class="text-right">{{player.bmVolumeChange=="0.00"?0:player.bmVolumeChange}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player2.onlineVolume}}</p>
+                    <p class="text-right">{{player.onlineVolume=="0.00"?0:player.onlineVolume}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player2.onlineVolumeChange}}</p>
+                    <p class="text-right">{{player.onlineVolumeChange=="0.00"?0:player.onlineVolumeChange}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player2.mixedVolume}}</p>
+                    <p class="text-right">{{player.mixedVolume=="0.00"?0:player.mixedVolume}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player2.mixedVolumeChange}}</p>
+                    <p class="text-right">{{player.mixedVolumeChange=="0.00"?0:player.mixedVolumeChange}}</p>
                 </td>
             </tr>
             <tr ng-show='player3s.length>=1'>
-                <td colspan="9">
+                <td colspan="7">
                     <p>{{Label.getContent('Supplier')}} 3</p>
                 </td>
             </tr>
-            <tr ng-repeat='player3 in player3s'>
+            <tr ng-show='player3s.length>=1'>
                 <td style='background-color:{{nameColor}}'>
-                    <p class="padding-20">{{player3.fullName}}</p>
+                    <p>{{Label.getContent('Total')}}</p>
+                </td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+            </tr>
+            <tr ng-repeat='player in player3s'>
+                <td style='background-color:{{nameColor}}'>
+                    <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player3.bmVolume}}</p>
+                    <p class="text-right">{{player.bmVolume=="0.00"?0:player.bmVolume}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player3.bmVolumeChange}}</p>
+                    <p class="text-right">{{player.bmVolumeChange=="0.00"?0:player.bmVolumeChange}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player3.onlineVolume}}</p>
+                    <p class="text-right">{{player.onlineVolume=="0.00"?0:player.onlineVolume}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player3.onlineVolumeChange}}</p>
+                    <p class="text-right">{{player.onlineVolumeChange=="0.00"?0:player.onlineVolumeChange}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player3.mixedVolume}}</p>
+                    <p class="text-right">{{player.mixedVolume=="0.00"?0:player.mixedVolume}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player3.mixedVolumeChange}}</p>
+                    <p class="text-right">{{player.mixedVolumeChange=="0.00"?0:player.mixedVolumeChange}}</p>
                 </td>
             </tr>
             <tr ng-show='player5s.length>=1'>
-                <td colspan="9">
+                <td colspan="7">
                     <p>{{Label.getContent('Retailer')}} 1</p>
                 </td>
             </tr>
-            <tr ng-repeat='player5 in player5s'>
+            <tr ng-show='player5s.length>=1'>
                 <td style='background-color:{{nameColor}}'>
-                    <p class="padding-20">{{player5.fullName}}</p>
+                    <p>{{Label.getContent('Total')}}</p>
+                </td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+            </tr>
+            <tr ng-repeat='player in player5s'>
+                <td style='background-color:{{nameColor}}'>
+                    <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player5.bmVolume}}</p>
+                    <p class="text-right">{{player.bmVolume=="0.00"?0:player.bmVolume}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player5.bmVolumeChange}}</p>
+                    <p class="text-right">{{player.bmVolumeChange=="0.00"?0:player.bmVolumeChange}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player5.onlineVolume}}</p>
+                    <p class="text-right">{{player.onlineVolume=="0.00"?0:player.onlineVolume}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player5.onlineVolumeChange}}</p>
+                    <p class="text-right">{{player.onlineVolumeChange=="0.00"?0:player.onlineVolumeChange}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player5.mixedVolume}}</p>
+                    <p class="text-right">{{player.mixedVolume=="0.00"?0:player.mixedVolume}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player5.mixedVolumeChange}}</p>
+                    <p class="text-right">{{player.mixedVolumeChange=="0.00"?0:player.mixedVolumeChange}}</p>
                 </td>
             </tr>
             <tr ng-show='player6s.length>=1'>
-                <td colspan="9">
+                <td colspan="7">
                     <p>{{Label.getContent('Retailer')}} 2</p>
                 </td>
             </tr>
-            <tr ng-repeat='player6 in player6s'>
+            <tr ng-show='player6s.length>=1'>
                 <td style='background-color:{{nameColor}}'>
-                    <p class="padding-20">{{player6.fullName}}</p>
+                    <p>{{Label.getContent('Total')}}</p>
+                </td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+            </tr>
+            <tr ng-repeat='player in player6s'>
+                <td style='background-color:{{nameColor}}'>
+                    <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player6.bmVolume}}</p>
+                    <p class="text-right">{{player.bmVolume=="0.00"?0:player.bmVolume}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player6.bmVolumeChange}}</p>
+                    <p class="text-right">{{player.bmVolumeChange=="0.00"?0:player.bmVolumeChange}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player6.onlineVolume}}</p>
+                    <p class="text-right">{{player.onlineVolume=="0.00"?0:player.onlineVolume}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player6.onlineVolumeChange}}</p>
+                    <p class="text-right">{{player.onlineVolumeChange=="0.00"?0:player.onlineVolumeChange}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player6.mixedVolume}}</p>
+                    <p class="text-right">{{player.mixedVolume=="0.00"?0:player.mixedVolume}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player6.mixedVolumeChange}}</p>
+                    <p class="text-right">{{player.mixedVolumeChange=="0.00"?0:player.mixedVolumeChange}}</p>
                 </td>
             </tr>
             <tr>
@@ -198,163 +237,202 @@
             <tr>
                 <td></td>
                 <td>
-                    <p class="text-center">{{Label.getContent('Value Share')}}</p>
+                    <p class="text-center">{{Label.getContent('Value Share')}} (%)</p>
                 </td>
                 <td>
-                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                    <p class="text-center">{{Label.getContent('Change')}} (%)</p>
                 </td>
                 <td>
-                    <p class="text-center">{{Label.getContent('Value Share')}}</p>
+                    <p class="text-center">{{Label.getContent('Value Share')}} (%)</p>
                 </td>
                 <td>
-                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                    <p class="text-center">{{Label.getContent('Change')}} (%)</p>
                 </td>
                 <td>
-                    <p class="text-center">{{Label.getContent('Value Share')}}</p>
+                    <p class="text-center">{{Label.getContent('Value Share')}} (%)</p>
                 </td>
                 <td>
-                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                    <p class="text-center">{{Label.getContent('Change')}} (%)</p>
                 </td>
             </tr>
             <tr ng-show='player1s.length>=1'>
-                <td colspan="9">
+                <td colspan="7">
                     <p>{{Label.getContent('Supplier')}} 1</p>
                 </td>
             </tr>
-            <tr ng-repeat='player1 in player1s'>
+            <tr ng-show='player1s.length>=1'>
                 <td style='background-color:{{nameColor}}'>
-                    <p class="padding-20">{{player1.fullName}}</p>
+                    <p>{{Label.getContent('Total')}}</p>
+                </td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+            </tr>
+            <tr ng-repeat='player in player1s'>
+                <td style='background-color:{{nameColor}}'>
+                    <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player1.bmValue}}</p>
+                    <p class="text-right">{{player.bmValue=="0.00"?0:player.bmValue}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player1.bmValueChange}}</p>
+                    <p class="text-right">{{player.bmValueChange=="0.00"?0:player.bmValueChange}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player1.onlineValue}}</p>
+                    <p class="text-right">{{player.onlineValue=="0.00"?0:player.onlineValue}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player1.onlineValueChange}}</p>
+                    <p class="text-right">{{player.onlineValueChange=="0.00"?0:player.onlineValueChange}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player1.mixedValue}}</p>
+                    <p class="text-right">{{player.mixedValue=="0.00"?0:player.mixedValue}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player1.mixedValueChange}}</p>
+                    <p class="text-right">{{player.mixedValueChange=="0.00"?0:player.mixedValueChange}}</p>
                 </td>
             </tr>
-
             <tr ng-show='player2s.length>=1'>
-                <td colspan="9">
+                <td colspan="7">
                     <p>{{Label.getContent('Supplier')}} 2</p>
                 </td>
             </tr>
-            <tr ng-repeat='player2 in player2s'>
+            <tr ng-show='player2s.length>=1'>
                 <td style='background-color:{{nameColor}}'>
-                    <p class="padding-20">{{player2.fullName}}</p>
+                    <p>{{Label.getContent('Total')}}</p>
+                </td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+            </tr>
+            <tr ng-repeat='player in player2s'>
+                <td style='background-color:{{nameColor}}'>
+                    <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player2.bmValue}}</p>
+                    <p class="text-right">{{player.bmValue=="0.00"?0:player.bmValue}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player2.bmValueChange}}</p>
+                    <p class="text-right">{{player.bmValueChange=="0.00"?0:player.bmValueChange}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player2.onlineValue}}</p>
+                    <p class="text-right">{{player.onlineValue=="0.00"?0:player.onlineValue}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player2.onlineValueChange}}</p>
+                    <p class="text-right">{{player.onlineValueChange=="0.00"?0:player.onlineValueChange}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player2.mixedValue}}</p>
+                    <p class="text-right">{{player.mixedValue=="0.00"?0:player.mixedValue}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player2.mixedValueChange}}</p>
+                    <p class="text-right">{{player.mixedValueChange=="0.00"?0:player.mixedValueChange}}</p>
                 </td>
             </tr>
             <tr ng-show='player3s.length>=1'>
-                <td colspan="9">
+                <td colspan="7">
                     <p>{{Label.getContent('Supplier')}} 3</p>
                 </td>
             </tr>
-            <tr ng-repeat='player3 in player3s'>
+            <tr ng-show='player3s.length>=1'>
                 <td style='background-color:{{nameColor}}'>
-                    <p class="padding-20">{{player3.fullName}}</p>
+                    <p>{{Label.getContent('Total')}}</p>
+                </td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+            </tr>
+            <tr ng-repeat='player in player3s'>
+                <td style='background-color:{{nameColor}}'>
+                    <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player3.bmValue}}</p>
+                    <p class="text-right">{{player.bmValue=="0.00"?0:player.bmValue}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player3.bmValueChange}}</p>
+                    <p class="text-right">{{player.bmValueChange=="0.00"?0:player.bmValueChange}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player3.onlineValue}}</p>
+                    <p class="text-right">{{player.onlineValue=="0.00"?0:player.onlineValue}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player3.onlineValueChange}}</p>
+                    <p class="text-right">{{player.onlineValueChange=="0.00"?0:player.onlineValueChange}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player3.mixedValue}}</p>
+                    <p class="text-right">{{player.mixedValue=="0.00"?0:player.mixedValue}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player3.mixedValueChange}}</p>
+                    <p class="text-right">{{player.mixedValueChange=="0.00"?0:player.mixedValueChange}}</p>
                 </td>
             </tr>
             <tr ng-show='player5s.length>=1'>
-                <td colspan="9">
+                <td colspan="7">
                     <p>{{Label.getContent('Retailer')}} 1</p>
                 </td>
             </tr>
-            <tr ng-repeat='player5 in player5s'>
+            <tr ng-show='player5s.length>=1'>
                 <td style='background-color:{{nameColor}}'>
-                    <p class="padding-20">{{player5.fullName}}</p>
+                    <p>{{Label.getContent('Total')}}</p>
+                </td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+            </tr>
+            <tr ng-repeat='player in player5s'>
+                <td style='background-color:{{nameColor}}'>
+                    <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player5.bmValue}}</p>
+                    <p class="text-right">{{player.bmValue=="0.00"?0:player.bmValue}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player5.bmValueChange}}</p>
+                    <p class="text-right">{{player.bmValueChange=="0.00"?0:player.bmValueChange}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player5.onlineValue}}</p>
+                    <p class="text-right">{{player.onlineValue=="0.00"?0:player.onlineValue}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player5.onlineValueChange}}</p>
+                    <p class="text-right">{{player.onlineValueChange=="0.00"?0:player.onlineValueChange}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player5.mixedValue}}</p>
+                    <p class="text-right">{{player.mixedValue=="0.00"?0:player.mixedValue}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player5.mixedValueChange}}</p>
+                    <p class="text-right">{{player.mixedValueChange=="0.00"?0:player.mixedValueChange}}</p>
                 </td>
             </tr>
             <tr ng-show='player6s.length>=1'>
-                <td colspan="9">
+                <td colspan="7">
                     <p>{{Label.getContent('Retailer')}} 2</p>
                 </td>
             </tr>
-            <tr ng-repeat='player6 in player6s'>
+            <tr ng-show='player6s.length>=1'>
                 <td style='background-color:{{nameColor}}'>
-                    <p class="padding-20">{{player6.fullName}}</p>
+                    <p>{{Label.getContent('Total')}}</p>
+                </td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td colspan="2" style='background-color:{{valueColor}}'></td>
+            </tr>
+            <tr ng-repeat='player in player6s'>
+                <td style='background-color:{{nameColor}}'>
+                    <p class="padding-20">{{player.fullName}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player6.bmValue}}</p>
+                    <p class="text-right">{{player.bmValue=="0.00"?0:player.bmValue}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player6.bmValueChange}}</p>
+                    <p class="text-right">{{player.bmValueChange=="0.00"?0:player.bmValueChange}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player6.onlineValue}}</p>
+                    <p class="text-right">{{player.onlineValue=="0.00"?0:player.onlineValue}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player6.onlineValueChange}}</p>
+                    <p class="text-right">{{player.onlineValueChange=="0.00"?0:player.onlineValueChange}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player6.mixedValue}}</p>
+                    <p class="text-right">{{player.mixedValue=="0.00"?0:player.mixedValue}}</p>
                 </td>
                 <td style='background-color:{{valueColor}}'>
-                    <p class="text-right">{{player6.mixedValueChange}}</p>
+                    <p class="text-right">{{player.mixedValueChange=="0.00"?0:player.mixedValueChange}}</p>
                 </td>
             </tr>
         </tbody>

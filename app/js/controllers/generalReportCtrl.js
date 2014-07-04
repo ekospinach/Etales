@@ -1,9 +1,5 @@
 define(['app','socketIO','routingConfig'], function(app) {
 	app.controller('generalReportCtrl',['$scope', '$http', 'ProducerDecisionBase','$rootScope','Auth','$anchorScroll','$q','PlayerInfo','SeminarInfo','PeriodInfo','Label','RoleInfo', function($scope, $http, ProducerDecisionBase,$rootScope,Auth,$anchorScroll,$q,PlayerInfo,SeminarInfo,PeriodInfo,Label,RoleInfo) {
-			$rootScope.loginCss="";
-		    $rootScope.loginFooter="bs-footer";
-		    $rootScope.loginLink="footer-links";
-		    $rootScope.loginDiv="container";
 
 		    $scope.$watch('isPageLoading', function(newValue, oldValue){
 		    	$scope.isPageLoading = newValue;	    	

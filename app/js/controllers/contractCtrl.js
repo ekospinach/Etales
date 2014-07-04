@@ -2,10 +2,6 @@ define(['app'], function(app) {
 	app.controller('contractCtrl',
 		['$scope','$q','$rootScope','$http','$filter','$location','ContractInfo','Label','PlayerInfo','SeminarInfo','PeriodInfo', function($scope,$q,$rootScope,$http,$filter,$location,ContractInfo,Label,PlayerInfo,SeminarInfo,PeriodInfo) {
 
-			$rootScope.loginCss="";
-		    $rootScope.loginFooter="bs-footer";
-		    $rootScope.loginLink="footer-links";
-		    $rootScope.loginDiv="container";
 			var showView=function(contractUserID){
 				$scope.period=PeriodInfo.getCurrentPeriod();
 				var url="/contracts/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+contractUserID;

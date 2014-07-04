@@ -85,9 +85,29 @@
                         {{Label.getContent('Elecssories')}}
                     </p>
                 </td>
-                <!--index is even and index!=6or12-->
-                <td ng-repeat='salesVolume in salesVolumes' ng-show='$even&&$index!=6&&$index!=12'>
-                    <p class="text-right">{{salesVolume.value.toFixed(2)}}</p>
+                <td>
+                    <p class="text-right">{{salesVolumes[0].value[0].toFixed(2)=="0.00"?0:salesVolumes[0].value[0].toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesVolumes[0].value[1].toFixed(2)=="0.00"?0:salesVolumes[0].value[1].toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesVolumes[2].value[0].toFixed(2)=="0.00"?0:salesVolumes[2].value[0].toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesVolumes[2].value[1].toFixed(2)=="0.00"?0:salesVolumes[2].value[1].toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesVolumes[4].value[0].toFixed(2)=="0.00"?0:salesVolumes[4].value[0].toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesVolumes[4].value[1].toFixed(2)=="0.00"?0:salesVolumes[4].value[1].toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesVolumes[8].value[2].toFixed(2)=="0.00"?0:salesVolumes[8].value[2].toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesVolumes[10].value[2].toFixed(2)=="0.00"?0:salesVolumes[10].value[2].toFixed(2)}}</p>
                 </td>
             </tr>
             <tr class="danger">
@@ -96,8 +116,29 @@
                         {{Label.getContent('HealthBeauties')}}
                     </p>
                 </td>
-                <td ng-repeat='salesVolume in salesVolumes' ng-show='$odd&&$index!=7&&$index!=13'>
-                    <p class="text-right">{{salesVolume.value.toFixed(2)}}</p>
+                <td>
+                    <p class="text-right">{{salesVolumes[1].value[0].toFixed(2)=="0.00"?0:salesVolumes[1].value[0].toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesVolumes[1].value[1].toFixed(2)=="0.00"?0:salesVolumes[1].value[1].toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesVolumes[3].value[0].toFixed(2)=="0.00"?0:salesVolumes[3].value[0].toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesVolumes[3].value[1].toFixed(2)=="0.00"?0:salesVolumes[3].value[1].toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesVolumes[5].value[0].toFixed(2)=="0.00"?0:salesVolumes[5].value[0].toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesVolumes[5].value[1].toFixed(2)=="0.00"?0:salesVolumes[5].value[1].toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesVolumes[9].value[2].toFixed(2)=="0.00"?0:salesVolumes[9].value[2].toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesVolumes[11].value[2].toFixed(2)=="0.00"?0:salesVolumes[11].value[2].toFixed(2)}}</p>
                 </td>
             </tr>
             <tr>
@@ -114,8 +155,29 @@
                         {{Label.getContent('Elecssories')}}
                     </p>
                 </td>
-                <td ng-repeat='salesValue in salesValues' ng-show='$even&&$index!=6&&$index!=12'>
-                    <p class="text-right">{{salesValue.value.toFixed(2)}}</p>
+                <td>
+                    <p class="text-right">{{salesValues[0].value[0].toFixed(2)=="0.00"?0:salesValues[0].value[0].toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesValues[0].value[1].toFixed(2)=="0.00"?0:salesValues[0].value[1].toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesValues[2].value[0].toFixed(2)=="0.00"?0:salesValues[2].value[0].toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesValues[2].value[1].toFixed(2)=="0.00"?0:salesValues[2].value[1].toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesValues[4].value[0].toFixed(2)=="0.00"?0:salesValues[4].value[0].toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesValues[4].value[1].toFixed(2)=="0.00"?0:salesValues[4].value[1].toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesValues[8].value[2].toFixed(2)=="0.00"?0:salesValues[8].value[2].toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesValues[10].value[2].toFixed(2)=="0.00"?0:salesValues[10].value[2].toFixed(2)}}</p>
                 </td>
             </tr>
             <tr class="danger">
@@ -124,8 +186,29 @@
                         {{Label.getContent('HealthBeauties')}}
                     </p>
                 </td>
-                <td ng-repeat='salesValue in salesValues' ng-show='$odd&&$index!=7&&$index!=13'>
-                    <p class="text-right">{{salesValue.value.toFixed(2)}}</p>
+                <td>
+                    <p class="text-right">{{salesValues[1].value[0].toFixed(2)=="0.00"?0:salesValues[1].value[0].toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesValues[1].value[1].toFixed(2)=="0.00"?0:salesValues[1].value[1].toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesValues[3].value[0].toFixed(2)=="0.00"?0:salesValues[3].value[0].toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesValues[3].value[1].toFixed(2)=="0.00"?0:salesValues[3].value[1].toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesValues[5].value[0].toFixed(2)=="0.00"?0:salesValues[5].value[0].toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesValues[5].value[1].toFixed(2)=="0.00"?0:salesValues[5].value[1].toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesValues[9].value[2].toFixed(2)=="0.00"?0:salesValues[9].value[2].toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{salesValues[11].value[2].toFixed(2)=="0.00"?0:salesValues[11].value[2].toFixed(2)}}</p>
                 </td>
             </tr>
 
@@ -145,8 +228,20 @@
                         {{Label.getContent('Elecssories')}}
                     </p>
                 </td>
-                <td ng-repeat='valueShare in valueShares' ng-show='$even&&$index!=6&&$index!=12'>
-                    <p class="text-right">{{(valueShare.value*100).toFixed(2)}}</p>
+                <td colspan="2">
+                    <p class="text-right">{{(valueShares[0].value*100).toFixed(2)=="0.00"?0:(valueShares[0].value*100).toFixed(2)}}</p>
+                </td>
+                <td colspan="2">
+                    <p class="text-right">{{(valueShares[2].value*100).toFixed(2)=="0.00"?0:(valueShares[2].value*100).toFixed(2)}}</p>
+                </td>
+                <td colspan="2">
+                    <p class="text-right">{{(valueShares[4].value*100).toFixed(2)=="0.00"?0:(valueShares[4].value*100).toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{(valueShares[8].value*100).toFixed(2)=="0.00"?0:(valueShares[8].value*100).toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{(valueShares[10].value*100).toFixed(2)=="0.00"?0:(valueShares[10].value*100).toFixed(2)}}</p>
                 </td>
             </tr>
             <tr class="danger">
@@ -155,8 +250,20 @@
                         {{Label.getContent('HealthBeauties')}}
                     </p>
                 </td>
-                <td ng-repeat='valueShare in valueShares' ng-show='$odd&&$index!=7&&$index!=13'>
-                    <p class="text-right">{{(valueShare.value*100).toFixed(2)}}</p>
+                <td colspan="2">
+                    <p class="text-right">{{(valueShares[1].value*100).toFixed(2)=="0.00"?0:(valueShares[1].value*100).toFixed(2)}}</p>
+                </td>
+                <td colspan="2">
+                    <p class="text-right">{{(valueShares[3].value*100).toFixed(2)=="0.00"?0:(valueShares[3].value*100).toFixed(2)}}</p>
+                </td>
+                <td colspan="2">
+                    <p class="text-right">{{(valueShares[5].value*100).toFixed(2)=="0.00"?0:(valueShares[5].value*100).toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{(valueShares[9].value*100).toFixed(2)=="0.00"?0:(valueShares[9].value*100).toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{(valueShares[11].value*100).toFixed(2)=="0.00"?0:(valueShares[11].value*100).toFixed(2)}}</p>
                 </td>
             </tr>
             <tr>
@@ -172,8 +279,20 @@
                         {{Label.getContent('Elecssories')}}
                     </p>
                 </td>
-                <td ng-repeat='volumeShare in volumeShares' ng-show='$even&&$index!=6&&$index!=12'>
-                    <p class="text-right">{{(volumeShare.value*100).toFixed(2)}}</p>
+                <td colspan="2">
+                    <p class="text-right">{{(volumeShares[0].value*100).toFixed(2)=="0.00"?0:(volumeShares[0].value*100).toFixed(2)}}</p>
+                </td>
+                <td colspan="2">
+                    <p class="text-right">{{(volumeShares[2].value*100).toFixed(2)=="0.00"?0:(volumeShares[2].value*100).toFixed(2)}}</p>
+                </td>
+                <td colspan="2">
+                    <p class="text-right">{{(volumeShares[4].value*100).toFixed(2)=="0.00"?0:(volumeShares[4].value*100).toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{(volumeShares[8].value*100).toFixed(2)=="0.00"?0:(volumeShares[8].value*100).toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{(volumeShares[10].value*100).toFixed(2)=="0.00"?0:(volumeShares[10].value*100).toFixed(2)}}</p>
                 </td>
             </tr>
             <tr class="danger">
@@ -182,24 +301,60 @@
                         {{Label.getContent('HealthBeauties')}}
                     </p>
                 </td>
-                <td ng-repeat='volumeShare in volumeShares' ng-show='$odd&&$index!=7&&$index!=13'>
-                    <p class="text-right">{{(volumeShare.value*100).toFixed(2)}}</p>
+                <td colspan="2">
+                    <p class="text-right">{{(volumeShares[1].value*100).toFixed(2)=="0.00"?0:(volumeShares[1].value*100).toFixed(2)}}</p>
+                </td>
+                <td colspan="2">
+                    <p class="text-right">{{(volumeShares[3].value*100).toFixed(2)=="0.00"?0:(volumeShares[3].value*100).toFixed(2)}}</p>
+                </td>
+                <td colspan="2">
+                    <p class="text-right">{{(volumeShares[5].value*100).toFixed(2)=="0.00"?0:(volumeShares[5].value*100).toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{(volumeShares[9].value*100).toFixed(2)=="0.00"?0:(volumeShares[9].value*100).toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{(volumeShares[11].value*100).toFixed(2)=="0.00"?0:(volumeShares[11].value*100).toFixed(2)}}</p>
                 </td>
             </tr>
             <tr>
                 <td colspan="2">
                     {{Label.getContent('Operating Profit')}} ($mln)
                 </td>
-                <td ng-repeat='operatingProfit in operatingProfits' ng-show='$index!=3&&$index!=6'>
-                    <p class="text-right">{{operatingProfit.value.toFixed(2)}}</p>
+                <td colspan="2">
+                    <p class="text-right">{{operatingProfits[0].value.toFixed(2)=="0.00"?0:operatingProfits[0].value.toFixed(2)}}</p>
+                </td>
+                <td colspan="2">
+                    <p class="text-right">{{operatingProfits[1].value.toFixed(2)=="0.00"?0:operatingProfits[1].value.toFixed(2)}}</p>
+                </td>
+                <td colspan="2">
+                    <p class="text-right">{{operatingProfits[2].value.toFixed(2)=="0.00"?0:operatingProfits[2].value.toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{operatingProfits[4].value.toFixed(2)=="0.00"?0:operatingProfits[4].value.toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{operatingProfits[5].value.toFixed(2)=="0.00"?0:operatingProfits[5].value.toFixed(2)}}</p>
                 </td>
             </tr>
             <tr>
                 <td colspan="2">
                     {{Label.getContent('Cumulative Investments')}} ($mln)
                 </td>
-                <td ng-repeat='cumulativeInvestment in cumulativeInvestments' ng-show='$index!=3&&$index!=6'>
-                    <p class="text-right">{{cumulativeInvestment.value.toFixed(2)}}</p>
+                <td colspan="2">
+                    <p class="text-right">{{cumulativeInvestments[0].value.toFixed(2)=="0.00"?0:cumulativeInvestments[0].value.toFixed(2)}}</p>
+                </td>
+                <td colspan="2">
+                    <p class="text-right">{{cumulativeInvestments[1].value.toFixed(2)=="0.00"?0:cumulativeInvestments[1].value.toFixed(2)}}</p>
+                </td>
+                <td colspan="2">
+                    <p class="text-right">{{cumulativeInvestments[2].value.toFixed(2)=="0.00"?0:cumulativeInvestments[2].value.toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{cumulativeInvestments[4].value.toFixed(2)=="0.00"?0:cumulativeInvestments[4].value.toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{cumulativeInvestments[5].value.toFixed(2)=="0.00"?0:cumulativeInvestments[5].value.toFixed(2)}}</p>
                 </td>
             </tr>
         </tbody>

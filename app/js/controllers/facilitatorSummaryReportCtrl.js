@@ -2,10 +2,6 @@
 define(['app'], function(app) {
 		app.controller('facilitatorSummaryReportCtrl',
 			['$scope','$q','$rootScope','$location','$http','$filter','Label','PlayerInfo','PeriodInfo','SeminarInfo','RoleInfo', function($scope,$q,$rootScope,$location,$http,$filter,Label,PlayerInfo,PeriodInfo,SeminarInfo,RoleInfo) {
-			$rootScope.loginCss="";
-		    $rootScope.loginFooter="bs-footer";
-		    $rootScope.loginLink="footer-links";
-		    $rootScope.loginDiv="container";
 		    $scope.userRole=1;
 		    $scope.selectPeriod=1;
 		    PlayerInfo.setPlayer(1);

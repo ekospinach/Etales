@@ -35,137 +35,19 @@ var supplierKPIsCtrl=function($scope,$http){
             method:'GET',
             url:url
         }).then(function(data){
-            var tradeSpendingElecssories=new Array({
-                name:'Supplier-1',
-                data:new Array(),
-                color:'#3257A7'
-            },{
-                name:'Supplier-2',
-                data:new Array(),
-                color:'#B11E22'
-            },{
-                name:'Supplier-3',
-                data:new Array(),
-                color:'#F6B920'
-            });
-            var tradeSpendingHealthBeauties=new Array({
-                name:'Supplier-1',
-                data:new Array(),
-                color:'#3257A7'
-            },{
-                name:'Supplier-2',
-                data:new Array(),
-                color:'#B11E22'
-            },{
-                name:'Supplier-3',
-                data:new Array(),
-                color:'#F6B920'
-            });
-            var marketingSpendingElecssories=new Array({
-                name:'Supplier-1',
-                data:new Array(),
-                color:'#3257A7'
-            },{
-                name:'Supplier-2',
-                data:new Array(),
-                color:'#B11E22'
-            },{
-                name:'Supplier-3',
-                data:new Array(),
-                color:'#F6B920'
-            });
-            var marketingSpendingHealthBeauties=new Array({
-                name:'Supplier-1',
-                data:new Array(),
-                color:'#3257A7'
-            },{
-                name:'Supplier-2',
-                data:new Array(),
-                color:'#B11E22'
-            },{
-                name:'Supplier-3',
-                data:new Array(),
-                color:'#F6B920'
-            });
-            var portfolioStrengthElecssories=new Array({
-                name:'Supplier-1',
-                data:new Array(),
-                color:'#3257A7'
-            },{
-                name:'Supplier-2',
-                data:new Array(),
-                color:'#B11E22'
-            },{
-                name:'Supplier-3',
-                data:new Array(),
-                color:'#F6B920'
-            });
-            var portfolioStrengthHealthBeauties=new Array({
-                name:'Supplier-1',
-                data:new Array(),
-                color:'#3257A7'
-            },{
-                name:'Supplier-2',
-                data:new Array(),
-                color:'#B11E22'
-            },{
-                name:'Supplier-3',
-                data:new Array(),
-                color:'#F6B920'
-            });
-            var bmChannelStrengthElecssories=new Array({
-                name:'Supplier-1',
-                data:new Array(),
-                color:'#3257A7'
-            },{
-                name:'Supplier-2',
-                data:new Array(),
-                color:'#B11E22'
-            },{
-                name:'Supplier-3',
-                data:new Array(),
-                color:'#F6B920'
-            });
-            var bmChannelStrengthHealthBeauties=new Array({
-                name:'Supplier-1',
-                data:new Array(),
-                color:'#3257A7'
-            },{
-                name:'Supplier-2',
-                data:new Array(),
-                color:'#B11E22'
-            },{
-                name:'Supplier-3',
-                data:new Array(),
-                color:'#F6B920'
-            });
-            var onlineChannelStrengthElecssories=new Array({
-                name:'Supplier-1',
-                data:new Array(),
-                color:'#3257A7'
-            },{
-                name:'Supplier-2',
-                data:new Array(),
-                color:'#B11E22'
-            },{
-                name:'Supplier-3',
-                data:new Array(),
-                color:'#F6B920'
-            });
-            var onlineChannelStrengthHealthBeauties=new Array({
-                name:'Supplier-1',
-                data:new Array(),
-                color:'#3257A7'
-            },{
-                name:'Supplier-2',
-                data:new Array(),
-                color:'#B11E22'
-            },{
-                name:'Supplier-3',
-                data:new Array(),
-                color:'#F6B920'
-            });
+            var tradeSpendingElecssories=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'});
+            var tradeSpendingHealthBeauties=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'});
+            var marketingSpendingElecssories=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'});
+            var marketingSpendingHealthBeauties=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'});
+            var bmChannelStrengthElecssories=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'});
+            var bmChannelStrengthHealthBeauties=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'});
+            var onlineChannelStrengthElecssories=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'});
+            var onlineChannelStrengthHealthBeauties=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'});
 
+            //add Retailer
+            var portfolioStrengthElecssories=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
+            var portfolioStrengthHealthBeauties=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'});
+           
             for(var j=0;j<currentCategories.length;j++){
                 for(var i=0;i<data.data.f_TradeSpendingEffectiveness.length;i++){
                     if(data.data.f_TradeSpendingEffectiveness[i].period==currentCategories[j]){

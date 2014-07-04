@@ -30,88 +30,16 @@ var shelfSpaceCtrl=function($scope,$http){
             method:'GET',
             url:url
         }).then(function(data){
-            var currentShelfSpaceElecssories=new Array({
-                name:'Supplier-1',
-                data:new Array(),
-                color:'#3257A7'
-            },{
-                name:'Supplier-2',
-                data:new Array(),
-                color:'#B11E22'
-            },{
-                name:'Supplier-3',
-                data:new Array(),
-                color:'#F6B920'
-            },{
-                name:'Retailer-1',
-                data:new Array(),
-                color:'#8B288B'
-            },{
-                name:'Retailer-2',
-                data:new Array(),
-                color:'#F05422'
-            });
-            var currentShelfSpaceHealthBeauties=new Array({
-                name:'Supplier-1',
-                data:new Array(),
-                color:'#3257A7'
-            },{
-                name:'Supplier-2',
-                data:new Array(),
-                color:'#B11E22'
-            },{
-                name:'Supplier-3',
-                data:new Array(),
-                color:'#F6B920'
-            },{
-                name:'Retailer-1',
-                data:new Array(),
-                color:'#8B288B'
-            },{
-                name:'Retailer-2',
-                data:new Array(),
-                color:'#F05422'
-            });
+            var currentShelfSpaceElecssories=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'});
+            var currentShelfSpaceHealthBeauties=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'});
 
             for(var j=0;j<currentCategories.length;j++){
                 for(var i=0;i<data.data.f_ShelfSpaceAllocation.length;i++){
                     if(data.data.f_ShelfSpaceAllocation[i].period==currentCategories[j]){
-                        switch(data.data.f_ShelfSpaceAllocation[i].actorID){
-                            case 1:
-                            if(data.data.f_ShelfSpaceAllocation[i].categoryID==1){
-                                currentShelfSpaceElecssories[0].data.push(data.data.f_ShelfSpaceAllocation[i].value);
-                            }else if(data.data.f_ShelfSpaceAllocation[i].categoryID==2){
-                                currentShelfSpaceHealthBeauties[0].data.push(data.data.f_ShelfSpaceAllocation[i].value);
-                            }
-                            break;
-                            case 2:
-                            if(data.data.f_ShelfSpaceAllocation[i].categoryID==1){
-                                currentShelfSpaceElecssories[1].data.push(data.data.f_ShelfSpaceAllocation[i].value);
-                            }else if(data.data.f_ShelfSpaceAllocation[i].categoryID==2){
-                                currentShelfSpaceHealthBeauties[1].data.push(data.data.f_ShelfSpaceAllocation[i].value);
-                            }
-                            break;
-                            case 3:
-                            if(data.data.f_ShelfSpaceAllocation[i].categoryID==1){
-                                currentShelfSpaceElecssories[2].data.push(data.data.f_ShelfSpaceAllocation[i].value);
-                            }else if(data.data.f_ShelfSpaceAllocation[i].categoryID==2){
-                                currentShelfSpaceHealthBeauties[2].data.push(data.data.f_ShelfSpaceAllocation[i].value);
-                            }
-                            break;
-                            case 4:
-                            if(data.data.f_ShelfSpaceAllocation[i].categoryID==1){
-                                currentShelfSpaceElecssories[3].data.push(data.data.f_ShelfSpaceAllocation[i].value);
-                            }else if(data.data.f_ShelfSpaceAllocation[i].categoryID==2){
-                                currentShelfSpaceHealthBeauties[3].data.push(data.data.f_ShelfSpaceAllocation[i].value);
-                            }
-                            break;
-                            case 5:
-                            if(data.data.f_ShelfSpaceAllocation[i].categoryID==1){
-                                currentShelfSpaceElecssories[4].data.push(data.data.f_ShelfSpaceAllocation[i].value);
-                            }else if(data.data.f_ShelfSpaceAllocation[i].categoryID==2){
-                                currentShelfSpaceHealthBeauties[4].data.push(data.data.f_ShelfSpaceAllocation[i].value);
-                            }
-                            break;
+                        if(data.data.f_ShelfSpaceAllocation[i].categoryID==1){
+                            currentShelfSpaceElecssories[data.data.f_ShelfSpaceAllocation[i].actorID-1].data.push(data.data.f_ShelfSpaceAllocation[i].value);
+                        }else if(data.data.f_ShelfSpaceAllocation[i].categoryID==2){
+                            currentShelfSpaceHealthBeauties[data.data.f_ShelfSpaceAllocation[i].actorID-1].data.push(data.data.f_ShelfSpaceAllocation[i].value);
                         }
                     }
                 }
