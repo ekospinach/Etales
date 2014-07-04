@@ -12,6 +12,9 @@
 			<Projects Include="BG_feedbackSlides.dproj">
 				<Dependencies/>
 			</Projects>
+			<Projects Include="BG_oneQuarterParameterData.dproj">
+				<Dependencies/>
+			</Projects>
 		</ItemGroup>
 		<ProjectExtensions>
 			<Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -47,14 +50,23 @@
 		<Target Name="BG_feedbackSlides:Make">
 			<MSBuild Projects="BG_feedbackSlides.dproj" Targets="Make"/>
 		</Target>
+		<Target Name="BG_oneQuarterParameterData">
+			<MSBuild Projects="BG_oneQuarterParameterData.dproj"/>
+		</Target>
+		<Target Name="BG_oneQuarterParameterData:Clean">
+			<MSBuild Projects="BG_oneQuarterParameterData.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="BG_oneQuarterParameterData:Make">
+			<MSBuild Projects="BG_oneQuarterParameterData.dproj" Targets="Make"/>
+		</Target>
 		<Target Name="Build">
-			<CallTarget Targets="BG_companyHistoryInfo;BG_oneQuarterExogenousData;BG_feedbackSlides"/>
+			<CallTarget Targets="BG_companyHistoryInfo;BG_oneQuarterExogenousData;BG_feedbackSlides;BG_oneQuarterParameterData"/>
 		</Target>
 		<Target Name="Clean">
-			<CallTarget Targets="BG_companyHistoryInfo:Clean;BG_oneQuarterExogenousData:Clean;BG_feedbackSlides:Clean"/>
+			<CallTarget Targets="BG_companyHistoryInfo:Clean;BG_oneQuarterExogenousData:Clean;BG_feedbackSlides:Clean;BG_oneQuarterParameterData:Clean"/>
 		</Target>
 		<Target Name="Make">
-			<CallTarget Targets="BG_companyHistoryInfo:Make;BG_oneQuarterExogenousData:Make;BG_feedbackSlides:Make"/>
+			<CallTarget Targets="BG_companyHistoryInfo:Make;BG_oneQuarterExogenousData:Make;BG_feedbackSlides:Make;BG_oneQuarterParameterData:Make"/>
 		</Target>
 		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
 	</Project>

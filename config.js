@@ -57,8 +57,8 @@ module.exports = function(){
 				  path_MR_variantPerceptionEvolution  : '/cgi-bin/MR_variantPerceptionEvolution.exe',
 
 				  path_BG_oneQuarterExogenousData     : '/cgi-bin/BG_oneQuarterExogenousData.exe',
+				  path_BG_oneQuarterParameterData     : '/cgi-bin/BG_oneQuarterParameterData.exe',				  
 				  path_BG_feedbackSlides              : '/cgi-bin/BG_feedbackSlides.exe',
-
 
    			  	  uploadFileAbsDir                    : '&filepath=\\\\vmware-host\\Shared%20Folders\\ludwikOnMac\\Code\\Actived\\Etales-result-viewer\\upload\\'
 				},
@@ -123,6 +123,7 @@ module.exports = function(){
 				  path_MR_variantPerceptionEvolution  : '/cgi-bin/MR_variantPerceptionEvolution.exe',
 
 				  path_BG_oneQuarterExogenousData     : '/cgi-bin/BG_oneQuarterExogenousData.exe',
+				  path_BG_oneQuarterParameterData     : '/cgi-bin/BG_oneQuarterParameterData.exe',				  
 				  path_BG_feedbackSlides              : '/cgi-bin/BG_feedbackSlides.exe',
 
 
@@ -188,6 +189,7 @@ module.exports = function(){
 				  path_MR_variantPerceptionEvolution  : '/cgi-bin/MR_variantPerceptionEvolution.exe',
 
 				  path_BG_oneQuarterExogenousData     : '/cgi-bin/BG_oneQuarterExogenousData.exe',
+				  path_BG_oneQuarterParameterData     : '/cgi-bin/BG_oneQuarterParameterData.exe',
 				  path_BG_feedbackSlides              : '/cgi-bin/BG_feedbackSlides.exe',
 				  
 
