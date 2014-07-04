@@ -1,10 +1,6 @@
 define(['app'], function(app) {
 	app.controller('contractDetailsCtrl',
 		['$scope','$q','$rootScope','$http','$filter','ContractInfo','Label','PlayerInfo','SeminarInfo','PeriodInfo', function($scope,$q,$rootScope,$http,$filter, ContractInfo,Label,PlayerInfo,SeminarInfo,PeriodInfo) {
-			$rootScope.loginCss="";
-		    $rootScope.loginFooter="bs-footer";
-		    $rootScope.loginLink="footer-links";
-		    $rootScope.loginDiv="container";
 
 			var generateRequestUrls = function(brandList, contract){
 				var contractDetailsRequestUrls = new Array;

@@ -2,11 +2,6 @@ define(['app'], function(app) {
 		app.controller('facilitatorDecisionCtrl',
 			['RoleInfo', '$scope','$q','$rootScope','$location','$http','$filter','Label','PlayerInfo','PeriodInfo','SeminarInfo','$window',
 	 function(RoleInfo, $scope,$q,$rootScope,$location,$http,$filter,Label,PlayerInfo,PeriodInfo,SeminarInfo, $window) {
-			$rootScope.decisionActive="active";
-			$rootScope.loginCss="";
-		    $rootScope.loginFooter="bs-footer";
-		    $rootScope.loginLink="footer-links";
-		    $rootScope.loginDiv="container";
 
 		    var userRoles = routingConfig.userRoles;
 		    var selectedPlayer;

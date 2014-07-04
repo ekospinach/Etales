@@ -1,10 +1,6 @@
 define(['app','socketIO'], function(app) {
 
 	app.controller('adminDetailsCtrl',['$scope', '$http','$rootScope','EditSeminarInfo', function($scope, $http,$rootScope, EditSeminarInfo) {
-		$rootScope.loginCss    = "";
-	    $rootScope.loginFooter = "bs-footer";
-	    $rootScope.loginLink   = "footer-links";
-	    $rootScope.loginDiv    = "container";
 
 		var socket = io.connect('http://localhost');
 		socket.on('AdminProcessLog', function(data){

@@ -1,13 +1,5 @@
 define(['app','socketIO','routingConfig'], function(app) {
 	app.controller('supplierDecisionCtrl',['$scope', '$http', 'ProducerDecisionBase','$rootScope','Auth','$anchorScroll','$q','PlayerInfo','SeminarInfo','PeriodInfo','Label','RoleInfo','notify', function($scope, $http, ProducerDecisionBase,$rootScope,Auth,$anchorScroll,$q,PlayerInfo,SeminarInfo,PeriodInfo,Label,RoleInfo, notify) {
-			
-			$rootScope.decisionActive="active";
-			$rootScope.loginCss="";
-		    $rootScope.loginFooter="bs-footer";
-		    $rootScope.loginLink="footer-links";
-		    $rootScope.loginDiv="container";
-
-			$scope.isCollapsed=true;
 
 			var switching = function(type) {
 				$scope.isNegotiationChange 

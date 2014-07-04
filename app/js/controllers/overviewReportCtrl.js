@@ -2,10 +2,6 @@ define(['app','socketIO','routingConfig'], function(app) {
 	app.controller('overviewReportCtrl',['$scope', '$http', 'ProducerDecisionBase','$rootScope','Auth','$anchorScroll','$q','PlayerInfo','SeminarInfo','PeriodInfo','Label','RoleInfo',
 	 function($scope, $http, ProducerDecisionBase,$rootScope,Auth,$anchorScroll,$q,PlayerInfo,SeminarInfo,PeriodInfo,Label,RoleInfo) {
 
-	 	$rootScope.loginCss="";
-	    $rootScope.loginFooter="bs-footer";
-	    $rootScope.loginLink="footer-links";
-	    $rootScope.loginDiv="container";
 
 	    $scope.isResultShown=false;
 	    $scope.isPageInit=true;

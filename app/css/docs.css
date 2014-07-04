@@ -124,6 +124,9 @@ body {
     background:-webkit-gradient(linear,0% 0%, 0% 100%, from(#025037), to(#025037), color-stop(0.5,#025037));
     background: -moz-linear-gradient(0% 0% 270deg, #025037,#025037);
 }
+.general-docs-home{
+    background: #fff;
+}
 .bs-header {
 /* -- green version -- */
     background-color: #025037;

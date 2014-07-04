@@ -38,7 +38,19 @@ define(['app'], function(app) {
 	    	if(SeminarInfo.getSelectedSeminar()){
 				$scope.currentPeriod = SeminarInfo.getSelectedSeminar().currentPeriod;	    
 				$scope.span = SeminarInfo.getSelectedSeminar().simulationSpan;
-				$scope.seminar = SeminarInfo.getSelectedSeminar().seminarCode;	    		
+				$scope.seminar = SeminarInfo.getSelectedSeminar().seminarCode;	
+				//if login
+				$scope.pageHeader="show";
+				$scope.pageFooter="show";
+				$scope.pageLoader="hide";
+				$scope.pageBody="general-docs-home";	    		
+	    	}else{
+	    		$scope.pageHeader="hide";
+				$scope.pageFooter="hide";	
+	    	}
+	    	if(window.location.hash.substring(2,7)=="login"){
+	    		//login page
+	    		$scope.pageBody="bs-docs-home";
 	    	}
 		})
 
@@ -46,8 +58,8 @@ define(['app'], function(app) {
 
 		//handle global push notification messages		
 		notify.config({
-				template:'/partials/gmail-template.html',
-				position:'center'			
+			template:'/partials/gmail-template.html',
+			position:'center'			
 		});
 
 		$scope.$on('producerPortfolioDecisionStatusChanged', function(event, data, newBase) {  

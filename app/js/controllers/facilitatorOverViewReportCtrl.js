@@ -2,10 +2,6 @@
 define(['app'], function(app) {
 		app.controller('facilitatorOverViewReportCtrl',
 			['$scope','$q','$rootScope','$location','$http','$filter','Label','PlayerInfo','PeriodInfo','SeminarInfo','RoleInfo', function($scope,$q,$rootScope,$location,$http,$filter,Label,PlayerInfo,PeriodInfo,SeminarInfo,RoleInfo) {
-			$rootScope.loginCss="";
-		    $rootScope.loginFooter="bs-footer";
-		    $rootScope.loginLink="footer-links";
-		    $rootScope.loginDiv="container";
 
 		    var periods=new Array();
 		    $scope.periods=periods;

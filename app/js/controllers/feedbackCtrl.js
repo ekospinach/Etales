@@ -1,12 +1,7 @@
 define(['app'], function(app) {
 		app.controller('feedbackCtrl',
 			['$scope','$q','$rootScope','$location','$http','$filter','Label','PlayerInfo','PeriodInfo','SeminarInfo','$window', function($scope,$q,$rootScope,$location,$http,$filter,Label,PlayerInfo,PeriodInfo,SeminarInfo,$window) {
-			$rootScope.decisionActive="active";
-
-			$rootScope.loginCss="";
-		    $rootScope.loginFooter="bs-footer";
-		    $rootScope.loginLink="footer-links";
-		    $rootScope.loginDiv="container";		
+		
 						
 		    var periods=new Array();
 		    $scope.periods=periods;
