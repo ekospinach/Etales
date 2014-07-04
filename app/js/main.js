@@ -96,30 +96,14 @@
 
 	require(['domReady'], function(domReady) {
 	    domReady(function() {
-	      //re-implement updateModuleProgress here for domReady
-	      updateModuleProgress = function(context, map, depMaps) {
-	        var document = root.document;
-	        var loadingStatusEl = document.getElementById('loading-status'),
-	        	loadingModuleNameEl = document.getElementById('loading-module-name'),
-	        	pageheader=document.getElementById('pageheader'),
-	        	pagefooter=document.getElementById('pagefooter'),
-	        	pageloader=document.getElementById('pageloader');
-	        	
-	        pageheader.style.display="none";
-	        pagefooter.style.display="none";
-	        if (loadingStatusEl && loadingModuleNameEl) {  	
-	        	if(map.url=="js/routes.js"){
-	        		pageheader.style.display="block";
-	        		pagefooter.style.display="block";
-	        		pageloader.style.display="none";
-	        	}
-	        	loadingStatusEl.innerHTML = loadingStatusEl.innerHTML += '.'; //add one more dot character
-	        	loadingModuleNameEl.innerHTML = map.name + (map.url ? ' at ' + map.url : '') ;
-	        } else {
-
-	          //TODO: later load, must have loading indicator for this then
-	        }
-	      };
+	    //re-implement updateModuleProgress here for domReady
+	    	var percent=0,document = root.document;
+	    	var loadingPercentage = document.getElementById('loading-percentage');
+	    	updateModuleProgress = function(context, map, depMaps) {
+	    		percent=parseFloat(percent)+100/Object.keys(context.urlFetched).length;
+	    		if(percent>=100)percent=100;
+	    		loadingPercentage.innerHTML=parseFloat(percent).toFixed(0)+'%';
+	    	};
 	    });
 	});
 
