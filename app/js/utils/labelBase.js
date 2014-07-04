@@ -894,6 +894,7 @@ var getLabelBase = function(){
 		{id:'B&M List Prices',  ENG:'B&M List Prices',  CHN:'价格列表',  RUS:''},
 		{id:'B&M List Prices Pop Info',  ENG:'list price for bricks&mortar trade in current period',  CHN:'B&M List Prices介绍',  RUS:''},
 		{id:'Unit Cost',  ENG:'Unit Cost',  CHN:'单位生产成本',  RUS:''},
+		{id:'Unit Production cost',  ENG:'Unit Production cost',  CHN:'单位生产成本',  RUS:''},
 		{id:'UnitCost Info',  ENG:'UnitCost Info',  CHN:'生成成本介绍',  RUS:''},
 		/*supplier Product Portfolio Management end*/
 		/*supplier Negotiation start*/

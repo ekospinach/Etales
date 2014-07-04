@@ -30,214 +30,23 @@ var marketSharesCtrl=function($scope,$http){
             method:'GET',
             url:url
         }).then(function(data){
-            var currentElecssoriesVolume=new Array({
-                name:'Supplier-1',
-                data:new Array(),
-                color:'#3257A7'
-            },{
-                name:'Supplier-2',
-                data:new Array(),
-                color:'#B11E22'
-            },{
-                name:'Supplier-3',
-                data:new Array(),
-                color:'#F6B920'
-            },{
-                name:'Retailer-1',
-                data:new Array(),
-                color:'#8B288B'
-            },{
-                name:'Retailer-2',
-                data:new Array(),
-                color:'#F05422'
-            });
-            var currentElecssoriesValue=new Array({
-                name:'Supplier-1',
-                data:new Array(),
-                color:'#3257A7'
-            },{
-                name:'Supplier-2',
-                data:new Array(),
-                color:'#B11E22'
-            },{
-                name:'Supplier-3',
-                data:new Array(),
-                color:'#F6B920'
-            },{
-                name:'Retailer-1',
-                data:new Array(),
-                color:'#8B288B'
-            },{
-                name:'Retailer-2',
-                data:new Array(),
-                color:'#F05422'
-            });
-            var previousElecssoriesVolume=new Array({
-                name:'Supplier-1',
-                data:new Array(),
-                color:'#3257A7'
-            },{
-                name:'Supplier-2',
-                data:new Array(),
-                color:'#B11E22'
-            },{
-                name:'Supplier-3',
-                data:new Array(),
-                color:'#F6B920'
-            },{
-                name:'Retailer-1',
-                data:new Array(),
-                color:'#8B288B'
-            },{
-                name:'Retailer-2',
-                data:new Array(),
-                color:'#F05422'
-            });
-            var previousElecssoriesValue=new Array({
-                name:'Supplier-1',
-                data:new Array(),
-                color:'#3257A7'
-            },{
-                name:'Supplier-2',
-                data:new Array(),
-                color:'#B11E22'
-            },{
-                name:'Supplier-3',
-                data:new Array(),
-                color:'#F6B920'
-            },{
-                name:'Retailer-1',
-                data:new Array(),
-                color:'#8B288B'
-            },{
-                name:'Retailer-2',
-                data:new Array(),
-                color:'#F05422'
-            });
-            var currentHealthBeautiesVolume=new Array({
-                name:'Supplier-1',
-                data:new Array(),
-                color:'#3257A7'
-            },{
-                name:'Supplier-2',
-                data:new Array(),
-                color:'#B11E22'
-            },{
-                name:'Supplier-3',
-                data:new Array(),
-                color:'#F6B920'
-            },{
-                name:'Retailer-1',
-                data:new Array(),
-                color:'#8B288B'
-            },{
-                name:'Retailer-2',
-                data:new Array(),
-                color:'#F05422'
-            });
-            var currentHealthBeautiesValue=new Array({
-                name:'Supplier-1',
-                data:new Array(),
-                color:'#3257A7'
-            },{
-                name:'Supplier-2',
-                data:new Array(),
-                color:'#B11E22'
-            },{
-                name:'Supplier-3',
-                data:new Array(),
-                color:'#F6B920'
-            },{
-                name:'Retailer-1',
-                data:new Array(),
-                color:'#8B288B'
-            },{
-                name:'Retailer-2',
-                data:new Array(),
-                color:'#F05422'
-            });
-            var previousHealthBeautiesVolume=new Array({
-                name:'Supplier-1',
-                data:new Array(),
-                color:'#3257A7'
-            },{
-                name:'Supplier-2',
-                data:new Array(),
-                color:'#B11E22'
-            },{
-                name:'Supplier-3',
-                data:new Array(),
-                color:'#F6B920'
-            },{
-                name:'Retailer-1',
-                data:new Array(),
-                color:'#8B288B'
-            },{
-                name:'Retailer-2',
-                data:new Array(),
-                color:'#F05422'
-            });
-            var previousHealthBeautiesValue=new Array({
-                name:'Supplier-1',
-                data:new Array(),
-                color:'#3257A7'
-            },{
-                name:'Supplier-2',
-                data:new Array(),
-                color:'#B11E22'
-            },{
-                name:'Supplier-3',
-                data:new Array(),
-                color:'#F6B920'
-            },{
-                name:'Retailer-1',
-                data:new Array(),
-                color:'#8B288B'
-            },{
-                name:'Retailer-2',
-                data:new Array(),
-                color:'#F05422'
-            });
+            var currentElecssoriesVolume=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'});
+            var currentElecssoriesValue=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'});
+            var previousElecssoriesVolume=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'});
+            var previousElecssoriesValue=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'});
+            var currentHealthBeautiesVolume=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'});
+            var currentHealthBeautiesValue=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'});
+            var previousHealthBeautiesVolume=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'});
+            var previousHealthBeautiesValue=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'});
+                
 
             for(var j=0;j<currentCategories.length;j++){
                 for(var i=0;i<data.data.f_VolumeMarketShares.length;i++){
                     if(data.data.f_VolumeMarketShares[i].period==currentCategories[j]){
-                        switch(data.data.f_VolumeMarketShares[i].actorID){
-                            case 1:
-                            if(data.data.f_VolumeMarketShares[i].categoryID==1){
-                                currentElecssoriesVolume[0].data.push(data.data.f_VolumeMarketShares[i].value);
-                            }else if(data.data.f_VolumeMarketShares[i].categoryID==2){
-                                currentHealthBeautiesVolume[0].data.push(data.data.f_VolumeMarketShares[i].value);
-                            }
-                            break;
-                            case 2:
-                            if(data.data.f_VolumeMarketShares[i].categoryID==1){
-                                currentElecssoriesVolume[1].data.push(data.data.f_VolumeMarketShares[i].value);
-                            }else if(data.data.f_VolumeMarketShares[i].categoryID==2){
-                                currentHealthBeautiesVolume[1].data.push(data.data.f_VolumeMarketShares[i].value);
-                            }
-                            break;
-                            case 3:
-                            if(data.data.f_VolumeMarketShares[i].categoryID==1){
-                                currentElecssoriesVolume[2].data.push(data.data.f_VolumeMarketShares[i].value);
-                            }else if(data.data.f_VolumeMarketShares[i].categoryID==2){
-                                currentHealthBeautiesVolume[2].data.push(data.data.f_VolumeMarketShares[i].value);
-                            }
-                            break;
-                            case 4:
-                            if(data.data.f_VolumeMarketShares[i].categoryID==1){
-                                currentElecssoriesVolume[3].data.push(data.data.f_VolumeMarketShares[i].value);
-                            }else if(data.data.f_VolumeMarketShares[i].categoryID==2){
-                                currentHealthBeautiesVolume[3].data.push(data.data.f_VolumeMarketShares[i].value);
-                            }
-                            break;
-                            case 5:
-                            if(data.data.f_VolumeMarketShares[i].categoryID==1){
-                                currentElecssoriesVolume[4].data.push(data.data.f_VolumeMarketShares[i].value);
-                            }else if(data.data.f_VolumeMarketShares[i].categoryID==2){
-                                currentHealthBeautiesVolume[4].data.push(data.data.f_VolumeMarketShares[i].value);
-                            }
-                            break;
+                        if(data.data.f_VolumeMarketShares[i].categoryID==1){
+                            currentElecssoriesVolume[data.data.f_VolumeMarketShares[i].actorID-1].data.push(data.data.f_VolumeMarketShares[i].value);
+                        }else if(data.data.f_VolumeMarketShares[i].categoryID==2){
+                            currentHealthBeautiesVolume[data.data.f_VolumeMarketShares[i].actorID-1].data.push(data.data.f_VolumeMarketShares[i].value);
                         }
                     }
                 }
@@ -245,42 +54,10 @@ var marketSharesCtrl=function($scope,$http){
             for(var j=0;j<currentCategories.length;j++){
                 for(var i=0;i<data.data.f_ValueMarketShares.length;i++){
                     if(data.data.f_ValueMarketShares[i].period==currentCategories[j]){
-                        switch(data.data.f_ValueMarketShares[i].actorID){
-                            case 1:
-                            if(data.data.f_ValueMarketShares[i].categoryID==1){
-                                currentElecssoriesValue[0].data.push(data.data.f_ValueMarketShares[i].value);
-                            }else if(data.data.f_ValueMarketShares[i].categoryID==2){
-                                currentHealthBeautiesValue[0].data.push(data.data.f_ValueMarketShares[i].value);
-                            }
-                            break;
-                            case 2:
-                            if(data.data.f_ValueMarketShares[i].categoryID==1){
-                                currentElecssoriesValue[1].data.push(data.data.f_ValueMarketShares[i].value);
-                            }else if(data.data.f_ValueMarketShares[i].categoryID==2){
-                                currentHealthBeautiesValue[1].data.push(data.data.f_ValueMarketShares[i].value);
-                            }
-                            break;
-                            case 3:
-                            if(data.data.f_ValueMarketShares[i].categoryID==1){
-                                currentElecssoriesValue[2].data.push(data.data.f_ValueMarketShares[i].value);
-                            }else if(data.data.f_ValueMarketShares[i].categoryID==2){
-                                currentHealthBeautiesValue[2].data.push(data.data.f_ValueMarketShares[i].value);
-                            }
-                            break;
-                            case 4:
-                            if(data.data.f_ValueMarketShares[i].categoryID==1){
-                                currentElecssoriesValue[3].data.push(data.data.f_ValueMarketShares[i].value);
-                            }else if(data.data.f_ValueMarketShares[i].categoryID==2){
-                                currentHealthBeautiesValue[3].data.push(data.data.f_ValueMarketShares[i].value);
-                            }
-                            break;
-                            case 5:
-                            if(data.data.f_ValueMarketShares[i].categoryID==1){
-                                currentElecssoriesValue[4].data.push(data.data.f_ValueMarketShares[i].value);
-                            }else if(data.data.f_ValueMarketShares[i].categoryID==2){
-                                currentHealthBeautiesValue[4].data.push(data.data.f_ValueMarketShares[i].value);
-                            }
-                            break;
+                        if(data.data.f_ValueMarketShares[i].categoryID==1){
+                            currentElecssoriesValue[data.data.f_ValueMarketShares[i].actorID-1].data.push(data.data.f_ValueMarketShares[i].value);
+                        }else if(data.data.f_ValueMarketShares[i].categoryID==2){
+                            currentHealthBeautiesValue[data.data.f_ValueMarketShares[i].actorID-1].data.push(data.data.f_ValueMarketShares[i].value);
                         }
                     }
                 }
@@ -288,42 +65,10 @@ var marketSharesCtrl=function($scope,$http){
             for(var j=0;j<previousCategories.length;j++){
                 for(var i=0;i<data.data.f_VolumeMarketShares.length;i++){
                     if(data.data.f_VolumeMarketShares[i].period==previousCategories[j]){
-                        switch(data.data.f_VolumeMarketShares[i].actorID){
-                            case 1:
-                            if(data.data.f_VolumeMarketShares[i].categoryID==1){
-                                previousElecssoriesVolume[0].data.push(data.data.f_VolumeMarketShares[i].value);
-                            }else if(data.data.f_VolumeMarketShares[i].categoryID==2){
-                                previousHealthBeautiesVolume[0].data.push(data.data.f_VolumeMarketShares[i].value);
-                            }
-                            break;
-                            case 2:
-                            if(data.data.f_VolumeMarketShares[i].categoryID==1){
-                                previousElecssoriesVolume[1].data.push(data.data.f_VolumeMarketShares[i].value);
-                            }else if(data.data.f_VolumeMarketShares[i].categoryID==2){
-                                previousHealthBeautiesVolume[1].data.push(data.data.f_VolumeMarketShares[i].value);
-                            }
-                            break;
-                            case 3:
-                            if(data.data.f_VolumeMarketShares[i].categoryID==1){
-                                previousElecssoriesVolume[2].data.push(data.data.f_VolumeMarketShares[i].value);
-                            }else if(data.data.f_VolumeMarketShares[i].categoryID==2){
-                                previousHealthBeautiesVolume[2].data.push(data.data.f_VolumeMarketShares[i].value);
-                            }
-                            break;
-                            case 4:
-                            if(data.data.f_VolumeMarketShares[i].categoryID==1){
-                                previousElecssoriesVolume[3].data.push(data.data.f_VolumeMarketShares[i].value);
-                            }else if(data.data.f_VolumeMarketShares[i].categoryID==2){
-                                previousHealthBeautiesVolume[3].data.push(data.data.f_VolumeMarketShares[i].value);
-                            }
-                            break;
-                            case 5:
-                            if(data.data.f_VolumeMarketShares[i].categoryID==1){
-                                previousElecssoriesVolume[4].data.push(data.data.f_VolumeMarketShares[i].value);
-                            }else if(data.data.f_VolumeMarketShares[i].categoryID==2){
-                                previousHealthBeautiesVolume[4].data.push(data.data.f_VolumeMarketShares[i].value);
-                            }
-                            break;
+                        if(data.data.f_VolumeMarketShares[i].categoryID==1){
+                            previousElecssoriesVolume[data.data.f_VolumeMarketShares[i].actorID-1].data.push(data.data.f_VolumeMarketShares[i].value);
+                        }else if(data.data.f_VolumeMarketShares[i].categoryID==2){
+                            previousHealthBeautiesVolume[data.data.f_VolumeMarketShares[i].actorID-1].data.push(data.data.f_VolumeMarketShares[i].value);
                         }
                     }
                 }
@@ -331,42 +76,10 @@ var marketSharesCtrl=function($scope,$http){
             for(var j=0;j<previousCategories.length;j++){
                 for(var i=0;i<data.data.f_ValueMarketShares.length;i++){
                     if(data.data.f_ValueMarketShares[i].period==previousCategories[j]){
-                        switch(data.data.f_ValueMarketShares[i].actorID){
-                            case 1:
-                            if(data.data.f_ValueMarketShares[i].categoryID==1){
-                                previousElecssoriesValue[0].data.push(data.data.f_ValueMarketShares[i].value);
-                            }else if(data.data.f_ValueMarketShares[i].categoryID==2){
-                                previousHealthBeautiesValue[0].data.push(data.data.f_ValueMarketShares[i].value);
-                            }
-                            break;
-                            case 2:
-                            if(data.data.f_ValueMarketShares[i].categoryID==1){
-                                previousElecssoriesValue[1].data.push(data.data.f_ValueMarketShares[i].value);
-                            }else if(data.data.f_ValueMarketShares[i].categoryID==2){
-                                previousHealthBeautiesValue[1].data.push(data.data.f_ValueMarketShares[i].value);
-                            }
-                            break;
-                            case 3:
-                            if(data.data.f_ValueMarketShares[i].categoryID==1){
-                                previousElecssoriesValue[2].data.push(data.data.f_ValueMarketShares[i].value);
-                            }else if(data.data.f_ValueMarketShares[i].categoryID==2){
-                                previousHealthBeautiesValue[2].data.push(data.data.f_ValueMarketShares[i].value);
-                            }
-                            break;
-                            case 4:
-                            if(data.data.f_ValueMarketShares[i].categoryID==1){
-                                previousElecssoriesValue[3].data.push(data.data.f_ValueMarketShares[i].value);
-                            }else if(data.data.f_ValueMarketShares[i].categoryID==2){
-                                previousHealthBeautiesValue[3].data.push(data.data.f_ValueMarketShares[i].value);
-                            }
-                            break;
-                            case 5:
-                            if(data.data.f_ValueMarketShares[i].categoryID==1){
-                                previousElecssoriesValue[4].data.push(data.data.f_ValueMarketShares[i].value);
-                            }else if(data.data.f_ValueMarketShares[i].categoryID==2){
-                                previousHealthBeautiesValue[4].data.push(data.data.f_ValueMarketShares[i].value);
-                            }
-                            break;
+                        if(data.data.f_ValueMarketShares[i].categoryID==1){
+                            previousElecssoriesValue[data.data.f_ValueMarketShares[i].actorID-1].data.push(data.data.f_ValueMarketShares[i].value);
+                        }else if(data.data.f_ValueMarketShares[i].categoryID==2){
+                            previousHealthBeautiesValue[data.data.f_ValueMarketShares[i].actorID-1].data.push(data.data.f_ValueMarketShares[i].value);
                         }
                     }
                 }
@@ -407,7 +120,6 @@ var marketSharesCtrl=function($scope,$http){
                 series: previousElecssoriesVolume,
                 loading: false
             }
-
             $scope.previousSharesVolumeHealthBeauties = {
                 options: {
                     title:{

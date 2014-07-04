@@ -33,6 +33,11 @@
                         {{Label.getContent('Closing Inventory')}}
                     </p>
                 </th>
+                <th rowspan="2">
+                    <p class="text-center">
+                        {{Label.getContent('Unit Production cost')}} ($)
+                    </p>
+                </th>
             </tr>
             <tr>
                 <td></td>
@@ -96,6 +101,9 @@
                 </td>
                 <td>
                     <p class="text-right">{{product.closing.value[1].toFixed(2)=="0.00"?0:product.closing.value[1].toFixed(2)}}</p>
+                </td>
+                <td>
+                    <p class="text-right"></p>
                 </td>
             </tr>
         </tbody>

@@ -370,18 +370,11 @@ app.controller('negotiationResultsCtrl', ['$scope','$http','$q',function($scope,
                 series: [{
                     type: 'pie',
                     data:termsofPayment
-                    // data: [
-                    //     {'name':'30 Days',y:data.data.f_TransactionsPerTOP[2].value,'color':'#3257A7'},
-                    //     {'name':'45 Days',y:data.data.f_TransactionsPerTOP[3].value,'color':'#B11E22'},
-                    //     {'name':'60 Days',y:data.data.f_TransactionsPerTOP[4].value,'color':'#F6B920'},
-                    //     {'name':'90 Days',y:data.data.f_TransactionsPerTOP[6].value,'color':'#329444'}
-                    // ]
                 }],
                 loading: false
             }
         });
     }
 
-    //$scope.initPage=initPage;
     initPage();
 }]);
