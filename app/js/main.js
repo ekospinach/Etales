@@ -9,7 +9,7 @@
 
 	require.config({
 		paths: {
-			angular: '../bower_components/angular/angular',
+			angular: 				'../bower_components/angular/angular',
 			angularCookies: 		'../bower_components/angular-cookies/angular-cookies',
 			angularRoute: 			'../bower_components/angular-route/angular-route',
 			angularResource: 		'../bower_components/angular-resource/angular-resource',
@@ -86,7 +86,7 @@
 	    //when dom is not ready, do something more useful?
 	    var console = root.console;
 	    if (console && console.log) {
-	      console.log('loading: ' + map.name + ' at ' + map.url);
+	      //console.log('loading: ' + map.name + ' at ' + map.url);
 	    }
 	  };
 
@@ -100,9 +100,14 @@
 	    	var percent=0,document = root.document;
 	    	var loadingPercentage = document.getElementById('loading-percentage');
 	    	updateModuleProgress = function(context, map, depMaps) {
-	    		percent=parseFloat(percent)+100/Object.keys(context.urlFetched).length;
-	    		if(percent>=100)percent=100;
-	    		loadingPercentage.innerHTML=parseFloat(percent).toFixed(0)+'%';
+	    		if(percent==0){
+	    			console.log(context.urlFetched);
+	    		}
+	    		percent++;
+	    		//console.log(map.name);
+	    		//percent=parseFloat(percent)+100/Object.keys(context.urlFetched).length;
+	    		//if(percent>=100)percent=100;
+	    		//loadingPercentage.innerHTML=parseFloat(percent).toFixed(0)+'%';
 	    	};
 	    });
 	});
