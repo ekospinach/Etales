@@ -26,12 +26,6 @@
 			bootstrap: 				'../bower_components/bootstrap/dist/js/bootstrap',
 			angularBootstrap: 		'./steps/angular-bootstrap',
 			routingConfig :  		'./routingConfig',
-			jqplot: 				'../bower_components/jqplot/jquery.jqplot.min',
-			bubbleRenderer: 		'./map/jqplot.bubbleRenderer',
-			labelRenderer: 			'./map/jqplot.canvasAxisLabelRenderer.min',
-			pieRenderer:  			'./map/jqplot.pieRenderer',
-			textRenderer: 			'./map/jqplot.canvasTextRenderer.min',
-			tree: 					'./map/bootstrap-tree',
 			domReady:   			'../bower_components/requirejs-domready/domReady',
 			labelBase:   			'./utils/labelBase',
 			//highchart
@@ -42,8 +36,7 @@
 			reveal: 				'../bower_components/reveal.js/js/reveal.min',
 			//angular notification 
 			//toaster:               '../bower_components/angular-notify-toaster/toaster',
-			ngNotify: 			   	'../bower_components/angular-notify/dist/angular-notify.min',
-			doubleScroll: 			'./utils/jquery.doubleScroll',
+			ngNotify: 			   	'../bower_components/angular-notify/dist/angular-notify.min'
 		},
 		baseUrl: 'js',
 		shim: {
@@ -71,8 +64,7 @@
 			'angularBootstrapSwitch':['angular','jquery','bootstrapswitch'],
 			'highchart' :['jquery'],
 			//'toaster' :['jquery','angular','angularAnimate'],
-			'ngNotify' :['jquery','angular'],
-			'doubleScroll':['jquery']
+			'ngNotify' :['jquery','angular']
 		},
 		priority: [
 			"angular"
@@ -97,17 +89,13 @@
 	require(['domReady'], function(domReady) {
 	    domReady(function() {
 	    //re-implement updateModuleProgress here for domReady
-	    	var percent=0,document = root.document;
+	    	var percent=0,count=0;document = root.document;
 	    	var loadingPercentage = document.getElementById('loading-percentage');
 	    	updateModuleProgress = function(context, map, depMaps) {
-	    		if(percent==0){
-	    			console.log(context.urlFetched);
-	    		}
-	    		percent++;
-	    		//console.log(map.name);
-	    		//percent=parseFloat(percent)+100/Object.keys(context.urlFetched).length;
-	    		//if(percent>=100)percent=100;
-	    		//loadingPercentage.innerHTML=parseFloat(percent).toFixed(0)+'%';
+	    		//context.urlFetched almost all the load file (2 more than all the map <domReady.js and main.js>)
+	    		percent=parseFloat(percent)+100/Object.keys(context.urlFetched).length;
+	    		if(percent>=100)percent=100;
+	    		loadingPercentage.innerHTML=parseFloat(percent).toFixed(0)+'%';
 	    	};
 	    });
 	});

@@ -92,19 +92,19 @@
  	'angularBootstrap',
  	'underscore',
  	'socketIO',
+ 	'jquery',
  	'bootstrap',
  	'angularLoadingBar',
  	'angularCookies',
- 	'jqplot',
- 	'bubbleRenderer',
- 	'labelRenderer',
- 	'textRenderer',
- 	'tree',
  	'highchartMore',
  	'angularHighcharts',
+ 	'angularResource',
+ 	'angularMocks',
+ 	'angularAnimate',
+ 	'text',
+ 	'bootstrapswitch',
  	'reveal',
- 	'ngNotify',
- 	'doubleScroll'
+ 	'ngNotify'
  ], function(angular, filters, services, directives, bootstrap, controllers) {
  	'use strict';
  	return angular.module('myApp', [
