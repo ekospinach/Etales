@@ -2,7 +2,7 @@
     <div class="panel-heading">
         <h3 class="panel-title text-center" popover="{{Label.getContent('Market Shares by Shopper Segment Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('HealthBeauties')}} {{Label.getContent('Situation Report')}} - {{Label.getContent('Market Shares by Shopper Segment')}}</h3>
     </div>
-    <table class="table table-condensed table-bordered table-success">
+    <!-- <table class="table table-condensed table-bordered table-success">
         <thead>
             <tr>
                 <th></th>
@@ -194,6 +194,202 @@
                 </td>
                 <td>
                     <p class="text-right">{{urban2.mixedValueChange}}</p>
+                </td>
+            </tr>
+        </tbody>
+    </table> -->
+    <table class="table table-condensed table-bordered table-success">
+        <thead>
+            <tr>
+                <th></th>
+                <th colspan="2">
+                    <p class="text-center">
+                        {{Label.getContent('B&M Only')}}
+                    </p>
+                </th>
+                <th colspan="2">
+                    <p class="text-center">
+                        {{Label.getContent('Online Only')}}
+                    </p>
+                </th>
+                <th colspan="2">
+                    <p class="text-center">
+                        {{Label.getContent('Mixed')}}
+                    </p>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Volume Share')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                </td>
+            </tr>
+            <tr class="info">
+                <td colspan="7">
+                    <p>{{Label.getContent('Rural')}}</p>
+                </td>
+            </tr>
+            <tr class="info" ng-repeat='rural in rural1s'>
+                <td>
+                    <p class="padding-20">{{rural.fullName}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural.bmVolumeShare=="0.00"?0:rural.bmVolumeShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural.bmVolumeChange=="0.00"?0:rural.bmVolumeChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural.onlineVolumeShare=="0.00"?0:rural.onlineVolumeShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural.onlineVolumeChange=="0.00"?0:rural.onlineVolumeChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural.mixedVolumeShare=="0.00"?0:rural.mixedVolumeShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural.mixedVolumeChange=="0.00"?0:rural.mixedVolumeChange}}</p>
+                </td>
+            </tr>
+            <tr class="warning">
+                <td colspan="7">
+                    <p>{{Label.getContent('Urban')}}</p>
+                </td>
+            </tr>
+            <tr class="warning" ng-repeat='urban in urban1s'>
+                <td>
+                    <p class="padding-20">{{urban.fullName}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{urban.bmVolumeShare=="0.00"?0:urban.bmVolumeShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{urban.bmVolumeChange=="0.00"?0:urban.bmVolumeChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{urban.onlineVolumeShare=="0.00"?0:urban.onlineVolumeShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{urban.onlineVolumeChange=="0.00"?0:urban.onlineVolumeChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{urban.mixedVolumeShare=="0.00"?0:urban.mixedVolumeShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{urban.mixedVolumeChange=="0.00"?0:urban.mixedVolumeChange}}</p>
+                </td>
+            </tr>
+            <tr>
+                <th></th>
+                <th colspan="2">
+                    <p class="text-center">
+                        {{Label.getContent('B&M Only')}}
+                    </p>
+                </th>
+                <th colspan="2">
+                    <p class="text-center">
+                        {{Label.getContent('Online Only')}}
+                    </p>
+                </th>
+                <th colspan="2">
+                    <p class="text-center">
+                        {{Label.getContent('Mixed')}}
+                    </p>
+                </th>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Value Share')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Value Share')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Value Share')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Change')}}</p>
+                </td>
+            </tr>
+            <tr class="info">
+                <td colspan="7">
+                    <p>{{Label.getContent('Rural')}}</p>
+                </td>
+            </tr>
+            <tr class="info" ng-repeat='rural in rural2s'>
+                <td>
+                    <p class="padding-20">{{rural.fullName}}</p>
+                </td>
+                 <td>
+                    <p class="text-right">{{rural.bmValueShare=="0.00"?0:rural.bmValueShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural.bmValueChange=="0.00"?0:rural.bmValueChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural.onlineValueShare=="0.00"?0:rural.onlineValueShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural.onlineValueChange=="0.00"?0:rural.onlineValueChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural.mixedValueShare=="0.00"?0:rural.mixedValueShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural.mixedValueChange=="0.00"?0:rural.mixedValueChange}}</p>
+                </td>
+            </tr>
+            <tr class="warning">
+                <td colspan="7">
+                    <p>{{Label.getContent('Urban')}}</p>
+                </td>
+            </tr>
+            <tr class="warning" ng-repeat='urban in urban2s'>
+                <td>
+                    <p class="padding-20">{{urban.fullName}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{urban.bmValueShare=="0.00"?0:urban.bmValueShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{urban.bmValueChange=="0.00"?0:urban.bmValueChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{urban.onlineValueShare=="0.00"?0:urban.onlineValueShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{urban.onlineValueChange=="0.00"?0:urban.onlineValueChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{urban.mixedValueShare=="0.00"?0:urban.mixedValueShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{urban.mixedValueChange=="0.00"?0:urban.mixedValueChange}}</p>
                 </td>
             </tr>
         </tbody>

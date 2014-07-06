@@ -50,27 +50,27 @@
                     <p>{{Label.getContent('Rural')}}</p>
                 </td>
             </tr>
-            <tr class="info" ng-repeat='rural1 in rural1s'>
+            <tr class="info" ng-repeat='rural in rural1s'>
                 <td>
-                    <p class="padding-20">{{rural1.fullName}}</p>
+                    <p class="padding-20">{{rural.fullName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{rural1.bmVolumeShare}}</p>
+                    <p class="text-right">{{rural.bmVolumeShare=="0.00"?0:rural.bmVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{rural1.bmVolumeChange}}</p>
+                    <p class="text-right">{{rural.bmVolumeChange=="0.00"?0:rural.bmVolumeChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{rural1.onlineVolumeShare}}</p>
+                    <p class="text-right">{{rural.onlineVolumeShare=="0.00"?0:rural.onlineVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{rural1.onlineVolumeChange}}</p>
+                    <p class="text-right">{{rural.onlineVolumeChange=="0.00"?0:rural.onlineVolumeChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{rural1.mixedVolumeShare}}</p>
+                    <p class="text-right">{{rural.mixedVolumeShare=="0.00"?0:rural.mixedVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{rural1.mixedVolumeChange}}</p>
+                    <p class="text-right">{{rural.mixedVolumeChange=="0.00"?0:rural.mixedVolumeChange}}</p>
                 </td>
             </tr>
             <tr class="warning">
@@ -78,27 +78,27 @@
                     <p>{{Label.getContent('Urban')}}</p>
                 </td>
             </tr>
-            <tr class="warning" ng-repeat='urban1 in urban1s'>
+            <tr class="warning" ng-repeat='urban in urban1s'>
                 <td>
-                    <p class="padding-20">{{urban1.fullName}}</p>
+                    <p class="padding-20">{{urban.fullName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{urban1.bmVolumeShare}}</p>
+                    <p class="text-right">{{urban.bmVolumeShare=="0.00"?0:urban.bmVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{urban1.bmVolumeChange}}</p>
+                    <p class="text-right">{{urban.bmVolumeChange=="0.00"?0:urban.bmVolumeChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{urban1.onlineVolumeShare}}</p>
+                    <p class="text-right">{{urban.onlineVolumeShare=="0.00"?0:urban.onlineVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{urban1.onlineVolumeChange}}</p>
+                    <p class="text-right">{{urban.onlineVolumeChange=="0.00"?0:urban.onlineVolumeChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{urban1.mixedVolumeShare}}</p>
+                    <p class="text-right">{{urban.mixedVolumeShare=="0.00"?0:urban.mixedVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{urban1.mixedVolumeChange}}</p>
+                    <p class="text-right">{{urban.mixedVolumeChange=="0.00"?0:urban.mixedVolumeChange}}</p>
                 </td>
             </tr>
             <tr>
@@ -145,27 +145,27 @@
                     <p>{{Label.getContent('Rural')}}</p>
                 </td>
             </tr>
-            <tr class="info" ng-repeat='rural2 in rural2s'>
+            <tr class="info" ng-repeat='rural in rural2s'>
                 <td>
-                    <p class="padding-20">{{rural2.fullName}}</p>
+                    <p class="padding-20">{{rural.fullName}}</p>
+                </td>
+                 <td>
+                    <p class="text-right">{{rural.bmValueShare=="0.00"?0:rural.bmValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{rural2.bmValueShare}}</p>
+                    <p class="text-right">{{rural.bmValueChange=="0.00"?0:rural.bmValueChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{rural2.bmValueChange}}</p>
+                    <p class="text-right">{{rural.onlineValueShare=="0.00"?0:rural.onlineValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{rural2.onlineValueShare}}</p>
+                    <p class="text-right">{{rural.onlineValueChange=="0.00"?0:rural.onlineValueChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{rural2.onlineValueChange}}</p>
+                    <p class="text-right">{{rural.mixedValueShare=="0.00"?0:rural.mixedValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{rural2.mixedValueShare}}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{rural2.mixedValueChange}}</p>
+                    <p class="text-right">{{rural.mixedValueChange=="0.00"?0:rural.mixedValueChange}}</p>
                 </td>
             </tr>
             <tr class="warning">
@@ -173,27 +173,27 @@
                     <p>{{Label.getContent('Urban')}}</p>
                 </td>
             </tr>
-            <tr class="warning" ng-repeat='urban2 in urban2s'>
+            <tr class="warning" ng-repeat='urban in urban2s'>
                 <td>
-                    <p class="padding-20">{{urban2.fullName}}</p>
+                    <p class="padding-20">{{urban.fullName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{urban2.bmValueShare}}</p>
+                    <p class="text-right">{{urban.bmValueShare=="0.00"?0:urban.bmValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{urban2.bmValueChange}}</p>
+                    <p class="text-right">{{urban.bmValueChange=="0.00"?0:urban.bmValueChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{urban2.onlineValueShare}}</p>
+                    <p class="text-right">{{urban.onlineValueShare=="0.00"?0:urban.onlineValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{urban2.onlineValueChange}}</p>
+                    <p class="text-right">{{urban.onlineValueChange=="0.00"?0:urban.onlineValueChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{urban2.mixedValueShare}}</p>
+                    <p class="text-right">{{urban.mixedValueShare=="0.00"?0:urban.mixedValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{urban2.mixedValueChange}}</p>
+                    <p class="text-right">{{urban.mixedValueChange=="0.00"?0:urban.mixedValueChange}}</p>
                 </td>
             </tr>
         </tbody>
