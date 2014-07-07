@@ -49,6 +49,7 @@ define(['app'], function(app) {
 	    		$scope.pageHeader="hide";
 				$scope.pageFooter="hide";	
 	    	}
+	    	
 	    	if(window.location.hash.substring(2,7)=="login"){
 	    		//login page
 	    		$scope.pageBody="bs-docs-home";

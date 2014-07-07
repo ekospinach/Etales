@@ -3,8 +3,6 @@ var _ = require('underscore'),
   q = require('q'),
   util = require('util');
 
-
-
 exports.getCurrentUnitCost = function(req, res, next) {
   var query = {
     period: req.body.period,
@@ -16,9 +14,17 @@ exports.getCurrentUnitCost = function(req, res, next) {
     userID: req.body.userID,
   };
 
+  var prodCost = [];
+
   //console.log('try to get production cost: ' + util.inspect(query));
   //get variant composition/catNow/isPrivateLabel/packFormat
-  getProduct(query).then(function(variant) {
+  prepareProdCost(query.seminar, query.period).then(function(success){
+    
+    prodCost = success.result;
+    console.log(prodCost);
+
+    return getProduct(query);
+  }).then(function(variant) {
     return getCumVolumes(query, variant.result);
   }).then(function(variant) {
 
@@ -27,21 +33,15 @@ exports.getCurrentUnitCost = function(req, res, next) {
       [400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400],
       [400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400]
     ];
-    console.log('get cumVolumes[0]:' + util.inspect(variant.result.cumVolumes[0], {
-      depth: true
-    }));
-    console.log('get cumVolumes[1]:' + util.inspect(variant.result.cumVolumes[1], {
-      depth: true
-    }));
-    console.log('get cumVolumes[2]:' + util.inspect(variant.result.cumVolumes[2], {
-      depth: true
-    }));
 
-    var value = calculateUnitCost(variant.result.composition,
-      variant.result.packFormat,
+    console.log(variant.result.cumVolumes);
+
+    var value = calculateUnitCost(variant.result.catNow,
       variant.result.isPrivateLabel,
+      variant.result.packFormat,
+      variant.result.composition,
       variant.result.cumVolumes,
-      variant.result.catNow);
+      prodCost);
 
     //console.log('done:' + value);
     res.send(200, {
@@ -51,6 +51,177 @@ exports.getCurrentUnitCost = function(req, res, next) {
     console.log('err, ' + util.inspect(err));
     res.send(404, err.msg);
   });
+}
+
+function calculateUnitCost(catNow, isPrivateLabel, packFormat, composition,  cumVolumes, prodCost) {
+    var tempResult,
+    geogNow = 2,
+    correctedVolumes = [0, 0, 0]; //Length:TSpecs(1~3)
+
+   // console.log(prodCost);
+  //SpecsMax = 3
+  var currentProdCost = _.find(prodCost, function(assort) {
+      return (assort.marketID == geogNow && assort.categoryID == catNow)
+    })
+    // if(!currentProdCost) 
+    //   //console.log('assort error');
+  for (var i = 0; i < 3; i++) {
+    correctedVolumes[i] = cumVolumes[i][composition[i]];
+    //console.log('for, cumVolumes[' + i + '][' + composition[i] + ']:' + cumVolumes[i][composition[i]]); 
+  };
+  
+  console.log('  step 1, correctedVolumes:' + correctedVolumes);
+  //MaxSpecsIndex = 22
+  switch (catNow) {
+    case 1: //Elecsories
+      for (var specsIndex = composition[0]; specsIndex < 22; specsIndex++) {
+        correctedVolumes[0] = correctedVolumes[0] + (cumVolumes[0][specsIndex] * (specsIndex - (composition[0] - 1)) * currentProdCost.higherDesignImpact);
+      };
+      for (var specsIndex = composition[1]; specsIndex < 22; specsIndex++) {
+        correctedVolumes[1] = correctedVolumes[1] + (cumVolumes[1][specsIndex] * (specsIndex - (composition[1] - 1)) * currentProdCost.higherTechImpact);
+      };
+      break;
+    case 2: //HealthBeauties
+      for (var specsIndex = composition[1]; specsIndex < 22; specsIndex++) {
+        correctedVolumes[1] = correctedVolumes[1] + (cumVolumes[1][specsIndex] * (specsIndex - (composition[1] - 1)) * currentProdCost.higherTechImpact);
+      };
+      break;
+    default:
+      //console.log('UnitCost: catNow error');
+  }
+
+  console.log('  step 2, complete switch: ' + correctedVolumes);
+
+  tempResult = currentProdCost.logisticsCost;
+  console.log('  step 3, logisticsCost: ' + tempResult);
+
+  var a, b;
+  for (var spec = 0; spec < 3; spec++) {
+    //console.log('currentProdCost.ingredientDetails[' +spec + ']['+ composition[spec] +']:' + currentProdCost.ingredientDetails[spec][composition[spec]]);
+    a = currentProdCost.ingredientDetails[spec][composition[spec]] * composition[spec]
+    b = 0;
+    for (var aMarket = 1; aMarket < 3; aMarket++) {
+      var PC = _.find(prodCost, function(assort) {
+        return assort.marketID == aMarket && assort.categoryID == catNow;
+      })
+      if (!PC) {
+        //console.log('UnitCost: get PC error in aMarket');
+      }
+      b = b + PC.minProductionVolume;
+    };
+    b = (Math.max(correctedVolumes[spec], b)) / b;
+    b = Math.pow(b, currentProdCost.defaultDrop);
+    tempResult = tempResult + a * b;
+  }
+
+  console.log('  step 4, before packformat: ' + tempResult);
+
+  switch (packFormat) {
+    case 'ECONOMY':
+      tempResult = tempResult * (1.0 + currentProdCost.ECONOMY)
+      break;
+    case 'STANDARD':
+      tempResult = tempResult * (1.0 + currentProdCost.STANDARD)
+      break;
+    case 'PREMIUM':
+      tempResult = tempResult * (1.0 + currentProdCost.PREMIUM)
+      break;
+    default:
+      //console.log('UnitCost: packFormat error');
+  }
+
+  console.log('  step 4, after packformat: ' + tempResult);
+
+  if (isPrivateLabel) tempResult = tempResult * (1.0 + currentProdCost.marginOnPrivateLabel);
+
+  console.log('  step 5, after privateLabel: ' + tempResult);
+
+  return tempResult;
+
+}
+
+function prepareProdCost(seminar, period){
+  var deferred = q.defer(), tempAssort;
+  var prodCost = [{marketID : 1, categoryID : 1},{marketID : 1, categoryID : 2},{marketID : 2, categoryID : 1},{marketID : 2, categoryID : 2}];
+
+  require('./../models/BG_oneQuarterExogenousData.js').oneQuarterExogenousData.find({seminar: seminar, period : period }, function(err, docs){
+    if(err){ console.log('ERR:' + err); deferred.reject({msg:'oneQuarterExogenousData find err, seminar: ' + seminar + ', period: ' + period});}
+    if(docs){
+      tempAssort = _.find(docs, function(assort) { return assort.marketID == 1 && assort.categoryID == 1; });
+      prodCost[0].ingredientDetails = tempAssort.ProdCost_IngredientPrices;
+      prodCost[0].logisticsCost = tempAssort.ProdCost_LogisticsCost;
+      prodCost[0].labourCost = tempAssort.ProdCost_LabourCost;
+
+      tempAssort = _.find(docs, function(assort) { return assort.marketID == 1 && assort.categoryID == 2; });
+      prodCost[1].ingredientDetails = tempAssort.ProdCost_IngredientPrices;
+      prodCost[1].logisticsCost = tempAssort.ProdCost_LogisticsCost;
+      prodCost[1].labourCost = tempAssort.ProdCost_LabourCost;
+
+      tempAssort = _.find(docs, function(assort) { return assort.marketID == 2 && assort.categoryID == 1; });
+      prodCost[2].ingredientDetails = tempAssort.ProdCost_IngredientPrices;
+      prodCost[2].logisticsCost = tempAssort.ProdCost_LogisticsCost;
+      prodCost[2].labourCost = tempAssort.ProdCost_LabourCost;
+
+      tempAssort = _.find(docs, function(assort) { return assort.marketID == 2 && assort.categoryID == 2; });
+      prodCost[3].ingredientDetails = tempAssort.ProdCost_IngredientPrices;
+      prodCost[3].logisticsCost = tempAssort.ProdCost_LogisticsCost;
+      prodCost[3].labourCost = tempAssort.ProdCost_LabourCost;
+
+      require('./../models/BG_oneQuarterParameterData.js').oneQuarterParameterData.find({seminar: seminar}, function(err, docs){
+          if(err){ console.log('ERR:' + err); deferred.reject({msg:'oneQuarterExogenousData find err, seminar: ' + seminar + ', period: ' + period});}
+          if(docs){
+              tempAssort = _.find(docs, function(assort) { return assort.marketID == 1 && assort.categoryID == 1; });
+              prodCost[0].higherDesignImpact = tempAssort.ProdCost_HigherDesignImpact;  
+              prodCost[0].higherTechImpact = tempAssort.ProdCost_HigherTechImpact;    
+              prodCost[0].defaultDrop = tempAssort.ProdCost_DefaultDrop;         
+              prodCost[0].marginOnPrivateLabel = tempAssort.ProdCost_MarginOnPrivateLabel;
+              prodCost[0].minProductionVolume = tempAssort.MinProductionVolume;         
+              prodCost[0].ECONOMY = tempAssort.ProdCost_ECONOMY;             
+              prodCost[0].STANDARD = tempAssort.ProdCost_STANDARD;            
+              prodCost[0].PREMIUM = tempAssort.ProdCost_PREMIUM;      
+
+              tempAssort = _.find(docs, function(assort) { return assort.marketID == 1 && assort.categoryID == 2; });
+              prodCost[1].higherDesignImpact = tempAssort.ProdCost_HigherDesignImpact;  
+              prodCost[1].higherTechImpact = tempAssort.ProdCost_HigherTechImpact;    
+              prodCost[1].defaultDrop = tempAssort.ProdCost_DefaultDrop;         
+              prodCost[1].marginOnPrivateLabel = tempAssort.ProdCost_MarginOnPrivateLabel;
+              prodCost[1].minProductionVolume = tempAssort.MinProductionVolume;         
+              prodCost[1].ECONOMY = tempAssort.ProdCost_ECONOMY;             
+              prodCost[1].STANDARD = tempAssort.ProdCost_STANDARD;            
+              prodCost[1].PREMIUM = tempAssort.ProdCost_PREMIUM;      
+
+              tempAssort = _.find(docs, function(assort) { return assort.marketID == 2 && assort.categoryID == 1; });
+              prodCost[2].higherDesignImpact = tempAssort.ProdCost_HigherDesignImpact;  
+              prodCost[2].higherTechImpact = tempAssort.ProdCost_HigherTechImpact;    
+              prodCost[2].defaultDrop = tempAssort.ProdCost_DefaultDrop;         
+              prodCost[2].marginOnPrivateLabel = tempAssort.ProdCost_MarginOnPrivateLabel;
+              prodCost[2].minProductionVolume = tempAssort.MinProductionVolume;         
+              prodCost[2].ECONOMY = tempAssort.ProdCost_ECONOMY;             
+              prodCost[2].STANDARD = tempAssort.ProdCost_STANDARD;            
+              prodCost[2].PREMIUM = tempAssort.ProdCost_PREMIUM;      
+
+              tempAssort = _.find(docs, function(assort) { return assort.marketID == 2 && assort.categoryID == 2; });
+              prodCost[3].higherDesignImpact = tempAssort.ProdCost_HigherDesignImpact;  
+              prodCost[3].higherTechImpact = tempAssort.ProdCost_HigherTechImpact;    
+              prodCost[3].defaultDrop = tempAssort.ProdCost_DefaultDrop;         
+              prodCost[3].marginOnPrivateLabel = tempAssort.ProdCost_MarginOnPrivateLabel;
+              prodCost[3].minProductionVolume = tempAssort.MinProductionVolume;         
+              prodCost[3].ECONOMY = tempAssort.ProdCost_ECONOMY;             
+              prodCost[3].STANDARD = tempAssort.ProdCost_STANDARD;            
+              prodCost[3].PREMIUM = tempAssort.ProdCost_PREMIUM;      
+              
+              deferred.resolve({result : prodCost});
+          } else {
+              deferred.reject({msg:'prepareProdCost failed : no one oneQuarterParameterData, seminar: ' + seminar + ', period: ' + period});      
+          }
+      });
+    } else {
+      deferred.reject({msg:'prepareProdCost failed : no one oneQuarterExogenousData, seminar: ' + seminar + ', period: ' + period});
+    }
+  });
+
+
+  return deferred.promise;  
 }
 
 function getProduct(query) {
@@ -583,159 +754,3 @@ function getCumVolumes(query, variant) {
   return deferred.promise;
 }
 
-
-function prepareProdCost(){
-  require('../models/producerDecision.js').oneQuarterExogenousData.findOne({seminar: seminar, period : periodNow, })
-  require('./models/producerDecision.js').proDecision.findOne
-
-}
-function calculateUnitCost( periodNow, catNow, isPrivateLabel, packFormat, composition,  cumVolumes, prodCost) {
-
-  var prodCost = [{
-      marketID: 1,
-      categoryID: 1,
-      ingredientDetails: [
-        [0.100, 0.100, 0.100, 0.100, 0.100, 0.100, 0.100, 0.100, 0.100, 0.100, 0.100, 0.100, 0.100, 0.100, 0.100, 0.100, 0.100, 0.100, 0.100, 0.100, 0.000, 0.000],
-        [0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.000, 0.000],
-        [0.300, 0.298, 0.296, 0.294, 0.292, 0.290, 0.288, 0.286, 0.284, 0.282, 0.280, 0.278, 0.276, 0.274, 0.272, 0.270, 0.268, 0.266, 0.264, 0.262, 0.260, 0.258]
-      ],
-      higherDesignImpact: 0.05,
-      higherTechImpact: 0.1,
-      logisticsCost: 0.70,
-      minProductionVolume: 4.00,
-      defaultDrop: -0.12,
-      ECONOMY: 0.02,
-      STANDARD: 0.03,
-      PREMIUM: 0.05,
-      marginOnPrivateLabel: 0.15,
-    }, {
-      marketID: 1,
-      categoryID: 2,
-      ingredientDetails: [
-        [0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.000, 0.000],
-        [0.450, 0.450, 0.450, 0.450, 0.450, 0.450, 0.450, 0.450, 0.450, 0.450, 0.450, 0.450, 0.450, 0.450, 0.450, 0.450, 0.450, 0.450, 0.450, 0.450, 0.000, 0.000],
-        [0.700, 0.705, 0.710, 0.715, 0.720, 0.725, 0.730, 0.735, 0.740, 0.745, 0.750, 0.755, 0.760, 0.765, 0.770, 0.775, 0.780, 0.785, 0.790, 0.795, 0.800, 0.805]
-      ],
-      higherDesignImpact: 0.10,
-      higherTechImpact: 0.1,
-      logisticsCost: 1.00,
-      minProductionVolume: 3.00,
-      defaultDrop: -0.15,
-      ECONOMY: 0.01,
-      STANDARD: 0.02,
-      PREMIUM: 0.04,
-      marginOnPrivateLabel: 0.25,
-    }, {
-      marketID: 2,
-      categoryID: 1,
-      ingredientDetails: [
-        [0.100, 0.100, 0.100, 0.100, 0.100, 0.100, 0.100, 0.100, 0.100, 0.100, 0.100, 0.100, 0.100, 0.100, 0.100, 0.100, 0.100, 0.100, 0.100, 0.100, 0.000, 0.000],
-        [0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.000, 0.000],
-        [0.300, 0.298, 0.296, 0.294, 0.292, 0.290, 0.288, 0.286, 0.284, 0.282, 0.280, 0.278, 0.276, 0.274, 0.272, 0.270, 0.268, 0.266, 0.264, 0.262, 0.260, 0.258]
-      ],
-      higherDesignImpact: 0.05,
-      higherTechImpact: 0.1,
-      logisticsCost: 0.70,
-      minProductionVolume: 6.00,
-      defaultDrop: -0.12,
-      ECONOMY: 0.02,
-      STANDARD: 0.03,
-      PREMIUM: 0.05,
-      marginOnPrivateLabel: 0.15,
-    }, {
-      marketID: 2,
-      categoryID: 2,
-      ingredientDetails: [
-        [0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.000, 0.000],
-        [0.450, 0.450, 0.450, 0.450, 0.450, 0.450, 0.450, 0.450, 0.450, 0.450, 0.450, 0.450, 0.450, 0.450, 0.450, 0.450, 0.450, 0.450, 0.450, 0.450, 0.000, 0.000],
-        [0.700, 0.705, 0.710, 0.715, 0.720, 0.725, 0.730, 0.735, 0.740, 0.745, 0.750, 0.755, 0.760, 0.765, 0.770, 0.775, 0.780, 0.785, 0.790, 0.795, 0.800, 0.805]
-      ],
-      higherDesignImpact: 0.10,
-      higherTechImpact: 0.1,
-      logisticsCost: 1.00,
-      minProductionVolume: 5.00,
-      defaultDrop: -0.15,
-      ECONOMY: 0.01,
-      STANDARD: 0.02,
-      PREMIUM: 0.04,
-      marginOnPrivateLabel: 0.25,
-    }],
-
-    tempResult,
-    geogNow = 2,
-    correctedVolumes = [0, 0, 0]; //Length:TSpecs(1~3)
-
-  //SpecsMax = 3
-  var currentProdCost = _.find(prodCost, function(assort) {
-      return (assort.marketID == geogNow && assort.categoryID == catNow)
-    })
-    // if(!currentProdCost) 
-    //   //console.log('assort error');
-  for (var i = 0; i < 3; i++) {
-    correctedVolumes[i] = cumVolumes[i][composition[i]];
-    //console.log('for, cumVolumes[' + i + '][' + composition[i] + ']:' + cumVolumes[i][composition[i]]); 
-  };
-  //console.log('correctedVolumes:' + correctedVolumes);
-  //MaxSpecsIndex = 22
-  switch (catNow) {
-    case 1: //Elecsories
-      for (var specsIndex = composition[0]; specsIndex < 22; specsIndex++) {
-        correctedVolumes[0] = correctedVolumes[0] + (cumVolumes[0][specsIndex] * (specsIndex - (composition[0] - 1)) * currentProdCost.higherDesignImpact);
-      };
-      for (var specsIndex = composition[1]; specsIndex < 22; specsIndex++) {
-        correctedVolumes[1] = correctedVolumes[1] + (cumVolumes[1][specsIndex] * (specsIndex - (composition[1] - 1)) * currentProdCost.higherTechImpact);
-      };
-      break;
-    case 2: //HealthBeauties
-      for (var specsIndex = composition[1]; specsIndex < 22; specsIndex++) {
-        correctedVolumes[1] = correctedVolumes[1] + (cumVolumes[1][specsIndex] * (specsIndex - (composition[1] - 1)) * currentProdCost.higherTechImpact);
-      };
-      break;
-    default:
-      //console.log('UnitCost: catNow error');
-  }
-
-  //console.log('complete switch:' + correctedVolumes);
-
-  tempResult = currentProdCost.logisticsCost;
-  //console.log(tempResult);
-
-  var a, b;
-  for (var spec = 0; spec < 3; spec++) {
-    //console.log('currentProdCost.ingredientDetails[' +spec + ']['+ composition[spec] +']:' + currentProdCost.ingredientDetails[spec][composition[spec]]);
-    a = currentProdCost.ingredientDetails[spec][composition[spec]] * composition[spec]
-    b = 0;
-    for (var aMarket = 1; aMarket < 3; aMarket++) {
-      var PC = _.find(prodCost, function(assort) {
-        return assort.marketID == aMarket && assort.categoryID == catNow;
-      })
-      if (!PC) {
-        //console.log('UnitCost: get PC error in aMarket');
-      }
-      b = b + PC.minProductionVolume;
-    };
-    b = (Math.max(correctedVolumes[spec], b)) / b;
-    b = Math.pow(b, currentProdCost.defaultDrop);
-    tempResult = tempResult + a * b;
-  }
-
-  //console.log(tempResult);
-
-  switch (packFormat) {
-    case 'ECONOMY':
-      tempResult = tempResult * (1.0 + currentProdCost.ECONOMY)
-      break;
-    case 'STANDARD':
-      tempResult = tempResult * (1.0 + currentProdCost.STANDARD)
-      break;
-    case 'PREMIUM':
-      tempResult = tempResult * (1.0 + currentProdCost.PREMIUM)
-      break;
-    default:
-      //console.log('UnitCost: packFormat error');
-  }
-
-  if (isPrivateLabel) tempResult = tempResult * (1.0 + currentProdCost.marginOnPrivateLabel);
-  return tempResult;
-
-}

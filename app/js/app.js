@@ -124,12 +124,6 @@
  			editableOptions.theme = 'bs3';
  		}).run(['$rootScope', '$location', 'Auth', '$http','$cookieStore','SeminarInfo','PeriodInfo','PlayerInfo','RoleInfo',
  			function($rootScope, $location, Auth, $http, $cookieStore, SeminarInfo, PeriodInfo, PlayerInfo, RoleInfo) {
- 				// $rootScope.loginBody = "bs-docs-home";
- 				// $rootScope.loginFooter = "container";
- 				// $rootScope.loginCss = "bs-docs-home";
- 				// $rootScope.loginLink = "bs-masthead-links";
- 				// $rootScope.loginDiv = "";
-
 			    var userRoles = routingConfig.userRoles;
  				var cookiesUserInfo = $cookieStore.get('user') || {
  					username: '',
