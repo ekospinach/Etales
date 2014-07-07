@@ -307,8 +307,8 @@ table tr td p,table tr th p{
     outline: 0 none;
     text-decoration: none;
 }
-@media (min-width: 1200px) {
+/*@media (min-width: 1200px) {
   .container {
     width: 96%;
   }
-}
+}*/
