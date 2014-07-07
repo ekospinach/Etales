@@ -148,14 +148,12 @@ define(['directives', 'services'], function(directives){
                     }
                     marketInfo.push({'factoriesInfo':factoriesInfo6});
                     array.push({'marketInfo':marketInfo});
-                    console.log(array);
                     return array;
                 }
 
                 var organiseArray = function(data){
                     var deferred = $q.defer();
                     scope.ShelfSpaces=loadPercentageValue(data.data[0].rcrps_ShelfSpace);
-                    console.log(data.data[0].rcrps_NetSales);
                     scope.NetSales=loadValue(data.data[0].rcrps_NetSales);
                     scope.NetSalesPerShelfSpaces=loadValue(data.data[0].rcrps_NetSalesPerShelfSpace);
                     scope.NetSalesShares=loadPercentageValue(data.data[0].rcrps_NetSalesShare);
