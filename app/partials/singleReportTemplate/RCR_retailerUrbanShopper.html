@@ -49,27 +49,27 @@
                     <p class="padding-20">{{Label.getContent('Supplier')}} 1</p>
                 </td>
             </tr>
-            <tr class="success" ng-repeat='eleVolume1 in eleVolume1s'>
+            <tr class="success" ng-repeat='eleVolume in eleVolume1s'>
                 <td>
-                    <p class="padding-40">{{eleVolume1.fullName}}</p>
+                    <p class="padding-40">{{eleVolume.fullName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleVolume1.bmVolumeShare}}</p>
+                    <p class="text-right">{{eleVolume.bmVolumeShare=="0.00"?0:eleVolume.bmVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleVolume1.bmVolumeChange}}</p>
+                    <p class="text-right">{{eleVolume.bmVolumeChange=="0.00"?0:eleVolume.bmVolumeChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleVolume1.onlineVolumeShare}}</p>
+                    <p class="text-right">{{eleVolume.onlineVolumeShare=="0.00"?0:eleVolume.onlineVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleVolume1.onlineVolumeChange}}</p>
+                    <p class="text-right">{{eleVolume.onlineVolumeChange=="0.00"?0:eleVolume.onlineVolumeChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleVolume1.mixedVolumeShare}}</p>
+                    <p class="text-right">{{eleVolume.mixedVolumeShare=="0.00"?0:eleVolume.mixedVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleVolume1.mixedVolumeChange}}</p>
+                    <p class="text-right">{{eleVolume.mixedVolumeChange=="0.00"?0:eleVolume.mixedVolumeChange}}</p>
                 </td>
             </tr>
             <tr class="success" ng-show='eleVolume2s.length>=1'>
@@ -77,27 +77,27 @@
                     <p class="padding-20">{{Label.getContent('Supplier')}} 2</p>
                 </td>
             </tr>
-            <tr class="success" ng-repeat='eleVolume2 in eleVolume2s'>
+            <tr class="success" ng-repeat='eleVolume in eleVolume2s'>
                 <td>
-                    <p class="padding-40">{{eleVolume2.fullName}}</p>
+                    <p class="padding-40">{{eleVolume.fullName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleVolume2.bmVolumeShare}}</p>
+                    <p class="text-right">{{eleVolume.bmVolumeShare=="0.00"?0:eleVolume.bmVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleVolume2.bmVolumeChange}}</p>
+                    <p class="text-right">{{eleVolume.bmVolumeChange=="0.00"?0:eleVolume.bmVolumeChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleVolume2.onlineVolumeShare}}</p>
+                    <p class="text-right">{{eleVolume.onlineVolumeShare=="0.00"?0:eleVolume.onlineVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleVolume2.onlineVolumeChange}}</p>
+                    <p class="text-right">{{eleVolume.onlineVolumeChange=="0.00"?0:eleVolume.onlineVolumeChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleVolume2.mixedVolumeShare}}</p>
+                    <p class="text-right">{{eleVolume.mixedVolumeShare=="0.00"?0:eleVolume.mixedVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleVolume2.mixedVolumeChange}}</p>
+                    <p class="text-right">{{eleVolume.mixedVolumeChange=="0.00"?0:eleVolume.mixedVolumeChange}}</p>
                 </td>
             </tr>
             <tr class="success" ng-show='eleVolume3s.length>=1'>
@@ -105,27 +105,27 @@
                     <p class="padding-20">{{Label.getContent('Supplier')}} 3</p>
                 </td>
             </tr>
-            <tr class="success" ng-repeat='eleVolume3 in eleVolume3s'>
+            <tr class="success" ng-repeat='eleVolume in eleVolume3s'>
                 <td>
-                    <p class="padding-40">{{eleVolume3.fullName}}</p>
+                    <p class="padding-40">{{eleVolume.fullName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleVolume3.bmVolumeShare}}</p>
+                    <p class="text-right">{{eleVolume.bmVolumeShare=="0.00"?0:eleVolume.bmVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleVolume3.bmVolumeChange}}</p>
+                    <p class="text-right">{{eleVolume.bmVolumeChange=="0.00"?0:eleVolume.bmVolumeChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleVolume3.onlineVolumeShare}}</p>
+                    <p class="text-right">{{eleVolume.onlineVolumeShare=="0.00"?0:eleVolume.onlineVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleVolume3.onlineVolumeChange}}</p>
+                    <p class="text-right">{{eleVolume.onlineVolumeChange=="0.00"?0:eleVolume.onlineVolumeChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleVolume3.mixedVolumeShare}}</p>
+                    <p class="text-right">{{eleVolume.mixedVolumeShare=="0.00"?0:eleVolume.mixedVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleVolume3.mixedVolumeChange}}</p>
+                    <p class="text-right">{{eleVolume.mixedVolumeChange=="0.00"?0:eleVolume.mixedVolumeChange}}</p>
                 </td>
             </tr>
             <tr class="success" ng-show='eleVolume4s.length>=1'>
@@ -133,27 +133,27 @@
                     <p class="padding-20">{{Label.getContent('Private Label')}}</p>
                 </td>
             </tr>
-            <tr class="success" ng-repeat='eleVolume4 in eleVolume4s'>
+            <tr class="success" ng-repeat='eleVolume in eleVolume4s'>
                 <td>
-                    <p class="padding-40">{{eleVolume4.fullName}}</p>
+                    <p class="padding-40">{{eleVolume.fullName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleVolume4.bmVolumeShare}}</p>
+                    <p class="text-right">{{eleVolume.bmVolumeShare=="0.00"?0:eleVolume.bmVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleVolume4.bmVolumeChange}}</p>
+                    <p class="text-right">{{eleVolume.bmVolumeChange=="0.00"?0:eleVolume.bmVolumeChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleVolume4.onlineVolumeShare}}</p>
+                    <p class="text-right">{{eleVolume.onlineVolumeShare=="0.00"?0:eleVolume.onlineVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleVolume4.onlineVolumeChange}}</p>
+                    <p class="text-right">{{eleVolume.onlineVolumeChange=="0.00"?0:eleVolume.onlineVolumeChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleVolume4.mixedVolumeShare}}</p>
+                    <p class="text-right">{{eleVolume.mixedVolumeShare=="0.00"?0:eleVolume.mixedVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleVolume4.mixedVolumeChange}}</p>
+                    <p class="text-right">{{eleVolume.mixedVolumeChange=="0.00"?0:eleVolume.mixedVolumeChange}}</p>
                 </td>
             </tr>
             <tr>
@@ -194,32 +194,32 @@
                     <p>{{Label.getContent('HealthBeauties')}}</p>
                 </td>
             </tr>
-            <tr class="danger" ng-show='heaVolume1s.length>=1'>
+            <tr class="danger" ng-show='eleVolume1s.length>=1'>
                 <td colspan="9">
                     <p class="padding-20">{{Label.getContent('Supplier')}} 1</p>
                 </td>
             </tr>
-            <tr class="danger" ng-repeat='heaVolume1 in heaVolume1s'>
+            <tr class="danger" ng-repeat='heaVolume in heaVolume1s'>
                 <td>
-                    <p class="padding-40">{{heaVolume1.fullName}}</p>
+                    <p class="padding-40">{{heaVolume.fullName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaVolume1.bmVolumeShare}}</p>
+                    <p class="text-right">{{heaVolume.bmVolumeShare=="0.00"?0:heaVolume.bmVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaVolume1.bmVolumeChange}}</p>
+                    <p class="text-right">{{heaVolume.bmVolumeChange=="0.00"?0:heaVolume.bmVolumeChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaVolume1.onlineVolumeShare}}</p>
+                    <p class="text-right">{{heaVolume.onlineVolumeShare=="0.00"?0:heaVolume.onlineVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaVolume1.onlineVolumeChange}}</p>
+                    <p class="text-right">{{heaVolume.onlineVolumeChange=="0.00"?0:heaVolume.onlineVolumeChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaVolume1.mixedVolumeShare}}</p>
+                    <p class="text-right">{{heaVolume.mixedVolumeShare=="0.00"?0:heaVolume.mixedVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaVolume1.mixedVolumeChange}}</p>
+                    <p class="text-right">{{heaVolume.mixedVolumeChange=="0.00"?0:heaVolume.mixedVolumeChange}}</p>
                 </td>
             </tr>
             <tr class="danger" ng-show='heaVolume2s.length>=1'>
@@ -227,27 +227,27 @@
                     <p class="padding-20">{{Label.getContent('Supplier')}} 2</p>
                 </td>
             </tr>
-            <tr class="danger" ng-repeat='heaVolume2 in heaVolume2s'>
+            <tr class="danger" ng-repeat='heaVolume in heaVolume2s'>
                 <td>
-                    <p class="padding-40">{{heaVolume2.fullName}}</p>
+                    <p class="padding-40">{{heaVolume.fullName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaVolume2.bmVolumeShare}}</p>
+                    <p class="text-right">{{heaVolume.bmVolumeShare=="0.00"?0:heaVolume.bmVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaVolume2.bmVolumeChange}}</p>
+                    <p class="text-right">{{heaVolume.bmVolumeChange=="0.00"?0:heaVolume.bmVolumeChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaVolume2.onlineVolumeShare}}</p>
+                    <p class="text-right">{{heaVolume.onlineVolumeShare=="0.00"?0:heaVolume.onlineVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaVolume2.onlineVolumeChange}}</p>
+                    <p class="text-right">{{heaVolume.onlineVolumeChange=="0.00"?0:heaVolume.onlineVolumeChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaVolume2.mixedVolumeShare}}</p>
+                    <p class="text-right">{{heaVolume.mixedVolumeShare=="0.00"?0:heaVolume.mixedVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaVolume2.mixedVolumeChange}}</p>
+                    <p class="text-right">{{heaVolume.mixedVolumeChange=="0.00"?0:heaVolume.mixedVolumeChange}}</p>
                 </td>
             </tr>
             <tr class="danger" ng-show='heaVolume3s.length>=1'>
@@ -255,27 +255,27 @@
                     <p class="padding-20">{{Label.getContent('Supplier')}} 3</p>
                 </td>
             </tr>
-            <tr class="danger" ng-repeat='heaVolume3 in heaVolume3s'>
+            <tr class="danger" ng-repeat='heaVolume in heaVolume3s'>
                 <td>
-                    <p class="padding-40">{{heaVolume3.fullName}}</p>
+                    <p class="padding-40">{{heaVolume.fullName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaVolume3.bmVolumeShare}}</p>
+                    <p class="text-right">{{heaVolume.bmVolumeShare=="0.00"?0:heaVolume.bmVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaVolume3.bmVolumeChange}}</p>
+                    <p class="text-right">{{heaVolume.bmVolumeChange=="0.00"?0:heaVolume.bmVolumeChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaVolume3.onlineVolumeShare}}</p>
+                    <p class="text-right">{{heaVolume.onlineVolumeShare=="0.00"?0:heaVolume.onlineVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaVolume3.onlineVolumeChange}}</p>
+                    <p class="text-right">{{heaVolume.onlineVolumeChange=="0.00"?0:heaVolume.onlineVolumeChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaVolume3.mixedVolumeShare}}</p>
+                    <p class="text-right">{{heaVolume.mixedVolumeShare=="0.00"?0:heaVolume.mixedVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaVolume3.mixedVolumeChange}}</p>
+                    <p class="text-right">{{heaVolume.mixedVolumeChange=="0.00"?0:heaVolume.mixedVolumeChange}}</p>
                 </td>
             </tr>
             <tr class="danger" ng-show='heaVolume4s.length>=1'>
@@ -283,29 +283,30 @@
                     <p class="padding-20">{{Label.getContent('Private Label')}}</p>
                 </td>
             </tr>
-            <tr class="danger" ng-repeat='heaVolume4 in heaVolume4s'>
+            <tr class="danger" ng-repeat='heaVolume in heaVolume4s'>
                 <td>
-                    <p class="padding-40">{{heaVolume4.fullName}}</p>
+                    <p class="padding-40">{{heaVolume.fullName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaVolume4.bmVolumeShare}}</p>
+                    <p class="text-right">{{heaVolume.bmVolumeShare=="0.00"?0:heaVolume.bmVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaVolume4.bmVolumeChange}}</p>
+                    <p class="text-right">{{heaVolume.bmVolumeChange=="0.00"?0:heaVolume.bmVolumeChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaVolume4.onlineVolumeShare}}</p>
+                    <p class="text-right">{{heaVolume.onlineVolumeShare=="0.00"?0:heaVolume.onlineVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaVolume4.onlineVolumeChange}}</p>
+                    <p class="text-right">{{heaVolume.onlineVolumeChange=="0.00"?0:heaVolume.onlineVolumeChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaVolume4.mixedVolumeShare}}</p>
+                    <p class="text-right">{{heaVolume.mixedVolumeShare=="0.00"?0:heaVolume.mixedVolumeShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaVolume4.mixedVolumeChange}}</p>
+                    <p class="text-right">{{heaVolume.mixedVolumeChange=="0.00"?0:heaVolume.mixedVolumeChange}}</p>
                 </td>
             </tr>
+
             <tr>
                 <th></th>
                 <th colspan="2">
@@ -349,27 +350,27 @@
                     <p class="padding-20">{{Label.getContent('Supplier')}} 1</p>
                 </td>
             </tr>
-            <tr class="success" ng-repeat='eleValue1 in eleValue1s'>
+            <tr class="success" ng-repeat='eleValue in eleValue1s'>
                 <td>
-                    <p class="padding-40">{{eleValue1.fullName}}</p>
+                    <p class="padding-40">{{eleValue.fullName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleValue1.bmValueShare}}</p>
+                    <p class="text-right">{{eleValue.bmValueShare=="0.00"?0:eleValue.bmValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleValue1.bmValueChange}}</p>
+                    <p class="text-right">{{eleValue.bmValueChange=="0.00"?0:eleValue.bmValueChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleValue1.onlineValueShare}}</p>
+                    <p class="text-right">{{eleValue.onlineValueShare=="0.00"?0:eleValue.onlineValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleValue1.onlineValueChange}}</p>
+                    <p class="text-right">{{eleValue.onlineValueChange=="0.00"?0:eleValue.onlineValueChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleValue1.mixedValueShare}}</p>
+                    <p class="text-right">{{eleValue.mixedValueShare=="0.00"?0:eleValue.mixedValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleValue1.mixedValueChange}}</p>
+                    <p class="text-right">{{eleValue.mixedValueChange=="0.00"?0:eleValue.mixedValueChange}}</p>
                 </td>
             </tr>
             <tr class="success" ng-show='eleValue2s.length>=1'>
@@ -377,27 +378,27 @@
                     <p class="padding-20">{{Label.getContent('Supplier')}} 2</p>
                 </td>
             </tr>
-            <tr class="success" ng-repeat='eleValue2 in eleValue2s'>
+            <tr class="success" ng-repeat='eleValue in eleValue2s'>
                 <td>
-                    <p class="padding-40">{{eleValue2.fullName}}</p>
+                    <p class="padding-40">{{eleValue.fullName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleValue2.bmValueShare}}</p>
+                    <p class="text-right">{{eleValue.bmValueShare=="0.00"?0:eleValue.bmValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleValue2.bmValueChange}}</p>
+                    <p class="text-right">{{eleValue.bmValueChange=="0.00"?0:eleValue.bmValueChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleValue2.onlineValueShare}}</p>
+                    <p class="text-right">{{eleValue.onlineValueShare=="0.00"?0:eleValue.onlineValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleValue2.onlineValueChange}}</p>
+                    <p class="text-right">{{eleValue.onlineValueChange=="0.00"?0:eleValue.onlineValueChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleValue2.mixedValueShare}}</p>
+                    <p class="text-right">{{eleValue.mixedValueShare=="0.00"?0:eleValue.mixedValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleValue2.mixedValueChange}}</p>
+                    <p class="text-right">{{eleValue.mixedValueChange=="0.00"?0:eleValue.mixedValueChange}}</p>
                 </td>
             </tr>
             <tr class="success" ng-show='eleValue3s.length>=1'>
@@ -405,27 +406,27 @@
                     <p class="padding-20">{{Label.getContent('Supplier')}} 3</p>
                 </td>
             </tr>
-            <tr class="success" ng-repeat='eleValue3 in eleValue3s'>
+            <tr class="success" ng-repeat='eleValue in eleValue3s'>
                 <td>
-                    <p class="padding-40">{{eleValue3.fullName}}</p>
+                    <p class="padding-40">{{eleValue.fullName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleValue3.bmValueShare}}</p>
+                    <p class="text-right">{{eleValue.bmValueShare=="0.00"?0:eleValue.bmValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleValue3.bmValueChange}}</p>
+                    <p class="text-right">{{eleValue.bmValueChange=="0.00"?0:eleValue.bmValueChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleValue3.onlineValueShare}}</p>
+                    <p class="text-right">{{eleValue.onlineValueShare=="0.00"?0:eleValue.onlineValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleValue3.onlineValueChange}}</p>
+                    <p class="text-right">{{eleValue.onlineValueChange=="0.00"?0:eleValue.onlineValueChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleValue3.mixedValueShare}}</p>
+                    <p class="text-right">{{eleValue.mixedValueShare=="0.00"?0:eleValue.mixedValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleValue3.mixedValueChange}}</p>
+                    <p class="text-right">{{eleValue.mixedValueChange=="0.00"?0:eleValue.mixedValueChange}}</p>
                 </td>
             </tr>
             <tr class="success" ng-show='eleValue4s.length>=1'>
@@ -433,27 +434,27 @@
                     <p class="padding-20">{{Label.getContent('Private Label')}}</p>
                 </td>
             </tr>
-            <tr class="success" ng-repeat='eleValue4 in eleValue4s'>
+            <tr class="success" ng-repeat='eleValue in eleValue4s'>
                 <td>
-                    <p class="padding-40">{{eleValue4.fullName}}</p>
+                    <p class="padding-40">{{eleValue.fullName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleValue4.bmValueShare}}</p>
+                    <p class="text-right">{{eleValue.bmValueShare=="0.00"?0:eleValue.bmValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleValue4.bmValueChange}}</p>
+                    <p class="text-right">{{eleValue.bmValueChange=="0.00"?0:eleValue.bmValueChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleValue4.onlineValueShare}}</p>
+                    <p class="text-right">{{eleValue.onlineValueShare=="0.00"?0:eleValue.onlineValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleValue4.onlineValueChange}}</p>
+                    <p class="text-right">{{eleValue.onlineValueChange=="0.00"?0:eleValue.onlineValueChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleValue4.mixedValueShare}}</p>
+                    <p class="text-right">{{eleValue.mixedValueShare=="0.00"?0:eleValue.mixedValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{eleValue4.mixedValueChange}}</p>
+                    <p class="text-right">{{eleValue.mixedValueChange=="0.00"?0:eleValue.mixedValueChange}}</p>
                 </td>
             </tr>
             <tr>
@@ -494,32 +495,32 @@
                     <p>{{Label.getContent('HealthBeauties')}}</p>
                 </td>
             </tr>
-            <tr class="danger" ng-show='heaValue1s.length>=1'>
+            <tr class="danger" ng-show='eleValue1s.length>=1'>
                 <td colspan="9">
                     <p class="padding-20">{{Label.getContent('Supplier')}} 1</p>
                 </td>
             </tr>
-            <tr class="danger" ng-repeat='heaValue1 in heaValue1s'>
+            <tr class="danger" ng-repeat='heaValue in heaValue1s'>
                 <td>
-                    <p class="padding-40">{{heaValue1.fullName}}</p>
+                    <p class="padding-40">{{heaValue.fullName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaValue1.bmValueShare}}</p>
+                    <p class="text-right">{{heaValue.bmValueShare=="0.00"?0:heaValue.bmValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaValue1.bmValueChange}}</p>
+                    <p class="text-right">{{heaValue.bmValueChange=="0.00"?0:heaValue.bmValueChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaValue1.onlineValueShare}}</p>
+                    <p class="text-right">{{heaValue.onlineValueShare=="0.00"?0:heaValue.onlineValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaValue1.onlineValueChange}}</p>
+                    <p class="text-right">{{heaValue.onlineValueChange=="0.00"?0:heaValue.onlineValueChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaValue1.mixedValueShare}}</p>
+                    <p class="text-right">{{heaValue.mixedValueShare=="0.00"?0:heaValue.mixedValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaValue1.mixedValueChange}}</p>
+                    <p class="text-right">{{heaValue.mixedValueChange=="0.00"?0:heaValue.mixedValueChange}}</p>
                 </td>
             </tr>
             <tr class="danger" ng-show='heaValue2s.length>=1'>
@@ -527,27 +528,27 @@
                     <p class="padding-20">{{Label.getContent('Supplier')}} 2</p>
                 </td>
             </tr>
-            <tr class="danger" ng-repeat='heaValue2 in heaValue2s'>
+            <tr class="danger" ng-repeat='heaValue in heaValue2s'>
                 <td>
-                    <p class="padding-40">{{heaValue2.fullName}}</p>
+                    <p class="padding-40">{{heaValue.fullName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaValue2.bmValueShare}}</p>
+                    <p class="text-right">{{heaValue.bmValueShare=="0.00"?0:heaValue.bmValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaValue2.bmValueChange}}</p>
+                    <p class="text-right">{{heaValue.bmValueChange=="0.00"?0:heaValue.bmValueChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaValue2.onlineValueShare}}</p>
+                    <p class="text-right">{{heaValue.onlineValueShare=="0.00"?0:heaValue.onlineValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaValue2.onlineValueChange}}</p>
+                    <p class="text-right">{{heaValue.onlineValueChange=="0.00"?0:heaValue.onlineValueChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaValue2.mixedValueShare}}</p>
+                    <p class="text-right">{{heaValue.mixedValueShare=="0.00"?0:heaValue.mixedValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaValue2.mixedValueChange}}</p>
+                    <p class="text-right">{{heaValue.mixedValueChange=="0.00"?0:heaValue.mixedValueChange}}</p>
                 </td>
             </tr>
             <tr class="danger" ng-show='heaValue3s.length>=1'>
@@ -555,27 +556,27 @@
                     <p class="padding-20">{{Label.getContent('Supplier')}} 3</p>
                 </td>
             </tr>
-            <tr class="danger" ng-repeat='heaValue3 in heaValue3s'>
+            <tr class="danger" ng-repeat='heaValue in heaValue3s'>
                 <td>
-                    <p class="padding-40">{{heaValue3.fullName}}</p>
+                    <p class="padding-40">{{heaValue.fullName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaValue3.bmValueShare}}</p>
+                    <p class="text-right">{{heaValue.bmValueShare=="0.00"?0:heaValue.bmValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaValue3.bmValueChange}}</p>
+                    <p class="text-right">{{heaValue.bmValueChange=="0.00"?0:heaValue.bmValueChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaValue3.onlineValueShare}}</p>
+                    <p class="text-right">{{heaValue.onlineValueShare=="0.00"?0:heaValue.onlineValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaValue3.onlineValueChange}}</p>
+                    <p class="text-right">{{heaValue.onlineValueChange=="0.00"?0:heaValue.onlineValueChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaValue3.mixedValueShare}}</p>
+                    <p class="text-right">{{heaValue.mixedValueShare=="0.00"?0:heaValue.mixedValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaValue3.mixedValueChange}}</p>
+                    <p class="text-right">{{heaValue.mixedValueChange=="0.00"?0:heaValue.mixedValueChange}}</p>
                 </td>
             </tr>
             <tr class="danger" ng-show='heaValue4s.length>=1'>
@@ -583,27 +584,27 @@
                     <p class="padding-20">{{Label.getContent('Private Label')}}</p>
                 </td>
             </tr>
-            <tr class="danger" ng-repeat='heaValue4 in heaValue4s'>
+            <tr class="danger" ng-repeat='heaValue in heaValue4s'>
                 <td>
-                    <p class="padding-40">{{heaValue4.fullName}}</p>
+                    <p class="padding-40">{{heaValue.fullName}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaValue4.bmValueShare}}</p>
+                    <p class="text-right">{{heaValue.bmValueShare=="0.00"?0:heaValue.bmValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaValue4.bmValueChange}}</p>
+                    <p class="text-right">{{heaValue.bmValueChange=="0.00"?0:heaValue.bmValueChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaValue4.onlineValueShare}}</p>
+                    <p class="text-right">{{heaValue.onlineValueShare=="0.00"?0:heaValue.onlineValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaValue4.onlineValueChange}}</p>
+                    <p class="text-right">{{heaValue.onlineValueChange=="0.00"?0:heaValue.onlineValueChange}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaValue4.mixedValueShare}}</p>
+                    <p class="text-right">{{heaValue.mixedValueShare=="0.00"?0:heaValue.mixedValueShare}}</p>
                 </td>
                 <td>
-                    <p class="text-right">{{heaValue4.mixedValueChange}}</p>
+                    <p class="text-right">{{heaValue.mixedValueChange=="0.00"?0:heaValue.mixedValueChange}}</p>
                 </td>
             </tr>
         </tbody>
