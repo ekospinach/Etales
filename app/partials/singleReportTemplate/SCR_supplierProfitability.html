@@ -24,9 +24,6 @@
             <tr>
                 <td></td>
                 <td>
-                    <p class="text-center">{{Label.getContent('Rural')}}</p>
-                </td>
-                <td>
                     <p class="text-center">{{Label.getContent('Urban')}}</p>
                 </td>
                 <td>
@@ -40,6 +37,9 @@
                 </td>
                 <td>
                     <p class="text-center">{{Label.getContent('Urban')}}</p>
+                </td>
+                <td>
+                    <p class="text-center">{{Label.getContent('Rural')}}</p>
                 </td>
             </tr>
         </thead>
@@ -55,14 +55,19 @@
                 </td>
                 <td>
                     <p class="text-right">
+                        {{volumeOrdereds[0].marketInfo[0].accountInfo[0].value.toFixed(2)=="0.00"?0:volumeOrdereds[0].marketInfo[0].accountInfo[0].value.toFixed(2)}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
                         {{volumeOrdereds[0].marketInfo[1].accountInfo[0].value.toFixed(2)=="0.00"?0:volumeOrdereds[0].marketInfo[1].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeOrdereds[0].marketInfo[0].accountInfo[0].value.toFixed(2)=="0.00"?0:volumeOrdereds[0].marketInfo[0].accountInfo[0].value.toFixed(2)}}
+                        {{volumeOrdereds[0].marketInfo[0].accountInfo[1].value.toFixed(2)=="0.00"?0:volumeOrdereds[0].marketInfo[0].accountInfo[1].value.toFixed(2)}}
                     </p>
-                </td>
+                </td> 
                 <td>
                     <p class="text-right">
                         {{volumeOrdereds[0].marketInfo[1].accountInfo[1].value.toFixed(2)=="0.00"?0:volumeOrdereds[0].marketInfo[1].accountInfo[1].value.toFixed(2)}}
@@ -70,17 +75,12 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeOrdereds[0].marketInfo[0].accountInfo[1].value.toFixed(2)=="0.00"?0:volumeOrdereds[0].marketInfo[0].accountInfo[1].value.toFixed(2)}}
+                        {{volumeOrdereds[0].marketInfo[0].accountInfo[2].value.toFixed(2)=="0.00"?0:volumeOrdereds[0].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
-                </td>               
+                </td>            
                 <td>
                     <p class="text-right">
                         {{volumeOrdereds[0].marketInfo[1].accountInfo[2].value.toFixed(2)=="0.00"?0:volumeOrdereds[0].marketInfo[1].accountInfo[2].value.toFixed(2)}}
-                    </p>
-                </td>
-                <td>
-                    <p class="text-right">
-                        {{volumeOrdereds[0].marketInfo[0].accountInfo[2].value.toFixed(2)=="0.00"?0:volumeOrdereds[0].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
@@ -95,12 +95,17 @@
                 </td>
                 <td>
                     <p class="text-right">
+                        {{volumeSolds[0].marketInfo[0].accountInfo[0].value.toFixed(2)=="0.00"?0:volumeSolds[0].marketInfo[0].accountInfo[0].value.toFixed(2)}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
                         {{volumeSolds[0].marketInfo[1].accountInfo[0].value.toFixed(2)=="0.00"?0:volumeSolds[0].marketInfo[1].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeSolds[0].marketInfo[0].accountInfo[0].value.toFixed(2)=="0.00"?0:volumeSolds[0].marketInfo[0].accountInfo[0].value.toFixed(2)}}
+                        {{volumeSolds[0].marketInfo[0].accountInfo[1].value.toFixed(2)=="0.00"?0:volumeSolds[0].marketInfo[0].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
@@ -110,17 +115,12 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeSolds[0].marketInfo[0].accountInfo[1].value.toFixed(2)=="0.00"?0:volumeSolds[0].marketInfo[0].accountInfo[1].value.toFixed(2)}}
+                        {{volumeSolds[0].marketInfo[0].accountInfo[2].value.toFixed(2)=="0.00"?0:volumeSolds[0].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>               
                 <td>
                     <p class="text-right">
                         {{volumeSolds[0].marketInfo[1].accountInfo[2].value.toFixed(2)=="0.00"?0:volumeSolds[0].marketInfo[1].accountInfo[2].value.toFixed(2)}}
-                    </p>
-                </td>
-                <td>
-                    <p class="text-right">
-                        {{volumeSolds[0].marketInfo[0].accountInfo[2].value.toFixed(2)=="0.00"?0:volumeSolds[0].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
@@ -135,12 +135,17 @@
                 </td>
                 <td>
                     <p class="text-right">
+                        {{(volumeSoldShares[0].marketInfo[0].accountInfo[0].value*100).toFixed(2)=="0.00"?0:(volumeSoldShares[0].marketInfo[0].accountInfo[0].value*100).toFixed(2)}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
                         {{(volumeSoldShares[0].marketInfo[1].accountInfo[0].value*100).toFixed(2)=="0.00"?0:(volumeSoldShares[0].marketInfo[1].accountInfo[0].value*100).toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(volumeSoldShares[0].marketInfo[0].accountInfo[0].value*100).toFixed(2)=="0.00"?0:(volumeSoldShares[0].marketInfo[0].accountInfo[0].value*100).toFixed(2)}}
+                        {{(volumeSoldShares[0].marketInfo[0].accountInfo[1].value*100).toFixed(2)=="0.00"?0:(volumeSoldShares[0].marketInfo[0].accountInfo[1].value*100).toFixed(2)}}
                     </p>
                 </td>
                 <td>
@@ -150,17 +155,12 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(volumeSoldShares[0].marketInfo[0].accountInfo[1].value*100).toFixed(2)=="0.00"?0:(volumeSoldShares[0].marketInfo[0].accountInfo[1].value*100).toFixed(2)}}
+                        {{(volumeSoldShares[0].marketInfo[0].accountInfo[2].value*100).toFixed(2)=="0.00"?0:(volumeSoldShares[0].marketInfo[0].accountInfo[2].value*100).toFixed(2)}}
                     </p>
                 </td>               
                 <td>
                     <p class="text-right">
                         {{(volumeSoldShares[0].marketInfo[1].accountInfo[2].value*100).toFixed(2)=="0.00"?0:(volumeSoldShares[0].marketInfo[1].accountInfo[2].value*100).toFixed(2)}}
-                    </p>
-                </td>
-                <td>
-                    <p class="text-right">
-                        {{(volumeSoldShares[0].marketInfo[0].accountInfo[2].value*100).toFixed(2)=="0.00"?0:(volumeSoldShares[0].marketInfo[0].accountInfo[2].value*100).toFixed(2)}}
                     </p>
                 </td>
                 <td>
@@ -175,14 +175,19 @@
                 </td>
                 <td>
                     <p class="text-right">
+                        {{salesValues[0].marketInfo[0].accountInfo[0].value.toFixed(2)=="0.00"?0:salesValues[0].marketInfo[0].accountInfo[0].value.toFixed(2)}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
                         {{salesValues[0].marketInfo[1].accountInfo[0].value.toFixed(2)=="0.00"?0:salesValues[0].marketInfo[1].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{salesValues[0].marketInfo[0].accountInfo[0].value.toFixed(2)=="0.00"?0:salesValues[0].marketInfo[0].accountInfo[0].value.toFixed(2)}}
+                        {{salesValues[0].marketInfo[0].accountInfo[1].value.toFixed(2)=="0.00"?0:salesValues[0].marketInfo[0].accountInfo[1].value.toFixed(2)}}
                     </p>
-                </td>
+                </td> 
                 <td>
                     <p class="text-right">
                         {{salesValues[0].marketInfo[1].accountInfo[1].value.toFixed(2)=="0.00"?0:salesValues[0].marketInfo[1].accountInfo[1].value.toFixed(2)}}
@@ -190,17 +195,12 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{salesValues[0].marketInfo[0].accountInfo[1].value.toFixed(2)=="0.00"?0:salesValues[0].marketInfo[0].accountInfo[1].value.toFixed(2)}}
+                        {{salesValues[0].marketInfo[0].accountInfo[2].value.toFixed(2)=="0.00"?0:salesValues[0].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
-                </td>               
+                </td>              
                 <td>
                     <p class="text-right">
                         {{salesValues[0].marketInfo[1].accountInfo[2].value.toFixed(2)=="0.00"?0:salesValues[0].marketInfo[1].accountInfo[2].value.toFixed(2)}}
-                    </p>
-                </td>
-                <td>
-                    <p class="text-right">
-                        {{salesValues[0].marketInfo[0].accountInfo[2].value.toFixed(2)=="0.00"?0:salesValues[0].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
@@ -215,14 +215,19 @@
                 </td>
                 <td>
                     <p class="text-right">
+                        {{(salesValueShares[0].marketInfo[0].accountInfo[0].value*100).toFixed(2)=="0.00"?0:(salesValueShares[0].marketInfo[0].accountInfo[0].value*100).toFixed(2)}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
                         {{(salesValueShares[0].marketInfo[1].accountInfo[0].value*100).toFixed(2)=="0.00"?0:(salesValueShares[0].marketInfo[1].accountInfo[0].value*100).toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(salesValueShares[0].marketInfo[0].accountInfo[0].value*100).toFixed(2)=="0.00"?0:(salesValueShares[0].marketInfo[0].accountInfo[0].value*100).toFixed(2)}}
+                        {{(salesValueShares[0].marketInfo[0].accountInfo[1].value*100).toFixed(2)=="0.00"?0:(salesValueShares[0].marketInfo[0].accountInfo[1].value*100).toFixed(2)}}
                     </p>
-                </td>
+                </td> 
                 <td>
                     <p class="text-right">
                         {{(salesValueShares[0].marketInfo[1].accountInfo[1].value*100).toFixed(2)=="0.00"?0:(salesValueShares[0].marketInfo[1].accountInfo[1].value*100).toFixed(2)}}
@@ -230,17 +235,12 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(salesValueShares[0].marketInfo[0].accountInfo[1].value*100).toFixed(2)=="0.00"?0:(salesValueShares[0].marketInfo[0].accountInfo[1].value*100).toFixed(2)}}
+                        {{(salesValueShares[0].marketInfo[0].accountInfo[2].value*100).toFixed(2)=="0.00"?0:(salesValueShares[0].marketInfo[0].accountInfo[2].value*100).toFixed(2)}}
                     </p>
-                </td>               
+                </td>              
                 <td>
                     <p class="text-right">
                         {{(salesValueShares[0].marketInfo[1].accountInfo[2].value*100).toFixed(2)=="0.00"?0:(salesValueShares[0].marketInfo[1].accountInfo[2].value*100).toFixed(2)}}
-                    </p>
-                </td>
-                <td>
-                    <p class="text-right">
-                        {{(salesValueShares[0].marketInfo[0].accountInfo[2].value*100).toFixed(2)=="0.00"?0:(salesValueShares[0].marketInfo[0].accountInfo[2].value*100).toFixed(2)}}
                     </p>
                 </td>
                 <td>
@@ -255,14 +255,19 @@
                 </td>
                 <td>
                     <p class="text-right">
+                        {{costOfGoodsSolds[0].marketInfo[0].accountInfo[0].value.toFixed(2)=="0.00"?0:costOfGoodsSolds[0].marketInfo[0].accountInfo[0].value.toFixed(2)}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
                         {{costOfGoodsSolds[0].marketInfo[1].accountInfo[0].value.toFixed(2)=="0.00"?0:costOfGoodsSolds[0].marketInfo[1].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{costOfGoodsSolds[0].marketInfo[0].accountInfo[0].value.toFixed(2)=="0.00"?0:costOfGoodsSolds[0].marketInfo[0].accountInfo[0].value.toFixed(2)}}
+                        {{costOfGoodsSolds[0].marketInfo[0].accountInfo[1].value.toFixed(2)=="0.00"?0:costOfGoodsSolds[0].marketInfo[0].accountInfo[1].value.toFixed(2)}}
                     </p>
-                </td>
+                </td>  
                 <td>
                     <p class="text-right">
                         {{costOfGoodsSolds[0].marketInfo[1].accountInfo[1].value.toFixed(2)=="0.00"?0:costOfGoodsSolds[0].marketInfo[1].accountInfo[1].value.toFixed(2)}}
@@ -270,17 +275,12 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{costOfGoodsSolds[0].marketInfo[0].accountInfo[1].value.toFixed(2)=="0.00"?0:costOfGoodsSolds[0].marketInfo[0].accountInfo[1].value.toFixed(2)}}
+                        {{costOfGoodsSolds[0].marketInfo[0].accountInfo[2].value.toFixed(2)=="0.00"?0:costOfGoodsSolds[0].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
-                </td>               
+                </td>             
                 <td>
                     <p class="text-right">
                         {{costOfGoodsSolds[0].marketInfo[1].accountInfo[2].value.toFixed(2)=="0.00"?0:costOfGoodsSolds[0].marketInfo[1].accountInfo[2].value.toFixed(2)}}
-                    </p>
-                </td>
-                <td>
-                    <p class="text-right">
-                        {{costOfGoodsSolds[0].marketInfo[0].accountInfo[2].value.toFixed(2)=="0.00"?0:costOfGoodsSolds[0].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
@@ -295,12 +295,17 @@
                 </td>
                 <td>
                     <p class="text-right">
+                        {{tradeSupports[0].marketInfo[0].accountInfo[0].value.toFixed(2)=="0.00"?0:tradeSupports[0].marketInfo[0].accountInfo[0].value.toFixed(2)}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
                         {{tradeSupports[0].marketInfo[1].accountInfo[0].value.toFixed(2)=="0.00"?0:tradeSupports[0].marketInfo[1].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeSupports[0].marketInfo[0].accountInfo[0].value.toFixed(2)=="0.00"?0:tradeSupports[0].marketInfo[0].accountInfo[0].value.toFixed(2)}}
+                        {{tradeSupports[0].marketInfo[0].accountInfo[1].value.toFixed(2)=="0.00"?0:tradeSupports[0].marketInfo[0].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
@@ -310,17 +315,12 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeSupports[0].marketInfo[0].accountInfo[1].value.toFixed(2)=="0.00"?0:tradeSupports[0].marketInfo[0].accountInfo[1].value.toFixed(2)}}
+                        {{tradeSupports[0].marketInfo[0].accountInfo[2].value.toFixed(2)=="0.00"?0:tradeSupports[0].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>               
                 <td>
                     <p class="text-right">
                         {{tradeSupports[0].marketInfo[1].accountInfo[2].value.toFixed(2)=="0.00"?0:tradeSupports[0].marketInfo[1].accountInfo[2].value.toFixed(2)}}
-                    </p>
-                </td>
-                <td>
-                    <p class="text-right">
-                        {{tradeSupports[0].marketInfo[0].accountInfo[2].value.toFixed(2)=="0.00"?0:tradeSupports[0].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
@@ -333,12 +333,6 @@
                 <td>
                     <p class="padding-20">{{Label.getContent('Trade Profit')}}($mln)</p>
                 </td>
-
-                <td>
-                    <p class="text-right">
-                        {{tradeProfits[0].marketInfo[1].accountInfo[0].value.toFixed(2)=="0.00"?0:tradeProfits[0].marketInfo[1].accountInfo[0].value.toFixed(2)}}
-                    </p>
-                </td>
                 <td>
                     <p class="text-right">
                         {{tradeProfits[0].marketInfo[0].accountInfo[0].value.toFixed(2)=="0.00"?0:tradeProfits[0].marketInfo[0].accountInfo[0].value.toFixed(2)}}
@@ -346,22 +340,27 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeProfits[0].marketInfo[1].accountInfo[1].value.toFixed(2)=="0.00"?0:tradeProfits[0].marketInfo[1].accountInfo[1].value.toFixed(2)}}
+                        {{tradeProfits[0].marketInfo[1].accountInfo[0].value.toFixed(2)=="0.00"?0:tradeProfits[0].marketInfo[1].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
                         {{tradeProfits[0].marketInfo[0].accountInfo[1].value.toFixed(2)=="0.00"?0:tradeProfits[0].marketInfo[0].accountInfo[1].value.toFixed(2)}}
                     </p>
-                </td>               
+                </td> 
                 <td>
                     <p class="text-right">
-                        {{tradeProfits[0].marketInfo[1].accountInfo[2].value.toFixed(2)=="0.00"?0:tradeProfits[0].marketInfo[1].accountInfo[2].value.toFixed(2)}}
+                        {{tradeProfits[0].marketInfo[1].accountInfo[1].value.toFixed(2)=="0.00"?0:tradeProfits[0].marketInfo[1].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
                         {{tradeProfits[0].marketInfo[0].accountInfo[2].value.toFixed(2)=="0.00"?0:tradeProfits[0].marketInfo[0].accountInfo[2].value.toFixed(2)}}
+                    </p>
+                </td>              
+                <td>
+                    <p class="text-right">
+                        {{tradeProfits[0].marketInfo[1].accountInfo[2].value.toFixed(2)=="0.00"?0:tradeProfits[0].marketInfo[1].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
@@ -376,41 +375,41 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(tradeProfitShares[0].marketInfo[1].accountInfo[0].value*100).toFixed(2)=="0.00"?0:(tradeProfitShares[0].marketInfo[1].accountInfo[0].value*100).toFixed(2)}}
-                    </p>
-                </td>
-                <td>
-                    <p class="text-right">
                         {{(tradeProfitShares[0].marketInfo[0].accountInfo[0].value*100).toFixed(2)=="0.00"?0:(tradeProfitShares[0].marketInfo[0].accountInfo[0].value*100).toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(tradeProfitShares[0].marketInfo[1].accountInfo[1].value*100).toFixed(2)=="0.00"?0:(tradeProfitShares[0].marketInfo[1].accountInfo[1].value*100).toFixed(2)}}
+                        {{(tradeProfitShares[0].marketInfo[1].accountInfo[0].value*100).toFixed(2)=="0.00"?0:(tradeProfitShares[0].marketInfo[1].accountInfo[0].value*100).toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
                         {{(tradeProfitShares[0].marketInfo[0].accountInfo[1].value*100).toFixed(2)=="0.00"?0:(tradeProfitShares[0].marketInfo[0].accountInfo[1].value*100).toFixed(2)}}
                     </p>
-                </td>               
+                </td> 
+                <td>
+                    <p class="text-right">
+                        {{(tradeProfitShares[0].marketInfo[1].accountInfo[1].value*100).toFixed(2)=="0.00"?0:(tradeProfitShares[0].marketInfo[1].accountInfo[1].value*100).toFixed(2)}}
+                    </p>
+                </td> 
+                <td>
+                    <p class="text-right">
+                        {{(tradeProfitShares[0].marketInfo[0].accountInfo[2].value*100).toFixed(2)=="0.00"?0:(tradeProfitShares[0].marketInfo[0].accountInfo[2].value*100).toFixed(2)}}
+                    </p>
+                </td>        
                 <td>
                     <p class="text-right">
                         {{(tradeProfitShares[0].marketInfo[1].accountInfo[2].value*100).toFixed(2)=="0.00"?0:(tradeProfitShares[0].marketInfo[1].accountInfo[2].value*100).toFixed(2)}}
                     </p>
                 </td>
-                <td>
-                    <p class="text-right">
-                        {{(tradeProfitShares[0].marketInfo[0].accountInfo[2].value*100).toFixed(2)=="0.00"?0:(tradeProfitShares[0].marketInfo[0].accountInfo[2].value*100).toFixed(2)}}
-                    </p>
-                </td>
+                
                 <td>
                     <p class="text-right">
                         {{(tradeProfitShares[0].marketInfo[2].accountInfo[3].value*100).toFixed(2)=="0.00"?0:(tradeProfitShares[0].marketInfo[2].accountInfo[3].value*100).toFixed(2)}}
                     </p>
                 </td>
             </tr>
-
             <tr class="danger">
                 <td colspan='8'>
                     <p>{{Label.getContent('HealthBeauties')}}</p>
@@ -422,14 +421,19 @@
                 </td>
                 <td>
                     <p class="text-right">
+                        {{volumeOrdereds[1].marketInfo[0].accountInfo[0].value.toFixed(2)=="0.00"?0:volumeOrdereds[1].marketInfo[0].accountInfo[0].value.toFixed(2)}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
                         {{volumeOrdereds[1].marketInfo[1].accountInfo[0].value.toFixed(2)=="0.00"?0:volumeOrdereds[1].marketInfo[1].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeOrdereds[1].marketInfo[0].accountInfo[0].value.toFixed(2)=="0.00"?0:volumeOrdereds[1].marketInfo[0].accountInfo[0].value.toFixed(2)}}
+                        {{volumeOrdereds[1].marketInfo[0].accountInfo[1].value.toFixed(2)=="0.00"?0:volumeOrdereds[1].marketInfo[0].accountInfo[1].value.toFixed(2)}}
                     </p>
-                </td>
+                </td> 
                 <td>
                     <p class="text-right">
                         {{volumeOrdereds[1].marketInfo[1].accountInfo[1].value.toFixed(2)=="0.00"?0:volumeOrdereds[1].marketInfo[1].accountInfo[1].value.toFixed(2)}}
@@ -437,17 +441,12 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeOrdereds[1].marketInfo[0].accountInfo[1].value.toFixed(2)=="0.00"?0:volumeOrdereds[1].marketInfo[0].accountInfo[1].value.toFixed(2)}}
+                        {{volumeOrdereds[1].marketInfo[0].accountInfo[2].value.toFixed(2)=="0.00"?0:volumeOrdereds[1].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
-                </td>               
+                </td>            
                 <td>
                     <p class="text-right">
                         {{volumeOrdereds[1].marketInfo[1].accountInfo[2].value.toFixed(2)=="0.00"?0:volumeOrdereds[1].marketInfo[1].accountInfo[2].value.toFixed(2)}}
-                    </p>
-                </td>
-                <td>
-                    <p class="text-right">
-                        {{volumeOrdereds[1].marketInfo[0].accountInfo[2].value.toFixed(2)=="0.00"?0:volumeOrdereds[1].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
@@ -462,12 +461,17 @@
                 </td>
                 <td>
                     <p class="text-right">
+                        {{volumeSolds[1].marketInfo[0].accountInfo[0].value.toFixed(2)=="0.00"?0:volumeSolds[1].marketInfo[0].accountInfo[0].value.toFixed(2)}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
                         {{volumeSolds[1].marketInfo[1].accountInfo[0].value.toFixed(2)=="0.00"?0:volumeSolds[1].marketInfo[1].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeSolds[1].marketInfo[0].accountInfo[0].value.toFixed(2)=="0.00"?0:volumeSolds[1].marketInfo[0].accountInfo[0].value.toFixed(2)}}
+                        {{volumeSolds[1].marketInfo[0].accountInfo[1].value.toFixed(2)=="0.00"?0:volumeSolds[1].marketInfo[0].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
@@ -477,17 +481,12 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{volumeSolds[1].marketInfo[0].accountInfo[1].value.toFixed(2)=="0.00"?0:volumeSolds[1].marketInfo[0].accountInfo[1].value.toFixed(2)}}
+                        {{volumeSolds[1].marketInfo[0].accountInfo[2].value.toFixed(2)=="0.00"?0:volumeSolds[1].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>               
                 <td>
                     <p class="text-right">
                         {{volumeSolds[1].marketInfo[1].accountInfo[2].value.toFixed(2)=="0.00"?0:volumeSolds[1].marketInfo[1].accountInfo[2].value.toFixed(2)}}
-                    </p>
-                </td>
-                <td>
-                    <p class="text-right">
-                        {{volumeSolds[1].marketInfo[0].accountInfo[2].value.toFixed(2)=="0.00"?0:volumeSolds[1].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
@@ -502,12 +501,17 @@
                 </td>
                 <td>
                     <p class="text-right">
+                        {{(volumeSoldShares[1].marketInfo[0].accountInfo[0].value*100).toFixed(2)=="0.00"?0:(volumeSoldShares[1].marketInfo[0].accountInfo[0].value*100).toFixed(2)}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
                         {{(volumeSoldShares[1].marketInfo[1].accountInfo[0].value*100).toFixed(2)=="0.00"?0:(volumeSoldShares[1].marketInfo[1].accountInfo[0].value*100).toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(volumeSoldShares[1].marketInfo[0].accountInfo[0].value*100).toFixed(2)=="0.00"?0:(volumeSoldShares[1].marketInfo[0].accountInfo[0].value*100).toFixed(2)}}
+                        {{(volumeSoldShares[1].marketInfo[0].accountInfo[1].value*100).toFixed(2)=="0.00"?0:(volumeSoldShares[1].marketInfo[0].accountInfo[1].value*100).toFixed(2)}}
                     </p>
                 </td>
                 <td>
@@ -517,17 +521,12 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(volumeSoldShares[1].marketInfo[0].accountInfo[1].value*100).toFixed(2)=="0.00"?0:(volumeSoldShares[1].marketInfo[0].accountInfo[1].value*100).toFixed(2)}}
+                        {{(volumeSoldShares[1].marketInfo[0].accountInfo[2].value*100).toFixed(2)=="0.00"?0:(volumeSoldShares[1].marketInfo[0].accountInfo[2].value*100).toFixed(2)}}
                     </p>
                 </td>               
                 <td>
                     <p class="text-right">
                         {{(volumeSoldShares[1].marketInfo[1].accountInfo[2].value*100).toFixed(2)=="0.00"?0:(volumeSoldShares[1].marketInfo[1].accountInfo[2].value*100).toFixed(2)}}
-                    </p>
-                </td>
-                <td>
-                    <p class="text-right">
-                        {{(volumeSoldShares[1].marketInfo[0].accountInfo[2].value*100).toFixed(2)=="0.00"?0:(volumeSoldShares[1].marketInfo[0].accountInfo[2].value*100).toFixed(2)}}
                     </p>
                 </td>
                 <td>
@@ -542,14 +541,19 @@
                 </td>
                 <td>
                     <p class="text-right">
+                        {{salesValues[1].marketInfo[0].accountInfo[0].value.toFixed(2)=="0.00"?0:salesValues[1].marketInfo[0].accountInfo[0].value.toFixed(2)}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
                         {{salesValues[1].marketInfo[1].accountInfo[0].value.toFixed(2)=="0.00"?0:salesValues[1].marketInfo[1].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{salesValues[1].marketInfo[0].accountInfo[0].value.toFixed(2)=="0.00"?0:salesValues[1].marketInfo[0].accountInfo[0].value.toFixed(2)}}
+                        {{salesValues[1].marketInfo[0].accountInfo[1].value.toFixed(2)=="0.00"?0:salesValues[1].marketInfo[0].accountInfo[1].value.toFixed(2)}}
                     </p>
-                </td>
+                </td> 
                 <td>
                     <p class="text-right">
                         {{salesValues[1].marketInfo[1].accountInfo[1].value.toFixed(2)=="0.00"?0:salesValues[1].marketInfo[1].accountInfo[1].value.toFixed(2)}}
@@ -557,17 +561,12 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{salesValues[1].marketInfo[0].accountInfo[1].value.toFixed(2)=="0.00"?0:salesValues[1].marketInfo[0].accountInfo[1].value.toFixed(2)}}
+                        {{salesValues[1].marketInfo[0].accountInfo[2].value.toFixed(2)=="0.00"?0:salesValues[1].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
-                </td>               
+                </td>              
                 <td>
                     <p class="text-right">
                         {{salesValues[1].marketInfo[1].accountInfo[2].value.toFixed(2)=="0.00"?0:salesValues[1].marketInfo[1].accountInfo[2].value.toFixed(2)}}
-                    </p>
-                </td>
-                <td>
-                    <p class="text-right">
-                        {{salesValues[1].marketInfo[0].accountInfo[2].value.toFixed(2)=="0.00"?0:salesValues[1].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
@@ -582,14 +581,19 @@
                 </td>
                 <td>
                     <p class="text-right">
+                        {{(salesValueShares[1].marketInfo[0].accountInfo[0].value*100).toFixed(2)=="0.00"?0:(salesValueShares[1].marketInfo[0].accountInfo[0].value*100).toFixed(2)}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
                         {{(salesValueShares[1].marketInfo[1].accountInfo[0].value*100).toFixed(2)=="0.00"?0:(salesValueShares[1].marketInfo[1].accountInfo[0].value*100).toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(salesValueShares[1].marketInfo[0].accountInfo[0].value*100).toFixed(2)=="0.00"?0:(salesValueShares[1].marketInfo[0].accountInfo[0].value*100).toFixed(2)}}
+                        {{(salesValueShares[1].marketInfo[0].accountInfo[1].value*100).toFixed(2)=="0.00"?0:(salesValueShares[1].marketInfo[0].accountInfo[1].value*100).toFixed(2)}}
                     </p>
-                </td>
+                </td> 
                 <td>
                     <p class="text-right">
                         {{(salesValueShares[1].marketInfo[1].accountInfo[1].value*100).toFixed(2)=="0.00"?0:(salesValueShares[1].marketInfo[1].accountInfo[1].value*100).toFixed(2)}}
@@ -597,17 +601,12 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(salesValueShares[1].marketInfo[0].accountInfo[1].value*100).toFixed(2)=="0.00"?0:(salesValueShares[1].marketInfo[0].accountInfo[1].value*100).toFixed(2)}}
+                        {{(salesValueShares[1].marketInfo[0].accountInfo[2].value*100).toFixed(2)=="0.00"?0:(salesValueShares[1].marketInfo[0].accountInfo[2].value*100).toFixed(2)}}
                     </p>
-                </td>               
+                </td>              
                 <td>
                     <p class="text-right">
                         {{(salesValueShares[1].marketInfo[1].accountInfo[2].value*100).toFixed(2)=="0.00"?0:(salesValueShares[1].marketInfo[1].accountInfo[2].value*100).toFixed(2)}}
-                    </p>
-                </td>
-                <td>
-                    <p class="text-right">
-                        {{(salesValueShares[1].marketInfo[0].accountInfo[2].value*100).toFixed(2)=="0.00"?0:(salesValueShares[1].marketInfo[0].accountInfo[2].value*100).toFixed(2)}}
                     </p>
                 </td>
                 <td>
@@ -622,14 +621,19 @@
                 </td>
                 <td>
                     <p class="text-right">
+                        {{costOfGoodsSolds[1].marketInfo[0].accountInfo[0].value.toFixed(2)=="0.00"?0:costOfGoodsSolds[1].marketInfo[0].accountInfo[0].value.toFixed(2)}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
                         {{costOfGoodsSolds[1].marketInfo[1].accountInfo[0].value.toFixed(2)=="0.00"?0:costOfGoodsSolds[1].marketInfo[1].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{costOfGoodsSolds[1].marketInfo[0].accountInfo[0].value.toFixed(2)=="0.00"?0:costOfGoodsSolds[1].marketInfo[0].accountInfo[0].value.toFixed(2)}}
+                        {{costOfGoodsSolds[1].marketInfo[0].accountInfo[1].value.toFixed(2)=="0.00"?0:costOfGoodsSolds[1].marketInfo[0].accountInfo[1].value.toFixed(2)}}
                     </p>
-                </td>
+                </td>  
                 <td>
                     <p class="text-right">
                         {{costOfGoodsSolds[1].marketInfo[1].accountInfo[1].value.toFixed(2)=="0.00"?0:costOfGoodsSolds[1].marketInfo[1].accountInfo[1].value.toFixed(2)}}
@@ -637,17 +641,12 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{costOfGoodsSolds[1].marketInfo[0].accountInfo[1].value.toFixed(2)=="0.00"?0:costOfGoodsSolds[1].marketInfo[0].accountInfo[1].value.toFixed(2)}}
+                        {{costOfGoodsSolds[1].marketInfo[0].accountInfo[2].value.toFixed(2)=="0.00"?0:costOfGoodsSolds[1].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
-                </td>               
+                </td>             
                 <td>
                     <p class="text-right">
                         {{costOfGoodsSolds[1].marketInfo[1].accountInfo[2].value.toFixed(2)=="0.00"?0:costOfGoodsSolds[1].marketInfo[1].accountInfo[2].value.toFixed(2)}}
-                    </p>
-                </td>
-                <td>
-                    <p class="text-right">
-                        {{costOfGoodsSolds[1].marketInfo[0].accountInfo[2].value.toFixed(2)=="0.00"?0:costOfGoodsSolds[1].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
@@ -662,12 +661,17 @@
                 </td>
                 <td>
                     <p class="text-right">
+                        {{tradeSupports[1].marketInfo[0].accountInfo[0].value.toFixed(2)=="0.00"?0:tradeSupports[1].marketInfo[0].accountInfo[0].value.toFixed(2)}}
+                    </p>
+                </td>
+                <td>
+                    <p class="text-right">
                         {{tradeSupports[1].marketInfo[1].accountInfo[0].value.toFixed(2)=="0.00"?0:tradeSupports[1].marketInfo[1].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeSupports[1].marketInfo[0].accountInfo[0].value.toFixed(2)=="0.00"?0:tradeSupports[1].marketInfo[0].accountInfo[0].value.toFixed(2)}}
+                        {{tradeSupports[1].marketInfo[0].accountInfo[1].value.toFixed(2)=="0.00"?0:tradeSupports[1].marketInfo[0].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
@@ -677,17 +681,12 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeSupports[1].marketInfo[0].accountInfo[1].value.toFixed(2)=="0.00"?0:tradeSupports[1].marketInfo[0].accountInfo[1].value.toFixed(2)}}
+                        {{tradeSupports[1].marketInfo[0].accountInfo[2].value.toFixed(2)=="0.00"?0:tradeSupports[1].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>               
                 <td>
                     <p class="text-right">
                         {{tradeSupports[1].marketInfo[1].accountInfo[2].value.toFixed(2)=="0.00"?0:tradeSupports[1].marketInfo[1].accountInfo[2].value.toFixed(2)}}
-                    </p>
-                </td>
-                <td>
-                    <p class="text-right">
-                        {{tradeSupports[1].marketInfo[0].accountInfo[2].value.toFixed(2)=="0.00"?0:tradeSupports[1].marketInfo[0].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
@@ -700,12 +699,6 @@
                 <td>
                     <p class="padding-20">{{Label.getContent('Trade Profit')}}($mln)</p>
                 </td>
-
-                <td>
-                    <p class="text-right">
-                        {{tradeProfits[1].marketInfo[1].accountInfo[0].value.toFixed(2)=="0.00"?0:tradeProfits[1].marketInfo[1].accountInfo[0].value.toFixed(2)}}
-                    </p>
-                </td>
                 <td>
                     <p class="text-right">
                         {{tradeProfits[1].marketInfo[0].accountInfo[0].value.toFixed(2)=="0.00"?0:tradeProfits[1].marketInfo[0].accountInfo[0].value.toFixed(2)}}
@@ -713,22 +706,27 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{tradeProfits[1].marketInfo[1].accountInfo[1].value.toFixed(2)=="0.00"?0:tradeProfits[1].marketInfo[1].accountInfo[1].value.toFixed(2)}}
+                        {{tradeProfits[1].marketInfo[1].accountInfo[0].value.toFixed(2)=="0.00"?0:tradeProfits[1].marketInfo[1].accountInfo[0].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
                         {{tradeProfits[1].marketInfo[0].accountInfo[1].value.toFixed(2)=="0.00"?0:tradeProfits[1].marketInfo[0].accountInfo[1].value.toFixed(2)}}
                     </p>
-                </td>               
+                </td> 
                 <td>
                     <p class="text-right">
-                        {{tradeProfits[1].marketInfo[1].accountInfo[2].value.toFixed(2)=="0.00"?0:tradeProfits[1].marketInfo[1].accountInfo[2].value.toFixed(2)}}
+                        {{tradeProfits[1].marketInfo[1].accountInfo[1].value.toFixed(2)=="0.00"?0:tradeProfits[1].marketInfo[1].accountInfo[1].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
                         {{tradeProfits[1].marketInfo[0].accountInfo[2].value.toFixed(2)=="0.00"?0:tradeProfits[1].marketInfo[0].accountInfo[2].value.toFixed(2)}}
+                    </p>
+                </td>              
+                <td>
+                    <p class="text-right">
+                        {{tradeProfits[1].marketInfo[1].accountInfo[2].value.toFixed(2)=="0.00"?0:tradeProfits[1].marketInfo[1].accountInfo[2].value.toFixed(2)}}
                     </p>
                 </td>
                 <td>
@@ -743,34 +741,35 @@
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(tradeProfitShares[1].marketInfo[1].accountInfo[0].value*100).toFixed(2)=="0.00"?0:(tradeProfitShares[1].marketInfo[1].accountInfo[0].value*100).toFixed(2)}}
-                    </p>
-                </td>
-                <td>
-                    <p class="text-right">
                         {{(tradeProfitShares[1].marketInfo[0].accountInfo[0].value*100).toFixed(2)=="0.00"?0:(tradeProfitShares[1].marketInfo[0].accountInfo[0].value*100).toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
-                        {{(tradeProfitShares[1].marketInfo[1].accountInfo[1].value*100).toFixed(2)=="0.00"?0:(tradeProfitShares[1].marketInfo[1].accountInfo[1].value*100).toFixed(2)}}
+                        {{(tradeProfitShares[1].marketInfo[1].accountInfo[0].value*100).toFixed(2)=="0.00"?0:(tradeProfitShares[1].marketInfo[1].accountInfo[0].value*100).toFixed(2)}}
                     </p>
                 </td>
                 <td>
                     <p class="text-right">
                         {{(tradeProfitShares[1].marketInfo[0].accountInfo[1].value*100).toFixed(2)=="0.00"?0:(tradeProfitShares[1].marketInfo[0].accountInfo[1].value*100).toFixed(2)}}
                     </p>
-                </td>               
+                </td> 
+                <td>
+                    <p class="text-right">
+                        {{(tradeProfitShares[1].marketInfo[1].accountInfo[1].value*100).toFixed(2)=="0.00"?0:(tradeProfitShares[1].marketInfo[1].accountInfo[1].value*100).toFixed(2)}}
+                    </p>
+                </td> 
+                <td>
+                    <p class="text-right">
+                        {{(tradeProfitShares[1].marketInfo[0].accountInfo[2].value*100).toFixed(2)=="0.00"?0:(tradeProfitShares[1].marketInfo[0].accountInfo[2].value*100).toFixed(2)}}
+                    </p>
+                </td>        
                 <td>
                     <p class="text-right">
                         {{(tradeProfitShares[1].marketInfo[1].accountInfo[2].value*100).toFixed(2)=="0.00"?0:(tradeProfitShares[1].marketInfo[1].accountInfo[2].value*100).toFixed(2)}}
                     </p>
                 </td>
-                <td>
-                    <p class="text-right">
-                        {{(tradeProfitShares[1].marketInfo[0].accountInfo[2].value*100).toFixed(2)=="0.00"?0:(tradeProfitShares[1].marketInfo[0].accountInfo[2].value*100).toFixed(2)}}
-                    </p>
-                </td>
+                
                 <td>
                     <p class="text-right">
                         {{(tradeProfitShares[1].marketInfo[2].accountInfo[3].value*100).toFixed(2)=="0.00"?0:(tradeProfitShares[1].marketInfo[2].accountInfo[3].value*100).toFixed(2)}}
