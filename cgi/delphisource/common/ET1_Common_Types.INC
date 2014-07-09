@@ -151,6 +151,7 @@ Type
                           dpv_OnLinePrice         : single;
                           dpv_NextPriceBM         : single;
                           dpv_OnlinePlannedVolume : single;
+                          dpv_ChannelPreference   : single;
                         end;
 
   TProVariantsDecisions = array[TOneBrandVariants] of TProVariantDecision;

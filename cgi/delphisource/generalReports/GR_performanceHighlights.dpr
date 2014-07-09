@@ -22,16 +22,56 @@ var
   begin
     jo := SO;
     jo.I['categoryID'] := catID;
-    jo.D['grph_SalesVolume'] := binaryReport.grph_SalesVolume[actorID, catID];
-    jo.D['grph_NetSalesValue'] := binaryReport.grph_NetSalesValue[actorID, catID];    
+    jo.O['grph_SalesVolume'] := SA([]);
+    jo.O['grph_NetSalesValue'] := SA([]);
+    jo.O['grph_SalesVolumeCha†nge'] := SA([]);
+    jo.O['grph_NetSalesValueChange'] := SA([]);
+
+    // ** 0-BM 1-Online 3-Retailer **
+    //Producer 123 
+    if actorID <= 4 then
+    begin
+      jo.A['grph_SalesVolume'].D[0] := binaryReport.grph_WholeSalesVolume[actorID, catID];
+      jo.A['grph_SalesVolume'].D[1] := binaryReport.grph_SalesVolume[actorID, catID];
+      jo.A['grph_SalesVolume'].D[2] := binaryReport.grph_SalesVolume[actorID, catID];
+
+      jo.A['grph_NetSalesValue'].D[0] := binaryReport.grph_WholeSalesNetValue[actorID, catID];
+      jo.A['grph_NetSalesValue'].D[1] := binaryReport.grph_NetSalesValue[actorID, catID];
+      jo.A['grph_NetSalesValue'].D[2] := binaryReport.grph_NetSalesValue[actorID, catID];
+
+      jo.A['grph_SalesVolumeChange'].D[0] := binaryReport.grph_WholeSalesVolumeChange[actorID, catID];
+      jo.A['grph_SalesVolumeChange'].D[1] := binaryReport.grph_SalesVolumeChange[actorID, catID];
+      jo.A['grph_SalesVolumeChange'].D[2] := binaryReport.grph_SalesVolumeChange[actorID, catID];
+
+      jo.A['grph_NetSalesValueChange'].D[0] := binaryReport.grph_WholeSalesNetValueChange[actorID, catID];
+      jo.A['grph_NetSalesValueChange'].D[1] := binaryReport.grph_NetSalesValueChange[actorID, catID];
+      jo.A['grph_NetSalesValueChange'].D[2] := binaryReport.grph_NetSalesValueChange[actorID, catID];
+    end
+    //Retailer
+    else 
+    begin
+      jo.A['grph_SalesVolume'].D[0] := binaryReport.grph_SalesVolume[actorID, catID];
+      jo.A['grph_SalesVolume'].D[1] := binaryReport.grph_SalesVolume[actorID, catID];
+      jo.A['grph_SalesVolume'].D[2] := binaryReport.grph_SalesVolume[actorID, catID];
+
+      jo.A['grph_NetSalesValue'].D[0] := binaryReport.grph_NetSalesValue[actorID, catID];
+      jo.A['grph_NetSalesValue'].D[1] := binaryReport.grph_NetSalesValue[actorID, catID];
+      jo.A['grph_NetSalesValue'].D[2] := binaryReport.grph_NetSalesValue[actorID, catID];
+
+      jo.A['grph_SalesVolumeChange'].D[0] := binaryReport.grph_SalesVolumeChange[actorID, catID];
+      jo.A['grph_SalesVolumeChange'].D[1] := binaryReport.grph_SalesVolumeChange[actorID, catID];
+      jo.A['grph_SalesVolumeChange'].D[2] := binaryReport.grph_SalesVolumeChange[actorID, catID];
+
+      jo.A['grph_NetSalesValueChange'].D[0] := binaryReport.grph_NetSalesValueChange[actorID, catID];
+      jo.A['grph_NetSalesValueChange'].D[1] := binaryReport.grph_NetSalesValueChange[actorID, catID];
+      jo.A['grph_NetSalesValueChange'].D[2] := binaryReport.grph_NetSalesValueChange[actorID, catID];      
+    end;
 
     jo.D['grph_ValueMarketShare'] := binaryReport.grph_ValueMarketShare[actorID, catID];
     jo.D['grph_VolumeMarketShare'] := binaryReport.grph_VolumeMarketShare[actorID, catID];
 
-    jo.D['grph_NetSalesValueChange'] := binaryReport.grph_NetSalesValueChange[actorID, catID];
     jo.D['grph_ValueMarketShareChange'] := binaryReport.grph_ValueMarketShareChange[actorID, catID];
     jo.D['grph_VolumeMarketShareChange'] := binaryReport.grph_VolumeMarketShareChange[actorID, catID];
-    jo.D['grph_SalesVolumeChange'] := binaryReport.grph_SalesVolumeChange[actorID, catID];
 
     result := jo;
   end;
@@ -76,6 +116,46 @@ var
       end;
 
       result := activeActorID;
+  end;
+
+  //TActors : 1~(4+3)
+  //   /*
+  //     1 - Supplier 1
+  //     2 - Supplier 2
+  //     3 - Supplier 3
+  //     4 - Supplier 4
+  //     5 - Retailer 1
+  //     6 - Retailer 2
+  //     7 - Traditional Trade         
+  // */
+
+  //TAllProducers : 1~(3+1)
+  function ActorToProducer(ActorID : Integer): Integer;
+  var
+    producerID : integer;
+  begin
+    case (ActorID) of
+      1:
+      begin
+        producerID := 1;
+      end;
+      2:
+      begin
+        producerID := 2;
+      end;
+      3:
+      begin
+        producerID := 3;
+      end;
+      4:
+      begin
+        producerID := 4;
+      end;
+      else 
+        producerID := -1;
+      end;
+
+      result := producerID;
   end;
 
   function actorInfoSchema(actorID : Integer; binaryReport : TGR_PerformanceHighlights): ISuperObject;

@@ -17,7 +17,10 @@ var RCR_inventoryVolumesSchema = mongoose.Schema({
     rcrviv_Purchase         : [variantInventoryVolumeDetailSchema],
     rcrviv_Sales            : [variantInventoryVolumeDetailSchema],
     rcrviv_Discontinued     : [variantInventoryVolumeDetailSchema],
-    rcrviv_Closing          : [variantInventoryVolumeDetailSchema]
+    rcrviv_Closing          : [variantInventoryVolumeDetailSchema],
+
+    rcrviv_NetRetailPrice   : [variantInventoryVolumeDetailSchema],
+
 })
 // { use parentCompany to filter which variants should be displayed.             }
 // { For Retailer 1 allowed set is [1, 2, 3, 5]                                  }

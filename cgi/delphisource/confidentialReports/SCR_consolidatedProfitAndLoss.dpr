@@ -33,6 +33,10 @@ const
     scrpl_AdvertisingOffLine                   = 123;
     scrpl_TradeSupport                         = 124;
 
+    scrpl_eMallCommission                      = 125;
+    scrpl_ShippingCost                         = 126;
+
+
     scrv_Sales                                 = 200;
     scrv_SalesChange                           = 201;
     scrv_SalesShareInCategory                  = 202;
@@ -64,6 +68,9 @@ const
     scrv_NetProfitChange                       = 228;
     scrv_NetProfitMargin                       = 229;
     scrv_NetProfitShareInCategory              = 230;
+
+    scrv_eMallCommission                       = 231;
+    scrv_ShippingCost                          = 232; 
 
     scrb_Sales                                 = 300;
     scrb_SalesChange                           = 301;
@@ -97,8 +104,8 @@ const
     scrb_NetProfitMargin                       = 329;
     scrb_NetProfitShareInCategory              = 330;
 
-
-
+    scrb_eMallCommission                       = 331;
+    scrb_ShippingCost                          = 332;  
 
 
 type
@@ -158,6 +165,10 @@ var
        scrb_NetProfitChange:                begin jo.A['value'].D[0] := brand.scrb_NetProfitChange[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_NetProfitChange[INTERNET];    jo.A['value'].D[2] := brand.scrb_NetProfitChange[CORPORATE]; end;
        scrb_NetProfitMargin:                begin jo.A['value'].D[0] := brand.scrb_NetProfitMargin[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_NetProfitMargin[INTERNET];    jo.A['value'].D[2] := brand.scrb_NetProfitMargin[CORPORATE]; end;  
        scrb_NetProfitShareInCategory:       begin jo.A['value'].D[0] := brand.scrb_NetProfitShareInCategory[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_NetProfitShareInCategory[INTERNET];    jo.A['value'].D[2] := brand.scrb_NetProfitShareInCategory[CORPORATE]; end;
+
+       scrb_eMallCommission:       begin jo.A['value'].D[0] := brand.scrb_eMallCommission[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_eMallCommission[INTERNET];    jo.A['value'].D[2] := brand.scrb_eMallCommission[CORPORATE]; end;
+       scrb_ShippingCost:       begin jo.A['value'].D[0] := brand.scrb_ShippingCost[TRADITIONAL];    jo.A['value'].D[1] := brand.scrb_ShippingCost[INTERNET];    jo.A['value'].D[2] := brand.scrb_ShippingCost[CORPORATE]; end;
+
      end;
      result := jo;
   end;
@@ -204,6 +215,10 @@ var
        scrv_NetProfitChange:                begin jo.A['value'].D[0] := variant.scrv_NetProfitChange[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_NetProfitChange[INTERNET];    jo.A['value'].D[2] := variant.scrv_NetProfitChange[CORPORATE]; end;
        scrv_NetProfitMargin:                begin jo.A['value'].D[0] := variant.scrv_NetProfitMargin[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_NetProfitMargin[INTERNET];    jo.A['value'].D[2] := variant.scrv_NetProfitMargin[CORPORATE]; end;  
        scrv_NetProfitShareInCategory:       begin jo.A['value'].D[0] := variant.scrv_NetProfitShareInCategory[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_NetProfitShareInCategory[INTERNET];    jo.A['value'].D[2] := variant.scrv_NetProfitShareInCategory[CORPORATE]; end;
+
+       scrv_eMallCommission:       begin jo.A['value'].D[0] := variant.scrv_eMallCommission[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_eMallCommission[INTERNET];    jo.A['value'].D[2] := variant.scrv_eMallCommission[CORPORATE]; end;
+       scrv_ShippingCost:       begin jo.A['value'].D[0] := variant.scrv_ShippingCost[TRADITIONAL];    jo.A['value'].D[1] := variant.scrv_ShippingCost[INTERNET];    jo.A['value'].D[2] := variant.scrv_ShippingCost[CORPORATE]; end;
+
      end;
 
      result := jo;
@@ -246,6 +261,10 @@ var
       scrpl_AdvertisingOnLine : begin      jo.A['value'].D[0] := divisions[TRADITIONAL].scrpl_AdvertisingOnLine;      jo.A['value'].D[1] := divisions[INTERNET].scrpl_AdvertisingOnLine;   jo.A['value'].D[2] := divisions[CORPORATE].scrpl_AdvertisingOnLine;   end;
       scrpl_AdvertisingOffLine : begin     jo.A['value'].D[0] := divisions[TRADITIONAL].scrpl_AdvertisingOffLine;     jo.A['value'].D[1] := divisions[INTERNET].scrpl_AdvertisingOffLine;   jo.A['value'].D[2] := divisions[CORPORATE].scrpl_AdvertisingOffLine;    end;
       scrpl_TradeSupport : begin           jo.A['value'].D[0] := divisions[TRADITIONAL].scrpl_TradeSupport;           jo.A['value'].D[1] := divisions[INTERNET].scrpl_TradeSupport;   jo.A['value'].D[2] := divisions[CORPORATE].scrpl_TradeSupport;    end;
+
+      scrpl_eMallCommission : begin        jo.A['value'].D[0] := divisions[TRADITIONAL].scrpl_eMallCommission;           jo.A['value'].D[1] := divisions[INTERNET].scrpl_eMallCommission;   jo.A['value'].D[2] := divisions[CORPORATE].scrpl_eMallCommission;    end;
+      scrpl_ShippingCost : begin           jo.A['value'].D[0] := divisions[TRADITIONAL].scrpl_ShippingCost;           jo.A['value'].D[1] := divisions[INTERNET].scrpl_ShippingCost;   jo.A['value'].D[2] := divisions[CORPORATE].scrpl_ShippingCost;    end;
+
     end;
          
     result := jo;
@@ -289,6 +308,9 @@ var
     oJsonFile.O['scrpl_AdvertisingOffLine'] := SA([]);
     oJsonFile.O['scrpl_TradeSupport'] := SA([]);
 
+    oJsonFile.O['scrpl_eMallCommission'] := SA([]);
+    oJsonFile.O['scrpl_ShippingCost'] := SA([]);
+
     for catID := Low(TCategoriesTotal) to High(TCategoriesTotal) do
     begin
       oJsonFile.A['scrpl_Sales'].Add(categoryDivisionsInfoSchema(scrpl_Sales, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID]));
@@ -316,6 +338,10 @@ var
       oJsonFile.A['scrpl_AdvertisingOnLine'].Add(categoryDivisionsInfoSchema(scrpl_AdvertisingOnLine, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID]));
       oJsonFile.A['scrpl_AdvertisingOffLine'].Add(categoryDivisionsInfoSchema(scrpl_AdvertisingOffLine, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID]));
       oJsonFile.A['scrpl_TradeSupport'].Add(categoryDivisionsInfoSchema(scrpl_TradeSupport, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID]));
+
+      oJsonFile.A['scrpl_eMallCommission'].Add(categoryDivisionsInfoSchema(scrpl_eMallCommission, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID]));
+      oJsonFile.A['scrpl_ShippingCost'].Add(categoryDivisionsInfoSchema(scrpl_ShippingCost, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_ConsolidatedProfitAndLoss[catID]));
+
     end;
 
 
@@ -354,6 +380,8 @@ var
     oJsonFile.O['scrb_MaterialCosts'] := SA([]);
     oJsonFile.O['scrb_TradeSupport'] := SA([]);
 
+    oJsonFile.O['scrb_eMallCommission'] := SA([]);
+    oJsonFile.O['scrb_ShippingCost'] := SA([]);
 
     for catID := Low(TCategories) to High(TCategories) do
     begin
@@ -395,6 +423,9 @@ var
             oJsonFile.A['scrb_TradeSupport'].Add( brandInfoSchema(scrb_TradeSupport, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount] ) );
 
 
+            oJsonFile.A['scrb_eMallCommission'].Add( brandInfoSchema(scrb_eMallCommission, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount] ) );
+            oJsonFile.A['scrb_ShippingCost'].Add( brandInfoSchema(scrb_ShippingCost, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount] ) );
+
           end;
         end;
     end;
@@ -432,7 +463,8 @@ var
     oJsonFile.O['scrv_MaterialCosts'] := SA([]);
     oJsonFile.O['scrv_TradeSupport'] := SA([]);
 
-
+    oJsonFile.O['scrv_eMallCommission'] := SA([]);
+    oJsonFile.O['scrv_ShippingCost'] := SA([]);
 
 
     for catID := Low(TCategories) to High(TCategories) do
@@ -476,6 +508,8 @@ var
               oJsonFile.A['scrv_MaterialCosts'].Add( variantInfoSchema(scrv_MaterialCosts, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount] ) );
               oJsonFile.A['scrv_TradeSupport'].Add( variantInfoSchema(scrv_TradeSupport, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount] ) );
 
+              oJsonFile.A['scrv_eMallCommission'].Add( variantInfoSchema(scrv_eMallCommission, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount] ) );
+              oJsonFile.A['scrv_ShippingCost'].Add( variantInfoSchema(scrv_ShippingCost, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_Brands[catID, brandCount].scrb_Variants[variantCount] ) );
 
             end;
           end;

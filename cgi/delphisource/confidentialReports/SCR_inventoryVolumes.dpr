@@ -13,6 +13,7 @@ const
   scrviv_Closing          = 104;
   scrviv_Orders           = 105;
   scrviv_Shipments        = 106; 
+  scrviv_UnitProductionCost = 107;
 
 var
   DataDirectory : string;
@@ -72,6 +73,7 @@ var
        scrviv_Sales:   begin jo.A['value'].D[0] := variant.scrviv_Sales[TRADITIONAL];    jo.A['value'].D[1] := variant.scrviv_Sales[INTERNET];    jo.A['value'].D[2] := variant.scrviv_Sales[CORPORATE]; end;
        scrviv_Discontinued:   begin jo.A['value'].D[0] := 0;    jo.A['value'].D[1] := 0;    jo.A['value'].D[2] := variant.scrviv_Discontinued; end;
        scrviv_Closing:   begin jo.A['value'].D[0] := variant.scrviv_Closing[TRADITIONAL];    jo.A['value'].D[1] := variant.scrviv_Closing[INTERNET];    jo.A['value'].D[2] := variant.scrviv_Closing[CORPORATE]; end;
+       scrviv_UnitProductionCost : begin jo.A['value'].D[0] := 0;    jo.A['value'].D[1] := 0;    jo.A['value'].D[2] := variant.scrviv_UnitProductionCost; end;
      end;
      result := jo;
   end;
@@ -94,6 +96,7 @@ var
 
     oJsonFile.O['scrviv_Orders'] := SA([]);
     oJsonFile.O['scrviv_Shipments'] := SA([]);
+    oJsonFile.O['scrviv_UnitProductionCost'] := SA([]);
 
     for catID := Low(TCategories) to High(TCategories) do
     begin
@@ -108,6 +111,7 @@ var
               oJsonFile.A['scrviv_Sales'].Add( variantInfoSchema(scrviv_Sales, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_InventoryVolumes[catID, brandCount, variantCount] ) );
               oJsonFile.A['scrviv_Discontinued'].Add( variantInfoSchema(scrviv_Discontinued, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_InventoryVolumes[catID, brandCount, variantCount] ) );
               oJsonFile.A['scrviv_Closing'].Add( variantInfoSchema(scrviv_Closing, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_InventoryVolumes[catID, brandCount, variantCount] ) );
+              oJsonFile.A['scrviv_UnitProductionCost'].Add( variantInfoSchema(scrviv_UnitProductionCost, catID, currentResult.r_SuppliersConfidentialReports[currentProducer].scr_InventoryVolumes[catID, brandCount, variantCount] ) );
 
               for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do
               begin

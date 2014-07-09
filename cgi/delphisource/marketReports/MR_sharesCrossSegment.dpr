@@ -10,6 +10,10 @@ const
       vsd_ValueChange      = 101;
       vsd_AbsoluteVolume   = 102;
       vsd_VolumeChange     = 103;
+      bosd_AbsoluteValue    = 104;
+      bosd_ValueChange      = 105;
+      bosd_AbsoluteVolume   = 106;
+      bosd_VolumeChange     = 107;      
 
 var
   DataDirectory : string;
@@ -85,11 +89,72 @@ var
     result := jo;
   end;
 
+
+  function ownerShopperInfoSchema(fieldIdx: Integer; shopper : TShoppersKind; segmentID : integer; owner : TBrandOwnerCrossSegmentDetails):ISuperObject;
+  var
+    jo : ISuperObject;
+    ShopperStr : string;
+   // segmentID : integer;
+  begin
+    jo := SO;
+    case Shopper of
+        BMS         : ShopperStr := 'BMS'; 
+        NETIZENS    : ShopperStr := 'NETIZENS';   
+        MIXED       : ShopperStr := 'MIXED';  
+        ALLSHOPPERS : ShopperStr := 'ALLSHOPPERS'; 
+    else
+        ShopperStr  := 'wrong';
+    end;
+
+    jo.S['shopperKind'] := ShopperStr;
+    case (fieldIdx) of
+      bosd_AbsoluteValue     : begin jo.D['value'] := owner.bosd_AbsoluteValue[segmentID, shopper]; end;
+      bosd_ValueChange       : begin jo.D['value'] := owner.bosd_ValueChange[segmentID, shopper]; end;
+      bosd_AbsoluteVolume    : begin jo.D['value'] := owner.bosd_AbsoluteVolume[segmentID, shopper]; end;
+      bosd_VolumeChange      : begin jo.D['value'] := owner.bosd_VolumeChange[segmentID, shopper]; end;
+    end;
+
+    result := jo;
+  end;
+
+  function ownerSegmentInfoSchema(fieldIdx: Integer; segmentID : Integer; owner : TBrandOwnerCrossSegmentDetails):ISuperObject;
+  var
+    jo : ISuperObject;
+    Shopper : TShoppersKind;
+  begin
+    jo := SO;
+    jo.I['segmentID'] := segmentID;
+    jo.O['shopperInfo'] := SA([]);
+    for Shopper := Low(TShoppersKind) to High(TShoppersKind) do
+      jo.A['shopperInfo'].Add( ownerShopperInfoSchema(fieldIdx, Shopper, segmentID, owner) );
+
+    result := jo;
+  end;
+
+  function ownerInfoSchema(fieldIdx : Integer; catID : Integer; marketID : Integer; owner : TBrandOwnerCrossSegmentDetails):ISuperObject;
+  var  
+    jo : ISuperObject;
+    segmentID : integer;
+  begin
+    jo := SO;
+    jo.I['ownerID'] := owner.bosd_VariantID;
+    jo.I['categoryID'] := catID;
+    jo.I['marketID'] := marketID;
+    
+    jo.O['segmentInfo'] := SA([]);
+    for segmentID := Low(TSegmentsTotal) to High(TSegmentsTotal) do
+    begin
+      jo.A['segmentInfo'].Add( ownerSegmentInfoSchema(fieldIdx, segmentID, owner) );
+    end;
+    result := jo;
+  end;
+
   procedure makeJson();
   var
     s_str : string;
-    catID,brandCount,variantCount,marketID : Integer;
+    catID,brandCount,variantCount,marketID,ownerID : Integer;
     tempVariant : TVariantCrossSegmentDetails;
+    tempOwner : TBrandOwnerCrossSegmentDetails;
   begin
     oJsonFile := SO;
     oJsonFile.S['seminar'] := currentSeminar;
@@ -100,6 +165,11 @@ var
     oJsonFile.O['absoluteVolume'] := SA([]);
     oJsonFile.O['volumeChange'] := SA([]);
 
+    oJsonFile.O['owner_absoluteValue'] := SA([]);
+    oJsonFile.O['owner_valueChange'] := SA([]);
+    oJsonFile.O['owner_absoluteVolume'] := SA([]);
+    oJsonFile.O['owner_volumeChange'] := SA([]);       
+
     for catID :=  Low(TCategories) to High(TCategories) do 
     begin
       for brandCount := Low(TBrands) to High(TBrands) do 
@@ -108,7 +178,7 @@ var
         begin
           for marketID := Low(TMarkets) to High(TMarkets) do
           begin
-            tempVariant := currentResult.r_MarketResearch.mr_SharesByCrossSegment[ marketID,catID, brandCount, variantCount];
+            tempVariant := currentResult.r_MarketResearch.mr_SharesByCrossSegment[marketID,catID].mrcs_VariantsDetails[brandCount, variantCount];
             if (tempVariant.vsd_Shown = true)
             AND (tempVariant.vsd_VariantName <> '')
             AND (tempVariant.vsd_ParentBrandName <> '') then
@@ -122,6 +192,21 @@ var
         end;      
       end;          
     end;
+
+    for catID :=  Low(TCategories) to High(TCategories) do 
+    begin
+      for marketID := Low(TMarkets) to High(TMarkets) do
+      begin
+        for ownerID := Low(TBrandOwners) to High(TBrandOwners) do
+        begin
+          tempOwner := currentResult.r_MarketResearch.mr_SharesByCrossSegment[marketID,catID].mrcs_BrandOwnersDetails[ownerID];
+          oJsonFile.A['owner_absoluteValue'].Add( ownerInfoSchema(bosd_absoluteValue, catID, marketID, tempOwner) );
+          oJsonFile.A['owner_absoluteVolume'].Add( ownerInfoSchema(bosd_absoluteVolume, catID, marketID, tempOwner ));
+          oJsonFile.A['owner_valueChange'].Add( ownerInfoSchema(bosd_valueChange, catID, marketID, tempOwner ));
+          oJsonFile.A['owner_volumeChange'].Add( ownerInfoSchema(bosd_volumeChange, catID, marketID, tempOwner ));
+        end;
+      end;
+    end;       
 
     //for debug used
     s_str := 'out' + '.json';

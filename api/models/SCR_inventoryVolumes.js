@@ -17,6 +17,7 @@ var SCR_inventoryVolumesSchema = mongoose.Schema({
     scrviv_Sales            : [variantInfoSchema],
     scrviv_Discontinued     : [variantInfoSchema],
     scrviv_Closing          : [variantInfoSchema],
+    scrviv_UnitProductionCost   : [variantInfoSchema],
     scrviv_Orders           : [variantMarketInfoSchema],
     scrviv_Shipments        : [variantMarketInfoSchema],    
 })

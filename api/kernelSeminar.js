@@ -386,7 +386,6 @@ function runPromiseChain(io, options, res){
 		}).then(function(result){ 
 	        io.sockets.emit('KernelProcessLog', { msg: result.msg, isError: false });		
 
-
 	    //Import Market Reports
 			options.cgiPath = conf.cgi.path_MR_awarenessEvolution;
 			options.schemaName = 'MR_awarenessEvolution';
@@ -442,6 +441,11 @@ function runPromiseChain(io, options, res){
 		}).then(function(result){ 
 	        io.sockets.emit('KernelProcessLog', { msg: result.msg, isError: false });	
 
+			options.cgiPath = conf.cgi.path_MR_salesByChannel;
+			options.schemaName = 'MR_salesByChannel';
+			return require('./models/MR_salesByChannel.js').addReports(options);									
+		}).then(function(result){ 
+	        io.sockets.emit('KernelProcessLog', { msg: result.msg, isError: false });	
 
 			options.cgiPath = conf.cgi.path_MR_forecasts;
 			options.schemaName = 'MR_forecasts';

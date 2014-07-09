@@ -39,6 +39,8 @@ var
     jo.A['vc_composition'].D[1] := variant.vc_Composition[2];
     jo.A['vc_composition'].D[2] := variant.vc_Composition[3];
 
+    jo.D['bmListPrice'] := variant.vc_CurrentBMListPrice;
+
     result := jo;
   end;
 
