@@ -39,6 +39,10 @@ var SCR_consolidatedProfitAndLossSchema = mongoose.Schema({
     scrpl_AdvertisingOffLine                   : [categoryInfoSchema], 
     scrpl_TradeSupport                         : [categoryInfoSchema], 
 
+    scrpl_eMallCommission                      : [categoryInfoSchema],
+    scrpl_ShippingCost                         : [categoryInfoSchema],    
+
+
     //P&L per brand in B&M and onLine
     scrb_Sales                                : [brandInfoSchema],
     scrb_SalesChange                          : [brandInfoSchema],
@@ -73,6 +77,9 @@ var SCR_consolidatedProfitAndLossSchema = mongoose.Schema({
     scrb_NetProfitMargin                      : [brandInfoSchema],
     scrb_NetProfitShareInCategory             : [brandInfoSchema],
 
+    scrb_eMallCommission                      : [brandInfoSchema],
+    scrb_ShippingCost                         : [brandInfoSchema],    
+
     ////P&L per variant in B&M and onLine
     scrv_Sales                                : [variantInfoSchema],
     scrv_SalesChange                          : [variantInfoSchema],
@@ -105,7 +112,10 @@ var SCR_consolidatedProfitAndLossSchema = mongoose.Schema({
     scrv_NetProfit                            : [variantInfoSchema],
     scrv_NetProfitChange                      : [variantInfoSchema],
     scrv_NetProfitMargin                      : [variantInfoSchema],
-    scrv_NetProfitShareInCategory             : [variantInfoSchema]
+    scrv_NetProfitShareInCategory             : [variantInfoSchema],
+
+    scrv_eMallCommission                      : [variantInfoSchema],
+    scrv_ShippingCost                         : [variantInfoSchema],    
 })
 
 var categoryInfoSchema = mongoose.Schema({

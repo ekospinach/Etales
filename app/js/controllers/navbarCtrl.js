@@ -28,10 +28,11 @@ define(['app'], function(app) {
 	         }, time);  
 	    }
 
-	    $scope.openTabs = function(){	  	
-			$window.open('#/login/general');		
-			$window.open('#/login/market');		
-			$window.open('#/login/confidential');
+	    $scope.openTabs = function(){	    	
+			$window.open('#/facilitatorConfidentialReport');		
+			$window.open('#/facilitatorGeneralReport');		
+			$window.open('#/facilitatorMarketReport');		
+
 	    }
 	    
 	    $scope.$on("$routeChangeSuccess", function(next, current){
@@ -48,6 +49,7 @@ define(['app'], function(app) {
 	    		$scope.pageHeader="hide";
 				$scope.pageFooter="hide";	
 	    	}
+	    	
 	    	if(window.location.hash.substring(2,7)=="login"){
 	    		//login page
 	    		$scope.pageBody="bs-docs-home";

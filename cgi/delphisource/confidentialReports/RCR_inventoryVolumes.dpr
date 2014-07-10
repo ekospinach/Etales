@@ -12,6 +12,8 @@ const
   rcrviv_Discontinued     = 103;
   rcrviv_Closing          = 104;
 
+  rcrviv_NetRetailPrice   = 105;
+
 var
   DataDirectory : string;
   sListData: tStrings;
@@ -41,6 +43,7 @@ var
        rcrviv_Sales:   begin jo.D['value'] := variant.rcrviv_Sales; end;
        rcrviv_Discontinued:   begin jo.D['value'] := variant.rcrviv_Discontinued; end;
        rcrviv_Closing:   begin jo.D['value'] := variant.rcrviv_Closing; end;
+       rcrviv_NetRetailPrice: begin jo.D['value'] := variant.rcrviv_NetRetailPrice; end;
      end;
      result := jo;
   end;
@@ -61,6 +64,7 @@ var
     oJsonFile.O['rcrviv_Sales'] := SA([]);
     oJsonFile.O['rcrviv_Discontinued'] := SA([]);
     oJsonFile.O['rcrviv_Closing'] := SA([]);
+    oJsonFile.O['rcrviv_NetRetailPrice'] := SA([]);
 
     for catID := Low(TCategories) to High(TCategories) do
     begin
@@ -76,6 +80,7 @@ var
             oJsonFile.A['rcrviv_Sales'].Add( variantInfoSchema(rcrviv_Sales, catID, marketID, tempVariant ));
             oJsonFile.A['rcrviv_Discontinued'].Add( variantInfoSchema(rcrviv_Discontinued, catID, marketID, tempVariant ));
             oJsonFile.A['rcrviv_Closing'].Add( variantInfoSchema(rcrviv_Closing, catID, marketID, tempVariant ));
+            oJsonFile.A['rcrviv_NetRetailPrice'].Add( variantInfoSchema(rcrviv_NetRetailPrice, catID, marketID, tempVariant ));
           end;            
         end;  
       end;

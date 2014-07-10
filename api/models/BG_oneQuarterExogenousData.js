@@ -1,16 +1,15 @@
 var mongoose = require('mongoose'),
-	http = require('http'),
-	util = require('util'),
-	_ = require('underscore'),
-	request = require('request'),
-	q = require('q');
-
+  	http = require('http'),
+  	util = require('util'),
+  	_ = require('underscore'),
+  	request = require('request'),
+  	q = require('q');
 
 var oneQuarterExogenousDataSchema = mongoose.Schema({
-    seminar    : String,
-    period     : Number,
-    marketID   : Number,
-    categoryID : Number,
+    seminar                         : String,
+    period                          : Number,
+    marketID                        : Number,
+    categoryID                      : Number,
     MinBMPriceVsCost                : Number,
     MaxBMPriceVsCost                : Number,
     IngredientsQualityVsATLGap      : Number,
@@ -24,11 +23,17 @@ var oneQuarterExogenousDataSchema = mongoose.Schema({
     MinPLPriceVsCost                : Number,
     MaxPLPriceVsCost                : Number,
     MinRetailPriceVsNetBMPrice      : Number,
-    MaxRetailPriceVsNetBMPrice      : Number,    
-    MarketStudiesPrices             : [Number]
+    MaxRetailPriceVsNetBMPrice      : Number,
+    MarketStudiesPrices             : [Number],
+    
+    //EXO
+    ProdCost_IngredientPrices                : [],
+    ProdCost_LogisticsCost                   : Number,
+    ProdCost_LabourCost                      : Number,
 })
 
 var oneQuarterExogenousData = mongoose.model('bg_oneQuarterExogenousData',oneQuarterExogenousDataSchema);
+exports.oneQuarterExogenousData = mongoose.model('bg_oneQuarterExogenousData',oneQuarterExogenousDataSchema);
 
 exports.addInfos = function(options){
     var deferred = q.defer();
@@ -51,7 +56,7 @@ exports.addInfos = function(options){
           data += chunk;
         }).on('end', function(){
           //ask Oleg to fix here, should return 404 when result beyound the existed period.
-          console.log('response statusCode from CGI(' + options.cgiPath + ') for period ' + currentPeriod + ': ' + response.statusCode);
+          //console.log('response statusCode from CGI(' + options.cgiPath + ') for period ' + currentPeriod + ': ' + response.statusCode);
           if ( response.statusCode === (404 || 500) ) 
             deferred.reject({msg:'Get 404 error from CGI server, reqOptions:' + JSON.stringify(reqOptions)});
           else {
@@ -63,28 +68,32 @@ exports.addInfos = function(options){
           }      
           if (!infoGroup) return; 
 
-//          console.log(util.inspect(infoGroup, {depth:null}));
+          //console.log(' +++ '+ util.inspect(infoGroup, {depth:null}));
           (function singleUpdate(idx){
               oneQuarterExogenousData.update({seminar: infoGroup[idx].seminar, 
                                     marketID: infoGroup[idx].marketID,
                                     categoryID : infoGroup[idx].categoryID,
                                     period : infoGroup[idx].period},
                                     {
-                                    MinBMPriceVsCost                : infoGroup[idx].MinBMPriceVsCost,               
-                                    MaxBMPriceVsCost                : infoGroup[idx].MaxBMPriceVsCost,               
-                                    IngredientsQualityVsATLGap      : infoGroup[idx].IngredientsQualityVsATLGap,     
-                                    ActiveAgentVsSmoothenerGap      : infoGroup[idx].ActiveAgentVsSmoothenerGap,     
-                                    MaxTargetVolumeVsTotalMarket    : infoGroup[idx].MaxTargetVolumeVsTotalMarket,   
-                                    MinOnlinePriceVsCost            : infoGroup[idx].MinOnlinePriceVsCost,           
-                                    MaxOnlinePriceVsCost            : infoGroup[idx].MaxOnlinePriceVsCost,           
-                                    MaxCapacityReduction            : infoGroup[idx].MaxCapacityReduction,           
-                                    MaxCapacityIncrease             : infoGroup[idx].MaxCapacityIncrease,            
+                                    MinBMPriceVsCost                : infoGroup[idx].MinBMPriceVsCost,
+                                    MaxBMPriceVsCost                : infoGroup[idx].MaxBMPriceVsCost,
+                                    IngredientsQualityVsATLGap      : infoGroup[idx].IngredientsQualityVsATLGap,
+                                    ActiveAgentVsSmoothenerGap      : infoGroup[idx].ActiveAgentVsSmoothenerGap,
+                                    MaxTargetVolumeVsTotalMarket    : infoGroup[idx].MaxTargetVolumeVsTotalMarket,
+                                    MinOnlinePriceVsCost            : infoGroup[idx].MinOnlinePriceVsCost,
+                                    MaxOnlinePriceVsCost            : infoGroup[idx].MaxOnlinePriceVsCost,
+                                    MaxCapacityReduction            : infoGroup[idx].MaxCapacityReduction,
+                                    MaxCapacityIncrease             : infoGroup[idx].MaxCapacityIncrease,
                                     Supplier4AcquiredLevelsGapForPL : infoGroup[idx].Supplier4AcquiredLevelsGapForPL,
-                                    MinPLPriceVsCost                : infoGroup[idx].MinPLPriceVsCost,               
-                                    MaxPLPriceVsCost                : infoGroup[idx].MaxPLPriceVsCost,          
-                                    MinRetailPriceVsNetBMPrice      : infoGroup[idx].MinRetailPriceVsNetBMPrice,     
-                                    MaxRetailPriceVsNetBMPrice      : infoGroup[idx].MaxRetailPriceVsNetBMPrice,     
-                                    MarketStudiesPrices             : infoGroup[idx].MarketStudiesPrices,
+                                    MinPLPriceVsCost                : infoGroup[idx].MinPLPriceVsCost,
+                                    MaxPLPriceVsCost                : infoGroup[idx].MaxPLPriceVsCost,
+                                    MinRetailPriceVsNetBMPrice      : infoGroup[idx].MinRetailPriceVsNetBMPrice,
+                                    MaxRetailPriceVsNetBMPrice      : infoGroup[idx].MaxRetailPriceVsNetBMPrice,
+                                    MarketStudiesPrices             : infoGroup[idx].MarketStudiesPrices,                                    
+
+                                    ProdCost_IngredientPrices       : infoGroup[idx].ProdCost_IngredientPrices,
+                                    ProdCost_LogisticsCost          : infoGroup[idx].ProdCost_LogisticsCost,
+                                    ProdCost_LabourCost             : infoGroup[idx].ProdCost_LabourCost,
                                     },
                                     {upsert: true},
                                     function(err, numberAffected, raw){  

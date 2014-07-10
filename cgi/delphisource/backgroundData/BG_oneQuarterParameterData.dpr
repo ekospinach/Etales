@@ -1,4 +1,4 @@
-﻿program BG_oneQuarterExogenousData;
+﻿program BG_oneQuarterParameterData;
 
 //Original :: DelphiCGI Developed by Andrea Russo - Italy
 //email: andrusso@yahoo.com
@@ -65,7 +65,7 @@ var
    Markets_IDs                 : TMarketsBytes;
    Categories_IDs              : TCategoriesBytes;
 
-  function oneQuarterExogenousDataSchema(marketID : Integer; catID : Integer): ISuperObject;
+  function oneQuarterParameterDataSchema(marketID : Integer; catID : Integer): ISuperObject;
   var
     jo: ISuperObject;
     prd, ret, spec, input: Integer;
@@ -73,45 +73,19 @@ var
     ingredientPirces : ISuperObject;
   begin
     jo  := SO;
-    jo.I['period']  := currentPeriod;
     jo.S['seminar'] := currentSeminar;
     jo.S['marketID'] := IntToStr(marketID);
     jo.S['categoryID'] := IntToStr(catID);
 
-    jo.D['MinBMPriceVsCost']                := XNOW[marketID, catID].MinBMPriceVsCost;
-    jo.D['MaxBMPriceVsCost']                := XNOW[marketID, catID].MaxBMPriceVsCost;
-    jo.D['IngredientsQualityVsATLGap']      := XNOW[marketID, catID].IngredientsQualityVsATLGap;
-    jo.D['ActiveAgentVsSmoothenerGap']      := XNOW[marketID, catID].ActiveAgentVsSmoothenerGap;
-    jo.D['MaxTargetVolumeVsTotalMarket']    := XNOW[marketID, catID].MaxTargetVolumeVsTotalMarket;
-    jo.D['MinOnlinePriceVsCost']            := XNOW[marketID, catID].MinOnlinePriceVsCost;
-    jo.D['MaxOnlinePriceVsCost']            := XNOW[marketID, catID].MaxOnlinePriceVsCost;
-    jo.D['MaxCapacityReduction']            := XNOW[marketID, catID].MaxCapacityReduction;
-    jo.D['MaxCapacityIncrease']             := XNOW[marketID, catID].MaxCapacityIncrease;
-    jo.D['Supplier4AcquiredLevelsGapForPL'] := XNOW[marketID, catID].Supplier4AcquiredLevelsGapForPL;
-    jo.D['MinPLPriceVsCost']                := XNOW[marketID, catID].MinPLPriceVsCost;
-    jo.D['MaxPLPriceVsCost']                := XNOW[marketID, catID].MaxPLPriceVsCost;
-    jo.D['MinRetailPriceVsNetBMPrice']      := XNOW[marketID, catID].MinRetailPriceVsNetBMPrice;
-    jo.D['MaxRetailPriceVsNetBMPrice']      := XNOW[marketID, catID].MaxRetailPriceVsNetBMPrice;    
-    jo.O['MarketStudiesPrices']             := SA([]);
+    jo.D['ProdCost_HigherDesignImpact']  := Parameters[marketID, catID].ProdCost_HigherDesignImpact;
+    jo.D['ProdCost_HigherTechImpact']  := Parameters[marketID, catID].ProdCost_HigherTechImpact;
+    jo.D['ProdCost_DefaultDrop']  := Parameters[marketID, catID].ProdCost_DefaultDrop;
+    jo.D['ProdCost_MarginOnPrivateLabel']  := Parameters[marketID, catID].ProdCost_MarginOnPrivateLabel;
+    jo.D['MinProductionVolume']  := Parameters[marketID, catID].MinProductionVolume;
 
-    for marketStudiesID := Low(TMarketStudies) to High(TMarketStudies) do
-    begin
-        jo.A['MarketStudiesPrices'].D[marketStudiesID-1] := XNOW[marketID, catID].MarketStudiesPrices[marketStudiesID];
-    end;
-
-    jo.D['ProdCost_LogisticsCost']          := XNOW[marketID, catID].ProdCost_LogisticsCost;
-    jo.D['ProdCost_LabourCost']             := XNOW[marketID, catID].ProdCost_LabourCost;
-    jo.O['ProdCost_IngredientPrices']       := SA([]);
-
-    for spec := Low(TSpecs) to High(TSpecs) do
-    begin
-        ingredientPirces := SA([]);
-        for input := Low(TIngredientsInput) to High(TIngredientsInput) do
-        begin
-            ingredientPirces.D[inttostr(input - 1)] := XNOW[marketID, catID].ProdCost_IngredientPrices[spec, input];
-        end;
-        jo.A['ProdCost_IngredientPrices'].Add(ingredientPirces);
-    end;
+    jo.D['ProdCost_ECONOMY']  := Parameters[marketID, catID].ProdCost_PackFormat[ECONOMY];
+    jo.D['ProdCost_STANDARD']  := Parameters[marketID, catID].ProdCost_PackFormat[STANDARD];
+    jo.D['ProdCost_PREMIUM']  := Parameters[marketID, catID].ProdCost_PackFormat[PREMIUM];   
 
     result  := jo;
   end;
@@ -123,12 +97,11 @@ var
       catID: Integer;
     begin
       oJsonFile := SA([]);
-//      oJsonFile[''] := oneQuarterExogenousDataSchema(1, 1);
       for marketID := Low(TMarkets) to High(TMarkets) do
       begin
         for catID := Low(TCategories) to High(TCategories) do
         begin
-           oJsonFile[''] := oneQuarterExogenousDataSchema(marketID, catID);
+           oJsonFile[''] := oneQuarterParameterDataSchema(marketID, catID);
         end;
       end;
 
@@ -159,7 +132,6 @@ begin
         LoadConfigIni(DataDirectory, getSeminar(sListData));
     // initialize globals
         currentSeminar := getSeminar(sListData);
-        currentPeriod := getPeriod(sListData);
 
         Markets_IDs[1]    := 1;
         Markets_IDs[2]    := 2;
@@ -178,14 +150,14 @@ begin
         SetGlobalNames;
 
                                            ///GetCurrentDir + '\'
-        ReturnStatus := ReadExogenousFile( GetCurrentDir + '\', MarketsNow, CategoriesNow, Markets_IDs, Categories_IDs, currentPeriod );
-        if ( ReturnStatus = err_ExogenousFileRead_OK ) then
+        ReturnStatus := ReadParametersFile( GetCurrentDir + '\', MarketsNow, CategoriesNow, Markets_IDs, Categories_IDs );
+        if ( ReturnStatus = err_ParametersFileRead_OK ) then
         begin
            makeJson;
         end
         else
         begin
-          Writeln('Read Exogenous failed :' + IntToStr(ReturnStatus));
+          Writeln('Read ReadParametersFile failed :' + IntToStr(ReturnStatus));
         end;
 
       end

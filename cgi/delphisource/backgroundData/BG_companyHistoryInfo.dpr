@@ -34,7 +34,6 @@ uses
 const
   DecisionFileName = 'Negotiations.';
   dummyNo = 0;
-
   dummySeminar = 'MAY';
   aCategories : array[TCategories] of string = ('Elecsories', 'HealthBeauties');
   aMarkets : array[TMarketsTotal] of string = ('Urban', 'Rural', 'Total');
@@ -96,12 +95,12 @@ DataDirectory : string;
       end;
       jo.A['cumulatedDesignVolume'].Add(DLvolume);
 
-       TLvolume := SA([]);
-       for TL := Low(TTechnology) to High(TTechnology) do
-       begin
-         TLvolume.D[inttostr(TL-1)] := vProd.scr_Info.scrInfo_CumulatedTechnologyVolume[I, TL];
-       end;
-       jo.A['cumulatedTechnologyVolume'].Add(TLvolume);
+      TLvolume := SA([]);
+      for TL := Low(TTechnology) to High(TTechnology) do
+      begin
+       TLvolume.D[inttostr(TL-1)] := vProd.scr_Info.scrInfo_CumulatedTechnologyVolume[I, TL];
+      end;
+      jo.A['cumulatedTechnologyVolume'].Add(TLvolume);
 
     end;
 

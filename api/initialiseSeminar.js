@@ -401,6 +401,12 @@ exports.initialiseSeminar = function(io){
 			}).then(function(result){ 
 		         io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	
 
+				options.cgiPath = conf.cgi.path_MR_salesByChannel;
+				options.schemaName = 'MR_salesByChannel';
+				return require('./models/MR_salesByChannel.js').addReports(options);			
+			}).then(function(result){ 
+		         io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });			         
+
 				options.cgiPath = conf.cgi.path_MR_forecasts;
 				options.schemaName = 'MR_forecasts';
 				return require('./models/MR_forecasts.js').addReports(options);			
@@ -486,7 +492,12 @@ exports.initialiseSeminar = function(io){
 			}).then(function(result){ 
 		        io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	 
 
-		        console.log('cgi shoot:' + conf.cgi.path_BG_feedbackSlides);
+				options.cgiPath = conf.cgi.path_BG_oneQuarterParameterData;
+				options.schemaName = 'BG_oneQuarterParameterData';
+				return require('./models/BG_oneQuarterParameterData.js').addInfos(options);							
+			}).then(function(result){ 
+		        io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });	 
+
 				options.cgiPath = conf.cgi.path_BG_feedbackSlides;
 				options.schemaName = 'BG_feedbackSlides';
 				//return require('./models/companyHistoryInfo.js').addInfos(options);
@@ -502,7 +513,7 @@ exports.initialiseSeminar = function(io){
 		        res.send(404, error.msg);            
 			}, function(progress){ //log the progress
 		        io.sockets.emit('AdminProcessLog', { msg: progress.msg, isError: false });			
-			});		
+			}).done();		
 
 		}
 	}

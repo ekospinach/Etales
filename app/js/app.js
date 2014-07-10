@@ -124,7 +124,6 @@
  			editableOptions.theme = 'bs3';
  		}).run(['$rootScope', '$location', 'Auth', '$http','$cookieStore','SeminarInfo','PeriodInfo','PlayerInfo','RoleInfo',
  			function($rootScope, $location, Auth, $http, $cookieStore, SeminarInfo, PeriodInfo, PlayerInfo, RoleInfo) {
-
 			    var userRoles = routingConfig.userRoles;
  				var cookiesUserInfo = $cookieStore.get('user') || {
  					username: '',

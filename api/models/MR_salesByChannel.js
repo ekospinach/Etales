@@ -6,54 +6,19 @@ var mongoose = require('mongoose'),
     q = require('q');
 
 //New Schema
-var MR_sharesCrossSegmentSchema = mongoose.Schema({
+var MR_salesByChannelSchema = mongoose.Schema({
     period : Number,
     seminar : String,
-    absoluteValue     : [variantCrossSegmentDetailSchema],
-    valueChange       : [variantCrossSegmentDetailSchema],
-    absoluteVolume    : [variantCrossSegmentDetailSchema],
-    volumeChange      : [variantCrossSegmentDetailSchema],
+    absoluteValue     : [variantDetailSchema],
+    valueChange       : [variantDetailSchema],
+    absoluteVolume    : [variantDetailSchema],
+    volumeChange      : [variantDetailSchema],
 
-    owner_absoluteValue     : [ownerDetailSchema],
-    owner_valueChange       : [ownerDetailSchema],
-    owner_absoluteVolume    : [ownerDetailSchema],
-    owner_volumeChange      : [ownerDetailSchema],      
+    owner_absoluteValue     : [ownerDetailSchema];
+    owner_valueChange       : [ownerDetailSchema];
+    owner_absoluteVolume    : [ownerDetailSchema];
+    owner_volumeChange      : [ownerDetailSchema];    
 })
-
-var variantCrossSegmentDetailSchema = mongoose.Schema({
-    variantName       : String,
-    parentBrandName   : String,
-    parentCategoryID  : Number,
-    parentCompanyID   : Number,
-    marketID : Number, //TMarkets : 1~2
-    segmentInfo : [segmentInfoSchema]
-})
-
-var segmentInfoSchema = mongoose.Schema({
-    segmentID : Number, //TSegmentsTotal : 1~(4+1)x,
-    /*
-        Elecssories:
-        1-PriceSensitive
-        2-Value for Money
-        3-Fashion
-        4-Freaks
-        5-Total
-
-        HealthBeauties:
-        1-PriceSensitive
-        2-Value for Money
-        3-Health Conscious
-        4-Impatient      
-        5-Total
-    */
-    shopperInfo : [shopperInfoSchema]
-})
-
-var shopperInfoSchema = mongoose.Schema({
-    shoperKind : String, // BMS, NETIZENS, MIXED, ALLSHOPPERS
-    value : Number,
-})
-
 
 var ownerDetailSchema = mongoose.Schema({
     ownerID : Number, //1~6
@@ -65,10 +30,19 @@ var ownerDetailSchema = mongoose.Schema({
     // Ret_2_ID            = 6;    
     categoryID : Number,
     marketID : Number,
-    segmentInfo : [segmentInfoSchema]   
+    value : [Number] //1~5, 1-Retailer 1, 2-Retailer 2, 3-Traditional Trade, 4-Online, 5-Total 
 })
 
-var MR_sharesCrossSegment=mongoose.model('MR_sharesCrossSegment',MR_sharesCrossSegmentSchema);
+var variantDetailSchema = mongoose.Schema({
+    variantName       : String,
+    parentBrandName   : String,
+    parentCategoryID  : Number,
+    parentCompanyID   : Number,
+    marketID : Number, //TMarkets : 1~2
+    value : [Number] //1~5, 1-Retailer 1, 2-Retailer 2, 3-Traditional Trade, 4-Online, 5-Total 
+})
+
+var MR_salesByChannel=mongoose.model('MR_salesByChannel',MR_salesByChannelSchema);
 
 exports.addReports = function(options){
     var deferred = q.defer();
@@ -102,13 +76,17 @@ exports.addReports = function(options){
           if (!singleReport) return; 
          // console.log(util.inspect(singleReport, {depth:null}));
 
-         MR_sharesCrossSegment.update({seminar: singleReport.seminar, 
+         MR_salesByChannel.update({seminar: singleReport.seminar, 
                               period: singleReport.period},
                               {
-                                absoluteValue     : singleReport.absoluteValue, 
-                                valueChange       : singleReport.valueChange,   
-                                absoluteVolume    : singleReport.absoluteVolume,
-                                volumeChange      : singleReport.volumeChange,  
+                                absoluteValue        : singleReport.absoluteValue, 
+                                valueChange          : singleReport.valueChange,   
+                                absoluteVolume       : singleReport.absoluteVolume,
+                                volumeChange         : singleReport.volumeChange,  
+                                owner_absoluteValue  : singleReport.owner_absoluteValue,
+                                owner_valueChange    : singleReport.owner_valueChange,
+                                owner_absoluteVolume : singleReport.owner_absoluteVolume,
+                                owner_volumeChange   : singleReport.owner_volumeChange,
                               },
                                 {upsert: true},
                                 function(err, numberAffected, raw){
@@ -130,14 +108,12 @@ exports.addReports = function(options){
 }
 
 
-exports.getMR_sharesCrossSegment=function(req,res,next){
+exports.getMR_salesByChannel=function(req,res,next){
     var data={
         'seminar':req.params.seminar,
         'period':req.params.period
     };
-
-    console.log(data);
-    MR_sharesCrossSegment.find(data,function(err,docs){
+    MR_salesByChannel.find(data,function(err,docs){
         if(docs){
             res.send(200,docs);
         }else{
