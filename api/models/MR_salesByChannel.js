@@ -14,10 +14,10 @@ var MR_salesByChannelSchema = mongoose.Schema({
     absoluteVolume    : [variantDetailSchema],
     volumeChange      : [variantDetailSchema],
 
-    owner_absoluteValue     : [ownerDetailSchema];
-    owner_valueChange       : [ownerDetailSchema];
-    owner_absoluteVolume    : [ownerDetailSchema];
-    owner_volumeChange      : [ownerDetailSchema];    
+    owner_absoluteValue     : [ownerDetailSchema],
+    owner_valueChange       : [ownerDetailSchema],
+    owner_absoluteVolume    : [ownerDetailSchema],
+    owner_volumeChange      : [ownerDetailSchema],    
 })
 
 var ownerDetailSchema = mongoose.Schema({
