@@ -26,7 +26,7 @@ var BG_feedbackSlidesSchema = mongoose.Schema({
 
     f_TradeSpendingEffectiveness      : [supplierKPIInfoSchema],
     f_MarketingSpendingEffectiveness  : [supplierKPIInfoSchema],
-    f_PortfolioStrength               : [supplierKPIInfoSchema],
+    //f_PortfolioStrength               : [supplierKPIInfoSchema],
     f_SuppliersBMValueSalesShare      : [supplierKPIInfoSchema],
     f_SuppliersBMVolumeSalesShare     : [supplierKPIInfoSchema],
     f_SuppliersBMShareOfShoppers      : [supplierKPIInfoSchema],
@@ -41,9 +41,15 @@ var BG_feedbackSlidesSchema = mongoose.Schema({
 
 //  modified by Hao, 2014 June 9th
 //    f_RetailersShoppersShare          : [retailerKPIInfoSchema],
-    f_RetailersBMShoppersShare        : [retailerKPIInfoSchema],
-    f_RetailersAllShoppersShare       : [retailerKPIInfoSchema],
-})
+//    f_RetailersBMShoppersShare        : [retailerKPIInfoSchema],
+//    f_RetailersAllShoppersShare       : [retailerKPIInfoSchema],
+
+//  updated by Hao, 2014 July 10th
+    f_GrossProfit : [marketResultSchema],
+    f_GrossProfitMargin : [marketResultSchema],
+    f_PortfolioStrength  : [supplierKPIExtendedInfoSchema],
+    f_ShoppersShare : [shopperShareInfoSchema]    
+})  
 
 var negotiationsItemDetailsSchema = mongoose.Schema({
     categoryID : Number,
@@ -60,6 +66,8 @@ var retailerInfoSchema = mongoose.Schema({
     retailerID : Number,
     value : Number
 })
+
+
 
 var transactionsPerTOPSchema = mongoose.Schema({
     categoryID : Number,
@@ -79,7 +87,7 @@ var transactionsPerTOPSchema = mongoose.Schema({
 var marketResultSchema = mongoose.Schema({
     categoryID : Number,
     period     : Number, 
-    actorID    : Number, //TActiveActors : 1~(3+2)
+    actorID    : Number, // TActors : 1 ~ (4+3), updated by Hao, 2014 July 10
     value      : Number
 })
 
@@ -97,6 +105,24 @@ var retailerKPIInfoSchema = mongoose.Schema({
     retailerID : Number, //1~2
     value      : Number,
 })
+
+
+//updated by Hao, 2014 July 10
+var supplierKPIExtendedInfoSchema = mongoose.Schema({
+    categoryID : Number,
+    period     : Number,
+    ownerID : Number, //1~6, 4 suppliers + 2 retailers 
+    value      : Number,
+})
+
+//updated by Hao, 2014 July 10
+var shopperShareInfoSchema = mongoose.Schema({
+    marketID : Number,
+    period : Number,
+    actorID : Number, //1~(4+3)
+    value : Number,
+})
+
 
 var BG_feedbackSlides = mongoose.model('BG_feedbackSlides', BG_feedbackSlidesSchema);
 
@@ -153,7 +179,7 @@ exports.addInfos = function(options){
                                 f_ShelfSpaceAllocation            : singleReport.f_ShelfSpaceAllocation,            
                                 f_TradeSpendingEffectiveness      : singleReport.f_TradeSpendingEffectiveness,      
                                 f_MarketingSpendingEffectiveness  : singleReport.f_MarketingSpendingEffectiveness,  
-                                f_PortfolioStrength               : singleReport.f_PortfolioStrength,              
+                                //f_PortfolioStrength               : singleReport.f_PortfolioStrength,              
                                 f_SuppliersBMValueSalesShare      : singleReport.f_SuppliersBMValueSalesShare,      
                                 f_SuppliersBMVolumeSalesShare     : singleReport.f_SuppliersBMVolumeSalesShare,     
                                 f_SuppliersBMShareOfShoppers      : singleReport.f_SuppliersBMShareOfShoppers,      
@@ -164,7 +190,13 @@ exports.addInfos = function(options){
                                 f_RetailersVolumeRotationIndex    : singleReport.f_RetailersVolumeRotationIndex,    
                                 f_RetailersProfitabilityIndex     : singleReport.f_RetailersProfitabilityIndex,     
                                 f_RetailersStocksCover            : singleReport.f_RetailersStocksCover,            
-                                f_RetailersShoppersShare          : singleReport.f_RetailersShoppersShare,          
+                                // f_RetailersShoppersShare          : singleReport.f_RetailersShoppersShare,          
+                                //updated by Hao, 2014 July 10th
+
+                                f_GrossProfit       : singleReport.singleReport.f_GrossProfit, 
+                                f_GrossProfitMargin : singleReport.singleReport.f_GrossProfitMargin, 
+                                f_PortfolioStrength : singleReport.singleReport.f_PortfolioStrength, 
+                                f_ShoppersShare     : singleReport.singleReport.f_ShoppersShare,
                               },
                                 {upsert: true},
                                 function(err, numberAffected, raw){
