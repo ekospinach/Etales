@@ -33,7 +33,7 @@ var
     accountID : integer;
   begin
     jo := SO;
-    jo.S['ownerID'] := owner.bocd_CompanyID;
+    jo.I['ownerID'] := owner.bocd_CompanyID;
     jo.I['categoryID'] := catID;
     jo.I['marketID'] := marketID;
     
@@ -41,10 +41,10 @@ var
     for accountID := Low(TAccountsTotal) to High(TAccountsTotal) do 
     begin
       case (fieldIdx) of
-        bocd_AbsoluteValue     : begin jo.A['value'].D[accountID-1] := variant.bocd_AbsoluteValue[accountID]; end;
-        bocd_ValueChange       : begin jo.A['value'].D[accountID-1] := variant.bocd_ValueChange[accountID]; end;
-        bocd_AbsoluteVolume    : begin jo.A['value'].D[accountID-1] := variant.bocd_AbsoluteVolume[accountID]; end;
-        bocd_VolumeChange      : begin jo.A['value'].D[accountID-1] := variant.bocd_VolumeChange[accountID]; end;
+        bocd_AbsoluteValue     : begin jo.A['value'].D[accountID-1] := owner.bocd_AbsoluteValue[accountID]; end;
+        bocd_ValueChange       : begin jo.A['value'].D[accountID-1] := owner.bocd_ValueChange[accountID]; end;
+        bocd_AbsoluteVolume    : begin jo.A['value'].D[accountID-1] := owner.bocd_AbsoluteVolume[accountID]; end;
+        bocd_VolumeChange      : begin jo.A['value'].D[accountID-1] := owner.bocd_VolumeChange[accountID]; end;
       end;    
     end;
 
@@ -80,7 +80,7 @@ var
   procedure makeJson();
   var
     s_str : string;
-    catID,brandCount,variantCount,marketID : Integer;
+    catID,brandCount,variantCount,marketID,ownerID : Integer;
     tempVariant : TVariantChannelDetails;
     tempOwner : TBrandOwnerChannelDetails;
   begin
@@ -125,7 +125,7 @@ var
     begin
       for marketID := Low(TMarkets) to High(TMarkets) do
       begin
-        for ownerID := Low(TBrandOwners) to High(TBrandOwners) do 
+        for ownerID := Low(TBrandOwners) to High(TBrandOwners) do
         begin
           tempOwner := currentResult.r_MarketResearch.mr_SalesByChannel[marketID,catID].mrsbc_BrandOwnersDetails[ownerID];
           oJsonFile.A['owner_absoluteValue'].Add( ownerInfoSchema(bocd_absoluteValue, catID, marketID, tempOwner) );
