@@ -16,10 +16,10 @@
                     <p class="text-center">{{Label.getContent('Value for Money')}}</p>
                 </th>
                 <th colspan="2">
-                    <p class="text-center">{{Label.getContent('Health Conscious')}}</p>
+                    <p class="text-center">{{Label.getContent('Fashion')}}</p>
                 </th>
                 <th colspan="2">
-                    <p class="text-center">{{Label.getContent('Impatient')}}</p>
+                    <p class="text-center">{{Label.getContent('Freaks')}}</p>
                 </th>
             </tr>
             <tr>
@@ -60,10 +60,30 @@
                 <td style='background-color:{{nameColor}}'>
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[0].priceVolume}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[0].priceVolumeChange}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[0].moneyVolume}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[0].moneyVolumeChange}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[0].fashionVolume}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[0].fashionVolumeChange}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[0].freaksVolume}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[0].freaksVolumeChange}}</p>
+                </td>
             </tr>
             <tr ng-repeat='player in player1s'>
                 <td style='background-color:{{nameColor}}'>
@@ -104,10 +124,30 @@
                 <td style='background-color:{{nameColor}}'>
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[1].priceVolume}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[1].priceVolumeChange}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[1].moneyVolume}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[1].moneyVolumeChange}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[1].fashionVolume}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[1].fashionVolumeChange}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[1].freaksVolume}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[1].freaksVolumeChange}}</p>
+                </td>
             </tr>
             <tr ng-repeat='player in player2s'>
                 <td style='background-color:{{nameColor}}'>
@@ -147,10 +187,30 @@
                 <td style='background-color:{{nameColor}}'>
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[2].priceVolume}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[2].priceVolumeChange}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[2].moneyVolume}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[2].moneyVolumeChange}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[2].fashionVolume}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[2].fashionVolumeChange}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[2].freaksVolume}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[2].freaksVolumeChange}}</p>
+                </td>
             </tr>
             <tr ng-repeat='player in player3s'>
                 <td style='background-color:{{nameColor}}'>
@@ -190,10 +250,30 @@
                 <td style='background-color:{{nameColor}}'>
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[4].priceVolume}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[4].priceVolumeChange}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[4].moneyVolume}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[4].moneyVolumeChange}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[4].fashionVolume}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[4].fashionVolumeChange}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[4].freaksVolume}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[4].freaksVolumeChange}}</p>
+                </td>
             </tr>
             <tr ng-repeat='player in player5s'>
                 <td style='background-color:{{nameColor}}'>
@@ -233,10 +313,30 @@
                 <td style='background-color:{{nameColor}}'>
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[5].priceVolume}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[5].priceVolumeChange}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[5].moneyVolume}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[5].moneyVolumeChange}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[5].fashionVolume}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[5].fashionVolumeChange}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[5].freaksVolume}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[5].freaksVolumeChange}}</p>
+                </td>
             </tr>
             <tr ng-repeat='player in player6s'>
                 <td style='background-color:{{nameColor}}'>
@@ -276,10 +376,10 @@
                     <p class="text-center">{{Label.getContent('Value for Money')}}</p>
                 </th>
                 <th colspan="2">
-                    <p class="text-center">{{Label.getContent('Health Conscious')}}</p>
+                    <p class="text-center">{{Label.getContent('Fashion')}}</p>
                 </th>
                 <th colspan="2">
-                    <p class="text-center">{{Label.getContent('Impatient')}}</p>
+                    <p class="text-center">{{Label.getContent('Freaks')}}</p>
                 </th>
             </tr>
             <tr>
@@ -318,10 +418,30 @@
                 <td style='background-color:{{nameColor}}'>
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[0].priceValue}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[0].priceValueChange}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[0].moneyValue}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[0].moneyValueChange}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[0].fashionValue}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[0].fashionValueChange}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[0].freaksValue}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[0].freaksValueChange}}</p>
+                </td>
             </tr>
             <tr ng-repeat='player in player1s'>
                 <td style='background-color:{{nameColor}}'>
@@ -362,10 +482,30 @@
                 <td style='background-color:{{nameColor}}'>
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[1].priceValue}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[1].priceValueChange}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[1].moneyValue}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[1].moneyValueChange}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[1].fashionValue}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[1].fashionValueChange}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[1].freaksValue}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[1].freaksValueChange}}</p>
+                </td>
             </tr>
             <tr ng-repeat='player in player2s'>
                 <td style='background-color:{{nameColor}}'>
@@ -405,10 +545,30 @@
                 <td style='background-color:{{nameColor}}'>
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[2].priceValue}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[2].priceValueChange}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[2].moneyValue}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[2].moneyValueChange}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[2].fashionValue}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[2].fashionValueChange}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[2].freaksValue}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[2].freaksValueChange}}</p>
+                </td>
             </tr>
             <tr ng-repeat='player in player3s'>
                 <td style='background-color:{{nameColor}}'>
@@ -448,10 +608,30 @@
                 <td style='background-color:{{nameColor}}'>
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[4].priceValue}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[4].priceValueChange}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[4].moneyValue}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[4].moneyValueChange}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[4].fashionValue}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[4].fashionValueChange}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[4].freaksValue}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[4].freaksValueChange}}</p>
+                </td>
             </tr>
             <tr ng-repeat='player in player5s'>
                 <td style='background-color:{{nameColor}}'>
@@ -491,12 +671,31 @@
                 <td style='background-color:{{nameColor}}'>
                     <p>{{Label.getContent('Total')}}</p>
                 </td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
-                <td colspan="2" style='background-color:{{valueColor}}'></td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[5].priceValue}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[5].priceValueChange}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[5].moneyValue}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[5].moneyValueChange}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[5].fashionValue}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[5].fashionValueChange}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[5].freaksValue}}</p>
+                </td>
+                <td style='background-color:{{valueColor}}'>
+                    <p class="text-right">{{playerTotals[5].freaksValueChange}}</p>
+                </td>
             </tr>
-
             <tr ng-repeat='player in player6s'>
                 <td style='background-color:{{nameColor}}'>
                     <p class="padding-20">{{player.fullName}}</p>

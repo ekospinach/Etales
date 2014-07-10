@@ -7,7 +7,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 
 		    var switching=function(type){
 		    	$scope.Performance=$scope.MarketShare=$scope.MarketSales=$scope.Segment=$scope.Cross=$scope.Product=$scope.EMallPrices=$scope.ProducerConsolidate=$scope.ProducerBMBusiness=$scope.ProducerOnlineBusiness=$scope.ProducerProfitability=$scope.ProducerNegotiations=$scope.ElecssoriesConsumer=$scope.ElecssoriesShopper=$scope.ElecssoriesVolume=$scope.HealthBeautiesConsumer=$scope.HealthBeautiesShopper=$scope.HealthBeautiesVolume=$scope.ProducerKey=$scope.RuralConsumer=$scope.RuralShopper=$scope.RuralVolume=$scope.UrbanConsumer=$scope.UrbanShopper=$scope.UrbanVolume=$scope.RetailerKey=$scope.RetailerConsolidate=$scope.RetailerRuralProfit=$scope.RetailerUrbanProfit=$scope.RetailerProfitability=$scope.RetailerNegotiations=false;
-		    	$scope.AwarenessElecssories=$scope.AwarenessHealthBeauties=$scope.RuralElecssoriesBrand=$scope.UrbanElecssoriesBrand=$scope.RuralHealthBeautiesBrand=$scope.UrbanHealthBeautiesBrand=$scope.RetailerPerceptions=$scope.RuralElecssoriesConsumerShare=$scope.UrbanElecssoriesConsumerShare=$scope.RuralHealthBeautiesConsumerShare=$scope.UrbanHealthBeautiesConsumerShare=$scope.RuralElecssoriesConsumerSales=$scope.UrbanElecssoriesConsumerSales=$scope.RuralHealthBeautiesConsumerSales=$scope.UrbanHealthBeautiesConsumerSales=$scope.RuralElecssoriesShopperShare=$scope.UrbanElecssoriesShopperShare=$scope.RuralHealthBeautiesShopperShare=$scope.UrbanHealthBeautiesShopperShare=$scope.RuralElecssoriesShopperSales=$scope.UrbanElecssoriesShopperSales=$scope.RuralHealthBeautiesShopperSales=$scope.UrbanHealthBeautiesShopperSales=$scope.BMElecssories=$scope.BMHealthBeauties=$scope.PromotionElecssories=$scope.PromotionHealthBeauties=$scope.SupplierIntelligence=$scope.RetailerIntelligence=$scope.ForecastsConsumer=$scope.ForecastsShopper=$scope.ForecastsCategory=$scope.ForecastsInternet=false;
+		    	$scope.AwarenessElecssories=$scope.AwarenessHealthBeauties=$scope.RuralElecssoriesBrand=$scope.UrbanElecssoriesBrand=$scope.RuralHealthBeautiesBrand=$scope.UrbanHealthBeautiesBrand=$scope.RetailerPerceptions=$scope.RuralElecssoriesConsumerShare=$scope.UrbanElecssoriesConsumerShare=$scope.RuralHealthBeautiesConsumerShare=$scope.UrbanHealthBeautiesConsumerShare=$scope.RuralElecssoriesConsumerSales=$scope.UrbanElecssoriesConsumerSales=$scope.RuralHealthBeautiesConsumerSales=$scope.UrbanHealthBeautiesConsumerSales=$scope.RuralElecssoriesShopperShare=$scope.UrbanElecssoriesShopperShare=$scope.RuralHealthBeautiesShopperShare=$scope.UrbanHealthBeautiesShopperShare=$scope.RuralElecssoriesShopperSales=$scope.UrbanElecssoriesShopperSales=$scope.RuralHealthBeautiesShopperSales=$scope.UrbanHealthBeautiesShopperSales=$scope.RuralElecssoriesChannelSales=$scope.UrbanElecssoriesChannelSales=$scope.RuralHealthBeautiesChannelSales=$scope.UrbanHealthBeautiesChannelSales=$scope.BMElecssories=$scope.BMHealthBeauties=$scope.PromotionElecssories=$scope.PromotionHealthBeauties=$scope.SupplierIntelligence=$scope.RetailerIntelligence=$scope.ForecastsConsumer=$scope.ForecastsShopper=$scope.ForecastsCategory=$scope.ForecastsInternet=false;
 		    	switch(type){
 				    case 'showAwarenessElecssories':$scope.AwarenessElecssories=true;break;
 					case 'showAwarenessHealthBeauties':$scope.AwarenessHealthBeauties=true;break;
@@ -32,6 +32,10 @@ define(['app','socketIO','routingConfig'], function(app) {
 					case 'showUrbanElecssoriesShopperSales':$scope.UrbanElecssoriesShopperSales=true;break;
 					case 'showRuralHealthBeautiesShopperSales':$scope.RuralHealthBeautiesShopperSales=true;break;
 					case 'showUrbanHealthBeautiesShopperSales':$scope.UrbanHealthBeautiesShopperSales=true;break;
+					case 'showRuralElecssoriesChannelSales':$scope.RuralElecssoriesChannelSales=true;break;
+					case 'showUrbanElecssoriesChannelSales':$scope.UrbanElecssoriesChannelSales=true;break;
+					case 'showRuralHealthBeautiesChannelSales':$scope.RuralHealthBeautiesChannelSales=true;break;
+					case 'showUrbanHealthBeautiesChannelSales':$scope.UrbanHealthBeautiesChannelSales=true;break;
 					case 'showBMElecssories':$scope.BMElecssories=true;break;
 					case 'showBMHealthBeauties':$scope.BMHealthBeauties=true;break;
 					case 'showPromotionElecssories':$scope.PromotionElecssories=true;break;
@@ -124,6 +128,19 @@ define(['app','socketIO','routingConfig'], function(app) {
 				switching('showUrbanHealthBeautiesShopperSales');
 			}
 
+			$scope.showRuralElecssoriesChannelSales=function(){
+				switching('showRuralElecssoriesChannelSales');
+			}
+			$scope.showUrbanElecssoriesChannelSales=function(){
+				switching('showUrbanElecssoriesChannelSales');
+			}
+			$scope.showRuralHealthBeautiesChannelSales=function(){
+				switching('showRuralHealthBeautiesChannelSales');
+			}
+			$scope.showUrbanHealthBeautiesChannelSales=function(){
+				switching('showUrbanHealthBeautiesChannelSales');
+			}
+
 			$scope.showBMElecssories=function(){
 				switching('showBMElecssories');
 			}
@@ -159,7 +176,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    $scope.switching=switching;
 		    $scope.showAwarenessElecssories=showAwarenessElecssories;
 		    var setReportShown=function(data,type){
-				$scope.forecasts=true;$scope.retailerIntelligence=true;$scope.supplierIntelligence=true;$scope.promotionIntensity=true;$scope.BMRetailerPrices=true;$scope.salesByShopperSegment=true;$scope.marketShareByShopperSegment=true;$scope.salesByConsumerSegment=true;$scope.marketShareByConsumerSegment=true;$scope.retailerPerceptions=true;$scope.brandPerceptions=true;$scope.awareness=true;
+				$scope.forecasts=true;$scope.retailerIntelligence=true;$scope.supplierIntelligence=true;$scope.promotionIntensity=true;$scope.BMRetailerPrices=true;$scope.salesByShopperSegment=true;$scope.marketShareByShopperSegment=true;$scope.salesByConsumerSegment=true;$scope.marketShareByConsumerSegment=true;$scope.salesByChannel=true;$scope.retailerPerceptions=true;$scope.brandPerceptions=true;$scope.awareness=true;
 				//if()
 				if(type!='Full'){
 					$scope.forecasts=data.forecasts;
@@ -171,6 +188,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 					$scope.marketShareByShopperSegment=data.marketShareByShopperSegment;
 					$scope.salesByConsumerSegment=data.salesByConsumerSegment;
 					$scope.marketShareByConsumerSegment=data.marketShareByConsumerSegment;
+					//salesByChannel
 					$scope.retailerPerceptions=data.retailerPerceptions;
 					$scope.brandPerceptions=data.brandPerceptions;
 					$scope.awareness=data.awareness;
