@@ -18,14 +18,13 @@ var
   DataDirectory : string;
   sListData: tStrings;
   sValue : string;
-
   currentResult : TAllResults;
   currentPeriod : TPeriodNumber;
   currentRetailer : TBMRetailers;
   currentSeminar : string;
   vReadRes : Integer;
   oJsonFile : ISuperObject;
-
+                                                                    
   function variantInfoSchema(fieldIdx : integer; catID : integer; marketID : integer; variant : TRCR_VariantInventoryVolume): ISuperObject;
   var
      jo : ISuperObject;

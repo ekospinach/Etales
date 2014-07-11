@@ -61,6 +61,11 @@ const
     f_RetailersStocksCover            = 125;
     f_RetailersBMShoppersShare          = 126;
     f_RetailersAllShoppersShare          = 127;
+    
+    f_GrossProfit                     = 128; 
+    f_GrossProfitMargin               = 129;
+
+    f_ShoppersShare                   = 131; 
 var
   //decision: TDecision;
   jo : ISuperObject;
@@ -139,6 +144,8 @@ var
     result := jo;
   end;
 
+
+
   function marketResultSchema(idx : integer; catID : integer; period:integer; actorID : integer) : ISuperObject;
   var
     jo : ISuperObject;
@@ -158,6 +165,10 @@ var
       f_NetProfit             : begin jo.D['value'] := currentResult.r_Feedback.f_NetProfit[catID, period, actorID]; end;
       f_NetProfitMargin       : begin jo.D['value'] := currentResult.r_Feedback.f_NetProfitMargin[catID, period, actorID]; end;
       f_ShelfSpaceAllocation  : begin jo.D['value'] := currentResult.r_Feedback.f_ShelfSpaceAllocation[catID, period, actorID]; end;
+
+      f_GrossProfit  : begin jo.D['value'] := currentResult.r_Feedback.f_GrossProfit[catID, period, actorID]; end;
+      f_GrossProfitMargin  : begin jo.D['value'] := currentResult.r_Feedback.f_GrossProfitMargin[catID, period, actorID]; end;
+
     end;
 
     result := jo;
@@ -175,7 +186,7 @@ var
     case (idx) of
       f_TradeSpendingEffectiveness      : begin jo.D['value'] := currentResult.r_Feedback.f_TradeSpendingEffectiveness[catID, period, producerID]; end; 
       f_MarketingSpendingEffectiveness  : begin jo.D['value'] := currentResult.r_Feedback.f_MarketingSpendingEffectiveness[catID, period, producerID]; end;
-      f_PortfolioStrength               : begin jo.D['value'] := currentResult.r_Feedback.f_PortfolioStrength[catID, period, producerID]; end;
+      //f_PortfolioStrength               : begin jo.D['value'] := currentResult.r_Feedback.f_PortfolioStrength[catID, period, producerID]; end;
       f_SuppliersBMValueSalesShare      : begin jo.D['value'] := currentResult.r_Feedback.f_SuppliersBMValueSalesShare[catID, period, producerID]; end;
       f_SuppliersBMVolumeSalesShare     : begin jo.D['value'] := currentResult.r_Feedback.f_SuppliersBMVolumeSalesShare[catID, period, producerID]; end;
       f_SuppliersBMShareOfShoppers      : begin jo.D['value'] := currentResult.r_Feedback.f_SuppliersBMShareOfShoppers[catID, period, producerID]; end;
@@ -186,6 +197,22 @@ var
 
     result := jo;
   end;  
+
+  function supplierKPIExtendedinfoSchema(idx : integer; catID : integer; period : integer; ownerID : integer) : ISuperObject;
+  var 
+    jo : ISuperObject;
+  begin
+    jo := SO;
+    jo.I['ownerID'] := ownerID;
+    jo.I['categoryID'] := catID;
+    jo.I['period'] := period;
+
+    case (idx) of
+      f_PortfolioStrength      : begin jo.D['value'] := currentResult.r_Feedback.f_PortfolioStrength[catID, period, ownerID]; end; 
+    end;  
+
+    result := jo;
+  end;   
 
   function retailerKPIinfoSchema(idx : integer; catID : integer; period : Integer; retailerID : integer; marketID : integer) : ISuperObject;
   var
@@ -202,14 +229,28 @@ var
       f_RetailersVolumeRotationIndex    : begin jo.D['value'] := currentResult.r_Feedback.f_RetailersVolumeRotationIndex[marketID, catID, period, retailerID]; end;
       f_RetailersProfitabilityIndex     : begin jo.D['value'] := currentResult.r_Feedback.f_RetailersProfitabilityIndex[marketID, catID, period, retailerID]; end;
       f_RetailersStocksCover            : begin jo.D['value'] := currentResult.r_Feedback.f_RetailersStocksCover[marketID, catID, period, retailerID]; end;
-      f_RetailersBMShoppersShare          : begin jo.D['value'] := currentResult.r_Feedback.f_RetailersBMShoppersShare[marketID, catID, period, retailerID]; end;
-      f_RetailersAllShoppersShare          : begin jo.D['value'] := currentResult.r_Feedback.f_RetailersAllShoppersShare[marketID, catID, period, retailerID]; end;
-
     end;
 
     result := jo;
     // currentResult.r_Feedback.f_RetailersValueRotationIndex[marketID, catID]
   end;
+
+  function shopperShareinfoSchema(idx : integer; marketID : integer; period : integer; actorID : integer) : ISuperObject;
+  var 
+    jo : ISuperObject;
+  begin
+    jo := SO;
+    jo.I['marketID'] := marketID;
+    jo.I['actorID'] := actorID;
+    jo.I['period'] := period;
+
+    case (idx) of
+      f_ShoppersShare      : begin jo.D['value'] := currentResult.r_Feedback.f_ShoppersShare[marketID, period, actorID]; end; 
+    end;  
+
+    result := jo;
+  end; 
+
 
   procedure makeJson();
   var
@@ -235,10 +276,12 @@ var
     oJsonFile.O['f_NetProfit']                       := SA([]);
     oJsonFile.O['f_NetProfitMargin']                 := SA([]);
     oJsonFile.O['f_ShelfSpaceAllocation']            := SA([]);
+    oJsonFile.O['f_GrossProfit']       := SA([]);
+    oJsonFile.O['f_GrossProfitMargin'] := SA([]);
+
 
     oJsonFile.O['f_TradeSpendingEffectiveness']      := SA([]);
     oJsonFile.O['f_MarketingSpendingEffectiveness']  := SA([]);
-    oJsonFile.O['f_PortfolioStrength']               := SA([]);
     oJsonFile.O['f_SuppliersBMValueSalesShare']      := SA([]);
     oJsonFile.O['f_SuppliersBMVolumeSalesShare']     := SA([]);
     oJsonFile.O['f_SuppliersBMShareOfShoppers']      := SA([]);
@@ -246,12 +289,15 @@ var
     oJsonFile.O['f_SuppliersOnlineVolumeSalesShare'] := SA([]);
     oJsonFile.O['f_SuppliersOnlineShareOfShoppers']  := SA([]);
 
+    oJsonFile.O['f_PortfolioStrength']               := SA([]);
+
     oJsonFile.O['f_RetailersValueRotationIndex']     := SA([]);
     oJsonFile.O['f_RetailersVolumeRotationIndex']    := SA([]);
     oJsonFile.O['f_RetailersProfitabilityIndex']     := SA([]);
     oJsonFile.O['f_RetailersStocksCover']            := SA([]);
-    oJsonFile.O['f_RetailersBMShoppersShare']          := SA([]);
-    oJsonFile.O['f_RetailersAllShoppersShare']          := SA([]);
+    // oJsonFile.O['f_RetailersBMShoppersShare']          := SA([]);
+    // oJsonFile.O['f_RetailersAllShoppersShare']          := SA([]);
+     oJsonFile.O['f_ShoppersShare']          := SA([]);
 
     for catID := Low(TCategoriesTotal) to High(TCategoriesTotal) do
     begin
@@ -272,7 +318,7 @@ var
     begin
       for period := Low(TTimeSpan) to High(TTimeSpan) do
       begin
-        for actorID := Low(TActiveActors) to High(TActiveActors) do
+        for actorID := Low(TActors) to High(TActors) do
         begin
           oJsonFile.A['f_MarketSalesVolume'].add( marketResultSchema(f_MarketSalesVolume, catID, period, actorID) );    
           oJsonFile.A['f_MarketSalesValue'].add( marketResultSchema(f_MarketSalesValue, catID, period, actorID) );         
@@ -283,6 +329,10 @@ var
           oJsonFile.A['f_NetProfit'].add( marketResultSchema(f_NetProfit, catID, period, actorID) );                
           oJsonFile.A['f_NetProfitMargin'].add( marketResultSchema(f_NetProfitMargin, catID, period, actorID) );          
           oJsonFile.A['f_ShelfSpaceAllocation'].add( marketResultSchema(f_ShelfSpaceAllocation, catID, period, actorID) );     
+
+          oJsonFile.A['f_GrossProfit'].add( marketResultSchema(f_GrossProfit, catID, period, actorID) );     
+          oJsonFile.A['f_GrossProfitMargin'].add( marketResultSchema(f_GrossProfitMargin, catID, period, actorID) );     
+
         end;
       end;
     end;
@@ -295,13 +345,24 @@ var
         begin
           oJsonFile.A['f_TradeSpendingEffectiveness'].add( supplierKPIinfoSchema(f_TradeSpendingEffectiveness, catID, period, producerID) );
           oJsonFile.A['f_MarketingSpendingEffectiveness'].add( supplierKPIinfoSchema(f_MarketingSpendingEffectiveness, catID, period, producerID) ); 
-          oJsonFile.A['f_PortfolioStrength'].add( supplierKPIinfoSchema(f_PortfolioStrength, catID, period, producerID) );              
+          //oJsonFile.A['f_PortfolioStrength'].add( supplierKPIinfoSchema(f_PortfolioStrength, catID, period, producerID) );              
           oJsonFile.A['f_SuppliersBMValueSalesShare'].add( supplierKPIinfoSchema(f_SuppliersBMValueSalesShare, catID, period, producerID) );     
           oJsonFile.A['f_SuppliersBMVolumeSalesShare'].add( supplierKPIinfoSchema(f_SuppliersBMVolumeSalesShare, catID, period, producerID) );    
           oJsonFile.A['f_SuppliersBMShareOfShoppers'].add( supplierKPIinfoSchema(f_SuppliersBMShareOfShoppers, catID, period, producerID) );     
           oJsonFile.A['f_SuppliersOnlineValueSalesShare'].add( supplierKPIinfoSchema(f_SuppliersOnlineValueSalesShare, catID, period, producerID) ); 
           oJsonFile.A['f_SuppliersOnlineVolumeSalesShare'].add( supplierKPIinfoSchema(f_SuppliersOnlineVolumeSalesShare, catID, period, producerID) );
           oJsonFile.A['f_SuppliersOnlineShareOfShoppers'].add( supplierKPIinfoSchema(f_SuppliersOnlineShareOfShoppers, catID, period, producerID) ); 
+        end;
+      end;
+    end;
+
+    for catID := Low(TCategoriesTotal) to High(TCategoriesTotal) do
+    begin
+      for period := Low(TTimeSpan) to High(TTimeSpan) do
+      begin
+        for producerID := Low(TBrandOwners) to High(TBrandOwners) do
+        begin
+          oJsonFile.A['f_PortfolioStrength'].add( supplierKPIExtendedinfoSchema(f_PortfolioStrength, catID, period, producerID) );              
         end;
       end;
     end;
@@ -318,13 +379,24 @@ var
             oJsonFile.A['f_RetailersVolumeRotationIndex'].add( retailerKPIinfoSchema(f_RetailersVolumeRotationIndex, catID, period, retailerID, marketID) );
             oJsonFile.A['f_RetailersProfitabilityIndex'].add( retailerKPIinfoSchema(f_RetailersProfitabilityIndex, catID, period, retailerID, marketID) );
             oJsonFile.A['f_RetailersStocksCover'].add( retailerKPIinfoSchema(f_RetailersStocksCover, catID, period, retailerID, marketID) );
-            oJsonFile.A['f_RetailersBMShoppersShare'].add( retailerKPIinfoSchema(f_RetailersBMShoppersShare, catID, period, retailerID, marketID) );
-            oJsonFile.A['f_RetailersAllShoppersShare'].add( retailerKPIinfoSchema(f_RetailersAllShoppersShare, catID, period, retailerID, marketID) );
+            // oJsonFile.A['f_RetailersBMShoppersShare'].add( retailerKPIinfoSchema(f_RetailersBMShoppersShare, catID, period, retailerID, marketID) );
+            // oJsonFile.A['f_RetailersAllShoppersShare'].add( retailerKPIinfoSchema(f_RetailersAllShoppersShare, catID, period, retailerID, marketID) );
 
           end;
         end;
       end;
     end;
+
+    for actorID := Low(TActors) to High(TActors) do
+    begin
+      for period := Low(TTimeSpan) to High(TTimeSpan) do
+      begin
+          for marketID := Low(TMarketsTotal) to High(TMarketsTotal) do
+          begin
+            oJsonFile.A['f_ShoppersShare'].add( ShopperShareinfoSchema(f_ShoppersShare, marketID, period, actorID) );
+          end;
+      end;
+    end;    
 
     //for debug used
     s_str := 'out' + '.json';

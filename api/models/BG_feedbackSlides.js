@@ -193,10 +193,10 @@ exports.addInfos = function(options){
                                 // f_RetailersShoppersShare          : singleReport.f_RetailersShoppersShare,          
                                 //updated by Hao, 2014 July 10th
 
-                                f_GrossProfit       : singleReport.singleReport.f_GrossProfit, 
-                                f_GrossProfitMargin : singleReport.singleReport.f_GrossProfitMargin, 
-                                f_PortfolioStrength : singleReport.singleReport.f_PortfolioStrength, 
-                                f_ShoppersShare     : singleReport.singleReport.f_ShoppersShare,
+                                f_GrossProfit       : singleReport.f_GrossProfit, 
+                                f_GrossProfitMargin : singleReport.f_GrossProfitMargin, 
+                                f_PortfolioStrength : singleReport.f_PortfolioStrength, 
+                                f_ShoppersShare     : singleReport.f_ShoppersShare,
                               },
                                 {upsert: true},
                                 function(err, numberAffected, raw){

@@ -24,12 +24,12 @@ var
     jo.I['categoryID'] := catID;
     jo.O['grph_SalesVolume'] := SA([]);
     jo.O['grph_NetSalesValue'] := SA([]);
-    jo.O['grph_SalesVolumeCha†nge'] := SA([]);
+    jo.O['grph_SalesVolumeChange'] := SA([]);
     jo.O['grph_NetSalesValueChange'] := SA([]);
 
     // ** 0-BM 1-Online 3-Retailer **
-    //Producer 123 
-    if actorID <= 4 then
+    //Producer 123
+    if (actorID <= 4) and (actorID >= 1) then
     begin
       jo.A['grph_SalesVolume'].D[0] := binaryReport.grph_WholeSalesVolume[actorID, catID];
       jo.A['grph_SalesVolume'].D[1] := binaryReport.grph_SalesVolume[actorID, catID];
@@ -48,7 +48,7 @@ var
       jo.A['grph_NetSalesValueChange'].D[2] := binaryReport.grph_NetSalesValueChange[actorID, catID];
     end
     //Retailer
-    else 
+    else
     begin
       jo.A['grph_SalesVolume'].D[0] := binaryReport.grph_SalesVolume[actorID, catID];
       jo.A['grph_SalesVolume'].D[1] := binaryReport.grph_SalesVolume[actorID, catID];
@@ -64,7 +64,7 @@ var
 
       jo.A['grph_NetSalesValueChange'].D[0] := binaryReport.grph_NetSalesValueChange[actorID, catID];
       jo.A['grph_NetSalesValueChange'].D[1] := binaryReport.grph_NetSalesValueChange[actorID, catID];
-      jo.A['grph_NetSalesValueChange'].D[2] := binaryReport.grph_NetSalesValueChange[actorID, catID];      
+      jo.A['grph_NetSalesValueChange'].D[2] := binaryReport.grph_NetSalesValueChange[actorID, catID];
     end;
 
     jo.D['grph_ValueMarketShare'] := binaryReport.grph_ValueMarketShare[actorID, catID];
@@ -170,7 +170,7 @@ var
     begin
       jo.D['grph_OperatingProfit'] := binaryReport.grph_OperatingProfit[ActorToActiveActors(actorID)];
       jo.D['grph_OperatingProfitChange'] := binaryReport.grph_OperatingProfitChange[ActorToActiveActors(actorID)];
-      jo.D['grph_CumulativeInvestment'] := binaryReport.grph_CumulativeInvestment[ActorToActiveActors(actorID)];      
+      jo.D['grph_CumulativeInvestment'] := binaryReport.grph_CumulativeInvestment[ActorToActiveActors(actorID)];
     end
     else
     begin

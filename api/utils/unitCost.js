@@ -16,12 +16,12 @@ exports.getCurrentUnitCost = function(req, res, next) {
 
   var prodCost = [];
 
-  //console.log('try to get production cost: ' + util.inspect(query));
+  //debugUnitCost('try to get production cost: ' + util.inspect(query));
   //get variant composition/catNow/isPrivateLabel/packFormat
   prepareProdCost(query.seminar, query.period).then(function(success){
     
     prodCost = success.result;
-    console.log(prodCost);
+    //debugUnitCost(prodCost);
 
     return getProduct(query);
   }).then(function(variant) {
@@ -34,7 +34,7 @@ exports.getCurrentUnitCost = function(req, res, next) {
       [400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400, 400]
     ];
 
-    console.log(variant.result.cumVolumes);
+    //debugUnitCost(variant.result.cumVolumes);
 
     var value = calculateUnitCost(variant.result.catNow,
       variant.result.isPrivateLabel,
@@ -43,78 +43,114 @@ exports.getCurrentUnitCost = function(req, res, next) {
       variant.result.cumVolumes,
       prodCost);
 
-    //console.log('done:' + value);
+    //debugUnitCost('done:' + value);
     res.send(200, {
       result: value.toFixed(2)
     });
   }, function(err) {
-    console.log('err, ' + util.inspect(err));
+    debugUnitCost('err, ' + util.inspect(err));
     res.send(404, err.msg);
   });
 }
 
+function debugUnitCost(msg){
+  console.log(msg);
+}
+
 function calculateUnitCost(catNow, isPrivateLabel, packFormat, composition,  cumVolumes, prodCost) {
     var tempResult,
-    geogNow = 2,
+  // { GeogNow must uniquely take a value smaller than MrktsMaxTotal                                   }
+  // {         as there are no files with parameters and exogenous values for a total across markets.  }
+  // {         This will hapen if at least one market is selected, otherwise the dummy value set above }
+  // {         will not be used.                                                                       }
+  // {         Most of relevant here parameters have the same value in all markets.                    }
+  // {         If a grand total (or average) across markets is needed it is explicitly calculated.     }
+  // for aMarket := 1 to MrktsMax do
+  //   if ( Markets_IDs[aMarket] > 0 ) then
+  //   begin
+  //     MarketsNow := MarketsNow + [aMarket];
+  //     if ( GeogNow = MrktsMaxTotal) then GeogNow := aMarket;
+  //   end;
+    geogNow = 1,
     correctedVolumes = [0, 0, 0]; //Length:TSpecs(1~3)
 
-   // console.log(prodCost);
   //SpecsMax = 3
   var currentProdCost = _.find(prodCost, function(assort) {
       return (assort.marketID == geogNow && assort.categoryID == catNow)
     })
     // if(!currentProdCost) 
-    //   //console.log('assort error');
+    //   //debugUnitCost('assort error');
+  debugUnitCost('currentProdCost, market : ' + currentProdCost.marketID + ', cat : ' + currentProdCost.categoryID);
+  debugUnitCost('currentProdCost : ' + currentProdCost);
+
+
   for (var i = 0; i < 3; i++) {
     correctedVolumes[i] = cumVolumes[i][composition[i]];
-    //console.log('for, cumVolumes[' + i + '][' + composition[i] + ']:' + cumVolumes[i][composition[i]]); 
+    //debugUnitCost('for, cumVolumes[' + i + '][' + composition[i] + ']:' + cumVolumes[i][composition[i]]); 
   };
   
-  console.log('  step 1, correctedVolumes:' + correctedVolumes);
+  debugUnitCost('  step 1, correctedVolumes:' + correctedVolumes);
+  debugUnitCost('  step 1.1, composition:' + composition + ', catNow:' + catNow);  
+
   //MaxSpecsIndex = 22
   switch (catNow) {
-    case 1: //Elecsories
-      for (var specsIndex = composition[0]; specsIndex < 22; specsIndex++) {
-        correctedVolumes[0] = correctedVolumes[0] + (cumVolumes[0][specsIndex] * (specsIndex - (composition[0] - 1)) * currentProdCost.higherDesignImpact);
+    case '1': //Elecsories
+      for (var specsIndex = composition[0]; specsIndex <= 22; specsIndex++) {
+        correctedVolumes[0] = correctedVolumes[0] + (cumVolumes[0][specsIndex-1] * (specsIndex - composition[0] ) * currentProdCost.higherDesignImpact);
+        //debugUnitCost('  step 1.2,  (specsIndex - composition[0] ) : ' +  (specsIndex - composition[0] ) );
+        //debugUnitCost('  step 1.3, correctedVolumes[0]: ' + correctedVolumes[0]);
+
       };
-      for (var specsIndex = composition[1]; specsIndex < 22; specsIndex++) {
-        correctedVolumes[1] = correctedVolumes[1] + (cumVolumes[1][specsIndex] * (specsIndex - (composition[1] - 1)) * currentProdCost.higherTechImpact);
+      for (var specsIndex = composition[1]; specsIndex <= 22; specsIndex++) {
+        correctedVolumes[1] = correctedVolumes[1] + (cumVolumes[1][specsIndex-1] * (specsIndex - composition[1] ) * currentProdCost.higherTechImpact);
       };
       break;
-    case 2: //HealthBeauties
-      for (var specsIndex = composition[1]; specsIndex < 22; specsIndex++) {
-        correctedVolumes[1] = correctedVolumes[1] + (cumVolumes[1][specsIndex] * (specsIndex - (composition[1] - 1)) * currentProdCost.higherTechImpact);
+    case '2': //HealthBeauties
+      for (var specsIndex = composition[1]; specsIndex <= 22; specsIndex++) {
+        correctedVolumes[1] = correctedVolumes[1] + (cumVolumes[1][specsIndex-1] * (specsIndex - composition[1] ) * currentProdCost.higherTechImpact);
       };
       break;
     default:
-      //console.log('UnitCost: catNow error');
+      debugUnitCost('UnitCost: catNow error');
   }
 
-  console.log('  step 2, complete switch: ' + correctedVolumes);
+  debugUnitCost('  step 1.5, after dealing, correctedVolumes:' + correctedVolumes);
+
+  debugUnitCost('  step 2, complete switch: ' + correctedVolumes);
 
   tempResult = currentProdCost.logisticsCost;
-  console.log('  step 3, logisticsCost: ' + tempResult);
+  tempResult = tempResult + currentProdCost.labourCost;
+
+  debugUnitCost('  step 3, logisticsCost + labourCost: ' + tempResult + ' (labourCost = ' + currentProdCost.labourCost + ')');
 
   var a, b;
   for (var spec = 0; spec < 3; spec++) {
-    //console.log('currentProdCost.ingredientDetails[' +spec + ']['+ composition[spec] +']:' + currentProdCost.ingredientDetails[spec][composition[spec]]);
-    a = currentProdCost.ingredientDetails[spec][composition[spec]] * composition[spec]
+    //debugUnitCost('currentProdCost.ingredientDetails[' +spec + ']['+ composition[spec] +']:' + currentProdCost.ingredientDetails[spec][composition[spec]]);
+    a = currentProdCost.ingredientDetails[spec][composition[spec]-1] * composition[spec]
+    //debugUnitCost(' step 3.05, currentProdCost.ingredientDetails[spec][composition[spec]]: ' + currentProdCost.ingredientDetails[spec][composition[spec]]);
+    //debugUnitCost(' step 3.05, composition[spec]: ' + composition[spec]);
+    //debugUnitCost(' step 3.05, a: ' + a);
     b = 0;
     for (var aMarket = 1; aMarket < 3; aMarket++) {
       var PC = _.find(prodCost, function(assort) {
         return assort.marketID == aMarket && assort.categoryID == catNow;
       })
       if (!PC) {
-        //console.log('UnitCost: get PC error in aMarket');
+        ////debugUnitCost('UnitCost: get PC error in aMarket');
       }
       b = b + PC.minProductionVolume;
     };
+    //debugUnitCost(' step 3.1, b: ' + b);
     b = (Math.max(correctedVolumes[spec], b)) / b;
+    //debugUnitCost(' step 3.1, b after max: ' + b);    
     b = Math.pow(b, currentProdCost.defaultDrop);
+    //debugUnitCost(' step 3.1, b after power: ' + b);    
     tempResult = tempResult + a * b;
   }
 
-  console.log('  step 4, before packformat: ' + tempResult);
+  debugUnitCost('  step 3.5, correctedVolumes: ' + correctedVolumes);
+  debugUnitCost('  step 3.6, defaultDrop: ' + currentProdCost.defaultDrop);  
+  debugUnitCost('  step 4, before packformat: ' + tempResult);
 
   switch (packFormat) {
     case 'ECONOMY':
@@ -127,14 +163,14 @@ function calculateUnitCost(catNow, isPrivateLabel, packFormat, composition,  cum
       tempResult = tempResult * (1.0 + currentProdCost.PREMIUM)
       break;
     default:
-      //console.log('UnitCost: packFormat error');
+      //debugUnitCost('UnitCost: packFormat error');
   }
 
-  console.log('  step 4, after packformat: ' + tempResult);
+  debugUnitCost('  step 4, after packformat: ' + tempResult);
 
   if (isPrivateLabel) tempResult = tempResult * (1.0 + currentProdCost.marginOnPrivateLabel);
 
-  console.log('  step 5, after privateLabel: ' + tempResult);
+  debugUnitCost('  step 5, after privateLabel: ' + tempResult);
 
   return tempResult;
 
@@ -144,77 +180,83 @@ function prepareProdCost(seminar, period){
   var deferred = q.defer(), tempAssort;
   var prodCost = [{marketID : 1, categoryID : 1},{marketID : 1, categoryID : 2},{marketID : 2, categoryID : 1},{marketID : 2, categoryID : 2}];
 
+  debugUnitCost('Prepare prodCost, seminar :'+ seminar + ', period :' + period);
   require('./../models/BG_oneQuarterExogenousData.js').oneQuarterExogenousData.find({seminar: seminar, period : period }, function(err, docs){
-    if(err){ console.log('ERR:' + err); deferred.reject({msg:'oneQuarterExogenousData find err, seminar: ' + seminar + ', period: ' + period});}
-    if(docs){
+    if(err){ debugUnitCost('ERR:' + err); deferred.reject({msg:'oneQuarterExogenousData find err, seminar: ' + seminar + ', period: ' + period});}
+    if(docs){      
       tempAssort = _.find(docs, function(assort) { return assort.marketID == 1 && assort.categoryID == 1; });
-      prodCost[0].ingredientDetails = tempAssort.ProdCost_IngredientPrices;
-      prodCost[0].logisticsCost = tempAssort.ProdCost_LogisticsCost;
-      prodCost[0].labourCost = tempAssort.ProdCost_LabourCost;
 
-      tempAssort = _.find(docs, function(assort) { return assort.marketID == 1 && assort.categoryID == 2; });
-      prodCost[1].ingredientDetails = tempAssort.ProdCost_IngredientPrices;
-      prodCost[1].logisticsCost = tempAssort.ProdCost_LogisticsCost;
-      prodCost[1].labourCost = tempAssort.ProdCost_LabourCost;
+      if(tempAssort){
+        prodCost[0].ingredientDetails = tempAssort.ProdCost_IngredientPrices;
+        prodCost[0].logisticsCost = tempAssort.ProdCost_LogisticsCost;
+        prodCost[0].labourCost = tempAssort.ProdCost_LabourCost;
 
-      tempAssort = _.find(docs, function(assort) { return assort.marketID == 2 && assort.categoryID == 1; });
-      prodCost[2].ingredientDetails = tempAssort.ProdCost_IngredientPrices;
-      prodCost[2].logisticsCost = tempAssort.ProdCost_LogisticsCost;
-      prodCost[2].labourCost = tempAssort.ProdCost_LabourCost;
+        tempAssort = _.find(docs, function(assort) { return assort.marketID == 1 && assort.categoryID == 2; });
+        prodCost[1].ingredientDetails = tempAssort.ProdCost_IngredientPrices;
+        prodCost[1].logisticsCost = tempAssort.ProdCost_LogisticsCost;
+        prodCost[1].labourCost = tempAssort.ProdCost_LabourCost;
 
-      tempAssort = _.find(docs, function(assort) { return assort.marketID == 2 && assort.categoryID == 2; });
-      prodCost[3].ingredientDetails = tempAssort.ProdCost_IngredientPrices;
-      prodCost[3].logisticsCost = tempAssort.ProdCost_LogisticsCost;
-      prodCost[3].labourCost = tempAssort.ProdCost_LabourCost;
+        tempAssort = _.find(docs, function(assort) { return assort.marketID == 2 && assort.categoryID == 1; });
+        prodCost[2].ingredientDetails = tempAssort.ProdCost_IngredientPrices;
+        prodCost[2].logisticsCost = tempAssort.ProdCost_LogisticsCost;
+        prodCost[2].labourCost = tempAssort.ProdCost_LabourCost;
 
-      require('./../models/BG_oneQuarterParameterData.js').oneQuarterParameterData.find({seminar: seminar}, function(err, docs){
-          if(err){ console.log('ERR:' + err); deferred.reject({msg:'oneQuarterExogenousData find err, seminar: ' + seminar + ', period: ' + period});}
-          if(docs){
-              tempAssort = _.find(docs, function(assort) { return assort.marketID == 1 && assort.categoryID == 1; });
-              prodCost[0].higherDesignImpact = tempAssort.ProdCost_HigherDesignImpact;  
-              prodCost[0].higherTechImpact = tempAssort.ProdCost_HigherTechImpact;    
-              prodCost[0].defaultDrop = tempAssort.ProdCost_DefaultDrop;         
-              prodCost[0].marginOnPrivateLabel = tempAssort.ProdCost_MarginOnPrivateLabel;
-              prodCost[0].minProductionVolume = tempAssort.MinProductionVolume;         
-              prodCost[0].ECONOMY = tempAssort.ProdCost_ECONOMY;             
-              prodCost[0].STANDARD = tempAssort.ProdCost_STANDARD;            
-              prodCost[0].PREMIUM = tempAssort.ProdCost_PREMIUM;      
+        tempAssort = _.find(docs, function(assort) { return assort.marketID == 2 && assort.categoryID == 2; });
+        prodCost[3].ingredientDetails = tempAssort.ProdCost_IngredientPrices;
+        prodCost[3].logisticsCost = tempAssort.ProdCost_LogisticsCost;
+        prodCost[3].labourCost = tempAssort.ProdCost_LabourCost;
 
-              tempAssort = _.find(docs, function(assort) { return assort.marketID == 1 && assort.categoryID == 2; });
-              prodCost[1].higherDesignImpact = tempAssort.ProdCost_HigherDesignImpact;  
-              prodCost[1].higherTechImpact = tempAssort.ProdCost_HigherTechImpact;    
-              prodCost[1].defaultDrop = tempAssort.ProdCost_DefaultDrop;         
-              prodCost[1].marginOnPrivateLabel = tempAssort.ProdCost_MarginOnPrivateLabel;
-              prodCost[1].minProductionVolume = tempAssort.MinProductionVolume;         
-              prodCost[1].ECONOMY = tempAssort.ProdCost_ECONOMY;             
-              prodCost[1].STANDARD = tempAssort.ProdCost_STANDARD;            
-              prodCost[1].PREMIUM = tempAssort.ProdCost_PREMIUM;      
+        require('./../models/BG_oneQuarterParameterData.js').oneQuarterParameterData.find({seminar: seminar}, function(err, docs){
+            if(err){ debugUnitCost('ERR:' + err); deferred.reject({msg:'oneQuarterExogenousData find err, seminar: ' + seminar + ', period: ' + period});}
+            if(docs){
+                tempAssort = _.find(docs, function(assort) { return assort.marketID == 1 && assort.categoryID == 1; });
+                prodCost[0].higherDesignImpact = tempAssort.ProdCost_HigherDesignImpact;  
+                prodCost[0].higherTechImpact = tempAssort.ProdCost_HigherTechImpact;    
+                prodCost[0].defaultDrop = tempAssort.ProdCost_DefaultDrop;         
+                prodCost[0].marginOnPrivateLabel = tempAssort.ProdCost_MarginOnPrivateLabel;
+                prodCost[0].minProductionVolume = tempAssort.MinProductionVolume;         
+                prodCost[0].ECONOMY = tempAssort.ProdCost_ECONOMY;             
+                prodCost[0].STANDARD = tempAssort.ProdCost_STANDARD;            
+                prodCost[0].PREMIUM = tempAssort.ProdCost_PREMIUM;      
 
-              tempAssort = _.find(docs, function(assort) { return assort.marketID == 2 && assort.categoryID == 1; });
-              prodCost[2].higherDesignImpact = tempAssort.ProdCost_HigherDesignImpact;  
-              prodCost[2].higherTechImpact = tempAssort.ProdCost_HigherTechImpact;    
-              prodCost[2].defaultDrop = tempAssort.ProdCost_DefaultDrop;         
-              prodCost[2].marginOnPrivateLabel = tempAssort.ProdCost_MarginOnPrivateLabel;
-              prodCost[2].minProductionVolume = tempAssort.MinProductionVolume;         
-              prodCost[2].ECONOMY = tempAssort.ProdCost_ECONOMY;             
-              prodCost[2].STANDARD = tempAssort.ProdCost_STANDARD;            
-              prodCost[2].PREMIUM = tempAssort.ProdCost_PREMIUM;      
+                tempAssort = _.find(docs, function(assort) { return assort.marketID == 1 && assort.categoryID == 2; });
+                prodCost[1].higherDesignImpact = tempAssort.ProdCost_HigherDesignImpact;  
+                prodCost[1].higherTechImpact = tempAssort.ProdCost_HigherTechImpact;    
+                prodCost[1].defaultDrop = tempAssort.ProdCost_DefaultDrop;         
+                prodCost[1].marginOnPrivateLabel = tempAssort.ProdCost_MarginOnPrivateLabel;
+                prodCost[1].minProductionVolume = tempAssort.MinProductionVolume;         
+                prodCost[1].ECONOMY = tempAssort.ProdCost_ECONOMY;             
+                prodCost[1].STANDARD = tempAssort.ProdCost_STANDARD;            
+                prodCost[1].PREMIUM = tempAssort.ProdCost_PREMIUM;      
 
-              tempAssort = _.find(docs, function(assort) { return assort.marketID == 2 && assort.categoryID == 2; });
-              prodCost[3].higherDesignImpact = tempAssort.ProdCost_HigherDesignImpact;  
-              prodCost[3].higherTechImpact = tempAssort.ProdCost_HigherTechImpact;    
-              prodCost[3].defaultDrop = tempAssort.ProdCost_DefaultDrop;         
-              prodCost[3].marginOnPrivateLabel = tempAssort.ProdCost_MarginOnPrivateLabel;
-              prodCost[3].minProductionVolume = tempAssort.MinProductionVolume;         
-              prodCost[3].ECONOMY = tempAssort.ProdCost_ECONOMY;             
-              prodCost[3].STANDARD = tempAssort.ProdCost_STANDARD;            
-              prodCost[3].PREMIUM = tempAssort.ProdCost_PREMIUM;      
-              
-              deferred.resolve({result : prodCost});
-          } else {
-              deferred.reject({msg:'prepareProdCost failed : no one oneQuarterParameterData, seminar: ' + seminar + ', period: ' + period});      
-          }
-      });
+                tempAssort = _.find(docs, function(assort) { return assort.marketID == 2 && assort.categoryID == 1; });
+                prodCost[2].higherDesignImpact = tempAssort.ProdCost_HigherDesignImpact;  
+                prodCost[2].higherTechImpact = tempAssort.ProdCost_HigherTechImpact;    
+                prodCost[2].defaultDrop = tempAssort.ProdCost_DefaultDrop;         
+                prodCost[2].marginOnPrivateLabel = tempAssort.ProdCost_MarginOnPrivateLabel;
+                prodCost[2].minProductionVolume = tempAssort.MinProductionVolume;         
+                prodCost[2].ECONOMY = tempAssort.ProdCost_ECONOMY;             
+                prodCost[2].STANDARD = tempAssort.ProdCost_STANDARD;            
+                prodCost[2].PREMIUM = tempAssort.ProdCost_PREMIUM;      
+
+                tempAssort = _.find(docs, function(assort) { return assort.marketID == 2 && assort.categoryID == 2; });
+                prodCost[3].higherDesignImpact = tempAssort.ProdCost_HigherDesignImpact;  
+                prodCost[3].higherTechImpact = tempAssort.ProdCost_HigherTechImpact;    
+                prodCost[3].defaultDrop = tempAssort.ProdCost_DefaultDrop;         
+                prodCost[3].marginOnPrivateLabel = tempAssort.ProdCost_MarginOnPrivateLabel;
+                prodCost[3].minProductionVolume = tempAssort.MinProductionVolume;         
+                prodCost[3].ECONOMY = tempAssort.ProdCost_ECONOMY;             
+                prodCost[3].STANDARD = tempAssort.ProdCost_STANDARD;            
+                prodCost[3].PREMIUM = tempAssort.ProdCost_PREMIUM;      
+                
+                deferred.resolve({result : prodCost});
+            } else {
+                deferred.reject({msg:'prepareProdCost failed : no one oneQuarterParameterData, seminar: ' + seminar + ', period: ' + period});      
+            }
+        });        
+      } else {
+        deferred.reject({msg:'cannot find right tempAssort in docs : ' + docs});
+      }
     } else {
       deferred.reject({msg:'prepareProdCost failed : no one oneQuarterExogenousData, seminar: ' + seminar + ', period: ' + period});
     }
@@ -227,7 +269,7 @@ function prepareProdCost(seminar, period){
 function getProduct(query) {
   var deferred = q.defer();
 
-  //console.log('query:' + util.inspect(query,{depth:true}));
+  //debugUnitCost('query:' + util.inspect(query,{depth:true}));
   switch (parseInt(query.userRole)) {
     case userRoles.producer:
       require('../models/producerDecision.js').proDecision.findOne({
@@ -255,7 +297,7 @@ function getProduct(query) {
                 }
               })
             } else {
-              //console.log('reject variant'); 
+              //debugUnitCost('reject variant'); 
               deferred.reject({
                 msg: 'UnitCost, cannot find variant by query: ' + query
               });
@@ -266,7 +308,7 @@ function getProduct(query) {
             });
           }
         } else {
-          //console.log('reject');
+          //debugUnitCost('reject');
           deferred.reject({
             msg: 'UnitCost, cannot find producerDecision doc by query: ' + query
           });
@@ -388,7 +430,7 @@ function getCumVolumes(query, variant) {
         });
       };
       if (doc) {
-        //console.log(doc);
+        //debugUnitCost(doc);
         var manufactor = _.find(doc.producerView, function(producer) {
           return producer.producerID == variant.manufactorID;
         });
@@ -400,12 +442,12 @@ function getCumVolumes(query, variant) {
           };
           // CDL = manufactor.cumulatedDesignVolume[variant.catNow - 1];
           // CTLE = manufactor.cumulatedTechnologyVolume[variant.catNow - 1];   
-          console.log('----- M' + variant.manufactorID + ' previous cumulated volume -------')
-          console.log('manufactor.cumulatedDesignVolume: ' + manufactor.cumulatedDesignVolume[variant.catNow - 1]);
-          console.log('manufactor.cumulatedTechnologyVolume: ' + manufactor.cumulatedTechnologyVolume[variant.catNow - 1]);
-          console.log('CDL: ' + CDL);
-          console.log('CTLE: ' + CTLE);
-          console.log('CRMQ: ' + CRMQ);
+          debugUnitCost('----- M' + variant.manufactorID + ' previous cumulated volume -------')
+          debugUnitCost('manufactor.cumulatedDesignVolume: ' + manufactor.cumulatedDesignVolume[variant.catNow - 1]);
+          debugUnitCost('manufactor.cumulatedTechnologyVolume: ' + manufactor.cumulatedTechnologyVolume[variant.catNow - 1]);
+          debugUnitCost('CDL: ' + CDL);
+          debugUnitCost('CTLE: ' + CTLE);
+          debugUnitCost('CRMQ: ' + CRMQ);
 
 
           //normal products                      
@@ -419,23 +461,24 @@ function getCumVolumes(query, variant) {
                 var catDec = _.filter(doc.proCatDecision, function(obj) {
                   return (obj.categoryID == variant.catNow);
                 });
-                //console.log(util.inspect(catDec, {depth:null}));
+                //debugUnitCost(util.inspect(catDec, {depth:null}));
 
-                console.log('----- portfolio -------')
+                debugUnitCost('----- portfolio -------')
                 for (var i = 0; i < catDec.length; i++) {
                   for (var j = 0; j < catDec[i].proBrandsDecision.length; j++) {
 
                     for (var k = 0; k < catDec[i].proBrandsDecision[j].proVarDecision.length; k++) {
                       if (catDec[i].proBrandsDecision[j].proVarDecision[k].varID != 0 && catDec[i].proBrandsDecision[j].proVarDecision[k].varName != "") {
 
-                        console.log(catDec[i].proBrandsDecision[j].brandName + catDec[i].proBrandsDecision[j].proVarDecision[k].varName + ': ' + catDec[i].proBrandsDecision[j].proVarDecision[k].composition + ' / production: ' + catDec[i].proBrandsDecision[j].proVarDecision[k].production);
+                        debugUnitCost(catDec[i].proBrandsDecision[j].brandName + catDec[i].proBrandsDecision[j].proVarDecision[k].varName + ': ' + catDec[i].proBrandsDecision[j].proVarDecision[k].composition + ' / production: ' + catDec[i].proBrandsDecision[j].proVarDecision[k].production);
+                        
                         for (var specIdx = 0; specIdx < 22; specIdx++) {
                           var realSpecIdx = specIdx + 1;
-                          if (catDec[i].proBrandsDecision[j].proVarDecision[k].composition[0] >= realSpecIdx) {
+                          if ( realSpecIdx >= catDec[i].proBrandsDecision[j].proVarDecision[k].composition[0]){
                             CDL[specIdx] += catDec[i].proBrandsDecision[j].proVarDecision[k].production;
                           }
 
-                          if (catDec[i].proBrandsDecision[j].proVarDecision[k].composition[1] >= realSpecIdx) {
+                          if (realSpecIdx >= catDec[i].proBrandsDecision[j].proVarDecision[k].composition[1]) {
                             CTLE[specIdx] += catDec[i].proBrandsDecision[j].proVarDecision[k].production;
                           }
 
@@ -449,10 +492,10 @@ function getCumVolumes(query, variant) {
                   }
                 }
 
-                console.log('----- after -------')
-                console.log('CDL: ' + CDL);
-                console.log('CTLE: ' + CTLE);
-                console.log('CRMQ: ' + CRMQ);
+                debugUnitCost('----- after -------')
+                debugUnitCost('CDL: ' + CDL);
+                debugUnitCost('CTLE: ' + CTLE);
+                debugUnitCost('CRMQ: ' + CRMQ);
 
                 cumVolumes[0] = CDL;
                 cumVolumes[1] = CTLE;
@@ -470,7 +513,7 @@ function getCumVolumes(query, variant) {
             })
             //private labels 
           } else {
-            console.log('period:' + query.period);
+            debugUnitCost('period:' + query.period);
             require('../models/retailerDecision.js').retDecision.findOne({
               seminar: query.seminar,
               period: query.period,
@@ -480,7 +523,7 @@ function getCumVolumes(query, variant) {
                 var catDec = _.filter(doc.retCatDecision, function(obj) {
                   return (obj.categoryID == variant.catNow);
                 });
-                console.log('----- private portfolio(with orders) -------')
+                debugUnitCost('----- private portfolio(with orders) -------')
                 for (var i = 0; i < catDec.length; i++) {
                   for (var j = 0; j < catDec[i].privateLabelDecision.length; j++) {
                     for (var k = 0; k < catDec[i].privateLabelDecision[j].privateLabelVarDecision.length; k++) {
@@ -502,23 +545,23 @@ function getCumVolumes(query, variant) {
                           M2Order = PLorder_Market2.order;
                         }
 
-                        // console.log(PLorder_Market1);
-                        // console.log(PLorder_Market2);
+                        // debugUnitCost(PLorder_Market1);
+                        // debugUnitCost(PLorder_Market2);
 
                         var totalOrder;
 
                         totalOrder = M1Order + M2Order;
 
                         if ((PLorder_Market1 != undefined) || (PLorder_Market2 != undefined)) {
-                          console.log(catDec[i].privateLabelDecision[j].brandName + catDec[i].privateLabelDecision[j].privateLabelVarDecision[k].varName + ': ' + catDec[i].privateLabelDecision[j].privateLabelVarDecision[k].composition + ' / total order volume : ' + totalOrder);
+                          debugUnitCost(catDec[i].privateLabelDecision[j].brandName + catDec[i].privateLabelDecision[j].privateLabelVarDecision[k].varName + ': ' + catDec[i].privateLabelDecision[j].privateLabelVarDecision[k].composition + ' / total order volume : ' + totalOrder);
 
                           for (var specIdx = 0; specIdx < 22; specIdx++) {
                             var realSpecIdx = specIdx + 1;
-                            if (catDec[i].privateLabelDecision[j].privateLabelVarDecision[k].composition[0] >= realSpecIdx) {
+                            if (realSpecIdx >= catDec[i].privateLabelDecision[j].privateLabelVarDecision[k].composition[0]) {
                               CDL[specIdx] += totalOrder;
                             }
 
-                            if (catDec[i].privateLabelDecision[j].privateLabelVarDecision[k].composition[1] >= realSpecIdx) {
+                            if (realSpecIdx >= catDec[i].privateLabelDecision[j].privateLabelVarDecision[k].composition[1]) {
                               CTLE[specIdx] += totalOrder;
                             }
 
@@ -534,10 +577,10 @@ function getCumVolumes(query, variant) {
                   }
 
                 }
-                console.log('----- after -------')
-                console.log('CDL: ' + CDL);
-                console.log('CTLE: ' + CTLE);
-                console.log('CRMQ: ' + CRMQ);
+                debugUnitCost('----- after -------')
+                debugUnitCost('CDL: ' + CDL);
+                debugUnitCost('CTLE: ' + CTLE);
+                debugUnitCost('CRMQ: ' + CRMQ);
                 cumVolumes[0] = CDL;
                 cumVolumes[1] = CTLE;
                 cumVolumes[2] = CRMQ;
@@ -576,7 +619,7 @@ function getCumVolumes(query, variant) {
         });
       };
       if (doc) {
-        //console.log(doc);
+        //debugUnitCost(doc);
         var manufactor = _.find(doc.producerView, function(producer) {
           return producer.producerID == variant.manufactorID;
         });
@@ -586,11 +629,11 @@ function getCumVolumes(query, variant) {
             CTLH[i] = manufactor.cumulatedTechnologyVolume[variant.catNow - 1][i];
           };
           // CTLH = manufactor.cumulatedTechnologyVolume[variant.catNow - 1];   
-          console.log('----- M' + variant.manufactorID + ' previous cumulated volume -------')
-          console.log('manufactor.cumulatedTechnologyVolume: ' + manufactor.cumulatedTechnologyVolume[variant.catNow - 1]);
-          console.log('CAA: ' + CAA);
-          console.log('CTLH: ' + CTLH);
-          console.log('CSMT: ' + CSMT);
+          debugUnitCost('----- M' + variant.manufactorID + ' previous cumulated volume -------')
+          debugUnitCost('manufactor.cumulatedTechnologyVolume: ' + manufactor.cumulatedTechnologyVolume[variant.catNow - 1]);
+          debugUnitCost('CAA: ' + CAA);
+          debugUnitCost('CTLH: ' + CTLH);
+          debugUnitCost('CSMT: ' + CSMT);
 
 
           //normal products                      
@@ -604,23 +647,23 @@ function getCumVolumes(query, variant) {
                 var catDec = _.filter(doc.proCatDecision, function(obj) {
                   return (obj.categoryID == variant.catNow);
                 });
-                //console.log(util.inspect(catDec, {depth:null}));
+                //debugUnitCost(util.inspect(catDec, {depth:null}));
 
-                console.log('----- portfolio -------')
+                debugUnitCost('----- portfolio -------')
                 for (var i = 0; i < catDec.length; i++) {
                   for (var j = 0; j < catDec[i].proBrandsDecision.length; j++) {
 
                     for (var k = 0; k < catDec[i].proBrandsDecision[j].proVarDecision.length; k++) {
                       if (catDec[i].proBrandsDecision[j].proVarDecision[k].varID != 0 && catDec[i].proBrandsDecision[j].proVarDecision[k].varName != "") {
 
-                        console.log(catDec[i].proBrandsDecision[j].brandName + catDec[i].proBrandsDecision[j].proVarDecision[k].varName + ': ' + catDec[i].proBrandsDecision[j].proVarDecision[k].composition + ' / production: ' + catDec[i].proBrandsDecision[j].proVarDecision[k].production);
+                        debugUnitCost(catDec[i].proBrandsDecision[j].brandName + catDec[i].proBrandsDecision[j].proVarDecision[k].varName + ': ' + catDec[i].proBrandsDecision[j].proVarDecision[k].composition + ' / production: ' + catDec[i].proBrandsDecision[j].proVarDecision[k].production);
                         for (var specIdx = 0; specIdx < 22; specIdx++) {
                           var realSpecIdx = specIdx + 1;
                           if (catDec[i].proBrandsDecision[j].proVarDecision[k].composition[0] == realSpecIdx) {
                             CAA[specIdx] += catDec[i].proBrandsDecision[j].proVarDecision[k].production;
                           }
 
-                          if (catDec[i].proBrandsDecision[j].proVarDecision[k].composition[1] >= realSpecIdx) {
+                          if (realSpecIdx >= catDec[i].proBrandsDecision[j].proVarDecision[k].composition[1]) {
                             CTLH[specIdx] += catDec[i].proBrandsDecision[j].proVarDecision[k].production;
                           }
 
@@ -634,10 +677,10 @@ function getCumVolumes(query, variant) {
                   }
                 }
 
-                console.log('----- after -------')
-                console.log('CAA: ' + CAA);
-                console.log('CTLH: ' + CTLH);
-                console.log('CSMT: ' + CSMT);
+                debugUnitCost('----- after -------')
+                debugUnitCost('CAA: ' + CAA);
+                debugUnitCost('CTLH: ' + CTLH);
+                debugUnitCost('CSMT: ' + CSMT);
 
                 cumVolumes[0] = CAA;
                 cumVolumes[1] = CTLH;
@@ -655,7 +698,7 @@ function getCumVolumes(query, variant) {
             })
             //private labels 
           } else {
-            console.log('period:' + query.period);
+            debugUnitCost('period:' + query.period);
             require('../models/retailerDecision.js').retDecision.findOne({
               seminar: query.seminar,
               period: query.period,
@@ -665,7 +708,7 @@ function getCumVolumes(query, variant) {
                 var catDec = _.filter(doc.retCatDecision, function(obj) {
                   return (obj.categoryID == variant.catNow);
                 });
-                console.log('----- private portfolio(with orders) -------')
+                debugUnitCost('----- private portfolio(with orders) -------')
                 for (var i = 0; i < catDec.length; i++) {
                   for (var j = 0; j < catDec[i].privateLabelDecision.length; j++) {
                     for (var k = 0; k < catDec[i].privateLabelDecision[j].privateLabelVarDecision.length; k++) {
@@ -687,15 +730,15 @@ function getCumVolumes(query, variant) {
                           M2Order = PLorder_Market2.order;
                         }
 
-                        // console.log(PLorder_Market1);
-                        // console.log(PLorder_Market2);
+                        // debugUnitCost(PLorder_Market1);
+                        // debugUnitCost(PLorder_Market2);
 
                         var totalOrder;
 
                         totalOrder = M1Order + M2Order;
 
                         if ((PLorder_Market1 != undefined) || (PLorder_Market2 != undefined)) {
-                          console.log(catDec[i].privateLabelDecision[j].brandName + catDec[i].privateLabelDecision[j].privateLabelVarDecision[k].varName + ': ' + catDec[i].privateLabelDecision[j].privateLabelVarDecision[k].composition + ' / total order volume : ' + totalOrder);
+                          debugUnitCost(catDec[i].privateLabelDecision[j].brandName + catDec[i].privateLabelDecision[j].privateLabelVarDecision[k].varName + ': ' + catDec[i].privateLabelDecision[j].privateLabelVarDecision[k].composition + ' / total order volume : ' + totalOrder);
 
                           for (var specIdx = 0; specIdx < 22; specIdx++) {
                             var realSpecIdx = specIdx + 1;
@@ -703,7 +746,7 @@ function getCumVolumes(query, variant) {
                               CAA[specIdx] += totalOrder;
                             }
 
-                            if (catDec[i].privateLabelDecision[j].privateLabelVarDecision[k].composition[1] >= realSpecIdx) {
+                            if (realSpecIdx >= catDec[i].privateLabelDecision[j].privateLabelVarDecision[k].composition[1]) {
                               CTLH[specIdx] += totalOrder;
                             }
 
@@ -719,10 +762,10 @@ function getCumVolumes(query, variant) {
                   }
 
                 }
-                console.log('----- after -------')
-                console.log('CAA: ' + CAA);
-                console.log('CTLH: ' + CTLH);
-                console.log('CSMT: ' + CSMT);
+                debugUnitCost('----- after -------')
+                debugUnitCost('CAA: ' + CAA);
+                debugUnitCost('CTLH: ' + CTLH);
+                debugUnitCost('CSMT: ' + CSMT);
                 cumVolumes[0] = CAA;
                 cumVolumes[1] = CTLH;
                 cumVolumes[2] = CSMT;
