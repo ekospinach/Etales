@@ -19,7 +19,7 @@ define(['directives', 'services'], function(directives){
 
                 var loadVolume=function(data,category){
 		    		scope.products=new Array();
-		    		var varName,brandName,initial,production,sales,discontinued,closing;
+		    		var varName,brandName,initial,production,sales,discontinued,closing,unitProductionCost;
 		    		for(var i=0;i<data.data[0].scrviv_Initial.length;i++){
 		    			if(data.data[0].scrviv_Initial[i].parentCategoryID==category){
 		    				varName=data.data[0].scrviv_Initial[i].variantName;
@@ -38,7 +38,10 @@ define(['directives', 'services'], function(directives){
 		    				closing=_.find(data.data[0].scrviv_Closing,function(obj){
 		    					return (obj.variantName==varName&&obj.parentBrandName==brandName);
 		    				});
-		    				scope.products.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing});
+                            unitProductionCost=_.find(data.data[0].scrviv_UnitProductionCost,function(obj){
+                                return (obj.variantName==varName&&obj.parentBrandName==brandName);
+                            });
+		    				scope.products.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing,'unitProductionCost':unitProductionCost});
 		    			}
 		    		}
 		    	}
