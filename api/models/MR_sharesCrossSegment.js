@@ -103,7 +103,7 @@ exports.addReports = function(options){
          // console.log(util.inspect(singleReport, {depth:null}));
 
          MR_sharesCrossSegment.update({seminar: singleReport.seminar, 
-                              period: singleReport.period},1
+                              period: singleReport.period},
                               {
                                 absoluteValue     : singleReport.absoluteValue, 
                                 valueChange       : singleReport.valueChange,   

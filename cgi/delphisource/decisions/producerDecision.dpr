@@ -350,6 +350,7 @@ var
 
       //modified by Hao, 2014-July-14    
       jo.D['channelPreference'] := pVar.dpv_ChannelPreference;            
+      
       jt := SO;
       jt.I['promo_Frequency'] := pVar.dpv_PricePromotions.promo_Frequency;
       jt.D['promo_Rate']  := pVar.dpv_PricePromotions.promo_Rate;
