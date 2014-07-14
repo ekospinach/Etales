@@ -200,6 +200,9 @@ exports.addReports = function(options){
                                 scrpl_AdvertisingOffLine                   : singleReport.scrpl_AdvertisingOffLine,                   
                                 scrpl_TradeSupport                         : singleReport.scrpl_TradeSupport,                         
 
+                                scrpl_eMallCommission                      : singleReport.scrpl_eMallCommission,
+                                scrpl_ShippingCost                         : singleReport.scrpl_ShippingCost,                                  
+
                                 scrb_Sales                                : singleReport.scrb_Sales,                              
                                 scrb_SalesChange                          : singleReport.scrb_SalesChange,                        
                                 scrb_SalesShareInCategory                 : singleReport.scrb_SalesShareInCategory,                
@@ -231,6 +234,9 @@ exports.addReports = function(options){
                                 scrb_NetProfitMargin                      : singleReport.scrb_NetProfitMargin,                     
                                 scrb_NetProfitShareInCategory             : singleReport.scrb_NetProfitShareInCategory,            
 
+                                scrb_eMallCommission                      : singleReport.scrb_eMallCommission,
+                                scrb_ShippingCost                         : singleReport.scrb_ShippingCost,                                 
+
                                 scrv_Sales                                : singleReport.scrv_Sales,                               
                                 scrv_SalesChange                          : singleReport.scrv_SalesChange,                         
                                 scrv_SalesShareInCategory                 : singleReport.scrv_SalesShareInCategory,                
@@ -241,7 +247,7 @@ exports.addReports = function(options){
                                 scrv_GrossProfit                          : singleReport.scrv_GrossProfit,                         
                                 scrv_GrossProfitChange                    : singleReport.scrv_GrossProfitChange,                   
                                 scrv_GrossProfitMargin                    : singleReport.scrv_GrossProfitMargin,                   
-                                scrv_GrossProfitShareInCategory               : singleReport.scrv_GrossProfitShareInCategory,              
+                                scrv_GrossProfitShareInCategory           : singleReport.scrv_GrossProfitShareInCategory,              
                                 scrv_TradeAndMarketing                    : singleReport.scrv_TradeAndMarketing,                   
                                 scrv_AdvertisingOnLine                    : singleReport.scrv_AdvertisingOnLine,                   
                                 scrv_AdvertisingOffLine                   : singleReport.scrv_AdvertisingOffLine,                  
@@ -260,7 +266,10 @@ exports.addReports = function(options){
                                 scrv_NetProfit                            : singleReport.scrv_NetProfit,                           
                                 scrv_NetProfitChange                      : singleReport.scrv_NetProfitChange,                     
                                 scrv_NetProfitMargin                      : singleReport.scrv_NetProfitMargin,                     
-                                scrv_NetProfitShareInCategory             : singleReport.scrv_NetProfitShareInCategory            
+                                scrv_NetProfitShareInCategory             : singleReport.scrv_NetProfitShareInCategory,            
+
+                                scrv_eMallCommission                      : singleReport.scrv_eMallCommission,
+                                scrv_ShippingCost                         : singleReport.scrv_ShippingCost,                                  
                                 },
                                 {upsert: true},
                                 function(err, numberAffected, raw){

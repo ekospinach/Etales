@@ -109,6 +109,11 @@ exports.addReports = function(options){
                                 valueChange       : singleReport.valueChange,   
                                 absoluteVolume    : singleReport.absoluteVolume,
                                 volumeChange      : singleReport.volumeChange,  
+                                
+                                owner_absoluteValue     : singleReport.owner_absoluteValue,
+                                owner_valueChange       : singleReport.owner_valueChange,
+                                owner_absoluteVolume    : singleReport.owner_absoluteVolume,
+                                owner_volumeChange      : singleReport.owner_volumeChange,                                                                  
                               },
                                 {upsert: true},
                                 function(err, numberAffected, raw){

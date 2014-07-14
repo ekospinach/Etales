@@ -76,6 +76,8 @@ exports.addReports = function(options){
                                 rcrviv_Sales        : singleReport.rcrviv_Sales,       
                                 rcrviv_Discontinued : singleReport.rcrviv_Discontinued,
                                 rcrviv_Closing      : singleReport.rcrviv_Closing,     
+
+                                rcrviv_NetRetailPrice : singleReport.rcrviv_NetRetailPrice,
                                 },
                                 {upsert: true},
                                 function(err, numberAffected, raw){
