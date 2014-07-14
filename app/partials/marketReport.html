@@ -69,13 +69,13 @@
 
                     <market-urban-health-beauties-shopper-sales ng-show='UrbanHealthBeautiesShopperSales' is-page-shown='UrbanHealthBeautiesShopperSales' is-page-loading='isPageLoading'></market-urban-health-beauties-shopper-sales>
 
-                    <market-rural-elecssories-channel-sales ng-show='RuralElecssoriesChannelSales' is-page-shown='RuralElecssoriesChannelSales' is-page-loading='isPageLoading'></market-rural-elecssories-channel-sales>
+                    <market-rural-elecssories-sales-by-channel ng-show='RuralElecssoriesSalesByChannel' is-page-shown='RuralElecssoriesSalesByChannel' is-page-loading='isPageLoading'></market-rural-elecssories-sales-by-channel>
 
-                    <market-urban-elecssories-channel-sales ng-show='UrbanElecssoriesChannelSales' is-page-shown='UrbanElecssoriesChannelSales' is-page-loading='isPageLoading'></market-urban-elecssories-channel-sales>
+                    <market-urban-elecssories-sales-by-channel ng-show='UrbanElecssoriesSalesByChannel' is-page-shown='UrbanElecssoriesSalesByChannel' is-page-loading='isPageLoading'></market-urban-elecssories-sales-by-channel>
 
-                    <market-rural-health-beauties-channel-sales ng-show='RuralHealthBeautiesChannelSales' is-page-shown='RuralHealthBeautiesChannelSales' is-page-loading='isPageLoading'></market-rural-health-beauties-channel-sales>
+                    <market-rural-health-beauties-sales-by-channel ng-show='RuralHealthBeautiesSalesByChannel' is-page-shown='RuralHealthBeautiesSalesByChannel' is-page-loading='isPageLoading'></market-rural-health-beauties-sales-by-channel>
 
-                    <market-urban-health-beauties-channel-sales ng-show='UrbanHealthBeautiesChannelSales' is-page-shown='UrbanHealthBeautiesChannelSales' is-page-loading='isPageLoading'></market-urban-health-beauties-channel-sales>
+                    <market-urban-health-beauties-sales-by-channel ng-show='UrbanHealthBeautiesSalesByChannel' is-page-shown='UrbanHealthBeautiesSalesByChannel' is-page-loading='isPageLoading'></market-urban-health-beauties-sales-by-channel>
 
                     <market-b-m-elecssories ng-show='BMElecssories' is-page-shown='BMElecssories' is-page-loading='isPageLoading'></market-b-m-elecssories>
 
@@ -227,19 +227,19 @@
                         <p style="color:#D9534F;font-size:13px" Popover-animation="true" popover="{{Label.getContent('Dont Purchase Info')}}" popover-trigger="mouseenter" popover-placement="left"><span class="glyphicon glyphicon-shopping-cart"></span>{{Label.getContent('Market Shares by Shopper Segment')}}</p>
                     </li>
                     <li class="" ng-show='salesByChannel'>
-                        <a href="/#/marketReport" style="color:#D9534F;" ng-click='showUrbanElecssoriesChannelSales()'>{{Label.getContent('Sales by Channel')}}</a>
+                        <a href="/#/marketReport" style="color:#D9534F;" ng-click='showUrbanElecssoriesSalesByChannel()'>{{Label.getContent('Sales by Channel')}}</a>
                         <ul class="nav second-sidenav">
                             <li class="">
-                                <a href="/#/marketReport" style="color:#D9534F;" ng-click='showUrbanElecssoriesChannelSales()'>{{Label.getContent('Elecssories')}}-{{Label.getContent('Urban')}}</a>
+                                <a href="/#/marketReport" style="color:#D9534F;" ng-click='showUrbanElecssoriesSalesByChannel()'>{{Label.getContent('Elecssories')}}-{{Label.getContent('Urban')}}</a>
                             </li>
                             <li class="">
-                                <a href="/#/marketReport" style="color:#D9534F;" ng-click='showRuralElecssoriesChannelSales()'>{{Label.getContent('Elecssories')}}-{{Label.getContent('Rural')}}</a>
+                                <a href="/#/marketReport" style="color:#D9534F;" ng-click='showRuralElecssoriesSalesByChannel()'>{{Label.getContent('Elecssories')}}-{{Label.getContent('Rural')}}</a>
                             </li>
                             <li class="">
-                                <a href="/#/marketReport" style="color:#D9534F;" ng-click='showUrbanHealthBeautiesChannelSales()'>{{Label.getContent('HealthBeauties')}}-{{Label.getContent('Urban')}}</a>
+                                <a href="/#/marketReport" style="color:#D9534F;" ng-click='showUrbanHealthBeautiesSalesByChannel()'>{{Label.getContent('HealthBeauties')}}-{{Label.getContent('Urban')}}</a>
                             </li>
                             <li class="">
-                                <a href="/#/marketReport" style="color:#D9534F;" ng-click='showRuralHealthBeautiesChannelSales()'>{{Label.getContent('HealthBeauties')}}-{{Label.getContent('Rural')}}</a>
+                                <a href="/#/marketReport" style="color:#D9534F;" ng-click='showRuralHealthBeautiesSalesByChannel()'>{{Label.getContent('HealthBeauties')}}-{{Label.getContent('Rural')}}</a>
                             </li>
                         </ul>
                     </li>

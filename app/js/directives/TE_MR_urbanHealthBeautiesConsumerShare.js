@@ -174,12 +174,12 @@ define(['directives', 'services'], function(directives){
                         scope.playerTotals[i]=new Array();
                     }
                     scope.player1s=new Array();scope.player2s=new Array();scope.player3s=new Array();scope.player5s=new Array();scope.player6s=new Array();
-                    loadTotal(data,1,1,1);
-                    loadTotal(data,2,1,1);
-                    loadTotal(data,3,1,1);
-                    loadTotal(data,4,1,1);
-                    loadTotal(data,5,1,1);
-                    loadTotal(data,6,1,1);
+                    loadTotal(data,1,2,1);
+                    loadTotal(data,2,2,1);
+                    loadTotal(data,3,2,1);
+                    loadTotal(data,4,2,1);
+                    loadTotal(data,5,2,1);
+                    loadTotal(data,6,2,1);
                     loadMarketConsumer(data,2,1);
                     scope.nameColor='#F2DEDE'//红
                     scope.valueColor='#FCF8E3';//黄

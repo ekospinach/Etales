@@ -64,6 +64,7 @@ module.exports = function(app, io){
 	app.get('/getMR-awarenessEvolution/:seminar/:period',                 require('./../api/models/MR_awarenessEvolution.js').getMR_awarenessEvolution);
 	app.get('/getMR-sharesCrossSegment/:seminar/:period',                 require('./../api/models/MR_sharesCrossSegment.js').getMR_sharesCrossSegment);
 	app.get('/getMR-salesCrossSegment/:seminar/:period',                  require('./../api/models/MR_salesCrossSegment.js').getMR_salesCrossSegment);
+	app.get('/getMR-salesByChannel/:seminar/:period',                     require('./../api/models/MR_salesByChannel.js').getMR_salesByChannel);
 	app.get('/getMR-netMarketPrices/:seminar/:period',                    require('./../api/models/MR_netMarketPrices.js').getMR_netMarketPrices);
 	app.get('/getMR-pricePromotions/:seminar/:period',                    require('./../api/models/MR_pricePromotions.js').getMR_pricePromotions);
 	app.get('/getMR-suppliersIntelligence/:seminar/:period',              require('./../api/models/MR_suppliersIntelligence.js').getMR_suppliersIntelligence);

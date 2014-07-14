@@ -137,8 +137,7 @@ define(['directives', 'services'], function(directives){
                     var url='/getMR-sharesCrossSegment/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1);
                     $http({
                         method:'GET',
-                        url:url,
-                        //tracker: scope.loadingTracker
+                        url:url
                     }).then(function(data){   
                         return organiseArray(data.data[0]);
                     }).then(function(data){
@@ -164,8 +163,6 @@ define(['directives', 'services'], function(directives){
                     loadTotal(data,5,2,2);
                     loadTotal(data,6,2,2);
                     loadMarketShopper(data,2,2);
-
-
                     scope.nameColor='#F2DEDE'//红
                     scope.valueColor='#D9EDF7';//蓝
                     deferred.resolve({msg:'Array is ready.'});                    
