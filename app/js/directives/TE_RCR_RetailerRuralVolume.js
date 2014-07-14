@@ -35,36 +35,36 @@ define(['directives', 'services'], function(directives){
                             var sales=loadVariantValue(data.data[0].rcrviv_Sales,brandName,varName,market);
                             var discontinued=loadVariantValue(data.data[0].rcrviv_Discontinued,brandName,varName,market);
                             var closing=loadVariantValue(data.data[0].rcrviv_Closing,brandName,varName,market);
+                            var netRetailPrice=loadVariantValue(data.data[0].rcrviv_NetRetailPrice,brandName,varName,market);
                             //data.parentCompany 1 2 3 ==>(supplier 1 2 3)'s product
                             //data.parentCompany 5/6 ==>retailer's Private Label
                             switch(data.data[0].rcrviv_Initial[i].parentCompany){
                                 case 1:if(category==1){
-                                    scope.product1es.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing});
+                                    scope.product1es.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing,'netRetailPrice':netRetailPrice});
                                 }else{
-                                    scope.product1hs.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing});
+                                    scope.product1hs.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing,'netRetailPrice':netRetailPrice});
                                 }break;
                                 case 2:if(category==1){
-                                    scope.product2es.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing});
+                                    scope.product2es.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing,'netRetailPrice':netRetailPrice});
                                 }else{
-                                    scope.product2hs.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing});
+                                    scope.product2hs.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing,'netRetailPrice':netRetailPrice});
                                 }break;
                                 case 3:if(category==1){
-                                    scope.product3es.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing});
+                                    scope.product3es.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing,'netRetailPrice':netRetailPrice});
                                 }else{
-                                    scope.product3hs.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing});
+                                    scope.product3hs.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing,'netRetailPrice':netRetailPrice});
                                 }break;
                                 case 4:break;
                                 //case 5 without break will automatic turn to case 6
                                 case 5:
                                 case 6:if(category==1){
-                                    scope.product4es.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing});
+                                    scope.product4es.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing,'netRetailPrice':netRetailPrice});
                                 }else{
-                                    scope.product4hs.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing});
+                                    scope.product4hs.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing,'netRetailPrice':netRetailPrice});
                                 }break;
                             }
                         }
                     }
-                    console.log(scope.product3es);
                 }
 
                 var getResult =function(){

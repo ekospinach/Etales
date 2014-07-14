@@ -68,29 +68,6 @@
             </tr>
             <tr>
                 <td>
-                    <p class="padding-20">{{Label.getContent('Rural')}}</p>
-                </td>
-                <td class="td-success">
-                    <p class="text-right">{{data.AdvertisingOffline_1e[1].toFixed(2)=='0.00'?0:data.AdvertisingOffline_1e[1].toFixed(2)}}</p>
-                </td>
-                <td class="td-success">
-                    <p class="text-right">{{data.AdvertisingOffline_2e[1].toFixed(2)=='0.00'?0:data.AdvertisingOffline_2e[1].toFixed(2)}}</p>
-                </td>
-                <td class="td-success">
-                    <p class="text-right">{{data.AdvertisingOffline_3e[1].toFixed(2)=='0.00'?0:data.AdvertisingOffline_3e[1].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.AdvertisingOffline_1h[1].toFixed(2)=='0.00'?0:data.AdvertisingOffline_1h[1].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.AdvertisingOffline_2h[1].toFixed(2)=='0.00'?0:data.AdvertisingOffline_2h[1].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.AdvertisingOffline_3h[1].toFixed(2)=='0.00'?0:data.AdvertisingOffline_3h[1].toFixed(2)}}</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
                     <p class="padding-20">{{Label.getContent('Urban')}}</p>
                 </td>
                 <td class="td-success">
@@ -112,6 +89,30 @@
                     <p class="text-right">{{data.AdvertisingOffline_3h[0].toFixed(2)=='0.00'?0:data.AdvertisingOffline_3h[0].toFixed(2)}}</p>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <p class="padding-20">{{Label.getContent('Rural')}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.AdvertisingOffline_1e[1].toFixed(2)=='0.00'?0:data.AdvertisingOffline_1e[1].toFixed(2)}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.AdvertisingOffline_2e[1].toFixed(2)=='0.00'?0:data.AdvertisingOffline_2e[1].toFixed(2)}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.AdvertisingOffline_3e[1].toFixed(2)=='0.00'?0:data.AdvertisingOffline_3e[1].toFixed(2)}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.AdvertisingOffline_1h[1].toFixed(2)=='0.00'?0:data.AdvertisingOffline_1h[1].toFixed(2)}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.AdvertisingOffline_2h[1].toFixed(2)=='0.00'?0:data.AdvertisingOffline_2h[1].toFixed(2)}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.AdvertisingOffline_3h[1].toFixed(2)=='0.00'?0:data.AdvertisingOffline_3h[1].toFixed(2)}}</p>
+                </td>
+            </tr>
+            
             <tr>
                 <td>
                     <p class="padding-10">{{Label.getContent('Online')}}</p>
@@ -163,6 +164,128 @@
                 </td>
                 <td class="td-danger">
                     <p class="text-right">{{data.TradeSupport_3h[4].value[2].toFixed(2)=='0.00'?0:data.TradeSupport_3h[4].value[2].toFixed(2)}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-20">
+                        {{Label.getContent('Urban')}}
+                    </p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.TradeSupport_1e[4].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_1e[4].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.TradeSupport_2e[4].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_2e[4].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.TradeSupport_3e[4].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_3e[4].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TradeSupport_1h[4].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_1h[4].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TradeSupport_2h[4].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_2h[4].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TradeSupport_3h[4].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_3h[4].value[0].toFixed(2)}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-30">
+                        {{Label.getContent('Retailer')}} 1
+                    </p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.TradeSupport_1e[0].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_1e[0].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.TradeSupport_2e[0].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_2e[0].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.TradeSupport_3e[0].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_3e[0].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TradeSupport_1h[0].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_1h[0].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TradeSupport_2h[0].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_2h[0].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TradeSupport_3h[0].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_3h[0].value[0].toFixed(2)}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-30">
+                        {{Label.getContent('Retailer')}} 2
+                    </p>
+                    <td class="td-success">
+                    <p class="text-right">{{data.TradeSupport_1e[1].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_1e[1].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.TradeSupport_2e[1].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_2e[1].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.TradeSupport_3e[1].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_3e[1].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TradeSupport_1h[1].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_1h[1].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TradeSupport_2h[1].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_2h[1].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TradeSupport_3h[1].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_3h[1].value[0].toFixed(2)}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-30">
+                        {{Label.getContent('Traditional Trade')}}
+                    </p>
+                    <td class="td-success">
+                    <p class="text-right">{{data.TradeSupport_1e[2].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_1e[2].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.TradeSupport_2e[2].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_2e[2].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.TradeSupport_3e[2].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_3e[2].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TradeSupport_1h[2].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_1h[2].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TradeSupport_2h[2].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_2h[2].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TradeSupport_3h[2].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_3h[2].value[0].toFixed(2)}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-30">
+                        {{Label.getContent('Online')}}
+                    </p>
+                    <td class="td-success">
+                    <p class="text-right">{{data.TradeSupport_1e[3].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_1e[3].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.TradeSupport_2e[3].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_2e[3].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.TradeSupport_3e[3].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_3e[3].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TradeSupport_1h[3].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_1h[3].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TradeSupport_2h[3].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_2h[3].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.TradeSupport_3h[3].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_3h[3].value[0].toFixed(2)}}</p>
                 </td>
             </tr>
             <tr>
@@ -292,128 +415,6 @@
             </tr>
             <tr>
                 <td>
-                    <p class="padding-20">
-                        {{Label.getContent('Urban')}}
-                    </p>
-                </td>
-                <td class="td-success">
-                    <p class="text-right">{{data.TradeSupport_1e[4].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_1e[4].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-success">
-                    <p class="text-right">{{data.TradeSupport_2e[4].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_2e[4].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-success">
-                    <p class="text-right">{{data.TradeSupport_3e[4].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_3e[4].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.TradeSupport_1h[4].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_1h[4].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.TradeSupport_2h[4].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_2h[4].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.TradeSupport_3h[4].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_3h[4].value[0].toFixed(2)}}</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p class="padding-30">
-                        {{Label.getContent('Retailer')}} 1
-                    </p>
-                </td>
-                <td class="td-success">
-                    <p class="text-right">{{data.TradeSupport_1e[0].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_1e[0].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-success">
-                    <p class="text-right">{{data.TradeSupport_2e[0].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_2e[0].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-success">
-                    <p class="text-right">{{data.TradeSupport_3e[0].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_3e[0].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.TradeSupport_1h[0].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_1h[0].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.TradeSupport_2h[0].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_2h[0].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.TradeSupport_3h[0].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_3h[0].value[0].toFixed(2)}}</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p class="padding-30">
-                        {{Label.getContent('Retailer')}} 2
-                    </p>
-                    <td class="td-success">
-                    <p class="text-right">{{data.TradeSupport_1e[1].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_1e[1].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-success">
-                    <p class="text-right">{{data.TradeSupport_2e[1].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_2e[1].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-success">
-                    <p class="text-right">{{data.TradeSupport_3e[1].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_3e[1].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.TradeSupport_1h[1].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_1h[1].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.TradeSupport_2h[1].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_2h[1].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.TradeSupport_3h[1].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_3h[1].value[0].toFixed(2)}}</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p class="padding-30">
-                        {{Label.getContent('Traditional Trade')}}
-                    </p>
-                    <td class="td-success">
-                    <p class="text-right">{{data.TradeSupport_1e[2].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_1e[2].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-success">
-                    <p class="text-right">{{data.TradeSupport_2e[2].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_2e[2].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-success">
-                    <p class="text-right">{{data.TradeSupport_3e[2].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_3e[2].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.TradeSupport_1h[2].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_1h[2].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.TradeSupport_2h[2].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_2h[2].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.TradeSupport_3h[2].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_3h[2].value[0].toFixed(2)}}</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p class="padding-30">
-                        {{Label.getContent('Online')}}
-                    </p>
-                    <td class="td-success">
-                    <p class="text-right">{{data.TradeSupport_1e[3].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_1e[3].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-success">
-                    <p class="text-right">{{data.TradeSupport_2e[3].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_2e[3].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-success">
-                    <p class="text-right">{{data.TradeSupport_3e[3].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_3e[3].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.TradeSupport_1h[3].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_1h[3].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.TradeSupport_2h[3].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_2h[3].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.TradeSupport_3h[3].value[0].toFixed(2)=='0.00'?0:data.TradeSupport_3h[3].value[0].toFixed(2)}}</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
                     <p class="padding-10">
                         {{Label.getContent('Negotiated')}}
                     </p>
@@ -435,6 +436,80 @@
                 </td>
                 <td class="td-danger">
                     <p class="text-right">{{data.Negotiated_3h[4].value[2].toFixed(2)=='0.00'?0:data.Negotiated_3h[4].value[2].toFixed(2)}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-20">
+                        {{Label.getContent('Urban')}}
+                    </p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.Negotiated_1e[4].value[0].toFixed(2)=='0.00'?0:data.Negotiated_1e[4].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.Negotiated_2e[4].value[0].toFixed(2)=='0.00'?0:data.Negotiated_2e[4].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.Negotiated_3e[4].value[0].toFixed(2)=='0.00'?0:data.Negotiated_3e[4].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.Negotiated_1h[4].value[0].toFixed(2)=='0.00'?0:data.Negotiated_1h[4].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.Negotiated_2h[4].value[0].toFixed(2)=='0.00'?0:data.Negotiated_2h[4].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.Negotiated_3h[4].value[0].toFixed(2)=='0.00'?0:data.Negotiated_3h[4].value[0].toFixed(2)}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-30">
+                        {{Label.getContent('Retailer')}} 1
+                    </p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.Negotiated_1e[0].value[0].toFixed(2)=='0.00'?0:data.Negotiated_1e[0].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.Negotiated_2e[0].value[0].toFixed(2)=='0.00'?0:data.Negotiated_2e[0].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.Negotiated_3e[0].value[0].toFixed(2)=='0.00'?0:data.Negotiated_3e[0].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.Negotiated_1h[0].value[0].toFixed(2)=='0.00'?0:data.Negotiated_1h[0].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.Negotiated_2h[0].value[0].toFixed(2)=='0.00'?0:data.Negotiated_2h[0].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.Negotiated_3h[0].value[0].toFixed(2)=='0.00'?0:data.Negotiated_3h[0].value[0].toFixed(2)}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-30">
+                        {{Label.getContent('Retailer')}} 2
+                    </p>
+                    <td class="td-success">
+                    <p class="text-right">{{data.Negotiated_1e[1].value[0].toFixed(2)=='0.00'?0:data.Negotiated_1e[1].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.Negotiated_2e[1].value[0].toFixed(2)=='0.00'?0:data.Negotiated_2e[1].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-success">
+                    <p class="text-right">{{data.Negotiated_3e[1].value[0].toFixed(2)=='0.00'?0:data.Negotiated_3e[1].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.Negotiated_1h[1].value[0].toFixed(2)=='0.00'?0:data.Negotiated_1h[1].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.Negotiated_2h[1].value[0].toFixed(2)=='0.00'?0:data.Negotiated_2h[1].value[0].toFixed(2)}}</p>
+                </td>
+                <td class="td-danger">
+                    <p class="text-right">{{data.Negotiated_3h[1].value[0].toFixed(2)=='0.00'?0:data.Negotiated_3h[1].value[0].toFixed(2)}}</p>
                 </td>
             </tr>
             <tr>
@@ -512,178 +587,6 @@
                     <p class="text-right">{{data.Negotiated_3h[1].value[1].toFixed(2)=='0.00'?0:data.Negotiated_3h[1].value[1].toFixed(2)}}</p>
                 </td>
             </tr>
-            <!-- <tr>
-                <td>
-                    <p class="padding-30">
-                        {{Label.getContent('Traditional Trade')}}
-                    </p>
-                </td>
-                <td class="td-success">
-                    <p class="text-right">{{data.Negotiated_1e[2].value[1].toFixed(2)=='0.00'?0:data.Negotiated_1e[2].value[1].toFixed(2)}}</p>
-                </td>
-                <td class="td-success">
-                    <p class="text-right">{{data.Negotiated_2e[2].value[1].toFixed(2)=='0.00'?0:data.Negotiated_2e[2].value[1].toFixed(2)}}</p>
-                </td>
-                <td class="td-success">
-                    <p class="text-right">{{data.Negotiated_3e[2].value[1].toFixed(2)=='0.00'?0:data.Negotiated_3e[2].value[1].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.Negotiated_1h[2].value[1].toFixed(2)=='0.00'?0:data.Negotiated_1h[2].value[1].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.Negotiated_2h[2].value[1].toFixed(2)=='0.00'?0:data.Negotiated_2h[2].value[1].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.Negotiated_3h[2].value[1].toFixed(2)=='0.00'?0:data.Negotiated_3h[2].value[1].toFixed(2)}}</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p class="padding-30">
-                        {{Label.getContent('Online')}}
-                    </p>
-                </td>
-                <td class="td-success">
-                    <p class="text-right">{{data.Negotiated_1e[3].value[1].toFixed(2)=='0.00'?0:data.Negotiated_1e[3].value[1].toFixed(2)}}</p>
-                </td>
-                <td class="td-success">
-                    <p class="text-right">{{data.Negotiated_2e[3].value[1].toFixed(2)=='0.00'?0:data.Negotiated_2e[3].value[1].toFixed(2)}}</p>
-                </td>
-                <td class="td-success">
-                    <p class="text-right">{{data.Negotiated_3e[3].value[1].toFixed(2)=='0.00'?0:data.Negotiated_3e[3].value[1].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.Negotiated_1h[3].value[1].toFixed(2)=='0.00'?0:data.Negotiated_1h[3].value[1].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.Negotiated_2h[3].value[1].toFixed(2)=='0.00'?0:data.Negotiated_2h[3].value[1].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.Negotiated_3h[3].value[1].toFixed(2)=='0.00'?0:data.Negotiated_3h[3].value[1].toFixed(2)}}</p>
-                </td>
-            </tr> -->
-            <tr>
-                <td>
-                    <p class="padding-20">
-                        {{Label.getContent('Urban')}}
-                    </p>
-                </td>
-                <td class="td-success">
-                    <p class="text-right">{{data.Negotiated_1e[4].value[0].toFixed(2)=='0.00'?0:data.Negotiated_1e[4].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-success">
-                    <p class="text-right">{{data.Negotiated_2e[4].value[0].toFixed(2)=='0.00'?0:data.Negotiated_2e[4].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-success">
-                    <p class="text-right">{{data.Negotiated_3e[4].value[0].toFixed(2)=='0.00'?0:data.Negotiated_3e[4].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.Negotiated_1h[4].value[0].toFixed(2)=='0.00'?0:data.Negotiated_1h[4].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.Negotiated_2h[4].value[0].toFixed(2)=='0.00'?0:data.Negotiated_2h[4].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.Negotiated_3h[4].value[0].toFixed(2)=='0.00'?0:data.Negotiated_3h[4].value[0].toFixed(2)}}</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p class="padding-30">
-                        {{Label.getContent('Retailer')}} 1
-                    </p>
-                </td>
-                <td class="td-success">
-                    <p class="text-right">{{data.Negotiated_1e[0].value[0].toFixed(2)=='0.00'?0:data.Negotiated_1e[0].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-success">
-                    <p class="text-right">{{data.Negotiated_2e[0].value[0].toFixed(2)=='0.00'?0:data.Negotiated_2e[0].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-success">
-                    <p class="text-right">{{data.Negotiated_3e[0].value[0].toFixed(2)=='0.00'?0:data.Negotiated_3e[0].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.Negotiated_1h[0].value[0].toFixed(2)=='0.00'?0:data.Negotiated_1h[0].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.Negotiated_2h[0].value[0].toFixed(2)=='0.00'?0:data.Negotiated_2h[0].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.Negotiated_3h[0].value[0].toFixed(2)=='0.00'?0:data.Negotiated_3h[0].value[0].toFixed(2)}}</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p class="padding-30">
-                        {{Label.getContent('Retailer')}} 2
-                    </p>
-                    <td class="td-success">
-                    <p class="text-right">{{data.Negotiated_1e[1].value[0].toFixed(2)=='0.00'?0:data.Negotiated_1e[1].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-success">
-                    <p class="text-right">{{data.Negotiated_2e[1].value[0].toFixed(2)=='0.00'?0:data.Negotiated_2e[1].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-success">
-                    <p class="text-right">{{data.Negotiated_3e[1].value[0].toFixed(2)=='0.00'?0:data.Negotiated_3e[1].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.Negotiated_1h[1].value[0].toFixed(2)=='0.00'?0:data.Negotiated_1h[1].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.Negotiated_2h[1].value[0].toFixed(2)=='0.00'?0:data.Negotiated_2h[1].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.Negotiated_3h[1].value[0].toFixed(2)=='0.00'?0:data.Negotiated_3h[1].value[0].toFixed(2)}}</p>
-                </td>
-            </tr>
-            <!-- <tr>
-                <td>
-                    <p class="padding-30">
-                        {{Label.getContent('Traditional Trade')}}
-                    </p>
-                    <td class="td-success">
-                    <p class="text-right">{{data.Negotiated_1e[2].value[0].toFixed(2)=='0.00'?0:data.Negotiated_1e[2].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-success">
-                    <p class="text-right">{{data.Negotiated_2e[2].value[0].toFixed(2)=='0.00'?0:data.Negotiated_2e[2].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-success">
-                    <p class="text-right">{{data.Negotiated_3e[2].value[0].toFixed(2)=='0.00'?0:data.Negotiated_3e[2].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.Negotiated_1h[2].value[0].toFixed(2)=='0.00'?0:data.Negotiated_1h[2].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.Negotiated_2h[2].value[0].toFixed(2)=='0.00'?0:data.Negotiated_2h[2].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.Negotiated_3h[2].value[0].toFixed(2)=='0.00'?0:data.Negotiated_3h[2].value[0].toFixed(2)}}</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p class="padding-30">
-                        {{Label.getContent('Online')}}
-                    </p>
-                    <td class="td-success">
-                    <p class="text-right">{{data.Negotiated_1e[4].value[0].toFixed(2)=='0.00'?0:data.Negotiated_1e[4].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-success">
-                    <p class="text-right">{{data.Negotiated_2e[4].value[0].toFixed(2)=='0.00'?0:data.Negotiated_2e[4].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-success">
-                    <p class="text-right">{{data.Negotiated_3e[4].value[0].toFixed(2)=='0.00'?0:data.Negotiated_3e[4].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.Negotiated_1h[4].value[0].toFixed(2)=='0.00'?0:data.Negotiated_1h[4].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.Negotiated_2h[4].value[0].toFixed(2)=='0.00'?0:data.Negotiated_2h[4].value[0].toFixed(2)}}</p>
-                </td>
-                <td class="td-danger">
-                    <p class="text-right">{{data.Negotiated_3h[4].value[0].toFixed(2)=='0.00'?0:data.Negotiated_3h[4].value[0].toFixed(2)}}</p>
-                </td>
-            </tr> -->
             <tr>
                 <th colspan="7">
                     <p>{{Label.getContent('Online Investments')}} ($mln)</p>

@@ -41,7 +41,9 @@ define(['directives', 'services'], function(directives){
 			    	scope.materialCosts=data.data[0].scrpl_MaterialCosts;
 			    	scope.costGoodsSolds=data.data[0].scrpl_CostOfGoodsSold;
 			    	scope.discontinuedGoodsCosts=data.data[0].scrpl_DiscontinuedGoodsCost;
-			    	scope.holdingCosts=data.data[0].scrpl_InventoryHoldingCost;
+                    scope.holdingCosts=data.data[0].scrpl_InventoryHoldingCost;
+                    scope.eMallCommissions=data.data[0].scrpl_eMallCommission;
+			    	scope.ShippingCosts=data.data[0].scrpl_ShippingCost;
 			    	scope.grossProfits=data.data[0].scrpl_GrossProfit;
 			    	scope.grossProfitChanges=data.data[0].scrpl_GrossProfitChange;
 			    	scope.grossProfitMargins=data.data[0].scrpl_GrossProfitMargin;

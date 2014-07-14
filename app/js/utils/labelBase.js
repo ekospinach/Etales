@@ -867,9 +867,15 @@ var getLabelBase = function(){
 		{id:'Market Shares by Shopper Segment HealthBeauties Rural Info',  ENG:'This table shows the volume and value market shares for all the HealthBeauties brands sold in the rural market. When moving the cursor on any brand name, the results for all its variants will pop up.',  CHN:'消费者细分市场份额介绍',  RUS:''},
 		{id:'Market Shares by Shopper Segment HealthBeauties Urban Info',  ENG:'This table shows the volume and value market shares for all the HealthBeauties brands sold in the urban market. When moving the cursor on any brand name, the results for all its variants will pop up.',  CHN:'消费者细分市场份额介绍',  RUS:''},
 
+		{id:'Sales by Channel Elecssories Rural Info',  ENG:'This table shows the volume and value sales for all the Elecssories brands sold in the rural market by channel. When moving the cursor on any brand name, the results for all its variants will pop up. ',  CHN:'Sales by Channel Elecssories Rural Info',  RUS:''},
+		{id:'Sales by Channel Elecssories Urban Info',  ENG:'This table shows the volume and value sales for all the Elecssories brands sold in the urban market by channel. When moving the cursor on any brand name, the results for all its variants will pop up. ',  CHN:'Sales by Channel Elecssories Urban Info',  RUS:''},
+		{id:'Sales by Channel HealthBeauties Rural Info',  ENG:'This table shows the volume and value sales for all the HealthBeauties brands sold in the rural market by channel. When moving the cursor on any brand name, the results for all its variants will pop up. ',  CHN:'Sales by Channel HealthBeauties Rural Info',  RUS:''},
+		{id:'Sales by Channel HealthBeauties Urban Info',  ENG:'This table shows the volume and value sales for all the HealthBeauties brands sold in the urban market by channel. When moving the cursor on any brand name, the results for all its variants will pop up. ',  CHN:'Sales by Channel HealthBeauties Urban Info',  RUS:''},
+
 		{id:"Dont Purchase Info",  ENG:"You didn't purchase this report in previous period.",  CHN:'',  RUS:''},
 		{id:'Not enough budget',  ENG:'You Dont have enough budget',  CHN:'',  RUS:''},
-		{id:'eMall Commission and Shipping Cost',  ENG:'eMall Commission and Shipping Cost',  CHN:'',  RUS:''},
+		{id:'eMall Commission',  ENG:'eMall Commission',  CHN:'',  RUS:''},
+		{id:'Shipping Cost',  ENG:'Shipping Cost',  CHN:'',  RUS:''},
 
 
 		/*supplier Product Portfolio Management start*/
@@ -914,6 +920,8 @@ var getLabelBase = function(){
 		{id:'Production Volumes Info',  ENG:'Production Volumes Info',  CHN:'产量',  RUS:''},
 		{id:'Production Volume',  ENG:'Production Volume',  CHN:'产量',  RUS:''},
 		{id:'Production Volume Info',  ENG:'is the number of million units of an SKU to be produced by a Supplier or a Private Label Retailer',  CHN:'产量',  RUS:''},
+		{id:'Channel Preference',  ENG:'Channel Preference',  CHN:'产量',  RUS:''},
+		{id:'Channel Preference Info',  ENG:'0% means full preference for off-line shipments (B&M retailers) and 100% is for full preference for on-line sales. Anything between, will make a proportional effect. ',  CHN:'产量',  RUS:''},
 		/*supplier Negotiation end*/
 		/*supplier general marketing start*/
 		{id:'Advertising Online',  ENG:'Advertising Online',  CHN:'网络广告',  RUS:''},
@@ -984,6 +992,7 @@ var getLabelBase = function(){
 		{id:'Login Success',  ENG:'Login Success',  CHN:'',  RUS:''},
 		{id:'Market Shares by Consumer Segment Info',  ENG:'Market Shares by Consumer Segment Info',  CHN:'',  RUS:''},
 		{id:'Market Shares by Shopper Segment Info',  ENG:'Market Shares by Shopper Segment Info',  CHN:'',  RUS:''},
+		{id:'Sales by Channel',  ENG:'Sales by Channel',  CHN:'Sales by Channel',  RUS:''},
 		{id:'Admin',  ENG:'Admin',  CHN:'管理员',  RUS:''},
 		{id:'pre',  ENG:'pre',  CHN:'',  RUS:''},
 		{id:'late',  ENG:'last',  CHN:'',  RUS:''},

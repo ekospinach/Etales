@@ -18,30 +18,34 @@ define(['directives', 'services'], function(directives){
                 }
 
                 var loadVolume=function(data,category){
-		    		scope.products=new Array();
-		    		var varName,brandName,initial,production,sales,discontinued,closing;
-		    		for(var i=0;i<data.data[0].scrviv_Initial.length;i++){
-		    			if(data.data[0].scrviv_Initial[i].parentCategoryID==category){
-		    				varName=data.data[0].scrviv_Initial[i].variantName;
-		    				brandName=data.data[0].scrviv_Initial[i].parentBrandName;
-		    				initial=data.data[0].scrviv_Initial[i];
+                    scope.products=new Array();
+                    var varName,brandName,initial,production,sales,discontinued,closing,unitProductionCost;
+                    for(var i=0;i<data.data[0].scrviv_Initial.length;i++){
+                        if(data.data[0].scrviv_Initial[i].parentCategoryID==category){
+                            varName=data.data[0].scrviv_Initial[i].variantName;
+                            brandName=data.data[0].scrviv_Initial[i].parentBrandName;
+                            initial=data.data[0].scrviv_Initial[i];
 
-		    				production=_.find(data.data[0].scrviv_Production,function(obj){
-		    					return (obj.variantName==varName&&obj.parentBrandName==brandName);
-		    				});
-		    				sales=_.find(data.data[0].scrviv_Sales,function(obj){
-		    					return (obj.variantName==varName&&obj.parentBrandName==brandName);
-		    				});
-		    				discontinued=_.find(data.data[0].scrviv_Discontinued,function(obj){
-		    					return (obj.variantName==varName&&obj.parentBrandName==brandName);
-		    				});
-		    				closing=_.find(data.data[0].scrviv_Closing,function(obj){
-		    					return (obj.variantName==varName&&obj.parentBrandName==brandName);
-		    				});
-		    				scope.products.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing});
-		    			}
-		    		}
-		    	}
+                            production=_.find(data.data[0].scrviv_Production,function(obj){
+                                return (obj.variantName==varName&&obj.parentBrandName==brandName);
+                            });
+                            sales=_.find(data.data[0].scrviv_Sales,function(obj){
+                                return (obj.variantName==varName&&obj.parentBrandName==brandName);
+                            });
+                            discontinued=_.find(data.data[0].scrviv_Discontinued,function(obj){
+                                return (obj.variantName==varName&&obj.parentBrandName==brandName);
+                            });
+                            closing=_.find(data.data[0].scrviv_Closing,function(obj){
+                                return (obj.variantName==varName&&obj.parentBrandName==brandName);
+                            });
+                            unitProductionCost=_.find(data.data[0].scrviv_UnitProductionCost,function(obj){
+                                return (obj.variantName==varName&&obj.parentBrandName==brandName);
+                            });
+                            scope.products.push({'fullName':brandName+varName,'initial':initial,'production':production,'sales':sales,'discontinued':discontinued,'closing':closing,'unitProductionCost':unitProductionCost});
+                        }
+                    }
+                }
+                
                 var loadMarketVolume=function(data,category,market){
                     var varName,brandName,r1Order,r1Sales,r2Order,r2Sales,r3Order,r3Sales,onlineOrder,onlineSales;
                     for(var i=0;i<data.data[0].scrviv_Orders.length;i++){

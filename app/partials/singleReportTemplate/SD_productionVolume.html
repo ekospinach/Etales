@@ -23,9 +23,12 @@
     			<th>
     				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Production Volume Info')}}" popover-title="{{Label.getContent('Production Volume')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Production Volume')}} <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
     			</th>
+                <th>
+                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Channel Preference Info')}}" popover-title="{{Label.getContent('Channel Preference')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Channel Preference')}} <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
+                </th>
     		</tr>
     		<tr class="success">
-    			<td colspan="6">
+    			<td colspan="7">
     				<p>{{Label.getContent('Brand')}}</p>
     			</td>
     		</tr>
@@ -47,13 +50,21 @@
     				<p class="text-right text-muted">{{ producte.composition[2] || 0 }}</p>
     			</td>
     			<td>
-    				<a href="#" editable-text="producte.production" onbeforesave="checkProduction('Elecssories',producte.parentBrandName,producte.varName,'production','0',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'production','0',$index)">
+    				<a href="#" editable-text="producte.production" onbeforesave="checkProduction('Elecssories',producte.parentBrandName,producte.varName,'production','0',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'production','0',$index,$data)">
     					<p class="text-right">{{ producte.production || 0 }}</p>
     				</a>
                     <p ng-show='isReady' class="text-right text-muted">
                         {{ producte.production || 0 }}
                     </p>
     			</td>
+                <td>
+                    <a href="#" editable-text="producte.channelPreference" onbeforesave="checkchannelPreference($data)" ng-show='!isReady' onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'channelPreference','0',$index,$data)">
+                        <p class="text-right">{{ producte.channelPreference || 0 }}</p>
+                    </a>
+                    <p ng-show='isReady' class="text-right text-muted">
+                        {{ producte.channelPreference || 0 }}
+                    </p>
+                </td>
     		</tr>
     		<tr>
     			<th>{{Label.getContent('HealthBeauties')}}</th>
@@ -72,9 +83,12 @@
     			<th>
     				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Production Volume Info')}}" popover-title="{{Label.getContent('Production Volume')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Production Volume')}} <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
     			</th>
+                <th>
+                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Channel Preference Info')}}" popover-title="{{Label.getContent('Channel Preference')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Channel Preference')}} <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
+                </th>
     		</tr>
             <tr class="danger">
-                <td colspan="6">
+                <td colspan="7">
                     <p>{{Label.getContent('Brand')}}</p>
                 </td>
             </tr>
@@ -95,11 +109,17 @@
     				<p class="text-right text-muted">{{ producth.composition[2] || 0 }}</p>
     			</td>
     			<td>
-    				<a href="#" editable-text="producth.production" onbeforesave="checkProduction('HealthBeauty',producth.parentBrandName,producth.varName,'production','0',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'production','0',$index)">
+    				<a href="#" editable-text="producth.production" onbeforesave="checkProduction('HealthBeauty',producth.parentBrandName,producth.varName,'production','0',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'production','0',$index,$data)">
                         <p class="text-right">{{ producth.production || 0 }}</p>
                     </a>
                     <p class="text-right text-muted" ng-show='isReady'>{{ producth.production || 0 }}</p>
     			</td>
+                <td>
+                    <a href="#" editable-text="producth.channelPreference" onbeforesave="checkchannelPreference($data)" ng-show='!isReady' onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'channelPreference','0',$index,$data)">
+                        <p class="text-right">{{ producth.channelPreference || 0 }}</p>
+                    </a>
+                    <p class="text-right text-muted" ng-show='isReady'>{{ producth.channelPreference || 0 }}</p>
+                </td>
     		</tr>
     	</tbody>
     </table>

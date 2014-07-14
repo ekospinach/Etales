@@ -16,11 +16,63 @@ define(['directives', 'services'], function(directives){
                     getResult();                    
                 }
 
+                var loadTotal=function(data,ownerID,category,market){
+                    var Values=_.find(data.owner_absoluteValue,function(obj){
+                        return (obj.ownerID==ownerID&&obj.categoryID==category&&obj.marketID==market);
+                    });
+                    if(Values!=undefined){
+                        var bmValue=(Values.segmentInfo[4].shopperInfo[0].value*100).toFixed(2);
+                        var onlineValue=(Values.segmentInfo[4].shopperInfo[1].value*100).toFixed(2);
+                        var mixedValue=(Values.segmentInfo[4].shopperInfo[2].value*100).toFixed(2);
+                    }else{
+                        var bmValue=0;
+                        var onlineValue=0;
+                        var mixedValue=0;
+                    }
+                    var ValueChanges=_.find(data.owner_valueChange,function(obj){
+                        return (obj.ownerID==ownerID&&obj.categoryID==category&&obj.marketID==market);
+                    });
+                    if(ValueChanges!=undefined){
+                        var bmValueChange=(ValueChanges.segmentInfo[4].shopperInfo[0].value*100).toFixed(2);
+                        var onlineValueChange=(ValueChanges.segmentInfo[4].shopperInfo[1].value*100).toFixed(2);
+                        var mixedValueChange=(ValueChanges.segmentInfo[4].shopperInfo[2].value*100).toFixed(2);
+                    }else{
+                        var bmValueChange=0;
+                        var onlineValueChange=0;
+                        var mixedValueChange=0;
+                    }
+                    var Volumes=_.find(data.owner_absoluteVolume,function(obj){
+                        return (obj.ownerID==ownerID&&obj.categoryID==category&&obj.marketID==market);
+                    });
+                    if(Volumes!=undefined){
+                        var bmVolume=(Volumes.segmentInfo[4].shopperInfo[0].value*100).toFixed(2);
+                        var onlineVolume=(Volumes.segmentInfo[4].shopperInfo[1].value*100).toFixed(2);
+                        var mixedVolume=(Volumes.segmentInfo[4].shopperInfo[2].value*100).toFixed(2);
+                    }else{
+                        var bmVolume=0;
+                        var onlineVolume=0;
+                        var mixedVolume=0;
+                    }
+                    var VolumeChanges=_.find(data.owner_volumeChange,function(obj){
+                        return (obj.ownerID==ownerID&&obj.categoryID==category&&obj.marketID==market);
+                    });
+                    if(VolumeChanges!=undefined){
+                        var bmVolumeChange=(VolumeChanges.segmentInfo[4].shopperInfo[0].value*100).toFixed(2);
+                        var onlineVolumeChange=(VolumeChanges.segmentInfo[4].shopperInfo[1].value*100).toFixed(2);
+                        var mixedVolumeChange=(VolumeChanges.segmentInfo[4].shopperInfo[2].value*100).toFixed(2);
+                    }else{
+                        var bmVolumeChange=0;
+                        var onlineVolumeChange=0;
+                        var mixedVolumeChange=0;
+                    }
+                    scope.playerTotals[ownerID-1].bmValue=bmValue;scope.playerTotals[ownerID-1].onlineValue=onlineValue;scope.playerTotals[ownerID-1].mixedValue=mixedValue;scope.playerTotals[ownerID-1].bmVolume=bmVolume;scope.playerTotals[ownerID-1].onlineVolume=onlineVolume;scope.playerTotals[ownerID-1].mixedVolume=mixedVolume;scope.playerTotals[ownerID-1].bmValueChange=bmValueChange;scope.playerTotals[ownerID-1].onlineValueChange=onlineValueChange;scope.playerTotals[ownerID-1].mixedValueChange=mixedValueChange;scope.playerTotals[ownerID-1].bmVolumeChange=bmVolumeChange;scope.playerTotals[ownerID-1].onlineVolumeChange=onlineVolumeChange;scope.playerTotals[ownerID-1].mixedVolumeChange=mixedVolumeChange;
+                }
+
                 var loadMarketShopper=function(data,category,market){
-                    for(var i=0;i<data.data[0].absoluteValue.length;i++){
-                        if(data.data[0].absoluteValue[i].parentCategoryID==category&&data.data[0].absoluteValue[i].marketID==market){
-                            var variantName=data.data[0].absoluteValue[i].variantName;
-                            var brandName=data.data[0].absoluteValue[i].parentBrandName;
+                    for(var i=0;i<data.absoluteValue.length;i++){
+                        if(data.absoluteValue[i].parentCategoryID==category&&data.absoluteValue[i].marketID==market){
+                            var variantName=data.absoluteValue[i].variantName;
+                            var brandName=data.absoluteValue[i].parentBrandName;
                             // bmValue=absoluteValue[].segmentInfo[4].shopperInfo[0].value
                             // onlineValue=absoluteValue[].segmentInfo[4].shopperInfo[1].value
                             // mixedValue=absoluteValue[].segmentInfo[4].shopperInfo[2].value
@@ -30,10 +82,10 @@ define(['directives', 'services'], function(directives){
                             // mixedVolume=absoluteVolume[].segmentInfo[4].shopperInfo[2].value
                             // xxxVolumeChange=Changes(find from volumeChange by variantName and parentBrandName and marketID).segmentInfo[4].shopperInfo[]
 
-                            var bmValue=(data.data[0].absoluteValue[i].segmentInfo[4].shopperInfo[0].value*100).toFixed(2);
-                            var onlineValue=(data.data[0].absoluteValue[i].segmentInfo[4].shopperInfo[1].value*100).toFixed(2);
-                            var mixedValue=(data.data[0].absoluteValue[i].segmentInfo[4].shopperInfo[2].value*100).toFixed(2);
-                            var Changes=_.find(data.data[0].valueChange,function(obj){
+                            var bmValue=(data.absoluteValue[i].segmentInfo[4].shopperInfo[0].value*100).toFixed(2);
+                            var onlineValue=(data.absoluteValue[i].segmentInfo[4].shopperInfo[1].value*100).toFixed(2);
+                            var mixedValue=(data.absoluteValue[i].segmentInfo[4].shopperInfo[2].value*100).toFixed(2);
+                            var Changes=_.find(data.valueChange,function(obj){
                                 return (obj.parentBrandName==brandName&&obj.variantName==variantName&&obj.marketID==market);
                             });
                             if(Changes!=undefined){
@@ -46,10 +98,10 @@ define(['directives', 'services'], function(directives){
                                 var mixedValueChange=0; 
                             }
 
-                            var Volumes=_.find(data.data[0].absoluteVolume,function(obj){
+                            var Volumes=_.find(data.absoluteVolume,function(obj){
                                 return (obj.parentBrandName==brandName&&obj.variantName==variantName&&obj.marketID==market);
                             });
-                            var VolumeChanges=_.find(data.data[0].volumeChange,function(obj){
+                            var VolumeChanges=_.find(data.volumeChange,function(obj){
                                 return (obj.parentBrandName==brandName&&obj.variantName==variantName&&obj.marketID==market);
                             });
                             if(Volumes!=undefined){
@@ -70,7 +122,7 @@ define(['directives', 'services'], function(directives){
                                 var onlineVolumeChange=0;
                                 var mixedVolumeChange=0;
                             }
-                            switch(data.data[0].absoluteValue[i].parentCompanyID){
+                            switch(data.absoluteValue[i].parentCompanyID){
                                 case 1:scope.player1s.push({'fullName':brandName+variantName,'bmValue':bmValue,'bmValueChange':bmValueChange,'bmVolume':bmVolume,'bmVolumeChange':bmVolumeChange,'onlineValue':onlineValue,'onlineValueChange':onlineValueChange,'onlineVolume':onlineVolume,'onlineVolumeChange':onlineVolumeChange,'mixedValue':mixedValue,'mixedValueChange':mixedValueChange,'mixedVolume':mixedVolume,'mixedVolumeChange':mixedVolumeChange});break;
                                 case 2:scope.player2s.push({'fullName':brandName+variantName,'bmValue':bmValue,'bmValueChange':bmValueChange,'bmVolume':bmVolume,'bmVolumeChange':bmVolumeChange,'onlineValue':onlineValue,'onlineValueChange':onlineValueChange,'onlineVolume':onlineVolume,'onlineVolumeChange':onlineVolumeChange,'mixedValue':mixedValue,'mixedValueChange':mixedValueChange,'mixedVolume':mixedVolume,'mixedVolumeChange':mixedVolumeChange});break;
                                 case 3:scope.player3s.push({'fullName':brandName+variantName,'bmValue':bmValue,'bmValueChange':bmValueChange,'bmVolume':bmVolume,'bmVolumeChange':bmVolumeChange,'onlineValue':onlineValue,'onlineValueChange':onlineValueChange,'onlineVolume':onlineVolume,'onlineVolumeChange':onlineVolumeChange,'mixedValue':mixedValue,'mixedValueChange':mixedValueChange,'mixedVolume':mixedVolume,'mixedVolumeChange':mixedVolumeChange});break;
@@ -85,10 +137,9 @@ define(['directives', 'services'], function(directives){
                     var url='/getMR-sharesCrossSegment/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1);
                     $http({
                         method:'GET',
-                        url:url,
-                        //tracker: scope.loadingTracker
+                        url:url
                     }).then(function(data){   
-                        return organiseArray(data);
+                        return organiseArray(data.data[0]);
                     }).then(function(data){
                         scope.isResultShown = true;
                         scope.isPageLoading = false;                                                                         
@@ -100,7 +151,17 @@ define(['directives', 'services'], function(directives){
                 var organiseArray = function(data){
                     var deferred = $q.defer();
                     scope.shopperShare=true;
+                    scope.playerTotals=new Array();
+                    for(var i=0;i<6;i++){
+                        scope.playerTotals[i]=new Array();
+                    }
                     scope.player1s=new Array();scope.player2s=new Array();scope.player3s=new Array();scope.player5s=new Array();scope.player6s=new Array();
+                    loadTotal(data,1,2,1);
+                    loadTotal(data,2,2,1);
+                    loadTotal(data,3,2,1);
+                    loadTotal(data,4,2,1);
+                    loadTotal(data,5,2,1);
+                    loadTotal(data,6,2,1);
                     loadMarketShopper(data,2,1);
                     scope.nameColor='#F2DEDE'//红
                     scope.valueColor='#FCF8E3';//黄

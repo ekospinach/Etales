@@ -45,34 +45,6 @@
                     <p class="text-center">{{Label.getContent('Change')}}</p>
                 </td>
             </tr>
-            <tr class="info">
-                <td colspan="7">
-                    <p>{{Label.getContent('Rural')}}</p>
-                </td>
-            </tr>
-            <tr class="info" ng-repeat='rural in rural1s'>
-                <td>
-                    <p class="padding-20">{{rural.fullName}}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{rural.bmVolumeShare=="0.00"?0:rural.bmVolumeShare}}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{rural.bmVolumeChange=="0.00"?0:rural.bmVolumeChange}}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{rural.onlineVolumeShare=="0.00"?0:rural.onlineVolumeShare}}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{rural.onlineVolumeChange=="0.00"?0:rural.onlineVolumeChange}}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{rural.mixedVolumeShare=="0.00"?0:rural.mixedVolumeShare}}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{rural.mixedVolumeChange=="0.00"?0:rural.mixedVolumeChange}}</p>
-                </td>
-            </tr>
             <tr class="warning">
                 <td colspan="7">
                     <p>{{Label.getContent('Urban')}}</p>
@@ -99,6 +71,34 @@
                 </td>
                 <td>
                     <p class="text-right">{{urban.mixedVolumeChange=="0.00"?0:urban.mixedVolumeChange}}</p>
+                </td>
+            </tr>
+            <tr class="info">
+                <td colspan="7">
+                    <p>{{Label.getContent('Rural')}}</p>
+                </td>
+            </tr>
+            <tr class="info" ng-repeat='rural in rural1s'>
+                <td>
+                    <p class="padding-20">{{rural.fullName}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural.bmVolumeShare=="0.00"?0:rural.bmVolumeShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural.bmVolumeChange=="0.00"?0:rural.bmVolumeChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural.onlineVolumeShare=="0.00"?0:rural.onlineVolumeShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural.onlineVolumeChange=="0.00"?0:rural.onlineVolumeChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural.mixedVolumeShare=="0.00"?0:rural.mixedVolumeShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural.mixedVolumeChange=="0.00"?0:rural.mixedVolumeChange}}</p>
                 </td>
             </tr>
             <tr>
@@ -140,34 +140,6 @@
                     <p class="text-center">{{Label.getContent('Change')}}</p>
                 </td>
             </tr>
-            <tr class="info">
-                <td colspan="7">
-                    <p>{{Label.getContent('Rural')}}</p>
-                </td>
-            </tr>
-            <tr class="info" ng-repeat='rural in rural2s'>
-                <td>
-                    <p class="padding-20">{{rural.fullName}}</p>
-                </td>
-                 <td>
-                    <p class="text-right">{{rural.bmValueShare=="0.00"?0:rural.bmValueShare}}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{rural.bmValueChange=="0.00"?0:rural.bmValueChange}}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{rural.onlineValueShare=="0.00"?0:rural.onlineValueShare}}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{rural.onlineValueChange=="0.00"?0:rural.onlineValueChange}}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{rural.mixedValueShare=="0.00"?0:rural.mixedValueShare}}</p>
-                </td>
-                <td>
-                    <p class="text-right">{{rural.mixedValueChange=="0.00"?0:rural.mixedValueChange}}</p>
-                </td>
-            </tr>
             <tr class="warning">
                 <td colspan="7">
                     <p>{{Label.getContent('Urban')}}</p>
@@ -194,6 +166,34 @@
                 </td>
                 <td>
                     <p class="text-right">{{urban.mixedValueChange=="0.00"?0:urban.mixedValueChange}}</p>
+                </td>
+            </tr>
+            <tr class="info">
+                <td colspan="7">
+                    <p>{{Label.getContent('Rural')}}</p>
+                </td>
+            </tr>
+            <tr class="info" ng-repeat='rural in rural2s'>
+                <td>
+                    <p class="padding-20">{{rural.fullName}}</p>
+                </td>
+                 <td>
+                    <p class="text-right">{{rural.bmValueShare=="0.00"?0:rural.bmValueShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural.bmValueChange=="0.00"?0:rural.bmValueChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural.onlineValueShare=="0.00"?0:rural.onlineValueShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural.onlineValueChange=="0.00"?0:rural.onlineValueChange}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural.mixedValueShare=="0.00"?0:rural.mixedValueShare}}</p>
+                </td>
+                <td>
+                    <p class="text-right">{{rural.mixedValueChange=="0.00"?0:rural.mixedValueChange}}</p>
                 </td>
             </tr>
         </tbody>

@@ -3,7 +3,7 @@
         <h3 class="panel-title text-center" popover="{{Label.getContent('Rural Profit & Loss Statement Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Financial Results')}} - {{Label.getContent('Rural Profit & Loss Statement')}} ({{Label.getContent('Elecssories')}})</h3>
     </div>
     <div> 
-        <table class="table table-condensed table-bordered table-success" id="myTest" style="float:left;width:33%;">
+        <table class="table table-condensed table-bordered table-success" style="float:left;width:33%;">
             <thead>
                 <tr>
                     <th style="height:33px">&nbsp;&nbsp;&nbsp;</th>
@@ -149,15 +149,15 @@
         </table>
     </div>
     <div style="overflow-X:scroll">
-        <table class="table table-condensed table-bordered table-success" id="myTest" style="width:66%;float:left">
+        <table class="table table-condensed table-bordered table-success" style="float:left">
             <thead>
                 <tr>
                     <th style="white-space: nowrap">
                         <p class="text-center">{{Label.getContent('TOTAL')}}</p>
                     </th>
-                    <th style="white-space: nowrap" ng-repeat='brand1 in brand1s'>
-                        <p class="text-center">{{brand1.brandName}}
-                            <a class="btn btn-success btn-xs" ng-click="openRetailerProductModal(brand1.brandName,'Rural')">{{Label.getContent('More')}}</a>
+                    <th style="white-space: nowrap" ng-repeat='brand in brand1s'>
+                        <p class="text-center">{{brand.brandName}}
+                            <a class="btn btn-success btn-xs" ng-click="openRetailerProductModal(brand.brandName,'Rural')">{{Label.getContent('More')}}</a>
                         </p>
                     </th>
                 </tr>
@@ -165,218 +165,218 @@
             <tbody>
                 <tr class="tr-info">
                     <td>
-                        <p class="text-right">{{Sales[0][1].toFixed(2)}}</p>
+                        <p class="text-right">{{Sales[0][1].toFixed(2)=="0.00"?0:Sales[0][1].toFixed(2)}}</p>
                     </td>
-                    <td ng-repeat='brand1 in brand1s'>
-                        <p class="text-right">{{brand1.Sales}}</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="td-info">
-                        <p class="text-right">{{PromotionsCost[0][1].toFixed(2)}}</p>
-                    </td>
-                    <td ng-repeat='brand1 in brand1s'>
-                        <p class="text-right">{{brand1.PromotionsCost}}</p>
+                    <td ng-repeat='brand in brand1s'>
+                        <p class="text-right">{{brand.Sales=="0.00"?0:brand.Sales}}</p>
                     </td>
                 </tr>
                 <tr>
                     <td class="td-info">
-                        <p class="text-right">{{OtherCompensation[0][1].toFixed(2)}}</p>
+                        <p class="text-right">{{PromotionsCost[0][1].toFixed(2)=="0.00"?0:PromotionsCost[0][1].toFixed(2)}}</p>
                     </td>
-                    <td ng-repeat='brand1 in brand1s'>
-                        <p class="text-right">{{brand1.OtherCompensation}}</p>
+                    <td ng-repeat='brand in brand1s'>
+                        <p class="text-right">{{brand.PromotionsCost=="0.00"?0:brand.PromotionsCost}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-info">
+                        <p class="text-right">{{OtherCompensation[0][1].toFixed(2)=="0.00"?0:OtherCompensation[0][1].toFixed(2)}}</p>
+                    </td>
+                    <td ng-repeat='brand in brand1s'>
+                        <p class="text-right">{{brand.OtherCompensation=="0.00"?0:brand.OtherCompensation}}</p>
                     </td>
                 </tr>
                 <tr class="tr-info">
                     <td>
-                        <p class="text-right">{{NetSales[0][1].toFixed(2)}}</p>
+                        <p class="text-right">{{NetSales[0][1].toFixed(2)=="0.00"?0:NetSales[0][1].toFixed(2)}}</p>
                     </td>
-                    <td ng-repeat='brand1 in brand1s'>
-                        <p class="text-right">{{brand1.NetSales}}</p>
+                    <td ng-repeat='brand in brand1s'>
+                        <p class="text-right">{{brand.NetSales=="0.00"?0:brand.NetSales}}</p>
                     </td>
                 </tr>
                 <tr>
                     <td class="td-info">
-                        <p class="text-right">{{(NetSalesChange[0][1]*100).toFixed(2)}}</p>
+                        <p class="text-right">{{(NetSalesChange[0][1]*100).toFixed(2)=="0.00"?0:(NetSalesChange[0][1]*100).toFixed(2)}}</p>
                     </td>
-                    <td ng-repeat='brand1 in brand1s'>
-                        <p class="text-right">{{brand1.NetSalesChange}}</p>
+                    <td ng-repeat='brand in brand1s'>
+                        <p class="text-right">{{brand.NetSalesChange=="0.00"?0:brand.NetSalesChange}}</p>
                     </td>
                 </tr>
                 <tr>
                     <td class="td-info">
                         <p class="text-right">100</p>
                     </td>
-                    <td ng-repeat='brand1 in brand1s'>
-                        <p class="text-right">{{brand1.NetSalesShareInCategory}}</p>
+                    <td ng-repeat='brand in brand1s'>
+                        <p class="text-right">{{brand.NetSalesShareInCategory=="0.00"?0:brand.NetSalesShareInCategory}}</p>
                     </td>
                 </tr>
                 <tr>
                     <td class="td-info">
-                        <p class="text-right">{{CostOfGoodsSold[0][1].toFixed(2)}}</p>
+                        <p class="text-right">{{CostOfGoodsSold[0][1].toFixed(2)=="0.00"?0:CostOfGoodsSold[0][1].toFixed(2)}}</p>
                     </td>
-                    <td ng-repeat='brand1 in brand1s'>
-                        <p class="text-right">{{brand1.CostOfGoodsSold}}</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="td-info">
-                        <p class="text-right">{{ValueOfQuantityDiscounts[0][1].toFixed(2)}}</p>
-                    </td>
-                    <td ng-repeat='brand1 in brand1s'>
-                        <p class="text-right">{{brand1.ValueOfQuantityDiscounts}}</p>
+                    <td ng-repeat='brand in brand1s'>
+                        <p class="text-right">{{brand.CostOfGoodsSold=="0.00"?0:brand.CostOfGoodsSold}}</p>
                     </td>
                 </tr>
                 <tr>
                     <td class="td-info">
-                        <p class="text-right">{{ValueOfPerformanceBonus[0][1].toFixed(2)}}</p>
+                        <p class="text-right">{{ValueOfQuantityDiscounts[0][1].toFixed(2)=="0.00"?0:ValueOfQuantityDiscounts[0][1].toFixed(2)}}</p>
                     </td>
-                    <td ng-repeat='brand1 in brand1s'>
-                        <p class="text-right">{{brand1.ValueOfPerformanceBonus}}</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="td-info">
-                        <p class="text-right">{{DiscontinuedGoodsCost[0][1].toFixed(2)}}</p>
-                    </td>
-                    <td ng-repeat='brand1 in brand1s'>
-                        <p class="text-right">{{brand1.DiscontinuedGoodsCost}}</p>
+                    <td ng-repeat='brand in brand1s'>
+                        <p class="text-right">{{brand.ValueOfQuantityDiscounts=="0.00"?0:brand.ValueOfQuantityDiscounts}}</p>
                     </td>
                 </tr>
                 <tr>
                     <td class="td-info">
-                        <p class="text-right">{{InventoryHoldingCost[0][1].toFixed(2)}}</p>
+                        <p class="text-right">{{ValueOfPerformanceBonus[0][1].toFixed(2)=="0.00"?0:ValueOfPerformanceBonus[0][1].toFixed(2)}}</p>
                     </td>
-                    <td ng-repeat='brand1 in brand1s'>
-                        <p class="text-right">{{brand1.InventoryHoldingCost}}</p>
+                    <td ng-repeat='brand in brand1s'>
+                        <p class="text-right">{{brand.ValueOfPerformanceBonus=="0.00"?0:brand.ValueOfPerformanceBonus}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-info">
+                        <p class="text-right">{{DiscontinuedGoodsCost[0][1].toFixed(2)=="0.00"?0:DiscontinuedGoodsCost[0][1].toFixed(2)}}</p>
+                    </td>
+                    <td ng-repeat='brand in brand1s'>
+                        <p class="text-right">{{brand.DiscontinuedGoodsCost=="0.00"?0:brand.DiscontinuedGoodsCost}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-info">
+                        <p class="text-right">{{InventoryHoldingCost[0][1].toFixed(2)=="0.00"?0:InventoryHoldingCost[0][1].toFixed(2)}}</p>
+                    </td>
+                    <td ng-repeat='brand in brand1s'>
+                        <p class="text-right">{{brand.InventoryHoldingCost=="0.00"?0:brand.InventoryHoldingCost}}</p>
                     </td>
                 </tr>
                 <tr class="tr-info">
                     <td>
-                        <p class="text-right">{{GrossProfit[0][1].toFixed(2)}}</p>
+                        <p class="text-right">{{GrossProfit[0][1].toFixed(2)=="0.00"?0:GrossProfit[0][1].toFixed(2)}}</p>
                     </td>
-                    <td ng-repeat='brand1 in brand1s'>
-                        <p class="text-right">{{brand1.GrossProfit}}</p>
+                    <td ng-repeat='brand in brand1s'>
+                        <p class="text-right">{{brand.GrossProfit=="0.00"?0:brand.GrossProfit}}</p>
                     </td>
                 </tr>
                 <tr>
                     <td class="td-info">
-                        <p class="text-right">{{(GrossProfitChange[0][1]*100).toFixed(2)}}</p>
+                        <p class="text-right">{{(GrossProfitChange[0][1]*100).toFixed(2)=="0.00"?0:(GrossProfitChange[0][1]*100).toFixed(2)}}</p>
                     </td>
-                    <td ng-repeat='brand1 in brand1s'>
-                        <p class="text-right">{{brand1.GrossProfitChange}}</p>
+                    <td ng-repeat='brand in brand1s'>
+                        <p class="text-right">{{brand.GrossProfitChange=="0.00"?0:brand.GrossProfitChange}}</p>
                     </td>
                 </tr>
                 <tr class="tr-info">
                     <td>
-                        <p class="text-right">{{(GrossProfitMargin[0][1]*100).toFixed(2)}}</p>
+                        <p class="text-right">{{(GrossProfitMargin[0][1]*100).toFixed(2)=="0.00"?0:(GrossProfitMargin[0][1]*100).toFixed(2)}}</p>
                     </td>
-                    <td ng-repeat='brand1 in brand1s'>
-                        <p class="text-right">{{brand1.GrossProfitMargin}}</p>
+                    <td ng-repeat='brand in brand1s'>
+                        <p class="text-right">{{brand.GrossProfitMargin=="0.00"?0:brand.GrossProfitMargin}}</p>
                     </td>
                 </tr>
                 <tr>
                     <td class="td-info">
                         <p class="text-right">100</p>
                     </td>
-                    <td ng-repeat='brand1 in brand1s'>
-                        <p class="text-right">{{brand1.GrossProfitShareInCategory}}</p>
+                    <td ng-repeat='brand in brand1s'>
+                        <p class="text-right">{{brand.GrossProfitShareInCategory=="0.00"?0:brand.GrossProfitShareInCategory}}</p>
                     </td>
                 </tr>
                 <tr>
                     <td class="td-info">
-                        <p class="text-right">{{GeneralExpenses[0][1].toFixed(2)}}</p>
+                        <p class="text-right">{{GeneralExpenses[0][1].toFixed(2)=="0.00"?0:GeneralExpenses[0][1].toFixed(2)}}</p>
                     </td>
-                    <td ng-repeat='brand1 in brand1s'>
-                        <p class="text-right">{{brand1.GeneralExpenses}}</p>
+                    <td ng-repeat='brand in brand1s'>
+                        <p class="text-right">{{brand.GeneralExpenses=="0.00"?0:brand.GeneralExpenses}}</p>
                     </td>
                 </tr>
                 <tr class="tr-info">
                     <td>
-                        <p class="text-right">{{OperatingProfit[0][1].toFixed(2)}}</p>
+                        <p class="text-right">{{OperatingProfit[0][1].toFixed(2)=="0.00"?0:OperatingProfit[0][1].toFixed(2)}}</p>
                     </td>
-                    <td ng-repeat='brand1 in brand1s'>
-                        <p class="text-right">{{brand1.OperatingProfit}}</p>
+                    <td ng-repeat='brand in brand1s'>
+                        <p class="text-right">{{brand.OperatingProfit=="0.00"?0:brand.OperatingProfit}}</p>
                     </td>
                 </tr>
                 <tr>
                     <td class="td-info">
-                        <p class="text-right">{{(OperatingProfitChange[0][1]*100).toFixed(2)}}</p>
+                        <p class="text-right">{{(OperatingProfitChange[0][1]*100).toFixed(2)=="0.00"?0:(OperatingProfitChange[0][1]*100).toFixed(2)}}</p>
                     </td>
-                    <td ng-repeat='brand1 in brand1s'>
-                        <p class="text-right">{{brand1.OperatingProfitChange}}</p>
+                    <td ng-repeat='brand in brand1s'>
+                        <p class="text-right">{{brand.OperatingProfitChange=="0.00"?0:brand.OperatingProfitChange}}</p>
                     </td>
                 </tr>
                 <tr class="tr-info">
                     <td>
-                        <p class="text-right">{{(OperatingProfitMargin[0][1]*100).toFixed(2)}}</p>
+                        <p class="text-right">{{(OperatingProfitMargin[0][1]*100).toFixed(2)=="0.00"?0:(OperatingProfitMargin[0][1]*100).toFixed(2)}}</p>
                     </td>
-                    <td ng-repeat='brand1 in brand1s'>
-                        <p class="text-right">{{brand1.OperatingProfitMargin}}</p>
+                    <td ng-repeat='brand in brand1s'>
+                        <p class="text-right">{{brand.OperatingProfitMargin=="0.00"?0:brand.OperatingProfitMargin}}</p>
                     </td>
                 </tr>
                 <tr>
                     <td class="td-info">
                         <p class="text-right">100</p>
                     </td>
-                    <td ng-repeat='brand1 in brand1s'>
-                        <p class="text-right">{{brand1.OperatingProfitMarginShareInCategory}}</p>
+                    <td ng-repeat='brand in brand1s'>
+                        <p class="text-right">{{brand.OperatingProfitMarginShareInCategory=="0.00"?0:brand.OperatingProfitMarginShareInCategory}}</p>
                     </td>
                 </tr>
                 <tr>
                     <td class="td-info">
-                        <p class="text-right">{{Interest[0][1].toFixed(2)}}</p>
+                        <p class="text-right">{{Interest[0][1].toFixed(2)=="0.00"?0:Interest[0][1].toFixed(2)}}</p>
                     </td>
-                    <td ng-repeat='brand1 in brand1s'>
-                        <p class="text-right">{{brand1.Interest}}</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="td-info">
-                        <p class="text-right">{{Taxes[0][1].toFixed(2)}}</p>
-                    </td>
-                    <td ng-repeat='brand1 in brand1s'>
-                        <p class="text-right">{{brand1.Taxes}}</p>
+                    <td ng-repeat='brand in brand1s'>
+                        <p class="text-right">{{brand.Interest=="0.00"?0:brand.Interest}}</p>
                     </td>
                 </tr>
                 <tr>
                     <td class="td-info">
-                        <p class="text-right">{{ExceptionalItems[0][1].toFixed(2)}}</p>
+                        <p class="text-right">{{Taxes[0][1].toFixed(2)=="0.00"?0:Taxes[0][1].toFixed(2)}}</p>
                     </td>
-                    <td ng-repeat='brand1 in brand1s'>
-                        <p class="text-right">{{brand1.ExceptionalItems}}</p>
+                    <td ng-repeat='brand in brand1s'>
+                        <p class="text-right">{{brand.Taxes=="0.00"?0:brand.Taxes}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-info">
+                        <p class="text-right">{{ExceptionalItems[0][1].toFixed(2)=="0.00"?0:ExceptionalItems[0][1].toFixed(2)}}</p>
+                    </td>
+                    <td ng-repeat='brand in brand1s'>
+                        <p class="text-right">{{brand.ExceptionalItems=="0.00"?0:brand.ExceptionalItems}}</p>
                     </td>
                 </tr>
                 <tr class="tr-info">
                     <td>
-                        <p class="text-right">{{NetProfit[0][1].toFixed(2)}}</p>
+                        <p class="text-right">{{NetProfit[0][1].toFixed(2)=="0.00"?0:NetProfit[0][1].toFixed(2)}}</p>
                     </td>
-                    <td ng-repeat='brand1 in brand1s'>
-                        <p class="text-right">{{brand1.NetProfit}}</p>
+                    <td ng-repeat='brand in brand1s'>
+                        <p class="text-right">{{brand.NetProfit=="0.00"?0:brand.NetProfit}}</p>
                     </td>
                 </tr>
                 <tr>
                     <td class="td-info">
-                        <p class="text-right">{{(NetProfitChange[0][1]*100).toFixed(2)}}</p>
+                        <p class="text-right">{{(NetProfitChange[0][1]*100).toFixed(2)=="0.00"?0:(NetProfitChange[0][1]*100).toFixed(2)}}</p>
                     </td>
-                    <td ng-repeat='brand1 in brand1s'>
-                        <p class="text-right">{{brand1.NetProfitChange}}</p>
+                    <td ng-repeat='brand in brand1s'>
+                        <p class="text-right">{{brand.NetProfitChange=="0.00"?0:brand.NetProfitChange}}</p>
                     </td>
                 </tr>
                 <tr class="tr-info">
                     <td>
-                        <p class="text-right">{{(NetProfitMargin[0][1]*100).toFixed(2)}}</p>
+                        <p class="text-right">{{(NetProfitMargin[0][1]*100).toFixed(2)=="0.00"?0:(NetProfitMargin[0][1]*100).toFixed(2)}}</p>
                     </td>
-                    <td ng-repeat='brand1 in brand1s'>
-                        <p class="text-right">{{brand1.NetProfitMargin}}</p>
+                    <td ng-repeat='brand in brand1s'>
+                        <p class="text-right">{{brand.NetProfitMargin=="0.00"?0:brand.NetProfitMargin}}</p>
                     </td>
                 </tr>
                 <tr>
                     <td class="td-info">
                         <p class="text-right">100</p>
                     </td>
-                    <td ng-repeat='brand1 in brand1s'>
-                        <p class="text-right">{{brand1.NetProfitShareInCategory}}</p>
+                    <td ng-repeat='brand in brand1s'>
+                        <p class="text-right">{{brand.NetProfitShareInCategory=="0.00"?0:brand.NetProfitShareInCategory}}</p>
                     </td>
                 </tr>
             </tbody>
@@ -389,7 +389,7 @@
         <h3 class="panel-title text-center" popover="{{Label.getContent('Rural Profit & Loss Statement Info')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Financial Results')}}- {{Label.getContent('Rural Profit & Loss Statement')}} ({{Label.getContent('HealthBeauties')}})</h3>
     </div>
     <div> 
-        <table class="table table-condensed table-bordered table-success" id="myTest" style="float:left;width:33%;">
+        <table class="table table-condensed table-bordered table-success" style="float:left;width:33%;">
             <thead>
                 <tr>
                     <th style="height:33px">&nbsp;&nbsp;&nbsp;</th>
@@ -535,7 +535,239 @@
         </table>
     </div>
     <div style="overflow-X:scroll">
-        <table class="table table-condensed table-bordered table-success" id="myTest" style="float:left;width:33%;">
+        <table class="table table-condensed table-bordered table-success" style="float:left">
+            <thead>
+                <tr>
+                    <th style="white-space: nowrap">
+                        <p class="text-center">{{Label.getContent('TOTAL')}}</p>
+                    </th>
+                    <th style="white-space: nowrap" ng-repeat='brand in brand2s'>
+                        <p class="text-center">{{brand.brandName}}
+                            <a class="btn btn-success btn-xs" ng-click="openRetailerProductModal(brand.brandName,'Rural')">{{Label.getContent('More')}}</a>
+                        </p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="tr-info">
+                    <td>
+                        <p class="text-right">{{Sales[1][1].toFixed(2)=="0.00"?0:Sales[1][1].toFixed(2)}}</p>
+                    </td>
+                    <td ng-repeat='brand in brand2s'>
+                        <p class="text-right">{{brand.Sales=="0.00"?0:brand.Sales}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-info">
+                        <p class="text-right">{{PromotionsCost[1][1].toFixed(2)=="0.00"?0:PromotionsCost[1][1].toFixed(2)}}</p>
+                    </td>
+                    <td ng-repeat='brand in brand2s'>
+                        <p class="text-right">{{brand.PromotionsCost=="0.00"?0:brand.PromotionsCost}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-info">
+                        <p class="text-right">{{OtherCompensation[1][1].toFixed(2)=="0.00"?0:OtherCompensation[1][1].toFixed(2)}}</p>
+                    </td>
+                    <td ng-repeat='brand in brand2s'>
+                        <p class="text-right">{{brand.OtherCompensation=="0.00"?0:brand.OtherCompensation}}</p>
+                    </td>
+                </tr>
+                <tr class="tr-info">
+                    <td>
+                        <p class="text-right">{{NetSales[1][1].toFixed(2)=="0.00"?0:NetSales[1][1].toFixed(2)}}</p>
+                    </td>
+                    <td ng-repeat='brand in brand2s'>
+                        <p class="text-right">{{brand.NetSales=="0.00"?0:brand.NetSales}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-info">
+                        <p class="text-right">{{(NetSalesChange[1][1]*100).toFixed(2)=="0.00"?0:(NetSalesChange[1][1]*100).toFixed(2)}}</p>
+                    </td>
+                    <td ng-repeat='brand in brand2s'>
+                        <p class="text-right">{{brand.NetSalesChange=="0.00"?0:brand.NetSalesChange}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-info">
+                        <p class="text-right">100</p>
+                    </td>
+                    <td ng-repeat='brand in brand2s'>
+                        <p class="text-right">{{brand.NetSalesShareInCategory=="0.00"?0:brand.NetSalesShareInCategory}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-info">
+                        <p class="text-right">{{CostOfGoodsSold[1][1].toFixed(2)=="0.00"?0:CostOfGoodsSold[1][1].toFixed(2)}}</p>
+                    </td>
+                    <td ng-repeat='brand in brand2s'>
+                        <p class="text-right">{{brand.CostOfGoodsSold=="0.00"?0:brand.CostOfGoodsSold}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-info">
+                        <p class="text-right">{{ValueOfQuantityDiscounts[1][1].toFixed(2)=="0.00"?0:ValueOfQuantityDiscounts[1][1].toFixed(2)}}</p>
+                    </td>
+                    <td ng-repeat='brand in brand2s'>
+                        <p class="text-right">{{brand.ValueOfQuantityDiscounts=="0.00"?0:brand.ValueOfQuantityDiscounts}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-info">
+                        <p class="text-right">{{ValueOfPerformanceBonus[1][1].toFixed(2)=="0.00"?0:ValueOfPerformanceBonus[1][1].toFixed(2)}}</p>
+                    </td>
+                    <td ng-repeat='brand in brand2s'>
+                        <p class="text-right">{{brand.ValueOfPerformanceBonus=="0.00"?0:brand.ValueOfPerformanceBonus}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-info">
+                        <p class="text-right">{{DiscontinuedGoodsCost[1][1].toFixed(2)=="0.00"?0:DiscontinuedGoodsCost[1][1].toFixed(2)}}</p>
+                    </td>
+                    <td ng-repeat='brand in brand2s'>
+                        <p class="text-right">{{brand.DiscontinuedGoodsCost=="0.00"?0:brand.DiscontinuedGoodsCost}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-info">
+                        <p class="text-right">{{InventoryHoldingCost[1][1].toFixed(2)=="0.00"?0:InventoryHoldingCost[1][1].toFixed(2)}}</p>
+                    </td>
+                    <td ng-repeat='brand in brand2s'>
+                        <p class="text-right">{{brand.InventoryHoldingCost=="0.00"?0:brand.InventoryHoldingCost}}</p>
+                    </td>
+                </tr>
+                <tr class="tr-info">
+                    <td>
+                        <p class="text-right">{{GrossProfit[1][1].toFixed(2)=="0.00"?0:GrossProfit[1][1].toFixed(2)}}</p>
+                    </td>
+                    <td ng-repeat='brand in brand2s'>
+                        <p class="text-right">{{brand.GrossProfit=="0.00"?0:brand.GrossProfit}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-info">
+                        <p class="text-right">{{(GrossProfitChange[1][1]*100).toFixed(2)=="0.00"?0:(GrossProfitChange[1][1]*100).toFixed(2)}}</p>
+                    </td>
+                    <td ng-repeat='brand in brand2s'>
+                        <p class="text-right">{{brand.GrossProfitChange=="0.00"?0:brand.GrossProfitChange}}</p>
+                    </td>
+                </tr>
+                <tr class="tr-info">
+                    <td>
+                        <p class="text-right">{{(GrossProfitMargin[1][1]*100).toFixed(2)=="0.00"?0:(GrossProfitMargin[1][1]*100).toFixed(2)}}</p>
+                    </td>
+                    <td ng-repeat='brand in brand2s'>
+                        <p class="text-right">{{brand.GrossProfitMargin=="0.00"?0:brand.GrossProfitMargin}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-info">
+                        <p class="text-right">100</p>
+                    </td>
+                    <td ng-repeat='brand in brand2s'>
+                        <p class="text-right">{{brand.GrossProfitShareInCategory=="0.00"?0:brand.GrossProfitShareInCategory}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-info">
+                        <p class="text-right">{{GeneralExpenses[1][1].toFixed(2)=="0.00"?0:GeneralExpenses[1][1].toFixed(2)}}</p>
+                    </td>
+                    <td ng-repeat='brand in brand2s'>
+                        <p class="text-right">{{brand.GeneralExpenses=="0.00"?0:brand.GeneralExpenses}}</p>
+                    </td>
+                </tr>
+                <tr class="tr-info">
+                    <td>
+                        <p class="text-right">{{OperatingProfit[1][1].toFixed(2)=="0.00"?0:OperatingProfit[1][1].toFixed(2)}}</p>
+                    </td>
+                    <td ng-repeat='brand in brand2s'>
+                        <p class="text-right">{{brand.OperatingProfit=="0.00"?0:brand.OperatingProfit}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-info">
+                        <p class="text-right">{{(OperatingProfitChange[1][1]*100).toFixed(2)=="0.00"?0:(OperatingProfitChange[1][1]*100).toFixed(2)}}</p>
+                    </td>
+                    <td ng-repeat='brand in brand2s'>
+                        <p class="text-right">{{brand.OperatingProfitChange=="0.00"?0:brand.OperatingProfitChange}}</p>
+                    </td>
+                </tr>
+                <tr class="tr-info">
+                    <td>
+                        <p class="text-right">{{(OperatingProfitMargin[1][1]*100).toFixed(2)=="0.00"?0:(OperatingProfitMargin[1][1]*100).toFixed(2)}}</p>
+                    </td>
+                    <td ng-repeat='brand in brand2s'>
+                        <p class="text-right">{{brand.OperatingProfitMargin=="0.00"?0:brand.OperatingProfitMargin}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-info">
+                        <p class="text-right">100</p>
+                    </td>
+                    <td ng-repeat='brand in brand2s'>
+                        <p class="text-right">{{brand.OperatingProfitMarginShareInCategory=="0.00"?0:brand.OperatingProfitMarginShareInCategory}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-info">
+                        <p class="text-right">{{Interest[1][1].toFixed(2)=="0.00"?0:Interest[1][1].toFixed(2)}}</p>
+                    </td>
+                    <td ng-repeat='brand in brand2s'>
+                        <p class="text-right">{{brand.Interest=="0.00"?0:brand.Interest}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-info">
+                        <p class="text-right">{{Taxes[1][1].toFixed(2)=="0.00"?0:Taxes[1][1].toFixed(2)}}</p>
+                    </td>
+                    <td ng-repeat='brand in brand2s'>
+                        <p class="text-right">{{brand.Taxes=="0.00"?0:brand.Taxes}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-info">
+                        <p class="text-right">{{ExceptionalItems[1][1].toFixed(2)=="0.00"?0:ExceptionalItems[1][1].toFixed(2)}}</p>
+                    </td>
+                    <td ng-repeat='brand in brand2s'>
+                        <p class="text-right">{{brand.ExceptionalItems=="0.00"?0:brand.ExceptionalItems}}</p>
+                    </td>
+                </tr>
+                <tr class="tr-info">
+                    <td>
+                        <p class="text-right">{{NetProfit[1][1].toFixed(2)=="0.00"?0:NetProfit[1][1].toFixed(2)}}</p>
+                    </td>
+                    <td ng-repeat='brand in brand2s'>
+                        <p class="text-right">{{brand.NetProfit=="0.00"?0:brand.NetProfit}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-info">
+                        <p class="text-right">{{(NetProfitChange[1][1]*100).toFixed(2)=="0.00"?0:(NetProfitChange[1][1]*100).toFixed(2)}}</p>
+                    </td>
+                    <td ng-repeat='brand in brand2s'>
+                        <p class="text-right">{{brand.NetProfitChange=="0.00"?0:brand.NetProfitChange}}</p>
+                    </td>
+                </tr>
+                <tr class="tr-info">
+                    <td>
+                        <p class="text-right">{{(NetProfitMargin[1][1]*100).toFixed(2)=="0.00"?0:(NetProfitMargin[1][1]*100).toFixed(2)}}</p>
+                    </td>
+                    <td ng-repeat='brand in brand2s'>
+                        <p class="text-right">{{brand.NetProfitMargin=="0.00"?0:brand.NetProfitMargin}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-info">
+                        <p class="text-right">100</p>
+                    </td>
+                    <td ng-repeat='brand in brand2s'>
+                        <p class="text-right">{{brand.NetProfitShareInCategory=="0.00"?0:brand.NetProfitShareInCategory}}</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- <table class="table table-condensed table-bordered table-success" style="float:left">
             <thead>
                 <tr>
                     <th>
@@ -766,7 +998,7 @@
                     </td>
                 </tr>
             </tbody>
-        </table>
+        </table> -->
     </div>
     <div style="clear:both"></div>
 </div>

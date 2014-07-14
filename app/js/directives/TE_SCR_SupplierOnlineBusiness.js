@@ -61,6 +61,8 @@ define(['directives', 'services'], function(directives){
                                 var CostOfGoodsSold=loadVariantValue(data.data[0].scrv_CostOfGoodsSold,brandName,variantName,num);
                                 var DiscontinuedGoodsCost=loadVariantValue(data.data[0].scrv_DiscontinuedGoodsCost,brandName,variantName,num);
                                 var InventoryHoldingCost=loadVariantValue(data.data[0].scrv_InventoryHoldingCost,brandName,variantName,num);
+                                var eMallCommission=loadVariantValue(data.data[0].scrv_eMallCommission,brandName,variantName,num);
+                                var ShippingCost=loadVariantValue(data.data[0].scrv_ShippingCost,brandName,variantName,num);
                                 var GrossProfit=loadVariantValue(data.data[0].scrv_GrossProfit,brandName,variantName,num);
                                 var GrossProfitChange=loadVariantPercentageValue(data.data[0].scrv_GrossProfitChange,brandName,variantName,num);
                                 var GrossProfitMargin=loadVariantPercentageValue(data.data[0].scrv_GrossProfitMargin,brandName,variantName,num);
@@ -84,7 +86,7 @@ define(['directives', 'services'], function(directives){
                                 var NetProfitChange=loadVariantPercentageValue(data.data[0].scrv_NetProfitChange,brandName,variantName,num);
                                 var NetProfitMargin=loadVariantValue(data.data[0].scrv_NetProfitMargin,brandName,variantName,num);
                                 var NetProfitShareInCategory=loadVariantPercentageValue(data.data[0].scrv_NetProfitShareInCategory,brandName,variantName,num);
-                                scope.variants.push({'variantName':variantName,'Sales':Sales,'SalesChange':SalesChange,'SalesShareInCategory':SalesShareInCategory,'MaterialCosts':MaterialCosts,'CostOfGoodsSold':CostOfGoodsSold,'DiscontinuedGoodsCost':DiscontinuedGoodsCost,'InventoryHoldingCost':InventoryHoldingCost,'GrossProfit':GrossProfit,
+                                scope.variants.push({'variantName':variantName,'Sales':Sales,'SalesChange':SalesChange,'SalesShareInCategory':SalesShareInCategory,'MaterialCosts':MaterialCosts,'CostOfGoodsSold':CostOfGoodsSold,'DiscontinuedGoodsCost':DiscontinuedGoodsCost,'InventoryHoldingCost':InventoryHoldingCost,'eMallCommission':eMallCommission,'ShippingCost':ShippingCost,'GrossProfit':GrossProfit,
                                 'GrossProfitChange':GrossProfitChange,'TradeAndMarketing':TradeAndMarketing,'AdvertisingOnLine':AdvertisingOnLine,'AdvertisingOffLine':AdvertisingOffLine,'TradeAndMarketingAsPercentageOfSales':TradeAndMarketingAsPercentageOfSales,'TradeAndMarketingShareInCategory':TradeAndMarketingShareInCategory,
                                 'GeneralExpenses':GeneralExpenses,'Amortisation':Amortisation,'OperatingProfit':OperatingProfit,'OperatingProfitChange':OperatingProfitChange,'OperatingProfitMargin':OperatingProfitMargin,'OperatingProfitMargin':OperatingProfitMargin,'OperatingProfitShareInCategory':OperatingProfitShareInCategory,
                                 'Interest':Interest,'Taxes':Taxes,'ExceptionalItems':ExceptionalItems,'NetProfit':NetProfit,'NetProfitChange':NetProfitChange,'NetProfitMargin':NetProfitMargin,'NetProfitShareInCategory':NetProfitShareInCategory,'GrossProfitMargin':GrossProfitMargin,'GrossProfitMarginShare':GrossProfitMarginShare,'TradeSupport':TradeSupport});
@@ -133,7 +135,9 @@ define(['directives', 'services'], function(directives){
 			    	scope.materialCosts=data.data[0].scrpl_MaterialCosts;
 			    	scope.costGoodsSolds=data.data[0].scrpl_CostOfGoodsSold;
 			    	scope.discontinuedGoodsCosts=data.data[0].scrpl_DiscontinuedGoodsCost;
-			    	scope.holdingCosts=data.data[0].scrpl_InventoryHoldingCost;
+                    scope.holdingCosts=data.data[0].scrpl_InventoryHoldingCost;
+                    scope.eMallCommissions=data.data[0].scrpl_InventoryHoldingCost;
+			    	scope.ShippingCosts=data.data[0].scrpl_InventoryHoldingCost;
 			    	scope.grossProfits=data.data[0].scrpl_GrossProfit;
 			    	scope.grossProfitChanges=data.data[0].scrpl_GrossProfitChange;
 			    	scope.grossProfitMargins=data.data[0].scrpl_GrossProfitMargin;
@@ -172,6 +176,8 @@ define(['directives', 'services'], function(directives){
                             var CostOfGoodsSold=loadValue(data.data[0].scrb_CostOfGoodsSold,brandName,num);
                             var DiscontinuedGoodsCost=loadValue(data.data[0].scrb_DiscontinuedGoodsCost,brandName,num);
                             var InventoryHoldingCost=loadValue(data.data[0].scrb_InventoryHoldingCost,brandName,num);
+                            var eMallCommission=loadValue(data.data[0].scrb_eMallCommission,brandName,num);
+                            var ShippingCost=loadValue(data.data[0].scrb_ShippingCost,brandName,num);
                             var GrossProfit=loadValue(data.data[0].scrb_GrossProfit,brandName,num);
                             var GrossProfitChange=loadPercentageValue(data.data[0].scrb_GrossProfitChange,brandName,num);
                             var GrossProfitMargin=loadPercentageValue(data.data[0].scrb_GrossProfitMargin,brandName,num);
@@ -196,12 +202,12 @@ define(['directives', 'services'], function(directives){
                             var NetProfitMargin=loadValue(data.data[0].scrb_NetProfitMargin,brandName,num);
                             var NetProfitShareInCategory=loadPercentageValue(data.data[0].scrb_NetProfitShareInCategory,brandName,num);
                             if(category==1){
-                                scope.brand1s.push({'brandName':brandName,'Sales':Sales,'SalesChange':SalesChange,'SalesShareInCategory':SalesShareInCategory,'MaterialCosts':MaterialCosts,'CostOfGoodsSold':CostOfGoodsSold,'DiscontinuedGoodsCost':DiscontinuedGoodsCost,'InventoryHoldingCost':InventoryHoldingCost,'GrossProfit':GrossProfit,
+                                scope.brand1s.push({'brandName':brandName,'Sales':Sales,'SalesChange':SalesChange,'SalesShareInCategory':SalesShareInCategory,'MaterialCosts':MaterialCosts,'CostOfGoodsSold':CostOfGoodsSold,'DiscontinuedGoodsCost':DiscontinuedGoodsCost,'InventoryHoldingCost':InventoryHoldingCost,'eMallCommission':eMallCommission,'ShippingCost':ShippingCost,'GrossProfit':GrossProfit,
                                 'GrossProfitChange':GrossProfitChange,'TradeAndMarketing':TradeAndMarketing,'AdvertisingOnLine':AdvertisingOnLine,'AdvertisingOffLine':AdvertisingOffLine,'TradeAndMarketingAsPercentageOfSales':TradeAndMarketingAsPercentageOfSales,'TradeAndMarketingShareInCategory':TradeAndMarketingShareInCategory,
                                 'GeneralExpenses':GeneralExpenses,'Amortisation':Amortisation,'OperatingProfit':OperatingProfit,'OperatingProfitChange':OperatingProfitChange,'OperatingProfitMargin':OperatingProfitMargin,'OperatingProfitMargin':OperatingProfitMargin,'OperatingProfitShareInCategory':OperatingProfitShareInCategory,
                                 'Interest':Interest,'Taxes':Taxes,'ExceptionalItems':ExceptionalItems,'NetProfit':NetProfit,'NetProfitChange':NetProfitChange,'NetProfitMargin':NetProfitMargin,'NetProfitShareInCategory':NetProfitShareInCategory,'GrossProfitMargin':GrossProfitMargin,'GrossProfitMarginShare':GrossProfitMarginShare,'TradeSupport':TradeSupport});
                             }else{
-                                scope.brand2s.push({'brandName':brandName,'Sales':Sales,'SalesChange':SalesChange,'SalesShareInCategory':SalesShareInCategory,'MaterialCosts':MaterialCosts,'CostOfGoodsSold':CostOfGoodsSold,'DiscontinuedGoodsCost':DiscontinuedGoodsCost,'InventoryHoldingCost':InventoryHoldingCost,'GrossProfit':GrossProfit,
+                                scope.brand2s.push({'brandName':brandName,'Sales':Sales,'SalesChange':SalesChange,'SalesShareInCategory':SalesShareInCategory,'MaterialCosts':MaterialCosts,'CostOfGoodsSold':CostOfGoodsSold,'DiscontinuedGoodsCost':DiscontinuedGoodsCost,'InventoryHoldingCost':InventoryHoldingCost,'eMallCommission':eMallCommission,'ShippingCost':ShippingCost,'GrossProfit':GrossProfit,
                                 'GrossProfitChange':GrossProfitChange,'TradeAndMarketing':TradeAndMarketing,'AdvertisingOnLine':AdvertisingOnLine,'AdvertisingOffLine':AdvertisingOffLine,'TradeAndMarketingAsPercentageOfSales':TradeAndMarketingAsPercentageOfSales,'TradeAndMarketingShareInCategory':TradeAndMarketingShareInCategory,
                                 'GeneralExpenses':GeneralExpenses,'Amortisation':Amortisation,'OperatingProfit':OperatingProfit,'OperatingProfitChange':OperatingProfitChange,'OperatingProfitMargin':OperatingProfitMargin,'OperatingProfitMargin':OperatingProfitMargin,'OperatingProfitShareInCategory':OperatingProfitShareInCategory,
                                 'Interest':Interest,'Taxes':Taxes,'ExceptionalItems':ExceptionalItems,'NetProfit':NetProfit,'NetProfitChange':NetProfitChange,'NetProfitMargin':NetProfitMargin,'NetProfitShareInCategory':NetProfitShareInCategory,'GrossProfitMargin':GrossProfitMargin,'GrossProfitMarginShare':GrossProfitMarginShare,'TradeSupport':TradeSupport});
