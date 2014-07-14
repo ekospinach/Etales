@@ -26,7 +26,12 @@ var proVarDecisionSchema = mongoose.Schema({
     pricePromotions : {
         promo_Frequency : Number, //range: 0~52
         promo_Rate : Number //0~1        
-    }
+    },
+    //update by Hao, 2014-July-14
+    // 0.0 means full preference for off-line shipments (B&M retailers) and 1.0 is for full preference for on-line sales
+    // Anything between, will make a proportional effect. 
+    channelPreference : Number //0~1
+
 })
 
 var proBrandDecisionSchema = mongoose.Schema({

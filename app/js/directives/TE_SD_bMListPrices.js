@@ -248,6 +248,8 @@ define(['directives', 'services'], function(directives) {
                     scope.submitDecision = function() {
                         var postData;
 
+                        //lock button 
+                        scope.isReady = true;
                         //step 0: Delete all the related contract schema and contractDetails schema 
                         var contractCode = 'P' + PlayerInfo.getPlayer() + 'andR1_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + PeriodInfo.getCurrentPeriod();
                         $http({
