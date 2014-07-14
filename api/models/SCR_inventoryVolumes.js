@@ -83,6 +83,8 @@ exports.addReports = function(options){
                                 scrviv_Closing          : singleReport.scrviv_Closing,     
                                 scrviv_Orders           : singleReport.scrviv_Orders,
                                 scrviv_Shipments           : singleReport.scrviv_Shipments,                                  
+
+                                scrviv_UnitProductionCost   : singleReport.scrviv_UnitProductionCost,
                                 },
                                 {upsert: true},
                                 function(err, numberAffected, raw){

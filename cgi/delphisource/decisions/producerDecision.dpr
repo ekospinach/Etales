@@ -347,6 +347,9 @@ var
       //      jo.D['nextPriceEmall']  := pVar.dpv_NextPriceEmall;
       jo.D['onlinePrice'] := pVar.dpv_OnLinePrice;
       jo.D['onlinePlannedVolume'] := pVar.dpv_OnlinePlannedVolume;
+
+      //modified by Hao, 2014-July-14    
+      jo.D['channelPreference'] := pVar.dpv_ChannelPreference;            
       jt := SO;
       jt.I['promo_Frequency'] := pVar.dpv_PricePromotions.promo_Frequency;
       jt.D['promo_Rate']  := pVar.dpv_PricePromotions.promo_Rate;
@@ -456,6 +459,8 @@ var
       // pVar.dpv_CurrentPriceEmall := jo.D['currentPriceEmall'];
       pVar.dpv_OnLinePrice := jo.D['onlinePrice'];
       pVar.dpv_OnlinePlannedVolume := jo.D['onlinePlannedVolume'];
+      pVar.dpv_ChannelPreference := jo.D['channelPreference'];
+
       pVar.dpv_PricePromotions.promo_Frequency := jo.I['pricePromotions.promo_Frequency'];
       pVar.dpv_PricePromotions.promo_Rate  := jo.D['pricePromotions.promo_Rate'];      
 

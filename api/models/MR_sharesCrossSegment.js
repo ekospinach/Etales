@@ -103,12 +103,17 @@ exports.addReports = function(options){
          // console.log(util.inspect(singleReport, {depth:null}));
 
          MR_sharesCrossSegment.update({seminar: singleReport.seminar, 
-                              period: singleReport.period},
+                              period: singleReport.period},1
                               {
                                 absoluteValue     : singleReport.absoluteValue, 
                                 valueChange       : singleReport.valueChange,   
                                 absoluteVolume    : singleReport.absoluteVolume,
                                 volumeChange      : singleReport.volumeChange,  
+
+                                owner_absoluteValue     : singleReport.owner_absoluteValue,
+                                owner_valueChange       : singleReport.owner_valueChange,
+                                owner_absoluteVolume    : singleReport.owner_absoluteVolume,
+                                owner_volumeChange      : singleReport.owner_volumeChange,                                  
                               },
                                 {upsert: true},
                                 function(err, numberAffected, raw){
