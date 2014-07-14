@@ -121,6 +121,24 @@ exports.addInfos = function(options){
     return deferred.promise;
 }
 
+exports.getReportPrice=function(req,res,next){
+  return oneQuarterExogenousData.findOne({
+        seminar:req.params.seminar,
+        period:req.params.period,
+        categoryID:1,
+        marketID:1
+    },function(err,doc){
+        if(err){
+            next(new Error(err));
+        }
+        if(doc){
+            res.send(200,doc.MarketStudiesPrices);
+        }else{
+            res.send(400,'fail');
+        }
+    })
+}
+
 exports.getOneQuarterExogenousData=function(req,res,next){
     return oneQuarterExogenousData.findOne({
         seminar:req.params.seminar,
