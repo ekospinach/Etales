@@ -920,6 +920,8 @@ var getLabelBase = function(){
 		{id:'Production Volumes Info',  ENG:'Production Volumes Info',  CHN:'产量',  RUS:''},
 		{id:'Production Volume',  ENG:'Production Volume',  CHN:'产量',  RUS:''},
 		{id:'Production Volume Info',  ENG:'is the number of million units of an SKU to be produced by a Supplier or a Private Label Retailer',  CHN:'产量',  RUS:''},
+		{id:'Channel Preference',  ENG:'Channel Preference',  CHN:'产量',  RUS:''},
+		{id:'Channel Preference Info',  ENG:'0% means full preference for off-line shipments (B&M retailers) and 100% is for full preference for on-line sales. Anything between, will make a proportional effect. ',  CHN:'产量',  RUS:''},
 		/*supplier Negotiation end*/
 		/*supplier general marketing start*/
 		{id:'Advertising Online',  ENG:'Advertising Online',  CHN:'网络广告',  RUS:''},

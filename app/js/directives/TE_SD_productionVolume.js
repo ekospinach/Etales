@@ -64,6 +64,22 @@ define(['directives', 'services'], function(directives){
                     return d.promise;
                 }
 
+                scope.checkchannelPreference=function(value){
+                    var d = $q.defer(); 
+                    var categoryID,max,result;
+                    var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
+                    if(!filter.test(value)){
+                        d.resolve(Label.getContent('Input a number'));
+                    }
+                    if(value>100||value<0){
+                        d.resolve(Label.getContent('Input range'+':0~100'));
+                    }else{
+                        d.resolve();
+                    }
+                    
+                    return d.promise;
+                }
+
                 var loadSelectCategory=function(category){
                     var count=0;
                     var products=new Array();
@@ -92,6 +108,7 @@ define(['directives', 'services'], function(directives){
                                             products[count].packFormat=3;
                                         }
                                         products[count].currentPriceBM=parseFloat(products[count].currentPriceBM).toFixed(2);
+                                        products[count].channelPreference=parseFloat(products[count].channelPreference*100).toFixed(2);
                                         count++;
                                     }
                                 }
@@ -155,27 +172,23 @@ define(['directives', 'services'], function(directives){
                     });
                 }
 
-                scope.updateProducerDecision=function(category,brandName,varName,location,additionalIdx,index){
+                scope.updateProducerDecision=function(category,brandName,varName,location,additionalIdx,index,value){
                     var categoryID;
-                    if(location=="composition"){
-                        if(category=="Elecssories"){
-                            categoryID=1;
-                            ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,additionalIdx,scope.productes[index][location][additionalIdx]);                         
-                        }
-                        else{
-                            categoryID=2;
-                            ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,additionalIdx,scope.producths[index][location][additionalIdx]);                         
+                    if(category=="Elecssories"){
+                        categoryID=1;
+                        if(location=="channelPreference"){
+                            ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,additionalIdx,value/100);                                                    
+                        }else{
+                            ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,additionalIdx,value);                                                    
                         }
                     }
                     else{
-                        if(category=="Elecssories"){
-                            categoryID=1;
-                            ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,additionalIdx,scope.productes[index][location]);                                                    
-                        }
-                        else{
-                            categoryID=2;
-                            ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,additionalIdx,scope.producths[index][location]);                                                    
-                        }
+                        categoryID=2;
+                        if(location=="channelPreference"){
+                            ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,additionalIdx,value/100);                                                    
+                        }else{
+                            ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,additionalIdx,value);                                                    
+                        }                                                 
                     }
                 }
 

@@ -40,7 +40,7 @@ exports.initialiseSeminar = function(io){
 			require('./models/seminar.js').initializeSeminar(options).then(function(result){
 		        io.sockets.emit('AdminProcessLog', { msg: result.msg, isError: false });      
 		        options.producerID = '1';
-
+		
 			//Import General reports		
 		        options.cgiPath = conf.cgi.path_producerDecision;
 				options.cgiPath = conf.cgi.path_GR_performanceHighlights;
