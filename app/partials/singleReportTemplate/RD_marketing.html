@@ -74,18 +74,6 @@
                     <p class="padding-20">{{Label.getContent('Local')}}</p>
                 </th>
             </tr>
-            <tr class="info">
-                <td>
-                    <p class="padding-40 text-primary" Popover-animation="true" popover="{{Label.getContent('Advertising Local Rural Info')}}" popover-title="{{Label.getContent('Advertising Local Rural')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Rural')}} <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
-                </td>
-                <td>
-                    <a href="#" editable-text="markets[1].localAdvertising[0]" ng-show='!isReady' onbeforesave="checkBudget(2,'localAdvertising','0',$data)" onaftersave="updateMarketingDecision(markets[1].marketID,'localAdvertising','postion','0',1)">
-                        <p class="text-right">{{ markets[1].localAdvertising[0] || 0 }}
-                        </p>
-                    </a>
-                    <p ng-show='isReady' class="text-right text-muted">{{ markets[1].localAdvertising[0] || 0 }}</p>
-                </td>
-            </tr>
             <tr class="warning">
                 <td>
                     <p class="padding-40 text-primary" Popover-animation="true" popover="{{Label.getContent('Advertising Local Urban Info')}}" popover-title="{{Label.getContent('Advertising Local Urban')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Urban')}} <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
@@ -98,23 +86,22 @@
                     <p ng-show='isReady' class="text-right text-muted">{{ markets[0].localAdvertising[0] || 0 }}</p>
                 </td>
             </tr>
-
+            <tr class="info">
+                <td>
+                    <p class="padding-40 text-primary" Popover-animation="true" popover="{{Label.getContent('Advertising Local Rural Info')}}" popover-title="{{Label.getContent('Advertising Local Rural')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Rural')}} <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
+                </td>
+                <td>
+                    <a href="#" editable-text="markets[1].localAdvertising[0]" ng-show='!isReady' onbeforesave="checkBudget(2,'localAdvertising','0',$data)" onaftersave="updateMarketingDecision(markets[1].marketID,'localAdvertising','postion','0',1)">
+                        <p class="text-right">{{ markets[1].localAdvertising[0] || 0 }}
+                        </p>
+                    </a>
+                    <p ng-show='isReady' class="text-right text-muted">{{ markets[1].localAdvertising[0] || 0 }}</p>
+                </td>
+            </tr>
             <tr>
                 <th colspan="2">
                     <p class="padding-20 text-primary" Popover-animation="true" popover="{{Label.getContent('In-Store Service Level Info')}}" popover-title="{{Label.getContent('In-Store Service Level')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('In-Store Service Level')}} <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
                 </th>
-            </tr>
-            <tr class="info">
-                <td>
-                    <p class="padding-40">{{Label.getContent('Rural')}}</p>
-                </td>
-                <td>
-                    <a href="#" editable-select="markets[1].serviceLevel" e-ng-options="p.value as p.text for p in packs" ng-show='!isReady' onaftersave="updateMarketingDecision(markets[1].marketID,'serviceLevel','postion','addtionalIdx',1)">
-                        <p class="text-right">{{ selectPacks(markets[1].marketID) }}
-                        </p>
-                    </a>
-                    <p ng-show='isReady' class="text-right text-muted">{{ selectPacks(markets[1].marketID) }}</p>
-                </td>
             </tr>
             <tr class="warning">
                 <td>
@@ -126,6 +113,18 @@
                         </p>
                     </a>
                     <p ng-show='isReady' class="text-right text-muted">{{ selectPacks(markets[0].marketID) }}</p>
+                </td>
+            </tr>
+            <tr class="info">
+                <td>
+                    <p class="padding-40">{{Label.getContent('Rural')}}</p>
+                </td>
+                <td>
+                    <a href="#" editable-select="markets[1].serviceLevel" e-ng-options="p.value as p.text for p in packs" ng-show='!isReady' onaftersave="updateMarketingDecision(markets[1].marketID,'serviceLevel','postion','addtionalIdx',1)">
+                        <p class="text-right">{{ selectPacks(markets[1].marketID) }}
+                        </p>
+                    </a>
+                    <p ng-show='isReady' class="text-right text-muted">{{ selectPacks(markets[1].marketID) }}</p>
                 </td>
             </tr>
         </tbody>

@@ -51,28 +51,10 @@ var supplierKPIsCtrl=function($scope,$http){
             for(var j=0;j<currentCategories.length;j++){
                 for(var i=0;i<data.data.f_TradeSpendingEffectiveness.length;i++){
                     if(data.data.f_TradeSpendingEffectiveness[i].period==currentCategories[j]){
-                        switch(data.data.f_TradeSpendingEffectiveness[i].supplierID){
-                            case 1:
-                            if(data.data.f_TradeSpendingEffectiveness[i].categoryID==1){
-                                tradeSpendingElecssories[0].data.push(data.data.f_TradeSpendingEffectiveness[i].value);
-                            }else if(data.data.f_TradeSpendingEffectiveness[i].categoryID==2){
-                                tradeSpendingHealthBeauties[0].data.push(data.data.f_TradeSpendingEffectiveness[i].value);
-                            }
-                            break;
-                            case 2:
-                            if(data.data.f_TradeSpendingEffectiveness[i].categoryID==1){
-                                tradeSpendingElecssories[1].data.push(data.data.f_TradeSpendingEffectiveness[i].value);
-                            }else if(data.data.f_TradeSpendingEffectiveness[i].categoryID==2){
-                                tradeSpendingHealthBeauties[1].data.push(data.data.f_TradeSpendingEffectiveness[i].value);
-                            }
-                            break;
-                            case 3:
-                            if(data.data.f_TradeSpendingEffectiveness[i].categoryID==1){
-                                tradeSpendingElecssories[2].data.push(data.data.f_TradeSpendingEffectiveness[i].value);
-                            }else if(data.data.f_TradeSpendingEffectiveness[i].categoryID==2){
-                                tradeSpendingHealthBeauties[2].data.push(data.data.f_TradeSpendingEffectiveness[i].value);
-                            }
-                            break;
+                        if(data.data.f_TradeSpendingEffectiveness[i].categoryID==1){
+                            tradeSpendingElecssories[data.data.f_TradeSpendingEffectiveness[i].supplierID-1].data.push(data.data.f_TradeSpendingEffectiveness[i].value);
+                        }else if(data.data.f_TradeSpendingEffectiveness[i].categoryID==2){
+                            tradeSpendingHealthBeauties[data.data.f_TradeSpendingEffectiveness[i].supplierID-1].data.push(data.data.f_TradeSpendingEffectiveness[i].value);
                         }
                     }
                 }
@@ -81,28 +63,10 @@ var supplierKPIsCtrl=function($scope,$http){
             for(var j=0;j<currentCategories.length;j++){
                 for(var i=0;i<data.data.f_MarketingSpendingEffectiveness.length;i++){
                     if(data.data.f_MarketingSpendingEffectiveness[i].period==currentCategories[j]){
-                        switch(data.data.f_MarketingSpendingEffectiveness[i].supplierID){
-                            case 1:
-                            if(data.data.f_MarketingSpendingEffectiveness[i].categoryID==1){
-                                marketingSpendingElecssories[0].data.push(data.data.f_MarketingSpendingEffectiveness[i].value);
-                            }else if(data.data.f_MarketingSpendingEffectiveness[i].categoryID==2){
-                                marketingSpendingHealthBeauties[0].data.push(data.data.f_MarketingSpendingEffectiveness[i].value);
-                            }
-                            break;
-                            case 2:
-                            if(data.data.f_MarketingSpendingEffectiveness[i].categoryID==1){
-                                marketingSpendingElecssories[1].data.push(data.data.f_MarketingSpendingEffectiveness[i].value);
-                            }else if(data.data.f_MarketingSpendingEffectiveness[i].categoryID==2){
-                                marketingSpendingHealthBeauties[1].data.push(data.data.f_MarketingSpendingEffectiveness[i].value);
-                            }
-                            break;
-                            case 3:
-                            if(data.data.f_MarketingSpendingEffectiveness[i].categoryID==1){
-                                marketingSpendingElecssories[2].data.push(data.data.f_MarketingSpendingEffectiveness[i].value);
-                            }else if(data.data.f_MarketingSpendingEffectiveness[i].categoryID==2){
-                                marketingSpendingHealthBeauties[2].data.push(data.data.f_MarketingSpendingEffectiveness[i].value);
-                            }
-                            break;
+                        if(data.data.f_MarketingSpendingEffectiveness[i].categoryID==1){
+                            marketingSpendingElecssories[data.data.f_MarketingSpendingEffectiveness[i].supplierID-1].data.push(data.data.f_MarketingSpendingEffectiveness[i].value);
+                        }else if(data.data.f_MarketingSpendingEffectiveness[i].categoryID==2){
+                            marketingSpendingHealthBeauties[data.data.f_MarketingSpendingEffectiveness[i].supplierID-1].data.push(data.data.f_MarketingSpendingEffectiveness[i].value);
                         }
                     }
                 }
@@ -111,28 +75,10 @@ var supplierKPIsCtrl=function($scope,$http){
             for(var j=0;j<currentCategories.length;j++){
                 for(var i=0;i<data.data.f_PortfolioStrength.length;i++){
                     if(data.data.f_PortfolioStrength[i].period==currentCategories[j]){
-                        switch(data.data.f_PortfolioStrength[i].supplierID){
-                            case 1:
-                            if(data.data.f_PortfolioStrength[i].categoryID==1){
-                                portfolioStrengthElecssories[0].data.push(data.data.f_PortfolioStrength[i].value);
-                            }else if(data.data.f_PortfolioStrength[i].categoryID==2){
-                                portfolioStrengthHealthBeauties[0].data.push(data.data.f_PortfolioStrength[i].value);
-                            }
-                            break;
-                            case 2:
-                            if(data.data.f_PortfolioStrength[i].categoryID==1){
-                                portfolioStrengthElecssories[1].data.push(data.data.f_PortfolioStrength[i].value);
-                            }else if(data.data.f_PortfolioStrength[i].categoryID==2){
-                                portfolioStrengthHealthBeauties[1].data.push(data.data.f_PortfolioStrength[i].value);
-                            }
-                            break;
-                            case 3:
-                            if(data.data.f_PortfolioStrength[i].categoryID==1){
-                                portfolioStrengthElecssories[2].data.push(data.data.f_PortfolioStrength[i].value);
-                            }else if(data.data.f_PortfolioStrength[i].categoryID==2){
-                                portfolioStrengthHealthBeauties[2].data.push(data.data.f_PortfolioStrength[i].value);
-                            }
-                            break;
+                        if(data.data.f_PortfolioStrength[i].categoryID==1){
+                            portfolioStrengthElecssories[data.data.f_PortfolioStrength[i].ownerID-1].data.push(data.data.f_PortfolioStrength[i].value);
+                        }else if(data.data.f_PortfolioStrength[i].categoryID==2){
+                            portfolioStrengthHealthBeauties[data.data.f_PortfolioStrength[i].ownerID-1].data.push(data.data.f_PortfolioStrength[i].value);
                         }
                     }
                 }
@@ -142,28 +88,10 @@ var supplierKPIsCtrl=function($scope,$http){
             for(var j=0;j<testCategories.length;j++){
                 for(var i=0;i<data.data.f_SuppliersBMValueSalesShare.length;i++){
                     if(data.data.f_SuppliersBMValueSalesShare[i].period==testCategories[j]){
-                        switch(data.data.f_SuppliersBMValueSalesShare[i].supplierID){
-                            case 1:
-                            if(data.data.f_SuppliersBMValueSalesShare[i].categoryID==1){
-                                bmChannelStrengthElecssories[0].data.push(data.data.f_SuppliersBMValueSalesShare[i].value);
-                            }else if(data.data.f_SuppliersBMValueSalesShare[i].categoryID==2){
-                                bmChannelStrengthHealthBeauties[0].data.push(data.data.f_SuppliersBMValueSalesShare[i].value);
-                            }
-                            break;
-                            case 2:
-                            if(data.data.f_SuppliersBMValueSalesShare[i].categoryID==1){
-                                bmChannelStrengthElecssories[1].data.push(data.data.f_SuppliersBMValueSalesShare[i].value);
-                            }else if(data.data.f_SuppliersBMValueSalesShare[i].categoryID==2){
-                                bmChannelStrengthHealthBeauties[1].data.push(data.data.f_SuppliersBMValueSalesShare[i].value);
-                            }
-                            break;
-                            case 3:
-                            if(data.data.f_SuppliersBMValueSalesShare[i].categoryID==1){
-                                bmChannelStrengthElecssories[2].data.push(data.data.f_SuppliersBMValueSalesShare[i].value);
-                            }else if(data.data.f_SuppliersBMValueSalesShare[i].categoryID==2){
-                                bmChannelStrengthHealthBeauties[2].data.push(data.data.f_SuppliersBMValueSalesShare[i].value);
-                            }
-                            break;
+                        if(data.data.f_SuppliersBMValueSalesShare[i].categoryID==1){
+                            bmChannelStrengthElecssories[data.data.f_SuppliersBMValueSalesShare[i].supplierID-1].data.push(data.data.f_SuppliersBMValueSalesShare[i].value);
+                        }else if(data.data.f_SuppliersBMValueSalesShare[i].categoryID==2){
+                            bmChannelStrengthHealthBeauties[data.data.f_SuppliersBMValueSalesShare[i].supplierID-1].data.push(data.data.f_SuppliersBMValueSalesShare[i].value);
                         }
                     }
                 }
@@ -175,28 +103,10 @@ var supplierKPIsCtrl=function($scope,$http){
             for(var j=0;j<testCategories.length;j++){
                 for(var i=0;i<data.data.f_SuppliersBMVolumeSalesShare.length;i++){
                     if(data.data.f_SuppliersBMVolumeSalesShare[i].period==testCategories[j]){
-                        switch(data.data.f_SuppliersBMVolumeSalesShare[i].supplierID){
-                            case 1:
-                            if(data.data.f_SuppliersBMVolumeSalesShare[i].categoryID==1){
-                                bmChannelStrengthElecssories[0].data.push(data.data.f_SuppliersBMVolumeSalesShare[i].value);
-                            }else if(data.data.f_SuppliersBMVolumeSalesShare[i].categoryID==2){
-                                bmChannelStrengthHealthBeauties[0].data.push(data.data.f_SuppliersBMVolumeSalesShare[i].value);
-                            }
-                            break;
-                            case 2:
-                            if(data.data.f_SuppliersBMVolumeSalesShare[i].categoryID==1){
-                                bmChannelStrengthElecssories[1].data.push(data.data.f_SuppliersBMVolumeSalesShare[i].value);
-                            }else if(data.data.f_SuppliersBMVolumeSalesShare[i].categoryID==2){
-                                bmChannelStrengthHealthBeauties[1].data.push(data.data.f_SuppliersBMVolumeSalesShare[i].value);
-                            }
-                            break;
-                            case 3:
-                            if(data.data.f_SuppliersBMVolumeSalesShare[i].categoryID==1){
-                                bmChannelStrengthElecssories[2].data.push(data.data.f_SuppliersBMVolumeSalesShare[i].value);
-                            }else if(data.data.f_SuppliersBMVolumeSalesShare[i].categoryID==2){
-                                bmChannelStrengthHealthBeauties[2].data.push(data.data.f_SuppliersBMVolumeSalesShare[i].value);
-                            }
-                            break;
+                        if(data.data.f_SuppliersBMVolumeSalesShare[i].categoryID==1){
+                            bmChannelStrengthElecssories[data.data.f_SuppliersBMVolumeSalesShare[i].supplierID-1].data.push(data.data.f_SuppliersBMVolumeSalesShare[i].value);
+                        }else if(data.data.f_SuppliersBMVolumeSalesShare[i].categoryID==2){
+                            bmChannelStrengthHealthBeauties[data.data.f_SuppliersBMVolumeSalesShare[i].supplierID-1].data.push(data.data.f_SuppliersBMVolumeSalesShare[i].value);
                         }
                     }
                 }
@@ -208,28 +118,10 @@ var supplierKPIsCtrl=function($scope,$http){
             for(var j=0;j<testCategories.length;j++){
                 for(var i=0;i<data.data.f_SuppliersBMShareOfShoppers.length;i++){
                     if(data.data.f_SuppliersBMShareOfShoppers[i].period==testCategories[j]){
-                        switch(data.data.f_SuppliersBMShareOfShoppers[i].supplierID){
-                            case 1:
-                            if(data.data.f_SuppliersBMShareOfShoppers[i].categoryID==1){
-                                bmChannelStrengthElecssories[0].data.push(data.data.f_SuppliersBMShareOfShoppers[i].value);
-                            }else if(data.data.f_SuppliersBMShareOfShoppers[i].categoryID==2){
-                                bmChannelStrengthHealthBeauties[0].data.push(data.data.f_SuppliersBMShareOfShoppers[i].value);
-                            }
-                            break;
-                            case 2:
-                            if(data.data.f_SuppliersBMShareOfShoppers[i].categoryID==1){
-                                bmChannelStrengthElecssories[1].data.push(data.data.f_SuppliersBMShareOfShoppers[i].value);
-                            }else if(data.data.f_SuppliersBMShareOfShoppers[i].categoryID==2){
-                                bmChannelStrengthHealthBeauties[1].data.push(data.data.f_SuppliersBMShareOfShoppers[i].value);
-                            }
-                            break;
-                            case 3:
-                            if(data.data.f_SuppliersBMShareOfShoppers[i].categoryID==1){
-                                bmChannelStrengthElecssories[2].data.push(data.data.f_SuppliersBMShareOfShoppers[i].value);
-                            }else if(data.data.f_SuppliersBMShareOfShoppers[i].categoryID==2){
-                                bmChannelStrengthHealthBeauties[2].data.push(data.data.f_SuppliersBMShareOfShoppers[i].value);
-                            }
-                            break;
+                        if(data.data.f_SuppliersBMShareOfShoppers[i].categoryID==1){
+                            bmChannelStrengthElecssories[data.data.f_SuppliersBMShareOfShoppers[i].supplierID-1].data.push(data.data.f_SuppliersBMShareOfShoppers[i].value);
+                        }else if(data.data.f_SuppliersBMShareOfShoppers[i].categoryID==2){
+                            bmChannelStrengthHealthBeauties[data.data.f_SuppliersBMShareOfShoppers[i].supplierID-1].data.push(data.data.f_SuppliersBMShareOfShoppers[i].value);
                         }
                     }
                 }
@@ -238,28 +130,10 @@ var supplierKPIsCtrl=function($scope,$http){
             for(var j=0;j<testCategories.length;j++){
                 for(var i=0;i<data.data.f_SuppliersOnlineValueSalesShare.length;i++){
                     if(data.data.f_SuppliersOnlineValueSalesShare[i].period==testCategories[j]){
-                        switch(data.data.f_SuppliersOnlineValueSalesShare[i].supplierID){
-                            case 1:
-                            if(data.data.f_SuppliersOnlineValueSalesShare[i].categoryID==1){
-                                onlineChannelStrengthElecssories[0].data.push(data.data.f_SuppliersOnlineValueSalesShare[i].value);
-                            }else if(data.data.f_SuppliersOnlineValueSalesShare[i].categoryID==2){
-                                onlineChannelStrengthHealthBeauties[0].data.push(data.data.f_SuppliersOnlineValueSalesShare[i].value);
-                            }
-                            break;
-                            case 2:
-                            if(data.data.f_SuppliersOnlineValueSalesShare[i].categoryID==1){
-                                onlineChannelStrengthElecssories[1].data.push(data.data.f_SuppliersOnlineValueSalesShare[i].value);
-                            }else if(data.data.f_SuppliersOnlineValueSalesShare[i].categoryID==2){
-                                onlineChannelStrengthHealthBeauties[1].data.push(data.data.f_SuppliersOnlineValueSalesShare[i].value);
-                            }
-                            break;
-                            case 3:
-                            if(data.data.f_SuppliersOnlineValueSalesShare[i].categoryID==1){
-                                onlineChannelStrengthElecssories[2].data.push(data.data.f_SuppliersOnlineValueSalesShare[i].value);
-                            }else if(data.data.f_SuppliersOnlineValueSalesShare[i].categoryID==2){
-                                onlineChannelStrengthHealthBeauties[2].data.push(data.data.f_SuppliersOnlineValueSalesShare[i].value);
-                            }
-                            break;
+                        if(data.data.f_SuppliersOnlineValueSalesShare[i].categoryID==1){
+                            onlineChannelStrengthElecssories[data.data.f_SuppliersOnlineValueSalesShare[i].supplierID-1].data.push(data.data.f_SuppliersOnlineValueSalesShare[i].value);
+                        }else if(data.data.f_SuppliersOnlineValueSalesShare[i].categoryID==2){
+                            onlineChannelStrengthHealthBeauties[data.data.f_SuppliersOnlineValueSalesShare[i].supplierID-1].data.push(data.data.f_SuppliersOnlineValueSalesShare[i].value);
                         }
                     }
                 }
@@ -271,28 +145,10 @@ var supplierKPIsCtrl=function($scope,$http){
             for(var j=0;j<testCategories.length;j++){
                 for(var i=0;i<data.data.f_SuppliersOnlineVolumeSalesShare.length;i++){
                     if(data.data.f_SuppliersOnlineVolumeSalesShare[i].period==testCategories[j]){
-                        switch(data.data.f_SuppliersOnlineVolumeSalesShare[i].supplierID){
-                            case 1:
-                            if(data.data.f_SuppliersOnlineVolumeSalesShare[i].categoryID==1){
-                                onlineChannelStrengthElecssories[0].data.push(data.data.f_SuppliersOnlineVolumeSalesShare[i].value);
-                            }else if(data.data.f_SuppliersOnlineVolumeSalesShare[i].categoryID==2){
-                                onlineChannelStrengthHealthBeauties[0].data.push(data.data.f_SuppliersOnlineVolumeSalesShare[i].value);
-                            }
-                            break;
-                            case 2:
-                            if(data.data.f_SuppliersOnlineVolumeSalesShare[i].categoryID==1){
-                                onlineChannelStrengthElecssories[1].data.push(data.data.f_SuppliersOnlineVolumeSalesShare[i].value);
-                            }else if(data.data.f_SuppliersOnlineVolumeSalesShare[i].categoryID==2){
-                                onlineChannelStrengthHealthBeauties[1].data.push(data.data.f_SuppliersOnlineVolumeSalesShare[i].value);
-                            }
-                            break;
-                            case 3:
-                            if(data.data.f_SuppliersOnlineVolumeSalesShare[i].categoryID==1){
-                                onlineChannelStrengthElecssories[2].data.push(data.data.f_SuppliersOnlineVolumeSalesShare[i].value);
-                            }else if(data.data.f_SuppliersOnlineVolumeSalesShare[i].categoryID==2){
-                                onlineChannelStrengthHealthBeauties[2].data.push(data.data.f_SuppliersOnlineVolumeSalesShare[i].value);
-                            }
-                            break;
+                        if(data.data.f_SuppliersOnlineVolumeSalesShare[i].categoryID==1){
+                            onlineChannelStrengthElecssories[data.data.f_SuppliersOnlineVolumeSalesShare[i].supplierID-1].data.push(data.data.f_SuppliersOnlineVolumeSalesShare[i].value);
+                        }else if(data.data.f_SuppliersOnlineVolumeSalesShare[i].categoryID==2){
+                            onlineChannelStrengthHealthBeauties[data.data.f_SuppliersOnlineVolumeSalesShare[i].supplierID-1].data.push(data.data.f_SuppliersOnlineVolumeSalesShare[i].value);
                         }
                     }
                 }
@@ -304,28 +160,10 @@ var supplierKPIsCtrl=function($scope,$http){
             for(var j=0;j<testCategories.length;j++){
                 for(var i=0;i<data.data.f_SuppliersOnlineShareOfShoppers.length;i++){
                     if(data.data.f_SuppliersOnlineShareOfShoppers[i].period==testCategories[j]){
-                        switch(data.data.f_SuppliersOnlineShareOfShoppers[i].supplierID){
-                            case 1:
-                            if(data.data.f_SuppliersOnlineShareOfShoppers[i].categoryID==1){
-                                onlineChannelStrengthElecssories[0].data.push(data.data.f_SuppliersOnlineShareOfShoppers[i].value);
-                            }else if(data.data.f_SuppliersOnlineShareOfShoppers[i].categoryID==2){
-                                onlineChannelStrengthHealthBeauties[0].data.push(data.data.f_SuppliersOnlineShareOfShoppers[i].value);
-                            }
-                            break;
-                            case 2:
-                            if(data.data.f_SuppliersOnlineShareOfShoppers[i].categoryID==1){
-                                onlineChannelStrengthElecssories[1].data.push(data.data.f_SuppliersOnlineShareOfShoppers[i].value);
-                            }else if(data.data.f_SuppliersOnlineShareOfShoppers[i].categoryID==2){
-                                onlineChannelStrengthHealthBeauties[1].data.push(data.data.f_SuppliersOnlineShareOfShoppers[i].value);
-                            }
-                            break;
-                            case 3:
-                            if(data.data.f_SuppliersOnlineShareOfShoppers[i].categoryID==1){
-                                onlineChannelStrengthElecssories[2].data.push(data.data.f_SuppliersOnlineShareOfShoppers[i].value);
-                            }else if(data.data.f_SuppliersOnlineShareOfShoppers[i].categoryID==2){
-                                onlineChannelStrengthHealthBeauties[2].data.push(data.data.f_SuppliersOnlineShareOfShoppers[i].value);
-                            }
-                            break;
+                        if(data.data.f_SuppliersOnlineShareOfShoppers[i].categoryID==1){
+                            onlineChannelStrengthElecssories[data.data.f_SuppliersOnlineShareOfShoppers[i].supplierID-1].data.push(data.data.f_SuppliersOnlineShareOfShoppers[i].value);
+                        }else if(data.data.f_SuppliersOnlineShareOfShoppers[i].categoryID==2){
+                            onlineChannelStrengthHealthBeauties[data.data.f_SuppliersOnlineShareOfShoppers[i].supplierID-1].data.push(data.data.f_SuppliersOnlineShareOfShoppers[i].value);
                         }
                     }
                 }
