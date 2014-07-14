@@ -80,10 +80,18 @@
             </tr>
             <tr>
                 <td>
-                    <p class="padding-40">(4) {{Label.getContent('eMall Commission and Shipping Cost')}} ($mln)
+                    <p class="padding-40">(4) {{Label.getContent('eMall Commission')}} ($mln)
                 </td>
                 <td ng-repeat='variant in variants'>
-                    <p class="text-right">xxxxx</p>
+                    <p class="text-right">{{variant.eMallCommission=="0.00"?0:variant.eMallCommission}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="padding-40">(5) {{Label.getContent('Shipping Cost')}} ($mln)
+                </td>
+                <td ng-repeat='variant in variants'>
+                    <p class="text-right">{{variant.ShippingCost=="0.00"?0:variant.ShippingCost}}</p>
                 </td>
             </tr>
             <tr class="tr-info">

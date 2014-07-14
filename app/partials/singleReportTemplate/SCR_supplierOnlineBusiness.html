@@ -48,7 +48,12 @@
                 </tr>
                 <tr>
                     <td>
-                        <p class="padding-40">(4) {{Label.getContent('eMall Commission and Shipping Cost')}} ($mln)
+                        <p class="padding-40">(4) {{Label.getContent('eMall Commission')}} ($mln)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="padding-40">(5) {{Label.getContent('Shipping Cost')}} ($mln)
                     </td>
                 </tr>
                 <tr class="tr-info">
@@ -242,10 +247,18 @@
                 </tr>
                 <tr>
                     <td class="td-info">
-                        <p class="text-right">xxxxx</p>
+                        <p class="text-right">{{eMallCommissions[0].value[1].toFixed(2)=="0.00"?0:eMallCommissions[0].value[1].toFixed(2)}}</p>
                     </td>
                     <td ng-repeat='brand in brand1s'>
-                        <p class="text-right">xxxxx</p>
+                        <p class="text-right">{{brand.eMallCommission=="0.00"?0:brand.eMallCommission}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-info">
+                        <p class="text-right">{{ShippingCosts[0].value[1].toFixed(2)=="0.00"?0:ShippingCosts[0].value[1].toFixed(2)}}</p>
+                    </td>
+                    <td ng-repeat='brand in brand1s'>
+                        <p class="text-right">{{brand.ShippingCost=="0.00"?0:brand.ShippingCost}}</p>
                     </td>
                 </tr>
                 <tr class="tr-info">
@@ -487,7 +500,12 @@
                 </tr>
                 <tr>
                     <td>
-                        <p class="padding-40">(4) {{Label.getContent('eMall Commission and Shipping Cost')}} ($mln)
+                        <p class="padding-40">(4) {{Label.getContent('eMall Commission')}} ($mln)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="padding-40">(5) {{Label.getContent('Shipping Cost')}} ($mln)
                     </td>
                 </tr>
                 <tr class="tr-info">
@@ -681,10 +699,18 @@
                 </tr>
                 <tr>
                     <td class="td-info">
-                        <p class="text-right">xxxxx</p>
+                        <p class="text-right">{{eMallCommissions[1].value[1].toFixed(2)=="0.00"?0:eMallCommissions[1].value[1].toFixed(2)}}</p>
                     </td>
                     <td ng-repeat='brand in brand2s'>
-                        <p class="text-right">xxxxx</p>
+                        <p class="text-right">{{brand.eMallCommission=="0.00"?0:brand.eMallCommission}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-info">
+                        <p class="text-right">{{ShippingCosts[1].value[1].toFixed(2)=="0.00"?0:ShippingCosts[1].value[1].toFixed(2)}}</p>
+                    </td>
+                    <td ng-repeat='brand in brand2s'>
+                        <p class="text-right">{{brand.ShippingCost=="0.00"?0:brand.ShippingCost}}</p>
                     </td>
                 </tr>
                 <tr class="tr-info">
