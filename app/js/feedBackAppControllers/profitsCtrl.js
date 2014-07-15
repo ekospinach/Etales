@@ -45,7 +45,7 @@ var profitsCtrl=function($scope,$http){
                             if(data.data.f_OperatingProfit[i].actorID<4){
                                 currentOperatingProfits[data.data.f_OperatingProfit[i].actorID-1].data.push(data.data.f_OperatingProfit[i].value);
                             }
-                            else if(data.data.f_OperatingProfit[i].actorID<7){
+                            else if(data.data.f_OperatingProfit[i].actorID>4&&data.data.f_OperatingProfit[i].actorID<7){
                                 currentOperatingProfits[data.data.f_OperatingProfit[i].actorID-2].data.push(data.data.f_OperatingProfit[i].value);
                             }
                         }
@@ -58,7 +58,7 @@ var profitsCtrl=function($scope,$http){
                        if(data.data.f_OperatingProfitMargin[i].categoryID==3){
                             if(data.data.f_OperatingProfitMargin[i].actorID<4){
                                 currentOperatingProfitMargins[data.data.f_OperatingProfitMargin[i].actorID-1].data.push(data.data.f_OperatingProfitMargin[i].value);
-                            }else if(data.data.f_OperatingProfitMargin[i].actorID<7){
+                            }else if(data.data.f_OperatingProfitMargin[i].actorID>4&&data.data.f_OperatingProfitMargin[i].actorID<7){
                                 currentOperatingProfitMargins[data.data.f_OperatingProfitMargin[i].actorID-2].data.push(data.data.f_OperatingProfitMargin[i].value);
                             }
                         }
@@ -71,7 +71,7 @@ var profitsCtrl=function($scope,$http){
                         if(data.data.f_NetProfit[i].categoryID==3){
                             if(data.data.f_NetProfit[i].actorID<4){
                                 currentNetProfits[data.data.f_NetProfit[i].actorID-1].data.push(data.data.f_NetProfit[i].value);
-                            }else if(data.data.f_NetProfit[i].actorID<7){
+                            }else if(data.data.f_NetProfit[i].actorID>4&&data.data.f_NetProfit[i].actorID<7){
                                 currentNetProfits[data.data.f_NetProfit[i].actorID-2].data.push(data.data.f_NetProfit[i].value);
                             }
                         }
@@ -84,7 +84,7 @@ var profitsCtrl=function($scope,$http){
                         if(data.data.f_NetProfitMargin[i].categoryID==3){
                             if(data.data.f_NetProfitMargin[i].actorID<4){
                                 currentNetProfitMargins[data.data.f_NetProfitMargin[i].actorID-1].data.push(data.data.f_NetProfitMargin[i].value);
-                            }else if(data.data.f_NetProfitMargin[i].actorID<7){
+                            }else if(data.data.f_NetProfitMargin[i].actorID>4&&data.data.f_NetProfitMargin[i].actorID<7){
                                 currentNetProfitMargins[data.data.f_NetProfitMargin[i].actorID-2].data.push(data.data.f_NetProfitMargin[i].value);
                             }
                         }
@@ -98,7 +98,7 @@ var profitsCtrl=function($scope,$http){
                         if(data.data.f_OperatingProfit[i].categoryID==3){
                             if(data.data.f_OperatingProfit[i].actorID<4){
                                 previousOperatingProfits[data.data.f_OperatingProfit[i].actorID-1].data.push(data.data.f_OperatingProfit[i].value);
-                            }else if(data.data.f_OperatingProfit[i].actorID<7){
+                            }else if(data.data.f_OperatingProfit[i].actorID>4&&data.data.f_OperatingProfit[i].actorID<7){
                                 previousOperatingProfits[data.data.f_OperatingProfit[i].actorID-2].data.push(data.data.f_OperatingProfit[i].value);
                             }
                         }
@@ -111,7 +111,7 @@ var profitsCtrl=function($scope,$http){
                         if(data.data.f_OperatingProfitMargin[i].categoryID==3){
                             if(data.data.f_OperatingProfitMargin[i].actorID<4){
                                 previousOperatingProfitMargins[data.data.f_OperatingProfitMargin[i].actorID-1].data.push(data.data.f_OperatingProfitMargin[i].value);
-                            }else if(data.data.f_OperatingProfitMargin[i].actorID<7){
+                            }else if(data.data.f_OperatingProfitMargin[i].actorID>4&&data.data.f_OperatingProfitMargin[i].actorID<7){
                                 previousOperatingProfitMargins[data.data.f_OperatingProfitMargin[i].actorID-2].data.push(data.data.f_OperatingProfitMargin[i].value);
                             }
                         }
@@ -124,7 +124,7 @@ var profitsCtrl=function($scope,$http){
                         if(data.data.f_NetProfit[i].categoryID==3){
                             if(data.data.f_NetProfit[i].actorID<4){
                                 previousNetProfits[data.data.f_NetProfit[i].actorID-1].data.push(data.data.f_NetProfit[i].value);
-                            }else if(data.data.f_NetProfit[i].actorID<7){
+                            }else if(data.data.f_NetProfit[i].actorID>4&&data.data.f_NetProfit[i].actorID<7){
                                 previousNetProfits[data.data.f_NetProfit[i].actorID-2].data.push(data.data.f_NetProfit[i].value);
                             }
                         }
@@ -137,7 +137,7 @@ var profitsCtrl=function($scope,$http){
                         if(data.data.f_NetProfitMargin[i].categoryID==3){
                             if(data.data.f_NetProfitMargin[i].actorID<4){
                                 previousNetProfitMargins[data.data.f_NetProfitMargin[i].actorID-1].data.push(data.data.f_NetProfitMargin[i].value);
-                            }else if(data.data.f_NetProfitMargin[i].actorID<7){
+                            }else if(data.data.f_NetProfitMargin[i].actorID>4&&data.data.f_NetProfitMargin[i].actorID<7){
                                 previousNetProfitMargins[data.data.f_NetProfitMargin[i].actorID-2].data.push(data.data.f_NetProfitMargin[i].value);
                             }
                         }
