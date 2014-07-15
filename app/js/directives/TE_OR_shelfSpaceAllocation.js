@@ -25,89 +25,17 @@ define(['directives', 'services'], function(directives){
 			            currentCategories.push(i);
 			        }
 			    /*highchart data init start*/
-			        var currentShelfSpaceElecssories=new Array({
-		                name:'Supplier-1',
-		                data:new Array(),
-		                color:'#3257A7'
-		            },{
-		                name:'Supplier-2',
-		                data:new Array(),
-		                color:'#B11E22'
-		            },{
-		                name:'Supplier-3',
-		                data:new Array(),
-		                color:'#F6B920'
-		            },{
-		                name:'Retailer-1',
-		                data:new Array(),
-		                color:'#8B288B'
-		            },{
-		                name:'Retailer-2',
-		                data:new Array(),
-		                color:'#F05422'
-		            });
-		            var currentShelfSpaceHealthBeauties=new Array({
-		                name:'Supplier-1',
-		                data:new Array(),
-		                color:'#3257A7'
-		            },{
-		                name:'Supplier-2',
-		                data:new Array(),
-		                color:'#B11E22'
-		            },{
-		                name:'Supplier-3',
-		                data:new Array(),
-		                color:'#F6B920'
-		            },{
-		                name:'Retailer-1',
-		                data:new Array(),
-		                color:'#8B288B'
-		            },{
-		                name:'Retailer-2',
-		                data:new Array(),
-		                color:'#F05422'
-		            });
+			    	var currentShelfSpaceElecssories=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'});
+            		var currentShelfSpaceHealthBeauties=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'});
 		        /*highchart data init end*/
 		        /*highchart set data  start*/
-		        	for(var j=0;j<currentCategories.length;j++){
+			        for(var j=0;j<currentCategories.length;j++){
 		                for(var i=0;i<scope.feedBack.f_ShelfSpaceAllocation.length;i++){
 		                    if(scope.feedBack.f_ShelfSpaceAllocation[i].period==currentCategories[j]){
-		                        switch(scope.feedBack.f_ShelfSpaceAllocation[i].actorID){
-		                            case 1:
-		                            if(scope.feedBack.f_ShelfSpaceAllocation[i].categoryID==1){
-		                                currentShelfSpaceElecssories[0].data.push(scope.feedBack.f_ShelfSpaceAllocation[i].value);
-		                            }else if(scope.feedBack.f_ShelfSpaceAllocation[i].categoryID==2){
-		                                currentShelfSpaceHealthBeauties[0].data.push(scope.feedBack.f_ShelfSpaceAllocation[i].value);
-		                            }
-		                            break;
-		                            case 2:
-		                            if(scope.feedBack.f_ShelfSpaceAllocation[i].categoryID==1){
-		                                currentShelfSpaceElecssories[1].data.push(scope.feedBack.f_ShelfSpaceAllocation[i].value);
-		                            }else if(scope.feedBack.f_ShelfSpaceAllocation[i].categoryID==2){
-		                                currentShelfSpaceHealthBeauties[1].data.push(scope.feedBack.f_ShelfSpaceAllocation[i].value);
-		                            }
-		                            break;
-		                            case 3:
-		                            if(scope.feedBack.f_ShelfSpaceAllocation[i].categoryID==1){
-		                                currentShelfSpaceElecssories[2].data.push(scope.feedBack.f_ShelfSpaceAllocation[i].value);
-		                            }else if(scope.feedBack.f_ShelfSpaceAllocation[i].categoryID==2){
-		                                currentShelfSpaceHealthBeauties[2].data.push(scope.feedBack.f_ShelfSpaceAllocation[i].value);
-		                            }
-		                            break;
-		                            case 4:
-		                            if(scope.feedBack.f_ShelfSpaceAllocation[i].categoryID==1){
-		                                currentShelfSpaceElecssories[3].data.push(scope.feedBack.f_ShelfSpaceAllocation[i].value);
-		                            }else if(scope.feedBack.f_ShelfSpaceAllocation[i].categoryID==2){
-		                                currentShelfSpaceHealthBeauties[3].data.push(scope.feedBack.f_ShelfSpaceAllocation[i].value);
-		                            }
-		                            break;
-		                            case 5:
-		                            if(scope.feedBack.f_ShelfSpaceAllocation[i].categoryID==1){
-		                                currentShelfSpaceElecssories[4].data.push(scope.feedBack.f_ShelfSpaceAllocation[i].value);
-		                            }else if(scope.feedBack.f_ShelfSpaceAllocation[i].categoryID==2){
-		                                currentShelfSpaceHealthBeauties[4].data.push(scope.feedBack.f_ShelfSpaceAllocation[i].value);
-		                            }
-		                            break;
+		                        if(scope.feedBack.f_ShelfSpaceAllocation[i].categoryID==1){
+		                            currentShelfSpaceElecssories[scope.feedBack.f_ShelfSpaceAllocation[i].actorID-1].data.push(scope.feedBack.f_ShelfSpaceAllocation[i].value);
+		                        }else if(scope.feedBack.f_ShelfSpaceAllocation[i].categoryID==2){
+		                            currentShelfSpaceHealthBeauties[scope.feedBack.f_ShelfSpaceAllocation[i].actorID-1].data.push(scope.feedBack.f_ShelfSpaceAllocation[i].value);
 		                        }
 		                    }
 		                }
@@ -189,7 +117,6 @@ define(['directives', 'services'], function(directives){
 		            scope.isPageLoading = false;
 		            scope.isResultShown = true;  
 		        /*set highchart function end*/
-
                 }
                 
                 scope.$watch('isPageShown', function(newValue, oldValue){
