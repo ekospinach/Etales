@@ -56,11 +56,11 @@ var retailerKPIsCtrl=function($scope,$http){
                 for(var i=0;i<data.data.f_RetailersValueRotationIndex.length;i++){
                     if(data.data.f_RetailersValueRotationIndex[i].period==testCategories[j]){
                         if(data.data.f_RetailersValueRotationIndex[i].categoryID==1){
-                            if(data.data.f_RetailersValueRotationIndex[i].marketID==2){
+                            if(data.data.f_RetailersValueRotationIndex[i].marketID==1){
                                 rotationIndexSalesValueElecssories[data.data.f_RetailersValueRotationIndex[i].retailerID-1].data.push(data.data.f_RetailersValueRotationIndex[i].value);
                             }
                         }else if(data.data.f_RetailersValueRotationIndex[i].categoryID==2){
-                            if(data.data.f_RetailersValueRotationIndex[i].marketID==2){
+                            if(data.data.f_RetailersValueRotationIndex[i].marketID==1){
                                 rotationIndexSalesValueHealthBeauties[data.data.f_RetailersValueRotationIndex[i].retailerID-1].data.push(data.data.f_RetailersValueRotationIndex[i].value);
                             }
                         }
@@ -75,27 +75,28 @@ var retailerKPIsCtrl=function($scope,$http){
                 for(var i=0;i<data.data.f_RetailersValueRotationIndex.length;i++){
                     if(data.data.f_RetailersValueRotationIndex[i].period==testCategories[j]){
                         if(data.data.f_RetailersValueRotationIndex[i].categoryID==1){
-                            if(data.data.f_RetailersValueRotationIndex[i].marketID==1){
+                            if(data.data.f_RetailersValueRotationIndex[i].marketID==2){
                                 rotationIndexSalesValueElecssories[data.data.f_RetailersValueRotationIndex[i].retailerID-1].data.push(data.data.f_RetailersValueRotationIndex[i].value);
                             }
                         }else if(data.data.f_RetailersValueRotationIndex[i].categoryID==2){
-                            if(data.data.f_RetailersValueRotationIndex[i].marketID==1){
+                            if(data.data.f_RetailersValueRotationIndex[i].marketID==2){
                                 rotationIndexSalesValueHealthBeauties[data.data.f_RetailersValueRotationIndex[i].retailerID-1].data.push(data.data.f_RetailersValueRotationIndex[i].value);
                             }
                         }
                     }
                 }
             }
+            
             //rotationIndexSalesVolume
             for(var j=0;j<testCategories.length;j++){
                 for(var i=0;i<data.data.f_RetailersVolumeRotationIndex.length;i++){
                     if(data.data.f_RetailersVolumeRotationIndex[i].period==testCategories[j]){
                         if(data.data.f_RetailersVolumeRotationIndex[i].categoryID==1){
-                            if(data.data.f_RetailersVolumeRotationIndex[i].marketID==2){
+                            if(data.data.f_RetailersVolumeRotationIndex[i].marketID==1){
                                 rotationIndexSalesVolumeElecssories[data.data.f_RetailersVolumeRotationIndex[i].retailerID-1].data.push(data.data.f_RetailersVolumeRotationIndex[i].value);
                             }
                         }else if(data.data.f_RetailersVolumeRotationIndex[i].categoryID==2){
-                            if(data.data.f_RetailersVolumeRotationIndex[i].marketID==2){
+                            if(data.data.f_RetailersVolumeRotationIndex[i].marketID==1){
                                 rotationIndexSalesVolumeHealthBeauties[data.data.f_RetailersVolumeRotationIndex[i].retailerID-1].data.push(data.data.f_RetailersVolumeRotationIndex[i].value);
                             }
                         }
@@ -110,11 +111,11 @@ var retailerKPIsCtrl=function($scope,$http){
                 for(var i=0;i<data.data.f_RetailersVolumeRotationIndex.length;i++){
                     if(data.data.f_RetailersVolumeRotationIndex[i].period==testCategories[j]){
                         if(data.data.f_RetailersVolumeRotationIndex[i].categoryID==1){
-                            if(data.data.f_RetailersVolumeRotationIndex[i].marketID==1){
+                            if(data.data.f_RetailersVolumeRotationIndex[i].marketID==2){
                                 rotationIndexSalesVolumeElecssories[data.data.f_RetailersVolumeRotationIndex[i].retailerID-1].data.push(data.data.f_RetailersVolumeRotationIndex[i].value);
                             }
                         }else if(data.data.f_RetailersVolumeRotationIndex[i].categoryID==2){
-                            if(data.data.f_RetailersVolumeRotationIndex[i].marketID==1){
+                            if(data.data.f_RetailersVolumeRotationIndex[i].marketID==2){
                                 rotationIndexSalesVolumeHealthBeauties[data.data.f_RetailersVolumeRotationIndex[i].retailerID-1].data.push(data.data.f_RetailersVolumeRotationIndex[i].value);
                             }
                         }
@@ -165,38 +166,38 @@ var retailerKPIsCtrl=function($scope,$http){
                 }
             }
 
-            //B&M Shoppers
-            for(var j=0;j<testCategories.length;j++){
-                for(var i=0;i<data.data.f_RetailersBMShoppersShare.length;i++){
-                    if(data.data.f_RetailersBMShoppersShare[i].period==testCategories[j]){
-                        if(data.data.f_RetailersBMShoppersShare[i].categoryID==3){
-                            if(data.data.f_RetailersBMShoppersShare[i].marketID==2){
-                                ruralShareOfShoppers[data.data.f_RetailersBMShoppersShare[i].retailerID-1].data.push(data.data.f_RetailersBMShoppersShare[i].value);
-                            }else if(data.data.f_RetailersBMShoppersShare[i].marketID==1){
-                                urbanShareOfShoppers[data.data.f_RetailersBMShoppersShare[i].retailerID-1].data.push(data.data.f_RetailersBMShoppersShare[i].value);
-                            }
-                        }
-                    }
-                }
-            }
-            //ALL Shoppers is not ready
-            for(var i=0;i<2;i++){
-                ruralShareOfShoppers[i].data.push('');
-                urbanShareOfShoppers[i].data.push('');
-            }
-            for(var j=0;j<testCategories.length;j++){
-                for(var i=0;i<data.data.f_RetailersAllShoppersShare.length;i++){
-                    if(data.data.f_RetailersAllShoppersShare[i].period==testCategories[j]){
-                        if(data.data.f_RetailersAllShoppersShare[i].categoryID==3){
-                            if(data.data.f_RetailersAllShoppersShare[i].marketID==2){
-                                ruralShareOfShoppers[data.data.f_RetailersAllShoppersShare[i].retailerID-1].data.push(data.data.f_RetailersAllShoppersShare[i].value);
-                            }else if(data.data.f_RetailersAllShoppersShare[i].marketID==1){
-                                urbanShareOfShoppers[data.data.f_RetailersAllShoppersShare[i].retailerID-1].data.push(data.data.f_RetailersAllShoppersShare[i].value);
-                            }
-                        }
-                    }
-                }
-            }
+            // //B&M Shoppers
+            // for(var j=0;j<testCategories.length;j++){
+            //     for(var i=0;i<data.data.f_RetailersBMShoppersShare.length;i++){
+            //         if(data.data.f_RetailersBMShoppersShare[i].period==testCategories[j]){
+            //             if(data.data.f_RetailersBMShoppersShare[i].categoryID==3){
+            //                 if(data.data.f_RetailersBMShoppersShare[i].marketID==2){
+            //                     ruralShareOfShoppers[data.data.f_RetailersBMShoppersShare[i].retailerID-1].data.push(data.data.f_RetailersBMShoppersShare[i].value);
+            //                 }else if(data.data.f_RetailersBMShoppersShare[i].marketID==1){
+            //                     urbanShareOfShoppers[data.data.f_RetailersBMShoppersShare[i].retailerID-1].data.push(data.data.f_RetailersBMShoppersShare[i].value);
+            //                 }
+            //             }
+            //         }
+            //     }
+            // }
+            // //ALL Shoppers is not ready
+            // for(var i=0;i<2;i++){
+            //     ruralShareOfShoppers[i].data.push('');
+            //     urbanShareOfShoppers[i].data.push('');
+            // }
+            // for(var j=0;j<testCategories.length;j++){
+            //     for(var i=0;i<data.data.f_RetailersAllShoppersShare.length;i++){
+            //         if(data.data.f_RetailersAllShoppersShare[i].period==testCategories[j]){
+            //             if(data.data.f_RetailersAllShoppersShare[i].categoryID==3){
+            //                 if(data.data.f_RetailersAllShoppersShare[i].marketID==2){
+            //                     ruralShareOfShoppers[data.data.f_RetailersAllShoppersShare[i].retailerID-1].data.push(data.data.f_RetailersAllShoppersShare[i].value);
+            //                 }else if(data.data.f_RetailersAllShoppersShare[i].marketID==1){
+            //                     urbanShareOfShoppers[data.data.f_RetailersAllShoppersShare[i].retailerID-1].data.push(data.data.f_RetailersAllShoppersShare[i].value);
+            //                 }
+            //             }
+            //         }
+            //     }
+            // }
 
 
 
@@ -240,7 +241,7 @@ var retailerKPIsCtrl=function($scope,$http){
                     text: 'Elecssories - Sales Value'
                 },
                 subtitle: {
-                    text: '<p style="font-size:20px;float:left;" class="text-left">Rural Market</p><p style="font-size:20px;float:right;" class="text-right">Urban Market</p>',
+                    text: '<p style="font-size:20px;float:left;" class="text-left">Urban Market</p><p style="font-size:20px;float:right;" class="text-right">Rural Market</p>',
                     useHTML:true,
 
                 },
@@ -289,7 +290,7 @@ var retailerKPIsCtrl=function($scope,$http){
                     text: 'HealthBeauties - Sales Value'
                 },
                 subtitle: {
-                    text: '<p style="font-size:20px;float:left;" class="text-left">Rural Market</p><p style="font-size:20px;float:right;" class="text-right">Urban Market</p>',
+                    text: '<p style="font-size:20px;float:left;" class="text-left">Urban Market</p><p style="font-size:20px;float:right;" class="text-right">Rural Market</p>',
                     useHTML:true,
 
                 },
@@ -338,7 +339,7 @@ var retailerKPIsCtrl=function($scope,$http){
                     text: 'Elecssories - Sales Volume'
                 },
                 subtitle: {
-                    text: '<p style="font-size:20px;float:left;" class="text-left">Rural Market</p><p style="font-size:20px;float:right;" class="text-right">Urban Market</p>',
+                    text: '<p style="font-size:20px;float:left;" class="text-left">Urban Market</p><p style="font-size:20px;float:right;" class="text-right">Rural Market</p>',
                     useHTML:true,
 
                 },
@@ -387,7 +388,7 @@ var retailerKPIsCtrl=function($scope,$http){
                     text: 'HealthBeauties - Sales Volume'
                 },
                 subtitle: {
-                    text: '<p style="font-size:20px;float:left;" class="text-left">Rural Market</p><p style="font-size:20px;float:right;" class="text-right">Urban Market</p>',
+                    text: '<p style="font-size:20px;float:left;" class="text-left">Urban Market</p><p style="font-size:20px;float:right;" class="text-right">Rural Market</p>',
                     useHTML:true,
 
                 },
@@ -615,114 +616,114 @@ var retailerKPIsCtrl=function($scope,$http){
                 loading: false
             }
 
-            $scope.ruralShareOfShoppers={
-                options: {
-                    xAxis: {
-                        categories: myCategories,
-                        title: {
-                            text: 'Period'
-                        }
-                    },
-                    yAxis:{
-                        title: {
-                            text: '%'
-                        },
-                        gridLineColor: 'transparent'
-                    },
-                    chart: {
-                        type: 'column',
-                        backgroundColor: 'transparent',
-                    },
-                    tooltip: {
-                        formatter: function() {
-                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'('+this.point.percentage.toFixed(2)+'%)</p>';
-                            return s;
-                        },
-                        shared: false,
-                        useHTML: true
-                    },
-                    plotOptions: {
-                        series: {
-                            stacking: 'percent'
-                        }
-                    },
-                    // legend: {
-                    //     layout: 'vertical',
-                    //     align: 'right',
-                    //     verticalAlign: 'middle'
-                    // },
-                    credits: {
-                        enabled: false
-                    }
-                },
-                series: ruralShareOfShoppers,
-                title: {
-                    text: 'Rural Market'
-                },
-                subtitle: {
-                    text: '<p style="font-size:20px;float:left;" class="text-left">B&M Shoppers</p><p style="font-size:20px;float:right;" class="text-right">All Shoppers</p>',
-                    useHTML:true,
+            // $scope.ruralShareOfShoppers={
+            //     options: {
+            //         xAxis: {
+            //             categories: myCategories,
+            //             title: {
+            //                 text: 'Period'
+            //             }
+            //         },
+            //         yAxis:{
+            //             title: {
+            //                 text: '%'
+            //             },
+            //             gridLineColor: 'transparent'
+            //         },
+            //         chart: {
+            //             type: 'column',
+            //             backgroundColor: 'transparent',
+            //         },
+            //         tooltip: {
+            //             formatter: function() {
+            //                 var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'('+this.point.percentage.toFixed(2)+'%)</p>';
+            //                 return s;
+            //             },
+            //             shared: false,
+            //             useHTML: true
+            //         },
+            //         plotOptions: {
+            //             series: {
+            //                 stacking: 'percent'
+            //             }
+            //         },
+            //         // legend: {
+            //         //     layout: 'vertical',
+            //         //     align: 'right',
+            //         //     verticalAlign: 'middle'
+            //         // },
+            //         credits: {
+            //             enabled: false
+            //         }
+            //     },
+            //     series: ruralShareOfShoppers,
+            //     title: {
+            //         text: 'Rural Market'
+            //     },
+            //     subtitle: {
+            //         text: '<p style="font-size:20px;float:left;" class="text-left">B&M Shoppers</p><p style="font-size:20px;float:right;" class="text-right">All Shoppers</p>',
+            //         useHTML:true,
 
-                },
-                credits: {
-                    enabled: false
-                },
-                loading: false
-            }
-            $scope.urbanShareOfShoppers={
-                options: {
-                    xAxis: {
-                        categories: myCategories,
-                        title: {
-                            text: 'Period'
-                        }
-                    },
-                    yAxis:{
-                        title: {
-                            text: '%'
-                        },
-                        gridLineColor: 'transparent'
-                    },
-                    chart: {
-                        type: 'column',
-                        backgroundColor: 'transparent',
-                    },
-                    tooltip: {
-                        formatter: function() {
-                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'('+this.point.percentage.toFixed(2)+'%)</p>';
-                            return s;
-                        },
-                        shared: false,
-                        useHTML: true
-                    },
-                    plotOptions: {
-                        series: {
-                            stacking: 'percent'
-                        }
-                    },
-                    // legend: {
-                    //     layout: 'vertical',
-                    //     align: 'right',
-                    //     verticalAlign: 'middle'
-                    // },
-                    credits: {
-                        enabled: false
-                    }
-                },
-                series: urbanShareOfShoppers,
-                title: {
-                    text: 'Urban Market'
-                },
-                subtitle: {
-                    text: '<p style="font-size:20px;float:left;" class="text-left">B&M Shoppers</p><p style="font-size:20px;float:right;" class="text-right">All Shoppers</p>',
-                    useHTML:true,
+            //     },
+            //     credits: {
+            //         enabled: false
+            //     },
+            //     loading: false
+            // }
+            // $scope.urbanShareOfShoppers={
+            //     options: {
+            //         xAxis: {
+            //             categories: myCategories,
+            //             title: {
+            //                 text: 'Period'
+            //             }
+            //         },
+            //         yAxis:{
+            //             title: {
+            //                 text: '%'
+            //             },
+            //             gridLineColor: 'transparent'
+            //         },
+            //         chart: {
+            //             type: 'column',
+            //             backgroundColor: 'transparent',
+            //         },
+            //         tooltip: {
+            //             formatter: function() {
+            //                 var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'('+this.point.percentage.toFixed(2)+'%)</p>';
+            //                 return s;
+            //             },
+            //             shared: false,
+            //             useHTML: true
+            //         },
+            //         plotOptions: {
+            //             series: {
+            //                 stacking: 'percent'
+            //             }
+            //         },
+            //         // legend: {
+            //         //     layout: 'vertical',
+            //         //     align: 'right',
+            //         //     verticalAlign: 'middle'
+            //         // },
+            //         credits: {
+            //             enabled: false
+            //         }
+            //     },
+            //     series: urbanShareOfShoppers,
+            //     title: {
+            //         text: 'Urban Market'
+            //     },
+            //     subtitle: {
+            //         text: '<p style="font-size:20px;float:left;" class="text-left">B&M Shoppers</p><p style="font-size:20px;float:right;" class="text-right">All Shoppers</p>',
+            //         useHTML:true,
 
-                },
-                credits: {
-                    enabled: false
-                },
-                loading: false
-            }
+            //     },
+            //     credits: {
+            //         enabled: false
+            //     },
+            //     loading: false
+            // }
 
         });
     }
