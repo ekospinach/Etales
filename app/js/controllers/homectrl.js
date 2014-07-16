@@ -12,6 +12,9 @@ define(['app','socketIO','routingConfig'], function(app) {
 				scale: [-3, -2,-1,0,1,2,3,4]
 				// calculate: calculate
 			};
+		$scope.$watch('value',function(newValue,oldValue){
+			console.log(newValue);
+		})
 
 	}]);
 
