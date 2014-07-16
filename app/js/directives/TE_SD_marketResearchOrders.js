@@ -18,14 +18,23 @@ define(['directives', 'services'], function(directives){
                 }
 
                 var getResult =function(){
-                    //switching('showPerformance');
-                    var url='/seminarInfo/'+SeminarInfo.getSelectedSeminar().seminarCode;
+                    var reportStatus={};
+                    var prices={};
+                    var url='/getSeminarReportPurchaseStatus/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/P/'+parseInt(PlayerInfo.getPlayer());
                     $http({
                         method:'GET',
-                        url:url,
-                        //tracker: scope.loadingTracker
+                        url:url
                     }).then(function(data){   
-                        return organiseArray(data);
+                        reportStatus=data.data;
+                        url='/getReportPrice/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod();
+                        return $http({
+                            method:'GET',
+                            url:url
+                        });
+                        //return organiseArray(data);
+                    }).then(function(data){
+                        prices=data.data;
+                        return organiseArray(reportStatus,prices)
                     }).then(function(data){
                         scope.isResultShown = true;
                         scope.isPageLoading = false;                                                                         
@@ -34,31 +43,25 @@ define(['directives', 'services'], function(directives){
                     });
                 }
 
-                var organiseArray = function(data){
+
+
+                var organiseArray = function(reportStatus,prices){
                     var deferred = $q.defer();
 
-                    var reportPrices=data.data.reportPrice;
-                    
-                    var players=_.find(data.data.producers,function(obj){
-                        return (obj.producerID==PlayerInfo.getPlayer());
-                    })
-
-                    var playerStatus=_.find(players.reportPurchaseStatus,function(obj){
-                        return (obj.period==PeriodInfo.getCurrentPeriod())
-                    });
                     var playDatas=new Array();
-                    playDatas.push({'name':'Awareness','realName':'awareness','reportPrice':reportPrices.awareness,'playerStatus':playerStatus.awareness});
-                    playDatas.push({'name':'Brand Perceptions','realName':'brandPerceptions','reportPrice':reportPrices.brandPerceptions,'playerStatus':playerStatus.brandPerceptions});
-                    playDatas.push({'name':'Retailer Perceptions','realName':'retailerPerceptions','reportPrice':reportPrices.retailerPerceptions,'playerStatus':playerStatus.retailerPerceptions});
-                    playDatas.push({'name':'Market Share By Consumer Segment','realName':'marketShareByConsumerSegment','reportPrice':reportPrices.marketShareByConsumerSegment,'playerStatus':playerStatus.marketShareByConsumerSegment});
-                    playDatas.push({'name':'Sales By Consumer Segment','realName':'salesByConsumerSegment','reportPrice':reportPrices.salesByConsumerSegment,'playerStatus':playerStatus.salesByConsumerSegment});
-                    playDatas.push({'name':'Market Share ByShopper Segment','realName':'marketShareByShopperSegment','reportPrice':reportPrices.marketShareByShopperSegment,'playerStatus':playerStatus.marketShareByShopperSegment});
-                    playDatas.push({'name':'Sales By Shopper Segment','realName':'salesByShopperSegment','reportPrice':reportPrices.salesByShopperSegment,'playerStatus':playerStatus.salesByShopperSegment});
-                    playDatas.push({'name':'BM Retailer Prices','realName':'BMRetailerPrices','reportPrice':reportPrices.BMRetailerPrices,'playerStatus':playerStatus.BMRetailerPrices});
-                    playDatas.push({'name':'Promotion Intensity','realName':'promotionIntensity','reportPrice':reportPrices.promotionIntensity,'playerStatus':playerStatus.promotionIntensity});
-                    playDatas.push({'name':'Supplier Intelligence','realName':'supplierIntelligence','reportPrice':reportPrices.supplierIntelligence,'playerStatus':playerStatus.supplierIntelligence});
-                    playDatas.push({'name':'Retailer Intelligence','realName':'retailerIntelligence','reportPrice':reportPrices.retailerIntelligence,'playerStatus':playerStatus.retailerIntelligence});
-                    playDatas.push({'name':'Forecasts','realName':'forecasts','reportPrice':reportPrices.forecasts,'playerStatus':playerStatus.forecasts});
+                    playDatas.push({'name':'Awareness','realName':'awareness','reportPrice':prices[0],'playerStatus':reportStatus.awareness});
+                    playDatas.push({'name':'Brand Perceptions','realName':'brandPerceptions','reportPrice':prices[1],'playerStatus':reportStatus.brandPerceptions});
+                    playDatas.push({'name':'Retailer Perceptions','realName':'retailerPerceptions','reportPrice':prices[2],'playerStatus':reportStatus.retailerPerceptions});
+                    playDatas.push({'name':'Market Share By Consumer Segment','realName':'marketShareByConsumerSegment','reportPrice':prices[3],'playerStatus':reportStatus.marketShareByConsumerSegment});
+                    playDatas.push({'name':'Sales By Consumer Segment','realName':'salesByConsumerSegment','reportPrice':prices[4],'playerStatus':reportStatus.salesByConsumerSegment});
+                    playDatas.push({'name':'Market Share ByShopper Segment','realName':'marketShareByShopperSegment','reportPrice':prices[5],'playerStatus':reportStatus.marketShareByShopperSegment});
+                    playDatas.push({'name':'Sales By Shopper Segment','realName':'salesByShopperSegment','reportPrice':prices[6],'playerStatus':reportStatus.salesByShopperSegment});
+                    playDatas.push({'name':'BM Retailer Prices','realName':'BMRetailerPrices','reportPrice':prices[7],'playerStatus':reportStatus.BMRetailerPrices});
+                    playDatas.push({'name':'Promotion Intensity','realName':'promotionIntensity','reportPrice':prices[8],'playerStatus':reportStatus.promotionIntensity});
+                    playDatas.push({'name':'Supplier Intelligence','realName':'supplierIntelligence','reportPrice':prices[9],'playerStatus':reportStatus.supplierIntelligence});
+                    playDatas.push({'name':'Retailer Intelligence','realName':'retailerIntelligence','reportPrice':prices[10],'playerStatus':reportStatus.retailerIntelligence});
+                    playDatas.push({'name':'Forecasts','realName':'forecasts','reportPrice':prices[11],'playerStatus':reportStatus.forecasts});
+                    playDatas.push({'name':'Sales By Channel','realName':'salesByChannel','reportPrice':prices[12],'playerStatus':reportStatus.salesByChannel});
 
                     scope.playDatas=playDatas;
 

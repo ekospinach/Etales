@@ -192,6 +192,38 @@ exports.getSeminarList=function(req,res,next){
 	});
 }
 
+exports.getSeminarReportPurchaseStatus=function  (req,res,next) {
+	// body...
+	var tempReportPurchaseStatus = {};
+	return seminar.findOne({
+		seminarCode:req.params.seminar
+	},function(err,doc){
+		if(err){
+			next(new Error(err));
+		}
+		if(!doc){
+			console.log('cannot find matched doc');
+		}else{
+			if(req.params.type=="P"){
+				for(var i=0;i<doc.producers[req.params.playerID-1].reportPurchaseStatus.length;i++){
+					if(req.params.period==doc.producers[req.params.playerID-1].reportPurchaseStatus[i].period){
+						tempReportPurchaseStatus=doc.producers[req.params.playerID-1].reportPurchaseStatus[i];
+						break;
+					}
+				}
+			}else{
+				for(var i=0;i<doc.retailers[req.params.playerID-1].reportPurchaseStatus.length;i++){
+					if(req.params.period==doc.retailers[req.params.playerID-1].reportPurchaseStatus[i].period){
+						tempReportPurchaseStatus=doc.retailers[req.params.playerID-1].reportPurchaseStatus[i];
+						break;
+					}
+				}
+			}	
+			res.send(200,tempReportPurchaseStatus);
+		}
+	})
+}
+
 exports.getSeminarInfo=function(req,res,next){
 	var tempSeminar = {};
 	return seminar.findOne({
