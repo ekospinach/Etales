@@ -312,3 +312,46 @@ table tr td p,table tr th p{
     width: 96%;
   }
 }*/
+/* Styles go here */
+
+.ui-slider-container,
+input[type="range"]::-webkit-slider-container, 
+input[type="range"]::-webkit-media-slider-container {
+  flex: 1 1 0px;
+  box-sizing: border-box;
+  display: -webkit-flex;
+  -webkit-user-modify: read-only;
+}
+
+.ui-slider-runnable-track,
+input[type="range"]::-webkit-slider-runnable-track {
+  flex: 1 1 0px;
+  align-self: center;
+  box-sizing: border-box;
+  display: block;
+  -webkit-user-modify: read-only;
+}
+
+.ui-slider-runnable-track{
+  background : #eee;
+}
+
+.ui-slider-slider-thumb{
+  -webkit-appearance: sliderthumb-horizontal;
+  position : relative;
+}
+
+.ui-slider-slider-thumb::before{
+  background : #f00;
+  content : " ";
+  width : 100%;
+  height : 100%;
+}
+
+.overflow-hidden{
+  overflow : hidden;
+}
+
+.relative{
+  position : relative;
+}

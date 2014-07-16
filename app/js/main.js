@@ -10,6 +10,7 @@
 	require.config({
 		paths: {
 			angular: 				'../bower_components/angular/angular',
+			angularSanitize: 		'../bower_components/angular-sanitize/angular-sanitize',
 			angularCookies: 		'../bower_components/angular-cookies/angular-cookies',
 			angularRoute: 			'../bower_components/angular-route/angular-route',
 			angularResource: 		'../bower_components/angular-resource/angular-resource',
@@ -36,7 +37,8 @@
 			reveal: 				'../bower_components/reveal.js/js/reveal.min',
 			//angular notification 
 			//toaster:               '../bower_components/angular-notify-toaster/toaster',
-			ngNotify: 			   	'../bower_components/angular-notify/dist/angular-notify.min'
+			ngNotify: 			   	'../bower_components/angular-notify/dist/angular-notify.min',
+			ngSlider: 				'../bower_components/ng-slider/src/ng-slider'
 		},
 		baseUrl: 'js',
 		shim: {

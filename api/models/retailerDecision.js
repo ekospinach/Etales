@@ -576,9 +576,6 @@ exports.updateRetailerDecision = function(io){
                                                     for(var j=0;j<doc.retMarketDecision[i].retMarketAssortmentDecision.length;j++){
                                                         if(doc.retMarketDecision[i].retMarketAssortmentDecision[j].categoryID==queryCondition.categoryID){
                                                             for(var k=0;k<doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision.length;k++){
-                                                                console.log(doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k]!=undefined);
-                                                                console.log(doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].brandName==queryCondition.brandName);
-                                                                console.log(doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].varName==queryCondition.varName);
                                                                 if(doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k]!=undefined&&doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].brandName==queryCondition.brandName&&doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k].varName==queryCondition.varName){
                                                                     if(queryCondition.location=="pricePromotions"){
                                                                         doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision[k][queryCondition.location][queryCondition.additionalIdx]=queryCondition.value;
@@ -600,7 +597,7 @@ exports.updateRetailerDecision = function(io){
                                         case 'addOrder':
                                             var count=0,result=0;
                                             for(var i=0;i<doc.retMarketDecision.length;i++){
-                                                if(doc.retMarketDecision[i].marketID==queryCondition.marketID){
+                                                if(doc.retMarketDecision[i].marketID==queryCondition.marketID&&queryCondition.value.categoryID!=undefined){
                                                     for(var j=0;j<doc.retMarketDecision[i].retMarketAssortmentDecision.length;j++){
                                                         if(doc.retMarketDecision[i].retMarketAssortmentDecision[j].categoryID==queryCondition.value.categoryID){
                                                             for(var k=0;k<doc.retMarketDecision[i].retMarketAssortmentDecision[j].retVariantDecision.length;k++){

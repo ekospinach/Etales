@@ -19,6 +19,42 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    	}
 		    }
 
+		    $scope.isResultShown=false;
+		    $scope.isPageInit=true;
+		    var periods=new Array();
+		    $scope.periods=periods;
+		    var url="/seminarInfo/"+SeminarInfo.getSelectedSeminar().seminarCode;
+			$http({
+				method:'GET',
+				url:url
+			}).then(function(data){
+				for (var i=data.data.currentPeriod;i>=0;i--){
+					$scope.periods.push(i);
+				}
+				$scope.selectedPeriod = data.data.currentPeriod;
+			},function(){
+				console.log('fail');
+			})
+
+			$scope.setPeriod = function(period){
+				if(!period){
+					$scope.msg = 'Please choose period.';
+				}else{
+					var url='/getFeedBack/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(parseInt($scope.selectedPeriod)-1);
+					$http({
+	                    method:'GET',
+	                    url:url
+	                }).then(function(data){    
+	                    $scope.isPageInit=false;
+						$scope.isResultShown=true; 
+						showPerformance();                                                                     
+	                },function(){
+	                    console.log('fail');
+	                });
+				}
+			}
+
+
 		    var showPerformance=function(){
 		    	switching('showPerformance');
 		    }
@@ -50,7 +86,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    
 		    $scope.switching=switching;
 		    $scope.showPerformance=showPerformance;
-		  	showPerformance();
+		  	//showPerformance();
 
 		    $scope.currentPeriod = PeriodInfo.getCurrentPeriod();
 		    $scope.historyPeriod = PeriodInfo.getCurrentPeriod() - 1;		  	
