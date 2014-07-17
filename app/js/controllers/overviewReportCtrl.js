@@ -3,42 +3,40 @@ define(['app','socketIO','routingConfig'], function(app) {
 	 function($scope, $http, ProducerDecisionBase,$rootScope,Auth,$anchorScroll,$q,PlayerInfo,SeminarInfo,PeriodInfo,Label,RoleInfo) {
 
 
-	    $scope.isResultShown=false;
-	    $scope.isPageInit=true;
-	    var periods=new Array();
-	    $scope.periods=periods;
+	    // $scope.isResultShown=false;
+	    // $scope.isPageInit=true;
 	    
-	    var url="/seminarInfo/"+SeminarInfo.getSelectedSeminar().seminarCode;
-		$http({
-			method:'GET',
-			url:url
-		}).then(function(data){
-			for (var i=data.data.currentPeriod;i>=0;i--){
-				$scope.periods.push(i);
-			}
-			$scope.selectedPeriod = data.data.currentPeriod;
-		},function(){
-			console.log('fail');
-		})
-
-		$scope.msg = '';		
-		$scope.setPeriod = function(period){
-			if(!period){
-				$scope.msg = 'Please choose period.';
-			}else{
-				var url='/getFeedBack/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(parseInt($scope.selectedPeriod)-1);
-				$http({
-                    method:'GET',
-                    url:url
-                }).then(function(data){   
-                    $scope.feedBack=data.data;  
-                    $scope.isPageInit=false;
-					$scope.isResultShown=true;                                                                      
-                },function(){
-                    console.log('fail');
-                });
-			}
+	    $scope.selectedPeriod = "-1";
+	    var loadFeedBack=function(){
+			var url='/getFeedBack/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+$scope.selectedPeriod;
+			$http({
+	            method:'GET',
+	            url:url
+	        }).then(function(data){   
+	            $scope.feedBack=data.data;                                                                      
+	        },function(){
+	            console.log('fail');
+	        });
 		}
+		loadFeedBack();
+	    var periods=new Array();
+		for(var i=-3;i<PeriodInfo.getCurrentPeriod();i++){
+			periods.push(('period:'+i));
+		}
+	    $scope.options = {
+	    	from: -3,
+	    	to: PeriodInfo.getCurrentPeriod()-1,
+	    	step: 1,
+	    	scale: periods
+		};	
+		
+		$scope.$watch('selectedPeriod', function(newValue, oldValue){
+            if(newValue!=oldValue) {
+                loadFeedBack();
+            }
+        })
+
+
 
 	}]);
 });

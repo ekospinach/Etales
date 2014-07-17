@@ -16,12 +16,13 @@ define(['directives', 'services'], function(directives){
                     scope.isPageLoading = true;  
                     scope.isResultShown = false;             
                     scope.Label = Label;
+                    if(scope.feedBack!=undefined)
                     getResult();                    
                 }
 
                 var getResult =function(){
                 	var currentCategories=new Array();
-			        for(var i=-3;i<scope.selectedPeriod;i++){
+			        for(var i=-3;i<=scope.selectedPeriod;i++){
 			            currentCategories.push(i);
 			        }
 			    /*highchart data init start*/
@@ -210,6 +211,11 @@ define(['directives', 'services'], function(directives){
                 scope.$watch('isPageShown', function(newValue, oldValue){
                     console.log('watch is actived');
                     if(newValue==true) {
+                        initializePage();
+                    }
+                })
+                scope.$watch('feedBack', function(newValue, oldValue){
+                    if(newValue!=oldValue) {
                         initializePage();
                     }
                 })
