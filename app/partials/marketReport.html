@@ -21,78 +21,79 @@
     <div class="row">
         <div class="col-md-9">
             <div class="bs-docs-section">
-                <!--market report start-->
-                    <p access-level='{{accessLevels.playerView}}'>You are checking the <b>Report History</b> of period <b>{{historyPeriod}}</b></p>                
-                    <market-awareness-elecssories ng-show='AwarenessElecssories' is-page-shown='AwarenessElecssories' is-page-loading='isPageLoading'></market-awareness-elecssories>
+                <input ng-model="selectedPeriod" type="text" id="marketSlider" slider options="options" />
+                <div style="clear:both;padding:20px 0"></div>
+                <!--market report start-->                
+                    <market-awareness-elecssories ng-show='AwarenessElecssories' is-page-shown='AwarenessElecssories' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-awareness-elecssories>
 
-                    <market-awareness-health-beauties ng-show='AwarenessHealthBeauties' is-page-shown='AwarenessHealthBeauties' is-page-loading='isPageLoading'></market-awareness-health-beauties>
+                    <market-awareness-health-beauties ng-show='AwarenessHealthBeauties' is-page-shown='AwarenessHealthBeauties' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-awareness-health-beauties>
 
-                    <market-rural-elecssories-brand ng-show='RuralElecssoriesBrand' is-page-shown='RuralElecssoriesBrand' is-page-loading='isPageLoading'></market-rural-elecssories-brand>
+                    <market-rural-elecssories-brand ng-show='RuralElecssoriesBrand' is-page-shown='RuralElecssoriesBrand' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-rural-elecssories-brand>
 
-                    <market-urban-elecssories-brand ng-show='UrbanElecssoriesBrand' is-page-shown='UrbanElecssoriesBrand' is-page-loading='isPageLoading'></market-urban-elecssories-brand>
+                    <market-urban-elecssories-brand ng-show='UrbanElecssoriesBrand' is-page-shown='UrbanElecssoriesBrand' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-urban-elecssories-brand>
 
-                    <market-rural-health-beauties-brand ng-show='RuralHealthBeautiesBrand' is-page-shown='RuralHealthBeautiesBrand' is-page-loading='isPageLoading'></market-rural-health-beauties-brand>
+                    <market-rural-health-beauties-brand ng-show='RuralHealthBeautiesBrand' is-page-shown='RuralHealthBeautiesBrand' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-rural-health-beauties-brand>
 
-                    <market-urban-health-beauties-brand ng-show='UrbanHealthBeautiesBrand' is-page-shown='UrbanHealthBeautiesBrand' is-page-loading='isPageLoading'></market-urban-health-beauties-brand>
+                    <market-urban-health-beauties-brand ng-show='UrbanHealthBeautiesBrand' is-page-shown='UrbanHealthBeautiesBrand' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-urban-health-beauties-brand>
 
-                    <market-retailer-perceptions ng-show='RetailerPerceptions' is-page-shown='RetailerPerceptions' is-page-loading='isPageLoading'></market-retailer-perceptions>
+                    <market-retailer-perceptions ng-show='RetailerPerceptions' is-page-shown='RetailerPerceptions' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-retailer-perceptions>
 
-                    <market-rural-elecssories-consumer-share ng-show='RuralElecssoriesConsumerShare' is-page-shown='RuralElecssoriesConsumerShare' is-page-loading='isPageLoading'></market-rural-elecssories-consumer-share>
+                    <market-rural-elecssories-consumer-share ng-show='RuralElecssoriesConsumerShare' is-page-shown='RuralElecssoriesConsumerShare' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-rural-elecssories-consumer-share>
 
-                    <market-urban-elecssories-consumer-share ng-show='UrbanElecssoriesConsumerShare' is-page-shown='UrbanElecssoriesConsumerShare' is-page-loading='isPageLoading'></market-urban-elecssories-consumer-share>
+                    <market-urban-elecssories-consumer-share ng-show='UrbanElecssoriesConsumerShare' is-page-shown='UrbanElecssoriesConsumerShare' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-urban-elecssories-consumer-share>
 
-                    <market-rural-health-beauties-consumer-share ng-show='RuralHealthBeautiesConsumerShare' is-page-shown='RuralHealthBeautiesConsumerShare' is-page-loading='isPageLoading'></market-rural-health-beauties-consumer-share>
+                    <market-rural-health-beauties-consumer-share ng-show='RuralHealthBeautiesConsumerShare' is-page-shown='RuralHealthBeautiesConsumerShare' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-rural-health-beauties-consumer-share>
 
-                    <market-urban-health-beauties-consumer-share ng-show='UrbanHealthBeautiesConsumerShare' is-page-shown='UrbanHealthBeautiesConsumerShare' is-page-loading='isPageLoading'></market-urban-health-beauties-consumer-share>
+                    <market-urban-health-beauties-consumer-share ng-show='UrbanHealthBeautiesConsumerShare' is-page-shown='UrbanHealthBeautiesConsumerShare' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-urban-health-beauties-consumer-share>
 
-                    <market-rural-elecssories-consumer-sales ng-show='RuralElecssoriesConsumerSales' is-page-shown='RuralElecssoriesConsumerSales' is-page-loading='isPageLoading'></market-rural-elecssories-consumer-sales>
+                    <market-rural-elecssories-consumer-sales ng-show='RuralElecssoriesConsumerSales' is-page-shown='RuralElecssoriesConsumerSales' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-rural-elecssories-consumer-sales>
 
-                    <market-urban-elecssories-consumer-sales ng-show='UrbanElecssoriesConsumerSales' is-page-shown='UrbanElecssoriesConsumerSales' is-page-loading='isPageLoading'></market-urban-elecssories-consumer-sales>
+                    <market-urban-elecssories-consumer-sales ng-show='UrbanElecssoriesConsumerSales' is-page-shown='UrbanElecssoriesConsumerSales' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-urban-elecssories-consumer-sales>
 
-                    <market-rural-health-beauties-consumer-sales ng-show='RuralHealthBeautiesConsumerSales' is-page-shown='RuralHealthBeautiesConsumerSales' is-page-loading='isPageLoading'></market-rural-health-beauties-consumer-sales>
+                    <market-rural-health-beauties-consumer-sales ng-show='RuralHealthBeautiesConsumerSales' is-page-shown='RuralHealthBeautiesConsumerSales' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-rural-health-beauties-consumer-sales>
 
-                    <market-urban-health-beauties-consumer-sales ng-show='UrbanHealthBeautiesConsumerSales' is-page-shown='UrbanHealthBeautiesConsumerSales' is-page-loading='isPageLoading'></market-urban-health-beauties-consumer-sales>
+                    <market-urban-health-beauties-consumer-sales ng-show='UrbanHealthBeautiesConsumerSales' is-page-shown='UrbanHealthBeautiesConsumerSales' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-urban-health-beauties-consumer-sales>
 
-                    <market-rural-elecssories-shopper-share ng-show='RuralElecssoriesShopperShare' is-page-shown='RuralElecssoriesShopperShare' is-page-loading='isPageLoading'></market-rural-elecssories-shopper-share>
+                    <market-rural-elecssories-shopper-share ng-show='RuralElecssoriesShopperShare' is-page-shown='RuralElecssoriesShopperShare' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-rural-elecssories-shopper-share>
 
-                    <market-urban-elecssories-shopper-share ng-show='UrbanElecssoriesShopperShare' is-page-shown='UrbanElecssoriesShopperShare' is-page-loading='isPageLoading'></market-urban-elecssories-shopper-share>
+                    <market-urban-elecssories-shopper-share ng-show='UrbanElecssoriesShopperShare' is-page-shown='UrbanElecssoriesShopperShare' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-urban-elecssories-shopper-share>
 
-                    <market-rural-health-beauties-shopper-share ng-show='RuralHealthBeautiesShopperShare' is-page-shown='RuralHealthBeautiesShopperShare' is-page-loading='isPageLoading'></market-rural-health-beauties-shopper-share>
+                    <market-rural-health-beauties-shopper-share ng-show='RuralHealthBeautiesShopperShare' is-page-shown='RuralHealthBeautiesShopperShare' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-rural-health-beauties-shopper-share>
 
-                    <market-urban-health-beauties-shopper-share ng-show='UrbanHealthBeautiesShopperShare' is-page-shown='UrbanHealthBeautiesShopperShare' is-page-loading='isPageLoading'></market-urban-health-beauties-shopper-share>
+                    <market-urban-health-beauties-shopper-share ng-show='UrbanHealthBeautiesShopperShare' is-page-shown='UrbanHealthBeautiesShopperShare' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-urban-health-beauties-shopper-share>
 
-                    <market-rural-elecssories-shopper-sales ng-show='RuralElecssoriesShopperSales' is-page-shown='RuralElecssoriesShopperSales' is-page-loading='isPageLoading'></market-rural-elecssories-shopper-sales>
+                    <market-rural-elecssories-shopper-sales ng-show='RuralElecssoriesShopperSales' is-page-shown='RuralElecssoriesShopperSales' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-rural-elecssories-shopper-sales>
 
-                    <market-urban-elecssories-shopper-sales ng-show='UrbanElecssoriesShopperSales' is-page-shown='UrbanElecssoriesShopperSales' is-page-loading='isPageLoading'></market-urban-elecssories-shopper-sales>
+                    <market-urban-elecssories-shopper-sales ng-show='UrbanElecssoriesShopperSales' is-page-shown='UrbanElecssoriesShopperSales' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-urban-elecssories-shopper-sales>
 
-                    <market-rural-health-beauties-shopper-sales ng-show='RuralHealthBeautiesShopperSales' is-page-shown='RuralHealthBeautiesShopperSales' is-page-loading='isPageLoading'></market-rural-health-beauties-shopper-sales>
+                    <market-rural-health-beauties-shopper-sales ng-show='RuralHealthBeautiesShopperSales' is-page-shown='RuralHealthBeautiesShopperSales' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-rural-health-beauties-shopper-sales>
 
-                    <market-urban-health-beauties-shopper-sales ng-show='UrbanHealthBeautiesShopperSales' is-page-shown='UrbanHealthBeautiesShopperSales' is-page-loading='isPageLoading'></market-urban-health-beauties-shopper-sales>
+                    <market-urban-health-beauties-shopper-sales ng-show='UrbanHealthBeautiesShopperSales' is-page-shown='UrbanHealthBeautiesShopperSales' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-urban-health-beauties-shopper-sales>
 
-                    <market-rural-elecssories-sales-by-channel ng-show='RuralElecssoriesSalesByChannel' is-page-shown='RuralElecssoriesSalesByChannel' is-page-loading='isPageLoading'></market-rural-elecssories-sales-by-channel>
+                    <market-rural-elecssories-sales-by-channel ng-show='RuralElecssoriesSalesByChannel' is-page-shown='RuralElecssoriesSalesByChannel' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-rural-elecssories-sales-by-channel>
 
-                    <market-urban-elecssories-sales-by-channel ng-show='UrbanElecssoriesSalesByChannel' is-page-shown='UrbanElecssoriesSalesByChannel' is-page-loading='isPageLoading'></market-urban-elecssories-sales-by-channel>
+                    <market-urban-elecssories-sales-by-channel ng-show='UrbanElecssoriesSalesByChannel' is-page-shown='UrbanElecssoriesSalesByChannel' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-urban-elecssories-sales-by-channel>
 
-                    <market-rural-health-beauties-sales-by-channel ng-show='RuralHealthBeautiesSalesByChannel' is-page-shown='RuralHealthBeautiesSalesByChannel' is-page-loading='isPageLoading'></market-rural-health-beauties-sales-by-channel>
+                    <market-rural-health-beauties-sales-by-channel ng-show='RuralHealthBeautiesSalesByChannel' is-page-shown='RuralHealthBeautiesSalesByChannel' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-rural-health-beauties-sales-by-channel>
 
-                    <market-urban-health-beauties-sales-by-channel ng-show='UrbanHealthBeautiesSalesByChannel' is-page-shown='UrbanHealthBeautiesSalesByChannel' is-page-loading='isPageLoading'></market-urban-health-beauties-sales-by-channel>
+                    <market-urban-health-beauties-sales-by-channel ng-show='UrbanHealthBeautiesSalesByChannel' is-page-shown='UrbanHealthBeautiesSalesByChannel' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-urban-health-beauties-sales-by-channel>
 
-                    <market-b-m-elecssories ng-show='BMElecssories' is-page-shown='BMElecssories' is-page-loading='isPageLoading'></market-b-m-elecssories>
+                    <market-b-m-elecssories ng-show='BMElecssories' is-page-shown='BMElecssories' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-b-m-elecssories>
 
-                    <market-b-m-health-beauties ng-show='BMHealthBeauties' is-page-shown='BMHealthBeauties' is-page-loading='isPageLoading'></market-b-m-health-beauties>
+                    <market-b-m-health-beauties ng-show='BMHealthBeauties' is-page-shown='BMHealthBeauties' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-b-m-health-beauties>
 
-                    <market-promotion-elecssories ng-show='PromotionElecssories' is-page-shown='PromotionElecssories' is-page-loading='isPageLoading'></market-promotion-elecssories>
+                    <market-promotion-elecssories ng-show='PromotionElecssories' is-page-shown='PromotionElecssories' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-promotion-elecssories>
 
-                    <market-promotion-health-beauties ng-show='PromotionHealthBeauties' is-page-shown='PromotionHealthBeauties' is-page-loading='isPageLoading'></market-promotion-health-beauties>
+                    <market-promotion-health-beauties ng-show='PromotionHealthBeauties' is-page-shown='PromotionHealthBeauties' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-promotion-health-beauties>
 
-                    <market-supplier-intelligence ng-show='SupplierIntelligence' is-page-shown='SupplierIntelligence' is-page-loading='isPageLoading'></market-supplier-intelligence>
+                    <market-supplier-intelligence ng-show='SupplierIntelligence' is-page-shown='SupplierIntelligence' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-supplier-intelligence>
 
-                    <market-retailer-intelligence ng-show='RetailerIntelligence' is-page-shown='RetailerIntelligence' is-page-loading='isPageLoading'></market-retailer-intelligence>
+                    <market-retailer-intelligence ng-show='RetailerIntelligence' is-page-shown='RetailerIntelligence' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-retailer-intelligence>
 
-                    <market-forecasts-consumer ng-show='ForecastsConsumer' is-page-shown='ForecastsConsumer' is-page-loading='isPageLoading'></market-forecasts-consumer>
-                    <market-forecasts-shopper ng-show='ForecastsShopper' is-page-shown='ForecastsShopper' is-page-loading='isPageLoading'></market-forecasts-shopper>
-                    <market-forecasts-category ng-show='ForecastsCategory' is-page-shown='ForecastsCategory' is-page-loading='isPageLoading'></market-forecasts-category>
-                    <market-forecasts-internet ng-show='ForecastsInternet' is-page-shown='ForecastsInternet' is-page-loading='isPageLoading'></market-forecasts-internet>
+                    <market-forecasts-consumer ng-show='ForecastsConsumer' is-page-shown='ForecastsConsumer' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-forecasts-consumer>
+                    <market-forecasts-shopper ng-show='ForecastsShopper' is-page-shown='ForecastsShopper' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-forecasts-shopper>
+                    <market-forecasts-category ng-show='ForecastsCategory' is-page-shown='ForecastsCategory' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-forecasts-category>
+                    <market-forecasts-internet ng-show='ForecastsInternet' is-page-shown='ForecastsInternet' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-forecasts-internet>
 
                 <!--market report end-->
 

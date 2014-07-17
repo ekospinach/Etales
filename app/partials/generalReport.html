@@ -19,22 +19,22 @@
     <div class="row">
         <div class="col-md-9">        
             <div class="bs-docs-section">
-                    <p access-level='{{accessLevels.playerView}}'>You are checking the <b>Report History</b> of period <b>{{historyPeriod}}</b></p>
-            
+                <input ng-model="selectedPeriod" type="text" id="generalReportSlider" slider options="options" />
+                <div style="clear:both;padding:20px 0"></div>
                 <!--general report start -->
-                    <general-performance-highlights ng-show='Performance' is-page-shown='Performance' is-page-loading='isPageLoading'></general-performance-highlights>
+                    <general-performance-highlights ng-show='Performance' is-page-shown='Performance' is-page-loading='isPageLoading' selected-period='selectedPeriod'></general-performance-highlights>
                     
-                    <general-market-share ng-show='MarketShare' is-page-shown='MarketShare' is-page-loading='isPageLoading'></general-market-share>
+                    <general-market-share ng-show='MarketShare' is-page-shown='MarketShare' is-page-loading='isPageLoading' selected-period='selectedPeriod'></general-market-share>
                                             
-                    <general-market-sales ng-show='MarketSales' is-page-shown='MarketSales' is-page-loading='isPageLoading'></general-market-sales>
+                    <general-market-sales ng-show='MarketSales' is-page-shown='MarketSales' is-page-loading='isPageLoading' selected-period='selectedPeriod'></general-market-sales>
     
-                    <general-cross-segment-sales ng-show='Cross' is-page-shown='Cross' is-page-loading='isPageLoading'></general-cross-segment-sales>
+                    <general-cross-segment-sales ng-show='Cross' is-page-shown='Cross' is-page-loading='isPageLoading' selected-period='selectedPeriod'></general-cross-segment-sales>
 
-                    <general-segment-leadership ng-show='Segment' is-page-shown='Segment' is-page-loading='isPageLoading'></general-segment-leadership>
+                    <general-segment-leadership ng-show='Segment' is-page-shown='Segment' is-page-loading='isPageLoading' selected-period='selectedPeriod'></general-segment-leadership>
 
-                    <general-product-portfolio ng-show='Product' is-page-shown='Product' is-page-loading='isPageLoading'></general-product-portfolio>
+                    <general-product-portfolio ng-show='Product' is-page-shown='Product' is-page-loading='isPageLoading' selected-period='selectedPeriod'></general-product-portfolio>
 
-                    <general-emall-prices ng-show='EMallPrices' is-page-shown='EMallPrices' is-page-loading='isPageLoading'></general-emall-prices>
+                    <general-emall-prices ng-show='EMallPrices' is-page-shown='EMallPrices' is-page-loading='isPageLoading' selected-period='selectedPeriod'></general-emall-prices>
                 <!--general report end -->
             </div>
         </div>

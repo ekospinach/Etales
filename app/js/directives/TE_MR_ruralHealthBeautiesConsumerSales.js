@@ -4,7 +4,8 @@ define(['directives', 'services'], function(directives){
         return {
             scope : {
                 isPageShown : '=',
-                isPageLoading : '='
+                isPageLoading : '=',
+                selectedPeriod : '='
             },
             restrict : 'E',
             templateUrl : '../../partials/singleReportTemplate/MR_ruralHealthBeautiesConsumerSales.html',                        
@@ -16,7 +17,7 @@ define(['directives', 'services'], function(directives){
                     getResult();                    
                 }
 
-var loadTotal=function(data,ownerID,category,market){
+                var loadTotal=function(data,ownerID,category,market){
                     var Values=_.find(data.owner_absoluteValue,function(obj){
                         return (obj.ownerID==ownerID&&obj.categoryID==category&&obj.marketID==market);
                     });
@@ -151,7 +152,7 @@ var loadTotal=function(data,ownerID,category,market){
 
                 var getResult =function(){
                     scope.quality1s=new Array();scope.quality2s=new Array();scope.quality3s=new Array();scope.quality5s=new Array();scope.quality6s=new Array();scope.price1s=new Array();scope.price2s=new Array();scope.price3s=new Array();scope.price5s=new Array();scope.price6s=new Array();
-                    var url='/getMR-salesCrossSegment/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1);
+                    var url='/getMR-salesCrossSegment/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod;
                     $http({
                         method:'GET',
                         url:url,
@@ -190,6 +191,11 @@ var loadTotal=function(data,ownerID,category,market){
 
                 scope.$watch('isPageShown', function(newValue, oldValue){
                     if(newValue==true) {
+                        initializePage();
+                    }
+                })
+                scope.$watch('selectedPeriod', function(newValue, oldValue){
+                    if(newValue!=oldValue) {
                         initializePage();
                     }
                 })

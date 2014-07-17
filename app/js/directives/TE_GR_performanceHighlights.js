@@ -4,7 +4,8 @@ define(['directives', 'services'], function(directives){
         return {
             scope : {
                 isPageShown : '=',
-                isPageLoading : '='
+                isPageLoading : '=',
+                selectedPeriod : '='
             },
             restrict : 'E',
             templateUrl : '../../partials/singleReportTemplate/GR_PerformanceHighlights.html',            
@@ -19,7 +20,7 @@ define(['directives', 'services'], function(directives){
                 var getResult =function(){
 
                     //switching('showPerformance');
-                    var url='/performanceHighlights/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1);
+                    var url='/performanceHighlights/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod;
                     // scope.logs = [];
                     // scope.logs.push('Sending GET : ' + url );
 
@@ -74,6 +75,11 @@ define(['directives', 'services'], function(directives){
                 scope.$watch('isPageShown', function(newValue, oldValue){
                     console.log('watch is actived');
                     if(newValue==true) {
+                        initializePage();
+                    }
+                })
+                scope.$watch('selectedPeriod', function(newValue, oldValue){
+                    if(newValue!=oldValue) {
                         initializePage();
                     }
                 })

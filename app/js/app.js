@@ -108,7 +108,9 @@
  	'text',
  	'bootstrapswitch',
  	'reveal',
- 	'ngNotify'
+ 	'ngNotify',
+ 	'angularSanitize',
+ 	'ngSlider',
  ], function(angular, filters, services, directives, bootstrap, controllers) {
  	'use strict';
  	return angular.module('myApp', [
@@ -121,7 +123,8 @@
  			'chieffancypants.loadingBar',
  			'ngCookies',
  			'highcharts-ng',
- 			'cgNotify'
+ 			'cgNotify',
+ 			'ngSlider'
  		]).run(function(editableOptions, editableThemes) {
  			editableThemes.bs3.inputClass = 'input-sm';
  			editableThemes.bs3.buttonsClass = 'btn-sm';
