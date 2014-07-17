@@ -12,7 +12,6 @@ module.exports = function(app, io){
     app.get('/productionResult/:seminar/:period/:producerID/:brandName/:varName',                           require('./../api/models/producerDecision.js').getProductionResult);
     app.get('/producerCurrentDecision/:seminar/:period/:producerID/:brandName/:varName',                    require('./../api/models/producerDecision.js').getProducerCurrentDecision);
     app.get('/checkProducerProduct/:seminar/:period/:producerID/:categoryID/:checkType/:brandName/:varName',require('./../api/models/producerDecision.js').checkProducerProduct);
-    app.get('/producerExpend/:seminar/:period/:producerID/:brandName/:location/:additionalIdx',             require('./../api/models/producerDecision.js').getProducerExpend);
     app.get('/producerVariantBM/:seminar/:period/:producerID/:categoryID/:brandName/:varName',              require('./../api/models/producerDecision.js').getProducerVariantBM);
     
 
@@ -36,7 +35,6 @@ module.exports = function(app, io){
 
     app.get('/checkContract/:contractCode',                                                                 require('./../api/models/contract.js').checkContract);
     //retailer check
-    app.get('/retailerExpend/:seminar/:period/:retailerID/:marketID/:location/:additionalIdx',              require('./../api/models/retailerDecision.js').getRetailerExpend);
     app.get('/retailerShelfSpace/:seminar/:period/:retailerID/:marketID/:categoryID/:brandName/:varName',   require('./../api/models/retailerDecision.js').getRetailerShelfSpace);
     app.get('/checkRetailerProduct/:seminar/:period/:retailerID/:categoryID/:checkType/:brandName/:varName',require('./../api/models/retailerDecision.js').checkRetailerProduct);
     app.get('/retailerCurrentDecision/:seminar/:period/:retailerID/:brandName/:varName',                    require('./../api/models/retailerDecision.js').getRetailerCurrentDecision);
@@ -57,10 +55,6 @@ module.exports = function(app, io){
     app.post('/addContractDetails',                                                                         require('./../api/models/contract.js').addContractDetails(io));
     app.get('/getContractDetails/:contractCode',                                                            require('./../api/models/contract.js').getContractDetails);
     
-    //Get sum of minimum order of rest product under same category, same contractCode
-    app.get('/getNegotiationExpend/:contractCode/:parentBrandName/:variantName',                            require('./../api/models/contract.js').getNegotiationExpend);
-    //Get sum of negotiation cost of rest product in same player's decision 
-    app.get('/getContractExpend/:seminar/:period/:producerID/:retailerID/:parentBrandName/:variantName',    require('./../api/models/contract.js').getContractExpend);//SalesTargetVolume
     
     //Check if selected contract details has been lock(both side choose agree)    
     //return { "result" : true, "doc" : contractDetails} : Locked
@@ -92,5 +86,15 @@ module.exports = function(app, io){
     app.post('/submitFinalDecision',                                             require('./../api/models/seminar.js').submitFinalDecision(io));
 
     app.get('/getOneQuarterExogenousData/:seminar/:categoryID/:marketID/:period',        require('./../api/models/BG_oneQuarterExogenousData.js').getOneQuarterExogenousData);
+
+    //========== Spending calculation API =======================    
+    app.get('/producerExpend/:seminar/:period/:producerID/:brandName/:location/:additionalIdx', require('./../api/models/producerDecision.js').getProducerExpend);
+    app.get('/retailerExpend/:seminar/:period/:retailerID/:marketID/:location/:additionalIdx', require('./../api/models/retailerDecision.js').getRetailerExpend);
+    app.get('/getPlayerReportOrderExpend/:seminar/:period/:userType/:playerID', require('./../api/models/seminar.js').getPlayerReportOrderExpend);    
+    //calculate how much per contractCode cost AKA supplier have to pay for in current period(Volume Discount/Other compensation) or next period(Performance Bonus), Lock supplier's budget for current period by estimated cost
+    app.get('/getContractExpend/:seminar/:period/:producerID/:parentBrandName/:variantName', require('./../api/models/contract.js').getContractExpend); 
+
+    //Get sum of minimum order of rest product under same category, same contractCode
+    app.get('/getAgreedProductionVolume/:seminar/:period/:producerID/:parentBrandName/:variantName',                            require('./../api/models/contract.js').getAgreedProductionVolume);
 
 };

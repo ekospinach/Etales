@@ -18,7 +18,8 @@ define(['directives', 'services'], function(directives) {
                          Minimum Order range
                          0 ~ Min((1)Supplier's total production capacity minus ( the sum of what has been already approved in this and other deals),
                                  (2)the value of the discount = volume * BM Price * ( 1 -discount rate ) cannot exceed remaining available budget,
-                                 (3)Retailer's Previous CATEGORY sales volume)
+                                 //(3)Retailer's Previous CATEGORY sales volume)
+                                 (3)cash must be transferred into Retailer's account in current period if retailer order volume > agreed minimum order 
                     */
                     scope.checkMinimumOrder = function(contractCode, brandName, varName, category, value, retailerID) {
                         var d = $q.defer();
@@ -26,58 +27,61 @@ define(['directives', 'services'], function(directives) {
                         if (!filter.test(value)) {
                             d.resolve(Label.getContent('Input Number'));
                         }
-                        d.resolve();
+                        //d.resolve();
 
-                        // var url = '/checkContractDetailsLockStatus/' + contractCode + '/' + brandName + '/' + varName + '/nc_MinimumOrder';
-                        // $http({
-                        //     method: 'GET',
-                        //     url: url
-                        // }).then(function(data) {
-                        //     if (data.data.result) {
-                        //         d.resolve(Label.getContent('This item has been locked.'));
-                        //     }
+                        var url = '/checkContractDetailsLockStatus/' + contractCode + '/' + brandName + '/' + varName + '/nc_MinimumOrder';
+                        $http({
+                            method: 'GET',
+                            url: url
+                        }).then(function(data) {
+                            if (data.data.result) {
+                                d.resolve(Label.getContent('This item has been locked.'));
+                            }
 
-                        //     url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + PlayerInfo.getPlayer();
-                        //     return $http({
-                        //         method: 'GET',
-                        //         url: url
-                        //     });
+                            url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + PlayerInfo.getPlayer();
+                            return $http({
+                                method: 'GET',
+                                url: url
+                            });
                             
-                        // }).then(function(data) {
-                        //     //negotiationACmac = MAX planned production capacity 
-                        //     negotiationACmax = data.data.productionCapacity[category - 1];
+                        }).then(function(data) {
+                            //negotiationACmac = MAX planned production capacity 
+                            negotiationACmax = data.data.productionCapacity[category - 1];
 
-                        //     url = '/getNegotiationExpend/' + contractCode + '/' + brandName + '/' + varName;
-                        //     return $http({
-                        //         method: 'GET',
-                        //         url: url
-                        //     })
-                        // }).then(function(data) {                            
-                        //     expend = data.data.result;                            
-                        //     //TODO: bench mark(3), Retailer's Previous CATEGORY sales volume
-                        //     url = '/getSalesVolume/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/' + retailerID + '/' + category;
-                        //     return $http({
-                        //         method: 'GET',
-                        //         url: url
-                        //     })
-                        // }).then(function(data) {
+                            url = '/getAgreedProductionVolume/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + PlayerInfo.getPlayer() + '/' + brandName + '/' + varName;
+                            console.log(url);
+                            return $http({
+                                method: 'GET',
+                                url: url
+                            })
+                        }).then(function(data) {                            
+                            agreedProductionVolume = data.data.result;                            
 
-                        //     //TODO: every time they rest Minimum order successfully, set Discount rate into 0% automatically.
-                        //     //TODO: (2) need to be implemented 
-                        //     var availablePlannedProductionCapacity  = negotiationACmax - expend;
-                        //     var retailerPreviousCategorySalesvolume = data.data;
-                        //     var benchMark = Math.min(availablePlannedProductionCapacity, retailerPreviousCategorySalesvolume);
-                        //     if(benchMark < 0){benchMark = 0;}
+                            url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + PlayerInfo.getPlayer() + '/' + brandName + '/' + varName;
+                            console.log(url);
+                            return $http({
+                                method: 'GET',
+                                url: url
+                            })
+                        }).then(function(data) {                            
+                            allContractExpend = data.data.result;                            
 
-                        //     if(value < benchMark){
-                        //         d.resolve();
-                        //     } else {
-                        //         d.resolve(Label.getContent('Input range') + ': 0 ~ ' + benchMark);
-                        //     }
+                            //TODO: (2) need to be implemented 
 
-                        // }, function() {
-                        //     d.resolve(Label.getContent('Check Error'));
-                        // });
+                            var availablePlannedProductionCapacity  = negotiationACmax - agreedProductionVolume;
+                            var benchMark = Math.min(availablePlannedProductionCapacity);
+                            
+                            if(benchMark < 0){benchMark = 0;}
+
+                            if(value < benchMark){
+                                d.resolve();
+                            } else {
+                                d.resolve(Label.getContent('Input range') + ': 0 ~ ' + benchMark);
+                            }
+
+                        }, function(data) {
+                            d.resolve(Label.getContent('Check Error'));
+                        });
                         return d.promise;
                     }
 
@@ -126,7 +130,7 @@ define(['directives', 'services'], function(directives) {
                         // }).then(function(data) {
                         //     negotiationABmax = data.data.budgetAvailable;
 
-                        //     url = '/getNegotiationExpend/' + contractCode + '/' + brandName + '/' + varName;
+                        //     url = '/getAgreedProductionVolume/' + contractCode + '/' + brandName + '/' + varName;
                         //     return $http({
                         //         method: 'GET',
                         //         url: url
@@ -136,7 +140,7 @@ define(['directives', 'services'], function(directives) {
                         //     expend = data.data.result;
 
 
-                        //     //TODO: Need to redo service getContractExpend, and use it here instead of /getNegotiationExpend
+                        //     //TODO: Need to redo service getContractExpend, and use it here instead of /getAgreedProductionVolume 
 
                         //     if (value > 100) {
                         //         d.resolve(Label.getContent('Input range') + ':0~100');
