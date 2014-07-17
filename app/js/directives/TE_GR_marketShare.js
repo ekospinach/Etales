@@ -4,7 +4,8 @@ define(['directives', 'services'], function(directives){
         return {
             scope : {
                 isPageShown : '=',
-                isPageLoading : '='
+                isPageLoading : '=',
+                selectedPeriod : '='
             },
             restrict : 'E',
             templateUrl : '../../partials/singleReportTemplate/GR_marketShare.html',
@@ -20,7 +21,7 @@ define(['directives', 'services'], function(directives){
 
                 var getResult =function(){
                     //switching('showPerformance');
-                    var url='/marketShare/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1);
+                    var url='/marketShare/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod;
                     $http({
                         method:'GET',
                         url:url,
@@ -357,6 +358,12 @@ define(['directives', 'services'], function(directives){
                     // console.log('watch in the TE_GR_marketShare fire, new value: ' + newValue + ', oldValue: '+ oldValue);
 
                     if(newValue==true){ initializePage(); }
+                })
+
+                scope.$watch('selectedPeriod', function(newValue, oldValue){
+                    if(newValue!=oldValue) {
+                        initializePage();
+                    }
                 })
 
           }
