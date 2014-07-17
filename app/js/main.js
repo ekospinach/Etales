@@ -66,7 +66,8 @@
 			'angularBootstrapSwitch':['angular','jquery','bootstrapswitch'],
 			'highchart' :['jquery'],
 			//'toaster' :['jquery','angular','angularAnimate'],
-			'ngNotify' :['jquery','angular']
+			'ngNotify' :['jquery','angular'],
+			'ngSlider' :['jquery','angular']
 		},
 		priority: [
 			"angular"

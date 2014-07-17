@@ -30,46 +30,6 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    	step: 1,
 		    	scale: periods
 			};
-		 	// var url="/seminarInfo/"+SeminarInfo.getSelectedSeminar().seminarCode;
-			// $http({
-			// 	method:'GET',
-			// 	url:url
-			// }).then(function(data){
-			// 	for (var i=data.data.currentPeriod-1;i>-3;i--){
-			// 		$scope.periods.push(i);
-			// 	}
-			// 	$scope.maxPeriod = data.data.currentPeriod-1;
-			// 	//$scope.selectedPeriod = data.data.currentPeriod-1;
-			// },function(){
-			// 	console.log('fail');
-			// })
-
-			// $scope.setPeriod = function(period){
-			// 	if(period==undefined){
-			// 		$scope.msg = 'Please choose period.';
-			// 	}else{
-			// 		//$scope.selectedPeriod = 'period:-2';
-
-			// 		//$scope.selectedPeriod = period-1;
-			// 		//$scope.selectedPeriod = "-2";
-			// 		$scope.isPageInit=false;
-			// 		$scope.isResultShown=true; 
-			// 		var periods=new Array();
-			// 		for(var i=-3;i<=$scope.maxPeriod;i++){
-			// 			periods.push(i);
-			// 		}
-			// 		$scope.options = {				
-			// 			from: -3,
-			// 			to: $scope.maxPeriod,
-			// 			step: 1,
-			// 			dimension: "th Period"
-			// 			//scale: periods
-			// 			// calculate: calculate
-			// 		};
-					
-			// 		showPerformance();
-			// 	}
-			// }
 
 
 		    var showPerformance=function(){
