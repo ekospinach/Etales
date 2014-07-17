@@ -49,8 +49,6 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    	}
 		    }
 
-
-
 			var showAwarenessElecssories=function(){
 				switching('showAwarenessElecssories');
 			}
@@ -200,7 +198,18 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    }
 
 		    var userRoles = routingConfig.userRoles;
-	    var initializePage = function(){
+		    $scope.selectedPeriod = "-1";
+		    var periods=new Array();
+			for(var i=-3;i<PeriodInfo.getCurrentPeriod();i++){
+				periods.push(('period:'+i));
+			}
+		    $scope.options = {
+		    	from: -3,
+		    	to: PeriodInfo.getCurrentPeriod()-1,
+		    	step: 1,
+		    	scale: periods
+			};
+	    	var initializePage = function(){
 		    	$scope.isPageLoading = true;
 		  		if($rootScope.user.role==userRoles.facilitator){
 			  		setReportShown('','Full');

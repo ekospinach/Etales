@@ -4,7 +4,8 @@ define(['directives', 'services'], function(directives){
         return {
             scope : {
                 isPageShown : '=',
-                isPageLoading : '='
+                isPageLoading : '=',
+                selectedPeriod : '='
             },
             restrict : 'E',
             templateUrl : '../../partials/singleReportTemplate/MR_retailerIntelligence.html',            
@@ -18,7 +19,7 @@ define(['directives', 'services'], function(directives){
 
                 var getResult =function(){
                     scope.data=new Array();scope.variants=new Array();scope.player1es=new Array();scope.player2es=new Array();scope.player3es=new Array();scope.player5es=new Array();scope.player6es=new Array();scope.player1hs=new Array();scope.player2hs=new Array();scope.player3hs=new Array();scope.player5hs=new Array();scope.player6hs=new Array();
-                    var url='/getMR-retailersIntelligence/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1);
+                    var url='/getMR-retailersIntelligence/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod;
                     $http({
                         method:'GET',
                         url:url,
@@ -112,6 +113,11 @@ define(['directives', 'services'], function(directives){
 
                 scope.$watch('isPageShown', function(newValue, oldValue){
                     if(newValue==true) {
+                        initializePage();
+                    }
+                })
+                scope.$watch('selectedPeriod', function(newValue, oldValue){
+                    if(newValue!=oldValue) {
                         initializePage();
                     }
                 })

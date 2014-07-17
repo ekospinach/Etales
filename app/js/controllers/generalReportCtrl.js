@@ -19,9 +19,6 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    	}
 		    }
 
-		    $scope.isResultShown=false;
-		    $scope.isPageInit=true;
-		    $scope.periods=new Array();
 		    $scope.selectedPeriod = "-1";
 		    var periods=new Array();
 			for(var i=-3;i<PeriodInfo.getCurrentPeriod();i++){

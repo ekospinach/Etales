@@ -1,9 +1,3 @@
-<div class="row">
-	<div class="col-sm-12 overflow-hidden" ng-init="sliderUnderValue=5"> 
-	  <div ng-model="sliderUnderValue" ui-slider="{ step : 1 }" ></div>
-	  <span class="relative" ng-style="{ left : sliderUnderValue + '%' }">{{sliderUnderValue}}</span>
-	</div>
-</div>
 <div class="panel panel-danger my-panel-danger" ng-show='isResultShown'>
     <div class="panel-heading">
         <h3 class="panel-title text-center" popover="{{Label.getContent('Awareness Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
