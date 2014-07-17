@@ -46,7 +46,7 @@ define(['app','socketIO'], function(app) {
 						PeriodInfo.setCurrentPeriod(data.data.currentPeriod);
 						PlayerInfo.setPlayer($rootScope.user.roleID);
 						RoleInfo.setRole($rootScope.user.role);
-						$location.path('/home');					
+						$location.path('/overviewReport');					
 					});
 				},function(res){
 					$scope.errorInfo="Login Fail"; 
