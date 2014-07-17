@@ -65,7 +65,6 @@
 			'angularHighcharts' :['angular','highchart'],
 			'angularBootstrapSwitch':['angular','jquery','bootstrapswitch'],
 			'highchart' :['jquery'],
-			//'toaster' :['jquery','angular','angularAnimate'],
 			'ngNotify' :['jquery','angular'],
 			'ngSlider' :['jquery','angular']
 		},
