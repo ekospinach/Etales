@@ -80,7 +80,7 @@ define(['directives', 'services'], function(directives) {
 
                     scope.checkData = function(category, brandName, location, tep, index, value) {
                         var d = $q.defer();
-                        var categoryID, max, result, ContractExpend, reportExpend;
+                        var categoryID, max, result, ContractExpend, reportExpend, producerExpend, availableBudgetLeft;
                         var filter = /^[0-9]+([.]{1}[0-9]{1,2})?$/;
                         if (!filter.test(value)) {
                             d.resolve(Label.getContent('Input a number'));
@@ -111,9 +111,12 @@ define(['directives', 'services'], function(directives) {
                                 url: url
                             });
                         }).then(function(data) {
-                            if (parseInt(data.data.result) + parseInt(value) > max - ContractExpend - reportExpend) {
-                                d.resolve(Label.getContent('Input range') + ':0~' + (max - ContractExpend - data.data.result - reportExpend).toFixed(2));
-                            } else {
+                            producerExpend = data.data.result;
+                            availableBudgetLeft = max - ContractExpend  - reportExpend - producerExpend;
+                            console.log(availableBudgetLeft);
+                            if(value>availableBudgetLeft){
+                                d.resolve(Label.getContent('Input range') + ':0~' + availableBudgetLeft.toFixed(2));
+                            }else{
                                 d.resolve();
                             }
                         }, function(data) {
@@ -134,7 +137,6 @@ define(['directives', 'services'], function(directives) {
                         if (!filter.test(value)) {
                             d.resolve(Label.getContent('Input a number'));
                         }
-                        // var url='/'
                         var url = '/producerCurrentDecision/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + PlayerInfo.getPlayer() + '/' + brandName + '/' + varName;
                         $http({
                             method: 'GET',

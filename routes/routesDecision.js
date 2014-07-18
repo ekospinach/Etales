@@ -101,4 +101,8 @@ module.exports = function(app, io){
     //Get sum of minimum order of rest product under same category, same contractCode
     app.get('/getAgreedProductionVolume/:seminar/:period/:producerID/:parentBrandName/:variantName',                            require('./../api/models/contract.js').getAgreedProductionVolume);
 
+    //Get retailer additional budget from Supplier of current period(other compensation + volume discount )
+    app.get('/getRetailerAdditionalBudget/:seminar/:period/:retailerID',        require('./../api/models/contract.js').getRetailerAdditionalBudget); 
+
+
 };

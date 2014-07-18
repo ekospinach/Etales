@@ -380,11 +380,7 @@ define(['directives', 'services'], function(directives){
                         initializePage();
                     }
                 })
-                scope.$watch('feedBack', function(newValue, oldValue){
-                    if(newValue!=oldValue) {
-                        initializePage();
-                    }
-                })
+                
             }
         }
     }])

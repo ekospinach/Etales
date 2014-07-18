@@ -538,3 +538,18 @@ exports.removeContract = function(io) {
           });
      }
 }
+
+exports.getRetailerAdditionalBudget = function(req, res, next) {
+     contract.findOne({
+          contractCode: req.params.contractCode
+     }, function(err, doc) {
+          if (err) {
+               next(new Error(err))
+          };
+          if (doc) {
+               res.send(200, '125');
+          } else {
+               res.send(200, '134');
+          }
+     })
+}

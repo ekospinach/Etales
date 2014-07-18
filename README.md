@@ -20,6 +20,49 @@ Business Simulation Game
 + Need to debug export Alldeal function
 + Exogenous files need to be imported in the right way by period/market/category
 
+
+##Patch List, 2014 July
+
+###### Negotiation
+[X]"volume discount" & "performance bonus" should block supplier’s budget in this period 
+[X]Cash which is inputted in the "Other compensation", should be transferred immediately in current period, as soon as both of them agree with on same amount. 
+[X]Cash which is inputted in the “Discount Value”, should be transferred immediately in current period, as soon as both of them agree with on same amount AND retailer order the asked volume in the store management decision…
+[X]Supplier/Retailer_Negotiation - The products repeat twice in the negotiation table. It is because when the supplier changes the list price twice, two records are saved. Could be a browser issue. Which browser has 
+
+###### Overall 
+[X]Open multiple tabs by one single logo click 
+[X]Unit cost calculation need to be finished and Tested.
+
+
+###### Improvements
+
+General Reports
+[X]GR_Product Portfolio - Add “B&M List Prices” column (from previous period)
+[X]GR_Performance Highlights - Add “B&M (Wholesale)” and “Online” column for each supplier.
+ 
+Market Research Reports
+[X]MR_Sales by Channel – A new report to be added. Please refer to the template.
+[X]MR_Market Shares by Consumer Segment – A new row “Total” is added for each each supplier/retailer. The label “Change” is changed to “Change %”
+[X]MR_Sales by Consumer Segment – A new row “Total” is added for each each supplier/retailer. The label “Change” is changed to “Change %”
+ 
+Supplier – Confidential Reports
+[X]SCR_inventoryVolumes - Add “Unit Production Cost” column to the volume report
+[X]SCR_consolidatedProfitAndLoss - Under material cost, add eMall Commission and Shipping Cost
+
+Retailer – Confidential Reports
+[X]RCR__inventoryVolumes – Add “Net Retail Price” column to the volume report
+ 
+Feedback – For Facilitator
+[X]Add Supplier 4 and Retailer 3 in all the slides except Negotiation, Supplier/Retailer KPI and Profits
+[X]Add two slides for Net Profits and Net Profit Margins
+[X]For Supplier KPIs – Portfolio strength slide, add Retailer 1 and Retailer 2 (private labels)
+[X]Share of shoppers slide (the last two slides) is completely redesigned. Please check the template
+ 
+Feedback – For Participants
+[X]Please check the template
+[X]This should be first page after the user logins
+
+
 ##Patch List, 2014 JUNE
 
 ###### Supplier Decisions 

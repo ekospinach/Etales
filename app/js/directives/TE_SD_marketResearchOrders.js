@@ -161,9 +161,10 @@ define(['directives', 'services'], function(directives) {
                     scope.checkBudget = function(price, value) {
                         var d = $q.defer();
                         var categoryID = 0,
-                            abMax = 0,
-                            productExpend = 0,
+                            max = 0,
+                            producerExpend = 0,
                             ContractExpend = 0,
+                            availableBudgetLeft = 0,
                             reportExpend = 0;
                         if (value) {
                             var url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + parseInt(PlayerInfo.getPlayer());
@@ -171,14 +172,14 @@ define(['directives', 'services'], function(directives) {
                                 method: 'GET',
                                 url: url
                             }).then(function(data) {
-                                abMax = data.data.budgetAvailable + data.data.budgetSpentToDate;
+                                max = data.data.budgetAvailable + data.data.budgetSpentToDate;
                                 url = "/producerExpend/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod()) + '/' + parseInt(PlayerInfo.getPlayer()) + '/brandName/location/1';
                                 return $http({
                                     method: 'GET',
                                     url: url,
                                 });
                             }).then(function(data) {
-                                productExpend = data.data.result;
+                                producerExpend = data.data.result;
                                 url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + PlayerInfo.getPlayer() + '/brandName/varName/ignoreItem/1';
                                 return $http({
                                     method: 'GET',
@@ -193,7 +194,9 @@ define(['directives', 'services'], function(directives) {
                                 });
                             }).then(function(data) {
                                 reportExpend = data.data.result;
-                                if (abMax - productExpend - ContractExpend - reportExpend < price) {
+                                availableBudgetLeft = max - ContractExpend  - reportExpend - producerExpend;
+                                
+                                if (availableBudgetLeft < price) {
                                     d.resolve(Label.getContent('Not enough budget'));
                                 } else {
                                     d.resolve();

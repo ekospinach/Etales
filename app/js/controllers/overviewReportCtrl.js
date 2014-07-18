@@ -19,22 +19,22 @@ define(['app','socketIO','routingConfig'], function(app) {
 	        });
 		}
 		loadFeedBack();
-	    var periods=new Array();
-		for(var i=-3;i<PeriodInfo.getCurrentPeriod();i++){
-			periods.push(('period:'+i));
-		}
-	    $scope.options = {
-	    	from: -3,
-	    	to: PeriodInfo.getCurrentPeriod()-1,
-	    	step: 1,
-	    	scale: periods
-		};	
+	 //    var periods=new Array();
+		// for(var i=-3;i<PeriodInfo.getCurrentPeriod();i++){
+		// 	periods.push(('period:'+i));
+		// }
+	 //    $scope.options = {
+	 //    	from: -3,
+	 //    	to: PeriodInfo.getCurrentPeriod()-1,
+	 //    	step: 1,
+	 //    	scale: periods
+		// };	
 		
-		$scope.$watch('selectedPeriod', function(newValue, oldValue){
-            if(newValue!=oldValue) {
-                loadFeedBack();
-            }
-        })
+		// $scope.$watch('selectedPeriod', function(newValue, oldValue){
+  //           if(newValue!=oldValue) {
+  //               loadFeedBack();
+  //           }
+  //       })
 
 
 

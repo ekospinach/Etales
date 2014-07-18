@@ -1012,6 +1012,7 @@ var getLabelBase = function(){
 
 		{id:'Estimated Period Spending',  ENG:'Estimated Period Spending',  CHN:'Estimated Period Spending',  RUS:''},
 		{id:'Estimated Budget Left',  ENG:'Estimated Budget Left',  CHN:'Estimated Budget Left',  RUS:''},
+		{id:'Additional Budget',  ENG:'Additional Budget',  CHN:'Additional Budget',  RUS:''},
 
 	]
 }
