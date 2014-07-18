@@ -1,44 +1,9 @@
-<!-- <div id="content" class="bs-header" ng-show='isPageInit'>
-    <div class="container">
-      <h1 class="margin-row-10">{{Label.getContent('Overview Report')}}</h1>
-    </div>
-</div>
-
-<div class="container bs-docs-container" ng-show='isPageInit'>
-    <div class="row">
-        <div class="col-md-10">
-            <div class="bs-docs-section">
-                <form class="form-horizontal" role="form">
-                    <div class="form-group">
-                        <label for="selectPeriod" class="col-sm-3 control-label">{{Label.getContent('Choose Period')}}:</label>
-                        <div class="col-sm-4">
-                            <select class="form-control" id="selectPeriod" ng-model="selectedPeriod">
-                                <option  ng-repeat='p in periods' value="{{p}}">{{Label.getContent('Period')}} {{p-1}}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div  class="form-group">
-                        <div class="col-sm-3"></div>
-                        <div class="col-sm-4">
-                            <p class="bg-danger">{{msg}}</p>
-                            <a class="btn btn-primary" ng-click="setPeriod(selectedPeriod)">{{Label.getContent('OK')}}</a>
-                        </div>
-
-                    </div>
-
-                </form>
-            </div>
-        </div>
-    </div>
-</div> -->
 <div class="my-super-awesome-loading-box" ng-show="isPageLoading">Loading...</div>
 
 <div class="container bs-docs-container">
     <div class="row">
         <div class="col-md-12">
             <div class="bs-docs-section">
-                    <!-- <p access-level='{{accessLevels.playerView}}'>You are checking the <b>Report History</b> of period <b>{{selectedPeriod-1}}</b></p> -->
-                    <input ng-model="selectedPeriod" type="text" id="overviewSlider" slider options="options" />
                 <div style="clear:both;padding:20px 0"></div>
                 <!--overview report start -->
                     <overview-sales is-page-loading='isPageLoading' is-page-shown='!isPageInit' feed-back='feedBack' selected-period='selectedPeriod'></overview-sales>

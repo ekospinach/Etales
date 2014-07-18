@@ -6,7 +6,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 	    // $scope.isResultShown=false;
 	    // $scope.isPageInit=true;
 	    
-	    $scope.selectedPeriod = "-1";
+	    $scope.selectedPeriod = PeriodInfo.getCurrentPeriod()-1;
 	    var loadFeedBack=function(){
 			var url='/getFeedBack/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+$scope.selectedPeriod;
 			$http({
@@ -19,24 +19,5 @@ define(['app','socketIO','routingConfig'], function(app) {
 	        });
 		}
 		loadFeedBack();
-	    var periods=new Array();
-		for(var i=-3;i<PeriodInfo.getCurrentPeriod();i++){
-			periods.push(('period:'+i));
-		}
-	    $scope.options = {
-	    	from: -3,
-	    	to: PeriodInfo.getCurrentPeriod()-1,
-	    	step: 1,
-	    	scale: periods
-		};	
-		
-		$scope.$watch('selectedPeriod', function(newValue, oldValue){
-            if(newValue!=oldValue) {
-                loadFeedBack();
-            }
-        })
-
-
-
 	}]);
 });
