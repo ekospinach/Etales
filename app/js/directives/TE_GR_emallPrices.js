@@ -85,7 +85,7 @@ define(['directives', 'services'], function(directives){
                     }
                 })
                 scope.$watch('generalEmallPricesSelectedPeriod', function(newValue, oldValue){
-                    if(newValue!=oldValue) {
+                    if(newValue!=oldValue&&scope.isPageShown) {
                         initializePage();
                     }
                 })

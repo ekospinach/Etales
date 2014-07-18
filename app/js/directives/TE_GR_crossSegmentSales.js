@@ -258,7 +258,7 @@ define(['directives', 'services'], function(directives){
                 })
 
                 scope.$watch('generalCrossSegmentSalesSelectedPeriod', function(newValue, oldValue){
-                    if(newValue!=oldValue) {
+                    if(newValue!=oldValue&&scope.isPageShown) {
                         initializePage();
                     }
                 })

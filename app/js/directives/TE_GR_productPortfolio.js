@@ -5,7 +5,7 @@ define(['directives', 'services'], function(directives){
             scope : {
                 isPageShown : '=',
                 isPageLoading : '=',
-                selectedPeriod : '='
+                generalProductPortfolioSelectedPeriod : '='
             },
             restrict : 'E',
             templateUrl : '../../partials/singleReportTemplate/GR_productPortfolio.html',            
@@ -19,7 +19,7 @@ define(['directives', 'services'], function(directives){
 
                 var getResult =function(){
                     //switching('showPerformance');
-                    var url='/productPortfolio/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod;
+                    var url='/productPortfolio/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.generalProductPortfolioSelectedPeriod;
                     $http({
                         method:'GET',
                         url:url,
@@ -91,8 +91,8 @@ define(['directives', 'services'], function(directives){
                     }
                 })
                 
-                scope.$watch('selectedPeriod', function(newValue, oldValue){
-                    if(newValue!=oldValue) {
+                scope.$watch('generalProductPortfolioSelectedPeriod', function(newValue, oldValue){
+                    if(newValue!=oldValue&&scope.isPageShown) {
                         initializePage();
                     }
                 })

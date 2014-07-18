@@ -5,7 +5,7 @@ define(['directives', 'services'], function(directives){
             scope : {
                 isPageShown : '=',
                 isPageLoading : '=',
-                selectedPeriod : '='
+                generalSegmentLeadershipSelectedPeriod : '='
             },
             restrict : 'E',
             templateUrl : '../../partials/singleReportTemplate/GR_segmentLeadership.html',            
@@ -19,7 +19,7 @@ define(['directives', 'services'], function(directives){
 
                 var getResult =function(){
                     //switching('showPerformance');
-                    var url='/segmentLeadership/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod;
+                    var url='/segmentLeadership/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.generalSegmentLeadershipSelectedPeriod;
                     $http({
                         method:'GET',
                         url:url,
@@ -59,8 +59,8 @@ define(['directives', 'services'], function(directives){
                     }
                 })
 
-                scope.$watch('selectedPeriod', function(newValue, oldValue){
-                    if(newValue!=oldValue) {
+                scope.$watch('generalSegmentLeadershipSelectedPeriod', function(newValue, oldValue){
+                    if(newValue!=oldValue&&scope.isPageShown) {
                         initializePage();
                     }
                 })
