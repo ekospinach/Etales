@@ -473,7 +473,7 @@ define(['directives', 'services'], function(directives) {
                             
                             var availableBudgetLeft = max - ContractExpend  - reportExpend - producerExpend;
                             
-                            if(value < benchMark){
+                            if(value < availableBudgetLeft){
                                 d.resolve();
                             } else {
                                 d.resolve(Label.getContent('Supplier does not have enough budget.'));                                                                    

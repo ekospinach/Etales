@@ -107,6 +107,10 @@ define(['app','socketIO','routingConfig'], function(app) {
 	    	showNegotiationAgreements();
 
             //handle Retailer Decision module push notification messages
+            $scope.$on('reloadRetailerBudgetMonitor', function(event){
+                showView();
+            });
+
             $scope.$on('retailerDecisionBaseChangedFromServer', function(event, data, newBase) {  
                 showView();
                 notify('Decision has been saved, Retailer ' + data.retailerID  + ' Period ' + data.period + '.');

@@ -176,11 +176,15 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    })
 
 		    //handle Supplier Decision module push notification messages
+
+		    $scope.$on('reloadSupplierBudgetMonitor', function(event){
+				loadBackgroundDataAndCalculateDecisionInfo();
+		    });
+
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, data, newBase) {  
 				loadBackgroundDataAndCalculateDecisionInfo();
 				notify('Decision has been saved, Supplier ' + data.producerID  + ' Period ' + data.period + '.');
 			});
-
 
 			$scope.$on('producerReportPurchaseDecisionChanged', function(event, data, newBase) {  
 				loadBackgroundDataAndCalculateDecisionInfo();

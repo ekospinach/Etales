@@ -124,7 +124,11 @@ exports.getContractExpend = function(req, res, next) {
           } else {
                if (docs.length != 0) {
                     for (var i = 0; i < docs.length; i++) {
-                         result += docs[i].nc_MinimumOrder * (1 - docs[i].nc_VolumeDiscountRate) * docs[i].currentPriceBM;                         
+                         if(docs[i].nc_VolumeDiscountRate == 0){ 
+                              result += 0;    
+                         } else {
+                              result += docs[i].nc_MinimumOrder * (1 - docs[i].nc_VolumeDiscountRate) * docs[i].currentPriceBM;                                                       
+                         }
                          
                          if ( (req.params.parentBrandName != 'brandName') 
                               && (req.params.variantName != 'varName')

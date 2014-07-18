@@ -320,6 +320,7 @@ define(['angular',
 									} else if((data.userType == 'R') && (data.producerID == PlayerInfo.getPlayer())){
 										$rootScope.$broadcast('NegotiationBaseChangedByRetailer',data);
 									}
+									$rootScope.$broadcast('reloadSupplierBudgetMonitor');
 									break;
 								case userRoles.retailer:
 									if((data.userType == 'R') && (data.retailerID == PlayerInfo.getPlayer())){
@@ -327,6 +328,7 @@ define(['angular',
 									} else if((data.userType == 'P') && (data.retailerID == PlayerInfo.getPlayer())){
 										$rootScope.$broadcast('NegotiationBaseChangedBySupplier',data);
 									}
+									$rootScope.$broadcast('reloadRetailerBudgetMonitor');
 									break;
 								case userRoles.facilitator: break;
 							}							
