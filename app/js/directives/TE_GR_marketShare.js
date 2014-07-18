@@ -5,7 +5,7 @@ define(['directives', 'services'], function(directives){
             scope : {
                 isPageShown : '=',
                 isPageLoading : '=',
-                generalMarketShareSelectedPeriod : '='
+                selectedPeriod : '='
             },
             restrict : 'E',
             templateUrl : '../../partials/singleReportTemplate/GR_marketShare.html',
@@ -21,7 +21,7 @@ define(['directives', 'services'], function(directives){
 
                 var getResult =function(){
                     //switching('showPerformance');
-                    var url='/marketShare/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.generalMarketShareSelectedPeriod;
+                    var url='/marketShare/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod;
                     $http({
                         method:'GET',
                         url:url,
@@ -360,7 +360,7 @@ define(['directives', 'services'], function(directives){
                     if(newValue==true){ initializePage(); }
                 })
 
-                scope.$watch('generalMarketShareSelectedPeriod', function(newValue, oldValue){
+                scope.$watch('selectedPeriod', function(newValue, oldValue){
                     if(newValue!=oldValue&&scope.isPageShown) {
                         initializePage();
                     }

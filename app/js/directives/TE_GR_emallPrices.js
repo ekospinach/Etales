@@ -5,7 +5,7 @@ define(['directives', 'services'], function(directives){
             scope : {
                 isPageShown : '=',
                 isPageLoading : '=',
-                generalEmallPricesSelectedPeriod : '='
+                selectedPeriod : '='
             },
             restrict : 'E',
             templateUrl : '../../partials/singleReportTemplate/GR_emallPrices.html',            
@@ -18,7 +18,7 @@ define(['directives', 'services'], function(directives){
                 }
 
                 var getResult =function(){
-                    var url='/emallPrices/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.generalEmallPricesSelectedPeriod;
+                    var url='/emallPrices/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod;
                     $http({
                         method:'GET',
                         url:url,
@@ -84,7 +84,7 @@ define(['directives', 'services'], function(directives){
                         initializePage();
                     }
                 })
-                scope.$watch('generalEmallPricesSelectedPeriod', function(newValue, oldValue){
+                scope.$watch('selectedPeriod', function(newValue, oldValue){
                     if(newValue!=oldValue&&scope.isPageShown) {
                         initializePage();
                     }

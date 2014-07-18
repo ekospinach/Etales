@@ -145,7 +145,7 @@ selectedPeriod : '='
                     }
                 })
                 scope.$watch('selectedPeriod', function(newValue, oldValue){
-                    if(newValue!=oldValue) {
+                    if(newValue!=oldValue&&scope.isPageShown) {
                         initializePage();
                     }
                 })

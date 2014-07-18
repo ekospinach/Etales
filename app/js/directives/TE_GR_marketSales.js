@@ -5,7 +5,7 @@ define(['directives', 'services'], function(directives){
             scope : {
                 isPageShown : '=',
                 isPageLoading : '=',
-                generalMarketSalesSelectedPeriod : '='
+                selectedPeriod : '='
             },
             restrict : 'E',
             templateUrl : '../../partials/singleReportTemplate/GR_marketSales.html',            
@@ -19,7 +19,7 @@ define(['directives', 'services'], function(directives){
 
                 var getResult =function(){
                     //switching('showPerformance');
-                    var url='/marketSales/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.generalMarketSalesSelectedPeriod;
+                    var url='/marketSales/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod;
 
                     $http({
                         method:'GET',
@@ -393,7 +393,7 @@ define(['directives', 'services'], function(directives){
                         initializePage();
                     }
                 })
-                scope.$watch('generalMarketSalesSelectedPeriod', function(newValue, oldValue){
+                scope.$watch('selectedPeriod', function(newValue, oldValue){
                     if(newValue!=oldValue&&scope.isPageShown) {
                         initializePage();
                     }
