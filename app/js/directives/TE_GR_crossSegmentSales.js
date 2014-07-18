@@ -5,7 +5,7 @@ define(['directives', 'services'], function(directives){
             scope : {
                 isPageShown : '=',
                 isPageLoading : '=',
-                selectedPeriod : '='
+                generalCrossSegmentSalesSelectedPeriod : '='
             },
             restrict : 'E',
             templateUrl : '../../partials/singleReportTemplate/GR_crossSegmentSales.html',            
@@ -19,7 +19,7 @@ define(['directives', 'services'], function(directives){
 
                 var getResult =function(){
                     //switching('showPerformance');
-                    var url='/crossSegmentSales/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod;
+                    var url='/crossSegmentSales/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.generalCrossSegmentSalesSelectedPeriod;
 
                     $http({
                         method:'GET',
@@ -257,7 +257,7 @@ define(['directives', 'services'], function(directives){
                     }
                 })
 
-                scope.$watch('selectedPeriod', function(newValue, oldValue){
+                scope.$watch('generalCrossSegmentSalesSelectedPeriod', function(newValue, oldValue){
                     if(newValue!=oldValue) {
                         initializePage();
                     }
