@@ -1007,7 +1007,7 @@ var getLabelBase = function(){
 		{id:'B&M',  ENG:'B&M',  CHN:'B&M',  RUS:''},
 		{id:'Wholesale',  ENG:'Wholesale',  CHN:'Wholesale',  RUS:''},
 		{id:'Overview Report',  ENG:'Overview Report',  CHN:'Overview Report',  RUS:''},
-		{id:'Supplier does not have enough budget.',  ENG:'Supplier does not have enough budget.',  CHN:'',  RUS:''}
+		{id:'Supplier does not have enough budget.',  ENG:'Supplier does not have enough budget.',  CHN:'',  RUS:''},
 		{id:'BM list price is 0',  ENG:'BM list price is 0',  CHN:'BM list price is 0',  RUS:''},
 
 	]

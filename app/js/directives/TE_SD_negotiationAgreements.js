@@ -383,7 +383,7 @@ define(['directives', 'services'], function(directives) {
                     }
 
                     /*
-                         Bonous Rate
+                         PaymentTerms
                          0 ~ 183 days
                     */                      
                     scope.checkPaymentTerms = function(contractCode, producerID, retailerID, brandName, varName, index, value) {
@@ -416,11 +416,6 @@ define(['directives', 'services'], function(directives) {
 
                     /*
                          Compensation Rage
-                         Max(-Previous Supplier category sales, -Previous Retailer category sales)
-                         ~
-                         Min(Previous Supplier category sales, Previous Retailer category sales)
-
-                         //TODO: Suggest not to put any constraints here for the time being, by Hao
                     */ 
                     scope.checkOtherCompensation = function(contractCode, brandName, varName, category, value, retailerID) {
                         var d = $q.defer();
@@ -432,44 +427,61 @@ define(['directives', 'services'], function(directives) {
 
                         d.resolve();
                         
-                        // var url = '/checkContractDetailsLockStatus/' + contractCode + '/' + brandName + '/' + varName + '/nc_OtherCompensation';
-                        // $http({
-                        //     method: 'GET',
-                        //     url: url
-                        // }).then(function(data) {
-                        //     if (data.data.result) {
-                        //         d.resolve(Label.getContent('This item has been locked.'));
-                        //     }
-                        //     url = '/getScrplSales/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/' + PlayerInfo.getPlayer() + '/' + category;
-                        //     return $http({
-                        //         method: 'GET',
-                        //         url: url
-                        //     });
-                        // }).then(function(data) {
-                        //     supplierOtherCompensation = data.data[0].toFixed(2);
-                        //     url = '/getRcrplSales/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/' + retailerID + '/' + category + '/1';
-                        //     return $http({
-                        //         method: 'GET',
-                        //         url: url
-                        //     });
-                        // }).then(function(data) {
-                        //     retailerOtherCompensation = data.data.result.toFixed(2);
-                        //     if (retailerOtherCompensation >= supplierOtherCompensation) {
-                        //         if (value > supplierOtherCompensation || value < (0 - supplierOtherCompensation)) {
-                        //             d.resolve(Label.getContent('Input range') + ':' + (0 - supplierOtherCompensation) + '~' + supplierOtherCompensation);
-                        //         } else {
-                        //             d.resolve();
-                        //         }
-                        //     } else {
-                        //         if (value > retailerOtherCompensation || value < (0 - retailerOtherCompensation)) {
-                        //             d.resolve(Label.getContent('Input range') + ':' + (0 - retailerOtherCompensation) + '~' + retailerOtherCompensation);
-                        //         } else {
-                        //             d.resolve();
-                        //         }
-                        //     }
-                        // }, function() {
-                        //     d.resolve(Label.getContent('Check Error'));
-                        // })
+                        var url = '/checkContractDetailsLockStatus/' + contractCode + '/' + brandName + '/' + varName + '/nc_PerformanceBonusRate';
+                        $http({
+                            method: 'GET',
+                            url: url
+                        }).then(function(data) {
+                            if (data.data.result) {
+                                d.resolve(Label.getContent('This item has been locked.'));
+                            }
+
+                            url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + PlayerInfo.getPlayer();
+                            return $http({
+                                method: 'GET',
+                                url: url
+                            });
+                            
+                        }).then(function(data) {
+                            //negotiationACmac = MAX planned production capacity 
+                            negotiationACmax = data.data.productionCapacity[category - 1];
+                            max = data.data.budgetAvailable + data.data.budgetSpentToDate;  
+
+                            url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + PlayerInfo.getPlayer() + '/' + brandName + '/' + varName;
+                            console.log(url);
+                            return $http({
+                                method: 'GET',
+                                url: url
+                            });
+                        }).then(function(data) {
+                            ContractExpend = data.data.result;
+                            url = '/getPlayerReportOrderExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/P/' + PlayerInfo.getPlayer();
+                            return $http({
+                                method: 'GET',
+                                url: url
+                            });
+                        }).then(function(data) {
+                            reportExpend = data.data.result;
+
+                            url = "/producerExpend/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod()) + '/' + parseInt(PlayerInfo.getPlayer()) + '/brandName/location/1';
+                            return $http({
+                                method: 'GET',
+                                url: url
+                            });
+                        }).then(function(data) {
+                            producerExpend = data.data.result;
+                            
+                            var availableBudgetLeft = max - ContractExpend  - reportExpend - producerExpend;
+                            
+                            if(value < benchMark){
+                                d.resolve();
+                            } else {
+                                d.resolve(Label.getContent('Supplier does not have enough budget.'));                                                                    
+                            }
+
+                        }, function() {
+                            d.resolve(Label.getContent('Check Error'));
+                        });
                         return d.promise;
                     }
 
