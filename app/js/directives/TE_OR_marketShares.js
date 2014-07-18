@@ -16,7 +16,8 @@ define(['directives', 'services'], function(directives){
                     scope.isPageLoading = true;  
                     scope.isResultShown = false;             
                     scope.Label = Label;
-                    if(scope.feedBack!=undefined)
+                    console.log(scope.feedBack);
+                    //if(scope.feedBack!=undefined)
                     getResult();                    
                 }
 
