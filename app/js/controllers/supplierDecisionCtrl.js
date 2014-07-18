@@ -46,8 +46,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 					acMax = 0,
 					abMax = 0,
 					productExpend = 0,
-					r1ContractExpend = 0,
-					r2ContractExpend = 0,
+					ContractExpend = 0,
 					reportExpend = 0,
 					avaiableMax = 0;
 
@@ -97,20 +96,13 @@ define(['app','socketIO','routingConfig'], function(app) {
 					});
 				}).then(function(data) {
 					productExpend = data.data.result;
-					url='/getContractExpend/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer()+'/1/brandName/varName';
+					url='/getContractExpend/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer()+'/brandName/varName';
 					return $http({
 						method:'GET',
 						url:url
 					});
 				}).then(function(data){
-					r1ContractExpend = data.data.result;
-					url='/getContractExpend/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer()+'/2/brandName/varName';
-					return $http({
-						method:'GET',
-						url:url
-					});
-				}).then(function(data){
-					r2ContractExpend = data.data.result;
+					ContractExpend = data.data.result;
 					url='/getPlayerReportOrderExpend/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/P/'+PlayerInfo.getPlayer();
 					return $http({
 						method:'GET',
@@ -118,7 +110,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 					});
 				}).then(function(data){
 					reportExpend=data.data.result;
-					$scope.surplusExpend = ($scope.abMax - productExpend- r1ContractExpend - r2ContractExpend - reportExpend).toFixed(2);
+					$scope.surplusExpend = ($scope.abMax - productExpend- ContractExpend - reportExpend).toFixed(2);
 					url = "/productionResult/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer()) + '/EName/varName';
 					return $http({
 						method: 'GET',

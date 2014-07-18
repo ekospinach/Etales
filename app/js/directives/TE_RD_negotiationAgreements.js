@@ -39,7 +39,7 @@ define(['directives', 'services'], function(directives) {
                         //     });
                         // }).then(function(data) {
                         //     negotiationACmax = data.data.productionCapacity[category - 1];
-                        //     url = '/getNegotiationExpend/' + contractCode + '/' + brandName + '/' + varName;
+                        //     url = '/getAgreedProductionVolume/' + contractCode + '/' + brandName + '/' + varName;
                         //     return $http({
                         //         method: 'GET',
                         //         url: url
@@ -109,7 +109,7 @@ define(['directives', 'services'], function(directives) {
                         //     });
                         // }).then(function(data) {
                         //     negotiationABmax = data.data.budgetAvailable;
-                        //     url = '/getNegotiationExpend/' + contractCode + '/' + brandName + '/' + varName;
+                        //     url = '/getAgreedProductionVolume/' + contractCode + '/' + brandName + '/' + varName;
                         //     return $http({
                         //         method: 'GET',
                         //         url: url

@@ -21,7 +21,7 @@ var contractSchema = mongoose.Schema({
 })
 
 var contractVariantDetailsSchema = mongoose.Schema({
-     seminar : String,
+     seminar: String,
      contractCode: String,
      parentBrandName: String,
      parentBrandID: Number,
@@ -30,7 +30,7 @@ var contractVariantDetailsSchema = mongoose.Schema({
 
      composition: [Number], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
      currentPriceBM: Number,
-     packFormat:String,
+     packFormat: String,
      isNewProduct: Boolean, //used for showing tag "NEW"
      isCompositionModified: Boolean, //compare with previous period composition, used for showing tag "MODIFIED"
 
@@ -103,36 +103,70 @@ exports.addContract = function(io) {
                     })
                }
           })
+
      }
 }
 
-
-//calculate how much per contractCode cost AKA supplier have to pay for 
+//Supplier Contract cost(budget LOCK):
+//(1) discountCost = Minimum volume * ( 1 - discount rate ) * BM Price, no matter if Retailer's order meet the minimum order in this period.
+//(2) bonusCost = Target volume * bonus rate * BM Price
+//(3) Other compensation only if other compensation > 0 (means Supplier transfer cash to Retailer)
 exports.getContractExpend = function(req, res, next) {
      var result = 0;
-     contractVariantDetails.find({
-          contractCode: 'P' + req.params.producerID + 'andR' + req.params.retailerID + '_' + req.params.seminar + '_' + req.params.period,
-     }, function(err, docs) {
+
+     contractVariantDetails
+     .find()
+     .where('contractCode').in(['P' + req.params.producerID + 'andR1_' + req.params.seminar + '_' + req.params.period, 
+                                'P' + req.params.producerID + 'andR2_' + req.params.seminar + '_' + req.params.period])
+     .exec(function(err, docs){
           if (err) {
                next(new Error(err));
-          }
-
-          if (docs.length != 0) {
-               for (var i = 0; i < docs.length; i++) {
-                    result += docs[i].nc_SalesTargetVolume;
-                    if (docs[i].parentBrandName == req.params.parentBrandName && docs[i].variantName == req.params.variantName) {
-                         result -= docs[i].nc_SalesTargetVolume;
-                    }
-               }
-               res.send(200, {
-                    'result': result
-               });
           } else {
-               res.send(200, {
-                    'result': 0
-               });
+               if (docs.length != 0) {
+                    for (var i = 0; i < docs.length; i++) {
+                         result += docs[i].nc_MinimumOrder * (1 - docs[i].nc_VolumeDiscountRate) * docs[i].currentPriceBM;                         
+                         
+                         if ( (req.params.parentBrandName != 'brandName') 
+                              && (req.params.variantName != 'varName')
+                              && (docs[i].parentBrandName == req.params.parentBrandName) 
+                              && (docs[i].variantName == req.params.variantName)) {
+                              if(docs[i].nc_VolumeDiscountRate == 0){
+                                   result -= 0;
+                              } else {
+                                   result -= docs[i].nc_MinimumOrder * (1 - docs[i].nc_VolumeDiscountRate) * docs[i].currentPriceBM;                                                            
+                              }                              
+                         }                         
+
+                         result += docs[i].nc_SalesTargetVolume * docs[i].nc_PerformanceBonusRate * docs[i].currentPriceBM;                         
+                         if ( (req.params.parentBrandName != 'brandName') 
+                              && (req.params.variantName != 'varName')
+                              && (docs[i].parentBrandName == req.params.parentBrandName) 
+                              && (docs[i].variantName == req.params.variantName)) {
+
+                              result -= docs[i].nc_SalesTargetVolume * docs[i].nc_PerformanceBonusRate * docs[i].currentPriceBM;                         
+                         }
+
+                         if(docs[i].nc_OtherCompensation > 0){
+                              result += docs[i].nc_OtherCompensation;
+                              if ( (req.params.parentBrandName != 'brandName') 
+                              && (req.params.variantName != 'varName')
+                              && (docs[i].parentBrandName == req.params.parentBrandName) 
+                              && (docs[i].variantName == req.params.variantName)) {
+                                   result -= docs[i].nc_OtherCompensation;
+                              }                              
+                         }
+                    }
+                    res.send(200, {
+                         'result': result
+                    });
+               } else {
+                    res.send(200, {
+                         'result': 0
+                    });
+               }               
           }
      });
+
 }
 
 exports.checkVolume = function(req, res, next) {
@@ -193,15 +227,15 @@ exports.addContractDetails = function(io) {
           var period = currentPeriodCode.substring(currentPeriodCode.length - 1, currentPeriodCode.length);
           var previousPeriod = parseInt(period) - 1;
 
-           console.log('Period:' + period);
-           console.log('Period(afterparse):' + parseInt(period));
-           console.log('previous Period:' + previousPeriod);
+          console.log('Period:' + period);
+          console.log('Period(afterparse):' + parseInt(period));
+          console.log('previous Period:' + previousPeriod);
 
           var previousPeriodCode = currentPeriodCode.substring(0, currentPeriodCode.length - 1) + previousPeriod;
-           console.log('current Period Code:' + currentPeriodCode);
-           console.log('previous Period Code: ' + previousPeriodCode);
+          console.log('current Period Code:' + currentPeriodCode);
+          console.log('previous Period Code: ' + previousPeriodCode);
 
-          console.log('product:' + req.body.brandName + req.body.variantName + '/' + req.body.brandID + req.body.variantID );
+          console.log('product:' + req.body.brandName + req.body.variantName + '/' + req.body.brandID + req.body.variantID);
           contractVariantDetails.findOne({
                     contractCode: previousPeriodCode,
                     parentBrandName: req.body.brandName,
@@ -217,60 +251,60 @@ exports.addContractDetails = function(io) {
                     if (previousDoc) {
                          console.log('found previous input, copy...');
                          var newContractVariantDetails = new contractVariantDetails({
-                              contractCode                           : req.body.contractCode,
-                              parentBrandName                        : req.body.brandName,
-                              parentBrandID                          : req.body.brandID,
-                              variantName                            : req.body.varName,
-                              variantID                              : req.body.varID,
-                              nc_MinimumOrder                        : previousDoc.nc_MinimumOrder,
-                              nc_MinimumOrder_lastModifiedBy         : previousDoc.nc_MinimumOrder_lastModifiedBy,
-                              nc_VolumeDiscountRate                  : previousDoc.nc_VolumeDiscountRate,
-                              nc_VolumeDiscountRate_lastModifiedBy   : previousDoc.nc_VolumeDiscountRate_lastModifiedBy,
-                              nc_SalesTargetVolume                   : previousDoc.nc_SalesTargetVolume,
-                              nc_SalesTargetVolume_lastModifiedBy    : previousDoc.nc_SalesTargetVolume_lastModifiedBy,
-                              nc_PerformanceBonusRate                : previousDoc.nc_PerformanceBonusRate,
-                              nc_PerformanceBonusRate_lastModifiedBy : previousDoc.nc_PerformanceBonusRate_lastModifiedBy,
-                              nc_PaymentDays                         : previousDoc.nc_PaymentDays,
-                              nc_PaymentDays_lastModifiedBy          : previousDoc.nc_PaymentDays_lastModifiedBy,
-                              nc_OtherCompensation                   : previousDoc.nc_OtherCompensation,
-                              nc_OtherCompensation_lastModifiedBy    : previousDoc.nc_OtherCompensation_lastModifiedBy,
-                              isProducerApproved                     : false,
-                              isRetailerApproved                     : false,
-                              isNewProduct                           : false, //used for showing tag "NEW"
-                              isCompositionModified                  : false, //compare with previous period composition, used for showing tag "MODIFIED"
-                              composition                            : req.body.composition, //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
-                              currentPriceBM                         : req.body.currentPriceBM,
-                              packFormat                             : req.body.packFormat,
-                              seminar                                : req.body.seminar
+                              contractCode: req.body.contractCode,
+                              parentBrandName: req.body.brandName,
+                              parentBrandID: req.body.brandID,
+                              variantName: req.body.varName,
+                              variantID: req.body.varID,
+                              nc_MinimumOrder: previousDoc.nc_MinimumOrder,
+                              nc_MinimumOrder_lastModifiedBy: previousDoc.nc_MinimumOrder_lastModifiedBy,
+                              nc_VolumeDiscountRate: previousDoc.nc_VolumeDiscountRate,
+                              nc_VolumeDiscountRate_lastModifiedBy: previousDoc.nc_VolumeDiscountRate_lastModifiedBy,
+                              nc_SalesTargetVolume: previousDoc.nc_SalesTargetVolume,
+                              nc_SalesTargetVolume_lastModifiedBy: previousDoc.nc_SalesTargetVolume_lastModifiedBy,
+                              nc_PerformanceBonusRate: previousDoc.nc_PerformanceBonusRate,
+                              nc_PerformanceBonusRate_lastModifiedBy: previousDoc.nc_PerformanceBonusRate_lastModifiedBy,
+                              nc_PaymentDays: previousDoc.nc_PaymentDays,
+                              nc_PaymentDays_lastModifiedBy: previousDoc.nc_PaymentDays_lastModifiedBy,
+                              nc_OtherCompensation: previousDoc.nc_OtherCompensation,
+                              nc_OtherCompensation_lastModifiedBy: previousDoc.nc_OtherCompensation_lastModifiedBy,
+                              isProducerApproved: false,
+                              isRetailerApproved: false,
+                              isNewProduct: false, //used for showing tag "NEW"
+                              isCompositionModified: false, //compare with previous period composition, used for showing tag "MODIFIED"
+                              composition: req.body.composition, //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                              currentPriceBM: req.body.currentPriceBM,
+                              packFormat: req.body.packFormat,
+                              seminar: req.body.seminar
                          });
-                    //if no history, create empty doc
+                         //if no history, create empty doc
                     } else {
-                         var newContractVariantDetails          = new contractVariantDetails({
-                              contractCode                           : req.body.contractCode,
-                              parentBrandName                        : req.body.brandName,
-                              parentBrandID                          : req.body.brandID,
-                              variantName                            : req.body.varName,
-                              variantID                              : req.body.varID,
-                              nc_MinimumOrder                        : 0,
-                              nc_MinimumOrder_lastModifiedBy         : 'P',
-                              nc_VolumeDiscountRate                  : 0,
-                              nc_VolumeDiscountRate_lastModifiedBy   : 'P',
-                              nc_SalesTargetVolume                   : 0,
-                              nc_SalesTargetVolume_lastModifiedBy    : 'P',
-                              nc_PerformanceBonusRate                : 0,
-                              nc_PerformanceBonusRate_lastModifiedBy : 'P',
-                              nc_PaymentDays                         : 0,
-                              nc_PaymentDays_lastModifiedBy          : 'P',
-                              nc_OtherCompensation                   : 0,
-                              nc_OtherCompensation_lastModifiedBy    : 'P',
-                              isProducerApproved                     : false,
-                              isRetailerApproved                     : false,
-                              isNewProduct                           : false, //used for showing tag "NEW"
-                              isCompositionModified                  : false, //compare with previous period composition, used for showing tag "MODIFIED"
-                              composition                            : req.body.composition, //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
-                              currentPriceBM                         : req.body.currentPriceBM,
-                              packFormat                             : req.body.packFormat,
-                              seminar                                : req.body.seminar
+                         var newContractVariantDetails = new contractVariantDetails({
+                              contractCode: req.body.contractCode,
+                              parentBrandName: req.body.brandName,
+                              parentBrandID: req.body.brandID,
+                              variantName: req.body.varName,
+                              variantID: req.body.varID,
+                              nc_MinimumOrder: 0,
+                              nc_MinimumOrder_lastModifiedBy: 'P',
+                              nc_VolumeDiscountRate: 0,
+                              nc_VolumeDiscountRate_lastModifiedBy: 'P',
+                              nc_SalesTargetVolume: 0,
+                              nc_SalesTargetVolume_lastModifiedBy: 'P',
+                              nc_PerformanceBonusRate: 0,
+                              nc_PerformanceBonusRate_lastModifiedBy: 'P',
+                              nc_PaymentDays: 0,
+                              nc_PaymentDays_lastModifiedBy: 'P',
+                              nc_OtherCompensation: 0,
+                              nc_OtherCompensation_lastModifiedBy: 'P',
+                              isProducerApproved: false,
+                              isRetailerApproved: false,
+                              isNewProduct: false, //used for showing tag "NEW"
+                              isCompositionModified: false, //compare with previous period composition, used for showing tag "MODIFIED"
+                              composition: req.body.composition, //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                              currentPriceBM: req.body.currentPriceBM,
+                              packFormat: req.body.packFormat,
+                              seminar: req.body.seminar
                          });
                     }
 
@@ -305,6 +339,25 @@ exports.getContractDetails = function(req, res, next) {
      })
 }
 
+exports.getContractDetail = function(req, res, next) {
+     contractVariantDetails.findOne({
+          contractCode: req.params.contractCode,
+          parentBrandName : req.params.brandName,
+          variantName : req.params.varName
+     }, function(err, doc) {
+          if (err) {
+               next(new Error(err));
+          } else {
+               if (doc) {
+                    res.send(200, doc);
+               } else {
+                    res.send(404, 'fail');
+               }               
+          }
+     })
+}
+
+
 //Two situation
 //1: Before user commit some normal value(MinimumOrders, DiscountRate...), they want to check if item has been "freeze"
 //In this case, either supplier or Retailer approve item, return True(Freeze)
@@ -319,9 +372,7 @@ exports.checkContractDetailsLockStatus = function(req, res, next) {
           if (err) {
                next(new Error(err));
           }
-          if ((doc.isProducerApproved && req.params.location != "isRetailerApproved" && req.params.location != "isProducerApproved") 
-               || (doc.isRetailerApproved && req.params.location != "isRetailerApproved" && req.params.location != "isProducerApproved") 
-               || (doc.isRetailerApproved && doc.isProducerApproved)) { 
+          if ((doc.isProducerApproved && req.params.location != "isRetailerApproved" && req.params.location != "isProducerApproved") || (doc.isRetailerApproved && req.params.location != "isRetailerApproved" && req.params.location != "isProducerApproved") || (doc.isRetailerApproved && doc.isProducerApproved)) {
                res.send(200, {
                     'result': true,
                     doc: doc
@@ -335,40 +386,43 @@ exports.checkContractDetailsLockStatus = function(req, res, next) {
      });
 }
 
-exports.getNegotiationExpend = function(req, res, next) {
-     contractVariantDetails.find({
-          contractCode: req.params.contractCode
-     }, function(err, docs) {
+//the sum of minimum orders what has been already inputted in this and other deals
+exports.getAgreedProductionVolume = function(req, res, next) {
+     var result = 0,brandName = "";
+
+     contractVariantDetails
+     .find()
+     .where('contractCode').in(['P' + req.params.producerID + 'andR1_' + req.params.seminar + '_' + req.params.period, 
+                                'P' + req.params.producerID + 'andR2_' + req.params.seminar + '_' + req.params.period])
+     .exec(function(err, docs){
           if (err) {
                next(new Error(err));
-          }
-          var result = 0,
-               brandName = "";
-
-          if (req.params.parentBrandName.substr(0, 1) == "E") {
-               brandName = "H";
           } else {
-               brandName = "E";
-          }
-
-          if (docs) {
-               for (var i = 0; i < docs.length; i++) {
-                    result += docs[i].nc_MinimumOrder;
-                    
-                    if (docs[i].parentBrandName == req.params.parentBrandName && docs[i].variantName == req.params.variantName) {
-                         result -= docs[i].nc_MinimumOrder;
-                    }
-                    if (docs[i].parentBrandName.substr(0, 1) == brandName) {
-                         result -= docs[i].nc_MinimumOrder;
-                    }
+               if (req.params.parentBrandName.substr(0, 1) == "E") {
+                    brandName = "H";
+               } else {
+                    brandName = "E";
                }
-               res.send(200, {
-                    'result': result
-               });
-          } else {
-               res.send(404, 'fail');
+
+               if (docs.length != 0) {
+                    for (var i = 0; i < docs.length; i++) {
+                         result += docs[i].nc_MinimumOrder;
+
+                         if (docs[i].parentBrandName == req.params.parentBrandName && docs[i].variantName == req.params.variantName) {
+                              result -= docs[i].nc_MinimumOrder;
+                         }
+                         if (docs[i].parentBrandName.substr(0, 1) == brandName) {
+                              result -= docs[i].nc_MinimumOrder;
+                         }
+                    }
+                    res.send(200, {
+                         'result': result
+                    });
+               } else {
+                    res.send(404, 'fail');
+               }               
           }
-     });
+     });          
 }
 
 exports.updateContractDetails = function(io) {
@@ -383,10 +437,10 @@ exports.updateContractDetails = function(io) {
                modify: req.body.location + '_lastModifiedBy',
                value: req.body.value,
 
-               producerID : req.body.producerID,
-               retailerID : req.body.retailerID,
-               seminar : req.body.seminar,
-               period : req.body.period
+               producerID: req.body.producerID,
+               retailerID: req.body.retailerID,
+               seminar: req.body.seminar,
+               period: req.body.period
           };
           contractVariantDetails.findOne({
                contractCode: queryCondition.contractCode,
@@ -397,9 +451,9 @@ exports.updateContractDetails = function(io) {
                     next(new Error(err));
                }
 
-               if(queryCondition.location == "nc_VolumeDiscountRate"||queryCondition.location == "nc_PerformanceBonusRate"){
-                    doc[queryCondition.location] = queryCondition.value/100;
-               }else{
+               if (queryCondition.location == "nc_VolumeDiscountRate" || queryCondition.location == "nc_PerformanceBonusRate") {
+                    doc[queryCondition.location] = queryCondition.value / 100;
+               } else {
                     doc[queryCondition.location] = queryCondition.value;
                }
 
@@ -422,11 +476,13 @@ exports.updateContractDetails = function(io) {
                     if (err) {
                          next(new Error(err));
                     }
-                    io.sockets.emit('socketIO:contractDetailsUpdated', {userType   : queryCondition.userType, 
-                                                                        seminar    : queryCondition.seminar, 
-                                                                        producerID : queryCondition.producerID, 
-                                                                        retailerID : queryCondition.retailerID,
-                                                                        period     : queryCondition.period});
+                    io.sockets.emit('socketIO:contractDetailsUpdated', {
+                         userType: queryCondition.userType,
+                         seminar: queryCondition.seminar,
+                         producerID: queryCondition.producerID,
+                         retailerID: queryCondition.retailerID,
+                         period: queryCondition.period
+                    });
                     res.send(200, doc);
                });
           })

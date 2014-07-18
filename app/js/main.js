@@ -36,8 +36,8 @@
 			//revealJS for facilitator 
 			reveal: 				'../bower_components/reveal.js/js/reveal.min',
 			//angular notification 
-			//toaster:               '../bower_components/angular-notify-toaster/toaster',
 			ngNotify: 			   	'../bower_components/angular-notify/dist/angular-notify.min',
+			//Period slider for reports module 
 			ngSlider: 				'../bower_components/ng-slider/src/ng-slider'
 		},
 		baseUrl: 'js',
