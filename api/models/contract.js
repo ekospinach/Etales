@@ -125,18 +125,33 @@ exports.getContractExpend = function(req, res, next) {
                if (docs.length != 0) {
                     for (var i = 0; i < docs.length; i++) {
                          result += docs[i].nc_MinimumOrder * (1 - docs[i].nc_VolumeDiscountRate) * docs[i].currentPriceBM;                         
-                         if (docs[i].parentBrandName == req.params.parentBrandName && docs[i].variantName == req.params.variantName) {
-                              result -= docs[i].nc_MinimumOrder * (1 - docs[i].nc_VolumeDiscountRate) * docs[i].currentPriceBM;                         
+                         
+                         if ( (req.params.parentBrandName != 'brandName') 
+                              && (req.params.variantName != 'varName')
+                              && (docs[i].parentBrandName == req.params.parentBrandName) 
+                              && (docs[i].variantName == req.params.variantName)) {
+                              if(docs[i].nc_VolumeDiscountRate == 0){
+                                   result -= 0;
+                              } else {
+                                   result -= docs[i].nc_MinimumOrder * (1 - docs[i].nc_VolumeDiscountRate) * docs[i].currentPriceBM;                                                            
+                              }                              
                          }                         
 
                          result += docs[i].nc_SalesTargetVolume * docs[i].nc_PerformanceBonusRate * docs[i].currentPriceBM;                         
-                         if (docs[i].parentBrandName == req.params.parentBrandName && docs[i].variantName == req.params.variantName) {
+                         if ( (req.params.parentBrandName != 'brandName') 
+                              && (req.params.variantName != 'varName')
+                              && (docs[i].parentBrandName == req.params.parentBrandName) 
+                              && (docs[i].variantName == req.params.variantName)) {
+
                               result -= docs[i].nc_SalesTargetVolume * docs[i].nc_PerformanceBonusRate * docs[i].currentPriceBM;                         
                          }
 
                          if(docs[i].nc_OtherCompensation > 0){
                               result += docs[i].nc_OtherCompensation;
-                              if (docs[i].parentBrandName == req.params.parentBrandName && docs[i].variantName == req.params.variantName) {
+                              if ( (req.params.parentBrandName != 'brandName') 
+                              && (req.params.variantName != 'varName')
+                              && (docs[i].parentBrandName == req.params.parentBrandName) 
+                              && (docs[i].variantName == req.params.variantName)) {
                                    result -= docs[i].nc_OtherCompensation;
                               }                              
                          }
@@ -323,6 +338,25 @@ exports.getContractDetails = function(req, res, next) {
           }
      })
 }
+
+exports.getContractDetail = function(req, res, next) {
+     contractVariantDetails.findOne({
+          contractCode: req.params.contractCode,
+          parentBrandName : req.params.brandName,
+          variantName : req.params.varName
+     }, function(err, doc) {
+          if (err) {
+               next(new Error(err));
+          } else {
+               if (doc) {
+                    res.send(200, doc);
+               } else {
+                    res.send(404, 'fail');
+               }               
+          }
+     })
+}
+
 
 //Two situation
 //1: Before user commit some normal value(MinimumOrders, DiscountRate...), they want to check if item has been "freeze"

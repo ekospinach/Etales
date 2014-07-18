@@ -905,9 +905,9 @@ var getLabelBase = function(){
 		/*supplier Product Portfolio Management end*/
 		/*supplier Negotiation start*/
 		{id:'Minimum Order Quantity',  ENG:'Minimum Order Quantity',  CHN:'最小订量',  RUS:''},		
-		{id:'Minimum Order Quantity Info',  ENG:'is the minimum quantity of an SKU that retailers need to order to avail volume discount. Discount Amount for an SKU = Order Quantity (>Minimum Order Quantity) * Discount Rate% * List Price for the SKU',  CHN:'最小订量',  RUS:''},		
+		{id:'Minimum Order Quantity Info',  ENG:'is the minimum quantity of an SKU that retailers need to order to avail volume discount. Discount Cost for an SKU = Order Quantity (>Minimum Order Quantity) * (1 - Discount Rate%) * List Price for the SKU',  CHN:'最小订量',  RUS:''},		
 		{id:'Discount Rate',  ENG:'Discount Rate',  CHN:'折扣率',  RUS:''},
-		{id:'Discount Rate Info',  ENG:'is the discount rate that retailers will enjoy if they order atleast the minimum quantity of an SKU Discount Amount for an SKU = Order Quantity (>Minimum Order Quantity) * Discount Rate% * List Price for the SKU',  CHN:'折扣率',  RUS:''},
+		{id:'Discount Rate Info',  ENG:'is the discount rate that retailers will enjoy if they order atleast the minimum quantity of an SKU Discount Cost for an SKU = Order Quantity (>Minimum Order Quantity) * (1 - Discount Rate%) * List Price for the SKU',  CHN:'折扣率',  RUS:''},
 		{id:'Target Volume',  ENG:'Target Volume',  CHN:'目标量',  RUS:''},
 		{id:'Target Volume Info',  ENG:'is the minimum quantity of SKU that retailers need to sell to avail performance bonus. Performance Bonus = (Quantities of an SKU sold - Target Volume)*List Price*Bonus Rate, provided that Quantities of an SKU sold by retailer is greater than the target volume',  CHN:'目标销量',  RUS:''},
 		{id:'Bonus Rate',  ENG:'Bonus Rate',  CHN:'红利率',  RUS:''},
@@ -1006,7 +1006,9 @@ var getLabelBase = function(){
 		{id:'Overview',  ENG:'Overview',  CHN:'Overview',  RUS:''},
 		{id:'B&M',  ENG:'B&M',  CHN:'B&M',  RUS:''},
 		{id:'Wholesale',  ENG:'Wholesale',  CHN:'Wholesale',  RUS:''},
-		{id:'Overview Report',  ENG:'Overview Report',  CHN:'Overview Report',  RUS:''}
+		{id:'Overview Report',  ENG:'Overview Report',  CHN:'Overview Report',  RUS:''},
+		{id:'Supplier does not have enough budget.',  ENG:'Supplier does not have enough budget.',  CHN:'',  RUS:''}
+		{id:'BM list price is 0',  ENG:'BM list price is 0',  CHN:'BM list price is 0',  RUS:''},
 
 	]
 }

@@ -54,6 +54,7 @@ module.exports = function(app, io){
     app.post('/addContract',                                                                                require('./../api/models/contract.js').addContract(io));
     app.post('/addContractDetails',                                                                         require('./../api/models/contract.js').addContractDetails(io));
     app.get('/getContractDetails/:contractCode',                                                            require('./../api/models/contract.js').getContractDetails);
+    app.get('/getContractDetail/:contractCode/:brandName/:varName',                                                            require('./../api/models/contract.js').getContractDetail);
     
     
     //Check if selected contract details has been lock(both side choose agree)    
@@ -88,6 +89,8 @@ module.exports = function(app, io){
     app.get('/getOneQuarterExogenousData/:seminar/:categoryID/:marketID/:period',        require('./../api/models/BG_oneQuarterExogenousData.js').getOneQuarterExogenousData);
 
     //========== Spending calculation API =======================    
+//    app.get('/availableBudgetLeft/:seminar/:period/:role/:playerID/:brandName/:varName/:marketID/:location/:additionalIdx', );
+
     app.get('/producerExpend/:seminar/:period/:producerID/:brandName/:location/:additionalIdx', require('./../api/models/producerDecision.js').getProducerExpend);
     app.get('/retailerExpend/:seminar/:period/:retailerID/:marketID/:location/:additionalIdx', require('./../api/models/retailerDecision.js').getRetailerExpend);
     app.get('/getPlayerReportOrderExpend/:seminar/:period/:userType/:playerID', require('./../api/models/seminar.js').getPlayerReportOrderExpend);    

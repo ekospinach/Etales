@@ -5432,7 +5432,7 @@ exports.getSalesVolume=function(req,res,next){
         if(!doc){
             res.send(404,{err:'cannot find the doc'}); 
         }else{
-            res.send(200,'200');
+            res.send(200,'2000');
         }
     })
 }
@@ -5450,7 +5450,7 @@ exports.getMarketSize=function(req,res,next){
         if(!doc){
            res.send(404,{err:'cannot find the doc'}); 
         }else{
-            res.send(200,'200');
+            res.send(200,'2000');
         }
     })
 }

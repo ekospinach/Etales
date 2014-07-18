@@ -23,6 +23,7 @@ define(['directives', 'services'], function(directives) {
                     */
                     scope.checkMinimumOrder = function(contractCode, brandName, varName, category, value, retailerID) {
                         var d = $q.defer();
+                        var negotiationACmax, agreedProductionVolume, max, ContractExpend, reportExpend, producerExpend;
                         var filter=/^[0-9]+([.]{1}[0-9]{1,2})?$/;
                         if (!filter.test(value)) {
                             d.resolve(Label.getContent('Input Number'));
@@ -47,6 +48,7 @@ define(['directives', 'services'], function(directives) {
                         }).then(function(data) {
                             //negotiationACmac = MAX planned production capacity 
                             negotiationACmax = data.data.productionCapacity[category - 1];
+                            max = data.data.budgetAvailable + data.data.budgetSpentToDate;
 
                             url = '/getAgreedProductionVolume/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + PlayerInfo.getPlayer() + '/' + brandName + '/' + varName;
                             console.log(url);
@@ -55,24 +57,51 @@ define(['directives', 'services'], function(directives) {
                                 url: url
                             })
                         }).then(function(data) {                            
-                            agreedProductionVolume = data.data.result;                            
-
+                            agreedProductionVolume = data.data.result;                                                        
                             url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + PlayerInfo.getPlayer() + '/' + brandName + '/' + varName;
-                            console.log(url);
                             return $http({
                                 method: 'GET',
                                 url: url
-                            })
-                        }).then(function(data) {                            
-                            allContractExpend = data.data.result;                            
+                            });
+                        }).then(function(data) {
+                            ContractExpend = data.data.result;
+                            url = '/getPlayerReportOrderExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/P/' + PlayerInfo.getPlayer();
+                            return $http({
+                                method: 'GET',
+                                url: url
+                            });
+                        }).then(function(data) {
+                            reportExpend = data.data.result;
 
-                            //TODO: (2) need to be implemented 
+                            url = "/producerExpend/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod()) + '/' + parseInt(PlayerInfo.getPlayer()) + '/brandName/location/1';
+                            return $http({
+                                method: 'GET',
+                                url: url
+                            });
+                        }).then(function(data) {
+                            producerExpend = data.data.result;
+
+                            url = "/getContractDetail/" + contractCode + '/' + brandName + '/' + varName;
+                            return $http({
+                                method: 'GET',
+                                url: url
+                            });
+                        }).then(function(data) {
+                            contractDetails = data.data;
 
                             var availablePlannedProductionCapacity  = negotiationACmax - agreedProductionVolume;
-                            var benchMark = Math.min(availablePlannedProductionCapacity);
+                            var availableBudgetLeft = max - ContractExpend  - reportExpend - producerExpend;
                             
-                            if(benchMark < 0){benchMark = 0;}
+                            benchMark = availablePlannedProductionCapacity;
 
+                            // Discount rate will be set into Zero, so it doesn't need validation here 
+                            // if(contractDetails.nc_VolumeDiscountRate == 0){
+                            //     benchMark = availablePlannedProductionCapacity;
+                            // } else {
+                            //     benchMark = Math.min(availablePlannedProductionCapacity, availableBudgetLeft/(1-contractDetails.nc_VolumeDiscountRate));                                                            
+                            // }
+
+                            if(benchMark < 0){benchMark = 0;}
                             if(value < benchMark){
                                 d.resolve();
                             } else {
@@ -89,7 +118,7 @@ define(['directives', 'services'], function(directives) {
                          Discount rate
                          0 ~ Min((1)the value of the discount = volume * BM Price * ( 1 -discount rate ) cannot exceed remaining available budget,
                                  (2)100%)
-                    */
+                    */                    
                     scope.checkDiscountRate = function(contractCode, producerID, retailerID, brandName, varName, index, value, volume, bmPrices, category) {
                         var d = $q.defer();
                         var discountRate = expend = 0;
@@ -97,62 +126,98 @@ define(['directives', 'services'], function(directives) {
                         if (!filter.test(value)) {
                             d.resolve(Label.getContent('Input Number'));
                         }
-                        if(value > 100){
-                            d.resolve('Input range: 1% ~ 100%');
-                        } else {
-                            d.resolve();                            
-                        }
 
-                        // var url = '/checkContractDetailsLockStatus/' + contractCode + '/' + brandName + '/' + varName + '/nc_VolumeDiscountRate';
-                        // $http({
-                        //     method: 'GET',
-                        //     url: url
-                        // }).then(function(data) {
-                        //     if (data.data.result) {
-                        //         d.resolve(Label.getContent('This item has been locked.'));
-                        //     }
+                        var url = '/checkContractDetailsLockStatus/' + contractCode + '/' + brandName + '/' + varName + '/nc_VolumeDiscountRate';
+                        $http({
+                            method: 'GET',
+                            url: url
+                        }).then(function(data) {
+                            if (data.data.result) {
+                                d.resolve(Label.getContent('This item has been locked.'));
+                            }
 
-                        //     url = '/checkVolume/' + contractCode + '/' + brandName + '/' + varName;
-                        //     return $http({
-                        //         method: 'GET',
-                        //         url: url
-                        //     });
-                        // }).then(function(data) {
-                        //     if (data.data == "unReady") {
-                        //         d.resolve(Label.getContent('set Minimum Order first'))
-                        //     }
+                            url = '/checkVolume/' + contractCode + '/' + brandName + '/' + varName;
+                            return $http({
+                                method: 'GET',
+                                url: url
+                            });
+                        }).then(function(data) {
+                            if (data.data == "unReady") {
+                                d.resolve(Label.getContent('set Minimum Order first'))
+                            }
 
-                        //     url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + producerID;
-                        //     return $http({
-                        //         method: 'GET',
-                        //         url: url
-                        //     });
-                        // }).then(function(data) {
-                        //     negotiationABmax = data.data.budgetAvailable;
+                            url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + PlayerInfo.getPlayer();
+                            return $http({
+                                method: 'GET',
+                                url: url
+                            });
+                            
+                        }).then(function(data) {
+                            //negotiationACmac = MAX planned production capacity 
+                            negotiationACmax = data.data.productionCapacity[category - 1];
+                            max = data.data.budgetAvailable + data.data.budgetSpentToDate;
 
-                        //     url = '/getAgreedProductionVolume/' + contractCode + '/' + brandName + '/' + varName;
-                        //     return $http({
-                        //         method: 'GET',
-                        //         url: url
-                        //     })
+                            url = '/getAgreedProductionVolume/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + PlayerInfo.getPlayer() + '/' + brandName + '/' + varName;
+                            console.log(url);
+                            return $http({
+                                method: 'GET',
+                                url: url
+                            })
+                        }).then(function(data) {                            
+                            agreedProductionVolume = data.data.result;                                                        
+                            url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + PlayerInfo.getPlayer() + '/' + brandName + '/' + varName;
+                            console.log(url);
+                            return $http({
+                                method: 'GET',
+                                url: url
+                            });
+                        }).then(function(data) {
+                            ContractExpend = data.data.result;
+                            url = '/getPlayerReportOrderExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/P/' + PlayerInfo.getPlayer();
+                            return $http({
+                                method: 'GET',
+                                url: url
+                            });
+                        }).then(function(data) {
+                            reportExpend = data.data.result;
 
-                        // }).then(function(data) {
-                        //     expend = data.data.result;
+                            url = "/producerExpend/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod()) + '/' + parseInt(PlayerInfo.getPlayer()) + '/brandName/location/1';
+                            return $http({
+                                method: 'GET',
+                                url: url
+                            });
+                        }).then(function(data) {
+                            producerExpend = data.data.result;
 
+                            url = "/getContractDetail/" + contractCode + '/' + brandName + '/' + varName;
+                            return $http({
+                                method: 'GET',
+                                url: url
+                            });
+                        }).then(function(data) {
+                            contractDetails = data.data;
 
-                        //     //TODO: Need to redo service getContractExpend, and use it here instead of /getAgreedProductionVolume 
+                            var availableBudgetLeft = max - ContractExpend  - reportExpend - producerExpend;
+                            
+                            if(value == 0){
+                                d.resolve();
+                            } else if (contractDetails.currentPriceBM == 0){
+                                d.resolve(Label.getContent('BM list price is 0'))
+                            } else {
+                                benchMark = 1 - (availableBudgetLeft / (contractDetails.currentPriceBM * contractDetails.nc_MinimumOrder));
+                            }
 
-                        //     if (value > 100) {
-                        //         d.resolve(Label.getContent('Input range') + ':0~100');
-                        //     } else if (volume * bmPrices * (1 - value / 100) > negotiationABmax - expend) {
-                        //         discountRate = 1 - (negotiationABmax - expend) * 100 / (volume * bmPrices);
-                        //         d.resolve(Label.getContent('Input range') + ':0~' + discountRate);
-                        //     } else {
-                        //         d.resolve();
-                        //     }
-                        // }, function() {
-                        //     d.resolve(Label.getContent('Check Error'));
-                        // })
+                            if((value < 100) && (value > (benchMark * 100))){
+                                d.resolve();
+                            } else if(benchMark > 1) {
+                                d.resolve(Label.getContent('Supplier does not have enough budget.'));                                
+                            } else {                                
+                                d.resolve(Label.getContent('Input range') + ':' + (benchMark * 100).toFixed(2) + '% ~ 100%');                                
+                            }
+
+                        }, function() {
+                            d.resolve(Label.getContent('Check Error'));
+                        })
                         return d.promise;
                     }
 
@@ -170,58 +235,57 @@ define(['directives', 'services'], function(directives) {
                         if (!filter.test(value)) {
                             d.resolve(Label.getContent('Input Number'));
                         }
-                        d.resolve();
 
-                        // var url = '/checkContractDetailsLockStatus/' + contractCode + '/' + brandName + '/' + varName + '/nc_SalesTargetVolume';
-                        // $http({
-                        //     method: 'GET',
-                        //     url: url
-                        // }).then(function(data) {
-                        //     if (data.data.result) {
-                        //         d.resolve(Label.getContent('This item has been locked.'));
-                        //     }
-                        //     url = '/getOneQuarterExogenousData/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + category + '/1'+ '/' + PeriodInfo.getCurrentPeriod();
-                        //     return $http({
-                        //         method: 'GET',
-                        //         url: url
-                        //     });
-                        // }).then(function(data) {
-                        //     //maxTargetVolumesVsTotalMarket = 50%
-                        //     maxTargetVolumeVsTotalMarket = data.data.MaxTargetVolumeVsTotalMarket;
+                        var url = '/checkContractDetailsLockStatus/' + contractCode + '/' + brandName + '/' + varName + '/nc_SalesTargetVolume';
+                        $http({
+                            method: 'GET',
+                            url: url
+                        }).then(function(data) {
+                            if (data.data.result) {
+                                d.resolve(Label.getContent('This item has been locked.'));
+                            }
+                            url = '/getOneQuarterExogenousData/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + category + '/1'+ '/' + PeriodInfo.getCurrentPeriod();
+                            return $http({
+                                method: 'GET',
+                                url: url
+                            });
+                        }).then(function(data) {
+                            //maxTargetVolumesVsTotalMarket = 50%
+                            maxTargetVolumeVsTotalMarket = data.data.MaxTargetVolumeVsTotalMarket;
 
-                        //     url = '/getMarketSize/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/' + retailerID + '/' + category;
-                        //     return $http({
-                        //         method: 'GET',
-                        //         url: url
-                        //     })
-                        // }).then(function(data) {
-                        //     marketSize = data.data;
-                        //     url = '/getSalesVolume/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/' + retailerID + '/' + category;
-                        //     return $http({
-                        //         method: 'GET',
-                        //         url: url
-                        //     })
-                        // }).then(function(data) {
-                        //     salesVolume = data.data;
+                            url = '/getMarketSize/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/' + retailerID + '/' + category;
+                            return $http({
+                                method: 'GET',
+                                url: url
+                            })
+                        }).then(function(data) {
+                            marketSize = data.data;
+                            url = '/getSalesVolume/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/' + retailerID + '/' + category;
+                            return $http({
+                                method: 'GET',
+                                url: url
+                            })
+                        }).then(function(data) {
+                            salesVolume = data.data;
 
-                        //     //TODO: Need to Add budget constraints 
-                        //     //TODO: Need Finished Marksize service & Previous Category Sales Volume service
-                        //     if (marketSize * maxTargetVolumeVsTotalMarket > salesVolume) {
-                        //         if (value > salesVolume) {
-                        //             d.resolve(Label.getContent('Input range') + ':0~' + salesVolume);
-                        //         } else {
-                        //             d.resolve();
-                        //         }
-                        //     } else {
-                        //         if (value > marketSize * maxTargetVolumeVsTotalMarket) {
-                        //             d.resolve(Label.getContent('Input range') + ':0~' + marketSize * maxTargetVolumeVsTotalMarket);
-                        //         } else {
-                        //             d.resolve();
-                        //         }
-                        //     }
-                        // }, function() {
-                        //     d.resolve(Label.getContent('Check Error'));
-                        // });
+                            //TODO: Need Finished Marksize service & Previous Category Sales Volume service, /getMarketSize and /getSalesVolume now is constant 2000
+                            if (marketSize * maxTargetVolumeVsTotalMarket > salesVolume) {
+                                if (value < salesVolume) {
+                                    d.resolve();
+                                } else {
+                                    d.resolve(Label.getContent('Input range') + ':0~' + salesVolume);
+                                }
+                            } else {
+                                if (value < (marketSize * maxTargetVolumeVsTotalMarket)) {
+                                    d.resolve();
+                                } else {
+                                    d.resolve(Label.getContent('Input range') + ':0~' + marketSize * maxTargetVolumeVsTotalMarket);
+                                }
+                            }
+                        }, function() {
+                            d.resolve(Label.getContent('Check Error'));
+                        });
+
                         return d.promise;
                     }
 
@@ -230,7 +294,6 @@ define(['directives', 'services'], function(directives) {
                          Bonous Rate
                          0 ~ Min((1)the value of bonus = volume * bonus rate * BM Price has to be smaller than remaining budget,
                                  (2)100%)
-                        //TODO: need debug and organize 
                     */                    
                     scope.checkBonusRate = function(contractCode, producerID, retailerID, brandName, varName, index, value, volume, bmPrices, category) {
                         var d = $q.defer();

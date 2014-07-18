@@ -131,7 +131,7 @@ define(['app','socketIO'], function(app) {
 		};
 
 		if(cookiesUserInfo.username){
-			$location.path('/home');
+			$location.path('/overviewReport');
 		}
 
 	  //   if($rootScope.user.username){	    		    	
