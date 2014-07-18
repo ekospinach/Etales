@@ -327,23 +327,23 @@ define(['directives', 'services'], function(directives) {
                         //step 3: Add related contract details for two contact schema
                         //TODO: need to update field "isNewProduct" and "isCompositionModifed" in smart way                    
                             var contractCode = 'P' + PlayerInfo.getPlayer() + 'andR1_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + PeriodInfo.getCurrentPeriod();
-                            return contractDetailsCreateShooter(contractCode, scope.productes);
+                            return contractDetailsCreateShooter(contractCode, scope.productes, PlayerInfo.getPlayer(), 1);
 
                         }).then(function(data) {
                             console.log(data.msg);
 
                             var contractCode = 'P' + PlayerInfo.getPlayer() + 'andR1_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + PeriodInfo.getCurrentPeriod();
-                            return contractDetailsCreateShooter(contractCode, scope.producths);
+                            return contractDetailsCreateShooter(contractCode, scope.producths, PlayerInfo.getPlayer(), 1);
                         }).then(function(data) {
                             console.log(data.msg);
 
                             var contractCode = 'P' + PlayerInfo.getPlayer() + 'andR2_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + PeriodInfo.getCurrentPeriod();
-                            return contractDetailsCreateShooter(contractCode, scope.productes);
+                            return contractDetailsCreateShooter(contractCode, scope.productes, PlayerInfo.getPlayer(), 2);
                         }).then(function(data) {
                             console.log(data.msg);
 
                             var contractCode = 'P' + PlayerInfo.getPlayer() + 'andR2_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + PeriodInfo.getCurrentPeriod();
-                            return contractDetailsCreateShooter(contractCode, scope.producths);
+                            return contractDetailsCreateShooter(contractCode, scope.producths, PlayerInfo.getPlayer(), 2);
                         }).then(function(data) {
                             console.log(data.msg);
 
@@ -368,12 +368,14 @@ define(['directives', 'services'], function(directives) {
                         });
                     }
 
-                    function contractDetailsCreateShooter(contractCode, productList) {
+                    function contractDetailsCreateShooter(contractCode, productList, producerID, retailerID) {
                         var deferred = $q.defer();
 
                         (function multipleRequestShooter(products, idx) {
                             var shooterData = {
                                 contractCode: contractCode,
+                                producerID: producerID,
+                                retailerID: retailerID,
                                 brandName: products[idx].parentBrandName,
                                 brandID: products[idx].parentBrandID,
                                 varName: products[idx].varName,

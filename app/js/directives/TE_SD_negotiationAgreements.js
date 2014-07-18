@@ -48,7 +48,6 @@ define(['directives', 'services'], function(directives) {
                         }).then(function(data) {
                             //negotiationACmac = MAX planned production capacity 
                             negotiationACmax = data.data.productionCapacity[category - 1];
-                            max = data.data.budgetAvailable + data.data.budgetSpentToDate;
 
                             url = '/getAgreedProductionVolume/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + PlayerInfo.getPlayer() + '/' + brandName + '/' + varName;
                             console.log(url);
@@ -58,48 +57,10 @@ define(['directives', 'services'], function(directives) {
                             })
                         }).then(function(data) {                            
                             agreedProductionVolume = data.data.result;                                                        
-                            url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + PlayerInfo.getPlayer() + '/' + brandName + '/' + varName;
-                            return $http({
-                                method: 'GET',
-                                url: url
-                            });
-                        }).then(function(data) {
-                            ContractExpend = data.data.result;
-                            url = '/getPlayerReportOrderExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/P/' + PlayerInfo.getPlayer();
-                            return $http({
-                                method: 'GET',
-                                url: url
-                            });
-                        }).then(function(data) {
-                            reportExpend = data.data.result;
-
-                            url = "/producerExpend/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod()) + '/' + parseInt(PlayerInfo.getPlayer()) + '/brandName/location/1';
-                            return $http({
-                                method: 'GET',
-                                url: url
-                            });
-                        }).then(function(data) {
-                            producerExpend = data.data.result;
-
-                            url = "/getContractDetail/" + contractCode + '/' + brandName + '/' + varName;
-                            return $http({
-                                method: 'GET',
-                                url: url
-                            });
-                        }).then(function(data) {
-                            contractDetails = data.data;
-
                             var availablePlannedProductionCapacity  = negotiationACmax - agreedProductionVolume;
-                            var availableBudgetLeft = max - ContractExpend  - reportExpend - producerExpend;
-                            
-                            benchMark = availablePlannedProductionCapacity;
 
                             // Discount rate will be set into Zero, so it doesn't need validation here 
-                            // if(contractDetails.nc_VolumeDiscountRate == 0){
-                            //     benchMark = availablePlannedProductionCapacity;
-                            // } else {
-                            //     benchMark = Math.min(availablePlannedProductionCapacity, availableBudgetLeft/(1-contractDetails.nc_VolumeDiscountRate));                                                            
-                            // }
+                            benchMark = availablePlannedProductionCapacity;
 
                             if(benchMark < 0){benchMark = 0;}
                             if(value < benchMark){
@@ -157,7 +118,7 @@ define(['directives', 'services'], function(directives) {
                             negotiationACmax = data.data.productionCapacity[category - 1];
                             max = data.data.budgetAvailable + data.data.budgetSpentToDate;  
 
-                            url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + PlayerInfo.getPlayer() + '/' + brandName + '/' + varName;
+                            url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + PlayerInfo.getPlayer() + '/' + brandName + '/' + varName + '/volumeDiscount/' + retailerID;
                             console.log(url);
                             return $http({
                                 method: 'GET',
@@ -325,7 +286,7 @@ define(['directives', 'services'], function(directives) {
                             negotiationACmax = data.data.productionCapacity[category - 1];
                             max = data.data.budgetAvailable + data.data.budgetSpentToDate;  
 
-                            url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + PlayerInfo.getPlayer() + '/' + brandName + '/' + varName;
+                            url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + PlayerInfo.getPlayer() + '/' + brandName + '/' + varName + '/performanceBonus/' + retailerID;
                             console.log(url);
                             return $http({
                                 method: 'GET',
@@ -424,8 +385,6 @@ define(['directives', 'services'], function(directives) {
                         if (!filter.test(value)) {
                             d.resolve(Label.getContent('Input Number'));
                         }
-
-                        d.resolve();
                         
                         var url = '/checkContractDetailsLockStatus/' + contractCode + '/' + brandName + '/' + varName + '/nc_PerformanceBonusRate';
                         $http({
@@ -447,7 +406,7 @@ define(['directives', 'services'], function(directives) {
                             negotiationACmax = data.data.productionCapacity[category - 1];
                             max = data.data.budgetAvailable + data.data.budgetSpentToDate;  
 
-                            url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + PlayerInfo.getPlayer() + '/' + brandName + '/' + varName;
+                            url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + PlayerInfo.getPlayer() + '/' + brandName + '/' + varName + '/otherCompensation/' + retailerID;
                             console.log(url);
                             return $http({
                                 method: 'GET',
@@ -470,7 +429,7 @@ define(['directives', 'services'], function(directives) {
                             });
                         }).then(function(data) {
                             producerExpend = data.data.result;
-                            
+
                             var availableBudgetLeft = max - ContractExpend  - reportExpend - producerExpend;
                             
                             if(value < availableBudgetLeft){

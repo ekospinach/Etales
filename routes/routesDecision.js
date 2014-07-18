@@ -95,8 +95,9 @@ module.exports = function(app, io){
     app.get('/retailerExpend/:seminar/:period/:retailerID/:marketID/:location/:additionalIdx', require('./../api/models/retailerDecision.js').getRetailerExpend);
     app.get('/getPlayerReportOrderExpend/:seminar/:period/:userType/:playerID', require('./../api/models/seminar.js').getPlayerReportOrderExpend);    
     //calculate how much per contractCode cost AKA supplier have to pay for in current period(Volume Discount/Other compensation) or next period(Performance Bonus), Lock supplier's budget for current period by estimated cost
-    app.get('/getContractExpend/:seminar/:period/:producerID/:parentBrandName/:variantName', require('./../api/models/contract.js').getContractExpend); 
-
+    //ignoreItem : volumeDiscount/performanceBonus/otherCopensation
+    app.get('/getContractExpend/:seminar/:period/:producerID/:parentBrandName/:variantName/:ignoreItem/:ignoreRetailerID', require('./../api/models/contract.js').getContractExpend); 
+ 
     //Get sum of minimum order of rest product under same category, same contractCode
     app.get('/getAgreedProductionVolume/:seminar/:period/:producerID/:parentBrandName/:variantName',                            require('./../api/models/contract.js').getAgreedProductionVolume);
 

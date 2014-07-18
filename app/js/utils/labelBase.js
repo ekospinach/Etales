@@ -1010,6 +1010,9 @@ var getLabelBase = function(){
 		{id:'Supplier does not have enough budget.',  ENG:'Supplier does not have enough budget.',  CHN:'',  RUS:''},
 		{id:'BM list price is 0',  ENG:'BM list price is 0',  CHN:'BM list price is 0',  RUS:''},
 
+		{id:'Estimated Period Spending',  ENG:'Estimated Period Spending',  CHN:'Estimated Period Spending',  RUS:''},
+		{id:'Estimated Budget Left',  ENG:'Estimated Budget Left',  CHN:'Estimated Budget Left',  RUS:''},
+
 	]
 }
 

@@ -96,7 +96,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 					});
 				}).then(function(data) {
 					productExpend = data.data.result;
-					url='/getContractExpend/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer()+'/brandName/varName';
+					url='/getContractExpend/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer()+'/brandName/varName/ignoreItem/1';
 					return $http({
 						method:'GET',
 						url:url
@@ -110,6 +110,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 					});
 				}).then(function(data){
 					reportExpend=data.data.result;
+					$scope.estimatedSpending = -(productExpend + ContractExpend + reportExpend).toFixed(2);
 					$scope.surplusExpend = ($scope.abMax - productExpend- ContractExpend - reportExpend).toFixed(2);
 					url = "/productionResult/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer()) + '/EName/varName';
 					return $http({

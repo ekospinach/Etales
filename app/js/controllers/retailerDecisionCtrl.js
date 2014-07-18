@@ -40,6 +40,7 @@ define(['app','socketIO','routingConfig'], function(app) {
                     });
                 }).then(function(data){
                     reportExpend=data.data.result;
+                    $scope.estimatedSpending = -(expend + reportExpend).toFixed(2);
                     $scope.surplusExpend=(abMax-expend-reportExpend).toFixed(2);
                     //$scope.percentageExpend=(abMax-expend)/abMax*100;
                     url="/retailerShelfSpace/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/-1/0/brandName/varName';
