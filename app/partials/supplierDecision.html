@@ -62,13 +62,13 @@
         <div class="col-md-12">
 
             <div style="padding:50px 0" angular-wizard>
-                <ul class="steps-indicator steps-8">
+                <ul class="steps-indicator steps-7">
                     <li class="done editing">
                         <a href="/#/supplierDecision" ng-click="showProductPortfolioManagement()">{{Label.getContent('Product Portfolio Management')}}</a>
                         </li>
-                    <li class="done">
+                    <!-- <li class="done">
                         <a href="/#/supplierDecision" ng-click='showBMListPrices()'>{{Label.getContent('B&M List Prices')}}</a>
-                    </li>
+                    </li> -->
                     <li class="done">
                         <a href="/#/supplierDecision" ng-click='showNegotiationAgreements()'>{{Label.getContent('Negotiation Agreements')}}</a>
                     </li>
@@ -97,7 +97,7 @@
 
                 <supplier-product-portfolio-management ng-show='ProductPortfolioManagement' is-page-shown='ProductPortfolioManagement' is-page-loading='isPageLoading' is-ready='isPortfolioDecisionReady'></supplier-product-portfolio-management>
                 
-                <supplier-b-m-list-prices ng-show='BMListPrices' is-page-shown='BMListPrices' is-page-loading='isPageLoading' is-ready='isPortfolioDecisionReady'></supplier-b-m-list-prices>
+               <!--  <supplier-b-m-list-prices ng-show='BMListPrices' is-page-shown='BMListPrices' is-page-loading='isPageLoading' is-ready='isPortfolioDecisionReady'></supplier-b-m-list-prices> -->
                 
                 <supplier-production-volume ng-show='ProductionVolume' is-page-shown='ProductionVolume' is-page-loading='isPageLoading' is-ready='isFinalDecisionReady'></supplier-production-volume>
                 
