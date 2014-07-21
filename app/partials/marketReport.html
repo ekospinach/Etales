@@ -21,8 +21,10 @@
     <div class="row">
         <div class="col-md-9">
             <div class="bs-docs-section">
-                <input ng-model="selectedPeriod" type="text" id="marketSlider" slider options="options" />
-                <div style="clear:both;padding:20px 0"></div>
+                <p access-level='{{accessLevels.playerView}}'>You are checking the Market Report of period <b>{{selectedPeriod}}</b></p>
+                <button type="button" class="btn btn-default" ng-click="changePeriod('minus')" ng-disabled='!previousBtn'>{{Label.getContent("Previous period")}}</button>
+                <button type="button" class="btn btn-default" ng-click="changePeriod('add')" ng-disabled='!nextBtn'>{{Label.getContent("Next period")}}</button>
+                <div style="clear:both;padding:5px 0;"></div>
                 <!--market report start-->                
                     <market-awareness-elecssories ng-show='AwarenessElecssories' is-page-shown='AwarenessElecssories' is-page-loading='isPageLoading' selected-period='selectedPeriod'></market-awareness-elecssories>
 

@@ -24,6 +24,9 @@
     				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Raw materials Quality Info')}}" popover-title="{{Label.getContent('Raw materials Quality')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Raw materials Quality')}} <span style="font-size:12px" class="glyphicon glyphicon-info-sign"></span></p>
     			</th>
                 <th>
+                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('B&M List Prices Pop Info')}}" popover-title="{{Label.getContent('B&M List Prices')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('B&M List Prices')}} <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
+                </th>
+                <th>
                     <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Discontinue this product Info')}}" popover-title="{{Label.getContent('Discontinue this product')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Discontinue this product')}} <span style="font-size:12px" class="glyphicon glyphicon-info-sign"></span></p>
                 </th>
                 <th>
@@ -31,7 +34,7 @@
                 </th>
     		</tr>
     		<tr class="success">
-    			<td colspan="7">
+    			<td colspan="8">
     				<p>{{Label.getContent('Brand')}}</p>
     			</td>
     		</tr>
@@ -69,6 +72,13 @@
                     <p ng-show="isReady" class="text-right text-muted">{{ producte.composition[2] || 0 }}</p>
     			</td>
                 <td>
+                    <a href="#" editable-text="producte.currentPriceBM" onbeforesave="checkCurrentBM('Elecssories',producte.parentBrandName,producte.varName,'currentPriceBM','0',$index,$data)" onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'currentPriceBM','0',$index)" ng-show='!isReady'>
+                        <p class="text-right">{{ producte.currentPriceBM || 0 }}</p>
+                        <p ng-show='producte.showInfo'>{{Label.getContent('Less than current cost')}}</p>
+                    </a>
+                    <p class="text-right text-muted" ng-show='isReady'>{{ producte.currentPriceBM || 0 }}</p>
+                </td>
+                <td>
                     <a href="#" editable-checkbox="producte.discontinue" e-title="{{Label.getContent('Discontinue this product')}}" ng-show="!isReady" onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'discontinue','0',$index)">
                         <p class="text-right">{{ producte.discontinue && Label.getContent('DisContinue') || Label.getContent('Continue') }}</p>
                     </a>
@@ -95,6 +105,9 @@
     				<p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Smoothener Level Info')}}" popover-title="{{Label.getContent('Smoothener Level')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Smoothener Level')}} <span style="font-size:12px" class="glyphicon glyphicon-info-sign"></span></p>
     			</th>
                 <th>
+                    <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('B&M List Prices Pop Info')}}" popover-title="{{Label.getContent('B&M List Prices')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('B&M List Prices')}} <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
+                </th>
+                <th>
                     <p class="text-primary text-center" Popover-animation="true" popover="{{Label.getContent('Discontinue this product Info')}}" popover-title="{{Label.getContent('Discontinue this product')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Discontinue this product')}} <span style="font-size:12px" class="glyphicon glyphicon-info-sign"></span></p>
                 </th>
                 <th>
@@ -102,7 +115,7 @@
                 </th>                
     		</tr>
     		<tr class="danger">
-    			<td colspan="7">
+    			<td colspan="8">
     				<p>{{Label.getContent('Brand')}}</p>
     			</td>
     		</tr>
@@ -138,6 +151,12 @@
                     <p ng-show="isReady" class="text-right text-muted">{{ producth.composition[2] || 0 }}</p>
     			</td>
                 <td>
+                    <a href="#" editable-text="producth.currentPriceBM" onbeforesave="checkCurrentBM('HealthBeauty',producth.parentBrandName,producth.varName,'currentPriceBM','0',$index,$data)" onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'currentPriceBM','0',$index)" ng-show='!isReady'>
+                        <p class="text-right">{{ producth.currentPriceBM || 0 }}</p>                  
+                    </a>
+                    <p class="text-right text-muted" ng-show='isReady'>{{ producth.currentPriceBM || 0 }}</p>
+                </td>
+                <td>
                     <a href="#" editable-checkbox="producth.discontinue" e-title="{{Label.getContent('Discontinue this product')}}" ng-show="!isReady" onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'discontinue','0',$index)">
                         <p class="text-right">{{ producth.discontinue && Label.getContent('DisContinue') || Label.getContent('Continue') }}</p>
                     </a>
@@ -149,4 +168,16 @@
     		</tr>
     	</tbody>
     </table>
+</div>
+<div ng-show='isResultShown'>
+    <a href="" class="btn btn-primary" ng-disabled="isReady" ng-click="isCommitConfirmInfoShown=true" class="btn btn-primary">{{Label.getContent('Commit Portflio decision')}}</a>
+</div>
+<div class="alert alert-danger fade in" ng-show="isCommitConfirmInfoShown">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+    <h4>{{Label.getContent("Warning! Commit confirmation")}}</h4>
+    <p>{{Label.getContent("Producer portfolio confirm info")}}</p>
+    <p>
+        <button type="button" class="btn btn-danger" ng-click='submitDecision()' ng-disabled='isReady'>{{Label.getContent("Take this action")}}</button>
+        <button type="button" ng-click="isCommitConfirmInfoShown=false" class="btn btn-default">{{Label.getContent("Cancel")}}</button>
+    </p>
 </div>
