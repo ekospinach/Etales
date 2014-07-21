@@ -1013,6 +1013,8 @@ var getLabelBase = function(){
 		{id:'Estimated Period Spending',  ENG:'Estimated Period Spending',  CHN:'Estimated Period Spending',  RUS:''},
 		{id:'Estimated Budget Left',  ENG:'Estimated Budget Left',  CHN:'Estimated Budget Left',  RUS:''},
 		{id:'Additional Budget',  ENG:'Additional Budget',  CHN:'Additional Budget',  RUS:''},
+		{id:'Program Code',  ENG:'Program Code',  CHN:'Program Code',  RUS:''},
+		{id:'Market Research Report',  ENG:'Market Research Report',  CHN:'Market Research Report',  RUS:''},
 
 	]
 }

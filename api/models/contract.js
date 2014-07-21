@@ -539,7 +539,30 @@ exports.removeContract = function(io) {
      }
 }
 
+
+//Get retailer additional budget from Supplier of current period
+//(1) other compensation 
+//(2) volume discount 
+//:seminar/:period/:retailerID
 exports.getRetailerAdditionalBudget = function(req, res, next) {
+     contractVariantDetails
+     .find()
+     .where('contractCode').in(['P1andR' + retailerID + '_' + req.params.seminar + '_' + req.params.period,  
+                                'P2andR' + retailerID + '_' + req.params.seminar + '_' + req.params.period,  
+                                'P3andR' + retailerID + '_' + req.params.seminar + '_' + req.params.period])
+     .exec(function(err, docs){
+          if(err){
+               next(new Error(err));
+          } else {
+               if(docs.length != 0){
+
+               } else {
+                    res.send(200, {
+                         'result' : 0
+                    });
+               }
+          }
+     })
      contract.findOne({
           contractCode: req.params.contractCode
      }, function(err, doc) {
