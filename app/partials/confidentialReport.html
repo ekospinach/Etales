@@ -19,58 +19,62 @@
     <div class="row">
         <div class="col-md-9">
             <div class="bs-docs-section">
-                    <p access-level='{{accessLevels.playerView}}'>You are checking the <b>Report History</b> of period <b>{{historyPeriod}}</b>, {{roleStr}} {{playerID}}</p>
+                    <p access-level='{{accessLevels.playerView}}'>You are checking the General Report of period <b>{{selectedPeriod}}</b>, <span ng-show='!facilitatorShow'>{{ showSelectedUser() }}</span><a href="#" editable-select="selectedUser" e-ng-options="s.value as s.text for s in users" onaftersave="setPlayer($data)" ng-show='facilitatorShow'>{{ showSelectedUser() }}</a></p>
+                    <button type="button" class="btn btn-default" ng-click="changePeriod('minus')" ng-disabled='!previousBtn'>{{Label.getContent("Previous period")}}</button>
+                    <button type="button" class="btn btn-default" ng-click="changePeriod('add')" ng-disabled='!nextBtn'>{{Label.getContent("Next period")}}</button>
+                    
+                    <div style="clear:both;padding:5px 0;"></div>
                 <!--producer report start-->
-                    <supplier-consolidate ng-show='ProducerConsolidate' is-page-shown='ProducerConsolidate' is-page-loading='isPageLoading'></supplier-consolidate>
+                    <supplier-consolidate ng-show='ProducerConsolidate' is-page-shown='ProducerConsolidate' is-page-loading='isPageLoading' selected-period='selectedPeriod' producer-show='producerShow' selected-user='selectedUser'></supplier-consolidate>
 
-                    <supplier-b-m-business ng-show='ProducerBMBusiness' is-page-shown='ProducerBMBusiness' is-page-loading='isPageLoading'></supplier-b-m-business>
+                    <supplier-b-m-business ng-show='ProducerBMBusiness' is-page-shown='ProducerBMBusiness' is-page-loading='isPageLoading' selected-period='selectedPeriod' producer-show='producerShow' selected-user='selectedUser'></supplier-b-m-business>
 
-                    <supplier-online-business ng-show='ProducerOnlineBusiness' is-page-shown='ProducerOnlineBusiness' is-page-loading='isPageLoading'></supplier-online-business>
+                    <supplier-online-business ng-show='ProducerOnlineBusiness' is-page-shown='ProducerOnlineBusiness' is-page-loading='isPageLoading' selected-period='selectedPeriod' producer-show='producerShow' selected-user='selectedUser'></supplier-online-business>
 
-                    <supplier-profitability ng-show='ProducerProfitability' is-page-shown='ProducerProfitability' is-page-loading='isPageLoading'></supplier-profitability>
+                    <supplier-profitability ng-show='ProducerProfitability' is-page-shown='ProducerProfitability' is-page-loading='isPageLoading' selected-period='selectedPeriod' producer-show='producerShow' selected-user='selectedUser'></supplier-profitability>
 
 
-                    <supplier-negotiations ng-show='ProducerNegotiations' is-page-shown='ProducerNegotiations' is-page-loading='isPageLoading'></supplier-negotiations>
+                    <supplier-negotiations ng-show='ProducerNegotiations' is-page-shown='ProducerNegotiations' is-page-loading='isPageLoading' selected-period='selectedPeriod' producer-show='producerShow' selected-user='selectedUser'></supplier-negotiations>
 
-                    <supplier-elecssories-consumer ng-show='ElecssoriesConsumer' is-page-shown='ElecssoriesConsumer' is-page-loading='isPageLoading'></supplier-elecssories-consumer>
+                    <supplier-elecssories-consumer ng-show='ElecssoriesConsumer' is-page-shown='ElecssoriesConsumer' is-page-loading='isPageLoading' selected-period='selectedPeriod' producer-show='producerShow' selected-user='selectedUser'></supplier-elecssories-consumer>
 
-                    <supplier-elecssories-shopper ng-show='ElecssoriesShopper' is-page-shown='ElecssoriesShopper' is-page-loading='isPageLoading'></supplier-elecssories-shopper>
+                    <supplier-elecssories-shopper ng-show='ElecssoriesShopper' is-page-shown='ElecssoriesShopper' is-page-loading='isPageLoading' selected-period='selectedPeriod' producer-show='producerShow' selected-user='selectedUser'></supplier-elecssories-shopper>
 
-                    <supplier-elecssories-volume ng-show='ElecssoriesVolume' is-page-shown='ElecssoriesVolume' is-page-loading='isPageLoading'></supplier-elecssories-volume>
+                    <supplier-elecssories-volume ng-show='ElecssoriesVolume' is-page-shown='ElecssoriesVolume' is-page-loading='isPageLoading' selected-period='selectedPeriod' producer-show='producerShow' selected-user='selectedUser'></supplier-elecssories-volume>
 
-                    <supplier-health-beauties-consumer ng-show='HealthBeautiesConsumer' is-page-shown='HealthBeautiesConsumer' is-page-loading='isPageLoading'></supplier-health-beauties-consumer>
+                    <supplier-health-beauties-consumer ng-show='HealthBeautiesConsumer' is-page-shown='HealthBeautiesConsumer' is-page-loading='isPageLoading' selected-period='selectedPeriod' producer-show='producerShow' selected-user='selectedUser'></supplier-health-beauties-consumer>
 
-                    <supplier-health-beauties-shopper ng-show='HealthBeautiesShopper' is-page-shown='HealthBeautiesShopper' is-page-loading='isPageLoading'></supplier-health-beauties-shopper>
+                    <supplier-health-beauties-shopper ng-show='HealthBeautiesShopper' is-page-shown='HealthBeautiesShopper' is-page-loading='isPageLoading' selected-period='selectedPeriod' producer-show='producerShow' selected-user='selectedUser'></supplier-health-beauties-shopper>
 
-                    <supplier-health-beauties-volume ng-show='HealthBeautiesVolume' is-page-shown='HealthBeautiesVolume' is-page-loading='isPageLoading'></supplier-health-beauties-volume>
+                    <supplier-health-beauties-volume ng-show='HealthBeautiesVolume' is-page-shown='HealthBeautiesVolume' is-page-loading='isPageLoading' selected-period='selectedPeriod' producer-show='producerShow' selected-user='selectedUser'></supplier-health-beauties-volume>
 
-                    <supplier-key ng-show='ProducerKey' is-page-shown='ProducerKey' is-page-loading='isPageLoading'></supplier-key>
+                    <supplier-key ng-show='ProducerKey' is-page-shown='ProducerKey' is-page-loading='isPageLoading' selected-period='selectedPeriod' producer-show='producerShow' selected-user='selectedUser'></supplier-key>
                 <!--producer report end-->
 
                 <!--retailer report start-->
-                    <retailer-consolidate ng-show='RetailerConsolidate' is-page-shown='RetailerConsolidate' is-page-loading='isPageLoading'></retailer-consolidate>
+                    <retailer-consolidate ng-show='RetailerConsolidate' is-page-shown='RetailerConsolidate' is-page-loading='isPageLoading' selected-period='selectedPeriod' retailer-show='retailerShow' selected-user='selectedUser'></retailer-consolidate>
 
-                    <retailer-rural-profit ng-show='RetailerRuralProfit' is-page-shown='RetailerRuralProfit' is-page-loading='isPageLoading'></retailer-rural-profit>
+                    <retailer-rural-profit ng-show='RetailerRuralProfit' is-page-shown='RetailerRuralProfit' is-page-loading='isPageLoading' selected-period='selectedPeriod' retailer-show='retailerShow' selected-user='selectedUser'></retailer-rural-profit>
 
-                    <retailer-urban-profit ng-show='RetailerUrbanProfit' is-page-shown='RetailerUrbanProfit' is-page-loading='isPageLoading'></retailer-urban-profit>
+                    <retailer-urban-profit ng-show='RetailerUrbanProfit' is-page-shown='RetailerUrbanProfit' is-page-loading='isPageLoading' selected-period='selectedPeriod' retailer-show='retailerShow' selected-user='selectedUser'></retailer-urban-profit>
 
-                    <retailer-profitability ng-show='RetailerProfitability' is-page-shown='RetailerProfitability' is-page-loading='isPageLoading'></retailer-profitability>
+                    <retailer-profitability ng-show='RetailerProfitability' is-page-shown='RetailerProfitability' is-page-loading='isPageLoading' selected-period='selectedPeriod' retailer-show='retailerShow' selected-user='selectedUser'></retailer-profitability>
 
-                    <retailer-negotiations ng-show='RetailerNegotiations' is-page-shown='RetailerNegotiations' is-page-loading='isPageLoading'></retailer-negotiations>
+                    <retailer-negotiations ng-show='RetailerNegotiations' is-page-shown='RetailerNegotiations' is-page-loading='isPageLoading' selected-period='selectedPeriod' retailer-show='retailerShow' selected-user='selectedUser'></retailer-negotiations>
 
-                    <retailer-rural-consumer ng-show='RuralConsumer' is-page-shown='RuralConsumer' is-page-loading='isPageLoading'></retailer-rural-consumer>
+                    <retailer-rural-consumer ng-show='RuralConsumer' is-page-shown='RuralConsumer' is-page-loading='isPageLoading' selected-period='selectedPeriod' retailer-show='retailerShow' selected-user='selectedUser'></retailer-rural-consumer>
 
-                    <retailer-urban-consumer ng-show='UrbanConsumer' is-page-shown='UrbanConsumer' is-page-loading='isPageLoading'></retailer-urban-consumer>
+                    <retailer-urban-consumer ng-show='UrbanConsumer' is-page-shown='UrbanConsumer' is-page-loading='isPageLoading' selected-period='selectedPeriod' retailer-show='retailerShow' selected-user='selectedUser'></retailer-urban-consumer>
 
-                    <retailer-rural-shopper ng-show='RuralShopper' is-page-shown='RuralShopper' is-page-loading='isPageLoading'></retailer-rural-shopper>
+                    <retailer-rural-shopper ng-show='RuralShopper' is-page-shown='RuralShopper' is-page-loading='isPageLoading' selected-period='selectedPeriod' retailer-show='retailerShow' selected-user='selectedUser'></retailer-rural-shopper>
 
-                    <retailer-urban-shopper ng-show='UrbanShopper' is-page-shown='UrbanShopper' is-page-loading='isPageLoading'></retailer-urban-shopper>
+                    <retailer-urban-shopper ng-show='UrbanShopper' is-page-shown='UrbanShopper' is-page-loading='isPageLoading' selected-period='selectedPeriod' retailer-show='retailerShow' selected-user='selectedUser'></retailer-urban-shopper>
 
-                    <retailer-rural-volume ng-show='RuralVolume' is-page-shown='RuralVolume' is-page-loading='isPageLoading'></retailer-rural-volume>
+                    <retailer-rural-volume ng-show='RuralVolume' is-page-shown='RuralVolume' is-page-loading='isPageLoading' selected-period='selectedPeriod' retailer-show='retailerShow' selected-user='selectedUser'></retailer-rural-volume>
 
-                    <retailer-urban-volume ng-show='UrbanVolume' is-page-shown='UrbanVolume' is-page-loading='isPageLoading'></retailer-urban-volume>
+                    <retailer-urban-volume ng-show='UrbanVolume' is-page-shown='UrbanVolume' is-page-loading='isPageLoading' selected-period='selectedPeriod' retailer-show='retailerShow' selected-user='selectedUser'></retailer-urban-volume>
 
-                    <retailer-key ng-show='RetailerKey' is-page-shown='RetailerKey' is-page-loading='isPageLoading'></retailer-key>
+                    <retailer-key ng-show='RetailerKey' is-page-shown='RetailerKey' is-page-loading='isPageLoading' selected-period='selectedPeriod' retailer-show='retailerShow' selected-user='selectedUser'></retailer-key>
                 <!--retailer report end-->
 
             </div>
@@ -186,9 +190,7 @@
 
                         </ul>
                     </li>
-                    
-<!-- ng-show='retailerShow'
- -->                   <li class=""  ng-show='false' >
+                    <li class=""  ng-show='false' >
                         <a href="/#/confidentialReport" style="color:#5CB85C" ng-click='showRetailerKey()'>{{Label.getContent('Key Performance Indicators')}}</a>
                     </li>
                 </ul>
