@@ -91,7 +91,16 @@ define(['directives', 'services'], function(directives){
                             });
                         }).then(function(data){
                             reportExpend=data.data.result;
-                            if(abMax-expend-reportExpend<price){
+
+                            url='/getRetailerAdditionalBudget/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer();
+                            return $http({
+                                method:'GET',
+                                url:url
+                            });
+                        }).then(function(data){
+                            additionalBudget =data.data;
+
+                            if(abMax + additionalBudget -expend-reportExpend<price){
                                 d.resolve(Label.getContent('Not enough budget'));
                             }else{
                                 d.resolve();

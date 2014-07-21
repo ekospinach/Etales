@@ -180,7 +180,7 @@ define(['directives', 'services'], function(directives) {
                                 });
                             }).then(function(data) {
                                 producerExpend = data.data.result;
-                                url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + PlayerInfo.getPlayer() + '/brandName/varName';
+                                url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + PlayerInfo.getPlayer() + '/brandName/varName/ignoreItem/1';
                                 return $http({
                                     method: 'GET',
                                     url: url

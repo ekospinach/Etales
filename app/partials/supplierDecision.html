@@ -123,10 +123,21 @@
                             <td><p>{{Label.getContent('Time Left')}}</p></td>
                             <td><p class="text-right">30 {{Label.getContent('mins')}}</p></td>
                         </tr>
- -->                        <tr>
+ -->                    
+                        <tr>
                             <td><p>{{Label.getContent('Total Budget')}}</p></td>
-                            <td><p class="text-right"><b>{{surplusExpend}}</b>/{{abMax}}</p></td>
+                            <td><p class="text-right">{{abMax}}</p></td>
                         </tr>
+
+                        <tr>
+                            <td><p>{{Label.getContent('Estimated Period Spending')}}</p></td>
+                            <td><p class="text-right"><b>{{estimatedSpending}}</b></p></td>
+                        </tr>
+                        <tr>
+                            <td><p>{{Label.getContent('Estimated Budget Left')}}</p></td>
+                            <td><p class="text-right"><b>{{surplusExpend}}</b></p></td>
+                        </tr>
+
                         <tr>
                             <td colspan="2"><p>{{Label.getContent('Available Period Capacity')}}</p></td>
                         </tr>

@@ -56,7 +56,16 @@ define(['directives', 'services'], function(directives){
 	                    });
 	                }).then(function(data){
 	                	reportExpend=data.data.result;
-		      			if(value>max-expend-reportExpend){
+
+	                    url='/getRetailerAdditionalBudget/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer();
+	                    return $http({
+	                        method:'GET',
+	                        url:url
+	                    });
+	                }).then(function(data){
+	                    additionalBudget =data.data;
+
+		      			if(value>max + additionalBudget - expend - reportExpend){
 		      				d.resolve(Label.getContent('Input range')+':0~'+(max-expend-reportExpend).toFixed(2));
 		      			}else{
 		      				d.resolve();

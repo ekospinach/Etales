@@ -1,7 +1,14 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><style>html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>/* Fonts */
+@font-face{
+  font-family: octicons-anchor;
+  src: url(data:x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAYcAA0AAAAACjQAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABGRlRNAAABMAAAABwAAAAca8vGTk9TLzIAAAFMAAAARAAAAFZG1VHVY21hcAAAAZAAAAA+AAABQgAP9AdjdnQgAAAB0AAAAAQAAAAEACICiGdhc3AAAAHUAAAACAAAAAj//wADZ2x5ZgAAAdwAAADRAAABEKyikaNoZWFkAAACsAAAAC0AAAA2AtXoA2hoZWEAAALgAAAAHAAAACQHngNFaG10eAAAAvwAAAAQAAAAEAwAACJsb2NhAAADDAAAAAoAAAAKALIAVG1heHAAAAMYAAAAHwAAACABEAB2bmFtZQAAAzgAAALBAAAFu3I9x/Nwb3N0AAAF/AAAAB0AAAAvaoFvbwAAAAEAAAAAzBdyYwAAAADP2IQvAAAAAM/bz7t4nGNgZGFgnMDAysDB1Ml0hoGBoR9CM75mMGLkYGBgYmBlZsAKAtJcUxgcPsR8iGF2+O/AEMPsznAYKMwIkgMA5REMOXicY2BgYGaAYBkGRgYQsAHyGMF8FgYFIM0ChED+h5j//yEk/3KoSgZGNgYYk4GRCUgwMaACRoZhDwCs7QgGAAAAIgKIAAAAAf//AAJ4nHWMMQrCQBBF/0zWrCCIKUQsTDCL2EXMohYGSSmorScInsRGL2DOYJe0Ntp7BK+gJ1BxF1stZvjz/v8DRghQzEc4kIgKwiAppcA9LtzKLSkdNhKFY3HF4lK69ExKslx7Xa+vPRVS43G98vG1DnkDMIBUgFN0MDXflU8tbaZOUkXUH0+U27RoRpOIyCKjbMCVejwypzJJG4jIwb43rfl6wbwanocrJm9XFYfskuVC5K/TPyczNU7b84CXcbxks1Un6H6tLH9vf2LRnn8Ax7A5WQAAAHicY2BkYGAA4teL1+yI57f5ysDNwgAC529f0kOmWRiYVgEpDgYmEA8AUzEKsQAAAHicY2BkYGB2+O/AEMPCAAJAkpEBFbAAADgKAe0EAAAiAAAAAAQAAAAEAAAAAAAAKgAqACoAiAAAeJxjYGRgYGBhsGFgYgABEMkFhAwM/xn0QAIAD6YBhwB4nI1Ty07cMBS9QwKlQapQW3VXySvEqDCZGbGaHULiIQ1FKgjWMxknMfLEke2A+IJu+wntrt/QbVf9gG75jK577Lg8K1qQPCfnnnt8fX1NRC/pmjrk/zprC+8D7tBy9DHgBXoWfQ44Av8t4Bj4Z8CLtBL9CniJluPXASf0Lm4CXqFX8Q84dOLnMB17N4c7tBo1AS/Qi+hTwBH4rwHHwN8DXqQ30XXAS7QaLwSc0Gn8NuAVWou/gFmnjLrEaEh9GmDdDGgL3B4JsrRPDU2hTOiMSuJUIdKQQayiAth69r6akSSFqIJuA19TrzCIaY8sIoxyrNIrL//pw7A2iMygkX5vDj+G+kuoLdX4GlGK/8Lnlz6/h9MpmoO9rafrz7ILXEHHaAx95s9lsI7AHNMBWEZHULnfAXwG9/ZqdzLI08iuwRloXE8kfhXYAvE23+23DU3t626rbs8/8adv+9DWknsHp3E17oCf+Z48rvEQNZ78paYM38qfk3v/u3l3u3GXN2Dmvmvpf1Srwk3pB/VSsp512bA/GG5i2WJ7wu430yQ5K3nFGiOqgtmSB5pJVSizwaacmUZzZhXLlZTq8qGGFY2YcSkqbth6aW1tRmlaCFs2016m5qn36SbJrqosG4uMV4aP2PHBmB3tjtmgN2izkGQyLWprekbIntJFing32a5rKWCN/SdSoga45EJykyQ7asZvHQ8PTm6cslIpwyeyjbVltNikc2HTR7YKh9LBl9DADC0U/jLcBZDKrMhUBfQBvXRzLtFtjU9eNHKin0x5InTqb8lNpfKv1s1xHzTXRqgKzek/mb7nB8RZTCDhGEX3kK/8Q75AmUM/eLkfA+0Hi908Kx4eNsMgudg5GLdRD7a84npi+YxNr5i5KIbW5izXas7cHXIMAau1OueZhfj+cOcP3P8MNIWLyYOBuxL6DRylJ4cAAAB4nGNgYoAALjDJyIAOWMCiTIxMLDmZedkABtIBygAAAA==) format('woff');
+}
+
+/* Body */
+html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
 
 body{
-  color:#444;
+  color:#4d4d4c;
   font-family:Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman',
               "Hiragino Sans GB", "STXihei", "微软雅黑", serif;
   font-size:12px;
@@ -9,17 +16,97 @@ body{
   background:#fefefe;
   width: 45em;
   margin: 10px auto;
-  padding: 1em;
-  outline: 1300px solid #FAFAFA;
+  padding: 30px;
+  border: 1px solid #ddd;
+  outline: 1300px solid #f8f8f8;
 }
 
-a{ color: #0645ad; text-decoration:none;}
-a:visited{ color: #0b0080; }
-a:hover{ color: #06e; }
+/* Links */
+a{ color: #06d; text-decoration:none; }
+a:hover{ color: #06e; text-decoration: underline; }
 a:active{ color:#faa700; }
 a:focus{ outline: thin dotted; }
 a:hover, a:active{ outline: 0; }
 
+::-moz-selection { background:rgba(255,255,0,0.3); color:#000 }
+::selection { background:rgba(255,255,0,0.3); color:#000 }
+
+a::-moz-selection { background:rgba(255,255,0,0.3); color:#0645ad }
+a::selection { background:rgba(255,255,0,0.3); color:#0645ad }
+
+/* Header Anchor Links*/
+a.headeranchor-link {
+  color:#111;
+  border: 0;
+  margin-left: -20px;
+  padding-right: 6px;
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+
+span.headeranchor {
+  font: normal normal 16px octicons-anchor;
+  line-height: 1;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+a.headeranchor-link:hover { text-decoration: none;}
+a.headeranchor-link:visited { color:#4d4d4c; }
+a.headeranchor-link:active { color:#4d4d4c; }
+a.headeranchor-link:hover span.headeranchor:before { content: '\f05c'; }
+h1:hover a span.headeranchor:before { content: '\f05c'; }
+h2:hover a span.headeranchor:before { content: '\f05c'; }
+h3:hover a span.headeranchor:before { content: '\f05c'; }
+h4:hover a span.headeranchor:before { content: '\f05c'; }
+h5:hover a span.headeranchor:before { content: '\f05c'; }
+h6:hover a span.headeranchor:before { content: '\f05c'; }
+
+abbr { cursor: pointer; }
+
+/* Paragraphs */
+p { margin:1em 0; }
+
+/* Images */
+img {
+  max-width:100%;
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+  vertical-align: middle;
+}
+
+/* Headers */
+h1,h2,h3,h4,h5,h6 {
+  font-weight:normal;
+  color:#111;
+  line-height: 1.7;
+  position: relative;
+}
+h4,h5,h6{ font-weight: bold; }
+h1 { font-size:2.5em; border-bottom: 1px solid #ddd;}
+h2 { font-size:2em; border-bottom:1px solid #eee; padding-bottom: 5px; }
+h3 { font-size:1.5em; }
+h4 { font-size:1.2em; }
+h5 { font-size:1em; }
+h6 { font-size:0.9em; }
+
+/* Block Quotes */
+blockquote {
+  color:#666666;
+  margin:0;
+  padding-left: 3em;
+  border-left: 0.5em #EEE solid;
+}
+hr { display: block; height: 2px; border: 0; border-top: 1px solid #aaa;border-bottom: 1px solid #eee; margin: 1em 0; padding: 0; }
+
+/* Raw Blocks */
 span.backtick {
   border:1px solid #EAEAEA;
   border-radius:3px;
@@ -27,57 +114,78 @@ span.backtick {
   padding:0 3px 0 3px;
 }
 
-::-moz-selection{background:rgba(255,255,0,0.3);color:#000}
-::selection{background:rgba(255,255,0,0.3);color:#000}
-
-a::-moz-selection{background:rgba(255,255,0,0.3);color:#0645ad}
-a::selection{background:rgba(255,255,0,0.3);color:#0645ad}
-
-p{
-margin:1em 0;
-}
-
-img{
-max-width:100%;
-}
-
-h1,h2,h3,h4,h5,h6{
-font-weight:normal;
-color:#111;
-line-height:1em;
-}
-h4,h5,h6{ font-weight: bold; }
-h1{ font-size:2.5em; }
-h2{ font-size:2em; border-bottom:1px solid silver; padding-bottom: 5px; }
-h3{ font-size:1.5em; }
-h4{ font-size:1.2em; }
-h5{ font-size:1em; }
-h6{ font-size:0.9em; }
-
-blockquote{
-color:#666666;
-margin:0;
-padding-left: 3em;
-border-left: 0.5em #EEE solid;
-}
-hr { display: block; height: 2px; border: 0; border-top: 1px solid #aaa;border-bottom: 1px solid #eee; margin: 1em 0; padding: 0; }
-
-
-pre , code, kbd, samp { 
-  color: #000; 
-  font-family: monospace; 
-  font-size: 0.88em; 
-  border-radius:3px;
+pre, code, kbd, samp {
+  color: #000;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  font-size: 0.88em;
   background-color: #F8F8F8;
-  border: 1px solid #CCC; 
+  border: 1px solid #CCC;
 }
-pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; padding: 5px 12px;}
-pre code { border: 0px !important; padding: 0;}
+
+pre {
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  padding: 10px;
+}
+
 code { padding: 0 3px 0 3px; }
+pre code { border: 0; padding: 0; }
 
+/* Admonition */
+div.admonition {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  font-size: 0.88em;
+  padding: 0.5em 1em 0.5em 1em;
+  margin: 10px auto;
+}
+
+div.admonition p {
+  padding: 0;
+  margin: 0.5em 0 0.5em 0;
+}
+
+p.admonition-title {
+  font-weight: bold;
+}
+
+div.admonition.attention {
+  color: #4F8A10;
+  background-color: #DFF2BF;
+  border: 1px solid #4F8A10;
+}
+
+div.admonition.caution {
+  color: #9F6000;
+  background-color: #FEEFB3;
+  border: 1px solid #9F6000;
+}
+
+div.admonition.hint {
+  color: #00529B;
+  background-color: #BDE5F8;
+  border: 1px solid #00529B;
+}
+
+div.admonition.danger {
+  color: #D8000C;
+  background-color: #FFBABA;
+  border: 1px solid #D8000C;
+}
+
+div.admonition.note {
+  color: #888888;
+  background-color: #F8F8F8;
+  border: 1px solid #888888;
+}
+
+/* Inlines */
 b, strong { font-weight: bold; }
-
-dfn { font-style: italic; }
 
 ins { background: #ff9; color: #000; text-decoration: none; }
 
@@ -87,27 +195,73 @@ sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: b
 sup { top: -0.5em; }
 sub { bottom: -0.25em; }
 
-ul, ol { margin: 1em 0; padding: 0 0 0 2em; }
+dfn { font-style: italic; }
+
+/* Lists */
+ul, ol { padding-left: 30px; }
 li p:last-child { margin:0 }
+li.task-list-item { list-style-type: none; }
+li.task-list-item input { float:left; margin-left: -20px; margin-top: 6px; }
+dt { font-weight: bold; font-style: italic;}
 dd { margin: 0 0 0 2em; }
 
-img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
+/* Tables */
+table { border-collapse: collapse; border: 1px solid #ddd; background-color: #fefefe; }
+table tr:nth-child(2n) { background-color: #f8f8f8; }
+td, th { border: 1px solid #ddd; padding: 6px 13px; }
 
-table { border-collapse: collapse; border-spacing: 0; }
-td { vertical-align: top; }
+/* Codehilite Tables */
+table.codehilitetable { border: 0; border-spacing: 0; width: 100%; }
+td.linenos, td.code, table.codehilitetable td { border: 0; padding: 0; }
+table.codehilitetable td:not(.linenos) div.linenodiv { padding: 0 !important; }
+td.code { width: 100%; }
+table.codehilitetable td.linenos div pre, td div.linenodiv pre {
+  border: 0;
+  border-top: 1px solid #CCC;
+  border-left: 1px solid #CCC;
+  border-right: 1px solid #CCC;
+  border-bottom: 1px solid #CCC;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
 
+table.codehilitetable td.code div pre {
+  border: 0;
+  border-top: 1px solid #CCC;
+  border-right: 1px solid #CCC;
+  border-bottom: 1px solid #CCC;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-border-top-right-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomright: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+/* Media */
 @media only screen and (min-width: 480px) {
-body{font-size:14px;}
+  body{ font-size:14px; }
 }
 
 @media only screen and (min-width: 768px) {
-body{font-size:16px;}
+  body{ font-size:16px; }
 }
 
 @media print {
   * { background: transparent !important; color: black !important; filter:none !important; -ms-filter: none !important; }
-  body{font-size:12pt; max-width:100%; outline:none;}
+  body{ font-size:12pt; max-width:100%; outline:none; border: 0;}
   a, a:visited { text-decoration: underline; }
+  a.headeranchor-link { display: none; }
   hr { height: 1px; border:0; border-bottom:1px solid black; }
   a[href]:after { content: " (" attr(href) ")"; }
   abbr[title]:after { content: " (" attr(title) ")"; }
@@ -115,15 +269,64 @@ body{font-size:16px;}
   pre, blockquote { border: 1px solid #999; padding-right: 1em; page-break-inside: avoid; }
   tr, img { page-break-inside: avoid; }
   img { max-width: 100% !important; }
-  @page :left { margin: 15mm 20mm 15mm 10mm; }
-  @page :right { margin: 15mm 10mm 15mm 20mm; }
   p, h2, h3 { orphans: 3; widows: 3; }
   h2, h3 { page-break-after: avoid; }
 }
-</style><title>README</title></head><body><h1 id="etales">Etales</h1>
+</style><title>README</title></head><body><h1 id="etales"><a name="user-content-etales" href="#etales" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Etales</h1>
 <p>Business Simulation Game</p>
-<h2 id="patch-list-2014-june">Patch List, 2014 JUNE</h2>
-<h6 id="supplier-decisions">Supplier Decisions</h6>
+<h2 id="patch-list-2014-june-before-testing-phase-2"><a name="user-content-patch-list-2014-june-before-testing-phase-2" href="#patch-list-2014-june-before-testing-phase-2" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Patch List, 2014 JUNE, before testing phase 2</h2>
+<h6 id="reports"><a name="user-content-reports" href="#reports" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Reports</h6>
+<ul>
+<li>New report : additional situation report for two different categories</li>
+<li>Rural/Urban Profit &amp; Loss Statement,  太宽，通过修改css增加横向滚动条。第一列Fixed不动。</li>
+</ul>
+<h6 id="decisions"><a name="user-content-decisions" href="#decisions" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Decisions</h6>
+<ul>
+<li>step2，need to change decision regarding advertising…</li>
+<li>新建的private label brand 没有parentCompanyID</li>
+<li>private label discontinue options&hellip;</li>
+<li>negotiation的pop中需要显示当前阶段的BM_listPrice和packformat</li>
+</ul>
+<h6 id="overall-problems"><a name="user-content-overall-problems" href="#overall-problems" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Overall problems</h6>
+<ul>
+<li>Facilitator bugs </li>
+<li>Initialise/Run seminar without covering existed decision data in the mongo (also in the binary?)</li>
+<li>Server get down caused by some problems(see screen shots)</li>
+<li>Need to debug export Alldeal function</li>
+<li>Exogenous files need to be imported in the right way by period/market/category</li>
+</ul>
+<h2 id="patch-list-2014-july"><a name="user-content-patch-list-2014-july" href="#patch-list-2014-july" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Patch List, 2014 July</h2>
+<h6 id="negotiation"><a name="user-content-negotiation" href="#negotiation" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Negotiation</h6>
+<p>[X]&rdquo;volume discount&rdquo; &amp; &ldquo;performance bonus&rdquo; should block supplier’s budget in this period <br />
+[X]Cash which is inputted in the &ldquo;Other compensation&rdquo;, should be transferred immediately in current period, as soon as both of them agree with on same amount. <br />
+[X]Cash which is inputted in the “Discount Value”, should be transferred immediately in current period, as soon as both of them agree with on same amount AND retailer order the asked volume in the store management decision…<br />
+[X]Supplier/Retailer_Negotiation - The products repeat twice in the negotiation table. It is because when the supplier changes the list price twice, two records are saved. Could be a browser issue. Which browser has </p>
+<h6 id="overall"><a name="user-content-overall" href="#overall" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Overall</h6>
+<p>[X]Open multiple tabs by one single logo click <br />
+[X]Unit cost calculation need to be finished and Tested.</p>
+<h6 id="improvements"><a name="user-content-improvements" href="#improvements" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Improvements</h6>
+<p>General Reports<br />
+[X]GR_Product Portfolio - Add “B&amp;M List Prices” column (from previous period)<br />
+[X]GR_Performance Highlights - Add “B&amp;M (Wholesale)” and “Online” column for each supplier.</p>
+<p>Market Research Reports<br />
+[X]MR_Sales by Channel – A new report to be added. Please refer to the template.<br />
+[X]MR_Market Shares by Consumer Segment – A new row “Total” is added for each each supplier/retailer. The label “Change” is changed to “Change %”<br />
+[X]MR_Sales by Consumer Segment – A new row “Total” is added for each each supplier/retailer. The label “Change” is changed to “Change %”</p>
+<p>Supplier – Confidential Reports<br />
+[X]SCR_inventoryVolumes - Add “Unit Production Cost” column to the volume report<br />
+[X]SCR_consolidatedProfitAndLoss - Under material cost, add eMall Commission and Shipping Cost</p>
+<p>Retailer – Confidential Reports<br />
+[X]RCR__inventoryVolumes – Add “Net Retail Price” column to the volume report</p>
+<p>Feedback – For Facilitator<br />
+[X]Add Supplier 4 and Retailer 3 in all the slides except Negotiation, Supplier/Retailer KPI and Profits<br />
+[X]Add two slides for Net Profits and Net Profit Margins<br />
+[X]For Supplier KPIs – Portfolio strength slide, add Retailer 1 and Retailer 2 (private labels)<br />
+[X]Share of shoppers slide (the last two slides) is completely redesigned. Please check the template</p>
+<p>Feedback – For Participants<br />
+[X]Please check the template<br />
+[X]This should be first page after the user logins</p>
+<h2 id="patch-list-2014-june"><a name="user-content-patch-list-2014-june" href="#patch-list-2014-june" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Patch List, 2014 JUNE</h2>
+<h6 id="supplier-decisions"><a name="user-content-supplier-decisions" href="#supplier-decisions" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Supplier Decisions</h6>
 <ul>
 <li>push notification bugs fix</li>
 <li>Product Portfolio management页面,  New Product功能完全失灵</li>
@@ -137,7 +340,7 @@ body{font-size:16px;}
 <li>当Seminar.producer.isDecisioncommitted = true 时，所有页面的决策输入必须被锁定。（做成动态锁定）</li>
 <li>Market report purchase页面，使用editable重做，Total budget必须被随时（点击true或false后）更新。</li>
 </ul>
-<h6 id="retailer-decisions">Retailer Decisions</h6>
+<h6 id="retailer-decisions"><a name="user-content-retailer-decisions" href="#retailer-decisions" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Retailer Decisions</h6>
 <ul>
 <li>Store management 页面，每次保存决策成功后（品类2，市场2），由于自动刷新了界面，会导致回到不明品类市场的组合下（品类1市场1？）如下状况：</li>
 <li>Store Management 页面，部分值的IO依然失灵：比如H类市场1中的retailer Pirce，无法存入值</li>
@@ -146,17 +349,17 @@ body{font-size:16px;}
 <li>Store Management 页面，Add orders功能有问题：从列表上删除的产品没有回到Add列表内，无法再次添加。</li>
 <li>Store Management 页面，背景色按照2个品类，2个市场的颜色调整.pma</li>
 </ul>
-<h6 id="reports-overall">Reports Overall</h6>
+<h6 id="reports-overall"><a name="user-content-reports-overall" href="#reports-overall" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Reports Overall</h6>
 <ul>
 <li>所有带括号的内容前后必须有一个空格。example: Financial Results-B&amp;M Business Profit &amp; Loss Statement(Elecssories). 应为：     Financial Results - B&amp;M Business Profit &amp; Loss Statement (Elecssories)</li>
 </ul>
-<h6 id="general-reports">General reports</h6>
+<h6 id="general-reports"><a name="user-content-general-reports" href="#general-reports" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>General reports</h6>
 <ul>
 <li>Market shares report 图表内缺少labels : Total/by Market/by Consumer Segment/by Shopper segment (参考pdf)</li>
 <li>Sales report 图表内缺少labels : Total/by Market/by Consumer Segment/by Shopper segment (参考pdf)</li>
 <li>Cross-Segment report 图表内缺少labels: Shopper Segments/Consumer Segment (参考pdf)</li>
 </ul>
-<h6 id="supplier-confidential-reports">Supplier Confidential reports</h6>
+<h6 id="supplier-confidential-reports"><a name="user-content-supplier-confidential-reports" href="#supplier-confidential-reports" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Supplier Confidential reports</h6>
 <ul>
 <li>Consolidated Profit &amp; Loss Statement, 每个”-“和”(1)(2)(3)”之后都有一个空格。</li>
 <li>BM Business Profit &amp; Loss Statement, 每个”-“和”(1)(2)(3)”之后都有一个空格。</li>
@@ -166,7 +369,7 @@ body{font-size:16px;}
 <li>Situation Report - Volume, 有两列需要merge（参考pdf）</li>
 <li>Key Performance Indicators, 此页中有四行需要popover tips，内容参考pdf。interface效果最好用bootstrap css在每行末尾加一个”i”符号。example : <span class="glyphicon glyphicon-lock"></span></li>
 </ul>
-<h6 id="retailer-confidential-reports">Retailer Confidential reports</h6>
+<h6 id="retailer-confidential-reports"><a name="user-content-retailer-confidential-reports" href="#retailer-confidential-reports" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Retailer Confidential reports</h6>
 <ul>
 <li>Consolidated Profit &amp; Loss Statement, 每个”-“和”(1)(2)(3)”之后都有一个空格。目前向后缩进的行其实不需要缩进（参考pdf）。</li>
 <li>Rural/Urban Profit &amp; Loss Statement, 每个”-“和”(1)(2)(3)”之后都有一个空格。目前向后缩进的行其实不需要缩进（参考pdf）。</li>
@@ -174,7 +377,7 @@ body{font-size:16px;}
 <li>Profitability by Channel, Private Label那列需要正确的merge（参考pdf）</li>
 <li>Key Performance Indicators, 此页中有3行需要popover tips，内容参考pdf。interface效果最好用bootstrap css在每行末尾加一个”i”符号。example : <code>&lt;span class="glyphicon glyphicon-lock"&gt;&lt;/span&gt;</code></li>
 </ul>
-<h6 id="market-reports">Market reports</h6>
+<h6 id="market-reports"><a name="user-content-market-reports" href="#market-reports" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Market reports</h6>
 <ul>
 <li>Retailer Perception 横纵坐标的label丢失</li>
 <li>Brand Perception 横纵坐标的label字体过小</li>
@@ -186,14 +389,16 @@ body{font-size:16px;}
 <li>Market Shares by Shopper Segment- HealthBeauties - Urban 菜单label和显示内容不符</li>
 <li>Sales by Consumer Segment/Shopper Segment，有可能有上述相同问题，需要double-check code</li>
 </ul>
-<h6 id="system-overrall">System Overrall</h6>
+<h6 id="system-overrall"><a name="user-content-system-overrall" href="#system-overrall" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>System Overrall</h6>
 <ul>
 <li>部署服务器时SocketIO不工作</li>
 <li>bug in the negotiation module, cannot generate contract details automatically</li>
 <li>SeminarInfo 中producer/Retailer数组PeriodInfo数量不足</li>
 <li>Admin page, New seminar is not working </li>
+<li>Negotiation :  If they cannot reach any agreement, need to copy agreement last period automatically.</li>
+<li>Service PeriodInfo 有问题 : 静态 无法主动更新</li>
 </ul>
-<h2 id="directory-layout">Directory Layout</h2>
+<h2 id="directory-layout"><a name="user-content-directory-layout" href="#directory-layout" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Directory Layout</h2>
 <pre><code>app/                --&gt; all of the files to be used in production
   css/              --&gt; css files
     app.css         --&gt; default stylesheet
@@ -241,5 +446,5 @@ test/               --&gt; test source files and libraries
     filtersSpec.js          --&gt; specs for filters
     servicesSpec.js         --&gt; specs for services
 </code></pre>
-<h2 id="contact">Contact</h2>
-<p>For more information on AngularJS please check out http://angularjs.org/</p></body></html>
+<h2 id="contact"><a name="user-content-contact" href="#contact" class="headeranchor-link"  aria-hidden="true"><span class="headeranchor"></span></a>Contact</h2>
+<p>For more information on AngularJS please check out <a href="http://angularjs.org/">http://angularjs.org/</a></p></body></html>

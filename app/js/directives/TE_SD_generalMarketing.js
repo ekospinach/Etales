@@ -86,7 +86,7 @@ define(['directives', 'services'], function(directives) {
                             url: url
                         }).then(function(data) {
                             max = data.data.budgetAvailable + data.data.budgetSpentToDate;
-                            url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + PlayerInfo.getPlayer() + '/brandName/varName';
+                            url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + PlayerInfo.getPlayer() + '/brandName/varName/ignoreItem/1';
                             return $http({
                                 method: 'GET',
                                 url: url

@@ -23,10 +23,14 @@ var contractSchema = mongoose.Schema({
 var contractVariantDetailsSchema = mongoose.Schema({
      seminar: String,
      contractCode: String,
+     producerID : Number,
+     retailerID : Number,
      parentBrandName: String,
      parentBrandID: Number,
      variantName: String,
      variantID: Number,
+
+
 
      composition: [Number], //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
      currentPriceBM: Number,
@@ -122,17 +126,25 @@ exports.getContractExpend = function(req, res, next) {
           if (err) {
                next(new Error(err));
           } else {
-               if (docs.length != 0) {
+               if (docs.length != 0) {                    
                     for (var i = 0; i < docs.length; i++) {
-                         result += docs[i].nc_MinimumOrder * (1 - docs[i].nc_VolumeDiscountRate) * docs[i].currentPriceBM;                         
+                         if(docs[i].nc_VolumeDiscountRate == 0){ 
+                              result += 0;    
+                         } else {
+                              result += docs[i].nc_MinimumOrder * (1 - docs[i].nc_VolumeDiscountRate) * docs[i].currentPriceBM;                                                       
+                         }
                          
                          if ( (req.params.parentBrandName != 'brandName') 
                               && (req.params.variantName != 'varName')
                               && (docs[i].parentBrandName == req.params.parentBrandName) 
-                              && (docs[i].variantName == req.params.variantName)) {
+                              && (docs[i].variantName == req.params.variantName)
+                              && (req.params.ignoreItem == 'volumeDiscount')
+                              && (req.params.ignoreRetailerID == docs[i].retailerID)) {
+                          
                               if(docs[i].nc_VolumeDiscountRate == 0){
                                    result -= 0;
                               } else {
+                                   console.log(docs[i]);
                                    result -= docs[i].nc_MinimumOrder * (1 - docs[i].nc_VolumeDiscountRate) * docs[i].currentPriceBM;                                                            
                               }                              
                          }                         
@@ -141,7 +153,9 @@ exports.getContractExpend = function(req, res, next) {
                          if ( (req.params.parentBrandName != 'brandName') 
                               && (req.params.variantName != 'varName')
                               && (docs[i].parentBrandName == req.params.parentBrandName) 
-                              && (docs[i].variantName == req.params.variantName)) {
+                              && (docs[i].variantName == req.params.variantName)
+                              && (req.params.ignoreItem == 'performanceBonus')
+                              && (req.params.ignoreRetailerID == docs[i].retailerID)) {
 
                               result -= docs[i].nc_SalesTargetVolume * docs[i].nc_PerformanceBonusRate * docs[i].currentPriceBM;                         
                          }
@@ -151,7 +165,10 @@ exports.getContractExpend = function(req, res, next) {
                               if ( (req.params.parentBrandName != 'brandName') 
                               && (req.params.variantName != 'varName')
                               && (docs[i].parentBrandName == req.params.parentBrandName) 
-                              && (docs[i].variantName == req.params.variantName)) {
+                              && (docs[i].variantName == req.params.variantName)
+                              && (req.params.ignoreItem == 'otherCompensation')
+                              && (req.params.ignoreRetailerID == docs[i].retailerID)) {
+
                                    result -= docs[i].nc_OtherCompensation;
                               }                              
                          }
@@ -159,6 +176,8 @@ exports.getContractExpend = function(req, res, next) {
                     res.send(200, {
                          'result': result
                     });
+
+
                } else {
                     res.send(200, {
                          'result': 0
@@ -252,6 +271,8 @@ exports.addContractDetails = function(io) {
                          console.log('found previous input, copy...');
                          var newContractVariantDetails = new contractVariantDetails({
                               contractCode: req.body.contractCode,
+                              producerID: req.body.producerID,
+                              retailerID: req.body.retailerID,
                               parentBrandName: req.body.brandName,
                               parentBrandID: req.body.brandID,
                               variantName: req.body.varName,
@@ -281,6 +302,8 @@ exports.addContractDetails = function(io) {
                     } else {
                          var newContractVariantDetails = new contractVariantDetails({
                               contractCode: req.body.contractCode,
+                              producerID: req.body.producerID,
+                              retailerID: req.body.retailerID,                              
                               parentBrandName: req.body.brandName,
                               parentBrandID: req.body.brandID,
                               variantName: req.body.varName,
@@ -514,4 +537,19 @@ exports.removeContract = function(io) {
                res.send('Related contract("' + req.body.contractCode + '") have been removed,  number affected : ' + numberAffected);
           });
      }
+}
+
+exports.getRetailerAdditionalBudget = function(req, res, next) {
+     contract.findOne({
+          contractCode: req.params.contractCode
+     }, function(err, doc) {
+          if (err) {
+               next(new Error(err))
+          };
+          if (doc) {
+               res.send(200, '125');
+          } else {
+               res.send(200, '134');
+          }
+     })
 }

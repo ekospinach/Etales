@@ -96,7 +96,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 					});
 				}).then(function(data) {
 					productExpend = data.data.result;
-					url='/getContractExpend/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer()+'/brandName/varName';
+					url='/getContractExpend/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer()+'/brandName/varName/ignoreItem/1';
 					return $http({
 						method:'GET',
 						url:url
@@ -110,6 +110,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 					});
 				}).then(function(data){
 					reportExpend=data.data.result;
+					$scope.estimatedSpending = -(productExpend + ContractExpend + reportExpend).toFixed(2);
 					$scope.surplusExpend = ($scope.abMax - productExpend- ContractExpend - reportExpend).toFixed(2);
 					url = "/productionResult/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer()) + '/EName/varName';
 					return $http({
@@ -176,11 +177,15 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    })
 
 		    //handle Supplier Decision module push notification messages
+
+		    $scope.$on('reloadSupplierBudgetMonitor', function(event){
+				loadBackgroundDataAndCalculateDecisionInfo();
+		    });
+
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, data, newBase) {  
 				loadBackgroundDataAndCalculateDecisionInfo();
 				notify('Decision has been saved, Supplier ' + data.producerID  + ' Period ' + data.period + '.');
 			});
-
 
 			$scope.$on('producerReportPurchaseDecisionChanged', function(event, data, newBase) {  
 				loadBackgroundDataAndCalculateDecisionInfo();

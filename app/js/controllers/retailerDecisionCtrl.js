@@ -33,6 +33,7 @@ define(['app','socketIO','routingConfig'], function(app) {
                     });
                 }).then(function(data){
                     expend=data.data.result;
+
                     url='/getPlayerReportOrderExpend/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/R/'+PlayerInfo.getPlayer();
                     return $http({
                         method:'GET',
@@ -40,7 +41,19 @@ define(['app','socketIO','routingConfig'], function(app) {
                     });
                 }).then(function(data){
                     reportExpend=data.data.result;
-                    $scope.surplusExpend=(abMax-expend-reportExpend).toFixed(2);
+
+                    url='/getRetailerAdditionalBudget/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer();
+                    return $http({
+                        method:'GET',
+                        url:url
+                    });
+                }).then(function(data){
+                    additionalBudget =data.data;
+
+                    $scope.estimatedSpending = -(expend + reportExpend).toFixed(2);
+                    $scope.additionalBudget = additionalBudget;
+                    $scope.surplusExpend=(abMax + additionalBudget - expend - reportExpend).toFixed(2);
+
                     //$scope.percentageExpend=(abMax-expend)/abMax*100;
                     url="/retailerShelfSpace/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/-1/0/brandName/varName';
                     return $http({
@@ -107,6 +120,10 @@ define(['app','socketIO','routingConfig'], function(app) {
 	    	showNegotiationAgreements();
 
             //handle Retailer Decision module push notification messages
+            $scope.$on('reloadRetailerBudgetMonitor', function(event){
+                showView();
+            });
+
             $scope.$on('retailerDecisionBaseChangedFromServer', function(event, data, newBase) {  
                 showView();
                 notify('Decision has been saved, Retailer ' + data.retailerID  + ' Period ' + data.period + '.');
