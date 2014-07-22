@@ -25,7 +25,11 @@ define(['directives', 'services'], function(directives){
                     var array=_.find(data,function(obj){
                         return (obj.variantName==variantName&&obj.parentBrandName==brandName&&obj.marketID==market);
                     });
-                    return array.value.toFixed(2);
+                    if(array!=undefined){
+                        return array.value.toFixed(2);
+                    }else{
+                        return '-100';
+                    }
                 }
 
                 var loadretailerVolume=function(data,category,market){

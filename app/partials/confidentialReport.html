@@ -19,7 +19,7 @@
     <div class="row">
         <div class="col-md-9">
             <div class="bs-docs-section">
-                    <p access-level='{{accessLevels.playerView}}'>You are checking the General Report of period <b>{{selectedPeriod}}</b>, <span ng-show='!facilitatorShow'>{{ showSelectedUser() }}</span><a href="#" editable-select="selectedUser" e-ng-options="s.value as s.text for s in users" onaftersave="setPlayer($data)" ng-show='facilitatorShow'>{{ showSelectedUser() }}</a></p>
+                    <p access-level='{{accessLevels.playerView}}'>You are checking the General Report of period <b>{{selectedPeriod}}</b>, <span ng-show='!facilitatorShow'>{{ showSelectedUser() }}</span><a href="#" editable-select="showUser" e-ng-options="s.value as s.text for s in users" onaftersave="setPlayer($data)" ng-show='facilitatorShow'>{{ showSelectedUser() }}</a></p>
                     <button type="button" class="btn btn-default" ng-click="changePeriod('minus')" ng-disabled='!previousBtn'>{{Label.getContent("Previous period")}}</button>
                     <button type="button" class="btn btn-default" ng-click="changePeriod('add')" ng-disabled='!nextBtn'>{{Label.getContent("Next period")}}</button>
                     

@@ -26,14 +26,22 @@ define(['directives', 'services'], function(directives){
                         var array=_.find(data,function(obj){
                             return (obj.variantName==variantName&&obj.parentBrandName==brandName);
                         });
-                        return array.value[num].toFixed(2);
+                        if(array!=undefined){
+                            return array.value[num].toFixed(2);
+                        }else{
+                            return '-100';
+                        }
                     }
 
                     var loadVariantPercentageValue=function(data,brandName,variantName,num){
                         var array=_.find(data,function(obj){
                             return (obj.variantName==variantName&&obj.parentBrandName==brandName);
                         });
-                        return (array.value[num]*100).toFixed(2);
+                        if(array!=undefined){
+                            return (array.value[num]*100).toFixed(2);
+                        }else{
+                            return '-99';
+                        }
                     }
 
                     var num=0;
@@ -123,13 +131,21 @@ define(['directives', 'services'], function(directives){
 			    	var array=_.find(data,function(obj){
 			    		return (obj.brandName==name);
 			    	});
-			    	return array.value[num].toFixed(2);
+                    if(array!=undefined){
+                        return array.value[num].toFixed(2);
+                    }else{
+                        return '-100';
+                    }
 			    }
                 var loadPercentageValue=function(data,name,num){
                     var array=_.find(data,function(obj){
                         return (obj.brandName==name);
                     });
-                    return (array.value[num]*100).toFixed(2);
+                    if(array!=undefined){
+                        return (array.value[num]*100).toFixed(2);
+                    }else{
+                        return '-99';
+                    }
                 }
 
 			    var loadTotal=function(data){
