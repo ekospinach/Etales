@@ -133,7 +133,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    }
 		    var setPlayer=function(userRole){
 		    	var role=2;
-		    	$scope.showUser=userRole;
+		    	$scope.showPlayer=userRole;
 		    	if(userRole>4){
 		    		userRole-=4;
 		    		role=4;
@@ -148,7 +148,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 			    	$scope.retailerShow=false;
 			    	showProducerConsolidate();
 		    	}
-		    	$scope.selectedUser=userRole;
+		    	$scope.selectedPlayer=userRole;
 		    }
 
 		    $scope.switching=switching;	
@@ -164,8 +164,8 @@ define(['app','socketIO','routingConfig'], function(app) {
 			$scope.facilitatorShow=false;
 		    if(RoleInfo.getRole() == userRoles.facilitator){
 			    
-			    $scope.selectedUser=1;
-			    $scope.showUser=1;
+			    $scope.selectedPlayer=1;
+			    $scope.showPlayer=1;
 			    $scope.producerShow=true;
 			    $scope.retailerShow=false;
 			    $scope.facilitatorShow=true;
@@ -173,20 +173,20 @@ define(['app','socketIO','routingConfig'], function(app) {
 		    }
 
 		    if(RoleInfo.getRole()==2){
-		    	$scope.selectedUser=PlayerInfo.getPlayer();
-		    	$scope.showUser=PlayerInfo.getPlayer();
+		    	$scope.selectedPlayer=PlayerInfo.getPlayer();
+		    	$scope.showPlayer=PlayerInfo.getPlayer();
 		    	$scope.producerShow=true;
 		    	$scope.retailerShow=false;
 		    	showProducerConsolidate();
 		    }else if(RoleInfo.getRole()==4){
-		    	$scope.selectedUser=PlayerInfo.getPlayer();
-		    	$scope.showUser=(parseInt(PlayerInfo.getPlayer())+4);
+		    	$scope.selectedPlayer=PlayerInfo.getPlayer();
+		    	$scope.showPlayer=(parseInt(PlayerInfo.getPlayer())+4);
 		    	$scope.retailerShow=true;
 		    	$scope.producerShow=false;
 		    	showRetailerConsolidate();
 		    }
 
-			$scope.users = [{
+			$scope.players = [{
 				value: 1,
 				text: Label.getContent('Supplier')+' 1'
 			}, {
@@ -212,11 +212,11 @@ define(['app','socketIO','routingConfig'], function(app) {
 				text: Label.getContent('eMall')
 			}];
 
-			$scope.showSelectedUser = function() {
-				var selected = $filter('filter')($scope.users, {
-					value: $scope.showUser
+			$scope.showSelectedPlayer = function() {
+				var selected = $filter('filter')($scope.players, {
+					value: $scope.showPlayer
 				});
-				return ($scope.showUser && selected.length) ? selected[0].text : 'Not set';
+				return ($scope.showPlayer && selected.length) ? selected[0].text : 'Not set';
 			};
 			
 			$scope.changePeriod = function(type) {

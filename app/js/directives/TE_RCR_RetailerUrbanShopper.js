@@ -6,7 +6,7 @@ define(['directives', 'services'], function(directives){
                 isPageShown : '=',
                 isPageLoading : '=',
                 selectedPeriod : '=',
-                selectedUser : '=',
+                selectedPlayer : '=',
                 retailerShow : '='
             },
             restrict : 'E',
@@ -95,7 +95,7 @@ define(['directives', 'services'], function(directives){
 
                 var getResult =function(){
                     scope.eleValue1s=new Array();scope.heaValue1s=new Array();scope.eleValue2s=new Array();scope.heaValue2s=new Array();scope.eleValue3s=new Array();scope.heaValue3s=new Array();scope.eleValue4s=new Array();scope.heaValue4s=new Array();scope.eleVolume1s=new Array();scope.heaVolume1s=new Array();scope.eleVolume2s=new Array();scope.heaVolume2s=new Array();scope.eleVolume3s=new Array();scope.heaVolume3s=new Array();scope.eleVolume4s=new Array();scope.heaVolume4s=new Array();
-                    var url='/RCR-sharesCrossSegment/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod+'/'+parseInt(scope.selectedUser);
+                    var url='/RCR-sharesCrossSegment/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod+'/'+parseInt(scope.selectedPlayer);
 			    	$http({
                         method:'GET',
                         url:url,
@@ -129,7 +129,7 @@ define(['directives', 'services'], function(directives){
                         initializePage();
                     }
                 })
-                scope.$watch('selectedUser', function(newValue, oldValue) {
+                scope.$watch('selectedPlayer', function(newValue, oldValue) {
                     if (newValue != oldValue && scope.isPageShown && scope.retailerShow) {
                         initializePage();
                     }

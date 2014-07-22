@@ -5,7 +5,7 @@ define(['directives', 'services'], function(directives){
                 isPageShown : '=',
                 isPageLoading : '=',
                 selectedPeriod : '=',
-                selectedUser : '=',
+                selectedPlayer : '=',
                 producerShow : '='
             },
             restrict : 'E',
@@ -96,7 +96,7 @@ define(['directives', 'services'], function(directives){
                 }
 
                 var getResult =function(){
-                    var url='/SCR-sharesCrossSegment/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod+'/'+parseInt(scope.selectedUser);
+                    var url='/SCR-sharesCrossSegment/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod+'/'+parseInt(scope.selectedPlayer);
 			    	$http({
                         method:'GET',
                         url:url,
@@ -129,7 +129,7 @@ define(['directives', 'services'], function(directives){
                         initializePage();
                     }
                 })
-                scope.$watch('selectedUser', function(newValue, oldValue) {
+                scope.$watch('selectedPlayer', function(newValue, oldValue) {
                     if (newValue != oldValue && scope.isPageShown && scope.producerShow) {
                         initializePage();
                     }

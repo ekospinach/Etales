@@ -6,7 +6,7 @@ define(['directives', 'services'], function(directives){
                 isPageShown : '=',
                 isPageLoading : '=',
                 selectedPeriod : '=',
-                selectedUser : '=',
+                selectedPlayer : '=',
                 retailerShow : '='
             },
             restrict : 'E',
@@ -74,7 +74,7 @@ define(['directives', 'services'], function(directives){
                     }else{
                         marketID=1;
                     }
-                    var url='/RCR-consolidatedProfitAndLoss/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod+'/'+parseInt(scope.selectedUser);
+                    var url='/RCR-consolidatedProfitAndLoss/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod+'/'+parseInt(scope.selectedPlayer);
                     $http({
                         method:'GET',
                         url:url
@@ -244,7 +244,7 @@ define(['directives', 'services'], function(directives){
                 }
 
                 var getResult =function(){
-                    var url='/RCR-consolidatedProfitAndLoss/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod+'/'+parseInt(scope.selectedUser);
+                    var url='/RCR-consolidatedProfitAndLoss/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod+'/'+parseInt(scope.selectedPlayer);
 			    	$http({
                         method:'GET',
                         url:url,
@@ -279,7 +279,7 @@ define(['directives', 'services'], function(directives){
                         initializePage();
                     }
                 })
-                scope.$watch('selectedUser', function(newValue, oldValue) {
+                scope.$watch('selectedPlayer', function(newValue, oldValue) {
                     if (newValue != oldValue && scope.isPageShown && scope.retailerShow) {
                         initializePage();
                     }
