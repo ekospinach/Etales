@@ -5,6 +5,8 @@ define(['directives', 'services'], function(directives){
             scope : {
                 isPageShown : '=',
                 isPageLoading : '=',
+                selectedPeriod : '=',
+                selectedPlayer : '=',
                 isReady : '='
             },
             restrict : 'E',
@@ -17,8 +19,8 @@ define(['directives', 'services'], function(directives){
                     scope.isResultShown = false;                    
                     scope.Label = Label;
 
-                    scope.currentPeriod=PeriodInfo.getCurrentPeriod();                    
-					RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
+                    scope.currentPeriod=scope.selectedPeriod;                    
+					RetailerDecisionBase.reload({retailerID:parseInt(scope.selectedPlayer),period:scope.selectedPeriod,seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
 						scope.pageBase = base;
 					}).then(function(){
 						return showView();
@@ -36,20 +38,20 @@ define(['directives', 'services'], function(directives){
 					if(!filter.test(value)){
 						d.resolve(Label.getContent('Input a number'));
 					}
-					var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/R/'+parseInt(PlayerInfo.getPlayer());
+					var url="/companyHistoryInfo/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(scope.selectedPeriod-1)+'/R/'+parseInt(scope.selectedPlayer);
 		      		$http({
 		      			method:'GET',
 		      			url:url
 		      		}).then(function(data){
 		      			max=data.data.budgetAvailable+data.data.budgetSpentToDate;
-		      			url="/retailerExpend/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/'+marketID+'/'+location+'/'+additionalIdx;
+		      			url="/retailerExpend/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(scope.selectedPeriod)+'/'+parseInt(scope.selectedPlayer)+'/'+marketID+'/'+location+'/'+additionalIdx;
 		      			return $http({
 		      				method:'GET',
 		      				url:url
 		      			});
 		      		}).then(function(data){
 		      			expend=data.data.result;
-		      			url='/getPlayerReportOrderExpend/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/R/'+PlayerInfo.getPlayer();
+		      			url='/getPlayerReportOrderExpend/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod+'/R/'+scope.selectedPlayer;
 	                    return $http({
 	                        method:'GET',
 	                        url:url

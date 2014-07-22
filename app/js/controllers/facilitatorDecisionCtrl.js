@@ -8,13 +8,13 @@ define(['app'], function(app) {
 
 		    if(RoleInfo.getRole() == userRoles.facilitator){
 		    	$scope.selectedItem = 1;		    	
-		    	$scope.selectedPlayer = 1;
+		    	selectedPlayer = 1;
 		    } else if(RoleInfo.getRole() == userRoles.producer){
-		    	$scope.selectedPlayer = PlayerInfo.getPlayer();
-		    	$scope.selectedItem = $scope.selectedPlayer;		    			    	
+		    	selectedPlayer = PlayerInfo.getPlayer();
+		    	$scope.selectedItem = selectedPlayer;		    			    	
 		    } else if(RoleInfo.getRole() == userRoles.retailer){
-		    	$scope.selectedPlayer = PlayerInfo.getPlayer();
-		    	$scope.selectedItem = $scope.selectedPlayer + 4;		    			    	
+		    	selectedPlayer = PlayerInfo.getPlayer();
+		    	$scope.selectedItem = selectedPlayer + 4;		    			    	
 		    }
 		   
 		    $scope.setPlayer=function(selectedItem){

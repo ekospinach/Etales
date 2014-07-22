@@ -6,6 +6,8 @@ define(['directives', 'services'], function(directives) {
                 scope: {
                     isPageShown: '=',
                     isPageLoading: '=',
+                    selectedPlayer: '=',
+                    selectedPeriod: '=',
                     isReady: '='
                 },
                 restrict: 'E',
@@ -21,13 +23,13 @@ define(['directives', 'services'], function(directives) {
                     var getResult = function() {
                         var reportStatus = {};
                         var prices = {};
-                        var url = '/getSeminarReportPurchaseStatus/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/P/' + parseInt(PlayerInfo.getPlayer());
+                        var url = '/getSeminarReportPurchaseStatus/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/P/' + parseInt(scope.selectedPlayer);
                         $http({
                             method: 'GET',
                             url: url
                         }).then(function(data) {
                             reportStatus = data.data;
-                            url = '/getReportPrice/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod();
+                            url = '/getReportPrice/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod;
                             return $http({
                                 method: 'GET',
                                 url: url
@@ -141,8 +143,8 @@ define(['directives', 'services'], function(directives) {
                     scope.submitOrder = function(name, value) {
                         var postData = {
                             player: 'Producer',
-                            playerID: PlayerInfo.getPlayer(),
-                            period: PeriodInfo.getCurrentPeriod(),
+                            playerID: scope.selectedPlayer,
+                            period: scope.selectedPeriod,
                             seminarCode: SeminarInfo.getSelectedSeminar().seminarCode,
                             name: name,
                             value: value
@@ -167,27 +169,27 @@ define(['directives', 'services'], function(directives) {
                             availableBudgetLeft = 0,
                             reportExpend = 0;
                         if (value) {
-                            var url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + parseInt(PlayerInfo.getPlayer());
+                            var url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (scope.selectedPeriod - 1) + '/P/' + parseInt(scope.selectedPlayer);
                             $http({
                                 method: 'GET',
                                 url: url
                             }).then(function(data) {
                                 max = data.data.budgetAvailable + data.data.budgetSpentToDate;
-                                url = "/producerExpend/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod()) + '/' + parseInt(PlayerInfo.getPlayer()) + '/brandName/location/1';
+                                url = "/producerExpend/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (scope.selectedPeriod) + '/' + parseInt(scope.selectedPlayer) + '/brandName/location/1';
                                 return $http({
                                     method: 'GET',
                                     url: url,
                                 });
                             }).then(function(data) {
                                 producerExpend = data.data.result;
-                                url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + PlayerInfo.getPlayer() + '/brandName/varName';
+                                url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + scope.selectedPlayer + '/brandName/varName';
                                 return $http({
                                     method: 'GET',
                                     url: url
                                 });
                             }).then(function(data) {
                                 ContractExpend = data.data.result;
-                                url = '/getPlayerReportOrderExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/P/' + PlayerInfo.getPlayer();
+                                url = '/getPlayerReportOrderExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/P/' + scope.selectedPlayer;
                                 return $http({
                                     method: 'GET',
                                     url: url

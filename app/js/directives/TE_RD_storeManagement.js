@@ -5,6 +5,8 @@ define(['directives', 'services'], function(directives){
             scope : {
                 isPageShown : '=',
                 isPageLoading : '=',
+                selectedPeriod : '=',
+                selectedPlayer : '=',
                 isReady : '='
             },
             restrict : 'E',
@@ -17,8 +19,8 @@ define(['directives', 'services'], function(directives){
                     scope.isResultShown = false;                    
                     scope.Label = Label;
                     scope.showView=showView;
-                    scope.currentPeriod=PeriodInfo.getCurrentPeriod();                    
-                    RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
+                    scope.currentPeriod=scope.selectedPeriod;                    
+                    RetailerDecisionBase.reload({retailerID:parseInt(scope.selectedPlayer),period:scope.selectedPeriod,seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
                         scope.pageBase = base;
                     }).then(function(){
                         return showView('Elecssories','Rural');
@@ -69,7 +71,7 @@ define(['directives', 'services'], function(directives){
                     }else{
                         d.resolve();
                     }
-                    // var url='/quarterHistoryInfo/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1);
+                    // var url='/quarterHistoryInfo/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(scope.selectedPeriod-1);
                     // $http({
                     //     method:'GET',
                     //     url:url
@@ -105,7 +107,7 @@ define(['directives', 'services'], function(directives){
                         }else {
                             category=2;
                         }
-                        var url="/retailerShelfSpace/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod())+'/'+parseInt(PlayerInfo.getPlayer())+'/'+market+'/'+category+'/'+brandName+'/'+varName;
+                        var url="/retailerShelfSpace/"+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(scope.selectedPeriod)+'/'+parseInt(scope.selectedPlayer)+'/'+market+'/'+category+'/'+brandName+'/'+varName;
                         $http({
                             method:'GET',
                             url:url
@@ -145,13 +147,13 @@ define(['directives', 'services'], function(directives){
                     }
                     if(brandName.substring(brandName.length-1)<4){
                         //producer product
-                        var url='/producerVariantBM/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+brandName.substring(brandName.length-1)+'/'+category+'/'+brandName+'/'+varName;
+                        var url='/producerVariantBM/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod+'/'+brandName.substring(brandName.length-1)+'/'+category+'/'+brandName+'/'+varName;
                         $http({
                             method:'GET',
                             url:url
                         }).then(function(data){
                             max=data.data.result;
-                            url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+category+'/'+market + '/' + PeriodInfo.getCurrentPeriod();
+                            url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+category+'/'+market + '/' + scope.selectedPeriod;
                             return $http({
                                 method:'GET',
                                 url:url
@@ -168,13 +170,13 @@ define(['directives', 'services'], function(directives){
                     }else{
                         //retailer variant
                         var postData = {
-                            period : PeriodInfo.getCurrentPeriod(),
+                            period : scope.selectedPeriod,
                             seminar : SeminarInfo.getSelectedSeminar().seminarCode,
                             brandName : brandName,
                             varName : varName,
                             catID : category,
                             userRole :  4,                      
-                            userID : PlayerInfo.getPlayer(),
+                            userID : scope.selectedPlayer,
                         }   
 
                         $http({
@@ -183,7 +185,7 @@ define(['directives', 'services'], function(directives){
                             data:postData
                         }).then(function(data){
                             currentUnitCost=data.data.result;
-                            url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+category+'/'+market + '/' + PeriodInfo.getCurrentPeriod();
+                            url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+category+'/'+market + '/' + scope.selectedPeriod;
                             return $http({
                                 method:'GET',
                                 url:url
@@ -306,7 +308,7 @@ define(['directives', 'services'], function(directives){
                         }
                     }
                     //添加retailer load
-                    var url='/retailerProducts/'+parseInt(PlayerInfo.getPlayer())+'/'+PeriodInfo.getCurrentPeriod()+'/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+category;
+                    var url='/retailerProducts/'+parseInt(scope.selectedPlayer)+'/'+scope.selectedPeriod+'/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+category;
                     $http({
                         method:'GET',
                         url:url
@@ -321,8 +323,8 @@ define(['directives', 'services'], function(directives){
                         var urls=new Array();
                         var checkurls=new Array();
                         for(i=0;i<3;i++){
-                            urls[i]='/producerProducts/'+(i+1)+'/'+PeriodInfo.getCurrentPeriod()+'/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+category;
-                            checkurls[i]='/checkProducerPortfolioDecision/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+(i+1);
+                            urls[i]='/producerProducts/'+(i+1)+'/'+scope.selectedPeriod+'/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+category;
+                            checkurls[i]='/checkProducerPortfolioDecision/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod+'/'+(i+1);
                         }
                         (function multipleRequestShooter(checkurls,urls,idx){
                             $http({
@@ -424,7 +426,7 @@ define(['directives', 'services'], function(directives){
                     /*set add function is lauch new Brand*/
                     var close = function () {
                         $modalInstance.dismiss('cancel');
-                        RetailerDecisionBase.reload({retailerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
+                        RetailerDecisionBase.reload({retailerID:parseInt(scope.selectedPlayer),period:scope.selectedPeriod,seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
                             $scope.pageBase = base;
                         }).then(function(){
                             return showView($scope.category,$scope.market);

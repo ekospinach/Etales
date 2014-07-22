@@ -5,6 +5,8 @@ define(['directives', 'services'], function(directives){
             scope : {
                 isPageShown : '=',
                 isPageLoading : '=',
+                selectedPlayer: '=',
+                selectedPeriod: '=',
                 isReady: '='
             },
             restrict : 'E',
@@ -17,8 +19,8 @@ define(['directives', 'services'], function(directives){
                     scope.isResultShown = false;                    
                     scope.Label = Label;
 
-                    scope.currentPeriod=PeriodInfo.getCurrentPeriod();
-                    ProducerDecisionBase.reload({producerID:parseInt(PlayerInfo.getPlayer()),period:PeriodInfo.getCurrentPeriod(),seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
+                    scope.currentPeriod=scope.selectedPeriod;
+                    ProducerDecisionBase.reload({producerID:parseInt(scope.selectedPlayer),period:scope.selectedPeriod,seminar:SeminarInfo.getSelectedSeminar().seminarCode}).then(function(base){
                         scope.pageBase = base; 
                     }).then(function(){
                         return showView();
@@ -68,14 +70,14 @@ define(['directives', 'services'], function(directives){
                     if(!filter.test(value)){
                         d.resolve(Label.getContent('Input Number'));
                     }else{
-                        var url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+categoryID+'/1' + '/' + PeriodInfo.getCurrentPeriod();
+                        var url='/getOneQuarterExogenousData/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+categoryID+'/1' + '/' + scope.selectedPeriod;
                         $http({
                             method:'GET',
                             url:url
                         }).then(function(data){
                             MaxCapacityReduction=data.data.MaxCapacityReduction;
                             MaxCapacityIncrease=data.data.MaxCapacityIncrease;
-                            url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + parseInt(PlayerInfo.getPlayer());
+                            url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (scope.selectedPeriod - 1) + '/P/' + parseInt(scope.selectedPlayer);
                             return $http({
                                 method: 'GET',
                                 url: url
@@ -100,7 +102,7 @@ define(['directives', 'services'], function(directives){
                     if(!filter.test(value)){
                         d.resolve(Label.getContent('Input a number'));
                     }else{
-                        var url='/getScrplSales/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+PlayerInfo.getPlayer()+'/'+categoryID;
+                        var url='/getScrplSales/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(scope.selectedPeriod-1)+'/'+scope.selectedPlayer+'/'+categoryID;
                         $http({
                             method:'GET',
                             url:url
