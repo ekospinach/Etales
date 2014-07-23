@@ -25,7 +25,7 @@
       /* Widen the fixed sidebar again */
       .bs-docs-sidebar.affix-bottom,
       .bs-docs-sidebar.affix {
-        width: 213px;
+        width: 275px;
       }
     }
     .my-super-awesome-loading-box {
@@ -66,7 +66,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-md-9" style="width:80%;padding:0 0 0 15px" ng-show='!isNegotiation'>
+        <div class="col-md-9" style="width:75%;padding:0 0 0 15px" ng-show='!isNegotiation'>
             <div class="bs-docs-section">
             <p access-level='{{accessLevels.playerView}}'>You are checking the decision of period <b>{{selectedPeriod}}</b>, Retailer {{selectedPlayer}}</p>              
                 <retailer-marketing ng-show='Marketing' is-page-shown='Marketing' is-page-loading='isPageLoading' selected-period='selectedPeriod' selected-player='selectedPlayer' is-ready='isRetailerDecisionReady'></retailer-marketing>
@@ -79,8 +79,9 @@
                 
             </div>
         </div>
-        <div class="col-md-3" style="width:20%;padding:0 0 0 15px" ng-show='!isNegotiation'>
-            <div class="bs-docs-section bs-docs-sidebar hidden-print" affix='10' role="complementary">
+        <div class="col-md-3" style="width:25%;padding:0 0 0 15px" ng-show='!isNegotiation'>
+            <div class="bs-docs-section bs-docs-sidebar hidden-print" affix='0' role="complementary">
+                <div id='clockChart' style='height:200px' ng-model='myModel' clock-chart></div>
                 <table class="table table-condensed">
                     <thead>
                         <th colspan="2">
@@ -100,19 +101,19 @@
                             <td colspan="2"><p>{{Label.getContent('Shelf Space Left')}}</p></td>
                         </tr>
                         <tr>
-                            <td><p class="padding-10">{{Label.getContent('Urban')}} {{Label.getContent('Elecssories')}}</p></td>
+                            <td><p>{{Label.getContent('Urban')}} {{Label.getContent('Elecssories')}}</p></td>
                             <td><p class="text-right"><b>{{percentageShelf[0][0].toFixed(2)}}%</b>/100%</p></td>
                         </tr>
                         <tr>
-                            <td><p class="padding-10">{{Label.getContent('Urban')}} {{Label.getContent('HealthBeauties')}}</p></td>
+                            <td><p>{{Label.getContent('Urban')}} {{Label.getContent('HealthBeauty')}}</p></td>
                             <td><p class="text-right"><b>{{percentageShelf[0][1].toFixed(2)}}%</b>/100%</p></td>
                         </tr>
                         <tr>
-                            <td><p class="padding-10">{{Label.getContent('Rural')}} {{Label.getContent('Elecssories')}}</p></td>
+                            <td><p>{{Label.getContent('Rural')}} {{Label.getContent('Elecssories')}}</p></td>
                             <td><p class="text-right"><b>{{percentageShelf[1][0].toFixed(2)}}%</b>/100%</p></td>
                         </tr>
                         <tr>
-                            <td><p class="padding-10">{{Label.getContent('Rural')}} {{Label.getContent('HealthBeauties')}}</p></td>
+                            <td><p>{{Label.getContent('Rural')}} {{Label.getContent('HealthBeauty')}}</p></td>
                             <td><p class="text-right"><b>{{percentageShelf[1][1].toFixed(2)}}%</b>/100%</p></td>
                         </tr>
                     </tbody>

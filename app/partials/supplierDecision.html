@@ -48,8 +48,8 @@
     @media (min-width: 1200px) {
       /* Widen the fixed sidebar again */
       .bs-docs-sidebar.affix-bottom,
-      .bs-docs-sidebar.affix {1
-        width: 213px;
+      .bs-docs-sidebar.affix {
+        width: 235px;
       }
     }
 
@@ -112,7 +112,7 @@
         </div>
         <div class="col-md-3" ng-show='!isNegotiation' style="padding:0 0 0 15px">
             <div class="bs-docs-section bs-docs-sidebar hidden-print" affix='0' role="complementary">
-                <table class="table table-condensed">
+                <div id='clockChart' style='height:200px' ng-model='myModel' clock-chart></div>                <table class="table table-condensed">
                     <thead>
                         <th colspan="2">
                             <p>{{Label.getContent('Decision Info')}}</p>

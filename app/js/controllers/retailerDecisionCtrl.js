@@ -102,6 +102,20 @@ define(['app','socketIO','routingConfig'], function(app) {
 	    	$scope.showNegotiationAgreements=showNegotiationAgreements;
 	    	$scope.showView=showView;
 
+            $scope.myModel = "hello";
+            $scope.chartSeries = [{
+                "name": "Some data",
+                "size": '80%',
+                "innerSize": '60%',
+                "data": [
+                    ['Firefox', 45.0],
+                    ['IE', 26.8], 
+                    ['Chrome',12.8],
+                    ['Safari', 8.5],
+                    ['Opera', 6.2],
+                    ['Others', 0.7]
+                ]
+            }];  
 
 	    	showView();
 	    	showNegotiationAgreements();
@@ -125,7 +139,9 @@ define(['app','socketIO','routingConfig'], function(app) {
             $scope.$on('retailerDecisionLocked', function(event, data) {  
                 showView();
                 notify('Time is up, Lock Decision. Retailer ' + data.roleID  + ' Period ' + data.period + '.');
-            });     
+            });   
+
+
 	
             $scope.selectedPlayer = PlayerInfo.getPlayer();
             $scope.selectedPeriod = PeriodInfo.getCurrentPeriod();    

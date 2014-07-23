@@ -571,59 +571,37 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
         this.chartConfig.useHighStocks = !this.chartConfig.useHighStocks
     }
 
-    $scope.chartSeries = [
-            {"name": "Some data", "data": [45]},
-            {"name": "Some data 3", "data": [32]},
-            {"name": "Some data 2", "data": [18]},
-            {"name": "My Super Column", "data": [15]}
-        ];
-
-	// $scope.chartConfig = {
- //        options: {
- //            chart: {
- //                type: 'areaspline'
- //            },
- //            plotOptions: {
- //                series: {
- //                    stacking: 'percent'
- //                }
- //            },
- //            tooltip: {
-	//         	shared: false,
-	//         	useHTML: true,
-	//         	headerFormat: '<small style="color: {series.color}>{series.name}</small><table>',
-	//         	pointFormat: '<tr><td style="color: {series.color}">{series.name}: </td>' +
-	//         	'<td style="text-align: right"><b>{point.y} EUR</b></td></tr>',
-	//         	footerFormat: '</table>',
-	//         	valueDecimals: 2
-	//         }
- //        },
- //        series: $scope.chartSeries,
- //        title: {
- //            text: 'Hello'
- //        },
- //        credits: {
- //            enabled: true
- //        },
- //        loading: false
- //    }
-        $scope.chartConfig = {
-            options: {
-                chart: {
-                    type: 'pie'
+    $scope.myModel="hello";
+        $scope.chartSeries = [{
+            name: 'Browsers',
+            data: [{
+                dataLabels: {
+                useHTML: true, //支持HTML
+                enabled: true,  //显示数据标签
+                formatter: function () {
+                    return "<img height='100' title='http://www.stepday.com' width='100' src='http://www.stepday.com/kindeditor/attached/image/head/stepday.jpg'/>";
                 }
-            },
-            series:$scope.chartSeries,
-            // series: [{
-            //     data: [10, 15, 12, 8, 7]
-            // }],
-            title: {
-                text: 'Hello'
-            },
-
-            loading: false
-        }
-		// $scope.Label = Label;
+            }
+            }],
+            size: '60%',
+        },{
+            "name": "Some data",
+            "size": '80%',
+            "innerSize": '60%',
+            "data": [
+                ['Firefox', 45.0],
+                ['IE', 26.8],
+                {
+                    name: 'Chrome',
+                    y: 12.8,
+                    sliced: true,
+                    selected: true
+                },
+                ['Safari', 8.5],
+                ['Opera', 6.2],
+                ['Others', 0.7]
+            ]
+        }];
 	}]);
 
 });
