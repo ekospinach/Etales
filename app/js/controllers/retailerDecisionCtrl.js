@@ -141,6 +141,29 @@ define(['app','socketIO','routingConfig'], function(app) {
                 notify('Time is up, Lock Decision. Retailer ' + data.roleID  + ' Period ' + data.period + '.');
             });   
 
+            $scope.height=300;
+            $scope.width=300;
+            $scope.distance=-120;
+            var i=0;
+            changeTime=function(){
+                if(i<40){
+                    i++;
+                    console.log('i:'+i+' time:'+new Date());
+                    $scope.myModel = "hello"+i;
+                    $scope.chartSeries = [{
+                        name: Label.getContent('Total Time'),
+                        data: [ 
+                            {'name':Label.getContent('Gone'),'y':i,'z':i},
+                            {'name':Label.getContent('Product Portfolio'),'y':40,'z':40-i},
+                            {'name':Label.getContent('Contract'), 'y':45,'z':45}, 
+                            {'name':Label.getContent('Others'),'y':50,'z':50}
+                        ]
+                    }]; 
+                    setTimeout(changeTime,10000);
+                }
+            }
+            changeTime();
+
 
 	
             $scope.selectedPlayer = PlayerInfo.getPlayer();

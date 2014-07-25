@@ -213,6 +213,9 @@ define(['app','socketIO','routingConfig'], function(app) {
 		        ]
 		    }]; 
 
+			$scope.height=250;
+            $scope.width=250;
+            $scope.distance=-105;
 		    var i=0;
 		    changeTime=function(){
 		    	if(i<40){

@@ -573,18 +573,6 @@ define(['app','socketIO','routingConfig','bootstrap'], function(app) {
 
     $scope.myModel = "hello";
     $scope.chartSeries = [{
-        name: 'Browsers',
-        data: [{
-            dataLabels: {
-                useHTML: true, //支持HTML
-                enabled: true, //显示数据标签
-                formatter: function() {
-                    return "<img height='100' title='http://www.stepday.com' width='100' src='http://www.stepday.com/kindeditor/attached/image/head/stepday.jpg'/>";
-                }
-            }
-        }],
-        size: '60%',
-    }, {
         "name": "Some data",
         "size": '80%',
         "innerSize": '60%',
