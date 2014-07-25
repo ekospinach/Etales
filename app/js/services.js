@@ -99,15 +99,13 @@ define(['angular',
 	})
 
 	services.factory('RoleInfo',function(){
-		var role;
+		var role,realRole;
 		return{
 			getRole:function(){
-				console.log('get role:'+role);
 				return role;
 			},
 			setRole:function(value){
 				role=value;
-				console.log('set role:'+role);
 			}
 		}
 	})

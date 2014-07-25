@@ -37,8 +37,7 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 			$scope.selectedPeriod = PeriodInfo.getCurrentPeriod() - 1;
 			$scope.nextBtn = false;
 			$scope.previousBtn = true;
-
-
+			
 			$scope.changePeriod = function(type) {
 				if (type == "add") {
 					$scope.selectedPeriod = $scope.selectedPeriod + 1;

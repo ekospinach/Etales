@@ -115,6 +115,20 @@ define(['app','socketIO','routingConfig'], function(app) {
 	    	$scope.showNegotiationAgreements=showNegotiationAgreements;
 	    	$scope.showView=showView;
 
+            $scope.myModel = "hello";
+            $scope.chartSeries = [{
+                "name": "Some data",
+                "size": '80%',
+                "innerSize": '60%',
+                "data": [
+                    ['Firefox', 45.0],
+                    ['IE', 26.8], 
+                    ['Chrome',12.8],
+                    ['Safari', 8.5],
+                    ['Opera', 6.2],
+                    ['Others', 0.7]
+                ]
+            }];  
 
 	    	showView();
 	    	showNegotiationAgreements();
@@ -142,11 +156,35 @@ define(['app','socketIO','routingConfig'], function(app) {
             $scope.$on('retailerDecisionLocked', function(event, data) {  
                 showView();
                 notify('Time is up, Lock Decision. Retailer ' + data.roleID  + ' Period ' + data.period + '.');
-            });     
+            });   
 
-            $scope.currentPeriod = PeriodInfo.getCurrentPeriod();
-            $scope.historyPeriod = PeriodInfo.getCurrentPeriod();               
-            $scope.PlayerID = PlayerInfo.getPlayer();		    
+            $scope.height=300;
+            $scope.width=300;
+            $scope.distance=-120;
+            var i=0;
+            changeTime=function(){
+                if(i<40){
+                    i++;
+                    console.log('i:'+i+' time:'+new Date());
+                    $scope.myModel = "hello"+i;
+                    $scope.chartSeries = [{
+                        name: Label.getContent('Total Time'),
+                        data: [ 
+                            {'name':Label.getContent('Gone'),'y':i,'z':i},
+                            {'name':Label.getContent('Product Portfolio'),'y':40,'z':40-i},
+                            {'name':Label.getContent('Contract'), 'y':45,'z':45}, 
+                            {'name':Label.getContent('Others'),'y':50,'z':50}
+                        ]
+                    }]; 
+                    setTimeout(changeTime,10000);
+                }
+            }
+            changeTime();
+
+
+	
+            $scope.selectedPlayer = PlayerInfo.getPlayer();
+            $scope.selectedPeriod = PeriodInfo.getCurrentPeriod();    
 	}]);
 
 });

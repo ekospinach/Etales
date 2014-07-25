@@ -205,22 +205,45 @@ define(['app','socketIO','routingConfig'], function(app) {
             	loadBackgroundDataAndCalculateDecisionInfo();
                 notify('Time is up, Lock Decision. Supplier ' + data.roleID  + ' Period ' + data.period + '.');
 
-            });            
+            });    
 
-		    $scope.currentPeriod = PeriodInfo.getCurrentPeriod();
-		    $scope.historyPeriod = PeriodInfo.getCurrentPeriod();	            
+            $scope.myModel = "hello0";
+		    $scope.chartSeries = [{
+		        name: Label.getContent('Total Time'),
+		        data: [ 
+		        	{'name':Label.getContent('Gone'),'y':0,'z':0},
+		            {'name':Label.getContent('Product Portfolio'),'y':40,'z':40},
+		            {'name':Label.getContent('Contract'), 'y':45,'z':45}, 
+		            {'name':Label.getContent('Others'),'y':50,'z':50}
+		        ]
+		    }]; 
 
-		    // var userRoles = routingConfig.userRoles;
-		    // if(RoleInfo.getRole() == userRoles.producer){
-		    // 	$scope.roleName = 'Supplier';
-		    // } else if(RoleInfo.getRole() == userRoles.retailer){
-		    // 	$scope.roleName = 'Retailer';
-		    // } else if(RoleInfo.getRole() == userRoles.facilitator){
-		    // 	$scope.roleName = 'Facilitator';
-		    // }
+			$scope.height=250;
+            $scope.width=250;
+            $scope.distance=-105;
+		    var i=0;
+		    changeTime=function(){
+		    	if(i<40){
+		    		i++;
+		    		console.log('i:'+i+' time:'+new Date());
+		    		$scope.myModel = "hello"+i;
+			    	$scope.chartSeries = [{
+				        name: Label.getContent('Total Time'),
+				        data: [ 
+				        	{'name':Label.getContent('Gone'),'y':i,'z':i},
+				            {'name':Label.getContent('Product Portfolio'),'y':40,'z':40-i},
+				            {'name':Label.getContent('Contract'), 'y':45,'z':45}, 
+				            {'name':Label.getContent('Others'),'y':50,'z':50}
+				        ]
+				    }]; 
+				    setTimeout(changeTime,10000);
+		    	}
+			}
+			changeTime();
 
-		    $scope.PlayerID = PlayerInfo.getPlayer();
-		    $scope.currentPeriod = PeriodInfo.getCurrentPeriod();
+
+		    $scope.selectedPlayer = PlayerInfo.getPlayer();
+		    $scope.selectedPeriod = PeriodInfo.getCurrentPeriod();
 
 	}]);
 

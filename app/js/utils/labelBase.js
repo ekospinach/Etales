@@ -1009,6 +1009,11 @@ var getLabelBase = function(){
 		{id:'Overview Report',  ENG:'Overview Report',  CHN:'Overview Report',  RUS:''},
 		{id:'Supplier does not have enough budget.',  ENG:'Supplier does not have enough budget.',  CHN:'',  RUS:''},
 		{id:'BM list price is 0',  ENG:'BM list price is 0',  CHN:'BM list price is 0',  RUS:''},
+		
+		{id:'Total Time',  ENG:'Total Time',  CHN:'总时间',  RUS:''},
+		{id:'Gone',  ENG:'Gone',  CHN:'历时',  RUS:''},
+		{id:'Contract',  ENG:'Contract',  CHN:'谈判',  RUS:''},
+		{id:'Others',  ENG:'Others',  CHN:'其他',  RUS:''},
 
 		{id:'Estimated Period Spending',  ENG:'Estimated Period Spending',  CHN:'Estimated Period Spending',  RUS:''},
 		{id:'Estimated Budget Left',  ENG:'Estimated Budget Left',  CHN:'Estimated Budget Left',  RUS:''},

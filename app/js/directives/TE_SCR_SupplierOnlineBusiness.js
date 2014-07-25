@@ -4,7 +4,10 @@ define(['directives', 'services'], function(directives){
         return {
             scope : {
                 isPageShown : '=',
-                isPageLoading : '='
+                isPageLoading : '=',
+                selectedPeriod : '=',
+                selectedPlayer : '=',
+                producerShow : '='
             },
             restrict : 'E',
             templateUrl : '../../partials/singleReportTemplate/SCR_supplierOnlineBusiness.html',            
@@ -23,14 +26,22 @@ define(['directives', 'services'], function(directives){
                         var array=_.find(data,function(obj){
                             return (obj.variantName==variantName&&obj.parentBrandName==brandName);
                         });
-                        return array.value[num].toFixed(2);
+                        if(array!=undefined){
+                            return array.value[num].toFixed(2);
+                        }else{
+                            return '-100';
+                        }
                     }
 
                     var loadVariantPercentageValue=function(data,brandName,variantName,num){
                         var array=_.find(data,function(obj){
                             return (obj.variantName==variantName&&obj.parentBrandName==brandName);
                         });
-                        return (array.value[num]*100).toFixed(2);
+                        if(array!=undefined){
+                            return (array.value[num]*100).toFixed(2);
+                        }else{
+                            return '-99';
+                        }
                     }
 
                     var num=0;
@@ -46,7 +57,7 @@ define(['directives', 'services'], function(directives){
                         scope.OLShow=true;
                         num=1;
                     }
-                    var url='/SCR-consolidatedProfitAndLoss/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+                    var url='/SCR-consolidatedProfitAndLoss/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod+'/'+parseInt(scope.selectedPlayer);
                     $http({
                         method:'GET',
                         url:url
@@ -120,13 +131,21 @@ define(['directives', 'services'], function(directives){
 			    	var array=_.find(data,function(obj){
 			    		return (obj.brandName==name);
 			    	});
-			    	return array.value[num].toFixed(2);
+                    if(array!=undefined){
+                        return array.value[num].toFixed(2);
+                    }else{
+                        return '-100';
+                    }
 			    }
                 var loadPercentageValue=function(data,name,num){
                     var array=_.find(data,function(obj){
                         return (obj.brandName==name);
                     });
-                    return (array.value[num]*100).toFixed(2);
+                    if(array!=undefined){
+                        return (array.value[num]*100).toFixed(2);
+                    }else{
+                        return '-99';
+                    }
                 }
 
 			    var loadTotal=function(data){
@@ -217,7 +236,7 @@ define(['directives', 'services'], function(directives){
                 }
 
                 var getResult =function(){
-                    var url='/SCR-consolidatedProfitAndLoss/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+(PeriodInfo.getCurrentPeriod()-1)+'/'+parseInt(PlayerInfo.getPlayer());
+                    var url='/SCR-consolidatedProfitAndLoss/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod+'/'+parseInt(scope.selectedPlayer);
 			    	$http({
                         method:'GET',
                         url:url,
@@ -244,6 +263,16 @@ define(['directives', 'services'], function(directives){
 
                 scope.$watch('isPageShown', function(newValue, oldValue){
                     if(newValue==true) {
+                        initializePage();
+                    }
+                })
+                scope.$watch('selectedPeriod', function(newValue, oldValue) {
+                    if (newValue != oldValue && scope.isPageShown && scope.producerShow) {
+                        initializePage();
+                    }
+                })
+                scope.$watch('selectedPlayer', function(newValue, oldValue) {
+                    if (newValue != oldValue && scope.isPageShown && scope.producerShow) {
                         initializePage();
                     }
                 })
