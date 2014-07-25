@@ -202,33 +202,37 @@ define(['app','socketIO','routingConfig'], function(app) {
 
             });    
 
-            $scope.myModel = "hello";
+            $scope.myModel = "hello0";
 		    $scope.chartSeries = [{
-		    //     name: 'Browsers',
-		    //     data: [{
-		    //         dataLabels: {
-		    //             useHTML: true, //支持HTML
-		    //             enabled: true, //显示数据标签
-		    //             color:'#aaa',
-		    //             distance:-200,
-		    //             //connectorWidth: 0,
-		    //             format:"<span class='glyphicon glyphicon-time' style='font-size:20px'></span>"
-		    //         }
-		    //     }],
-		    //     size: '1%',
-		    // }, {
-		        "name": "Some data",
-		        "size": '80%',
-		        "innerSize": '60%',
-		        "data": [
-		            ['Firefox', 45.0],
-		            ['IE', 26.8], 
-		            ['Chrome',12.8],
-		            ['Safari', 8.5],
-		            ['Opera', 6.2],
-		            ['Others', 0.7]
+		        name: Label.getContent('Total Time'),
+		        data: [ 
+		        	{'name':Label.getContent('Gone'),'y':0,'z':0},
+		            {'name':Label.getContent('Product Portfolio'),'y':40,'z':40},
+		            {'name':Label.getContent('Contract'), 'y':45,'z':45}, 
+		            {'name':Label.getContent('Others'),'y':50,'z':50}
 		        ]
-		    }];        
+		    }]; 
+
+		    var i=0;
+		    changeTime=function(){
+		    	if(i<40){
+		    		i++;
+		    		console.log('i:'+i+' time:'+new Date());
+		    		$scope.myModel = "hello"+i;
+			    	$scope.chartSeries = [{
+				        name: Label.getContent('Total Time'),
+				        data: [ 
+				        	{'name':Label.getContent('Gone'),'y':i,'z':i},
+				            {'name':Label.getContent('Product Portfolio'),'y':40,'z':40-i},
+				            {'name':Label.getContent('Contract'), 'y':45,'z':45}, 
+				            {'name':Label.getContent('Others'),'y':50,'z':50}
+				        ]
+				    }]; 
+				    setTimeout(changeTime,10000);
+		    	}
+			}
+			changeTime();
+
 
 		    $scope.selectedPlayer = PlayerInfo.getPlayer();
 		    $scope.selectedPeriod = PeriodInfo.getCurrentPeriod();

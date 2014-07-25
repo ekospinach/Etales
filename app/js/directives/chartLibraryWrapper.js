@@ -863,34 +863,57 @@ define(['directives'], function(directives) {
         })
         .directive('clockChart',function(){
             return function(scope,elem,attr){
-                scope.$watch(attr.ngModel,function(v){
-                    if($('#clockChart')!=undefined){
-                        $('#clockChart').empty();
-                        $('#clockChart').highcharts({
-                            chart: {
-                                type: 'pie'
-                            },
-                            title: {
-                                text: ''
-                            },
-                            // tooltip: {
-                            //     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                            // },
-                            credits: {
-                                enabled: false
-                            },
-                            plotOptions: {
-                                pie: {
-                                    allowPointSelect: true,
-                                    dataLabels: {
-                                       enabled:false
-                                    },
-                                    shadow: false
-                                    //center: ['50%', '50%']
-                                }
-                            },
-                            series: scope.chartSeries
-                        })
+                scope.$watch('myModel',function(newValue,oldValue){
+                    console.log('new:'+newValue+',old:'+oldValue);
+                    if(newValue!=oldValue||newValue=="hello1"){
+                        if($('#clockChart')!=undefined){
+                            $('#clockChart').empty();
+                            var mark="Product Portfolio";
+                            $('#clockChart').highcharts({
+                                chart: {
+                                    type: 'pie',
+                                    height:250,
+                                    width:250
+                                },
+                                title: {
+                                    text: ''
+                                },
+                                credits: {
+                                    enabled: false
+                                },
+                                tooltip: {
+                                    enabled: true,
+                                    formatter: function() {
+                                        if(this.key!="Gone"&&this.key!="历时"){
+                                            return this.key+'<br/>'+'Total Time:'+this.y+'<br/>'+'Left Time:'+this.point.z;
+                                        }else{
+                                            return 'Time gone:'+this.y;
+                                        }
+                                    }
+                                },
+                                plotOptions: {
+                                    pie: {
+                                        borderColor: null,
+                                        innerSize: '70%',
+                                        dataLabels: {
+                                            enabled: true,
+                                            distance: -105,
+                                            formatter: function () {
+                                                if (this.point.name != mark) {
+                                                    return "";
+                                                } else {
+                                                    return 'Time Left:'+this.point.z;                                    
+                                                }
+                                            },
+                                            style: {
+                                                fontSize: "10px"
+                                            }
+                                        }
+                                    }
+                                },
+                                series: scope.chartSeries
+                            })
+                        }
                     }
                 });
             }
