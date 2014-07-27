@@ -862,8 +862,8 @@ define(['directives'], function(directives) {
             }
         })
         .directive('clockChart',function(){
-            return function(scope,elem,attr){
-                scope.$watch('myModel',function(newValue,oldValue){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(newValue,oldValue){
                     console.log('new:'+newValue+',old:'+oldValue);
                     if(newValue!=oldValue||newValue=="hello1"){
                         if($('#clockChart')!=undefined){

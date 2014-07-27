@@ -1,17 +1,9 @@
-define(['app','socketIO','routingConfig'], function(app) {
-	app.controller('supplierDecisionCtrl',['$scope', '$http', 'ProducerDecisionBase','$rootScope','Auth','$anchorScroll','$q','PlayerInfo','SeminarInfo','PeriodInfo','Label','RoleInfo','notify', function($scope, $http, ProducerDecisionBase,$rootScope,Auth,$anchorScroll,$q,PlayerInfo,SeminarInfo,PeriodInfo,Label,RoleInfo, notify) {
+define(['app', 'socketIO', 'routingConfig'], function(app) {
+	app.controller('supplierDecisionCtrl', ['$scope', '$http', 'ProducerDecisionBase', '$rootScope', 'Auth', '$anchorScroll', '$q', 'PlayerInfo', 'SeminarInfo', 'PeriodInfo', 'Label', 'RoleInfo', 'notify', '$timeout',
+		function($scope, $http, ProducerDecisionBase, $rootScope, Auth, $anchorScroll, $q, PlayerInfo, SeminarInfo, PeriodInfo, Label, RoleInfo, notify, $timeout) {
 
 			var switching = function(type) {
-				$scope.isNegotiationChange 
-				= $scope.ProductPortfolioManagement 
-				= $scope.BMListPrices 
-				= $scope.NegotiationAgreements 
-				= $scope.ProductionVolume 
-				= $scope.GeneralMarketing 
-				= $scope.OnlineStoreManagement 
-				= $scope.AssetInvestments 
-				= $scope.MarketResearchOrders 
-				= $scope.isNegotiation = false;
+				$scope.isNegotiationChange = $scope.ProductPortfolioManagement = $scope.BMListPrices = $scope.NegotiationAgreements = $scope.ProductionVolume = $scope.GeneralMarketing = $scope.OnlineStoreManagement = $scope.AssetInvestments = $scope.MarketResearchOrders = $scope.isNegotiation = false;
 				switch (type) {
 					case 'showProductPortfolioManagement':
 						$scope.ProductPortfolioManagement = true;
@@ -62,7 +54,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 						$scope.isPortfolioDecisionReady = false;
 					}
 
-				//make sure that isFinalDeicisonCommitted = $scope.FinalDecisionReady
+					//make sure that isFinalDeicisonCommitted = $scope.FinalDecisionReady
 					url = '/checkProducerFinalDecision/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
 					return $http({
 						method: 'GET',
@@ -73,22 +65,22 @@ define(['app','socketIO','routingConfig'], function(app) {
 						$scope.isFinalDecisionReady = true;
 					} else {
 						$scope.isFinalDecisionReady = false;
-					}					
+					}
 
-				//Get company history information (available budget, capacity, acquired TL...)
+					//Get company history information (available budget, capacity, acquired TL...)
 					url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + parseInt(PlayerInfo.getPlayer());
 					return $http({
 						method: 'GET',
 						url: url
 					});
 				}).then(function(data) {
-				//assign available budget, capacity for two categories 
+					//assign available budget, capacity for two categories 
 
 					$scope.abMax = (data.data.budgetAvailable + data.data.budgetSpentToDate).toFixed(2);
 					$scope.acEleMax = data.data.productionCapacity[0];
 					$scope.acHeaMax = data.data.productionCapacity[1];
 
-				//get how much money have been spent in current period, money left = $scope.surplusExpend
+					//get how much money have been spent in current period, money left = $scope.surplusExpend
 					url = "/producerExpend/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod()) + '/' + parseInt(PlayerInfo.getPlayer()) + '/brandName/location/1';
 					return $http({
 						method: 'GET',
@@ -96,22 +88,22 @@ define(['app','socketIO','routingConfig'], function(app) {
 					});
 				}).then(function(data) {
 					productExpend = data.data.result;
-					url='/getContractExpend/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/'+PlayerInfo.getPlayer()+'/brandName/varName/ignoreItem/1';
+					url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + PlayerInfo.getPlayer() + '/brandName/varName/ignoreItem/1';
 					return $http({
-						method:'GET',
-						url:url
+						method: 'GET',
+						url: url
 					});
-				}).then(function(data){
+				}).then(function(data) {
 					ContractExpend = data.data.result;
-					url='/getPlayerReportOrderExpend/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+PeriodInfo.getCurrentPeriod()+'/P/'+PlayerInfo.getPlayer();
+					url = '/getPlayerReportOrderExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/P/' + PlayerInfo.getPlayer();
 					return $http({
-						method:'GET',
-						url:url
+						method: 'GET',
+						url: url
 					});
-				}).then(function(data){
-					reportExpend=data.data.result;
+				}).then(function(data) {
+					reportExpend = data.data.result;
 					$scope.estimatedSpending = -(productExpend + ContractExpend + reportExpend).toFixed(2);
-					$scope.surplusExpend = ($scope.abMax - productExpend- ContractExpend - reportExpend).toFixed(2);
+					$scope.surplusExpend = ($scope.abMax - productExpend - ContractExpend - reportExpend).toFixed(2);
 					url = "/productionResult/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer()) + '/EName/varName';
 					return $http({
 						method: 'GET',
@@ -120,7 +112,7 @@ define(['app','socketIO','routingConfig'], function(app) {
 				}).then(function(data) {
 					$scope.eleSurplusProduction = ($scope.acEleMax - data.data.result).toFixed(2);
 
-				//get production capacity left = $scope.eleSurplusProduction (Health Beauties)
+					//get production capacity left = $scope.eleSurplusProduction (Health Beauties)
 					url = "/productionResult/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer()) + '/HName/varName';
 					return $http({
 						method: 'GET',
@@ -133,37 +125,37 @@ define(['app','socketIO','routingConfig'], function(app) {
 					console.log('fail');
 				})
 			}
-	    	var showProductPortfolioManagement=function(){
-	    		switching('showProductPortfolioManagement');
-	    	}
+			var showProductPortfolioManagement = function() {
+				switching('showProductPortfolioManagement');
+			}
 
-	    	$scope.showBMListPrices=function(){
-	    		switching('showBMListPrices');
-	    	}
-	    	
-	    	$scope.showNegotiationAgreements=function(){
-	    		switching('showNegotiationAgreements');
-	    	}
+			$scope.showBMListPrices = function() {
+				switching('showBMListPrices');
+			}
 
-	    	$scope.showProductionVolume=function(){
-	    		switching('showProductionVolume');
-	    	}
+			$scope.showNegotiationAgreements = function() {
+				switching('showNegotiationAgreements');
+			}
 
-	    	$scope.showGeneralMarketing=function(){
-	    		switching('showGeneralMarketing');
-	    	}
+			$scope.showProductionVolume = function() {
+				switching('showProductionVolume');
+			}
 
-	    	$scope.showOnlineStoreManagement=function(){
-	    		switching('showOnlineStoreManagement');
-	    	}
+			$scope.showGeneralMarketing = function() {
+				switching('showGeneralMarketing');
+			}
 
-	    	$scope.showAssetInvestments=function(){
-	    		switching('showAssetInvestments');
-	    	}
+			$scope.showOnlineStoreManagement = function() {
+				switching('showOnlineStoreManagement');
+			}
 
-	    	$scope.showMarketResearchOrders=function(){
-	    		switching('showMarketResearchOrders');
-	    	}
+			$scope.showAssetInvestments = function() {
+				switching('showAssetInvestments');
+			}
+
+			$scope.showMarketResearchOrders = function() {
+				switching('showMarketResearchOrders');
+			}
 
 
 			loadBackgroundDataAndCalculateDecisionInfo();
@@ -172,79 +164,103 @@ define(['app','socketIO','routingConfig'], function(app) {
 			$scope.showProductPortfolioManagement = showProductPortfolioManagement;
 			$scope.loadBackgroundDataAndCalculateDecisionInfo = loadBackgroundDataAndCalculateDecisionInfo();
 
-		    $scope.$watch('isPageLoading', function(newValue, oldValue){
-		    	$scope.isPageLoading = newValue;	    	
-		    })
+			$scope.$watch('isPageLoading', function(newValue, oldValue) {
+				$scope.isPageLoading = newValue;
+			})
 
-		    //handle Supplier Decision module push notification messages
+			//handle Supplier Decision module push notification messages
 
-		    $scope.$on('reloadSupplierBudgetMonitor', function(event){
+			$scope.$on('reloadSupplierBudgetMonitor', function(event) {
 				loadBackgroundDataAndCalculateDecisionInfo();
-		    });
-
-			$scope.$on('producerDecisionBaseChangedFromServer', function(event, data, newBase) {  
-				loadBackgroundDataAndCalculateDecisionInfo();
-				notify('Decision has been saved, Supplier ' + data.producerID  + ' Period ' + data.period + '.');
 			});
 
-			$scope.$on('producerReportPurchaseDecisionChanged', function(event, data, newBase) {  
+			$scope.$on('producerDecisionBaseChangedFromServer', function(event, data, newBase) {
 				loadBackgroundDataAndCalculateDecisionInfo();
-				notify('Report purchase decision saved, Supplier ' + data.producerID  + ' Period ' + data.period + '.');				
+				notify('Decision has been saved, Supplier ' + data.producerID + ' Period ' + data.period + '.');
 			});
 
-			$scope.$on('producerDecisionReloadError', function(event, data, newBase) {  
-				notify('Decision reload Error occur, Supplier ' + data.producerID  + ' Period ' + data.period + '.');
+			$scope.$on('producerReportPurchaseDecisionChanged', function(event, data, newBase) {
+				loadBackgroundDataAndCalculateDecisionInfo();
+				notify('Report purchase decision saved, Supplier ' + data.producerID + ' Period ' + data.period + '.');
 			});
 
-            $scope.$on('producerMarketResearchOrdersChanged', function(event, data, newSeminarData) {  
-				notify('Decision has been saved, Supplier ' + data.producerID  + ' Period ' + data.period + '.');
+			$scope.$on('producerDecisionReloadError', function(event, data, newBase) {
+				notify('Decision reload Error occur, Supplier ' + data.producerID + ' Period ' + data.period + '.');
+			});
+
+			$scope.$on('producerMarketResearchOrdersChanged', function(event, data, newSeminarData) {
+				notify('Decision has been saved, Supplier ' + data.producerID + ' Period ' + data.period + '.');
 				loadBackgroundDataAndCalculateDecisionInfo();
-            });
+			});
 
-            $scope.$on('producerDecisionLocked', function(event, data) {  
-            	loadBackgroundDataAndCalculateDecisionInfo();
-                notify('Time is up, Lock Decision. Supplier ' + data.roleID  + ' Period ' + data.period + '.');
+			$scope.$on('producerDecisionLocked', function(event, data) {
+				loadBackgroundDataAndCalculateDecisionInfo();
+				notify('Time is up, Lock Decision. Supplier ' + data.roleID + ' Period ' + data.period + '.');
 
-            });    
+			});
 
-            $scope.myModel = "hello0";
-		    $scope.chartSeries = [{
-		        name: Label.getContent('Total Time'),
-		        data: [ 
-		        	{'name':Label.getContent('Gone'),'y':0,'z':0},
-		            {'name':Label.getContent('Product Portfolio'),'y':40,'z':40},
-		            {'name':Label.getContent('Contract'), 'y':45,'z':45}, 
-		            {'name':Label.getContent('Others'),'y':50,'z':50}
-		        ]
-		    }]; 
+			$scope.myModel = "hello0";
+			$scope.chartSeries = [{
+				name: Label.getContent('Total Time'),
+				data: [{
+					'name': Label.getContent('Gone'),
+					'y': 0,
+					'z': 0
+				}, {
+					'name': Label.getContent('Product Portfolio'),
+					'y': 40,
+					'z': 40
+				}, {
+					'name': Label.getContent('Contract'),
+					'y': 45,
+					'z': 45
+				}, {
+					'name': Label.getContent('Others'),
+					'y': 50,
+					'z': 50
+				}]
+			}];
 
-			$scope.height=250;
-            $scope.width=250;
-            $scope.distance=-105;
-		    var i=0;
-		    changeTime=function(){
-		    	if(i<40){
-		    		i++;
-		    		console.log('i:'+i+' time:'+new Date());
-		    		$scope.myModel = "hello"+i;
-			    	$scope.chartSeries = [{
-				        name: Label.getContent('Total Time'),
-				        data: [ 
-				        	{'name':Label.getContent('Gone'),'y':i,'z':i},
-				            {'name':Label.getContent('Product Portfolio'),'y':40,'z':40-i},
-				            {'name':Label.getContent('Contract'), 'y':45,'z':45}, 
-				            {'name':Label.getContent('Others'),'y':50,'z':50}
-				        ]
-				    }]; 
-				    setTimeout(changeTime,10000);
-		    	}
+			$scope.height = 250;
+			$scope.width = 250;
+			$scope.distance = -105;
+			var i = 0;
+			changeTime = function() {
+				if (i < 40) {
+					i++;
+					console.log('i:' + i + ' time:' + new Date());
+					$timeout(function() {
+						$scope.myModel = "hello" + i;
+						$scope.chartSeries = [{
+							name: Label.getContent('Total Time'),
+							data: [{
+								'name': Label.getContent('Gone'),
+								'y': i,
+								'z': i
+							}, {
+								'name': Label.getContent('Product Portfolio'),
+								'y': 40,
+								'z': 40 - i
+							}, {
+								'name': Label.getContent('Contract'),
+								'y': 45,
+								'z': 45
+							}, {
+								'name': Label.getContent('Others'),
+								'y': 50,
+								'z': 50
+							}]
+						}];
+					});
+					setTimeout(changeTime, 10000);
+				}
 			}
 			changeTime();
 
+			$scope.selectedPlayer = PlayerInfo.getPlayer();
+			$scope.selectedPeriod = PeriodInfo.getCurrentPeriod();
 
-		    $scope.selectedPlayer = PlayerInfo.getPlayer();
-		    $scope.selectedPeriod = PeriodInfo.getCurrentPeriod();
-
-	}]);
+		}
+	]);
 
 });
