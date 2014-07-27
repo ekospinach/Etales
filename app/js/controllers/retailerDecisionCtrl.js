@@ -158,9 +158,9 @@ define(['app','socketIO','routingConfig'], function(app) {
                 notify('Time is up, Lock Decision. Retailer ' + data.roleID  + ' Period ' + data.period + '.');
             });   
 
-            $scope.height=300;
-            $scope.width=300;
-            $scope.distance=-120;
+            // $scope.height=300;
+            // $scope.width=300;
+            // $scope.distance=-120;
             var i=0;
             changeTime=function(){
                 if(i<40){

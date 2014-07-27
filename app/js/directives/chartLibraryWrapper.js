@@ -872,8 +872,8 @@ define(['directives'], function(directives) {
                             $('#clockChart').highcharts({
                                 chart: {
                                     type: 'pie',
-                                    height:scope.height,
-                                    width:scope.width
+                                    height:250,
+                                    width:250
                                 },
                                 title: {
                                     text: ''
@@ -897,7 +897,7 @@ define(['directives'], function(directives) {
                                         innerSize: '70%',
                                         dataLabels: {
                                             enabled: true,
-                                            distance: scope.distance,
+                                            distance: -105,
                                             formatter: function () {
                                                 if (this.point.name != mark) {
                                                     return "";
@@ -906,7 +906,7 @@ define(['directives'], function(directives) {
                                                 }
                                             },
                                             style: {
-                                                fontSize: "10px"
+                                                fontSize: "15px"
                                             }
                                         }
                                     }

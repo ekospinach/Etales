@@ -21,11 +21,18 @@
     .bs-docs-sidebar.affix{
         position: fixed;
     }
+    .col-md-9{
+        width: 77%;
+    }
+    .col-md-3{
+        width: 23%;
+    }
     @media (min-width: 1200px) {
       /* Widen the fixed sidebar again */
       .bs-docs-sidebar.affix-bottom,
       .bs-docs-sidebar.affix {
-        width: 275px;
+        width: 255px;
+        padding: 0;
       }
     }
     .my-super-awesome-loading-box {
@@ -34,9 +41,9 @@
       border: 0px solid gray;
       background: #EFEFEF;
     }
-    .bs-docs-section{
+/*    .bs-docs-section{
         padding-top:60px;
-    }
+    }*/
 </style>
 
 <div class="my-super-awesome-loading-box" ng-show="isPageLoading">Loading...</div>
@@ -44,8 +51,7 @@
 
 <div class="container bs-docs-container">
     <div class="row">
-        <div class="col-md-12">
-      
+        <div ng-class="{true: 'col-md-12', false: 'col-md-9'}[isNegotiation]">
             <div style="padding:50px 0" angular-wizard>
                 <ul class="steps-indicator steps-5">
                    <li class="done editing">
@@ -66,7 +72,90 @@
                 </ul>
             </div>
         </div>
-        <div class="col-md-9" style="width:75%;padding:0 0 0 15px" ng-show='!isNegotiation'>
+        <div class="col-md-3 pull-right" style="padding:0 0 0 15px" ng-show='!isNegotiation'>
+            <div class="bs-docs-section bs-docs-sidebar hidden-print" affix='0' role="complementary">
+                <div id='clockChart' ng-model='myModel' clock-chart></div>
+                <table class="table table-condensed" style="margin:0px auto;">
+                    <thead>
+                        <tr>
+                            <th colspan="2">
+                                <p>{{Label.getContent('Decision Info')}}</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p>{{Label.getContent('Total Budget')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right">{{abMax}}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>{{Label.getContent('Additional Budget')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right">+{{additionalBudget}}</p>
+                            </td>
+                        </tr>                        
+                        <tr>
+                            <td style='word-break: keep-all;white-space:nowrap;'>
+                                <p>{{Label.getContent('Estimated Period Spending')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right">{{estimatedSpending}}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style='word-break: keep-all;white-space:nowrap;'>
+                                <p>{{Label.getContent('Estimated Budget Left')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right"><b>{{surplusExpend}}</b></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"><p>{{Label.getContent('Shelf Space Left')}}</p></td>
+                        </tr>
+                        <tr>
+                            <td style='word-break: keep-all;white-space:nowrap;'>
+                                <p>{{Label.getContent('Urban')}} {{Label.getContent('Elecssories')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right"><b>{{percentageShelf[0][0].toFixed(2)}}%</b>/100%</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style='word-break: keep-all;white-space:nowrap;'>
+                                <p>{{Label.getContent('Urban')}} {{Label.getContent('HealthBeauty')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right"><b>{{percentageShelf[0][1].toFixed(2)}}%</b>/100%</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style='word-break: keep-all;white-space:nowrap;'>
+                                <p>{{Label.getContent('Rural')}} {{Label.getContent('Elecssories')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right"><b>{{percentageShelf[1][0].toFixed(2)}}%</b>/100%</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style='word-break: keep-all;white-space:nowrap;'>
+                                <p>{{Label.getContent('Rural')}} {{Label.getContent('HealthBeauty')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right"><b>{{percentageShelf[1][1].toFixed(2)}}%</b>/100%</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-9" style="padding:0 0 0 15px" ng-show='!isNegotiation'>
             <div class="bs-docs-section">
             <p access-level='{{accessLevels.playerView}}'>You are checking the decision of period <b>{{selectedPeriod}}</b>, Retailer {{selectedPlayer}}</p>              
                 <retailer-marketing ng-show='Marketing' is-page-shown='Marketing' is-page-loading='isPageLoading' selected-period='selectedPeriod' selected-player='selectedPlayer' is-ready='isRetailerDecisionReady'></retailer-marketing>
@@ -77,61 +166,6 @@
 
                 <retailer-market-research-orders ng-show='MarketResearchOrders' is-page-shown='MarketResearchOrders' is-page-loading='isPageLoading' selected-period='selectedPeriod' selected-player='selectedPlayer' is-ready='isRetailerDecisionReady'></retailer-market-research-orders>
                 
-            </div>
-        </div>
-        <div class="col-md-3" style="width:25%;padding:0 0 0 15px" ng-show='!isNegotiation'>
-            <div class="bs-docs-section bs-docs-sidebar hidden-print" affix='0' role="complementary">
-                <div id='clockChart' style='height:200px' ng-model='myModel' clock-chart></div>
-                <table class="table table-condensed">
-                    <thead>
-                        <th colspan="2">
-                            <p>{{Label.getContent('Decision Info')}}</p>
-                        </th>
-                    </thead>
-                    <tbody>
-<!--                         <tr>
-                            <td><p>{{Label.getContent('Time Left')}}</p></td>
-                            <td><p class="text-right">30 {{Label.getContent('mins')}}</p></td>
-                        </tr> -->
-                        <tr>
-                            <td><p>{{Label.getContent('Total Budget')}}</p></td>
-                            <td><p class="text-right">{{abMax}}</p></td>
-                        </tr>
-                        <tr>
-                            <td><p>{{Label.getContent('Additional Budget')}}</p></td>
-                            <td><p class="text-right">+{{additionalBudget}}</p></td>
-                        </tr>                        
-                        <tr>
-                            <td><p>{{Label.getContent('Estimated Period Spending')}}</p></td>
-                            <td><p class="text-right">{{estimatedSpending}}</p></td>
-                        </tr>
-                        <tr>
-                            <td><p>{{Label.getContent('Estimated Budget Left')}}</p></td>
-                            <td><p class="text-right"><b>{{surplusExpend}}</b></p></td>
-                        </tr>
-
-
-                        <tr>
-                            <td colspan="2"><p>{{Label.getContent('Shelf Space Left')}}</p></td>
-                        </tr>
-                        <tr>
-                            <td><p>{{Label.getContent('Urban')}} {{Label.getContent('Elecssories')}}</p></td>
-                            <td><p class="text-right"><b>{{percentageShelf[0][0].toFixed(2)}}%</b>/100%</p></td>
-                        </tr>
-                        <tr>
-                            <td><p>{{Label.getContent('Urban')}} {{Label.getContent('HealthBeauty')}}</p></td>
-                            <td><p class="text-right"><b>{{percentageShelf[0][1].toFixed(2)}}%</b>/100%</p></td>
-                        </tr>
-                        <tr>
-                            <td><p>{{Label.getContent('Rural')}} {{Label.getContent('Elecssories')}}</p></td>
-                            <td><p class="text-right"><b>{{percentageShelf[1][0].toFixed(2)}}%</b>/100%</p></td>
-                        </tr>
-                        <tr>
-                            <td><p>{{Label.getContent('Rural')}} {{Label.getContent('HealthBeauty')}}</p></td>
-                            <td><p class="text-right"><b>{{percentageShelf[1][1].toFixed(2)}}%</b>/100%</p></td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
         <div class="col-md-12" ng-show='isNegotiation'>

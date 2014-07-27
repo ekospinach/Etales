@@ -27,6 +27,7 @@
       .bs-docs-section.affix-bottom,
       .bs-docs-section.affix {
         padding: 0;
+        width: 255px;
       }
     }
 
@@ -40,17 +41,10 @@
         padding-top:60px;
     }
     .col-md-9{
-        width: 80%;
+        width: 77%;
     }
     .col-md-3{
-        width: 20%;
-    }
-    @media (min-width: 1200px) {
-      /* Widen the fixed sidebar again */
-      .bs-docs-sidebar.affix-bottom,
-      .bs-docs-sidebar.affix {
-        width: 235px;
-      }
+        width: 23%;
     }
 
 </style>
@@ -59,8 +53,7 @@
 
 <div class="container bs-docs-container">
     <div class="row">
-        <div class="col-md-12">
-
+        <div ng-class="{true: 'col-md-12', false: 'col-md-9'}[isNegotiation]">
             <div style="padding:50px 0" angular-wizard>
                 <ul class="steps-indicator steps-7">
                     <li class="done editing">
@@ -90,6 +83,66 @@
                 </ul>
             </div>
         </div>
+        <div class="col-md-3 pull-right" ng-show='!isNegotiation' style="padding:0 0 0 15px">
+            <div class="bs-docs-section bs-docs-sidebar hidden-print" affix='0' role="complementary">
+                <div id='clockChart' ng-model='myModel' clock-chart></div>
+                <table class="table table-condensed" style="margin:0px auto;">
+                    <thead>
+                        <th colspan="2">
+                            <p>{{Label.getContent('Decision Info')}}</p>
+                        </th>
+                    </thead>
+                    <tbody>               
+                        <tr>
+                            <td>
+                                <p>{{Label.getContent('Total Budget')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right">{{abMax}}</p>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="word-break: keep-all;white-space:nowrap;">
+                                <p>{{Label.getContent('Estimated Period Spending')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right"><b>{{estimatedSpending}}</b></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="word-break: keep-all;white-space:nowrap;">
+                                <p>{{Label.getContent('Estimated Budget Left')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right"><b>{{surplusExpend}}</b></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <p>{{Label.getContent('Available Period Capacity')}}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="padding-10">{{Label.getContent('Elecssories')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right"><b>{{eleSurplusProduction}}</b>/{{acEleMax}}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="padding-10">{{Label.getContent('HealthBeauties')}}</p>
+                            </td>
+                            <td>
+                                <p class="text-right"><b>{{heaSurplusProduction}}</b>/{{acHeaMax}}</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
         <div class="col-md-9" ng-show='!isNegotiation' style="padding:0 0 0 15px">
 
             <div class="bs-docs-section">
@@ -110,54 +163,7 @@
                 <supplier-market-research-orders ng-show='MarketResearchOrders' is-page-shown='MarketResearchOrders' is-page-loading='isPageLoading' selected-player='selectedPlayer' selected-period='selectedPeriod' is-ready='isFinalDecisionReady'></supplier-market-research-orders> 
             </div>
         </div>
-        <div class="col-md-3" ng-show='!isNegotiation' style="padding:0 0 0 15px">
-            <div class="bs-docs-section bs-docs-sidebar hidden-print" affix='0' role="complementary">
-                <div id='clockChart' ng-model='myModel' clock-chart></div>
-                <table class="table table-condensed">
-                    <thead>
-                        <th colspan="2">
-                            <p>{{Label.getContent('Decision Info')}}</p>
-                        </th>
-                    </thead>
-                    <tbody>
-<<<<<<< HEAD
-<!--                         <tr>
-                            <td><p>{{Label.getContent('Time Left')}}</p></td>
-                            <td><p class="text-right">30 {{Label.getContent('mins')}}</p></td>
-                        </tr>
- -->                    
-                        <tr>
-=======
-                       <tr>
->>>>>>> b396622403b1298215c70335c92c2df971bf2f72
-                            <td><p>{{Label.getContent('Total Budget')}}</p></td>
-                            <td><p class="text-right">{{abMax}}</p></td>
-                        </tr>
 
-                        <tr>
-                            <td><p>{{Label.getContent('Estimated Period Spending')}}</p></td>
-                            <td><p class="text-right"><b>{{estimatedSpending}}</b></p></td>
-                        </tr>
-                        <tr>
-                            <td><p>{{Label.getContent('Estimated Budget Left')}}</p></td>
-                            <td><p class="text-right"><b>{{surplusExpend}}</b></p></td>
-                        </tr>
-
-                        <tr>
-                            <td colspan="2"><p>{{Label.getContent('Available Period Capacity')}}</p></td>
-                        </tr>
-                        <tr>
-                            <td><p class="padding-10">{{Label.getContent('Elecssories')}}</p></td>
-                            <td><p class="text-right"><b>{{eleSurplusProduction}}</b>/{{acEleMax}}</p></td>
-                        </tr>
-                        <tr>
-                            <td><p class="padding-10">{{Label.getContent('HealthBeauties')}}</p></td>
-                            <td><p class="text-right"><b>{{heaSurplusProduction}}</b>/{{acHeaMax}}</p></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
         <div class="col-md-12" ng-show='isNegotiation'>
             <div class="bs-docs-section">
                 <supplier-negotiation-agreements ng-show='NegotiationAgreements' is-page-shown='NegotiationAgreements' is-portfolio-decision-ready='isPortfolioDecisionReady' is-page-loading='isPageLoading' selected-player='selectedPlayer' selected-period='selectedPeriod'></supplier-negotiation-agreements>
