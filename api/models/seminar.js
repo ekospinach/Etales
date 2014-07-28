@@ -50,6 +50,7 @@ var seminarSchema = mongoose.Schema({
 	// 	brandPerceptions : Number,
 	// 	retailerPerceptions : Number	
 	// }
+	useTimeSlot : {type:Boolean, default:true}
 })
 
 var producerSchema = mongoose.Schema({
@@ -77,26 +78,39 @@ var reportPurchaseStatusSchema = mongoose.Schema({
 	brandPerceptions             : Boolean,
 	retailerPerceptions          : Boolean,
 	marketShareByConsumerSegment : Boolean,
-	salesByConsumerSegment      : Boolean,
+	salesByConsumerSegment       : Boolean,
 	marketShareByShopperSegment  : Boolean,
 	salesByShopperSegment        : Boolean,
 	BMRetailerPrices             : Boolean,
 	promotionIntensity           : Boolean,
 	supplierIntelligence         : Boolean,
 	retailerIntelligence         : Boolean,
-	forecasts                     : Boolean
+	forecasts                    : Boolean
 })
 
 var supplierDecisionCommitStatusSchema = mongoose.Schema({
-	period : Number,
-	isPortfolioDecisionCommitted : Boolean,
-	isDecisionCommitted : Boolean,
+	period                             : Number,
+	isPortfolioDecisionCommitted       : Boolean,//step 1
+	isContractDeal                     : Boolean, //step 2
+	isContractFinalized                : Boolean,	//step 3
+	isDecisionCommitted                : Boolean,//step 4
+	
+	timeslotPortfolioDecisionCommitted : {type:Number, default: 20},
+	timeslotContractDeal               : {type:Number, default: 20},
+	timeslotContractFinalized          : {type:Number, default: 20},
+	timeslotDecisionCommitted          : {type:Number, default: 20},
 })
 
 
 var retailerDecisionCommitStatusSchema = mongoose.Schema({
-	period : Number,
-	isDecisionCommitted : Boolean,
+	period                                 : Number,
+	isContractDeal                         : Boolean, //step 1
+	isContractFinalized                    : Boolean, // step 2
+	isDecisionCommitted                    : Boolean, //step 3
+
+	timeslotContractDeal                   : {type:Number, default: 20},
+	timeslotContractFinalized              : {type:Number, default: 20},
+	timeslotDecisionCommitted              : {type:Number, default: 20},
 })
 
 
