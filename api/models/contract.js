@@ -547,9 +547,9 @@ exports.removeContract = function(io) {
 exports.getRetailerAdditionalBudget = function(req, res, next) {
      contractVariantDetails
      .find()
-     .where('contractCode').in(['P1andR' + retailerID + '_' + req.params.seminar + '_' + req.params.period,  
-                                'P2andR' + retailerID + '_' + req.params.seminar + '_' + req.params.period,  
-                                'P3andR' + retailerID + '_' + req.params.seminar + '_' + req.params.period])
+     .where('contractCode').in(['P1andR' + req.params.retailerID + '_' + req.params.seminar + '_' + req.params.period,  
+                                'P2andR' + req.params.retailerID + '_' + req.params.seminar + '_' + req.params.period,  
+                                'P3andR' + req.params.retailerID + '_' + req.params.seminar + '_' + req.params.period])
      .exec(function(err, docs){
           if(err){
                next(new Error(err));
