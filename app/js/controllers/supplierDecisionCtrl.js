@@ -239,8 +239,8 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 								'z': i
 							}, {
 								'name': Label.getContent('Product Portfolio'),
-								'y': 40,
-								'z': 40 - i
+								'y': 40 - i,
+								'z': 40
 							}, {
 								'name': Label.getContent('Contract'),
 								'y': 45,
