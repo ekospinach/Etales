@@ -231,6 +231,8 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 					console.log('i:' + i + ' time:' + new Date());
 					$timeout(function() {
 						$scope.myModel = "hello" + i;
+						//$scope.clockTitle='19 mins left for portfolio decision';
+						$scope.clockTitle='19 mins left for locking negotiation';
 						$scope.chartSeries = [{
 							name: Label.getContent('Total Time'),
 							data: [{
@@ -252,7 +254,7 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 							}]
 						}];
 					});
-					setTimeout(changeTime, 10000);
+					setTimeout(changeTime, 600000);
 				}
 			}
 			changeTime();
