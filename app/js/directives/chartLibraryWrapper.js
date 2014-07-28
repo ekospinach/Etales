@@ -885,7 +885,7 @@ define(['directives'], function(directives) {
                                     enabled: true,
                                     formatter: function() {
                                         if(this.key!="Gone"&&this.key!="历时"){
-                                            return this.key+'<br/>'+'Total Time:'+this.y+'<br/>'+'Left Time:'+this.point.z;
+                                            return this.key+'<br/>'+'Total Time:'+this.point.z+'<br/>'+'Left Time:'+this.y;
                                         }else{
                                             return 'Time gone:'+this.y;
                                         }
@@ -902,12 +902,17 @@ define(['directives'], function(directives) {
                                                 if (this.point.name != mark) {
                                                     return "";
                                                 } else {
-                                                    return 'Time Left:'+this.point.z;                                    
+                                                    return 'Time Left:'+this.y;                                    
                                                 }
                                             },
                                             style: {
                                                 fontSize: "15px"
                                             }
+                                        }
+                                    },
+                                    series: {
+                                        animation: {
+                                            duration: 0,
                                         }
                                     }
                                 },
