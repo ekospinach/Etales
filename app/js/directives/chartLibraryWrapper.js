@@ -909,6 +909,11 @@ define(['directives'], function(directives) {
                                                 fontSize: "15px"
                                             }
                                         }
+                                    },
+                                    series: {
+                                        animation: {
+                                            duration: 1,
+                                        }
                                     }
                                 },
                                 series: scope.chartSeries
