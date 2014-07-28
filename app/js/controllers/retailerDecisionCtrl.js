@@ -1,5 +1,5 @@
 define(['app', 'socketIO', 'routingConfig'], function(app) {
-    app.controller('retailerDecisionCtrl', ['$scope', '$http', 'RetailerDecisionBase', '$rootScope', 'Auth', '$anchorScroll', '$q', 'PlayerInfo', 'SeminarInfo', 'PeriodInfo', 'Label', 'RoleInfo', 'notify', '$timeout'
+    app.controller('retailerDecisionCtrl', ['$scope', '$http', 'RetailerDecisionBase', '$rootScope', 'Auth', '$anchorScroll', '$q', 'PlayerInfo', 'SeminarInfo', 'PeriodInfo', 'Label', 'RoleInfo', 'notify', '$timeout',
 
         function($scope, $http, RetailerDecisionBase, $rootScope, Auth, $anchorScroll, $q, PlayerInfo, SeminarInfo, PeriodInfo, Label, RoleInfo, notify, $timeout) {
 
