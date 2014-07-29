@@ -19,7 +19,7 @@
 			angularLoadingBar : 	'../bower_components/angular-loading-bar/src/loading-bar', 
 			text: 					'../bower_components/requirejs-text/text',
 			angularXeditable: 		'../bower_components/angular-xeditable/dist/js/xeditable',
-			socketIO: 				'../bower_components/socket.io-client/dist/socket.io',
+			socketIO: 				'../bower_components/socket.io-client/socket.io',
 			jquery: 				'../bower_components/jquery/dist/jquery',
 			bootstrapswitch: 		'../bower_components/bootstrap-switch/dist/js/bootstrap-switch',
 			require: 				'../bower_components/requirejs/require',

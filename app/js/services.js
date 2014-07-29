@@ -339,8 +339,13 @@ define(['angular',
 							PeriodInfo.setCurrentPeriod(data.period);	
 							$rootScope.$broadcast('SeminarPeriodChanged',data);						
 						}							
-					});					
+				});		
 
+					//Deal
+					//socket.on()			
+
+					//Finalized 
+					//socket.on()
 				}
 			}
 		}]

@@ -95,7 +95,6 @@
  	'angularXeditable',
  	'angularBootstrap',
  	'underscore',
- 	'socketIO',
  	'jquery',
  	'bootstrap',
  	'angularLoadingBar',

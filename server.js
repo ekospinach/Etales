@@ -1,4 +1,4 @@
-	var path    = require('path'),
+var path    = require('path'),
 
 	mongoose = require('mongoose'),
 	express = require('express'),
