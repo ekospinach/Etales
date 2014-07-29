@@ -8,7 +8,7 @@ module.exports = function(app, io){
 	app.post('/importResult',                                                    require('./../api/passiveSeminar.js').importResult(io));
 	app.post('/runSeminar',                                                      require('./../api/kernelSeminar.js').runSeminar(io));
 	
-	app.post('/addSeminar',                                                      require('./../api/models/seminar.js').addSeminar);
+	app.post('/addSeminar',                                                      require('./../api/models/seminar.js').addSeminars);
 //	app.post('/addNewSeminar',                                                      require('./../api/models/seminar.js').addNewSeminar);
 
 	app.post('/deleteSeminar',                                                   require('./../api/models/seminar.js').deleteSeminar);
