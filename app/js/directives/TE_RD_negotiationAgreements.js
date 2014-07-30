@@ -493,12 +493,12 @@ define(['directives', 'services'], function(directives) {
                     var getResult = function(producerID){
                         //check with server, make sure that isPortfolioDecisionCommitted = true = $scope.isPXReady to show Table
                         //Otherwise show a picture "Waiting for supplier to commit portfolio decision...."
-                        var url = '/checkProducerPortfolioDecision/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + parseInt(producerID);
+                        var url = '/checkProducerDecisionStatus/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + parseInt(producerID);
                         $http({
                             method: 'GET',
                             url: url
                         }).then(function(data) {
-                            if (data.data == "isReady") {
+                            if (data.data.isPortfolioDecisionCommitted) {
                                 switch(producerID){
                                     case 1: scope.isP1Ready = true; break;
                                     case 2: scope.isP2Ready = true; break;

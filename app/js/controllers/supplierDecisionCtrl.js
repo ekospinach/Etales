@@ -207,7 +207,6 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 			$scope.$on('producerPortfolioDecisionStatusChanged', function(event, data) {
 				loadBackgroundDataAndCalculateDecisionInfo();
 				notify('Commiting Portfolio Decision By Supplier ' + data.roleID + ' Period ' + data.period + '.');
-
 			});
 			
 			$scope.$on('producerContractDeal', function(event, data) {

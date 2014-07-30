@@ -329,7 +329,7 @@ exports.submitPortfolioDecision=function(io){
 				doc.markModified('producers');
 
 				//notify Retailer that supplier X has committed portfolio decision.
-                io.sockets.emit('socketIO:producerPortfolioDecisionStatusChanged', {period : queryCondition.period, producerID : queryCondition.producerID, seminar : queryCondition.seminar});                
+                //io.sockets.emit('socketIO:producerPortfolioDecisionStatusChanged', {period : queryCondition.period, producerID : queryCondition.producerID, seminar : queryCondition.seminar});                
 
                 //notify Retailer to refresh negotiation page automatically 
                 io.sockets.emit('socketIO:contractDetailsUpdated', {userType   : 'P', 
