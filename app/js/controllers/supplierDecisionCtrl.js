@@ -43,29 +43,38 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 					avaiableMax = 0;
 
 				//check with server, make sure that isPortfolioDecisionCommitted = true = $scope.isReady 
-				var url = '/checkProducerPortfolioDecision/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
+				var url = '/checkProducerDecisionStatus/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
 				$http({
 					method: 'GET',
 					url: url
 				}).then(function(data) {
-					if (data.data == "isReady") {
-						$scope.isPortfolioDecisionReady = true;
-					} else {
-						$scope.isPortfolioDecisionReady = false;
-					}
 
-					//make sure that isFinalDeicisonCommitted = $scope.FinalDecisionReady
-					url = '/checkProducerFinalDecision/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
-					return $http({
-						method: 'GET',
-						url: url
-					});
-				}).then(function(data) {
-					if (data.data == "isReady") {
-						$scope.isFinalDecisionReady = true;
-					} else {
-						$scope.isFinalDecisionReady = false;
-					}
+					$scope.isPortfolioDecisionCommitted=data.data.isPortfolioDecisionCommitted;
+					$scope.isContractDeal=data.data.isContractDeal;
+					$scope.isContractFinalized=data.data.isContractFinalized;
+					$scope.isDecisionCommitted=data.data.isDecisionCommitted;
+
+
+					console.log(data.data.isPortfolioDecisionCommitted);
+
+				// 	if (data.data == "isReady") {
+				// 		$scope.isPortfolioDecisionReady = true;
+				// 	} else {
+				// 		$scope.isPortfolioDecisionReady = false;
+				// 	}
+
+				// 	//make sure that isFinalDeicisonCommitted = $scope.FinalDecisionReady
+				// 	url = '/checkProducerFinalDecision/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
+				// 	return $http({
+				// 		method: 'GET',
+				// 		url: url
+				// 	});
+				// }).then(function(data) {
+				// 	if (data.data == "isReady") {
+				// 		$scope.isFinalDecisionReady = true;
+				// 	} else {
+				// 		$scope.isFinalDecisionReady = false;
+				// 	}
 
 					//Get company history information (available budget, capacity, acquired TL...)
 					url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + parseInt(PlayerInfo.getPlayer());
@@ -158,11 +167,12 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 			}
 
 
-			loadBackgroundDataAndCalculateDecisionInfo();
-			showProductPortfolioManagement();
+			
 			$scope.switching = switching;
 			$scope.showProductPortfolioManagement = showProductPortfolioManagement;
-			$scope.loadBackgroundDataAndCalculateDecisionInfo = loadBackgroundDataAndCalculateDecisionInfo();
+			$scope.loadBackgroundDataAndCalculateDecisionInfo = loadBackgroundDataAndCalculateDecisionInfo;
+			loadBackgroundDataAndCalculateDecisionInfo();
+			showProductPortfolioManagement();
 
 			$scope.$watch('isPageLoading', function(newValue, oldValue) {
 				$scope.isPageLoading = newValue;
@@ -193,6 +203,25 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 				loadBackgroundDataAndCalculateDecisionInfo();
 			});
 
+
+			$scope.$on('producerPortfolioDecisionStatusChanged', function(event, data) {
+				loadBackgroundDataAndCalculateDecisionInfo();
+				notify('Commiting Portfolio Decision By Supplier ' + data.roleID + ' Period ' + data.period + '.');
+
+			});
+			
+			$scope.$on('producerContractDeal', function(event, data) {
+				loadBackgroundDataAndCalculateDecisionInfo();
+				notify('Time is up, Contract Deal. Supplier ' + data.roleID + ' Period ' + data.period + '.');
+
+			});
+
+			$scope.$on('producerContractFinalized', function(event, data) {
+				loadBackgroundDataAndCalculateDecisionInfo();
+				notify('Time is up, ContractFinalized. Supplier ' + data.roleID + ' Period ' + data.period + '.');
+
+			});
+
 			$scope.$on('producerDecisionLocked', function(event, data) {
 				loadBackgroundDataAndCalculateDecisionInfo();
 				notify('Time is up, Lock Decision. Supplier ' + data.roleID + ' Period ' + data.period + '.');
@@ -221,9 +250,6 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 				}]
 			}];
 
-			$scope.height = 250;
-			$scope.width = 250;
-			$scope.distance = -105;
 			var i = 0;
 			changeTime = function() {
 				if (i < 40) {

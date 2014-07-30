@@ -127,7 +127,7 @@ define(['angular',
 		return {
 			getSelectedSeminar : function(){
 				return selectedSeminar;
-			},
+		},
 			setSelectedSeminar : function(value){
 				selectedSeminar = value;
 			}		
@@ -421,6 +421,24 @@ define(['angular',
 						}
 					});
 
+					socket.on('socketIO:contractDeal', function(data){
+						if(data.seminar == SeminarInfo.getSelectedSeminar().seminarCode
+							&& data.role == 'Producer'
+							&& data.period == PeriodInfo.getCurrentPeriod()
+							&& data.roleID == PlayerInfo.getPlayer()){
+							$rootScope.$broadcast('producerContractDeal', data);
+						}
+					});
+
+					socket.on('socketIO:contractFinalized', function(data){
+						if(data.seminar == SeminarInfo.getSelectedSeminar().seminarCode
+							&& data.role == 'Producer'
+							&& data.period == PeriodInfo.getCurrentPeriod()
+							&& data.roleID == PlayerInfo.getPlayer()){
+							$rootScope.$broadcast('producerContractFinalized', data);
+						}
+					});
+
 					socket.on('socketIO:finalDecisionCommitted', function(data){
 						if(data.seminar == SeminarInfo.getSelectedSeminar().seminarCode
 							&& data.role == 'Producer'
@@ -428,7 +446,8 @@ define(['angular',
 							&& data.roleID == PlayerInfo.getPlayer()){
 							$rootScope.$broadcast('producerDecisionLocked', data);
 						}
-					})
+					});
+
 
 						//io.sockets.emit('FinalDecisionCommitted', {seminar : queryCondition.seminar, role: queryCondition.role, roleID : queryCondition.roleID, period : queryCondition.period});
 
@@ -712,6 +731,24 @@ define(['angular',
 						}
 					});
 
+					socket.on('socketIO:contractDeal', function(data){
+						if(data.seminar == SeminarInfo.getSelectedSeminar().seminarCode
+							&& data.role == 'Retailer'
+							&& data.period == PeriodInfo.getCurrentPeriod()
+							&& data.roleID == PlayerInfo.getPlayer()){
+							$rootScope.$broadcast('retailerContractDeal', data);
+						}
+					});
+
+					socket.on('socketIO:contractFinalized', function(data){
+						if(data.seminar == SeminarInfo.getSelectedSeminar().seminarCode
+							&& data.role == 'Retailer'
+							&& data.period == PeriodInfo.getCurrentPeriod()
+							&& data.roleID == PlayerInfo.getPlayer()){
+							$rootScope.$broadcast('retailerContractFinalized', data);
+						}
+					});
+
 
 					socket.on('socketIO:finalDecisionCommitted', function(data){
 						if(data.seminar == SeminarInfo.getSelectedSeminar().seminarCode
@@ -720,7 +757,7 @@ define(['angular',
 							&& data.roleID == PlayerInfo.getPlayer()){
 							$rootScope.$broadcast('retailerDecisionLocked', data);
 						}
-					})					
+					});				
 				},
 				//step1
 								/* 

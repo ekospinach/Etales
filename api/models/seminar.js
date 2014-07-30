@@ -250,27 +250,7 @@ exports.getSeminarInfo=function(req,res,next){
 	})
 }
 
-exports.checkProducerDecision=function(req,res,next){
-	seminar.findOne({seminarCode:req.params.seminar},function(err,doc){
-		if(err) {next(new Error(err))};
-		if(doc){
-			for(var i=0;i<doc.producers[req.params.producerID-1].decisionCommitStatus.length;i++){
-				if(doc.producers[req.params.producerID-1].decisionCommitStatus[i].period==req.params.period){
-					if(doc.producers[req.params.producerID-1].decisionCommitStatus[i].isPortfolioDecisionCommitted==true){
-						res.send(200,'isReady');
-					}else{
-						res.send(200,'unReady');
-					}
-				}
-			}
-			
-		}else{
-			res.send(404,'there is no contract');
-		}
-	})
-}
-
-exports.checkProducerFinalDecision=function(req,res,next){
+exports.checkProducerDecisionStatus = function(req, res, next) {
 	seminar.findOne({
 		seminarCode: req.params.seminar
 	}, function(err, doc) {
@@ -278,38 +258,51 @@ exports.checkProducerFinalDecision=function(req,res,next){
 			next(new Error(err))
 		};
 		if (doc) {
+			var result = {
+				'isPortfolioDecisionCommitted': false,
+				'isContractDeal': false,
+				'isContractFinalized': false,
+				'isDecisionCommitted': false
+			};
 			for (var i = 0; i < doc.producers[req.params.producerID - 1].decisionCommitStatus.length; i++) {
 				if (doc.producers[req.params.producerID - 1].decisionCommitStatus[i].period == req.params.period) {
-					if (doc.producers[req.params.producerID - 1].decisionCommitStatus[i].isDecisionCommitted == true) {
-						res.send(200, 'isReady');
-					} else {
-						res.send(200, 'unReady');
-					}
+					result.isPortfolioDecisionCommitted = doc.producers[req.params.producerID - 1].decisionCommitStatus[i].isPortfolioDecisionCommitted;
+					result.isContractDeal = doc.producers[req.params.producerID - 1].decisionCommitStatus[i].isContractDeal;
+					result.isContractFinalized = doc.producers[req.params.producerID - 1].decisionCommitStatus[i].isContractFinalized;
+					result.isDecisionCommitted = doc.producers[req.params.producerID - 1].decisionCommitStatus[i].isDecisionCommitted;
 				}
 			}
-
+			res.send(200, result);
 		} else {
 			res.send(404, 'there is no contract');
 		}
 	})
 }
 
-exports.checkRetailerDecision=function(req,res,next){
-	seminar.findOne({seminarCode:req.params.seminar},function(err,doc){
-		if(err) {next(new Error(err))};
-		if(doc){
-			for(var i=0;i<doc.retailers[req.params.retailerID-1].decisionCommitStatus.length;i++){
-				if(doc.retailers[req.params.retailerID-1].decisionCommitStatus[i].period==req.params.period){
-					if(doc.retailers[req.params.retailerID-1].decisionCommitStatus[i].isDecisionCommitted==true){
-						res.send(200,'isReady');
-					}else{
-						res.send(200,'unReady');
-					}
+exports.checkRetailerDecisionStatus = function(req, res, next) {
+	seminar.findOne({
+		seminarCode: req.params.seminar
+	}, function(err, doc) {
+		if (err) {
+			next(new Error(err))
+		};
+		if (doc) {
+			var result = {
+				'isContractDeal': false,
+				'isContractFinalized': false,
+				'isDecisionCommitted': false
+			};
+			for (var i = 0; i < doc.retailers[req.params.retailerID - 1].decisionCommitStatus.length; i++) {
+				if (doc.retailers[req.params.retailerID - 1].decisionCommitStatus[i].period == req.params.period) {
+					result.isContractDeal = doc.retailers[req.params.retailerID - 1].decisionCommitStatus[i].isContractDeal;
+					result.isContractFinalized = doc.retailers[req.params.retailerID - 1].decisionCommitStatus[i].isContractFinalized;
+					result.isDecisionCommitted = doc.retailers[req.params.retailerID - 1].decisionCommitStatus[i].isDecisionCommitted;
+
 				}
 			}
-			
-		}else{
-			res.send(404,'there is no contract');
+			res.send(200, result);
+		} else {
+			res.send(404, 'there is no contract');
 		}
 	})
 }
@@ -356,6 +349,101 @@ exports.submitPortfolioDecision=function(io){
                         io.sockets.emit('socketIO:producerBaseChanged', {period : queryCondition.period, producerID : queryCondition.producerID, seminar : queryCondition.seminar});
 						res.send(200,'success');
 					}else{
+						res.send(400,'fail');
+					}
+				})
+			}else{
+				res.send(404,'there is no contract');
+			}
+		})
+	}
+}
+
+exports.submitContractDeal=function(io){
+	return function(req,res,next){
+		var queryCondition = {
+			seminar    : req.body.seminar,
+			roleID 	   : req.body.roleID,
+			role     : req.body.role,
+			period     : req.body.period,
+			value       : req.body.value,
+		}
+		seminar.findOne({seminarCode:queryCondition.seminar},function(err,doc){
+			if(err) {next(new Error(err)); }
+			if(doc){
+				switch(queryCondition.role){
+					case 'Producer':
+						for (var i = 0; i < doc.producers[queryCondition.roleID - 1].decisionCommitStatus.length; i++) {
+							if (doc.producers[queryCondition.roleID - 1].decisionCommitStatus[i].period == queryCondition.period) {
+								doc.producers[queryCondition.roleID - 1].decisionCommitStatus[i].isContractDeal = queryCondition.value;
+								console.log(doc.producers[queryCondition.roleID - 1].decisionCommitStatus[i].isContractDeal);
+							}
+						}
+						doc.markModified('producers');
+						break;
+					case 'Retailer':
+						for (var i = 0; i < doc.retailers[queryCondition.roleID - 1].decisionCommitStatus.length; i++) {
+							if (doc.retailers[queryCondition.roleID - 1].decisionCommitStatus[i].period == queryCondition.period) {
+								doc.retailers[queryCondition.roleID - 1].decisionCommitStatus[i].isContractDeal = queryCondition.value;
+								console.log(doc.retailers[queryCondition.roleID - 1].decisionCommitStatus[i].isContractDeal);
+							}
+						}
+						doc.markModified('retailers');
+						break;
+				}				
+				doc.save(function(err){
+					if(!err){
+						io.sockets.emit('socketIO:contractDeal', {seminar : queryCondition.seminar, role: queryCondition.role, roleID : queryCondition.roleID, period : queryCondition.period});
+						res.send(200,'success');
+					}else{						
+						res.send(400,'fail');
+					}
+				})
+			}else{
+				res.send(404,'there is no contract');
+			}
+		})
+	}
+}
+
+exports.submitContractFinalized=function(io){
+	return function(req,res,next){
+		var queryCondition = {
+			seminar    : req.body.seminar,
+			roleID 	   : req.body.roleID,
+			role     : req.body.role,
+			period     : req.body.period,
+			value       : req.body.value,
+		}
+
+		seminar.findOne({seminarCode:queryCondition.seminar},function(err,doc){
+			if(err) {next(new Error(err)); }
+			if(doc){
+				switch(queryCondition.role){
+					case 'Producer':
+						for (var i = 0; i < doc.producers[queryCondition.roleID - 1].decisionCommitStatus.length; i++) {
+							if (doc.producers[queryCondition.roleID - 1].decisionCommitStatus[i].period == queryCondition.period) {
+								doc.producers[queryCondition.roleID - 1].decisionCommitStatus[i].isContractFinalized = queryCondition.value;
+								console.log(doc.producers[queryCondition.roleID - 1].decisionCommitStatus[i].isContractFinalized);
+							}
+						}
+						doc.markModified('producers');
+						break;
+					case 'Retailer':
+						for (var i = 0; i < doc.retailers[queryCondition.roleID - 1].decisionCommitStatus.length; i++) {
+							if (doc.retailers[queryCondition.roleID - 1].decisionCommitStatus[i].period == queryCondition.period) {
+								doc.retailers[queryCondition.roleID - 1].decisionCommitStatus[i].isContractFinalized = queryCondition.value;
+								console.log(doc.retailers[queryCondition.roleID - 1].decisionCommitStatus[i].isContractFinalized);
+							}
+						}
+						doc.markModified('retailers');
+						break;
+				}				
+				doc.save(function(err){
+					if(!err){
+						io.sockets.emit('socketIO:contractFinalized', {seminar : queryCondition.seminar, role: queryCondition.role, roleID : queryCondition.roleID, period : queryCondition.period});
+						res.send(200,'success');
+					}else{						
 						res.send(400,'fail');
 					}
 				})

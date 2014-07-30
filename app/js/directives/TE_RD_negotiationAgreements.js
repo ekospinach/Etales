@@ -8,7 +8,9 @@ define(['directives', 'services'], function(directives) {
                     isNegotiationChange: '=',
                     selectedPeriod : '=',
                     selectedPlayer : '=',
-                    isReady : '='
+                    isContractDeal:'=',
+                    isContractFinalized:'=',
+                    isDecisionCommitted:'='
                 },
                 restrict: 'E',
                 templateUrl: '../../partials/singleReportTemplate/RD_negotiationAgreements.html',

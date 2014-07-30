@@ -7,7 +7,9 @@ define(['directives', 'services'], function(directives){
                 isPageLoading : '=',
                 selectedPeriod : '=',
                 selectedPlayer : '=',
-                isReady : '='
+                isContractDeal:'=',
+                isContractFinalized:'=',
+                isDecisionCommitted:'='
             },
             restrict : 'E',
             templateUrl : '../../partials/singleReportTemplate/RD_marketResearchOrders.html',            

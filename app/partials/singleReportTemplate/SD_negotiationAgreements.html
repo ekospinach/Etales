@@ -1,9 +1,9 @@
-<div ng-show='!isPortfolioDecisionReady' style='text-align:center;'>
+<div ng-show='!isPortfolioDecisionCommitted' style='text-align:center;'>
     <img src='/img/computer.jpg'></img>
     <h4>Please commit your portfolio decision first.</h4>
 </div>
 
-<div class='panel panel-success my-success-panel' ng-show='isResultShown&&isPortfolioDecisionReady'>
+<div class='panel panel-success my-success-panel' ng-show='isResultShown&&isPortfolioDecisionCommitted'>
     
 
 	<div class="panel-heading">
@@ -165,7 +165,7 @@
         </tbody>
     </table>
 </div>
-<div class='panel panel-success my-success-panel' ng-show='isResultShown&&isPortfolioDecisionReady'>
+<div class='panel panel-success my-success-panel' ng-show='isResultShown&&isPortfolioDecisionCommitted'>
     <div class="panel-heading">
         <h3 class="panel-title text-center" popover="{{Label.getContent('Negotiation Agreements Info')}}" popover-trigger="mouseenter" popover-placement="bottom">
             {{Label.getContent('Negotiation Agreements')}}-{{Label.getContent('Retailer')}} 2

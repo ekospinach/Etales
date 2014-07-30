@@ -23,10 +23,10 @@
                     <p class="text-primary padding-40" Popover-animation="true" popover="{{Label.getContent('Price Appeal Info')}}" popover-title="{{Label.getContent('Price Appeal')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Price Appeal')}} <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
                 </td>
                 <td>
-                    <a href="#" editable-text="pageBase.onlineAdvertising[0]" ng-show='!isReady' onbeforesave="checkBudget(0,'onlineAdvertising','0',$data)" onaftersave="updateRetailerDecision('onlineAdvertising','0')">
+                    <a href="#" editable-text="pageBase.onlineAdvertising[0]" ng-show='!isDecisionCommitted' onbeforesave="checkBudget(0,'onlineAdvertising','0',$data)" onaftersave="updateRetailerDecision('onlineAdvertising','0')">
                         <p class="text-right">{{ pageBase.onlineAdvertising[0] || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right text-muted">{{ pageBase.onlineAdvertising[0] || 0 }}</p>
+                    <p ng-show='isDecisionCommitted' class="text-right text-muted">{{ pageBase.onlineAdvertising[0] || 0 }}</p>
                 </td>
             </tr>
             <tr>
@@ -34,10 +34,10 @@
                     <p class="padding-40 text-primary" Popover-animation="true" popover="{{Label.getContent('Convenience Info')}}" popover-title="{{Label.getContent('Convenience')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Convenience')}} <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
                 </td>
                 <td>
-                    <a href="#" editable-text="pageBase.onlineAdvertising[1]" ng-show='!isReady' onbeforesave="checkBudget(0,'onlineAdvertising','1',$data)" onaftersave="updateRetailerDecision('onlineAdvertising','1')">
+                    <a href="#" editable-text="pageBase.onlineAdvertising[1]" ng-show='!isDecisionCommitted' onbeforesave="checkBudget(0,'onlineAdvertising','1',$data)" onaftersave="updateRetailerDecision('onlineAdvertising','1')">
                         <p class="text-right">{{ pageBase.onlineAdvertising[1]|| 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right text-muted">{{ pageBase.onlineAdvertising[1]|| 0 }}</p>
+                    <p ng-show='isDecisionCommitted' class="text-right text-muted">{{ pageBase.onlineAdvertising[1]|| 0 }}</p>
                 </td>
             </tr>
 
@@ -51,10 +51,10 @@
                     <p class="text-primary padding-40" Popover-animation="true" popover="{{Label.getContent('Price Appeal Info')}}" popover-title="{{Label.getContent('Price Appeal')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Price Appeal')}} <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
                 </td>
                 <td>
-                    <a href="#" editable-text="pageBase.tradtionalAdvertising[0]" ng-show='!isReady' onbeforesave="checkBudget(0,'tradtionalAdvertising','0',$data)" onaftersave="updateRetailerDecision('tradtionalAdvertising','0')">
+                    <a href="#" editable-text="pageBase.tradtionalAdvertising[0]" ng-show='!isDecisionCommitted' onbeforesave="checkBudget(0,'tradtionalAdvertising','0',$data)" onaftersave="updateRetailerDecision('tradtionalAdvertising','0')">
                         <p class="text-right">{{ pageBase.tradtionalAdvertising[0] || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right text-muted">{{ pageBase.tradtionalAdvertising[0] || 0 }}</p>
+                    <p ng-show='isDecisionCommitted' class="text-right text-muted">{{ pageBase.tradtionalAdvertising[0] || 0 }}</p>
                 </td>
             </tr>
             <tr>
@@ -62,10 +62,10 @@
                     <p class="padding-40 text-primary" Popover-animation="true" popover="{{Label.getContent('Convenience Info')}}" popover-title="{{Label.getContent('Convenience')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Convenience')}} <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
                 </td>
                 <td>
-                    <a href="#" editable-text="pageBase.tradtionalAdvertising[1]" ng-show='!isReady' onbeforesave="checkBudget(0,'tradtionalAdvertising','1',$data)" onaftersave="updateRetailerDecision('tradtionalAdvertising','1')">
+                    <a href="#" editable-text="pageBase.tradtionalAdvertising[1]" ng-show='!isDecisionCommitted' onbeforesave="checkBudget(0,'tradtionalAdvertising','1',$data)" onaftersave="updateRetailerDecision('tradtionalAdvertising','1')">
                         <p class="text-right">{{ pageBase.tradtionalAdvertising[1]|| 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right text-muted">{{ pageBase.tradtionalAdvertising[1]|| 0 }}</p>
+                    <p ng-show='isDecisionCommitted' class="text-right text-muted">{{ pageBase.tradtionalAdvertising[1]|| 0 }}</p>
                 </td>
             </tr>
 
@@ -79,11 +79,11 @@
                     <p class="padding-40 text-primary" Popover-animation="true" popover="{{Label.getContent('Advertising Local Urban Info')}}" popover-title="{{Label.getContent('Advertising Local Urban')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Urban')}} <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
                 </td>
                 <td>
-                    <a href="#" editable-text="markets[0].localAdvertising[0]" ng-show='!isReady' onbeforesave="checkBudget(1,'localAdvertising','0',$data)" onaftersave="updateMarketingDecision(markets[0].marketID,'localAdvertising','postion','0',0)">
+                    <a href="#" editable-text="markets[0].localAdvertising[0]" ng-show='!isDecisionCommitted' onbeforesave="checkBudget(1,'localAdvertising','0',$data)" onaftersave="updateMarketingDecision(markets[0].marketID,'localAdvertising','postion','0',0)">
                         <p class="text-right">{{ markets[0].localAdvertising[0] || 0 }}
                         </p>
                     </a>
-                    <p ng-show='isReady' class="text-right text-muted">{{ markets[0].localAdvertising[0] || 0 }}</p>
+                    <p ng-show='isDecisionCommitted' class="text-right text-muted">{{ markets[0].localAdvertising[0] || 0 }}</p>
                 </td>
             </tr>
             <tr class="info">
@@ -91,11 +91,11 @@
                     <p class="padding-40 text-primary" Popover-animation="true" popover="{{Label.getContent('Advertising Local Rural Info')}}" popover-title="{{Label.getContent('Advertising Local Rural')}}" popover-trigger="mouseenter" popover-placement="bottom">{{Label.getContent('Rural')}} <span class="glyphicon glyphicon-info-sign" style="font-size:12px"></span></p>
                 </td>
                 <td>
-                    <a href="#" editable-text="markets[1].localAdvertising[0]" ng-show='!isReady' onbeforesave="checkBudget(2,'localAdvertising','0',$data)" onaftersave="updateMarketingDecision(markets[1].marketID,'localAdvertising','postion','0',1)">
+                    <a href="#" editable-text="markets[1].localAdvertising[0]" ng-show='!isDecisionCommitted' onbeforesave="checkBudget(2,'localAdvertising','0',$data)" onaftersave="updateMarketingDecision(markets[1].marketID,'localAdvertising','postion','0',1)">
                         <p class="text-right">{{ markets[1].localAdvertising[0] || 0 }}
                         </p>
                     </a>
-                    <p ng-show='isReady' class="text-right text-muted">{{ markets[1].localAdvertising[0] || 0 }}</p>
+                    <p ng-show='isDecisionCommitted' class="text-right text-muted">{{ markets[1].localAdvertising[0] || 0 }}</p>
                 </td>
             </tr>
             <tr>
@@ -108,11 +108,11 @@
                     <p class="padding-40">{{Label.getContent('Urban')}}</p>
                 </td>
                 <td>
-                    <a href="#" editable-select="markets[0].serviceLevel" e-ng-options="p.value as p.text for p in packs" ng-show='!isReady' onaftersave="updateMarketingDecision(markets[0].marketID,'serviceLevel','postion','addtionalIdx',0)">
+                    <a href="#" editable-select="markets[0].serviceLevel" e-ng-options="p.value as p.text for p in packs" ng-show='!isDecisionCommitted' onaftersave="updateMarketingDecision(markets[0].marketID,'serviceLevel','postion','addtionalIdx',0)">
                         <p class="text-right">{{ selectPacks(markets[0].marketID) }}
                         </p>
                     </a>
-                    <p ng-show='isReady' class="text-right text-muted">{{ selectPacks(markets[0].marketID) }}</p>
+                    <p ng-show='isDecisionCommitted' class="text-right text-muted">{{ selectPacks(markets[0].marketID) }}</p>
                 </td>
             </tr>
             <tr class="info">
@@ -120,11 +120,11 @@
                     <p class="padding-40">{{Label.getContent('Rural')}}</p>
                 </td>
                 <td>
-                    <a href="#" editable-select="markets[1].serviceLevel" e-ng-options="p.value as p.text for p in packs" ng-show='!isReady' onaftersave="updateMarketingDecision(markets[1].marketID,'serviceLevel','postion','addtionalIdx',1)">
+                    <a href="#" editable-select="markets[1].serviceLevel" e-ng-options="p.value as p.text for p in packs" ng-show='!isDecisionCommitted' onaftersave="updateMarketingDecision(markets[1].marketID,'serviceLevel','postion','addtionalIdx',1)">
                         <p class="text-right">{{ selectPacks(markets[1].marketID) }}
                         </p>
                     </a>
-                    <p ng-show='isReady' class="text-right text-muted">{{ selectPacks(markets[1].marketID) }}</p>
+                    <p ng-show='isDecisionCommitted' class="text-right text-muted">{{ selectPacks(markets[1].marketID) }}</p>
                 </td>
             </tr>
         </tbody>

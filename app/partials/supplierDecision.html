@@ -1,6 +1,5 @@
 <link href="/js/steps/steps.css" type="text/css" rel="stylesheet">
 <style TYPE="text/css">
-
     .table-bordered > thead > tr > th,
     .table-bordered > tbody > tr > th,
     .table-bordered > tfoot > tr > th,
@@ -46,7 +45,6 @@
     .col-md-3{
         width: 23%;
     }
-
 </style>
 
 <div class="my-super-awesome-loading-box" ng-show="isPageLoading">Loading...</div>
@@ -58,10 +56,7 @@
                 <ul class="steps-indicator steps-7">
                     <li class="done editing">
                         <a href="/#/supplierDecision" ng-click="showProductPortfolioManagement()">{{Label.getContent('Product Portfolio Management')}}</a>
-                        </li>
-                    <!-- <li class="done">
-                        <a href="/#/supplierDecision" ng-click='showBMListPrices()'>{{Label.getContent('B&M List Prices')}}</a>
-                    </li> -->
+                    </li>
                     <li class="done">
                         <a href="/#/supplierDecision" ng-click='showNegotiationAgreements()'>{{Label.getContent('Negotiation Agreements')}}</a>
                     </li>
@@ -150,25 +145,23 @@
             <div class="bs-docs-section">
                 <p access-level='{{accessLevels.playerView}}'>You are checking the decision of period <b>{{selectedPeriod}}</b>, Supplier {{selectedPlayer}}</p>
 
-                <supplier-product-portfolio-management ng-show='ProductPortfolioManagement' is-page-shown='ProductPortfolioManagement' is-page-loading='isPageLoading' selected-player='selectedPlayer' selected-period='selectedPeriod' is-ready='isPortfolioDecisionReady'></supplier-product-portfolio-management>
+                <supplier-product-portfolio-management ng-show='ProductPortfolioManagement' is-page-shown='ProductPortfolioManagement' is-page-loading='isPageLoading' selected-player='selectedPlayer' selected-period='selectedPeriod' is-ready='isPortfolioDecisionReady' is-portfolio-decision-committed='isPortfolioDecisionCommitted' is-contract-deal='isContractDeal' is-contract-finalized='isContractFinalized' is-decision-committed='isDecisionCommitted'></supplier-product-portfolio-management>
                 
-               <!--  <supplier-b-m-list-prices ng-show='BMListPrices' is-page-shown='BMListPrices' is-page-loading='isPageLoading' selected-player='selectedPlayer' selected-period='selectedPeriod' is-ready='isPortfolioDecisionReady'></supplier-b-m-list-prices> -->
+                <supplier-production-volume ng-show='ProductionVolume' is-page-shown='ProductionVolume' is-page-loading='isPageLoading' selected-player='selectedPlayer' selected-period='selectedPeriod' is-ready='isFinalDecisionReady' is-portfolio-decision-committed='isPortfolioDecisionCommitted' is-contract-deal='isContractDeal' is-contract-finalized='isContractFinalized' is-decision-committed='isDecisionCommitted'></supplier-production-volume>
                 
-                <supplier-production-volume ng-show='ProductionVolume' is-page-shown='ProductionVolume' is-page-loading='isPageLoading' selected-player='selectedPlayer' selected-period='selectedPeriod' is-ready='isFinalDecisionReady'></supplier-production-volume>
+                <supplier-general-marketing ng-show='GeneralMarketing' is-page-shown='GeneralMarketing' is-page-loading='isPageLoading' selected-player='selectedPlayer' selected-period='selectedPeriod' is-ready='isFinalDecisionReady' is-portfolio-decision-committed='isPortfolioDecisionCommitted' is-contract-deal='isContractDeal' is-contract-finalized='isContractFinalized' is-decision-committed='isDecisionCommitted'></supplier-general-marketing>
                 
-                <supplier-general-marketing ng-show='GeneralMarketing' is-page-shown='GeneralMarketing' is-page-loading='isPageLoading' selected-player='selectedPlayer' selected-period='selectedPeriod' is-ready='isFinalDecisionReady'></supplier-general-marketing>
+                <supplier-online-store-management ng-show='OnlineStoreManagement' is-page-shown='OnlineStoreManagement' is-page-loading='isPageLoading' selected-player='selectedPlayer' selected-period='selectedPeriod' is-ready='isFinalDecisionReady' is-portfolio-decision-committed='isPortfolioDecisionCommitted' is-contract-deal='isContractDeal' is-contract-finalized='isContractFinalized' is-decision-committed='isDecisionCommitted'></supplier-online-store-management>
                 
-                <supplier-online-store-management ng-show='OnlineStoreManagement' is-page-shown='OnlineStoreManagement' is-page-loading='isPageLoading' selected-player='selectedPlayer' selected-period='selectedPeriod' is-ready='isFinalDecisionReady'></supplier-online-store-management>
-                
-                <supplier-asset-investments ng-show='AssetInvestments' is-page-shown='AssetInvestments' is-page-loading='isPageLoading' selected-player='selectedPlayer' selected-period='selectedPeriod' is-ready='isFinalDecisionReady'></supplier-asset-investments>
+                <supplier-asset-investments ng-show='AssetInvestments' is-page-shown='AssetInvestments' is-page-loading='isPageLoading' selected-player='selectedPlayer' selected-period='selectedPeriod' is-ready='isFinalDecisionReady' is-portfolio-decision-committed='isPortfolioDecisionCommitted' is-contract-deal='isContractDeal' is-contract-finalized='isContractFinalized' is-decision-committed='isDecisionCommitted'></supplier-asset-investments>
 
-                <supplier-market-research-orders ng-show='MarketResearchOrders' is-page-shown='MarketResearchOrders' is-page-loading='isPageLoading' selected-player='selectedPlayer' selected-period='selectedPeriod' is-ready='isFinalDecisionReady'></supplier-market-research-orders> 
+                <supplier-market-research-orders ng-show='MarketResearchOrders' is-page-shown='MarketResearchOrders' is-page-loading='isPageLoading' selected-player='selectedPlayer' selected-period='selectedPeriod' is-ready='isFinalDecisionReady' is-portfolio-decision-committed='isPortfolioDecisionCommitted' is-contract-deal='isContractDeal' is-contract-finalized='isContractFinalized' is-decision-committed='isDecisionCommitted'></supplier-market-research-orders> 
             </div>
         </div>
 
         <div class="col-md-12" ng-show='isNegotiation'>
             <div class="bs-docs-section">
-                <supplier-negotiation-agreements ng-show='NegotiationAgreements' is-page-shown='NegotiationAgreements' is-portfolio-decision-ready='isPortfolioDecisionReady' is-page-loading='isPageLoading' selected-player='selectedPlayer' selected-period='selectedPeriod'></supplier-negotiation-agreements>
+                <supplier-negotiation-agreements ng-show='NegotiationAgreements' is-page-shown='NegotiationAgreements' is-portfolio-decision-ready='isPortfolioDecisionReady' is-page-loading='isPageLoading' selected-player='selectedPlayer' selected-period='selectedPeriod' is-portfolio-decision-committed='isPortfolioDecisionCommitted' is-contract-deal='isContractDeal' is-contract-finalized='isContractFinalized' is-decision-committed='isDecisionCommitted'></supplier-negotiation-agreements>
             </div>
         </div>
     </div>

@@ -8,7 +8,10 @@ define(['directives', 'services'], function(directives) {
                     isPageLoading: '=',
                     selectedPlayer: '=',
                     selectedPeriod: '=',
-                    isPortfolioDecisionReady: '='
+                    isPortfolioDecisionCommitted:'=',
+                    isContractDeal:'=',
+                    isContractFinalized:'=',
+                    isDecisionCommitted:'='
                 },
                 restrict: 'E',
                 templateUrl: '../../partials/singleReportTemplate/SD_negotiationAgreements.html',
@@ -503,7 +506,7 @@ define(['directives', 'services'], function(directives) {
 
                     var initializePage = function() {
                         //if Portfolio deicison isReady                            
-                        if(scope.isPortfolioDecisionReady){
+                        if(scope.isPortfolioDecisionCommitted){
                             scope.isPageLoading = true;
                             scope.isResultShown = false;
                             scope.Label = Label;                    

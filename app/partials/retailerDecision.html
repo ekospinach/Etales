@@ -159,19 +159,19 @@
         <div class="col-md-9" style="padding:0 0 0 15px" ng-show='!isNegotiation'>
             <div class="bs-docs-section">
             <p access-level='{{accessLevels.playerView}}'>You are checking the decision of period <b>{{selectedPeriod}}</b>, Retailer {{selectedPlayer}}</p>              
-                <retailer-marketing ng-show='Marketing' is-page-shown='Marketing' is-page-loading='isPageLoading' selected-period='selectedPeriod' selected-player='selectedPlayer' is-ready='isRetailerDecisionReady'></retailer-marketing>
+                <retailer-marketing ng-show='Marketing' is-page-shown='Marketing' is-page-loading='isPageLoading' selected-period='selectedPeriod' selected-player='selectedPlayer' is-ready='isRetailerDecisionReady' is-contract-deal='isContractDeal' is-contract-finalized='isContractFinalized' is-decision-committed='isDecisionCommitted'></retailer-marketing>
 
-                <retailer-private-label-portfolio-management ng-show='PrivateLabelPortfolioManagement' is-page-shown='PrivateLabelPortfolioManagement' is-page-loading='isPageLoading' selected-period='selectedPeriod' selected-player='selectedPlayer' is-ready='isRetailerDecisionReady'></retailer-private-label-portfolio-management>
+                <retailer-private-label-portfolio-management ng-show='PrivateLabelPortfolioManagement' is-page-shown='PrivateLabelPortfolioManagement' is-page-loading='isPageLoading' selected-period='selectedPeriod' selected-player='selectedPlayer' is-ready='isRetailerDecisionReady' is-contract-deal='isContractDeal' is-contract-finalized='isContractFinalized' is-decision-committed='isDecisionCommitted'></retailer-private-label-portfolio-management>
 
-                <retailer-store-management ng-show='StoreManagement' is-page-shown='StoreManagement' is-page-loading='isPageLoading' selected-period='selectedPeriod' selected-player='selectedPlayer' is-ready='isRetailerDecisionReady'></retailer-store-management>
+                <retailer-store-management ng-show='StoreManagement' is-page-shown='StoreManagement' is-page-loading='isPageLoading' selected-period='selectedPeriod' selected-player='selectedPlayer' is-ready='isRetailerDecisionReady' is-contract-deal='isContractDeal' is-contract-finalized='isContractFinalized' is-decision-committed='isDecisionCommitted'></retailer-store-management>
 
-                <retailer-market-research-orders ng-show='MarketResearchOrders' is-page-shown='MarketResearchOrders' is-page-loading='isPageLoading' selected-period='selectedPeriod' selected-player='selectedPlayer' is-ready='isRetailerDecisionReady'></retailer-market-research-orders>
+                <retailer-market-research-orders ng-show='MarketResearchOrders' is-page-shown='MarketResearchOrders' is-page-loading='isPageLoading' selected-period='selectedPeriod' selected-player='selectedPlayer' is-ready='isRetailerDecisionReady' is-contract-deal='isContractDeal' is-contract-finalized='isContractFinalized' is-decision-committed='isDecisionCommitted'></retailer-market-research-orders>
                 
             </div>
         </div>
         <div class="col-md-12" ng-show='isNegotiation'>
             <div class="bs-docs-section">
-                <retailer-negotiation-agreements ng-show='NegotiationAgreements' is-page-shown='NegotiationAgreements' is-negotiation-change='isNegotiationChange' is-page-loading='isPageLoading' selected-period='selectedPeriod' selected-player='selectedPlayer'></retailer-negotiation-agreements>
+                <retailer-negotiation-agreements ng-show='NegotiationAgreements' is-page-shown='NegotiationAgreements' is-negotiation-change='isNegotiationChange' is-page-loading='isPageLoading' selected-period='selectedPeriod' selected-player='selectedPlayer' is-contract-deal='isContractDeal' is-contract-finalized='isContractFinalized' is-decision-committed='isDecisionCommitted'></retailer-negotiation-agreements>
             </div>
         </div>
     </div>
