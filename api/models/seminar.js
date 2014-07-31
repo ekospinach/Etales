@@ -84,8 +84,8 @@ var reportPurchaseStatusSchema = mongoose.Schema({
 var supplierDecisionCommitStatusSchema = mongoose.Schema({
 	period                             : Number,
 	isPortfolioDecisionCommitted       : Boolean,//step 1
-	isContractDeal                     : Boolean, //step 2 //true 谈判 未同意 从上阶段 有的话 拷贝下来
-	isContractFinalized                : Boolean,	//step 3 //true 谈判锁定
+	isContractDeal                     : Boolean, //step 2
+	isContractFinalized                : Boolean,	//step 3
 	isDecisionCommitted                : Boolean,//step 4
 	
 	timeslotPortfolioDecisionCommitted : {type:Number, default: 20},
