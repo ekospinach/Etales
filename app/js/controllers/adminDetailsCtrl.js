@@ -1,7 +1,7 @@
 define(['app', 'socketIO'], function(app) {
 
-	app.controller('adminDetailsCtrl', ['$scope', '$http', '$rootScope', 'EditSeminarInfo',
-		function($scope, $http, $rootScope, EditSeminarInfo) {
+	app.controller('adminDetailsCtrl', ['$scope', '$http', '$rootScope', 'EditSeminarInfo','$q',
+		function($scope, $http, $rootScope, EditSeminarInfo,$q) {
 
 			var socket = io.connect('http://localhost');
 			socket.on('AdminProcessLog', function(data) {
@@ -62,6 +62,45 @@ define(['app', 'socketIO'], function(app) {
 				})
 
 			}
+
+			function dealContractDetailShooter(allDetails){
+				var deferred = $q.defer();
+				(function multipleRequestShooter(details,idx){
+					var shooterData={
+						detail:details[idx]
+					}
+					$http({
+						method:'POST',
+						url:'/dealContractDetail',
+						data:shooterData
+					}).then(function(data){
+						if(idx<details.length-1){
+							idx++;
+							multipleRequestShooter(details,idx);
+						}else{
+							deferred.resolve({
+                                msg: 'deal details shooter done '
+                            });
+						}
+					},function(data){
+						deferred.reject({
+							msg:'Err from deal details'
+						});
+					});
+				})(allDetails,0);
+			}
+
+			$scope.dealContract=function(){
+				var url='/getContractUnApprovedDetails/P1andR1_EJT2_1';
+				$http({
+					method:'GET',
+					url:url
+				}).then(function(data){
+					var details=data.data;
+					return dealContractDetailShooter(details);
+				});
+			}
+
 			$scope.updateContractDealChanged = function(role, roleID, period, value) {
 				var queryCondition = {
 					roleID: roleID,
@@ -72,25 +111,39 @@ define(['app', 'socketIO'], function(app) {
 				}
 
 				/*change the contract from previous period*/
-				$http({
-					method: 'POST',
-					url: '/submitContractDeal',
-					data: queryCondition
-				}).then(function(data){
-					
-				})
-
-
-				// $http({
-				// 	method: 'POST',
-				// 	url: '/submitContractDeal',
-				// 	data: queryCondition
-				// }).success(function(data, status, headers, config) {
-				// 	console.log('update commit Contract Deal status successfully');
-				// }).error(function(data, status, headers, config) {
-				// 	console.log('update commit Contract Deal status failed.');
-				// })
-
+				if(role=='Producer'){
+					$http({
+						method: 'POST',
+						url: '/submitContractDeal',
+						data: queryCondition
+					}).then(function(data){
+						var url='/getContractUnApprovedDetails/P'+roleID+'andR1_'+$scope.seminar.seminarCode+'_'+period;
+						return $http({
+							method:'GET',
+							url:url
+						});
+					}).then(function(data){
+						return dealContractDetailShooter(data.data);
+					}).then(function(data){
+						var url='/getContractUnApprovedDetails/P'+roleID+'andR2_'+$scope.seminar.seminarCode+'_'+period;
+						return $http({
+							method:'GET',
+							url:url
+						});
+					}).then(function(data){
+						return dealContractDetailShooter(data.data);
+					});
+				}else{
+					$http({
+						method: 'POST',
+						url: '/submitContractDeal',
+						data: queryCondition
+					}).success(function(data, status, headers, config) {
+						console.log('update commit Contract Deal status successfully');
+					}).error(function(data, status, headers, config) {
+						console.log('update commit Contract Deal status failed.');
+					})
+				}
 			}
 			$scope.updateContractFinalizedChanged = function(role, roleID, period, value) {
 				var queryCondition = {

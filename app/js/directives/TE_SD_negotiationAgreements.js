@@ -617,7 +617,10 @@ define(['directives', 'services'], function(directives) {
 
                     scope.dealConteact=function(){
                         var postData={
-                            detail:scope.product1es[1]
+                            producerID:1,
+                            retailerID:1,
+                            seminar:'EJT2',
+                            period:1
                         }
                         $http({
                             method:'POST',

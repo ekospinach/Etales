@@ -268,39 +268,39 @@ exports.addContractDetails = function(io) {
                     }
 
                     //check previous period input first, if anything, copy original ones.
-                    if (previousDoc) {
-                         console.log('found previous input, copy...');
-                         var newContractVariantDetails = new contractVariantDetails({
-                              contractCode: req.body.contractCode,
-                              producerID: req.body.producerID,
-                              retailerID: req.body.retailerID,
-                              parentBrandName: req.body.brandName,
-                              parentBrandID: req.body.brandID,
-                              variantName: req.body.varName,
-                              variantID: req.body.varID,
-                              nc_MinimumOrder: previousDoc.nc_MinimumOrder,
-                              nc_MinimumOrder_lastModifiedBy: previousDoc.nc_MinimumOrder_lastModifiedBy,
-                              nc_VolumeDiscountRate: previousDoc.nc_VolumeDiscountRate,
-                              nc_VolumeDiscountRate_lastModifiedBy: previousDoc.nc_VolumeDiscountRate_lastModifiedBy,
-                              nc_SalesTargetVolume: previousDoc.nc_SalesTargetVolume,
-                              nc_SalesTargetVolume_lastModifiedBy: previousDoc.nc_SalesTargetVolume_lastModifiedBy,
-                              nc_PerformanceBonusRate: previousDoc.nc_PerformanceBonusRate,
-                              nc_PerformanceBonusRate_lastModifiedBy: previousDoc.nc_PerformanceBonusRate_lastModifiedBy,
-                              nc_PaymentDays: previousDoc.nc_PaymentDays,
-                              nc_PaymentDays_lastModifiedBy: previousDoc.nc_PaymentDays_lastModifiedBy,
-                              nc_OtherCompensation: previousDoc.nc_OtherCompensation,
-                              nc_OtherCompensation_lastModifiedBy: previousDoc.nc_OtherCompensation_lastModifiedBy,
-                              isProducerApproved: false,
-                              isRetailerApproved: false,
-                              isNewProduct: false, //used for showing tag "NEW"
-                              isCompositionModified: false, //compare with previous period composition, used for showing tag "MODIFIED"
-                              composition: req.body.composition, //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
-                              currentPriceBM: req.body.currentPriceBM,
-                              packFormat: req.body.packFormat,
-                              seminar: req.body.seminar
-                         });
-                         //if no history, create empty doc
-                    } else {
+                    // if (previousDoc) {
+                    //      console.log('found previous input, copy...');
+                    //      var newContractVariantDetails = new contractVariantDetails({
+                    //           contractCode: req.body.contractCode,
+                    //           producerID: req.body.producerID,
+                    //           retailerID: req.body.retailerID,
+                    //           parentBrandName: req.body.brandName,
+                    //           parentBrandID: req.body.brandID,
+                    //           variantName: req.body.varName,
+                    //           variantID: req.body.varID,
+                    //           nc_MinimumOrder: previousDoc.nc_MinimumOrder,
+                    //           nc_MinimumOrder_lastModifiedBy: previousDoc.nc_MinimumOrder_lastModifiedBy,
+                    //           nc_VolumeDiscountRate: previousDoc.nc_VolumeDiscountRate,
+                    //           nc_VolumeDiscountRate_lastModifiedBy: previousDoc.nc_VolumeDiscountRate_lastModifiedBy,
+                    //           nc_SalesTargetVolume: previousDoc.nc_SalesTargetVolume,
+                    //           nc_SalesTargetVolume_lastModifiedBy: previousDoc.nc_SalesTargetVolume_lastModifiedBy,
+                    //           nc_PerformanceBonusRate: previousDoc.nc_PerformanceBonusRate,
+                    //           nc_PerformanceBonusRate_lastModifiedBy: previousDoc.nc_PerformanceBonusRate_lastModifiedBy,
+                    //           nc_PaymentDays: previousDoc.nc_PaymentDays,
+                    //           nc_PaymentDays_lastModifiedBy: previousDoc.nc_PaymentDays_lastModifiedBy,
+                    //           nc_OtherCompensation: previousDoc.nc_OtherCompensation,
+                    //           nc_OtherCompensation_lastModifiedBy: previousDoc.nc_OtherCompensation_lastModifiedBy,
+                    //           isProducerApproved: false,
+                    //           isRetailerApproved: false,
+                    //           isNewProduct: false, //used for showing tag "NEW"
+                    //           isCompositionModified: false, //compare with previous period composition, used for showing tag "MODIFIED"
+                    //           composition: req.body.composition, //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                    //           currentPriceBM: req.body.currentPriceBM,
+                    //           packFormat: req.body.packFormat,
+                    //           seminar: req.body.seminar
+                    //      });
+                    //      //if no history, create empty doc
+                    // } else {
                          var newContractVariantDetails = new contractVariantDetails({
                               contractCode: req.body.contractCode,
                               producerID: req.body.producerID,
@@ -330,7 +330,7 @@ exports.addContractDetails = function(io) {
                               packFormat: req.body.packFormat,
                               seminar: req.body.seminar
                          });
-                    }
+                    // }
 
                     newContractVariantDetails.save(function(err) {
                          if (err) next(new Error(err));
@@ -345,9 +345,10 @@ exports.addContractDetails = function(io) {
      }
 }
 
-exports.dealContractDetails = function(io) {
+exports.dealContractDetail = function(io) {
      return function(req, res, next) {
           console.log(req.body.detail);
+
           var detail=req.body.detail;
           var currentPeriodCode = detail.contractCode;
           var period = currentPeriodCode.substring(currentPeriodCode.length - 1, currentPeriodCode.length);
@@ -362,50 +363,42 @@ exports.dealContractDetails = function(io) {
           console.log('previous Period Code: ' + previousPeriodCode);
 
           console.log('product:' + detail.parentBrandName + detail.variantName + '/' + detail.parentBrandID + detail.variantID);
-          console.log({
-               'contractCode': previousPeriodCode,
-               'parentBrandName': detail.parentBrandName,
-               'parentBrandID': detail.parentBrandID,
-               'variantName': detail.variantName,
-               'variantID': detail.varID
-          });
           contractVariantDetails.findOne({
-                    contractCode: previousPeriodCode,
-                    parentBrandName: detail.parentBrandName,
-                    parentBrandID: detail.parentBrandID,
-                    variantName: detail.variantName,
-                    variantID: detail.variantID
-               },
-               function(err, previousDoc) {
-                    if (err) {
-                         next(new Error(err));
-                    }
-                    console.log(previousDoc);
+               contractCode: previousPeriodCode,
+               parentBrandName: detail.parentBrandName,
+               parentBrandID: detail.parentBrandID,
+               variantName: detail.variantName,
+               variantID: detail.variantID
+          },
+          function(err, previousDoc) {
+               if (err) {
+                    next(new Error(err));
+               }
+               console.log(previousDoc);
 
-                    //check previous period input first, if anything, copy original ones.
-                    if (previousDoc) {
-                         console.log('found previous input, copy...');
-                         
-                         var update = {
-                              $set: {
-                                   nc_MinimumOrder: previousDoc.nc_MinimumOrder,
-                                   nc_VolumeDiscountRate: previousDoc.nc_VolumeDiscountRate,
-                                   nc_SalesTargetVolume: previousDoc.nc_SalesTargetVolume,
-                                   nc_PerformanceBonusRate: previousDoc.nc_PerformanceBonusRate,
-                                   nc_PaymentDays: previousDoc.nc_PaymentDays,
-                                   nc_OtherCompensation: previousDoc.nc_OtherCompensation
-                              }
-                         };
+               //check previous period input first, if anything, copy original ones.
+               if (previousDoc) {
+                    console.log('found previous input, copy...');
+                    
+                    var update = {
+                         $set: {
+                              nc_MinimumOrder: previousDoc.nc_MinimumOrder,
+                              nc_VolumeDiscountRate: previousDoc.nc_VolumeDiscountRate,
+                              nc_SalesTargetVolume: previousDoc.nc_SalesTargetVolume,
+                              nc_PerformanceBonusRate: previousDoc.nc_PerformanceBonusRate,
+                              nc_PaymentDays: previousDoc.nc_PaymentDays,
+                              nc_OtherCompensation: previousDoc.nc_OtherCompensation
+                         }
+                    };
 
-                         contractVariantDetails.findOneAndUpdate({_id:detail._id},update,function(err, doc){
-                              if (err) next(new Error(err));
-                               res.send(200, {'result':true,'detail':doc}); 
-                         });
-                    }else{
-                         res.send(200, {'result':false,'detail':detail});
-                    }
-               })
-
+                    contractVariantDetails.findOneAndUpdate({_id:detail._id},update,function(err, doc){
+                         if (err) next(new Error(err));
+                          res.send(200, {'result':true,'detail':doc}); 
+                    });
+               }else{
+                    res.send(200, {'result':false,'detail':detail});
+               }
+          })
      }
 }
 
@@ -421,6 +414,29 @@ exports.getContractDetails = function(req, res, next) {
                     return x.parentBrandID - y.parentBrandID;
                });
                res.send(200, doc);
+          } else {
+               res.send(404, 'fail');
+          }
+     })
+}
+
+exports.getContractUnApprovedDetails = function(req,res,next){
+     contractVariantDetails.find({
+          contractCode: req.params.contractCode
+     }, function(err, docs) {
+          if (err) {
+               next(new Error(err))
+          };
+          if (docs) {
+               for(var i=0;i<docs.length;i++){
+                    if(docs[i].isProducerApproved&&docs[i].isRetailerApproved){
+                         docs.splice(i,1);
+                    }
+               }
+               docs.sort(function(x, y) {
+                    return x.parentBrandID - y.parentBrandID;
+               });
+               res.send(200, docs);
           } else {
                res.send(404, 'fail');
           }

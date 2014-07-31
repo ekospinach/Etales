@@ -53,9 +53,10 @@ module.exports = function(app, io){
     //Negotiation 
     app.post('/addContract',                                                                                require('./../api/models/contract.js').addContract(io));
     app.post('/addContractDetails',                                                                         require('./../api/models/contract.js').addContractDetails(io));
-    app.post('/dealContractDetails',                                                                        require('./../api/models/contract.js').dealContractDetails(io));
+    app.post('/dealContractDetail',                                                                         require('./../api/models/contract.js').dealContractDetail(io));
     app.get('/getContractDetails/:contractCode',                                                            require('./../api/models/contract.js').getContractDetails);
-    app.get('/getContractDetail/:contractCode/:brandName/:varName',                                                            require('./../api/models/contract.js').getContractDetail);
+    app.get('/getContractUnApprovedDetails/:contractCode',                                                  require('./../api/models/contract.js').getContractUnApprovedDetails);
+    app.get('/getContractDetail/:contractCode/:brandName/:varName',                                         require('./../api/models/contract.js').getContractDetail);
     
     
     //Check if selected contract details has been lock(both side choose agree)    
