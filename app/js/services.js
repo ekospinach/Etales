@@ -339,7 +339,13 @@ define(['angular',
 							PeriodInfo.setCurrentPeriod(data.period);	
 							$rootScope.$broadcast('SeminarPeriodChanged',data);						
 						}							
-				});		
+					});	
+
+					socket.on('socketIO:contractDeal',function(data){
+						if(data.seminar == SeminarInfo.getSelectedSeminar().seminarCode){
+							$rootScope.$broadcast('ContractDeal',data);
+						}
+					})
 
 					//Deal
 					//socket.on()			

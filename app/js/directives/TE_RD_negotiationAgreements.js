@@ -639,6 +639,12 @@ define(['directives', 'services'], function(directives) {
                         getResult(data.producerID);                        
                         notify('Negotiation has been updated by Supplier ' + data.producerID  + ' Period ' + data.period + '.');
                     });
+                    
+                    scope.$on('ContractDeal',function(event,data){
+                        console.log('meeeeeeeeeeee');
+                        getResult(data.producerID);
+                        notify('Time is up, Contract Deal,Period ' + data.period + '.');
+                    })
 
                 }
             }

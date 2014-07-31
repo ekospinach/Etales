@@ -638,16 +638,20 @@ define(['directives', 'services'], function(directives) {
                     });
 
                     scope.$on('NegotiationBaseChangedSaved', function(event, data) {  
-                        console.log('hello');
                         getResult(data.retailerID);
                         notify('Negotiation has been saved, Supplier ' + data.producerID  + ' Period ' + data.period + '.');
                     });
 
                     scope.$on('NegotiationBaseChangedByRetailer', function(event, data) {  
-                        console.log('hi');
                         getResult(data.retailerID);                        
                         notify('Negotiation has been updated by Retailer' + data.retailerID  + ' Period ' + data.period + '.');
                     });
+
+                    scope.$on('ContractDeal',function(event,data){
+                        getResult(1);
+                        getResult(2);
+                        notify('Time is up, Contract Deal,Period ' + data.period + '.');
+                    })
 
                 }
             }

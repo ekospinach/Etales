@@ -111,17 +111,11 @@ define(['app', 'socketIO'], function(app) {
 				}
 
 				/*change the contract from previous period*/
-				if(role=='Producer'){
+				if(role=='Producer'&&value){
+					var url='/getContractUnApprovedDetails/P'+roleID+'andR1_'+$scope.seminar.seminarCode+'_'+period;
 					$http({
-						method: 'POST',
-						url: '/submitContractDeal',
-						data: queryCondition
-					}).then(function(data){
-						var url='/getContractUnApprovedDetails/P'+roleID+'andR1_'+$scope.seminar.seminarCode+'_'+period;
-						return $http({
-							method:'GET',
-							url:url
-						});
+						method:'GET',
+						url:url
 					}).then(function(data){
 						return dealContractDetailShooter(data.data);
 					}).then(function(data){
@@ -132,7 +126,15 @@ define(['app', 'socketIO'], function(app) {
 						});
 					}).then(function(data){
 						return dealContractDetailShooter(data.data);
-					});
+					}).then(function(data){
+						return $http({
+							method: 'POST',
+							url: '/submitContractDeal',
+							data: queryCondition
+						})
+					}).then(function(data){
+						console.log('finish contract deal');
+					})
 				}else{
 					$http({
 						method: 'POST',
