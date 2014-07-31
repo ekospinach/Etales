@@ -23,8 +23,8 @@ var contractSchema = mongoose.Schema({
 var contractVariantDetailsSchema = mongoose.Schema({
      seminar: String,
      contractCode: String,
-     producerID : Number,
-     retailerID : Number,
+     producerID: Number,
+     retailerID: Number,
      parentBrandName: String,
      parentBrandID: Number,
      variantName: String,
@@ -119,72 +119,58 @@ exports.getContractExpend = function(req, res, next) {
      var result = 0;
 
      contractVariantDetails
-     .find()
-     .where('contractCode').in(['P' + req.params.producerID + 'andR1_' + req.params.seminar + '_' + req.params.period, 
-                                'P' + req.params.producerID + 'andR2_' + req.params.seminar + '_' + req.params.period])
-     .exec(function(err, docs){
-          if (err) {
-               next(new Error(err));
-          } else {
-               if (docs.length != 0) {                    
-                    for (var i = 0; i < docs.length; i++) {
-                         if(docs[i].nc_VolumeDiscountRate == 0){ 
-                              result += 0;    
-                         } else {
-                              result += docs[i].nc_MinimumOrder * (1 - docs[i].nc_VolumeDiscountRate) * docs[i].currentPriceBM;                                                       
-                         }
-                         
-                         if ( (req.params.parentBrandName != 'brandName') 
-                              && (req.params.variantName != 'varName')
-                              && (docs[i].parentBrandName == req.params.parentBrandName) 
-                              && (docs[i].variantName == req.params.variantName)
-                              && (req.params.ignoreItem == 'volumeDiscount')
-                              && (req.params.ignoreRetailerID == docs[i].retailerID)) {
-                          
-                              if(docs[i].nc_VolumeDiscountRate == 0){
-                                   result -= 0;
-                              } else {
-                                   console.log(docs[i]);
-                                   result -= docs[i].nc_MinimumOrder * (1 - docs[i].nc_VolumeDiscountRate) * docs[i].currentPriceBM;                                                            
-                              }                              
-                         }                         
-
-                         result += docs[i].nc_SalesTargetVolume * docs[i].nc_PerformanceBonusRate * docs[i].currentPriceBM;                         
-                         if ( (req.params.parentBrandName != 'brandName') 
-                              && (req.params.variantName != 'varName')
-                              && (docs[i].parentBrandName == req.params.parentBrandName) 
-                              && (docs[i].variantName == req.params.variantName)
-                              && (req.params.ignoreItem == 'performanceBonus')
-                              && (req.params.ignoreRetailerID == docs[i].retailerID)) {
-
-                              result -= docs[i].nc_SalesTargetVolume * docs[i].nc_PerformanceBonusRate * docs[i].currentPriceBM;                         
-                         }
-
-                         if(docs[i].nc_OtherCompensation > 0){
-                              result += docs[i].nc_OtherCompensation;
-                              if ( (req.params.parentBrandName != 'brandName') 
-                              && (req.params.variantName != 'varName')
-                              && (docs[i].parentBrandName == req.params.parentBrandName) 
-                              && (docs[i].variantName == req.params.variantName)
-                              && (req.params.ignoreItem == 'otherCompensation')
-                              && (req.params.ignoreRetailerID == docs[i].retailerID)) {
-
-                                   result -= docs[i].nc_OtherCompensation;
-                              }                              
-                         }
-                    }
-                    res.send(200, {
-                         'result': result
-                    });
-
-
+          .find()
+          .where('contractCode').in(['P' + req.params.producerID + 'andR1_' + req.params.seminar + '_' + req.params.period,
+               'P' + req.params.producerID + 'andR2_' + req.params.seminar + '_' + req.params.period
+          ])
+          .exec(function(err, docs) {
+               if (err) {
+                    next(new Error(err));
                } else {
-                    res.send(200, {
-                         'result': 0
-                    });
-               }               
-          }
-     });
+                    if (docs.length != 0) {
+                         for (var i = 0; i < docs.length; i++) {
+                              if (docs[i].nc_VolumeDiscountRate == 0) {
+                                   result += 0;
+                              } else {
+                                   result += docs[i].nc_MinimumOrder * (1 - docs[i].nc_VolumeDiscountRate) * docs[i].currentPriceBM;
+                              }
+
+                              if ((req.params.parentBrandName != 'brandName') && (req.params.variantName != 'varName') && (docs[i].parentBrandName == req.params.parentBrandName) && (docs[i].variantName == req.params.variantName) && (req.params.ignoreItem == 'volumeDiscount') && (req.params.ignoreRetailerID == docs[i].retailerID)) {
+
+                                   if (docs[i].nc_VolumeDiscountRate == 0) {
+                                        result -= 0;
+                                   } else {
+                                        console.log(docs[i]);
+                                        result -= docs[i].nc_MinimumOrder * (1 - docs[i].nc_VolumeDiscountRate) * docs[i].currentPriceBM;
+                                   }
+                              }
+
+                              result += docs[i].nc_SalesTargetVolume * docs[i].nc_PerformanceBonusRate * docs[i].currentPriceBM;
+                              if ((req.params.parentBrandName != 'brandName') && (req.params.variantName != 'varName') && (docs[i].parentBrandName == req.params.parentBrandName) && (docs[i].variantName == req.params.variantName) && (req.params.ignoreItem == 'performanceBonus') && (req.params.ignoreRetailerID == docs[i].retailerID)) {
+
+                                   result -= docs[i].nc_SalesTargetVolume * docs[i].nc_PerformanceBonusRate * docs[i].currentPriceBM;
+                              }
+
+                              if (docs[i].nc_OtherCompensation > 0) {
+                                   result += docs[i].nc_OtherCompensation;
+                                   if ((req.params.parentBrandName != 'brandName') && (req.params.variantName != 'varName') && (docs[i].parentBrandName == req.params.parentBrandName) && (docs[i].variantName == req.params.variantName) && (req.params.ignoreItem == 'otherCompensation') && (req.params.ignoreRetailerID == docs[i].retailerID)) {
+
+                                        result -= docs[i].nc_OtherCompensation;
+                                   }
+                              }
+                         }
+                         res.send(200, {
+                              'result': result
+                         });
+
+
+                    } else {
+                         res.send(200, {
+                              'result': 0
+                         });
+                    }
+               }
+          });
 
 }
 
@@ -268,43 +254,43 @@ exports.addContractDetails = function(io) {
                     }
 
                     //check previous period input first, if anything, copy original ones.
-                    // if (previousDoc) {
-                    //      console.log('found previous input, copy...');
-                    //      var newContractVariantDetails = new contractVariantDetails({
-                    //           contractCode: req.body.contractCode,
-                    //           producerID: req.body.producerID,
-                    //           retailerID: req.body.retailerID,
-                    //           parentBrandName: req.body.brandName,
-                    //           parentBrandID: req.body.brandID,
-                    //           variantName: req.body.varName,
-                    //           variantID: req.body.varID,
-                    //           nc_MinimumOrder: previousDoc.nc_MinimumOrder,
-                    //           nc_MinimumOrder_lastModifiedBy: previousDoc.nc_MinimumOrder_lastModifiedBy,
-                    //           nc_VolumeDiscountRate: previousDoc.nc_VolumeDiscountRate,
-                    //           nc_VolumeDiscountRate_lastModifiedBy: previousDoc.nc_VolumeDiscountRate_lastModifiedBy,
-                    //           nc_SalesTargetVolume: previousDoc.nc_SalesTargetVolume,
-                    //           nc_SalesTargetVolume_lastModifiedBy: previousDoc.nc_SalesTargetVolume_lastModifiedBy,
-                    //           nc_PerformanceBonusRate: previousDoc.nc_PerformanceBonusRate,
-                    //           nc_PerformanceBonusRate_lastModifiedBy: previousDoc.nc_PerformanceBonusRate_lastModifiedBy,
-                    //           nc_PaymentDays: previousDoc.nc_PaymentDays,
-                    //           nc_PaymentDays_lastModifiedBy: previousDoc.nc_PaymentDays_lastModifiedBy,
-                    //           nc_OtherCompensation: previousDoc.nc_OtherCompensation,
-                    //           nc_OtherCompensation_lastModifiedBy: previousDoc.nc_OtherCompensation_lastModifiedBy,
-                    //           isProducerApproved: false,
-                    //           isRetailerApproved: false,
-                    //           isNewProduct: false, //used for showing tag "NEW"
-                    //           isCompositionModified: false, //compare with previous period composition, used for showing tag "MODIFIED"
-                    //           composition: req.body.composition, //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
-                    //           currentPriceBM: req.body.currentPriceBM,
-                    //           packFormat: req.body.packFormat,
-                    //           seminar: req.body.seminar
-                    //      });
-                    //      //if no history, create empty doc
-                    // } else {
+                    if (previousDoc) {
+                         console.log('found previous input, copy...');
                          var newContractVariantDetails = new contractVariantDetails({
                               contractCode: req.body.contractCode,
                               producerID: req.body.producerID,
-                              retailerID: req.body.retailerID,                              
+                              retailerID: req.body.retailerID,
+                              parentBrandName: req.body.brandName,
+                              parentBrandID: req.body.brandID,
+                              variantName: req.body.varName,
+                              variantID: req.body.varID,
+                              nc_MinimumOrder: previousDoc.nc_MinimumOrder,
+                              nc_MinimumOrder_lastModifiedBy: previousDoc.nc_MinimumOrder_lastModifiedBy,
+                              nc_VolumeDiscountRate: previousDoc.nc_VolumeDiscountRate,
+                              nc_VolumeDiscountRate_lastModifiedBy: previousDoc.nc_VolumeDiscountRate_lastModifiedBy,
+                              nc_SalesTargetVolume: previousDoc.nc_SalesTargetVolume,
+                              nc_SalesTargetVolume_lastModifiedBy: previousDoc.nc_SalesTargetVolume_lastModifiedBy,
+                              nc_PerformanceBonusRate: previousDoc.nc_PerformanceBonusRate,
+                              nc_PerformanceBonusRate_lastModifiedBy: previousDoc.nc_PerformanceBonusRate_lastModifiedBy,
+                              nc_PaymentDays: previousDoc.nc_PaymentDays,
+                              nc_PaymentDays_lastModifiedBy: previousDoc.nc_PaymentDays_lastModifiedBy,
+                              nc_OtherCompensation: previousDoc.nc_OtherCompensation,
+                              nc_OtherCompensation_lastModifiedBy: previousDoc.nc_OtherCompensation_lastModifiedBy,
+                              isProducerApproved: false,
+                              isRetailerApproved: false,
+                              isNewProduct: false, //used for showing tag "NEW"
+                              isCompositionModified: false, //compare with previous period composition, used for showing tag "MODIFIED"
+                              composition: req.body.composition, //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                              currentPriceBM: req.body.currentPriceBM,
+                              packFormat: req.body.packFormat,
+                              seminar: req.body.seminar
+                         });
+                         //if no history, create empty doc
+                    } else {
+                         var newContractVariantDetails = new contractVariantDetails({
+                              contractCode: req.body.contractCode,
+                              producerID: req.body.producerID,
+                              retailerID: req.body.retailerID,
                               parentBrandName: req.body.brandName,
                               parentBrandID: req.body.brandID,
                               variantName: req.body.varName,
@@ -330,7 +316,7 @@ exports.addContractDetails = function(io) {
                               packFormat: req.body.packFormat,
                               seminar: req.body.seminar
                          });
-                    // }
+                    }
 
                     newContractVariantDetails.save(function(err) {
                          if (err) next(new Error(err));
@@ -349,7 +335,7 @@ exports.dealContractDetail = function(io) {
      return function(req, res, next) {
           console.log(req.body.detail);
 
-          var detail=req.body.detail;
+          var detail = req.body.detail;
           var currentPeriodCode = detail.contractCode;
           var period = currentPeriodCode.substring(currentPeriodCode.length - 1, currentPeriodCode.length);
           var previousPeriod = parseInt(period) - 1;
@@ -364,41 +350,49 @@ exports.dealContractDetail = function(io) {
 
           console.log('product:' + detail.parentBrandName + detail.variantName + '/' + detail.parentBrandID + detail.variantID);
           contractVariantDetails.findOne({
-               contractCode: previousPeriodCode,
-               parentBrandName: detail.parentBrandName,
-               parentBrandID: detail.parentBrandID,
-               variantName: detail.variantName,
-               variantID: detail.variantID
-          },
-          function(err, previousDoc) {
-               if (err) {
-                    next(new Error(err));
-               }
-               console.log(previousDoc);
+                    contractCode: previousPeriodCode,
+                    parentBrandName: detail.parentBrandName,
+                    parentBrandID: detail.parentBrandID,
+                    variantName: detail.variantName,
+                    variantID: detail.variantID
+               },
+               function(err, previousDoc) {
+                    if (err) {
+                         next(new Error(err));
+                    }
+                    console.log(previousDoc);
 
-               //check previous period input first, if anything, copy original ones.
-               if (previousDoc) {
-                    console.log('found previous input, copy...');
-                    
-                    var update = {
-                         $set: {
-                              nc_MinimumOrder: previousDoc.nc_MinimumOrder,
-                              nc_VolumeDiscountRate: previousDoc.nc_VolumeDiscountRate,
-                              nc_SalesTargetVolume: previousDoc.nc_SalesTargetVolume,
-                              nc_PerformanceBonusRate: previousDoc.nc_PerformanceBonusRate,
-                              nc_PaymentDays: previousDoc.nc_PaymentDays,
-                              nc_OtherCompensation: previousDoc.nc_OtherCompensation
-                         }
-                    };
+                    //check previous period input first, if anything, copy original ones.
+                    if (previousDoc) {
+                         console.log('found previous input, copy...');
 
-                    contractVariantDetails.findOneAndUpdate({_id:detail._id},update,function(err, doc){
-                         if (err) next(new Error(err));
-                          res.send(200, {'result':true,'detail':doc}); 
-                    });
-               }else{
-                    res.send(200, {'result':false,'detail':detail});
-               }
-          })
+                         var update = {
+                              $set: {
+                                   nc_MinimumOrder: previousDoc.nc_MinimumOrder,
+                                   nc_VolumeDiscountRate: previousDoc.nc_VolumeDiscountRate,
+                                   nc_SalesTargetVolume: previousDoc.nc_SalesTargetVolume,
+                                   nc_PerformanceBonusRate: previousDoc.nc_PerformanceBonusRate,
+                                   nc_PaymentDays: previousDoc.nc_PaymentDays,
+                                   nc_OtherCompensation: previousDoc.nc_OtherCompensation
+                              }
+                         };
+
+                         contractVariantDetails.findOneAndUpdate({
+                              _id: detail._id
+                         }, update, function(err, doc) {
+                              if (err) next(new Error(err));
+                              res.send(200, {
+                                   'result': true,
+                                   'detail': doc
+                              });
+                         });
+                    } else {
+                         res.send(200, {
+                              'result': false,
+                              'detail': detail
+                         });
+                    }
+               })
      }
 }
 
@@ -420,7 +414,7 @@ exports.getContractDetails = function(req, res, next) {
      })
 }
 
-exports.getContractUnApprovedDetails = function(req,res,next){
+exports.getContractUnApprovedDetails = function(req, res, next) {
      contractVariantDetails.find({
           contractCode: req.params.contractCode
      }, function(err, docs) {
@@ -428,9 +422,9 @@ exports.getContractUnApprovedDetails = function(req,res,next){
                next(new Error(err))
           };
           if (docs) {
-               for(var i=0;i<docs.length;i++){
-                    if(docs[i].isProducerApproved&&docs[i].isRetailerApproved){
-                         docs.splice(i,1);
+               for (var i = 0; i < docs.length; i++) {
+                    if (docs[i].isProducerApproved && docs[i].isRetailerApproved) {
+                         docs.splice(i, 1);
                     }
                }
                docs.sort(function(x, y) {
@@ -446,8 +440,8 @@ exports.getContractUnApprovedDetails = function(req,res,next){
 exports.getContractDetail = function(req, res, next) {
      contractVariantDetails.findOne({
           contractCode: req.params.contractCode,
-          parentBrandName : req.params.brandName,
-          variantName : req.params.varName
+          parentBrandName: req.params.brandName,
+          variantName: req.params.varName
      }, function(err, doc) {
           if (err) {
                next(new Error(err));
@@ -456,7 +450,7 @@ exports.getContractDetail = function(req, res, next) {
                     res.send(200, doc);
                } else {
                     res.send(404, 'fail');
-               }               
+               }
           }
      })
 }
@@ -495,41 +489,43 @@ exports.checkContractDetailsLockStatus = function(req, res, next) {
 
 //the sum of minimum orders what has been already inputted in this and other deals
 exports.getAgreedProductionVolume = function(req, res, next) {
-     var result = 0,brandName = "";
+     var result = 0,
+          brandName = "";
 
      contractVariantDetails
-     .find()
-     .where('contractCode').in(['P' + req.params.producerID + 'andR1_' + req.params.seminar + '_' + req.params.period, 
-                                'P' + req.params.producerID + 'andR2_' + req.params.seminar + '_' + req.params.period])
-     .exec(function(err, docs){
-          if (err) {
-               next(new Error(err));
-          } else {
-               if (req.params.parentBrandName.substr(0, 1) == "E") {
-                    brandName = "H";
+          .find()
+          .where('contractCode').in(['P' + req.params.producerID + 'andR1_' + req.params.seminar + '_' + req.params.period,
+               'P' + req.params.producerID + 'andR2_' + req.params.seminar + '_' + req.params.period
+          ])
+          .exec(function(err, docs) {
+               if (err) {
+                    next(new Error(err));
                } else {
-                    brandName = "E";
-               }
-
-               if (docs.length != 0) {
-                    for (var i = 0; i < docs.length; i++) {
-                         result += docs[i].nc_MinimumOrder;
-
-                         if (docs[i].parentBrandName == req.params.parentBrandName && docs[i].variantName == req.params.variantName) {
-                              result -= docs[i].nc_MinimumOrder;
-                         }
-                         if (docs[i].parentBrandName.substr(0, 1) == brandName) {
-                              result -= docs[i].nc_MinimumOrder;
-                         }
+                    if (req.params.parentBrandName.substr(0, 1) == "E") {
+                         brandName = "H";
+                    } else {
+                         brandName = "E";
                     }
-                    res.send(200, {
-                         'result': result
-                    });
-               } else {
-                    res.send(404, 'fail');
-               }               
-          }
-     });          
+
+                    if (docs.length != 0) {
+                         for (var i = 0; i < docs.length; i++) {
+                              result += docs[i].nc_MinimumOrder;
+
+                              if (docs[i].parentBrandName == req.params.parentBrandName && docs[i].variantName == req.params.variantName) {
+                                   result -= docs[i].nc_MinimumOrder;
+                              }
+                              if (docs[i].parentBrandName.substr(0, 1) == brandName) {
+                                   result -= docs[i].nc_MinimumOrder;
+                              }
+                         }
+                         res.send(200, {
+                              'result': result
+                         });
+                    } else {
+                         res.send(404, 'fail');
+                    }
+               }
+          });
 }
 
 exports.updateContractDetails = function(io) {
@@ -630,23 +626,24 @@ exports.removeContract = function(io) {
 //:seminar/:period/:retailerID
 exports.getRetailerAdditionalBudget = function(req, res, next) {
      contractVariantDetails
-     .find()
-     .where('contractCode').in(['P1andR' + req.params.retailerID + '_' + req.params.seminar + '_' + req.params.period,  
-                                'P2andR' + req.params.retailerID + '_' + req.params.seminar + '_' + req.params.period,  
-                                'P3andR' + req.params.retailerID + '_' + req.params.seminar + '_' + req.params.period])
-     .exec(function(err, docs){
-          if(err){
-               next(new Error(err));
-          } else {
-               if(docs.length != 0){
-
+          .find()
+          .where('contractCode').in(['P1andR' + req.params.retailerID + '_' + req.params.seminar + '_' + req.params.period,
+               'P2andR' + req.params.retailerID + '_' + req.params.seminar + '_' + req.params.period,
+               'P3andR' + req.params.retailerID + '_' + req.params.seminar + '_' + req.params.period
+          ])
+          .exec(function(err, docs) {
+               if (err) {
+                    next(new Error(err));
                } else {
-                    res.send(200, {
-                         'result' : 0
-                    });
+                    if (docs.length != 0) {
+
+                    } else {
+                         res.send(200, {
+                              'result': 0
+                         });
+                    }
                }
-          }
-     })
+          })
      contract.findOne({
           contractCode: req.params.contractCode
      }, function(err, doc) {
