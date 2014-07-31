@@ -12,6 +12,7 @@
         </h3>
     </div>
 
+    <button ng-click='dealConteact()'>dealConteact</button>
     <table class="table table-condensed table-bordered table-success">
         <thead>
             <tr>
@@ -92,7 +93,7 @@
                     <p class="text-right text-muted" ng-show="product.isProducerApproved||product.isRetailerApproved||isContractFinalized">{{ product.nc_PaymentDays || 0 }}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="product.nc_OtherCompensation" ng-show="(!product.isProducerApproved)&&(!product.isRetailerApproved)&&(!isContractFinalized)" onbeforesave="checkOtherCompensation(product.contractCode,product.parentBrandName,product.variantName,1,$data,1)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_OtherCompensation',$index,$data,1,1)">
+                    <a href="#" editable-text="product.nc_OtherCompensation" ng-show="(!product.isProducerApproved)&&(!product.isRetailerApproved)&&(!isContractFinalized)" onbeforesave="checkOtherCompensation(product.contractCode,producerID,1,product.parentBrandName,product.variantName,1,$data)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_OtherCompensation',$index,$data,1,1)">
                         <p class="text-right" ng-class="{'P': 'text-danger', 'R': 'text-primary'}[product.nc_OtherCompensation_lastModifiedBy]">{{ product.nc_OtherCompensation || 0 }}</p>
                     </a>
                     <p class="text-right text-muted" ng-show="product.isProducerApproved||product.isRetailerApproved||isContractFinalized">{{ product.nc_OtherCompensation || 0 }}</p>
@@ -147,7 +148,7 @@
                     <p class="text-right text-muted" ng-show="product.isProducerApproved||product.isRetailerApproved||isContractFinalized">{{ product.nc_PaymentDays || 0 }}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="product.nc_OtherCompensation" ng-show="(!product.isProducerApproved)&&(!product.isRetailerApproved)&&(!isContractFinalized)" onbeforesave="checkOtherCompensation(product.contractCode,product.parentBrandName,product.variantName,2,$data,1)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_OtherCompensation',$index,$data,2,1)">
+                    <a href="#" editable-text="product.nc_OtherCompensation" ng-show="(!product.isProducerApproved)&&(!product.isRetailerApproved)&&(!isContractFinalized)" onbeforesave="checkOtherCompensation(product.contractCode,producerID,1,product.parentBrandName,product.variantName,2,$data)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_OtherCompensation',$index,$data,2,1)">
                         <p class="text-right" ng-class="{'P': 'text-danger', 'R': 'text-primary'}[product.nc_OtherCompensation_lastModifiedBy]">{{ product.nc_OtherCompensation || 0 }}</p>
                     </a>
                     <p class="text-right text-muted" ng-show="product.isProducerApproved||product.isRetailerApproved||isContractFinalized">{{ product.nc_OtherCompensation || 0 }}</p>
@@ -250,7 +251,7 @@
                     <p class="text-right text-muted" ng-show="product.isProducerApproved||product.isRetailerApproved||isContractFinalized">{{ product.nc_PaymentDays || 0 }}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="product.nc_OtherCompensation" ng-show="(!product.isProducerApproved)&&(!product.isRetailerApproved)&&(!isContractFinalized)" onbeforesave="checkOtherCompensation(product.contractCode,product.parentBrandName,product.variantName,1,$data,2)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_OtherCompensation',$index,$data,1,2)">
+                    <a href="#" editable-text="product.nc_OtherCompensation" ng-show="(!product.isProducerApproved)&&(!product.isRetailerApproved)&&(!isContractFinalized)" onbeforesave="checkOtherCompensation(product.contractCode,producerID,2,product.parentBrandName,product.variantName,1,$data)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_OtherCompensation',$index,$data,1,2)">
                         <p class="text-right" ng-class="{'P': 'text-danger', 'R': 'text-primary'}[product.nc_OtherCompensation_lastModifiedBy]">{{ product.nc_OtherCompensation || 0 }}</p>
                     </a>
                     <p class="text-right text-muted" ng-show="product.isProducerApproved||product.isRetailerApproved||isContractFinalized">{{ product.nc_OtherCompensation || 0 }}</p>
@@ -303,7 +304,7 @@
                     <p class="text-right text-muted" ng-show="product.isProducerApproved||product.isRetailerApproved||isContractFinalized">{{ product.nc_PaymentDays || 0 }}</p>
                 </td>
                 <td>
-                    <a href="#" editable-text="product.nc_OtherCompensation" ng-show="(!product.isProducerApproved)&&(!product.isRetailerApproved)&&(!isContractFinalized)" onbeforesave="checkOtherCompensation(product.contractCode,product.parentBrandName,product.variantName,2,$data,2)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_OtherCompensation',$index,$data,2,2)">
+                    <a href="#" editable-text="product.nc_OtherCompensation" ng-show="(!product.isProducerApproved)&&(!product.isRetailerApproved)&&(!isContractFinalized)" onbeforesave="checkOtherCompensation(product.contractCode,producerID,2,product.parentBrandName,product.variantName,2,$data)" onaftersave="updateContractDetails(product.contractCode,product.parentBrandName,product.variantName,'nc_OtherCompensation',$index,$data,2,2)">
                         <p class="text-right" ng-class="{'P': 'text-danger', 'R': 'text-primary'}[product.nc_OtherCompensation_lastModifiedBy]">{{ product.nc_OtherCompensation || 0 }}</p>
                     </a>
                     <p class="text-right text-muted" ng-show="product.isProducerApproved||product.isRetailerApproved||isContractFinalized">{{ product.nc_OtherCompensation || 0 }}</p>

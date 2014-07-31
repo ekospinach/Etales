@@ -266,6 +266,7 @@ exports.addContractDetails = function(io) {
                     if (err) {
                          next(new Error(err));
                     }
+
                     //check previous period input first, if anything, copy original ones.
                     if (previousDoc) {
                          console.log('found previous input, copy...');
@@ -344,6 +345,70 @@ exports.addContractDetails = function(io) {
      }
 }
 
+exports.dealContractDetails = function(io) {
+     return function(req, res, next) {
+          console.log(req.body.detail);
+          var detail=req.body.detail;
+          var currentPeriodCode = detail.contractCode;
+          var period = currentPeriodCode.substring(currentPeriodCode.length - 1, currentPeriodCode.length);
+          var previousPeriod = parseInt(period) - 1;
+
+          console.log('Period:' + period);
+          console.log('Period(afterparse):' + parseInt(period));
+          console.log('previous Period:' + previousPeriod);
+
+          var previousPeriodCode = currentPeriodCode.substring(0, currentPeriodCode.length - 1) + previousPeriod;
+          console.log('current Period Code:' + currentPeriodCode);
+          console.log('previous Period Code: ' + previousPeriodCode);
+
+          console.log('product:' + detail.parentBrandName + detail.variantName + '/' + detail.parentBrandID + detail.variantID);
+          console.log({
+               'contractCode': previousPeriodCode,
+               'parentBrandName': detail.parentBrandName,
+               'parentBrandID': detail.parentBrandID,
+               'variantName': detail.variantName,
+               'variantID': detail.varID
+          });
+          contractVariantDetails.findOne({
+                    contractCode: previousPeriodCode,
+                    parentBrandName: detail.parentBrandName,
+                    parentBrandID: detail.parentBrandID,
+                    variantName: detail.variantName,
+                    variantID: detail.variantID
+               },
+               function(err, previousDoc) {
+                    if (err) {
+                         next(new Error(err));
+                    }
+                    console.log(previousDoc);
+
+                    //check previous period input first, if anything, copy original ones.
+                    if (previousDoc) {
+                         console.log('found previous input, copy...');
+                         
+                         var update = {
+                              $set: {
+                                   nc_MinimumOrder: previousDoc.nc_MinimumOrder,
+                                   nc_VolumeDiscountRate: previousDoc.nc_VolumeDiscountRate,
+                                   nc_SalesTargetVolume: previousDoc.nc_SalesTargetVolume,
+                                   nc_PerformanceBonusRate: previousDoc.nc_PerformanceBonusRate,
+                                   nc_PaymentDays: previousDoc.nc_PaymentDays,
+                                   nc_OtherCompensation: previousDoc.nc_OtherCompensation
+                              }
+                         };
+
+                         contractVariantDetails.findOneAndUpdate({_id:detail._id},update,function(err, doc){
+                              if (err) next(new Error(err));
+                               res.send(200, {'result':true,'detail':doc}); 
+                         });
+                    }else{
+                         res.send(200, {'result':false,'detail':detail});
+                    }
+               })
+
+     }
+}
+
 exports.getContractDetails = function(req, res, next) {
      contractVariantDetails.find({
           contractCode: req.params.contractCode
@@ -395,6 +460,9 @@ exports.checkContractDetailsLockStatus = function(req, res, next) {
           if (err) {
                next(new Error(err));
           }
+          console.log(doc.isProducerApproved && req.params.location != "isRetailerApproved" && req.params.location != "isProducerApproved");
+          console.log(doc.isRetailerApproved && req.params.location != "isRetailerApproved" && req.params.location != "isProducerApproved");
+          console.log(doc.isRetailerApproved && doc.isProducerApproved);
           if ((doc.isProducerApproved && req.params.location != "isRetailerApproved" && req.params.location != "isProducerApproved") || (doc.isRetailerApproved && req.params.location != "isRetailerApproved" && req.params.location != "isProducerApproved") || (doc.isRetailerApproved && doc.isProducerApproved)) {
                res.send(200, {
                     'result': true,

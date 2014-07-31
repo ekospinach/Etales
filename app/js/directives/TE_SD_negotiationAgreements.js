@@ -123,7 +123,7 @@ define(['directives', 'services'], function(directives) {
                             negotiationACmax = data.data.productionCapacity[category - 1];
                             max = data.data.budgetAvailable + data.data.budgetSpentToDate;  
 
-                            url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + scope.selectedPlayer + '/' + brandName + '/' + varName;
+                            url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + scope.selectedPlayer + '/' + brandName + '/' + varName + '/volumeDiscount/' + retailerID;
                             console.log(url);
                             return $http({
                                 method: 'GET',
@@ -278,8 +278,6 @@ define(['directives', 'services'], function(directives) {
                             if (data.data == "unReady") {
                                 d.resolve(Label.getContent('set Target Volume first'))
                             }
-
-
                             url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (scope.selectedPeriod - 1) + '/P/' + scope.selectedPlayer;
                             return $http({
                                 method: 'GET',
@@ -291,7 +289,7 @@ define(['directives', 'services'], function(directives) {
                             negotiationACmax = data.data.productionCapacity[category - 1];
                             max = data.data.budgetAvailable + data.data.budgetSpentToDate;  
 
-                            url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + scope.selectedPlayer + '/' + brandName + '/' + varName;
+                            url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + scope.selectedPlayer + '/' + brandName + '/' + varName + '/performanceBonus/' + retailerID;
                             console.log(url);
                             return $http({
                                 method: 'GET',
@@ -383,7 +381,7 @@ define(['directives', 'services'], function(directives) {
                     /*
                          Compensation Rage
                     */ 
-                    scope.checkOtherCompensation = function(contractCode, brandName, varName, category, value, retailerID) {
+                    scope.checkOtherCompensation = function(contractCode,producerID,retailerID, brandName, varName, category, value) {
                         var d = $q.defer();
                         var supplierOtherCompensation = retailerOtherCompensation = 0;
                         var filter = /^-?[0-9]+([.]{1}[0-9]{1,2})?$/;
@@ -518,6 +516,7 @@ define(['directives', 'services'], function(directives) {
 
                     var getResult = function(retailerID) {
                         var url = '/getContractDetails/' + 'P' + scope.selectedPlayer + 'andR' + retailerID + '_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + scope.selectedPeriod;
+                        console.log(url);
                         $http({
                             method: 'GET',
                             url: url,
@@ -616,6 +615,19 @@ define(['directives', 'services'], function(directives) {
                         return d.promise;
                     }
 
+                    scope.dealConteact=function(){
+                        var postData={
+                            detail:scope.product1es[1]
+                        }
+                        $http({
+                            method:'POST',
+                            url:'/dealContractDetails',
+                            data:postData
+                        }).then(function(data){
+                            console.log(data.data);
+                        })
+                    }
+
                     scope.$watch('isPageShown', function(newValue, oldValue) {
                         if (newValue == true) {
                             initializePage();
@@ -623,11 +635,13 @@ define(['directives', 'services'], function(directives) {
                     });
 
                     scope.$on('NegotiationBaseChangedSaved', function(event, data) {  
+                        console.log('hello');
                         getResult(data.retailerID);
                         notify('Negotiation has been saved, Supplier ' + data.producerID  + ' Period ' + data.period + '.');
                     });
 
                     scope.$on('NegotiationBaseChangedByRetailer', function(event, data) {  
+                        console.log('hi');
                         getResult(data.retailerID);                        
                         notify('Negotiation has been updated by Retailer' + data.retailerID  + ' Period ' + data.period + '.');
                     });

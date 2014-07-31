@@ -71,15 +71,25 @@ define(['app', 'socketIO'], function(app) {
 					value: value
 				}
 
+				/*change the contract from previous period*/
 				$http({
 					method: 'POST',
 					url: '/submitContractDeal',
 					data: queryCondition
-				}).success(function(data, status, headers, config) {
-					console.log('update commit Contract Deal status successfully');
-				}).error(function(data, status, headers, config) {
-					console.log('update commit Contract Deal status failed.');
+				}).then(function(data){
+					
 				})
+
+
+				// $http({
+				// 	method: 'POST',
+				// 	url: '/submitContractDeal',
+				// 	data: queryCondition
+				// }).success(function(data, status, headers, config) {
+				// 	console.log('update commit Contract Deal status successfully');
+				// }).error(function(data, status, headers, config) {
+				// 	console.log('update commit Contract Deal status failed.');
+				// })
 
 			}
 			$scope.updateContractFinalizedChanged = function(role, roleID, period, value) {

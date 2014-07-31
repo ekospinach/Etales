@@ -354,7 +354,7 @@ define(['directives', 'services'], function(directives) {
                         return d.promise;
                     }
 
-                    scope.checkOtherCompensation = function(contractCode, brandName, varName, category, value, producerID) {
+                    scope.checkOtherCompensation = function(contractCode,producerID,retailerID, brandName, varName, category, value) {
                         var d = $q.defer();
                         var supplierOtherCompensation = retailerOtherCompensation = 0;
                         var filter = /^-?[0-9]+([.]{1}[0-9]{1,2})?$/;
@@ -456,6 +456,7 @@ define(['directives', 'services'], function(directives) {
                             }
                             switch(producerID){
                                 case 1:
+                                    console.log(category);
                                     if (category == 1) {
                                         scope.product1es[index] = data.data; 
                                     } else {

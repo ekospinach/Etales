@@ -53,6 +53,7 @@ module.exports = function(app, io){
     //Negotiation 
     app.post('/addContract',                                                                                require('./../api/models/contract.js').addContract(io));
     app.post('/addContractDetails',                                                                         require('./../api/models/contract.js').addContractDetails(io));
+    app.post('/dealContractDetails',                                                                        require('./../api/models/contract.js').dealContractDetails(io));
     app.get('/getContractDetails/:contractCode',                                                            require('./../api/models/contract.js').getContractDetails);
     app.get('/getContractDetail/:contractCode/:brandName/:varName',                                                            require('./../api/models/contract.js').getContractDetail);
     
