@@ -54,7 +54,7 @@ exports.getCurrentUnitCost = function(req, res, next) {
 }
 
 function debugUnitCost(msg){
-  console.log(msg);
+  //console.log(msg);
 }
 
 function calculateUnitCost(catNow, isPrivateLabel, packFormat, composition,  cumVolumes, prodCost) {

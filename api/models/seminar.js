@@ -44,7 +44,7 @@ var seminarSchema            = mongoose.Schema({
 	category1ID                  : {type:Number,default:1},
 	category2ID                  : {type:Number,default:1},
 
-	useTimeSlot                  : {type:Boolean, default:true},
+	//useTimeSlot                  : {type:Boolean, default:true},
 	isTimerActived			     : {type:Boolean, default:false},
 	timeslotPortfolioDecisionCommitted : {type:Number, default: 20},
 	timeslotContractDeal               : {type:Number, default: 20},
@@ -1064,3 +1064,29 @@ exports.duplicateSeminar = function(req, res, next){
         io.sockets.emit('AdminProcessLog', { msg: progress.msg, isError: false });			
 	})	
 }
+
+exports.setTimer = function(io, timer){
+	var timer;
+
+	return function(req, res, next){
+		var countDown = 20;
+
+		if(timer){
+			clearInterval(timer);
+			timer = undefined;
+			res.send(200, 'remove timer');
+		} else {			
+			timer = setInterval(function(){
+				countDown--;
+				if(countDown == 0){
+					clearInterval(timer);
+					timer = undefined;
+				} else {
+					io.sockets.emit('timer', {msg: countDown});
+				}
+			}, 1000);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             				
+			res.send(200, 'start timer');
+		}
+	}
+}
+

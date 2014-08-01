@@ -1,7 +1,7 @@
 define(['app'], function(app) {
 
-	app.controller('NavbarCtrl', ['$scope', '$http', '$location','$rootScope','Auth','Label','notify','ProducerDecisionBase','RetailerDecisionBase','NegotiationBase','SeminarInfo', '$window','$routeParams', 
-									function($scope, $http, $location,$rootScope,Auth,Label,notify, ProducerDecisionBase, RetailerDecisionBase, NegotiationBase, SeminarInfo,$window,$routeParams) {
+	app.controller('NavbarCtrl', ['$scope', '$http', '$location','$rootScope','Auth','Label','notify','ProducerDecisionBase','RetailerDecisionBase','NegotiationBase','SeminarInfo', '$window','$routeParams','TimerBase', 
+									function($scope, $http, $location,$rootScope,Auth,Label,notify, ProducerDecisionBase, RetailerDecisionBase, NegotiationBase, SeminarInfo,$window,$routeParams, TimerBase) {
 	    $scope.getUserRoleText = function(role) {
 
 	//        console.log('trying to get user role text:' + _.invert(Auth.userRoles)[role]);
@@ -79,6 +79,7 @@ define(['app'], function(app) {
 		ProducerDecisionBase.startListenChangeFromServer(); 
 		RetailerDecisionBase.startListenChangeFromServer();		
 		NegotiationBase.startListenChangeFromServer();
+		TimerBase.startListenChangeFromServer();
 
 		console.log('$routeParams: ' + $routeParams.reportLocateId);
 	}]);

@@ -1020,6 +1020,7 @@ var getLabelBase = function(){
 		{id:'Additional Budget',  ENG:'Additional Budget',  CHN:'Additional Budget',  RUS:''},
 		{id:'Program Code',  ENG:'Program Code',  CHN:'Program Code',  RUS:''},
 		{id:'Market Research Report',  ENG:'Market Research Report',  CHN:'Market Research Report',  RUS:''},
+		{id:'Commit Portfolio & List Price decision',  ENG:'Commit Portfolio & List Price decision',  CHN:'Commit Portfolio & list price decision',  RUS:''},
 
 	]
 }
