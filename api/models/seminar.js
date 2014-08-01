@@ -43,7 +43,13 @@ var seminarSchema            = mongoose.Schema({
 	market2ID                    : {type:Number,default:2},
 	category1ID                  : {type:Number,default:1},
 	category2ID                  : {type:Number,default:1},
-	useTimeSlot                  : {type:Boolean, default:true}
+
+	useTimeSlot                  : {type:Boolean, default:true},
+	isTimerActived			     : {type:Boolean, default:false},
+	timeslotPortfolioDecisionCommitted : {type:Number, default: 20},
+	timeslotContractDeal               : {type:Number, default: 20},
+	timeslotContractFinalized          : {type:Number, default: 20},
+	timeslotDecisionCommitted          : {type:Number, default: 20},	
 })
 
 var producerSchema = mongoose.Schema({
@@ -86,12 +92,7 @@ var supplierDecisionCommitStatusSchema = mongoose.Schema({
 	isPortfolioDecisionCommitted       : Boolean,//step 1
 	isContractDeal                     : Boolean, //step 2
 	isContractFinalized                : Boolean,	//step 3
-	isDecisionCommitted                : Boolean,//step 4
-	
-	timeslotPortfolioDecisionCommitted : {type:Number, default: 20},
-	timeslotContractDeal               : {type:Number, default: 20},
-	timeslotContractFinalized          : {type:Number, default: 20},
-	timeslotDecisionCommitted          : {type:Number, default: 20},
+	isDecisionCommitted                : Boolean,//step 4	
 })
 
 var retailerDecisionCommitStatusSchema = mongoose.Schema({
@@ -99,10 +100,6 @@ var retailerDecisionCommitStatusSchema = mongoose.Schema({
 	isContractDeal                         : Boolean, //step 1
 	isContractFinalized                    : Boolean, // step 2
 	isDecisionCommitted                    : Boolean, //step 3
-
-	timeslotContractDeal                   : {type:Number, default: 20},
-	timeslotContractFinalized              : {type:Number, default: 20},
-	timeslotDecisionCommitted              : {type:Number, default: 20},
 })
 
 
@@ -469,18 +466,11 @@ exports.addSeminars = function(req, res, next){
 			producerDoc.decisionCommitStatus.push({period :j, 	isDecisionCommitted  						  :false, 
 																isPortfolioDecisionCommitted                  :false,
 																isContractDeal                                :false, 
-																isContractFinalized                           :false, 
-																timeslotPortfolioDecisionCommitted            :20,
-																timeslotDecisionCommitted                     :20, 
-																timeslotContractFinalized                     :20, 
-																timeslotContractDeal                          :20});	
+																isContractFinalized                           :false}); 
 
 			retailerDoc.decisionCommitStatus.push({period :j, 	isDecisionCommitted 						  :false, 
 																isContractDeal                                :false, 
-																isContractFinalized                           :false, 
-																timeslotDecisionCommitted                     :20, 
-																timeslotContractFinalized                     :20, 
-																timeslotContractDeal                          :20});	
+																isContractFinalized                           :false});
 			if(j == 0){
 				producerDoc.reportPurchaseStatus.push({period:j, 
 													   awareness                    : true,
@@ -549,7 +539,6 @@ exports.addSeminars = function(req, res, next){
 		}
 	});
 }
-
 
 exports.updateSeminar=function(io){
 
