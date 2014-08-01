@@ -50,18 +50,18 @@
     				<p class="text-right text-muted">{{ producte.composition[2] || 0 }}</p>
     			</td>
     			<td>
-    				<a href="#" editable-text="producte.production" onbeforesave="checkProduction('Elecssories',producte.parentBrandName,producte.varName,'production','0',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'production','0',$index,$data)">
+    				<a href="#" editable-text="producte.production" onbeforesave="checkProduction('Elecssories',producte.parentBrandName,producte.varName,'production','0',$index,$data)" ng-show='!isDecisionCommitted' onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'production','0',$index,$data)">
     					<p class="text-right">{{ producte.production || 0 }}</p>
     				</a>
-                    <p ng-show='isReady' class="text-right text-muted">
+                    <p ng-show='isDecisionCommitted' class="text-right text-muted">
                         {{ producte.production || 0 }}
                     </p>
     			</td>
                 <td>
-                    <a href="#" editable-text="producte.channelPreference" onbeforesave="checkchannelPreference($data)" ng-show='!isReady' onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'channelPreference','0',$index,$data)">
+                    <a href="#" editable-text="producte.channelPreference" onbeforesave="checkchannelPreference($data)" ng-show='!isDecisionCommitted' onaftersave="updateProducerDecision('Elecssories',producte.parentBrandName,producte.varName,'channelPreference','0',$index,$data)">
                         <p class="text-right">{{ producte.channelPreference || 0 }}</p>
                     </a>
-                    <p ng-show='isReady' class="text-right text-muted">
+                    <p ng-show='isDecisionCommitted' class="text-right text-muted">
                         {{ producte.channelPreference || 0 }}
                     </p>
                 </td>
@@ -109,16 +109,16 @@
     				<p class="text-right text-muted">{{ producth.composition[2] || 0 }}</p>
     			</td>
     			<td>
-    				<a href="#" editable-text="producth.production" onbeforesave="checkProduction('HealthBeauty',producth.parentBrandName,producth.varName,'production','0',$index,$data)" ng-show='!isReady' onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'production','0',$index,$data)">
+    				<a href="#" editable-text="producth.production" onbeforesave="checkProduction('HealthBeauty',producth.parentBrandName,producth.varName,'production','0',$index,$data)" ng-show='!isDecisionCommitted' onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'production','0',$index,$data)">
                         <p class="text-right">{{ producth.production || 0 }}</p>
                     </a>
-                    <p class="text-right text-muted" ng-show='isReady'>{{ producth.production || 0 }}</p>
+                    <p class="text-right text-muted" ng-show='isDecisionCommitted'>{{ producth.production || 0 }}</p>
     			</td>
                 <td>
-                    <a href="#" editable-text="producth.channelPreference" onbeforesave="checkchannelPreference($data)" ng-show='!isReady' onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'channelPreference','0',$index,$data)">
+                    <a href="#" editable-text="producth.channelPreference" onbeforesave="checkchannelPreference($data)" ng-show='!isDecisionCommitted' onaftersave="updateProducerDecision('HealthBeauty',producth.parentBrandName,producth.varName,'channelPreference','0',$index,$data)">
                         <p class="text-right">{{ producth.channelPreference || 0 }}</p>
                     </a>
-                    <p class="text-right text-muted" ng-show='isReady'>{{ producth.channelPreference || 0 }}</p>
+                    <p class="text-right text-muted" ng-show='isDecisionCommitted'>{{ producth.channelPreference || 0 }}</p>
                 </td>
     		</tr>
     	</tbody>

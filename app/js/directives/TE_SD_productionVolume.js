@@ -7,7 +7,10 @@ define(['directives', 'services'], function(directives){
                 isPageLoading : '=',
                 selectedPlayer: '=',
                 selectedPeriod: '=',
-                isReady : '='
+                isPortfolioDecisionCommitted:'=',
+                isContractDeal:'=',
+                isContractFinalized:'=',
+                isDecisionCommitted:'='
             },
             restrict : 'E',
             templateUrl : '../../partials/singleReportTemplate/SD_productionVolume.html',            

@@ -53,8 +53,12 @@ module.exports = function(app, io){
     //Negotiation 
     app.post('/addContract',                                                                                require('./../api/models/contract.js').addContract(io));
     app.post('/addContractDetails',                                                                         require('./../api/models/contract.js').addContractDetails(io));
+    app.post('/dealContractDetail',                                                                         require('./../api/models/contract.js').dealContractDetail(io));
+    app.post('/finalizedContractDetail',                                                                    require('./../api/models/contract.js').finalizedContractDetail(io));
+    
     app.get('/getContractDetails/:contractCode',                                                            require('./../api/models/contract.js').getContractDetails);
-    app.get('/getContractDetail/:contractCode/:brandName/:varName',                                                            require('./../api/models/contract.js').getContractDetail);
+    app.get('/getContractUnApprovedDetails/:contractCode',                                                  require('./../api/models/contract.js').getContractUnApprovedDetails);
+    app.get('/getContractDetail/:contractCode/:brandName/:varName',                                         require('./../api/models/contract.js').getContractDetail);
     
     
     //Check if selected contract details has been lock(both side choose agree)    
@@ -75,15 +79,16 @@ module.exports = function(app, io){
     app.post('/removeContractDetailsByContractCode',                                                        require('./../api/models/contract.js').removeContractDetailsByContractcode(io));
 
     //Check if supplier has submitted portfolio decision 
-    app.get('/checkProducerPortfolioDecision/:seminar/:period/:producerID',                                          require('./../api/models/seminar.js').checkProducerDecision);
-    app.get('/checkProducerFinalDecision/:seminar/:period/:producerID',                                          require('./../api/models/seminar.js').checkProducerFinalDecision);    
-    app.get('/checkRetailerDecision/:seminar/:period/:retailerID',                                          require('./../api/models/seminar.js').checkRetailerDecision);
+    app.get('/checkProducerDecisionStatus/:seminar/:period/:producerID',                                    require('./../api/models/seminar.js').checkProducerDecisionStatus);  
+    app.get('/checkRetailerDecisionStatus/:seminar/:period/:retailerID',                                    require('./../api/models/seminar.js').checkRetailerDecisionStatus);
 
     //Submit supplier research order decision
     app.post('/submitOrder',                                                                                require('./../api/models/seminar.js').submitOrder(io));
 
     
     app.post('/submitPortfolioDecision',                                         require('./../api/models/seminar.js').submitPortfolioDecision(io));
+    app.post('/submitContractDeal',                                              require('./../api/models/seminar.js').submitContractDeal(io));
+    app.post('/submitContractFinalized',                                         require('./../api/models/seminar.js').submitContractFinalized(io));
     app.post('/submitFinalDecision',                                             require('./../api/models/seminar.js').submitFinalDecision(io));
 
     app.get('/getOneQuarterExogenousData/:seminar/:categoryID/:marketID/:period',        require('./../api/models/BG_oneQuarterExogenousData.js').getOneQuarterExogenousData);

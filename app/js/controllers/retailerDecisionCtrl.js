@@ -29,7 +29,7 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
                 }
             }
 
-            var showView = function() {
+            var loadBackgroundDataAndCalculateDecisionInfo = function() {
                 var abMax = 0,
                     expend = 0,
                     reportExpend = 0;
@@ -89,19 +89,15 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
                     $scope.percentageShelf[0][1] = (1 - $scope.surplusShelf[0][1]) * 100;
                     $scope.percentageShelf[1][0] = (1 - $scope.surplusShelf[1][0]) * 100;
                     $scope.percentageShelf[1][1] = (1 - $scope.surplusShelf[1][1]) * 100;
-                    // $scope.showSurplusShelf=$scope.percentageShelf[market-1][category-1];
-                    // $scope.showPercentageShelf=$scope.percentageShelf[market-1][category-1];
-                    url = '/checkRetailerDecision/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
+                    url = '/checkRetailerDecisionStatus/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
                     return $http({
                         method: 'GET',
                         url: url
                     });
                 }).then(function(data) {
-                    if (data.data == "isReady") {
-                        $scope.isRetailerDecisionReady = true;
-                    } else {
-                        $scope.isRetailerDecisionReady = false;
-                    }
+                    $scope.isContractDeal=data.data.isContractDeal;
+                    $scope.isContractFinalized=data.data.isContractFinalized;
+                    $scope.isDecisionCommitted=data.data.isDecisionCommitted;
                 })
             }
 
@@ -127,7 +123,7 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 
             $scope.switching = switching;
             $scope.showNegotiationAgreements = showNegotiationAgreements;
-            $scope.showView = showView;
+            $scope.loadBackgroundDataAndCalculateDecisionInfo = loadBackgroundDataAndCalculateDecisionInfo;
 
             $scope.myModel = "hello";
             $scope.chartSeries = [{
@@ -144,31 +140,42 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
                 ]
             }];
 
-            showView();
+            loadBackgroundDataAndCalculateDecisionInfo();
             showNegotiationAgreements();
 
             //handle Retailer Decision module push notification messages
             $scope.$on('reloadRetailerBudgetMonitor', function(event) {
-                showView();
+                loadBackgroundDataAndCalculateDecisionInfo();
             });
 
             $scope.$on('retailerDecisionBaseChangedFromServer', function(event, data, newBase) {
-                showView();
+                loadBackgroundDataAndCalculateDecisionInfo();
                 notify('Decision has been saved, Retailer ' + data.retailerID + ' Period ' + data.period + '.');
             });
 
             $scope.$on('retailerDecisionReloadError', function(event, data, newBase) {
-                showView();
+                loadBackgroundDataAndCalculateDecisionInfo();
                 notify('Decision reload Error occur, Retailer ' + data.retailerID + ' Period ' + data.period + '.');
             });
 
             $scope.$on('retailerMarketResearchOrdersChanged', function(event, data) {
-                showView();
+                loadBackgroundDataAndCalculateDecisionInfo();
                 notify('Decision has been saved, Retailer ' + data.retailerID + ' Period ' + data.period + '.');
             });
 
+            $scope.$on('retailerContractDeal', function(event, data) {
+                loadBackgroundDataAndCalculateDecisionInfo();
+                notify('Time is up, Contract Deal. retailer ' + data.roleID + ' Period ' + data.period + '.');
+            });
+
+            $scope.$on('retailerContractFinalized', function(event, data) {
+                loadBackgroundDataAndCalculateDecisionInfo();
+                notify('Time is up, ContractFinalized. retailer ' + data.roleID + ' Period ' + data.period + '.');
+
+            });
+
             $scope.$on('retailerDecisionLocked', function(event, data) {
-                showView();
+                loadBackgroundDataAndCalculateDecisionInfo();
                 notify('Time is up, Lock Decision. Retailer ' + data.roleID + ' Period ' + data.period + '.');
             });
 

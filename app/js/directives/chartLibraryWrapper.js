@@ -872,11 +872,11 @@ define(['directives'], function(directives) {
                             $('#clockChart').highcharts({
                                 chart: {
                                     type: 'pie',
-                                    height:250,
-                                    width:250
+                                    height:200,
+                                    width:200
                                 },
                                 title: {
-                                    text: ''
+                                    text: '',
                                 },
                                 credits: {
                                     enabled: false
@@ -895,20 +895,9 @@ define(['directives'], function(directives) {
                                     pie: {
                                         borderColor: null,
                                         innerSize: '70%',
-                                        dataLabels: {
-                                            enabled: true,
-                                            distance: -105,
-                                            formatter: function () {
-                                                if (this.point.name != mark) {
-                                                    return "";
-                                                } else {
-                                                    return 'Time Left:'+this.y;                                    
-                                                }
-                                            },
-                                            style: {
-                                                fontSize: "15px"
-                                            }
-                                        }
+                                         dataLabels: {
+                                             enabled: false,
+                                         }
                                     },
                                     series: {
                                         animation: {

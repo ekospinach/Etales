@@ -8,7 +8,10 @@ define(['directives', 'services'], function(directives) {
                     isPageLoading: '=',
                     selectedPlayer: '=',
                     selectedPeriod: '=',
-                    isReady: '='
+                    isPortfolioDecisionCommitted: '=',
+                    isContractDeal: '=',
+                    isContractFinalized: '=',
+                    isDecisionCommitted: '='
                 },
                 restrict: 'E',
                 templateUrl: '../../partials/singleReportTemplate/SD_productPortfolioManagement.html',
@@ -18,9 +21,9 @@ define(['directives', 'services'], function(directives) {
                         console.log('initializePage some small...');
                         scope.isPageLoading = true;
                         scope.isResultShown = false;
-                        scope.Label         = Label;
+                        scope.Label = Label;
                         scope.currentPeriod = scope.selectedPeriod;
-                        scope.packs         = [{
+                        scope.packs = [{
                             value: 1,
                             text: Label.getContent('ECONOMY')
                         }, {
@@ -49,10 +52,10 @@ define(['directives', 'services'], function(directives) {
                     }
 
                     var loadSelectCategory = function(category) {
-                        var count      = 0;
+                        var count = 0;
                         var categoryID = 1;
-                        var products   = new Array();
-                        var postDatas  = new Array();
+                        var products = new Array();
+                        var postDatas = new Array();
                         if (category == "HealthBeauty") {
                             categoryID = 2;
                         } else {
@@ -176,12 +179,12 @@ define(['directives', 'services'], function(directives) {
                         if (!filter.test(value)) {
                             d.resolve(Label.getContent('Input a Integer'));
                         }
-                        var url = '/checkProducerPortfolioDecision/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + parseInt(scope.selectedPlayer);
+                        var url = '/checkProducerDecisionStatus/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + parseInt(scope.selectedPlayer);
                         $http({
                             method: 'GET',
                             url: url
                         }).then(function(data) {
-                            if (data.data == "isReady") {
+                            if (data.data.isPortfolioDecisionCommitted) {
                                 d.resolve(Label.getContent('Check Error'));
                             }
                             url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (scope.selectedPeriod - 1) + '/P/' + parseInt(scope.selectedPlayer);
@@ -215,12 +218,12 @@ define(['directives', 'services'], function(directives) {
                         if (!filter.test(value)) {
                             d.resolve(Label.getContent('Input a Integer'));
                         }
-                        var url = '/checkProducerPortfolioDecision/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + parseInt(scope.selectedPlayer);
+                        var url = '/checkProducerDecisionStatus/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + parseInt(scope.selectedPlayer);
                         $http({
                             method: 'GET',
                             url: url
                         }).then(function(data) {
-                            if (data.data == "isReady") {
+                            if (data.data.isPortfolioDecisionCommitted) {
                                 d.resolve(Label.getContent('Check Error'));
                             }
                             url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (scope.selectedPeriod - 1) + '/P/' + parseInt(scope.selectedPlayer);
@@ -253,12 +256,12 @@ define(['directives', 'services'], function(directives) {
                         if (!filter.test(value)) {
                             d.resolve(Label.getContent('Input a Integer'));
                         }
-                        var url = '/checkProducerPortfolioDecision/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + parseInt(scope.selectedPlayer);
+                        var url = '/checkProducerDecisionStatus/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + parseInt(scope.selectedPlayer);
                         $http({
                             method: 'GET',
                             url: url
                         }).then(function(data) {
-                            if (data.data == "isReady") {
+                            if (data.data.isPortfolioDecisionCommitted) {
                                 d.resolve(Label.getContent('Check Error'));
                             }
                             url = "/producerCurrentDecision/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + parseInt(scope.selectedPlayer) + '/' + brandName + '/' + varName;
@@ -299,12 +302,12 @@ define(['directives', 'services'], function(directives) {
                         }
 
                         //Validation 2: Check if supplier has submitted portfolio decision 
-                        var url = '/checkProducerPortfolioDecision/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + parseInt(scope.selectedPlayer);
+                        var url = '/checkProducerDecisionStatus/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + parseInt(scope.selectedPlayer);
                         $http({
                             method: 'GET',
                             url: url
                         }).then(function(data) {
-                            if (data.data == "isReady") {
+                            if (data.data.isPortfolioDecisionCommitted) {
                                 d.resolve(Label.getContent('Supplier has submit portfolio decision, input LOCK.'));
                             }
                             var postData = {
@@ -677,7 +680,7 @@ define(['directives', 'services'], function(directives) {
                         var postData;
 
                         //lock button 
-                        scope.isReady = true;
+                        scope.isPortfolioDecisionCommitted = true;
                         //step 0: Delete all the related contract schema and contractDetails schema 
                         var contractCode = 'P' + scope.selectedPlayer + 'andR1_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + scope.selectedPeriod;
                         $http({
@@ -720,7 +723,7 @@ define(['directives', 'services'], function(directives) {
                             });
                         }).then(function(data) {
 
-                        //step 1: Add contract schema between current supplier and retailer 1 
+                            //step 1: Add contract schema between current supplier and retailer 1 
                             postData = {
                                 period: scope.selectedPeriod,
                                 seminar: SeminarInfo.getSelectedSeminar().seminarCode,
@@ -738,7 +741,7 @@ define(['directives', 'services'], function(directives) {
 
                             console.log('created contract schema between supplier ' + postData.producerID + ' and retailer ' + postData.retailerID);
 
-                        //step 2: Add contract schema between current supplier and retailer 2
+                            //step 2: Add contract schema between current supplier and retailer 2
                             postData.retailerID = 2;
                             return $http({
                                 method: 'POST',
@@ -748,8 +751,8 @@ define(['directives', 'services'], function(directives) {
                         }).then(function(data) {
                             console.log('created contract schema between supplier ' + postData.producerID + ' and retailer ' + postData.retailerID);
 
-                        //step 3: Add related contract details for two contact schema
-                        //TODO: need to update field "isNewProduct" and "isCompositionModifed" in smart way                    
+                            //step 3: Add related contract details for two contact schema
+                            //TODO: need to update field "isNewProduct" and "isCompositionModifed" in smart way                    
                             var contractCode = 'P' + scope.selectedPlayer + 'andR1_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + scope.selectedPeriod;
                             return contractDetailsCreateShooter(contractCode, scope.productes);
 
@@ -767,7 +770,7 @@ define(['directives', 'services'], function(directives) {
                             return contractDetailsCreateShooter(contractCode, scope.producths);
                         }).then(function(data) {
 
-                        //step 4: after everything related have been inserted into DB, send request to /submitDecision to block input interface
+                            //step 4: after everything related have been inserted into DB, send request to /submitDecision to block input interface
                             var queryCondition = {
                                 producerID: parseInt(scope.selectedPlayer),
                                 seminar: SeminarInfo.getSelectedSeminar().seminarCode,
@@ -780,6 +783,7 @@ define(['directives', 'services'], function(directives) {
                                 data: queryCondition
                             });
                         }).then(function(data) {
+                            scope.isCommitConfirmInfoShown = false;
                             console.log('Submitted decision complete, lock input.');
                         }, function(data) {
                             if (data.msg != undefined) {
@@ -800,8 +804,8 @@ define(['directives', 'services'], function(directives) {
                                 varID: products[idx].varID,
                                 composition: products[idx].composition,
                                 currentPriceBM: products[idx].currentPriceBM,
-                                packFormat:products[idx].realPackFormat,
-                                seminar : SeminarInfo.getSelectedSeminar().seminarCode
+                                packFormat: products[idx].realPackFormat,
+                                seminar: SeminarInfo.getSelectedSeminar().seminarCode
                             }
                             $http({
                                 method: 'POST',

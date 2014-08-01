@@ -161,6 +161,8 @@
 						<tr>
 							<td></td>
 							<td>Is portfolio decision committed?</td>
+							<td>Is contract deal?</td>
+							<td>Is contract finalized?</td>
 							<td>Is decision committed(Lock)?</td>
 						</tr>
 					</thead>
@@ -168,9 +170,17 @@
 						<tr ng-repeat='periodInfo in supplier.decisionCommitStatus'>
 							<td><strong>Period {{periodInfo.period}}</strong></td>
 							<td>
-								<a href="#" editable-checkbox="periodInfo.isPortfolioDecisionCommitted" onaftersave="updatePortfolioDecisionCommittedChanged(supplier.producerID, periodInfo.period, periodInfo.isPortfolioDecisionCommitted)">{{periodInfo.isPortfolioDecisionCommitted}} </a>				
+								<a href="#" editable-checkbox="periodInfo.isPortfolioDecisionCommitted" onaftersave="updatePortfolioDecisionCommittedChanged(supplier.producerID, periodInfo.period, periodInfo.isPortfolioDecisionCommitted)">{{periodInfo.isPortfolioDecisionCommitted}} </a>		
 							</td>
-							<td><a href="#" editable-checkbox="periodInfo.isDecisionCommitted" onaftersave="updateFinalDecisionCommittedChanged('Producer', supplier.producerID, periodInfo.period, periodInfo.isDecisionCommitted)">{{periodInfo.isDecisionCommitted}}</a></td>
+							<td>
+								<a href="#" editable-checkbox="periodInfo.isContractDeal" onaftersave="updateContractDealChanged('Producer',supplier.producerID, periodInfo.period, periodInfo.isContractDeal)">{{periodInfo.isContractDeal}} </a>		
+							</td>
+							<td>
+								<a href="#" editable-checkbox="periodInfo.isContractFinalized" onaftersave="updateContractFinalizedChanged('Producer',supplier.producerID, periodInfo.period, periodInfo.isContractFinalized)">{{periodInfo.isContractFinalized}} </a>
+							</td>
+							<td>
+								<a href="#" editable-checkbox="periodInfo.isDecisionCommitted" onaftersave="updateFinalDecisionCommittedChanged('Producer', supplier.producerID, periodInfo.period, periodInfo.isDecisionCommitted)">{{periodInfo.isDecisionCommitted}}</a>
+							</td>
 						</tr>
 					</tbody>
 				</table>
@@ -185,13 +195,25 @@
 					<thead>
 						<tr>
 							<td></td>
+							<td>Is contract deal?</td>
+							<td>Is contract finalized?</td>
 							<td>Is decision committed(Lock)?</td>
 						</tr>
 					</thead>
 					<tbody>
 						<tr ng-repeat='periodInfo in retailer.decisionCommitStatus'>
-							<td><strong>Period {{periodInfo.period}}</strong></td>
-							<td><a href="#" editable-checkbox="periodInfo.isDecisionCommitted" onaftersave="updateFinalDecisionCommittedChanged('Retailer', retailer.retailerID, periodInfo.period, periodInfo.isDecisionCommitted)">{{periodInfo.isDecisionCommitted}}</a></td>
+							<td>
+								<strong>Period {{periodInfo.period}}</strong>
+							</td>
+							<td>
+								<a href="#" editable-checkbox="periodInfo.isContractDeal" onaftersave="updateContractDealChanged('Retailer', retailer.retailerID, periodInfo.period, periodInfo.isContractDeal)">{{periodInfo.isContractDeal}}</a>
+							</td>
+							<td>
+								<a href="#" editable-checkbox="periodInfo.isContractFinalized" onaftersave="updateContractFinalizedChanged('Retailer', retailer.retailerID, periodInfo.period, periodInfo.isContractFinalized)">{{periodInfo.isContractFinalized}}</a>
+							</td>
+							<td>
+								<a href="#" editable-checkbox="periodInfo.isDecisionCommitted" onaftersave="updateFinalDecisionCommittedChanged('Retailer', retailer.retailerID, periodInfo.period, periodInfo.isDecisionCommitted)">{{periodInfo.isDecisionCommitted}}</a>
+							</td>
 						</tr>
 					</tbody>
 				</table>

@@ -8,7 +8,10 @@ define(['directives', 'services'], function(directives) {
                     isPageLoading: '=',
                     selectedPlayer: '=',
                     selectedPeriod: '=',
-                    isPortfolioDecisionReady: '='
+                    isPortfolioDecisionCommitted:'=',
+                    isContractDeal:'=',
+                    isContractFinalized:'=',
+                    isDecisionCommitted:'='
                 },
                 restrict: 'E',
                 templateUrl: '../../partials/singleReportTemplate/SD_negotiationAgreements.html',
@@ -120,7 +123,7 @@ define(['directives', 'services'], function(directives) {
                             negotiationACmax = data.data.productionCapacity[category - 1];
                             max = data.data.budgetAvailable + data.data.budgetSpentToDate;  
 
-                            url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + scope.selectedPlayer + '/' + brandName + '/' + varName;
+                            url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + scope.selectedPlayer + '/' + brandName + '/' + varName + '/volumeDiscount/' + retailerID;
                             console.log(url);
                             return $http({
                                 method: 'GET',
@@ -275,8 +278,6 @@ define(['directives', 'services'], function(directives) {
                             if (data.data == "unReady") {
                                 d.resolve(Label.getContent('set Target Volume first'))
                             }
-
-
                             url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (scope.selectedPeriod - 1) + '/P/' + scope.selectedPlayer;
                             return $http({
                                 method: 'GET',
@@ -288,7 +289,7 @@ define(['directives', 'services'], function(directives) {
                             negotiationACmax = data.data.productionCapacity[category - 1];
                             max = data.data.budgetAvailable + data.data.budgetSpentToDate;  
 
-                            url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + scope.selectedPlayer + '/' + brandName + '/' + varName;
+                            url = '/getContractExpend/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + scope.selectedPeriod + '/' + scope.selectedPlayer + '/' + brandName + '/' + varName + '/performanceBonus/' + retailerID;
                             console.log(url);
                             return $http({
                                 method: 'GET',
@@ -380,7 +381,7 @@ define(['directives', 'services'], function(directives) {
                     /*
                          Compensation Rage
                     */ 
-                    scope.checkOtherCompensation = function(contractCode, brandName, varName, category, value, retailerID) {
+                    scope.checkOtherCompensation = function(contractCode,producerID,retailerID, brandName, varName, category, value) {
                         var d = $q.defer();
                         var supplierOtherCompensation = retailerOtherCompensation = 0;
                         var filter = /^-?[0-9]+([.]{1}[0-9]{1,2})?$/;
@@ -503,7 +504,7 @@ define(['directives', 'services'], function(directives) {
 
                     var initializePage = function() {
                         //if Portfolio deicison isReady                            
-                        if(scope.isPortfolioDecisionReady){
+                        if(scope.isPortfolioDecisionCommitted){
                             scope.isPageLoading = true;
                             scope.isResultShown = false;
                             scope.Label = Label;                    
@@ -515,6 +516,7 @@ define(['directives', 'services'], function(directives) {
 
                     var getResult = function(retailerID) {
                         var url = '/getContractDetails/' + 'P' + scope.selectedPlayer + 'andR' + retailerID + '_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + scope.selectedPeriod;
+                        console.log(url);
                         $http({
                             method: 'GET',
                             url: url,
@@ -613,6 +615,22 @@ define(['directives', 'services'], function(directives) {
                         return d.promise;
                     }
 
+                    scope.dealConteact=function(){
+                        var postData={
+                            producerID:1,
+                            retailerID:1,
+                            seminar:'EJT2',
+                            period:1
+                        }
+                        $http({
+                            method:'POST',
+                            url:'/dealContractDetails',
+                            data:postData
+                        }).then(function(data){
+                            console.log(data.data);
+                        })
+                    }
+
                     scope.$watch('isPageShown', function(newValue, oldValue) {
                         if (newValue == true) {
                             initializePage();
@@ -628,6 +646,18 @@ define(['directives', 'services'], function(directives) {
                         getResult(data.retailerID);                        
                         notify('Negotiation has been updated by Retailer' + data.retailerID  + ' Period ' + data.period + '.');
                     });
+
+                    scope.$on('ContractDeal',function(event,data){
+                        getResult(1);
+                        getResult(2);
+                        notify('Time is up, Contract Deal,Period ' + data.period + '.');
+                    });
+
+                    // scope.$on('ContractFinalized',function(event,data){
+                    //     getResult(1);
+                    //     getResult(2);
+                    //     notify('Time is up, Contract Finalized,Period ' + data.period + '.');
+                    // });
 
                 }
             }
