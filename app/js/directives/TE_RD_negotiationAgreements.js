@@ -645,10 +645,10 @@ define(['directives', 'services'], function(directives) {
                         notify('Time is up, Contract Deal,Period ' + data.period + '.');
                     })
 
-                    scope.$on('ContractFinalized',function(event,data){
-                        getResult(data.producerID);
-                        notify('Time is up, Contract Finalized,Period ' + data.period + '.');
-                    });
+                    // scope.$on('ContractFinalized',function(event,data){
+                    //     getResult(data.producerID);
+                    //     notify('Time is up, Contract Finalized,Period ' + data.period + '.');
+                    // });
 
                 }
             }

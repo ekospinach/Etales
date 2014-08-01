@@ -441,9 +441,10 @@ exports.submitContractFinalized=function(io){
 				}				
 				doc.save(function(err){
 					if(!err){
-						if(queryCondition.role=="Producer"){
-							io.sockets.emit('socketIO:contractDeal', {seminar : queryCondition.seminar, producerID: queryCondition.roleID, period : queryCondition.period});
-						}
+						// if(queryCondition.role=="Producer"){
+						// 	io.sockets.emit('socketIO:Finalized', {seminar : queryCondition.seminar, producerID: queryCondition.roleID, period : queryCondition.period});
+						// }
+						io.sockets.emit('socketIO:contractFinalized', {seminar : queryCondition.seminar, role: queryCondition.role, roleID : queryCondition.roleID, period : queryCondition.period});
 						res.send(200,'success');
 					}else{						
 						res.send(400,'fail');

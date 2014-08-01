@@ -175,32 +175,31 @@ define(['app', 'socketIO'], function(app) {
 					value: value
 				}
 
-				/*change the contract from previous period*/
-				if(role=='Producer'){
-					var url='/getContractDetails/P'+roleID+'andR1_'+$scope.seminar.seminarCode+'_'+period;
-					$http({
-						method:'GET',
-						url:url
-					}).then(function(data){
-						return finalizedContractDetailShooter(data.data,value);
-					}).then(function(data){
-						var url='/getContractDetails/P'+roleID+'andR2_'+$scope.seminar.seminarCode+'_'+period;
-						return $http({
-							method:'GET',
-							url:url
-						});
-					}).then(function(data){
-						return finalizedContractDetailShooter(data.data,value);
-					}).then(function(data){
-						return $http({
-							method: 'POST',
-							url: '/submitContractFinalized',
-							data: queryCondition
-						})
-					}).then(function(data){
-						console.log('finish contract deal');
-					})
-				}else{
+				// if(role=='Producer'){
+				// 	var url='/getContractDetails/P'+roleID+'andR1_'+$scope.seminar.seminarCode+'_'+period;
+				// 	$http({
+				// 		method:'GET',
+				// 		url:url
+				// 	}).then(function(data){
+				// 		return finalizedContractDetailShooter(data.data,value);
+				// 	}).then(function(data){
+				// 		var url='/getContractDetails/P'+roleID+'andR2_'+$scope.seminar.seminarCode+'_'+period;
+				// 		return $http({
+				// 			method:'GET',
+				// 			url:url
+				// 		});
+				// 	}).then(function(data){
+				// 		return finalizedContractDetailShooter(data.data,value);
+				// 	}).then(function(data){
+				// 		return $http({
+				// 			method: 'POST',
+				// 			url: '/submitContractFinalized',
+				// 			data: queryCondition
+				// 		})
+				// 	}).then(function(data){
+				// 		console.log('finish contract deal');
+				// 	})
+				// }else{
 					$http({
 						method: 'POST',
 						url: '/submitContractFinalized',
@@ -210,7 +209,7 @@ define(['app', 'socketIO'], function(app) {
 					}).error(function(data, status, headers, config) {
 						console.log('update commit Contract Finalized status failed.');
 					})
-				}
+				//}
 
 			}
 

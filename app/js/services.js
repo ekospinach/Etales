@@ -347,11 +347,11 @@ define(['angular',
 						}
 					})
 
-					socket.on('socketIO:contractFinalized',function(data){
-						if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode){
-							$rootScope.$broadcast('ContractFinalized',data);
-						}
-					})
+					// socket.on('socketIO:contractFinalized',function(data){
+					// 	if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode){
+					// 		$rootScope.$broadcast('ContractFinalized',data);
+					// 	}
+					// })
 				}
 			}
 		}]
