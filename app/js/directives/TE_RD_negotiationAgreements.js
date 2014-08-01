@@ -641,10 +641,14 @@ define(['directives', 'services'], function(directives) {
                     });
                     
                     scope.$on('ContractDeal',function(event,data){
-                        console.log('meeeeeeeeeeee');
                         getResult(data.producerID);
                         notify('Time is up, Contract Deal,Period ' + data.period + '.');
                     })
+
+                    scope.$on('ContractFinalized',function(event,data){
+                        getResult(data.producerID);
+                        notify('Time is up, Contract Finalized,Period ' + data.period + '.');
+                    });
 
                 }
             }

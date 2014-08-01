@@ -376,7 +376,6 @@ exports.submitContractDeal=function(io){
 						for (var i = 0; i < doc.producers[queryCondition.roleID - 1].decisionCommitStatus.length; i++) {
 							if (doc.producers[queryCondition.roleID - 1].decisionCommitStatus[i].period == queryCondition.period) {
 								doc.producers[queryCondition.roleID - 1].decisionCommitStatus[i].isContractDeal = queryCondition.value;
-								console.log(doc.producers[queryCondition.roleID - 1].decisionCommitStatus[i].isContractDeal);
 							}
 						}
 						doc.markModified('producers');
@@ -385,7 +384,6 @@ exports.submitContractDeal=function(io){
 						for (var i = 0; i < doc.retailers[queryCondition.roleID - 1].decisionCommitStatus.length; i++) {
 							if (doc.retailers[queryCondition.roleID - 1].decisionCommitStatus[i].period == queryCondition.period) {
 								doc.retailers[queryCondition.roleID - 1].decisionCommitStatus[i].isContractDeal = queryCondition.value;
-								console.log(doc.retailers[queryCondition.roleID - 1].decisionCommitStatus[i].isContractDeal);
 							}
 						}
 						doc.markModified('retailers');
@@ -443,7 +441,9 @@ exports.submitContractFinalized=function(io){
 				}				
 				doc.save(function(err){
 					if(!err){
-						io.sockets.emit('socketIO:contractFinalized', {seminar : queryCondition.seminar, role: queryCondition.role, roleID : queryCondition.roleID, period : queryCondition.period});
+						if(queryCondition.role=="Producer"){
+							io.sockets.emit('socketIO:contractDeal', {seminar : queryCondition.seminar, producerID: queryCondition.roleID, period : queryCondition.period});
+						}
 						res.send(200,'success');
 					}else{						
 						res.send(400,'fail');

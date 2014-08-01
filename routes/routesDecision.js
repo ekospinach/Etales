@@ -54,6 +54,8 @@ module.exports = function(app, io){
     app.post('/addContract',                                                                                require('./../api/models/contract.js').addContract(io));
     app.post('/addContractDetails',                                                                         require('./../api/models/contract.js').addContractDetails(io));
     app.post('/dealContractDetail',                                                                         require('./../api/models/contract.js').dealContractDetail(io));
+    app.post('/finalizedContractDetail',                                                                    require('./../api/models/contract.js').finalizedContractDetail(io));
+    
     app.get('/getContractDetails/:contractCode',                                                            require('./../api/models/contract.js').getContractDetails);
     app.get('/getContractUnApprovedDetails/:contractCode',                                                  require('./../api/models/contract.js').getContractUnApprovedDetails);
     app.get('/getContractDetail/:contractCode/:brandName/:varName',                                         require('./../api/models/contract.js').getContractDetail);

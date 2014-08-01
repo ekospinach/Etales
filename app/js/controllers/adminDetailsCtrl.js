@@ -88,17 +88,36 @@ define(['app', 'socketIO'], function(app) {
 						});
 					});
 				})(allDetails,0);
+				return deferred.promise;
 			}
 
-			$scope.dealContract=function(){
-				var url='/getContractUnApprovedDetails/P1andR1_EJT2_1';
-				$http({
-					method:'GET',
-					url:url
-				}).then(function(data){
-					var details=data.data;
-					return dealContractDetailShooter(details);
-				});
+			function finalizedContractDetailShooter(allDetails,value){
+				var deferred = $q.defer();
+				(function multipleRequestShooter(details,value,idx){
+					var shooterData={
+						detail:details[idx],
+						value:value
+					}
+					$http({
+						method:'POST',
+						url:'/finalizedContractDetail',
+						data:shooterData
+					}).then(function(data){
+						if(idx<details.length-1){
+							idx++;
+							multipleRequestShooter(details,value,idx);
+						}else{
+							deferred.resolve({
+                                msg: 'finalized details shooter done '
+                            });
+						}
+					},function(data){
+						deferred.reject({
+							msg:'Err from finalized details'
+						});
+					});
+				})(allDetails,value,0);
+				return deferred.promise;
 			}
 
 			$scope.updateContractDealChanged = function(role, roleID, period, value) {
@@ -156,15 +175,42 @@ define(['app', 'socketIO'], function(app) {
 					value: value
 				}
 
-				$http({
-					method: 'POST',
-					url: '/submitContractFinalized',
-					data: queryCondition
-				}).success(function(data, status, headers, config) {
-					console.log('update commit Contract Finalized status successfully');
-				}).error(function(data, status, headers, config) {
-					console.log('update commit Contract Finalized status failed.');
-				})
+				/*change the contract from previous period*/
+				if(role=='Producer'){
+					var url='/getContractDetails/P'+roleID+'andR1_'+$scope.seminar.seminarCode+'_'+period;
+					$http({
+						method:'GET',
+						url:url
+					}).then(function(data){
+						return finalizedContractDetailShooter(data.data,value);
+					}).then(function(data){
+						var url='/getContractDetails/P'+roleID+'andR2_'+$scope.seminar.seminarCode+'_'+period;
+						return $http({
+							method:'GET',
+							url:url
+						});
+					}).then(function(data){
+						return finalizedContractDetailShooter(data.data,value);
+					}).then(function(data){
+						return $http({
+							method: 'POST',
+							url: '/submitContractFinalized',
+							data: queryCondition
+						})
+					}).then(function(data){
+						console.log('finish contract deal');
+					})
+				}else{
+					$http({
+						method: 'POST',
+						url: '/submitContractFinalized',
+						data: queryCondition
+					}).success(function(data, status, headers, config) {
+						console.log('update commit Contract Finalized status successfully');
+					}).error(function(data, status, headers, config) {
+						console.log('update commit Contract Finalized status failed.');
+					})
+				}
 
 			}
 

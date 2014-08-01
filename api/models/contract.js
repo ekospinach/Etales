@@ -333,7 +333,6 @@ exports.addContractDetails = function(io) {
 
 exports.dealContractDetail = function(io) {
      return function(req, res, next) {
-          console.log(req.body.detail);
 
           var detail = req.body.detail;
           var currentPeriodCode = detail.contractCode;
@@ -360,7 +359,6 @@ exports.dealContractDetail = function(io) {
                     if (err) {
                          next(new Error(err));
                     }
-                    console.log(previousDoc);
 
                     //check previous period input first, if anything, copy original ones.
                     if (previousDoc) {
@@ -393,6 +391,32 @@ exports.dealContractDetail = function(io) {
                          });
                     }
                })
+     }
+}
+
+exports.finalizedContractDetail=function(io){
+     return function(req,res,next){
+          var detail = req.body.detail;
+          contractVariantDetails.findOne({
+               contractCode:detail.contractCode,
+               parentBrandName: detail.parentBrandName,
+               variantName: detail.variantName
+          },function(err,doc){
+               if (err) {
+                    next(new Error(err));
+               }
+               if(doc){
+                    doc.isProducerApproved=req.body.value;
+                    doc.isRetailerApproved=req.body.value;
+                    doc.save(function(err){
+                         if(!err){
+                              res.send(200,'success');
+                         }else{                             
+                              res.send(400,'fail');
+                         }
+                    })
+               }
+          })
      }
 }
 
