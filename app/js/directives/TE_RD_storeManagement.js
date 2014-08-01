@@ -326,14 +326,14 @@ define(['directives', 'services'], function(directives){
                         var checkurls=new Array();
                         for(i=0;i<3;i++){
                             urls[i]='/producerProducts/'+(i+1)+'/'+scope.selectedPeriod+'/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+category;
-                            checkurls[i]='/checkProducerPortfolioDecision/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod+'/'+(i+1);
+                            checkurls[i]='/checkProducerDecisionStatus/'+SeminarInfo.getSelectedSeminar().seminarCode+'/'+scope.selectedPeriod+'/'+(i+1);
                         }
                         (function multipleRequestShooter(checkurls,urls,idx){
                             $http({
                                 method:'GET',
                                 url:checkurls[idx]
                             }).then(function(data){
-                                if(data.data=="unReady"){
+                                if(!data.data.isPortfolioDecisionCommitted){
                                     urls[idx]="/";
                                 }
                                 return $http({
