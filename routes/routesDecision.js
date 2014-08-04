@@ -109,5 +109,7 @@ module.exports = function(app, io){
     //Get retailer additional budget from Supplier of current period(other compensation + volume discount )
     app.get('/getRetailerAdditionalBudget/:seminar/:period/:retailerID',        require('./../api/models/contract.js').getRetailerAdditionalBudget); 
 
+    app.get('/timer', require('./../api/models/seminar').setTimer(io));
+
 
 };

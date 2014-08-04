@@ -298,6 +298,23 @@ define(['angular',
 		};
 	}]);
 
+	services.provider('TimerBase', function(){
+		var userRoles = routingConfig.userRoles;
+
+		this.$get = ['$q', '$rootScope','$http','SeminarInfo','PlayerInfo','RoleInfo','PeriodInfo', function($q, $rootScope, $http, SeminarInfo, PlayerInfo, RoleInfo, PeriodInfo){
+			return {
+				startListenChangeFromServer : function(){
+					var socket = io.connect();
+
+					socket.on('timer', function(data){	
+						console.log(data.msg);
+					});	
+
+				}
+			}
+		}]
+	})
+
 	services.provider('NegotiationBase', function(){
 		var userRoles = routingConfig.userRoles;
 
