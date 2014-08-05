@@ -1137,7 +1137,7 @@ exports.setTimer = function(io){
 			console.log('find timer: ' + util.inspect(timer));
 
 			//user choose to reset
-			if(req.body.active == 'true'){ 
+			if(req.body.active == 'switchOn'){ 
 				//remove existed one first 
 				clearInterval(timer);
 				timers = _.reject(timers, function(obj){
@@ -1152,12 +1152,12 @@ exports.setTimer = function(io){
 			}
 		//create a new timer and push into memory
 		//if timer requested is not existed and user choose to start a new one instead of stopping existed one
-		} else if ((timer == undefined) && (req.body.active == 'true')){			
+		} else if ((timer == undefined) && (req.body.active == 'switchOn')){			
 
 			timers.push(createNewTimer(req.body.seminarCode, 10, io, timersEvents));                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          				
 			res.send(200, 'start a new timer: ' + req.body.seminarCode);
 
-		} else if ((timer == undefined) && (req.body.active == 'false')){
+		} else if ((timer == undefined) && (req.body.active == 'switchOff')){
 			res.send(400, 'cannot stop nonexistent timer: ' + req.body.seminarCode);	
 		}
 	
