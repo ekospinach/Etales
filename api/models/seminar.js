@@ -6,7 +6,8 @@ var mongoose = require('mongoose'),
 	passport = require('passport'),
 	LocalStrategy = require('passport-local').Strategy,
 	userRoles = require('../../app/js/routingConfig').userRoles,
-	check = require('validator');
+	check = require('validator'),
+	events = require('events');
 
 var seminarSchema            = mongoose.Schema({
 	seminarCode                  : {type:String, require:true, unique:true},
@@ -1065,28 +1066,101 @@ exports.duplicateSeminar = function(req, res, next){
 	})	
 }
 
-exports.setTimer = function(io, timer){
-	var timer;
+function createNewTimer(seminarCode, countDown, io, timersEvents){	
+		newTimer = setInterval(function(){
+			countDown--;
+			console.log('countDown on server, ' + seminarCode + ' : ' +  countDown);
+			if(countDown == 0){
+				console.log('time is up, clear timer:' + seminarCode);
+				timersEvents.emit('clearTimer', seminarCode);
+			} else {
+				io.sockets.emit('timer', {msg: seminarCode + ':' + countDown});
+			}
+		}, 1000);   
+		newTimer.seminarCode = seminarCode;			
+		return newTimer;
+}
+
+exports.setTimer = function(io){
+	var timers = [];
+	var timersEvents = new events.EventEmitter();
+
+	timersEvents.on('clearTimer', function(seminarCode){
+		singleTimer = _.find(timers, function(obj){
+			return obj.seminarCode == seminarCode;
+		});		
+
+		if(singleTimer){ 
+			clearInterval(singleTimer); 
+			console.log('timer is cleared ' + seminarCode + ' from event.');
+		} 		
+	}).on('deadlinePortfolio', function(){
+		//set isPortfolioDecisionCommitted = true for all the suppliers 
+		//then do all the related io.sockets.emit()...
+
+	}).on('deadlineContractDeal', function(){
+		//....
+
+	}).on('deadlineContractFinalized', function(){
+		//....
+
+	}).on('deadlineDecisionCommitted', function(){
+		//....
+
+	});
 
 	return function(req, res, next){
-		var countDown = 20;
+		var seminarCode = req.body.seminarCode;
+		var countDown;		
 
-		if(timer){
-			clearInterval(timer);
-			timer = undefined;
-			res.send(200, 'remove timer');
-		} else {			
-			timer = setInterval(function(){
-				countDown--;
-				if(countDown == 0){
-					clearInterval(timer);
-					timer = undefined;
-				} else {
-					io.sockets.emit('timer', {msg: countDown});
-				}
-			}, 1000);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             				
-			res.send(200, 'start timer');
+		// seminar.findOne({seminarCode: req.body.seminarCode}, function(){
+		// 	find all the time slots and organize countDown
+		// 	countDown = { 
+		// 		portfolio : 20, 
+		// 		contractDeal 20, 
+		// 		contractFinalized : 20, 
+		// 		contractDecisionCommitted : 20,
+		// 		total : 80
+		// 	} 
+		// 	use it for createNewTimer(seminarCode, countDown, io, timersEvents)	
+
+		// 	MAKE SURE to put all the code below into this callback 
+		// });
+
+		timer = _.find(timers, function(obj){
+			return obj.seminarCode == req.body.seminarCode;
+		});
+
+		console.log('timers : ' + util.inspect(timers));
+		//find existed timer in memory
+		if(timer){			
+			console.log('find timer: ' + util.inspect(timer));
+
+			//user choose to reset
+			if(req.body.active == 'true'){ 
+				//remove existed one first 
+				clearInterval(timer);
+				timers = _.reject(timers, function(obj){
+					return obj.seminarCode == timer.seminarCode;
+				});				
+				timers.push(createNewTimer(req.body.seminarCode, 10, io, timersEvents));
+				res.send(200, 'reset timer: ' + req.body.seminarCode);
+			//user choose to stop timer
+			} else {
+				clearInterval(timer);
+				res.send(200, 'stop timer: ' + timer.seminarCode);				
+			}
+		//create a new timer and push into memory
+		//if timer requested is not existed and user choose to start a new one instead of stopping existed one
+		} else if ((timer == undefined) && (req.body.active == 'true')){			
+
+			timers.push(createNewTimer(req.body.seminarCode, 10, io, timersEvents));                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          				
+			res.send(200, 'start a new timer: ' + req.body.seminarCode);
+
+		} else if ((timer == undefined) && (req.body.active == 'false')){
+			res.send(400, 'cannot stop nonexistent timer: ' + req.body.seminarCode);	
 		}
+	
 	}
 }
 
