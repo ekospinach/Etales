@@ -1079,13 +1079,36 @@ exports.duplicateSeminar = function(req, res, next){
 
 function createNewTimer(seminarCode, countDown, io, timersEvents){	
 		newTimer = setInterval(function(){
-			countDown--;
-			console.log('countDown on server, ' + seminarCode + ' : ' +  countDown);
-			if(countDown == 0){
-				console.log('time is up, clear timer:' + seminarCode);
-				timersEvents.emit('clearTimer', seminarCode);
-			} else {
-				io.sockets.emit('timer', {msg: seminarCode + ':' + countDown});
+			//countDown--;
+			countDown.pass++;
+			if(countDown.portfolio>0){
+				countDown.portfolio--;
+			}else if(countDown.contractDeal>0){
+				countDown.contractDeal--;
+			}else if(countDown.contractFinalized>0){
+				countDown.contractFinalized--;
+			}else if(countDown.contractDecisionCommitted>0){
+				countDown.contractDecisionCommitted--;
+			}
+			if(countDown.pass == countDown.timersEvent[0]){
+				timersEvents.emit('deadlinePortfolio', seminarCode);
+				io.sockets.emit('timer', {msg: seminarCode + 'pass:'+countDown.pass +'portfolio:'+countDown.portfolio+'contractDeal:'+countDown.contractDeal+'contractFinalized:'+countDown.contractFinalized+'contractDecisionCommitted:'+countDown.contractDecisionCommitted});
+
+			}else if(countDown.pass == countDown.timersEvent[1]){
+				timersEvents.emit('deadlineContractDeal', seminarCode);
+				io.sockets.emit('timer', {msg: seminarCode + 'pass:'+countDown.pass +'portfolio:'+countDown.portfolio+'contractDeal:'+countDown.contractDeal+'contractFinalized:'+countDown.contractFinalized+'contractDecisionCommitted:'+countDown.contractDecisionCommitted});
+			
+			}else if(countDown.pass == countDown.timersEvent[2]){
+				timersEvents.emit('deadlineContractFinalized', seminarCode);
+				io.sockets.emit('timer', {msg: seminarCode + 'pass:'+countDown.pass +'portfolio:'+countDown.portfolio+'contractDeal:'+countDown.contractDeal+'contractFinalized:'+countDown.contractFinalized+'contractDecisionCommitted:'+countDown.contractDecisionCommitted});
+			
+			}else if(countDown.pass == countDown.timersEvent[3]){
+				timersEvents.emit('deadlineDecisionCommitted', seminarCode);
+				io.sockets.emit('timer', {msg: seminarCode + 'pass:'+countDown.pass +'portfolio:'+countDown.portfolio+'contractDeal:'+countDown.contractDeal+'contractFinalized:'+countDown.contractFinalized+'contractDecisionCommitted:'+countDown.contractDecisionCommitted});
+			
+			}
+			else{
+				io.sockets.emit('timer', {msg: seminarCode + 'pass:'+countDown.pass +'portfolio:'+countDown.portfolio+'contractDeal:'+countDown.contractDeal+'contractFinalized:'+countDown.contractFinalized+'contractDecisionCommitted:'+countDown.contractDecisionCommitted});
 			}
 		}, 1000);   
 		newTimer.seminarCode = seminarCode;			
@@ -1096,7 +1119,22 @@ exports.setTimer = function(io){
 	var timers = [];
 	var timersEvents = new events.EventEmitter();
 
-	timersEvents.on('clearTimer', function(seminarCode){
+	timersEvents.on('deadlinePortfolio', function(seminarCode){
+		//set isPortfolioDecisionCommitted = true for all the suppliers 
+		//then do all the related io.sockets.emit()...
+		console.log('deadlinePortfolio');
+
+	}).on('deadlineContractDeal', function(seminarCode){
+		//....
+		console.log('deadlineContractDeal');
+
+	}).on('deadlineContractFinalized', function(seminarCode){
+		//....
+		console.log('deadlineContractFinalized');
+
+	}).on('deadlineDecisionCommitted', function(seminarCode){
+		//....
+		console.log('deadlineDecisionCommitted');
 		singleTimer = _.find(timers, function(obj){
 			return obj.seminarCode == seminarCode;
 		});		
@@ -1104,25 +1142,19 @@ exports.setTimer = function(io){
 		if(singleTimer){ 
 			clearInterval(singleTimer); 
 			console.log('timer is cleared ' + seminarCode + ' from event.');
-		} 		
-	}).on('deadlinePortfolio', function(){
-		//set isPortfolioDecisionCommitted = true for all the suppliers 
-		//then do all the related io.sockets.emit()...
-
-	}).on('deadlineContractDeal', function(){
-		//....
-
-	}).on('deadlineContractFinalized', function(){
-		//....
-
-	}).on('deadlineDecisionCommitted', function(){
-		//....
-
+		} 
 	});
 
 	return function(req, res, next){
 		var seminarCode = req.body.seminarCode;
-		var countDown;		
+		var countDown = { 
+			pass:0,
+			portfolio : req.body.portfolio, 
+			contractDeal: req.body.contractDeal, 
+			contractFinalized : req.body.contractFinalized, 
+			contractDecisionCommitted : req.body.contractDecisionCommitted,
+			timersEvent : [req.body.portfolio, req.body.portfolio+req.body.contractDeal, req.body.portfolio+req.body.contractDeal+req.body.contractFinalized ,req.body.portfolio+req.body.contractDeal+req.body.contractFinalized+req.body.contractDecisionCommitted]
+		};
 
 		// seminar.findOne({seminarCode: req.body.seminarCode}, function(){
 		// 	find all the time slots and organize countDown
@@ -1154,7 +1186,7 @@ exports.setTimer = function(io){
 				timers = _.reject(timers, function(obj){
 					return obj.seminarCode == timer.seminarCode;
 				});				
-				timers.push(createNewTimer(req.body.seminarCode, 10, io, timersEvents));
+				timers.push(createNewTimer(req.body.seminarCode, countDown, io, timersEvents));
 				res.send(200, 'reset timer: ' + req.body.seminarCode);
 			//user choose to stop timer
 			} else {
@@ -1165,7 +1197,7 @@ exports.setTimer = function(io){
 		//if timer requested is not existed and user choose to start a new one instead of stopping existed one
 		} else if ((timer == undefined) && (req.body.active == 'switchOn')){			
 
-			timers.push(createNewTimer(req.body.seminarCode, 10, io, timersEvents));                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          				
+			timers.push(createNewTimer(req.body.seminarCode, countDown, io, timersEvents));                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          				
 			res.send(200, 'start a new timer: ' + req.body.seminarCode);
 
 		} else if ((timer == undefined) && (req.body.active == 'switchOff')){
