@@ -80,8 +80,8 @@
         </div>
         <div class="col-md-3 pull-right" ng-show='!isNegotiation' style="padding:0 0 0 15px">
             <div class="bs-docs-section bs-docs-sidebar hidden-print" affix='0' role="complementary">
-                <div id='clockChart' ng-model='myModel' clock-chart></div>
-                <p>{{clockTitle}}</p>
+                <div id='clockChart' ng-model='myModel' clock-chart ng-show='isTimerActived'></div>
+                <p ng-show='isTimerActived'>{{TimerActiveInfo}}</p>
                 <table class="table table-condensed" style="margin:0px auto;">
                     <thead>
                         <th colspan="2">

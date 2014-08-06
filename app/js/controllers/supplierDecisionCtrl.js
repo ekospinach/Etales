@@ -54,28 +54,6 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 					$scope.isContractFinalized=data.data.isContractFinalized;
 					$scope.isDecisionCommitted=data.data.isDecisionCommitted;
 
-
-					console.log(data.data.isPortfolioDecisionCommitted);
-
-				// 	if (data.data == "isReady") {
-				// 		$scope.isPortfolioDecisionReady = true;
-				// 	} else {
-				// 		$scope.isPortfolioDecisionReady = false;
-				// 	}
-
-				// 	//make sure that isFinalDeicisonCommitted = $scope.FinalDecisionReady
-				// 	url = '/checkProducerFinalDecision/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
-				// 	return $http({
-				// 		method: 'GET',
-				// 		url: url
-				// 	});
-				// }).then(function(data) {
-				// 	if (data.data == "isReady") {
-				// 		$scope.isFinalDecisionReady = true;
-				// 	} else {
-				// 		$scope.isFinalDecisionReady = false;
-				// 	}
-
 					//Get company history information (available budget, capacity, acquired TL...)
 					url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + parseInt(PlayerInfo.getPlayer());
 					return $http({
@@ -134,6 +112,42 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 					console.log('fail');
 				})
 			}
+
+			// var loadTimeClockFromServer=function(){
+			// 	var d = $q.defer();
+			// 	var url='/getTimerActiveInfo/'+SeminarInfo.getSelectedSeminar().seminarCode;
+			// 	$http({
+			// 		method:'GET',
+			// 		url:url
+			// 	}).then(function(data){
+			// 		$scope.isTimerActived=data.result;
+			// 		$scope.myModel=Date.now();
+			// 		$scope.chartSeries = [{
+			// 			name: Label.getContent('Total Time'),
+			// 			data: [{
+			// 				'name': Label.getContent('Gone'),
+			// 				'y': data.,
+			// 				'z': 10
+			// 			}, {
+			// 				'name': Label.getContent('Portfolio Decision Committe'),
+			// 				'y': 40 - i,
+			// 				'z': 40
+			// 			}, {
+			// 				'name': Label.getContent('Contract Deal'),
+			// 				'y': 45,
+			// 				'z': 45
+			// 			}, {
+			// 				'name': Label.getContent('Contract Finalize'),
+			// 				'y': 50,
+			// 				'z': 50
+			// 			},{
+			// 				'name': Label.getContent('Decision Committe'),
+
+			// 			}]
+			// 		}];
+
+			// 	})
+			// }
 			var showProductPortfolioManagement = function() {
 				switching('showProductPortfolioManagement');
 			}

@@ -508,16 +508,13 @@ exports.setCurrentPeriod = function(io){
 				seminar:req.body.seminar,
 				period:req.body.period
 			}
-			//console.log('setCurrentPeriod:' + queryCondition.seminar + '/' + queryCondition.period);
 			seminar.findOne({seminarCode:queryCondition.seminar},function(err,doc){
 				if(err) {next(new Error(err))};
 				if(doc){
-//					console.log('find seminar:' + doc)
 					doc.currentPeriod = queryCondition.period;
 					doc.save(function(err){
 						if(!err){
-							io.sockets.emit('socketIO:seminarPeriodChanged', {period : queryCondition.period, seminar : queryCondition.seminar, span : doc.simulationSpan});
-			//				console.log('update seminar:' + doc)						
+							io.sockets.emit('socketIO:seminarPeriodChanged', {period : queryCondition.period, seminar : queryCondition.seminar, span : doc.simulationSpan});						
 							res.send(200,'success');
 						}else{
 							res.send(400,'fail');
@@ -718,10 +715,6 @@ exports.submitOrder=function(io){
 							if(doc.retailers[i].retailerID==queryCondition.playerID){
 								for(var j=0;j<doc.retailers[i].reportPurchaseStatus.length;j++){
 									if(doc.retailers[i].reportPurchaseStatus[j].period==queryCondition.period){
-										// for(var k=0;k<queryCondition.data.length;k++){
-										// 	console.log(doc.retailers[i].reportPurchaseStatus[j][queryCondition.data[k].realName]);
-										// 	doc.retailers[i].reportPurchaseStatus[j][queryCondition.data[k].realName]=queryCondition.data[k].playerStatus;
-										// }
 										doc.retailers[i].reportPurchaseStatus[j][queryCondition.name]=queryCondition.value;
 									}
 								}
@@ -879,7 +872,25 @@ exports.getPlayerReportOrderExpend=function(req,res,next){
 	})
 }
 
-
+exports.getTimerActiveInfo = function(req,res,next){
+	seminar.findOne({seminarCode:req.params.seminar},function(err,doc){
+		if(err){
+			next (new Error(err));
+		}
+		if(doc){
+			var result={
+				'result':doc.isTimerActived,
+				'timeslotPortfolioDecisionCommitted':doc.timeslotPortfolioDecisionCommitted,
+				'timeslotContractDeal':doc.timeslotContractDeal,
+				'timeslotContractFinalized':doc.timeslotContractFinalized,
+				'timeslotDecisionCommitted':doc.timeslotDecisionCommitted
+			}
+			res.send(200,result);
+		}else{
+			res.send(404,'cannot find matched doc....');
+		}
+	})
+}
 
 exports.initializeSeminar = function(options){
 	var deferred = q.defer();
