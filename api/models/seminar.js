@@ -1159,6 +1159,8 @@ exports.setTimer = function(io){
 
 		} else if ((timer == undefined) && (req.body.active == 'switchOff')){
 			res.send(400, 'cannot stop nonexistent timer: ' + req.body.seminarCode);	
+		} else {
+			res.send(400, 'bad parameters. { seminar : string, active : string(switchOn/switchOff) }')
 		}
 	
 	}
