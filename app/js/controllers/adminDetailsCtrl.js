@@ -383,7 +383,6 @@ define(['app', 'socketIO'], function(app) {
 					period: selectedPeriod,
 					keepExistedNextPeriodDecision: keepExistedNextPeriodDecision
 				}
-				console.log(postData);
 
 				$http({
 					method: 'POST',
@@ -457,7 +456,9 @@ define(['app', 'socketIO'], function(app) {
 					url:'/updateSeminar',
 					data:postData
 				}).then(function(data){
-					console.log('success');
+					if(value){
+						drawChart(data);
+					}
 				},function(){
 					console.log('fail');
 				})
@@ -540,38 +541,6 @@ define(['app', 'socketIO'], function(app) {
 				})
 			}
 
-			$scope.startTimer=function(){
-				var postData={
-                    seminarCode:$scope.seminar.seminarCode,
-                    active:'switchOn',
-                    portfolio : 60*$scope.seminar.timeslotPortfolioDecisionCommitted, 
-                    contractDeal: 60*$scope.seminar.timeslotContractDeal, 
-                    contractFinalized : 60*$scope.seminar.timeslotContractFinalized, 
-                    contractDecisionCommitted : 60*$scope.seminar.timeslotDecisionCommitted
-                }
-                $http({
-                    method:'POST',
-                    url:'/timer',
-                    data:postData
-                }).then(function(data){
-                    console.log(data);
-                });
-			}
-
-			$scope.stopTimer=function(){
-				var postData={
-                    seminarCode:$scope.seminar.seminarCode,
-                    active:'switchOff'
-                }
-                $http({
-                    method:'POST',
-                    url:'/timer',
-                    data:postData
-                }).then(function(data){
-                    console.log(data);
-                });
-			}
-
 			var drawChart=function(data){
 				$timeout(function() {
 					$scope.clockTitle='heoooo';
@@ -598,25 +567,54 @@ define(['app', 'socketIO'], function(app) {
 				});
 			}
 
+			$scope.startTimer=function(){
+				var postData={
+                    seminarCode:$scope.seminar.seminarCode,
+                    active:'switchOn',
+                    portfolio : $scope.seminar.timeslotPortfolioDecisionCommitted, 
+                    contractDeal: $scope.seminar.timeslotContractDeal, 
+                    contractFinalized : $scope.seminar.timeslotContractFinalized, 
+                    contractDecisionCommitted : $scope.seminar.timeslotDecisionCommitted
+                }
+                $http({
+                    method:'POST',
+                    url:'/timer',
+                    data:postData
+                }).then(function(data){
+                    console.log(data.data);
+                    drawChart(data.data);
+                });
+			}
+
+			$scope.stopTimer=function(){
+				var postData={
+                    seminarCode:$scope.seminar.seminarCode,
+                    active:'switchOff'
+                }
+                $http({
+                    method:'POST',
+                    url:'/timer',
+                    data:postData
+                }).then(function(data){
+                    console.log(data);
+                });
+			}
+
+
 			$scope.$on('timerWork', function(event, data) {
 				drawChart(data);
-				console.log(data);
 			});
 			$scope.$on('deadlinePortfolio', function(event, data) {
 				drawChart(data);
-				console.log(data);
 			});
 			$scope.$on('deadlineContractDeal', function(event, data) {
 				drawChart(data);
-				console.log(data);
 			});
 			$scope.$on('deadlineContractFinalized', function(event, data) {
 				drawChart(data);
-				console.log(data);
 			});
 			$scope.$on('deadlineDecisionCommitted', function(event, data) {
 				drawChart(data);
-				console.log(data);
 			});
 
 			$scope.isActive = true;

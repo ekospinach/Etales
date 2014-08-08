@@ -864,6 +864,7 @@ define(['directives'], function(directives) {
         .directive('supplierClockChart',function(){
             return function(scope,elem,attrs){
                 scope.$watch(attrs.ngModel,function(newValue,oldValue){
+                    console.log('newValue:'+newValue+',oldValue:'+oldValue);
                     if(newValue!=oldValue){
                         if($('#clockChart')!=undefined){
                             $('#clockChart').empty();
@@ -883,9 +884,9 @@ define(['directives'], function(directives) {
                                     enabled: true,
                                     formatter: function() {
                                         if(this.key!="Gone"&&this.key!="历时"){
-                                            return this.key+'<br/>'+'Left Time:'+parseInt(this.y/60)+'mins';
+                                            return this.key+'<br/>'+'Left Time:'+this.y+'mins';
                                         }else{
-                                            return 'Time gone:'+parseInt(this.y/60)+'mins';
+                                            return 'Time gone:'+this.y+'mins';
                                         }
                                     }
                                 },

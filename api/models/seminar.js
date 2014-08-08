@@ -1311,7 +1311,7 @@ function createNewTimer(seminarCode, countDown, io, timersEvents) {
 			countDown.contractDecisionCommitted--;
 		}
 		if (countDown.pass == countDown.timersEvent[0]) {
-			timersEvents.emit('deadlinePortfolio', seminarCode);
+			timersEvents.emit('deadlinePortfolio', seminarCode,io);
 			io.sockets.emit('socketIO:deadlinePortfolio', {
 				'seminar': seminarCode,
 				'pass': countDown.pass,
@@ -1322,7 +1322,7 @@ function createNewTimer(seminarCode, countDown, io, timersEvents) {
 			});
 
 		} else if (countDown.pass == countDown.timersEvent[1]) {
-			timersEvents.emit('deadlineContractDeal', seminarCode);
+			timersEvents.emit('deadlineContractDeal', seminarCode,io);
 			io.sockets.emit('socketIO:deadlineContractDeal', {
 				'seminar': seminarCode,
 				'pass': countDown.pass,
@@ -1333,7 +1333,7 @@ function createNewTimer(seminarCode, countDown, io, timersEvents) {
 			});
 
 		} else if (countDown.pass == countDown.timersEvent[2]) {
-			timersEvents.emit('deadlineContractFinalized', seminarCode);
+			timersEvents.emit('deadlineContractFinalized', seminarCode,io);
 			io.sockets.emit('socketIO:deadlineContractFinalized', {
 				'seminar': seminarCode,
 				'pass': countDown.pass,
@@ -1344,7 +1344,7 @@ function createNewTimer(seminarCode, countDown, io, timersEvents) {
 			});
 
 		} else if (countDown.pass == countDown.timersEvent[3]) {
-			timersEvents.emit('deadlineDecisionCommitted', seminarCode);
+			timersEvents.emit('deadlineDecisionCommitted', seminarCode,io);
 			io.sockets.emit('socketIO:deadlineDecisionCommitted', {
 				'seminar': seminarCode,
 				'pass': countDown.pass,
@@ -1363,7 +1363,7 @@ function createNewTimer(seminarCode, countDown, io, timersEvents) {
 				'contractDecisionCommitted': countDown.contractDecisionCommitted
 			});
 		}
-	}, 60000);
+	}, 1000);
 	newTimer.seminarCode = seminarCode;
 	return newTimer;
 }
@@ -1371,23 +1371,112 @@ function createNewTimer(seminarCode, countDown, io, timersEvents) {
 exports.setTimer = function(io) {
 	var timers = [];
 	var timersEvents = new events.EventEmitter();
-
-	timersEvents.on('deadlinePortfolio', function(seminarCode) {
+	
+	
+	timersEvents.on('deadlinePortfolio', function(seminarCode,io) {
 		//set isPortfolioDecisionCommitted = true for all the suppliers 
 		//then do all the related io.sockets.emit()...
 		console.log('deadlinePortfolio');
 
+		seminar.findOne({
+			seminarCode: seminarCode
+		}, function(err, doc) {
+			var result=new Array();
+			if (doc) {
+				for(var i=0;i<3;i++){
+					if(doc.producers[i].decisionCommitStatus[doc.currentPeriod].isPortfolioDecisionCommitted){	
+					}else{
+						doc.producers[i].decisionCommitStatus[doc.currentPeriod].isPortfolioDecisionCommitted=true;
+						result.push({'producerID':i+1});
+					}
+					doc.producers[i].decisionCommitStatus[doc.currentPeriod].isPortfolioDecisionCommitted=false;
+
+				}
+			}
+			require('./contract.js').addContractByAdmin(doc.seminarCode,doc.currentPeriod,result);
+			require('./contract.js').addContractDetailsByAdmin(doc.seminarCode,doc.currentPeriod,result);
+			
+			// require('./producerDecision.js').getProductsByAdmin(doc.seminarCode,doc.currentPeriod,result[1].producerID);
+			// console.log(products.length);
+			// (function )
+
+			// require('./producerDecision.js').proDecision.findOne({
+			// 	seminar:seminar,
+			// 	period:period,
+			// 	producerID:producers[idx]
+			// },function(err,doc){
+
+			// })
+
+			// console.log('start add detail');
+			// (function addContractDeatails(seminarCode,currentPeriod,producers,idx){
+			// 	requrire('./producerDecision.js').proDecision.find({
+			// 		seminar:seminarCode,
+			// 		period:currentPeriod,
+			// 		producerID:producers[idx].producerID
+			// 	},function(err,doc){
+					
+			// 	})
+
+			// })(doc.seminarCode,doc.currentPeriod,result,idx)
+
+			doc.markModified('producers');
+			doc.save();
+			//io.sockets.emit('socketIO:committedPortfolio',{'result':result,'seminarCode':doc.seminarCode,'period':doc.currentPeriod});
+		});
+
+
+
 	}).on('deadlineContractDeal', function(seminarCode) {
 		//....
 		console.log('deadlineContractDeal');
+		seminar.findOne({
+			seminarCode: seminarCode
+		}, function(err, doc) {
+			if (doc) {
+				doc.producers[0].decisionCommitStatus[doc.currentPeriod].isContractDeal=true;
+				doc.producers[1].decisionCommitStatus[doc.currentPeriod].isContractDeal=true;
+				doc.producers[2].decisionCommitStatus[doc.currentPeriod].isContractDeal=true;
+				doc.producers[3].decisionCommitStatus[doc.currentPeriod].isContractDeal=true;
+			}
+			doc.markModified('producers');
+			doc.save();
+		})
 
 	}).on('deadlineContractFinalized', function(seminarCode) {
 		//....
 		console.log('deadlineContractFinalized');
+		seminar.findOne({
+			seminarCode: seminarCode
+		}, function(err, doc) {
+			if (doc) {
+				doc.producers[0].decisionCommitStatus[doc.currentPeriod].isContractFinalized=true;
+				doc.producers[1].decisionCommitStatus[doc.currentPeriod].isContractFinalized=true;
+				doc.producers[2].decisionCommitStatus[doc.currentPeriod].isContractFinalized=true;
+				doc.producers[3].decisionCommitStatus[doc.currentPeriod].isContractFinalized=true;
+			}
+			doc.markModified('producers');
+			doc.save();
+		})
+
 
 	}).on('deadlineDecisionCommitted', function(seminarCode) {
 		//....
 		console.log('deadlineDecisionCommitted');
+
+		seminar.findOne({
+			seminarCode: seminarCode
+		}, function(err, doc) {
+			if (doc) {
+				doc.producers[0].decisionCommitStatus[doc.currentPeriod].isDecisionCommitted=true;
+				doc.producers[1].decisionCommitStatus[doc.currentPeriod].isDecisionCommitted=true;
+				doc.producers[2].decisionCommitStatus[doc.currentPeriod].isDecisionCommitted=true;
+				doc.producers[3].decisionCommitStatus[doc.currentPeriod].isDecisionCommitted=true;
+			}
+			doc.markModified('producers');
+			doc.save();
+		})
+
 		singleTimer = _.find(timers, function(obj) {
 			return obj.seminarCode == seminarCode;
 		});
@@ -1408,7 +1497,6 @@ exports.setTimer = function(io) {
 			contractDecisionCommitted: req.body.contractDecisionCommitted,
 			timersEvent: [req.body.portfolio, req.body.portfolio + req.body.contractDeal, req.body.portfolio + req.body.contractDeal + req.body.contractFinalized, req.body.portfolio + req.body.contractDeal + req.body.contractFinalized + req.body.contractDecisionCommitted]
 		};
-		console.log(countDown);
 
 		// seminar.findOne({seminarCode: req.body.seminarCode}, function(){
 		// 	find all the time slots and organize countDown
@@ -1442,7 +1530,15 @@ exports.setTimer = function(io) {
 					return obj.seminarCode == timer.seminarCode;
 				});
 				timers.push(createNewTimer(req.body.seminarCode, countDown, io, timersEvents));
-				res.send(200, 'reset timer: ' + req.body.seminarCode);
+				res.send(200, {
+				'msg': 'reset timer:' + req.body.seminarCode,
+				'seminar': seminarCode,
+				'pass': countDown.pass,
+				'portfolio': countDown.portfolio,
+				'contractDeal': countDown.contractDeal,
+				'contractFinalized': countDown.contractFinalized,
+				'contractDecisionCommitted': countDown.contractDecisionCommitted
+			});
 				//user choose to stop timer
 			} else {
 				clearInterval(timer);
@@ -1453,8 +1549,15 @@ exports.setTimer = function(io) {
 		} else if ((timer == undefined) && (req.body.active == 'switchOn')) {
 
 			timers.push(createNewTimer(req.body.seminarCode, countDown, io, timersEvents));
-			res.send(200, 'start a new timer: ' + req.body.seminarCode);
-
+			res.send(200, {
+				'msg': 'start a new timer:' + req.body.seminarCode,
+				'seminar': seminarCode,
+				'pass': countDown.pass,
+				'portfolio': countDown.portfolio,
+				'contractDeal': countDown.contractDeal,
+				'contractFinalized': countDown.contractFinalized,
+				'contractDecisionCommitted': countDown.contractDecisionCommitted
+			});
 		} else if ((timer == undefined) && (req.body.active == 'switchOff')) {
 			res.send(400, 'cannot stop nonexistent timer: ' + req.body.seminarCode);
 		}

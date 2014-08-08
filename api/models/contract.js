@@ -66,6 +66,146 @@ exports.contractVariantDetails = mongoose.model('contractVariantDetails', contra
 var contract = mongoose.model('contract', contractSchema);
 var contractVariantDetails = mongoose.model('contractVariantDetails', contractVariantDetailsSchema);
 
+
+exports.addContractByAdmin = function(seminar, period, producers) {
+     var deferred = q.defer();
+     (function addContract(seminar,period,producers,idx){
+          if(idx<producers.length){
+               //add contract
+               var contractCode1 = 'P' + producers[idx].producerID + 'and' + 'R' + 1 + '_' + seminar + '_' + period; //sth + period + seminar, must be
+               var contractCode2 = 'P' + producers[idx].producerID + 'and' + 'R' + 2 + '_' + seminar + '_' + period; //sth + period + seminar, must be
+               
+               var newContract1 = new contract({
+                    contractCode: contractCode1,
+                    period: period,
+                    seminar: seminar,
+                    draftedByCompanyID: producers[idx].producerID,
+                    producerID: producers[idx].producerID,
+                    retailerID: 1,
+                    isDraftFinished: false,
+                    isLocked: false
+               });
+               newContract2 = new contract({
+                    contractCode: contractCode2,
+                    period: period,
+                    seminar: seminar,
+                    draftedByCompanyID: producers[idx].producerID,
+                    producerID: producers[idx].producerID,
+                    retailerID: 1,
+                    isDraftFinished: false,
+                    isLocked: false
+               });
+
+               var allContracts=[];
+               allContracts.push(newContract1.save());
+               allContracts.push(newContract2.save());
+
+
+               q.all(allContracts).then(function(results) {
+                    console.log(idx);
+               }, function(err) {
+                    console.log(err);
+               });
+               idx++;
+               addContract(seminar,period,producers,idx);
+          }else{
+               deferred.resolve({
+                    msg:'addContract done'
+               });
+          }
+
+     })(seminar,period,producers,0);
+     return deferred.promise;
+}
+
+exports.addContractDetailsByAdmin = function(seminar, period, producers) {
+     var deferred = q.defer();
+     
+     (function addContractDetail(seminar,period,producers,idx){
+          if(idx<producers.length){
+               //add contract
+               var contractCode1 = 'P' + producers[idx].producerID + 'and' + 'R' + 1 + '_' + seminar + '_' + period; //sth + period + seminar, must be
+               var contractCode2 = 'P' + producers[idx].producerID + 'and' + 'R' + 1 + '_' + seminar + '_' + period; //sth + period + seminar, must be
+               
+               var products=new Array();
+               var promise=require('./producerDecision.js').proDecision.findOne({
+                    seminar: seminar,
+                    period: period,
+                    producerID: producers[idx].producerID
+               }).exec();
+               promise.then(function(doc){
+                    for (var i = 0; i < doc.proCatDecision.length; i++) {
+                         for (var j = 0; j < doc.proCatDecision[i].proBrandsDecision.length; j++) {
+                              for (var k = 0; k < doc.proCatDecision[i].proBrandsDecision[j].proVarDecision.length; k++) {
+                                   if (doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].varName != "") {
+                                        products.push(doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k]);
+                                   }
+                              }
+                         }
+                    }     
+               }).then(function(data){
+                    return contractDetailsCreateShooter(contractCode1,products);
+               }).then(function(data){
+                    return contractDetailsCreateShooter(contractCode2,products);
+               },function(data){
+                    console.log(data);
+               });
+               idx++;
+               addContractDetail(seminar,period,producers,idx);
+          }else{
+               deferred.resolve({
+                    msg:'addContractDetail done'
+               });
+          }
+     })(seminar,period,producers,0);
+     return deferred.promise;
+}
+
+function contractDetailsCreateShooter(contractCode,productList){
+     var deferred = q.defer();
+
+
+     console.log('contractCode:'+contractCode+',productList:'+productList.length);
+
+     // (function multipleRequestShooter(products, idx) {
+     //      var shooterData = {
+     //           contractCode: contractCode,
+     //           brandName: products[idx].parentBrandName,
+     //           brandID: products[idx].parentBrandID,
+     //           varName: products[idx].varName,
+     //           varID: products[idx].varID,
+     //           composition: products[idx].composition,
+     //           currentPriceBM: products[idx].currentPriceBM,
+     //           packFormat: products[idx].realPackFormat,
+     //           seminar: SeminarInfo.getSelectedSeminar().seminarCode
+     //      }
+     //      $http({
+     //           method: 'POST',
+     //           url: '/addContractDetails',
+     //           data: shooterData
+     //      }).then(function(data) {
+     //           if (idx < products.length - 1) {
+     //                idx++;
+     //                multipleRequestShooter(products, idx);
+     //           } else {
+     //                deferred.resolve({
+     //                     msg: 'contract details shooter done, contractCode : ' + contractCode
+     //                });
+     //           }
+     //      }, function(data) {
+     //           deferred.reject({
+     //                msg: 'Error from contract details shooter, contractCode : ' + contractCode
+     //           });
+     //      });
+
+     // })(productList, 0);
+     deferred.resolve({
+                    msg:'done'
+               });
+
+     return deferred.promise;
+}
+
 exports.addContract = function(io) {
      return function(req, res, next) {
           contract.count({

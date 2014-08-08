@@ -86,6 +86,28 @@ var proDecision = mongoose.model('proDecision', proDecisionSchema);
 var proVarDecision=mongoose.model('proVarDecision',proVarDecisionSchema);
 var proBrandsDecision=mongoose.model('proBrandsDecision',proBrandDecisionSchema)
 
+
+// exports.getProductsByAdmin =function(seminar,period,producerID){
+//     console.log('seminar:'+seminar+'period:'+period+'producerID:'+producerID);
+//     var products=new Array();
+//     proDecision.findOne({
+//         seminar: seminar,
+//         period: period,
+//         producerID: producerID
+//     }, function(err, doc) {
+//         //console.log(doc);
+//         for(var i=0;i<doc.proCatDecision.length;i++){
+//             for(var j=0;j<doc.proCatDecision[i].proBrandsDecision.length;j++){
+//                 for(var k=0;k<doc.proCatDecision[i].proBrandsDecision[j].proVarDecision.length;k++){
+//                     if(doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].varName!=""){
+//                         products.push(doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k]);
+//                     }
+//                 }
+//             }
+//         }
+//     })
+// }
+
 exports.exportToBinary = function(options){
     var deferred = q.defer();
     var period = options.period;
