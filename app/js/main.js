@@ -21,7 +21,6 @@
 			angularXeditable: 		'../bower_components/angular-xeditable/dist/js/xeditable',
 			socketIO: 				'../bower_components/socket.io-client/socket.io',
 			jquery: 				'../bower_components/jquery/dist/jquery',
-			bootstrapswitch: 		'../bower_components/bootstrap-switch/dist/js/bootstrap-switch',
 			require: 				'../bower_components/requirejs/require',
 			underscore: 			'../bower_components/underscore/underscore',
 			bootstrap: 				'../bower_components/bootstrap/dist/js/bootstrap',
@@ -61,9 +60,7 @@
 			'textRenderer':['jqplot','jquery'],
 			'tree':['jquery'],
 			'highchartMore':['jquery','highchart'],
-			'bootstrapswitch' : ['jquery'],
 			'angularHighcharts' :['angular','highchart'],
-			'angularBootstrapSwitch':['angular','jquery','bootstrapswitch'],
 			'highchart' :['jquery'],
 			'ngNotify' :['jquery','angular'],
 			'ngSlider' :['jquery','angular']

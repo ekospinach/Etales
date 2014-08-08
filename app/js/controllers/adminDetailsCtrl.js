@@ -1,7 +1,7 @@
 define(['app', 'socketIO'], function(app) {
 
-	app.controller('adminDetailsCtrl', ['$scope', '$http', '$rootScope', 'EditSeminarInfo','$q',
-		function($scope, $http, $rootScope, EditSeminarInfo,$q) {
+	app.controller('adminDetailsCtrl', ['$scope', '$http', '$rootScope', 'EditSeminarInfo','$q','Label','$timeout',
+		function($scope, $http, $rootScope, EditSeminarInfo,$q,Label,$timeout) {
 
 			var socket = io.connect('http://localhost');
 			socket.on('AdminProcessLog', function(data) {
@@ -31,6 +31,7 @@ define(['app', 'socketIO'], function(app) {
 			});
 
 			$scope.seminar = EditSeminarInfo.getSelectedSeminar();
+			console.log($scope.seminar);
 			$scope.isMessageShown = false;
 
 
@@ -443,6 +444,180 @@ define(['app', 'socketIO'], function(app) {
 				console.log('infoBuble.show');
 				$scope.infoBuble = true;
 			};
+
+
+			$scope.switchTimer=function(value){
+				var postData={
+					seminarCode:$scope.seminar.seminarCode,
+					behaviour:'switchTimer',
+					value:value
+				};
+				$http({
+					method:'POST',
+					url:'/updateSeminar',
+					data:postData
+				}).then(function(data){
+					console.log('success');
+				},function(){
+					console.log('fail');
+				})
+			}
+
+			$scope.checkTimerSet=function(value){
+				var d = $q.defer();
+                var filter = /^[0-9]*[1-9][0-9]*$/;
+                if (!filter.test(value)) {
+                    d.resolve(Label.getContent('Input a Integer'));
+                }else{
+                	d.resolve();
+                }
+                return d.promise;
+			}
+
+			$scope.updateTimeslotPortfolioDecisionCommitted=function(value){
+				var postData={
+					seminarCode:$scope.seminar.seminarCode,
+					behaviour:'updateTimeslotPortfolioDecisionCommitted',
+					value:value
+				};
+				$http({
+					method:'POST',
+					url:'/updateSeminar',
+					data:postData
+				}).then(function(data){
+					console.log('success');
+				},function(){
+					console.log('fail');
+				})
+			}
+			$scope.updateTimeslotContractDeal=function(value){
+				var postData={
+					seminarCode:$scope.seminar.seminarCode,
+					behaviour:'updateTimeslotContractDeal',
+					value:value
+				};
+				$http({
+					method:'POST',
+					url:'/updateSeminar',
+					data:postData
+				}).then(function(data){
+					console.log('success');
+				},function(){
+					console.log('fail');
+				})
+			}
+			$scope.updateTimeslotContractFinalized=function(value){
+				var postData={
+					seminarCode:$scope.seminar.seminarCode,
+					behaviour:'updateTimeslotContractFinalized',
+					value:value
+				};
+				console.log(value);
+				$http({
+					method:'POST',
+					url:'/updateSeminar',
+					data:postData
+				}).then(function(data){
+					console.log('success');
+				},function(){
+					console.log('fail');
+				})
+			}
+			$scope.updateTimeslotDecisionCommitted=function(value){
+				var postData={
+					seminarCode:$scope.seminar.seminarCode,
+					behaviour:'updateTimeslotDecisionCommitted',
+					value:value
+				};
+				$http({
+					method:'POST',
+					url:'/updateSeminar',
+					data:postData
+				}).then(function(data){
+					console.log('success');
+				},function(){
+					console.log('fail');
+				})
+			}
+
+			$scope.startTimer=function(){
+				var postData={
+                    seminarCode:$scope.seminar.seminarCode,
+                    active:'switchOn',
+                    portfolio : 10*$scope.seminar.timeslotPortfolioDecisionCommitted, 
+                    contractDeal: 10*$scope.seminar.timeslotContractDeal, 
+                    contractFinalized : 10*$scope.seminar.timeslotContractFinalized, 
+                    contractDecisionCommitted : 10*$scope.seminar.timeslotDecisionCommitted
+                }
+                $http({
+                    method:'POST',
+                    url:'/timer',
+                    data:postData
+                }).then(function(data){
+                    console.log(data);
+                });
+			}
+
+			$scope.stopTimer=function(){
+				var postData={
+                    seminarCode:$scope.seminar.seminarCode,
+                    active:'switchOff'
+                }
+                $http({
+                    method:'POST',
+                    url:'/timer',
+                    data:postData
+                }).then(function(data){
+                    console.log(data);
+                });
+			}
+
+			var drawChart=function(data){
+				$timeout(function() {
+					$scope.clockTitle='heoooo';
+					$scope.chartSeries = [{
+						name: Label.getContent('Total Time'),
+						data: [{
+							'name': Label.getContent('Gone'),
+							'y': data.pass
+						}, {
+							'name': Label.getContent('Product Portfolio'),
+							'y': data.portfolio,
+						}, {
+							'name': Label.getContent('Contract Deal'),
+							'y': data.contractDeal,
+						}, {
+							'name': Label.getContent('Contract Finalize'),
+							'y': data.contractFinalized,
+						},{
+							'name':Label.getContent('Contract Decision Committe'),
+							'y': data.contractDecisionCommitted
+						}]
+					}]
+					$scope.myModel=data;
+				});
+			}
+
+			$scope.$on('timerWork', function(event, data) {
+				drawChart(data);
+				console.log(data);
+			});
+			$scope.$on('deadlinePortfolio', function(event, data) {
+				drawChart(data);
+				console.log(data);
+			});
+			$scope.$on('deadlineContractDeal', function(event, data) {
+				drawChart(data);
+				console.log(data);
+			});
+			$scope.$on('deadlineContractFinalized', function(event, data) {
+				drawChart(data);
+				console.log(data);
+			});
+			$scope.$on('deadlineDecisionCommitted', function(event, data) {
+				drawChart(data);
+				console.log(data);
+			});
 
 			$scope.isActive = true;
 			$scope.isKeepExistedPeriod1Decision = true;

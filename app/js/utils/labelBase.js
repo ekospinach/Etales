@@ -1012,7 +1012,9 @@ var getLabelBase = function(){
 		
 		{id:'Total Time',  ENG:'Total Time',  CHN:'总时间',  RUS:''},
 		{id:'Gone',  ENG:'Gone',  CHN:'历时',  RUS:''},
-		{id:'Contract',  ENG:'Contract',  CHN:'谈判',  RUS:''},
+		{id:'Contract Deal',  ENG:'Contract Deal',  CHN:'谈判',  RUS:''},
+		{id:'Contract Finalize',  ENG:'Contract Finalize',  CHN:'谈判',  RUS:''},
+		{id:'Contract Decision Committe',  ENG:'Contract Decision Committe',  CHN:'谈判',  RUS:''},
 		{id:'Others',  ENG:'Others',  CHN:'其他',  RUS:''},
 
 		{id:'Estimated Period Spending',  ENG:'Estimated Period Spending',  CHN:'Estimated Period Spending',  RUS:''},

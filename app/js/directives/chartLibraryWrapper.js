@@ -864,8 +864,8 @@ define(['directives'], function(directives) {
         .directive('clockChart',function(){
             return function(scope,elem,attrs){
                 scope.$watch(attrs.ngModel,function(newValue,oldValue){
-                    console.log('new:'+newValue+',old:'+oldValue);
-                    if(newValue!=oldValue||newValue=="hello1"){
+                    console.log('newValue:'+newValue+',oldValue:'+oldValue);
+                    if(newValue!=oldValue){
                         if($('#clockChart')!=undefined){
                             $('#clockChart').empty();
                             var mark="Product Portfolio";
@@ -885,7 +885,7 @@ define(['directives'], function(directives) {
                                     enabled: true,
                                     formatter: function() {
                                         if(this.key!="Gone"&&this.key!="历时"){
-                                            return this.key+'<br/>'+'Total Time:'+this.point.z+'<br/>'+'Left Time:'+this.y;
+                                            return this.key+'<br/>'+'Left Time:'+this.y;
                                         }else{
                                             return 'Time gone:'+this.y;
                                         }

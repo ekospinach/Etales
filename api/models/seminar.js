@@ -653,13 +653,27 @@ exports.updateSeminar=function(io){
 				var isUpdate=true;
 				switch(queryCondition.behaviour){
 					case 'updatePassword':
-						doc[queryCondition.location][queryCondition.additionalIdx].password=queryCondition.value;
+						doc[queryCondition.location][queryCondition.additionalIdx].password = queryCondition.value;
 						break;
 					case 'updateCurrentPeriod':
 						doc.currentPeriod = queryCondition.value;
 						break;
-					// case 'updateActive':
-					// 	doc.is
+					case 'switchTimer':
+						console.log(queryCondition.value);
+						doc.isTimerActived = queryCondition.value;
+						break;
+					case 'updateTimeslotPortfolioDecisionCommitted':
+						doc.timeslotPortfolioDecisionCommitted = queryCondition.value;
+						break;
+					case 'updateTimeslotContractDeal':
+						doc.timeslotContractDeal = queryCondition.value;
+						break;
+					case 'updateTimeslotContractFinalized':
+						doc.timeslotContractFinalized = queryCondition.value;
+						break;
+					case 'updateTimeslotDecisionCommitted':
+						doc.timeslotDecisionCommitted = queryCondition.value;
+						break;
 				}
 				if(isUpdate){
 					doc.markModified('facilitator');
@@ -669,7 +683,9 @@ exports.updateSeminar=function(io){
 						if(err){
 							next(new Error(err));
 						}
-						io.sockets.emit('socketIO:seminarPeriodChanged', {period : doc.currentPeriod, seminar : doc.seminarCode, span : doc.simulationSpan});
+						if(queryCondition.behaviour=="updateCurrentPeriod"){
+							io.sockets.emit('socketIO:seminarPeriodChanged', {period : doc.currentPeriod, seminar : doc.seminarCode, span : doc.simulationSpan});
+						}
 	                    res.send(200, 'mission complete!');
 					});
 				}
@@ -1092,23 +1108,22 @@ function createNewTimer(seminarCode, countDown, io, timersEvents){
 			}
 			if(countDown.pass == countDown.timersEvent[0]){
 				timersEvents.emit('deadlinePortfolio', seminarCode);
-				io.sockets.emit('timer', {msg: seminarCode + 'pass:'+countDown.pass +'portfolio:'+countDown.portfolio+'contractDeal:'+countDown.contractDeal+'contractFinalized:'+countDown.contractFinalized+'contractDecisionCommitted:'+countDown.contractDecisionCommitted});
+				io.sockets.emit('socketIO:deadlinePortfolio', {'seminar':seminarCode,'pass':countDown.pass ,'portfolio':countDown.portfolio,'contractDeal':countDown.contractDeal,'contractFinalized':countDown.contractFinalized,'contractDecisionCommitted':countDown.contractDecisionCommitted});
 
 			}else if(countDown.pass == countDown.timersEvent[1]){
 				timersEvents.emit('deadlineContractDeal', seminarCode);
-				io.sockets.emit('timer', {msg: seminarCode + 'pass:'+countDown.pass +'portfolio:'+countDown.portfolio+'contractDeal:'+countDown.contractDeal+'contractFinalized:'+countDown.contractFinalized+'contractDecisionCommitted:'+countDown.contractDecisionCommitted});
+				io.sockets.emit('socketIO:deadlineContractDeal', {'seminar':seminarCode,'pass':countDown.pass ,'portfolio':countDown.portfolio,'contractDeal':countDown.contractDeal,'contractFinalized':countDown.contractFinalized,'contractDecisionCommitted':countDown.contractDecisionCommitted});
 			
 			}else if(countDown.pass == countDown.timersEvent[2]){
 				timersEvents.emit('deadlineContractFinalized', seminarCode);
-				io.sockets.emit('timer', {msg: seminarCode + 'pass:'+countDown.pass +'portfolio:'+countDown.portfolio+'contractDeal:'+countDown.contractDeal+'contractFinalized:'+countDown.contractFinalized+'contractDecisionCommitted:'+countDown.contractDecisionCommitted});
+				io.sockets.emit('socketIO:deadlineContractFinalized', {'seminar':seminarCode,'pass':countDown.pass ,'portfolio':countDown.portfolio,'contractDeal':countDown.contractDeal,'contractFinalized':countDown.contractFinalized,'contractDecisionCommitted':countDown.contractDecisionCommitted});
 			
 			}else if(countDown.pass == countDown.timersEvent[3]){
 				timersEvents.emit('deadlineDecisionCommitted', seminarCode);
-				io.sockets.emit('timer', {msg: seminarCode + 'pass:'+countDown.pass +'portfolio:'+countDown.portfolio+'contractDeal:'+countDown.contractDeal+'contractFinalized:'+countDown.contractFinalized+'contractDecisionCommitted:'+countDown.contractDecisionCommitted});
-			
+				io.sockets.emit('socketIO:deadlineDecisionCommitted', {'seminar':seminarCode,'pass':countDown.pass ,'portfolio':countDown.portfolio,'contractDeal':countDown.contractDeal,'contractFinalized':countDown.contractFinalized,'contractDecisionCommitted':countDown.contractDecisionCommitted});
 			}
 			else{
-				io.sockets.emit('timer', {msg: seminarCode + 'pass:'+countDown.pass +'portfolio:'+countDown.portfolio+'contractDeal:'+countDown.contractDeal+'contractFinalized:'+countDown.contractFinalized+'contractDecisionCommitted:'+countDown.contractDecisionCommitted});
+				io.sockets.emit('socketIO:timerWork', {'seminar':seminarCode,'pass':countDown.pass ,'portfolio':countDown.portfolio,'contractDeal':countDown.contractDeal,'contractFinalized':countDown.contractFinalized,'contractDecisionCommitted':countDown.contractDecisionCommitted});
 			}
 		}, 1000);   
 		newTimer.seminarCode = seminarCode;			
@@ -1155,6 +1170,7 @@ exports.setTimer = function(io){
 			contractDecisionCommitted : req.body.contractDecisionCommitted,
 			timersEvent : [req.body.portfolio, req.body.portfolio+req.body.contractDeal, req.body.portfolio+req.body.contractDeal+req.body.contractFinalized ,req.body.portfolio+req.body.contractDeal+req.body.contractFinalized+req.body.contractDecisionCommitted]
 		};
+		console.log(countDown);
 
 		// seminar.findOne({seminarCode: req.body.seminarCode}, function(){
 		// 	find all the time slots and organize countDown
@@ -1176,6 +1192,7 @@ exports.setTimer = function(io){
 
 		console.log('timers : ' + util.inspect(timers));
 		//find existed timer in memory
+		console.log((timer == undefined) && (req.body.active == 'switchOn'));
 		if(timer){			
 			console.log('find timer: ' + util.inspect(timer));
 

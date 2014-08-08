@@ -122,15 +122,15 @@ define(['angular',
 		}
 	})
 
-	services.factory('EditSeminarInfo', function(){
+	services.factory('EditSeminarInfo', function() {
 		var selectedSeminar;
 		return {
-			getSelectedSeminar : function(){
+			getSelectedSeminar: function() {
 				return selectedSeminar;
-		},
-			setSelectedSeminar : function(value){
+			},
+			setSelectedSeminar: function(value) {
 				selectedSeminar = value;
-			}		
+			}
 		}
 	})
 
@@ -306,8 +306,40 @@ define(['angular',
 				startListenChangeFromServer : function(){
 					var socket = io.connect();
 
-					socket.on('timer', function(data){	
-						console.log(data.msg);
+					socket.on('socketIO:timerWork', function(data){	
+						if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode){
+							 $rootScope.$broadcast('timerWork',data);
+						}
+					});	
+
+					socket.on('socketIO:timerStop', function(data){	
+						if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode){
+							 $rootScope.$broadcast('timerStop',data);
+						}
+					});	
+
+					socket.on('socketIO:deadlinePortfolio', function(data){	
+						if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode){
+							 $rootScope.$broadcast('deadlinePortfolio',data);
+						}
+					});	
+
+					socket.on('socketIO:deadlineContractDeal', function(data){	
+						if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode){
+							 $rootScope.$broadcast('deadlineContractDeal',data);
+						}
+					});	
+
+					socket.on('socketIO:deadlineContractFinalized', function(data){	
+						if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode){
+							 $rootScope.$broadcast('deadlineContractFinalized',data);
+						}
+					});	
+
+					socket.on('socketIO:deadlineDecisionCommitted', function(data){	
+						if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode){
+							 $rootScope.$broadcast('deadlineDecisionCommitted',data);
+						}
 					});	
 
 				}
