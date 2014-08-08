@@ -544,10 +544,10 @@ define(['app', 'socketIO'], function(app) {
 				var postData={
                     seminarCode:$scope.seminar.seminarCode,
                     active:'switchOn',
-                    portfolio : 10*$scope.seminar.timeslotPortfolioDecisionCommitted, 
-                    contractDeal: 10*$scope.seminar.timeslotContractDeal, 
-                    contractFinalized : 10*$scope.seminar.timeslotContractFinalized, 
-                    contractDecisionCommitted : 10*$scope.seminar.timeslotDecisionCommitted
+                    portfolio : 60*$scope.seminar.timeslotPortfolioDecisionCommitted, 
+                    contractDeal: 60*$scope.seminar.timeslotContractDeal, 
+                    contractFinalized : 60*$scope.seminar.timeslotContractFinalized, 
+                    contractDecisionCommitted : 60*$scope.seminar.timeslotDecisionCommitted
                 }
                 $http({
                     method:'POST',
