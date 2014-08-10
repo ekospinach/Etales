@@ -1389,7 +1389,7 @@ exports.setTimer = function(io) {
 						doc.producers[i].decisionCommitStatus[doc.currentPeriod].isPortfolioDecisionCommitted=true;
 						result.push({'producerID':i+1});
 					}
-					doc.producers[i].decisionCommitStatus[doc.currentPeriod].isPortfolioDecisionCommitted=false;
+					//doc.producers[i].decisionCommitStatus[doc.currentPeriod].isPortfolioDecisionCommitted=false;
 
 				}
 			}

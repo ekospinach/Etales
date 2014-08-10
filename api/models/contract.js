@@ -102,7 +102,7 @@ exports.addContractByAdmin = function(seminar, period, producers) {
 
 
                q.all(allContracts).then(function(results) {
-                    console.log(idx);
+                    console.log(results);
                }, function(err) {
                     console.log(err);
                });
@@ -125,8 +125,9 @@ exports.addContractDetailsByAdmin = function(seminar, period, producers) {
           if(idx<producers.length){
                //add contract
                var contractCode1 = 'P' + producers[idx].producerID + 'and' + 'R' + 1 + '_' + seminar + '_' + period; //sth + period + seminar, must be
-               var contractCode2 = 'P' + producers[idx].producerID + 'and' + 'R' + 1 + '_' + seminar + '_' + period; //sth + period + seminar, must be
+               var contractCode2 = 'P' + producers[idx].producerID + 'and' + 'R' + 2 + '_' + seminar + '_' + period; //sth + period + seminar, must be
                
+
                var products=new Array();
                var promise=require('./producerDecision.js').proDecision.findOne({
                     seminar: seminar,
@@ -138,20 +139,24 @@ exports.addContractDetailsByAdmin = function(seminar, period, producers) {
                          for (var j = 0; j < doc.proCatDecision[i].proBrandsDecision.length; j++) {
                               for (var k = 0; k < doc.proCatDecision[i].proBrandsDecision[j].proVarDecision.length; k++) {
                                    if (doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].varName != "") {
+                                        doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].parentBrandName=doc.proCatDecision[i].proBrandsDecision[j].brandName;
                                         products.push(doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k]);
                                    }
                               }
                          }
                     }     
                }).then(function(data){
-                    return contractDetailsCreateShooter(contractCode1,products);
+                    return createContractDetails(contractCode1,producers[idx].producerID,1,seminar,period,products);
                }).then(function(data){
-                    return contractDetailsCreateShooter(contractCode2,products);
+                    return createContractDetails(contractCode2,producers[idx].producerID,2,seminar,period,products);
+               }).then(function(data){
+                    idx++;
+                    addContractDetail(seminar,period,producers,idx);
                },function(data){
                     console.log(data);
                });
-               idx++;
-               addContractDetail(seminar,period,producers,idx);
+
+               
           }else{
                deferred.resolve({
                     msg:'addContractDetail done'
@@ -161,47 +166,53 @@ exports.addContractDetailsByAdmin = function(seminar, period, producers) {
      return deferred.promise;
 }
 
-function contractDetailsCreateShooter(contractCode,productList){
+function createContractDetails(contractCode,producerID,retailerID,seminar,period,productList){
      var deferred = q.defer();
+     (function createContractDetail(products,producerID,retailerID,seminar,period, idx) {
+          if(idx<products.length){
 
+               var details=[];
 
-     console.log('contractCode:'+contractCode+',productList:'+productList.length);
-
-     // (function multipleRequestShooter(products, idx) {
-     //      var shooterData = {
-     //           contractCode: contractCode,
-     //           brandName: products[idx].parentBrandName,
-     //           brandID: products[idx].parentBrandID,
-     //           varName: products[idx].varName,
-     //           varID: products[idx].varID,
-     //           composition: products[idx].composition,
-     //           currentPriceBM: products[idx].currentPriceBM,
-     //           packFormat: products[idx].realPackFormat,
-     //           seminar: SeminarInfo.getSelectedSeminar().seminarCode
-     //      }
-     //      $http({
-     //           method: 'POST',
-     //           url: '/addContractDetails',
-     //           data: shooterData
-     //      }).then(function(data) {
-     //           if (idx < products.length - 1) {
-     //                idx++;
-     //                multipleRequestShooter(products, idx);
-     //           } else {
-     //                deferred.resolve({
-     //                     msg: 'contract details shooter done, contractCode : ' + contractCode
-     //                });
-     //           }
-     //      }, function(data) {
-     //           deferred.reject({
-     //                msg: 'Error from contract details shooter, contractCode : ' + contractCode
-     //           });
-     //      });
-
-     // })(productList, 0);
-     deferred.resolve({
+               var newContractVariantDetail = new contractVariantDetails({
+                    contractCode: contractCode,
+                    producerID: producerID,
+                    retailerID: retailerID,
+                    parentBrandName: products[idx].parentBrandName,
+                    parentBrandID: products[idx].parentBrandID,
+                    variantName: products[idx].varName,
+                    variantID: products[idx].varID,
+                    nc_MinimumOrder: 0,
+                    nc_MinimumOrder_lastModifiedBy: 'P',
+                    nc_VolumeDiscountRate: 0,
+                    nc_VolumeDiscountRate_lastModifiedBy: 'P',
+                    nc_SalesTargetVolume: 0,
+                    nc_SalesTargetVolume_lastModifiedBy: 'P',
+                    nc_PerformanceBonusRate: 0,
+                    nc_PerformanceBonusRate_lastModifiedBy: 'P',
+                    nc_PaymentDays: 0,
+                    nc_PaymentDays_lastModifiedBy: 'P',
+                    nc_OtherCompensation: 0,
+                    nc_OtherCompensation_lastModifiedBy: 'P',
+                    isProducerApproved: false,
+                    isRetailerApproved: false,
+                    isNewProduct: false, //used for showing tag "NEW"
+                    isCompositionModified: false, //compare with previous period composition, used for showing tag "MODIFIED"
+                    composition: products[idx].composition, //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                    currentPriceBM: products[idx].currentPriceBM,
+                    packFormat: products[idx].packFormat,
+                    seminar: seminar
+               });
+               newContractVariantDetail.save();
+               idx++;
+               createContractDetail(productList,producerID,retailerID,seminar,period, idx);
+          }else{
+               deferred.resolve({
                     msg:'done'
                });
+          }
+
+     })(productList,producerID,retailerID,seminar,period, 0);
+     
 
      return deferred.promise;
 }
