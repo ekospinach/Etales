@@ -124,9 +124,10 @@ exports.addContractDetailsByAdmin = function(seminar, period, producers) {
      (function addContractDetail(seminar,period,producers,idx){
           if(idx<producers.length){
                //add contract
-               var contractCode1 = 'P' + producers[idx].producerID + 'and' + 'R' + 1 + '_' + seminar + '_' + period; //sth + period + seminar, must be
-               var contractCode2 = 'P' + producers[idx].producerID + 'and' + 'R' + 2 + '_' + seminar + '_' + period; //sth + period + seminar, must be
-               
+               var contractCode1 = 'P' + producers[idx].producerID + 'and' + 'R' + 1 + '_' + seminar + '_' + period;
+               var contractCode2 = 'P' + producers[idx].producerID + 'and' + 'R' + 2 + '_' + seminar + '_' + period;
+               var previousPeriodCode1 = 'P' + producers[idx].producerID + 'and' + 'R' + 1 + '_' + seminar + '_' + (period-1);
+               var previousPeriodCode2 = 'P' + producers[idx].producerID + 'and' + 'R' + 2 + '_' + seminar + '_' + (period-1);
 
                var products=new Array();
                var promise=require('./producerDecision.js').proDecision.findOne({
@@ -146,9 +147,9 @@ exports.addContractDetailsByAdmin = function(seminar, period, producers) {
                          }
                     }     
                }).then(function(data){
-                    return createContractDetails(contractCode1,producers[idx].producerID,1,seminar,period,products);
+                    return createContractDetails(contractCode1,previousPeriodCode1,producers[idx].producerID,1,seminar,period,products);
                }).then(function(data){
-                    return createContractDetails(contractCode2,producers[idx].producerID,2,seminar,period,products);
+                    return createContractDetails(contractCode2,previousPeriodCode2,producers[idx].producerID,2,seminar,period,products);
                }).then(function(data){
                     idx++;
                     addContractDetail(seminar,period,producers,idx);
@@ -166,45 +167,86 @@ exports.addContractDetailsByAdmin = function(seminar, period, producers) {
      return deferred.promise;
 }
 
-function createContractDetails(contractCode,producerID,retailerID,seminar,period,productList){
+function createContractDetails(contractCode,previousPeriodCode,producerID,retailerID,seminar,period,productList){
      var deferred = q.defer();
      (function createContractDetail(products,producerID,retailerID,seminar,period, idx) {
           if(idx<products.length){
-
                var details=[];
-
-               var newContractVariantDetail = new contractVariantDetails({
-                    contractCode: contractCode,
-                    producerID: producerID,
-                    retailerID: retailerID,
+               var promise=contractVariantDetails.findOne({
+                    contractCode: previousPeriodCode,
                     parentBrandName: products[idx].parentBrandName,
-                    parentBrandID: products[idx].parentBrandID,
-                    variantName: products[idx].varName,
-                    variantID: products[idx].varID,
-                    nc_MinimumOrder: 0,
-                    nc_MinimumOrder_lastModifiedBy: 'P',
-                    nc_VolumeDiscountRate: 0,
-                    nc_VolumeDiscountRate_lastModifiedBy: 'P',
-                    nc_SalesTargetVolume: 0,
-                    nc_SalesTargetVolume_lastModifiedBy: 'P',
-                    nc_PerformanceBonusRate: 0,
-                    nc_PerformanceBonusRate_lastModifiedBy: 'P',
-                    nc_PaymentDays: 0,
-                    nc_PaymentDays_lastModifiedBy: 'P',
-                    nc_OtherCompensation: 0,
-                    nc_OtherCompensation_lastModifiedBy: 'P',
-                    isProducerApproved: false,
-                    isRetailerApproved: false,
-                    isNewProduct: false, //used for showing tag "NEW"
-                    isCompositionModified: false, //compare with previous period composition, used for showing tag "MODIFIED"
-                    composition: products[idx].composition, //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
-                    currentPriceBM: products[idx].currentPriceBM,
-                    packFormat: products[idx].packFormat,
-                    seminar: seminar
+                    variantName: products[idx].varName
+               }).exec();
+               promise.then(function(doc){
+                    console.log(doc);
+                    if(doc){
+                         console.log('found previous input, copy...');
+                         var newContractVariantDetail = new contractVariantDetails({
+                              contractCode: contractCode,
+                              producerID: producerID,
+                              retailerID: retailerID,
+                              parentBrandName: products[idx].parentBrandName,
+                              parentBrandID: products[idx].parentBrandID,
+                              variantName: products[idx].varName,
+                              variantID: products[idx].varID,
+                              nc_MinimumOrder: doc.nc_MinimumOrder,
+                              nc_MinimumOrder_lastModifiedBy: doc.nc_MinimumOrder_lastModifiedBy,
+                              nc_VolumeDiscountRate: doc.nc_VolumeDiscountRate,
+                              nc_VolumeDiscountRate_lastModifiedBy: doc.nc_VolumeDiscountRate_lastModifiedBy,
+                              nc_SalesTargetVolume: doc.nc_SalesTargetVolume,
+                              nc_SalesTargetVolume_lastModifiedBy: doc.nc_SalesTargetVolume_lastModifiedBy,
+                              nc_PerformanceBonusRate: doc.nc_PerformanceBonusRate,
+                              nc_PerformanceBonusRate_lastModifiedBy: doc.nc_PerformanceBonusRate_lastModifiedBy,
+                              nc_PaymentDays: doc.nc_PaymentDays,
+                              nc_PaymentDays_lastModifiedBy: doc.nc_PaymentDays_lastModifiedBy,
+                              nc_OtherCompensation: doc.nc_OtherCompensation,
+                              nc_OtherCompensation_lastModifiedBy: doc.nc_OtherCompensation_lastModifiedBy,                              isProducerApproved: false,
+                              isRetailerApproved: false,
+                              isNewProduct: false, //used for showing tag "NEW"
+                              isCompositionModified: false, //compare with previous period composition, used for showing tag "MODIFIED"
+                              composition: products[idx].composition, //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                              currentPriceBM: products[idx].currentPriceBM,
+                              packFormat: products[idx].packFormat,
+                              seminar: seminar
+                         });
+                         newContractVariantDetail.save();
+                    }else{
+                         console.log('not found from previous, creat new...');
+                         var newContractVariantDetail = new contractVariantDetails({
+                              contractCode: contractCode,
+                              producerID: producerID,
+                              retailerID: retailerID,
+                              parentBrandName: products[idx].parentBrandName,
+                              parentBrandID: products[idx].parentBrandID,
+                              variantName: products[idx].varName,
+                              variantID: products[idx].varID,
+                              nc_MinimumOrder: 0,
+                              nc_MinimumOrder_lastModifiedBy: 'P',
+                              nc_VolumeDiscountRate: 0,
+                              nc_VolumeDiscountRate_lastModifiedBy: 'P',
+                              nc_SalesTargetVolume: 0,
+                              nc_SalesTargetVolume_lastModifiedBy: 'P',
+                              nc_PerformanceBonusRate: 0,
+                              nc_PerformanceBonusRate_lastModifiedBy: 'P',
+                              nc_PaymentDays: 0,
+                              nc_PaymentDays_lastModifiedBy: 'P',
+                              nc_OtherCompensation: 0,
+                              nc_OtherCompensation_lastModifiedBy: 'P',
+                              isProducerApproved: false,
+                              isRetailerApproved: false,
+                              isNewProduct: false, //used for showing tag "NEW"
+                              isCompositionModified: false, //compare with previous period composition, used for showing tag "MODIFIED"
+                              composition: products[idx].composition, //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                              currentPriceBM: products[idx].currentPriceBM,
+                              packFormat: products[idx].packFormat,
+                              seminar: seminar
+                         });
+                    }
+                    newContractVariantDetail.save();
+               }).then(function(){
+                    idx++;
+                    createContractDetail(productList,producerID,retailerID,seminar,period, idx);
                });
-               newContractVariantDetail.save();
-               idx++;
-               createContractDetail(productList,producerID,retailerID,seminar,period, idx);
           }else{
                deferred.resolve({
                     msg:'done'
@@ -230,7 +272,8 @@ exports.dealContractsByAdmin=function(seminar,period){
                var previousPeriodCode2='P'+idx+'andR2_'+seminar+'_'+(period-1);
                var details=new Array();
                var promise=contractVariantDetails.find({
-                    contractCode:currentPeriodCode1
+                    contractCode:currentPeriodCode1,
+                    $where:"this.isRetailerApproved != true || this.isProducerApproved != true"
                }).exec();
                promise.then(function(docs){
                     details=docs;
@@ -238,7 +281,8 @@ exports.dealContractsByAdmin=function(seminar,period){
                     return dealContracts(previousPeriodCode1,details);
                }).then(function(){
                     return contractVariantDetails.find({
-                         contractCode:currentPeriodCode2
+                         contractCode:currentPeriodCode2,
+                         $where:"this.isRetailerApproved != true || this.isProducerApproved != true"
                     }).exec();
                }).then(function(docs){
                     details=docs;
@@ -264,6 +308,7 @@ function dealContracts(previousPeriodCode,details){
      var deferred = q.defer();
 
      (function dealContract(previousPeriodCode,details,idx){
+          
           if(idx<details.length){
                var promise=contractVariantDetails.findOne({
                     contractCode: previousPeriodCode,
@@ -274,7 +319,7 @@ function dealContracts(previousPeriodCode,details){
                }).exec();
                promise.then(function(doc){
                     if(doc){
-                         console.log('found previous input, copy...');
+                         console.log('found previous input, copy...detail.ContractCode:'+details[idx].contractCode+',variant:'+details[idx].parentBrandName+details[idx].variantName);
                          var update = {
                               $set: {
                                    nc_MinimumOrder: doc.nc_MinimumOrder,

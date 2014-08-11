@@ -1299,8 +1299,6 @@ exports.duplicateSeminar = function(req, res, next) {
 
 function createNewTimer(seminarCode, countDown, io, timersEvents) {
 	newTimer = setInterval(function() {
-		//countDown--;
-		console.log('pass:'+countDown.pass+',countDown.timersEvent:'+countDown.timersEvent);
 		countDown.pass++;
 		if (countDown.portfolio > 0) {
 			countDown.portfolio--;
