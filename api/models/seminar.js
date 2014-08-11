@@ -1300,6 +1300,7 @@ exports.duplicateSeminar = function(req, res, next) {
 function createNewTimer(seminarCode, countDown, io, timersEvents) {
 	newTimer = setInterval(function() {
 		//countDown--;
+		console.log('pass:'+countDown.pass+',countDown.timersEvent:'+countDown.timersEvent);
 		countDown.pass++;
 		if (countDown.portfolio > 0) {
 			countDown.portfolio--;
@@ -1396,30 +1397,6 @@ exports.setTimer = function(io) {
 			require('./contract.js').addContractByAdmin(doc.seminarCode,doc.currentPeriod,result);
 			require('./contract.js').addContractDetailsByAdmin(doc.seminarCode,doc.currentPeriod,result);
 			
-			// require('./producerDecision.js').getProductsByAdmin(doc.seminarCode,doc.currentPeriod,result[1].producerID);
-			// console.log(products.length);
-			// (function )
-
-			// require('./producerDecision.js').proDecision.findOne({
-			// 	seminar:seminar,
-			// 	period:period,
-			// 	producerID:producers[idx]
-			// },function(err,doc){
-
-			// })
-
-			// console.log('start add detail');
-			// (function addContractDeatails(seminarCode,currentPeriod,producers,idx){
-			// 	requrire('./producerDecision.js').proDecision.find({
-			// 		seminar:seminarCode,
-			// 		period:currentPeriod,
-			// 		producerID:producers[idx].producerID
-			// 	},function(err,doc){
-					
-			// 	})
-
-			// })(doc.seminarCode,doc.currentPeriod,result,idx)
-
 			doc.markModified('producers');
 			doc.save();
 			//io.sockets.emit('socketIO:committedPortfolio',{'result':result,'seminarCode':doc.seminarCode,'period':doc.currentPeriod});
@@ -1439,6 +1416,10 @@ exports.setTimer = function(io) {
 				doc.producers[2].decisionCommitStatus[doc.currentPeriod].isContractDeal=true;
 				doc.producers[3].decisionCommitStatus[doc.currentPeriod].isContractDeal=true;
 			}
+
+			//
+			require('./contract.js').dealContractsByAdmin(doc.seminarCode,doc.currentPeriod);
+
 			doc.markModified('producers');
 			doc.save();
 		})
@@ -1491,11 +1472,11 @@ exports.setTimer = function(io) {
 		var seminarCode = req.body.seminarCode;
 		var countDown = {
 			pass: 0,
-			portfolio: req.body.portfolio,
-			contractDeal: req.body.contractDeal,
-			contractFinalized: req.body.contractFinalized,
-			contractDecisionCommitted: req.body.contractDecisionCommitted,
-			timersEvent: [req.body.portfolio, req.body.portfolio + req.body.contractDeal, req.body.portfolio + req.body.contractDeal + req.body.contractFinalized, req.body.portfolio + req.body.contractDeal + req.body.contractFinalized + req.body.contractDecisionCommitted]
+			portfolio: parseInt(req.body.portfolio),
+			contractDeal: parseInt(req.body.contractDeal),
+			contractFinalized: parseInt(req.body.contractFinalized),
+			contractDecisionCommitted: parseInt(req.body.contractDecisionCommitted),
+			timersEvent: [parseInt(req.body.portfolio), parseInt(req.body.portfolio) + parseInt(req.body.contractDeal), parseInt(req.body.portfolio) + parseInt(req.body.contractDeal) + parseInt(req.body.contractFinalized), parseInt(req.body.portfolio) + parseInt(req.body.contractDeal) + parseInt(req.body.contractFinalized) + parseInt(req.body.contractDecisionCommitted)]
 		};
 
 		// seminar.findOne({seminarCode: req.body.seminarCode}, function(){

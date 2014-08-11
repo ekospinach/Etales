@@ -217,6 +217,95 @@ function createContractDetails(contractCode,producerID,retailerID,seminar,period
      return deferred.promise;
 }
 
+exports.dealContractsByAdmin=function(seminar,period){
+     var deferred = q.defer();
+
+     console.log('hi');
+     (function dealContract(seminar,period,idx){
+          
+          if(idx<4){
+               var currentPeriodCode1='P'+idx+'andR1_'+seminar+'_'+period;
+               var previousPeriodCode1='P'+idx+'andR1_'+seminar+'_'+(period-1);
+               var currentPeriodCode2='P'+idx+'andR2_'+seminar+'_'+period;
+               var previousPeriodCode2='P'+idx+'andR2_'+seminar+'_'+(period-1);
+               var details=new Array();
+               var promise=contractVariantDetails.find({
+                    contractCode:currentPeriodCode1
+               }).exec();
+               promise.then(function(docs){
+                    details=docs;
+               }).then(function(data){
+                    return dealContracts(previousPeriodCode1,details);
+               }).then(function(){
+                    return contractVariantDetails.find({
+                         contractCode:currentPeriodCode2
+                    }).exec();
+               }).then(function(docs){
+                    details=docs;
+                    return dealContracts(previousPeriodCode2,details);
+               }).then(function(){
+                    idx++;
+                    dealContract(seminar,period,idx);
+               },function(){
+                    console.log('fail');
+               })  
+          }else{
+               deferred.resolve({
+                    msg:'deal ContractDetail done'
+               });
+          }
+
+     })(seminar,period,1)
+
+     return deferred.promise;
+}
+
+function dealContracts(previousPeriodCode,details){
+     var deferred = q.defer();
+
+     (function dealContract(previousPeriodCode,details,idx){
+          if(idx<details.length){
+               var promise=contractVariantDetails.findOne({
+                    contractCode: previousPeriodCode,
+                    parentBrandName: details[idx].parentBrandName,
+                    parentBrandID: details[idx].parentBrandID,
+                    variantName: details[idx].variantName,
+                    variantID: details[idx].variantID
+               }).exec();
+               promise.then(function(doc){
+                    if(doc){
+                         console.log('found previous input, copy...');
+                         var update = {
+                              $set: {
+                                   nc_MinimumOrder: doc.nc_MinimumOrder,
+                                   nc_VolumeDiscountRate: doc.nc_VolumeDiscountRate,
+                                   nc_SalesTargetVolume: doc.nc_SalesTargetVolume,
+                                   nc_PerformanceBonusRate: doc.nc_PerformanceBonusRate,
+                                   nc_PaymentDays: doc.nc_PaymentDays,
+                                   nc_OtherCompensation: doc.nc_OtherCompensation
+                              }
+                         };
+                         contractVariantDetails.findOneAndUpdate({
+                              _id: details[idx]._id
+                         }, update, function(err, doc) {
+                              idx++;
+                              dealContract(previousPeriodCode,details,idx);
+                         });
+                    }else{
+                         idx++;
+                         dealContract(previousPeriodCode,details,idx);
+                    }
+               });
+          }else{
+               deferred.resolve({
+                    msg:'deal ContractDetail done'
+               });
+          }
+     })(previousPeriodCode,details,0);
+
+     return deferred.promise;
+}
+
 exports.addContract = function(io) {
      return function(req, res, next) {
           contract.count({
