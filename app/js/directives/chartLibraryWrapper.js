@@ -864,7 +864,6 @@ define(['directives'], function(directives) {
         .directive('supplierClockChart',function(){
             return function(scope,elem,attrs){
                 scope.$watch(attrs.ngModel,function(newValue,oldValue){
-                    console.log('newValue:'+newValue+',oldValue:'+oldValue);
                     if(newValue!=oldValue){
                         if($('#clockChart')!=undefined){
                             $('#clockChart').empty();

@@ -445,7 +445,7 @@ exports.submitContractDeal = function(io) {
 				doc.save(function(err) {
 					if (!err) {
 						if (queryCondition.value && queryCondition.role == "Producer") {
-							io.sockets.emit('socketIO:contractDeal', {
+							io.sockets.emit('socketIO:dealContract', {
 								seminar: queryCondition.seminar,
 								producerID: queryCondition.roleID,
 								period: queryCondition.period
@@ -500,7 +500,7 @@ exports.submitContractFinalized = function(io) {
 				}
 				doc.save(function(err) {
 					if (!err) {
-						io.sockets.emit('socketIO:contractFinalized', {
+						io.sockets.emit('socketIO:finalizeContract', {
 							seminar: queryCondition.seminar,
 							role: queryCondition.role,
 							roleID: queryCondition.roleID,
@@ -555,7 +555,7 @@ exports.submitFinalDecision = function(io) {
 				}
 				doc.save(function(err) {
 					if (!err) {
-						io.sockets.emit('socketIO:finalDecisionCommitted', {
+						io.sockets.emit('socketIO:committeDecision', {
 							seminar: queryCondition.seminar,
 							role: queryCondition.role,
 							roleID: queryCondition.roleID,
@@ -1367,9 +1367,8 @@ exports.setTimer = function(io) {
 			require('./contract.js').addContractDetailsByAdmin(doc.seminarCode,doc.currentPeriod,result);
 			
 			doc.markModified('producers');
-			doc.save(function(){
-				io.sockets.emit('socketIO:committedPortfolio',{result:result,seminarCode:doc.seminarCode,period:doc.currentPeriod});
-			});
+			io.sockets.emit('socketIO:committedPortfolio',{result:result,seminarCode:doc.seminarCode,period:doc.currentPeriod});
+			doc.save();
 		});
 
 
@@ -1395,8 +1394,7 @@ exports.setTimer = function(io) {
 
 			doc.markModified('producers');
 			doc.markModified('retailers');
-			doc.save();
-			io.sockets.emit('socketIO:contractDeal', {
+			io.sockets.emit('socketIO:dealContract', {
 				reult:[{
 					producerID:1
 				},{
@@ -1407,7 +1405,7 @@ exports.setTimer = function(io) {
 				seminar: doc.seminar,
 				period: doc.period
 			});
-
+			doc.save();
 		})
 
 	}).on('deadlineContractFinalized', function(seminarCode) {
@@ -1428,8 +1426,10 @@ exports.setTimer = function(io) {
 			}
 			doc.markModified('producers');
 			doc.markModified('retailers');
-			doc.save();
-			io.sockets.emit('socketIO:finalizeContract',{'seminarCode':doc.seminarCode,'period':doc.currentPeriod});
+			
+			doc.save(function(){
+				io.sockets.emit('socketIO:finalizeContract',{'seminarCode':doc.seminarCode,'period':doc.currentPeriod});
+			});
 		})
 
 
@@ -1452,8 +1452,9 @@ exports.setTimer = function(io) {
 			}
 			doc.markModified('producers');
 			doc.markModified('retailers');
-			doc.save();
-			io.sockets.emit('socketIO:committeDecision',{'seminarCode':doc.seminarCode,'period':doc.currentPeriod});
+			doc.save(function(){
+				io.sockets.emit('socketIO:committeDecision',{'seminarCode':doc.seminarCode,'period':doc.currentPeriod});
+			});
 		})
 
 		singleTimer = _.find(timers, function(obj) {

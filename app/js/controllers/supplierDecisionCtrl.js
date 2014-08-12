@@ -207,7 +207,6 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 			});
 
 			$scope.$on('committedPortfolio',function(event,data){
-				console.log(data.result);
 				for(var i=0;i<data.result.length;i++){
 					if(data.result[i].producerID==PlayerInfo.getPlayer()){
 						loadBackgroundDataAndCalculateDecisionInfo();
@@ -216,6 +215,16 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 					}
 				}
 			})
+
+			$scope.$on('finalizeContract', function(event, data) {
+				loadBackgroundDataAndCalculateDecisionInfo();
+				notify('Time is up, Lock Contract. ' + ' Period ' + data.period + '.');
+			});
+
+			$scope.$on('committeDecision', function(event, data) {
+				loadBackgroundDataAndCalculateDecisionInfo();
+				notify('Time is up, Lock Decision.' + ' Period ' + data.period + '.');
+			});
 
 
 

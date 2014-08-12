@@ -640,9 +640,13 @@ define(['directives', 'services'], function(directives) {
                         notify('Negotiation has been updated by Supplier ' + data.producerID  + ' Period ' + data.period + '.');
                     });
                     
-                    scope.$on('ContractDeal',function(event,data){
-                        getResult(data.producerID);
-                        notify('Time is up, Contract Deal,Period ' + data.period + '.');
+                    scope.$on('dealContract',function(event,data){
+                        //getResult(data.producerID);
+                        for(var i=0;i<data.result.length;i++){
+                            getResult(data.result[i].producerID);
+                            notify('Time is up, Contract Deal,Period ' + data.period + '.');     
+                        }
+                        //notify('Time is up, Contract Deal,Period ' + data.period + '.');
                     })
 
 
