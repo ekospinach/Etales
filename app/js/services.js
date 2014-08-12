@@ -307,6 +307,7 @@ define(['angular',
 					var socket = io.connect();
 
 					socket.on('socketIO:timerWork', function(data){	
+						console.log('aaaaaaaaaaaaaaaaaaaaaaa');
 						if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode){
 							 $rootScope.$broadcast('timerWork',data);
 						}
@@ -342,193 +343,30 @@ define(['angular',
 						}
 					});	
 
-
-					// function contractDetailsCreateShooter(contractCode) {
-     //                    var deferred = $q.defer();
-
-     //                    (function multipleRequestShooter(products, idx) {
-     //                        var shooterData = {
-     //                            contractCode: contractCode,
-     //                            brandName: products[idx].parentBrandName,
-     //                            brandID: products[idx].parentBrandID,
-     //                            varName: products[idx].varName,
-     //                            varID: products[idx].varID,
-     //                            composition: products[idx].composition,
-     //                            currentPriceBM: products[idx].currentPriceBM,
-     //                            packFormat: products[idx].realPackFormat,
-     //                            seminar: SeminarInfo.getSelectedSeminar().seminarCode
-     //                        }
-     //                        $http({
-     //                            method: 'POST',
-     //                            url: '/addContractDetails',
-     //                            data: shooterData
-     //                        }).then(function(data) {
-     //                            if (idx < products.length - 1) {
-     //                                idx++;
-     //                                multipleRequestShooter(products, idx);
-     //                            } else {
-     //                                deferred.resolve({
-     //                                    msg: 'contract details shooter done, contractCode : ' + contractCode
-     //                                });
-     //                            }
-     //                        }, function(data) {
-     //                            deferred.reject({
-     //                                msg: 'Error from contract details shooter, contractCode : ' + contractCode
-     //                            });
-     //                        });
-
-     //                    })(productList, 0);
-
-     //                    return deferred.promise;
-     //                }
-
 					socket.on('socketIO:committedPortfolio',function(data){
+						if(data.seminarCode==SeminarInfo.getSelectedSeminar().seminarCode){
+							 $rootScope.$broadcast('committedPortfolio',data);
+						}
+					});
 
-						console.log('committedPortfolio:'+data);
-						var contractProducerShooter=function(newData){
-							var deferred=$q.defer();
-							(function multipleProducerShooter(myData,idx){
-								
-								console.log('getIn function'+'myDta:'+myData+',idx:'+idx);
-								
-								var contractCode = 'P' + myData.result[idx].producerID + 'andR1_' + myData.seminarCode + '_' + myData.period;
-		                        $http({
-		                            method: 'POST',
-		                            url: '/removeContract',
-		                            data: {
-		                                contractCode: contractCode
-		                            }
-		                        }).then(function(data) {
-									var contractCode = 'P' + myData.result[idx].producerID + 'andR2_' + myData.seminarCode + '_' + myData.period;
-		                            return $http({
-		                                method: 'POST',
-		                                url: '/removeContract',
-		                                data: {
-		                                    contractCode: contractCode
-		                                }
-		                            });
-		                        }).then(function(data) {
-									var contractCode = 'P' + myData.result[idx].producerID + 'andR1_' + myData.seminarCode + '_' + myData.period;
-									return $http({
-		                                method: 'POST',
-		                                url: '/removeContractDetailsByContractCode',
-		                                data: {
-		                                    contractCode: contractCode
-		                                }
-		                            });
+					socket.on('socketIO:dealContract',function(data){
+						if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode){
+							 $rootScope.$broadcast('dealContract',data);
+						}
+					});
 
-		                        }).then(function(data) {
-									var contractCode = 'P' + myData.result[idx].producerID + 'andR2_' + myData.seminarCode + '_' + myData.period;
-		                            return $http({
-		                                method: 'POST',
-		                                url: '/removeContractDetailsByContractCode',
-		                                data: {
-		                                    contractCode: contractCode
-		                                }
-		                            });
-		                        }).then(function(data) {
+					socket.on('socketIO:finalizeContract',function(data){
+						if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode){
+							 $rootScope.$broadcast('finalizeContract',data);
+						}
+					});
 
-		                            //step 1: Add contract schema between current supplier and retailer 1 
-		                            postData = {
-		                                period: myData.period,
-		                                seminar: myData.seminarCode,
-		                                draftedByCompanyID: myData.result[idx].producerID,
-		                                producerID: myData.result[idx].producerID,
-		                                retailerID: 1
-		                            }
-		                            return $http({
-		                                method: 'POST',
-		                                url: '/addContract',
-		                                data: postData
-		                            });
+					socket.on('socketIO:committeDecision',function(data){
+						if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode){
+							 $rootScope.$broadcast('committeDecision',data);
+						}
+					});
 
-		                        }).then(function(data) {
-
-		                            console.log('created contract schema between supplier ' + postData.producerID + ' and retailer ' + postData.retailerID);
-
-		                            //step 2: Add contract schema between current supplier and retailer 2
-		                            postData.retailerID = 2;
-		                            return $http({
-		                                method: 'POST',
-		                                url: '/addContract',
-		                                data: postData
-		                            });
-		                        // }).then(function(data) {
-		                        //     console.log('created contract schema between supplier ' + postData.producerID + ' and retailer ' + postData.retailerID);
-
-		                        //     //step 3: Add related contract details for two contact schema
-		                        //     //TODO: need to update field "isNewProduct" and "isCompositionModifed" in smart way                    
-		                        //     var contractCode = 'P' + myData.result[idx].producerID + 'andR1_' + myData.seminarCode + '_' + myData.period;
-		                        //     return contractDetailsCreateShooter(contractCode);
-
-		                        // }).then(function(data) {
-
-		                        //     var contractCode = 'P' + myData.result[idx].producerID + 'andR2_' + myData.seminarCode + '_' + myData.period;
-		                        //     return contractDetailsCreateShooter(contractCode);
-		                        }).then(function(data) {
-
-		                            if (idx < myData.result.length - 1) {
-	                                    idx++;
-	                                    multipleProducerShooter(myData, idx);
-	                                } else {
-	                                    deferred.resolve({
-	                                        msg: 'contract producer shooter done.' 
-	                                    });
-	                                }
-	                            }, function(data) {
-	                                deferred.reject({
-	                                    msg: 'Error from contract producer shooter.' 
-	                                });
-	                            });
-							})(newData,0);
-							
-	                        return deferred.promise;
-	                    }
-
-	                    contractProducerShooter(data);
-
-	                    // function contractDetailsCreateShooter(contractCode) {
-	                    //     var deferred = $q.defer();
-
-	                    //     var url='/getProducer'
-
-	                    //     (function multipleRequestShooter(products, idx) {
-	                    //         var shooterData = {
-	                    //             contractCode: contractCode,
-	                    //             brandName: products[idx].parentBrandName,
-	                    //             brandID: products[idx].parentBrandID,
-	                    //             varName: products[idx].varName,
-	                    //             varID: products[idx].varID,
-	                    //             composition: products[idx].composition,
-	                    //             currentPriceBM: products[idx].currentPriceBM,
-	                    //             packFormat: products[idx].realPackFormat,
-	                    //             seminar: SeminarInfo.getSelectedSeminar().seminarCode
-	                    //         }
-	                    //         $http({
-	                    //             method: 'POST',
-	                    //             url: '/addContractDetails',
-	                    //             data: shooterData
-	                    //         }).then(function(data) {
-	                    //             if (idx < products.length - 1) {
-	                    //                 idx++;
-	                    //                 multipleRequestShooter(products, idx);
-	                    //             } else {
-	                    //                 deferred.resolve({
-	                    //                     msg: 'contract details shooter done, contractCode : ' + contractCode
-	                    //                 });
-	                    //             }
-	                    //         }, function(data) {
-	                    //             deferred.reject({
-	                    //                 msg: 'Error from contract details shooter, contractCode : ' + contractCode
-	                    //             });
-	                    //         });
-
-	                    //     })(productList, 0);
-
-	                    //     return deferred.promise;
-	                    // }
-
-					})
 
 				}
 			}
@@ -584,11 +422,6 @@ define(['angular',
 						}
 					})
 
-					// socket.on('socketIO:contractFinalized',function(data){
-					// 	if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode){
-					// 		$rootScope.$broadcast('ContractFinalized',data);
-					// 	}
-					// })
 				}
 			}
 		}]
@@ -657,9 +490,7 @@ define(['angular',
 
 					//send seminar global message to notify retailer that supplier has commit portfolio decision
 					socket.on('socketIO:producerPortfolioDecisionStatusChanged', function(data){
-						console.log(PlayerInfo.getPlayer());
-						console.log(SeminarInfo.getSelectedSeminar());
-						if(data.seminar == SeminarInfo.getSelectedSeminar().seminarCode){
+						if(data.seminar == SeminarInfo.getSelectedSeminar().seminarCode && data.producerID == PlayerInfo.getPlayer()){
 							$rootScope.$broadcast('producerPortfolioDecisionStatusChanged',data);							
 						}
 					});

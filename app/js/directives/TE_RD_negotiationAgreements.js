@@ -645,6 +645,17 @@ define(['directives', 'services'], function(directives) {
                         notify('Time is up, Contract Deal,Period ' + data.period + '.');
                     })
 
+
+                    scope.$on('committedPortfolio',function(event,data){
+                        loadAllContract=function(){
+                            getResult(1);
+                            getResult(2);
+                            getResult(3);
+                        }
+                        setTimeout(loadAllContract, 10000);
+                        notify('Time is up, suppliers commit Portfolio,Period ' + data.period + '.');
+                    })
+
                     // scope.$on('ContractFinalized',function(event,data){
                     //     getResult(data.producerID);
                     //     notify('Time is up, Contract Finalized,Period ' + data.period + '.');

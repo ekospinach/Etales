@@ -113,41 +113,6 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 				})
 			}
 
-			// var loadTimeClockFromServer=function(){
-			// 	var d = $q.defer();
-			// 	var url='/getTimerActiveInfo/'+SeminarInfo.getSelectedSeminar().seminarCode;
-			// 	$http({
-			// 		method:'GET',
-			// 		url:url
-			// 	}).then(function(data){
-			// 		$scope.isTimerActived=data.result;
-			// 		$scope.myModel=Date.now();
-			// 		$scope.chartSeries = [{
-			// 			name: Label.getContent('Total Time'),
-			// 			data: [{
-			// 				'name': Label.getContent('Gone'),
-			// 				'y': data.,
-			// 				'z': 10
-			// 			}, {
-			// 				'name': Label.getContent('Portfolio Decision Committe'),
-			// 				'y': 40 - i,
-			// 				'z': 40
-			// 			}, {
-			// 				'name': Label.getContent('Contract Deal'),
-			// 				'y': 45,
-			// 				'z': 45
-			// 			}, {
-			// 				'name': Label.getContent('Contract Finalize'),
-			// 				'y': 50,
-			// 				'z': 50
-			// 			},{
-			// 				'name': Label.getContent('Decision Committe'),
-
-			// 			}]
-			// 		}];
-
-			// 	})
-			// }
 			var showProductPortfolioManagement = function() {
 				switching('showProductPortfolioManagement');
 			}
@@ -226,7 +191,7 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 			
 			$scope.$on('producerContractDeal', function(event, data) {
 				loadBackgroundDataAndCalculateDecisionInfo();
-				notify('Time is up, ????Contract Deal. Supplier ' + data.roleID + ' Period ' + data.period + '.');
+				notify('Time is up, Contract Deal. Supplier ' + data.roleID + ' Period ' + data.period + '.');
 
 			});
 
@@ -239,65 +204,20 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 			$scope.$on('producerDecisionLocked', function(event, data) {
 				loadBackgroundDataAndCalculateDecisionInfo();
 				notify('Time is up, Lock Decision. Supplier ' + data.roleID + ' Period ' + data.period + '.');
-
 			});
 
-			$scope.myModel = "hello0";
-			$scope.chartSeries = [{
-				name: Label.getContent('Total Time'),
-				data: [{
-					'name': Label.getContent('Gone'),
-					'y': 0,
-					'z': 0
-				}, {
-					'name': Label.getContent('Product Portfolio'),
-					'y': 40,
-					'z': 40
-				}, {
-					'name': Label.getContent('Contract'),
-					'y': 45,
-					'z': 45
-				}, {
-					'name': Label.getContent('Others'),
-					'y': 50,
-					'z': 50
-				}]
-			}];
-
-			var i = 0;
-			changeTime = function() {
-				if (i < 40) {
-					i++;
-					console.log('i:' + i + ' time:' + new Date());
-					$timeout(function() {
-						$scope.myModel = "hello" + i;
-						//$scope.clockTitle='19 mins left for portfolio decision';
-						$scope.clockTitle='19 mins left for locking negotiation';
-						$scope.chartSeries = [{
-							name: Label.getContent('Total Time'),
-							data: [{
-								'name': Label.getContent('Gone'),
-								'y': i,
-								'z': i
-							}, {
-								'name': Label.getContent('Product Portfolio'),
-								'y': 40 - i,
-								'z': 40
-							}, {
-								'name': Label.getContent('Contract'),
-								'y': 45,
-								'z': 45
-							}, {
-								'name': Label.getContent('Others'),
-								'y': 50,
-								'z': 50
-							}]
-						}];
-					});
-					setTimeout(changeTime, 600000);
+			$scope.$on('committedPortfolio',function(event,data){
+				console.log(data.result);
+				for(var i=0;i<data.result.length;i++){
+					if(data.result[i].producerID==PlayerInfo.getPlayer()){
+						loadBackgroundDataAndCalculateDecisionInfo();
+						notify('Commiting Portfolio Decision By Supplier ' + data.roleID + ' Period ' + data.period + '.');
+						break;
+					}
 				}
-			}
-			changeTime();
+			})
+
+
 
 			$scope.selectedPlayer = PlayerInfo.getPlayer();
 			$scope.selectedPeriod = PeriodInfo.getCurrentPeriod();

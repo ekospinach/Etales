@@ -178,9 +178,8 @@ function createContractDetails(contractCode,previousPeriodCode,producerID,retail
                     variantName: products[idx].varName
                }).exec();
                promise.then(function(doc){
-                    console.log(doc);
                     if(doc){
-                         console.log('found previous input, copy...');
+                         //console.log('found previous input, copy...');
                          var newContractVariantDetail = new contractVariantDetails({
                               contractCode: contractCode,
                               producerID: producerID,
@@ -211,7 +210,7 @@ function createContractDetails(contractCode,previousPeriodCode,producerID,retail
                          });
                          newContractVariantDetail.save();
                     }else{
-                         console.log('not found from previous, creat new...');
+                         //console.log('not found from previous, creat new...');
                          var newContractVariantDetail = new contractVariantDetails({
                               contractCode: contractCode,
                               producerID: producerID,
@@ -262,7 +261,6 @@ function createContractDetails(contractCode,previousPeriodCode,producerID,retail
 exports.dealContractsByAdmin=function(seminar,period){
      var deferred = q.defer();
 
-     console.log('hi');
      (function dealContract(seminar,period,idx){
           
           if(idx<4){
@@ -319,7 +317,7 @@ function dealContracts(previousPeriodCode,details){
                }).exec();
                promise.then(function(doc){
                     if(doc){
-                         console.log('found previous input, copy...detail.ContractCode:'+details[idx].contractCode+',variant:'+details[idx].parentBrandName+details[idx].variantName);
+                         //console.log('found previous input, copy...detail.ContractCode:'+details[idx].contractCode+',variant:'+details[idx].parentBrandName+details[idx].variantName);
                          var update = {
                               $set: {
                                    nc_MinimumOrder: doc.nc_MinimumOrder,
@@ -517,15 +515,8 @@ exports.addContractDetails = function(io) {
           var period = currentPeriodCode.substring(currentPeriodCode.length - 1, currentPeriodCode.length);
           var previousPeriod = parseInt(period) - 1;
 
-          console.log('Period:' + period);
-          console.log('Period(afterparse):' + parseInt(period));
-          console.log('previous Period:' + previousPeriod);
-
           var previousPeriodCode = currentPeriodCode.substring(0, currentPeriodCode.length - 1) + previousPeriod;
-          console.log('current Period Code:' + currentPeriodCode);
-          console.log('previous Period Code: ' + previousPeriodCode);
 
-          console.log('product:' + req.body.brandName + req.body.variantName + '/' + req.body.brandID + req.body.variantID);
           contractVariantDetails.findOne({
                     contractCode: previousPeriodCode,
                     parentBrandName: req.body.brandName,
@@ -540,7 +531,6 @@ exports.addContractDetails = function(io) {
 
                     //check previous period input first, if anything, copy original ones.
                     if (previousDoc) {
-                         console.log('found previous input, copy...');
                          var newContractVariantDetails = new contractVariantDetails({
                               contractCode: req.body.contractCode,
                               producerID: req.body.producerID,
@@ -624,15 +614,8 @@ exports.dealContractDetail = function(io) {
           var period = currentPeriodCode.substring(currentPeriodCode.length - 1, currentPeriodCode.length);
           var previousPeriod = parseInt(period) - 1;
 
-          console.log('Period:' + period);
-          console.log('Period(afterparse):' + parseInt(period));
-          console.log('previous Period:' + previousPeriod);
 
           var previousPeriodCode = currentPeriodCode.substring(0, currentPeriodCode.length - 1) + previousPeriod;
-          console.log('current Period Code:' + currentPeriodCode);
-          console.log('previous Period Code: ' + previousPeriodCode);
-
-          console.log('product:' + detail.parentBrandName + detail.variantName + '/' + detail.parentBrandID + detail.variantID);
           contractVariantDetails.findOne({
                     contractCode: previousPeriodCode,
                     parentBrandName: detail.parentBrandName,
@@ -647,8 +630,6 @@ exports.dealContractDetail = function(io) {
 
                     //check previous period input first, if anything, copy original ones.
                     if (previousDoc) {
-                         console.log('found previous input, copy...');
-
                          var update = {
                               $set: {
                                    nc_MinimumOrder: previousDoc.nc_MinimumOrder,
