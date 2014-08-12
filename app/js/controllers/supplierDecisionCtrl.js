@@ -226,6 +226,58 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 				notify('Time is up, Lock Decision.' + ' Period ' + data.period + '.');
 			});
 
+			var drawChart=function(data){
+				$scope.isTimerActived=true;
+				$timeout(function() {
+					if(data.portfolio>0){
+						$scope.supplierClockTitle=Label.getContent('Product Portfolio')+' '+Label.getContent('Left Time')+':'+data.portfolio+'mins';
+					}else if(data.contractDeal>0){
+						$scope.supplierClockTitle=Label.getContent('Contract Deal')+' '+Label.getContent('Left Time')+':'+data.contractDeal+'mins';
+					}else if(data.contractFinalized>0){
+						$scope.supplierClockTitle=Label.getContent('Contract Finalize')+' '+Label.getContent('Left Time')+':'+data.contractFinalized+'mins';
+					}else if(data.contractDecisionCommitted>0){
+						$scope.supplierClockTitle=Label.getContent('Decision Committe')+' '+Label.getContent('Left Time')+':'+data.contractDecisionCommitted+'mins';
+					}else{
+						$scope.supplierClockTitle=Label.getContent('Time up');
+					}
+
+					$scope.supplierChartSeries = [{
+						name: Label.getContent('Total Time'),
+						data: [{
+							'name': Label.getContent('Gone'),
+							'y': data.pass
+						}, {
+							'name': Label.getContent('Product Portfolio'),
+							'y': data.portfolio,
+						}, {
+							'name': Label.getContent('Contract Deal'),
+							'y': data.contractDeal,
+						}, {
+							'name': Label.getContent('Contract Finalize'),
+							'y': data.contractFinalized,
+						},{
+							'name':Label.getContent('Decision Committe'),
+							'y': data.contractDecisionCommitted
+						}]
+					}]
+					$scope.supplierModel=data;
+				});
+			}
+			$scope.$on('timerWork', function(event, data) {
+				drawChart(data);
+			});
+			$scope.$on('deadlinePortfolio', function(event, data) {
+				drawChart(data);
+			});
+			$scope.$on('deadlineContractDeal', function(event, data) {
+				drawChart(data);
+			});
+			$scope.$on('deadlineContractFinalized', function(event, data) {
+				drawChart(data);
+			});
+			$scope.$on('deadlineDecisionCommitted', function(event, data) {
+				drawChart(data);
+			});
 
 
 			$scope.selectedPlayer = PlayerInfo.getPlayer();

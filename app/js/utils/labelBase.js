@@ -1016,6 +1016,8 @@ var getLabelBase = function(){
 		{id:'Contract Finalize',  ENG:'Contract Finalize',  CHN:'谈判',  RUS:''},
 		{id:'Contract Decision Committe',  ENG:'Contract Decision Committe',  CHN:'谈判',  RUS:''},
 		{id:'Others',  ENG:'Others',  CHN:'其他',  RUS:''},
+		{id:'Left Time',  ENG:'Left Time',  CHN:'剩余时间',  RUS:''},
+		{id:'Time up',  ENG:'Time up',  CHN:'时间到',  RUS:''},
 
 		{id:'Estimated Period Spending',  ENG:'Estimated Period Spending',  CHN:'Estimated Period Spending',  RUS:''},
 		{id:'Estimated Budget Left',  ENG:'Estimated Budget Left',  CHN:'Estimated Budget Left',  RUS:''},

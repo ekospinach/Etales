@@ -364,24 +364,6 @@ define(['app', 'socketIO'], function(app) {
 					$scope.isKernelMessageShown = true;
 					$scope.kernelMessage.push(res.data);
 					$scope.kernelMessage.push('Complete, please reset current period manually!');
-					//if Run seminar successfully, current period need to be added by 1
-					// if(selectedPeriod == seminar.currentPeriod){
-					// 	var newData = {
-					// 		seminarCode : seminar.seminarCode,
-					// 		value : seminar.currentPeriod + 1,
-					// 		behaviour:'updateCurrentPeriod'
-					// 	}					
-					// 	$http({method: 'POST', url: '/updateSeminar',data:newData}).
-					// 	  success(function(res) {
-					// 	  	$scope.seminar.currentPeriod = newData.value;
-					// 		$scope.kernelMessage.push('current period has been modified into period ' + newData.value + ' !');
-					// 		$scope.isActive = true;
-					// 	  }).
-					// 	  error(function(res) {
-					// 		$scope.kernelMessage.push('current period modified failed ' + + ' !');
-					// 		$scope.isActive = true;					  	
-					// 	  });						
-					// }
 					$scope.isActive = true;
 				}, function(res) {
 					$scope.isKernelMessageShown = true;
@@ -514,8 +496,19 @@ define(['app', 'socketIO'], function(app) {
 
 			var drawChart=function(data){
 				$timeout(function() {
-					$scope.clockTitle='heoooo';
-					$scope.chartSeries = [{
+					if(data.portfolio>0){
+						$scope.supplierClockTitle=Label.getContent('Product Portfolio')+'Left Time:'+data.portfolio;
+					}else if(data.contractDeal>0){
+						$scope.supplierClockTitle=Label.getContent('Contract Deal')+'Left Time:'+data.contractDeal;
+					}else if(data.contractFinalized>0){
+						$scope.supplierClockTitle=Label.getContent('Contract Finalize')+'Left Time:'+data.contractFinalized;
+					}else if(data.contractDecisionCommitted>0){
+						$scope.supplierClockTitle=Label.getContent('Contract Decision Committe')+'Left Time:'+data.contractDecisionCommitted;
+					}else{
+						$scope.supplierClockTitle='Time up';
+					}
+
+					$scope.supplierChartSeries = [{
 						name: Label.getContent('Total Time'),
 						data: [{
 							'name': Label.getContent('Gone'),
@@ -534,7 +527,33 @@ define(['app', 'socketIO'], function(app) {
 							'y': data.contractDecisionCommitted
 						}]
 					}]
-					$scope.myModel=data;
+					$scope.supplierModel=data;
+					if(parseInt(data.portfolio)+parseInt(data.contractDeal)>0){
+						$scope.retailerClockTitle=Label.getContent('Contract Deal')+'Left Time:'+parseInt(data.portfolio)+parseInt(data.contractDeal);
+					}else if(data.contractFinalized>0){
+						$scope.retailerClockTitle=Label.getContent('Contract Finalize')+'Left Time:'+data.contractFinalized;
+					}else if(data.contractDecisionCommitted>0){
+						$scope.retailerClockTitle=Label.getContent('Contract Decision Committe')+'Left Time:'+data.contractDecisionCommitted;
+					}else{
+						$scope.retailerClockTitle='Time up';
+					}
+					$scope.retailerChartSeries = [{
+						name: Label.getContent('Total Time'),
+						data: [{
+							'name': Label.getContent('Gone'),
+							'y': data.pass
+						},{
+							'name': Label.getContent('Contract Deal'),
+							'y': parseInt(data.portfolio)+parseInt(data.contractDeal),
+						}, {
+							'name': Label.getContent('Contract Finalize'),
+							'y': data.contractFinalized,
+						},{
+							'name':Label.getContent('Contract Decision Committe'),
+							'y': data.contractDecisionCommitted
+						}]
+					}]
+					$scope.retailerModel=data;
 				});
 			}
 
@@ -552,7 +571,6 @@ define(['app', 'socketIO'], function(app) {
                     url:'/timer',
                     data:postData
                 }).then(function(data){
-                    console.log(data.data);
                     drawChart(data.data);
                 });
 			}
@@ -589,8 +607,7 @@ define(['app', 'socketIO'], function(app) {
 			});
 
 			$scope.$on('committedPortfolio', function(event, data) {
-				
-				console.log('hihihihihihihihihihihi');
+
 			});
 
 			$scope.isActive = true;

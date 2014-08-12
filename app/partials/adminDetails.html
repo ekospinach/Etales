@@ -176,7 +176,11 @@
 				</a> Mins
 			</p>
 
-			<div id='clockChart' ng-show='seminar.isTimerActived' ng-model='myModel' supplier-clock-chart></div>
+			<div id='supplierClockChart' ng-show='seminar.isTimerActived' ng-model='supplierModel' supplier-clock-chart></div>
+			<p>{{supplierClockTitle}}</p>
+			<hr>
+			<div id='retailerClockChart' ng-show='seminar.isTimerActived' ng-model='retailerModel' retailer-clock-chart></div>
+			<p>{{retailerClockTitle}}</p>
 
 			<button ng-show='seminar.isTimerActived' class="btn btn-primary" ng-click='startTimer()'>Start/Reset</button>
 			<button ng-show='seminar.isTimerActived' class="btn btn-default" ng-click="stopTimer()">Stop</button>

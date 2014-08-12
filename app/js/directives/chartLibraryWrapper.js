@@ -865,9 +865,9 @@ define(['directives'], function(directives) {
             return function(scope,elem,attrs){
                 scope.$watch(attrs.ngModel,function(newValue,oldValue){
                     if(newValue!=oldValue){
-                        if($('#clockChart')!=undefined){
-                            $('#clockChart').empty();
-                            $('#clockChart').highcharts({
+                        if($('#supplierClockChart')!=undefined){
+                            $('#supplierClockChart').empty();
+                            $('#supplierClockChart').highcharts({
                                 chart: {
                                     type: 'pie',
                                     height:200,
@@ -903,7 +903,56 @@ define(['directives'], function(directives) {
                                         }
                                     }
                                 },
-                                series: scope.chartSeries
+                                series: scope.supplierChartSeries
+                            })
+                        }
+                    }
+                });
+            }
+        })
+        .directive('retailerClockChart',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(newValue,oldValue){
+                    if(newValue!=oldValue){
+                        if($('#retailerClockChart')!=undefined){
+                            $('#retailerClockChart').empty();
+                            $('#retailerClockChart').highcharts({
+                                chart: {
+                                    type: 'pie',
+                                    height:200,
+                                    width:200
+                                },
+                                title: {
+                                    text: '',
+                                },
+                                credits: {
+                                    enabled: false
+                                },
+                                tooltip: {
+                                    enabled: true,
+                                    formatter: function() {
+                                        if(this.key!="Gone"&&this.key!="历时"){
+                                            return this.key+'<br/>'+'Left Time:'+this.y+'mins';
+                                        }else{
+                                            return 'Time gone:'+this.y+'mins';
+                                        }
+                                    }
+                                },
+                                plotOptions: {
+                                    pie: {
+                                        borderColor: null,
+                                        innerSize: '70%',
+                                         dataLabels: {
+                                             enabled: false,
+                                         }
+                                    },
+                                    series: {
+                                        animation: {
+                                            duration: 0,
+                                        }
+                                    }
+                                },
+                                series: scope.retailerChartSeries
                             })
                         }
                     }
