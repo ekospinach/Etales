@@ -98,7 +98,15 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
                     $scope.isContractDeal=data.data.isContractDeal;
                     $scope.isContractFinalized=data.data.isContractFinalized;
                     $scope.isDecisionCommitted=data.data.isDecisionCommitted;
-                })
+                    return $http({
+                        method:'GET',
+                        url:'/getTimerActiveInfo/'+SeminarInfo.getSelectedSeminar().seminarCode
+                    })
+                }).then(function(data){
+                    $scope.isTimerActived=data.data.result;
+                }, function() {
+                    console.log('fail');
+                });
             }
 
             var showNegotiationAgreements = function() {
@@ -125,20 +133,6 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
             $scope.showNegotiationAgreements = showNegotiationAgreements;
             $scope.loadBackgroundDataAndCalculateDecisionInfo = loadBackgroundDataAndCalculateDecisionInfo;
 
-            $scope.myModel = "hello";
-            $scope.chartSeries = [{
-                "name": "Some data",
-                "size": '80%',
-                "innerSize": '60%',
-                "data": [
-                    ['Firefox', 45.0],
-                    ['IE', 26.8],
-                    ['Chrome', 12.8],
-                    ['Safari', 8.5],
-                    ['Opera', 6.2],
-                    ['Others', 0.7]
-                ]
-            }];
 
             loadBackgroundDataAndCalculateDecisionInfo();
             showNegotiationAgreements();
@@ -190,7 +184,7 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
             });
 
             var drawChart=function(data){
-                $scope.isTimerActived=true;
+                $scope.chartInit=true;
                 $timeout(function() {
                     if(parseInt(data.portfolio)+parseInt(data.contractDeal)>0){
                         $scope.retailerClockTitle=Label.getContent('Contract Deal')+' '+Label.getContent('Left Time')+':'+(parseInt(data.portfolio)+parseInt(data.contractDeal))+'mins';
@@ -235,6 +229,13 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
             $scope.$on('deadlineDecisionCommitted', function(event, data) {
                 drawChart(data);
             });
+
+            $scope.$on('timerChanged', function(event, data) {
+                $scope.isTimerActived=data.isTimerActived;
+            });
+
+
+            console.log(SeminarInfo.getSelectedSeminar());
 
 
             $scope.selectedPlayer = PlayerInfo.getPlayer();

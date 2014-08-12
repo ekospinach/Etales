@@ -48,7 +48,6 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 					method: 'GET',
 					url: url
 				}).then(function(data) {
-
 					$scope.isPortfolioDecisionCommitted=data.data.isPortfolioDecisionCommitted;
 					$scope.isContractDeal=data.data.isContractDeal;
 					$scope.isContractFinalized=data.data.isContractFinalized;
@@ -107,10 +106,15 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 					});
 				}).then(function(data) {
 					$scope.heaSurplusProduction = ($scope.acHeaMax - data.data.result).toFixed(2);
-
-				}, function() {
+					return $http({
+                        method:'GET',
+                        url:'/getTimerActiveInfo/'+SeminarInfo.getSelectedSeminar().seminarCode
+                    });
+                }).then(function(data){
+                    $scope.isTimerActived=data.data.result;
+                }, function() {
 					console.log('fail');
-				})
+				});
 			}
 
 			var showProductPortfolioManagement = function() {
@@ -227,7 +231,7 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 			});
 
 			var drawChart=function(data){
-				$scope.isTimerActived=true;
+				$scope.chartInit=true;
 				$timeout(function() {
 					if(data.portfolio>0){
 						$scope.supplierClockTitle=Label.getContent('Product Portfolio')+' '+Label.getContent('Left Time')+':'+data.portfolio+'mins';
@@ -278,6 +282,10 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 			$scope.$on('deadlineDecisionCommitted', function(event, data) {
 				drawChart(data);
 			});
+
+			$scope.$on('timerChanged', function(event, data) {
+                $scope.isTimerActived=data.isTimerActived;
+            });
 
 
 			$scope.selectedPlayer = PlayerInfo.getPlayer();

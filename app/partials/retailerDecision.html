@@ -76,8 +76,8 @@
             <div class="bs-docs-section bs-docs-sidebar hidden-print" affix='0' role="complementary">
                 <div id='clockChart' ng-model='myModel' clock-chart></div>
                 <!-- <p>19m59s left for commiting portfolio decision</p> -->
-                <div id='retailerClockChart' ng-show='isTimerActived' ng-model='retailerModel' retailer-clock-chart></div>
-                <p ng-show='isTimerActived'>{{retailerClockTitle}}</p>
+                <div id='retailerClockChart' ng-show='isTimerActived&&chartInit' ng-model='retailerModel' retailer-clock-chart></div>
+                <p ng-show='isTimerActived&&chartInit'>{{retailerClockTitle}}</p>
                 <table class="table table-condensed" style="margin:0px auto;">
                     <thead>
                         <tr>

@@ -318,6 +318,12 @@ define(['angular',
 						}
 					});	
 
+					socket.on('socketIO:timerChanged', function(data){	
+						if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode){
+							 $rootScope.$broadcast('timerChanged',data);
+						}
+					});	
+
 					socket.on('socketIO:deadlinePortfolio', function(data){	
 						if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode){
 							 $rootScope.$broadcast('deadlinePortfolio',data);

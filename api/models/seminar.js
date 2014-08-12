@@ -798,7 +798,7 @@ exports.updateSeminar = function(io) {
 					doc.markModified('retailers');
 					doc.markModified('producers');
 					doc.save(function(err, doc, numberAffected) {
-						if (err) {
+					if (err) {
 							next(new Error(err));
 						}
 						if (queryCondition.behaviour == "updateCurrentPeriod") {
@@ -808,6 +808,16 @@ exports.updateSeminar = function(io) {
 								span: doc.simulationSpan
 							});
 						}
+
+						if (queryCondition.behaviour=="switchTimer"){
+							io.sockets.emit('socketIO:timerChanged', {
+								period: doc.currentPeriod,
+								seminar: doc.seminarCode,
+								isTimerActived:queryCondition.value
+
+							});
+						}
+
 						res.send(200, 'mission complete!');
 					});
 				}
@@ -1335,7 +1345,7 @@ function createNewTimer(seminarCode, countDown, io, timersEvents) {
 				'contractDecisionCommitted': countDown.contractDecisionCommitted
 			});
 		}
-	}, 60000);
+	}, 10000);
 	newTimer.seminarCode = seminarCode;
 	return newTimer;
 }
@@ -1509,6 +1519,7 @@ exports.setTimer = function(io) {
 				//user choose to stop timer
 			} else {
 				clearInterval(timer);
+				//io.sockets.emit('socketIO:timerStop',{'seminarCode':req.body.seminarCode});
 				res.send(200, 'stop timer: ' + timer.seminarCode);
 			}
 			//create a new timer and push into memory
