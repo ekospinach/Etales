@@ -89,7 +89,7 @@ var retDecisionSchema = mongoose.Schema({
     tradtionalAdvertising : [Number], //0-Price, 1-Convenience
     retCatDecision : [retCatDecisionSchema], //length: TCategories(1~2)
     retMarketDecision: [retMarketDecisionSchema], //length: TMarkets(1~2)
-//    marketResearchOrder : [Boolean]    
+    marketResearchOrder : [Boolean]    
 })
 
 exports.retDecision = mongoose.model('retailerDecision', retDecisionSchema);

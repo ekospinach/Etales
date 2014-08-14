@@ -79,7 +79,7 @@ var proDecisionSchema = mongoose.Schema({
     nextBudgetExtension : Number,
     approvedBudgetExtension : Number,
     proCatDecision : [proCatDecisionSchema], //Length: TCategories(1~2)    
-//    marketResearchOrder : [Boolean]
+    marketResearchOrder : [Boolean]
 })
 exports.proDecision = proDecision = mongoose.model('proDecision', proDecisionSchema);
 var proDecision = mongoose.model('proDecision', proDecisionSchema);
@@ -211,6 +211,9 @@ exports.updateProducerDecision = function(io){
 
         - step 4
         updateCategory : category,location,value
+
+        - MarketResearchOrders
+        updateMarketResearchOrders : additionalIdx value
         */
         categoryID : req.body.categoryID,
         brandName : req.body.brandName,
@@ -408,6 +411,9 @@ exports.updateProducerDecision = function(io){
                                                 }
                                             };
                                             break;
+                                        case 'updateMarketResearchOrders':
++                                            doc.marketResearchOrder[queryCondition.additionalIdx]=queryCondition.value;break;
++                                       break;
                                         default:
                                             isUpdated = false;
                                             res.send(404, 'cannot find matched query behaviour:' + queryCondition.behaviour);                                    
@@ -420,11 +426,17 @@ exports.updateProducerDecision = function(io){
                                         doc.markModified('advertisingOffLine');
                                         doc.markModified('supportTraditionalTrade');
                                         doc.markModified('proVarDecision');
+                                        doc.markModified('marketResearchOrder');
                                         doc.markModified('proBrandsDecision');
                                         doc.save(function(err, doc, numberAffected){
                                             if(err) next(new Error(err));
                                             console.log('save updated, number affected:'+numberAffected);
                                             io.sockets.emit('socketIO:producerBaseChanged', {period : queryCondition.period, producerID : queryCondition.producerID, seminar : queryCondition.seminar});
++                                            if(queryCondition.behaviour=="updateMarketResearchOrders"){
++                                                io.sockets.emit('socketIO:supplierMarketResearchOrdersChanged', {period : queryCondition.period,  seminar : queryCondition.seminar,producerID:queryCondition.producerID});
++                                            }else{
++                                                io.sockets.emit('socketIO:producerBaseChanged', {period : queryCondition.period, producerID : queryCondition.producerID, seminar : queryCondition.seminar});
++                                            }
                                             if(queryCondition.behaviour=="deleteProduct"){
                                                 res.send(200,{index:index});
                                             }else{
