@@ -181,6 +181,23 @@ exports.addRetailerDecisions = function(options){
     
 }
 
+exports.getReportPurchaseStatus=function(req,res,next){
+    retDecision.findOne({
+        seminar:req.params.seminar,
+        period:req.params.period,
+        retailerID:req.params.retailerID
+    },function(err,doc){
+        if(err) {next(new Error(err));}
+        else {
+            if(!doc) {
+                res.send(404, 'Cannot find matched producer decision doc.');
+            } else {
+                res.send(200,doc.marketResearchOrder);
+            }
+        }
+    });
+}
+
 //check
 exports.getRetailerShelfSpace=function(req,res,next){
     retDecision.findOne({
@@ -623,6 +640,9 @@ exports.updateRetailerDecision = function(io){
                                                 }
                                             }
                                         break;
+                                        case 'updateMarketResearchOrders':
+                                            doc.marketResearchOrder[queryCondition.additionalIdx]=queryCondition.value;break;
+                                        break;
                                         case 'deleteOrder':
                                             var nullOrder={
                                                 brandName:"",
@@ -665,12 +685,17 @@ exports.updateRetailerDecision = function(io){
                                         doc.markModified('categorySurfaceShare');
                                         doc.markModified('localAdvertising');
                                         doc.markModified('retMarketDecision');
+                                        doc.markModified('marketResearchOrder');
                                         doc.markModified('retCatDecision');
                                         doc.save(function(err, doc, numberAffected){
                                             if(err) next(new Error(err));
                                             console.log('save updated hhq, number affected:'+numberAffected);    
+                                            if(err) next(new Error(err));
+                                            console.log('save updated hhq, number affected:'+numberAffected);    
                                             if(queryCondition.behaviour=="addOrder"){
                                                 io.sockets.emit('socketIO:retailerBaseChanged', {retailerID: queryCondition.retailerID, seminar: queryCondition.seminar, period: queryCondition.period,categoryID:queryCondition.value.categoryID,marketID:queryCondition.marketID});
+                                            }else if(queryCondition.behaviour=="updateMarketResearchOrders"){
+                                                io.sockets.emit('socketIO:retailerMarketResearchOrdersChanged', {retailerID: queryCondition.retailerID, seminar: queryCondition.seminar, period: queryCondition.period,categoryID:queryCondition.value.categoryID,marketID:queryCondition.marketID});                                                
                                             }else{
                                                 io.sockets.emit('socketIO:retailerBaseChanged', {retailerID: queryCondition.retailerID, seminar: queryCondition.seminar, period: queryCondition.period,categoryID:queryCondition.categoryID,marketID:queryCondition.marketID});
                                             }                            

@@ -474,6 +474,7 @@ define(['angular',
 				},
 				startListenChangeFromServer : function(){
 					var socket = io.connect();
+
 					socket.on('socketIO:producerBaseChanged', function(data){						
 						//if changed base is modified by current supplier & seminar, reload decision base and broadcast message...
 						if( (data.producerID == PlayerInfo.getPlayer()) && (data.seminar == SeminarInfo.getSelectedSeminar().seminarCode)  ){
@@ -504,16 +505,16 @@ define(['angular',
 						}
 					});
 
-					socket.on('socketIO:producerMarketResearchOrdersChanged', function(data) {
-						if (data.seminar == SeminarInfo.getSelectedSeminar().seminarCode && data.producerID == PlayerInfo.getPlayer()) {
-							$rootScope.$broadcast('producerMarketResearchOrdersChanged', data);
-						}
-					});
-
 					//send seminar global message to notify retailer that supplier has commit portfolio decision
 					socket.on('socketIO:producerPortfolioDecisionStatusChanged', function(data){
 						if(data.seminar == SeminarInfo.getSelectedSeminar().seminarCode && data.producerID == PlayerInfo.getPlayer()){
 							$rootScope.$broadcast('producerPortfolioDecisionStatusChanged',data);							
+						}
+					});
+
+					socket.on('socketIO:supplierMarketResearchOrdersChanged', function(data) {
+						if (data.seminar == SeminarInfo.getSelectedSeminar().seminarCode && data.producerID == PlayerInfo.getPlayer()) {
+							$rootScope.$broadcast('supplierMarketResearchOrdersChanged', data);
 						}
 					});
 
@@ -603,9 +604,25 @@ define(['angular',
 					$http({method:'POST', url:'/producerDecision', data: queryCondition}).then(function(res){
 						
 					 	console.log('Success:' + res);
-					 },function(res){
+					},function(res){
 						console.log('Failed:' + res);
 					});
+				},
+				//setMarketResearchOrders
+				setMarketResearchOrders:function(playerID,additionalIdx,value){
+					var queryCondition = {
+						producerID:playerID,
+						period:PeriodInfo.getCurrentPeriod(),
+						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
+						behaviour : 'updateMarketResearchOrders', 
+						additionalIdx : additionalIdx,
+						value : value
+					}
+					$http({method:'POST',url:'/producerDecision',data:queryCondition}).then(function(res){
+					 	console.log('Success:' + res);
+					},function(res){
+						console.log('Failed:' + res);
+					})
 				},
 				addProductNewBrand:function(newproducerDecision,categoryID){
 					var queryCondition = {
@@ -913,6 +930,22 @@ define(['angular',
 						console.log('Failed:' + res);
 					});
 
+				},
+				//setMarketResearchOrders
+				setMarketResearchOrders:function(playerID,additionalIdx,value){
+					var queryCondition = {
+						retailerID:playerID,
+						period:PeriodInfo.getCurrentPeriod(),
+						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
+						behaviour : 'updateMarketResearchOrders', 
+						additionalIdx : additionalIdx,
+						value : value
+					}
+					$http({method:'POST',url:'/retailerDecision',data:queryCondition}).then(function(res){
+					 	console.log('Success:' + res);
+					},function(res){
+						console.log('Failed:' + res);
+					})
 				},
 				setSomething : function(sth){
 					//post to server...

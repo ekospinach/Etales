@@ -81,6 +81,7 @@ var proDecisionSchema = mongoose.Schema({
     proCatDecision : [proCatDecisionSchema], //Length: TCategories(1~2)    
     marketResearchOrder : [Boolean]
 })
+
 exports.proDecision = proDecision = mongoose.model('proDecision', proDecisionSchema);
 var proDecision = mongoose.model('proDecision', proDecisionSchema);
 var proVarDecision=mongoose.model('proVarDecision',proVarDecisionSchema);
@@ -191,6 +192,23 @@ exports.addProducerDecisions = function(options){
     return deferred.promise;
 }
 
+exports.getReportPurchaseStatus=function(req,res,next){
+    proDecision.findOne({
+        seminar:req.params.seminar,
+        period:req.params.period,
+        producerID:req.params.producerID
+    },function(err,doc){
+        if(err) {next(new Error(err));}
+        else {
+            if(!doc) {
+                res.send(404, 'Cannot find matched producer decision doc.');
+            } else {
+                res.send(200,doc.marketResearchOrder);
+            }
+        }
+    });
+}
+
 exports.updateProducerDecision = function(io){
   return function(req, res, next){
       var queryCondition = {
@@ -238,7 +256,6 @@ exports.updateProducerDecision = function(io){
                                     var index=0;
                                     switch(queryCondition.behaviour){
                                         case 'addProductNewBrand':
-                                        console.log(queryCondition.value);
                                             for (var i = 0; i < doc.proCatDecision.length; i++) {
                                                 if(doc.proCatDecision[i].categoryID == queryCondition.categoryID){
                                                     for(var j=0;j<doc.proCatDecision[i].proBrandsDecision.length;j++){
@@ -252,7 +269,6 @@ exports.updateProducerDecision = function(io){
                                             };
                                             break;
                                         case 'addProductExistedBrand':
-                                        console.log(queryCondition.value);
                                             for (var i = 0; i < doc.proCatDecision.length; i++) {
                                                 if(doc.proCatDecision[i].categoryID == queryCondition.categoryID){                                    
                                                     for (var j = 0; j < doc.proCatDecision[i].proBrandsDecision.length; j++) {                                
@@ -412,8 +428,8 @@ exports.updateProducerDecision = function(io){
                                             };
                                             break;
                                         case 'updateMarketResearchOrders':
-+                                            doc.marketResearchOrder[queryCondition.additionalIdx]=queryCondition.value;break;
-+                                       break;
+                                            doc.marketResearchOrder[queryCondition.additionalIdx]=queryCondition.value;break;
+                                        break;
                                         default:
                                             isUpdated = false;
                                             res.send(404, 'cannot find matched query behaviour:' + queryCondition.behaviour);                                    
@@ -425,18 +441,16 @@ exports.updateProducerDecision = function(io){
                                         doc.markModified('proVarDecision');
                                         doc.markModified('advertisingOffLine');
                                         doc.markModified('supportTraditionalTrade');
-                                        doc.markModified('proVarDecision');
                                         doc.markModified('marketResearchOrder');
                                         doc.markModified('proBrandsDecision');
                                         doc.save(function(err, doc, numberAffected){
                                             if(err) next(new Error(err));
-                                            console.log('save updated, number affected:'+numberAffected);
-                                            io.sockets.emit('socketIO:producerBaseChanged', {period : queryCondition.period, producerID : queryCondition.producerID, seminar : queryCondition.seminar});
-+                                            if(queryCondition.behaviour=="updateMarketResearchOrders"){
-+                                                io.sockets.emit('socketIO:supplierMarketResearchOrdersChanged', {period : queryCondition.period,  seminar : queryCondition.seminar,producerID:queryCondition.producerID});
-+                                            }else{
-+                                                io.sockets.emit('socketIO:producerBaseChanged', {period : queryCondition.period, producerID : queryCondition.producerID, seminar : queryCondition.seminar});
-+                                            }
+                                            console.log('save updated, number affected:'+numberAffected);                                           
+                                            if(queryCondition.behaviour=="updateMarketResearchOrders"){
+                                                io.sockets.emit('socketIO:supplierMarketResearchOrdersChanged', {period : queryCondition.period,  seminar : queryCondition.seminar,producerID:queryCondition.producerID});
+                                            }else{
+                                                io.sockets.emit('socketIO:producerBaseChanged', {period : queryCondition.period, producerID : queryCondition.producerID, seminar : queryCondition.seminar});
+                                            }
                                             if(queryCondition.behaviour=="deleteProduct"){
                                                 res.send(200,{index:index});
                                             }else{
@@ -450,7 +464,6 @@ exports.updateProducerDecision = function(io){
                             });
   }
 }
-
 
 exports.getAllProducerDecision = function(req, res, next){    
     /*P_1*/
