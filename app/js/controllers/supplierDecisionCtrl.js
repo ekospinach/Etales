@@ -48,33 +48,10 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 					method: 'GET',
 					url: url
 				}).then(function(data) {
-
 					$scope.isPortfolioDecisionCommitted=data.data.isPortfolioDecisionCommitted;
 					$scope.isContractDeal=data.data.isContractDeal;
 					$scope.isContractFinalized=data.data.isContractFinalized;
 					$scope.isDecisionCommitted=data.data.isDecisionCommitted;
-
-
-					console.log(data.data.isPortfolioDecisionCommitted);
-
-				// 	if (data.data == "isReady") {
-				// 		$scope.isPortfolioDecisionReady = true;
-				// 	} else {
-				// 		$scope.isPortfolioDecisionReady = false;
-				// 	}
-
-				// 	//make sure that isFinalDeicisonCommitted = $scope.FinalDecisionReady
-				// 	url = '/checkProducerFinalDecision/' + SeminarInfo.getSelectedSeminar().seminarCode + '/' + PeriodInfo.getCurrentPeriod() + '/' + parseInt(PlayerInfo.getPlayer());
-				// 	return $http({
-				// 		method: 'GET',
-				// 		url: url
-				// 	});
-				// }).then(function(data) {
-				// 	if (data.data == "isReady") {
-				// 		$scope.isFinalDecisionReady = true;
-				// 	} else {
-				// 		$scope.isFinalDecisionReady = false;
-				// 	}
 
 					//Get company history information (available budget, capacity, acquired TL...)
 					url = "/companyHistoryInfo/" + SeminarInfo.getSelectedSeminar().seminarCode + '/' + (PeriodInfo.getCurrentPeriod() - 1) + '/P/' + parseInt(PlayerInfo.getPlayer());
@@ -129,11 +106,17 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 					});
 				}).then(function(data) {
 					$scope.heaSurplusProduction = ($scope.acHeaMax - data.data.result).toFixed(2);
-
-				}, function() {
+					return $http({
+                        method:'GET',
+                        url:'/getTimerActiveInfo/'+SeminarInfo.getSelectedSeminar().seminarCode
+                    });
+                }).then(function(data){
+                    $scope.isTimerActived=data.data.result;
+                }, function() {
 					console.log('fail');
-				})
+				});
 			}
+
 			var showProductPortfolioManagement = function() {
 				switching('showProductPortfolioManagement');
 			}
@@ -212,7 +195,7 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 			
 			$scope.$on('producerContractDeal', function(event, data) {
 				loadBackgroundDataAndCalculateDecisionInfo();
-				notify('Time is up, ????Contract Deal. Supplier ' + data.roleID + ' Period ' + data.period + '.');
+				notify('Time is up, Contract Deal. Supplier ' + data.roleID + ' Period ' + data.period + '.');
 
 			});
 
@@ -225,65 +208,85 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 			$scope.$on('producerDecisionLocked', function(event, data) {
 				loadBackgroundDataAndCalculateDecisionInfo();
 				notify('Time is up, Lock Decision. Supplier ' + data.roleID + ' Period ' + data.period + '.');
-
 			});
 
-			$scope.myModel = "hello0";
-			$scope.chartSeries = [{
-				name: Label.getContent('Total Time'),
-				data: [{
-					'name': Label.getContent('Gone'),
-					'y': 0,
-					'z': 0
-				}, {
-					'name': Label.getContent('Product Portfolio'),
-					'y': 40,
-					'z': 40
-				}, {
-					'name': Label.getContent('Contract'),
-					'y': 45,
-					'z': 45
-				}, {
-					'name': Label.getContent('Others'),
-					'y': 50,
-					'z': 50
-				}]
-			}];
-
-			var i = 0;
-			changeTime = function() {
-				if (i < 40) {
-					i++;
-					console.log('i:' + i + ' time:' + new Date());
-					$timeout(function() {
-						$scope.myModel = "hello" + i;
-						//$scope.clockTitle='19 mins left for portfolio decision';
-						$scope.clockTitle='19 mins left for locking negotiation';
-						$scope.chartSeries = [{
-							name: Label.getContent('Total Time'),
-							data: [{
-								'name': Label.getContent('Gone'),
-								'y': i,
-								'z': i
-							}, {
-								'name': Label.getContent('Product Portfolio'),
-								'y': 40 - i,
-								'z': 40
-							}, {
-								'name': Label.getContent('Contract'),
-								'y': 45,
-								'z': 45
-							}, {
-								'name': Label.getContent('Others'),
-								'y': 50,
-								'z': 50
-							}]
-						}];
-					});
-					setTimeout(changeTime, 600000);
+			$scope.$on('committedPortfolio',function(event,data){
+				for(var i=0;i<data.result.length;i++){
+					if(data.result[i].producerID==PlayerInfo.getPlayer()){
+						loadBackgroundDataAndCalculateDecisionInfo();
+						notify('Commiting Portfolio Decision By Supplier ' + data.roleID + ' Period ' + data.period + '.');
+						break;
+					}
 				}
+			})
+
+			$scope.$on('finalizeContract', function(event, data) {
+				loadBackgroundDataAndCalculateDecisionInfo();
+				notify('Time is up, Lock Contract. ' + ' Period ' + data.period + '.');
+			});
+
+			$scope.$on('committeDecision', function(event, data) {
+				loadBackgroundDataAndCalculateDecisionInfo();
+				notify('Time is up, Lock Decision.' + ' Period ' + data.period + '.');
+			});
+
+			var drawChart=function(data){
+				$scope.chartInit=true;
+				$timeout(function() {
+					if(data.portfolio>0){
+						$scope.supplierClockTitle=Label.getContent('Product Portfolio')+' '+Label.getContent('Left Time')+':'+data.portfolio+'mins';
+					}else if(data.contractDeal>0){
+						$scope.supplierClockTitle=Label.getContent('Contract Deal')+' '+Label.getContent('Left Time')+':'+data.contractDeal+'mins';
+					}else if(data.contractFinalized>0){
+						$scope.supplierClockTitle=Label.getContent('Contract Finalize')+' '+Label.getContent('Left Time')+':'+data.contractFinalized+'mins';
+					}else if(data.contractDecisionCommitted>0){
+						$scope.supplierClockTitle=Label.getContent('Decision Committe')+' '+Label.getContent('Left Time')+':'+data.contractDecisionCommitted+'mins';
+					}else{
+						$scope.supplierClockTitle=Label.getContent('Time up');
+					}
+
+					$scope.supplierChartSeries = [{
+						name: Label.getContent('Total Time'),
+						data: [{
+							'name': Label.getContent('Gone'),
+							'y': data.pass
+						}, {
+							'name': Label.getContent('Product Portfolio'),
+							'y': data.portfolio,
+						}, {
+							'name': Label.getContent('Contract Deal'),
+							'y': data.contractDeal,
+						}, {
+							'name': Label.getContent('Contract Finalize'),
+							'y': data.contractFinalized,
+						},{
+							'name':Label.getContent('Decision Committe'),
+							'y': data.contractDecisionCommitted
+						}]
+					}]
+					$scope.supplierModel=data;
+				});
 			}
-			changeTime();
+			$scope.$on('timerWork', function(event, data) {
+				drawChart(data);
+			});
+			$scope.$on('deadlinePortfolio', function(event, data) {
+				drawChart(data);
+			});
+			$scope.$on('deadlineContractDeal', function(event, data) {
+				drawChart(data);
+			});
+			$scope.$on('deadlineContractFinalized', function(event, data) {
+				drawChart(data);
+			});
+			$scope.$on('deadlineDecisionCommitted', function(event, data) {
+				drawChart(data);
+			});
+
+			$scope.$on('timerChanged', function(event, data) {
+                $scope.isTimerActived=data.isTimerActived;
+            });
+
 
 			$scope.selectedPlayer = PlayerInfo.getPlayer();
 			$scope.selectedPeriod = PeriodInfo.getCurrentPeriod();

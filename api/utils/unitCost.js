@@ -796,4 +796,3 @@ function getCumVolumes(query, variant) {
 
   return deferred.promise;
 }
-

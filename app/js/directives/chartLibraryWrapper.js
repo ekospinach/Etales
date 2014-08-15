@@ -861,15 +861,13 @@ define(['directives'], function(directives) {
                 });
             }
         })
-        .directive('clockChart',function(){
+        .directive('supplierClockChart',function(){
             return function(scope,elem,attrs){
                 scope.$watch(attrs.ngModel,function(newValue,oldValue){
-                    console.log('new:'+newValue+',old:'+oldValue);
-                    if(newValue!=oldValue||newValue=="hello1"){
-                        if($('#clockChart')!=undefined){
-                            $('#clockChart').empty();
-                            var mark="Product Portfolio";
-                            $('#clockChart').highcharts({
+                    if(newValue!=oldValue){
+                        if($('#supplierClockChart')!=undefined){
+                            $('#supplierClockChart').empty();
+                            $('#supplierClockChart').highcharts({
                                 chart: {
                                     type: 'pie',
                                     height:200,
@@ -885,9 +883,9 @@ define(['directives'], function(directives) {
                                     enabled: true,
                                     formatter: function() {
                                         if(this.key!="Gone"&&this.key!="历时"){
-                                            return this.key+'<br/>'+'Total Time:'+this.point.z+'<br/>'+'Left Time:'+this.y;
+                                            return this.key+'<br/>'+'Left Time:'+this.y+'mins';
                                         }else{
-                                            return 'Time gone:'+this.y;
+                                            return 'Time gone:'+this.y+'mins';
                                         }
                                     }
                                 },
@@ -905,7 +903,56 @@ define(['directives'], function(directives) {
                                         }
                                     }
                                 },
-                                series: scope.chartSeries
+                                series: scope.supplierChartSeries
+                            })
+                        }
+                    }
+                });
+            }
+        })
+        .directive('retailerClockChart',function(){
+            return function(scope,elem,attrs){
+                scope.$watch(attrs.ngModel,function(newValue,oldValue){
+                    if(newValue!=oldValue){
+                        if($('#retailerClockChart')!=undefined){
+                            $('#retailerClockChart').empty();
+                            $('#retailerClockChart').highcharts({
+                                chart: {
+                                    type: 'pie',
+                                    height:200,
+                                    width:200
+                                },
+                                title: {
+                                    text: '',
+                                },
+                                credits: {
+                                    enabled: false
+                                },
+                                tooltip: {
+                                    enabled: true,
+                                    formatter: function() {
+                                        if(this.key!="Gone"&&this.key!="历时"){
+                                            return this.key+'<br/>'+'Left Time:'+this.y+'mins';
+                                        }else{
+                                            return 'Time gone:'+this.y+'mins';
+                                        }
+                                    }
+                                },
+                                plotOptions: {
+                                    pie: {
+                                        borderColor: null,
+                                        innerSize: '70%',
+                                         dataLabels: {
+                                             enabled: false,
+                                         }
+                                    },
+                                    series: {
+                                        animation: {
+                                            duration: 0,
+                                        }
+                                    }
+                                },
+                                series: scope.retailerChartSeries
                             })
                         }
                     }

@@ -122,15 +122,15 @@ define(['angular',
 		}
 	})
 
-	services.factory('EditSeminarInfo', function(){
+	services.factory('EditSeminarInfo', function() {
 		var selectedSeminar;
 		return {
-			getSelectedSeminar : function(){
+			getSelectedSeminar: function() {
 				return selectedSeminar;
-		},
-			setSelectedSeminar : function(value){
+			},
+			setSelectedSeminar: function(value) {
 				selectedSeminar = value;
-			}		
+			}
 		}
 	})
 
@@ -306,9 +306,89 @@ define(['angular',
 				startListenChangeFromServer : function(){
 					var socket = io.connect();
 
-					socket.on('timer', function(data){	
-						console.log(data.msg);
+					socket.on('socketIO:timerWork', function(data){	
+						if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode){
+							 $rootScope.$broadcast('timerWork',data);
+						}
 					});	
+
+					socket.on('socketIO:timerStop', function(data){	
+						if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode){
+							 $rootScope.$broadcast('timerStop',data);
+						}
+					});	
+
+					socket.on('socketIO:timerChanged', function(data){	
+						if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode){
+							 $rootScope.$broadcast('timerChanged',data);
+						}
+					});	
+
+					socket.on('socketIO:deadlinePortfolio', function(data){	
+						if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode){
+							 $rootScope.$broadcast('deadlinePortfolio',data);
+						}
+					});	
+
+					socket.on('socketIO:deadlineContractDeal', function(data){	
+						if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode){
+							 $rootScope.$broadcast('deadlineContractDeal',data);
+						}
+					});	
+
+					socket.on('socketIO:deadlineContractFinalized', function(data){	
+						if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode){
+							 $rootScope.$broadcast('deadlineContractFinalized',data);
+						}
+					});	
+
+					socket.on('socketIO:deadlineDecisionCommitted', function(data){	
+						if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode){
+							 $rootScope.$broadcast('deadlineDecisionCommitted',data);
+						}
+					});	
+
+					socket.on('socketIO:committedPortfolio',function(data){
+						console.log('aaaaaaaaaaaaaaaaaaaaaaadata:'+data);
+						//result
+						if(data.seminarCode==SeminarInfo.getSelectedSeminar().seminarCode){
+							 $rootScope.$broadcast('committedPortfolio',data);
+						}
+					});
+
+					socket.on('socketIO:dealContract',function(data){
+						console.log('bbbbbbbbbbbbbbbbbbbbbbdata:'+data);
+						//producerID
+						if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode&&data.producerID==PlayerInfo.getPlayer()){
+							 $rootScope.$broadcast('producerContractDeal',data);
+						}else{
+							 $rootScope.$broadcast('dealContract',data);
+
+						}
+					});
+
+					socket.on('socketIO:finalizeContract',function(data){
+						console.log('ccccccccccccccccccccccdata:'+data);
+						if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode&&data.role=="Producer"){
+							$rootScope.$broadcast('producerContractFinalized',data);
+						}else if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode&&data.role=="Retailer"){
+							$rootScope.$broadcast('retailerContractFinalized',data);
+						}else{
+							$rootScope.$broadcast('finalizeContract',data);
+						}
+					});
+
+					socket.on('socketIO:committeDecision',function(data){
+						console.log('ddddddddddddddddddddddata:'+data);
+						if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode&&data.role=="Producer"){
+							$rootScope.$broadcast('producerDecisionLocked',data);
+						}else if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode&&data.role=="Retailer"){
+							$rootScope.$broadcast('retailerDecisionLocked',data);
+						}else{
+							$rootScope.$broadcast('committeDecision',data);
+						}
+					});
+
 
 				}
 			}
@@ -358,17 +438,12 @@ define(['angular',
 						}							
 					});	
 
-					socket.on('socketIO:contractDeal',function(data){
-						if(data.seminar == SeminarInfo.getSelectedSeminar().seminarCode){
-							$rootScope.$broadcast('ContractDeal',data);
-						}
-					})
-
-					// socket.on('socketIO:contractFinalized',function(data){
-					// 	if(data.seminar==SeminarInfo.getSelectedSeminar().seminarCode){
-					// 		$rootScope.$broadcast('ContractFinalized',data);
+					// socket.on('socketIO:contractDeal',function(data){
+					// 	if(data.seminar == SeminarInfo.getSelectedSeminar().seminarCode){
+					// 		$rootScope.$broadcast('ContractDeal',data);
 					// 	}
 					// })
+
 				}
 			}
 		}]
@@ -399,6 +474,7 @@ define(['angular',
 				},
 				startListenChangeFromServer : function(){
 					var socket = io.connect();
+
 					socket.on('socketIO:producerBaseChanged', function(data){						
 						//if changed base is modified by current supplier & seminar, reload decision base and broadcast message...
 						if( (data.producerID == PlayerInfo.getPlayer()) && (data.seminar == SeminarInfo.getSelectedSeminar().seminarCode)  ){
@@ -429,51 +505,18 @@ define(['angular',
 						}
 					});
 
-					socket.on('socketIO:producerMarketResearchOrdersChanged', function(data) {
-						if (data.seminar == SeminarInfo.getSelectedSeminar().seminarCode && data.producerID == PlayerInfo.getPlayer()) {
-							$rootScope.$broadcast('producerMarketResearchOrdersChanged', data);
-						}
-					});
-
 					//send seminar global message to notify retailer that supplier has commit portfolio decision
 					socket.on('socketIO:producerPortfolioDecisionStatusChanged', function(data){
-						console.log(PlayerInfo.getPlayer());
-						console.log(SeminarInfo.getSelectedSeminar());
-						if(data.seminar == SeminarInfo.getSelectedSeminar().seminarCode){
+						if(data.seminar == SeminarInfo.getSelectedSeminar().seminarCode && data.producerID == PlayerInfo.getPlayer()){
 							$rootScope.$broadcast('producerPortfolioDecisionStatusChanged',data);							
 						}
 					});
 
-					socket.on('socketIO:contractDeal', function(data){
-						if(data.seminar == SeminarInfo.getSelectedSeminar().seminarCode
-							&& data.role == 'Producer'
-							&& data.period == PeriodInfo.getCurrentPeriod()
-							&& data.roleID == PlayerInfo.getPlayer()){
-							$rootScope.$broadcast('producerContractDeal', data);
+					socket.on('socketIO:supplierMarketResearchOrdersChanged', function(data) {
+						if (data.seminar == SeminarInfo.getSelectedSeminar().seminarCode && data.producerID == PlayerInfo.getPlayer()) {
+							$rootScope.$broadcast('supplierMarketResearchOrdersChanged', data);
 						}
 					});
-
-					socket.on('socketIO:contractFinalized', function(data){
-						if(data.seminar == SeminarInfo.getSelectedSeminar().seminarCode
-							&& data.role == 'Producer'
-							&& data.period == PeriodInfo.getCurrentPeriod()
-							&& data.roleID == PlayerInfo.getPlayer()){
-							$rootScope.$broadcast('producerContractFinalized', data);
-						}
-					});
-
-					socket.on('socketIO:finalDecisionCommitted', function(data){
-						if(data.seminar == SeminarInfo.getSelectedSeminar().seminarCode
-							&& data.role == 'Producer'
-							&& data.period == PeriodInfo.getCurrentPeriod()
-							&& data.roleID == PlayerInfo.getPlayer()){
-							$rootScope.$broadcast('producerDecisionLocked', data);
-						}
-					});
-
-
-						//io.sockets.emit('FinalDecisionCommitted', {seminar : queryCondition.seminar, role: queryCondition.role, roleID : queryCondition.roleID, period : queryCondition.period});
-
 
 				},				
 				setSomething : function(sth){
@@ -561,9 +604,25 @@ define(['angular',
 					$http({method:'POST', url:'/producerDecision', data: queryCondition}).then(function(res){
 						
 					 	console.log('Success:' + res);
-					 },function(res){
+					},function(res){
 						console.log('Failed:' + res);
 					});
+				},
+				//setMarketResearchOrders
+				setMarketResearchOrders:function(playerID,additionalIdx,value){
+					var queryCondition = {
+						producerID:playerID,
+						period:PeriodInfo.getCurrentPeriod(),
+						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
+						behaviour : 'updateMarketResearchOrders', 
+						additionalIdx : additionalIdx,
+						value : value
+					}
+					$http({method:'POST',url:'/producerDecision',data:queryCondition}).then(function(res){
+					 	console.log('Success:' + res);
+					},function(res){
+						console.log('Failed:' + res);
+					})
 				},
 				addProductNewBrand:function(newproducerDecision,categoryID){
 					var queryCondition = {
@@ -752,57 +811,29 @@ define(['angular',
 						if (data.seminar == SeminarInfo.getSelectedSeminar().seminarCode && data.period == PeriodInfo.getCurrentPeriod() && data.retailerID == PlayerInfo.getPlayer()) {
 							$rootScope.$broadcast('retailerMarketResearchOrdersChanged', data);
 						}
-					});
-
-					socket.on('socketIO:contractDeal', function(data){
-						if(data.seminar == SeminarInfo.getSelectedSeminar().seminarCode
-							&& data.role == 'Retailer'
-							&& data.period == PeriodInfo.getCurrentPeriod()
-							&& data.roleID == PlayerInfo.getPlayer()){
-							$rootScope.$broadcast('retailerContractDeal', data);
-						}
-					});
-
-					socket.on('socketIO:contractFinalized', function(data){
-						if(data.seminar == SeminarInfo.getSelectedSeminar().seminarCode
-							&& data.role == 'Retailer'
-							&& data.period == PeriodInfo.getCurrentPeriod()
-							&& data.roleID == PlayerInfo.getPlayer()){
-							$rootScope.$broadcast('retailerContractFinalized', data);
-						}
-					});
-
-
-					socket.on('socketIO:finalDecisionCommitted', function(data){
-						if(data.seminar == SeminarInfo.getSelectedSeminar().seminarCode
-							&& data.role == 'Retailer'
-							&& data.period == PeriodInfo.getCurrentPeriod()
-							&& data.roleID == PlayerInfo.getPlayer()){
-							$rootScope.$broadcast('retailerDecisionLocked', data);
-						}
-					});				
+					});			
 				},
 				//step1
-								/* 
-							    switch(behaviour) case...
-					            - step 1
-					            updateGeneralDecision
+					/* 
+				    switch(behaviour) case...
+		            - step 1
+		            updateGeneralDecision
 
-					            - step 2
-					            updateMarketDecision            
+		            - step 2
+		            updateMarketDecision            
 
-					            - step 3
-					            addProductNewBrand
-					            addProductExistedBrand
-					            deleteProduct
-					            deleteBrand
-					            updatePrivateLabel
+		            - step 3
+		            addProductNewBrand
+		            addProductExistedBrand
+		            deleteProduct
+		            deleteBrand
+		            updatePrivateLabel
 
-					            - step 4
-					            updateOrder
-					            addOrder
-					            deleteOrder
-							    */
+		            - step 4
+		            updateOrder
+		            addOrder
+		            deleteOrder
+				    */
 				//step1
 				setRetailerDecisionBase:function(location,additionalIdx,value){
 					var queryCondition = {
@@ -899,6 +930,22 @@ define(['angular',
 						console.log('Failed:' + res);
 					});
 
+				},
+				//setMarketResearchOrders
+				setMarketResearchOrders:function(playerID,additionalIdx,value){
+					var queryCondition = {
+						retailerID:playerID,
+						period:PeriodInfo.getCurrentPeriod(),
+						seminar:SeminarInfo.getSelectedSeminar().seminarCode,
+						behaviour : 'updateMarketResearchOrders', 
+						additionalIdx : additionalIdx,
+						value : value
+					}
+					$http({method:'POST',url:'/retailerDecision',data:queryCondition}).then(function(res){
+					 	console.log('Success:' + res);
+					},function(res){
+						console.log('Failed:' + res);
+					})
 				},
 				setSomething : function(sth){
 					//post to server...

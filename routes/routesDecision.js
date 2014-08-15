@@ -82,6 +82,9 @@ module.exports = function(app, io){
     app.get('/checkProducerDecisionStatus/:seminar/:period/:producerID',                                    require('./../api/models/seminar.js').checkProducerDecisionStatus);  
     app.get('/checkRetailerDecisionStatus/:seminar/:period/:retailerID',                                    require('./../api/models/seminar.js').checkRetailerDecisionStatus);
 
+    //check if TimerActived return  result include IsTimerActived and timeslot...
+    app.get('/getTimerActiveInfo/:seminar',                                                                 require('./../api/models/seminar.js').getTimerActiveInfo);
+
     //Submit supplier research order decision
     app.post('/submitOrder',                                                                                require('./../api/models/seminar.js').submitOrder(io));
 

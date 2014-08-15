@@ -98,7 +98,15 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
                     $scope.isContractDeal=data.data.isContractDeal;
                     $scope.isContractFinalized=data.data.isContractFinalized;
                     $scope.isDecisionCommitted=data.data.isDecisionCommitted;
-                })
+                    return $http({
+                        method:'GET',
+                        url:'/getTimerActiveInfo/'+SeminarInfo.getSelectedSeminar().seminarCode
+                    })
+                }).then(function(data){
+                    $scope.isTimerActived=data.data.result;
+                }, function() {
+                    console.log('fail');
+                });
             }
 
             var showNegotiationAgreements = function() {
@@ -125,20 +133,6 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
             $scope.showNegotiationAgreements = showNegotiationAgreements;
             $scope.loadBackgroundDataAndCalculateDecisionInfo = loadBackgroundDataAndCalculateDecisionInfo;
 
-            $scope.myModel = "hello";
-            $scope.chartSeries = [{
-                "name": "Some data",
-                "size": '80%',
-                "innerSize": '60%',
-                "data": [
-                    ['Firefox', 45.0],
-                    ['IE', 26.8],
-                    ['Chrome', 12.8],
-                    ['Safari', 8.5],
-                    ['Opera', 6.2],
-                    ['Others', 0.7]
-                ]
-            }];
 
             loadBackgroundDataAndCalculateDecisionInfo();
             showNegotiationAgreements();
@@ -178,39 +172,71 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
                 loadBackgroundDataAndCalculateDecisionInfo();
                 notify('Time is up, Lock Decision. Retailer ' + data.roleID + ' Period ' + data.period + '.');
             });
+            
+            $scope.$on('finalizeContract', function(event, data) {
+                loadBackgroundDataAndCalculateDecisionInfo();
+                notify('Time is up, Lock Contract. ' + ' Period ' + data.period + '.');
+            });
 
-            var i = 0;
-            changeTime = function() {
-                if (i < 40) {
-                    i++;
-                    console.log('i:' + i + ' time:' + new Date());
-                    $timeout(function() {
-                        $scope.myModel = "hello" + i;
-                        $scope.chartSeries = [{
-                            name: Label.getContent('Total Time'),
-                            data: [{
-                                'name': Label.getContent('Gone'),
-                                'y': i,
-                                'z': i
-                            }, {
-                                'name': Label.getContent('Product Portfolio'),
-                                'y': 40,
-                                'z': 40 - i
-                            }, {
-                                'name': Label.getContent('Contract'),
-                                'y': 45,
-                                'z': 45
-                            }, {
-                                'name': Label.getContent('Others'),
-                                'y': 50,
-                                'z': 50
-                            }]
-                        }];
-                    });
-                    setTimeout(changeTime, 10000);
-                }
+            $scope.$on('committeDecision', function(event, data) {
+                loadBackgroundDataAndCalculateDecisionInfo();
+                notify('Time is up, Lock Decision.' + ' Period ' + data.period + '.');
+            });
+
+            var drawChart=function(data){
+                $scope.chartInit=true;
+                $timeout(function() {
+                    if(parseInt(data.portfolio)+parseInt(data.contractDeal)>0){
+                        $scope.retailerClockTitle=Label.getContent('Contract Deal')+' '+Label.getContent('Left Time')+':'+(parseInt(data.portfolio)+parseInt(data.contractDeal))+'mins';
+                    }else if(data.contractFinalized>0){
+                        $scope.retailerClockTitle=Label.getContent('Contract Finalize')+' '+Label.getContent('Left Time')+':'+data.contractFinalized+'mins';
+                    }else if(data.contractDecisionCommitted>0){
+                        $scope.retailerClockTitle=Label.getContent('Decision Committe')+' '+Label.getContent('Left Time')+':'+data.contractDecisionCommitted+'mins';
+                    }else{
+                        $scope.retailerClockTitle=Label.getContent('Time up');
+                    }
+                    $scope.retailerChartSeries = [{
+                        name: Label.getContent('Total Time'),
+                        data: [{
+                            'name': Label.getContent('Gone'),
+                            'y': data.pass
+                        },{
+                            'name': Label.getContent('Contract Deal'),
+                            'y': parseInt(data.portfolio)+parseInt(data.contractDeal),
+                        }, {
+                            'name': Label.getContent('Contract Finalize'),
+                            'y': data.contractFinalized,
+                        },{
+                            'name':Label.getContent('Decision Committe'),
+                            'y': data.contractDecisionCommitted
+                        }]
+                    }]
+                    $scope.retailerModel=data;
+                });
             }
-            changeTime();
+            $scope.$on('timerWork', function(event, data) {
+                drawChart(data);
+            });
+            $scope.$on('deadlinePortfolio', function(event, data) {
+                drawChart(data);
+            });
+            $scope.$on('deadlineContractDeal', function(event, data) {
+                drawChart(data);
+            });
+            $scope.$on('deadlineContractFinalized', function(event, data) {
+                drawChart(data);
+            });
+            $scope.$on('deadlineDecisionCommitted', function(event, data) {
+                drawChart(data);
+            });
+
+            $scope.$on('timerChanged', function(event, data) {
+                $scope.isTimerActived=data.isTimerActived;
+            });
+
+
+            console.log(SeminarInfo.getSelectedSeminar());
+
 
             $scope.selectedPlayer = PlayerInfo.getPlayer();
             $scope.selectedPeriod = PeriodInfo.getCurrentPeriod();

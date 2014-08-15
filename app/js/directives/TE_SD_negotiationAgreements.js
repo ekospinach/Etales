@@ -515,6 +515,7 @@ define(['directives', 'services'], function(directives) {
                     }                    
 
                     var getResult = function(retailerID) {
+                        var d=$q.defer();
                         var url = '/getContractDetails/' + 'P' + scope.selectedPlayer + 'andR' + retailerID + '_' + SeminarInfo.getSelectedSeminar().seminarCode + '_' + scope.selectedPeriod;
                         console.log(url);
                         $http({
@@ -529,6 +530,7 @@ define(['directives', 'services'], function(directives) {
                         }, function() {
                             console.log('fail');
                         })
+                        return d.promise;
                     }
 
                     var organiseArray = function(data, retailerID) {
@@ -542,6 +544,8 @@ define(['directives', 'services'], function(directives) {
                     }
 
                     var loadProduct = function(data, category, retailerID) {
+                        var deferred = $q.defer();
+                        
                         var products = new Array();
                         for (var i = 0; i < data.length; i++) {
                             if (data[i].parentBrandName.substring(0, 1) == category) {
@@ -567,6 +571,7 @@ define(['directives', 'services'], function(directives) {
                                 scope.product2hs = products;
                             }
                         }
+                        return deferred.promise;
                     }
 
                     //Before user click DisAgree or Agree, check if contract details has been locked(both side choose agree)
@@ -652,6 +657,22 @@ define(['directives', 'services'], function(directives) {
                         getResult(2);
                         notify('Time is up, Contract Deal,Period ' + data.period + '.');
                     });
+
+                    scope.$on('committedPortfolio',function(event,data){
+                        for(var i=0;i<data.result.length;i++){
+                            console.log(data.result[i].producerID);
+                            if(data.result[i].producerID==scope.selectedPlayer){
+                                // loadAllContract=function(){
+                                //     scope.Label = Label; 
+                                //     getResult(1);
+                                //     getResult(2);
+                                // }
+                                setTimeout(initializePage, 10000);
+                                notify('Time is up, Contract Deal,Period ' + data.period + '.');
+                                break;
+                            }
+                        }
+                    })
 
                     // scope.$on('ContractFinalized',function(event,data){
                     //     getResult(1);

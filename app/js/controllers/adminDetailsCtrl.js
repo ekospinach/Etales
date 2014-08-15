@@ -1,7 +1,7 @@
 define(['app', 'socketIO'], function(app) {
 
-	app.controller('adminDetailsCtrl', ['$scope', '$http', '$rootScope', 'EditSeminarInfo','$q',
-		function($scope, $http, $rootScope, EditSeminarInfo,$q) {
+	app.controller('adminDetailsCtrl', ['$scope', '$http', '$rootScope', 'EditSeminarInfo','$q','Label','$timeout',
+		function($scope, $http, $rootScope, EditSeminarInfo,$q,Label,$timeout) {
 
 			var socket = io.connect('http://localhost');
 			socket.on('AdminProcessLog', function(data) {
@@ -31,6 +31,7 @@ define(['app', 'socketIO'], function(app) {
 			});
 
 			$scope.seminar = EditSeminarInfo.getSelectedSeminar();
+			console.log($scope.seminar);
 			$scope.isMessageShown = false;
 
 
@@ -55,12 +56,11 @@ define(['app', 'socketIO'], function(app) {
 					method: 'POST',
 					url: '/submitPortfolioDecision',
 					data: queryCondition
-				}).success(function(data, status, headers, config) {
+				}).then(function(data){
 					console.log('update commit portfolio decision status successfully');
-				}).error(function(data, status, headers, config) {
+				},function(){
 					console.log('update commit portfolio decision status failed.');
-				})
-
+				});
 			}
 
 			function dealContractDetailShooter(allDetails){
@@ -159,11 +159,11 @@ define(['app', 'socketIO'], function(app) {
 						method: 'POST',
 						url: '/submitContractDeal',
 						data: queryCondition
-					}).success(function(data, status, headers, config) {
+					}).then(function(data){
 						console.log('update commit Contract Deal status successfully');
-					}).error(function(data, status, headers, config) {
+					},function(){
 						console.log('update commit Contract Deal status failed.');
-					})
+					});
 				}
 			}
 			$scope.updateContractFinalizedChanged = function(role, roleID, period, value) {
@@ -175,41 +175,15 @@ define(['app', 'socketIO'], function(app) {
 					value: value
 				}
 
-				// if(role=='Producer'){
-				// 	var url='/getContractDetails/P'+roleID+'andR1_'+$scope.seminar.seminarCode+'_'+period;
-				// 	$http({
-				// 		method:'GET',
-				// 		url:url
-				// 	}).then(function(data){
-				// 		return finalizedContractDetailShooter(data.data,value);
-				// 	}).then(function(data){
-				// 		var url='/getContractDetails/P'+roleID+'andR2_'+$scope.seminar.seminarCode+'_'+period;
-				// 		return $http({
-				// 			method:'GET',
-				// 			url:url
-				// 		});
-				// 	}).then(function(data){
-				// 		return finalizedContractDetailShooter(data.data,value);
-				// 	}).then(function(data){
-				// 		return $http({
-				// 			method: 'POST',
-				// 			url: '/submitContractFinalized',
-				// 			data: queryCondition
-				// 		})
-				// 	}).then(function(data){
-				// 		console.log('finish contract deal');
-				// 	})
-				// }else{
-					$http({
-						method: 'POST',
-						url: '/submitContractFinalized',
-						data: queryCondition
-					}).success(function(data, status, headers, config) {
-						console.log('update commit Contract Finalized status successfully');
-					}).error(function(data, status, headers, config) {
-						console.log('update commit Contract Finalized status failed.');
-					})
-				//}
+				$http({
+					method: 'POST',
+					url: '/submitContractFinalized',
+					data: queryCondition
+				}).then(function(data){
+					console.log('update commit Contract Finalized status successfully');
+				},function(){
+					console.log('update commit Contract Finalized status failed.');
+				});
 
 			}
 
@@ -226,12 +200,11 @@ define(['app', 'socketIO'], function(app) {
 					method: 'POST',
 					url: '/submitFinalDecision',
 					data: queryCondition
-				}).success(function(data, status, headers, config) {
+				}).then(function(data){
 					console.log('update commit final decision status successfully');
-				}).error(function(data, status, headers, config) {
+				},function(){
 					console.log('update commit final decision status failed.');
-				})
-
+				});
 			}
 
 
@@ -382,7 +355,6 @@ define(['app', 'socketIO'], function(app) {
 					period: selectedPeriod,
 					keepExistedNextPeriodDecision: keepExistedNextPeriodDecision
 				}
-				console.log(postData);
 
 				$http({
 					method: 'POST',
@@ -392,24 +364,6 @@ define(['app', 'socketIO'], function(app) {
 					$scope.isKernelMessageShown = true;
 					$scope.kernelMessage.push(res.data);
 					$scope.kernelMessage.push('Complete, please reset current period manually!');
-					//if Run seminar successfully, current period need to be added by 1
-					// if(selectedPeriod == seminar.currentPeriod){
-					// 	var newData = {
-					// 		seminarCode : seminar.seminarCode,
-					// 		value : seminar.currentPeriod + 1,
-					// 		behaviour:'updateCurrentPeriod'
-					// 	}					
-					// 	$http({method: 'POST', url: '/updateSeminar',data:newData}).
-					// 	  success(function(res) {
-					// 	  	$scope.seminar.currentPeriod = newData.value;
-					// 		$scope.kernelMessage.push('current period has been modified into period ' + newData.value + ' !');
-					// 		$scope.isActive = true;
-					// 	  }).
-					// 	  error(function(res) {
-					// 		$scope.kernelMessage.push('current period modified failed ' + + ' !');
-					// 		$scope.isActive = true;					  	
-					// 	  });						
-					// }
 					$scope.isActive = true;
 				}, function(res) {
 					$scope.isKernelMessageShown = true;
@@ -443,6 +397,218 @@ define(['app', 'socketIO'], function(app) {
 				console.log('infoBuble.show');
 				$scope.infoBuble = true;
 			};
+
+
+			$scope.switchTimer=function(value){
+				var postData={
+					seminarCode:$scope.seminar.seminarCode,
+					behaviour:'switchTimer',
+					value:value
+				};
+				$http({
+					method:'POST',
+					url:'/updateSeminar',
+					data:postData
+				}).then(function(data){
+					if(value){
+						drawChart(data);
+					}
+				},function(){
+					console.log('fail');
+				})
+			}
+
+			$scope.checkTimerSet=function(value){
+				var d = $q.defer();
+                var filter = /^[0-9]*[1-9][0-9]*$/;
+                if (!filter.test(value)) {
+                    d.resolve(Label.getContent('Input a Integer'));
+                }else{
+                	d.resolve();
+                }
+                return d.promise;
+			}
+
+			$scope.updateTimeslotPortfolioDecisionCommitted=function(value){
+				var postData={
+					seminarCode:$scope.seminar.seminarCode,
+					behaviour:'updateTimeslotPortfolioDecisionCommitted',
+					value:value
+				};
+				$http({
+					method:'POST',
+					url:'/updateSeminar',
+					data:postData
+				}).then(function(data){
+					console.log('success');
+				},function(){
+					console.log('fail');
+				})
+			}
+			$scope.updateTimeslotContractDeal=function(value){
+				var postData={
+					seminarCode:$scope.seminar.seminarCode,
+					behaviour:'updateTimeslotContractDeal',
+					value:value
+				};
+				$http({
+					method:'POST',
+					url:'/updateSeminar',
+					data:postData
+				}).then(function(data){
+					console.log('success');
+				},function(){
+					console.log('fail');
+				})
+			}
+			$scope.updateTimeslotContractFinalized=function(value){
+				var postData={
+					seminarCode:$scope.seminar.seminarCode,
+					behaviour:'updateTimeslotContractFinalized',
+					value:value
+				};
+				$http({
+					method:'POST',
+					url:'/updateSeminar',
+					data:postData
+				}).then(function(data){
+					console.log('success');
+				},function(){
+					console.log('fail');
+				})
+			}
+			$scope.updateTimeslotDecisionCommitted=function(value){
+				var postData={
+					seminarCode:$scope.seminar.seminarCode,
+					behaviour:'updateTimeslotDecisionCommitted',
+					value:value
+				};
+				$http({
+					method:'POST',
+					url:'/updateSeminar',
+					data:postData
+				}).then(function(data){
+					console.log('success');
+				},function(){
+					console.log('fail');
+				})
+			}
+
+			var drawChart=function(data){
+				$timeout(function() {
+					if(data.portfolio>0){
+						$scope.supplierClockTitle=Label.getContent('Product Portfolio')+'Left Time:'+data.portfolio;
+					}else if(data.contractDeal>0){
+						$scope.supplierClockTitle=Label.getContent('Contract Deal')+'Left Time:'+data.contractDeal;
+					}else if(data.contractFinalized>0){
+						$scope.supplierClockTitle=Label.getContent('Contract Finalize')+'Left Time:'+data.contractFinalized;
+					}else if(data.contractDecisionCommitted>0){
+						$scope.supplierClockTitle=Label.getContent('Contract Decision Committe')+'Left Time:'+data.contractDecisionCommitted;
+					}else{
+						$scope.supplierClockTitle='Time up';
+					}
+
+					$scope.supplierChartSeries = [{
+						name: Label.getContent('Total Time'),
+						data: [{
+							'name': Label.getContent('Gone'),
+							'y': data.pass
+						}, {
+							'name': Label.getContent('Product Portfolio'),
+							'y': data.portfolio,
+						}, {
+							'name': Label.getContent('Contract Deal'),
+							'y': data.contractDeal,
+						}, {
+							'name': Label.getContent('Contract Finalize'),
+							'y': data.contractFinalized,
+						},{
+							'name':Label.getContent('Contract Decision Committe'),
+							'y': data.contractDecisionCommitted
+						}]
+					}]
+					$scope.supplierModel=data;
+					if(parseInt(data.portfolio)+parseInt(data.contractDeal)>0){
+						$scope.retailerClockTitle=Label.getContent('Contract Deal')+'Left Time:'+parseInt(data.portfolio)+parseInt(data.contractDeal);
+					}else if(data.contractFinalized>0){
+						$scope.retailerClockTitle=Label.getContent('Contract Finalize')+'Left Time:'+data.contractFinalized;
+					}else if(data.contractDecisionCommitted>0){
+						$scope.retailerClockTitle=Label.getContent('Contract Decision Committe')+'Left Time:'+data.contractDecisionCommitted;
+					}else{
+						$scope.retailerClockTitle='Time up';
+					}
+					$scope.retailerChartSeries = [{
+						name: Label.getContent('Total Time'),
+						data: [{
+							'name': Label.getContent('Gone'),
+							'y': data.pass
+						},{
+							'name': Label.getContent('Contract Deal'),
+							'y': parseInt(data.portfolio)+parseInt(data.contractDeal),
+						}, {
+							'name': Label.getContent('Contract Finalize'),
+							'y': data.contractFinalized,
+						},{
+							'name':Label.getContent('Contract Decision Committe'),
+							'y': data.contractDecisionCommitted
+						}]
+					}]
+					$scope.retailerModel=data;
+				});
+			}
+
+			$scope.startTimer=function(){
+				var postData={
+                    seminarCode:$scope.seminar.seminarCode,
+                    active:'switchOn',
+                    portfolio : $scope.seminar.timeslotPortfolioDecisionCommitted, 
+                    contractDeal: $scope.seminar.timeslotContractDeal, 
+                    contractFinalized : $scope.seminar.timeslotContractFinalized, 
+                    contractDecisionCommitted : $scope.seminar.timeslotDecisionCommitted
+                }
+                $http({
+                    method:'POST',
+                    url:'/timer',
+                    data:postData
+                }).then(function(data){
+                    drawChart(data.data);
+                });
+			}
+
+			$scope.stopTimer=function(){
+				var postData={
+                    seminarCode:$scope.seminar.seminarCode,
+                    active:'switchOff'
+                }
+                $http({
+                    method:'POST',
+                    url:'/timer',
+                    data:postData
+                }).then(function(data){
+                    console.log(data);
+                });
+			}
+
+
+			$scope.$on('timerWork', function(event, data) {
+				drawChart(data);
+			});
+			$scope.$on('deadlinePortfolio', function(event, data) {
+				drawChart(data);
+			});
+			$scope.$on('deadlineContractDeal', function(event, data) {
+				drawChart(data);
+			});
+			$scope.$on('deadlineContractFinalized', function(event, data) {
+				drawChart(data);
+			});
+			$scope.$on('deadlineDecisionCommitted', function(event, data) {
+				drawChart(data);
+			});
+
+			$scope.$on('committedPortfolio', function(event, data) {
+
+			});
 
 			$scope.isActive = true;
 			$scope.isKeepExistedPeriod1Decision = true;

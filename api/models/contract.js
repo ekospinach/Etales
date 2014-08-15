@@ -66,6 +66,290 @@ exports.contractVariantDetails = mongoose.model('contractVariantDetails', contra
 var contract = mongoose.model('contract', contractSchema);
 var contractVariantDetails = mongoose.model('contractVariantDetails', contractVariantDetailsSchema);
 
+
+exports.addContractByAdmin = function(seminar, period, producers) {
+     var deferred = q.defer();
+     (function addContract(seminar, period, producers, idx) {
+          if (idx < producers.length) {
+               //add contract
+               var contractCode1 = 'P' + producers[idx].producerID + 'and' + 'R' + 1 + '_' + seminar + '_' + period; //sth + period + seminar, must be
+               var contractCode2 = 'P' + producers[idx].producerID + 'and' + 'R' + 2 + '_' + seminar + '_' + period; //sth + period + seminar, must be
+
+               var newContract1 = new contract({
+                    contractCode: contractCode1,
+                    period: period,
+                    seminar: seminar,
+                    draftedByCompanyID: producers[idx].producerID,
+                    producerID: producers[idx].producerID,
+                    retailerID: 1,
+                    isDraftFinished: false,
+                    isLocked: false
+               });
+               newContract2 = new contract({
+                    contractCode: contractCode2,
+                    period: period,
+                    seminar: seminar,
+                    draftedByCompanyID: producers[idx].producerID,
+                    producerID: producers[idx].producerID,
+                    retailerID: 1,
+                    isDraftFinished: false,
+                    isLocked: false
+               });
+
+               var allContracts = [];
+               allContracts.push(newContract1.save());
+               allContracts.push(newContract2.save());
+
+
+               q.all(allContracts).then(function(results) {
+                    console.log(results);
+               }, function(err) {
+                    console.log(err);
+               });
+               idx++;
+               addContract(seminar, period, producers, idx);
+          } else {
+               deferred.resolve({
+                    msg: 'addContract done'
+               });
+          }
+
+     })(seminar, period, producers, 0);
+     return deferred.promise;
+}
+
+exports.addContractDetailsByAdmin = function(seminar, period, producers) {
+     var deferred = q.defer();
+
+     (function addContractDetail(seminar, period, producers, idx) {
+          if (idx < producers.length) {
+               //add contract
+               var contractCode1 = 'P' + producers[idx].producerID + 'and' + 'R' + 1 + '_' + seminar + '_' + period;
+               var contractCode2 = 'P' + producers[idx].producerID + 'and' + 'R' + 2 + '_' + seminar + '_' + period;
+               var previousPeriodCode1 = 'P' + producers[idx].producerID + 'and' + 'R' + 1 + '_' + seminar + '_' + (period - 1);
+               var previousPeriodCode2 = 'P' + producers[idx].producerID + 'and' + 'R' + 2 + '_' + seminar + '_' + (period - 1);
+
+               var products = new Array();
+               var promise = require('./producerDecision.js').proDecision.findOne({
+                    seminar: seminar,
+                    period: period,
+                    producerID: producers[idx].producerID
+               }).exec();
+               promise.then(function(doc) {
+                    for (var i = 0; i < doc.proCatDecision.length; i++) {
+                         for (var j = 0; j < doc.proCatDecision[i].proBrandsDecision.length; j++) {
+                              for (var k = 0; k < doc.proCatDecision[i].proBrandsDecision[j].proVarDecision.length; k++) {
+                                   if (doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].varName != "") {
+                                        doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].parentBrandName = doc.proCatDecision[i].proBrandsDecision[j].brandName;
+                                        products.push(doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k]);
+                                   }
+                              }
+                         }
+                    }
+               }).then(function(data) {
+                    return createContractDetails(contractCode1, previousPeriodCode1, producers[idx].producerID, 1, seminar, period, products);
+               }).then(function(data) {
+                    return createContractDetails(contractCode2, previousPeriodCode2, producers[idx].producerID, 2, seminar, period, products);
+               }).then(function(data) {
+                    idx++;
+                    addContractDetail(seminar, period, producers, idx);
+               }, function(data) {
+                    console.log(data);
+               });
+
+
+          } else {
+               deferred.resolve({
+                    msg: 'addContractDetail done'
+               });
+          }
+     })(seminar, period, producers, 0);
+     return deferred.promise;
+}
+
+function createContractDetails(contractCode, previousPeriodCode, producerID, retailerID, seminar, period, productList) {
+     var deferred = q.defer();
+     (function createContractDetail(products, producerID, retailerID, seminar, period, idx) {
+          if (idx < products.length) {
+               var details = [];
+               var promise = contractVariantDetails.findOne({
+                    contractCode: previousPeriodCode,
+                    parentBrandName: products[idx].parentBrandName,
+                    variantName: products[idx].varName
+               }).exec();
+               promise.then(function(doc) {
+                    if (doc) {
+                         //console.log('found previous input, copy...');
+                         var newContractVariantDetail = new contractVariantDetails({
+                              contractCode: contractCode,
+                              producerID: producerID,
+                              retailerID: retailerID,
+                              parentBrandName: products[idx].parentBrandName,
+                              parentBrandID: products[idx].parentBrandID,
+                              variantName: products[idx].varName,
+                              variantID: products[idx].varID,
+                              nc_MinimumOrder: doc.nc_MinimumOrder,
+                              nc_MinimumOrder_lastModifiedBy: doc.nc_MinimumOrder_lastModifiedBy,
+                              nc_VolumeDiscountRate: doc.nc_VolumeDiscountRate,
+                              nc_VolumeDiscountRate_lastModifiedBy: doc.nc_VolumeDiscountRate_lastModifiedBy,
+                              nc_SalesTargetVolume: doc.nc_SalesTargetVolume,
+                              nc_SalesTargetVolume_lastModifiedBy: doc.nc_SalesTargetVolume_lastModifiedBy,
+                              nc_PerformanceBonusRate: doc.nc_PerformanceBonusRate,
+                              nc_PerformanceBonusRate_lastModifiedBy: doc.nc_PerformanceBonusRate_lastModifiedBy,
+                              nc_PaymentDays: doc.nc_PaymentDays,
+                              nc_PaymentDays_lastModifiedBy: doc.nc_PaymentDays_lastModifiedBy,
+                              nc_OtherCompensation: doc.nc_OtherCompensation,
+                              nc_OtherCompensation_lastModifiedBy: doc.nc_OtherCompensation_lastModifiedBy,
+                              isProducerApproved: false,
+                              isRetailerApproved: false,
+                              isNewProduct: false, //used for showing tag "NEW"
+                              isCompositionModified: false, //compare with previous period composition, used for showing tag "MODIFIED"
+                              composition: products[idx].composition, //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                              currentPriceBM: products[idx].currentPriceBM,
+                              packFormat: products[idx].packFormat,
+                              seminar: seminar
+                         });
+                         newContractVariantDetail.save();
+                    } else {
+                         //console.log('not found from previous, creat new...');
+                         var newContractVariantDetail = new contractVariantDetails({
+                              contractCode: contractCode,
+                              producerID: producerID,
+                              retailerID: retailerID,
+                              parentBrandName: products[idx].parentBrandName,
+                              parentBrandID: products[idx].parentBrandID,
+                              variantName: products[idx].varName,
+                              variantID: products[idx].varID,
+                              nc_MinimumOrder: 0,
+                              nc_MinimumOrder_lastModifiedBy: 'P',
+                              nc_VolumeDiscountRate: 0,
+                              nc_VolumeDiscountRate_lastModifiedBy: 'P',
+                              nc_SalesTargetVolume: 0,
+                              nc_SalesTargetVolume_lastModifiedBy: 'P',
+                              nc_PerformanceBonusRate: 0,
+                              nc_PerformanceBonusRate_lastModifiedBy: 'P',
+                              nc_PaymentDays: 0,
+                              nc_PaymentDays_lastModifiedBy: 'P',
+                              nc_OtherCompensation: 0,
+                              nc_OtherCompensation_lastModifiedBy: 'P',
+                              isProducerApproved: false,
+                              isRetailerApproved: false,
+                              isNewProduct: false, //used for showing tag "NEW"
+                              isCompositionModified: false, //compare with previous period composition, used for showing tag "MODIFIED"
+                              composition: products[idx].composition, //1-DesignIndex(ActiveAgent), 2-TechnologdyLevel, 3-RawMaterialsQuality(SmoothenerLevel)
+                              currentPriceBM: products[idx].currentPriceBM,
+                              packFormat: products[idx].packFormat,
+                              seminar: seminar
+                         });
+                    }
+                    newContractVariantDetail.save();
+               }).then(function() {
+                    idx++;
+                    createContractDetail(productList, producerID, retailerID, seminar, period, idx);
+               });
+          } else {
+               deferred.resolve({
+                    msg: 'done'
+               });
+          }
+
+     })(productList, producerID, retailerID, seminar, period, 0);
+
+
+     return deferred.promise;
+}
+
+exports.dealContractsByAdmin = function(seminar, period) {
+     var deferred = q.defer();
+
+     (function dealContract(seminar, period, idx) {
+
+          if (idx < 4) {
+               var currentPeriodCode1 = 'P' + idx + 'andR1_' + seminar + '_' + period;
+               var previousPeriodCode1 = 'P' + idx + 'andR1_' + seminar + '_' + (period - 1);
+               var currentPeriodCode2 = 'P' + idx + 'andR2_' + seminar + '_' + period;
+               var previousPeriodCode2 = 'P' + idx + 'andR2_' + seminar + '_' + (period - 1);
+               var details = new Array();
+               var promise = contractVariantDetails.find({
+                    contractCode: currentPeriodCode1,
+                    $where: "this.isRetailerApproved != true || this.isProducerApproved != true"
+               }).exec();
+               promise.then(function(docs) {
+                    details = docs;
+               }).then(function(data) {
+                    return dealContracts(previousPeriodCode1, details);
+               }).then(function() {
+                    return contractVariantDetails.find({
+                         contractCode: currentPeriodCode2,
+                         $where: "this.isRetailerApproved != true || this.isProducerApproved != true"
+                    }).exec();
+               }).then(function(docs) {
+                    details = docs;
+                    return dealContracts(previousPeriodCode2, details);
+               }).then(function() {
+                    idx++;
+                    dealContract(seminar, period, idx);
+               }, function() {
+                    console.log('fail');
+               })
+          } else {
+               deferred.resolve({
+                    msg: 'deal ContractDetail done'
+               });
+          }
+
+     })(seminar, period, 1)
+
+     return deferred.promise;
+}
+
+function dealContracts(previousPeriodCode, details) {
+     var deferred = q.defer();
+
+     (function dealContract(previousPeriodCode, details, idx) {
+
+          if (idx < details.length) {
+               var promise = contractVariantDetails.findOne({
+                    contractCode: previousPeriodCode,
+                    parentBrandName: details[idx].parentBrandName,
+                    parentBrandID: details[idx].parentBrandID,
+                    variantName: details[idx].variantName,
+                    variantID: details[idx].variantID
+               }).exec();
+               promise.then(function(doc) {
+                    if (doc) {
+                         //console.log('found previous input, copy...detail.ContractCode:'+details[idx].contractCode+',variant:'+details[idx].parentBrandName+details[idx].variantName);
+                         var update = {
+                              $set: {
+                                   nc_MinimumOrder: doc.nc_MinimumOrder,
+                                   nc_VolumeDiscountRate: doc.nc_VolumeDiscountRate,
+                                   nc_SalesTargetVolume: doc.nc_SalesTargetVolume,
+                                   nc_PerformanceBonusRate: doc.nc_PerformanceBonusRate,
+                                   nc_PaymentDays: doc.nc_PaymentDays,
+                                   nc_OtherCompensation: doc.nc_OtherCompensation
+                              }
+                         };
+                         contractVariantDetails.findOneAndUpdate({
+                              _id: details[idx]._id
+                         }, update, function(err, doc) {
+                              idx++;
+                              dealContract(previousPeriodCode, details, idx);
+                         });
+                    } else {
+                         idx++;
+                         dealContract(previousPeriodCode, details, idx);
+                    }
+               });
+          } else {
+               deferred.resolve({
+                    msg: 'deal ContractDetail done'
+               });
+          }
+     })(previousPeriodCode, details, 0);
+
+     return deferred.promise;
+}
+
 exports.addContract = function(io) {
      return function(req, res, next) {
           contract.count({
@@ -232,15 +516,8 @@ exports.addContractDetails = function(io) {
           var period = currentPeriodCode.substring(currentPeriodCode.length - 1, currentPeriodCode.length);
           var previousPeriod = parseInt(period) - 1;
 
-          console.log('Period:' + period);
-          console.log('Period(afterparse):' + parseInt(period));
-          console.log('previous Period:' + previousPeriod);
-
           var previousPeriodCode = currentPeriodCode.substring(0, currentPeriodCode.length - 1) + previousPeriod;
-          console.log('current Period Code:' + currentPeriodCode);
-          console.log('previous Period Code: ' + previousPeriodCode);
 
-          console.log('product:' + req.body.brandName + req.body.variantName + '/' + req.body.brandID + req.body.variantID);
           contractVariantDetails.findOne({
                     contractCode: previousPeriodCode,
                     parentBrandName: req.body.brandName,
@@ -255,7 +532,6 @@ exports.addContractDetails = function(io) {
 
                     //check previous period input first, if anything, copy original ones.
                     if (previousDoc) {
-                         console.log('found previous input, copy...');
                          var newContractVariantDetails = new contractVariantDetails({
                               contractCode: req.body.contractCode,
                               producerID: req.body.producerID,
@@ -339,15 +615,8 @@ exports.dealContractDetail = function(io) {
           var period = currentPeriodCode.substring(currentPeriodCode.length - 1, currentPeriodCode.length);
           var previousPeriod = parseInt(period) - 1;
 
-          console.log('Period:' + period);
-          console.log('Period(afterparse):' + parseInt(period));
-          console.log('previous Period:' + previousPeriod);
 
           var previousPeriodCode = currentPeriodCode.substring(0, currentPeriodCode.length - 1) + previousPeriod;
-          console.log('current Period Code:' + currentPeriodCode);
-          console.log('previous Period Code: ' + previousPeriodCode);
-
-          console.log('product:' + detail.parentBrandName + detail.variantName + '/' + detail.parentBrandID + detail.variantID);
           contractVariantDetails.findOne({
                     contractCode: previousPeriodCode,
                     parentBrandName: detail.parentBrandName,
@@ -362,8 +631,6 @@ exports.dealContractDetail = function(io) {
 
                     //check previous period input first, if anything, copy original ones.
                     if (previousDoc) {
-                         console.log('found previous input, copy...');
-
                          var update = {
                               $set: {
                                    nc_MinimumOrder: previousDoc.nc_MinimumOrder,
@@ -394,25 +661,25 @@ exports.dealContractDetail = function(io) {
      }
 }
 
-exports.finalizedContractDetail=function(io){
-     return function(req,res,next){
+exports.finalizedContractDetail = function(io) {
+     return function(req, res, next) {
           var detail = req.body.detail;
           contractVariantDetails.findOne({
-               contractCode:detail.contractCode,
+               contractCode: detail.contractCode,
                parentBrandName: detail.parentBrandName,
                variantName: detail.variantName
-          },function(err,doc){
+          }, function(err, doc) {
                if (err) {
                     next(new Error(err));
                }
-               if(doc){
-                    doc.isProducerApproved=req.body.value;
-                    doc.isRetailerApproved=req.body.value;
-                    doc.save(function(err){
-                         if(!err){
-                              res.send(200,'success');
-                         }else{                             
-                              res.send(400,'fail');
+               if (doc) {
+                    doc.isProducerApproved = req.body.value;
+                    doc.isRetailerApproved = req.body.value;
+                    doc.save(function(err) {
+                         if (!err) {
+                              res.send(200, 'success');
+                         } else {
+                              res.send(400, 'fail');
                          }
                     })
                }

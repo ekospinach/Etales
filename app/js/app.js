@@ -105,7 +105,6 @@
  	'angularMocks',
  	'angularAnimate',
  	'text',
- 	'bootstrapswitch',
  	'reveal',
  	'ngNotify',
  	'angularSanitize',
