@@ -385,20 +385,20 @@ exports.submitPortfolioDecision = function(io) {
 				//io.sockets.emit('socketIO:producerPortfolioDecisionStatusChanged', {period : queryCondition.period, producerID : queryCondition.producerID, seminar : queryCondition.seminar});                
 
 				//notify Retailer to refresh negotiation page automatically 
-				
+
 
 				doc.save(function(err) {
 					if (err) {
-						res.send(400,'fail')
-					}else{
+						res.send(400, 'fail')
+					} else {
 						io.sockets.emit('socketIO:committedPortfolio', {
-							result:[{
-								producerID:queryCondition.producerID
+							result: [{
+								producerID: queryCondition.producerID
 							}],
 							period: queryCondition.period,
 							seminar: queryCondition.seminar
 						});
-						res.send(200,'success');
+						res.send(200, 'success');
 					}
 				})
 			} else {
@@ -451,9 +451,13 @@ exports.submitContractDeal = function(io) {
 								period: queryCondition.period
 							});
 						}
-						res.send(200, {result:'success'});
+						res.send(200, {
+							result: 'success'
+						});
 					} else {
-						res.send(400, {result:'fail'});
+						res.send(400, {
+							result: 'fail'
+						});
 					}
 				})
 			} else {
@@ -506,9 +510,13 @@ exports.submitContractFinalized = function(io) {
 							roleID: queryCondition.roleID,
 							period: queryCondition.period
 						});
-						res.send(200, {result:'success'});
+						res.send(200, {
+							result: 'success'
+						});
 					} else {
-						res.send(400, {result:'fail'});
+						res.send(400, {
+							result: 'fail'
+						});
 					}
 				})
 			} else {
@@ -561,9 +569,13 @@ exports.submitFinalDecision = function(io) {
 							roleID: queryCondition.roleID,
 							period: queryCondition.period
 						});
-						res.send(200, {result:'success'});
+						res.send(200, {
+							result: 'success'
+						});
 					} else {
-						res.send(400, {result:'fail'});
+						res.send(400, {
+							result: 'fail'
+						});
 					}
 				})
 			} else {
@@ -594,9 +606,13 @@ exports.setCurrentPeriod = function(io) {
 							seminar: queryCondition.seminar,
 							span: doc.simulationSpan
 						});
-						res.send(200, {result:'success'});
+						res.send(200, {
+							result: 'success'
+						});
 					} else {
-						res.send(400, {result:'fail'});
+						res.send(400, {
+							result: 'fail'
+						});
 					}
 				})
 			} else {
@@ -798,7 +814,7 @@ exports.updateSeminar = function(io) {
 					doc.markModified('retailers');
 					doc.markModified('producers');
 					doc.save(function(err, doc, numberAffected) {
-					if (err) {
+						if (err) {
 							next(new Error(err));
 						}
 						if (queryCondition.behaviour == "updateCurrentPeriod") {
@@ -809,11 +825,11 @@ exports.updateSeminar = function(io) {
 							});
 						}
 
-						if (queryCondition.behaviour=="switchTimer"){
+						if (queryCondition.behaviour == "switchTimer") {
 							io.sockets.emit('socketIO:timerChanged', {
 								period: doc.currentPeriod,
 								seminar: doc.seminarCode,
-								isTimerActived:queryCondition.value
+								isTimerActived: queryCondition.value
 
 							});
 						}
@@ -1293,7 +1309,7 @@ function createNewTimer(seminarCode, countDown, io, timersEvents) {
 			countDown.contractDecisionCommitted--;
 		}
 		if (countDown.pass == countDown.timersEvent[0]) {
-			timersEvents.emit('deadlinePortfolio', seminarCode,io);
+			timersEvents.emit('deadlinePortfolio', seminarCode, io);
 			io.sockets.emit('socketIO:deadlinePortfolio', {
 				'seminar': seminarCode,
 				'pass': countDown.pass,
@@ -1304,7 +1320,7 @@ function createNewTimer(seminarCode, countDown, io, timersEvents) {
 			});
 
 		} else if (countDown.pass == countDown.timersEvent[1]) {
-			timersEvents.emit('deadlineContractDeal', seminarCode,io);
+			timersEvents.emit('deadlineContractDeal', seminarCode, io);
 			io.sockets.emit('socketIO:deadlineContractDeal', {
 				'seminar': seminarCode,
 				'pass': countDown.pass,
@@ -1315,7 +1331,7 @@ function createNewTimer(seminarCode, countDown, io, timersEvents) {
 			});
 
 		} else if (countDown.pass == countDown.timersEvent[2]) {
-			timersEvents.emit('deadlineContractFinalized', seminarCode,io);
+			timersEvents.emit('deadlineContractFinalized', seminarCode, io);
 			io.sockets.emit('socketIO:deadlineContractFinalized', {
 				'seminar': seminarCode,
 				'pass': countDown.pass,
@@ -1326,7 +1342,7 @@ function createNewTimer(seminarCode, countDown, io, timersEvents) {
 			});
 
 		} else if (countDown.pass == countDown.timersEvent[3]) {
-			timersEvents.emit('deadlineDecisionCommitted', seminarCode,io);
+			timersEvents.emit('deadlineDecisionCommitted', seminarCode, io);
 			io.sockets.emit('socketIO:deadlineDecisionCommitted', {
 				'seminar': seminarCode,
 				'pass': countDown.pass,
@@ -1353,9 +1369,9 @@ function createNewTimer(seminarCode, countDown, io, timersEvents) {
 exports.setTimer = function(io) {
 	var timers = [];
 	var timersEvents = new events.EventEmitter();
-	
-	
-	timersEvents.on('deadlinePortfolio', function(seminarCode,io) {
+
+
+	timersEvents.on('deadlinePortfolio', function(seminarCode, io) {
 		//set isPortfolioDecisionCommitted = true for all the suppliers 
 		//then do all the related io.sockets.emit()...
 		console.log('deadlinePortfolio');
@@ -1363,21 +1379,26 @@ exports.setTimer = function(io) {
 		seminar.findOne({
 			seminarCode: seminarCode
 		}, function(err, doc) {
-			var result=new Array();
+			var result = new Array();
 			if (doc) {
-				for(var i=0;i<3;i++){
-					if(doc.producers[i].decisionCommitStatus[doc.currentPeriod].isPortfolioDecisionCommitted){	
-					}else{
-						doc.producers[i].decisionCommitStatus[doc.currentPeriod].isPortfolioDecisionCommitted=true;
-						result.push({'producerID':i+1});
+				for (var i = 0; i < 3; i++) {
+					if (doc.producers[i].decisionCommitStatus[doc.currentPeriod].isPortfolioDecisionCommitted) {} else {
+						doc.producers[i].decisionCommitStatus[doc.currentPeriod].isPortfolioDecisionCommitted = true;
+						result.push({
+							'producerID': i + 1
+						});
 					}
 				}
 			}
-			require('./contract.js').addContractByAdmin(doc.seminarCode,doc.currentPeriod,result);
-			require('./contract.js').addContractDetailsByAdmin(doc.seminarCode,doc.currentPeriod,result);
-			
+			require('./contract.js').addContractByAdmin(doc.seminarCode, doc.currentPeriod, result);
+			require('./contract.js').addContractDetailsByAdmin(doc.seminarCode, doc.currentPeriod, result);
+
 			doc.markModified('producers');
-			io.sockets.emit('socketIO:committedPortfolio',{result:result,seminarCode:doc.seminarCode,period:doc.currentPeriod});
+			io.sockets.emit('socketIO:committedPortfolio', {
+				result: result,
+				seminarCode: doc.seminarCode,
+				period: doc.currentPeriod
+			});
 			doc.save();
 		});
 
@@ -1390,27 +1411,27 @@ exports.setTimer = function(io) {
 			seminarCode: seminarCode
 		}, function(err, doc) {
 			if (doc) {
-				doc.producers[0].decisionCommitStatus[doc.currentPeriod].isContractDeal=true;
-				doc.producers[1].decisionCommitStatus[doc.currentPeriod].isContractDeal=true;
-				doc.producers[2].decisionCommitStatus[doc.currentPeriod].isContractDeal=true;
-				doc.producers[3].decisionCommitStatus[doc.currentPeriod].isContractDeal=true;
-				doc.retailers[0].decisionCommitStatus[doc.currentPeriod].isContractDeal=true;
-				doc.retailers[1].decisionCommitStatus[doc.currentPeriod].isContractDeal=true;
-				doc.retailers[2].decisionCommitStatus[doc.currentPeriod].isContractDeal=true;
-				doc.retailers[3].decisionCommitStatus[doc.currentPeriod].isContractDeal=true;
+				doc.producers[0].decisionCommitStatus[doc.currentPeriod].isContractDeal = true;
+				doc.producers[1].decisionCommitStatus[doc.currentPeriod].isContractDeal = true;
+				doc.producers[2].decisionCommitStatus[doc.currentPeriod].isContractDeal = true;
+				doc.producers[3].decisionCommitStatus[doc.currentPeriod].isContractDeal = true;
+				doc.retailers[0].decisionCommitStatus[doc.currentPeriod].isContractDeal = true;
+				doc.retailers[1].decisionCommitStatus[doc.currentPeriod].isContractDeal = true;
+				doc.retailers[2].decisionCommitStatus[doc.currentPeriod].isContractDeal = true;
+				doc.retailers[3].decisionCommitStatus[doc.currentPeriod].isContractDeal = true;
 			}
 			//
-			require('./contract.js').dealContractsByAdmin(doc.seminarCode,doc.currentPeriod);
+			require('./contract.js').dealContractsByAdmin(doc.seminarCode, doc.currentPeriod);
 
 			doc.markModified('producers');
 			doc.markModified('retailers');
 			io.sockets.emit('socketIO:dealContract', {
-				reult:[{
-					producerID:1
-				},{
-					producerID:2
-				},{
-					producerID:3
+				reult: [{
+					producerID: 1
+				}, {
+					producerID: 2
+				}, {
+					producerID: 3
 				}],
 				seminar: doc.seminar,
 				period: doc.period
@@ -1425,20 +1446,23 @@ exports.setTimer = function(io) {
 			seminarCode: seminarCode
 		}, function(err, doc) {
 			if (doc) {
-				doc.producers[0].decisionCommitStatus[doc.currentPeriod].isContractFinalized=true;
-				doc.producers[1].decisionCommitStatus[doc.currentPeriod].isContractFinalized=true;
-				doc.producers[2].decisionCommitStatus[doc.currentPeriod].isContractFinalized=true;
-				doc.producers[3].decisionCommitStatus[doc.currentPeriod].isContractFinalized=true;
-				doc.retailers[0].decisionCommitStatus[doc.currentPeriod].isContractFinalized=true;
-				doc.retailers[1].decisionCommitStatus[doc.currentPeriod].isContractFinalized=true;
-				doc.retailers[2].decisionCommitStatus[doc.currentPeriod].isContractFinalized=true;
-				doc.retailers[3].decisionCommitStatus[doc.currentPeriod].isContractFinalized=true;
+				doc.producers[0].decisionCommitStatus[doc.currentPeriod].isContractFinalized = true;
+				doc.producers[1].decisionCommitStatus[doc.currentPeriod].isContractFinalized = true;
+				doc.producers[2].decisionCommitStatus[doc.currentPeriod].isContractFinalized = true;
+				doc.producers[3].decisionCommitStatus[doc.currentPeriod].isContractFinalized = true;
+				doc.retailers[0].decisionCommitStatus[doc.currentPeriod].isContractFinalized = true;
+				doc.retailers[1].decisionCommitStatus[doc.currentPeriod].isContractFinalized = true;
+				doc.retailers[2].decisionCommitStatus[doc.currentPeriod].isContractFinalized = true;
+				doc.retailers[3].decisionCommitStatus[doc.currentPeriod].isContractFinalized = true;
 			}
 			doc.markModified('producers');
 			doc.markModified('retailers');
-			
-			doc.save(function(){
-				io.sockets.emit('socketIO:finalizeContract',{'seminarCode':doc.seminarCode,'period':doc.currentPeriod});
+
+			doc.save(function() {
+				io.sockets.emit('socketIO:finalizeContract', {
+					'seminarCode': doc.seminarCode,
+					'period': doc.currentPeriod
+				});
 			});
 		})
 
@@ -1451,19 +1475,22 @@ exports.setTimer = function(io) {
 			seminarCode: seminarCode
 		}, function(err, doc) {
 			if (doc) {
-				doc.producers[0].decisionCommitStatus[doc.currentPeriod].isDecisionCommitted=true;
-				doc.producers[1].decisionCommitStatus[doc.currentPeriod].isDecisionCommitted=true;
-				doc.producers[2].decisionCommitStatus[doc.currentPeriod].isDecisionCommitted=true;
-				doc.producers[3].decisionCommitStatus[doc.currentPeriod].isDecisionCommitted=true;
-				doc.retailers[0].decisionCommitStatus[doc.currentPeriod].isDecisionCommitted=true;
-				doc.retailers[1].decisionCommitStatus[doc.currentPeriod].isDecisionCommitted=true;
-				doc.retailers[2].decisionCommitStatus[doc.currentPeriod].isDecisionCommitted=true;
-				doc.retailers[3].decisionCommitStatus[doc.currentPeriod].isDecisionCommitted=true;
+				doc.producers[0].decisionCommitStatus[doc.currentPeriod].isDecisionCommitted = true;
+				doc.producers[1].decisionCommitStatus[doc.currentPeriod].isDecisionCommitted = true;
+				doc.producers[2].decisionCommitStatus[doc.currentPeriod].isDecisionCommitted = true;
+				doc.producers[3].decisionCommitStatus[doc.currentPeriod].isDecisionCommitted = true;
+				doc.retailers[0].decisionCommitStatus[doc.currentPeriod].isDecisionCommitted = true;
+				doc.retailers[1].decisionCommitStatus[doc.currentPeriod].isDecisionCommitted = true;
+				doc.retailers[2].decisionCommitStatus[doc.currentPeriod].isDecisionCommitted = true;
+				doc.retailers[3].decisionCommitStatus[doc.currentPeriod].isDecisionCommitted = true;
 			}
 			doc.markModified('producers');
 			doc.markModified('retailers');
-			doc.save(function(){
-				io.sockets.emit('socketIO:committeDecision',{'seminarCode':doc.seminarCode,'period':doc.currentPeriod});
+			doc.save(function() {
+				io.sockets.emit('socketIO:committeDecision', {
+					'seminarCode': doc.seminarCode,
+					'period': doc.currentPeriod
+				});
 			});
 		})
 
@@ -1508,14 +1535,14 @@ exports.setTimer = function(io) {
 				});
 				timers.push(createNewTimer(req.body.seminarCode, countDown, io, timersEvents));
 				res.send(200, {
-				'msg': 'reset timer:' + req.body.seminarCode,
-				'seminar': seminarCode,
-				'pass': countDown.pass,
-				'portfolio': countDown.portfolio,
-				'contractDeal': countDown.contractDeal,
-				'contractFinalized': countDown.contractFinalized,
-				'contractDecisionCommitted': countDown.contractDecisionCommitted
-			});
+					'msg': 'reset timer:' + req.body.seminarCode,
+					'seminar': seminarCode,
+					'pass': countDown.pass,
+					'portfolio': countDown.portfolio,
+					'contractDeal': countDown.contractDeal,
+					'contractFinalized': countDown.contractFinalized,
+					'contractDecisionCommitted': countDown.contractDecisionCommitted
+				});
 				//user choose to stop timer
 			} else {
 				clearInterval(timer);
@@ -1542,4 +1569,3 @@ exports.setTimer = function(io) {
 
 	}
 }
-
