@@ -1549,19 +1549,7 @@ exports.setTimer = function(io) {
 				//io.sockets.emit('socketIO:timerStop',{'seminarCode':req.body.seminarCode});
 				res.send(200, 'stop timer: ' + timer.seminarCode);
 			}
-<<<<<<< HEAD
-		//create a new timer and push into memory
-		//if timer requested is not existed and user choose to start a new one instead of stopping existed one
-		} else if ((timer == undefined) && (req.body.active == 'switchOn')){			
 
-			timers.push(createNewTimer(req.body.seminarCode, 10, io, timersEvents));                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          				
-			res.send(200, 'start a new timer: ' + req.body.seminarCode);
-
-		} else if ((timer == undefined) && (req.body.active == 'switchOff')){
-			res.send(400, 'cannot stop nonexistent timer: ' + req.body.seminarCode);	
-		} else {
-			res.send(400, 'bad parameters. { seminar : string, active : string(switchOn/switchOff) }')
-=======
 			//create a new timer and push into memory
 			//if timer requested is not existed and user choose to start a new one instead of stopping existed one
 		} else if ((timer == undefined) && (req.body.active == 'switchOn')) {
@@ -1578,7 +1566,6 @@ exports.setTimer = function(io) {
 			});
 		} else if ((timer == undefined) && (req.body.active == 'switchOff')) {
 			res.send(400, 'cannot stop nonexistent timer: ' + req.body.seminarCode);
->>>>>>> c5ca95443c9400dc2b21ce3e0414ae4285b38eca
 		}
 
 	}
