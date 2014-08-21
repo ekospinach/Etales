@@ -164,11 +164,13 @@ define(['angular',
 	    $rootScope.accessLevels = accessLevels;
 	    $rootScope.userRoles = userRoles;	    
 	    return {
-	        authorize: function(accessLevel, role) {         	        	
+	        authorize: function(accessLevel, role) {    
+	        //console.log('accessLevel:'+accessLevel+',role:'+role);     	        	
+	            var result=0;
 	            if(role === undefined) {
 	                role = $rootScope.user.role;
 	            }
-	            return accessLevel & role;
+	            return accessLevel&role;
 	        },
 	        isLoggedIn: function(user) {
 	            if(user === undefined)

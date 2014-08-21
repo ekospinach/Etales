@@ -49,11 +49,11 @@ define(['angular',
 		}).when('/admin',{
 			templateUrl:'partials/admin.html',
 			controller:'adminCtrl',
-			access : access.public			
+			access : access.facilitatorView			
 		}).when('/adminDetails',{
 			templateUrl:'partials/adminDetails.html',
 			controller:'adminDetailsCtrl',
-			access : access.public
+			access : access.facilitatorView
 		}).when('/test',{
 			controller:'testCtrl',
 			templateUrl:'partials/test.html',
@@ -61,7 +61,7 @@ define(['angular',
 		}).when('/facilitatorDecision',{
 			controller:'facilitatorDecisionCtrl',
 			templateUrl:'partials/facilitatorDecision.html',
-			access:access.facilitatorView
+			access:access.playerView
 		}).when('/feedback',{
 			controller:'feedbackCtrl',
 			templateUrl:'partials/feedback.html',
@@ -89,7 +89,7 @@ define(['angular',
 		}).when('/retailerDecision',{
 			templateUrl:'partials/retailerDecision.html',
 			controller:'retailerDecisionCtrl',
-			access : access.producerView			
+			access : access.retailerView			
 		}).when('/generalReport',{
 			templateUrl:'partials/generalReport.html',
 			controller:'generalReportCtrl',
