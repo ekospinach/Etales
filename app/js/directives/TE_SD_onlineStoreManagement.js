@@ -255,16 +255,16 @@ define(['directives', 'services'], function(directives) {
                         if (category == "Elecssories") {
                             categoryID = 1;
                             if (location == "supportTraditionalTrade" || location == "advertisingOffLine") {
-                                ProducerDecisionBase.setProducerDecisionBrand(categoryID, brandName, location, tep, scope.brandes[index][location][tep]);
+                                ProducerDecisionBase.setProducerDecisionBrand(categoryID, brandName, location, tep, scope.brandes[index][location][tep],'supplierOnlineStoreManagement');
                             } else {
-                                ProducerDecisionBase.setProducerDecisionBrand(categoryID, brandName, location, tep, scope.brandes[index][location]);
+                                ProducerDecisionBase.setProducerDecisionBrand(categoryID, brandName, location, tep, scope.brandes[index][location],'supplierOnlineStoreManagement');
                             }
                         } else {
                             categoryID = 2;
                             if (location == "supportTraditionalTrade" || location == "advertisingOffLine") {
-                                ProducerDecisionBase.setProducerDecisionBrand(categoryID, brandName, location, tep, scope.brandhs[index][location][tep]);
+                                ProducerDecisionBase.setProducerDecisionBrand(categoryID, brandName, location, tep, scope.brandhs[index][location][tep],'supplierOnlineStoreManagement');
                             } else {
-                                ProducerDecisionBase.setProducerDecisionBrand(categoryID, brandName, location, tep, scope.brandhs[index][location]);
+                                ProducerDecisionBase.setProducerDecisionBrand(categoryID, brandName, location, tep, scope.brandhs[index][location],'supplierOnlineStoreManagement');
                             }
                         }
                     }
@@ -280,7 +280,7 @@ define(['directives', 'services'], function(directives) {
                         if (location == "pricePromotions" && additionalIdx == "1") {
                             value = parseFloat(value) / 100;
                         }
-                        ProducerDecisionBase.setProducerDecisionValue(categoryID, brandName, varName, location, additionalIdx, value);
+                        ProducerDecisionBase.setProducerDecisionValue(categoryID, brandName, varName, location, additionalIdx, value,'supplierOnlineStoreManagement');
                     }
 
                     var showView = function() {
@@ -300,8 +300,10 @@ define(['directives', 'services'], function(directives) {
 
                     scope.$on('producerDecisionBaseChangedFromServer', function(event, data, newBase) {
                         //decision base had been updated, re-render the page with newBase
-                        scope.pageBase = newBase;
-                        showView();
+                        if(data.page=="supplierOnlineStoreManagement"){
+                            scope.pageBase = newBase;
+                            showView();
+                        }
                     });
 
                 }

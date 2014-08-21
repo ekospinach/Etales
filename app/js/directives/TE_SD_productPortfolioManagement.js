@@ -528,7 +528,7 @@ define(['directives', 'services'], function(directives) {
                                     method: 'GET',
                                     url: url
                                 }).then(function(data) {
-                                    ProducerDecisionBase.addProductNewBrand(newBrand, $scope.lauchNewCategory);
+                                    ProducerDecisionBase.addProductNewBrand(newBrand, $scope.lauchNewCategory,'supplierProductPortfolioManagement');
                                     showbubleMsg(Label.getContent('Add new brand successful'), 2);
                                     cancel();
                                 }, function(data) {
@@ -557,7 +557,7 @@ define(['directives', 'services'], function(directives) {
                                     method: 'GET',
                                     url: url
                                 }).then(function(data) {
-                                    ProducerDecisionBase.addProductExistedBrand(newproducerDecision, $scope.addNewCategory, newBrandName);
+                                    ProducerDecisionBase.addProductExistedBrand(newproducerDecision, $scope.addNewCategory, newBrandName,'supplierProductPortfolioManagement');
                                     showbubleMsg(Label.getContent('Add new variant successful'), 2);
                                     cancel();
                                 }, function(data) {
@@ -642,18 +642,18 @@ define(['directives', 'services'], function(directives) {
                         if (location == "composition") {
                             if (category == "Elecssories") {
                                 categoryID = 1;
-                                ProducerDecisionBase.setProducerDecisionValue(categoryID, brandName, varName, location, additionalIdx, scope.productes[index][location][additionalIdx]);
+                                ProducerDecisionBase.setProducerDecisionValue(categoryID, brandName, varName, location, additionalIdx, scope.productes[index][location][additionalIdx],'supplierProductPortfolioManagement');
                             } else {
                                 categoryID = 2;
-                                ProducerDecisionBase.setProducerDecisionValue(categoryID, brandName, varName, location, additionalIdx, scope.producths[index][location][additionalIdx]);
+                                ProducerDecisionBase.setProducerDecisionValue(categoryID, brandName, varName, location, additionalIdx, scope.producths[index][location][additionalIdx],'supplierProductPortfolioManagement');
                             }
                         } else {
                             if (category == "Elecssories") {
                                 categoryID = 1;
-                                ProducerDecisionBase.setProducerDecisionValue(categoryID, brandName, varName, location, additionalIdx, scope.productes[index][location]);
+                                ProducerDecisionBase.setProducerDecisionValue(categoryID, brandName, varName, location, additionalIdx, scope.productes[index][location],'supplierProductPortfolioManagement');
                             } else {
                                 categoryID = 2;
-                                ProducerDecisionBase.setProducerDecisionValue(categoryID, brandName, varName, location, additionalIdx, scope.producths[index][location]);
+                                ProducerDecisionBase.setProducerDecisionValue(categoryID, brandName, varName, location, additionalIdx, scope.producths[index][location],'supplierProductPortfolioManagement');
                             }
                         }
                     }
@@ -664,7 +664,7 @@ define(['directives', 'services'], function(directives) {
                         } else {
                             category = 2;
                         }
-                        ProducerDecisionBase.deleteProduct(category, brandName, varName);
+                        ProducerDecisionBase.deleteProduct(category, brandName, varName,'supplierProductPortfolioManagement');
                     }
 
                     var showView = function() {
@@ -839,8 +839,10 @@ define(['directives', 'services'], function(directives) {
 
                     scope.$on('producerDecisionBaseChangedFromServer', function(event, data, newBase) {
                         //decision base had been updated, re-render the page with newBase
-                        scope.pageBase = newBase;
-                        showView();
+                        if(data.page=="supplierProductPortfolioManagement"){
+                            scope.pageBase = newBase;
+                            showView();
+                        }
                     });
 
                 }

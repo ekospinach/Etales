@@ -81,17 +81,17 @@ define(['directives', 'services'], function(directives){
 				}
 
 				scope.updateRetailerDecision=function(location,additionalIdx){
-					RetailerDecisionBase.setRetailerDecisionBase(location,additionalIdx,scope.pageBase[location][additionalIdx]);
+					RetailerDecisionBase.setRetailerDecisionBase(location,additionalIdx,scope.pageBase[location][additionalIdx],'retailerMarketing');
 				}
 
 				scope.updateMarketingDecision=function(marketID,location,postion,additionalIdx,index){
 					if(location=="localAdvertising"){
-						RetailerDecisionBase.setMarketDecisionBase(marketID,location,additionalIdx,scope.markets[index][location][additionalIdx]);					
+						RetailerDecisionBase.setMarketDecisionBase(marketID,location,additionalIdx,scope.markets[index][location][additionalIdx],'retailerMarketing');					
 					}else if(location=="categorySurfaceShare"){
-						RetailerDecisionBase.setMarketDecisionBase(marketID,location,additionalIdx,(scope.markets[index][location][additionalIdx])/100);
+						RetailerDecisionBase.setMarketDecisionBase(marketID,location,additionalIdx,(scope.markets[index][location][additionalIdx])/100,'retailerMarketing');
 						scope.markets[index][location][1-additionalIdx]=((100-scope.markets[index][location][additionalIdx])).toFixed(2);					
 					}else{
-						RetailerDecisionBase.setMarketDecisionBase(marketID,location,postion,scope.markets[index][location]);										
+						RetailerDecisionBase.setMarketDecisionBase(marketID,location,postion,scope.markets[index][location],'retailerMarketing');										
 					}
 				}
 
@@ -167,8 +167,10 @@ define(['directives', 'services'], function(directives){
                 });
 
 	            scope.$on('retailerDecisionBaseChangedFromServer', function(event, data, newBase) {  
-            		scope.pageBase = newBase;
-                	showView();	
+                	if(data.page=="retailerMarketing"){
+                        scope.pageBase = newBase;
+                        showView();
+                    }
 	            });				
 
             }

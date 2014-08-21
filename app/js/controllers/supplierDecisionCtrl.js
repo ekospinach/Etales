@@ -169,7 +169,7 @@ define(['app', 'socketIO', 'routingConfig'], function(app) {
 
 			$scope.$on('producerDecisionBaseChangedFromServer', function(event, data, newBase) {
 				loadBackgroundDataAndCalculateDecisionInfo();
-				notify('Decision has been saved, Supplier ' + data.producerID + ' Period ' + data.period + '.');
+				notify('Decision has been saved, Supplier ' + data.producerID + ' Period ' + data.period + '.'+'in '+data.page);
 			});
 
 			$scope.$on('producerReportPurchaseDecisionChanged', function(event, data, newBase) {

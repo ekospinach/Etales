@@ -198,7 +198,7 @@ define(['directives', 'services'], function(directives) {
 
 
                     scope.submitOrder = function(additionalIdx, value) {
-                        RetailerDecisionBase.setMarketResearchOrders(scope.selectedPlayer, additionalIdx, value);
+                        RetailerDecisionBase.setMarketResearchOrders(scope.selectedPlayer, additionalIdx, value,'retailerMarketResearchOrders');
 
                     }
 
@@ -208,9 +208,12 @@ define(['directives', 'services'], function(directives) {
                             initializePage();
                         }
                     })
-
-                    scope.$on('retailerMarketResearchOrdersChanged', function(event, data) {
-                        showView();
+                    scope.$on('producerDecisionBaseChangedFromServer', function(event, data, newBase) {                    
+                        //decision base had been updated, re-render the page with newBase
+                        if(data.page=="retailerMarketResearchOrders"){
+                            scope.pageBase = newBase;
+                            showView();
+                        }
                     });
 
                 }

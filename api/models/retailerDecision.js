@@ -766,24 +766,15 @@ exports.updateRetailerDecision = function(io) {
                     doc.markModified('retCatDecision');
                     doc.save(function(err, doc, numberAffected) {
                         if (err) next(new Error(err));
-                        console.log('save updated hhq, number affected:' + numberAffected);
-                        if (err) next(new Error(err));
-                        console.log('save updated hhq, number affected:' + numberAffected);
-                        if (queryCondition.behaviour == "addOrder") {
+                        console.log('save updated, number affected:' + numberAffected);
+                        if (queryCondition.behaviour == "addOrder"||queryCondition.behaviour == "updateMarketResearchOrders") {
                             io.sockets.emit('socketIO:retailerBaseChanged', {
                                 retailerID: queryCondition.retailerID,
                                 seminar: queryCondition.seminar,
                                 period: queryCondition.period,
                                 categoryID: queryCondition.value.categoryID,
-                                marketID: queryCondition.marketID
-                            });
-                        } else if (queryCondition.behaviour == "updateMarketResearchOrders") {
-                            io.sockets.emit('socketIO:retailerMarketResearchOrdersChanged', {
-                                retailerID: queryCondition.retailerID,
-                                seminar: queryCondition.seminar,
-                                period: queryCondition.period,
-                                categoryID: queryCondition.value.categoryID,
-                                marketID: queryCondition.marketID
+                                marketID: queryCondition.marketID,
+                                page:req.body.page
                             });
                         } else {
                             io.sockets.emit('socketIO:retailerBaseChanged', {
@@ -791,7 +782,8 @@ exports.updateRetailerDecision = function(io) {
                                 seminar: queryCondition.seminar,
                                 period: queryCondition.period,
                                 categoryID: queryCondition.categoryID,
-                                marketID: queryCondition.marketID
+                                marketID: queryCondition.marketID,
+                                page:req.body.page
                             });
                         }
                         res.send(200, 'mission complete!');
