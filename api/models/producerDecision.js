@@ -425,9 +425,7 @@ exports.updateProducerDecision = function(io) {
                                                         }
                                                         doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].packFormat = queryCondition.value;
                                                     } else if (queryCondition.location == "composition") {
-                                                        console.log(queryCondition.value);
                                                         doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k][queryCondition.location][queryCondition.additionalIdx] = queryCondition.value;
-                                                        console.log(doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k][queryCondition.location][queryCondition.additionalIdx]);
                                                     } else if (queryCondition.location == "pricePromotions") {
                                                         if (queryCondition.additionalIdx == 0) {
                                                             doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].pricePromotions.promo_Frequency = queryCondition.value;
