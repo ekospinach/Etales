@@ -2,8 +2,6 @@ define(['app','socketIO'], function(app) {
 
 	app.controller('adminCtrl',['$scope', '$http','$rootScope','EditSeminarInfo','$location','$modal','Label', function($scope, $http,$rootScope, EditSeminarInfo, $location,$modal,Label) {
 
-		console.warn(message);
-
 		var initializePage = function(){
 			$http.get('/seminarList').success(function(data){
 				$scope.seminars=data;
