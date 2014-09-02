@@ -409,7 +409,7 @@ var
     function serveRequest() : ISuperObject;
     var
       jo : ISuperObject;
-      cat : Integer;
+      cat,marketStudies : Integer;
     begin
       jo := SO; //initialise JSON object
       jo.S['seminar'] := currentSeminar;
@@ -420,6 +420,11 @@ var
 
       {** Data Collection **}
       jo.O['proCatDecision'] := SA([]);
+
+      //fill array for MarketResearchOrder
+      jo.O['MarketResearchOrder'] := SA([]);
+      for marketStudies := Low(TMarketStudies) to High(TMarketStudies) do
+        jo.A['MarketResearchOrder'].B[marketStudies - 1] = currentDecision.dp_MarketResearch[marketStudies];
 
       //build categories decisions
       //category
@@ -511,6 +516,7 @@ var
       curDec.dp_ProducerID := currentProducer;
       curDec.dp_NextBudgetExtension  := jo.D['nextBudgetExtension'];
       curDec.dp_ApprovedBudgetExtension  := jo.D['approvedBudgetExtension'];
+      curDec.dp_MarketResearch
 
       //translate categories decisions
       //category
