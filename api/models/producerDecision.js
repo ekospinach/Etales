@@ -345,7 +345,6 @@ exports.updateProducerDecision = function(io) {
                                 promo_Frequency: 0, //range: 0~52
                                 promo_Rate: 0 //0~1        
                             };
-                            console.log(nullVarDecision);
                             var nullBrandDecision = new proBrandsDecision();
                             nullBrandDecision.brandID = 0;
                             nullBrandDecision.brandName = "",
@@ -425,9 +424,7 @@ exports.updateProducerDecision = function(io) {
                                                         }
                                                         doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].packFormat = queryCondition.value;
                                                     } else if (queryCondition.location == "composition") {
-                                                        console.log(queryCondition.value);
                                                         doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k][queryCondition.location][queryCondition.additionalIdx] = queryCondition.value;
-                                                        console.log(doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k][queryCondition.location][queryCondition.additionalIdx]);
                                                     } else if (queryCondition.location == "pricePromotions") {
                                                         if (queryCondition.additionalIdx == 0) {
                                                             doc.proCatDecision[i].proBrandsDecision[j].proVarDecision[k].pricePromotions.promo_Frequency = queryCondition.value;
@@ -488,19 +485,26 @@ exports.updateProducerDecision = function(io) {
                         doc.save(function(err, doc, numberAffected) {
                             if (err) next(new Error(err));
                             console.log('save updated, number affected:' + numberAffected);
-                            if (queryCondition.behaviour == "updateMarketResearchOrders") {
-                                io.sockets.emit('socketIO:supplierMarketResearchOrdersChanged', {
-                                    period: queryCondition.period,
-                                    seminar: queryCondition.seminar,
-                                    producerID: queryCondition.producerID
-                                });
-                            } else {
-                                io.sockets.emit('socketIO:producerBaseChanged', {
-                                    period: queryCondition.period,
-                                    producerID: queryCondition.producerID,
-                                    seminar: queryCondition.seminar
-                                });
-                            }
+                            // if (queryCondition.behaviour == "updateMarketResearchOrders") {
+                            //     io.sockets.emit('socketIO:supplierMarketResearchOrdersChanged', {
+                            //         period: queryCondition.period,
+                            //         seminar: queryCondition.seminar,
+                            //         producerID: queryCondition.producerID
+                            //     });
+                            // } else {
+                            //     io.sockets.emit('socketIO:producerBaseChanged', {
+                            //         period: queryCondition.period,
+                            //         producerID: queryCondition.producerID,
+                            //         seminar: queryCondition.seminar,
+                            //         behaviour:queryCondition.behaviour
+                            //     });
+                            // }
+                            io.sockets.emit('socketIO:producerBaseChanged', {
+                                period: queryCondition.period,
+                                producerID: queryCondition.producerID,
+                                seminar: queryCondition.seminar,
+                                page:req.body.page
+                            });
                             if (queryCondition.behaviour == "deleteProduct") {
                                 res.send(200, {
                                     index: index

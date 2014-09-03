@@ -250,13 +250,13 @@ define(['directives', 'services'], function(directives){
                         category=2;
                     }
                     if(location=="pricePromotions"&&postion=="promo_Frequency"){
-                        RetailerDecisionBase.setRetailerDecision(category,market,brandName,varName,location,postion,value);                  
+                        RetailerDecisionBase.setRetailerDecision(category,market,brandName,varName,location,postion,value,'retailerStoreManagement');                
                     }else if(location=="pricePromotions"&&postion=="promo_Rate"){
-                        RetailerDecisionBase.setRetailerDecision(category,market,brandName,varName,location,postion,value/100);
+                        RetailerDecisionBase.setRetailerDecision(category,market,brandName,varName,location,postion,value/100,'retailerStoreManagement');
                     }else if(location=="shelfSpace"){
-                        RetailerDecisionBase.setRetailerDecision(category,market,brandName,varName,location,postion,value/100);                 
+                        RetailerDecisionBase.setRetailerDecision(category,market,brandName,varName,location,postion,value/100,'retailerStoreManagement');                 
                     }else{
-                        RetailerDecisionBase.setRetailerDecision(category,market,brandName,varName,location,postion,value);                   
+                        RetailerDecisionBase.setRetailerDecision(category,market,brandName,varName,location,postion,value,'retailerStoreManagement');                   
                     }
                 }
 
@@ -455,10 +455,10 @@ define(['directives', 'services'], function(directives){
                             }
                         }
                         if(market=="Urban"){
-                            RetailerDecisionBase.addOrders(1,ordersProducts);
+                            RetailerDecisionBase.addOrders(1,ordersProducts,'retailerStoreManagement');
                         }
                         else{
-                            RetailerDecisionBase.addOrders(2,ordersProducts);
+                            RetailerDecisionBase.addOrders(2,ordersProducts,'retailerStoreManagement');
                         }
                         close();
                     }
@@ -478,7 +478,7 @@ define(['directives', 'services'], function(directives){
                     }else{
                         category=2;
                     }
-                    RetailerDecisionBase.deleteOrder(market,category,brandName,varName);
+                    RetailerDecisionBase.deleteOrder(market,category,brandName,varName,'retailerStoreManagement');
                 }
 
                 scope.$watch('isPageShown', function(newValue, oldValue){
@@ -488,15 +488,17 @@ define(['directives', 'services'], function(directives){
                 });
 
                 scope.$on('retailerDecisionBaseChangedFromServer', function(event, data, newBase) {  
-                    scope.pageBase = newBase;
-                    if (data.categoryID == 1 && data.marketID == 1) {
-                        showView('Elecssories', 'Urban');
-                    } else if (data.categoryID == 1 && data.marketID == 2) {
-                        showView('Elecssories', 'Rural');
-                    } else if (data.categoryID == 2 && data.marketID == 1) {
-                        showView('HealthBeauties', 'Urban');
-                    } else if (data.categoryID == 2 && data.marketID == 2) {
-                        showView('HealthBeauties', 'Rural');
+                    if(data.page="retailerStoreManagement"){
+                        scope.pageBase = newBase;
+                        if (data.categoryID == 1 && data.marketID == 1) {
+                            showView('Elecssories', 'Urban');
+                        } else if (data.categoryID == 1 && data.marketID == 2) {
+                            showView('Elecssories', 'Rural');
+                        } else if (data.categoryID == 2 && data.marketID == 1) {
+                            showView('HealthBeauties', 'Urban');
+                        } else if (data.categoryID == 2 && data.marketID == 2) {
+                            showView('HealthBeauties', 'Rural');
+                        }
                     }
                     // } else if(data.categoryID != undefined && data.marketID==undefined){
                     //     initializePage();

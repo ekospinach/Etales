@@ -123,7 +123,7 @@ define(['directives', 'services'], function(directives){
                 }
 
                 scope.updateProducerDecision=function(categoryID,location,index){
-                    ProducerDecisionBase.setProducerDecisionCategory(categoryID,location,scope.categorys[index][location]);
+                    ProducerDecisionBase.setProducerDecisionCategory(categoryID,location,scope.categorys[index][location],'supplierAssetInvestments');
                 }
 
                 scope.updateVariantDecision=function(category,brandName,varName,location,additionalIdx,index,value){
@@ -134,7 +134,7 @@ define(['directives', 'services'], function(directives){
                     }else{
                         categoryID=2;
                     }
-                    ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,additionalIdx,value);                         
+                    ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,additionalIdx,value,'supplierAssetInvestments');                         
                 }
 
                 var showView=function(){
@@ -163,8 +163,10 @@ define(['directives', 'services'], function(directives){
                 
                 scope.$on('producerDecisionBaseChangedFromServer', function(event, data, newBase) {                    
                         //decision base had been updated, re-render the page with newBase
+                    if(data.page=="supplierAssetInvestments"){
                         scope.pageBase = newBase;
                         showView();
+                    }
                 });
 
             }

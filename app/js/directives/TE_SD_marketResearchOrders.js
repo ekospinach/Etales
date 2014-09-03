@@ -154,7 +154,7 @@ define(['directives', 'services'], function(directives) {
 
 
                     scope.submitOrder = function(additionalIdx, value) {
-                        ProducerDecisionBase.setMarketResearchOrders(scope.selectedPlayer, additionalIdx, value);
+                        ProducerDecisionBase.setMarketResearchOrders(scope.selectedPlayer, additionalIdx, value,'supplierMarketResearchOrders');
                     }
 
                     scope.checkBudget = function(price, value) {
@@ -216,9 +216,16 @@ define(['directives', 'services'], function(directives) {
                         }
                     })
 
-                    scope.$on('supplierMarketResearchOrdersChanged', function(event, data) {
-                        showView();
-                    });
+                    // scope.$on('supplierMarketResearchOrdersChanged', function(event, data) {
+                    //     showView();
+                    // });
+
+                    scope.$on('producerDecisionBaseChangedFromServer', function(event, data, newBase) {                    
+                        //decision base had been updated, re-render the page with newBase
+                        if(data.page=="supplierMarketResearchOrders"){
+                            showView();
+                        }
+                });
                 }
             }
         }

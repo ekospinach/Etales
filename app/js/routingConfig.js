@@ -71,6 +71,7 @@
                         resultBitMask += "1"
                     }
                     accessLevels[level] = parseInt(resultBitMask, 2);
+                    console.log('public:'+accessLevels[level]);
                 }
                 else console.log("Access Control Error: Could not parse '" + accessLevelDeclarations[level] + "' as access definition for level '" + level + "'")
 
@@ -78,13 +79,30 @@
             else {
 
                 var resultBitCode = 0;
+
                 for(var role in accessLevelDeclarations[level]){
 
-                    if(userRoles.hasOwnProperty(accessLevelDeclarations[level][role]))
+                    if(userRoles.hasOwnProperty(accessLevelDeclarations[level][role])){
+                        
                         resultBitCode = resultBitCode | userRoles[accessLevelDeclarations[level][role]]
+                    }
                     else console.log("Access Control Error: Could not find role '" + accessLevelDeclarations[level][role] + "' in registered roles while building access for '" + level + "'")
                 }
                 accessLevels[level] = resultBitCode;
+                //producer 10
+                //retailer 100
+                //facilitator 1000
+
+                // public 11111
+                // PandRView 110
+                // adminView 10000
+                // facilitatorView 1000
+                // playerView 1110
+                // producerView 1010
+                // producerViewOnly 10
+                // public 11111
+                // retailerView 1100
+                // retailerViewOnly 100
             }
         }
 

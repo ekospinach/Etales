@@ -81,7 +81,7 @@ define(['app'], function(app) {
 		NegotiationBase.startListenChangeFromServer();
 		TimerBase.startListenChangeFromServer();
 
-		console.log('$routeParams: ' + $routeParams.reportLocateId);
+		console.log('$routeParams: ' + $routeParams);
 	}]);
 
 });

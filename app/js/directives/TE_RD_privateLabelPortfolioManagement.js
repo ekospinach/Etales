@@ -389,7 +389,7 @@ define(['directives', 'services'], function(directives){
                                 method:'GET',
                                 url:url
                             }).then(function(data){
-                                RetailerDecisionBase.addProductNewBrand(newBrand,$scope.lauchNewCategory);
+                                RetailerDecisionBase.addProductNewBrand(newBrand,$scope.lauchNewCategory,'retailerPrivateLabelPortfolioManagement');
                                 showbubleMsg(Label.getContent('Add new brand successful'),2);
                                 cancel();
                             },function(data){
@@ -417,7 +417,7 @@ define(['directives', 'services'], function(directives){
                                 method:'GET',
                                 url:url
                             }).then(function(data){
-                                RetailerDecisionBase.addProductExistedBrand(newretailerDecision,$scope.addNewCategory,newBrandName);
+                                RetailerDecisionBase.addProductExistedBrand(newretailerDecision,$scope.addNewCategory,newBrandName,'retailerPrivateLabelPortfolioManagement');
                                 showbubleMsg(Label.getContent('Add new variant successful'),2);
                                 cancel();
                             },function(data){
@@ -500,10 +500,10 @@ define(['directives', 'services'], function(directives){
 						categoryID=2;
 					}
 					if(location=="composition"){
-						RetailerDecisionBase.setRetailerDecisionValue(categoryID,brandName,varName,location,addtionalIdx,value);							
+						RetailerDecisionBase.setRetailerDecisionValue(categoryID,brandName,varName,location,addtionalIdx,value,'retailerPrivateLabelPortfolioManagement');							
 					}
 					else{
-						RetailerDecisionBase.setRetailerDecisionValue(categoryID,brandName,varName,location,addtionalIdx,value);													
+						RetailerDecisionBase.setRetailerDecisionValue(categoryID,brandName,varName,location,addtionalIdx,value,'retailerPrivateLabelPortfolioManagement');													
 					}
 					scope.$broadcast('retailerDecisionBaseChanged');
 				}
@@ -516,7 +516,7 @@ define(['directives', 'services'], function(directives){
 			    	}else{
 			    		category=2;
 			    	}
-			    	RetailerDecisionBase.deleteProduct(category,brandName,varName);	
+			    	RetailerDecisionBase.deleteProduct(category,brandName,varName,'retailerPrivateLabelPortfolioManagement');	
 			    }
 
                 var showView=function(){
@@ -535,8 +535,10 @@ define(['directives', 'services'], function(directives){
                 });
                 
                 scope.$on('retailerDecisionBaseChangedFromServer', function(event, data, newBase) {  
-                            scope.pageBase = newBase;
-                            showView();
+                    if(data.page=="retailerPrivateLabelPortfolioManagement"){
+                        scope.pageBase = newBase;
+                        showView();
+                    }
                 });             
 
             }

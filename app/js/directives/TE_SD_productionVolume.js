@@ -186,17 +186,17 @@ define(['directives', 'services'], function(directives){
                     if(category=="Elecssories"){
                         categoryID=1;
                         if(location=="channelPreference"){
-                            ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,additionalIdx,value/100);                                                    
+                            ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,additionalIdx,value/100,'supplierProductionVolume');                                                    
                         }else{
-                            ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,additionalIdx,value);                                                    
+                            ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,additionalIdx,value,'supplierProductionVolume');                                                    
                         }
                     }
                     else{
                         categoryID=2;
                         if(location=="channelPreference"){
-                            ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,additionalIdx,value/100);                                                    
+                            ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,additionalIdx,value/100,'supplierProductionVolume');                                                    
                         }else{
-                            ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,additionalIdx,value);                                                    
+                            ProducerDecisionBase.setProducerDecisionValue(categoryID,brandName,varName,location,additionalIdx,value,'supplierProductionVolume');                                                    
                         }                                                 
                     }
                 }
@@ -218,8 +218,10 @@ define(['directives', 'services'], function(directives){
                 });
                 scope.$on('producerDecisionBaseChangedFromServer', function(event, data, newBase) {                    
                         //decision base had been updated, re-render the page with newBase                    
-                        scope.pageBase = newBase;
-                        showView();
+                    if(data.page=="supplierProductionVolume"){
+                            scope.pageBase = newBase;
+                            showView();
+                        }
                 });
 
             }
