@@ -29,9 +29,9 @@ define(['app'], function(app) {
 	    }
 
 	    $scope.openTabs = function(){	    	
-			$window.open('#/facilitatorConfidentialReport');		
-			$window.open('#/facilitatorGeneralReport');		
-			$window.open('#/facilitatorMarketReport');		
+			$window.open('#/confidentialReport');		
+			$window.open('#/generalReport');		
+			$window.open('#/marketReport');		
 
 	    }
 	    
