@@ -1549,6 +1549,7 @@ exports.setTimer = function(io) {
 				//io.sockets.emit('socketIO:timerStop',{'seminarCode':req.body.seminarCode});
 				res.send(200, 'stop timer: ' + timer.seminarCode);
 			}
+
 			//create a new timer and push into memory
 			//if timer requested is not existed and user choose to start a new one instead of stopping existed one
 		} else if ((timer == undefined) && (req.body.active == 'switchOn')) {
