@@ -63,7 +63,7 @@
 			'angularHighcharts' :['angular','highchart'],
 			'highchart' :['jquery'],
 			'ngNotify' :['jquery','angular'],
-			'ngSlider' :['jquery','angular'],
+			'ngSlider' :['angular','jquery'],
 			'angularSanitize' : ['angular']
 		},
 		priority: [

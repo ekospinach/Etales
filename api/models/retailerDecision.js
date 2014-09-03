@@ -182,7 +182,8 @@ exports.addRetailerDecisions = function(options) {
                         onlineAdvertising: singleDecision.onlineAdvertising,
                         tradtionalAdvertising: singleDecision.tradtionalAdvertising,
                         retCatDecision: singleDecision.retCatDecision,
-                        retMarketDecision: singleDecision.retMarketDecision
+                        retMarketDecision: singleDecision.retMarketDecision,
+                        marketResearchOrder: singleDecision.marketResearchOrder
                     }, {
                         upsert: true
                     },

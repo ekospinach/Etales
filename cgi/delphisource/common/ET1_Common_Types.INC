@@ -187,7 +187,7 @@ Type
                    dp_CatDecisions            : TProCatsDecisions;
                    dp_NextBudgetExtension     : single;
                    dp_ApprovedBudgetExtension : single;
-{                   dp_MarketResearch          : TMarketResearchOrders;  }
+                   dp_MarketResearch          : TMarketResearchOrders;  
                  end;
 
   TProsDecisions = array[TAllProducers] of TProDecision;
@@ -275,7 +275,7 @@ Type
                    dr_TraditionalAdvertising   : TStorePerceptionsData;
                    dr_NextBudgetExtension      : single; 
                    dr_ApprovedBudgetExtension  : single;                           { ### }
-{                   dr_MarketResearch           : TMarketResearchOrders;  }
+                   dr_MarketResearch           : TMarketResearchOrders;  
                  end;
 
   TRetsDecisions = array[TBMRetailers] of TRetDecision;
