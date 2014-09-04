@@ -10,7 +10,6 @@
 	require.config({
 		paths: {
 			angular: 				'../bower_components/angular/angular',
-			angularSanitize: 		'../bower_components/angular-sanitize/angular-sanitize',
 			angularCookies: 		'../bower_components/angular-cookies/angular-cookies',
 			angularRoute: 			'../bower_components/angular-route/angular-route',
 			angularResource: 		'../bower_components/angular-resource/angular-resource',
@@ -37,7 +36,6 @@
 			//angular notification 
 			ngNotify: 			   	'../bower_components/angular-notify/dist/angular-notify.min',
 			//Period slider for reports module 
-			ngSlider: 				'../bower_components/ng-slider/src/ng-slider'
 		},
 		baseUrl: 'js',
 		shim: {
@@ -62,9 +60,7 @@
 			'highchartMore':['jquery','highchart'],
 			'angularHighcharts' :['angular','highchart'],
 			'highchart' :['jquery'],
-			'ngNotify' :['jquery','angular'],
-			'ngSlider' :['angular','jquery'],
-			'angularSanitize' : ['angular']
+			'ngNotify' :['jquery','angular']
 		},
 		priority: [
 			"angular"

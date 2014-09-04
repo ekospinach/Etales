@@ -26,8 +26,6 @@
     "socket.io-client": "~1.0.6",
     "angular-resource": "~1.2.0-rc.3",
     "angular-loading-bar": "*",
-    "jqplot": "*",
-    "angular-google-chart": "~0.0.5",
     "requirejs-domready": "~2.0.1",
     "angular-animate": "~1.2.5",
     "font-awesome": "*",
@@ -37,7 +35,6 @@
     "angular-promise-tracker": "~2.0.0",
     "reveal.js": "~2.6.2",
     "angular-notify-toaster": "~0.4.7",
-    "angular-notify": "~1.1.0",
-    "ng-slider": "~0.1.4"
+    "angular-notify": "~1.1.0"
   }
 }

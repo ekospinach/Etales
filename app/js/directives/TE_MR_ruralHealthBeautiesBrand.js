@@ -55,7 +55,8 @@ define(['directives', 'services'], function(directives){
                     },{
                         name:Label.getContent('Retailer')+' 2',data:scope.price6s,color:'#F05422'
                     }];
-                    scope.myModel=category+" "+market;
+                    scope.myModel=category+"_"+market+'_'+scope.selectedPeriod;
+
                 }
 
                 var getResult =function(){
