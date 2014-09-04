@@ -49,6 +49,8 @@ define(['directives', 'services'], function(directives){
 		                        text:'Elecssories',
 		                    },
 		                    chart: {
+		                        width:550,
+		                        height:500,
 		                        type: 'line',
 		                        backgroundColor: 'transparent',
 		                    },
@@ -85,6 +87,8 @@ define(['directives', 'services'], function(directives){
 		                        text:'HealthBeauties',
 		                    },
 		                    chart: {
+		                        width:550,
+		                        height:500,
 		                        type: 'line',
 		                        backgroundColor: 'transparent',
 		                    },

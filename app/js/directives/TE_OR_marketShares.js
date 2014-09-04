@@ -65,6 +65,8 @@ define(['directives', 'services'], function(directives){
 		                        text:'Volumes Shares',
 		                    },
 		                    chart: {
+		                        width:550,
+		                        height:500,
 		                        type: 'line',
 		                        backgroundColor: 'transparent',
 		                    },
@@ -100,6 +102,8 @@ define(['directives', 'services'], function(directives){
 		                        text:'Volumes Shares',
 		                    },
 		                    chart: {
+		                        width:550,
+		                        height:500,
 		                        type: 'line',
 		                        backgroundColor: 'transparent',
 		                    },
@@ -135,6 +139,8 @@ define(['directives', 'services'], function(directives){
 		                        text:'Values Shares',
 		                    },
 		                    chart: {
+		                        width:550,
+		                        height:500,
 		                        type: 'line',
 		                        backgroundColor: 'transparent',
 		                    },
@@ -170,6 +176,8 @@ define(['directives', 'services'], function(directives){
 		                        text:'Values Shares',
 		                    },
 		                    chart: {
+		                        width:550,
+		                        height:500,
 		                        type: 'line',
 		                        backgroundColor: 'transparent',
 		                    },

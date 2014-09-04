@@ -64,6 +64,8 @@ define(['directives', 'services'], function(directives){
 		                        text:'Sales Volumes',
 		                    },
 		                    chart: {
+		                        width:550,
+		                        height:500
 		                        type: 'line',
 		                        backgroundColor: 'transparent',
 		                    },
@@ -100,6 +102,8 @@ define(['directives', 'services'], function(directives){
 		                        text:'Sales Volumes',
 		                    },
 		                    chart: {
+		                        width:550,
+		                        height:500
 		                        type: 'line',
 		                        backgroundColor: 'transparent',
 		                    },
@@ -136,6 +140,8 @@ define(['directives', 'services'], function(directives){
 		                        text:'Sales Values',
 		                    },
 		                    chart: {
+		                        width:550,
+		                        height:500
 		                        type: 'line',
 		                        backgroundColor: 'transparent',
 		                    },
@@ -172,6 +178,8 @@ define(['directives', 'services'], function(directives){
 		                        text:'Sales Values',
 		                    },
 		                    chart: {
+		                        width:550,
+		                        height:500
 		                        type: 'line',
 		                        backgroundColor: 'transparent',
 		                    },

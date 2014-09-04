@@ -90,6 +90,7 @@
 	'directives/TE_OR_marketShares',
 	'directives/TE_OR_profits',
 	'directives/TE_OR_shelfSpaceAllocation',
+	'directives/TE_OR_shareOfShoppers',
  	'directives/revealJSWrapper',
  	'angularRoute',
  	'angularXeditable',

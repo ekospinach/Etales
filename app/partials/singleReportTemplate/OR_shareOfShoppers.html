@@ -1,0 +1,20 @@
+<div class="panel panel-success my-panel-overview" ng-show="isResultShown">
+    <div class="panel-heading">
+        <h3 class="panel-title text-center">{{Label.getContent('Share of Shoppers')}} - {{Label.getContent('Urban')}} {{Label.getContent('Market')}}</h3>
+    </div>
+    <highchart id="urbanOnlineShareOfShoppers" config="urbanOnlineShareOfShoppers" class="pull-left"></highchart>
+    <highchart id="urbanBMShareOfShoppers" config="urbanBMShareOfShoppers" class="pull-left"></highchart>
+    <highchart id="urbanMixedShareOfShoppers" config="urbanMixedShareOfShoppers" class="pull-left"></highchart>
+    <highchart id="urbanTotalShareOfShoppers" config="urbanTotalShareOfShoppers" class="pull-left"></highchart>
+    <div style="clear:both"></div>
+</div>
+<div class="panel panel-success my-panel-overview" ng-show="isResultShown">
+    <div class="panel-heading">
+        <h3 class="panel-title text-center">{{Label.getContent('Share of Shoppers')}} - {{Label.getContent('Rural')}} {{Label.getContent('Market')}}</h3>
+    </div>
+    <highchart id="ruralOnlineShareOfShoppers" config="ruralOnlineShareOfShoppers" class="pull-left"></highchart>
+    <highchart id="ruralBMShareOfShoppers" config="ruralBMShareOfShoppers" class="pull-left"></highchart>
+    <highchart id="ruralMixedShareOfShoppers" config="ruralMixedShareOfShoppers" class="pull-left"></highchart>
+    <highchart id="ruralTotalShareOfShoppers" config="ruralTotalShareOfShoppers" class="pull-left"></highchart>
+    <div style="clear:both"></div>
+</div>

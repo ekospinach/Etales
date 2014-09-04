@@ -25,349 +25,360 @@ define(['directives', 'services'], function(directives){
 			        for(var i=-3;i<=scope.selectedPeriod;i++){
 			            currentCategories.push(i);
 			        }
-			    // /*highchart data init start*/
-			    //     var currentElecssoriesVolume=new Array({
-		     //            name:'Supplier-1',
-		     //            data:new Array(),
-		     //            color:'#3257A7'
-		     //        },{
-		     //            name:'Supplier-2',
-		     //            data:new Array(),
-		     //            color:'#B11E22'
-		     //        },{
-		     //            name:'Supplier-3',
-		     //            data:new Array(),
-		     //            color:'#F6B920'
-		     //        },{
-		     //            name:'Retailer-1',
-		     //            data:new Array(),
-		     //            color:'#8B288B'
-		     //        },{
-		     //            name:'Retailer-2',
-		     //            data:new Array(),
-		     //            color:'#F05422'
-		     //        });
-		     //        var currentElecssoriesValue=new Array({
-		     //            name:'Supplier-1',
-		     //            data:new Array(),
-		     //            color:'#3257A7'
-		     //        },{
-		     //            name:'Supplier-2',
-		     //            data:new Array(),
-		     //            color:'#B11E22'
-		     //        },{
-		     //            name:'Supplier-3',
-		     //            data:new Array(),
-		     //            color:'#F6B920'
-		     //        },{
-		     //            name:'Retailer-1',
-		     //            data:new Array(),
-		     //            color:'#8B288B'
-		     //        },{
-		     //            name:'Retailer-2',
-		     //            data:new Array(),
-		     //            color:'#F05422'
-		     //        });
+			    /*highchart data init start*/
+			    	var urbanOnline=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'});
+		            var urbanBM=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'});
+		            var urbanMixed=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'});
+		            var urbanTotal=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'});
+		            var ruralOnline=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'});
+		            var ruralBM=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'});
+		            var ruralMixed=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'});
+		            var ruralTotal=new Array({name:'Supplier-1',data:new Array(),color:'#3257A7'},{name:'Supplier-2',data:new Array(),color:'#B11E22'},{name:'Supplier-3',data:new Array(),color:'#F6B920'},{name:'Supplier-4',data:new Array(),color:'#329444'},{name:'Retailer-1',data:new Array(),color:'#8B288B'},{name:'Retailer-2',data:new Array(),color:'#F05422'},{name:'Retailer-3',data:new Array(),color:'#00AFEF'});
+		        /*highchart data init end*/
+		        /*set highchart data start*/
+		            for(var j=0;j<currentCategories.length;j++){
+		                for(var i=0;i<scope.feedBack.f_ShoppersShare.length;i++){
+		                    if(scope.feedBack.f_ShoppersShare[i].period==currentCategories[j]){
+		                        switch(scope.feedBack.f_ShoppersShare[i].shopperKind){
+		                            case 'BMS':
+		                                if(scope.feedBack.f_ShoppersShare[i].marketID==1){
+		                                    urbanBM[scope.feedBack.f_ShoppersShare[i].actorID-1].data.push(scope.feedBack.f_ShoppersShare[i].value);
+		                                }else if(scope.feedBack.f_ShoppersShare[i].marketID==2){
+		                                    ruralBM[scope.feedBack.f_ShoppersShare[i].actorID-1].data.push(scope.feedBack.f_ShoppersShare[i].value);
+		                                }
+		                            break; 
+		                            case 'NETIZENS':
+		                                if(scope.feedBack.f_ShoppersShare[i].marketID==1){
+		                                    urbanOnline[scope.feedBack.f_ShoppersShare[i].actorID-1].data.push(scope.feedBack.f_ShoppersShare[i].value);
+		                                }else if(scope.feedBack.f_ShoppersShare[i].marketID==2){
+		                                    ruralOnline[scope.feedBack.f_ShoppersShare[i].actorID-1].data.push(scope.feedBack.f_ShoppersShare[i].value);
+		                                }
+		                            break; 
+		                            case 'MIXED':
+		                                if(scope.feedBack.f_ShoppersShare[i].marketID==1){
+		                                    urbanMixed[scope.feedBack.f_ShoppersShare[i].actorID-1].data.push(scope.feedBack.f_ShoppersShare[i].value);
+		                                }else if(scope.feedBack.f_ShoppersShare[i].marketID==2){
+		                                    ruralMixed[scope.feedBack.f_ShoppersShare[i].actorID-1].data.push(scope.feedBack.f_ShoppersShare[i].value);
+		                                }
+		                            break; 
+		                            case 'ALLSHOPPERS':
+		                                if(scope.feedBack.f_ShoppersShare[i].marketID==1){
+		                                    urbanTotal[scope.feedBack.f_ShoppersShare[i].actorID-1].data.push(scope.feedBack.f_ShoppersShare[i].value);
+		                                }else if(scope.feedBack.f_ShoppersShare[i].marketID==2){
+		                                    ruralTotal[scope.feedBack.f_ShoppersShare[i].actorID-1].data.push(scope.feedBack.f_ShoppersShare[i].value);
+		                                }
+		                            break; 
+		                        }
 
-		     //        var previousElecssoriesValue=new Array({
-		     //            name:'Supplier-1',
-		     //            data:new Array(),
-		     //            color:'#3257A7'
-		     //        },{
-		     //            name:'Supplier-2',
-		     //            data:new Array(),
-		     //            color:'#B11E22'
-		     //        },{
-		     //            name:'Supplier-3',
-		     //            data:new Array(),
-		     //            color:'#F6B920'
-		     //        },{
-		     //            name:'Retailer-1',
-		     //            data:new Array(),
-		     //            color:'#8B288B'
-		     //        },{
-		     //            name:'Retailer-2',
-		     //            data:new Array(),
-		     //            color:'#F05422'
-		     //        });
-		     //        var currentHealthBeautiesVolume=new Array({
-		     //            name:'Supplier-1',
-		     //            data:new Array(),
-		     //            color:'#3257A7'
-		     //        },{
-		     //            name:'Supplier-2',
-		     //            data:new Array(),
-		     //            color:'#B11E22'
-		     //        },{
-		     //            name:'Supplier-3',
-		     //            data:new Array(),
-		     //            color:'#F6B920'
-		     //        },{
-		     //            name:'Retailer-1',
-		     //            data:new Array(),
-		     //            color:'#8B288B'
-		     //        },{
-		     //            name:'Retailer-2',
-		     //            data:new Array(),
-		     //            color:'#F05422'
-		     //        });
-		     //        var currentHealthBeautiesValue=new Array({
-		     //            name:'Supplier-1',
-		     //            data:new Array(),
-		     //            color:'#3257A7'
-		     //        },{
-		     //            name:'Supplier-2',
-		     //            data:new Array(),
-		     //            color:'#B11E22'
-		     //        },{
-		     //            name:'Supplier-3',
-		     //            data:new Array(),
-		     //            color:'#F6B920'
-		     //        },{
-		     //            name:'Retailer-1',
-		     //            data:new Array(),
-		     //            color:'#8B288B'
-		     //        },{
-		     //            name:'Retailer-2',
-		     //            data:new Array(),
-		     //            color:'#F05422'
-		     //        });
-		     //    /*highchart data init end*/
-		     //    /*highchart set data  start*/
-		     //    	//sales Volume
-			    //     for(var j=0;j<currentCategories.length;j++){
-		     //            for(var i=0;i<scope.feedBack.f_MarketSalesVolume.length;i++){
-		     //                if(scope.feedBack.f_MarketSalesVolume[i].period==currentCategories[j]){
-		     //                    switch(scope.feedBack.f_MarketSalesVolume[i].actorID){
-		     //                        case 1:
-		     //                        if(scope.feedBack.f_MarketSalesVolume[i].categoryID==1){
-		     //                            currentElecssoriesVolume[0].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
-		     //                        }else if(scope.feedBack.f_MarketSalesVolume[i].categoryID==2){
-		     //                            currentHealthBeautiesVolume[0].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
-		     //                        }
-		     //                        break;
-		     //                        case 2:
-		     //                        if(scope.feedBack.f_MarketSalesVolume[i].categoryID==1){
-		     //                            currentElecssoriesVolume[1].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
-		     //                        }else if(scope.feedBack.f_MarketSalesVolume[i].categoryID==2){
-		     //                            currentHealthBeautiesVolume[1].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
-		     //                        }
-		     //                        break;
-		     //                        case 3:
-		     //                        if(scope.feedBack.f_MarketSalesVolume[i].categoryID==1){
-		     //                            currentElecssoriesVolume[2].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
-		     //                        }else if(scope.feedBack.f_MarketSalesVolume[i].categoryID==2){
-		     //                            currentHealthBeautiesVolume[2].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
-		     //                        }
-		     //                        break;
-		     //                        case 4:
-		     //                        if(scope.feedBack.f_MarketSalesVolume[i].categoryID==1){
-		     //                            currentElecssoriesVolume[3].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
-		     //                        }else if(scope.feedBack.f_MarketSalesVolume[i].categoryID==2){
-		     //                            currentHealthBeautiesVolume[3].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
-		     //                        }
-		     //                        break;
-		     //                        case 5:
-		     //                        if(scope.feedBack.f_MarketSalesVolume[i].categoryID==1){
-		     //                            currentElecssoriesVolume[4].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
-		     //                        }else if(scope.feedBack.f_MarketSalesVolume[i].categoryID==2){
-		     //                            currentHealthBeautiesVolume[4].data.push(scope.feedBack.f_MarketSalesVolume[i].value);
-		     //                        }
-		     //                        break;
-		     //                    }
-		     //                }
-		     //            }
-		     //        }
-		     //        //sales Value
-		     //        for(var j=0;j<currentCategories.length;j++){
-		     //            for(var i=0;i<scope.feedBack.f_MarketSalesValue.length;i++){
-		     //                if(scope.feedBack.f_MarketSalesValue[i].period==currentCategories[j]){
-		     //                    switch(scope.feedBack.f_MarketSalesValue[i].actorID){
-		     //                        case 1:
-		     //                        if(scope.feedBack.f_MarketSalesValue[i].categoryID==1){
-		     //                            currentElecssoriesValue[0].data.push(scope.feedBack.f_MarketSalesValue[i].value);
-		     //                        }else if(scope.feedBack.f_MarketSalesValue[i].categoryID==2){
-		     //                            currentHealthBeautiesValue[0].data.push(scope.feedBack.f_MarketSalesValue[i].value);
-		     //                        }
-		     //                        break;
-		     //                        case 2:
-		     //                        if(scope.feedBack.f_MarketSalesValue[i].categoryID==1){
-		     //                            currentElecssoriesValue[1].data.push(scope.feedBack.f_MarketSalesValue[i].value);
-		     //                        }else if(scope.feedBack.f_MarketSalesValue[i].categoryID==2){
-		     //                            currentHealthBeautiesValue[1].data.push(scope.feedBack.f_MarketSalesValue[i].value);
-		     //                        }
-		     //                        break;
-		     //                        case 3:
-		     //                        if(scope.feedBack.f_MarketSalesValue[i].categoryID==1){
-		     //                            currentElecssoriesValue[2].data.push(scope.feedBack.f_MarketSalesValue[i].value);
-		     //                        }else if(scope.feedBack.f_MarketSalesValue[i].categoryID==2){
-		     //                            currentHealthBeautiesValue[2].data.push(scope.feedBack.f_MarketSalesValue[i].value);
-		     //                        }
-		     //                        break;
-		     //                        case 4:
-		     //                        if(scope.feedBack.f_MarketSalesValue[i].categoryID==1){
-		     //                            currentElecssoriesValue[3].data.push(scope.feedBack.f_MarketSalesValue[i].value);
-		     //                        }else if(scope.feedBack.f_MarketSalesValue[i].categoryID==2){
-		     //                            currentHealthBeautiesValue[3].data.push(scope.feedBack.f_MarketSalesValue[i].value);
-		     //                        }
-		     //                        break;
-		     //                        case 5:
-		     //                        if(scope.feedBack.f_MarketSalesValue[i].categoryID==1){
-		     //                            currentElecssoriesValue[4].data.push(scope.feedBack.f_MarketSalesValue[i].value);
-		     //                        }else if(scope.feedBack.f_MarketSalesValue[i].categoryID==2){
-		     //                            currentHealthBeautiesValue[4].data.push(scope.feedBack.f_MarketSalesValue[i].value);
-		     //                        }
-		     //                        break;
-		     //                    }
-		     //                }
-		     //            }
-		     //        }
-		     //    /*highchart set data end*/
-		     //    /*set highchart function start*/
-		     //    	scope.currentSalesVolumeElecssories = {
-		     //            options: {
-		     //                title:{
-		     //                    text:'Sales Volumes',
-		     //                },
-		     //                chart: {
-		     //                    type: 'line',
-		     //                    backgroundColor: 'transparent',
-		     //                },
-		     //                yAxis: {
-		     //                    title: {
-		     //                        text: 'mln units'
-		     //                    },
-		     //                    gridLineColor: 'transparent'
-		     //                },
-		     //                xAxis: {
-		     //                    categories: currentCategories,
-		     //                    title: {
-		     //                        text: 'Period'
-		     //                    }
-		     //                },
-		     //                tooltip: {
-		     //                    formatter: function() {
-		     //                        var s = '<p>'+this.series.name+'</p>'+'<p>Period:'+this.key+'</p>'+'<p>mln units:'+this.point.y.toFixed(2)+'</p>';
-		     //                        return s;
-		     //                    },
-		     //                    shared: false,
-		     //                    useHTML: true
-		     //                },
-		     //                credits: {
-		     //                    enabled: false
-		     //                }
-		     //            },
-		     //            series: currentElecssoriesVolume,
-		     //            loading: false
-		     //        }
-		     //        scope.currentSalesVolumeHealthBeauties = {
-		     //            options: {
-		     //                title:{
-		     //                    text:'Sales Volumes',
-		     //                },
-		     //                chart: {
-		     //                    type: 'line',
-		     //                    backgroundColor: 'transparent',
-		     //                },
-		     //                yAxis: {
-		     //                    title: {
-		     //                        text: 'mln units'
-		     //                    },
-		     //                    gridLineColor: 'transparent'
-		     //                },
-		     //                xAxis: {
-		     //                    categories: currentCategories,
-		     //                    title: {
-		     //                        text: 'Period'
-		     //                    }
-		     //                },
-		     //                tooltip: {
-		     //                    formatter: function() {
-		     //                        var s = '<p>'+this.series.name+'</p>'+'<p>Period:'+this.key+'</p>'+'<p>mln units:'+this.point.y.toFixed(2)+'</p>';
-		     //                        return s;
-		     //                    },
-		     //                    shared: false,
-		     //                    useHTML: true
-		     //                },
-		     //                credits: {
-		     //                    enabled: false
-		     //                }
-		     //            },
-		     //            series: currentHealthBeautiesVolume,
-		     //            loading: false
-		     //        }
-		     //        scope.currentSalesValueElecssories = {
-		     //            options: {
-		     //                title:{
-		     //                    text:'Sales Values',
-		     //                },
-		     //                chart: {
-		     //                    type: 'line',
-		     //                    backgroundColor: 'transparent',
-		     //                },
-		     //                yAxis: {
-		     //                    title: {
-		     //                        text: '$mln'
-		     //                    },
-		     //                    gridLineColor: 'transparent'
-		     //                },
-		     //                xAxis: {
-		     //                    categories: currentCategories,
-		     //                    title: {
-		     //                        text: 'Period'
-		     //                    }
-		     //                },
-		     //                tooltip: {
-		     //                    formatter: function() {
-		     //                        var s = '<p>'+this.series.name+'</p>'+'<p>Period:'+this.key+'</p>'+'<p>$mln:'+this.point.y.toFixed(2)+'</p>';
-		     //                        return s;
-		     //                    },
-		     //                    shared: false,
-		     //                    useHTML: true
-		     //                },
-		     //                credits: {
-		     //                    enabled: false
-		     //                }
-		     //            },
-		     //            series: currentElecssoriesValue,
-		     //            loading: false
-		     //        }
-		     //        scope.currentSalesValueHealthBeauties = {
-		     //            options: {
-		     //                title:{
-		     //                    text:'Sales Values',
-		     //                },
-		     //                chart: {
-		     //                    type: 'line',
-		     //                    backgroundColor: 'transparent',
-		     //                },
-		     //                yAxis: {
-		     //                    title: {
-		     //                        text: '$mln'
-		     //                    },
-		     //                    gridLineColor: 'transparent'
-		     //                },
-		     //                xAxis: {
-		     //                    categories: currentCategories,
-		     //                    title: {
-		     //                        text: 'Period'
-		     //                    }
-		     //                },
-		     //                tooltip: {
-		     //                    formatter: function() {
-		     //                        var s = '<p>'+this.series.name+'</p>'+'<p>Period:'+this.key+'</p>'+'<p>$mln:'+this.point.y.toFixed(2)+'</p>';
-		     //                        return s;
-		     //                    },
-		     //                    shared: false,
-		     //                    useHTML: true
-		     //                },
-		     //                credits: {
-		     //                    enabled: false
-		     //                }
-		     //            },
-		     //            series: currentHealthBeautiesValue,
-		     //            loading: false
-		     //        }
+		                    }
+		                }
+		            }
+		        /*set highchart data end*/
+		        /*set highchart function start*/
+		            scope.urbanOnlineShareOfShoppers={
+		                options: {
+		                    xAxis: {
+		                        categories: currentCategories,
+		                        title: {
+		                            text: 'Period'
+		                        }
+		                    },
+		                    yAxis:{
+		                        title: {
+		                            text: '%'
+		                        },
+		                        gridLineColor: 'transparent'
+		                    },
+		                    chart: {
+		                        type: 'line',
+		                        height:300,
+		                        width:550,
+		                        backgroundColor: 'transparent',
+		                    },
+		                    tooltip: {
+		                        formatter: function() {
+		                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%)</p>';
+		                            return s;
+		                        },
+		                        shared: false,
+		                        useHTML: true
+		                    },
+		                    credits: {
+		                        enabled: false
+		                    }
+		                },
+		                series: urbanOnline,
+		                title: {
+		                    text: 'Online Only'
+		                },
+		                loading: false
+		            }
+		            scope.urbanBMShareOfShoppers={
+		                options: {
+		                    xAxis: {
+		                        categories: currentCategories,
+		                        title: {
+		                            text: 'Period'
+		                        }
+		                    },
+		                    yAxis:{
+		                        title: {
+		                            text: '%'
+		                        },
+		                        gridLineColor: 'transparent'
+		                    },
+		                    chart: {
+		                        type: 'line',
+		                        height:300,
+		                        width:550,
+		                        backgroundColor: 'transparent',
+		                    },
+		                    tooltip: {
+		                        formatter: function() {
+		                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%)</p>';
+		                            return s;
+		                        },
+		                        shared: false,
+		                        useHTML: true
+		                    },
+		                    credits: {
+		                        enabled: false
+		                    }
+		                },
+		                series: urbanBM,
+		                title: {
+		                    text: 'B & M Only'
+		                },
+		                loading: false
+		            }
+		            scope.urbanMixedShareOfShoppers={
+		                options: {
+		                    xAxis: {
+		                        categories: currentCategories,
+		                        title: {
+		                            text: 'Period'
+		                        }
+		                    },
+		                    yAxis:{
+		                        title: {
+		                            text: '%'
+		                        },
+		                        gridLineColor: 'transparent'
+		                    },
+		                    chart: {
+		                        type: 'line',
+		                        height:300,
+		                        width:550,
+		                        backgroundColor: 'transparent',
+		                    },
+		                    tooltip: {
+		                        formatter: function() {
+		                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%)</p>';
+		                            return s;
+		                        },
+		                        shared: false,
+		                        useHTML: true
+		                    },
+		                    credits: {
+		                        enabled: false
+		                    }
+		                },
+		                series: urbanMixed,
+		                title: {
+		                    text: 'Mixed'
+		                },
+		                loading: false
+		            }
+		            scope.urbanTotalShareOfShoppers={
+		                options: {
+		                    xAxis: {
+		                        categories: currentCategories,
+		                        title: {
+		                            text: 'Period'
+		                        }
+		                    },
+		                    yAxis:{
+		                        title: {
+		                            text: '%'
+		                        },
+		                        gridLineColor: 'transparent'
+		                    },
+		                    chart: {
+		                        type: 'line',
+		                        height:300,
+		                        width:550,
+		                        backgroundColor: 'transparent',
+		                    },
+		                    tooltip: {
+		                        formatter: function() {
+		                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%)</p>';
+		                            return s;
+		                        },
+		                        shared: false,
+		                        useHTML: true
+		                    },
+		                    credits: {
+		                        enabled: false
+		                    }
+		                },
+		                series: urbanTotal,
+		                title: {
+		                    text: 'Total'
+		                },
+		                loading: false
+		            }
+		            scope.ruralOnlineShareOfShoppers={
+		                options: {
+		                    xAxis: {
+		                        categories: currentCategories,
+		                        title: {
+		                            text: 'Period'
+		                        }
+		                    },
+		                    yAxis:{
+		                        title: {
+		                            text: '%'
+		                        },
+		                        gridLineColor: 'transparent'
+		                    },
+		                    chart: {
+		                        type: 'line',
+		                        height:300,
+		                        width:550,
+		                        backgroundColor: 'transparent',
+		                    },
+		                    tooltip: {
+		                        formatter: function() {
+		                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%)</p>';
+		                            return s;
+		                        },
+		                        shared: false,
+		                        useHTML: true
+		                    },
+		                    credits: {
+		                        enabled: false
+		                    }
+		                },
+		                series: ruralOnline,
+		                title: {
+		                    text: 'Online Only'
+		                },
+		                loading: false
+		            }
+		            scope.ruralBMShareOfShoppers={
+		                options: {
+		                    xAxis: {
+		                        categories: currentCategories,
+		                        title: {
+		                            text: 'Period'
+		                        }
+		                    },
+		                    yAxis:{
+		                        title: {
+		                            text: '%'
+		                        },
+		                        gridLineColor: 'transparent'
+		                    },
+		                    chart: {
+		                        type: 'line',
+		                        height:300,
+		                        width:550,
+		                        backgroundColor: 'transparent',
+		                    },
+		                    tooltip: {
+		                        formatter: function() {
+		                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%)</p>';
+		                            return s;
+		                        },
+		                        shared: false,
+		                        useHTML: true
+		                    },
+		                    credits: {
+		                        enabled: false
+		                    }
+		                },
+		                series: ruralBM,
+		                title: {
+		                    text: 'B & M Only'
+		                },
+		                loading: false
+		            }
+		            scope.ruralMixedShareOfShoppers={
+		                options: {
+		                    xAxis: {
+		                        categories: currentCategories,
+		                        title: {
+		                            text: 'Period'
+		                        }
+		                    },
+		                    yAxis:{
+		                        title: {
+		                            text: '%'
+		                        },
+		                        gridLineColor: 'transparent'
+		                    },
+		                    chart: {
+		                        type: 'line',
+		                        height:300,
+		                        width:550,
+		                        backgroundColor: 'transparent',
+		                    },
+		                    tooltip: {
+		                        formatter: function() {
+		                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%)</p>';
+		                            return s;
+		                        },
+		                        shared: false,
+		                        useHTML: true
+		                    },
+		                    credits: {
+		                        enabled: false
+		                    }
+		                },
+		                series: ruralMixed,
+		                title: {
+		                    text: 'Mixed'
+		                },
+		                loading: false
+		            }
+		            scope.ruralTotalShareOfShoppers={
+		                options: {
+		                    xAxis: {
+		                        categories: currentCategories,
+		                        title: {
+		                            text: 'Period'
+		                        }
+		                    },
+		                    yAxis:{
+		                        title: {
+		                            text: '%'
+		                        },
+		                        gridLineColor: 'transparent'
+		                    },
+		                    chart: {
+		                        type: 'line',
+		                        height:300,
+		                        width:550,
+		                        backgroundColor: 'transparent',
+		                    },
+		                    tooltip: {
+		                        formatter: function() {
+		                            var s = '<p style="font-size:20px;line-height:20px;">'+this.series.name+'</p>'+'<p style="font-size:20px;line-height:20px;">Period:'+this.key+'</p>'+'<p style="font-size:20px;line-height:20px;">'+this.point.y.toFixed(2)+'%)</p>';
+		                            return s;
+		                        },
+		                        shared: false,
+		                        useHTML: true
+		                    },
+		                    credits: {
+		                        enabled: false
+		                    }
+		                },
+		                series: ruralTotal,
+		                title: {
+		                    text: 'Total'
+		                },
+		                loading: false
+		            }
 		            scope.isPageLoading = false;
 		            scope.isResultShown = true;  
 		        /*set highchart function end*/
