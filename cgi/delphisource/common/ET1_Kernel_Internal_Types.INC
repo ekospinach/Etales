@@ -358,6 +358,7 @@ TBrandsInternal = array[TCategories, TBrands] of TBrandInternal;
 
 {----------------------------------------------------------------------------------------------------------------------------}
 
+
 TProducerInternal =
   record
     p_CompanyID                                : TActors;
@@ -401,6 +402,7 @@ TProducerInternal =
     p_CostOfGoodsSold                          : array[TMarketsTotal, TCategoriesTotal, TAccountsTotal] of single;
     p_CumulatedDesignVolume                    : array[TCategories] of TDesignsDetails;
     p_CumulatedTechnologyVolume                : array[TCategories] of TTechnologiesDetails;
+    p_CurrentInvestment                        : single;
     p_CumulativeInvestment                     : single;
     p_CurrentProductionCost                    : array[TCategories] of single;   { at original producer, including Supplier 4 for PL }
     p_DebtIssuance                             : array[TCategoriesTotal] of single;
@@ -439,14 +441,17 @@ TProducerInternal =
     p_InitialInventory                         : array[TCategories, TProducerDivisions] of single;
     p_InitialInventoryValue                    : array[TCategoriesTotal, TProducerDivisions] of single;
     p_InStoreActivitiesFee                     : array[TMarketsTotal, TCategoriesTotal, TBMRetailersTotal] of single;
+    p_Intangibles                              : array[TCategoriesTotal] of single;
     p_Interest                                 : array[TMarketsTotal, TCategoriesTotal, TProducerDivisions] of single;
     p_InventoryHoldingCost                     : array[TMarketsTotal, TCategoriesTotal, TProducerDivisions] of single;
     p_InvestInDesign                           : array[TCategoriesTotal, TProducerDivisions] of single;
     p_InvestInProductionFlexibility            : array[TCategoriesTotal, TProducerDivisions] of single;
     p_InvestInTechnology                       : array[TCategoriesTotal, TProducerDivisions] of single;
     p_InvestmentInCapacityChange               : array[TCategoriesTotal, TProducerDivisions] of single;
+    p_LandAndEquipment                         : array[TCategoriesTotal] of single;
     p_MarketingEffectiveness                   : array[TCategories] of single;
     p_MarketResearchCost                       : array[TCategoriesTotal, TProducerDivisions] of single;
+    p_MarketResearchOrders                     : TMarketResearchOrders;
     p_MarketSalesValue                         : array[TMarketsTotal, TCategoriesTotal, TSegmentsTotal, TShoppersKind] of single;
     p_MarketSalesValueChange                   : array[TMarketsTotal, TCategoriesTotal, TSegmentsTotal, TShoppersKind] of single;
     p_MarketSalesVolume                        : array[TMarketsTotal, TCategories, TSegmentsTotal, TShoppersKind] of single;
@@ -486,7 +491,9 @@ TProducerInternal =
     p_ProductionVolume                         : array[TCategories] of single;
     p_ProfitBeforeTax                          : array[TMarketsTotal, TCategoriesTotal, TProducerDivisions] of single;
     p_PromotionalSupport                       : array[TMarketsTotal, TCategoriesTotal, TBMRetailersTotal] of single;
-    p_QuantityDiscountsValue                   : array[TMarketsTotal, TCategoriesTotal, TBMRetailersTotal] of single;  
+    p_QuantityDiscountsValue                   : array[TMarketsTotal, TCategoriesTotal, TBMRetailersTotal] of single; 
+    p_ResidualInvestInTechnology               : array[TCategories] of single;
+    p_ResidualInvestInDesign                   : array[TCategories] of single;
     p_SalesForceCost                           : array[TCategoriesTotal, TProducerDivisions] of single;
     p_SalesVolume                              : array[TMarketsTotal, TCategories, TAccountsTotal] of single;
     p_SalesVolumeChange                        : array[TMarketsTotal, TCategories, TAccountsTotal] of single;
@@ -508,7 +515,6 @@ TProducerInternal =
     p_TradeProfit                              : array[TMarketsTotal, TCategoriesTotal, TAccountsTotal] of single;
     p_TradeSpendingEffectiveness               : array[TCategories] of single;
     p_TraditionalTradeSupport                  : array[TMarketsTotal, TCategoriesTotal] of single;
-    p_VolumeDiscountsCosts                     : array[TMarketsTotal, TCategoriesTotal, TBMRetailersTotal] of single;
     p_VolumeOrdered                            : array[TMarketsTotal, TCategoriesTotal, TAccountsTotal] of single;
     p_WholesalesVolume                         : array[TMarketsTotal, TBMRetailers] of single;
     p_WholesaleValueShare                      : array[TMarketsTotal, TCategoriesTotal, TBMRetailersTotal] of single;
@@ -538,7 +544,9 @@ TRetailerInternal =
     r_ClosingInventory                         : array[TMarketsTotal, TCategories] of single;
     r_ClosingInventoryValue                    : array[TMarketsTotal, TCategoriesTotal] of single;  
     r_ClosingStockCover                        : array[TMarketsTotal, TCategoriesTotal] of single;
-    r_CostOfGoodsSold                          : array[TMarketsTotal, TCategoriesTotal, TFactoriesTotal] of single;  
+    r_CostOfGoodsSold                          : array[TMarketsTotal, TCategoriesTotal, TFactoriesTotal] of single;
+    r_CurrentInvestment                        : single;
+    r_CurrentReceipts                          : single;  
     r_CumulativeInvestment                     : single; 
     r_DebtIssuance                             : single;
     r_DebtRedemption                           : single;
@@ -564,10 +572,14 @@ TRetailerInternal =
     r_InStoreActivitiesCost                    : array[TMarketsTotal, TCategoriesTotal, TFactoriesTotal] of single;  
     r_InStoreActivitiesFee                     : array[TMarketsTotal, TCategoriesTotal, TFactoriesTotal] of single;  
     r_InStoreCosts                             : array[TMarketsTotal, TCategoriesTotal] of single;      { Space and Inventory Management }
+    r_InStoreCostsAtBaseLevel                  : array[TMarketsTotal, TCategoriesTotal] of single;      { Space and Inventory Management at BASE service level }
     r_Interest                                 : array[TMarketsTotal, TCategoriesTotal] of single;
     r_InventoryHoldingCost                     : array[TMarketsTotal, TCategoriesTotal, TFactoriesTotal] of single;
     r_LabourCosts                              : array[TMarketsTotal, TCategoriesTotal] of single;
+    r_LabourCostsAtBaseLevel                   : array[TMarketsTotal, TCategoriesTotal] of single;
     r_LocalAdvertising                         : array[TMarketsTotal, TCategoriesTotal] of TStorePerceptionsData;
+    r_MarketResearchCost                       : array[TMarketsTotal, TCategoriesTotal] of single;
+    r_MarketResearchOrders                     : TMarketResearchOrders;
     r_MarketShareValue                         : array[TMarketsTotal, TCategoriesTotal, TSegmentsTotal, TShoppersKind] of single;
     r_MarketShareValueChange                   : array[TMarketsTotal, TCategoriesTotal, TSegmentsTotal, TShoppersKind] of single;
     r_MarketShareVolume                        : array[TMarketsTotal, TCategories, TSegmentsTotal, TShoppersKind] of single;
@@ -644,8 +656,8 @@ TStoreInternal =
     s_PromotionsValue             : array[TMarketsTotal] of double;
     s_ServiceImpact               : array[TMarketsTotal] of TStorePerceptionsData;
     s_ShareOfShoppers             : array[TMarketsTotal, TCategoriesTotal] of single;
-    s_ShoppersBase                : array[TMarketsTotal, TSegmentsTotal] of single;
-    s_StoreAttractiveness         : array[TMarketsTotal, TSegmentsTotal] of single;
+    s_ShoppersBase                : array[TMarketsTotal, TCategoriesTotal, TSegmentsTotal] of single;
+    s_StoreAttractiveness         : array[TMarketsTotal, TCategoriesTotal, TSegmentsTotal] of single;
     s_StorePerception             : array[TMarketsTotal] of TStorePerceptionsData;
     s_StoresWeight                : array[TMarketsTotal] of double;
   end;

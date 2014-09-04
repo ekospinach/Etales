@@ -18,3 +18,6 @@ mongoimport -d Etales -c prodecisions prodecisions.data
 mongoimport -d Etales -c retailerdecisions retailerdecisions.data
 mongoimport -d Etales -c contractvariantdetails contractvariantdetails.data
 mongoimport -d Etales -c contracts contracts.data
+
+mongodump -h dbhost -d dbname -o dbdirectory
+mongorestore -h dbhost -d dbname --directoryperdb dbdirectory 

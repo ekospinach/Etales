@@ -215,6 +215,14 @@ const
   kernel_ErrorInResultsCompleting                    = 93701;
   kernel_ResultsCompleting_OK                        = 93709;
                                           
+
+  kernel_ErrorInProductionCapacity                   = 93801;
+  kernel_ProductionCapacity_OK                       = 93809;
+  kernel_ErrorInTechnology                           = 93811;
+  kernel_Technology_OK                               = 93819;
+  kernel_ErrorInTechnologyAndCapacity                = 93831;
+  kernel_TechnologyAndCapacity_OK                    = 93839;
+
   kernel_CannotWriteToResultsFile                    = 93900;
   kernel_WritingResultsToFile_OK                     = 93909;
 
@@ -233,14 +241,14 @@ const
   kernel_WritingNextRetailersDecisions_OK            = 93929;
   kernel_WritingNextDecisions_OK                     = 93930;
   
-  kernel_PrivateLabelsProcurement_OK                 = 93931;
-  kernel_ErrorInPrivateLabelsProcurement             = 93939;
+  kernel_ErrorInPrivateLabelsProcurement             = 93931;
+  kernel_PrivateLabelsProcurement_OK                 = 93939;
 
-  kernel_ShoppersShare_OK                            = 93941;
-  kernel_ErrorInShoppersShare                        = 93949;
+  kernel_ErrorInShoppersShare                        = 93941;
+  kernel_ShoppersShare_OK                            = 93949;
 
-  kernel_OtherCompletingResults_OK                   = 93991;
-  kernel_ErrorInOtherCompletingResults               = 93999;
+  kernel_ErrorInOtherCompletingResults               = 93991;
+  kernel_OtherCompletingResults_OK                   = 93999;
   
   kernel_SimulationRun_OK                            = 94000;
 
