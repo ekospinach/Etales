@@ -119,7 +119,8 @@ var supplierKPIExtendedInfoSchema = mongoose.Schema({
 var shopperShareInfoSchema = mongoose.Schema({
     marketID : Number,
     period : Number,
-    actorID : Number, //1~(4+3)
+    actorID : Number, //1~(4+3),
+    shooperKind :String,
     value : Number,
 })
 

@@ -99,7 +99,7 @@ define(['directives', 'services'], function(directives){
                     }];
                     scope.xTitle3=Label.getContent('Convenience');
                     scope.yTitle3=Label.getContent('Price Appeal');
-                    scope.myModel="RetailerPerceptions";
+                    scope.myModel="RetailerPerceptions"+scope.selectedPeriod;
 
                     deferred.resolve({msg:'Array is ready.'});                    
                     return deferred.promise;

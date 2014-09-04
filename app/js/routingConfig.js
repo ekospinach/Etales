@@ -71,7 +71,6 @@
                         resultBitMask += "1"
                     }
                     accessLevels[level] = parseInt(resultBitMask, 2);
-                    console.log('public:'+accessLevels[level]);
                 }
                 else console.log("Access Control Error: Could not parse '" + accessLevelDeclarations[level] + "' as access definition for level '" + level + "'")
 

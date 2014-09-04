@@ -102,13 +102,14 @@ define(['directives', 'services'], function(directives){
                     scope.segmentYTitle=Label.getContent('Segment Size')+'(%)';
                     scope.segmentXTitle=Label.getContent('Period');
 
-                    var curP = PeriodInfo.getCurrentPeriod();
-                    scope.categories = ['', curP-3, curP-2, curP-1, curP, curP+1];
+                    var curP = scope.selectedPeriod;
+
+                    scope.categories = ['', curP-2, curP-1, curP, curP+1, curP+2];
                     scope.title1=Label.getContent('Elecssories')+'-'+Label.getContent('Rural');
                     scope.title2=Label.getContent('Elecssories')+'-'+Label.getContent('Urban');
                     scope.title3=Label.getContent('HealthBeauties')+'-'+Label.getContent('Rural');
                     scope.title4=Label.getContent('HealthBeauties')+'-'+Label.getContent('Urban');
-                    scope.myModel='Consumer Segment Size';
+                    scope.myModel='Consumer Segment Size'+curP;
                     deferred.resolve({msg:'Array is ready.'});                    
                     return deferred.promise;
                 }
